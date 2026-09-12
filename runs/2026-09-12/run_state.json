@@ -1,63 +1,95 @@
 {
- "run_date": "2026-09-12",
- "carousel_no": 57,
- "phases": {
-  "wake": "done",
-  "craft_refresh": "done",
-  "research": "done",
-  "claims": "done",
-  "docket": "done",
-  "gas_watch": "done",
-  "selection": "done",
-  "directors_room": "done",
-  "copy": "pending",
-  "art_build": "pending",
-  "pixel_review": "pending",
-  "flow_review": "pending",
-  "assemble": "pending",
-  "scoring": "pending",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- },
- "artifacts": {
-  "wake": [
-   "out/2026-09-12/plan.md",
-   "out/2026-09-12/run_state.json"
-  ],
-  "craft_refresh": [
-   "knowledge/FIELD_NOTES.md (2026-09-12 entry)"
-  ],
-  "gas_watch": [
-   "out/2026-09-12/site_signoff.md"
-  ],
-  "research": [
-   "out/2026-09-12/scout_merge.md"
-  ],
-  "claims": [
-   "out/2026-09-12/claims.json"
-  ],
-  "selection": [
-   "out/2026-09-12/selection.md"
-  ],
-  "docket": [
-   "ledger/docket.json (4 worklist items refreshed, 1 new item onr-arctic-iha-year-9)"
-  ],
-  "directors_room": [
-   "out/2026-09-12/storyboard.md",
-   "out/2026-09-12/storyboard_header_draft.md",
-   "out/2026-09-12/proto_findings.md"
-  ]
- },
- "date_note": "runs/2026-09-12/ did not exist at wake; date taken normally.",
- "next_run_brief": "runs/2026-09-11/next_run_brief.md was archived into runs/ by No.56 rather than left at prompts/NEXT_RUN.md, so it is craft guidance and a lead sheet, not a binding story assignment. Read in full at wake.",
- "standing_weakness_attacked": "Legibility and platform fitness (weakest 2/10, mean 6.6, last 4.0, never worked on). Attack is the measure-then-draw container idiom plus a renderReady assertion on safe zone and container fit.",
- "site_signoff": "PASS, 103 pages, 18 checks",
- "gas_watch_line": "WARN, read September 11th, 2026, 37 days on record, chart present",
- "gas_watch_unfixed": "One gap in ledger/gaswatch.jsonl, no record dated 2026-09-08. Cron-written and off limits to a run under non-negotiable 19, so REPORT only. It sits right after a seven-run collector outage that PR #347 repaired on 2026-09-07.",
- "claims_gate": "PASS, 52/52 usable, 52 primary, 52 with outlet",
- "dedupe": "exit 1, two LIKELY DUPLICATE rows (No.44 14 days, No.52 6 days), both read in full, semantic call is not a repeat. Recorded in selection.md.",
- "thesis": "The permit knows the machine position to the metre and does not know the animal number at all. Beaufort beluga counted in 1992, Arctic ringed seal abundance UND, on a one year instrument in its ninth year with three public comment letters.",
- "dossier_gate": "PASS, 9 dossiers, 0 fails, 0 warns"
+  "run_date": "2026-09-12",
+  "carousel_no": 57,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "in_progress",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "wake": [
+      "out/2026-09-12/plan.md",
+      "out/2026-09-12/run_state.json"
+    ],
+    "craft_refresh": [
+      "knowledge/FIELD_NOTES.md (2026-09-12 entry)"
+    ],
+    "gas_watch": [
+      "out/2026-09-12/site_signoff.md"
+    ],
+    "research": [
+      "out/2026-09-12/scout_merge.md"
+    ],
+    "claims": [
+      "out/2026-09-12/claims.json"
+    ],
+    "selection": [
+      "out/2026-09-12/selection.md"
+    ],
+    "docket": [
+      "ledger/docket.json (4 worklist items refreshed, 1 new item onr-arctic-iha-year-9)"
+    ],
+    "directors_room": [
+      "out/2026-09-12/storyboard.md",
+      "out/2026-09-12/storyboard_header_draft.md",
+      "out/2026-09-12/proto_findings.md"
+    ],
+    "copy": [
+      "out/2026-09-12/copy.json",
+      "out/2026-09-12/caption.txt"
+    ],
+    "art_build": [
+      "out/2026-09-12/slides/ (9 slides)",
+      "assets/js/akunderice.js",
+      "assets/js/akfit.js"
+    ],
+    "pixel_review": [
+      "out/2026-09-12/storyboard.md (ROUND 2 section)"
+    ],
+    "flow_review": [
+      "out/2026-09-12/storyboard.md (ROUND 2 section)"
+    ],
+    "assemble": [
+      "out/2026-09-12/final/carousel.pdf",
+      "out/2026-09-12/final/contact_sheet.png",
+      "out/2026-09-12/final/thumbs/"
+    ],
+    "scoring": [
+      "out/2026-09-12/score_report.json (8.72, round 3)"
+    ],
+    "ship": [
+      "runs/2026-09-12/ (34 entries at ship weight)",
+      "PR #359"
+    ],
+    "upgrade": [
+      "ledger/upgrades.json (3 entries)",
+      "out/2026-09-12/automation_retro.md"
+    ]
+  },
+  "date_note": "runs/2026-09-12/ did not exist at wake; date taken normally.",
+  "next_run_brief": "runs/2026-09-11/next_run_brief.md was archived into runs/ by No.56 rather than left at prompts/NEXT_RUN.md, so it is craft guidance and a lead sheet, not a binding story assignment. Read in full at wake.",
+  "standing_weakness_attacked": "Legibility and platform fitness (weakest 2/10, mean 6.6, last 4.0, never worked on). Attack is the measure-then-draw container idiom plus a renderReady assertion on safe zone and container fit.",
+  "site_signoff": "PASS, 103 pages, 18 checks",
+  "gas_watch_line": "WARN, read September 11th, 2026, 37 days on record, chart present",
+  "gas_watch_unfixed": "One gap in ledger/gaswatch.jsonl, no record dated 2026-09-08. Cron-written and off limits to a run under non-negotiable 19, so REPORT only. It sits right after a seven-run collector outage that PR #347 repaired on 2026-09-07.",
+  "claims_gate": "PASS, 52/52 usable, 52 primary, 52 with outlet",
+  "dedupe": "exit 1, two LIKELY DUPLICATE rows (No.44 14 days, No.52 6 days), both read in full, semantic call is not a repeat. Recorded in selection.md.",
+  "thesis": "The permit knows the machine position to the metre and does not know the animal number at all. Beaufort beluga counted in 1992, Arctic ringed seal abundance UND, on a one year instrument in its ninth year with three public comment letters.",
+  "dossier_gate": "PASS, 9 dossiers, 0 fails, 0 warns",
+  "state_note": "Phase 12 found this file shipping with seven phases still reading pending while the commits proved they had run. gate_status reads run_state.json only for parseability and never looks at the phases dict, so nothing caught it. Corrected by hand here and recommended as a gate row in the next run's brief."
 }

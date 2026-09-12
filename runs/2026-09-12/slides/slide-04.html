@@ -226,13 +226,25 @@ window.renderReady = (async function(){
       /* ONE FIN AND A NOSE. Two crossed hairlines rising off the hull have no
        * stated function anywhere in the dossier and a pixel critic read the
        * object as a leaf with an artefact over it. A single swept fin aft and a
-       * drawn nose forward make it a vehicle. */
-      g.strokeStyle = "rgba(170,200,206,0.56)"; g.lineWidth = 2.6;
-      g.beginPath();
-      g.moveTo(GX + 44, GY - Hh + 10);
-      g.lineTo(GX + 78, GY - Hh - 38);
-      g.lineTo(GX + 92, GY - Hh - 34);
-      g.stroke();
+       * drawn nose forward make it a vehicle.
+       *
+       * THE FIN IS A SURFACE AND NOT A STROKE (2026-09-12, round 3 scorer). The
+       * stroked version rooted at GY - Hh + 10, which is GY - 40, while the hull
+       * top at that same x is GY - 36. It floated four px clear of the object it
+       * belonged to and ended in a bare hairline, so it read as a stray white
+       * stub terminating in open water. The fix is a closed polygon whose base
+       * lies ON the hull curve at u 0.60 and 0.72, lit by the same S.profile
+       * call and the same declared key as the hull, so it is part of the vehicle
+       * by construction rather than by proximity. */
+      (function(){
+        var ub = function(u){
+          return [GX - L/2 + u*L, GY - Hh*Math.sin(Math.PI*u)*(1 - 0.26*u)];
+        };
+        var a = ub(0.60), b = ub(0.72);
+        S.profile(g, [a, [GX + 70, GY - 74], [GX + 82, GY - 69], b],
+          {fill:"#0A2530", weight:1.8, heavyMul:1.6, threshold:-0.12,
+           light:"rgba(198,226,230,0.62)", lee:"rgba(2,6,11,0.92)"});
+      })();
       // the nose, a short blunt cap forward, which is the end that goes first
       g.strokeStyle = "rgba(198,226,230,0.62)"; g.lineWidth = 3.0;
       g.beginPath();

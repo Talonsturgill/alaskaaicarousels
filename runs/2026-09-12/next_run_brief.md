@@ -32,6 +32,14 @@ Walk every leader end point and arrowhead against the reserve rects and warn
 under the same 24 px the landing gate already uses. Small gate, and the run that
 writes it stops paying for this family.
 
+## THE OTHER GATE ROW, and Phase 12 refused it for budget
+
+`run_state.json` shipped with seven phases reading `pending` while the run's own
+commits proved every one of them had run. `gate_status.py` reads that file only
+to check it parses and never looks at the phases dict, so nothing caught it.
+Corrected by hand in this run's copy. The row is about ten lines and it belongs
+in `gate_status.py`, failing at ship on any phase still pending.
+
 ## SPENT, AND WHY IT IS SPENT
 
 - **Hero structure.** The descended station. Nine frames on one shared depth to

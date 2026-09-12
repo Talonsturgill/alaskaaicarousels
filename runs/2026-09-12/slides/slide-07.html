@@ -93,7 +93,16 @@ window.renderReady = (async function(){
   document.getElementById('lb2').style.cssText  += ';left:80px;top:940px';
   document.getElementById('lb3').style.cssText  += ';left:80px;top:1074px';
   document.getElementById('lpbr').style.cssText += ';left:80px;top:1168px';
-  document.getElementById('lnv').style.cssText  += ';left:696px;top:986px';
+  /* 752 AND NOT 696 BECAUSE THE FIRST GLYPH WAS ON THE LIT FACE (2026-09-12).
+     Dial three's rim reaches x 734 at this baseline and its lit face reaches
+     711, so the old left put N and O on navy at roughly 4.4 to 1, the deck's
+     worst measured point.
+
+     726 AND NOT 752, because 752 put the label's right edge 24 px into the 80 px
+     margin and qa said so. 726 is the rightmost position the margin allows for a
+     272 px label, and it is enough: the lit face reaches x 717 at this label's
+     lowest ink, so every glyph now sits on open water with 9 px to spare. */
+  document.getElementById('lnv').style.cssText  += ';left:726px;top:986px';
 
   // the dial faces sit on their own dials, below the needle hub
   var f1 = document.getElementById('f1'), f2 = document.getElementById('f2'),

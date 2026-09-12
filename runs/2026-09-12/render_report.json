@@ -335,7 +335,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 3875,
-        "sites": 13,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -346,6 +346,648 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.17)",
+          "ops": 3861,
+          "amax": 0.192
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgba(216, 236, 238, 0.094)",
+          "ops": 1624,
+          "amax": 0.27
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.086)",
+          "ops": 448,
+          "amax": 0.086
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            52,
+            78,
+            86
+          ],
+          "color": "rgba(52, 78, 86, 0.204)",
+          "ops": 250,
+          "amax": 0.44
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            8,
+            11
+          ],
+          "color": "rgba(2, 8, 11, 0.92)",
+          "ops": 44,
+          "amax": 0.94
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.92)",
+          "ops": 22,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgba(255,199,44,0)",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            26,
+            76,
+            87
+          ],
+          "color": "#1a4c57",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            25,
+            74,
+            85
+          ],
+          "color": "#194a55",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            24,
+            73,
+            84
+          ],
+          "color": "#184954",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            23,
+            71,
+            82
+          ],
+          "color": "#174752",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            25,
+            75,
+            86
+          ],
+          "color": "#194b56",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            24,
+            72,
+            83
+          ],
+          "color": "#184853",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            22,
+            69,
+            80
+          ],
+          "color": "#164550",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            21,
+            67,
+            78
+          ],
+          "color": "#15434e",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            20,
+            65,
+            76
+          ],
+          "color": "#14414c",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            19,
+            64,
+            75
+          ],
+          "color": "#13404b",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            42,
+            70,
+            83
+          ],
+          "color": "#2a4653",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            26,
+            75,
+            86
+          ],
+          "color": "#1a4b56",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            23,
+            70,
+            81
+          ],
+          "color": "#174651",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            21,
+            68,
+            79
+          ],
+          "color": "#15444f",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            20,
+            66,
+            77
+          ],
+          "color": "#14424d",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            159,
+            194,
+            200
+          ],
+          "color": "#9fc2c8",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            26,
+            36
+          ],
+          "color": "#081a24",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            198,
+            226,
+            230
+          ],
+          "color": "rgba(198, 226, 230, 0.46)",
+          "ops": 2,
+          "amax": 0.46
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 2,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.9)",
+          "ops": 2,
+          "amax": 0.9
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgb(125, 143, 148)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            22,
+            70,
+            81
+          ],
+          "color": "#164651",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            22,
+            68,
+            79
+          ],
+          "color": "#16444f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            19,
+            63,
+            74
+          ],
+          "color": "#133f4a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            63,
+            74
+          ],
+          "color": "#123f4a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            62,
+            73
+          ],
+          "color": "#123e49",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            150,
+            196,
+            198
+          ],
+          "color": "rgba(150,196,198,0.160)",
+          "ops": 1,
+          "amax": 0.16
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            120,
+            168,
+            174
+          ],
+          "color": "rgba(120,168,174,0.067)",
+          "ops": 1,
+          "amax": 0.067
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            96,
+            140,
+            150
+          ],
+          "color": "rgba(96,140,150,0)",
+          "ops": 1,
+          "amax": 0
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "#d8ecee",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            94,
+            131,
+            140
+          ],
+          "color": "#5e838c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            232,
+            246,
+            247
+          ],
+          "color": "rgba(232, 246, 247, 0.82)",
+          "ops": 1,
+          "amax": 0.82
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            10,
+            14
+          ],
+          "color": "rgba(3, 10, 14, 0.92)",
+          "ops": 1,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            23,
+            34
+          ],
+          "color": "#081722",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            28,
+            39
+          ],
+          "color": "#0a1c27",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            22,
+            48,
+            60
+          ],
+          "color": "#16303c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            9,
+            26,
+            36
+          ],
+          "color": "#091a24",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            42,
+            54
+          ],
+          "color": "#122a36",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            18,
+            26
+          ],
+          "color": "#05121a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            10,
+            15
+          ],
+          "color": "#020a0f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            160,
+            190,
+            196
+          ],
+          "color": "rgba(160, 190, 196, 0.3)",
+          "ops": 1,
+          "amax": 0.3
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            206,
+            232,
+            236
+          ],
+          "color": "rgba(206, 232, 236, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            3,
+            11,
+            15
+          ],
+          "color": "rgba(3, 11, 15, 0.85)",
+          "ops": 1,
+          "amax": 0.85
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            170,
+            200,
+            206
+          ],
+          "color": "rgba(170, 200, 206, 0.62)",
+          "ops": 1,
+          "amax": 0.62
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            22,
+            51,
+            59
+          ],
+          "color": "rgb(22, 51, 59)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            44,
+            74,
+            82
+          ],
+          "color": "rgb(44, 74, 82)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -354,7 +996,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3426,
+      "render_ms": 3180,
       "ok": true,
       "canvases": [
         {
@@ -990,7 +1632,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 2390,
-        "sites": 9,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -1018,6 +1660,681 @@
         }
       ],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.106)",
+          "ops": 2378,
+          "amax": 0.306
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.055)",
+          "ops": 258,
+          "amax": 0.15
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            52,
+            78,
+            86
+          ],
+          "color": "rgba(52, 78, 86, 0.19)",
+          "ops": 150,
+          "amax": 0.435
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            8,
+            11
+          ],
+          "color": "rgba(2, 8, 11, 0.94)",
+          "ops": 40,
+          "amax": 0.94
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgba(255,199,44,0)",
+          "ops": 13,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 6,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            62,
+            73
+          ],
+          "color": "#123e49",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            61,
+            72
+          ],
+          "color": "#123d48",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.9)",
+          "ops": 4,
+          "amax": 0.9
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            60,
+            71
+          ],
+          "color": "#113c47",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            59,
+            70
+          ],
+          "color": "#113b46",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            58,
+            69
+          ],
+          "color": "#113a45",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            57,
+            68
+          ],
+          "color": "#103944",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            56,
+            67
+          ],
+          "color": "#103843",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            54,
+            64
+          ],
+          "color": "#0f3640",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            52,
+            62
+          ],
+          "color": "#0e343e",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            51,
+            61
+          ],
+          "color": "#0e333d",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            49,
+            59
+          ],
+          "color": "#0d313b",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            48,
+            58
+          ],
+          "color": "#0d303a",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            159,
+            194,
+            200
+          ],
+          "color": "#9fc2c8",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 2,
+          "amax": 0.58
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            61,
+            71
+          ],
+          "color": "#113d47",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            60,
+            70
+          ],
+          "color": "#113c46",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            17,
+            59,
+            69
+          ],
+          "color": "#113b45",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            58,
+            68
+          ],
+          "color": "#103a44",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            57,
+            67
+          ],
+          "color": "#103943",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            56,
+            66
+          ],
+          "color": "#103842",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            55,
+            66
+          ],
+          "color": "#103742",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            55,
+            66
+          ],
+          "color": "#0f3742",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            55,
+            65
+          ],
+          "color": "#0f3741",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            54,
+            65
+          ],
+          "color": "#0f3641",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            53,
+            64
+          ],
+          "color": "#0f3540",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            53,
+            63
+          ],
+          "color": "#0f353f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            52,
+            63
+          ],
+          "color": "#0e343f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            50,
+            61
+          ],
+          "color": "#0e323d",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            50,
+            60
+          ],
+          "color": "#0d323c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            49,
+            60
+          ],
+          "color": "#0d313c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            47,
+            57
+          ],
+          "color": "#0d2f39",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            47,
+            57
+          ],
+          "color": "#0c2f39",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            46,
+            56
+          ],
+          "color": "#0c2e38",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            150,
+            196,
+            198
+          ],
+          "color": "rgba(150,196,198,0.150)",
+          "ops": 1,
+          "amax": 0.15
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            120,
+            168,
+            174
+          ],
+          "color": "rgba(120,168,174,0.063)",
+          "ops": 1,
+          "amax": 0.063
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            96,
+            140,
+            150
+          ],
+          "color": "rgba(96,140,150,0)",
+          "ops": 1,
+          "amax": 0
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "#d8ecee",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            94,
+            131,
+            140
+          ],
+          "color": "#5e838c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            232,
+            246,
+            247
+          ],
+          "color": "rgba(232, 246, 247, 0.82)",
+          "ops": 1,
+          "amax": 0.82
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            27,
+            62,
+            74
+          ],
+          "color": "#1b3e4a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            39,
+            51
+          ],
+          "color": "#0c2733",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            20,
+            28
+          ],
+          "color": "#04141c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            198,
+            226,
+            230
+          ],
+          "color": "rgba(198, 226, 230, 0.52)",
+          "ops": 1,
+          "amax": 0.52
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            170,
+            200,
+            206
+          ],
+          "color": "rgba(170, 200, 206, 0.58)",
+          "ops": 1,
+          "amax": 0.58
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            10,
+            14
+          ],
+          "color": "rgba(3, 10, 14, 0.92)",
+          "ops": 1,
+          "amax": 0.92
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            3,
+            11,
+            15
+          ],
+          "color": "rgba(3, 11, 15, 0.86)",
+          "ops": 1,
+          "amax": 0.86
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            160,
+            192,
+            200
+          ],
+          "color": "rgba(160, 192, 200, 0.52)",
+          "ops": 1,
+          "amax": 0.52
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -1026,7 +2343,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3783,
+      "render_ms": 4189,
       "ok": true,
       "canvases": [
         {
@@ -1955,7 +3272,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 1383,
-        "sites": 4,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -1966,6 +3283,593 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "stroke",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgba(216, 236, 238, 0.05)",
+          "ops": 3796,
+          "amax": 0.235
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.145)",
+          "ops": 1374,
+          "amax": 0.243
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            196,
+            226,
+            224
+          ],
+          "color": "rgba(196, 226, 224, 0.04)",
+          "ops": 103,
+          "amax": 0.086
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            8,
+            11
+          ],
+          "color": "rgba(2, 8, 11, 0.94)",
+          "ops": 61,
+          "amax": 0.94
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 18,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 8,
+          "amax": 0.58
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            9,
+            14
+          ],
+          "color": "rgba(2, 9, 14, 0.96)",
+          "ops": 8,
+          "amax": 0.96
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "#ffc72c",
+          "ops": 8,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            120,
+            150,
+            158
+          ],
+          "color": "rgba(120, 150, 158, 0.4)",
+          "ops": 7,
+          "amax": 0.42
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            20,
+            28
+          ],
+          "color": "#04141c",
+          "ops": 7,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.235)",
+          "ops": 7,
+          "amax": 0.53
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 6,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            46,
+            56
+          ],
+          "color": "#0c2e38",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            45,
+            55
+          ],
+          "color": "#0c2d37",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.32)",
+          "ops": 5,
+          "amax": 0.557
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            11,
+            43,
+            53
+          ],
+          "color": "#0b2b35",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            11,
+            44,
+            54
+          ],
+          "color": "#0b2c36",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            11,
+            42,
+            52
+          ],
+          "color": "#0b2a34",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            11,
+            41,
+            51
+          ],
+          "color": "#0b2933",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            40,
+            50
+          ],
+          "color": "#0a2832",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            39,
+            49
+          ],
+          "color": "#0a2731",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            38,
+            48
+          ],
+          "color": "#0a2630",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            9,
+            37,
+            47
+          ],
+          "color": "#09252f",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            9,
+            35,
+            45
+          ],
+          "color": "#09232d",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            8,
+            13
+          ],
+          "color": "rgba(2,8,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.95)",
+          "ops": 3,
+          "amax": 0.95
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            9,
+            36,
+            46
+          ],
+          "color": "#09242e",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            9,
+            34,
+            44
+          ],
+          "color": "#09222c",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            33,
+            43
+          ],
+          "color": "#08212b",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            40,
+            51
+          ],
+          "color": "#0d2833",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.92)",
+          "ops": 2,
+          "amax": 0.92
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            44,
+            54
+          ],
+          "color": "#0c2c36",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            41,
+            51
+          ],
+          "color": "#0a2933",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            34,
+            44
+          ],
+          "color": "#08222c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            42
+          ],
+          "color": "#08202a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            21,
+            50,
+            62
+          ],
+          "color": "#15323e",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            40,
+            51
+          ],
+          "color": "#0c2833",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            22,
+            52,
+            65
+          ],
+          "color": "#163441",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            24,
+            55,
+            67
+          ],
+          "color": "#183743",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            26,
+            57,
+            70
+          ],
+          "color": "#1a3946",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            13,
+            41,
+            52
+          ],
+          "color": "#0d2934",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            28,
+            60,
+            73
+          ],
+          "color": "#1c3c49",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            41,
+            52
+          ],
+          "color": "#0e2934",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            36,
+            70,
+            85
+          ],
+          "color": "#244655",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            44,
+            55
+          ],
+          "color": "#0f2c37",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            37,
+            72,
+            87
+          ],
+          "color": "#254857",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            16,
+            44,
+            56
+          ],
+          "color": "#102c38",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgb(125, 143, 148)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -1974,7 +3878,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2864,
+      "render_ms": 3078,
       "ok": true,
       "canvases": [
         {
@@ -2564,8 +4468,8 @@
       "lights": [],
       "light_conflicts": [],
       "paint": {
-        "fills": 2008,
-        "sites": 4,
+        "fills": 2009,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -2576,6 +4480,362 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            60,
+            230,
+            180
+          ],
+          "color": "rgba(60, 230, 180, 0.094)",
+          "ops": 2200,
+          "amax": 0.46
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            190,
+            222,
+            226
+          ],
+          "color": "rgba(190, 222, 226, 0.173)",
+          "ops": 2004,
+          "amax": 0.486
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            190,
+            222,
+            226
+          ],
+          "color": "rgba(190, 222, 226, 0.094)",
+          "ops": 178,
+          "amax": 0.267
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            6,
+            11
+          ],
+          "color": "rgba(2, 6, 11, 0.92)",
+          "ops": 46,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            31,
+            41
+          ],
+          "color": "#081f29",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            42
+          ],
+          "color": "#08202a",
+          "ops": 8,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 8,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            30,
+            40
+          ],
+          "color": "#081e28",
+          "ops": 6,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            28,
+            37
+          ],
+          "color": "#071c25",
+          "ops": 6,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            29,
+            39
+          ],
+          "color": "#071d27",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            29,
+            38
+          ],
+          "color": "#071d26",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgba(255,199,44,0)",
+          "ops": 4,
+          "amax": 0.62
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            30,
+            39
+          ],
+          "color": "#081e27",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            198,
+            226,
+            230
+          ],
+          "color": "rgba(198, 226, 230, 0.62)",
+          "ops": 3,
+          "amax": 0.62
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            31,
+            40
+          ],
+          "color": "#081f28",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            28,
+            38
+          ],
+          "color": "#071c26",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            27,
+            36
+          ],
+          "color": "#071b24",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            10,
+            37,
+            48
+          ],
+          "color": "#0a2530",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.92)",
+          "ops": 2,
+          "amax": 0.92
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            41
+          ],
+          "color": "#082029",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            27,
+            37
+          ],
+          "color": "#071b25",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            150,
+            196,
+            198
+          ],
+          "color": "rgba(150,196,198,0.090)",
+          "ops": 1,
+          "amax": 0.09
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            120,
+            168,
+            174
+          ],
+          "color": "rgba(120,168,174,0.038)",
+          "ops": 1,
+          "amax": 0.04
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            96,
+            140,
+            150
+          ],
+          "color": "rgba(96,140,150,0)",
+          "ops": 1,
+          "amax": 0
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 1,
+          "amax": 0.58
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -2584,7 +4844,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2755,
+      "render_ms": 2767,
       "ok": true,
       "canvases": [
         {
@@ -2598,7 +4858,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 17.4,
-          "variance": 86.8
+          "variance": 80.5
         }
       ],
       "breather": false,
@@ -2641,7 +4901,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-04.html",
-        "sha1": "17b1e1af5164988349210059cd9af1452e9135cb"
+        "sha1": "87c673abd0ebd4f011ec87cf705a8d55c198d0d2"
       }
     },
     {
@@ -3239,7 +5499,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 974,
-        "sites": 3,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -3250,6 +5510,296 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            218,
+            222
+          ],
+          "color": "rgba(186, 218, 222, 0.17)",
+          "ops": 970,
+          "amax": 0.39
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 11,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            26,
+            35
+          ],
+          "color": "#071a23",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            27,
+            36
+          ],
+          "color": "#071b24",
+          "ops": 8,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 8,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            25,
+            34
+          ],
+          "color": "#071922",
+          "ops": 6,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            23,
+            31
+          ],
+          "color": "#06171f",
+          "ops": 6,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            24,
+            33
+          ],
+          "color": "#061821",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            24,
+            32
+          ],
+          "color": "#061820",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            4,
+            17,
+            26
+          ],
+          "color": "rgba(4, 17, 26, 0.92)",
+          "ops": 4,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.95)",
+          "ops": 4,
+          "amax": 0.95
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            25,
+            33
+          ],
+          "color": "#071921",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            26,
+            34
+          ],
+          "color": "#071a22",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            23,
+            32
+          ],
+          "color": "#061720",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            22,
+            30
+          ],
+          "color": "#06161e",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            7,
+            27,
+            35
+          ],
+          "color": "#071b23",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            22,
+            31
+          ],
+          "color": "#06161f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 1,
+          "amax": 0.58
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "#7d8f94",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "#ffc72c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -3258,7 +5808,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 3448,
+      "render_ms": 3905,
       "ok": true,
       "canvases": [
         {
@@ -3895,7 +6445,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 1587,
-        "sites": 2,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -3906,6 +6456,285 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.8)",
+          "ops": 1836,
+          "amax": 0.8
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            180,
+            212,
+            218
+          ],
+          "color": "rgba(180, 212, 218, 0.153)",
+          "ops": 1584,
+          "amax": 0.247
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            8,
+            13
+          ],
+          "color": "rgba(2, 8, 13, 0.92)",
+          "ops": 111,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgba(255, 199, 44, 0.98)",
+          "ops": 111,
+          "amax": 0.98
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            22,
+            30
+          ],
+          "color": "#06161e",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            21,
+            29
+          ],
+          "color": "#06151d",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            19,
+            26
+          ],
+          "color": "#05131a",
+          "ops": 7,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 6,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            20,
+            28
+          ],
+          "color": "#06141c",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            20,
+            27
+          ],
+          "color": "#05141b",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            21,
+            28
+          ],
+          "color": "#06151c",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            19,
+            27
+          ],
+          "color": "#05131b",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            18,
+            25
+          ],
+          "color": "#051219",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.92)",
+          "ops": 3,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            6,
+            22,
+            29
+          ],
+          "color": "#06161d",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            18,
+            26
+          ],
+          "color": "#05121a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 1,
+          "amax": 0.58
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -3914,7 +6743,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2508,
+      "render_ms": 2438,
       "ok": true,
       "canvases": [
         {
@@ -4446,7 +7275,7 @@
           "full": "NO VALUE TO PLOT",
           "tag": "div",
           "unsized": false,
-          "x": 696,
+          "x": 726,
           "y": 986,
           "w": 272,
           "h": 34,
@@ -4458,7 +7287,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              696,
+              726,
               985,
               272,
               34
@@ -4589,8 +7418,8 @@
       "lights": [],
       "light_conflicts": [],
       "paint": {
-        "fills": 1426,
-        "sites": 8,
+        "fills": 1453,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -4601,6 +7430,395 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "fill",
+          "rgb": [
+            176,
+            208,
+            214
+          ],
+          "color": "rgba(176, 208, 214, 0.145)",
+          "ops": 1435,
+          "amax": 0.455
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            4,
+            12,
+            16
+          ],
+          "color": "rgba(4, 12, 16, 0.94)",
+          "ops": 120,
+          "amax": 0.94
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            7,
+            22,
+            34
+          ],
+          "color": "rgba(7, 22, 34, 0.95)",
+          "ops": 21,
+          "amax": 0.95
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 19,
+          "amax": 0.58
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.6)",
+          "ops": 15,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            18,
+            25
+          ],
+          "color": "#051219",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            17,
+            24
+          ],
+          "color": "#051118",
+          "ops": 9,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            15,
+            21
+          ],
+          "color": "#040f15",
+          "ops": 7,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 6,
+          "amax": 0.78
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            16,
+            23
+          ],
+          "color": "#051017",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            16,
+            22
+          ],
+          "color": "#041016",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.92)",
+          "ops": 5,
+          "amax": 0.92
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            17,
+            23
+          ],
+          "color": "#051117",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            156,
+            196,
+            255
+          ],
+          "color": "#9cc4ff",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgb(125, 143, 148)",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            15,
+            22
+          ],
+          "color": "#040f16",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            14,
+            20
+          ],
+          "color": "#040e14",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            10,
+            16
+          ],
+          "color": "rgba(3, 10, 16, 0.96)",
+          "ops": 3,
+          "amax": 0.96
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            14,
+            33,
+            56
+          ],
+          "color": "#0e2138",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            90,
+            128,
+            140
+          ],
+          "color": "rgba(90, 128, 140, 0.42)",
+          "ops": 3,
+          "amax": 0.42
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.32)",
+          "ops": 3,
+          "amax": 0.61
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            5,
+            18,
+            24
+          ],
+          "color": "#051218",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            12,
+            20
+          ],
+          "color": "rgba(4, 12, 20, 0.98)",
+          "ops": 2,
+          "amax": 0.98
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            8,
+            13
+          ],
+          "color": "rgba(2, 8, 13, 0.95)",
+          "ops": 2,
+          "amax": 0.95
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "#ffc72c",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            156,
+            196,
+            255
+          ],
+          "color": "rgb(156, 196, 255)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            14,
+            21
+          ],
+          "color": "#040e15",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "#000000",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -4609,7 +7827,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2304,
+      "render_ms": 2445,
       "ok": true,
       "canvases": [
         {
@@ -4623,7 +7841,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 9.4,
-          "variance": 142.1
+          "variance": 152.1
         }
       ],
       "breather": false,
@@ -4703,7 +7921,7 @@
             1060
           ],
           "from": [
-            832,
+            862,
             1031
           ],
           "label": "NO VALUE TO PLOT"
@@ -4714,7 +7932,7 @@
       "evenodd_ops": [],
       "source": {
         "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-07.html",
-        "sha1": "c8f46f3c77409d187bd7095b723f13f3e07532a4"
+        "sha1": "d4d08ab21c6eb7ffacbb743dfa20e86fdfff0057"
       }
     },
     {
@@ -5219,7 +8437,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 681,
-        "sites": 7,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -5230,6 +8448,472 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "stroke",
+          "rgb": [
+            160,
+            198,
+            206
+          ],
+          "color": "rgba(160, 198, 206, 0.227)",
+          "ops": 27278,
+          "amax": 0.427
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            172,
+            204,
+            212
+          ],
+          "color": "rgba(172, 204, 212, 0.027)",
+          "ops": 675,
+          "amax": 0.216
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            120,
+            158,
+            168
+          ],
+          "color": "rgba(120, 158, 168, 0.1)",
+          "ops": 174,
+          "amax": 0.1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            13,
+            19
+          ],
+          "color": "#040d13",
+          "ops": 13,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            14,
+            20
+          ],
+          "color": "#040e14",
+          "ops": 11,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            11,
+            17
+          ],
+          "color": "#030b11",
+          "ops": 10,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            12,
+            18
+          ],
+          "color": "#040c12",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            12,
+            18
+          ],
+          "color": "#030c12",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.58)",
+          "ops": 5,
+          "amax": 0.58
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            10,
+            16
+          ],
+          "color": "#030a10",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            6,
+            11
+          ],
+          "color": "rgba(2, 6, 11, 0.96)",
+          "ops": 4,
+          "amax": 0.96
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            8,
+            11
+          ],
+          "color": "rgba(2,8,11,0)",
+          "ops": 3,
+          "amax": 0.86
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 3,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.78)",
+          "ops": 2,
+          "amax": 0.78
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.5)",
+          "ops": 2,
+          "amax": 0.5
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            7,
+            10
+          ],
+          "color": "rgba(2,7,10,0.688)",
+          "ops": 2,
+          "amax": 0.686
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            1,
+            4,
+            6
+          ],
+          "color": "rgba(1,4,6,0.980)",
+          "ops": 2,
+          "amax": 0.98
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            170,
+            200,
+            206
+          ],
+          "color": "rgba(170, 200, 206, 0.58)",
+          "ops": 2,
+          "amax": 0.72
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgb(125, 143, 148)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "#ffc72c",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            8,
+            12
+          ],
+          "color": "rgba(2, 8, 12, 0.82)",
+          "ops": 1,
+          "amax": 0.82
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            48,
+            55
+          ],
+          "color": "#123037",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            42
+          ],
+          "color": "#08202a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            15
+          ],
+          "color": "#02060f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            158,
+            196,
+            200
+          ],
+          "color": "rgba(158,196,200,0.280)",
+          "ops": 1,
+          "amax": 0.28
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            148,
+            184,
+            190
+          ],
+          "color": "rgba(148,184,190,0.241)",
+          "ops": 1,
+          "amax": 0.24
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            120,
+            154,
+            164
+          ],
+          "color": "rgba(120,154,164,0.101)",
+          "ops": 1,
+          "amax": 0.1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            110,
+            144,
+            154
+          ],
+          "color": "rgba(110,144,154,0)",
+          "ops": 1,
+          "amax": 0
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            43,
+            51
+          ],
+          "color": "#0f2b33",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            38
+          ],
+          "color": "#082026",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            18,
+            26
+          ],
+          "color": "#03121a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            40,
+            48
+          ],
+          "color": "rgba(12, 40, 48, 0.98)",
+          "ops": 1,
+          "amax": 0.98
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgba(186, 214, 218, 0.9)",
+          "ops": 1,
+          "amax": 0.9
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            110,
+            165,
+            255
+          ],
+          "color": "rgb(110, 165, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -5238,7 +8922,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2618,
+      "render_ms": 2688,
       "ok": true,
       "canvases": [
         {
@@ -5477,7 +9161,7 @@
       "light_conflicts": [],
       "paint": {
         "fills": 532,
-        "sites": 6,
+        "sites": 1,
         "site_cap": false,
         "empty": []
       },
@@ -5488,6 +9172,439 @@
       "gradient_clips": [],
       "flat_cores": [],
       "declaration_misses": [],
+      "ink_law": [],
+      "inks": [
+        {
+          "kind": "stroke",
+          "rgb": [
+            160,
+            198,
+            206
+          ],
+          "color": "rgba(160, 198, 206, 0.227)",
+          "ops": 27278,
+          "amax": 0.427
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            172,
+            204,
+            212
+          ],
+          "color": "rgba(172, 204, 212, 0.08)",
+          "ops": 527,
+          "amax": 0.23
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            120,
+            158,
+            168
+          ],
+          "color": "rgba(120, 158, 168, 0.1)",
+          "ops": 174,
+          "amax": 0.1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            13,
+            19
+          ],
+          "color": "#040d13",
+          "ops": 13,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            14,
+            20
+          ],
+          "color": "#040e14",
+          "ops": 11,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            11,
+            17
+          ],
+          "color": "#030b11",
+          "ops": 10,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            4,
+            12,
+            18
+          ],
+          "color": "#040c12",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            12,
+            18
+          ],
+          "color": "#030c12",
+          "ops": 5,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            10,
+            16
+          ],
+          "color": "#030a10",
+          "ops": 4,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            150,
+            182,
+            190
+          ],
+          "color": "rgba(150, 182, 190, 0.4)",
+          "ops": 4,
+          "amax": 0.4
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            6,
+            11
+          ],
+          "color": "rgba(2, 6, 11, 0.96)",
+          "ops": 4,
+          "amax": 0.96
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            13
+          ],
+          "color": "rgba(2,6,13,0)",
+          "ops": 3,
+          "amax": 0.56
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            8,
+            11
+          ],
+          "color": "rgba(2,8,11,0)",
+          "ops": 3,
+          "amax": 0.86
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.5)",
+          "ops": 2,
+          "amax": 0.5
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            7,
+            10
+          ],
+          "color": "rgba(2,7,10,0.688)",
+          "ops": 2,
+          "amax": 0.686
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            1,
+            4,
+            6
+          ],
+          "color": "rgba(1,4,6,0.980)",
+          "ops": 2,
+          "amax": 0.98
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            170,
+            200,
+            206
+          ],
+          "color": "rgba(170, 200, 206, 0.58)",
+          "ops": 2,
+          "amax": 0.72
+        },
+        {
+          "kind": "svg-fill",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgb(255, 199, 44)",
+          "ops": 2,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            125,
+            143,
+            148
+          ],
+          "color": "rgba(125, 143, 148, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            18,
+            48,
+            55
+          ],
+          "color": "#123037",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            42
+          ],
+          "color": "#08202a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            2,
+            6,
+            15
+          ],
+          "color": "#02060f",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "stroke",
+          "rgb": [
+            2,
+            8,
+            12
+          ],
+          "color": "rgba(2, 8, 12, 0.84)",
+          "ops": 1,
+          "amax": 0.84
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            158,
+            196,
+            200
+          ],
+          "color": "rgba(158,196,200,0.280)",
+          "ops": 1,
+          "amax": 0.28
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            148,
+            184,
+            190
+          ],
+          "color": "rgba(148,184,190,0.241)",
+          "ops": 1,
+          "amax": 0.24
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            120,
+            154,
+            164
+          ],
+          "color": "rgba(120,154,164,0.101)",
+          "ops": 1,
+          "amax": 0.1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            110,
+            144,
+            154
+          ],
+          "color": "rgba(110,144,154,0)",
+          "ops": 1,
+          "amax": 0
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            15,
+            43,
+            51
+          ],
+          "color": "#0f2b33",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            8,
+            32,
+            38
+          ],
+          "color": "#082026",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            3,
+            18,
+            26
+          ],
+          "color": "#03121a",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            185,
+            214,
+            218
+          ],
+          "color": "rgba(185, 214, 218, 0.6)",
+          "ops": 1,
+          "amax": 0.6
+        },
+        {
+          "kind": "fill",
+          "rgb": [
+            12,
+            40,
+            48
+          ],
+          "color": "rgba(12, 40, 48, 0.98)",
+          "ops": 1,
+          "amax": 0.98
+        },
+        {
+          "kind": "svg-stroke",
+          "rgb": [
+            255,
+            199,
+            44
+          ],
+          "color": "rgb(255, 199, 44)",
+          "ops": 1,
+          "amax": 0.34
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            186,
+            214,
+            218
+          ],
+          "color": "rgb(186, 214, 218)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            143,
+            163,
+            168
+          ],
+          "color": "rgb(143, 163, 168)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            244,
+            248,
+            255
+          ],
+          "color": "rgb(244, 248, 255)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            216,
+            236,
+            238
+          ],
+          "color": "rgb(216, 236, 238)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            70,
+            84,
+            95
+          ],
+          "color": "rgb(70, 84, 95)",
+          "ops": 1,
+          "amax": 1
+        },
+        {
+          "kind": "dom-text",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "color": "rgb(0, 0, 0)",
+          "ops": 1,
+          "amax": 1
+        }
+      ],
+      "ink_cap": false,
       "canvas_layer": {
         "ok": true,
         "canvases": 1,
@@ -5496,7 +9613,7 @@
         "w": 1080,
         "h": 1350
       },
-      "render_ms": 2256,
+      "render_ms": 2515,
       "ok": true,
       "canvases": [
         {
