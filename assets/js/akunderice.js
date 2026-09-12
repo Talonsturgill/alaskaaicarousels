@@ -196,6 +196,11 @@
        * marks, so the two populations are distinguishable rather than mixed */
       var r = (inNear ? 0.55 : 0.35) + (inNear ? 1.35 : 0.7) * (1 - t) * rnd();
       var al = (0.05 + 0.30 * (1 - t) * rnd()) * (inNear ? 1.0 : 0.62);
+      /* the reserve, as a basin in this population's own density rather than as
+       * a hole cut afterwards. Both radius and alpha fall, per akstipple's
+       * three-function rule, so a quiet band reads as thinner water and not as
+       * a wiped rectangle. */
+      if (o.atten) { var aq = o.atten(x, y); if (aq < 0.06) continue; al *= aq; r *= (0.45 + 0.55 * aq); }
       cx.fillStyle = "rgba(" + tint[0] + "," + tint[1] + "," + tint[2] + ","
         + al.toFixed(3) + ")";
       cx.beginPath();
@@ -213,6 +218,54 @@
         cx.stroke();
       }
     }
+  };
+
+  /* ---------------- the reserve, as a BASIN and never as a hole ---------------- */
+
+  /* THE ONE THING THIS DECK MUST NOT DO. A destination-out punch through a
+   * painted field leaves a hard edged dark rectangle where the type sits, which
+   * reads as a plate at feed size. This deck's own prototype did it on the first
+   * build and the three boxes were the worst thing in the frame, and it is a
+   * trap already written down twice, in aksheet.js from 2026-09-11 and in
+   * akstipple.js before that, both of which record a suppression-only reserve
+   * returning qa.py PASS with fails 0 and warns 0 over exactly that picture.
+   *
+   * So the reserve here is not applied to the painted field. It is handed to the
+   * field GENERATORS, which then put fewer marks where the words go. The water's
+   * own value ladder runs unbroken behind the type, so the ground under a line of
+   * copy is the same graded water as everywhere else, just quieter. Nothing is
+   * cut out, because nothing was ever drawn there.
+   *
+   * `rects` are measured boxes in design px, which is what `AKFIT.reserveBoxes`
+   * returns per LINE BOX rather than per paragraph, so a ragged block gets a
+   * ragged basin. Returns (x,y) -> 1 in open water, falling to `1 - depth` at the
+   * centre of a reserved box, with a `ramp` px feather so there is no edge.
+   */
+  S.basins = function (rects, opts) {
+    var o = opts || {};
+    var ramp = o.ramp == null ? 96 : o.ramp;
+    var depth = o.depth == null ? 0.92 : o.depth;
+    var pad = o.pad == null ? 10 : o.pad;
+    var R = (rects || []).map(function (r) {
+      return [r[0] - pad, r[1] - pad, r[2] + 2 * pad, r[3] + 2 * pad];
+    });
+    if (!R.length) return function () { return 1; };
+    return function (x, y) {
+      var worst = 0;
+      for (var i = 0; i < R.length; i++) {
+        var b = R[i];
+        /* distance to the rect, zero inside it */
+        var dx = Math.max(b[0] - x, 0, x - (b[0] + b[2]));
+        var dy = Math.max(b[1] - y, 0, y - (b[1] + b[3]));
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d >= ramp) continue;
+        var k = 1 - d / ramp;
+        /* smoothstep, so the feather has no visible shoulder */
+        k = k * k * (3 - 2 * k);
+        if (k > worst) worst = k;
+      }
+      return 1 - depth * worst;
+    };
   };
 
   /* ---------------- the ice lid ---------------- */
@@ -374,6 +427,98 @@
     cx.fill();
     cx.restore();
     return { x: x, y: y, r: r, outer: rr };
+  };
+
+  /* ---------------- the sound itself, which is what fills the column ---------------- */
+
+  /* RAY PATHS FROM A SOURCE, and this is the deck's answer to the wallpaper
+   * finding. The prototype's upper half was a gradient with a scatter of motes
+   * over roughly 40 percent of the frame, which is the exact shape No.56's brief
+   * warns about. The fix is not more texture. It is to draw the STORY'S OWN
+   * GEOMETRY, so the marks that fill the water are the subject of the slide.
+   *
+   * THE CONSTRUCTION. Under a lid of ice the sound speed rises toward the
+   * surface, so a ray launched from a source bends upward, turns at the ice and
+   * comes back down, which traces a family of nested arcs across the column. The
+   * integrator here is the honest small version of that: a ray carries a heading
+   * and the heading curves at a constant rate, which is what a constant gradient
+   * gives you, and the ray reflects when it meets the underside of the ice or the
+   * bed. Launch angles are spread deterministically across a declared fan.
+   *
+   * HONESTY, AND IT IS NOT OPTIONAL. This geometry is a property of the DRAWING.
+   * Neither Federal Register notice publishes a sound speed profile, a ray trace,
+   * a turning depth or a bounce count, and this deck must never imply otherwise.
+   * Any dossier bullet quoting a number that comes from here is marked [design]
+   * and aggregates.json says so again at build time. What the drawing is entitled
+   * to assert is the thing the document does say, that the sources transmit and
+   * that a vehicle under ice works out a position from them.
+   *
+   * `curve` is the heading change in radians per design px and it is the one dial
+   * that matters. Near 0 the rays run straight and the frame goes flat; too high
+   * and every ray turns before it has crossed anything and the field reads as a
+   * bundle of hoops. 0.0016 to 0.0034 is the usable band at this frame size.
+   *
+   * Returns the bounce points, so a slide can mark where a ray met the ice
+   * without recomputing the path, and so a dossier can state how many there are.
+   */
+  S.rays = function (cx, opts) {
+    var o = opts || {};
+    if (!o.seed && o.seed !== 0) throw new Error("AKICE.rays: seed is required");
+    if (o.x == null || o.y == null) throw new Error("AKICE.rays: source x and y are required");
+    var n = o.count == null ? 22 : o.count;
+    var fan = o.fan == null ? [-0.62, 0.62] : o.fan;     /* radians from horizontal */
+    var curve = o.curve == null ? 0.0024 : o.curve;      /* radians per px, upward */
+    var step = o.step == null ? 5 : o.step;
+    var maxLen = o.maxLen == null ? 3000 : o.maxLen;
+    var iceAt = o.iceAt || function () { return S.depth(0); };
+    var bedY = o.bedY == null ? S.H : o.bedY;
+    var col = o.rgb || [255, 199, 44];
+    var a0 = o.alpha == null ? 0.34 : o.alpha;
+    var wid = o.width == null ? 1.5 : o.width;
+    var rnd = AK.rng(o.seed);
+    var bounces = [], i;
+
+    cx.save();
+    if (o.blend) cx.globalCompositeOperation = o.blend;
+    if (o.clip) { cx.beginPath(); cx.rect(o.clip[0], o.clip[1], o.clip[2], o.clip[3]); cx.clip(); }
+
+    for (i = 0; i < n; i++) {
+      /* deterministic spread with a small seeded jitter, so the fan is even but
+       * not mechanical. Uniform spacing is the tell of a machine made mark. */
+      var u = n === 1 ? 0.5 : i / (n - 1);
+      var th = fan[0] + (fan[1] - fan[0]) * u + (rnd() - 0.5) * 0.012;
+      var dir = o.dir == null ? (i % 2 ? 1 : -1) : o.dir;  /* left and right */
+      var x = o.x, y = o.y, ph = th, len = 0, seg = [];
+      seg.push([x, y]);
+      while (len < maxLen && x > -40 && x < S.W + 40) {
+        /* the heading curves upward at a constant rate, which is what a constant
+         * gradient does to a ray */
+        ph -= curve * step;
+        x += Math.cos(ph) * step * dir;
+        y += Math.sin(ph) * step;
+        var top = iceAt(x);
+        if (y <= top) { y = top; ph = -ph; bounces.push([x, y]); }
+        if (y >= bedY) { y = bedY; ph = -ph; }
+        seg.push([x, y]);
+        len += step;
+      }
+      /* draw it as one tapered path, alpha falling with path length, which is
+       * what attenuation looks like and also keeps the near field readable */
+      for (var k = 1; k < seg.length; k++) {
+        var f = 1 - (k / seg.length);
+        var al = a0 * Math.pow(f, 1.15);
+        if (o.atten) al *= o.atten(seg[k][0], seg[k][1]);
+        if (al < 0.012) { continue; }
+        cx.strokeStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + al.toFixed(3) + ")";
+        cx.lineWidth = Math.max(0.45, wid * (0.45 + 0.55 * f));
+        cx.beginPath();
+        cx.moveTo(seg[k - 1][0], seg[k - 1][1]);
+        cx.lineTo(seg[k][0], seg[k][1]);
+        cx.stroke();
+      }
+    }
+    cx.restore();
+    return { bounces: bounces, count: n };
   };
 
   /* ---------------- the light-keyed profile, this run's craft finding ---------------- */
