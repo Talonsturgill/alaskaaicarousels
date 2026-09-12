@@ -89,9 +89,24 @@ def parse_date(s, ctx):
         fail(f"{ctx}: bad date {s!r}")
 
 
-def mon_day(s):
+def mon_day(s, today=None):
+    """A rail stop's date, as a mono label.
+
+    THE YEAR COMES BACK WHEN IT IS A DIFFERENT ONE (2026-09-12). Pass `today`
+    and a date outside its year carries the year. Without it the label is bare,
+    which is the house rule and is right for the ordinary case.
+
+    A code review of run No.57 found why this matters. The Navy's Arctic
+    authorization runs to September 13th, 2027, and its rail read
+    `SEP 14 . SEP 22 . SEP 13`, so the one date rail on the page appeared to
+    run BACKWARD by nine days at the point where it actually steps forward by a
+    year. A reader has no way to tell a wrap from an error.
+    """
     d = ddate.fromisoformat(s)
-    return f"{MONTHS[d.month - 1]} {d.day}"
+    out = f"{MONTHS[d.month - 1]} {d.day}"
+    if today is not None and d.year != today.year:
+        out += f" {d.year}"
+    return out
 
 
 def append_history(item, date, note):
@@ -400,14 +415,17 @@ def resolve(it, today):
     }
 
 
-def chip_html(r):
+def chip_html(r, today=None):
     """The date chip. Its prefix comes from the role of the date it shows, so
-    "by" can never again be stuck on another body's vote."""
+    "by" can never again be stuck on another body's vote.
+
+    `today` is optional and only decides whether a cross-year date carries its
+    year, per mon_day."""
     d = r["headline"]
     if not d:
         return f'<span class="chip" style="color:var(--mute)">{esc(STATUS_LABEL[r["status"]])}</span>'
     return (f'<span class="chip days" data-date="{d["date"]}">'
-            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"])}</span>')
+            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"], today)}</span>')
 
 
 def nearest_headline(items, today):
@@ -942,7 +960,7 @@ def rail_html(it, today):
             today_placed = True
         stops.append(
             f'<div class="stop {cls}"><span class="dot"></span>'
-            f'<span class="d">{mon_day(d["date"])}</span>'
+            f'<span class="d">{mon_day(d["date"], today)}</span>'
             f'<span class="l">{esc(d["label"])}</span></div>')
     if dates and all_past:
         stops.append('<div class="stop now" aria-hidden="true"><span class="dot"></span>'
@@ -956,7 +974,7 @@ def item_html(it, today, num, prefix=""):
     /docket/, so the entry can link to that decision's own canonical page.
     Empty on the docket page itself, which already sits at /docket/."""
     r = resolve(it, today)
-    chip = chip_html(r)
+    chip = chip_html(r, today)
     srcs = " &middot; ".join(
         f'<a href="{esc(s["url"])}" rel="noopener">{esc(s["outlet"])}</a>' for s in it["sources"])
     hist = it["history"][-1] if it["history"] else None
@@ -966,7 +984,7 @@ def item_html(it, today, num, prefix=""):
     # one with a confident wrong date is the thing being fixed here.
     # Rule 6: the verb comes from the item, because not every open room is a
     # written comment window.
-    act = cta_html(it, r, esc, mon_day, "gold sm")
+    act = cta_html(it, r, esc, lambda v: mon_day(v, today), "gold sm")
     act_line = f"    {act}\n" if act else ""
     hist_line = f"    {hist_html}\n" if hist_html else ""
     return f"""<article class="item a-{r["access"]}" id="{esc(it["id"])}" data-reveal>
@@ -994,9 +1012,9 @@ def card_html(it, today, prefix=""):
     d = r["headline"]
     # Rule 3 again: with no resolved date the card keeps its headline and its
     # status and simply carries no date, rather than borrowing a nearby one.
-    when = (f'<div class="big" data-days="{d["date"]}">{mon_day(d["date"])}</div>'
+    when = (f'<div class="big" data-days="{d["date"]}">{mon_day(d["date"], today)}</div>'
             f'<div class="when chip days" data-date="{d["date"]}">'
-            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"])}</div>') if d else ""
+            f'{ROLE_PREFIX[d["kind"]]} {mon_day(d["date"], today)}</div>') if d else ""
     who = esc(d["label"]).upper() if d else esc(STATUS_LABEL[r["status"]]).upper()
     return f"""<a class="card a-{r["access"]}" href="{prefix}#{esc(it["id"])}" data-reveal>
   <div class="cardtop"><span class="badge b-{r["access"]}">{ACCESS_LABEL[r["access"]]}</span></div>

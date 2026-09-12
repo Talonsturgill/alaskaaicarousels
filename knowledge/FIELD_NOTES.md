@@ -7042,3 +7042,57 @@ frame, which is a next-run job and not a same-day one.
   helper, then a before/after on one real frame. The 503 on zhanpingliu.org's
   ADVESS survey is why the parameters here are the classic ones and not that
   paper's refinements.
+
+### AN OUTSIDE REVIEW FOUND SEVEN THINGS SIX ROOMS AND SIXTEEN GATES DID NOT (2026-09-12)
+
+No.57 shipped at 8.72 with seventeen gate rows green, and a code review on the
+pull request then named nine findings, seven of which reproduced. That number is
+the lesson, not the individual bugs. Every gate here reads a DECLARATION and asks
+whether the render honours it. None of them reads the code and asks what it does
+when the declaration is absent, or wrong, or of a type nobody tested.
+
+The seven, grouped by what they say about this machine.
+
+**Two were red CI that the run merged past.** `ask_answers.py` failed because the
+new docket item's decider, NOAA National Marine Fisheries Service, matched no
+agency rule, so a reader asking who decided this got nothing. The mobile map
+suite failed on two landscape devices because the item's pin sat under the sticky
+nav. Both were RED BEFORE THE MERGE and the run did not look. Read the checks on
+the head you are about to merge, not the checks you remember passing.
+
+**One was a fact with no claim behind it.** The item carried the exact point 72.0
+north, 150.0 west for a study area of 639,237 square kilometres, published as
+schema.org GeoCoordinates and as a map pin. The deck on the same subject refused
+to draw a coastline it could not verify and typed the 204 km instead, and the
+docket entry for that same story invented a centroid. Consistency is not
+automatic across surfaces. The location is dropped and the history says why.
+
+**Two were dead code paths in a fix this run was proud of.** `AKFIT.plate` feathers
+a flat fill so a container is not a struck rectangle. `isFlat` accepted `#05141a`
+and both replacements only matched `rgba(...)`, so a hex fill produced three
+identical opaque stops, which is a hard edged rectangle: the exact defect, arriving
+silently, for every caller who types a hex. This deck passed rgba() nine times out
+of nine. Separately `plate` applied viewport coordinates to a sibling positioned
+against its nearest positioned ancestor, which is correct only while every label
+sits directly on `body`, as they did here.
+
+**Two were a function lying rather than failing.** `AKFIT.clamp` with a cluster
+wider than its box let its second correction override its first and could return
+`dx 0`, reporting success from the one function whose job is to report that the
+group is inside the box. `AKICE.rail` returned a band ending at the spine while
+drawing every tick 11 to 17 px outward, so a slide trusting the return value would
+declare a band excluding most of each mark. No.57 hard-typed `[1012,1034]` instead,
+which is what not trusting a return value looks like.
+
+### THE RULE THAT COMES OUT OF IT
+
+**Test the branch this deck does not take.** Every one of the five code defects
+lived in a path this deck happened to miss, and a gate that only watches the
+render can never see them. When a helper takes a colour, pass it a hex AND an
+rgba. When it takes a container, give it a wrapped one. When it reports success,
+make it fail once on purpose and check that it says so.
+
+And the cheaper half: **an outside reviewer is the only reader here who has not
+already agreed with the plan.** Six rooms reviewed the render against the
+storyboard. None of them read the library. Ask for the second kind of review
+before the merge, not after it.

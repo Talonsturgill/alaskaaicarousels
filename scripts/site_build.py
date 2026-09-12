@@ -6230,9 +6230,21 @@ TOPICS = [
              "load the size of a city plugs in.",
      "blurb": "The Railbelt, Cook Inlet gas, the turbines and the interties. Who "
               "pays when a new load the size of a city plugs in.",
-     "terms": ("railbelt", "grid", "turbine", "gvea", "lm6000", "natural gas",
-               "cook inlet", "megawatt", "gigawatt", "cost allocation", "off-grid",
-               "utility", "intertie", "ratepayer", "chugach", "alaska lng")},
+     # A BEAT TERM HAS TO MEAN THE BEAT, again (2026-09-12). The bare word
+     # "grid" filed the Navy's Arctic authorization on this beat, because an
+     # ACOUSTIC NAVIGATION GRID 204 km offshore contains the letters of an
+     # electrical one, and the decision page then claimed the beat back in its
+     # own hasPart metadata. Measured against the ledger before and after: the
+     # forms below keep every item that belongs here, the grid-impact
+     # assessment and the zoning item's sufficiency finding among them, and
+     # drop only the acoustic one.
+     "terms": ("railbelt", "the grid", "power grid", "electric grid",
+               "grid impact", "grid-impact", "grid resilience", "grid concerns",
+               "grid storage", "microgrid", "micro-grid",
+               "off-grid", "off grid", "on-grid", "turbine", "gvea", "lm6000",
+               "natural gas", "cook inlet", "megawatt", "gigawatt",
+               "cost allocation", "utility", "intertie", "ratepayer",
+               "chugach", "alaska lng")},
     {"slug": "land-and-permitting", "title": "Land and permitting",
      "h1": "Alaska land and permitting for AI",
      "seo": "Alaska land leases and permits for AI - Alaska AI",
@@ -6248,7 +6260,15 @@ TOPICS = [
      # article page reciprocally claimed the beat in its hasPart metadata. A
      # borough belongs on this beat when it is DOING land or permitting, so the
      # term now has to say so.
-     "terms": ("state land lease", "dnr", "permit", "gravel", "permafrost",
+     # And the same defect on the same day, from the bare word "permit". The
+     # Navy's marine authorization is a permit and is not an Alaska land or
+     # permitting story, so it was filed on a beat about gravel, permafrost and
+     # comment windows. The forms below were measured to keep all five items
+     # that reach this beat through a permit word, the preliminary FERC permit
+     # and the Class VI carbon permits among them.
+     "terms": ("state land lease", "dnr", "permitting", "permits",
+               "permit application", "preliminary permit", "special permit",
+               "conditional use permit", "gravel", "permafrost",
                "roadless", "public comment", "aidea", "best interest finding",
                "right of way", "borough land", "zoning", "rezone", "platting",
                "conditional use", "land use", "subdivision", "easement")},

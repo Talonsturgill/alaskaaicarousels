@@ -18,6 +18,20 @@ pixel critics and a hand written pixel count found it, across a whole review
 round. Phase 12 of this run was pointed at exactly this; check
 `ledger/upgrades.json` for what landed before you spend a round rediscovering it.
 
+## READ CI ON THE HEAD YOU MERGE, and this run did not
+
+No.57 merged with two checks red on its own head, and both were its own doing.
+`scripts/ask_answers.py --self-test` failed because the new docket item's
+decider, NOAA National Marine Fisheries Service, matched no rule in
+`AGENCY_RULES`, so the box could not say who decided it. `tests/mobile_docket_map.js`
+failed on iPhone 13 and iPad Mini in landscape because that item's map pin, an
+invented centroid at 72 north, sat under the sticky nav. Local `gate_status` read
+0 FAIL the whole time, because it runs neither check.
+
+So before the merge, run what CI runs. At minimum `ask_answers.py --self-test`
+and the mobile suite whenever a run touches `ledger/docket.json`, which is every
+run. Both are cheap and both would have caught this in Phase 3.5.
+
 ## THE GATE TO WRITE FIRST, and round 3 named it
 
 `AKFIT.guard`'s new `minGap` check pairs `[data-reserve]` against
