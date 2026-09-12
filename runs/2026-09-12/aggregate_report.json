@@ -1,0 +1,153 @@
+{
+  "run_dir": "out/2026-09-12",
+  "render_report": "out/2026-09-12/render/render_report.json",
+  "aggregates_file": "out/2026-09-12/aggregates.json",
+  "detected": 17,
+  "declared": 17,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "TWO READINGS",
+      "text": "TWO READINGS, ONE DOCUMENT",
+      "n": 2,
+      "subject": "readings"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "30 seconds",
+      "text": "30 seconds, every four hours, all year.",
+      "n": 30,
+      "subject": "seconds"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "four hours",
+      "text": "30 seconds, every four hours, all year.",
+      "n": 4,
+      "subject": "hours"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "six moorings",
+      "text": "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each",
+      "n": 6,
+      "subject": "moorings"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "639,237 square kilometres",
+      "text": "About 639,237 square kilometres of water.",
+      "n": 639237,
+      "subject": "square kilometres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "204 kilometres",
+      "text": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles.",
+      "n": 204,
+      "subject": "kilometres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "110 nautical miles",
+      "text": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles.",
+      "n": 110,
+      "subject": "nautical miles"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "THREE JURISDICTIONS",
+      "text": "THREE JURISDICTIONS, ONE OF THEM CANADA'S",
+      "n": 3,
+      "subject": "jurisdictions"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "457 metres",
+      "text": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observ",
+      "n": 457,
+      "subject": "metres"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "183 metres",
+      "text": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observ",
+      "n": 183,
+      "subject": "metres"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "55 metre zone applies",
+      "text": "The 55 metre zone applies during deployment and recovery, not for the year the s",
+      "n": 55,
+      "subject": "metre zone applies"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "457 m OBSERVED CETACEANS",
+      "text": "457 m OBSERVED CETACEANS",
+      "n": 457,
+      "subject": "m observed cetaceans"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "22 day",
+      "text": "A 22 day cruise. A full year of transmission.",
+      "n": 22,
+      "unit": "day"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "22 days",
+      "text": "The cruise is planned for 22 days from September 22nd, on a ship the notice call",
+      "n": 22,
+      "unit": "days"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "FOUR HOURS",
+      "text": "EVERY FOUR HOURS",
+      "n": 4,
+      "subject": "hours"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "22 DAYS",
+      "text": "THE 22 DAYS ABOARD",
+      "n": 22,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "THREE COMMENT LETTERS",
+      "text": "THREE COMMENT LETTERS PRIVATE CITIZENS",
+      "n": 3,
+      "subject": "comment letters"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S5 'Vessels hold 457 metres from observed cetaceans ' [from_claim]: the noun 'metre' does not appear in claim C45; check that the number is being attached to what the claim actually counts.",
+    "S5 'Vessels hold 457 metres from observed cetaceans ' [from_claim]: the noun 'metre' does not appear in claim C45; check that the number is being attached to what the claim actually counts.",
+    "S5 'The 55 metre zone applies during deployment and ' [from_claim]: the noun 'apply' does not appear in claim C46; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

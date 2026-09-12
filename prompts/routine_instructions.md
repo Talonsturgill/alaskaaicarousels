@@ -724,10 +724,17 @@ This is where the deck is actually made. Spend real effort here.
    and not a measurement. A bare number is never exempt just because a claim
    nearby mentions a statute.
    Verify: 6-12 slides (default 8-10); cover <= 12 words; slide 2 pays;
-   a breather exists; a keepable data slide exists; single-ask close
-   with "sources in comments" and the site fixture (alaskaaihq.com small
-   in the mono face near the brand mark, per CAROUSEL_CRAFT); >= 2 continuity devices; every number on
+   a breather exists; a keepable data slide exists; a single-ask close that
+   prints NO SOURCE NOTE ("sources in comments" was removed from the artwork by
+   the owner on 2026-09-11, and this step ordered it for a day after that);
+   the site fixture on EVERY slide, not only the close (alaskaaihq.com small in
+   the mono face, low contrast, bottom of the frame, per CAROUSEL_CRAFT);
+   >= 2 continuity devices; every number on
    every slide has a claim-id; the variety divergence is stated.
+   Both halves of that are enforced on the RENDER by
+   `scripts/copy_sync_check.py`, which the completion gate already runs, so a
+   deck that prints the banned string or drops the fixture on one frame fails
+   before ship rather than after the post.
 
 ## PHASE 6 — COPY CHAMBER (the caption room)
 
@@ -912,6 +919,21 @@ type spec. Craft expectations:
   rail, implying twelve equal months over a budget period that runs ten. Both
   were caught by a human reading the picture, which is the reviewer this
   studio has least of. Ornament goes outside the band or it goes away.
+
+- IF A HEX MEANS SOMETHING, EVERY FRAME DECLARES ITS OWN INK LAW, on
+  `<body data-ink>` as `[{hex, means, state:"present"|"absent"}]` (SKILL.md).
+  `present` says this frame promises the reader that ink; `absent` says the law
+  forbids it here. qa.py judges a forbidden ink at the BRUSH, against a census
+  of every colour any canvas op, gradient stop, DOM text node or SVG shape
+  actually carried, and a promised ink at the FRAME, failing one that no brush
+  used and one that reached the render as zero pixels. No.57's whole argument
+  was that gold is what the record knows and the undetermined ink is what it
+  does not; it broke that in three places and passed claims, dossier,
+  aggregate, plan-drift, copy-sync and machine QA at zero fails and zero warns.
+  Declare it on EVERY frame or on none: a law that holds on eight frames and is
+  unchecked on the ninth is how that deck shipped its third frame with zero
+  pixels of the ink its own state table promised, and qa.py warns on the odd
+  frame out.
 
 - EVERY DRAWN FEATURE THAT CARRIES MEANING DECLARES ITS RECT, on
   `window.__akMotifs` as `{what, rect:[x,y,w,h]}` in design px (SKILL.md).

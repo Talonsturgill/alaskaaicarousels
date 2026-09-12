@@ -1,0 +1,333 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#03090C}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:520px;top:258px;width:480px;text-align:right;line-height:1.34;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#BAD6DA}
+h2{position:absolute;left:520px;top:336px;width:480px;text-align:right;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:62px;line-height:1.04;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:520px;top:636px;width:470px;text-align:left;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.09em;color:#BAD6DA}
+.dnote{position:absolute;left:80px;top:1120px;width:530px;font-family:"JetBrains Mono",monospace;
+  font-size:25px;line-height:1.42;letter-spacing:0.09em;color:#BAD6DA}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.rn{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.06em;color:#BAD6DA;font-variant-numeric:tabular-nums lining-nums}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,-2],"to":[1350,122],"band":[1012,1034],"marks":[{"at":17,"means":"the ice arris, the lit top of the lid"},{"at":566,"means":"50 m"},{"at":1110,"means":"100 m"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>02 / 09</div>
+<div class="kick" data-reserve data-fit>POSITION BY DISTANCE,<br>IN THE NOTICE'S WORDS</div>
+<h2 data-reserve data-fit>Sound is how<br>the machine knows<br>where it is.</h2>
+<p class="bd" data-reserve data-fit>Above the ice, a glider gets its position from a satellite modem. Under the ice, that signal can't reach it. The notice says gliders then navigate by trilateration from moored acoustic sound sources, the geometry of intersecting circles.</p>
+<div class="la" id="la" data-reserve>RANGE FROM SOURCE A</div>
+<div class="la" id="lb" data-reserve>RANGE FROM SOURCE B</div>
+<div class="la" id="lc" data-reserve>RANGE FROM SOURCE C</div>
+<div class="la" id="lf" data-reserve>THE FIX</div>
+<div class="dnote" data-reserve data-fit>GLIDERS TRANSIT TO DEPTHS OF<br>UP TO 1,000 m</div>
+<div class="prov" data-decorative>SATELLITE FIXES DO NOT REACH UNDER ICE. THIS PAGE'S GLOSS</div>
+<div class="rn" id="r50" data-reserve>50 m</div>
+<div class="rn" id="r100" data-reserve>100 m</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:48, max:62, maxLines:3});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+  var rnd = AK.rng(20260912 + 2);
+
+  S.setWindow(-2, 122, 0, 1350);        // 0 to 120 m, the lid just in frame
+  var SURF = S.depth(0);
+
+  // the three sources sit OFF frame, which is why only their arcs are here
+  var SRC = [[-240, 210], [1292, 636], [430, -186]];
+  var GLIDER = [372, 706];
+  var R = SRC.map(function(p){
+    var dx = GLIDER[0]-p[0], dy = GLIDER[1]-p[1];
+    return Math.sqrt(dx*dx + dy*dy);
+  });
+
+  // labels placed on their own arcs BEFORE the basin is measured
+  function onArc(i, t){
+    var a = Math.atan2(GLIDER[1]-SRC[i][1], GLIDER[0]-SRC[i][0]) + t;
+    return [SRC[i][0] + Math.cos(a)*R[i], SRC[i][1] + Math.sin(a)*R[i]];
+  }
+  var PA = onArc(0, -0.30), PB = onArc(1, 0.24), PC = onArc(2, 0.34);
+  var LA = document.getElementById('la'), LB = document.getElementById('lb'),
+      LC = document.getElementById('lc'), LF = document.getElementById('lf');
+  LA.style.left = '96px';  LA.style.top = '860px';
+  LB.style.left = '96px';  LB.style.top = '968px';
+  LC.style.left = '96px';  LC.style.top = '1036px';
+  LF.style.left = '150px'; LF.style.top = '776px';
+
+  // THE DEPTH RAIL, placed before anything is measured because its numerals are
+  // reserved type like any other. It sits at x 1014, which is outside the 80 px
+  // type safe zone and is allowed to be, because the rail is art; its numerals
+  // stop at 988 and are not.
+  var RAIL = S.railLabels([['r50', 50], ['r100', 100]], {x:1014, gap:26, width:110});
+
+  // EVERY ONE OF THE FOUR MONO LABELS SITS IN ITS OWN MEASURED CONTAINER, which
+  // is this slide's acceptance checklist and this run's declared attack on the
+  // standing weakness. AKFIT.plate measures the ink that actually rendered, so a
+  // late copy edit cannot leave a container running through a word, and
+  // AKFIT.guard fails the render if one stops enclosing its string.
+  ['la','lb','lc','lf'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:13, padY:7, fill:"rgba(5,20,26,0.34)", radius:3, note:"mono label " + id});
+  });
+
+  // pad 30, not 16. Fraunces at line-height 1.04 puts ink OUTSIDE its own line
+  // box, and qa.py's reserved-text box is the wider of the two, so a basin sized
+  // to the CSS line box leaves a sliver of field in the leading gap above a line.
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:112, depth:0.98, pad:30});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#123E49", bed:"#0C2E38", steps:48});
+    S.daylight(g, {surfaceY:SURF, reach:520, peak:0.15});
+    S.marine(g, {rFloor:1.05, aFloor:0.15, seed:570221, count:5000, y0:SURF, y1:H,
+      near:[SURF+120, 760], nearShare:0.66, atten:atten});
+    S.ice(g, {seed:20260914, thickness:0.9, keels:[[300,1.8,190],[820,2.4,150]], channels:150});
+
+    // THE INTERFERENCE FIELD. brightness is the sum of three source terms, so the
+    // water itself records the geometry rather than a texture being laid over it.
+    (function(){
+      // AKENGRAVE.drawOffscreen RETURNS A 1x CANVAS. It is `c.width = w`, with no
+      // backing multiplier and no scale transform, so on this surface one device
+      // pixel IS one design pixel. The first build assumed the 2x backing the
+      // SLIDE's own canvas has, walked the buffer at W*2 stride and read the
+      // pattern at px/2. Every fringe then painted at twice its own size, and,
+      // far worse, each pixel was gated by atten() at HALF its real position, so
+      // the basin reserve was consulted for the wrong place and the field walked
+      // straight through the headline. qa.py saw it; three guesses at the cause
+      // did not. Design px throughout here, and nowhere else.
+      var img = g.getImageData(0, 0, W, H), d = img.data, f = 0.086;
+      for (var py=0; py<H; py++){
+        for (var px=0; px<W; px++){
+          var X = px, Y = py;
+          if (Y < SURF) continue;
+          // PER SOURCE, not summed. The summed field only lights where all three
+          // peaks agree, which is a scatter of isolated spots and reads as bokeh.
+          // Taking each source's own crest gives three families of concentric
+          // arcs that cross, which is the picture trilateration actually makes.
+          var band = 0;
+          for (var k=0;k<3;k++){
+            var dx=X-SRC[k][0], dy=Y-SRC[k][1];
+            if (Math.sin(Math.sqrt(dx*dx+dy*dy)*f + k*1.7) > 0.9955) { band = 1; break; }
+          }
+          if (!band) continue;
+          var aq = atten(X, Y); if (aq < 0.22) continue;
+          // quieter with depth, so the net is support and not wallpaper, and so
+          // the value ladder still reads through it
+          // 0.072, not 0.115, and warmed off the leader hue. The flow room read
+          // the field, the leaders and the riser as one line voice on this
+          // frame, which collapses the line hierarchy exactly where the
+          // annotation has to sit above the physics.
+          var a = 0.072 * aq * (1 - 0.72 * S.t(Y))
+                    * Math.min(1, (Y - SURF) / 150);   // and it fades in under the lid
+          var i = (py*W + px)*4;
+          d[i]   = Math.min(255, d[i]   + 206*a);
+          d[i+1] = Math.min(255, d[i+1] + 208*a);
+          d[i+2] = Math.min(255, d[i+2] + 196*a);
+        }
+      }
+      g.putImageData(img, 0, 0);
+    })();
+
+    window.__akRail = S.rail(g, {x:1014, bandW:24,
+      what:"depth below the waterline", unit:"metres",
+      ticks:[[50, "50 m"], [100, "100 m"]]});
+
+    // THE THREE RANGE ARCS, ENDED BY A FALLOFF AND NOT BY A CUT. A rect clip
+    // leaves a vertical edge in open water that reads as a mistake, and the arcs
+    // have to stop somewhere because a ring takes no basin and the type column
+    // begins at x 520. So they are drawn into their own surface and masked with
+    // a radial falloff centred on the fix, which is both the place they matter
+    // and the place the eye is going.
+    (function(){
+      var m = document.createElement("canvas");
+      m.width = W; m.height = H;
+      var mg = m.getContext("2d");
+      [0,1,2].forEach(function(k){
+        // alpha near 1, because gold at 0.6 over teal comes back olive and the
+        // colour law names this ink #FFC72C rather than something near it
+        S.ring(mg, SRC[k][0], SRC[k][1], R[k], {width:9, alpha:0.96});
+      });
+      var gr = mg.createRadialGradient(GLIDER[0], GLIDER[1], 40, GLIDER[0], GLIDER[1], 372);
+      gr.addColorStop(0, "rgba(0,0,0,1)");
+      gr.addColorStop(0.62, "rgba(0,0,0,0.88)");
+      gr.addColorStop(1, "rgba(0,0,0,0)");
+      mg.globalCompositeOperation = "destination-in";
+      mg.fillStyle = gr; mg.fillRect(0, 0, W, H);
+      // and nothing of it may enter the type column, which the falloff alone
+      // does not guarantee at the fix's own latitude
+      mg.globalCompositeOperation = "destination-out";
+      var ge = mg.createLinearGradient(430, 0, 510, 0);
+      ge.addColorStop(0, "rgba(0,0,0,0)");
+      ge.addColorStop(1, "rgba(0,0,0,1)");
+      mg.fillStyle = ge; mg.fillRect(430, 0, W - 430, H);
+      // AND THE SAME RESERVE THE FIELD GOT, because a ring takes no basin and
+      // these four mono labels sit inside the bundle by design. Knocked out of
+      // the arcs' own surface with a blur, so the arc THINS across a label
+      // instead of being fenced off it or struck through it.
+      mg.filter = "blur(9px)";
+      mg.fillStyle = "rgba(0,0,0,0.92)";
+      AKFIT.reserveBoxes('.la').forEach(function(b){
+        mg.fillRect(b[0] - 12, b[1] - 6, b[2] + 24, b[3] + 12);
+      });
+      mg.filter = "none";
+      // SOURCE OVER, not screen. Gold is ink and a signal in this deck and never
+      // illumination, and #FFC72C screened onto teal water comes back olive.
+      g.drawImage(m, 0, 0);
+    })();
+
+    // the glider, a modelled solid whose down-light arcs take the heavy rank
+    (function(){
+      var gx = GLIDER[0], gy = GLIDER[1], L = 168, Hh = 29;
+      var body = [];
+      for (var t=0;t<=40;t++){
+        var u=t/40, xx = gx - L/2 + u*L;
+        body.push([xx, gy - Hh*Math.sin(Math.PI*u)*(1-0.28*u)]);
+      }
+      for (var t=40;t>=0;t--){
+        var u=t/40, xx = gx - L/2 + u*L;
+        body.push([xx, gy + Hh*0.82*Math.sin(Math.PI*u)*(1-0.22*u)]);
+      }
+      // the hull carries a value ladder, so the profile's three ranks read
+      // against something rather than against flat near black
+      (function(){
+        var hg = g.createLinearGradient(0, gy - Hh, 0, gy + Hh);
+        hg.addColorStop(0, "#1B3E4A"); hg.addColorStop(0.5, "#0C2733");
+        hg.addColorStop(1, "#04141C");
+        g.fillStyle = hg;
+        g.beginPath(); body.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); });
+        g.closePath(); g.fill();
+      })();
+      S.profile(g, body, {weight:2.2, heavyMul:1.8, threshold:-0.12,
+        light:"rgba(198,226,230,0.52)", lee:"rgba(2,8,11,0.94)"});
+      /* ONE FIN, AND NO DASH. Two crossed hairlines rising off the hull made a
+       * pale X sitting 56 px from the gold dot, on a frame whose whole subject
+       * is that a position resolves to ONE point, and a pixel critic read the
+       * frame as showing two candidate fixes. The dashed antenna was worse: D6
+       * gives the phantom dash exactly one meaning in this deck, the notice
+       * does not say, and it is licensed on six named marks. The glider's own
+       * depth IS stated, so a dash on it breaks the vocabulary on the second
+       * frame of nine. */
+      g.strokeStyle = "rgba(170,200,206,0.58)"; g.lineWidth = 2.2;
+      g.beginPath(); g.moveTo(gx + 4, gy - Hh + 3); g.lineTo(gx + 30, gy - Hh - 30); g.stroke();
+      // and the antenna, solid, ending in a small cap, because it is a real
+      // aerial that simply has nothing to talk to under a lid
+      g.strokeStyle = "rgba(150,182,190,0.50)"; g.lineWidth = 1.5;
+      g.beginPath(); g.moveTo(gx+L/2-12, gy-4); g.lineTo(gx+L/2+46, gy-44); g.stroke();
+      g.fillStyle = "rgba(150,182,190,0.60)";
+      g.beginPath(); g.arc(gx+L/2+46, gy-44, 2.6, 0, Math.PI*2); g.fill();
+    })();
+
+    // the fix, where the three arcs agree
+    g.fillStyle = "rgba(3,10,14,0.92)";
+    g.beginPath(); g.arc(GLIDER[0], GLIDER[1], 12, 0, Math.PI*2); g.fill();
+    g.fillStyle = "#FFC72C";
+    g.beginPath(); g.arc(GLIDER[0], GLIDER[1], 7.0, 0, Math.PI*2); g.fill();
+
+    // D3, the riser chain. enters left at y 980, leaves right at y 742.
+    (function(){
+      var pts = [];
+      for (var t=0;t<=80;t++){
+        var u=t/80;
+        pts.push([-20 + u*1120, 980 + (742-980)*u + Math.sin(u*3.1)*26]);
+      }
+      /* IT CROSSES THE WHOLE FRAME, because a chain whose links stop halfway is
+       * not a chain. The first build clipped the riser to x under 500 so it
+       * would stay out of the body column, and it then dead-ended in open water
+       * on a frame that is not the ninth. The type reserve already knows how to
+       * handle a line: the riser is drawn on its own surface and the measured
+       * reserve boxes are blurred out of it, exactly as the range arcs are. */
+      var m = document.createElement("canvas");
+      m.width = W; m.height = H;
+      var mg = m.getContext("2d");
+      mg.strokeStyle="rgba(3,11,15,0.86)"; mg.lineWidth=4.4;
+      mg.beginPath(); pts.forEach(function(p,i){ i?mg.lineTo(p[0],p[1]):mg.moveTo(p[0],p[1]); }); mg.stroke();
+      mg.strokeStyle="rgba(160,192,200,0.52)"; mg.lineWidth=1.8;
+      mg.beginPath(); pts.forEach(function(p,i){ i?mg.lineTo(p[0],p[1]):mg.moveTo(p[0],p[1]); }); mg.stroke();
+      mg.globalCompositeOperation = "destination-out";
+      mg.filter = "blur(11px)";
+      mg.fillStyle = "rgba(0,0,0,0.96)";
+      AKFIT.reserveBoxes('[data-reserve]').forEach(function(b){
+        mg.fillRect(b[0] - 16, b[1] - 10, b[2] + 32, b[3] + 20);
+      });
+      mg.filter = "none";
+      g.drawImage(m, 0, 0);
+    })();
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  // leaders, each authored from its MEASURED label box to its own arc
+  cx.lineCap = "butt";
+  function leader(el, target, arrow){
+    var b = AKFIT.inkRect(el);
+    var from = [b.right + 16, b.y + b.h/2];
+    var bend = [from[0] + 40, from[1] - 30];
+    cx.strokeStyle = "rgba(186,214,218,0.78)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]); cx.lineTo(bend[0], bend[1]);
+    cx.lineTo(target[0], target[1]); cx.stroke();
+    if (arrow){
+      var ang = Math.atan2(target[1]-bend[1], target[0]-bend[0]), L=11, Wd=3.6;
+      cx.fillStyle = "rgba(186,214,218,0.9)";
+      cx.beginPath(); cx.moveTo(target[0], target[1]);
+      cx.lineTo(target[0]-Math.cos(ang)*L+Math.cos(ang+Math.PI/2)*Wd,
+                target[1]-Math.sin(ang)*L+Math.sin(ang+Math.PI/2)*Wd);
+      cx.lineTo(target[0]-Math.cos(ang)*L-Math.cos(ang+Math.PI/2)*Wd,
+                target[1]-Math.sin(ang)*L-Math.sin(ang+Math.PI/2)*Wd);
+      cx.closePath(); cx.fill();
+    } else {
+      cx.fillStyle = "rgba(186,214,218,0.9)";
+      cx.beginPath(); cx.arc(target[0], target[1], 2.6, 0, Math.PI*2); cx.fill();
+    }
+    return from;
+  }
+  var fa = leader(LA, PA, true), fb = leader(LB, PB, true),
+      fc = leader(LC, PC, true), ff = leader(LF, GLIDER, false);
+
+  window.__akLeaders = [
+    {target:"range arc from source A", at:PA, to:PA, from:fa, label:"RANGE FROM SOURCE A"},
+    {target:"range arc from source B", at:PB, to:PB, from:fb, label:"RANGE FROM SOURCE B"},
+    {target:"range arc from source C", at:PC, to:PC, from:fc, label:"RANGE FROM SOURCE C"},
+    {target:"the fix, on the glider", at:GLIDER, to:GLIDER, from:ff, label:"THE FIX"}
+  ];
+
+  /* THE SCALE IS DECLARED IN THE MARKUP AND NOT AT RUNTIME, because
+   * dossier_check reads the body TAG out of the source before any render is
+   * spent and is blind to a setAttribute. The mapping is deterministic, so the
+   * literal is checkable: (m + 2) * 1350 / 124. The mark at y 17 is the ice
+   * arris, which the axis census found crossing the rail band and was right to:
+   * on a depth axis the top of the lid is a quantity. It is declared rather
+   * than moved, because the ice spans the full width and no x avoids it. */
+
+  AKPOST.grade(cx, {exposure:-0.04, saturation:1.03, contrast:1.06,
+    grain:{amount:0.055, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

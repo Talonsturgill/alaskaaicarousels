@@ -1,0 +1,267 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#03090C}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#16333B}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:22px;letter-spacing:0.10em;color:#2C4A52;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:80px;top:330px;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.09em;color:#BAD6DA}
+h2{position:absolute;left:80px;top:520px;width:920px;margin:0;font-family:Fraunces,serif;
+  font-variation-settings:"opsz" 96,"SOFT" 24,"WONK" 1;font-weight:640;
+  font-size:104px;line-height:0.96;letter-spacing:-0.02em;color:#F4F8FF}
+.lfix{position:absolute;left:606px;top:452px;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.09em;color:#BAD6DA}
+.ldial{position:absolute;left:80px;top:1082px;width:420px;font-family:"JetBrains Mono",monospace;
+  font-size:25px;line-height:1.42;letter-spacing:0.09em;color:#7D8F94}
+.und{position:absolute;left:704px;top:1064px;width:170px;text-align:center;font-family:Fraunces,serif;
+  font-variation-settings:"opsz" 96,"SOFT" 0,"WONK" 0;font-weight:600;font-size:74px;
+  line-height:1;color:#7D8F94}
+.prov{position:absolute;left:80px;top:1214px;width:640px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-encodes='[{"claim":"one reading resolves to a point and the other has nothing in it","reads":"differ","a":[[862,303,80,80]],"b":[[748,1006,80,80]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>01 / 09</div>
+<div class="kick" data-reserve data-fit>BEAUFORT AND CHUKCHI, YEAR 9</div>
+<h2 data-reserve data-fit>The permit can find the robot.<br>It can't count the seal.</h2>
+<div class="lfix" data-reserve data-fit>POSITION, FIXED</div>
+<div class="ldial" data-reserve data-fit>STOCK ABUNDANCE<br>UNDETERMINED</div>
+<div class="und" data-reserve>UND</div>
+<div class="prov" data-decorative>TWO READINGS, ONE DOCUMENT</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  // TWO LINES. The first build set the hook in four, with two of them two word
+  // orphans, so the rag read as a fitter accident and the two halves of the
+  // antithesis stopped being two lines of equal weight. A 30 character line in
+  // a 920 px measure lands near 62 px, which is smaller than the planned 104
+  // and is the price of the break the frame's own checklist asks for.
+  AK.fitText(document.querySelector('h2'), {min:56, max:104, maxLines:2});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cv = document.getElementById('art'), cx = cv.getContext('2d');
+  cx.scale(2,2);
+  var rnd = AK.rng(20260912 + 1);
+
+  S.setWindow(-4, 32, 0, 1350);
+  var SURF = S.depth(0);                       // the ice underside, about y 112
+
+  // THE RESERVE IS A BASIN. Measured per line box, handed to the generators.
+  // depth 0.98 and pad 30, not 0.93 and 12. Fraunces at line-height 0.96 puts
+  // ink outside its own line boxes, and a basin that only reaches 0.93 leaves
+  // ray segments above the reserve's own skip threshold inside the display
+  // type. qa.py found 242 px^2 of it in the hook's first line.
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:112, depth:0.98, pad:30});
+
+  var KEELS = [[196,2.6,168],[606,3.4,208],[928,2.1,132]];   // [design], metres
+  var FIX = [902, 344];                        // the gold point, [design]
+  var DIAL = [788, 1046], BEZ = 166, FACE = 136;
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#1A4C57", bed:"#123E49", steps:48});
+    S.daylight(g, {surfaceY:SURF, reach:620, peak:0.16});
+
+    // the sound, low, so the column is never a bare gradient
+    S.rays(g, {seed:570131, x:FIX[0], y:FIX[1]+40, count:26, fan:[-0.58,0.70],
+      curve:0.0026, step:5, maxLen:2400, alpha:0.30, width:1.6,
+      blend:"screen", bedY:H, atten:atten,
+      iceAt:function(px){ var d=1.2;
+        KEELS.forEach(function(k){ var u=(px-k[0])/k[2]; d += (k[1]-1.2)*Math.exp(-u*u*2.2); });
+        return S.depth(d); }});
+
+    S.marine(g, {rFloor:1.15, aFloor:0.17, seed:570111, count:6400, y0:SURF, y1:H,
+      near:[880, 1350], nearShare:0.80, atten:atten});
+
+    S.ice(g, {seed:20260913, thickness:1.2, keels:KEELS, channels:250});
+
+    // ---- THE FIX. two arcs closing on one point, neither circle closing ----
+    g.save();
+    g.beginPath(); g.rect(700, 252, 380, 184); g.clip();
+    S.ring(g, FIX[0]-244, FIX[1]+126, 268, {width:9, alpha:0.52, blend:"screen"});
+    S.ring(g, FIX[0]+146, FIX[1]+158, 192, {width:9, alpha:0.52, blend:"screen"});
+    g.restore();
+    g.fillStyle = "rgba(3,10,14,0.92)";
+    g.beginPath(); g.arc(FIX[0], FIX[1], 8.5, 0, Math.PI*2); g.fill();
+    g.fillStyle = "#FFC72C";
+    g.beginPath(); g.arc(FIX[0], FIX[1], 5.0, 0, Math.PI*2); g.fill();
+
+    // ---- THE DIAL. a modelled instrument, never a chart on a sheet ----
+    var dx = 12, dy = -12;                      // cabinet extrusion, half scale 45 deg
+    // the wall between the back face and the front face shows as a crescent on
+    // the LOWER LEFT, which is the lee side of a downwelling key
+    g.fillStyle = "#081722";
+    g.beginPath(); g.arc(DIAL[0]+dx, DIAL[1]+dy, BEZ, 0, Math.PI*2); g.fill();
+    g.beginPath();
+    g.arc(DIAL[0]+dx, DIAL[1]+dy, BEZ, 0, Math.PI*2);
+    g.arc(DIAL[0], DIAL[1], BEZ, 0, Math.PI*2);
+    g.fillStyle = "#0A1C27"; g.fill('evenodd');
+
+    // the bezel annulus, lit on its upper edge
+    var bg = g.createLinearGradient(0, DIAL[1]-BEZ, 0, DIAL[1]+BEZ);
+    bg.addColorStop(0.00, "#2A4653");
+    bg.addColorStop(0.34, "#16303C");
+    bg.addColorStop(1.00, "#091A24");
+    g.fillStyle = bg;
+    g.beginPath();
+    g.arc(DIAL[0], DIAL[1], BEZ, 0, Math.PI*2);
+    g.arc(DIAL[0], DIAL[1], FACE, 0, Math.PI*2);
+    g.fill('evenodd');
+
+    // the face, a dark dished plate
+    var fg = g.createRadialGradient(DIAL[0]-34, DIAL[1]-46, 6, DIAL[0], DIAL[1], FACE);
+    fg.addColorStop(0, "#122A36");
+    fg.addColorStop(1, "#05121A");
+    g.fillStyle = fg;
+    g.beginPath(); g.arc(DIAL[0], DIAL[1], FACE, 0, Math.PI*2); g.fill();
+
+    // THE PRINTED SCALE, fully drawn, because the dial is legible and only the
+    // NEEDLE is missing. That is the difference between a blank and a gap.
+    var A0 = Math.PI*(210/180), A1 = Math.PI*(-30/180);
+    for (var i=0;i<=20;i++){
+      var t = i/20, a = A0 + (A1-A0)*t, maj = (i%5===0);
+      var r0 = FACE-8, r1 = FACE - (maj?30:19);
+      g.strokeStyle = maj ? "rgba(125,143,148,0.92)" : "rgba(125,143,148,0.52)";
+      g.lineWidth = maj ? 2.2 : 1.2;
+      g.beginPath();
+      g.moveTo(DIAL[0]+Math.cos(a)*r0, DIAL[1]-Math.sin(a)*r0);
+      g.lineTo(DIAL[0]+Math.cos(a)*r1, DIAL[1]-Math.sin(a)*r1);
+      g.stroke();
+    }
+
+    // THE EMPTY SOCKET. unlit, with its own occlusion seam, and no needle.
+    g.fillStyle = "#020A0F";
+    g.beginPath(); g.arc(DIAL[0], DIAL[1], 11, 0, Math.PI*2); g.fill();
+    g.strokeStyle = "rgba(160,190,196,0.30)"; g.lineWidth = 1.0;
+    g.beginPath(); g.arc(DIAL[0], DIAL[1]-1.2, 11, Math.PI*1.06, Math.PI*1.94); g.stroke();
+
+    // the light-keyed profile on the bezel silhouette, sampled as a polygon so
+    // the heavy dark rank lands only on the arcs facing away from the key
+    var poly = [];
+    for (var q=0;q<96;q++){
+      var aa = q/96*Math.PI*2;
+      poly.push([DIAL[0]+Math.cos(aa)*BEZ, DIAL[1]+Math.sin(aa)*BEZ]);
+    }
+    window.__dialProfile = S.profile(g, poly, {weight:1.9, heavyMul:1.7, threshold:-0.10,
+      light:"rgba(206,232,236,0.60)", lee:"rgba(2,8,11,0.92)"});
+
+    /* THE PHANTOM RIM, DRAWN LAST AND OUTSIDE THE CASE. It was drawn at the
+     * bezel radius BEFORE the profile pass, which then re-stroked the same
+     * circle continuously and painted the dashes out: a pixel critic reported
+     * the rim as a continuous hairline that terminates around 8 o'clock, and
+     * that is exactly what it was. At BEZ plus 10, after everything, it reads
+     * as what it means, an instrument whose boundary the record does not fix.
+     * Both ends land on full dashes because the pattern is scaled to divide the
+     * circumference a whole number of times. */
+    (function(){
+      var r = BEZ + 10;
+      var circ = 2*Math.PI*r, pat = [30,5,6,5,6,5];
+      var sum = pat.reduce(function(a,b){return a+b;},0);
+      var reps = Math.round(circ/sum), k = circ/(reps*sum);
+      g.save();
+      g.setLineDash(pat.map(function(v){ return v*k; }));
+      g.strokeStyle = "#7D8F94"; g.lineWidth = 1.9;
+      g.beginPath(); g.arc(DIAL[0], DIAL[1], r, 0, Math.PI*2); g.stroke();
+      g.restore();
+    })();
+
+    // D3, THE RISER CHAIN. One cased cable descending from the lid and leaving
+    // the right edge at y 980, which is slide 02's entry. Cut, never faded.
+    (function(){
+      /* IT HAS TO STILL BE IN THE FRAME WHEN IT REACHES y 980. The first build
+       * drifted x from 1030 to 1090, so the cable left the right edge at about
+       * y 848 and the declared chain did not join slide 02, which enters at
+       * 980. The path now lands on [1080, 980] by construction. */
+      var pts = [], y0 = S.depth(1.5);
+      for (var t=0;t<=64;t++){
+        var u = t/64, yy = y0 + u*(980 - y0);
+        // AND IT HAS TO CLEAR THE HOOK. Two lines at 62 px put the first line
+        // box's right edge at x 996, and a linear run from 884 crossed it at
+        // y 509, which qa.py measured as 242 px^2 of cable inside the deck's
+        // own hook. The path leaves the lid heading right and is past x 1000
+        // before it reaches the type.
+        pts.push([900 + 180*Math.pow(u, 0.45) + Math.sin(u*2.6)*13*(1-u), yy]);
+      }
+      g.strokeStyle = "rgba(3,11,15,0.85)"; g.lineWidth = 5.0;
+      g.beginPath(); pts.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); }); g.stroke();
+      g.strokeStyle = "rgba(170,200,206,0.62)"; g.lineWidth = 2.0;
+      g.beginPath(); pts.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); }); g.stroke();
+      // three clamped collars, each a small modelled solid with its own lee
+      // two clamped collars, each a small modelled solid with its own value
+      // ladder so it is not a flat black square with a bright outline
+      [0.30, 0.74].forEach(function(u){
+        var i = Math.round(u*64), p = pts[i];
+        var poly = [[p[0]-11,p[1]-8],[p[0]+11,p[1]-8],[p[0]+11,p[1]+8],[p[0]-11,p[1]+8]];
+        var cg = g.createLinearGradient(0, p[1]-8, 0, p[1]+8);
+        cg.addColorStop(0, "#2A4653"); cg.addColorStop(1, "#081A24");
+        g.fillStyle = cg;
+        g.beginPath(); poly.forEach(function(q,j){ j?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]); });
+        g.closePath(); g.fill();
+        S.profile(g, poly, {weight:1.4, heavyMul:1.8, threshold:-0.10,
+          light:"rgba(198,226,230,0.46)", lee:"rgba(2,8,11,0.94)"});
+      });
+    })();
+
+    // contact of the dial's own mass against the water is not a ground contact,
+    // so no pool and no cast here. The deck's one contact is slide 08.
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  // ---- leaders, authored from the MEASURED label boxes to the features ----
+  var fixBox = AKFIT.inkRect(document.querySelector('.lfix'));
+  var dialBox = AKFIT.inkRect(document.querySelector('.ldial'));
+  var rimPt = [DIAL[0] + Math.cos(Math.PI*0.86)*BEZ, DIAL[1] - Math.sin(Math.PI*0.86)*BEZ];
+  cx.strokeStyle = "rgba(186,214,218,0.78)"; cx.lineWidth = 1.25;
+  cx.lineCap = "butt";
+  // 1. to the gold dot, ending in a filled dot because it lands on a face
+  var l1a = [fixBox.right + 16, fixBox.y + fixBox.h/2];
+  var l1b = [l1a[0] + 44, l1a[1] - 30];
+  cx.beginPath(); cx.moveTo(l1a[0], l1a[1]); cx.lineTo(l1b[0], l1b[1]);
+  cx.lineTo(FIX[0], FIX[1]); cx.stroke();
+  cx.fillStyle = "rgba(186,214,218,0.90)";
+  cx.beginPath(); cx.arc(FIX[0], FIX[1], 2.5, 0, Math.PI*2); cx.fill();
+  // 2. to the dial rim, ending in an arrow because it lands on an edge
+  var l2a = [dialBox.right + 18, dialBox.y + 16];
+  var l2b = [l2a[0] + 34, l2a[1] - 28];
+  cx.beginPath(); cx.moveTo(l2a[0], l2a[1]); cx.lineTo(l2b[0], l2b[1]);
+  cx.lineTo(rimPt[0], rimPt[1]); cx.stroke();
+  (function(){
+    var ang = Math.atan2(rimPt[1]-l2b[1], rimPt[0]-l2b[0]), L = 11, Wd = 3.6;
+    cx.fillStyle = "rgba(186,214,218,0.90)";
+    cx.beginPath();
+    cx.moveTo(rimPt[0], rimPt[1]);
+    cx.lineTo(rimPt[0]-Math.cos(ang)*L+Math.cos(ang+Math.PI/2)*Wd,
+              rimPt[1]-Math.sin(ang)*L+Math.sin(ang+Math.PI/2)*Wd);
+    cx.lineTo(rimPt[0]-Math.cos(ang)*L-Math.cos(ang+Math.PI/2)*Wd,
+              rimPt[1]-Math.sin(ang)*L-Math.sin(ang+Math.PI/2)*Wd);
+    cx.closePath(); cx.fill();
+  })();
+
+  window.__akLeaders = [
+    {target:"the fix, where the two range arcs close", at:FIX, to:FIX, from:l1a,
+     label:"POSITION, FIXED"},
+    {target:"the dial's rim", at:rimPt, to:rimPt, from:l2a,
+     label:"STOCK ABUNDANCE UNDETERMINED"}
+  ];
+
+  AKPOST.grade(cx, {exposure:-0.04, saturation:1.04, contrast:1.05,
+    grain:{amount:0.055, size:2.0, seed:20260912}, dither:true});
+
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

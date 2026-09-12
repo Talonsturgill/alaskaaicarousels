@@ -1,0 +1,141 @@
+{
+  "run_date": "2026-09-12",
+  "carousel_no": 57,
+  "round": 3,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Transcribed all 73 copy fields, caption.txt and first_comment myself: no U+2013/U+2014. Ranges are written '900 TO 950 Hz', '39,258', '204 kilometres, or 110 nautical miles'. The ROUND 2 dash-alike (a rail tick reading as an em dash 8px after the numeral) is visibly repaired: on slides 02/03/04/06/08 the tick now draws OUTBOARD of a visible vertical spine at x~1500, so reading order is '100 m | -' with an axis line intervening. Nearest survivor is slide 02's 18px leader elbow ~20px right of 'THE FIX' at cap-middle, but a continuous polyline climbs away from it to the gold dot and it does not read as punctuation."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None in copy.json, caption.txt, first_comment, aftercare, or any of the nine renders. All nine frames are Fraunces/Space Grotesk/JetBrains Mono glyphs only."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "copy.json carries claim_ids per slide (S1 C05/C25/C43 ... S9 C53); CLAIMS INDEX maps 32 claims to frames with a WHAT MOVED audit; plan_drift_check PASS, 32 claims indexed, 0 drifts. Spot-checked claims.json: C02 (verbatim 'DATES: This authorization is effective from September 14, 2026, through September 13, 2027', govinfo, fetched true, 0.98), C05 (Year 9 title, verbatim), C06 (ninth year, with a note that the record says ninth year of the PROJECT and does not print 'nine'). The only unsourced strings on any frame are declared design values and the deck prints that: 'PROPORTIONS, THE DRAWING'S', 'THE MOTE COUNT IS THE DRAWING'S', 'THE TALLY IS THE DRAWING'S', 'THIS PAGE'S GLOSS'."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "Transcribed all nine renders glyph by glyph against copy.json. No misspelling. Checked the suspect strings myself: 'uPa' (micropascal, consistent and always inside 're 1 uPa at 1 m'), 'NTE' (not-to-exceed), 'CV 0.229' vs 'CV 0.51' (both match claims), 'metres/kilometres' British throughout slides AND caption, 'Canada's', 'NOTICE'S', 'RECORD'S', 'icebreaking', 'ice strengthened', 'trilateration'. Date rule holds on every string: 'September 22nd' and 'September 14th' bare (this year), 'September 13th, 2027' and 'SEPTEMBER 13TH, 2022' carrying the year because it is a different calendar year."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "THE OLD HARD FAIL IS GONE AND I CAN SEE IT. On slide-05.png the widest mono label 'DEPLOYMENT AND RECOVERY' ends at x~710 (displayed 1600w) and the prose column's left edge is x~772: a clear gap of ~62 displayed px / ~42 design px, versus the 9px that produced 'DEPLOYMENT AND RECOVERYThe 55 metre zone applies'. At 432px the two columns read as two columns. Body and clarification paragraphs are separated by a full line band. No glyph is clipped at any frame edge on any of the nine. Zero text-on-text contacts deck-wide. TWO graphic-on-text contacts exist and neither clips or cuts a glyph, so neither trips this rule: (a) slide 07's 'NO VALUE TO PLOT' puts its first two glyphs over dial three's lit navy face (label x1040-1440, dial edge at that y is x~1073); (b) slide 05's '457 m OBSERVED CETACEANS' leader arrowhead lands correctly ON the 457m arc at ~(795,1712), which is inside the bounding box of the clarification's last line 'source then transmits.' Both recorded under Artwork craft and Legibility."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Primary text is #F4F8FF display and #D8ECEE body over a water ladder running #1A4C57 (slide 01) to #030A10 (slide 09); worst case is slide 01's lower headline line over ~#143F4B, which is above 12:1, and every dark frame is far higher. Secondary mono is #BAD6DA rail ink (over 9:1 on all grounds) and #7D8F94 undetermined ink on near-black (~6.9:1). The deck's single worst point is a SECONDARY label, not primary text: the 'NO' of 'NO VALUE TO PLOT' over dial three's face measures ~4.4:1 by my estimate off the render. Not a hard fail as written, and I decline to assert a cap on a hex estimated from a downsample, but it is the deck's one sub-4.5 region and it is avoidable."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "Nine. Nine rendered PNGs, nine thumbs, nine HTML, counters read 01/09 through 09/09, assemble_report slides: 9."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict PASS, fails 0, warns 0 across all nine. assemble_report.json (present in BOTH out/2026-09-12/final/ and runs/2026-09-12/): pdf_mode 'vector', pdf_bytes 8478053 (8.48 MB, inside the 2-25 MB band), title 'The Permit Knows Where the Machine Is' from copy.json. I checked the new AKFIT.guard line-box separation gate is real by its effect, not its description: qa now reports per-leader label clearances as numbers (slide 05: 11.5, 13.0, 12.0, 12.0 px) rather than pass/fail booleans, and every 24px landing gate reports 0.0px on target."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "Nearest entry is No.44 (2026-08-29, 14 days back): the WHOI/OSU/UAF Chukchi acoustic glider Unit 595 and its eight-class call library. I read it in full. Shared beat furniture only (Chukchi, glider, acoustics, marine mammals); ZERO entity overlap (WHOI/OSU/UAF/NOAA Fisheries/Unit 595 vs NMFS/Office of Naval Research/91 FR 57547), different document class (a project's published detection table vs a Federal Register authorization issuance), different decision. No.52 (2026-09-06) is fisheries survey monitoring economics, not this. ledger/topics.json's own No.57 note records 'Dedupe exited 1 on No.44 and No.52; both were read in full and the semantic call is not a repeat' and I reach the same call independently. Flagged for the editor as lane saturation, not as a repeat."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "Last four in ledger/artwork.json: No.53 curved transect as a nine-frame camera move, No.54 the stamped field and the printed page, No.55 the struck register on laid paper, No.56 the sheet and its margin. No.57 is THE OCCUPIED STATION, DESCENDED, one water column on a shared depth-to-pixel mapping. Verified in the renders, not just the ledger: three of the last four are printed surfaces and this deck contains no printed surface, no neatline, no margin and no annotation gutter; type is set inside the water on all nine. Also clears atmosphere vs last 3 (first dark under new ice, downwelling el 62, against sodium/north-window/overcast), continuity device vs last 2, hook archetype vs last 3 (the paired readout), palette family vs last 3."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_report.json: brand_phrases_loaded 74, copy_fields_checked 73, fails [], warns [], verdict PASS. Scanned with fresh eyes for the house rules too: 'can't' appears on slides 01, 02 and 08 and 'cannot' appears nowhere; 0.65 commas per 100 words against the 1.05 budget; no 'sources in comments' on slide 09; the word GPS appears on no frame (slide 02's acceptance test, and claims.json C08 notes the word appears in neither notice)."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three: #MarineMammalProtectionAct #ArcticResearch #AlaskaAI. post_copy contains no URL and no 'http'. All four primary URLs and the alaskaaihq.com mention live in first_comment, where a dated citation is a citation."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No lorem/TODO/TBD/XXX/FIXME in copy.json, claims.json, storyboard.md or the reports. gate_status artifacts row PASS ('every named artifact present, JSON parses, 9 slides valid'). The single FAIL row in GATE STATUS is ship_gate complaining 'score_report.json missing', which is this report and is expected pre-scoring, not an unfinished deliverable. runs/2026-09-12/ carries thumbs, contact sheet and assemble_report at ship weight."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Judged at 432 first. 'The permit can find the robot. / It can't count the seal.' sets in exactly two lines at 118px Fraunces, 11 words, a named tension rather than a topic label, and the UND dial is legible as a dial with a printed scale and no needle at thumb size. Visibly Arctic without cliche: lit ice crust with keels and brine channels across the top band, dark header type on it (measured, 1.7 and 1.0 rejected on the prototype), 'BEAUFORT AND CHUKCHI, YEAR 9' naming place and term. Against 10: the cover carries no NUMBER, and the deck's sharpest asset is a number pair (39,258 against UND) held back to slide 07; and the focal point genuinely competes, with the gold fix upper right, the dial lower right and a black riser cable crossing the right third, three marks on one diagonal rather than one. The mid-left band under the headline is the frame's least worked region."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Real beat structure, not a list wearing story clothes: 02 pays the cover off immediately with the mechanism in the notice's own words, 05 CONCEDES precisely (all four mitigation radii drawn to true scale) which is what earns 07's blank as an argument rather than a complaint, 06 turns the temperature cold, 08 states what the record actually is, 09 asks one thing. The contact sheet reads as one composed descent because D4 is visible in the bytes: each frame's water top is the previous frame's bed, ramping #1A4C57 to #030A10 across nine frames. Loops plant and pay. Deductions: slide 06 opens on a data label, 'THE 22 DAYS ABOARD' at y~240, sitting ABOVE its own kicker 'WHAT RUNS AFTER / THE SHIP GOES HOME' at y~320, so the frame's first read is an annotation. That is verbatim the defect ROUND 2 found and fixed on slide 03 ('The buoy label sat above the kicker and read as the frame's opening line') and it is left standing here. 03 and 04 are the two frames reorderable without loss."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "Credited because I can see them, not because they are described: the plate feather no longer reads as a rectangle (slide 02's four label containers are soft basins in the interference field, and I looked for the hard edge specifically); slide 03's eight bodies carry two-strip value ladders keyed to AKICE.contrast and body 4's ray fan opens into the quiet quadrant; slide 06's unattended ticks now survive the 5x downsample so the lit band has a denominator to be a fraction of; slide 03's gold source ticks EXIST (the first build shipped zero gold pixels) and are marks at a position, not lengths; slide 08's contact reads attached, pool opposite the lee with the seam running the whole base line; slide 01's phantom rim survives the bezel profile all the way round; slide 04's aurora glider sits exactly on its own 1,000m tick with a real gold arc dissolving at both ends. Line-weight hierarchy is genuine and one declared key (az 12 el 62) holds on all nine. Against 8 and up: THE HERO STAYED FLAT AND THE DOSSIER NEVER ARGUES IT. No akthree GPU PBR, no aksdf raymarch, no film-graded rendered hero anywhere; the storyboard argues the 2D chassis on collision-safety grounds and never addresses the ladder. That is the 7 descriptor word for word. Dead zones remain and are large: slide 04's lower-left and slide 08's upper-right are each roughly a quarter frame of near-uniform black carrying a handful of stars; slide 06's left column below the body is bare. Slide 04 ships a ~40px white stub above the glider's back that terminates in open water and reads as a stray mark. Slide 06's gold band stops ~90px short of the grey field's right edge, so the one frame whose entire argument is a ratio of counts has a lit band whose row width does not match the rows it is a fraction of. Slide 05 is four cool circles, a cross and a mote field, and at 432 it is the thinnest-inked frame in the deck."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Art parameters visibly encode story numbers in four places and the frames say so. Slide 05 draws 457/183/55/15 at true relative radius on the slide's own 0.90 px-per-metre mapping and prints 'ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S'. Slide 06 encodes 22 days of a year as 132 lit ticks in 2,190 and prints neither derived product. Slide 04's mote count IS 639,237 at one mote per 100 km2. Slide 07's ring radius IS the coefficient of variation and the frame prints exactly that disclaimer, so the two beluga rings differ by measured uncertainty while the third dial's socket is empty. The colour law (gold is what the record knows, #7D8F94 is what it does not) is auditable against one sentence, and the run counted the pixels per frame rather than asserting it. A stranger could guess the story from slide 07 alone. Deduction: slide 03's hedge is drawn on the body numbered 8. Eight bodies are six moorings plus two buoys, so the phantom-dashed one reading as the EIGHTH source reads as an uncertain buoy, when the hedge belongs to the sixth mooring and C15 carries no hedge. It is the one place the art contradicts the text it is encoding. Slides 01 and 08 carry no verified quantity as a drawn length and sit closer to illustration."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Named throughout and geographically careful: Beaufort and Chukchi, NMFS, Office of Naval Research, 91 FR 57547, Beaufort beluga, Eastern Chukchi beluga, Arctic ringed seal as the one species here listed as threatened, the Canadian EEZ, 204 kilometres to the Alaska coast, the September 13th 2022 Biological Opinion, three comment letters all from private citizens. The best authenticity call in the deck is a refusal: for water 110 nautical miles offshore the deck draws NO coastline and types the 204 km instead, so it never fakes a geography it cannot verify (slide 04's acceptance test is 'The Alaska coast is not drawn anywhere'). Deduction: the fact-checker rightly killed the Inupiat co-management framing and nothing replaced it, so there is no Alaskan person and no Alaskan community in nine frames. The ringed seal is a subsistence animal and the deck never says who depends on it. This would make a Federal Register reader feel seen; an Alaskan is one beat further away than the 10 descriptor asks."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 9,
+      "weight": 0.10,
+      "notes": "Every content slide adds a new verified specific and none repeats another's: 02 the trilateration mechanism in the notice's words; 03 900-950 Hz, 30 s, every 4 h, NTE 185 dB re 1 uPa at 1 m; 04 639,237 km2, 204 km / 110 nm, three jurisdictions including Canada's; 05 four radii plus 'Level A harassment neither anticipated nor authorized'; 06 22 days from September 22nd, transmission to September 13th 2027, the observer clause, ice strengthened rather than icebreaking; 07 39,258 from 1992, 13,305 from 2017 at CV 0.51, UND; 08 September 14th, the statutory one-year ceiling, the ninth year, the 2022 BiOp, three comment letters. Bodies run 24 to 48 words, inside band, zero filler. The honesty architecture is better than the rubric asks for: aggregate_check forced NINE YEARS to THE NINTH YEAR because C06 does not print the number, and it forced a kicker rewrite because the notice never says 'three' distances. Deductions: slide 05's body and its own clarification line both explain the 55 metre zone, the deck's one repeated beat on one frame; slide 02 carries a single verified figure."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "Every declared divergence checks out against artwork.json entries 53 to 56, and I checked it in the renders rather than in the claim: hero structure (no printed surface at all, against three printed surfaces in the last four), atmosphere (first dark under new ice with a DOWNWELLING key, against sodium-zinc, printer's bench and overcast daylight), continuity devices (four, none of them No.55's struck squares or No.56's edge-on volume plus header index), hook archetype (the paired readout, and the dossier argues correctly why it is not the sentence that isn't there, not timeline collapse, and not the object you can't read), palette family, narrative structure. Dials declared with a stated reason. Deductions: Fraunces + Space Grotesk + JetBrains Mono is No.54's exact pairing three decks back, legal under a last-2 rule but a reused subsystem; and the deck's own ledger note BURNS the depth rail as furniture after it appeared on eight of nine frames and cost four separate rounds of collision fixes, which is an honest admission that one subsystem was carried past its value."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Floors met: body 32-34px (slide 05's lower band is exactly 32 and not below), no string under 24px except the licensed 18px watermark, counters on all nine, margins held, vector PDF 8.48 MB with title. The thing this round set out to earn IS earned: at 432 I read every headline, every body paragraph and most mono labels on all nine thumbs without zooming, and slide 05 in particular now reads as two columns. Three squeakers, which is why this is a 7 and not an 8. (1) Slide 07's 'NO VALUE TO PLOT' overlaps dial three's lit navy face with its first two glyphs, where that grey drops to roughly 4.4:1, the deck's worst measured point, fixable by moving the label 40px right into clear ground. (2) Slide 05's 457m dimension call terminates correctly on the 457 arc but at ~(795,1712), inside the bounding box of the clarification's last line: the new AKFIT.guard check compares [data-reserve] boxes to each other and qa checks a leader against its TARGET, so a leader terminator versus a text box is still ungated, and this is the surviving cousin of the defect that produced the 6.9. (3) Slide 06's 'ONE TICK, ONE 30 s PULSE' sits ~30 design px under the body's last line and reads as the paragraph's next sentence."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 9,
+      "weight": 0.05,
+      "notes": "Hook 109 chars, inside 140, and it is a claim rather than a tease: 'Two numbers and one blank sit in the stock table of the Arctic permit NMFS issued the Navy on September 10th.' 825 chars, inside 300-900. The analytical position is taken plainly and in the house register: 'The machine half is exact to the second. The animal half is stale or blank.' Deck-summary line present. The closing question is genuinely debatable and not rhetorical: 'How does the seal's blank survive nine years of one year permits?' 0.65 commas per 100 words against a 1.05 budget; three hashtags; no link in body; first comment is four primary URLs with a dated citation block and an invitation to people who have worked these stocks. Grade reads about 9. One soft line: the deck-summary beat describes the artifact ('Nine frames descend one column of water') where the third punch should land."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.10,
+      "notes": "Everything material is present and resolves: copy.json with nine slides plus first_comment plus deck_summary plus a four-item aftercare checklist; exactly three hashtags; document title carried into the PDF from copy.json; vector PDF 8.48 MB; nine thumbs plus contact sheet in runs/2026-09-12/; assemble_report with sha256 and byte counts for all nine PNGs and all nine HTML; claims.json, caption_report, aggregate_report, machine_qa all parse; site_fresh PASS (docs/ exactly a fresh build at --date 2026-09-12, 184 files); site_signoff 18/18; GATE STATUS synced by script and not hand-written. The deduction is specific and it is the one thing this round claimed to have learned: the BUILD RECONCILIATION table, which the run itself names as the mechanism by which the last hard fail survived six rooms, STILL CONTAINS TWO ROWS THAT MISDESCRIBE THE RENDER. Row 01 reads 'Nothing. Built as planned.' while the dossier's layout map places the dial lower left at [330,980] and the render puts it lower right, a divergence the ROUND 2 section defends as a refused finding three pages later. Row 02 reads 'Kicker is the dossier's 41 character string' while the shipped kicker is 'POSITION BY DISTANCE, IN THE NOTICE'S WORDS' and copy.json's own note records that string being replaced twice. Slide 05's row was fixed and honestly says it was wrong; its two siblings were never looked for. Separately the dossiers' section-A 'COPY, final' blocks are stale against copy.json on 02, 03, 04, 05, 06 and 07, and copy.json still declares 3-line headline breaks for 07 and 09 that the fitter set in 2, including the exact orphan ('number.') that ROUND 2 says it fixed. None of this reaches a reader and every gate that matters reads copy.json, which is correct, so this is a convenience element rough rather than a missing component."
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(9x0.10)+(8x0.08)+(7x0.07)+(9x0.05)+(8x0.10) = 1.12+1.12+1.12+1.12+0.96+0.90+0.64+0.49+0.45+0.80 = 8.72 (weights sum to 1.00; no hard fail, so no 6.9 cap applied)",
+  "weighted_total": 8.72,
+  "threshold": 8.3,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Rebuild slide 07's three stock dials, which are the deck's focal instrument and carry its entire argument, as an akthree GPU PBR pass with real material, a real cast and a film grade, so the hero finally climbs the rendered ladder the artwork criterion explicitly names instead of remaining the deck's best-drawn flat canvas.",
+  "editor_notes_for_email": "ZERO HARD FAILS. The 6.9 cap is lifted and the fix is visible, not merely described: on slide-05.png the widest zone label clears the prose column by ~42 design px where it had 9, and I confirmed it at 432 before going full size. Weighted 8.72 against 8.3 (the rubric ladder would allow 8.0 at round 3, so it clears either bar). SHIP. Four things to know before posting. (1) The three refused critic findings are still all three sound and I say so again independently: not moving slide 01's dial is right because the render is the artifact and the frame balances headline-left against instrument-right; not resetting slide 04's window is right because C27 puts the glider's transit floor at 1,000 m and the acceptance test is the glider on that tick, so moving the mapping's bottom to y 1040 was the correct repair; and refusing CV-times-value on slide 07 is the strongest of the three, because a frame may not print 'RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE' and then draw something else. (2) The reconciliation lesson is NOT fully learned. Rows 01 and 02 of BUILD RECONCILIATION still misdescribe the render (row 01 says 'Nothing. Built as planned.' about a frame whose dial position the run deliberately refused to move; row 02 names a kicker copy.json's own note says was replaced twice). Nothing reaches a reader, but this belongs in FIELD_NOTES as a recurrence, and the real machine lesson is that the new AKFIT.guard check compares reserve box to reserve box while qa checks a leader against its target, so a leader TERMINATOR versus a TEXT BOX is still ungated. Slide 05's 457 m arrowhead lands at ~(795,1712), inside the last line of the clarification paragraph: that is the surviving cousin of the defect that cost the 6.9, and it is the gate to write next. (3) Lane saturation, flag only, not a repeat: this is the third Arctic marine acoustics and marine mammal deck in fourteen days (No.44 the Chukchi glider call library, No.52 fisheries survey monitoring, No.57 today). I read No.44 in full and agree with the run's dedupe call, since there is zero entity overlap and it is a different agency, document class and decision, but a fourth in this lane would not survive. (4) Two cosmetic defects a sharp commenter could name: slide 07's 'NO VALUE TO PLOT' has its first two glyphs on dial three's navy face at roughly 4.4:1, the deck's worst measured point, and slide 04 carries a ~40px white stub above the glider that terminates in open water. Also worth a glance but not this run's to fix: gate_status shows gas_watch WARN with 1 day missing from a 37-day series, first 2026-09-08, and cron owns that collector. Finally, honour aftercare item 3 in the comments: if anyone asks how many animals may be harassed, the answer is that no take number is in the reachable record and four fetch routes failed to find one. Post Tuesday to Thursday, 8 to 11am Alaska time, and paste the first comment block within 60 seconds so the raw URLs stay clickable."
+}

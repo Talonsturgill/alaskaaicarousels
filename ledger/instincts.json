@@ -1446,6 +1446,34 @@
       "confidence": 0.9,
       "born": "2026-09-11",
       "evidence": "No.56 slide 06 drew 34 struck cells whose 'value' bar length came from AK.fbm2. It looked exactly like a per-day reading. Fixed by driving every bar from ledger/gaswatch.jsonl over a stated 49 to 60 window, with the two empty cells being the two days the ledger actually records as unverified rather than an arbitrary pair. Logged for Phase 12 as the most valuable unguarded surface currently in the machine."
+    },
+    {
+      "id": "a-colour-law-is-a-claim-about-pixels-and-nothing-checks-pixels",
+      "instinct": "A COLOUR LAW IS A CLAIM ABOUT THE RENDERED PIXELS AND NO GATE IN THIS REPO CHECKS RENDERED PIXELS AGAINST ONE. Every check here verifies a declared QUANTITY. A deck can therefore state that one hex means what the record knows, break that in three places, and pass claims, dossier, aggregate, plan-drift, copy-sync and machine QA at zero fails and zero warns. The gate is four lines: count the pixels within a tolerance of each law bearing hex per frame, then fail a frame carrying none of a hex its own state table promises, or any of a hex the law forbids it.",
+      "confidence": 0.93,
+      "born": "2026-09-12",
+      "evidence": "No.57 built its whole argument on gold meaning what the record knows and broke it three ways invisibly. AKICE.rays defaulted to [255,199,44], so three frames called it with no rgb and two shipped a warm fan over drawn geometry marked [design]. The provenance mark was set in the undetermined ink on all nine frames, which removes that ink's meaning from the phantom dashes and from UND. And slide 03's eight gold source ticks rendered as ZERO gold pixels, because a 0.75 degree arc at r 46 is six tenths of a pixel and a degenerate subpath gets no cap. Found by counting gold pixels per frame, which is exactly the gate that does not exist."
+    },
+    {
+      "id": "a-mark-that-does-not-survive-the-downsample-is-not-a-mark",
+      "instinct": "A MARK THAT DOES NOT SURVIVE A FIVE TIMES DOWNSAMPLE IS NOT A MARK, whatever it measures at 2160 px. This applies to populations, hairlines, ticks, needles and any arc whose angular extent is honest but whose drawn length is sub pixel. Decide at feed size, then draw.",
+      "confidence": 0.91,
+      "born": "2026-09-12",
+      "evidence": "No.57, five separate instances in one deck. Mote populations at radius 0.55 px reported by three critics as grain or JPEG noise. A 0.75 px pulse tick at alpha 0.30 on #03090C water left the deck's strongest single image as a gold patch on bare black with no denominator. A 2 px needle and a 5 px gold cap made the frame's declared wordless claim measure 0.1 dE against a 4.0 floor; at 5 px and 9.5 px it measures 115.6. A 0.75 degree gold arc did not draw at all. And a bezel lee at rgba(4,12,16,0.88) on near black water was invisible BY CONSTRUCTION, which no amount of redrawing fixes: it needed a casing one step lighter than the water underneath it."
+    },
+    {
+      "id": "a-separation-gate-that-pairs-text-with-text-cannot-see-a-leader-landing-in-prose",
+      "instinct": "A SEPARATION GATE IS ONLY AS WIDE AS THE PAIRS IT COMPARES. AKFIT.guard's new minGap check pairs [data-reserve] box against [data-reserve] box, and qa.py checks a leader against its TARGET, so the one pair nobody compares is a leader TERMINATOR against a TEXT BOX. Write the gate for the pair you did not think of, because the defect always arrives as the pair you did not think of.",
+      "confidence": 0.88,
+      "born": "2026-09-12",
+      "evidence": "No.57 round 3. The minGap guard was written to close the defect that capped round 1 at 6.9, and it did: it fired at 9.0 px on its first run and slide 05 now clears by 42 design px. The scorer then found the same defect one pair over on the same frame, slide 05's 457 m dimension call terminating at about (795,1712), which is inside the bounding box of the clarification paragraph's last line. Every gate reported PASS. The arrowhead is correct, it lands on its arc, and it lands in a sentence."
+    },
+    {
+      "id": "a-reconciliation-row-written-by-the-builder-is-not-a-check",
+      "instinct": "A RECONCILIATION ROW IS A CHECK ONLY IF IT IS WRITTEN AGAINST THE RENDER RATHER THAN AGAINST MEMORY. Write every row with the frame open, and write NOTHING BUILT AS PLANNED only after looking. A row that says the frame matched the plan is the cheapest sentence in the run and it is the one that hides a defect from six review rooms.",
+      "confidence": 0.86,
+      "born": "2026-09-12",
+      "evidence": "No.57 shipped one hard fail through six rooms behind a reconciliation row describing a layout that never rendered, corrected it, and then the round 3 scorer found two more rows of the same table still misdescribing the render. Row 01 read NOTHING, BUILT AS PLANNED about the one frame whose dial position the run deliberately refused to move, and the refusal is argued three pages later in the same document. Row 02 named a kicker string that copy.json's own note records being replaced twice."
     }
   ]
 }

@@ -6838,3 +6838,207 @@ against roughly 5 percent of posted content, a 2.6x over-index. Slide count 8 to
 10 is repeated as the completion sweet spot with a cliff above 12. All three
 agree with what CAROUSEL_CRAFT already says from the primary LinkedIn
 engineering sources, and none of them is primary, so no gate moves.
+
+### 2026-09-12, Phase 1 craft refresh (No. 57)
+
+**THE HEAVIEST LINE IS THE ONE FACING AWAY FROM THE LIGHT, and this house has
+been ranking weights by MEANING instead.** The technical-illustration convention,
+stated most precisely by Greg Maxson and known in the trade as the Kalmbach
+method, is three ranks and the third is a LIGHTING rank, not an importance rank.
+Lines inside an object are thin. Lines on its exterior silhouette are heavier.
+Exterior lines that are down and away from the light source are heavier and
+darker still, and on large machinery that extra weight is what gives the object
+visual mass. Complex illustrations run 2 to 4 distinct weights, no more. Two
+sub-rules came through with it: a very thin interior line represents a radius
+under 90 degrees, and a thin BROKEN line represents a highlight.
+
+Why it matters here. No.53 logged "four ranked weights carrying meaning rather
+than emphasis" as a win, and it was one, but every weight in it was assigned by
+semantic rank. Nothing in the doctrine ties weight to the declared key azimuth.
+That means a deck can light its forms correctly and still draw all four sides of
+a silhouette at one weight, which is exactly what makes a shaded form read as a
+sticker cut out of paper. The cheap version is one pass: after the silhouette is
+stroked, re-stroke only the arcs whose outward normal points away from `S.LIGHT`
+at 1.6x the weight and a darker ink. It costs one dot product per segment.
+
+**Provenance, stated honestly.** The rule is a trade convention with a named
+attribution, not a standard. It is described as adopted from US Patent Office
+drawing practice, so MPEP 1503 was checked directly and does NOT carry it. The
+MPEP requires surface shading adequate to show contour, forbids solid black
+except as color, and requires oblique line shading for transparent, polished or
+reflective surfaces; it says nothing about light-source direction or where the
+heavy line goes. So cite Maxson, not the USPTO, and treat the light-keyed weight
+as craft rather than as a rule with a document behind it.
+(Sources: rj-graffix.com/multiple-line-weights-in-technical-illustration/,
+uspto.gov/web/offices/pac/mpep/s1503.html, 2026-09-12.)
+
+**Detail density is a DEPTH cue, and the absence of detail is the cue.** The
+cutaway tradition states it as a positive rule rather than a budget. Reducing
+information as elements recede reads as distance, and a foreground wall carrying
+brick coursing beside a background building carrying one faint outline reads
+deeper than the same two walls detailed identically at different sizes. This is
+the answer to No.56's wallpaper finding in a form a dossier can specify: a
+window that is one fill plus one coastline is not underdetailed, it is
+UNRANKED, and the repair is to spend the whole detail budget on the nearest
+third and deliberately strip the far third rather than to spread marks evenly.
+(Source: medium.com/technical-illustration/the-lost-art-of-cutaways-133a8d46a1e6
+and planetillustration.co.uk/technical-cutaway-illustrations/, read 2026-09-12.)
+
+**LinkedIn 2026, corroboration only, nothing applied.** Secondary aggregators
+now put document carousels at 7.00 percent engagement against a 5.20 percent
+all-format baseline, and the Oktopost March 2026 benchmark puts median B2B page
+engagement at 5.72 with a top decile of 22.45. One aggregator asserts 7 slides
+outperform every other length by 18 percent, which contradicts the 8 to 10
+window CAROUSEL_CRAFT carries from primary LinkedIn engineering sources, and it
+publishes no method. The agreed part is the cliff, which every source puts
+somewhere past 12 to 15 slides. No gate moves on a secondary number that
+disagrees with a primary one.
+(Sources: oktopost.com/blog/linkedin-carousel-pdf-best-practices/,
+carousels-generator.com/blog/linkedin-carousel-statistics-2026, 2026-09-12.)
+
+## 2026-09-12, No.57 — THREE WAYS A COLOUR LAW BREAKS WITHOUT A GATE NOTICING
+
+This deck's whole argument was one sentence a critic could audit in one pass:
+gold is what the record knows, the undetermined ink is what it does not. Every
+machine gate passed the first build at zero fails and zero warns. The law was
+broken in three places and no gate could see any of them.
+
+**`AKICE.rays` defaulted to gold.** Three frames called it without an `rgb` and
+two shipped a warm fan across a quadrant. A ray family is DRAWN geometry, marked
+`[design]`, which is precisely the category the law says may never be warm. Two
+pixel critics reported it independently and both were right. Fixed in the
+chassis: the default is the ice family and gold is available only on request.
+
+**The provenance mark was set in the undetermined ink on all nine frames.** A
+fixture that appears everywhere cannot also be a signal. Four critics found it.
+Spending `#7D8F94` on furniture takes its meaning away from the phantom dashes,
+from `UND` and from the 2,058 unattended ticks, which is the deck's own argument.
+
+**Eight gold ticks did not draw at all.** Slide 03's D2 state was eight source
+ticks at the true angular extent of a 30 second pulse in a four hour cycle, which
+is 0.75 of one degree. At radius 46 that arc is six tenths of a pixel long, and a
+degenerate subpath gets no cap, so the frame rendered with ZERO gold pixels on it
+and the state table had a hole in its third frame. Measured by counting law
+bearing pixels per frame, which is how it was finally found.
+
+### THE LESSON, and it is cheap to act on
+
+A colour law is a claim about the rendered pixels and nothing in this repo checks
+rendered pixels against it. The gate is four lines: for each frame, count the
+pixels within a tolerance of each law bearing hex, then fail a frame that carries
+none of a hex its own state table promises, or any of a hex the law forbids it.
+That catches all three of the above, and it would have caught them before a
+single review round was spent. Logged for Phase 12 as the most valuable unguarded
+surface in the machine, replacing the note from 2026-09-11.
+
+### AND A SMALLER ONE ABOUT SUB PIXEL MARKS
+
+Three of the same reviews reported mote populations that "read as grain or as
+JPEG noise". `AKICE.marine`'s radius falls to 0.55 px by the bottom of a window,
+which is correct when the population is atmosphere and wrong every time it is the
+SUBJECT or the frame is dark. The function now takes `rFloor` and `aFloor` and
+the defaults are unchanged. The general rule: a mark that does not survive a five
+times downsample is not a mark, whatever it measures at 2160 px.
+
+### THE OFFSCREEN IS 1x
+
+`AKENGRAVE.drawOffscreen` returns `c.width = w` with no backing multiplier, which
+is NOT the slide canvas's 2160 by 2700 under `ctx.scale(2,2)`. A hand walked
+buffer that assumes the 2x backing paints at twice the size and, far worse,
+consults its reserve basin at HALF the real position, so the reserve is asked
+about the wrong place and fails silently in both directions. It took three wrong
+fixes to find, because `qa.py` reported the symptom exactly and the cause was
+arithmetic rather than gating.
+
+### AN EM DASH THE HOUSE DID NOT WRITE
+
+Four reviewers read the depth rail as `50 m --`. Nothing printed a dash: an 18 px
+tick drawn at the numeral's own weight, at its cap middle, eight pixels after its
+last glyph, simply IS one. Two fixes failed first and both were instructive.
+Dimming the tick made every declared mark weaker than the band's own texture,
+which the axis census caught. Dropping it 8 px MOVED THE MARK, which the census
+also caught, and correctly: a declared mark has to have its ink at its own depth.
+The answer was position without offset, drawing the tick OUTWARD past a brighter
+spine, so nothing at all sits between a numeral and the rail.
+
+### THE GATE CLOSED THE DEFECT AND NOT THE PAIR (2026-09-12, No.57 round 3)
+
+The round 1 hard fail was two text blocks sharing one band with 9 design px
+between them, which read at feed size as `DEPLOYMENT AND RECOVERYThe 55 metre
+zone applies`. `AKFIT.guard` gained a `minGap` check for exactly that, it fired
+at 9.0 px on its first run, and slide 05 now clears by 42 px. The scorer then
+found the same reading failure one pair over, on the same frame. Slide 05's 457
+metre dimension call terminates at about (795,1712), correctly ON its own arc,
+and that point is inside the bounding box of the clarification paragraph's last
+line.
+
+The guard pairs `[data-reserve]` against `[data-reserve]`. `qa.py` checks a
+leader against its TARGET. Nothing in the machine compares a leader TERMINATOR
+against a TEXT BOX, so the pair that shipped is the pair nobody wrote. Next
+run's gate, and it is a small one: walk every declared leader's end point and
+every arrowhead against the reserve rects, and warn at anything under the same
+24 px the landing gate already uses.
+
+### A ROW THAT SAYS IT MATCHED THE PLAN IS THE CHEAPEST SENTENCE IN THE RUN
+
+This run already learned that BUILD RECONCILIATION is how a hard fail survives
+six review rooms, corrected the offending row in place, and recorded that it was
+wrong. The round 3 scorer then found TWO MORE rows of the same table still
+misdescribing the render. Row 01 said nothing diverged, about the one frame
+whose instrument position the run deliberately refused to move and defends three
+pages later in the same document. Row 02 named a kicker string that copy.json's
+own note records being replaced twice.
+
+Nothing there reaches a reader and every gate that matters reads copy.json, so
+the cost was a criterion deduction rather than a defect. The lesson is about the
+hand, not the table. Write each row with the frame open. `NOTHING, BUILT AS
+PLANNED` is a measurement and has to be earned by looking, and a run that
+refuses a critic's finding owes its reconciliation row the refusal, in the row,
+where a later reader of that table will find it.
+
+## 2026-09-12, No.57, Phase 12 frontier scan (c): generative/procedural technique portable to offline Canvas. TWO PARKED.
+
+The stalest legal slot (last read 2026-09-03) and distinct from the last three
+logged foci (d on 2026-09-07, a on 2026-09-09, e on 2026-09-10). It was also the right slot on
+the merits: 'Artwork craft and genuine detail' has been the weakest criterion in
+6 of the last 10 runs at a mean of 6.8, and this run's own reviews reported mote
+populations that "read as grain or as JPEG noise" three separate times. Six
+searches, four fetches. Nothing applied, because the reactive budget filled with
+three fixes and both findings want a committed helper plus a fit against a real
+frame, which is a next-run job and not a same-day one.
+
+- **PARKED: a population at the SAME count reads as a measured set when it is
+  blue noise and as grain when it is random.** Weighted sample elimination
+  (Yuksel, EUROGRAPHICS 2015, Computer Graphics Forum 34(2)) takes any dense
+  candidate set, which this house already generates seeded, and greedily keeps
+  the target N with Poisson-disk spacing, so no clumps and no bald patches at an
+  unchanged count. It needs no radius chosen up front and it accepts a density
+  function, which is exactly the gradient slide 04's population was criticised
+  for lacking. Concrete parameters, read out of the reference implementation
+  rather than the abstract: in 2D r_max = sqrt(A / (2 * sqrt(3) * N)),
+  d_max = 2 * r_max, weight of a sample = sum over neighbours within d_max of
+  (1 - d/d_max)^alpha with alpha 8, and the elimination's weight-limit fraction
+  is (1 - (N_out/N_in)^gamma) * beta with beta 0.65 and gamma 1.5. The reference
+  uses a kd-tree and a heap; a uniform grid and an array scan are enough at our
+  counts (a few thousand points), so this is roughly 100 lines of vanilla JS with
+  no dependency. https://www.cemyuksel.com/research/sampleelimination/ and
+  https://github.com/cemyuksel/cyCodeBase/blob/master/cySampleElim.h
+  WHAT IT WOULD TAKE: assets/js/ helper, a TECHNIQUE_LIBRARY entry with these
+  parameters, and a fit showing a shipped population at the same count with
+  fewer clumps at 432 px. Do not apply it to a population that ENCODES a
+  quantity by position without thinking: it moves points.
+- **PARKED: our flow fields seed at random; evenly-spaced streamline placement
+  is a parameter.** Jobard and Lefer (1997): trace a line forward and backward
+  until it leaves the sheet or comes within d_test of an existing line, then
+  offer new seeds perpendicular at d_sep from the finished line, with
+  d_test = 0.5 * d_sep the common setting. One number, d_sep, sets the density of
+  the whole field, and the multiresolution variant runs nested placements at
+  increasing density with the coarse lines frozen as constraints, which fills
+  gaps without thinning the structure. This is the honest fix for a field that
+  is dense in one quadrant and bald in another, which is a defect this studio has
+  shipped. https://www.semanticscholar.org/paper/Creating-Evenly-Spaced-Streamlines-of-Arbitrary-Jobard-Lefer/8b15ba829f82787a92c97026d41a925e9d33a027
+  and the recipe restated at https://bookofshapes.com/patterns/flow_lines/
+  WHAT IT WOULD TAKE: a d_sep parameter and a spatial hash in the existing flow
+  helper, then a before/after on one real frame. The 503 on zhanpingliu.org's
+  ADVESS survey is why the parameters here are the classic ones and not that
+  paper's refinements.

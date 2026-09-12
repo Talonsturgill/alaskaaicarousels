@@ -170,7 +170,11 @@ DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S
 # before a render round is spent. The regex ends an attribute at its own
 # delimiter exactly as an HTML parser does, so it sees the same truncated text
 # the browser sees.
-BODY_JSON_ATTRS = ("data-contacts", "data-scale", "data-encodes")
+BODY_JSON_ATTRS = ("data-contacts", "data-scale", "data-encodes", "data-ink")
+# data-ink joined the list on 2026-09-12, the day it was written, and for the
+# reason above: the first ink law ever declared carried "the glider's lit upper
+# surface" in a `means` string, the apostrophe closed the attribute at character
+# 114, and eight frames reported an unparseable law after a render was spent.
 
 # A DECLARATION ON THE RIGHT SURFACE AT THE WRONG TIME (2026-09-09). render.py
 # reads the LIVE dom after renderReady resolves, so a slide that ends its draw
@@ -185,7 +189,7 @@ BODY_JSON_ATTRS = ("data-contacts", "data-scale", "data-encodes")
 # The JSON parse check above is blind to it as well, which matters more: a
 # malformed runtime declaration is not caught until a render has been spent.
 _DATASET_KEY = {"data-contacts": "contacts", "data-scale": "scale",
-                "data-encodes": "encodes"}
+                "data-encodes": "encodes", "data-ink": "ink"}
 RUNTIME_SET_RE = {
     a: re.compile(
         r"setAttribute\s*\(\s*['\"]%s['\"]" % re.escape(a)

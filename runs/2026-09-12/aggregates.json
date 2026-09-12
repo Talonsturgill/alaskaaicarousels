@@ -1,0 +1,137 @@
+{
+ "run_date": "2026-09-12",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 1,
+   "text": "TWO READINGS, ONE DOCUMENT",
+   "fragment": "TWO READINGS",
+   "subject": "readings",
+   "members": [
+    "C25",
+    "C43"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "30 seconds, every four hours, all year.",
+   "fragment": "30 seconds",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "30 seconds, every four hours, all year.",
+   "fragment": "four hours",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz.",
+   "fragment": "six moorings",
+   "member": "C14"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "About 639,237 square kilometres of water.",
+   "fragment": "639,237 square kilometres",
+   "member": "C11"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles.",
+   "fragment": "204 kilometres",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles.",
+   "fragment": "110 nautical miles",
+   "member": "C12"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "THREE JURISDICTIONS, ONE OF THEM CANADA'S",
+   "fragment": "THREE JURISDICTIONS",
+   "subject": "jurisdictions",
+   "members": [
+    "C13"
+   ],
+   "items": [
+    "Exclusive Economic Zone",
+    "high seas",
+    "Canadian"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals.",
+   "fragment": "457 metres",
+   "member": "C45"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals.",
+   "fragment": "183 metres",
+   "member": "C45"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "The 55 metre zone applies during deployment and recovery, not for the year the source then transmits.",
+   "fragment": "55 metre zone applies",
+   "member": "C46"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "457 m OBSERVED CETACEANS",
+   "fragment": "457 m OBSERVED CETACEANS",
+   "member": "C45"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "A 22 day cruise. A full year of transmission.",
+   "fragment": "22 day",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking.",
+   "fragment": "22 days",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "EVERY FOUR HOURS",
+   "fragment": "FOUR HOURS",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "THE 22 DAYS ABOARD",
+   "fragment": "22 DAYS",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "THREE COMMENT LETTERS PRIVATE CITIZENS",
+   "fragment": "THREE COMMENT LETTERS",
+   "member": "C44"
+  }
+ ],
+ "note": "Three from_claim entries warn that the noun does not appear in the claim: the notice writes 457 m and 183 m where the slide writes 457 metres and 183 metres, and the detector reads 'applies' as the head noun of '55 metre zone applies'. Both are spelling, not arithmetic, and the numbers are quoted exactly."
+}

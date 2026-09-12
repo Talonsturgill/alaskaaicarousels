@@ -1,0 +1,195 @@
+# PLAN — Alaska.Ai LinkedIn Carousel No. 57 — 2026-09-12
+
+## RUN IDENTITY
+
+- run_date: 2026-09-12 (America/Anchorage). `runs/2026-09-12/` does not exist, so
+  the date is free and taken.
+- carousel_no: 57 (56 entries in ledger/topics.json, plus one).
+- Research window: last 10 days, 2026-09-02 to 2026-09-12.
+- Queued assignment: `prompts/NEXT_RUN.md` does NOT exist, so this run owns its
+  own story selection. `runs/2026-09-11/next_run_brief.md` DOES exist and was
+  written by No.56 for this run; it was archived straight into runs/ rather than
+  left at prompts/, so it is craft guidance and a story lead sheet rather than a
+  binding assignment. It is treated as authoritative on craft.
+
+## SEASONAL ALASKA CONTEXT (so scouts do not miss the obvious)
+
+- Mid September. The Legislature is OUT of session until January, so BASIS
+  hearings are normally empty and `note_hearings` saying so is not a failure.
+- Heating season starts now. Cook Inlet gas withdrawal season begins as
+  storage peaks, which is why the Gas Watch series matters most from here.
+- Municipal election season. Fairbanks North Star Borough votes October 6th
+  (Proposition 3, the hand-count initiative, was No.48 on 09-02).
+- PFD distribution runs early October; the 2026 figure is already set.
+- Fall subsistence and hunting seasons; Bering Sea crab and groundfish
+  specifications cycle at the North Pacific Council's October meeting.
+- School year underway, which is why district AI policy is live right now.
+- Alaska Federation of Natives convention is mid October, so pre-convention
+  announcements land in the next three weeks.
+- Freeze-up and first snow at elevation; wildfire season closed.
+
+## TOP INSTINCTS INJECTED INTO EVERY SUBAGENT THIS RUN (confidence >= 0.96)
+
+1. Never treat a machine_qa PASS as composition approval. qa.py's text
+   collision check is DOM-ONLY, so any label set against Canvas or SVG
+   geometry can collide freely and the gate still returns PASS with zero warns.
+2. A RENDER THAT EXITS 0 IS NOT A PICTURE THAT DREW. A far plane clipping the
+   world, a key elevation too low to light flat ground, and a NaN fillStyle all
+   produce a wrong frame with a green report.
+3. A lit ground must be SCREENED over the surface and the cast must be an
+   ATTACHED subtraction thrown down-light. A painted radial pool centred on the
+   object's own base puts the frame's brightest pixels under the object.
+4. A generated block pasted into a run record goes stale the moment another
+   round runs. Re-sync gate_status after EVERY round that changes an artifact.
+5. Re-run the dedupe gate whenever the candidate story changes; dedupe_check is
+   stateless and answers whatever fingerprint it is handed.
+
+## VARIETY CONSTRAINTS DERIVED FROM ledger/artwork.json
+
+FORBIDDEN HERO STRUCTURES (last 4 decks, No.53 to No.56)
+- the curved transect as a nine frame camera move (53)
+- the stamped field and the printed page (54)
+- the struck register, intaglio on laid paper (55)
+- the sheet and its margin, neatline window plus annotation margin (56)
+
+FORBIDDEN ATMOSPHERES (last 3)
+- sodium lamp and galvanized steel, yard at night (54)
+- a printer's bench under a north window (55)
+- overcast Southcentral daylight, one exposure across nine frames (56)
+
+FORBIDDEN CONTINUITY DEVICES (last 2)
+- the two struck squares carried in the footer gutter (55)
+- the edge-on tariff volume plus the header index diagram (56)
+
+FORBIDDEN HOOK ARCHETYPES (last 3)
+- the sentence that isn't there (54)
+- timeline collapse (55)
+- the object you can see and can't read (56)
+
+FORBIDDEN PALETTE FAMILIES (last 3)
+- sodium-zinc (54)
+- laid-paper-and-burin (55)
+- inlet-silt-under-overcast (56)
+
+FORBIDDEN TYPE PAIRINGS (last 2)
+- Instrument Serif + Bricolage Grotesque + JetBrains Mono (55)
+- Archivo + Manrope + JetBrains Mono (56)
+
+THE DRIFT THE LEDGER DOES NOT NAME, and it is the important one. Three of the
+last four decks are PAPER metaphors. A stamped page, an intaglio register, a
+map sheet. The house has spent a month drawing documents, and the last three
+scores for artwork craft were 6, 6 and 7 with every critic reaching for the
+word wallpaper. This deck is not a document. It is a PLACE with a machine in
+it, lit from inside, and the type sits in the world rather than in a margin.
+
+## VARIANCE DIALS FOR THIS RUN
+
+- design_variance 5 (the last four ran 4, 3, 4, unset; go to the top of the
+  scale, because the standing weakness is craft and a timid dial cannot fix it)
+- visual_density 5 (No.56 measured five of nine windows as two-tone plates. The
+  fix is literally more marks per square inch, inside the picture)
+- type_temperature 3 (hold the middle. The last two runs ran 2 and 2 after a 5,
+  and 5 with density 5 would fight itself)
+
+## THE ONE STANDING WEAKNESS THIS RUN IS DELIBERATELY ATTACKING
+
+`python scripts/trend_check.py --window 10` output, pasted verbatim:
+
+```
+TREND -- generated by scripts/trend_check.py over the last 10 scored run(s), 2026-09-01 to 2026-09-11.
+
+REPEAT OFFENDERS (criterion, times it was the weakest, mean, last worked on)
+  'worked' is a text match over ledger/upgrades.json prose, so it can UNDER-report:
+  an upgrade that fixed a criterion without naming it reads as 'never'. Check before acting.
+  weakest  6/10  mean 6.8    last 7.0    Artwork craft and genuine detail        worked 2026-09-10 (1 run(s) ago)
+  weakest  2/10  mean 6.6    last 4.0    Legibility and platform fitness         worked never (never)  <-- STALE
+  weakest  2/10  mean 7.4    last 8.0    Deliverable completeness                worked never (never)  <-- STALE
+
+HARD FAILS (0 of 10 run(s) carried one)
+  none in this window
+
+DEFECT CLASSES THAT KEEP SHIPPING (present in the final machine_qa)
+   5 run(s)  warns:top-loaded composition                          latest 2026-09-11
+   5 run(s)  warns:canvas mark near reserved text                   latest 2026-09-11
+   4 run(s)  warns:busy art under text                              latest 2026-09-09
+   4 run(s)  warns:contact shadow                                   latest 2026-09-11
+   4 run(s)  warns:art touching glyphs                              latest 2026-09-11
+   3 run(s)  warns:outside safe zone                                latest 2026-09-06
+
+SCORE, most recent runs
+  09-03 8.81  09-04 8.76  09-05 8.77  09-06 8.08  09-07 9.07  09-09 8.47  09-10 8.20  09-11 8.47
+```
+
+THE NAMED TARGET, and it is deliberately not the top row.
+
+Artwork craft is the biggest number and No.56 already attacked it structurally.
+The row to work is **Legibility and platform fitness**: two of ten as weakest, a
+6.6 mean, **a 4 on the most recent run**, and never worked on by any upgrade. A 4
+is the lowest single criterion score in the visible record and it was earned by
+one mechanical defect: on No.56's slide 08 the class label LARGE COMMERCIAL AND
+INDUSTRIAL wrapped, its dashed container did not grow with it, the container's
+own border struck through the word INDUSTRIAL, and the group crossed the 80px
+right safe zone. A repair introduced it minutes before the scoring pass read it.
+
+That is not a taste failure. It is a **hand-typed box around measured text**, and
+it is the same bug as three of the six recurring machine warn classes: art
+touching glyphs, canvas mark near reserved text, outside safe zone. Every one of
+them is a container whose geometry was decided before the text inside it was
+measured.
+
+**THE ATTACK, and it is one idiom applied everywhere.** No box, plate, dashed
+container, rule, chip, badge or bracket in this deck gets a hand-typed size. Each
+one is drawn from the measured rect of the text it holds, after layout, in a
+single measure-then-draw pass, and every such group is then clamped against the
+safe zone by measurement rather than by arithmetic. Concretely, in every slide:
+
+1. Type is laid out in the DOM first. Nothing is drawn around it until
+   `getBoundingClientRect()` has answered.
+2. Containers are drawn from that rect plus a declared padding, so a wrap grows
+   the box by construction and a line that cannot fit narrows the measure
+   instead of overflowing.
+3. Before any canvas draw, the page collects every text rect into the reserve
+   set, and the art layer reads that set. No mark is drawn inside a reserve
+   without an explicit, declared exemption.
+4. A page-level assertion runs at renderReady and fails the render if any
+   text-bearing element sits outside the 80px safe zone or if any container is
+   narrower than the text it contains. A defect that fails the RENDER cannot
+   reach a scorer.
+
+Point 4 is the part that makes this different from care. No.56's defect passed
+two critics and reached a scoring pass. A run cannot review its way out of a
+class of bug it can measure instead.
+
+AND THE SECOND ORDER of the same attack, from No.56's brief: the 32px body floor
+and the 24px micro floor are DIFFERENT floors, and No.56 lost a point on four
+sheets for trimming bodies to 27 and 30px to win layout fights. A fitted
+container means the fight is won by narrowing the measure or shortening the
+string, never by shrinking the type. Body type in this deck does not go below
+32px, full stop.
+
+## THE CRAFT WORK ORDER CARRIED IN FROM No.56
+
+Not this run's named target, but binding, because No.56 narrowed it to one
+sentence: **put the marks in the picture.** A region that is 40 percent of the
+frame and carries a fill, a gradient and a coastline is not a drawing. Detail
+budget goes INSIDE the art, not into the annotation furniture. Density dial 5
+exists to pay for this.
+
+Also carried in, and not to be rediscovered:
+- Contact rects go SIDE BY SIDE at the object's own base line, measured with
+  `scripts/contact_probe.py --slide N --base cx,cy`, never stacked and never
+  computed from camera arithmetic. Lit pool peaks near 0.28 and is a LIFT, not a
+  lamp. A measured dL of 12 or higher means look at the picture before believing
+  the number.
+- `assets/geo/ak-transmission-69kv.geo.json` and `ak-generation-20mw.geo.json`
+  are EMPTY STUBS with zero features. Plan nothing around them.
+- Filling the complement of `alaska-state.geo.json` with a water tone asserts
+  that Yukon is ocean. If the extent sees the 141st meridian, give non-state land
+  its own tone or crop it off frame.
+
+## PHASE SEQUENCE NOTE
+
+Phase 1 (craft refresh) runs BEFORE Phase 2, always, because both search and the
+six scouts will spend the budget. Every scout brief carries a hard cap of 25
+WebSearch calls, stated as a cap and stated why, so Phase 3, Phase 3.5 and Phase
+12's frontier scan can still look at the world.

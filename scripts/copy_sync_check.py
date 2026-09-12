@@ -188,6 +188,49 @@ def _find(needle, cands):
     return None
 
 
+# --- THE TWO OWNER RULES OF 2026-09-11, ON THE SURFACE THAT SHIPS ------------
+# Both were made the same day, both are about what the ARTWORK prints, and until
+# 2026-09-12 nothing in scripts/ or the engine enforced either. A grep of
+# dossier_check, caption_check and qa.py for `alaskaaihq.com` returned nothing,
+# so the newest fixture rule in the house was enforced by whether the showrunner
+# happened to read CAROUSEL_CRAFT after the master prompt -- which on 2026-09-12
+# still ORDERED the banned string in Phase 5 step 4. A run following its own
+# master prompt to the letter would have printed it, on the close, in artwork
+# nobody can edit after the post.
+#
+# Checked here rather than in qa.py because these are house rules and qa.py is
+# the engine: examples/demo-deck carries no brand fixture and must keep passing.
+# Checked on the RENDER and not on copy.json because the watermark is a div the
+# copy record never holds, and because a slide can print a string copy.json
+# never mentions.
+WATERMARK = "alaskaaihq.com"
+BANNED_SLIDE_STRINGS = (
+    ("sources in comments",
+     "removed from the artwork by the owner on 2026-09-11. The first comment "
+     "still carries the sources; the slide stops spending type on saying so"),
+)
+
+
+def fixture_check(render_report):
+    """(missing_watermark_slides, banned_hits). Both are FAILs."""
+    missing, banned = [], []
+    for s in render_report.get("slides", []):
+        idx = slide_index(s.get("file", ""))
+        if idx is None:
+            continue
+        strings = []
+        for n in s.get("text_nodes", []):
+            strings.extend(node_strings(n))
+        joined = " ".join(strings).lower()
+        flat = alnum(joined)
+        if WATERMARK not in joined.replace(" ", ""):
+            missing.append("S%d" % idx)
+        for phrase, why in BANNED_SLIDE_STRINGS:
+            if alnum(phrase) in flat:
+                banned.append(("S%d" % idx, phrase, why))
+    return missing, banned
+
+
 def check(copy, render_report, window=WINDOW):
     per_slide, deck = build_nodes(render_report)
     misses = []
@@ -262,8 +305,12 @@ def main():
     for o in orphan:
         print("copy_sync_check: WARN slide %s in copy.json has no rendered slide" % o, file=sys.stderr)
 
-    if not misses and not truncated:
-        print("copy_sync_check: PASS -- %d authored slide strings all present in the render" % checked)
+    missing_wm, banned = fixture_check(rr)
+
+    if not misses and not truncated and not missing_wm and not banned:
+        print("copy_sync_check: PASS -- %d authored slide strings all present in "
+              "the render; %s on every slide; no banned slide string"
+              % (checked, WATERMARK))
         return 0
 
     if misses:
@@ -282,6 +329,18 @@ def main():
         print("Copy the WHOLE string. render_report's text_nodes[].full is the "
               "one to paste from; `text` is cut at 80 and `texts` drops span "
               "children, and a string built from either reads as present here.")
+    if missing_wm:
+        print("copy_sync_check: FAIL -- %d slide(s) do not print %s: %s. The site "
+              "is a fixture like the wordmark and belongs on EVERY slide (owner, "
+              "2026-09-11), bottom of the frame, small, mono, low contrast: a "
+              "reader who stops on slide 04 should still see where the deck came "
+              "from, and the close is the frame a scroller is least likely to "
+              "reach." % (len(missing_wm), WATERMARK, ", ".join(missing_wm)))
+    if banned:
+        print("copy_sync_check: FAIL -- %d slide(s) print a banned string:"
+              % len(banned))
+        for skey, phrase, why in banned:
+            print("  %s prints %r -- %s" % (skey, phrase, why))
     print("Reconcile copy.json to the shipped render (or fix the render) before ship.")
     return 1
 

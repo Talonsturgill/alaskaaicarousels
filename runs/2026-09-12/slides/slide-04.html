@@ -1,0 +1,280 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:80px;top:200px;width:520px;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#BAD6DA}
+h2{position:absolute;left:80px;top:254px;width:560px;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:62px;line-height:1.02;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:512px;width:500px;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
+.rn{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.06em;color:#BAD6DA;font-variant-numeric:tabular-nums lining-nums}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,380],"to":[1040,1000],"band":[1012,1034],"marks":[{"at":201,"means":"500 m"},{"at":369,"means":"600 m"},{"at":705,"means":"800 m"},{"at":1040,"means":"1,000 m, the glider transit floor"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>04 / 09</div>
+<div class="kick" data-reserve data-fit>THE STUDY AREA</div>
+<h2 data-reserve data-fit>About 639,237<br>square kilometres<br>of water.</h2>
+<p class="bd" data-reserve data-fit>Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. The work crosses the US exclusive economic zone, the high seas north of Alaska, and part of Canada's.</p>
+<div class="la" id="lj" data-reserve>THREE JURISDICTIONS,<br>ONE OF THEM CANADA'S</div>
+<div class="la" id="lg" data-reserve>GLIDER, UP TO 1,000 m</div>
+<div class="la" id="ld" data-reserve>0.25 m/s, ABOUT 23 km/d</div>
+<div class="rn" id="r500" data-reserve>500 m</div>
+<div class="rn" id="r600" data-reserve>600 m</div>
+<div class="rn" id="r800" data-reserve>800 m</div>
+<div class="rn" id="r1000" data-reserve>1,000 m</div>
+<div class="prov" data-decorative>AREA IS THE NOTICE'S. THE MOTE COUNT IS THE DRAWING'S</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:46, max:62, maxLines:3});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  /* D1, AND THE ONE PLACE THE MAPPING DOES NOT END AT THE FRAME EDGE. The
+   * window is 380 to 1,000 m, and 1,000 m is where the glider has to sit,
+   * because C27 puts its transit floor there and the acceptance test for this
+   * frame is that the glider is exactly on that tick. A mapping whose 1,000 m
+   * lands on y 1350 puts the deck's one aurora object half off the bottom,
+   * which is the prototype's third finding verbatim. So 1,000 m lands at
+   * y 1040 and the last 310 px of frame are water deeper than the window
+   * names. The mapping stays linear and the rail stays honest.
+   *
+   * 1040 AND NOT 1180, which was the first build's answer. A pixel critic
+   * measured the glider at y 2392 of 2700 and called it parked on the bottom
+   * trim, with the frame's declared focal point containing nothing. There is
+   * now 310 px of worked water under the deck's one aurora object. */
+  S.setWindow(380, 1000, 0, 1040);
+  var RAIL_X = 1014;
+  var GX = 676, GY = S.depth(1000);
+
+  var RAIL = S.railLabels([['r500',500],['r600',600],['r800',800],['r1000',1000]],
+                          {x:RAIL_X, gap:38, width:120, top:170, bottom:1120});
+
+  var LJ = document.getElementById('lj'), LG = document.getElementById('lg'),
+      LD = document.getElementById('ld');
+  LJ.style.cssText += ';left:80px;top:900px';
+  LG.style.cssText += ';left:118px;top:' + (GY - 62) + 'px';
+  LD.style.cssText += ';left:118px;top:' + (GY + 8) + 'px';
+
+  ['lj','lg','ld'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:12, padY:7, fill:"rgba(4,14,20,0.34)", radius:3, note:"mono label " + id});
+  });
+  ['r500','r600','r800','r1000'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:11, padY:6, fill:"rgba(3,12,18,0.50)", radius:3, note:"rail numeral " + id});
+  });
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:108, depth:0.98, pad:26});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#08202A", bed:"#071B24", steps:48});
+    // the last frame in the deck that carries any daylight at all, and it is
+    // arriving from a surface 380 m above the top of this window
+    S.daylight(g, {surfaceY:-380, reach:1500, peak:0.09});
+
+    /* THE AREA, DRAWN AS THE POPULATION IT IS. 639,237 square kilometres (C11)
+     * at one mote per 100 square kilometres is 6,392 marks, so the count on this
+     * frame is the datum and not a texture setting. The provenance mark says the
+     * mapping is the drawing\'s.
+     *
+     * DRAWN HERE RATHER THAN THROUGH AKICE.marine, and the reason is measured.
+     * marine\'s radius falls to 0.55 px by the bottom of a window, which is
+     * correct for a frame where the motes are atmosphere and wrong for the one
+     * frame where they ARE the subject: the first build put 6,392 of them in and
+     * the centre of the picture still read as bare gradient at feed size, which
+     * is No.56\'s wallpaper sentence exactly. This population carries a size
+     * floor, so every one of the 6,392 is a mark a reader can see, and the depth
+     * cue moves into alpha and into the near band share instead. */
+    (function(){
+      var rnd = AK.rng(570411), n = 6392;
+      for (var i = 0; i < n; i++){
+        var near = rnd() < 0.74;
+        var y = near ? 470 + rnd() * 880 : rnd() * H;
+        var x = rnd() * W;
+        // THE RAIL LANE IS A RESERVED FIXTURE LANE. A population with a size
+        // floor puts findable ink in it, and the axis census then reports marks
+        // the slide never declared, which is true and is the gate working.
+        if (x > RAIL_X - 70) continue;
+        var t = S.t(y);
+        // a size AND alpha ramp with depth, so the gradient is the depth cue the
+        // frame declares rather than a count nobody can verify
+        var r = (near ? 1.35 : 0.95) + (near ? 1.9 : 1.0) * Math.pow(rnd(), 1.6)
+                + 0.9 * t;
+        var al = (0.17 + 0.32 * Math.pow(rnd(), 1.3)) * (near ? 1.0 : 0.66);
+        var aq = atten(x, y); if (aq < 0.20) continue;
+        al *= aq; r *= (0.55 + 0.45 * aq);
+        g.fillStyle = "rgba(190,222,226," + al.toFixed(3) + ")";
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+        // about one in nine is a settling floc with a short tail, which is what
+        // makes a population read as marine snow rather than as noise
+        if (near && rnd() < 0.11){
+          g.strokeStyle = "rgba(190,222,226," + (al*0.55).toFixed(3) + ")";
+          g.lineWidth = Math.max(0.5, r * 0.5);
+          g.beginPath(); g.moveTo(x, y);
+          g.lineTo(x + (rnd()-0.5)*2.4, y - 4 - rnd()*9); g.stroke();
+        }
+      }
+    })();
+
+    (function(){
+      // ONE FEATHERED WASH AND NO LOCATABLE EDGE. The first build ran a 44 px
+      // gradient into a hard fillRect, so the lane had a traceable vertical
+      // boundary and its numerals sat on a plate; two pixel critics found the
+      // seam and named it as the punchReserves defect arriving by another
+      // route. The falloff is 210 px and it never reaches full strength.
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,6,13,0)");
+      lane.addColorStop(0.55, "rgba(2,6,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,6,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, H);
+    })();
+
+    window.__akRail = S.rail(g, {x:RAIL_X, bandW:24,
+      what:"depth below the waterline", unit:"metres",
+      ticks:[[500,"500 m"],[600,"600 m"],[800,"800 m"],[1000,"1,000 m"]]});
+
+    // D2, at its faintest anywhere in the deck. One arc, entering upper right,
+    // the sound still arriving from above. Clipped off the type column because
+    // a ring takes no basin.
+    /* ONE ARC, ACROSS THE UPPER THIRD, WITH NO BLUNT END. Three faults in the
+     * first build, all measured: at alpha 0.18 gold over water this dark
+     * composites to olive and reads as a hair on the scanner; the arc entered
+     * at 28 percent of the frame and left at 42, which is not the upper third;
+     * and its left end was an unfaded cap stopping dead in open water. It now
+     * runs 17 to 31 percent, at alpha 0.36, and both ends dissolve. */
+    (function(){
+      var m = document.createElement("canvas");
+      m.width = W; m.height = H;
+      var mg = m.getContext("2d");
+      // alpha 0.62. A faint gold cannot read as gold on near black water: at
+      // 0.36 source over #08202A it composites to (97, 92, 43), which is a
+      // dark olive, and the state table then has no warm mark on this frame.
+      // It is still the quietest gold in the deck by a wide margin, against
+      // 0.96 on the range arcs and 0.98 on the attended band.
+      S.ring(mg, 1400, -1050, 1500, {width:11, alpha:0.62});
+      mg.globalCompositeOperation = "destination-out";
+      var fadeL = mg.createLinearGradient(600, 0, 800, 0);
+      fadeL.addColorStop(0, "rgba(0,0,0,1)"); fadeL.addColorStop(1, "rgba(0,0,0,0)");
+      mg.fillStyle = fadeL; mg.fillRect(0, 0, 800, H);
+      var fadeR = mg.createLinearGradient(940, 0, 1080, 0);
+      fadeR.addColorStop(0, "rgba(0,0,0,0)"); fadeR.addColorStop(1, "rgba(0,0,0,0.9)");
+      mg.fillStyle = fadeR; mg.fillRect(940, 0, 140, H);
+      var fadeB = mg.createLinearGradient(0, 420, 0, 560);
+      fadeB.addColorStop(0, "rgba(0,0,0,0)"); fadeB.addColorStop(1, "rgba(0,0,0,1)");
+      mg.fillStyle = fadeB; mg.fillRect(0, 420, W, H - 420);
+      g.drawImage(m, 0, 0);
+    })();
+
+    /* THE DIMENSION CALL. The glider's centre and the 1,000 m tick are the same
+     * y by construction, and this line is what makes that visible rather than
+     * merely true. */
+    g.strokeStyle = "rgba(186,214,218,0.42)"; g.lineWidth = 1.0;
+    g.beginPath(); g.moveTo(GX + 150, GY); g.lineTo(RAIL_X - 70, GY); g.stroke();
+    g.beginPath(); g.moveTo(RAIL_X - 70, GY - 7); g.lineTo(RAIL_X - 70, GY + 7); g.stroke();
+
+    /* THE GLIDER, and the deck's single use of aurora green. It is on the lit
+     * upper surface only, which is the one face a downwelling key reaches. */
+    (function(){
+      var L = 268, Hh = 50, body = [], t;
+      for (t = 0; t <= 44; t++){
+        var u = t/44; body.push([GX - L/2 + u*L, GY - Hh*Math.sin(Math.PI*u)*(1 - 0.26*u)]);
+      }
+      for (t = 44; t >= 0; t--){
+        var u2 = t/44; body.push([GX - L/2 + u2*L, GY + Hh*0.80*Math.sin(Math.PI*u2)*(1 - 0.20*u2)]);
+      }
+      S.profile(g, body, {fill:"#0A2530", weight:2.2, heavyMul:1.7, threshold:-0.12,
+        light:"rgba(198,226,230,0.62)", lee:"rgba(2,6,11,0.92)"});
+
+      // the lit upper surface, drawn as a stipple tone field so it is modelled
+      // rather than a painted stripe
+      var rnd = AK.rng(570441);
+      for (var i = 0; i < 2200; i++){
+        var u3 = rnd(), xx = GX - L/2 + 8 + u3 * (L - 16);
+        var top = GY - Hh*Math.sin(Math.PI*u3)*(1 - 0.26*u3);
+        var dy = Math.pow(rnd(), 1.9) * 14;
+        var a = 0.46 * (1 - dy/11) * (0.35 + 0.65*Math.sin(Math.PI*u3));
+        g.fillStyle = "rgba(60,230,180," + a.toFixed(3) + ")";
+        g.fillRect(xx, top + dy + 1.2, 1.2, 1.2);
+      }
+      /* ONE FIN AND A NOSE. Two crossed hairlines rising off the hull have no
+       * stated function anywhere in the dossier and a pixel critic read the
+       * object as a leaf with an artefact over it. A single swept fin aft and a
+       * drawn nose forward make it a vehicle.
+       *
+       * THE FIN IS A SURFACE AND NOT A STROKE (2026-09-12, round 3 scorer). The
+       * stroked version rooted at GY - Hh + 10, which is GY - 40, while the hull
+       * top at that same x is GY - 36. It floated four px clear of the object it
+       * belonged to and ended in a bare hairline, so it read as a stray white
+       * stub terminating in open water. The fix is a closed polygon whose base
+       * lies ON the hull curve at u 0.60 and 0.72, lit by the same S.profile
+       * call and the same declared key as the hull, so it is part of the vehicle
+       * by construction rather than by proximity. */
+      (function(){
+        var ub = function(u){
+          return [GX - L/2 + u*L, GY - Hh*Math.sin(Math.PI*u)*(1 - 0.26*u)];
+        };
+        var a = ub(0.60), b = ub(0.72);
+        S.profile(g, [a, [GX + 70, GY - 74], [GX + 82, GY - 69], b],
+          {fill:"#0A2530", weight:1.8, heavyMul:1.6, threshold:-0.12,
+           light:"rgba(198,226,230,0.62)", lee:"rgba(2,6,11,0.92)"});
+      })();
+      // the nose, a short blunt cap forward, which is the end that goes first
+      g.strokeStyle = "rgba(198,226,230,0.62)"; g.lineWidth = 3.0;
+      g.beginPath();
+      g.arc(GX - L/2 + 16, GY - 2, 13, Math.PI*0.62, Math.PI*1.42); g.stroke();
+    })();
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  cx.lineCap = "butt";
+  function leader(el, target){
+    var b = AKFIT.inkRect(el);
+    var from = (target[0] > b.x + b.w/2) ? [b.right + 14, b.y + b.h/2]
+                                         : [b.x - 14, b.y + b.h/2];
+    cx.strokeStyle = "rgba(186,214,218,0.74)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]); cx.lineTo(target[0], target[1]); cx.stroke();
+    cx.fillStyle = "rgba(186,214,218,0.92)";
+    cx.beginPath(); cx.arc(target[0], target[1], 2.8, 0, Math.PI*2); cx.fill();
+    return from;
+  }
+  var tg = [GX - 118, GY - 24], td = [GX - 106, GY + 20];
+  var fg = leader(LG, tg), fd = leader(LD, td);
+
+  window.__akLeaders = [
+    {target:"the glider body", at:tg, to:tg, from:fg, label:"GLIDER, UP TO 1,000 m"},
+    {target:"the glider body, drift rate", at:td, to:td, from:fd, label:"0.25 m/s, ABOUT 23 km/d"}
+  ];
+
+  AKPOST.grade(cx, {exposure:-0.05, saturation:1.03, contrast:1.06,
+    grain:{amount:0.055, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

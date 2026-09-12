@@ -162,7 +162,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   ```
 
   **PUT IT IN THE MARKUP, NOT IN THE SCRIPT** (2026-09-09). `data-contacts`,
-  `data-scale` and `data-encodes` go on the `<body>` TAG as literal attributes.
+  `data-scale`, `data-encodes` and `data-ink` go on the `<body>` TAG as literal
+  attributes.
   Setting them with `document.body.setAttribute(...)` at the end of
   `renderReady` looks equivalent and is not: render.py reads the live dom, so
   qa.py measures them either way, but `dossier_check.py` runs BEFORE any render
@@ -288,6 +289,36 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   across a ten-month budget period. Two pixel critics caught them by reading.
   There is no such thing as a decorative tick on a measured axis: give the mark
   a meaning, or draw it outside the band.
+- **A COLOUR LAW IS A CLAIM ABOUT THE FRAME, SO DECLARE IT PER FRAME**
+  (2026-09-12). When a deck gives a hex a meaning, each slide says which
+  law-bearing inks it promises the reader and which the law forbids it:
+
+  ```html
+  <body data-ink='[{"hex":"#FFC72C","means":"what the record knows","state":"present"},
+                   {"hex":"#7D8F94","means":"what it does not","state":"absent"}]'>
+  ```
+
+  `state` is `present` or `absent`; `means` travels into the failure text, and
+  must carry NO apostrophe (it would end the attribute). Optional `min_px` sets
+  the thin-mark floor in native px^2 (default 120). qa.py then judges each
+  half where that half can actually answer:
+  - an `absent` ink is judged AT THE BRUSH, by a census of every colour any
+    canvas fill, stroke, canvas-text op, gradient stop, DOM text node or SVG
+    shape actually carried. A FAIL names the kind, the literal and the op count.
+  - a `present` ink is judged AT THE FRAME: FAIL if no brush ever carried it,
+    FAIL if brushes carried it and the render holds ZERO pixels of its hue
+    family, WARN under the floor with the arithmetic at feed and thumb size.
+
+  Why both: run No.57's deck rested on gold meaning what the record knows,
+  broke that three ways, and passed every gate at zero fails. Gold at alpha
+  0.34 over cool ice composites to a desaturated green, so pixels CANNOT see
+  misused gold (measured: 81k changed pixels, zero change in gold-hued ones),
+  and a sub-pixel arc means a brush census CANNOT see a mark that never drew
+  (slide 03 stroked #FFC72C eight times for zero gold pixels). Near-neutral
+  inks are judged at the brush only: the anti-aliased edge of every light cool
+  ink passes within dE 4 of #7D8F94, so there is no pixel threshold there.
+  Matching is tight on purpose, dE 2.0, because this palette holds #8FA3A8 just
+  7.5 dE from #7D8F94 and they mean different things; 2.0 to 5.0 is a WARN.
 - **EACH DECLARATION HAS ONE SURFACE AND THE ENGINE READS ONLY THAT ONE**
   (2026-08-27). Half of these contracts are BODY ATTRIBUTES and half are WINDOW
   GLOBALS, for historical reasons and for no better one, so check this table
@@ -295,7 +326,7 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
 
   | on `<body>` as an attribute | on `window` as a global |
   |---|---|
-  | `data-contacts`, `data-scale`, `data-encodes` | `__akAssert`, `__akMotifs`, `__akLeaders`, `__akFit` |
+  | `data-contacts`, `data-scale`, `data-encodes`, `data-ink` | `__akAssert`, `__akMotifs`, `__akLeaders`, `__akFit` |
 
   A declaration on the wrong surface is not an error and does not throw. It is
   SILENCE: the gate it feeds reads "no declaration" and "nothing to judge" as

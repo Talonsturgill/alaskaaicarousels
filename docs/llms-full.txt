@@ -1,7 +1,110 @@
 # Alaska AI, full text corpus
 
-Every article published by Alaska AI, newest first. Latest article 2026-09-11.
+Every article published by Alaska AI, newest first. Latest article 2026-09-12.
 Canonical pages live under https://alaskaaihq.com/archive/.
+# The Permit Knows Where the Machine Is
+
+> Two numbers and one blank sit in the stock table of the Arctic permit NMFS issued the Navy on September 10th.
+
+Published 2026-09-12 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-09-12/
+
+## The story
+
+The permit can find the robot. It can't count the seal.
+
+Sound is how the machine knows where it is.
+
+Above the ice, a glider gets its position from a satellite modem. Under the ice, that signal can't reach it. The notice says gliders then navigate by trilateration from moored acoustic sound sources, the geometry of intersecting circles.
+
+30 seconds, every four hours, all year.
+
+Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each sends a 30 second pulse every four hours. Two buoys drift on that cycle. Levels this year stay under 185 dB re 1 uPa at 1 m.
+
+About 639,237 square kilometres of water.
+
+Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. The work crosses the US exclusive economic zone, the high seas north of Alaska, and part of Canada's.
+
+Every zone here, drawn at one scale.
+
+Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals. Deployment and recovery of a source carries a 55 metre zone. The estimated range to temporary hearing threshold shift is under 15 metres.
+
+A 22 day cruise. A full year of transmission.
+
+The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking. The sources keep transmitting until September 13th, 2027. Mitigation that needs an observer works only while one is aboard.
+
+The same page gives the seal's number as UND.
+
+Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, from 2017, at a coefficient of variation of 0.51. Arctic ringed seal, the one species here listed as threatened, undetermined.
+
+Position, fixed. The rest is undetermined.
+
+The authorization runs from September 14th and by statute can't run longer than a year. This is the ninth year of the project. It relies on a Biological Opinion issued on September 13th, 2022. Three private citizens wrote in.
+
+The robot's fix or the seal's number.
+
+Year 10 is already inside the comment scope of Year 9. Which of those two numbers should the next authorization improve?
+
+## What we verified
+
+- The Federal Register notice published September 10th carries the action line Notice, issuance of incidental harassment authorization, so the authorization is decided and not proposed. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- NMFS states the authorization is effective from September 14th through September 13th, 2027. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- The notice carries the NOAA regulatory identifier RTID 0648-XF889, which is an identifier and not a measurement. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- The issuance occupies Federal Register volume 91 pages 57547 through 57550, which makes 91 FR 57547 its citation address. [Federal Register via GPO govinfo](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- The notice title names the action as Year 9 of the Office of Naval Research Arctic Research Activities in the Beaufort and Chukchi Seas. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- The proposed notice says this authorization covers the ninth year of a larger project for which the Office of Naval Research obtained prior authorizations and renewals. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The issuance states there are no changes to the specified activity, the species taken, the numbers or methods of take, or the mitigation and monitoring measures set out in the proposed notice. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The proposed notice describes the activity as using acoustic sources and receivers to provide a means of performing under-ice navigation for autonomous underwater vehicles. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The proposed notice describes the activity as the development of a new system under the Arctic Mobile Observing System. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The proposed notice places the Arctic Mobile Observing System inside the Navy Arctic and Global Prediction Program. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The study area is approximately 639,237 square kilometres. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The closest point of the study area to the Alaska coast is 204 kilometres, which the notice also gives as 110 nautical miles. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The activity would occur across the US Exclusive Economic Zone in the Beaufort and Chukchi seas, partially in the high seas north of Alaska and within part of the Canadian Exclusive Economic Zone. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- Up to six moorings described as fixed acoustic navigation sources transmitting at 900 Hz would be configured with active acoustic sources. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- Two drifting ice gateway buoys would be configured with active acoustic sources. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The moorings and ice gateway buoys would operate for a period of one year. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The 900 Hz navigation moorings transmit a 30 second pulse every four hours. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The 900 to 950 Hz mooring sources carry a not to exceed source level of 180 dB set by system design limits. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The source level column in the notice is headed with the reference convention dB re 1 microPascal at 1 m, so the numbers are source levels and not received levels. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- Up to one REMUS 600 uncrewed undersea vehicle is covered, with an 8 to 14 kHz acoustic communications source at a not to exceed level of 185 dB. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The notice says REMUS use is not anticipated during the September 2026 cruise and is included only in case of future use inside the authorization period. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- Up to 20 Argo type autonomous profiling floats may be deployed in the central Beaufort Sea. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- Argo floats drift at 1,500 m depth and collect temperature and salinity profiles from 2,000 m to the sea surface once every 10 days. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The notice says that in ice covered waters the gliders navigate by trilateration from moored acoustic sound sources, or by dead reckoning if the navigation signals are unavailable. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The gliders move at a speed of 0.25 metres per second, which the notice gives as approximately 23 km per day. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The gliders are buoyancy driven, carry satellite modems for two way communication and can transit to depths of up to 1,000 m. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The very low frequency 35 Hz mooring source carries the highest not to exceed level in the table at 190 dB. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The notice states that no very low frequency 35 Hz sources would be used in Year 9 because of hardware availability. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The issuance states that source levels from acoustic sources would not exceed 185 dB by system design limits. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The research cruise is planned for only 22 days in September and October, according to the issuance. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The proposed notice gives the first cruise a planned start date of September 22nd. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The issuance names the vessels as Research Vessel Sikuliaq, US Coast Guard Cutter HEALY, or another vessel. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The proposed notice says the R/V Sikuliaq is not an icebreaking ship but an ice strengthened ship. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- A potential second cruise in summer 2027 may include up to 8 days of icebreaking activities. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The Office of Naval Research request was for take of beluga whales and ringed seals by Level B harassment only. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The issuance states that take by Level A harassment is neither anticipated nor authorized based on the nature of the planned activities. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- NMFS did not authorize take by Level A harassment from icebreaking. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The issuance states there is one marine mammal species with confirmed occurrence in the study area listed as threatened under the Endangered Species Act, the Arctic subspecies of ringed seal. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The NMFS Alaska Regional Office Biological Opinion relied on for this authorization was issued on September 13th, 2022 and concluded the action is not likely to jeopardize the continued existence of Arctic ringed seals. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The stock abundance estimate the notice gives for the Beaufort Sea beluga stock is 39,258, with a coefficient of variation of 0.229, from a 1992 survey. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The stock abundance estimate the notice gives for the Eastern Chukchi beluga stock is 13,305, with a coefficient of variation of 0.51, from a 2017 survey. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- The notice lists the abundance of the Arctic ringed seal stock as undetermined, and its potential biological removal as undetermined. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), primary document, 2026-07-22.
+- NMFS received three comment letters from private citizens during the 30 day public comment period. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- Vessels must maintain a mitigation zone of 457 m around all observed cetaceans and 183 m around all other observed marine mammals. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- During deployment and recovery of moored and drifting acoustic sources the Office of Naval Research must implement a mitigation zone of 55 m around the deployed source. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- NMFS states that all authorizations it issues, whether an initial authorization or a renewal, are valid for a period of not more than one year. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The only reference to subsistence in the issuance is the statutory standard NMFS must apply, which asks whether the taking will have an unmitigable adverse impact on the availability of the stock for subsistence uses where relevant. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The issuance says modeling did not predict Level A take of beluga whale because the acoustic sources are continuous with a low duty cycle and a relatively short ping duration of 4 to 30 seconds. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The issuance states the estimated range to temporary hearing threshold shift is less than 15 m and that the range to auditory injury would be smaller still. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The issuance was signed by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources, and dated September 4th, then filed on September 9th. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), primary document, 2026-09-10.
+- The proposed notice was published on July 22nd at 91 FR 46055 and the issuance cites it as the document it incorporates. [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), primary document, 2026-09-10.
+- The proposed notice action line invited comment on the proposed authorization and on a possible renewal of it. [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-07-22/html/2026-14816.htm), primary document, 2026-07-22.
+
+Slides and the deck PDF are linked from the canonical page.
+
+
+---
+
 # Section 1200 Is Called Interruption
 
 > Enstar, the gas utility for almost half of Alaska's population, publishes a tariff section numbered 1200 and titled Interruption.
@@ -3801,7 +3904,7 @@ Slides and the deck PDF are linked from the canonical page.
 
 # The Alaska AI Docket
 
-Every AI infrastructure decision tracked in Alaska, 24 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
+Every AI infrastructure decision tracked in Alaska, 25 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
 
 ---
 
@@ -3875,6 +3978,7 @@ Canonical: https://alaskaaihq.com/docket/aidea-houston-industrial-park/
 **2026-09-09** Re-verified today against Alaska DNR Online Public Notices id 224930, ADL 234762. The notice states the public comment period remains open from July 10th through September 14th, 2026. Five days are left. The two virtual public meetings it announced, August 27th and September 2nd, have both been held, and no final finding or best interest decision has been published.
 **2026-09-10** Re-verified against the state's extension notice, Alaska DNR Online Public Notices id 224879, published August 19th, 2026. Written comment on ADL 234762 closes at 5:00 p.m. Monday, September 14th, 2026, four days out, and the notice archives the day after. Comments go to Daniel Jenkins at the Division of Mining, Land and Water, by email to dmlwprogramsupport@alaska.gov, by fax to 907-269-8916, or by mail to 550 W. 7th Ave. Ste. 1050, Anchorage, AK 99501.
 **2026-09-11** Re-verified against the state's extension notice, Alaska DNR Online Public Notices id 224879. Written comment on ADL 234762 closes at 5:00 p.m. on Monday, September 14th, 2026, three days from today, and the notice states that deadline in its own capitals. The parcel is still about 19,950 acres of state owned land in the Matanuska-Susitna Borough roughly two miles north of Houston, proposed for conveyance to the Alaska Industrial Development and Export Authority. The notice also says that if no significant changes are needed the final decision issues without further notice, and that a copy goes to everyone who commented in time. Anyone who wants a say has until Monday afternoon.
+**2026-09-12** Re-verified against both state notices today. The original notice, Alaska DNR Online Public Notices id 224431, still prints its own first deadline of 5:00 p.m. Wednesday, August 19th, 2026, and the extension notice, id 224879, published August 19th, 2026, carries the operative one in its own capitals, extended comment period ends 5:00 p.m. Monday, September 14th, 2026. Two documents carry two dates and the later one governs. Written comment on ADL 234762 closes at 5:00 p.m. Monday, September 14th, 2026, two days from today, and both notices archive the day after. Only persons from whom the division receives timely written comment during the period are eligible to file an appeal of the Final Finding and Decision, so a reader who misses the window also loses standing.
 
 
 ---
@@ -3946,6 +4050,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 **2026-09-03** Re-read at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, 2026, and reply comments are due on or before October 30th, 2026. The window is open and neither date has moved.
 **2026-09-06** Checked and unchanged, re-read against the published Federal Register text. Comments in WC Docket No. 26-173 are still due September 30th, 2026 and reply comments October 30th, 2026. Nine sentences in the notice carry the words artificial intelligence or AI, and the questions they ask are the same ones recorded here.
 **2026-09-09** Re-verified today against the notice itself, Maximizing Efficiencies in Universal Service Administration at 91 FR 55826. Comments in WC Docket No. 26-173 are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026. Twenty one days are left on the first window. The notice asks whether operational inefficiencies could be improved using artificial intelligence, which is the question a rural Alaska applicant would be answering from the receiving end of the delays.
+**2026-09-12** Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, 2026, and reply comments are due on or before October 30th, 2026. The notice was adopted August 6th, 2026 and released August 7th. Eighteen days are left in the comment window and nothing in it has moved.
 
 
 ---
@@ -4184,6 +4289,7 @@ Canonical: https://alaskaaihq.com/docket/anchorage-rtcc-surveillance-ordinance/
 **2026-09-07** Checked and unchanged since the note of September 3rd. The spending is approved and the rules are not. Alaska Public Media names Keith McCormick, Daniel Volland and Sydney Scout as the sponsors, and Volland said they would work with the mayor's administration to refine the ordinance before bringing it back to the Assembly on September 15th, 2026.
 **2026-09-09** Checked and unchanged since the note of September 3rd. Alaska Public Media's account of the September 1st meeting stands, an 8 to 4 vote approving about $600,000 for the Real Time Crime Center and a postponement of the rules that would govern what it collects. Alaska's News Source put the authorized figure at not to exceed $598,998.10. Daniel Volland says the sponsors are refining the ordinance with the mayor's administration and return to the Assembly on September 15th, 2026, six days out. No new hearing date has been published with it, so a resident who wants to be heard writes to an Assembly member in the meantime.
 **2026-09-11** The ordinance has a number and a testimony date. Must Read Alaska, in a September 7th, 2026 opinion piece by Marcus Moore, identifies it as AO-2026-108 and states that Anchorage residents can give public testimony on AO-2026-108 at the regular Assembly meeting on September 15th, 2026 or online. Neither could be confirmed against the municipality's own agenda system, which refuses an automated request, so both rest on that one outlet and the sponsors' public statements. The substance is otherwise unchanged. The $598,998.10 for the Real Time Crime Center passed 8 to 4 on September 1st and the rules governing what it collects did not.
+**2026-09-12** Checked and unchanged. The spending is approved and the rules are not. AO-2026-108 and the September 15th, 2026 testimony date still rest on one outlet, the Must Read Alaska opinion piece of September 7th, 2026, because the municipality's own agenda system refuses an automated request and the ordinance text can't be read anywhere else. Three days out. Anyone planning to testify should confirm the item is on the published agenda first, and writing to an Assembly member remains the surer route.
 
 
 ---
@@ -4460,6 +4566,7 @@ Canonical: https://alaskaaihq.com/docket/kpbsd-ai-policy-package/
 **2026-09-09** Checked and unchanged. The district's meeting portal still shows August 3rd, 2026 as its most recent posted business, carrying the Policy Review Committee agenda, the revised regular business meeting and the work sessions of that day. Nothing is posted yet for the September 14th regular board meeting, five days out. BP 5131.9 Academic Honesty and AR 6161.4 Acceptable Use and Internet Safety, the two documents that carry the district's artificial intelligence language, stand where the August readings left them.
 **2026-09-10** The district has posted its September 14th, 2026 agendas and the academic honesty rules are on them for a vote. The Regular Business Meeting carries BP 5131.9 Academic Honesty for second reading and action, and AR 5131.9 Academic Honesty for first reading and action, alongside BP 1114 Communication Using Electronic Media for second reading and action. The Policy Review Committee meets the same day on a separate list that includes BP and AR 6161.5, High-Quality Instruction and Purposeful Use of Technology. Neither agenda uses the words artificial intelligence, which is worth stating plainly, because AR 5131.9 is the regulation the district brought forward in relation to the inclusion of AI and the agenda language does not say so.
 **2026-09-11** Checked and unchanged since yesterday. The Kenai Peninsula Borough School District board still has BP 5131.9 Academic Honesty down for second reading and action at its September 14th, 2026 regular business meeting, three days out. The August 3rd, 2026 agenda read today confirms the path the rules took to get there, a first reading of BP 5131.9 Academic Honesty alongside a first reading and action on AR 6161.4, the acceptable use and internet safety regulation.
+**2026-09-12** Checked again, and one thing is new. All three documents sit on the consent agenda of the September 14th, 2026 regular business meeting rather than on the discussion calendar. BP 1114 Communication Using Electronic Media is item 10146, second reading and action. BP 5131.9 Academic Honesty is item 10147, second reading and action. AR 5131.9 Academic Honesty is item 10145, first reading and action. A consent agenda is adopted in a single motion, so unless a board member asks for an item to be pulled, the district's artificial intelligence rules are adopted without separate debate. Two days out.
 
 
 ---
@@ -4656,6 +4763,37 @@ Canonical: https://alaskaaihq.com/docket/army-janus-fort-wainwright/
 **2026-08-18** Re-verified. Fort Wainwright remains one of nine Army posts named for a possible microreactor by 2030, and no down selection has been reported since.
 **2026-08-26** Checked and unchanged. Fort Wainwright is still one of nine Army posts named for a possible microreactor under the Janus program, and no vendor down select has been announced since industry submissions closed on December 15th, 2025. The Army's stated goal is an operating demonstration plant by 2030.
 **2026-08-30** Decided, and Fort Wainwright is not in it. The Army named its first five Janus installations on August 26th, 2026, Fort Bragg with Antares Nuclear, Fort Campbell with BWXT Advanced Technologies, Fort Hood with General Atomics Electromagnetic Systems, Fort Benning with Radiant Industries and Fort Drum with Westinghouse Government Services, against roughly $2.2 billion running across fiscal years 2027 through 2031 on milestone based payments. Fort Wainwright was short listed and not chosen, alongside Holston Army Ammunition Plant, Joint Base Lewis-McChord and Redstone Arsenal. The program itself continues, so a later round could still reach Alaska, and nothing published says it will.
+
+
+---
+
+# The Navy's permit for an under-ice robot navigation grid
+
+> NMFS has authorized the Office of Naval Research to harass marine mammals incidental to Year 9 of its Arctic Research Activities in the Beaufort and Chukchi seas, and what the authorization covers is an acoustic navigation grid. Up to six moored sources at 900 to 950 Hz and two drifting ice gateway buoys will transmit a 30 second pulse every four hours for one year, so that gliders operating under sea ice can fix a position by trilateration from those sources rather than by dead reckoning. The study area is about 639,237 square kilometres across the US Exclusive Economic Zone, the high seas north of Alaska and part of the Canadian Exclusive Economic Zone, coming within 204 kilometres of the Alaska coast at its nearest point. A research cruise of 22 days is planned to begin September 22nd, 2026 aboard R/V Sikuliaq, US Coast Guard Cutter HEALY or another vessel, while the sound sources stay in the water for twelve months. The authorization covers Level B harassment only and states that take by Level A harassment is neither anticipated nor authorized.
+
+Status: decided. Decided by NOAA National Marine Fisheries Service, Office of Protected Resources.
+Public access: closed. The record on this one is shut. NMFS took comment for 30 days after publishing the proposed authorization on July 22nd, 2026 and received three comment letters, all from private citizens, then issued the authorization on September 10th, 2026. There is no open filing path now. The next door is the Year 10 renewal, which the Year 9 proposal already invited comment on inside its own action line, and no renewal notice has published. Anyone who wants standing in Year 10 should watch the Federal Register for a proposed authorization under docket RTID 0648-XF889 or its successor.
+Canonical: https://alaskaaihq.com/docket/onr-arctic-iha-year-9/
+
+## Dates
+
+- 2026-07-22, Proposed authorization published at 91 FR 46055, opening a 30 day comment period (milestone)
+- 2026-09-04, Authorization signed by the Director of the NMFS Office of Protected Resources (milestone)
+- 2026-09-10, Authorization issued and published at 91 FR 57547 (decision)
+- 2026-09-14, Authorization takes effect (milestone)
+- 2026-09-22, First research cruise planned to begin, 22 days in September and October (milestone)
+- 2027-09-13, Authorization expires, one year being the statutory maximum (milestone)
+
+## Sources
+
+- [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm), 2026-09-10
+- [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt), 2026-09-10
+- [Federal Register plain text, NOAA National Marine Fisheries Service](https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt), 2026-07-22
+- [Federal Register via GPO govinfo, NOAA National Marine Fisheries Service](https://www.govinfo.gov/content/pkg/FR-2026-07-22/html/2026-14816.htm), 2026-07-22
+
+## How this decision moved
+
+**2026-09-12** Added from today's verified claims. NMFS issued the Office of Naval Research an incidental harassment authorization for Year 9 of its Arctic Research Activities, published September 10th, 2026 at 91 FR 57547, effective September 14th, 2026 through September 13th, 2027. Signed September 4th by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources, filed September 9th. The authorization covers Level B harassment of beluga whale and Arctic ringed seal, and states that take by Level A harassment is neither anticipated nor authorized. Two figures in the record are worth tracking as this series continues. The stock table gives the Beaufort Sea beluga abundance as 39,258 from a 1992 survey, and gives the Arctic ringed seal stock abundance as undetermined, with its potential biological removal also undetermined, for the one species here listed as threatened under the Endangered Species Act. The finding relies on a Biological Opinion the NMFS Alaska Regional Office issued on September 13th, 2022. No authorized take figure is recorded here, because the take table could not be read from the Federal Register text or XML on any route tried and an abundance estimate is not a take.
 
 
 ---

@@ -1,0 +1,322 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02080D}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:80px;top:196px;width:500px;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#BAD6DA}
+h2{position:absolute;left:80px;top:250px;width:500px;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:58px;line-height:1.04;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:478px;width:470px;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
+.bal{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;color:#BAD6DA;
+  font-variant-numeric:tabular-nums lining-nums;text-align:center}
+.rn{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.06em;color:#BAD6DA;font-variant-numeric:tabular-nums lining-nums}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,20],"to":[1350,400],"band":[1012,1034],"marks":[{"at":284,"means":"100 m"},{"at":639,"means":"200 m"},{"at":995,"means":"300 m"},{"at":1350,"means":"400 m"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>03 / 09</div>
+<div class="kick" data-reserve data-fit>THE GRID, AS AUTHORIZED</div>
+<h2 data-reserve data-fit>30 seconds,<br>every four hours,<br>all year.</h2>
+<p class="bd" data-reserve data-fit>Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each sends a 30 second pulse every four hours. Two buoys drift on that cycle. Levels this year stay under 185 dB re 1 uPa at 1 m.</p>
+<div class="la" id="l1" data-reserve>MOORING, FIXED</div>
+<div class="la" id="l2" data-reserve>ICE GATEWAY BUOY,<br>DRIFTS</div>
+<div class="la" id="l3" data-reserve>900 TO 950 Hz</div>
+<div class="la" id="l4" data-reserve>30 s EVERY 4 h</div>
+<div class="la" id="l5" data-reserve>NTE 185 dB<br>re 1 uPa at 1 m</div>
+<div class="bal" id="b1" data-reserve>1</div>
+<div class="bal" id="b2" data-reserve>2</div>
+<div class="bal" id="b3" data-reserve>3</div>
+<div class="bal" id="b4" data-reserve>4</div>
+<div class="bal" id="b5" data-reserve>5</div>
+<div class="bal" id="b6" data-reserve>6</div>
+<div class="bal" id="b7" data-reserve>7</div>
+<div class="bal" id="b8" data-reserve>8</div>
+<div class="rn" id="r100" data-reserve>100 m</div>
+<div class="rn" id="r200" data-reserve>200 m</div>
+<div class="rn" id="r300" data-reserve>300 m</div>
+<div class="rn" id="r400" data-reserve>400 m</div>
+<div class="prov" data-decorative>PULSE AND CEILING, THE NOTICE'S. PROPORTIONS, THE DRAWING'S</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:44, max:58, maxLines:3});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  S.setWindow(20, 400, 0, 1350);          // D1, the window descends
+  var RAIL_X = 1014;
+
+  /* THE EIGHT SOURCES. Every depth here is the DRAWING'S, which the provenance
+   * mark says on the frame. What the notice carries is the COUNTS, up to six
+   * moorings and two ice gateway buoys, and the cycle they run on. The stagger
+   * exists so nothing lines up into a row and so no two objects share a depth,
+   * which is this slide's own acceptance test. */
+  /* THE STAGGER OPENS A LANE AT y 360 TO 430 for the buoy label. The type
+   * column runs to x 580 and the rail's numerals want x 856 to 966, so an
+   * object label 276 px wide has exactly one place it can live, and the objects
+   * are arranged around it rather than the other way about. The first build put
+   * that label above the kicker in the type column, where a pixel critic read
+   * it as the frame's opening line of copy. */
+  var OBJ = [
+    {id:"b1", x:604, m: 78, kind:"buoy"},
+    {id:"b2", x:824, m:104, kind:"buoy"},
+    {id:"b3", x:672, m:168, kind:"mooring"},
+    {id:"b4", x:852, m:208, kind:"mooring"},
+    {id:"b5", x:620, m:250, kind:"mooring"},
+    {id:"b6", x:800, m:290, kind:"mooring"},
+    {id:"b7", x:660, m:330, kind:"mooring"},
+    {id:"b8", x:760, m:350, kind:"mooring", phantom:true}
+  ];
+  OBJ.forEach(function(o){ o.y = S.depth(o.m); });
+
+  // the rail numerals first, because they are reserved type like any other
+  var RAIL = S.railLabels([['r100',100],['r200',200],['r300',300],['r400',400]],
+                          {x:RAIL_X, gap:26, width:110, top:150, bottom:1210});
+
+  // the two object labels ride beside their own objects; the three spec labels
+  // stack under the body copy in the left column
+  var L1 = document.getElementById('l1'), L2 = document.getElementById('l2');
+  // L1 rides right of the third mooring, in the gap between the body column and
+  // the rail lane. L2 rides LEFT of the first buoy, because its own string is
+  // 408 px wide and to the right of that object there is no room for it inside
+  // the 80 px safe zone. The first build put it there and its container ran 2 px
+  // past the frame edge, which render.py reported as a page that scrolls.
+  L1.style.left = (OBJ[4].x + 58) + 'px';  L1.style.top = (OBJ[4].y - 17) + 'px';
+  L2.style.left = '596px';                 L2.style.top = '360px';
+  document.getElementById('l3').style.cssText += ';left:80px;top:902px';
+  document.getElementById('l4').style.cssText += ';left:80px;top:950px';
+  document.getElementById('l5').style.cssText += ';left:80px;top:998px';
+
+  // the balloon numbers sit on their objects, each in a measured circular
+  // container rather than in a fixed box that a two digit number would break
+  OBJ.forEach(function(o){
+    var el = document.getElementById(o.id);
+    el.style.left = (o.x - 21) + 'px';
+    el.style.top  = (o.y - 46 * (1.06 - 0.34 * S.t(o.y)) - 48) + 'px';
+    el.style.width = '42px';
+  });
+
+  // EVERY LABEL AND EVERY BALLOON IN ITS OWN MEASURED CONTAINER
+  ['l1','l2','l3','l4','l5'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:12, padY:7, fill:"rgba(5,20,26,0.34)", radius:3, note:"mono label " + id});
+  });
+  ['r100','r200','r300','r400'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:10, padY:6, fill:"rgba(4,16,22,0.34)", radius:3, note:"rail numeral " + id});
+  });
+  /* BALLOON 8 CARRIES THE HEDGE. Drawn like the other seven it asserts an
+   * eighth source in use, which is the opposite of what the body of that
+   * mooring says, and the dossier's own risk flag relies on the balloon to
+   * mitigate the phantom rather than to contradict it. */
+  OBJ.forEach(function(o){
+    var ph = !!o.phantom;
+    if (ph) document.getElementById(o.id).style.color = '#7D8F94';
+    AKFIT.plate(document.getElementById(o.id),
+      {padX:10, padY:8, minWidth:40, minHeight:40, radius:20,
+       fill:"rgba(4,17,23,0.72)", feather:0, stroke: ph ? "#7D8F94" : "#5E838C",
+       strokeWidth:1.5, dash: ph, note:"balloon " + o.id});
+  });
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:106, depth:0.98, pad:26});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#0C2E38", bed:"#08202A", steps:48});
+    // no lid in this window, so the rays run out of frame rather than turning
+    S.rays(g, {seed:570331, x:OBJ[3].x, y:OBJ[3].y, count:30, fan:[-1.02,1.06],
+      curve:0.0017, step:5, maxLen:2800, alpha:0.26, width:1.5,
+      blend:"screen", bedY:H+400, atten:atten, clip:[0,0,RAIL_X-70,H],
+      iceAt:function(){ return -600; }});
+    S.marine(g, {rFloor:1.10, aFloor:0.16, seed:570311, count:4600, y0:0, y1:H,
+      near:[240, 980], nearShare:0.62, atten:atten});
+
+    (function(){
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,8,13,0)");
+      lane.addColorStop(0.55, "rgba(2,8,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,8,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, H);
+    })();
+
+    window.__akRail = S.rail(g, {x:RAIL_X, bandW:24,
+      what:"depth below the waterline", unit:"metres",
+      ticks:[[100,"100 m"],[200,"200 m"],[300,"300 m"],[400,"400 m"]]});
+
+    /* ---- the eight bodies, drawn deepest first so the near ones occlude ---- */
+    var order = OBJ.slice().sort(function(a,b){ return b.m - a.m; });
+    order.forEach(function(o){
+      var t = S.t(o.y);
+      // SCALE GRADIENT. A body drawn smaller with depth is one of this frame's
+      // four depth cues, so the size is a function of the mapping and not a
+      // number chosen per object.
+      var sc = 1.42 - 0.44 * t;
+      drawBody(g, o, sc, t);
+    });
+
+    function drawBody(g, o, sc, t){
+      var x = o.x, y = o.y;
+      var ghost = !!o.phantom;
+      if (o.kind === "buoy"){
+        // the tether runs UP toward a lid that is 20 m above this window
+        g.strokeStyle = "rgba(120,150,158,0.42)"; g.lineWidth = 1.6;
+        g.beginPath(); g.moveTo(x, y - 12*sc); g.lineTo(x - 6, -20); g.stroke();
+        var w = 32*sc, h = 46*sc;
+        var poly = [];
+        for (var i=0;i<=28;i++){
+          var u=i/28; poly.push([x - w/2 + u*w, y - h/2 - 9*sc*Math.sin(Math.PI*u)]);
+        }
+        for (var i2=28;i2>=0;i2--){
+          var u2=i2/28; poly.push([x - w/2 + u2*w, y + h/2 + 7*sc*Math.sin(Math.PI*u2)]);
+        }
+        var kb = S.contrast(y);
+        var bgb = g.createLinearGradient(0, y - h/2 - 9*sc, 0, y + h/2 + 7*sc);
+        bgb.addColorStop(0.00, AKC.mixOklab("#0A2530", "#2E5364", 0.9 * kb));
+        bgb.addColorStop(0.46, AKC.mixOklab("#0A2530", "#15333F", 0.6 * kb));
+        bgb.addColorStop(1.00, "#04141C");
+        g.fillStyle = bgb;
+        g.beginPath(); poly.forEach(function(q,j){ j?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]); });
+        g.closePath(); g.fill();
+        S.profile(g, poly, {weight:2.0, heavyMul:1.7, threshold:-0.12,
+          light:"rgba(185,214,218," + (0.62 * kb).toFixed(3) + ")",
+          lee:"rgba(2,8,11,0.94)"});
+      } else {
+        // a mooring package on a riser that continues below the frame edge
+        var w = 28*sc, h = 70*sc;
+        var poly = [[x-w/2, y-h/2],[x+w/2, y-h/2],[x+w/2, y+h/2],[x-w/2, y+h/2]];
+        if (ghost){
+          /* THE SIXTH MOORING IS DRAWN AS A HEDGE, because the notice says UP TO
+           * six and a drawing that says exactly six says more than the record
+           * does. The dash pattern is library 67 and the ink is the deck's one
+           * undetermined grey. */
+          g.save();
+          g.setLineDash([26,11,9,11,9,11]);
+          g.strokeStyle = "rgba(125,143,148,0.95)"; g.lineWidth = 1.9;
+          g.beginPath();
+          poly.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); });
+          g.closePath(); g.stroke();
+          g.beginPath(); g.moveTo(x, y+h/2); g.lineTo(x, 1178); g.stroke();
+          g.restore();
+        } else {
+          g.strokeStyle = "rgba(120,150,158,0.40)"; g.lineWidth = 1.5;
+          g.beginPath(); g.moveTo(x, y+h/2); g.lineTo(x, H+20); g.stroke();
+          /* A VALUE LADDER ON THE FACE. Filled flat at #0A2530 and outlined,
+           * these bodies are a bright rim around a near black interior, which
+           * the scorer read as flat filled rectangles with a light cap. A
+           * downwelling key lands on the top of a body and falls away down its
+           * face, so the fill does that and the profile's ranks read against
+           * it. The gain falls with depth through AKICE.contrast, which is what
+           * makes the column read as a volume rather than a stack. */
+          var k = S.contrast(y);
+          var bg = g.createLinearGradient(0, y - h/2, 0, y + h/2);
+          bg.addColorStop(0.00, AKC.mixOklab("#0A2530", "#2A4D5C", 0.86 * k));
+          bg.addColorStop(0.44, AKC.mixOklab("#0A2530", "#14313C", 0.55 * k));
+          bg.addColorStop(1.00, "#04141C");
+          g.fillStyle = bg;
+          g.beginPath(); poly.forEach(function(q,j){ j?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]); });
+          g.closePath(); g.fill();
+          S.profile(g, poly, {weight:2.0, heavyMul:1.8, threshold:-0.10,
+            light:"rgba(185,214,218," + (0.60 * k).toFixed(3) + ")",
+            lee:"rgba(2,8,11,0.94)"});
+          // the lit cap, the one genuinely bright face, and it dims with depth
+          g.fillStyle = "rgba(185,214,218," + (0.82 * k).toFixed(3) + ")";
+          g.fillRect(x - w/2 + 3, y - h/2 + 1.5, w - 6, 2.8);
+        }
+      }
+
+      /* THE DUTY CYCLE, DRAWN AT ITS TRUE ANGLE. The faint ring is four hours.
+       * The gold is the 30 seconds inside it, which is 0.75 of one degree, so
+       * the arc is very nearly a pip and that is the whole point of drawing it
+       * rather than writing it. Its angular extent is the record's (C17); its
+       * stroke weight is a drawing weight. */
+      var r = 46*sc;
+      g.strokeStyle = ghost ? "rgba(125,143,148,0.46)" : "rgba(150,182,190,0.50)";
+      g.lineWidth = 1.15;
+      g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.stroke();
+      /* A GOLD TICK, AND IT IS A TICK RATHER THAN A MEASURED ARC. The plan was
+       * an arc of 0.75 of one degree, which is 30 seconds inside four hours at
+       * true angular extent. Measured on the render, it did not draw AT ALL:
+       * a 0.75 degree arc at r 46 is six tenths of a pixel long, and a
+       * degenerate subpath gets no cap, so the frame shipped with zero gold
+       * pixels on it and the state table had a hole where its third frame
+       * should be. The honest replacement is a TICK, a mark at a position and
+       * not a length: it says this object is an active source, which is what
+       * D2 asks this frame for, and the duty cycle is PRINTED here in
+       * 30 s EVERY 4 h and DRAWN as a ratio of counts on frame 06, which is
+       * where that argument belongs. No quantity is encoded in its size. */
+      var pa = -Math.PI/2;
+      /* AND IT HAS TO EXIST AT 432 PX. The tick at 3.4 by 14 design px is 1.4
+       * by 5.6 at feed size, and the scorer reported the whole of this frame's
+       * gold state as drawn but sub visible, which leaves D2's state table with
+       * a functional hole on its third frame. A source mark is a POSITION and
+       * carries no quantity in its size, so size is free here: 5.5 by 26 design
+       * px is 2.2 by 10 at feed size, which is a mark. */
+      g.strokeStyle = "rgba(2,9,14,0.96)"; g.lineWidth = 9.5; g.lineCap = "butt";
+      g.beginPath();
+      g.moveTo(x + Math.cos(pa)*(r-14), y + Math.sin(pa)*(r-14));
+      g.lineTo(x + Math.cos(pa)*(r+13), y + Math.sin(pa)*(r+13));
+      g.stroke();
+      g.strokeStyle = "#FFC72C"; g.lineWidth = 5.5;
+      g.beginPath();
+      g.moveTo(x + Math.cos(pa)*(r-13), y + Math.sin(pa)*(r-13));
+      g.lineTo(x + Math.cos(pa)*(r+12), y + Math.sin(pa)*(r+12));
+      g.stroke();
+    }
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  /* the two object leaders, each authored from its MEASURED label box */
+  cx.lineCap = "butt";
+  function leader(el, target){
+    var b = AKFIT.inkRect(el);
+    var from = (target[0] > b.x + b.w/2) ? [b.right + 14, b.y + b.h/2]
+                                         : [b.x - 14, b.y + b.h/2];
+    cx.strokeStyle = "rgba(186,214,218,0.74)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]); cx.lineTo(target[0], target[1]); cx.stroke();
+    cx.fillStyle = "rgba(186,214,218,0.92)";
+    cx.beginPath(); cx.arc(target[0], target[1], 2.8, 0, Math.PI*2); cx.fill();
+    return from;
+  }
+  var t1 = [OBJ[4].x + 19, OBJ[4].y], t2 = [OBJ[1].x, OBJ[1].y + 22];
+  var f1 = leader(L1, t1), f2 = leader(L2, t2);
+
+  window.__akLeaders = [
+    {target:"a fixed mooring body", at:t1, to:t1, from:f1, label:"MOORING, FIXED"},
+    {target:"an ice gateway buoy", at:t2, to:t2, from:f2, label:"ICE GATEWAY BUOY,"}
+  ];
+
+  /* THE SCALE IS DECLARED IN THE MARKUP, for the reason slide 02 records.
+   * (m - 20) * 1350 / 380. The sixth mooring is NOT a mark on this axis: it
+   * sits at x 760 and never enters the rail band, and a declared mark the
+   * census cannot find is worse than no mark at all. */
+
+  AKPOST.grade(cx, {exposure:-0.05, saturation:1.02, contrast:1.06,
+    grain:{amount:0.055, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

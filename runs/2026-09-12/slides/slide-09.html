@@ -1,0 +1,277 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+svg.pol{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+h2{position:absolute;left:150px;top:430px;width:780px;text-align:center;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 16,"WONK" 1;font-weight:640;
+  font-size:82px;line-height:1.02;letter-spacing:-0.018em;color:#F4F8FF}
+.ask{position:absolute;left:190px;top:724px;width:700px;text-align:center;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:36px;line-height:1.34;
+  color:#D8ECEE}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg class="pol" viewBox="0 0 1080 1350" aria-hidden="true">
+  <!-- D2 RESOLVES. The gold cross of eight frames becomes a four point Polaris,
+       drawn in SVG so the film grade never touches the brand mark. -->
+  <g transform="translate(908 262)" fill="#FFC72C">
+    <path d="M0 -46 L7.5 -7.5 L46 0 L7.5 7.5 L0 46 L-7.5 7.5 L-46 0 L-7.5 -7.5 Z"/>
+    <circle r="4.4"/>
+  </g>
+  <g transform="translate(908 262)" stroke="#FFC72C" stroke-opacity="0.34" fill="none">
+    <path d="M0 -86 L0 -60 M0 60 L0 86 M-86 0 L-60 0 M60 0 L86 0" stroke-width="1.4"/>
+  </g>
+</svg>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>09 / 09</div>
+<h2 data-reserve data-fit>The robot's fix<br>or the seal's number.</h2>
+<p class="ask" data-reserve data-fit>Year 10 is already inside the comment scope of Year 9. Which of those two numbers should the next authorization improve?</p>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  // TWO LINES. Three stranded the word 'number.' alone on a centred line, on
+  // the close of a deck whose whole argument is the seal's missing number.
+  AK.fitText(document.querySelector('h2'), {min:58, max:82, maxLines:2});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  /* D1 IS HELD IDENTICAL TO SLIDE 08. The camera has stopped, and that is the
+   * deck's full stop: eight descending frames and then one that does not move. */
+  S.setWindow(1200, 3400, 0, 1350);
+  var RAIL_X = 1014;
+  var AX = 486, AFOOT = 1178;
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:104, depth:0.98, pad:26});
+
+  // THE SAME BED PROFILE AND THE SAME SEEDS AS SLIDE 08, so the place is
+  // demonstrably the same place rather than a similar one
+  var BEDY = new Float32Array(W + 1);
+  (function(){
+    for (var x = 0; x <= W; x++){
+      // 1018, not 1058. Section 4a promises the bed FILLS the lower third and
+      // the first build gave it the bottom 21 percent, so the deck descended
+      // eight frames toward a sliver.
+      BEDY[x] = 1018
+              + 26 * Math.sin(x * 0.0043 + 1.1)
+              + 11 * Math.sin(x * 0.0131 + 4.4);
+    }
+  })();
+  function bedAt(x){ return BEDY[Math.max(0, Math.min(W, Math.round(x)))]; }
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#040E14", bed:"#030A10", steps:48});
+
+    /* THE POPULATION IS STRIPPED BY 40 PERCENT AND CARRIES A DIFFERENT SEED, so
+     * the water has moved while the rock has not. That is what stops a held
+     * frame reading as a duplicate of the one before it. 4,200 becomes 2,520. */
+    (function(){
+      var rnd = AK.rng(570911);
+      // 1,680 of 4,200, a 60 percent strip rather than 40. At 40 percent the two
+      // frames read at the same density and one of three mitigations against the
+      // duplicate risk was not landing.
+      for (var i = 0; i < 1680; i++){
+        var near = rnd() < 0.70;
+        var y = near ? 700 + rnd() * 380 : rnd() * 1060;
+        var x = rnd() * W;
+        // THE RAIL LANE IS A RESERVED FIXTURE LANE. A population with a size
+        // floor puts findable ink in it, and the axis census then reports marks
+        // the slide never declared, which is true and is the gate working.
+        if (x > RAIL_X - 70) continue;
+        var t = S.t(y);
+        var r = 0.95 + 1.2 * Math.pow(rnd(), 1.6);
+        var al = (0.10 + 0.22 * Math.pow(rnd(), 1.3)) * (near ? 1.0 : 0.60) * (1 - 0.46 * t);
+        if (y > bedAt(x) - 6) continue;
+        var aq = atten(x, y); if (aq < 0.20) continue;
+        al *= aq; r *= (0.55 + 0.45 * aq);
+        g.fillStyle = "rgba(172,204,212," + al.toFixed(3) + ")";
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+      }
+    })();
+
+    /* THE RAIL LANE IS HELD AND THE AXIS IS NOT. There is no tick anywhere on
+     * this frame and no data-scale declaration, because the camera has stopped
+     * and nothing here is measured. What is left of the rail is the phantom
+     * dash, which is the deck's last word on the thing it has been arguing. */
+    (function(){
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,6,13,0)");
+      lane.addColorStop(0.55, "rgba(2,6,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,6,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, 1000);
+      g.save();
+      g.setLineDash([9, 11]);
+      g.strokeStyle = "rgba(125,143,148,0.60)"; g.lineWidth = 1.25;
+      g.beginPath(); g.moveTo(RAIL_X, 0); g.lineTo(RAIL_X, 1290); g.stroke();
+      g.restore();
+    })();
+
+    /* THE BED, the same surface at the same seed */
+    (function(){
+      g.save();
+      g.beginPath();
+      g.moveTo(0, bedAt(0));
+      for (var x = 1; x <= W; x += 2) g.lineTo(x, bedAt(x));
+      g.lineTo(W, H); g.lineTo(0, H); g.closePath();
+      g.clip();
+
+      var gr = g.createLinearGradient(0, 1020, 0, H);
+      gr.addColorStop(0, "#123037");
+      gr.addColorStop(0.42, "#08202A");
+      gr.addColorStop(1, "#02060F");
+      g.fillStyle = gr; g.fillRect(0, 1000, W, H - 1000);
+
+      var th = 37 * Math.PI / 180, dx = Math.cos(th), dy = Math.sin(th);
+      var rnd = AK.rng(370837);
+      function form(x, y){
+        var a = 0.5 + 0.5 * Math.sin(x * 0.0094 + 2.1) * Math.cos(y * 0.0132 + 0.7);
+        var b = 0.5 + 0.5 * Math.sin(x * 0.0031 - y * 0.0068 + 4.2);
+        return Math.max(0, Math.min(1, 0.42 * a + 0.58 * b));
+      }
+      for (var k = -1000; k < 2500; k += 6){
+        var px = k, py = 1000, jit = 0.7 + 0.6 * rnd();
+        for (var st = 0; st < 150; st++){
+          var x0 = px + dx * st * 7, y0 = py + dy * st * 7;
+          var x1 = px + dx * (st + 1) * 7, y1 = py + dy * (st + 1) * 7;
+          if (y0 > H + 20 || x0 > W + 20) break;
+          if (y1 < 1000) continue;
+          var tone = form(x0, y0);
+          var fall = 1 - 0.52 * Math.max(0, Math.min(1, (y0 - 1040) / 300));
+          var al = (0.075 + 0.315 * tone) * fall * jit;
+          if (al < 0.012) continue;
+          g.strokeStyle = "rgba(160,198,206," + al.toFixed(3) + ")";
+          g.lineWidth = 0.5 + 2.4 * tone * fall;
+          g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke();
+        }
+      }
+      var th2 = (37 + 62) * Math.PI / 180, dx2 = Math.cos(th2), dy2 = Math.sin(th2);
+      for (var k2 = -400; k2 < 2200; k2 += 15){
+        g.strokeStyle = "rgba(120,158,168,0.10)";
+        g.lineWidth = 0.85;
+        g.beginPath();
+        g.moveTo(k2, 1000);
+        g.lineTo(k2 + dx2 * 700, 1000 + dy2 * 700);
+        g.stroke();
+      }
+      g.restore();
+
+      g.strokeStyle = "rgba(185,214,218,0.50)"; g.lineWidth = 1.6;
+      g.beginPath();
+      g.moveTo(0, bedAt(0));
+      for (var x2 = 1; x2 <= W; x2 += 2) g.lineTo(x2, bedAt(x2));
+      g.stroke();
+    })();
+
+    /* D3 TERMINATES HERE, and this is the only frame in the deck permitted to
+     * end the chain. DRAWN AFTER THE BED, because the shackle it lands on sits
+     * above the bed line and the first build drew the riser first, so the bed
+     * buried its last 160 px and the termination the acceptance test asks for
+     * was invisible. It enters left at y 860 and dead-ends ON the anchor
+     * shackle rather than leaving the frame. */
+    (function(){
+      var SHK = [AX, AFOOT - 92 - 15];
+      var pts = [], t;
+      for (t = 0; t <= 90; t++){
+        var u = t/90;
+        var x = -20 + u * (SHK[0] + 20);
+        var y = 860 + (SHK[1] - 860) * (u * u * 0.55 + u * 0.45) + Math.sin(u * 2.6) * 16 * (1 - u);
+        pts.push([x, y]);
+      }
+      g.strokeStyle = "rgba(2,8,12,0.84)"; g.lineWidth = 4.4;
+      g.beginPath(); pts.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); }); g.stroke();
+      g.strokeStyle = "rgba(150,182,190,0.40)"; g.lineWidth = 1.7;
+      g.beginPath(); pts.forEach(function(p,i){ i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]); }); g.stroke();
+    })();
+
+    // the contact, held with slide 08's own parameters
+    /* THE POOL SITS OPPOSITE THE LEE. Centred on the anchor it is concentric
+     * with the cast, and a pixel critic read the pair as an object hovering in
+     * a glow rather than standing on a floor. The declared key is azimuth 12
+     * clockwise from up at elevation 62, so the lee falls just to the lower
+     * LEFT and the lit ground is what is left of the pool to the right of it. */
+    S.litPool(g, AX + 34, AFOOT + 11, 146, 34, 0.28);
+    S.cast(g, AX - 20, AFOOT + 2, 82, {k: 2.15, wide: 1.10});
+
+    (function(){
+      /* LOW AND WIDE, NOT TALL AND TAPERED. At 132 by 80 with a U on top the
+       * silhouette read as a handbag at feed size, whatever the modelling did
+       * inside it. A clump anchor on a sea bed is a squat mass, so the block is
+       * 158 by 52 with only a slight batter, and the shackle becomes a small
+       * padeye rather than a handle. */
+      var w = 254, h = 92;
+      var poly = [[AX - w/2 + 9, AFOOT - h], [AX + w/2 - 10, AFOOT - h],
+                  [AX + w/2, AFOOT], [AX - w/2, AFOOT]];
+      /* THE FACE CARRIES ITS OWN VALUE LADDER, and the silhouette is dimmed to
+       * match. The first build filled it flat at #0A2530 and outlined it at
+       * 0.74, which is a bright even outline around a near black interior, and
+       * that reads as line art rather than as the modelled solid this frame is
+       * supposed to end on. A downwelling key lands on the top of a block and
+       * falls away down its face, so the fill does that and the profile's three
+       * ranks read against it instead of against nothing. */
+      (function(){
+        var fg = g.createLinearGradient(0, AFOOT - h, 0, AFOOT);
+        fg.addColorStop(0, "#0F2B33");
+        fg.addColorStop(0.46, "#082026");
+        fg.addColorStop(1, "#03121A");
+        g.fillStyle = fg;
+        g.beginPath();
+        poly.forEach(function(p, i){ i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]); });
+        g.closePath(); g.fill();
+      })();
+      S.profile(g, poly, {weight:2.2, heavyMul:1.9, threshold:-0.10,
+        light:"rgba(185,214,218,0.44)", lee:"rgba(2,6,11,0.96)"});
+      g.fillStyle = "rgba(185,214,218,0.60)";
+      g.fillRect(AX - w/2 + 46, AFOOT - h + 1.5, w - 100, 3.4);
+      for (var rb = 1; rb <= 3; rb++){
+        var yy = AFOOT - h + (h * rb) / 4;
+        var inset = 13 * (1 - rb / 5.2);
+        g.strokeStyle = "rgba(150,182,190,0.26)"; g.lineWidth = 1.1;
+        g.beginPath();
+        g.moveTo(AX - w/2 + inset + 4, yy); g.lineTo(AX + w/2 - inset - 6, yy);
+        g.stroke();
+        g.strokeStyle = "rgba(2,6,11,0.55)"; g.lineWidth = 1.4;
+        g.beginPath();
+        g.moveTo(AX - w/2 + inset + 4, yy + 1.6); g.lineTo(AX + w/2 - inset - 6, yy + 1.6);
+        g.stroke();
+      }
+      // the padeye, a small plate standing on the block with one hole in it
+      g.fillStyle = "rgba(12,40,48,0.98)";
+      g.beginPath();
+      g.moveTo(AX - 17, AFOOT - h); g.lineTo(AX - 12, AFOOT - h - 27);
+      g.lineTo(AX + 12, AFOOT - h - 27); g.lineTo(AX + 17, AFOOT - h);
+      g.closePath(); g.fill();
+      g.strokeStyle = "rgba(170,200,206,0.58)"; g.lineWidth = 1.6;
+      g.stroke();
+      g.strokeStyle = "rgba(170,200,206,0.72)"; g.lineWidth = 1.6;
+      g.beginPath(); g.arc(AX, AFOOT - h - 15, 6.5, 0, Math.PI * 2); g.stroke();
+    })();
+
+    // the seam runs the whole base line and is hard, so the foot is a foot
+    S.seam(g, AX - 127, AX + 127, AFOOT + 1, 0.86);
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  AKPOST.grade(cx, {exposure:-0.02, saturation:1.02, contrast:1.08,
+    grain:{amount:0.050, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

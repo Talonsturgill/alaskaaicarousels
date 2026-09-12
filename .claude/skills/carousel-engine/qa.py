@@ -2407,6 +2407,226 @@ def axis_census(img_arr, sc, design_w, design_h):
                     "finds no others" % (what, span, len(marks)))
 
 
+# --- THE INK LAW (2026-09-12, run No.57) -------------------------------------
+# A COLOUR LAW IS A CLAIM AND NOTHING HERE CHECKED IT. That run's deck rested on
+# one sentence a critic could audit in a single pass -- gold is what the record
+# knows, the undetermined ink is what it does not -- and broke it in three places
+# while passing claims, dossier, aggregate, plan-drift, copy-sync and this file
+# at zero fails and zero warns. See render.py's INK_HOOK_JS for the three
+# defects, for the declaration format, and for the measurements that ruled out
+# the obvious pixels-only instrument.
+#
+# THE SPLIT THIS CHECK IS BUILT ON:
+#   FORBIDDEN INK is judged at the brush, where it is exact. Gold at alpha 0.34
+#   over cool ice composites to a desaturated green that is not near gold at any
+#   tolerance, so the pixels cannot answer "was gold used here" and the paint
+#   census can, by name and op count.
+#   A PROMISED INK is judged at the frame, where the brush cannot help: slide 03
+#   stroked #FFC72C eight times and the render carried ZERO gold pixels, because
+#   a 0.75 degree arc at r 46 is six tenths of a pixel long and a degenerate
+#   subpath gets no cap.
+# Each half asks only what it can answer, which is why there are two.
+#
+# THE PIXEL SIDE ABSTAINS FOR A NEAR-NEUTRAL INK, silently and on purpose. The
+# anti-aliased edge of every light ink in a cool palette passes through
+# #7D8F94: frames that never used it carry 1,727 to 40,027 pixels within dE 4 of
+# it, measured across this run's nine. There is no threshold there, so the pixel
+# half is restricted to inks with real chroma and the brush half carries the
+# rest. That is also the answer to the third defect, the provenance mark set in
+# the undetermined ink on all nine frames: it is dom-text in the census, named
+# with its op count, and no pixel measure was ever going to find it.
+INK_TOL = 2.0           # dE76 counted as the SAME ink as the declared hex
+INK_NEAR = 5.0          # dE76 counted as near a FORBIDDEN ink; a warn, never a fail
+# BOTH MEASURED AGAINST THIS HOUSE'S OWN PALETTE, and the first try was wrong.
+# At dE 8 -- which looks like a generous reading of "the same colour" -- the
+# check hard-failed two CORRECT frames of the deck it was built for, because
+# #8FA3A8, the counter and provenance ink, sits 7.49 dE from #7D8F94, the
+# undetermined ink, and the law distinguishes them. The deck's palette holds
+# pairs at 0.34, 0.90, 4.42 and 4.94 dE, so any generous tolerance conflates
+# inks the studio means as different. Tight is therefore the only safe setting:
+# 2.0 catches the typo (#FFC82C is 0.9 from #FFC72C) and nothing else, and the
+# 2.0-to-5.0 band is a WARN so a real near-miss still gets said out loud. STATED
+# LIMIT: a deck whose law hex has a palette neighbour inside 2 dE cannot be
+# checked this way, and #BAD6DA against #B9D6DA is such a pair.
+INK_ALPHA_MIN = 0.06    # an op fainter than this puts down nothing a reader sees
+INK_CHROMA_MIN = 25.0   # under this the pixel half abstains (see above)
+INK_HUE_TOL = 16.0      # degrees of Lab hue counted as the same ink family
+INK_PX_WARN = 120       # native px^2 under which a promised ink is called thin
+# FITTED, not chosen. Gold-family pixel counts on the nine frames this deck
+# shipped, all of which carry gold and none of which a reviewer called missing:
+# 236, 243, 260, 272, 416, 548, 628, 2871, 5558 native px^2. The weakest is 236,
+# so 120 sits at half of it, and the noise floor on frames with no warm ink at
+# all measured 15 to 60 across three earlier decks. The FAIL tier is not fitted
+# at all: it is zero, which is the one number that cannot be a false positive.
+
+
+def _ink_pixels(img_arr, rgb):
+    """Native-pixel count of the frame's ink in `rgb`'s own hue family.
+
+    Hue, not distance to the hex, because compositing moves L and C hard and
+    leaves hue nearly alone over a near-neutral ground: the question is whether
+    the mark REACHED the frame, not whether it arrived undiluted.
+
+    IN FLOAT32, and for the clock only. The f64 path every other check here uses
+    takes 3.10 seconds on one 2160x2700 frame and made qa.py five times slower on
+    a nine-frame deck; f32 takes 0.40 and the two Lab arrays agree to 7e-5, which
+    is nine orders of magnitude below the 16 degrees and 39 chroma this measures.
+    A cheap RGB-spread prefilter was tried first and thrown away: in a cool
+    palette 99.8 percent of pixels pass it, because teal has a wide channel
+    spread of its own.
+    """
+    t = _srgb_to_lab(np.asarray(rgb, dtype=np.uint8).reshape(1, 1, 3))[0, 0]
+    tc = float(math.hypot(t[1], t[2]))
+    if tc < INK_CHROMA_MIN:
+        return None, tc
+    a = img_arr.astype(np.float32) / np.float32(255.0)
+    lin = np.where(a <= 0.04045, a / np.float32(12.92),
+                   ((a + np.float32(0.055)) / np.float32(1.055)) ** np.float32(2.4))
+    m = np.array([[0.4124564, 0.3575761, 0.1804375],
+                  [0.2126729, 0.7151522, 0.0721750],
+                  [0.0193339, 0.1191920, 0.9503041]], dtype=np.float32)
+    xyz = (lin @ m.T) / np.array([0.95047, 1.0, 1.08883], dtype=np.float32)
+    d = np.float32(6.0 / 29.0)
+    f = np.where(xyz > d ** 3, np.cbrt(xyz), xyz / (3 * d * d) + np.float32(4.0 / 29.0))
+    aa = 500.0 * (f[..., 0] - f[..., 1])
+    bb = 200.0 * (f[..., 1] - f[..., 2])
+    th = math.degrees(math.atan2(t[2], t[1])) % 360.0
+    dh = np.abs((np.degrees(np.arctan2(bb, aa)) % 360.0 - th + 180.0) % 360.0 - 180.0)
+    return int(((dh <= INK_HUE_TOL) &
+                (np.hypot(aa, bb) >= max(12.0, 0.5 * tc))).sum()), tc
+
+
+def _hex_rgb(s):
+    s = (s or "").strip().lstrip("#")
+    if len(s) == 3:
+        s = "".join(ch * 2 for ch in s)
+    if len(s) != 6:
+        return None
+    try:
+        return [int(s[i:i + 2], 16) for i in (0, 2, 4)]
+    except ValueError:
+        return None
+
+
+def ink_law(img_arr, rec, scale):
+    """Judge one slide's declared ink law. Returns [(level, message), ...] with
+    level in "fail" | "warn"."""
+    out = []
+    law = rec.get("ink_law") or []
+    census = [e for e in (rec.get("inks") or []) if isinstance(e, dict) and e.get("rgb")]
+    capped = bool(rec.get("ink_cap"))
+    # NO CENSUS IS NOT AN EMPTY CENSUS. If the hook did not install, or the
+    # in-page collector threw, or this report predates the census, then nothing
+    # is known about which colours were used and the law is UNCHECKED. Failing a
+    # promised ink there would be a gate reporting on evidence it never had.
+    if law and not census:
+        return [("warn", "data-ink is declared on this frame and the paint census "
+                         "is empty or absent, so the ink law is unchecked here. "
+                         "Re-render with a current render.py (the census arrived "
+                         "2026-09-12); if it is still empty, the hook did not "
+                         "install and every verdict below it would be guesswork")]
+    for d in law:
+        if not isinstance(d, dict):
+            continue
+        if d.get("error"):
+            out.append(("fail", "data-ink did not parse (%s) -- it is JSON in "
+                                "single quotes on <body>, a list of "
+                                "{hex, means, state} objects, and an ink law "
+                                "nothing can read is not a law. An apostrophe "
+                                "inside a `means` string ends the attribute "
+                                "early and reads exactly like this; write the "
+                                "meaning without one" % d["error"]))
+            continue
+        rgb = _hex_rgb(d.get("hex"))
+        state = (d.get("state") or "").lower()
+        means = d.get("means") or ""
+        why = (" (%s)" % means) if means else ""
+        if rgb is None:
+            out.append(("fail", "data-ink entry has no readable hex (%r)"
+                                % d.get("hex")))
+            continue
+        if state not in ("present", "absent"):
+            out.append(("fail", "data-ink %s declares state %r; it is "
+                                "\"present\" (this frame promises the reader "
+                                "this ink) or \"absent\" (the law forbids it "
+                                "here)" % (d.get("hex"), d.get("state"))))
+            continue
+        t = _srgb_to_lab(np.asarray(rgb, dtype=np.uint8).reshape(1, 1, 3))[0, 0]
+        hits, near = [], []
+        for e in census:
+            if float(e.get("amax") or 0) < INK_ALPHA_MIN:
+                continue
+            c = _srgb_to_lab(np.asarray(e["rgb"], dtype=np.uint8).reshape(1, 1, 3))[0, 0]
+            de = float(np.sqrt(((c - t) ** 2).sum()))
+            if de <= INK_TOL:
+                hits.append(e)
+            elif de <= INK_NEAR:
+                near.append((de, e))
+        ops = sum(int(e.get("ops") or 0) for e in hits)
+        named = ", ".join("%s %s x%d at alpha %.2f"
+                          % (e["kind"], e.get("color") or "", int(e.get("ops") or 0),
+                             float(e.get("amax") or 0))
+                          for e in sorted(hits, key=lambda z: -int(z.get("ops") or 0))[:4])
+        if state == "absent":
+            if hits:
+                out.append(("fail",
+                            "forbidden ink %s%s is painted on this frame by %d "
+                            "op(s): %s. The law this deck declared says this ink "
+                            "does not appear here, and a law broken once is not "
+                            "a law a reader can audit. Either the brush is wrong "
+                            "or the declaration is"
+                            % (d.get("hex"), why, ops, named)))
+            elif near:
+                de, e = min(near)
+                out.append(("warn",
+                            "forbidden ink %s%s: nothing paints it, but %s %s "
+                            "x%d sits %.1f dE away, which a reader cannot tell "
+                            "from it. If that is meant to be the forbidden ink, "
+                            "the law is broken; if it is meant to be a different "
+                            "ink, it is too close to read as one"
+                            % (d.get("hex"), why, e["kind"], e.get("color") or "",
+                               int(e.get("ops") or 0), de)))
+            elif capped:
+                out.append(("warn",
+                            "forbidden ink %s%s: this frame's paint census hit "
+                            "its entry cap, so absence is unproven here. Reduce "
+                            "the number of distinct colour literals, or accept "
+                            "that this one is unchecked on this frame"
+                            % (d.get("hex"), why)))
+            continue
+        # present
+        if not hits:
+            out.append(("fail",
+                        "promised ink %s%s: no brush on this frame ever carried "
+                        "it (%d colours in the paint census, none within dE %.0f "
+                        "of it at a visible alpha). The frame's own declaration "
+                        "says the reader sees this ink here"
+                        % (d.get("hex"), why, len(census), INK_TOL)))
+            continue
+        n, tc = _ink_pixels(img_arr, rgb)
+        if n is None:
+            continue          # near-neutral: the brush half above is the verdict
+        floor = d.get("min_px") if isinstance(d.get("min_px"), int) else INK_PX_WARN
+        if n == 0:
+            out.append(("fail",
+                        "promised ink %s%s is painted by %d op(s) and reached "
+                        "the frame as ZERO pixels: %s. A mark whose drawn length "
+                        "is sub-pixel does not draw (a 0.75 degree arc at r 46 "
+                        "is six tenths of a pixel, and a degenerate subpath gets "
+                        "no cap). Draw it as a mark at a position rather than a "
+                        "length, or give it the size the frame can carry"
+                        % (d.get("hex"), why, ops, named)))
+        elif n < floor:
+            out.append(("warn",
+                        "promised ink %s%s measures %d native px^2, under the "
+                        "%d floor: %.0f px^2 at feed width and %.1f px^2 in a "
+                        "432px thumb. A mark that does not survive a five times "
+                        "downsample is not a mark, whatever it measures at 2160"
+                        % (d.get("hex"), why, n, floor, n / (scale * scale),
+                           n * (432.0 / img_arr.shape[1]) ** 2)))
+    return out
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -2619,6 +2839,11 @@ def main():
     scale = report["canvas"]["scale"]
     exp_w, exp_h = report["canvas"]["px"]
     design_w, design_h = report["canvas"]["width"], report["canvas"]["height"]
+
+    # Which frames declared an ink law, counted before the loop so a frame that
+    # declares none can be told it is the odd one out (2026-09-12).
+    ink_declared_n = sum(1 for r in report["slides"] if (r.get("ink_law") or []))
+    ink_declared_any = ink_declared_n > 0
 
     out = {"slides": [], "fails": 0, "warns": 0}
     for rec in report["slides"]:
@@ -3254,6 +3479,23 @@ def main():
             else:
                 res.setdefault("scales", []).append(detail)
 
+        # THE INK LAW (2026-09-12). Opt-in per frame like the axis census, and
+        # for the same reason: a slide that declares no law is not judged. The
+        # deck-level consistency warn below is what keeps opting in from being
+        # something a repair round can quietly drop on one frame.
+        for level, msg in ink_law(arr, rec, scale):
+            if level == "fail":
+                res["fails"].append("ink law: " + msg)
+            else:
+                res["warns"].append("ink law: " + msg)
+        if ink_declared_any and not (rec.get("ink_law") or []):
+            res["warns"].append(
+                "ink law: this frame declares no data-ink while %d other frame(s) "
+                "in this deck do. A law that holds on eight frames and is "
+                "unchecked on the ninth is how run No.57 shipped its third frame "
+                "with zero pixels of the ink its own state table promised"
+                % ink_declared_n)
+
         # LEADER LANDS ON NOTHING (2026-08-07). Opt-in, and pure arithmetic on
         # two declared points, so it cannot false-positive on an undeclared
         # slide or on art it cannot understand. See LEADER_LAND_PX for why the
@@ -3669,10 +3911,25 @@ def main():
                     else:
                         res["fails"].append(msg)
 
-        out["fails"] += len(res["fails"])
-        out["warns"] += len(res["warns"])
         out["slides"].append(res)
 
+    # THE TOTALS ARE DERIVED, NOT ACCUMULATED (2026-09-12, run No.57). They used
+    # to be summed by two `out["fails"] += ...` lines at the FOOT of the
+    # per-slide loop, which every `continue` above them jumped. The missing-PNG
+    # branch is exactly such a `continue`: it appended its FAIL to the slide row,
+    # printed it to the terminal, and never counted it, so a slide whose render
+    # threw produced machine_qa.json {"fails": 0, "warns": 0, "verdict":
+    # "PASS"} and exit 0. Reconstructed on disk this run: render.py hard-failed
+    # slide-01, qa.py printed `FAIL: png missing` and then `verdict: PASS`.
+    #
+    # It matters beyond the terminal because nothing downstream reads the
+    # terminal: machine_qa.json is what gate_status.py parses, what the scorer is
+    # handed and what the run record reports, and all three would be told a deck
+    # with a missing image passed clean. Summing the rows that were actually
+    # written cannot be skipped by any future early exit, so the class is closed
+    # rather than the one instance patched.
+    out["fails"] = sum(len(s["fails"]) for s in out["slides"])
+    out["warns"] = sum(len(s["warns"]) for s in out["slides"])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
     (rdir / "machine_qa.json").write_text(json.dumps(out, indent=2))
     for s in out["slides"]:
