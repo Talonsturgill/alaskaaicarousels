@@ -6838,3 +6838,60 @@ against roughly 5 percent of posted content, a 2.6x over-index. Slide count 8 to
 10 is repeated as the completion sweet spot with a cliff above 12. All three
 agree with what CAROUSEL_CRAFT already says from the primary LinkedIn
 engineering sources, and none of them is primary, so no gate moves.
+
+### 2026-09-12, Phase 1 craft refresh (No. 57)
+
+**THE HEAVIEST LINE IS THE ONE FACING AWAY FROM THE LIGHT, and this house has
+been ranking weights by MEANING instead.** The technical-illustration convention,
+stated most precisely by Greg Maxson and known in the trade as the Kalmbach
+method, is three ranks and the third is a LIGHTING rank, not an importance rank.
+Lines inside an object are thin. Lines on its exterior silhouette are heavier.
+Exterior lines that are down and away from the light source are heavier and
+darker still, and on large machinery that extra weight is what gives the object
+visual mass. Complex illustrations run 2 to 4 distinct weights, no more. Two
+sub-rules came through with it: a very thin interior line represents a radius
+under 90 degrees, and a thin BROKEN line represents a highlight.
+
+Why it matters here. No.53 logged "four ranked weights carrying meaning rather
+than emphasis" as a win, and it was one, but every weight in it was assigned by
+semantic rank. Nothing in the doctrine ties weight to the declared key azimuth.
+That means a deck can light its forms correctly and still draw all four sides of
+a silhouette at one weight, which is exactly what makes a shaded form read as a
+sticker cut out of paper. The cheap version is one pass: after the silhouette is
+stroked, re-stroke only the arcs whose outward normal points away from `S.LIGHT`
+at 1.6x the weight and a darker ink. It costs one dot product per segment.
+
+**Provenance, stated honestly.** The rule is a trade convention with a named
+attribution, not a standard. It is described as adopted from US Patent Office
+drawing practice, so MPEP 1503 was checked directly and does NOT carry it. The
+MPEP requires surface shading adequate to show contour, forbids solid black
+except as color, and requires oblique line shading for transparent, polished or
+reflective surfaces; it says nothing about light-source direction or where the
+heavy line goes. So cite Maxson, not the USPTO, and treat the light-keyed weight
+as craft rather than as a rule with a document behind it.
+(Sources: rj-graffix.com/multiple-line-weights-in-technical-illustration/,
+uspto.gov/web/offices/pac/mpep/s1503.html, 2026-09-12.)
+
+**Detail density is a DEPTH cue, and the absence of detail is the cue.** The
+cutaway tradition states it as a positive rule rather than a budget. Reducing
+information as elements recede reads as distance, and a foreground wall carrying
+brick coursing beside a background building carrying one faint outline reads
+deeper than the same two walls detailed identically at different sizes. This is
+the answer to No.56's wallpaper finding in a form a dossier can specify: a
+window that is one fill plus one coastline is not underdetailed, it is
+UNRANKED, and the repair is to spend the whole detail budget on the nearest
+third and deliberately strip the far third rather than to spread marks evenly.
+(Source: medium.com/technical-illustration/the-lost-art-of-cutaways-133a8d46a1e6
+and planetillustration.co.uk/technical-cutaway-illustrations/, read 2026-09-12.)
+
+**LinkedIn 2026, corroboration only, nothing applied.** Secondary aggregators
+now put document carousels at 7.00 percent engagement against a 5.20 percent
+all-format baseline, and the Oktopost March 2026 benchmark puts median B2B page
+engagement at 5.72 with a top decile of 22.45. One aggregator asserts 7 slides
+outperform every other length by 18 percent, which contradicts the 8 to 10
+window CAROUSEL_CRAFT carries from primary LinkedIn engineering sources, and it
+publishes no method. The agreed part is the cliff, which every source puts
+somewhere past 12 to 15 slides. No gate moves on a secondary number that
+disagrees with a primary one.
+(Sources: oktopost.com/blog/linkedin-carousel-pdf-best-practices/,
+carousels-generator.com/blog/linkedin-carousel-statistics-2026, 2026-09-12.)
