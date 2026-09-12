@@ -1,0 +1,248 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:80px;top:200px;width:500px;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;
+  line-height:1.34;color:#BAD6DA}
+h2{position:absolute;left:80px;top:292px;width:500px;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:58px;line-height:1.03;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:80px;top:508px;width:470px;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
+.rn{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.06em;color:#BAD6DA;font-variant-numeric:tabular-nums lining-nums}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,800],"to":[1350,2600],"band":[1012,1034],"marks":[{"at":150,"means":"1,000 m"},{"at":525,"means":"1,500 m"},{"at":900,"means":"2,000 m, the deepest depth either notice states, and the last tick on this axis"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>06 / 09</div>
+<div class="kick" data-reserve data-fit>WHAT RUNS AFTER<br>THE SHIP GOES HOME</div>
+<h2 data-reserve data-fit>A 22 day cruise.<br>A full year of<br>transmission.</h2>
+<p class="bd" data-reserve data-fit>The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking. The sources keep transmitting until September 13th, 2027. Mitigation that needs an observer works only while one is aboard.</p>
+<div class="la" id="lt" data-reserve>ONE TICK, ONE 30 s PULSE</div>
+<div class="la" id="lc" data-reserve>EVERY FOUR HOURS</div>
+<div class="la" id="lship" data-reserve>THE 22 DAYS ABOARD</div>
+<div class="la" id="lrest" data-reserve>THE REST OF THE YEAR</div>
+<div class="rn" id="r1000" data-reserve>1,000 m</div>
+<div class="rn" id="r1500" data-reserve>1,500 m</div>
+<div class="rn" id="r2000" data-reserve>2,000 m</div>
+<div class="prov" data-decorative>CYCLE AND TERM, THE NOTICE'S. THE TALLY IS THE DRAWING'S</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:46, max:58, maxLines:3});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  S.setWindow(800, 2600, 0, 1350);
+  var RAIL_X = 1014;
+
+  /* THE PULSE FIELD. 2,190 ticks, six a day for 365 days, laid ROW MAJOR across
+   * 30 columns and 73 rows, so the first 132 of them, six a day for the 22 days
+   * a ship is there, form one contiguous band at the TOP rather than a scatter.
+   * Both counts are products and both are [design]: the cycle is C17, the year
+   * is C16, the 22 days are C31, and only those three are printed anywhere on
+   * the frame. */
+  // the field takes the width the layout map gives it, cols 7 to 12, less the
+  // rail lane. 233 px of a 460 px allocation left a full height void beside
+  // the argument.
+  var FX0 = 556, FX1 = 872, FY0 = 158, FY1 = 1176;
+  var COLS = 30, ROWS = 73, LIT = 132;
+  var CW = (FX1 - FX0) / COLS, RH = (FY1 - FY0) / (ROWS - 1);
+
+  function tickAt(i){                      // i in 0..2189, row major
+    var r = Math.floor(i / COLS), c = i % COLS;
+    return [FX0 + c * CW, FY0 + r * RH];
+  }
+
+  // THE LABEL WAS ERASING THE THING IT NAMES. At x 292 its basin reached into
+  // the field's first five columns, so the attended band began 62 px right of
+  // the field's own left edge and read as a detached amber swatch floating
+  // above the tally rather than as its first four rows. It moves left, clear
+  // of the field and of the basin's 100 px ramp.
+  document.getElementById('lship').style.cssText += ';left:112px;top:150px';
+  document.getElementById('lt').style.cssText    += ';left:80px;top:984px';
+  document.getElementById('lc').style.cssText    += ';left:80px;top:1038px';
+  document.getElementById('lrest').style.cssText += ';left:112px;top:1114px';
+
+  ['lt','lc','lship','lrest'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:12, padY:7, fill:"rgba(3,10,16,0.72)", radius:3, note:"mono label " + id});
+  });
+  ['r1000','r1500','r2000'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.style.position = 'absolute';
+    el.style.width = '120px';
+    el.style.textAlign = 'right';
+    el.style.left = (RAIL_X - 26 - 120) + 'px';
+    el.style.top = (S.depth({r1000:1000, r1500:1500, r2000:2000}[id]) - 17) + 'px';
+    AKFIT.plate(el, {padX:10, padY:6, fill:"rgba(3,9,14,0.66)", radius:3,
+                     note:"rail numeral " + id});
+  });
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:100, depth:0.98, pad:24});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#06161E", bed:"#051219", steps:48});
+
+    (function(){
+      var rnd = AK.rng(570611);
+      for (var i = 0; i < 4800; i++){
+        var near = rnd() < 0.68;
+        var y = near ? 760 + rnd() * 590 : rnd() * H;
+        var x = rnd() * W;
+        // THE RAIL LANE IS A RESERVED FIXTURE LANE. A population with a size
+        // floor puts findable ink in it, and the axis census then reports marks
+        // the slide never declared, which is true and is the gate working.
+        if (x > RAIL_X - 70) continue;
+        var t = S.t(y);
+        var r = (near ? 1.0 : 0.75) + (near ? 1.3 : 0.75) * Math.pow(rnd(), 1.6);
+        var al = (0.10 + 0.24 * Math.pow(rnd(), 1.3)) * (near ? 1.0 : 0.62) * (1 - 0.44 * t);
+        // DETAIL DENSITY STRIPPED LEFT OF THE FIELD, so the type side stays the
+        // quiet half and the field reads as the loud one
+        if (x < FX0 - 40) al *= 0.45;
+        var aq = atten(x, y); if (aq < 0.20) continue;
+        al *= aq; r *= (0.55 + 0.45 * aq);
+        g.fillStyle = "rgba(180,212,218," + al.toFixed(3) + ")";
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+      }
+    })();
+
+    (function(){
+      // ONE FEATHERED WASH AND NO LOCATABLE EDGE. The first build ran a 44 px
+      // gradient into a hard fillRect, so the lane had a traceable vertical
+      // boundary and its numerals sat on a plate; two pixel critics found the
+      // seam and named it as the punchReserves defect arriving by another
+      // route. The falloff is 210 px and it never reaches full strength.
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,6,13,0)");
+      lane.addColorStop(0.55, "rgba(2,6,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,6,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, H);
+    })();
+
+    /* THE RAIL THAT RUNS OUT OF TICKS, drawn here rather than through AKICE.rail
+     * because no option on that function can stop an axis mid frame. 2,000 m is
+     * the deepest depth either notice states. Below it the rail continues as a
+     * phantom dash carrying no ticks at all, which is the thesis drawn rather
+     * than said, and it costs one line of code. */
+    (function(){
+      var yStop = S.depth(2000);
+      g.strokeStyle = "rgba(150,182,190,0.58)"; g.lineWidth = 1.6;
+      g.beginPath(); g.moveTo(RAIL_X, 0); g.lineTo(RAIL_X, yStop); g.stroke();
+      g.save();
+      g.setLineDash([9, 11]);
+      g.strokeStyle = "rgba(125,143,148,0.60)"; g.lineWidth = 1.25;
+      g.beginPath(); g.moveTo(RAIL_X, yStop); g.lineTo(RAIL_X, 1290); g.stroke();
+      g.restore();
+      [1000, 1500, 2000].forEach(function(m){
+        var y = S.depth(m);
+        g.strokeStyle = "rgba(186,214,218,0.78)"; g.lineWidth = 2.2;
+        g.beginPath(); g.moveTo(RAIL_X, y); g.lineTo(RAIL_X + 17, y); g.stroke();
+      });
+    })();
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  /* THE FIELD IS DRAWN ON THE SLIDE CANVAS AND NOT ON THE OFFSCREEN, because a
+   * 0.75 px tick needs the 2x backing store to exist at all: the offscreen is
+   * 1x, where it would resolve to a grey smear. Every tick is a fillRect and
+   * never a stroke, so nothing is half a pixel off a device boundary. */
+  (function(){
+    var i;
+    for (i = 0; i < ROWS * COLS; i++){
+      var p = tickAt(i);
+      var aq = atten(p[0] + 3, p[1]);
+      if (aq < 0.22) continue;
+      /* ALPHA 0.92 AND 0.52, NOT THE PLANNED 0.62 AND 0.30. Measured on the
+       * render, a 0.75 px tick at 0.30 on #03090C water does not exist: the
+       * first build put 2,190 marks on the frame and the deck's strongest
+       * single image came back as a faint gold patch on bare black. The
+       * ARGUMENT here is a ratio of counts, 132 against 2,058, and it is
+       * carried by how much of the field is lit rather than by how dim the
+       * unlit part is. Gold stays clearly the brighter of the two. */
+      /* THE CRESCENDO WAS RUNNING BACKWARDS. The state table makes this frame
+       * the deck's PEAK gold and at feed size its attended band was the
+       * faintest warm mark in nine frames, while slide 02's arcs were the
+       * boldest. The lit run now goes to full strength on a dark casing and at
+       * twice the height, so it owns the turn. The ratio is untouched: 132
+       * against 2,058, and the height of a mark is a drawing weight. */
+      var lit = i < LIT;
+      if (lit){
+        cx.fillStyle = "rgba(2,8,13,0.92)";
+        cx.fillRect(p[0] - 0.8, p[1] - 1.4, CW - 0.6, 6.0);
+        cx.fillStyle = "rgba(255,199,44," + (0.98 * aq).toFixed(3) + ")";
+        cx.fillRect(p[0], p[1], CW - 2.2, 3.2);
+      } else {
+        // 0.62 and 1.2 px. The denominator has to survive a five times
+        // downsample or the lit band has nothing to be a fraction OF, which
+        // is the one thing this frame exists to show.
+        cx.fillStyle = "rgba(125,143,148," + (0.62 * aq).toFixed(3) + ")";
+        cx.fillRect(p[0], p[1], CW - 2.2, 1.2);
+      }
+    }
+  })();
+
+  cx.lineCap = "butt";
+  function leader(el, target){
+    var b = AKFIT.inkRect(el);
+    var mx = b.x + b.w/2, my = b.y + b.h/2;
+    var dx = target[0] - mx, dy = target[1] - my, from;
+    if (Math.abs(dx) / (b.w/2 + 1) > Math.abs(dy) / (b.h/2 + 1)){
+      from = dx > 0 ? [b.right + 14, my] : [b.x - 14, my];
+    } else {
+      from = dy > 0 ? [mx, b.bottom + 12] : [mx, b.y - 12];
+    }
+    cx.strokeStyle = "rgba(186,214,218,0.76)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]); cx.lineTo(target[0], target[1]); cx.stroke();
+    cx.fillStyle = "rgba(186,214,218,0.92)";
+    cx.beginPath(); cx.arc(target[0], target[1], 2.8, 0, Math.PI*2); cx.fill();
+    return from;
+  }
+  var tShip = [tickAt(2)[0] + CW/2, tickAt(2)[1] + 2];
+  // THE LEADERS LEAVE SIDEWAYS, NOT UPWARDS. All three labels sit below the
+  // body block, so a leader aimed at a tick high in the field climbs straight
+  // across the body's last four lines: qa.py measured 69, 112, 103 and 65
+  // px^2 of leader inside them. Each target is now a tick at its own label's
+  // own height, on the field's first column.
+  var tOne  = [tickAt(1770)[0] + CW/2, tickAt(1770)[1]];
+  var tRest = [tickAt(2040)[0] + CW/2, tickAt(2040)[1]];
+  var fShip = leader(document.getElementById('lship'), tShip);
+  var fOne  = leader(document.getElementById('lt'), tOne);
+  var fRest = leader(document.getElementById('lrest'), tRest);
+
+  window.__akLeaders = [
+    {target:"the contiguous lit band", at:tShip, to:tShip, from:fShip, label:"THE 22 DAYS ABOARD"},
+    {target:"one unattended tick", at:tOne, to:tOne, from:fOne, label:"ONE TICK, ONE 30 s PULSE"},
+    {target:"the unattended remainder", at:tRest, to:tRest, from:fRest, label:"THE REST OF THE YEAR"}
+  ];
+
+  AKPOST.grade(cx, {exposure:-0.04, saturation:1.02, contrast:1.08,
+    grain:{amount:0.050, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

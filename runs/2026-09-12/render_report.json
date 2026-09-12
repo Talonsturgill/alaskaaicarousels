@@ -1,0 +1,5541 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(22, 51, 59)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "texts": [
+            "01 / 09"
+          ],
+          "full": "01 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(44, 74, 82)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              868,
+              84,
+              108,
+              29
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BEAUFORT AND CHUKCHI, YEAR 9",
+          "texts": [
+            "BEAUFORT AND CHUKCHI, YEAR 9"
+          ],
+          "full": "BEAUFORT AND CHUKCHI, YEAR 9",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 330,
+          "w": 483,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              330,
+              483,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The permit can find the robot. It can't count the seal.",
+          "texts": [
+            "The permit can find the robot.",
+            "It can't count the seal."
+          ],
+          "full": "The permit can find the robot. It can't count the seal.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 520,
+          "w": 920,
+          "h": 153,
+          "font_px": 79.5,
+          "weight": "640",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              509,
+              916,
+              98
+            ],
+            [
+              80,
+              585,
+              655,
+              98
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "POSITION, FIXED",
+          "texts": [
+            "POSITION, FIXED"
+          ],
+          "full": "POSITION, FIXED",
+          "tag": "div",
+          "unsized": false,
+          "x": 606,
+          "y": 452,
+          "w": 259,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              606,
+              452,
+              259,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "STOCK ABUNDANCE UNDETERMINED",
+          "texts": [
+            "STOCK ABUNDANCE",
+            "UNDETERMINED"
+          ],
+          "full": "STOCK ABUNDANCE UNDETERMINED",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1082,
+          "w": 420,
+          "h": 71,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1082,
+              259,
+              34
+            ],
+            [
+              80,
+              1118,
+              207,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "UND",
+          "texts": [
+            "UND"
+          ],
+          "full": "UND",
+          "tag": "div",
+          "unsized": false,
+          "x": 704,
+          "y": 1064,
+          "w": 170,
+          "h": 74,
+          "font_px": 74,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              712,
+              1055,
+              153,
+              91
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "TWO READINGS, ONE DOCUMENT",
+          "texts": [
+            "TWO READINGS, ONE DOCUMENT"
+          ],
+          "full": "TWO READINGS, ONE DOCUMENT",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 640,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              396,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "one reading resolves to a point and the other has nothing in it",
+          "reads": "differ",
+          "a": [
+            [
+              862,
+              303,
+              80,
+              80
+            ]
+          ],
+          "b": [
+            [
+              748,
+              1006,
+              80,
+              80
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0.7
+        }
+      ],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 3875,
+        "sites": 13,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-01.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3260,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 80.2,
+          "variance": 3684.4
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the fix, where the two range arcs close",
+          "to": [
+            902,
+            344
+          ],
+          "at": [
+            902,
+            344
+          ],
+          "from": [
+            880.8,
+            469
+          ],
+          "label": "POSITION, FIXED"
+        },
+        {
+          "target": "the dial's rim",
+          "to": [
+            637.8,
+            975.3
+          ],
+          "at": [
+            637.8,
+            975.3
+          ],
+          "from": [
+            356.8,
+            1098
+          ],
+          "label": "STOCK ABUNDANCE UNDETERMINED"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [
+        {
+          "op": "fill",
+          "n": 1,
+          "rects": 0,
+          "full": false,
+          "overlaps": [],
+          "canvas_w": 1080,
+          "canvas_h": 1350,
+          "at": ""
+        },
+        {
+          "op": "fill",
+          "n": 1,
+          "rects": 0,
+          "full": false,
+          "overlaps": [],
+          "canvas_w": 1080,
+          "canvas_h": 1350,
+          "at": ""
+        }
+      ],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-01.html",
+        "sha1": "89f1424559aa3fe5cbcffebfa5744c6d095f99e0"
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "texts": [
+            "02 / 09"
+          ],
+          "full": "02 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "POSITION BY DISTANCE, IN THE NOTICE'S WORDS",
+          "texts": [
+            "POSITION BY DISTANCE,",
+            "IN THE NOTICE'S WORDS"
+          ],
+          "full": "POSITION BY DISTANCE, IN THE NOTICE'S WORDS",
+          "tag": "div",
+          "unsized": false,
+          "x": 520,
+          "y": 258,
+          "w": 480,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              638,
+              257,
+              362,
+              34
+            ],
+            [
+              638,
+              291,
+              362,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Sound is how the machine knows where it is.",
+          "texts": [
+            "Sound is how",
+            "the machine knows",
+            "where it is."
+          ],
+          "full": "Sound is how the machine knows where it is.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 520,
+          "y": 336,
+          "w": 480,
+          "h": 192,
+          "font_px": 61.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              683,
+              329,
+              317,
+              76
+            ],
+            [
+              542,
+              393,
+              458,
+              76
+            ],
+            [
+              750,
+              457,
+              250,
+              76
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "Above the ice, a glider gets its position from a satellite modem. Under the ice,",
+          "texts": [
+            "Above the ice, a glider gets its position from a satellite modem. Under the ice, that signal can't reach it. The notice says gliders then navigate by trilateration from moored acoustic sound sources, "
+          ],
+          "full": "Above the ice, a glider gets its position from a satellite modem. Under the ice, that signal can't reach it. The notice says gliders then navigate by trilateration from moored acoustic sound sources, the geometry of intersecting circles.",
+          "tag": "p",
+          "unsized": false,
+          "x": 520,
+          "y": 636,
+          "w": 470,
+          "h": 469,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              520,
+              637,
+              446,
+              43
+            ],
+            [
+              520,
+              684,
+              441,
+              43
+            ],
+            [
+              520,
+              731,
+              446,
+              43
+            ],
+            [
+              520,
+              778,
+              402,
+              43
+            ],
+            [
+              520,
+              825,
+              396,
+              43
+            ],
+            [
+              520,
+              872,
+              399,
+              43
+            ],
+            [
+              520,
+              918,
+              363,
+              43
+            ],
+            [
+              520,
+              965,
+              314,
+              43
+            ],
+            [
+              520,
+              1012,
+              414,
+              43
+            ],
+            [
+              520,
+              1059,
+              117,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RANGE FROM SOURCE A",
+          "texts": [
+            "RANGE FROM SOURCE A"
+          ],
+          "full": "RANGE FROM SOURCE A",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 860,
+          "w": 328,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              860,
+              328,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RANGE FROM SOURCE B",
+          "texts": [
+            "RANGE FROM SOURCE B"
+          ],
+          "full": "RANGE FROM SOURCE B",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 968,
+          "w": 328,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              968,
+              328,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RANGE FROM SOURCE C",
+          "texts": [
+            "RANGE FROM SOURCE C"
+          ],
+          "full": "RANGE FROM SOURCE C",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1036,
+          "w": 328,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1036,
+              328,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE FIX",
+          "texts": [
+            "THE FIX"
+          ],
+          "full": "THE FIX",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 776,
+          "w": 121,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              776,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "GLIDERS TRANSIT TO DEPTHS OF UP TO 1,000 m",
+          "texts": [
+            "GLIDERS TRANSIT TO DEPTHS OF",
+            "UP TO 1,000 m"
+          ],
+          "full": "GLIDERS TRANSIT TO DEPTHS OF UP TO 1,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1120,
+          "w": 530,
+          "h": 71,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1120,
+              483,
+              34
+            ],
+            [
+              80,
+              1156,
+              224,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "SATELLITE FIXES DO NOT REACH UNDER ICE. THIS PAGE'S GLOSS",
+          "texts": [
+            "SATELLITE FIXES DO NOT REACH UNDER ICE. THIS PAGE'S GLOSS"
+          ],
+          "full": "SATELLITE FIXES DO NOT REACH UNDER ICE. THIS PAGE'S GLOSS",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              869,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "50 m",
+          "texts": [
+            "50 m"
+          ],
+          "full": "50 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 549,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              922,
+              549,
+              66,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "100 m",
+          "texts": [
+            "100 m"
+          ],
+          "full": "100 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 1093,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              1093,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            -2
+          ],
+          "to": [
+            1350,
+            122
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 17,
+              "means": "the ice arris, the lit top of the lid"
+            },
+            {
+              "at": 566,
+              "means": "50 m"
+            },
+            {
+              "at": 1110,
+              "means": "100 m"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 2390,
+        "sites": 9,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [
+        {
+          "key": "40|372|fillRect|destination-in",
+          "n": 1,
+          "how": "fillRect",
+          "r0": 40,
+          "r1": 372,
+          "a0": 1,
+          "col0": "rgba(0,0,0,1)",
+          "op": "destination-in",
+          "alpha": 1,
+          "core_frac": 0.0034,
+          "cx": 372,
+          "cy": 706,
+          "canvas_w": 1080,
+          "canvas_h": 1350
+        }
+      ],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-02.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3715,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45,
+          "variance": 938
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "range arc from source A",
+          "to": [
+            491.2,
+            503
+          ],
+          "at": [
+            491.2,
+            503
+          ],
+          "from": [
+            439.8,
+            877
+          ],
+          "label": "RANGE FROM SOURCE A"
+        },
+        {
+          "target": "range arc from source B",
+          "to": [
+            381.7,
+            485.3
+          ],
+          "at": [
+            381.7,
+            485.3
+          ],
+          "from": [
+            439.8,
+            985
+          ],
+          "label": "RANGE FROM SOURCE B"
+        },
+        {
+          "target": "range arc from source C",
+          "to": [
+            77.8,
+            635.6
+          ],
+          "at": [
+            77.8,
+            635.6
+          ],
+          "from": [
+            439.8,
+            1053
+          ],
+          "label": "RANGE FROM SOURCE C"
+        },
+        {
+          "target": "the fix, on the glider",
+          "to": [
+            372,
+            706
+          ],
+          "at": [
+            372,
+            706
+          ],
+          "from": [
+            286.8,
+            793
+          ],
+          "label": "THE FIX"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-02.html",
+        "sha1": "7d134db1018884c75401a83668c0f5275f43750d"
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "texts": [
+            "03 / 09"
+          ],
+          "full": "03 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE GRID, AS AUTHORIZED",
+          "texts": [
+            "THE GRID, AS AUTHORIZED"
+          ],
+          "full": "THE GRID, AS AUTHORIZED",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 196,
+          "w": 500,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              196,
+              397,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "30 seconds, every four hours, all year.",
+          "texts": [
+            "30 seconds,",
+            "every four hours,",
+            "all year."
+          ],
+          "full": "30 seconds, every four hours, all year.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 250,
+          "w": 500,
+          "h": 179,
+          "font_px": 57.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              244,
+              262,
+              71
+            ],
+            [
+              80,
+              304,
+              376,
+              71
+            ],
+            [
+              80,
+              364,
+              171,
+              71
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each ",
+          "texts": [
+            "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each sends a 30 second pulse every four hours. Two buoys drift on that cycle. Levels this year stay under 185 dB re 1 uPa at "
+          ],
+          "full": "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each sends a 30 second pulse every four hours. Two buoys drift on that cycle. Levels this year stay under 185 dB re 1 uPa at 1 m.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 478,
+          "w": 470,
+          "h": 375,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              479,
+              459,
+              43
+            ],
+            [
+              80,
+              526,
+              464,
+              43
+            ],
+            [
+              80,
+              573,
+              369,
+              43
+            ],
+            [
+              80,
+              620,
+              406,
+              43
+            ],
+            [
+              80,
+              667,
+              463,
+              43
+            ],
+            [
+              80,
+              714,
+              421,
+              43
+            ],
+            [
+              80,
+              760,
+              450,
+              43
+            ],
+            [
+              80,
+              807,
+              239,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "MOORING, FIXED",
+          "texts": [
+            "MOORING, FIXED"
+          ],
+          "full": "MOORING, FIXED",
+          "tag": "div",
+          "unsized": false,
+          "x": 678,
+          "y": 800,
+          "w": 238,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              678,
+              799,
+              238,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ICE GATEWAY BUOY, DRIFTS",
+          "texts": [
+            "ICE GATEWAY BUOY,",
+            "DRIFTS"
+          ],
+          "full": "ICE GATEWAY BUOY, DRIFTS",
+          "tag": "div",
+          "unsized": false,
+          "x": 596,
+          "y": 360,
+          "w": 289,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              596,
+              359,
+              289,
+              34
+            ],
+            [
+              596,
+              393,
+              102,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "900 TO 950 Hz",
+          "texts": [
+            "900 TO 950 Hz"
+          ],
+          "full": "900 TO 950 Hz",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 902,
+          "w": 221,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              901,
+              221,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "30 s EVERY 4 h",
+          "texts": [
+            "30 s EVERY 4 h"
+          ],
+          "full": "30 s EVERY 4 h",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 950,
+          "w": 238,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              949,
+              238,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "NTE 185 dB re 1 uPa at 1 m",
+          "texts": [
+            "NTE 185 dB",
+            "re 1 uPa at 1 m"
+          ],
+          "full": "NTE 185 dB re 1 uPa at 1 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 998,
+          "w": 255,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              997,
+              170,
+              34
+            ],
+            [
+              80,
+              1031,
+              255,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "1",
+          "texts": [
+            "1"
+          ],
+          "full": "1",
+          "tag": "div",
+          "unsized": false,
+          "x": 583,
+          "y": 112,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              597,
+              112,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "2",
+          "texts": [
+            "2"
+          ],
+          "full": "2",
+          "tag": "div",
+          "unsized": false,
+          "x": 803,
+          "y": 205,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              817,
+              205,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "3",
+          "texts": [
+            "3"
+          ],
+          "full": "3",
+          "tag": "div",
+          "unsized": false,
+          "x": 651,
+          "y": 435,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              665,
+              435,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "4",
+          "texts": [
+            "4"
+          ],
+          "full": "4",
+          "tag": "div",
+          "unsized": false,
+          "x": 831,
+          "y": 579,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              845,
+              579,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "5",
+          "texts": [
+            "5"
+          ],
+          "full": "5",
+          "tag": "div",
+          "unsized": false,
+          "x": 599,
+          "y": 730,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              613,
+              730,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "6",
+          "texts": [
+            "6"
+          ],
+          "full": "6",
+          "tag": "div",
+          "unsized": false,
+          "x": 779,
+          "y": 874,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              793,
+              874,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "7",
+          "texts": [
+            "7"
+          ],
+          "full": "7",
+          "tag": "div",
+          "unsized": false,
+          "x": 639,
+          "y": 1017,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              653,
+              1017,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "8",
+          "texts": [
+            "8"
+          ],
+          "full": "8",
+          "tag": "div",
+          "unsized": false,
+          "x": 739,
+          "y": 1089,
+          "w": 42,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              753,
+              1089,
+              14,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "100 m",
+          "texts": [
+            "100 m"
+          ],
+          "full": "100 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 267,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              267,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "200 m",
+          "texts": [
+            "200 m"
+          ],
+          "full": "200 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 622,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              622,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "300 m",
+          "texts": [
+            "300 m"
+          ],
+          "full": "300 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 978,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              978,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "400 m",
+          "texts": [
+            "400 m"
+          ],
+          "full": "400 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 878,
+          "y": 1176,
+          "w": 110,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              905,
+              1176,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "PULSE AND CEILING, THE NOTICE'S. PROPORTIONS, THE DRAWING'S",
+          "texts": [
+            "PULSE AND CEILING, THE NOTICE'S. PROPORTIONS, THE DRAWING'S"
+          ],
+          "full": "PULSE AND CEILING, THE NOTICE'S. PROPORTIONS, THE DRAWING'S",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              899,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            20
+          ],
+          "to": [
+            1350,
+            400
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 284,
+              "means": "100 m"
+            },
+            {
+              "at": 639,
+              "means": "200 m"
+            },
+            {
+              "at": 995,
+              "means": "300 m"
+            },
+            {
+              "at": 1350,
+              "means": "400 m"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1383,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-03.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2819,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.4,
+          "variance": 73.5
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "a fixed mooring body",
+          "to": [
+            639,
+            817.1
+          ],
+          "at": [
+            639,
+            817.1
+          ],
+          "from": [
+            664,
+            816.1
+          ],
+          "label": "MOORING, FIXED"
+        },
+        {
+          "target": "an ice gateway buoy",
+          "to": [
+            824,
+            320.4
+          ],
+          "at": [
+            824,
+            320.4
+          ],
+          "from": [
+            899,
+            392.8
+          ],
+          "label": "ICE GATEWAY BUOY,"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-03.html",
+        "sha1": "6745a289298c2c97c2cb4043ef60f62612005634"
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "texts": [
+            "04 / 09"
+          ],
+          "full": "04 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE STUDY AREA",
+          "texts": [
+            "THE STUDY AREA"
+          ],
+          "full": "THE STUDY AREA",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 200,
+          "w": 520,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              200,
+              242,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "About 639,237 square kilometres of water.",
+          "texts": [
+            "About 639,237",
+            "square kilometres",
+            "of water."
+          ],
+          "full": "About 639,237 square kilometres of water.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 254,
+          "w": 560,
+          "h": 188,
+          "font_px": 61.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              247,
+              363,
+              76
+            ],
+            [
+              80,
+              310,
+              428,
+              76
+            ],
+            [
+              80,
+              372,
+              204,
+              76
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. ",
+          "texts": [
+            "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. The work crosses the US exclusive economic zone, the high seas north of Alaska, and part of Canada's."
+          ],
+          "full": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. The work crosses the US exclusive economic zone, the high seas north of Alaska, and part of Canada's.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 512,
+          "w": 500,
+          "h": 328,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              513,
+              491,
+              43
+            ],
+            [
+              80,
+              560,
+              492,
+              43
+            ],
+            [
+              80,
+              607,
+              392,
+              43
+            ],
+            [
+              80,
+              654,
+              405,
+              43
+            ],
+            [
+              80,
+              701,
+              486,
+              43
+            ],
+            [
+              80,
+              748,
+              451,
+              43
+            ],
+            [
+              80,
+              794,
+              158,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THREE JURISDICTIONS, ONE OF THEM CANADA'S",
+          "texts": [
+            "THREE JURISDICTIONS,",
+            "ONE OF THEM CANADA'S"
+          ],
+          "full": "THREE JURISDICTIONS, ONE OF THEM CANADA'S",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 900,
+          "w": 340,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              899,
+              340,
+              34
+            ],
+            [
+              80,
+              933,
+              340,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "GLIDER, UP TO 1,000 m",
+          "texts": [
+            "GLIDER, UP TO 1,000 m"
+          ],
+          "full": "GLIDER, UP TO 1,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 118,
+          "y": 978,
+          "w": 357,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              977,
+              357,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "0.25 m/s, ABOUT 23 km/d",
+          "texts": [
+            "0.25 m/s, ABOUT 23 km/d"
+          ],
+          "full": "0.25 m/s, ABOUT 23 km/d",
+          "tag": "div",
+          "unsized": false,
+          "x": 118,
+          "y": 1048,
+          "w": 391,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              118,
+              1047,
+              391,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "500 m",
+          "texts": [
+            "500 m"
+          ],
+          "full": "500 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 856,
+          "y": 184,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              893,
+              184,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "600 m",
+          "texts": [
+            "600 m"
+          ],
+          "full": "600 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 856,
+          "y": 352,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              893,
+              352,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "800 m",
+          "texts": [
+            "800 m"
+          ],
+          "full": "800 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 856,
+          "y": 688,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              893,
+              688,
+              83,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "1,000 m",
+          "texts": [
+            "1,000 m"
+          ],
+          "full": "1,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 856,
+          "y": 1023,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              860,
+              1023,
+              116,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "AREA IS THE NOTICE'S. THE MOTE COUNT IS THE DRAWING'S",
+          "texts": [
+            "AREA IS THE NOTICE'S. THE MOTE COUNT IS THE DRAWING'S"
+          ],
+          "full": "AREA IS THE NOTICE'S. THE MOTE COUNT IS THE DRAWING'S",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              808,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            380
+          ],
+          "to": [
+            1040,
+            1000
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 201,
+              "means": "500 m"
+            },
+            {
+              "at": 369,
+              "means": "600 m"
+            },
+            {
+              "at": 705,
+              "means": "800 m"
+            },
+            {
+              "at": 1040,
+              "means": "1,000 m, the glider transit floor"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 2008,
+        "sites": 4,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-04.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3028,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 17.4,
+          "variance": 86.8
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the glider body",
+          "to": [
+            558,
+            1016
+          ],
+          "at": [
+            558,
+            1016
+          ],
+          "from": [
+            489,
+            994
+          ],
+          "label": "GLIDER, UP TO 1,000 m"
+        },
+        {
+          "target": "the glider body, drift rate",
+          "to": [
+            570,
+            1060
+          ],
+          "at": [
+            570,
+            1060
+          ],
+          "from": [
+            523,
+            1064
+          ],
+          "label": "0.25 m/s, ABOUT 23 km/d"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-04.html",
+        "sha1": "d170a001138c5c86275d296eca55fd529e99ea05"
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "texts": [
+            "05 / 09"
+          ],
+          "full": "05 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE MITIGATION ZONES, DRAWN TO ONE SCALE",
+          "texts": [
+            "THE MITIGATION ZONES,",
+            "DRAWN TO ONE SCALE"
+          ],
+          "full": "THE MITIGATION ZONES, DRAWN TO ONE SCALE",
+          "tag": "div",
+          "unsized": false,
+          "x": 560,
+          "y": 150,
+          "w": 440,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              638,
+              149,
+              362,
+              34
+            ],
+            [
+              689,
+              183,
+              311,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Every zone here, drawn at one scale.",
+          "texts": [
+            "Every zone here,",
+            "drawn at one",
+            "scale."
+          ],
+          "full": "Every zone here, drawn at one scale.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 540,
+          "y": 240,
+          "w": 460,
+          "h": 184,
+          "font_px": 59.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              622,
+              234,
+              378,
+              73
+            ],
+            [
+              703,
+              295,
+              297,
+              73
+            ],
+            [
+              875,
+              357,
+              125,
+              73
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observ",
+          "texts": [
+            "Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals. Deployment and recovery of a source carries a 55 metre zone. The estimated range to temporary hearing"
+          ],
+          "full": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals. Deployment and recovery of a source carries a 55 metre zone. The estimated range to temporary hearing threshold shift is under 15 metres.",
+          "tag": "p",
+          "unsized": false,
+          "x": 520,
+          "y": 452,
+          "w": 474,
+          "h": 469,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              520,
+              453,
+              395,
+              43
+            ],
+            [
+              520,
+              500,
+              420,
+              43
+            ],
+            [
+              520,
+              547,
+              435,
+              43
+            ],
+            [
+              520,
+              594,
+              443,
+              43
+            ],
+            [
+              520,
+              641,
+              468,
+              43
+            ],
+            [
+              520,
+              688,
+              444,
+              43
+            ],
+            [
+              520,
+              734,
+              433,
+              43
+            ],
+            [
+              520,
+              781,
+              351,
+              43
+            ],
+            [
+              520,
+              828,
+              430,
+              43
+            ],
+            [
+              520,
+              875,
+              124,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": [],
+          "occluded": {
+            "w": 3,
+            "h": 14,
+            "frac": 0.008,
+            "by": "DIV",
+            "by_text": ""
+          }
+        },
+        {
+          "text": "The 55 metre zone applies during deployment and recovery, not for the year the s",
+          "texts": [
+            "The 55 metre zone applies during deployment and recovery, not for the year the source then transmits."
+          ],
+          "full": "The 55 metre zone applies during deployment and recovery, not for the year the source then transmits.",
+          "tag": "p",
+          "unsized": false,
+          "x": 520,
+          "y": 940,
+          "w": 474,
+          "h": 174,
+          "font_px": 32,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              520,
+              941,
+              404,
+              40
+            ],
+            [
+              520,
+              985,
+              363,
+              40
+            ],
+            [
+              520,
+              1028,
+              459,
+              40
+            ],
+            [
+              520,
+              1072,
+              352,
+              40
+            ]
+          ],
+          "wrap": null,
+          "anc": [],
+          "occluded": {
+            "w": 3,
+            "h": 40,
+            "frac": 0.007,
+            "by": "DIV",
+            "by_text": ""
+          }
+        },
+        {
+          "text": "UNDER 15 m ESTIMATED TTS RANGE",
+          "texts": [
+            "UNDER 15 m",
+            "ESTIMATED TTS RANGE"
+          ],
+          "full": "UNDER 15 m ESTIMATED TTS RANGE",
+          "tag": "div",
+          "unsized": false,
+          "x": 120,
+          "y": 562,
+          "w": 323,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              561,
+              170,
+              34
+            ],
+            [
+              120,
+              595,
+              323,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "55 m DEPLOYMENT AND RECOVERY",
+          "texts": [
+            "55 m",
+            "DEPLOYMENT AND RECOVERY"
+          ],
+          "full": "55 m DEPLOYMENT AND RECOVERY",
+          "tag": "div",
+          "unsized": false,
+          "x": 120,
+          "y": 912,
+          "w": 391,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              911,
+              68,
+              34
+            ],
+            [
+              120,
+              945,
+              391,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "183 m OTHER OBSERVED MAMMALS",
+          "texts": [
+            "183 m",
+            "OTHER OBSERVED MAMMALS"
+          ],
+          "full": "183 m OTHER OBSERVED MAMMALS",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1014,
+          "w": 374,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1013,
+              85,
+              34
+            ],
+            [
+              96,
+              1047,
+              374,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "457 m OBSERVED CETACEANS",
+          "texts": [
+            "457 m",
+            "OBSERVED CETACEANS"
+          ],
+          "full": "457 m OBSERVED CETACEANS",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 1116,
+          "w": 306,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1115,
+              85,
+              34
+            ],
+            [
+              96,
+              1149,
+              306,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "LEVEL A HARASSMENT NEITHER ANTICIPATED NOR AUTHORIZED",
+          "texts": [
+            "LEVEL A HARASSMENT",
+            "NEITHER ANTICIPATED",
+            "NOR AUTHORIZED"
+          ],
+          "full": "LEVEL A HARASSMENT NEITHER ANTICIPATED NOR AUTHORIZED",
+          "tag": "div",
+          "unsized": false,
+          "x": 96,
+          "y": 236,
+          "w": 323,
+          "h": 101,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              235,
+              306,
+              34
+            ],
+            [
+              96,
+              269,
+              323,
+              34
+            ],
+            [
+              96,
+              302,
+              238,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S",
+          "texts": [
+            "ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S"
+          ],
+          "full": "ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              869,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            500
+          ],
+          "to": [
+            1350,
+            2000
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 0,
+              "means": "500 m"
+            },
+            {
+              "at": 450,
+              "means": "1,000 m"
+            },
+            {
+              "at": 900,
+              "means": "1,500 m"
+            },
+            {
+              "at": 1350,
+              "means": "2,000 m, the deepest depth either notice states"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1063,
+        "sites": 3,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-05.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 3403,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 12.1,
+          "variance": 119
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the 15 m circle",
+          "to": [
+            377.1,
+            779.5
+          ],
+          "at": [
+            377.1,
+            779.5
+          ],
+          "from": [
+            457,
+            594.8
+          ],
+          "label": "UNDER 15 m"
+        },
+        {
+          "target": "the 55 m circle",
+          "to": [
+            372,
+            841.5
+          ],
+          "at": [
+            372,
+            841.5
+          ],
+          "from": [
+            525,
+            944.8
+          ],
+          "label": "55 m"
+        },
+        {
+          "target": "the 183 m circle",
+          "to": [
+            506,
+            887.7
+          ],
+          "at": [
+            506,
+            887.7
+          ],
+          "from": [
+            484,
+            1046.8
+          ],
+          "label": "183 m"
+        },
+        {
+          "target": "the 457 m circle",
+          "to": [
+            540,
+            1167.4
+          ],
+          "at": [
+            540,
+            1167.4
+          ],
+          "from": [
+            416,
+            1148.8
+          ],
+          "label": "457 m"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-05.html",
+        "sha1": "8433d8961d63de1d52a74537301df0c17ff605f3"
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "texts": [
+            "06 / 09"
+          ],
+          "full": "06 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "WHAT RUNS AFTER THE SHIP GOES HOME",
+          "texts": [
+            "WHAT RUNS AFTER",
+            "THE SHIP GOES HOME"
+          ],
+          "full": "WHAT RUNS AFTER THE SHIP GOES HOME",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 200,
+          "w": 500,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              199,
+              259,
+              34
+            ],
+            [
+              80,
+              233,
+              311,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "A 22 day cruise. A full year of transmission.",
+          "texts": [
+            "A 22 day cruise.",
+            "A full year of",
+            "transmission."
+          ],
+          "full": "A 22 day cruise. A full year of transmission.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 292,
+          "w": 500,
+          "h": 178,
+          "font_px": 57.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              286,
+              350,
+              71
+            ],
+            [
+              80,
+              345,
+              277,
+              71
+            ],
+            [
+              80,
+              404,
+              301,
+              71
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "The cruise is planned for 22 days from September 22nd, on a ship the notice call",
+          "texts": [
+            "The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking. The sources keep transmitting until September 13th, 2027. Mitigation that ne"
+          ],
+          "full": "The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking. The sources keep transmitting until September 13th, 2027. Mitigation that needs an observer works only while one is aboard.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 508,
+          "w": 470,
+          "h": 469,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              509,
+              454,
+              43
+            ],
+            [
+              80,
+              556,
+              455,
+              43
+            ],
+            [
+              80,
+              603,
+              468,
+              43
+            ],
+            [
+              80,
+              650,
+              422,
+              43
+            ],
+            [
+              80,
+              697,
+              408,
+              43
+            ],
+            [
+              80,
+              744,
+              373,
+              43
+            ],
+            [
+              80,
+              790,
+              365,
+              43
+            ],
+            [
+              80,
+              837,
+              406,
+              43
+            ],
+            [
+              80,
+              884,
+              424,
+              43
+            ],
+            [
+              80,
+              931,
+              231,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ONE TICK, ONE 30 s PULSE",
+          "texts": [
+            "ONE TICK, ONE 30 s PULSE"
+          ],
+          "full": "ONE TICK, ONE 30 s PULSE",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 984,
+          "w": 408,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              983,
+              408,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "EVERY FOUR HOURS",
+          "texts": [
+            "EVERY FOUR HOURS"
+          ],
+          "full": "EVERY FOUR HOURS",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1038,
+          "w": 272,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1037,
+              272,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE 22 DAYS ABOARD",
+          "texts": [
+            "THE 22 DAYS ABOARD"
+          ],
+          "full": "THE 22 DAYS ABOARD",
+          "tag": "div",
+          "unsized": false,
+          "x": 112,
+          "y": 150,
+          "w": 306,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              149,
+              306,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE REST OF THE YEAR",
+          "texts": [
+            "THE REST OF THE YEAR"
+          ],
+          "full": "THE REST OF THE YEAR",
+          "tag": "div",
+          "unsized": false,
+          "x": 112,
+          "y": 1114,
+          "w": 340,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              1113,
+              340,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "1,000 m",
+          "texts": [
+            "1,000 m"
+          ],
+          "full": "1,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 868,
+          "y": 133,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              872,
+              133,
+              116,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "1,500 m",
+          "texts": [
+            "1,500 m"
+          ],
+          "full": "1,500 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 868,
+          "y": 508,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              872,
+              508,
+              116,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "2,000 m",
+          "texts": [
+            "2,000 m"
+          ],
+          "full": "2,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 868,
+          "y": 883,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              872,
+              883,
+              116,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "CYCLE AND TERM, THE NOTICE'S. THE TALLY IS THE DRAWING'S",
+          "texts": [
+            "CYCLE AND TERM, THE NOTICE'S. THE TALLY IS THE DRAWING'S"
+          ],
+          "full": "CYCLE AND TERM, THE NOTICE'S. THE TALLY IS THE DRAWING'S",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              853,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            800
+          ],
+          "to": [
+            1350,
+            2600
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 150,
+              "means": "1,000 m"
+            },
+            {
+              "at": 525,
+              "means": "1,500 m"
+            },
+            {
+              "at": 900,
+              "means": "2,000 m, the deepest depth either notice states, and the last tick on this axis"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1587,
+        "sites": 2,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-06.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2376,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 9.5,
+          "variance": 62.6
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the contiguous lit band",
+          "to": [
+            582.3,
+            160
+          ],
+          "at": [
+            582.3,
+            160
+          ],
+          "from": [
+            432,
+            166
+          ],
+          "label": "THE 22 DAYS ABOARD"
+        },
+        {
+          "target": "one unattended tick",
+          "to": [
+            561.3,
+            992.2
+          ],
+          "at": [
+            561.3,
+            992.2
+          ],
+          "from": [
+            502,
+            1000
+          ],
+          "label": "ONE TICK, ONE 30 s PULSE"
+        },
+        {
+          "target": "the unattended remainder",
+          "to": [
+            561.3,
+            1119.4
+          ],
+          "at": [
+            561.3,
+            1119.4
+          ],
+          "from": [
+            466,
+            1130
+          ],
+          "label": "THE REST OF THE YEAR"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-06.html",
+        "sha1": "22835e1b3ef8b6607775074785d5e87137b007e9"
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "texts": [
+            "07 / 09"
+          ],
+          "full": "07 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "ABUNDANCE ESTIMATES. NOT TAKE.",
+          "texts": [
+            "ABUNDANCE ESTIMATES.",
+            "NOT TAKE."
+          ],
+          "full": "ABUNDANCE ESTIMATES. NOT TAKE.",
+          "tag": "div",
+          "unsized": false,
+          "x": 560,
+          "y": 146,
+          "w": 446,
+          "h": 86,
+          "font_px": 32,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              560,
+              145,
+              416,
+              43
+            ],
+            [
+              560,
+              188,
+              187,
+              43
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "The same page gives the seal's number as UND.",
+          "texts": [
+            "The same page gives",
+            "the seal's number as UND."
+          ],
+          "full": "The same page gives the seal's number as UND.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 540,
+          "y": 296,
+          "w": 440,
+          "h": 90,
+          "font_px": 43.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              540,
+              291,
+              343,
+              54
+            ],
+            [
+              540,
+              336,
+              437,
+              54
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, fro",
+          "texts": [
+            "Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, from 2017, at a coefficient of variation of 0.51. Arctic ringed seal, the one species here listed as threatened, undetermin"
+          ],
+          "full": "Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, from 2017, at a coefficient of variation of 0.51. Arctic ringed seal, the one species here listed as threatened, undetermined.",
+          "tag": "p",
+          "unsized": false,
+          "x": 520,
+          "y": 500,
+          "w": 450,
+          "h": 375,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              520,
+              501,
+              405,
+              43
+            ],
+            [
+              520,
+              548,
+              319,
+              43
+            ],
+            [
+              520,
+              595,
+              394,
+              43
+            ],
+            [
+              520,
+              642,
+              364,
+              43
+            ],
+            [
+              520,
+              689,
+              419,
+              43
+            ],
+            [
+              520,
+              736,
+              443,
+              43
+            ],
+            [
+              520,
+              782,
+              424,
+              43
+            ],
+            [
+              520,
+              829,
+              442,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "39,258",
+          "texts": [
+            "39,258"
+          ],
+          "full": "39,258",
+          "tag": "div",
+          "unsized": false,
+          "x": 150,
+          "y": 386,
+          "w": 200,
+          "h": 50,
+          "font_px": 38,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 196, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              179,
+              386,
+              141,
+              50
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "13,305",
+          "texts": [
+            "13,305"
+          ],
+          "full": "13,305",
+          "tag": "div",
+          "unsized": false,
+          "x": 280,
+          "y": 836,
+          "w": 200,
+          "h": 50,
+          "font_px": 38,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(156, 196, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              309,
+              836,
+              141,
+              50
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "UND",
+          "texts": [
+            "UND"
+          ],
+          "full": "UND",
+          "tag": "div",
+          "unsized": false,
+          "x": 500,
+          "y": 1090,
+          "w": 240,
+          "h": 96,
+          "font_px": 96,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              519,
+              1079,
+              203,
+              118
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BEAUFORT BELUGA CV 0.229, 1992 SURVEY",
+          "texts": [
+            "BEAUFORT BELUGA",
+            "CV 0.229, 1992 SURVEY"
+          ],
+          "full": "BEAUFORT BELUGA CV 0.229, 1992 SURVEY",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 490,
+          "w": 357,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              489,
+              255,
+              34
+            ],
+            [
+              80,
+              523,
+              357,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "EASTERN CHUKCHI BELUGA CV 0.51, 2017 SURVEY",
+          "texts": [
+            "EASTERN CHUKCHI BELUGA",
+            "CV 0.51, 2017 SURVEY"
+          ],
+          "full": "EASTERN CHUKCHI BELUGA CV 0.51, 2017 SURVEY",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 940,
+          "w": 374,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              939,
+              374,
+              34
+            ],
+            [
+              80,
+              973,
+              340,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "ARCTIC RINGED SEAL LISTED THREATENED",
+          "texts": [
+            "ARCTIC RINGED SEAL",
+            "LISTED THREATENED"
+          ],
+          "full": "ARCTIC RINGED SEAL LISTED THREATENED",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1074,
+          "w": 306,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1073,
+              306,
+              34
+            ],
+            [
+              80,
+              1107,
+              289,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "PBR, UNDETERMINED",
+          "texts": [
+            "PBR, UNDETERMINED"
+          ],
+          "full": "PBR, UNDETERMINED",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1168,
+          "w": 289,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1167,
+              289,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "NO VALUE TO PLOT",
+          "texts": [
+            "NO VALUE TO PLOT"
+          ],
+          "full": "NO VALUE TO PLOT",
+          "tag": "div",
+          "unsized": false,
+          "x": 696,
+          "y": 986,
+          "w": 272,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              696,
+              985,
+              272,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE",
+          "texts": [
+            "RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE"
+          ],
+          "full": "RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              869,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [
+        {
+          "claim": "two dials have a needle and the third has an empty socket",
+          "reads": "differ",
+          "a": [
+            [
+              315,
+              355,
+              22,
+              22
+            ]
+          ],
+          "b": [
+            [
+              609,
+              1049,
+              22,
+              22
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            1000
+          ],
+          "to": [
+            1350,
+            3000
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 675,
+              "means": "2,000 m, the deepest depth either notice states, and the last tick on this axis"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 1426,
+        "sites": 8,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-07.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2616,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 9.4,
+          "variance": 142.1
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "dial one's coefficient of variation ring",
+          "to": [
+            302.9,
+            366.2
+          ],
+          "at": [
+            302.9,
+            366.2
+          ],
+          "from": [
+            258.5,
+            477
+          ],
+          "label": "BEAUFORT BELUGA"
+        },
+        {
+          "target": "dial two's coefficient of variation ring",
+          "to": [
+            274.8,
+            715.8
+          ],
+          "at": [
+            274.8,
+            715.8
+          ],
+          "from": [
+            267,
+            927
+          ],
+          "label": "EASTERN CHUKCHI BELUGA"
+        },
+        {
+          "target": "dial three's rim",
+          "to": [
+            499.7,
+            1016.2
+          ],
+          "at": [
+            499.7,
+            1016.2
+          ],
+          "from": [
+            233,
+            1061
+          ],
+          "label": "ARCTIC RINGED SEAL"
+        },
+        {
+          "target": "dial three's lower rim",
+          "to": [
+            524,
+            1148
+          ],
+          "at": [
+            524,
+            1148
+          ],
+          "from": [
+            383,
+            1184
+          ],
+          "label": "PBR, UNDETERMINED"
+        },
+        {
+          "target": "dial three's empty needle socket",
+          "to": [
+            620,
+            1060
+          ],
+          "at": [
+            620,
+            1060
+          ],
+          "from": [
+            832,
+            1031
+          ],
+          "label": "NO VALUE TO PLOT"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-07.html",
+        "sha1": "79b1b41d6aa4703534e5ac2279fdcd8a8031fc1a"
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "texts": [
+            "08 / 09"
+          ],
+          "full": "08 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE NINTH YEAR, ONE AT A TIME",
+          "texts": [
+            "THE NINTH YEAR,",
+            "ONE AT A TIME"
+          ],
+          "full": "THE NINTH YEAR, ONE AT A TIME",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 196,
+          "w": 500,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              195,
+              259,
+              34
+            ],
+            [
+              80,
+              229,
+              224,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Position, fixed. The rest is undetermined.",
+          "texts": [
+            "Position, fixed.",
+            "The rest is",
+            "undetermined."
+          ],
+          "full": "Position, fixed. The rest is undetermined.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 80,
+          "y": 288,
+          "w": 500,
+          "h": 178,
+          "font_px": 57.5,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              282,
+              326,
+              71
+            ],
+            [
+              80,
+              341,
+              228,
+              71
+            ],
+            [
+              80,
+              400,
+              329,
+              71
+            ]
+          ],
+          "wrap": {
+            "authored": 3,
+            "rendered": 3
+          },
+          "anc": []
+        },
+        {
+          "text": "The authorization runs from September 14th and by statute can't run longer than ",
+          "texts": [
+            "The authorization runs from September 14th and by statute can't run longer than a year. This is the ninth year of the project. It relies on a Biological Opinion issued on September 13th, 2022. Three p"
+          ],
+          "full": "The authorization runs from September 14th and by statute can't run longer than a year. This is the ninth year of the project. It relies on a Biological Opinion issued on September 13th, 2022. Three private citizens wrote in.",
+          "tag": "p",
+          "unsized": false,
+          "x": 80,
+          "y": 492,
+          "w": 504,
+          "h": 375,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              493,
+              459,
+              43
+            ],
+            [
+              80,
+              540,
+              384,
+              43
+            ],
+            [
+              80,
+              587,
+              480,
+              43
+            ],
+            [
+              80,
+              634,
+              460,
+              43
+            ],
+            [
+              80,
+              681,
+              444,
+              43
+            ],
+            [
+              80,
+              728,
+              460,
+              43
+            ],
+            [
+              80,
+              774,
+              470,
+              43
+            ],
+            [
+              80,
+              821,
+              403,
+              43
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "BIOLOGICAL OPINION SEPTEMBER 13TH, 2022",
+          "texts": [
+            "BIOLOGICAL OPINION",
+            "SEPTEMBER 13TH, 2022"
+          ],
+          "full": "BIOLOGICAL OPINION SEPTEMBER 13TH, 2022",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 882,
+          "w": 340,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(110, 165, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              881,
+              306,
+              34
+            ],
+            [
+              80,
+              915,
+              340,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "THREE COMMENT LETTERS PRIVATE CITIZENS",
+          "texts": [
+            "THREE COMMENT LETTERS",
+            "PRIVATE CITIZENS"
+          ],
+          "full": "THREE COMMENT LETTERS PRIVATE CITIZENS",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 964,
+          "w": 357,
+          "h": 67,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              963,
+              357,
+              34
+            ],
+            [
+              80,
+              997,
+              272,
+              34
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "2,000 m",
+          "texts": [
+            "2,000 m"
+          ],
+          "full": "2,000 m",
+          "tag": "div",
+          "unsized": false,
+          "x": 856,
+          "y": 474,
+          "w": 120,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              860,
+              474,
+              116,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "THE RECORD'S DEEPEST STATED DEPTH IS 2,000 m. BELOW THAT, DRAWN AND NOT MEASURED",
+          "texts": [
+            "THE RECORD'S DEEPEST",
+            "STATED DEPTH IS 2,000 m.",
+            "BELOW THAT, DRAWN",
+            "AND NOT MEASURED."
+          ],
+          "full": "THE RECORD'S DEEPEST STATED DEPTH IS 2,000 m. BELOW THAT, DRAWN AND NOT MEASURED.",
+          "tag": "div",
+          "unsized": false,
+          "x": 604,
+          "y": 812,
+          "w": 394,
+          "h": 136,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(125, 143, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              604,
+              813,
+              326,
+              31
+            ],
+            [
+              604,
+              847,
+              392,
+              31
+            ],
+            [
+              604,
+              881,
+              277,
+              31
+            ],
+            [
+              604,
+              915,
+              277,
+              31
+            ]
+          ],
+          "wrap": {
+            "authored": 4,
+            "rendered": 4
+          },
+          "anc": []
+        },
+        {
+          "text": "SEABED DEPTH DOES NOT APPEAR IN THE NOTICE",
+          "texts": [
+            "SEABED DEPTH DOES NOT APPEAR IN THE NOTICE"
+          ],
+          "full": "SEABED DEPTH DOES NOT APPEAR IN THE NOTICE",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1214,
+          "w": 940,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1214,
+              640,
+              31
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the mooring anchor block on the sea bed",
+          "shadow": [
+            [
+              458,
+              1178,
+              26,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              521,
+              1178,
+              26,
+              10
+            ]
+          ]
+        }
+      ],
+      "scales": [
+        {
+          "what": "depth below the waterline",
+          "axis": "y",
+          "unit": "metres",
+          "from": [
+            0,
+            1200
+          ],
+          "to": [
+            1350,
+            3400
+          ],
+          "band": [
+            1012,
+            1034
+          ],
+          "band_declared": [
+            1012,
+            1034
+          ],
+          "marks": [
+            {
+              "at": 491,
+              "means": "2,000 m, the deepest depth either notice states, and the last tick on this axis"
+            }
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 681,
+        "sites": 7,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-08.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2555,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 9.1,
+          "variance": 145.5
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the anchor block on the bed",
+          "to": [
+            390,
+            1126
+          ],
+          "at": [
+            390,
+            1126
+          ],
+          "from": [
+            258.5,
+            1042.5
+          ],
+          "label": "THREE COMMENT LETTERS"
+        }
+      ],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-08.html",
+        "sha1": "44efe01da0b8a27f65eba70f6b325b86ecadafae"
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ALASKA.AI",
+          "texts": [
+            "ALASKA.AI"
+          ],
+          "full": "ALASKA.AI",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 84,
+          "w": 158,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(186, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              158,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "texts": [
+            "09 / 09"
+          ],
+          "full": "09 / 09",
+          "tag": "div",
+          "unsized": false,
+          "x": 826,
+          "y": 84,
+          "w": 150,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 163, 168)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              855,
+              84,
+              121,
+              34
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "The robot's fix or the seal's number.",
+          "texts": [
+            "The robot's fix",
+            "or the seal's number."
+          ],
+          "full": "The robot's fix or the seal's number.",
+          "tag": "h2",
+          "unsized": false,
+          "x": 150,
+          "y": 430,
+          "w": 780,
+          "h": 166,
+          "font_px": 81.5,
+          "weight": "640",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              314,
+              421,
+              452,
+              101
+            ],
+            [
+              215,
+              504,
+              651,
+              101
+            ]
+          ],
+          "wrap": {
+            "authored": 2,
+            "rendered": 2
+          },
+          "anc": []
+        },
+        {
+          "text": "Year 10 is already inside the comment scope of Year 9. Which of those two number",
+          "texts": [
+            "Year 10 is already inside the comment scope of Year 9. Which of those two numbers should the next authorization improve?"
+          ],
+          "full": "Year 10 is already inside the comment scope of Year 9. Which of those two numbers should the next authorization improve?",
+          "tag": "p",
+          "unsized": false,
+          "x": 190,
+          "y": 724,
+          "w": 700,
+          "h": 193,
+          "font_px": 36,
+          "weight": "500",
+          "family": "Space Grotesk",
+          "color": "rgb(216, 236, 238)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              213,
+              725,
+              654,
+              46
+            ],
+            [
+              228,
+              773,
+              624,
+              46
+            ],
+            [
+              200,
+              821,
+              680,
+              46
+            ],
+            [
+              461,
+              870,
+              159,
+              46
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        },
+        {
+          "text": "alaskaaihq.com",
+          "texts": [
+            "alaskaaihq.com"
+          ],
+          "full": "alaskaaihq.com",
+          "tag": "div",
+          "unsized": false,
+          "x": 80,
+          "y": 1258,
+          "w": 340,
+          "h": 23,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(70, 84, 95)",
+          "decorative": true,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1258,
+              171,
+              23
+            ]
+          ],
+          "wrap": null,
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "scales": [],
+      "nondeterminism": [],
+      "collapsed_fits": [],
+      "vacuous_asserts": [],
+      "lights": [],
+      "light_conflicts": [],
+      "paint": {
+        "fills": 532,
+        "sites": 6,
+        "site_cap": false,
+        "empty": []
+      },
+      "fits": [],
+      "asserts": [],
+      "motifs": [],
+      "css_unreadable": 0,
+      "gradient_clips": [],
+      "flat_cores": [],
+      "declaration_misses": [],
+      "canvas_layer": {
+        "ok": true,
+        "canvases": 1,
+        "file": "slide-09.canvas.png",
+        "approx": [],
+        "w": 1080,
+        "h": 1350
+      },
+      "render_ms": 2346,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 9,
+          "variance": 135.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "path_discards": [],
+      "discard_count": 0,
+      "evenodd_ops": [],
+      "source": {
+        "path": "/home/user/alaskaaicarousels/out/2026-09-12/slides/slide-09.html",
+        "sha1": "6149def6e9d6c2c626b4ee74954f4f5762c3176c"
+      }
+    }
+  ]
+}

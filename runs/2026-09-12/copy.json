@@ -1,0 +1,198 @@
+{
+ "run_date": "2026-09-12",
+ "carousel_no": 57,
+ "document_title": "The Permit Knows Where the Machine Is",
+ "post_copy": "Two numbers and one blank sit in the stock table of the Arctic permit NMFS issued the Navy on September 10th.\n\nBeaufort beluga. Abundance estimate 39,258 from a 1992 survey.\nEastern Chukchi beluga. Abundance estimate 13,305 from 2017.\nArctic ringed seal, listed as threatened. Abundance undetermined.\n\nUp to six moorings and two drifting buoys pulse 30 seconds every four hours for a year, so gliders under the ice can fix a position by trilateration.\n\nThe machine half is exact to the second. The animal half is stale or blank.\n\nNine frames descend one column of water, from four mitigation zones at true metre scale down to a stock dial with no needle.\n\nYear 10 is already inside Year 9's comment scope. How does the seal's blank survive nine years of one year permits?\n\n#MarineMammalProtectionAct #ArcticResearch #AlaskaAI",
+ "first_comment": "Sources for this one, primary first.\n\nNMFS issuance, Year 9 incidental harassment authorization, Federal Register September 10th, 2026, 91 FR 57547. https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm\nThe issuance in plain text, carrying the mitigation zones and the Level A finding. https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt\nNMFS proposed notice, July 22nd, 2026, 91 FR 46055, which holds the source table and the stock table. https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt\nThe same proposed notice on govinfo. https://www.govinfo.gov/content/pkg/FR-2026-07-22/html/2026-14816.htm\n\nEvery Alaska AI decision this page tracks, with live deadlines, sits at alaskaaihq.com.\nAdd context in a reply if you have worked these stocks or these moorings.",
+ "deck_summary": "Nine frames descend one column of water, from four mitigation zones at true metre scale down to a stock dial with no needle.",
+ "hashtags": [
+  "#MarineMammalProtectionAct",
+  "#ArcticResearch",
+  "#AlaskaAI"
+ ],
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "BEAUFORT AND CHUKCHI, YEAR 9",
+   "headline": "The permit can find the robot. It can't count the seal.",
+   "body": "",
+   "labels": [
+    "POSITION, FIXED",
+    "STOCK ABUNDANCE\nUNDETERMINED",
+    "UND"
+   ],
+   "provenance": "TWO READINGS, ONE DOCUMENT",
+   "claim_ids": [
+    "C05",
+    "C25",
+    "C43"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "POSITION BY DISTANCE,\nIN THE NOTICE'S WORDS",
+   "headline": "Sound is how the machine knows where it is.",
+   "body": "Above the ice, a glider gets its position from a satellite modem. Under the ice, that signal can't reach it. The notice says gliders then navigate by trilateration from moored acoustic sound sources, the geometry of intersecting circles.",
+   "labels": [
+    "RANGE FROM SOURCE A",
+    "RANGE FROM SOURCE B",
+    "RANGE FROM SOURCE C",
+    "THE FIX",
+    "GLIDERS TRANSIT TO DEPTHS OF\nUP TO 1,000 m"
+   ],
+   "provenance": "SATELLITE FIXES DO NOT REACH UNDER ICE. THIS PAGE'S GLOSS",
+   "claim_ids": [
+    "C25",
+    "C27"
+   ],
+   "note": "Kicker replaced twice. HOW A MACHINE UNDER ICE KNOWS WHERE IT IS repeated five of the headline's eight words directly above it. The first replacement, UNDER ICE, A POSITION IS THREE DISTANCES, was refused by aggregate_check and rightly: the notice's own parenthetical defines trilateration as determining location by measurement of distances using the geometry of circles, spheres or triangles, and it never says three, so the number was this page's inference printed as the record's. The shipped string carries the mechanism and no count."
+  },
+  {
+   "n": 3,
+   "kicker": "THE GRID, AS AUTHORIZED",
+   "headline": "30 seconds,\nevery four hours,\nall year.",
+   "body": "Up to six moorings are fixed acoustic navigation sources at 900 to 950 Hz. Each sends a 30 second pulse every four hours. Two buoys drift on that cycle. Levels this year stay under 185 dB re 1 uPa at 1 m.",
+   "labels": [
+    "MOORING, FIXED",
+    "ICE GATEWAY BUOY, DRIFTS",
+    "900 TO 950 Hz",
+    "30 s EVERY 4 h",
+    "NTE 185 dB\nre 1 uPa at 1 m"
+   ],
+   "provenance": "PULSE AND CEILING, THE NOTICE'S. PROPORTIONS, THE DRAWING'S",
+   "claim_ids": [
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C30"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "THE STUDY AREA",
+   "headline": "About 639,237\nsquare kilometres\nof water.",
+   "body": "Its closest point to the Alaska coast is 204 kilometres, or 110 nautical miles. The work crosses the US exclusive economic zone, the high seas north of Alaska, and part of Canada's.",
+   "labels": [
+    "THREE JURISDICTIONS,\nONE OF THEM CANADA'S",
+    "GLIDER, UP TO 1,000 m",
+    "0.25 m/s, ABOUT 23 km/d"
+   ],
+   "provenance": "AREA IS THE NOTICE'S. THE MOTE COUNT IS THE DRAWING'S",
+   "claim_ids": [
+    "C11",
+    "C12",
+    "C13",
+    "C26",
+    "C27"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "THE MITIGATION ZONES,\nDRAWN TO ONE SCALE",
+   "headline": "Every zone here,\ndrawn at one\nscale.",
+   "body": "Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals. Deployment and recovery of a source carries a 55 metre zone. The estimated range to temporary hearing threshold shift is under 15 metres.",
+   "lower_band_line": "The 55 metre zone applies during deployment and recovery, not for the year the source then transmits.",
+   "labels": [
+    "457 m\nOBSERVED CETACEANS",
+    "183 m\nOTHER OBSERVED MAMMALS",
+    "55 m\nDEPLOYMENT AND RECOVERY",
+    "UNDER 15 m\nESTIMATED TTS RANGE",
+    "LEVEL A HARASSMENT\nNEITHER ANTICIPATED\nNOR AUTHORIZED"
+   ],
+   "provenance": "ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S",
+   "claim_ids": [
+    "C16",
+    "C37",
+    "C45",
+    "C46",
+    "C50"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "WHAT RUNS AFTER\nTHE SHIP GOES HOME",
+   "headline": "A 22 day cruise.\nA full year of\ntransmission.",
+   "body": "The cruise is planned for 22 days from September 22nd, on a ship the notice calls ice strengthened rather than icebreaking. The sources keep transmitting until September 13th, 2027. Mitigation that needs an observer works only while one is aboard.",
+   "labels": [
+    "ONE TICK, ONE 30 s PULSE",
+    "EVERY FOUR HOURS",
+    "THE 22 DAYS ABOARD",
+    "THE REST OF THE YEAR"
+   ],
+   "provenance": "CYCLE AND TERM, THE NOTICE'S. THE TALLY IS THE DRAWING'S",
+   "claim_ids": [
+    "C02",
+    "C16",
+    "C17",
+    "C31",
+    "C32",
+    "C34",
+    "C45"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "ABUNDANCE ESTIMATES.\nNOT TAKE.",
+   "headline": "The same page\ngives the seal's\nnumber as UND.",
+   "body": "Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, from 2017, at a coefficient of variation of 0.51. Arctic ringed seal, the one species here listed as threatened, undetermined.",
+   "labels": [
+    "BEAUFORT BELUGA\nCV 0.229, 1992 SURVEY",
+    "EASTERN CHUKCHI BELUGA\nCV 0.51, 2017 SURVEY",
+    "ARCTIC RINGED SEAL\nLISTED THREATENED",
+    "PBR, UNDETERMINED",
+    "NO VALUE TO PLOT"
+   ],
+   "provenance": "RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE",
+   "claim_ids": [
+    "C39",
+    "C41",
+    "C42",
+    "C43"
+   ],
+   "faces": [
+    "39,258",
+    "13,305",
+    "UND"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "THE NINTH YEAR,\nONE AT A TIME",
+   "headline": "Position, fixed.\nThe rest is\nundetermined.",
+   "body": "The authorization runs from September 14th and by statute can't run longer than a year. This is the ninth year of the project. It relies on a Biological Opinion issued on September 13th, 2022. Three private citizens wrote in.",
+   "labels": [
+    "BIOLOGICAL OPINION\nSEPTEMBER 13TH, 2022",
+    "THREE COMMENT LETTERS\nPRIVATE CITIZENS",
+    "THE RECORD'S DEEPEST\nSTATED DEPTH IS 2,000 m.\nBELOW THAT, DRAWN\nAND NOT MEASURED."
+   ],
+   "provenance": "SEABED DEPTH DOES NOT APPEAR IN THE NOTICE",
+   "claim_ids": [
+    "C02",
+    "C06",
+    "C23",
+    "C40",
+    "C44",
+    "C47"
+   ],
+   "note": "Kicker changed from NINE YEARS to THE NINTH YEAR after the aggregate gate. C06 says this authorization covers the ninth year of the project; it does not print the number nine, so NINE YEARS was an assertion the record does not carry in those words and aggregate_check was right to refuse it. The ordinal is what the notice says and it still satisfies the frame's own acceptance test, that the count refers to YEARS and never to a stack of documents."
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "The robot's fix\nor the seal's\nnumber.",
+   "body": "Year 10 is already inside the comment scope of Year 9. Which of those two numbers should the next authorization improve?",
+   "labels": [
+    "ALASKA.AI",
+    "09 / 09",
+    "alaskaaihq.com"
+   ],
+   "claim_ids": [
+    "C53"
+   ],
+   "note": "No provenance or source note appears on this frame, and none may. The dossier carries the owner change of 2026-09-11 as a hard layout rule for the close, and the copywriter supplied one anyway. The render is right and this entry was wrong."
+  }
+ ]
+}

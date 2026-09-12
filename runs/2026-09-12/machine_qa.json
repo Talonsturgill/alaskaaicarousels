@@ -1,0 +1,144 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'one reading resolves to a point and the other has nothing in it': dE 32.4, AUC 0.96, visible 100%/70%, seen 1024/716px at 432w"
+      ],
+      "leaders": [
+        "leader 'the fix, where the two range arcs close' lands 0.0px from its target",
+        "leader \"the dial's rim\" lands 0.0px from its target",
+        "leader 'the fix, where the two range arcs close' meets its label 15.8px away",
+        "leader \"the dial's rim\" meets its label 0.0px away"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'depth below the waterline' runs -2 metres at 0 to 122 metres at 1350; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'range arc from source A' lands 0.0px from its target",
+        "leader 'range arc from source B' lands 0.0px from its target",
+        "leader 'range arc from source C' lands 0.0px from its target",
+        "leader 'the fix, on the glider' lands 0.0px from its target",
+        "leader 'range arc from source A' meets its label 15.8px away",
+        "leader 'range arc from source B' meets its label 15.8px away",
+        "leader 'range arc from source C' meets its label 15.8px away",
+        "leader 'the fix, on the glider' meets its label 15.8px away"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'depth below the waterline' runs 20 metres at 0 to 400 metres at 1350; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'a fixed mooring body' lands 0.0px from its target",
+        "leader 'an ice gateway buoy' lands 0.0px from its target",
+        "leader 'a fixed mooring body' meets its label 14.0px away",
+        "leader 'an ice gateway buoy' meets its label 14.0px away"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'depth below the waterline' runs 380 metres at 0 to 1,000 metres at 1040; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the glider body' lands 0.0px from its target",
+        "leader 'the glider body, drift rate' lands 0.0px from its target",
+        "leader 'the glider body' meets its label 14.0px away",
+        "leader 'the glider body, drift rate' meets its label 14.0px away"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'depth below the waterline' runs 500 metres at 0 to 2,000 metres at 1350; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the 15 m circle' lands 0.0px from its target",
+        "leader 'the 55 m circle' lands 0.0px from its target",
+        "leader 'the 183 m circle' lands 0.0px from its target",
+        "leader 'the 457 m circle' lands 0.0px from its target",
+        "leader 'the 15 m circle' meets its label 14.0px away",
+        "leader 'the 55 m circle' meets its label 0.0px away",
+        "leader 'the 183 m circle' meets its label 14.0px away",
+        "leader 'the 457 m circle' meets its label 14.0px away"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'depth below the waterline' runs 800 metres at 0 to 2,600 metres at 1350; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the contiguous lit band' lands 0.0px from its target",
+        "leader 'one unattended tick' lands 0.0px from its target",
+        "leader 'the unattended remainder' lands 0.0px from its target",
+        "leader 'the contiguous lit band' meets its label 14.0px away",
+        "leader 'one unattended tick' meets its label 14.0px away",
+        "leader 'the unattended remainder' meets its label 14.0px away"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'two dials have a needle and the third has an empty socket': dE 115.6, AUC 0.86, visible 100%/100%, seen 64/81px at 432w"
+      ],
+      "scales": [
+        "'depth below the waterline' runs 1,000 metres at 0 to 3,000 metres at 1350; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"dial one's coefficient of variation ring\" lands 0.0px from its target",
+        "leader \"dial two's coefficient of variation ring\" lands 0.0px from its target",
+        "leader \"dial three's rim\" lands 0.0px from its target",
+        "leader \"dial three's lower rim\" lands 0.0px from its target",
+        "leader \"dial three's empty needle socket\" lands 0.0px from its target",
+        "leader \"dial one's coefficient of variation ring\" meets its label 13.0px away",
+        "leader \"dial two's coefficient of variation ring\" meets its label 13.0px away",
+        "leader \"dial three's rim\" meets its label 13.0px away",
+        "leader \"dial three's lower rim\" meets its label 14.0px away",
+        "leader \"dial three's empty needle socket\" meets its label 11.0px away"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the mooring anchor block on the sea bed': shadow L* 7.8 vs ground L* 16.7, dL 8.8 at 432w"
+      ],
+      "scales": [
+        "'depth below the waterline' runs 1,200 metres at 0 to 3,400 metres at 1350; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the anchor block on the bed' lands 0.0px from its target",
+        "leader 'the anchor block on the bed' meets its label 11.5px away"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": []
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

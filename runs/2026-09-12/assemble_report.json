@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-12/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8465133,
+  "pdf_mb": 8.47,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-12/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-12/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The Permit Knows Where the Machine Is",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "2cc390d45ed919f9de8507afe25e596c0e5acb2802e183b9d810beb880eed663",
+        "bytes": 5814531
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "66f8359eac0b663580f51143c471b9021fc506a060c8a17e6f92f9687d2a4e67",
+        "bytes": 6365562
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "67092a1ed594d1db238a531f3dbfcb473de40696c62ad3853673fb75f68edeff",
+        "bytes": 6203012
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "e32c4222e9d8442ba15907643a141e2523f681394ec21c07ad3758182d5405f4",
+        "bytes": 6185582
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "93791f4d1c8ae1d8245c7ab9e374d92c23b337d2262ba8c5fe9831c54ca6bacc",
+        "bytes": 5860997
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "10c5e3390bd0a2559e5c76f300654a957f1b61f7ab5ed1604ef09b7802ce53b2",
+        "bytes": 5099534
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "6c6963402416aa42978bfec4625d74d85aeeb6a169a773ed16bf1e3ae14f8600",
+        "bytes": 5168060
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "9dc9235efc1c7958bb7f3c31b1688fd1316c297b72a6228c602674363f7e5d55",
+        "bytes": 5383321
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "099f7e435c35fc877e8e999cb93daf9be39ac567f0cdd6243e11a06c51455fe4",
+        "bytes": 5152486
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "2e55bb7128651ffc4eff40139d222c44e6e588fff73c3f95a807c4b4d22520e3",
+        "bytes": 14024
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "76ee03b60faeb36fcfb65cdd871e98b1305cf298aa5e379261d189ed778faf5b",
+        "bytes": 18311
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "755c8fca637194bf236a7d6279713e95d6fb80e51a8a004666cb30af0c2c4b1a",
+        "bytes": 15697
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "6e132d055932c3a42608b33a8d6d212223ec7d34f1d5b7a858373e6830ea5063",
+        "bytes": 14763
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "3d56dc55d106322d2d4bfab122198db0366dea1bcf8263b06ca4dc7e8e262e02",
+        "bytes": 16831
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "28eddb0f2113a357eff84dc9dcec81fb5f854a135b0487e1fedaa2e93b05f991",
+        "bytes": 13325
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "06c5bf0ccf6737f5be60df417e9651c7c09c814c24ae2280a1dc7ba6b09360f1",
+        "bytes": 18911
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "18ada2ef0f9ec3b58888788d6aeed93dfc4ae36427daa4be9d7b9d1a29c4c852",
+        "bytes": 19617
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "96baa8627dd9d8526112fd1e73a94a10e6d707b5e68cc1497157fab8f4b50931",
+        "bytes": 13444
+      }
+    ]
+  }
+}

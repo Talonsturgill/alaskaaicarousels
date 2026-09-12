@@ -6895,3 +6895,68 @@ somewhere past 12 to 15 slides. No gate moves on a secondary number that
 disagrees with a primary one.
 (Sources: oktopost.com/blog/linkedin-carousel-pdf-best-practices/,
 carousels-generator.com/blog/linkedin-carousel-statistics-2026, 2026-09-12.)
+
+## 2026-09-12, No.57 — THREE WAYS A COLOUR LAW BREAKS WITHOUT A GATE NOTICING
+
+This deck's whole argument was one sentence a critic could audit in one pass:
+gold is what the record knows, the undetermined ink is what it does not. Every
+machine gate passed the first build at zero fails and zero warns. The law was
+broken in three places and no gate could see any of them.
+
+**`AKICE.rays` defaulted to gold.** Three frames called it without an `rgb` and
+two shipped a warm fan across a quadrant. A ray family is DRAWN geometry, marked
+`[design]`, which is precisely the category the law says may never be warm. Two
+pixel critics reported it independently and both were right. Fixed in the
+chassis: the default is the ice family and gold is available only on request.
+
+**The provenance mark was set in the undetermined ink on all nine frames.** A
+fixture that appears everywhere cannot also be a signal. Four critics found it.
+Spending `#7D8F94` on furniture takes its meaning away from the phantom dashes,
+from `UND` and from the 2,058 unattended ticks, which is the deck's own argument.
+
+**Eight gold ticks did not draw at all.** Slide 03's D2 state was eight source
+ticks at the true angular extent of a 30 second pulse in a four hour cycle, which
+is 0.75 of one degree. At radius 46 that arc is six tenths of a pixel long, and a
+degenerate subpath gets no cap, so the frame rendered with ZERO gold pixels on it
+and the state table had a hole in its third frame. Measured by counting law
+bearing pixels per frame, which is how it was finally found.
+
+### THE LESSON, and it is cheap to act on
+
+A colour law is a claim about the rendered pixels and nothing in this repo checks
+rendered pixels against it. The gate is four lines: for each frame, count the
+pixels within a tolerance of each law bearing hex, then fail a frame that carries
+none of a hex its own state table promises, or any of a hex the law forbids it.
+That catches all three of the above, and it would have caught them before a
+single review round was spent. Logged for Phase 12 as the most valuable unguarded
+surface in the machine, replacing the note from 2026-09-11.
+
+### AND A SMALLER ONE ABOUT SUB PIXEL MARKS
+
+Three of the same reviews reported mote populations that "read as grain or as
+JPEG noise". `AKICE.marine`'s radius falls to 0.55 px by the bottom of a window,
+which is correct when the population is atmosphere and wrong every time it is the
+SUBJECT or the frame is dark. The function now takes `rFloor` and `aFloor` and
+the defaults are unchanged. The general rule: a mark that does not survive a five
+times downsample is not a mark, whatever it measures at 2160 px.
+
+### THE OFFSCREEN IS 1x
+
+`AKENGRAVE.drawOffscreen` returns `c.width = w` with no backing multiplier, which
+is NOT the slide canvas's 2160 by 2700 under `ctx.scale(2,2)`. A hand walked
+buffer that assumes the 2x backing paints at twice the size and, far worse,
+consults its reserve basin at HALF the real position, so the reserve is asked
+about the wrong place and fails silently in both directions. It took three wrong
+fixes to find, because `qa.py` reported the symptom exactly and the cause was
+arithmetic rather than gating.
+
+### AN EM DASH THE HOUSE DID NOT WRITE
+
+Four reviewers read the depth rail as `50 m --`. Nothing printed a dash: an 18 px
+tick drawn at the numeral's own weight, at its cap middle, eight pixels after its
+last glyph, simply IS one. Two fixes failed first and both were instructive.
+Dimming the tick made every declared mark weaker than the band's own texture,
+which the axis census caught. Dropping it 8 px MOVED THE MARK, which the census
+also caught, and correctly: a declared mark has to have its ink at its own depth.
+The answer was position without offset, drawing the tick OUTWARD past a brighter
+spine, so nothing at all sits between a numeral and the rail.

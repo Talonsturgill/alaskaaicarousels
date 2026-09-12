@@ -1,0 +1,293 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:560px;top:150px;width:440px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;
+  line-height:1.34;color:#BAD6DA}
+h2{position:absolute;left:540px;top:240px;width:460px;text-align:right;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:60px;line-height:1.03;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:520px;top:452px;width:474px;text-align:left;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.band{position:absolute;left:520px;top:940px;width:474px;text-align:left;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:32px;line-height:1.36;color:#BAD6DA}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
+.rn{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.06em;color:#BAD6DA;font-variant-numeric:tabular-nums lining-nums}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,500],"to":[1350,2000],"band":[1012,1034],"marks":[{"at":0,"means":"500 m"},{"at":450,"means":"1,000 m"},{"at":900,"means":"1,500 m"},{"at":1350,"means":"2,000 m, the deepest depth either notice states"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>05 / 09</div>
+<div class="kick" data-reserve data-fit>THE MITIGATION ZONES,<br>DRAWN TO ONE SCALE</div>
+<h2 data-reserve data-fit>Every zone here,<br>drawn at one<br>scale.</h2>
+<p class="bd" data-reserve data-fit>Vessels hold 457 metres from observed cetaceans and 183 metres from other observed marine mammals. Deployment and recovery of a source carries a 55 metre zone. The estimated range to temporary hearing threshold shift is under 15 metres.</p>
+<p class="band" data-reserve data-fit>The 55 metre zone applies during deployment and recovery, not for the year the source then transmits.</p>
+<div class="la" id="z15" data-reserve>UNDER 15 m<br>ESTIMATED TTS RANGE</div>
+<div class="la" id="z55" data-reserve>55 m<br>DEPLOYMENT AND RECOVERY</div>
+<div class="la" id="z183" data-reserve>183 m<br>OTHER OBSERVED MAMMALS</div>
+<div class="la" id="z457" data-reserve>457 m<br>OBSERVED CETACEANS</div>
+<div class="la" id="zla" data-reserve>LEVEL A HARASSMENT<br>NEITHER ANTICIPATED<br>NOR AUTHORIZED</div>
+<div class="prov" data-decorative>ALL FOUR RADII ARE THE NOTICE'S. THE SCALE IS THIS PAGE'S</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  AK.fitText(document.querySelector('h2'), {min:46, max:60, maxLines:3});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  S.setWindow(500, 2000, 0, 1350);      // 0.90 px per metre, and that is the point
+  var PXM = 1350 / 1500;
+  var RAIL_X = 1014;
+  // [372, 792], not [372, 640]. The layout map asks for the low left thirds
+  // intersection and the first build sat 264 px high of it, so only the 457 m
+  // circle reached the lower third at all and the composition's mass was
+  // mid frame. At 792 both large arcs sweep the band.
+  var C = [372, 792];
+
+  /* THE ONLY FRAME IN THE DECK WHERE A VERIFIED QUANTITY IS DRAWN AS A LENGTH.
+   * Four radii, one scale, one centre. 457 m and 183 m are C45, 55 m is C46 and
+   * under 15 m is C50, and every one of them is multiplied by the SAME
+   * px-per-metre the depth rail beside them uses. Nothing here is fitted to the
+   * frame. The 457 m circle leaving the left margin is what a 457 m radius does
+   * at this scale, and it is allowed to. */
+  var ZONE = [
+    {id:"z457", m:457, w:2.0,  ink:"#BAD6DA", dash:null},
+    {id:"z183", m:183, w:2.0,  ink:"#BAD6DA", dash:null},
+    {id:"z55",  m: 55, w:1.25, ink:"#BAD6DA", dash:null},
+    {id:"z15",  m: 15, w:1.25, ink:"#7D8F94", dash:[30,5,6,5,6,5]}
+  ];
+  ZONE.forEach(function(z){ z.r = z.m * PXM; });
+
+  /* THIS FRAME CARRIES THE SPINE AND NOT THE NUMERALS, and that is a decision
+   * rather than an omission. Three reasons, all measured. The type column runs
+   * to x 1000 and the rail lane wants 866 to 1016, so every numeral landed
+   * inside the prose: the flow room read 1,500 m as part of the body's last
+   * line and 2,000 m as crowding NEITHER ANTICIPATED. Clamping them then put
+   * the shallowest labels off the frame, so 05 showed 1,500 m at its top where
+   * 06 shows 1,000 m, and swiping between them read as five hundred metres of
+   * ASCENT at the exact moment the deck goes cold. And this is the one frame
+   * where a circle's radius IS metres, so a depth numeral beside it is the
+   * confusion its own risk flag names. Four ticks are drawn and all four are
+   * declared in data-scale; the numerals live on the eight frames that have
+   * room for them. */
+
+  /* THE FOUR LABELS SIT AT FOUR DIFFERENT PLACES AND NOT IN A COLUMN, because
+   * a column of labels on the left with four targets all near x 300 makes four
+   * leaders that cross each other and cross each other's type. The first build
+   * did exactly that and qa.py found 87 px^2 of leader inside the 55 m label's
+   * second line. Each label now stands just outside its own rim at its own
+   * angle, which is how a range card is drawn anyway. */
+  document.getElementById('z15').style.cssText  += ';left:120px;top:562px';
+  document.getElementById('z55').style.cssText  += ';left:120px;top:912px';
+  document.getElementById('z183').style.cssText += ';left:96px;top:1014px';
+  document.getElementById('z457').style.cssText += ';left:96px;top:1116px';
+  // THE LEVEL A FINDING MOVES TO THE TOP LEFT, out of the right column. That
+  // column already carries a 38 word body and a four line clarification, and
+  // the flow room named this frame the deck's bail point for exactly that
+  // reading load. Standing at the top of the empty left quarter the finding
+  // reads as what it is, the permit's own statement about what it does not
+  // authorize, rather than as a fourth paragraph.
+  document.getElementById('zla').style.cssText  += ';left:96px;top:236px';
+
+  ['z15','z55','z183','z457','zla'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:12, padY:7, fill:"rgba(3,12,18,0.62)", radius:3, note:"zone label " + id});
+  });
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:104, depth:0.98, pad:26});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#071B24", bed:"#06161E", steps:48});
+
+    (function(){
+      var rnd = AK.rng(570511);
+      for (var i = 0; i < 6200; i++){
+        var near = rnd() < 0.66;
+        var y = near ? 820 + rnd() * 530 : rnd() * H;
+        var x = rnd() * W;
+        // THE RAIL LANE IS A RESERVED FIXTURE LANE. A population with a size
+        // floor puts findable ink in it, and the axis census then reports marks
+        // the slide never declared, which is true and is the gate working.
+        if (x > RAIL_X - 70) continue;
+        var t = S.t(y);
+        var r = (near ? 1.3 : 0.95) + (near ? 1.8 : 1.0) * Math.pow(rnd(), 1.6) + 0.8 * t;
+        var al = (0.16 + 0.30 * Math.pow(rnd(), 1.3)) * (near ? 1.0 : 0.66);
+        var aq = atten(x, y); if (aq < 0.20) continue;
+        al *= aq; r *= (0.55 + 0.45 * aq);
+        g.fillStyle = "rgba(186,218,222," + al.toFixed(3) + ")";
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+      }
+    })();
+
+    (function(){
+      // ONE FEATHERED WASH AND NO LOCATABLE EDGE. The first build ran a 44 px
+      // gradient into a hard fillRect, so the lane had a traceable vertical
+      // boundary and its numerals sat on a plate; two pixel critics found the
+      // seam and named it as the punchReserves defect arriving by another
+      // route. The falloff is 210 px and it never reaches full strength.
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,6,13,0)");
+      lane.addColorStop(0.55, "rgba(2,6,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,6,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, H);
+    })();
+
+    window.__akRail = S.rail(g, {x:RAIL_X, bandW:24,
+      what:"depth below the waterline", unit:"metres", faint:"rgba(150,182,190,0.58)",
+      ticks:[[500,"500 m"],[1000,"1,000 m"],[1500,"1,500 m"],[2000,"2,000 m"]]});
+
+    /* THE FOUR CIRCLES, CASED, AND KNOCKED OUT OF THE TYPE. A circle takes no
+     * basin, and at 411 px the largest of them runs straight through the right
+     * hand column. So they are drawn on their own surface, the measured reserve
+     * boxes are blurred out of it, and the result is composited: the ink THINS
+     * across a line of type instead of being fenced off it or struck through
+     * it. This is slide 02's remedy, applied to the deck's most expensive ink. */
+    (function(){
+      var m = document.createElement("canvas");
+      m.width = W; m.height = H;
+      var mg = m.getContext("2d");
+      ZONE.forEach(function(z){
+        // the casing first, in the local water value, so the circle survives the
+        // mote field without a halo reading as a glow
+        mg.save();
+        mg.strokeStyle = "rgba(4,17,26,0.92)";
+        mg.lineWidth = z.w + 4.5;
+        mg.beginPath(); mg.arc(C[0], C[1], z.r, 0, Math.PI*2); mg.stroke();
+        mg.restore();
+      });
+      ZONE.forEach(function(z){
+        mg.save();
+        if (z.dash) mg.setLineDash(z.dash);
+        mg.strokeStyle = z.ink;
+        mg.lineWidth = z.w;
+        mg.beginPath(); mg.arc(C[0], C[1], z.r, 0, Math.PI*2); mg.stroke();
+        mg.restore();
+      });
+      // 0.99 and a 13 px blur. At 0.94 the knockout left six percent of a 2 px
+      // circle inside a label, which qa.py measured as 71 px^2 of hard edged
+      // ink in the 55 m label's second line and 62 in the 183 m label's.
+      mg.globalCompositeOperation = "destination-out";
+      mg.filter = "blur(13px)";
+      mg.fillStyle = "rgba(0,0,0,0.995)";
+      AKFIT.reserveBoxes('[data-reserve], .prov, .wmk').forEach(function(b){
+        mg.fillRect(b[0] - 16, b[1] - 10, b[2] + 32, b[3] + 20);
+      });
+      mg.filter = "none";
+      g.drawImage(m, 0, 0);
+    })();
+
+    // THE GOLD CROSS, on the exact common centre of all four circles, which is
+    // literally true of the permit: every one of these radii is measured from
+    // the same thing.
+    g.strokeStyle = "#FFC72C"; g.lineWidth = 2.4; g.lineCap = "butt";
+    g.beginPath();
+    g.moveTo(C[0] - 9, C[1]); g.lineTo(C[0] + 9, C[1]);
+    g.moveTo(C[0], C[1] - 9); g.lineTo(C[0], C[1] + 9);
+    g.stroke();
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  /* THE DIMENSION CALLS. Each one leaves its label, runs to its own circle and
+   * terminates on the rim. The 15 m circle gets a filled dot rather than an
+   * arrowhead, because at 13.5 px radius an arrowhead cannot land. */
+  cx.lineCap = "butt";
+  function dim(el, z, ang){
+    var b = AKFIT.inkRect(el);
+    var target = [C[0] + Math.cos(ang) * z.r, C[1] + Math.sin(ang) * z.r];
+    /* LEAVE BY THE EDGE THE TARGET IS ACTUALLY ON. A two line label's line boxes
+     * span the whole block width, not just the ink, so a leader that leaves the
+     * right edge heading up and left crosses back over the short first line and
+     * lands 96 px^2 of hard edged ink inside it. Picking the edge by the larger
+     * component of the direction to the target makes that impossible. */
+    /* EVERY CALL ON THIS FRAME LEAVES BY A SIDE, never by the top or bottom.
+     * Four labels stand in one left hand stack and every rim is above most of
+     * them, so a leader that exits vertically turns diagonally across whatever
+     * label lies between, which is what happened three times here. Side exit
+     * plus a straight 60 px run clears the stack before any turn. */
+    var mx = b.x + b.w/2, my = b.y + b.h/2;
+    var dx = target[0] - mx, from;
+    from = dx > 0 ? [b.right + 14, my] : [b.x - 14, my];
+    /* A SIDE EXIT GETS AN ELBOW, which is library 72's own idiom and here it is
+     * load bearing rather than decorative. A leader that leaves a label's side
+     * and then turns diagonally re-enters the row it came from, and on this
+     * frame the 183 m call did exactly that: 130 px^2 of it landed inside the
+     * 55 m label's second line, through three separate re-aimings. Sixty
+     * pixels of straight run clears the whole stack before the turn. */
+    var via = [from[0] + (from[0] > mx ? 60 : -60), from[1]];
+    cx.strokeStyle = "rgba(186,214,218,0.80)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]);
+    if (via) cx.lineTo(via[0], via[1]);
+    cx.lineTo(target[0], target[1]); cx.stroke();
+    var tail = via;
+    if (z.r < 20){
+      cx.fillStyle = "rgba(186,214,218,0.95)";
+      cx.beginPath(); cx.arc(target[0], target[1], 5, 0, Math.PI*2); cx.fill();
+    } else {
+      var a = Math.atan2(target[1] - tail[1], target[0] - tail[0]), L = 12, Wd = 4;
+      cx.fillStyle = "rgba(186,214,218,0.95)";
+      cx.beginPath(); cx.moveTo(target[0], target[1]);
+      cx.lineTo(target[0] - Math.cos(a)*L + Math.cos(a + Math.PI/2)*Wd,
+                target[1] - Math.sin(a)*L + Math.sin(a + Math.PI/2)*Wd);
+      cx.lineTo(target[0] - Math.cos(a)*L - Math.cos(a + Math.PI/2)*Wd,
+                target[1] - Math.sin(a)*L - Math.sin(a + Math.PI/2)*Wd);
+      cx.closePath(); cx.fill();
+    }
+    return {from:from, at:target};
+  }
+  var byId = {};
+  ZONE.forEach(function(z){ byId[z.id] = z; });
+  var d15  = dim(document.getElementById('z15'),  byId.z15,  -1.18);
+  /* EVERY CALL LANDS ON THE LOWEST POINT OF ITS OWN RIM, straight up out of
+   * its own label. Two earlier arrangements both failed and both for the same
+   * reason: with four labels stacked down the left and four targets above
+   * them, a leader aimed at a rim climbs across the label below it. qa.py
+   * measured the 183 m call inside the 55 m label's second line, 71 px^2, and
+   * the 457 m call inside the 183 m label's, 62 px^2. Aiming each call at the
+   * bottom of its own circle makes every leader short and vertical and makes
+   * a crossing geometrically impossible. The 55 m call also no longer runs
+   * through the gold cross at the common centre, which is what it did when it
+   * approached horizontally. */
+  var d55  = dim(document.getElementById('z55'),  byId.z55,   Math.PI/2);
+  // 0.62, out to the RIGHT of its own rim. Straight up, the call still clipped
+  // the bottom 21 px of the 55 m label's box, because the 183 m circle's lowest
+  // point and that box overlap in y. Leaving sideways is the only route that
+  // touches neither.
+  var d183 = dim(document.getElementById('z183'), byId.z183,  0.62);
+  var d457 = dim(document.getElementById('z457'), byId.z457,  1.15);
+
+  window.__akLeaders = [
+    {target:"the 15 m circle", at:d15.at, to:d15.at, from:d15.from, label:"UNDER 15 m"},
+    {target:"the 55 m circle", at:d55.at, to:d55.at, from:d55.from, label:"55 m"},
+    {target:"the 183 m circle", at:d183.at, to:d183.at, from:d183.from, label:"183 m"},
+    {target:"the 457 m circle", at:d457.at, to:d457.at, from:d457.from, label:"457 m"}
+  ];
+
+  AKPOST.grade(cx, {exposure:-0.05, saturation:1.02, contrast:1.07,
+    grain:{amount:0.055, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

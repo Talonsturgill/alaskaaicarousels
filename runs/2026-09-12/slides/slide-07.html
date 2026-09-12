@@ -1,0 +1,342 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#02060F}
+canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+.wm{position:absolute;left:80px;top:84px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  font-size:26px;letter-spacing:0.14em;color:#BAD6DA}
+.ct{position:absolute;left:826px;top:84px;width:150px;text-align:right;
+  font-family:"JetBrains Mono",monospace;font-size:25px;letter-spacing:0.09em;color:#8FA3A8;
+  font-variant-numeric:tabular-nums lining-nums}
+.kick{position:absolute;left:560px;top:146px;width:446px;white-space:nowrap;text-align:left;
+  font-family:"JetBrains Mono",monospace;font-size:32px;letter-spacing:0.05em;
+  line-height:1.34;color:#BAD6DA}
+h2{position:absolute;left:540px;top:296px;width:440px;text-align:left;margin:0;
+  font-family:Fraunces,serif;font-variation-settings:"opsz" 96,"SOFT" 12,"WONK" 0;font-weight:600;
+  font-size:58px;line-height:1.03;letter-spacing:-0.015em;color:#F4F8FF}
+.bd{position:absolute;left:520px;top:500px;width:450px;text-align:left;margin:0;
+  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:34px;line-height:1.38;color:#D8ECEE}
+.la{position:absolute;font-family:"JetBrains Mono",monospace;font-size:25px;
+  letter-spacing:0.08em;line-height:1.34;color:#BAD6DA}
+.lu{color:#7D8F94}
+/* 38 px AND DROPPED, so a numeral is not where the needle is. Dial one's
+   gold cap landed inside the box of 39,258 and a pixel critic reported the
+   needle crossing its own figure, on the frame whose job is to print two
+   numbers and one blank. */
+.face{position:absolute;font-family:"JetBrains Mono",monospace;font-size:38px;
+  letter-spacing:0.02em;color:#9CC4FF;text-align:center;
+  font-variant-numeric:tabular-nums lining-nums}
+.und{position:absolute;font-family:Fraunces,serif;
+  font-variation-settings:"opsz" 96,"SOFT" 20,"WONK" 0;font-weight:600;
+  font-size:96px;line-height:1;letter-spacing:0.01em;color:#7D8F94;text-align:center}
+.prov{position:absolute;left:80px;top:1214px;width:940px;font-family:"JetBrains Mono",monospace;
+  font-size:24px;letter-spacing:0.035em;color:#8FA3A8}
+.wmk{position:absolute;left:80px;top:1258px;width:340px;font-family:"JetBrains Mono",monospace;
+  font-size:18px;letter-spacing:0.08em;color:#46545F}
+</style></head>
+<body data-scale='[{"what":"depth below the waterline","axis":"y","unit":"metres","from":[0,1000],"to":[1350,3000],"band":[1012,1034],"marks":[{"at":675,"means":"2,000 m, the deepest depth either notice states, and the last tick on this axis"}]}]'
+      data-encodes='[{"claim":"two dials have a needle and the third has an empty socket","reads":"differ","a":[[315,355,22,22]],"b":[[609,1049,22,22]]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="wm">ALASKA.AI</div>
+<div class="ct" data-decorative>07 / 09</div>
+<div class="kick" data-reserve data-fit>ABUNDANCE ESTIMATES.<br>NOT TAKE.</div>
+<h2 data-reserve data-fit>The same page gives<br>the seal's number as UND.</h2>
+<p class="bd" data-reserve data-fit>Beaufort beluga, 39,258, from a 1992 survey. Eastern Chukchi beluga, 13,305, from 2017, at a coefficient of variation of 0.51. Arctic ringed seal, the one species here listed as threatened, undetermined.</p>
+<div class="face" id="f1" data-reserve>39,258</div>
+<div class="face" id="f2" data-reserve>13,305</div>
+<div class="und" id="f3" data-reserve>UND</div>
+<div class="la" id="lb1" data-reserve>BEAUFORT BELUGA<br>CV 0.229, 1992 SURVEY</div>
+<div class="la" id="lb2" data-reserve>EASTERN CHUKCHI BELUGA<br>CV 0.51, 2017 SURVEY</div>
+<div class="la lu" id="lb3" data-reserve>ARCTIC RINGED SEAL<br>LISTED THREATENED</div>
+<div class="la lu" id="lpbr" data-reserve>PBR, UNDETERMINED</div>
+<div class="la lu" id="lnv" data-reserve>NO VALUE TO PLOT</div>
+<div class="prov" data-decorative>RING RADIUS IS A COEFFICIENT OF VARIATION, NOT A DISTANCE</div>
+<div class="wmk" data-decorative>alaskaaihq.com</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akengrave.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akfit.js"></script>
+<script src="@@ASSETS@@/js/akunderice.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async function(){
+  await document.fonts.ready;
+  // TWO LINES, which is the dossier's own break and keeps the possessive with
+  // its noun. Three lines put 'number as UND.' alone under 'gives the seal's'.
+  AK.fitText(document.querySelector('h2'), {min:40, max:58, maxLines:2});
+
+  var S = AKICE, W = 1080, H = 1350;
+  var cx = document.getElementById('art').getContext('2d');
+  cx.scale(2,2);
+
+  S.setWindow(1000, 3000, 0, 1350);   // held from the arc table, 0.675 px per metre
+  var RAIL_X = 1014;
+
+  /* THREE DIALS ON A DESCENDING DIAGONAL, one size, one scale, one key light.
+   * The scale span of 40,000 is [design] and all three carry it, which is what
+   * makes 39,258 and 13,305 comparable at a glance and what makes the third
+   * dial's emptiness a reading rather than a gap. */
+  var R = 128, FACE = 108, SPAN = 40000, A0 = 150, ASWEEP = 240;
+  var DIAL = [
+    {id:"f1", c:[250, 330],  v:39258, cv:0.229},
+    {id:"f2", c:[380, 780],  v:13305, cv:0.51 },
+    {id:"f3", c:[620, 1060], v:null,  cv:null }
+  ];
+  function ang(v){ return (A0 + (v / SPAN) * ASWEEP) * Math.PI / 180; }
+  function onFace(c, v, rr){
+    var a = ang(v);
+    return [c[0] + Math.cos(a) * rr, c[1] + Math.sin(a) * rr];
+  }
+
+  document.getElementById('lb1').style.cssText  += ';left:80px;top:490px';
+  document.getElementById('lb2').style.cssText  += ';left:80px;top:940px';
+  document.getElementById('lb3').style.cssText  += ';left:80px;top:1074px';
+  document.getElementById('lpbr').style.cssText += ';left:80px;top:1168px';
+  document.getElementById('lnv').style.cssText  += ';left:696px;top:986px';
+
+  // the dial faces sit on their own dials, below the needle hub
+  var f1 = document.getElementById('f1'), f2 = document.getElementById('f2'),
+      f3 = document.getElementById('f3');
+  f1.style.cssText += ';left:' + (DIAL[0].c[0] - 100) + 'px;top:' + (DIAL[0].c[1] + 56) + 'px;width:200px';
+  f2.style.cssText += ';left:' + (DIAL[1].c[0] - 100) + 'px;top:' + (DIAL[1].c[1] + 56) + 'px;width:200px';
+  f3.style.cssText += ';left:' + (DIAL[2].c[0] - 120) + 'px;top:' + (DIAL[2].c[1] + 30) + 'px;width:240px';
+
+  ['lb1','lb2','lb3','lpbr','lnv'].forEach(function(id){
+    AKFIT.plate(document.getElementById(id),
+      {padX:12, padY:7, fill:"rgba(3,9,14,0.66)", radius:3, note:"dial label " + id});
+  });
+
+  var atten = S.basins(AKFIT.reserveBoxes('[data-reserve], .prov, .wmk, .wm, .ct'), {ramp:100, depth:0.98, pad:24});
+
+  var off = AKENGRAVE.drawOffscreen(W, H, function(g){
+    S.water(g, {y0:0, y1:H, top:"#051219", bed:"#040E14", steps:48});
+
+    (function(){
+      var rnd = AK.rng(570711);
+      for (var i = 0; i < 6200; i++){
+        var near = rnd() < 0.68;
+        var y = near ? 760 + rnd() * 590 : rnd() * H;
+        var x = rnd() * W;
+        // THE RAIL LANE IS A RESERVED FIXTURE LANE. A population with a size
+        // floor puts findable ink in it, and the axis census then reports marks
+        // the slide never declared, which is true and is the gate working.
+        if (x > RAIL_X - 70) continue;
+        var t = S.t(y);
+        var r = (near ? 1.3 : 0.95) + (near ? 1.8 : 1.0) * Math.pow(rnd(), 1.6) + 0.8 * t;
+        var al = (0.16 + 0.30 * Math.pow(rnd(), 1.3)) * (near ? 1.0 : 0.66);
+        var aq = atten(x, y); if (aq < 0.20) continue;
+        al *= aq; r *= (0.55 + 0.45 * aq);
+        g.fillStyle = "rgba(176,208,214," + al.toFixed(3) + ")";
+        g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+      }
+    })();
+
+    (function(){
+      // ONE FEATHERED WASH AND NO LOCATABLE EDGE. The first build ran a 44 px
+      // gradient into a hard fillRect, so the lane had a traceable vertical
+      // boundary and its numerals sat on a plate; two pixel critics found the
+      // seam and named it as the punchReserves defect arriving by another
+      // route. The falloff is 210 px and it never reaches full strength.
+      var lane = g.createLinearGradient(RAIL_X - 210, 0, W, 0);
+      lane.addColorStop(0.00, "rgba(2,6,13,0)");
+      lane.addColorStop(0.55, "rgba(2,6,13,0.30)");
+      lane.addColorStop(1.00, "rgba(2,6,13,0.56)");
+      g.fillStyle = lane; g.fillRect(RAIL_X - 210, 0, W - RAIL_X + 210, H);
+      // the rail that runs out of ticks, held from slide 06
+      var yStop = S.depth(2000);
+      g.strokeStyle = "rgba(150,182,190,0.58)"; g.lineWidth = 1.6;
+      g.beginPath(); g.moveTo(RAIL_X, 0); g.lineTo(RAIL_X, yStop); g.stroke();
+      g.save();
+      g.setLineDash([9, 11]);
+      g.strokeStyle = "rgba(125,143,148,0.60)"; g.lineWidth = 1.25;
+      g.beginPath(); g.moveTo(RAIL_X, yStop); g.lineTo(RAIL_X, H); g.stroke();
+      g.restore();
+      g.strokeStyle = "rgba(186,214,218,0.78)"; g.lineWidth = 2.2;
+      g.beginPath(); g.moveTo(RAIL_X, yStop); g.lineTo(RAIL_X + 17, yStop); g.stroke();
+    })();
+
+    /* THE DIALS, deepest first so a nearer one occludes. Each is a modelled
+     * object hanging in water and never a chart on a sheet: the face is flat on
+     * to camera so no perspective ever touches a quantity, and the bezel's
+     * THICKNESS is drawn in cabinet extrusion, front face undistorted with the
+     * depth at half scale at 45 degrees, walls darker and the lid lightest. */
+    DIAL.slice().reverse().forEach(function(d){
+      var c = d.c, ghost = d.v === null;
+      var k = S.contrast(c[1]);                  // the compression of depth
+      var dep = 11;                              // cabinet depth, half scale 45
+
+      // the extruded body, offset down and right, darkest of the three faces
+      g.fillStyle = "rgba(3,10,16,0.96)";
+      g.beginPath(); g.arc(c[0] + dep, c[1] + dep, R, 0, Math.PI*2); g.fill();
+      // the wall, a band joining the two silhouettes
+      g.strokeStyle = "rgba(7,22,34,0.95)"; g.lineWidth = 2.0;
+      for (var w = 0; w <= dep; w += 1.6){
+        g.beginPath(); g.arc(c[0] + w, c[1] + w, R, 0, Math.PI*2); g.stroke();
+      }
+      // the front face, the lid, lightest
+      g.fillStyle = "#0E2138";
+      g.beginPath(); g.arc(c[0], c[1], R, 0, Math.PI*2); g.fill();
+
+      // the bezel silhouette, with the lighting rank: the lower arcs go heavier
+      // and darker because the key is downwelling at azimuth 12
+      var sil = [];
+      for (var i = 0; i <= 96; i++){
+        var a = (i / 96) * Math.PI * 2;
+        sil.push([c[0] + Math.cos(a) * R, c[1] + Math.sin(a) * R]);
+      }
+      /* THE LOWER ARCS GET A LIGHT CASING FIRST. A lee at rgba(4,12,16,0.88)
+       * drawn on #03090C water is invisible by construction, so the cabinet
+       * extrusion's three face tone never read and the acceptance test that
+       * the lower arcs be visibly heavier and darker than the upper edge
+       * failed on all three dials. The casing is one step LIGHTER than the
+       * local water, laid under the lee, so the dark arc is separated from the
+       * field it sits on rather than merging with it. The lee itself is not
+       * lightened, which would have been the wrong fix. */
+      (function(){
+        g.save();
+        g.strokeStyle = "rgba(90,128,140,0.42)";
+        g.lineWidth = 6.5;
+        g.beginPath();
+        for (var q = 24; q <= 72; q++){
+          var a = (q / 96) * Math.PI * 2;
+          var px = c[0] + Math.cos(a) * (R + 2), py = c[1] + Math.sin(a) * (R + 2);
+          q === 24 ? g.moveTo(px, py) : g.lineTo(px, py);
+        }
+        g.stroke();
+        g.restore();
+      })();
+      S.profile(g, sil, {weight:2.0, heavyMul:1.7, threshold:-0.12,
+        light:"rgba(185,214,218," + (0.78 * k).toFixed(3) + ")",
+        lee:"rgba(4,12,16,0.94)"});
+
+      // the printed scale. On the turn the machine is context, so every
+      // instrument mark drops to a context grey rather than competing.
+      var ctxGrey = ghost ? "rgba(125,143,148,0.62)" : "rgba(150,182,190,0.45)";
+      g.strokeStyle = ctxGrey;
+      for (var v = 0; v <= SPAN; v += 5000){
+        var major = (v % 10000) === 0;
+        var p0 = onFace(c, v, FACE - (major ? 17 : 10)), p1 = onFace(c, v, FACE);
+        g.lineWidth = major ? 2.0 : 1.2;
+        g.beginPath(); g.moveTo(p0[0], p0[1]); g.lineTo(p1[0], p1[1]); g.stroke();
+      }
+
+      if (ghost){
+        /* THE THIRD DIAL. Rim, scale, socket and label are all fully drawn and
+         * only the needle is absent, which is the difference between a blank and
+         * a gap. NO MARK STANDS IN FOR THE MISSING VALUE, which would be the
+         * No.35 defect, and NO GOLD TOUCHES THIS DIAL ANYWHERE. */
+        var circ = 2 * Math.PI * (FACE + 6);
+        var seg = circ / 44;                 // 44 whole dashes, so both ends land
+        g.save();
+        g.setLineDash([seg * 0.58, seg * 0.42]);
+        g.strokeStyle = "#7D8F94"; g.lineWidth = 1.25;
+        g.beginPath(); g.arc(c[0], c[1], FACE + 6, 0, Math.PI*2); g.stroke();
+        g.restore();
+        // the empty needle socket, unlit, with its own occlusion seam
+        g.fillStyle = "#000000";
+        g.beginPath(); g.arc(c[0], c[1], 15, 0, Math.PI*2); g.fill();
+        // the socket ring is the undetermined ink at half strength, because at
+        // the live sockets' brightness it quietly implies something is fitted
+        g.strokeStyle = "rgba(125,143,148,0.55)"; g.lineWidth = 1.25;
+        g.beginPath(); g.arc(c[0], c[1], 15, 0, Math.PI*2); g.stroke();
+        g.strokeStyle = "rgba(125,143,148,0.30)"; g.lineWidth = 1.4;
+        g.beginPath(); g.arc(c[0], c[1], 16.2, Math.PI * 1.14, Math.PI * 1.90); g.stroke();
+      } else {
+        /* THE RING IS THE COEFFICIENT OF VARIATION, which is what the frame's
+         * own provenance mark says it is. Its RADIUS is the CV on a fixed
+         * 100 px reference, so dial two's ring is 0.51 over 0.229 of dial one's,
+         * a little over twice, which is the honest reading of two relative
+         * uncertainties. It is drawn and never printed as a product, and it is
+         * a ring rather than an arc because the line on the frame says radius.
+         *
+         * THE DOSSIER ASKED FOR CV TIMES THE VALUE, an absolute standard error
+         * on the abundance scale. That is a defensible instrument and it is a
+         * DIFFERENT one: it would make the 1992 figure the wider of the two,
+         * plus or minus 8,990 against plus or minus 6,786, and it would
+         * contradict both the frame's printed line and the acceptance test that
+         * dial two reads as more than twice dial one. A frame may not carry a
+         * disclosure that describes a mark it did not draw. */
+        var tip = onFace(c, d.v, FACE - 24);
+        // CLIPPED TO THE CASE. Dial two's ring reaches 207 px from its centre
+        // against an outer radius of 128, so uncontained it crossed the bezel
+        // silhouette and read as a rendering overrun rather than a measurement.
+        g.save();
+        g.beginPath(); g.arc(c[0], c[1], FACE + 2, 0, Math.PI*2); g.clip();
+        g.strokeStyle = "rgba(125,143,148,0.80)"; g.lineWidth = 1.2;
+        g.setLineDash([4, 4]);
+        g.beginPath(); g.arc(tip[0], tip[1], d.cv * 100, 0, Math.PI*2); g.stroke();
+        g.restore();
+
+        // the needle, machined ink in the animal's own voice
+        g.strokeStyle = "#9CC4FF"; g.lineWidth = 5.0; g.lineCap = "round";
+        g.beginPath(); g.moveTo(c[0], c[1]); g.lineTo(tip[0], tip[1]); g.stroke();
+        g.fillStyle = "rgba(4,12,20,0.98)";
+        g.beginPath(); g.arc(c[0], c[1], 13, 0, Math.PI*2); g.fill();
+        g.strokeStyle = "rgba(156,196,255,0.92)"; g.lineWidth = 2.4;
+        g.beginPath(); g.arc(c[0], c[1], 13, 0, Math.PI*2); g.stroke();
+        g.lineCap = "butt";
+        // the gold cap, on dials one and two ONLY
+        g.fillStyle = "rgba(2,8,13,0.95)";
+        g.beginPath(); g.arc(tip[0], tip[1], 12, 0, Math.PI*2); g.fill();
+        g.fillStyle = "#FFC72C";
+        g.beginPath(); g.arc(tip[0], tip[1], 9.5, 0, Math.PI*2); g.fill();
+      }
+    });
+  });
+  cx.drawImage(off, 0, 0, W, H);
+
+  cx.lineCap = "butt";
+  function leader(el, target){
+    var b = AKFIT.inkRect(el);
+    var mx = b.x + b.w/2, my = b.y + b.h/2;
+    var dx = target[0] - mx, dy = target[1] - my, from;
+    if (Math.abs(dx) / (b.w/2 + 1) > Math.abs(dy) / (b.h/2 + 1)){
+      from = dx > 0 ? [b.right + 14, my] : [b.x - 14, my];
+    } else {
+      from = dy > 0 ? [mx, b.bottom + 12] : [mx, b.y - 12];
+    }
+    cx.strokeStyle = "rgba(186,214,218,0.74)"; cx.lineWidth = 1.25;
+    cx.beginPath(); cx.moveTo(from[0], from[1]); cx.lineTo(target[0], target[1]); cx.stroke();
+    cx.fillStyle = "rgba(186,214,218,0.92)";
+    cx.beginPath(); cx.arc(target[0], target[1], 2.8, 0, Math.PI*2); cx.fill();
+    return from;
+  }
+  var tip1 = onFace(DIAL[0].c, DIAL[0].v, FACE - 24);
+  var tip2 = onFace(DIAL[1].c, DIAL[1].v, FACE - 24);
+  var ring1 = [tip1[0], tip1[1] + DIAL[0].cv * 100];
+  var ring2 = [tip2[0], tip2[1] + DIAL[1].cv * 100];
+  var sock  = [DIAL[2].c[0], DIAL[2].c[1]];
+  var rim200 = onFace(DIAL[2].c, SPAN * (200 - A0) / ASWEEP, R);
+
+  /* THE TWO DIAL CALLS APPROACH FROM OUTSIDE THEIR OWN NUMERALS. Aimed at the
+   * coefficient of variation ring, each leader climbed from its label THROUGH
+   * its own dial's face numeral, so a 1 px white polyline ran across a tabular
+   * figure this frame exists to print. They now land on the ring's LEFT flank,
+   * which is on the far side of the numeral from the label. */
+  var ring1L = [tip1[0] - DIAL[0].cv * 100, tip1[1]];
+  var ring2L = [tip2[0] - DIAL[1].cv * 100, tip2[1]];
+  var L1 = leader(document.getElementById('lb1'), ring1L);
+  var L2 = leader(document.getElementById('lb2'), ring2L);
+  var L3 = leader(document.getElementById('lb3'), rim200);
+  var L4 = leader(document.getElementById('lpbr'), [DIAL[2].c[0] - 96, DIAL[2].c[1] + 88]);
+  var L5 = leader(document.getElementById('lnv'), sock);
+
+  window.__akLeaders = [
+    {target:"dial one's coefficient of variation ring", at:ring1L, to:ring1L, from:L1,
+     label:"BEAUFORT BELUGA"},
+    {target:"dial two's coefficient of variation ring", at:ring2L, to:ring2L, from:L2,
+     label:"EASTERN CHUKCHI BELUGA"},
+    {target:"dial three's rim", at:rim200, to:rim200, from:L3, label:"ARCTIC RINGED SEAL"},
+    {target:"dial three's lower rim", at:[DIAL[2].c[0] - 96, DIAL[2].c[1] + 88],
+     to:[DIAL[2].c[0] - 96, DIAL[2].c[1] + 88], from:L4, label:"PBR, UNDETERMINED"},
+    {target:"dial three's empty needle socket", at:sock, to:sock, from:L5,
+     label:"NO VALUE TO PLOT"}
+  ];
+
+  AKPOST.grade(cx, {exposure:-0.03, saturation:1.02, contrast:1.07,
+    grain:{amount:0.050, size:2.0, seed:20260912}, dither:true});
+  window.__akFit = AKFIT.guard();
+})();
+</script>
+</body></html>

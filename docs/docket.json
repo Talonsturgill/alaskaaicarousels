@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2022-02-02/2027-01-19",
-  "count": 24,
+  "temporal_coverage": "2022-02-02/2027-09-13",
+  "count": 25,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -1091,7 +1091,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-12",
       "history": [
         {
           "date": "2026-07-17",
@@ -1236,6 +1236,10 @@
         {
           "date": "2026-09-11",
           "note": "Re-verified against the state's extension notice, Alaska DNR Online Public Notices id 224879. Written comment on ADL 234762 closes at 5:00 p.m. on Monday, September 14th, 2026, three days from today, and the notice states that deadline in its own capitals. The parcel is still about 19,950 acres of state owned land in the Matanuska-Susitna Borough roughly two miles north of Houston, proposed for conveyance to the Alaska Industrial Development and Export Authority. The notice also says that if no significant changes are needed the final decision issues without further notice, and that a copy goes to everyone who commented in time. Anyone who wants a say has until Monday afternoon."
+        },
+        {
+          "date": "2026-09-12",
+          "note": "Re-verified against both state notices today. The original notice, Alaska DNR Online Public Notices id 224431, still prints its own first deadline of 5:00 p.m. Wednesday, August 19th, 2026, and the extension notice, id 224879, published August 19th, 2026, carries the operative one in its own capitals, extended comment period ends 5:00 p.m. Monday, September 14th, 2026. Two documents carry two dates and the later one governs. Written comment on ADL 234762 closes at 5:00 p.m. Monday, September 14th, 2026, two days from today, and both notices archive the day after. Only persons from whom the division receives timely written comment during the period are eligible to file an appeal of the Final Finding and Decision, so a reader who misses the window also loses standing."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -2408,7 +2412,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-12",
       "history": [
         {
           "date": "2026-08-09",
@@ -2461,6 +2465,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked and unchanged since yesterday. The Kenai Peninsula Borough School District board still has BP 5131.9 Academic Honesty down for second reading and action at its September 14th, 2026 regular business meeting, three days out. The August 3rd, 2026 agenda read today confirms the path the rules took to get there, a first reading of BP 5131.9 Academic Honesty alongside a first reading and action on AR 6161.4, the acceptable use and internet safety regulation."
+        },
+        {
+          "date": "2026-09-12",
+          "note": "Checked again, and one thing is new. All three documents sit on the consent agenda of the September 14th, 2026 regular business meeting rather than on the discussion calendar. BP 1114 Communication Using Electronic Media is item 10146, second reading and action. BP 5131.9 Academic Honesty is item 10147, second reading and action. AR 5131.9 Academic Honesty is item 10145, first reading and action. A consent agenda is adopted in a single motion, so unless a board member asks for an item to be pulled, the district's artificial intelligence rules are adopted without separate debate. Two days out."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -2651,7 +2659,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-12",
       "history": [
         {
           "date": "2026-08-25",
@@ -2700,6 +2708,10 @@
         {
           "date": "2026-09-11",
           "note": "The ordinance has a number and a testimony date. Must Read Alaska, in a September 7th, 2026 opinion piece by Marcus Moore, identifies it as AO-2026-108 and states that Anchorage residents can give public testimony on AO-2026-108 at the regular Assembly meeting on September 15th, 2026 or online. Neither could be confirmed against the municipality's own agenda system, which refuses an automated request, so both rest on that one outlet and the sponsors' public statements. The substance is otherwise unchanged. The $598,998.10 for the Real Time Crime Center passed 8 to 4 on September 1st and the rules governing what it collects did not."
+        },
+        {
+          "date": "2026-09-12",
+          "note": "Checked and unchanged. The spending is approved and the rules are not. AO-2026-108 and the September 15th, 2026 testimony date still rest on one outlet, the Must Read Alaska opinion piece of September 7th, 2026, because the municipality's own agenda system refuses an automated request and the ordinance text can't be read anywhere else. Three days out. Anyone planning to testify should confirm the item is on the published agenda first, and writing to an Assembly member remains the surer route."
         }
       ],
       "cta_label": "TESTIFY",
@@ -2755,7 +2767,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-09",
+      "last_updated": "2026-09-12",
       "history": [
         {
           "date": "2026-08-31",
@@ -2772,6 +2784,10 @@
         {
           "date": "2026-09-09",
           "note": "Re-verified today against the notice itself, Maximizing Efficiencies in Universal Service Administration at 91 FR 55826. Comments in WC Docket No. 26-173 are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026. Twenty one days are left on the first window. The notice asks whether operational inefficiencies could be improved using artificial intelligence, which is the question a rural Alaska applicant would be answering from the receiving end of the delays."
+        },
+        {
+          "date": "2026-09-12",
+          "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, 2026, and reply comments are due on or before October 30th, 2026. The notice was adopted August 6th, 2026 and released August 7th. Eighteen days are left in the comment window and nothing in it has moved."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -2861,6 +2877,84 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
+    },
+    {
+      "id": "onr-arctic-iha-year-9",
+      "title": "The Navy's permit for an under-ice robot navigation grid",
+      "kind": "regulatory-docket",
+      "status": "decided",
+      "decider": "NOAA National Marine Fisheries Service, Office of Protected Resources",
+      "public_access": "closed",
+      "access_note": "The record on this one is shut. NMFS took comment for 30 days after publishing the proposed authorization on July 22nd, 2026 and received three comment letters, all from private citizens, then issued the authorization on September 10th, 2026. There is no open filing path now. The next door is the Year 10 renewal, which the Year 9 proposal already invited comment on inside its own action line, and no renewal notice has published. Anyone who wants standing in Year 10 should watch the Federal Register for a proposed authorization under docket RTID 0648-XF889 or its successor.",
+      "summary": "NMFS has authorized the Office of Naval Research to harass marine mammals incidental to Year 9 of its Arctic Research Activities in the Beaufort and Chukchi seas, and what the authorization covers is an acoustic navigation grid. Up to six moored sources at 900 to 950 Hz and two drifting ice gateway buoys will transmit a 30 second pulse every four hours for one year, so that gliders operating under sea ice can fix a position by trilateration from those sources rather than by dead reckoning. The study area is about 639,237 square kilometres across the US Exclusive Economic Zone, the high seas north of Alaska and part of the Canadian Exclusive Economic Zone, coming within 204 kilometres of the Alaska coast at its nearest point. A research cruise of 22 days is planned to begin September 22nd, 2026 aboard R/V Sikuliaq, US Coast Guard Cutter HEALY or another vessel, while the sound sources stay in the water for twelve months. The authorization covers Level B harassment only and states that take by Level A harassment is neither anticipated nor authorized.",
+      "key_dates": [
+        {
+          "date": "2026-07-22",
+          "label": "Proposed authorization published at 91 FR 46055, opening a 30 day comment period",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-04",
+          "label": "Authorization signed by the Director of the NMFS Office of Protected Resources",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-10",
+          "label": "Authorization issued and published at 91 FR 57547",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-09-14",
+          "label": "Authorization takes effect",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-22",
+          "label": "First research cruise planned to begin, 22 days in September and October",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-09-13",
+          "label": "Authorization expires, one year being the statutory maximum",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Beaufort and eastern Chukchi seas, 204 km off the Alaska coast at the nearest point",
+        "lon": -150.0,
+        "lat": 72.0
+      },
+      "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-10/html/2026-18459.htm",
+          "outlet": "Federal Register via GPO govinfo, NOAA National Marine Fisheries Service",
+          "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18459.txt",
+          "outlet": "Federal Register plain text, NOAA National Marine Fisheries Service",
+          "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/07/22/2026-14816.txt",
+          "outlet": "Federal Register plain text, NOAA National Marine Fisheries Service",
+          "date": "2026-07-22"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-22/html/2026-14816.htm",
+          "outlet": "Federal Register via GPO govinfo, NOAA National Marine Fisheries Service",
+          "date": "2026-07-22"
+        }
+      ],
+      "first_seen": "2026-09-12",
+      "last_updated": "2026-09-12",
+      "history": [
+        {
+          "date": "2026-09-12",
+          "note": "Added from today's verified claims. NMFS issued the Office of Naval Research an incidental harassment authorization for Year 9 of its Arctic Research Activities, published September 10th, 2026 at 91 FR 57547, effective September 14th, 2026 through September 13th, 2027. Signed September 4th by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources, filed September 9th. The authorization covers Level B harassment of beluga whale and Arctic ringed seal, and states that take by Level A harassment is neither anticipated nor authorized. Two figures in the record are worth tracking as this series continues. The stock table gives the Beaufort Sea beluga abundance as 39,258 from a 1992 survey, and gives the Arctic ringed seal stock abundance as undetermined, with its potential biological removal also undetermined, for the one species here listed as threatened under the Endangered Species Act. The finding relies on a Biological Opinion the NMFS Alaska Regional Office issued on September 13th, 2022. No authorized take figure is recorded here, because the take table could not be read from the Federal Register text or XML on any route tried and an abundance estimate is not a take."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/onr-arctic-iha-year-9/"
     }
   ]
 }
