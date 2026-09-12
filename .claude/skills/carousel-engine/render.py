@@ -567,7 +567,7 @@ PAINT_HOOK_JS = """
 INK_HOOK_JS = """
 (() => {
   try {
-    const rep = window.__akInk = { inks: {}, cap: false, ops: 0 };
+    const rep = window.__akInkCensus = { inks: {}, cap: false, ops: 0 };
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto) return;
     const MAX = 160;
@@ -584,36 +584,58 @@ INK_HOOK_JS = """
         return origStop.apply(this, arguments);
       };
     }
-    /* Alpha of a colour string; anything unreadable counts as opaque, which can
-       only make the census LOUDER and never quieter. */
-    const alphaOf = (c) => {
-      c = String(c == null ? '' : c).trim().toLowerCase();
-      if (c === 'transparent') return 0;
-      let m = c.match(/^rgba?\\(([^)]+)\\)$/) || c.match(/^hsla?\\(([^)]+)\\)$/);
-      if (m) {
-        const p = m[1].split(/[,\\/\\s]+/).filter((s) => s.length);
-        if (p.length >= 4) {
-          const v = parseFloat(p[3]);
-          return isFinite(v) ? Math.max(0, Math.min(1, p[3].indexOf('%') >= 0 ? v / 100 : v)) : 1;
+    /* AN INK IS ITS RGB AND NOT ITS ALPHA, which is what makes this census
+       small enough to carry. A ramp writes rgba(255,199,44,0.98) then 0.973
+       then 0.914, and keying on the literal made six of this run's nine frames
+       blow a 160-entry cap on one gold and one grey. So every colour is
+       normalised to an rgb triple through the browser's own parser (which also
+       reads `gold`, `hsl()`, `#abc4` and anything else CSS accepts), the entry
+       is keyed on that, and the alpha travels as the highest EFFECTIVE alpha
+       (colour alpha times globalAlpha) any op carried with it. Unreadable
+       colours count as opaque, which can only make the census louder. */
+    let nctx = null;
+    const ncache = new Map();
+    const norm = (c) => {
+      const key = String(c == null ? '' : c).trim().toLowerCase();
+      if (!key) return null;
+      if (ncache.has(key)) return ncache.get(key);
+      let v = null;
+      try {
+        if (!nctx) nctx = document.createElement('canvas').getContext('2d');
+        nctx.fillStyle = '#000000';
+        nctx.fillStyle = key;
+        const got = String(nctx.fillStyle);
+        let m = got.match(/^#([0-9a-f]{6})$/);
+        if (m) {
+          v = [parseInt(m[1].slice(0, 2), 16), parseInt(m[1].slice(2, 4), 16),
+               parseInt(m[1].slice(4, 6), 16), 1];
+        } else {
+          m = got.match(/^rgba?\\(([^)]+)\\)$/);
+          if (m) {
+            const p = m[1].split(/[,\\/\\s]+/).filter((s) => s.length).map(parseFloat);
+            if (p.length >= 3 && p.every((n) => isFinite(n))) {
+              v = [Math.round(p[0]), Math.round(p[1]), Math.round(p[2]),
+                   p.length >= 4 ? Math.max(0, Math.min(1, p[3])) : 1];
+            }
+          }
         }
-        return 1;
-      }
-      m = c.match(/^#([0-9a-f]{8})$/);
-      if (m) return parseInt(m[1].slice(6), 16) / 255;
-      m = c.match(/^#([0-9a-f]{4})$/);
-      if (m) return parseInt(m[1].slice(3) + m[1].slice(3), 16) / 255;
-      return 1;
+      } catch (e) { v = null; }
+      if (ncache.size < 600) ncache.set(key, v);
+      return v;
     };
     const ERASE = { 'destination-out': 1, 'destination-in': 1, 'destination-atop': 1,
-                    'destination-over': 0, 'xor': 1, 'copy': 0 };
-    const note = (col, kind, alpha) => {
-      const c = String(col == null ? '' : col).trim().toLowerCase().slice(0, 44);
-      if (!c) return;
-      const key = kind + '|' + c;
+                    'xor': 1 };
+    const note = (col, kind, mul) => {
+      const v = norm(col);
+      if (!v) return;
+      const alpha = v[3] * mul;
+      const key = kind + '|' + v[0] + ',' + v[1] + ',' + v[2];
       let e = rep.inks[key];
       if (!e) {
         if (Object.keys(rep.inks).length >= MAX) { rep.cap = true; return; }
-        e = rep.inks[key] = { kind: kind, color: c, ops: 0, amax: 0 };
+        e = rep.inks[key] = { kind: kind, rgb: [v[0], v[1], v[2]],
+                              color: String(col).trim().toLowerCase().slice(0, 30),
+                              ops: 0, amax: 0 };
       }
       e.ops++;
       rep.ops++;
@@ -625,12 +647,12 @@ INK_HOOK_JS = """
         const ga = typeof ctx.globalAlpha === 'number' ? ctx.globalAlpha : 1;
         if (!(ga > 0)) return;
         if (style == null) return;
-        if (typeof style === 'string') { note(style, kind, ga * alphaOf(style)); return; }
+        if (typeof style === 'string') { note(style, kind, ga); return; }
         const ss = stops.get(style);
-        if (ss) { for (let i = 0; i < ss.length; i++) note(ss[i], kind, ga * alphaOf(ss[i])); }
-        else note('<pattern>', kind, ga);
+        if (ss) { for (let i = 0; i < ss.length; i++) note(ss[i], kind, ga); }
       } catch (e) {}
     };
+    rep.norm = norm;
     const wrapInk = (name, kind, which) => {
       const orig = proto[name];
       if (typeof orig !== 'function') return;
@@ -1627,7 +1649,7 @@ IN_PAGE_QA_JS = """
   out.declaration_misses = [];
   try {
     const BODY_CONTRACTS = { contacts: "data-contacts", scale: "data-scale",
-                             encodes: "data-encodes" };
+                             encodes: "data-encodes", ink: "data-ink" };
     const GLOBAL_CONTRACTS = ["__akAssert", "__akMotifs", "__akLeaders", "__akFit"];
     const variants = (s) => (s.slice(-1) === "s" ? [s, s.slice(0, -1)] : [s, s + "s"]);
     const ds = (document.body && document.body.dataset) || {};
@@ -1766,25 +1788,42 @@ IN_PAGE_QA_JS = """
   out.inks = [];
   out.ink_cap = false;
   try {
+    const SVG_INK = { path: 1, rect: 1, circle: 1, ellipse: 1, line: 1,
+                      polyline: 1, polygon: 1, text: 1, tspan: 1, use: 1 };
     const acc = {};
-    const add = (col, kind, alpha) => {
-      const c = String(col == null ? "" : col).trim().toLowerCase().slice(0, 44);
-      if (!c || c === "none" || c === "transparent") return;
-      const k = kind + "|" + c;
+    const ir = window.__akInkCensus;
+    /* The hook's own normaliser, so a colour named two ways is one ink here and
+       there. Absent (hook never ran), the DOM half falls back to the computed
+       rgb() string the browser already returns. */
+    const norm = (ir && typeof ir.norm === "function") ? ir.norm : function (c) {
+      const m = String(c || "").match(/^rgba?\\(([^)]+)\\)$/);
+      if (!m) return null;
+      const p = m[1].split(/[,\\/\\s]+/).filter((s) => s.length).map(parseFloat);
+      if (p.length < 3 || !p.every((n) => isFinite(n))) return null;
+      return [Math.round(p[0]), Math.round(p[1]), Math.round(p[2]),
+              p.length >= 4 ? p[3] : 1];
+    };
+    const add = (col, kind, mul) => {
+      const raw = String(col == null ? "" : col).trim().toLowerCase();
+      if (!raw || raw === "none" || raw === "transparent") return;
+      const v = norm(raw);
+      if (!v) return;
+      const k = kind + "|" + v[0] + "," + v[1] + "," + v[2];
       if (!acc[k]) {
         if (Object.keys(acc).length >= 240) { out.ink_cap = true; return; }
-        acc[k] = { kind: kind, color: c, ops: 0, amax: 0 };
+        acc[k] = { kind: kind, rgb: [v[0], v[1], v[2]], color: raw.slice(0, 30),
+                   ops: 0, amax: 0 };
       }
       acc[k].ops++;
-      if (alpha > acc[k].amax) acc[k].amax = Math.round(alpha * 1000) / 1000;
+      const a = v[3] * mul;
+      if (a > acc[k].amax) acc[k].amax = Math.round(a * 1000) / 1000;
     };
-    const ir = window.__akInk;
     if (ir && ir.inks) {
       for (const k of Object.keys(ir.inks)) {
         const e = ir.inks[k];
         if (!acc[k]) {
           if (Object.keys(acc).length >= 240) { out.ink_cap = true; continue; }
-          acc[k] = { kind: e.kind, color: e.color, ops: 0, amax: 0 };
+          acc[k] = { kind: e.kind, rgb: e.rgb, color: e.color, ops: 0, amax: 0 };
         }
         acc[k].ops += e.ops;
         if (e.amax > acc[k].amax) acc[k].amax = e.amax;
@@ -1795,6 +1834,10 @@ IN_PAGE_QA_JS = """
       const cs = getComputedStyle(el);
       const tag = el.tagName.toLowerCase();
       if (tag === "svg" || el.ownerSVGElement) {
+        /* Only tags that put ink down. A <g> or a <defs> child inherits a black
+           fill it never paints with, and counting it would have every slide in
+           the house reporting rgb(0,0,0) as an ink it used. */
+        if (!SVG_INK[tag]) continue;
         const op = parseFloat(cs.opacity);
         const o = isFinite(op) ? op : 1;
         const fo = parseFloat(cs.fillOpacity), so = parseFloat(cs.strokeOpacity);
@@ -2894,6 +2937,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "declaration_misses": [],
+           "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
            "render_ms": 0, "ok": False}
     t0 = time.time()
@@ -2935,6 +2979,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",
+                                       "ink_law", "inks", "ink_cap",
                                        "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000

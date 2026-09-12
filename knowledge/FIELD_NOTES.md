@@ -6995,3 +6995,50 @@ hand, not the table. Write each row with the frame open. `NOTHING, BUILT AS
 PLANNED` is a measurement and has to be earned by looking, and a run that
 refuses a critic's finding owes its reconciliation row the refusal, in the row,
 where a later reader of that table will find it.
+
+## 2026-09-12, No.57, Phase 12 frontier scan (c): generative/procedural technique portable to offline Canvas. TWO PARKED.
+
+The stalest legal slot (last read 2026-09-03) and distinct from the last three
+logged foci (d on 2026-09-07, a on 2026-09-09, e on 2026-09-10). It was also the right slot on
+the merits: 'Artwork craft and genuine detail' has been the weakest criterion in
+6 of the last 10 runs at a mean of 6.8, and this run's own reviews reported mote
+populations that "read as grain or as JPEG noise" three separate times. Six
+searches, four fetches. Nothing applied, because the reactive budget filled with
+three fixes and both findings want a committed helper plus a fit against a real
+frame, which is a next-run job and not a same-day one.
+
+- **PARKED: a population at the SAME count reads as a measured set when it is
+  blue noise and as grain when it is random.** Weighted sample elimination
+  (Yuksel, EUROGRAPHICS 2015, Computer Graphics Forum 34(2)) takes any dense
+  candidate set, which this house already generates seeded, and greedily keeps
+  the target N with Poisson-disk spacing, so no clumps and no bald patches at an
+  unchanged count. It needs no radius chosen up front and it accepts a density
+  function, which is exactly the gradient slide 04's population was criticised
+  for lacking. Concrete parameters, read out of the reference implementation
+  rather than the abstract: in 2D r_max = sqrt(A / (2 * sqrt(3) * N)),
+  d_max = 2 * r_max, weight of a sample = sum over neighbours within d_max of
+  (1 - d/d_max)^alpha with alpha 8, and the elimination's weight-limit fraction
+  is (1 - (N_out/N_in)^gamma) * beta with beta 0.65 and gamma 1.5. The reference
+  uses a kd-tree and a heap; a uniform grid and an array scan are enough at our
+  counts (a few thousand points), so this is roughly 100 lines of vanilla JS with
+  no dependency. https://www.cemyuksel.com/research/sampleelimination/ and
+  https://github.com/cemyuksel/cyCodeBase/blob/master/cySampleElim.h
+  WHAT IT WOULD TAKE: assets/js/ helper, a TECHNIQUE_LIBRARY entry with these
+  parameters, and a fit showing a shipped population at the same count with
+  fewer clumps at 432 px. Do not apply it to a population that ENCODES a
+  quantity by position without thinking: it moves points.
+- **PARKED: our flow fields seed at random; evenly-spaced streamline placement
+  is a parameter.** Jobard and Lefer (1997): trace a line forward and backward
+  until it leaves the sheet or comes within d_test of an existing line, then
+  offer new seeds perpendicular at d_sep from the finished line, with
+  d_test = 0.5 * d_sep the common setting. One number, d_sep, sets the density of
+  the whole field, and the multiresolution variant runs nested placements at
+  increasing density with the coarse lines frozen as constraints, which fills
+  gaps without thinning the structure. This is the honest fix for a field that
+  is dense in one quadrant and bald in another, which is a defect this studio has
+  shipped. https://www.semanticscholar.org/paper/Creating-Evenly-Spaced-Streamlines-of-Arbitrary-Jobard-Lefer/8b15ba829f82787a92c97026d41a925e9d33a027
+  and the recipe restated at https://bookofshapes.com/patterns/flow_lines/
+  WHAT IT WOULD TAKE: a d_sep parameter and a spatial hash in the existing flow
+  helper, then a before/after on one real frame. The 503 on zhanpingliu.org's
+  ADVESS survey is why the parameters here are the classic ones and not that
+  paper's refinements.
