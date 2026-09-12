@@ -6960,3 +6960,38 @@ which the axis census caught. Dropping it 8 px MOVED THE MARK, which the census
 also caught, and correctly: a declared mark has to have its ink at its own depth.
 The answer was position without offset, drawing the tick OUTWARD past a brighter
 spine, so nothing at all sits between a numeral and the rail.
+
+### THE GATE CLOSED THE DEFECT AND NOT THE PAIR (2026-09-12, No.57 round 3)
+
+The round 1 hard fail was two text blocks sharing one band with 9 design px
+between them, which read at feed size as `DEPLOYMENT AND RECOVERYThe 55 metre
+zone applies`. `AKFIT.guard` gained a `minGap` check for exactly that, it fired
+at 9.0 px on its first run, and slide 05 now clears by 42 px. The scorer then
+found the same reading failure one pair over, on the same frame. Slide 05's 457
+metre dimension call terminates at about (795,1712), correctly ON its own arc,
+and that point is inside the bounding box of the clarification paragraph's last
+line.
+
+The guard pairs `[data-reserve]` against `[data-reserve]`. `qa.py` checks a
+leader against its TARGET. Nothing in the machine compares a leader TERMINATOR
+against a TEXT BOX, so the pair that shipped is the pair nobody wrote. Next
+run's gate, and it is a small one: walk every declared leader's end point and
+every arrowhead against the reserve rects, and warn at anything under the same
+24 px the landing gate already uses.
+
+### A ROW THAT SAYS IT MATCHED THE PLAN IS THE CHEAPEST SENTENCE IN THE RUN
+
+This run already learned that BUILD RECONCILIATION is how a hard fail survives
+six review rooms, corrected the offending row in place, and recorded that it was
+wrong. The round 3 scorer then found TWO MORE rows of the same table still
+misdescribing the render. Row 01 said nothing diverged, about the one frame
+whose instrument position the run deliberately refused to move and defends three
+pages later in the same document. Row 02 named a kicker string that copy.json's
+own note records being replaced twice.
+
+Nothing there reaches a reader and every gate that matters reads copy.json, so
+the cost was a criterion deduction rather than a defect. The lesson is about the
+hand, not the table. Write each row with the frame open. `NOTHING, BUILT AS
+PLANNED` is a measurement and has to be earned by looking, and a run that
+refuses a critic's finding owes its reconciliation row the refusal, in the row,
+where a later reader of that table will find it.

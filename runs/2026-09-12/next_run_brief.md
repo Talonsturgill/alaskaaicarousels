@@ -18,6 +18,20 @@ pixel critics and a hand written pixel count found it, across a whole review
 round. Phase 12 of this run was pointed at exactly this; check
 `ledger/upgrades.json` for what landed before you spend a round rediscovering it.
 
+## THE GATE TO WRITE FIRST, and round 3 named it
+
+`AKFIT.guard`'s new `minGap` check pairs `[data-reserve]` against
+`[data-reserve]`, and `qa.py` checks a leader against its TARGET. Nothing
+compares a leader TERMINATOR against a TEXT BOX, and that is the pair that
+shipped. Slide 05's 457 metre dimension call ends at about (795,1712), on its
+arc as intended, inside the bounding box of the clarification paragraph's last
+line. It is the surviving cousin of the defect that capped round 1 at 6.9 and
+every gate reported PASS over it.
+
+Walk every leader end point and arrowhead against the reserve rects and warn
+under the same 24 px the landing gate already uses. Small gate, and the run that
+writes it stops paying for this family.
+
 ## SPENT, AND WHY IT IS SPENT
 
 - **Hero structure.** The descended station. Nine frames on one shared depth to
