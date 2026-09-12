@@ -194,8 +194,21 @@
       var t = S.t(y);
       /* radius and alpha both fall with depth, and the near band gets the bigger
        * marks, so the two populations are distinguishable rather than mixed */
+      /* `rFloor` AND `aFloor` EXIST BECAUSE A SUB PIXEL MOTE IS NOT A MOTE
+       * (2026-09-12). Radius here falls to 0.55 px by the bottom of a window,
+       * which is right when the population is atmosphere and wrong every time
+       * the population is the SUBJECT or the frame is dark. Four pixel critics
+       * on one run reported "fewer than twenty resolvable motes", "reads as
+       * grain or as JPEG noise" and "the near band is not visible", on three
+       * different frames. A caller that needs the population to survive a 432
+       * px downsample raises the floors; the defaults are unchanged, so no
+       * existing frame moves. */
+      var rFloor = o.rFloor == null ? 0 : o.rFloor;
+      var aFloor = o.aFloor == null ? 0 : o.aFloor;
       var r = (inNear ? 0.55 : 0.35) + (inNear ? 1.35 : 0.7) * (1 - t) * rnd();
       var al = (0.05 + 0.30 * (1 - t) * rnd()) * (inNear ? 1.0 : 0.62);
+      if (rFloor) r = Math.max(r, rFloor * (inNear ? 1.0 : 0.72));
+      if (aFloor) al = Math.max(al, aFloor * (inNear ? 1.0 : 0.66));
       /* the reserve, as a basin in this population's own density rather than as
        * a hole cut afterwards. Both radius and alpha fall, per akstipple's
        * three-function rule, so a quiet band reads as thinner water and not as
@@ -706,12 +719,16 @@
         + "There is no decorative tick on a measured axis.");
     var bandW = o.bandW == null ? 22 : o.bandW;
     var ink = o.ink || "rgba(186,214,218,0.78)";
-    var faint = o.faint || "rgba(150,182,190,0.34)";
+    /* THE SPINE CARRIES THE TICKS. At alpha 0.34 it was too faint to be seen at
+     * feed size, so each tick read as an orphaned stroke beside a numeral, which
+     * is the em dash reading again by another route. A tick attached to a
+     * visible spine is unmistakably an axis. */
+    var faint = o.faint || "rgba(150,182,190,0.58)";
     var w = S.window();
 
     /* the rail itself, spanning this slide's whole window */
     cx.strokeStyle = faint;
-    cx.lineWidth = 1.25;
+    cx.lineWidth = 1.6;
     cx.beginPath();
     cx.moveTo(x, S.depth(w.d0));
     cx.lineTo(x, S.depth(w.d1));
