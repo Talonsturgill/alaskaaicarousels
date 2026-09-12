@@ -487,6 +487,18 @@
   /* --------------------------------------------------------- drawOffscreen
    * Render a whole engraving pass into its own canvas and composite ONCE.
    * cx.filter applies per draw op, so this is the only safe place to blur.
+   *
+   * THE SURFACE THIS RETURNS IS 1x. It is `c.width = w` with no backing
+   * multiplier and no scale transform, so on it one device pixel IS one design
+   * pixel, which is NOT true of the slide's own canvas (2160 x 2700 with
+   * ctx.scale(2,2)). A caller that walks the buffer by hand with getImageData
+   * has to use W and H here, not W*2 and H*2. Run No.57's slide 02 assumed the
+   * 2x backing, strode the buffer at W*2 and read its pattern at px/2: every
+   * fringe painted at twice its size, and each pixel consulted its reserve
+   * basin at HALF its real position, so the reserve was asked about the wrong
+   * place and the field walked through the headline. qa.py caught the ink and
+   * said exactly where it was; three guesses at the cause did not find it,
+   * because the arithmetic was wrong rather than the gating. 2026-09-12.
    */
   function drawOffscreen(w, h, fn, opts) {
     opts = opts || {};

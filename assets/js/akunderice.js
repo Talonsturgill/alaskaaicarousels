@@ -200,7 +200,11 @@
        * a hole cut afterwards. Both radius and alpha fall, per akstipple's
        * three-function rule, so a quiet band reads as thinner water and not as
        * a wiped rectangle. */
-      if (o.atten) { var aq = o.atten(x, y); if (aq < 0.06) continue; al *= aq; r *= (0.45 + 0.55 * aq); }
+      /* A MOTE AT SEVEN PERCENT IS STILL A MARK. qa.py measures INK AREA inside a
+       * line box, not mean alpha, so a basin that only thins the population
+       * leaves hard-edged dots in the type and reads as "canvas mark inside
+       * reserved text". Under 0.18 the mote is not drawn at all. */
+      if (o.atten) { var aq = o.atten(x, y); if (aq < 0.18) continue; al *= aq; r *= (0.45 + 0.55 * aq); }
       cx.fillStyle = "rgba(" + tint[0] + "," + tint[1] + "," + tint[2] + ","
         + al.toFixed(3) + ")";
       cx.beginPath();
@@ -243,8 +247,8 @@
    */
   S.basins = function (rects, opts) {
     var o = opts || {};
-    var ramp = o.ramp == null ? 96 : o.ramp;
-    var depth = o.depth == null ? 0.92 : o.depth;
+    var ramp = o.ramp == null ? 110 : o.ramp;
+    var depth = o.depth == null ? 0.97 : o.depth;
     var pad = o.pad == null ? 10 : o.pad;
     var R = (rects || []).map(function (r) {
       return [r[0] - pad, r[1] - pad, r[2] + 2 * pad, r[3] + 2 * pad];
@@ -507,7 +511,7 @@
       for (var k = 1; k < seg.length; k++) {
         var f = 1 - (k / seg.length);
         var al = a0 * Math.pow(f, 1.15);
-        if (o.atten) al *= o.atten(seg[k][0], seg[k][1]);
+        if (o.atten) { var aq2 = o.atten(seg[k][0], seg[k][1]); if (aq2 < 0.20) continue; al *= aq2; }
         if (al < 0.012) { continue; }
         cx.strokeStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + al.toFixed(3) + ")";
         cx.lineWidth = Math.max(0.45, wid * (0.45 + 0.55 * f));
