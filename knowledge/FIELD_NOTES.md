@@ -7230,3 +7230,30 @@ UNBLOCKS WHEN: someone can verify a rebuilt merge page for page against the
 current one (vector text intact, file size, the JPEG recompression pass still
 applied) rather than trusting that a different merge call produces the same
 document.
+
+**THE EDITORIAL RETRO (No.58).** Three things worth carrying forward, separate
+from the machine lessons above.
+
+**A STORY THAT INVERTS AT THE CLAIMS GATE IS A GOOD SIGN, NOT A CRISIS.** Six
+scouts agreed on a fact that turned out to be wrong, and the fact-checker killed
+it. The half hour spent re-deriving the story from two secondary sources bought
+a better deck than the one that was planned, because the question "does one
+chamber count" is live and "a bill died" is finished. Build the schedule so
+there IS a half hour there. A run that treats the claims gate as a formality
+ships the scouts' consensus, and the scouts' consensus is where the error was.
+
+**THE DECK'S WEAKEST SCORED CRITERION WAS ALASKA AUTHENTICITY, AT 6, AND THAT
+IS A PLANNING FAULT AND NOT A DRAWING ONE.** Five of nine frames carry no
+Alaska content in the artwork, because the subject is a federal bill and the
+Alaska hinge lives on two frames. The fix is not more Alaskan decoration. It is
+to notice at PLAN TIME that a federal-instrument story puts its local content
+in two places and to give the middle frames something named and local to stand
+on, or to choose a story whose local content is distributed. This is the third
+deck in five on the shape "a federal instrument, and whether Alaska is inside
+it". The lane is narrow and the page is working it hard.
+
+**THE CAPTION'S HOOK WAS SOMEONE ELSE'S SENTENCE.** It opens on the committee
+chairman's quotation, which is strong and quotable and is not this page's own
+claim, so the analytical position does not arrive until the second paragraph.
+The caption room should treat "open on a source quotation" as a move that costs
+a paragraph of voice, and price that in when it picks.
