@@ -225,7 +225,22 @@
         cx.fillRect(x, y, step, step);
       }
     }
-    /* the broad soft specular a polished band takes from a low key */
+    /* THE BROAD SOFT SPECULAR a polished band takes from a low key.
+     *
+     * Shape and edge are two different problems and the fix has to solve both.
+     * The gradient has to follow the BOX, because a radial one sized to half a
+     * long line's length fades out before the line's first and last words and
+     * leaves the field sitting over them, which measured 2.9 to 1 at the ends
+     * of a 441 px run whose middle read 4.8. And the rect has to have no
+     * findable edge, because a linear gradient does not reach zero at its own
+     * left and right sides, which is the faint straight-sided lift four critics
+     * read as a plate on four different frames.
+     *
+     * So: the box's own shape, blurred. The blur feathers all four sides and
+     * the gradient still runs corner to corner along the light.
+     */
+    cx.save();
+    cx.filter = 'blur(18px)';
     for (var i = 0; i < boxes.length; i++) {
       var b = boxes[i];
       var g = cx.createLinearGradient(b[0], b[1] - 18, b[0] + b[2], b[1] + b[3] + 18);
@@ -234,8 +249,13 @@
       g.addColorStop(1, 'rgba(150,172,186,0)');
       cx.globalAlpha = 1;
       cx.fillStyle = g;
-      cx.fillRect(b[0] - 26, b[1] - 20, b[2] + 52, b[3] + 40);
+      /* the rect is INSET by roughly the blur radius, so the blurred result
+       * covers the same ground the hard edged one did rather than spilling a
+       * further 50 px of lit material into the frame's mid mass */
+      cx.fillRect(b[0] - 8, b[1] - 2, b[2] + 16, b[3] + 4);
     }
+    cx.filter = 'none';
+    cx.restore();
     cx.restore();
   };
 
@@ -411,15 +431,15 @@
     cx.beginPath(); cx.rect(x, y, w, h); cx.clip();
     var g = cx.createLinearGradient(x, y, x + w * 0.55, y + h);
     if (warm) {
-      g.addColorStop(0, '#231A0C'); g.addColorStop(0.62, '#100B05'); g.addColorStop(1, '#05040A');
+      g.addColorStop(0, '#4A3A1C'); g.addColorStop(0.58, '#2E2411'); g.addColorStop(1, '#1C1509');
     } else {
-      g.addColorStop(0, '#1A2530'); g.addColorStop(0.62, '#0B121A'); g.addColorStop(1, '#05080E');
+      g.addColorStop(0, '#36424C'); g.addColorStop(0.58, '#222C35'); g.addColorStop(1, '#151D25');
     }
     cx.fillStyle = g; cx.fillRect(x, y, w, h);
     /* the floor's own tooth, so the recess is a place the material is FLAT and
      * not a place it is absent */
     for (var i = 0; i < 7; i++) {
-      cx.strokeStyle = 'rgba(150,176,192,' + (0.05 + 0.012 * i) + ')';
+      cx.strokeStyle = 'rgba(186,210,226,' + (0.07 + 0.016 * i) + ')';
       cx.lineWidth = 0.7;
       cx.beginPath();
       cx.moveTo(x + 7, y + 9 + i * (h - 18) / 6);
@@ -428,7 +448,7 @@
     }
     cx.restore();
     /* lit far wall, top and left */
-    cx.strokeStyle = 'rgba(196,220,236,0.55)'; cx.lineWidth = 2.4;
+    cx.strokeStyle = 'rgba(214,234,248,0.72)'; cx.lineWidth = 3.2;
     cx.beginPath();
     cx.moveTo(x, y + h); cx.lineTo(x, y); cx.lineTo(x + w, y); cx.stroke();
     /* near wall in the lee, right and bottom */
