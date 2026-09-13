@@ -2275,7 +2275,8 @@
       ],
       "verification": "Reconstruction: tests/overprint_verify.py gains two fixtures, a rotated canvas label with a DOM block in its column and the same pair with the block moved clear; all SIX cases hold, and the broken one names '100 MW' (canvas type through DOM type (31% of the smaller ink box overprinted)). Live reconstruction on this run: out/2026-09-13/slides/slide-02.html with .guard put back at left 96px top 1040px renders and FAILS with the same message; the shipped slide passes. Negative controls: this run's nine slides re-rendered and re-QA'd, 0 fails and the same 10 warns as the shipped machine_qa; runs/2026-09-12's nine slides re-rendered from source, 0 fails; examples/demo-deck re-rendered, 0 fails, verdict WARN as before. Corpus sweep of the rule over the 136 shipped slides and 49 canvas strings in runs/*/render_report.json: fires 0 times.",
       "rollback": "Revert the upgrade(2026-09-13) commit. Individually: delete canvas_dom_overprints(), canvas_ink_polys(), _em_box(), _poly_area(), _clip_poly_to_rect() and their one call site in qa.py; the render.py quad and canvas id are additive and harmless if left.",
-      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner",
+      "merge_sha": "31689cbd6f0328155afa39b524da89e8d34fd989"
     },
     {
       "run_date": "2026-09-13",
@@ -2288,7 +2289,8 @@
       ],
       "verification": "Reconstruction: out/2026-09-13 copied with slide 02's body shortened by its last sentence -> FAIL, exit 1, naming 'A large-load customer draws 100 megawatts or more at one site or campus.'. Negative control: the shipped run dir passes, 6 body quotes compared where it previously compared 0. Corpus: over the 13 shipped runs with a storyboard, copy.json and render report, comparisons rise from 17 to 38 and findings from 1 to 2; the one new finding (runs/2026-09-07 slide 09, 'The federal fiscal year ends September 30th.') is a real sentence a dossier promised and the deck never printed. plan_drift_check --self-test: 25 checks, 0 failures.",
       "rollback": "Revert the upgrade(2026-09-13) commit. Individually: restore the old BODY_RE and drop body_candidates() with the candidate branch in check_body_copy().",
-      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner",
+      "merge_sha": "31689cbd6f0328155afa39b524da89e8d34fd989"
     },
     {
       "run_date": "2026-09-13",
@@ -2304,7 +2306,8 @@
       ],
       "verification": "Correctness first: over this run's nine slides every reported line_text joins back to the node's own `full` string, 0 mismatches, and the nine display headlines read as whole words (an earlier off-by-one that reported 'a large-l' / 'oad customer' is corrected and documented in the code). Reconstruction: tests/line_text_verify.py, four cases, all hold (an authored <br> block reports its three lines; a soft-wrapped block reports whole words; the badly broken headline is warned once; the clean two-line headline is not). Signal rate: 1 warn on this run's repaired deck (slide 07, 'HAS VOTED ON THE'), 6 on runs/2026-09-12's shipped deck, 3 on examples/demo-deck, 0 fails anywhere.",
       "rollback": "Revert the upgrade(2026-09-13) commit. Individually: delete ragged_lines() and its call site in qa.py (the render.py line_text field is additive).",
-      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner",
+      "merge_sha": "31689cbd6f0328155afa39b524da89e8d34fd989"
     }
   ],
   "scan_log": [
