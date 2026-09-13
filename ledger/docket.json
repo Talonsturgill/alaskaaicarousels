@@ -1552,7 +1552,7 @@
     },
     {
      "date": "2026-09-13",
-     "note": "Checked and unchanged. The state public notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th, which answered pre-proposal conference questions and moved the proposal deadline from August 24th to 3:30 p.m. August 28th. Sixteen days after proposals were due, no award, no intent to award and no cancellation is posted on the notice."
+     "note": "Checked and unchanged. The notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th, which moved the proposal deadline to 3:30 p.m. August 28th. Sixteen days after proposals were due, no award, no intent to award and no cancellation is posted."
     }
    ]
   },
@@ -1756,7 +1756,7 @@
     },
     {
      "date": "2026-09-13",
-     "note": "Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with FERC on June 30th as its most recent action, with nothing posted since June. The page puts estimated construction cost at about $400 million and describes the work as roughly three years of study and permitting followed by three years of construction. The FERC comment, intervention and protest window closed 5 p.m. Eastern on August 28th, so the matter now sits with the Commission and any change arrives unannounced."
+     "note": "Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with FERC on June 30th as its most recent action, and puts estimated construction cost at about $400 million. The FERC comment window closed 5 p.m. Eastern on August 28th, so the matter sits with the Commission and any change arrives unannounced."
     }
    ]
   },
@@ -2957,6 +2957,157 @@
     {
      "date": "2026-09-13",
      "note": "Re-verified against the Federal Register text at 91 FR 57547. The authorization is effective from September 14th through September 13th, 2027, the one year statutory maximum, and was signed September 4th by Kimberly Damon-Randall, Director of the NMFS Office of Protected Resources. The issued notice carries no take table of its own and points back to the July 22nd proposed authorization for the numbers by species. It takes effect tomorrow."
+    }
+   ]
+  },
+  {
+   "id": "hr-9340-ratepayer-protection-act",
+   "title": "The federal bill that would make a 100 megawatt customer pay for its own wires",
+   "kind": "legislation",
+   "status": "pending-decision",
+   "decider": "U.S. House of Representatives, then the Senate and the President, and after that every state regulatory authority including the Regulatory Commission of Alaska",
+   "public_access": "indirect",
+   "access_note": "There is no comment room on a bill. The route is the congressional delegation, and after enactment it becomes a proceeding at the Regulatory Commission of Alaska, which is a room with a docket and a public record. The bill sits on the Union Calendar at number 713, which makes it eligible for floor action and not scheduled for it, and neither published House schedule listed it on September 13th. Nothing is said here about Alaska's delegation, because the cosponsor list could not be read.",
+   "summary": "H.R. 9340, the Ratepayer Protection Act, would add a standard to the Public Utility Regulatory Policies Act requiring that rates charged a large-load customer recover from that customer the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it, and keep recovering it if the customer walks away. A large-load customer is a non-residential consumer with aggregate peak demand of 100 megawatts or more at one site or campus, running information technology infrastructure for data storage and computation, which is a data center described without the phrase. State regulators would get one year from enactment to begin considering it and two to decide. A state is excused if, before enactment, it implemented a comparable standard, conducted a proceeding on one, or its legislature voted on one. Alaska's Senate passed SB 250, a comparable cost-allocation bill, on May 16th, and the House never voted. Whether one chamber satisfies the words the State legislature has voted is unresolved, and it decides whether Alaska is already excused.",
+   "key_dates": [
+    {
+     "date": "2026-07-21",
+     "label": "House Energy and Commerce advances the bill 52 to 0",
+     "kind": "vote"
+    },
+    {
+     "date": "2026-09-10",
+     "label": "Reported to the House as H. Rept. 119-814 and placed on Union Calendar 713",
+     "kind": "milestone"
+    }
+   ],
+   "sources": [
+    {
+     "url": "https://www.govinfo.gov/content/pkg/BILLS-119hr9340rh/html/BILLS-119hr9340rh.htm",
+     "outlet": "U.S. Government Publishing Office, govinfo, reported bill text",
+     "date": "2026-09-10"
+    },
+    {
+     "url": "https://www.govinfo.gov/app/details/BILLS-119hr9340rh",
+     "outlet": "U.S. Government Publishing Office, govinfo",
+     "date": "2026-09-10"
+    },
+    {
+     "url": "https://energycommerce.house.gov/posts/ratepayer-protection-act-advances-from-house-committee-on-energy-and-commerce",
+     "outlet": "U.S. House Committee on Energy and Commerce",
+     "date": "2026-07-21"
+    },
+    {
+     "url": "https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps",
+     "outlet": "Davis Wright Tremaine, Energy and Environmental Law Blog",
+     "date": "2026-06-29"
+    },
+    {
+     "url": "https://www.billtrack50.com/billdetail/1974439",
+     "outlet": "BillTrack50, Alaska SB 250",
+     "date": "2026-09-13"
+    }
+   ],
+   "first_seen": "2026-09-13",
+   "last_updated": "2026-09-13",
+   "history": [
+    {
+     "date": "2026-09-13",
+     "note": "Tracked. The threshold is aggregate peak demand, which is power, so a project describing its output in megawatts of generation is not automatically above or below the line. The Alaska question is the third exemption prong. SB 250 passed the Senate on May 16th per Davis Wright Tremaine, crossed over the same day per BillTrack50, then died in House Community and Regional Affairs after a May 18th hearing. The second prong, a proceeding by the state commission alone, is unknown here because that docket search refuses an automated read."
+    }
+   ]
+  },
+  {
+   "id": "doe-bulk-power-rfi-2026",
+   "title": "Which grid equipment gets restricted, and the reason given is AI",
+   "kind": "regulatory-docket",
+   "status": "open-for-comment",
+   "decider": "U.S. Department of Energy",
+   "public_access": "open",
+   "access_note": "Anyone may respond. Written responses are accepted on or before October 9th under docket DOE-HQ-2026-1123, and the department holds a public webinar on Wednesday September 16th from 3 to 4 p.m. Eastern, which is 11 a.m. to noon in Anchorage.",
+   "summary": "A request for information implementing the August 26th emergency declaration on securing the United States bulk-power system. It asks which equipment and transactions should count as covered, naming grid-connected inverters, battery energy storage, universal power systems, generators and industrial control systems. The notice grounds the emergency in a finding that rapid growth of advanced manufacturing, data centers, artificial intelligence and defense production has increased the nation's dependence on abundant, reliable electricity. Alaska's Railbelt and rural utilities are mid-buildout on the inverter and storage categories listed, so a restriction reprices projects already in planning.",
+   "key_dates": [
+    {
+     "date": "2026-08-26",
+     "label": "Emergency declaration on the bulk-power system",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-09-09",
+     "label": "Request for information published",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-09-16",
+     "label": "Public webinar, 3 to 4 p.m. Eastern",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-10-09",
+     "label": "Written responses accepted on or before this date",
+     "kind": "deadline"
+    }
+   ],
+   "sources": [
+    {
+     "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+     "outlet": "Federal Register, U.S. Department of Energy",
+     "date": "2026-09-09"
+    },
+    {
+     "url": "https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system",
+     "outlet": "Federal Register",
+     "date": "2026-09-09"
+    }
+   ],
+   "first_seen": "2026-09-13",
+   "last_updated": "2026-09-13",
+   "history": [
+    {
+     "date": "2026-09-13",
+     "note": "Tracked. This is the comment room that opened under the August 26th emergency declaration already followed here. The webinar is three days out and the written window runs to October 9th."
+    }
+   ]
+  },
+  {
+   "id": "dot-great-corridors-rfi-2026",
+   "title": "Renting the highway shoulder to power and fiber, with data centers named as the draw",
+   "kind": "regulatory-docket",
+   "status": "open-for-comment",
+   "decider": "U.S. Department of Transportation, Build America Bureau",
+   "public_access": "open",
+   "access_note": "Anyone may comment. Written comments are due by October 2nd under docket DOT-OST-2026-3269, filed at regulations.gov or by mail to DOT Docket Operations. Late comments will be considered to the extent practicable.",
+   "summary": "A request for information launching America's Great Corridors of Commerce, a voluntary program letting highway and rail right-of-way owners raise revenue by colocating utility infrastructure in their corridors through public-private partnerships. Transmission, fiber, rural broadband and water pipelines are all named. One stated aim is to incentivize data centers, manufacturing facilities and distribution hubs to locate close to the corridors. Alaska has four long corridors and a railroad, and every large compute proposal in the state is shaped around one of them, yet the notice does not mention Alaska and frames the program around multi-state corridors, a shape no Alaskan right-of-way has.",
+   "key_dates": [
+    {
+     "date": "2026-09-11",
+     "label": "Request for information published",
+     "kind": "milestone"
+    },
+    {
+     "date": "2026-10-02",
+     "label": "Written comments due",
+     "kind": "deadline"
+    }
+   ],
+   "sources": [
+    {
+     "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18521.txt",
+     "outlet": "Federal Register, U.S. Department of Transportation",
+     "date": "2026-09-11"
+    },
+    {
+     "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-11/html/2026-18521.htm",
+     "outlet": "Federal Register via GovInfo",
+     "date": "2026-09-11"
+    }
+   ],
+   "first_seen": "2026-09-13",
+   "last_updated": "2026-09-13",
+   "history": [
+    {
+     "date": "2026-09-13",
+     "note": "Tracked. Two separate sweeps of the Federal Register reached this notice independently, which is why it is here rather than in a footnote."
     }
    ]
   }
