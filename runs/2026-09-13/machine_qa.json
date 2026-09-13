@@ -1,0 +1,202 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'UNION CALENDAR 713' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "tiny-text: 'PER DAVIS WRIGHT TREMAINE AND BILLTRACK50, ON SENA' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the bronze disc seated in the fresh pour': shadow L* 8.2 vs ground L* 34.6, dL 26.4 at 432w"
+      ],
+      "motifs": [
+        "'the punched DATE OF ENACTMENT field, bare': canvas 52.9 dE, page 53.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the gold tag face, the deck first struck mark': canvas 84.2 dE, page 84.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hook 'ALASKA'S SENATE VOTED ON WHO PAYS. ITS HOUSE' fits 3/3 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text '1 PX = 1 MW' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "leader label unverifiable: the leader for 'the scribed 100 MW threshold line' carries the label '100 MW', drawn on a canvas. Its existence is confirmed and its POSITION is not, because a canvas string has no line box. Set the label as DOM or SVG text to have it checked"
+      ],
+      "contacts": [
+        "'the steel scribe lying where it was put down': shadow L* 22.8 vs ground L* 52.9, dL 30.1 at 432w"
+      ],
+      "motifs": [
+        "'the scribed 100 MW threshold groove': canvas 40.1 dE, page 40.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the megawatt rail above the pad datum' runs 0 megawatts at 1150 to 100 megawatts at 1050; 11 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the scribed 100 MW threshold line' lands 0.0px from its target"
+      ],
+      "fits": [
+        "hd 'BUILD THE WIREFOR ONE CUSTOMER,CHARGE THAT C' fits 3/3 lines at 65px"
+      ],
+      "asserts": [
+        "'the threshold scribed 100 px above the datum, 1 px = 1 MW' holds: 100 vs 100 px (within 0)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the cut anchor bolt stub standing in the pad': shadow L* 7.1 vs ground L* 33.2, dL 26.1 at 432w"
+      ],
+      "motifs": [
+        "'the empty anchor socket, cored and unfilled': canvas 54.4 dE, page 58.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the obligation line crossing the whole frame': canvas 62.3 dE, page 64.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the obligation line running past the empty socket' lands 0.0px from its target",
+        "leader 'the obligation line running past the empty socket' meets its label 9.0px away"
+      ],
+      "fits": [
+        "hd 'THE CUSTOMER CAN LEAVE.THE COST STAYS.' fits 2/2 lines at 82px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'H.R. 9340   UNION CALENDAR 713' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '1 YEAR  COMMENCE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '2 YEARS  DETERMINE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "contacts": [
+        "'the bronze disc at hero scale, seated in the pour': shadow L* 10.4 vs ground L* 30.0, dL 19.6 at 432w"
+      ],
+      "motifs": [
+        "'the punched DATE OF ENACTMENT field at hero scale, bare': canvas 48.1 dE, page 49.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the feathered origin both bars run from' lands 0.0px from its target",
+        "leader 'the feathered origin both bars run from' meets its label 12.0px away"
+      ],
+      "fits": [
+        "hd 'TWO CLOCKS.NEITHER ONE HAS STARTED.' fits 2/2 lines at 78.5px"
+      ],
+      "asserts": [
+        "'the two spans in an exact 1 to 2, one year against two' holds: 2 vs 2 ratio (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the first drilled socket rim on the pour': shadow L* 13.0 vs ground L* 21.6, dL 8.6 at 432w"
+      ],
+      "motifs": [
+        "'socket 02, the prong a commission can satisfy alone': canvas 68.7 dE, page 69.0 dE, 100% of its rect is clear of opaque DOM",
+        "'socket 03, carrying the half seated phantom plug': canvas 50.9 dE, page 60.5 dE, 62% of its rect is clear of opaque DOM (div.ghost stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'socket 1, a prong of the exemption' lands 0.0px from its target",
+        "leader 'socket 2, a prong of the exemption' lands 0.0px from its target",
+        "leader 'socket 3, a prong of the exemption' lands 0.0px from its target",
+        "leader 'socket 1, a prong of the exemption' meets its label 12.0px away",
+        "leader 'socket 2, a prong of the exemption' meets its label 12.0px away",
+        "leader 'socket 3, a prong of the exemption' meets its label 12.0px away"
+      ],
+      "fits": [
+        "hd 'THREE WAYS OUT.A STATE NEEDS ONLY ONE.' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'MAY 16TH' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "encodings": [
+        "'one of these two acts happened and the other did not': dE 53.8, AUC 1.00, visible 100%/100%, seen 663/646px at 432w"
+      ],
+      "contacts": [
+        "'the steel die standing beside the strike it made': shadow L* 6.8 vs ground L* 19.3, dL 12.5 at 432w"
+      ],
+      "motifs": [
+        "'the struck gold field, a mark that is on the record': canvas 48.2 dE, page 49.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the bare scribed field, laid out and never struck': canvas 23.1 dE, page 24.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the struck field, the Senate vote of May 16th' lands 0.0px from its target",
+        "leader 'the bare field, laid out and never struck' lands 0.0px from its target",
+        "leader 'the struck field, the Senate vote of May 16th' meets its label 0.0px away",
+        "leader 'the bare field, laid out and never struck' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'THE SENATE STRUCK IT.THE HOUSE NEVERPICKED U' fits 3/3 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "motif: 'the tooled trench the clause is set inside': canvas 7.4 dE, page 70.6 dE, 40% of its rect is clear of opaque DOM (h2#hd stands on the rest) -- most of its rect is under opaque DOM"
+      ],
+      "fits": [
+        "hd '\"THE STATE LEGISLATUREHAS VOTED ON THEIMPLEM' fits 3/3 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text '0 AGAINST' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "contacts": [
+        "'the steel die resting in the lower band': shadow L* 10.9 vs ground L* 24.1, dL 13.2 at 432w"
+      ],
+      "motifs": [
+        "'the 52 struck marks, four rows of thirteen': canvas 76.8 dE, page 77.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the empty facing row, laid out and never struck': canvas 29.7 dE, page 30.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the tally block, one struck mark per committee yes' lands 0.0px from its target",
+        "leader 'the tally block, one struck mark per committee yes' meets its label 9.0px away"
+      ],
+      "fits": [
+        "hd 'REPORTED.NOT SCHEDULED.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'52 struck marks, one per committee yes' holds: 52 vs 52 marks, counted over 52 declared marks (within 0)",
+        "'52 struck marks, one per committee yes': 52 mark centres probed at r=14px, cohort median 80.2 dE, all present (weakest 77.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the bronze disc at the far end of the pad': shadow L* 5.3 vs ground L* 17.7, dL 12.5 at 432w"
+      ],
+      "motifs": [
+        "'the punched DATE OF ENACTMENT field, still bare on the last frame': canvas 28.6 dE, page 37.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the three struck dates, each one a mark that is on the record': canvas 75.7 dE, page 75.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the DOE comment close, struck into the pad' lands 0.0px from its target",
+        "leader 'the DOT comment close, struck into the pad' lands 0.0px from its target",
+        "leader 'the FERC intervention close, struck into the pad' lands 0.0px from its target",
+        "leader 'the DOE comment close, struck into the pad' meets its label 8.0px away",
+        "leader 'the DOT comment close, struck into the pad' meets its label 0.0px away",
+        "leader 'the FERC intervention close, struck into the pad' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'THE BILL HAS NO DATE.THE RECORD HAS THREE.' fits 2/2 lines at 80.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}
