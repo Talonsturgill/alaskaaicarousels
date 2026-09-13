@@ -389,6 +389,95 @@
                 'rgba(160,179,191,0.95)', 'rgba(170,190,202,0.95)',
                 'rgba(180,200,212,0.95)', 'rgba(190,210,222,0.95)'];
 
+  /* -------------------------------------------------------------- bareField
+   * THE DECK'S SPINE. One punched rectangular field labelled DATE OF ENACTMENT,
+   * present and EMPTY on all nine frames, because the bill has no enactment
+   * date and a motif that quietly stops appearing is a motif that stopped
+   * arguing. The first build drew it on five frames and left it off four, and
+   * the critics found the gap on every one of the four.
+   *
+   * A recess under a lamp at the lower right is lit on its FAR wall, which is
+   * up and left, and dark on the near wall down and right. Same law as the
+   * incised clause on 07 and the struck dates on 09.
+   */
+  P.bareField = function (cx, o) {
+    o = o || {};
+    var x = o.x, y = o.y,
+        w = o.w == null ? 300 : o.w,
+        h = o.h == null ? 84 : o.h,
+        lab = o.label !== false,
+        warm = o.warm === true;
+    cx.save();
+    cx.beginPath(); cx.rect(x, y, w, h); cx.clip();
+    var g = cx.createLinearGradient(x, y, x + w * 0.55, y + h);
+    if (warm) {
+      g.addColorStop(0, '#231A0C'); g.addColorStop(0.62, '#100B05'); g.addColorStop(1, '#05040A');
+    } else {
+      g.addColorStop(0, '#1A2530'); g.addColorStop(0.62, '#0B121A'); g.addColorStop(1, '#05080E');
+    }
+    cx.fillStyle = g; cx.fillRect(x, y, w, h);
+    /* the floor's own tooth, so the recess is a place the material is FLAT and
+     * not a place it is absent */
+    for (var i = 0; i < 7; i++) {
+      cx.strokeStyle = 'rgba(150,176,192,' + (0.05 + 0.012 * i) + ')';
+      cx.lineWidth = 0.7;
+      cx.beginPath();
+      cx.moveTo(x + 7, y + 9 + i * (h - 18) / 6);
+      cx.lineTo(x + w - 7, y + 8 + i * (h - 18) / 6);
+      cx.stroke();
+    }
+    cx.restore();
+    /* lit far wall, top and left */
+    cx.strokeStyle = 'rgba(196,220,236,0.55)'; cx.lineWidth = 2.4;
+    cx.beginPath();
+    cx.moveTo(x, y + h); cx.lineTo(x, y); cx.lineTo(x + w, y); cx.stroke();
+    /* near wall in the lee, right and bottom */
+    cx.strokeStyle = 'rgba(4,7,12,0.94)'; cx.lineWidth = 4;
+    cx.beginPath();
+    cx.moveTo(x + w, y); cx.lineTo(x + w, y + h); cx.lineTo(x, y + h); cx.stroke();
+    if (lab) {
+      cx.save();
+      cx.font = '500 ' + (o.labelPx || 20) + 'px "JetBrains Mono", monospace';
+      cx.textAlign = 'left';
+      cx.fillStyle = 'rgba(6,11,17,0.8)';
+      cx.fillText('DATE OF ENACTMENT', x + 0.9, y - 13.1);
+      cx.fillStyle = 'rgba(178,198,212,0.90)';
+      cx.fillText('DATE OF ENACTMENT', x, y - 14);
+      cx.restore();
+    }
+  };
+
+  /* ---------------------------------------------------------------- falloff
+   * THE NOTAN WELD. One lamp at a named point means the frame gets darker with
+   * distance from it, and that is not decoration: `value_structure.py` reads
+   * the 432 px thumb for MASSES, and this deck's first build scattered its
+   * darks across five separate shapes on three frames while three more had no
+   * mass over half the frame. A monotone falloff from the lamp welds the top
+   * band, the far corners and the lower lee into ONE connected dark and puts
+   * the dominant mass over the line, by moving light rather than by laying a
+   * plate over anything.
+   *
+   * Four stops, all one rgb with four alphas, because the paint census caps
+   * near 160 distinct literals and a free running gradient is how a law
+   * bearing ink gets evicted from it. Text is DOM and sits above the canvas,
+   * so this only ever raises type contrast.
+   */
+  P.falloff = function (cx, o) {
+    o = o || {};
+    var lx = o.lampX == null ? 980 : o.lampX,
+        ly = o.lampY == null ? 1250 : o.lampY,
+        r0 = o.inner == null ? 300 : o.inner,
+        r1 = o.outer == null ? 1520 : o.outer,
+        k  = o.strength == null ? 0.52 : o.strength;
+    var g = cx.createRadialGradient(lx, ly, r0, lx, ly, r1);
+    g.addColorStop(0.00, 'rgba(3,6,11,0)');
+    g.addColorStop(0.42, 'rgba(3,6,11,' + (k * 0.26).toFixed(3) + ')');
+    g.addColorStop(0.74, 'rgba(3,6,11,' + (k * 0.64).toFixed(3) + ')');
+    g.addColorStop(1.00, 'rgba(3,6,11,' + k.toFixed(3) + ')');
+    cx.fillStyle = g;
+    cx.fillRect(0, 0, W, H);
+  };
+
   P.lip = function (cx, o) {
     o = o || {};
     var gx = o.gx || 0;
