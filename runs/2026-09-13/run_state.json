@@ -16,15 +16,14 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done (round 1 capped 6.9 by a hard fail, round 2 8.39)",
-  "ship": "in progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done (3 fixes, merged as 31689cb, SHA stamped in ledger/upgrades.json)",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-09-13/plan.md",
-  "site_signoff": "SITE SIGN-OFF: PASS, 105 pages, 18 checks",
-  "gas_watch_line": "GAS WATCH: WARN, read 2026-09-12, 38 days on record, chart present, one gap in the series first missing 2026-09-08 (cron-written, report only)",
+  "site_signoff": "PASS, 109 pages, 18 of 18 checks clean",
   "scout_merge": "out/2026-09-13/scout_merge.md",
   "dedupe": "dedupe_check exit 0, soft overlaps only, strongest No.51 jaccard 0.023",
   "claims": "out/2026-09-13/claims.json (46 claims, 35 primary, claims_check PASS)",
@@ -39,6 +38,9 @@
   "qa_final": "qa.py WARN, 0 fails, 10 warns, down from 29",
   "site": "109 pages, site_fresh PASS, site sign-off PASS 18 of 18",
   "alerts": "docket_alerts sent one subscriber email covering 3 live events (Anchorage RTCC ordinance near September 15th, DOE RFI window open to October 9th, DOT RFI window open to October 2nd)",
-  "known_gap": "tests/ask_engine.mjs could not run: the node playwright package is not installed in this container. Not a ship gate; logged for Phase 12."
+  "known_gap": "tests/ask_engine.mjs could not run: the node playwright package is not installed in this container. Not a ship gate; logged for Phase 12.",
+  "site_fixes": "none. Nothing on the live site needed repair this run.",
+  "gas_watch": "WARN, read September 12th, 38 days on record, chart present, one gap in the series with the first missing day September 8th. Cron-written and REPORT ONLY: this routine looks at that page every run and never touches the collectors, the model config or either gas ledger. A missed day is the one irreversible failure in this project, so the retro carries a proposal for a workflow-level alarm on a failed or skipped collection.",
+  "gmail_draft_id": "r1802424888550947407 (docket@alaskaaihq.com)"
  }
 }
