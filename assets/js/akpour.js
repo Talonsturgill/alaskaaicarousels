@@ -431,9 +431,9 @@
     cx.beginPath(); cx.rect(x, y, w, h); cx.clip();
     var g = cx.createLinearGradient(x, y, x + w * 0.55, y + h);
     if (warm) {
-      g.addColorStop(0, '#4A3A1C'); g.addColorStop(0.58, '#2E2411'); g.addColorStop(1, '#1C1509');
+      g.addColorStop(0, '#5A4724'); g.addColorStop(0.58, '#3E3016'); g.addColorStop(1, '#2A200E');
     } else {
-      g.addColorStop(0, '#36424C'); g.addColorStop(0.58, '#222C35'); g.addColorStop(1, '#151D25');
+      g.addColorStop(0, '#414E58'); g.addColorStop(0.58, '#2F3A44'); g.addColorStop(1, '#212B34');
     }
     cx.fillStyle = g; cx.fillRect(x, y, w, h);
     /* the floor's own tooth, so the recess is a place the material is FLAT and
