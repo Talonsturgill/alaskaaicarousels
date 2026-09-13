@@ -13,6 +13,83 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-13/",
+      "url": "https://alaskaaihq.com/archive/2026-09-13/",
+      "title": "Alaska's Half Vote and a Federal Bill",
+      "summary": "A field labeled DATE OF ENACTMENT stays bare on all nine frames, because the bill is reported and on no published schedule.",
+      "content_html": "<p><em>&quot;The Ratepayer Protection Act will ensure that data centers pay their own way, instead of passing costs onto hardworking families.&quot;</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-13/og.jpg\" alt=\"Alaska's Half Vote and a Federal Bill cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.govinfo.gov/content/pkg/BILLS-119hr9340rh/html/BILLS-119hr9340rh.htm\">U.S. Government Publishing Office, govinfo</a>, primary document</li><li><a href=\"https://www.govinfo.gov/app/details/BILLS-119hr9340rh\">U.S. Government Publishing Office, govinfo</a>, primary document</li><li><a href=\"https://energycommerce.house.gov/posts/ratepayer-protection-act-advances-from-house-committee-on-energy-and-commerce\">U.S. House Committee on Energy and Commerce</a>, primary document</li><li><a href=\"https://docs.house.gov/floor/\">Office of the Clerk, U.S. House of Representatives</a>, primary document</li><li><a href=\"https://www.majorityleader.gov/schedule\">Office of the House Majority Leader</a>, primary document</li><li><a href=\"https://www.whitehouse.gov/ratepayer-protection-pledge/\">The White House</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18521.txt\">Federal Register, U.S. Department of Transportation</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt\">Federal Register, U.S. Department of Energy</a>, primary document</li><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm\">Federal Register, Federal Energy Regulatory Commission</a>, primary document</li><li><a href=\"https://www.ktoo.org/?s=SB+250+data+centers\">KTOO, Gavel Alaska</a>, primary document</li><li><a href=\"https://www.billtrack50.com/billdetail/1974439\">BillTrack50</a>, report</li><li><a href=\"https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps\">Davis Wright Tremaine, Energy and Environmental Law Blog</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-13/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-09-13T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-13/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 46,
+        "sources": [
+          {
+            "url": "https://www.govinfo.gov/content/pkg/BILLS-119hr9340rh/html/BILLS-119hr9340rh.htm",
+            "outlet": "U.S. Government Publishing Office, govinfo",
+            "primary": true
+          },
+          {
+            "url": "https://www.govinfo.gov/app/details/BILLS-119hr9340rh",
+            "outlet": "U.S. Government Publishing Office, govinfo",
+            "primary": true
+          },
+          {
+            "url": "https://energycommerce.house.gov/posts/ratepayer-protection-act-advances-from-house-committee-on-energy-and-commerce",
+            "outlet": "U.S. House Committee on Energy and Commerce",
+            "primary": true
+          },
+          {
+            "url": "https://docs.house.gov/floor/",
+            "outlet": "Office of the Clerk, U.S. House of Representatives",
+            "primary": true
+          },
+          {
+            "url": "https://www.majorityleader.gov/schedule",
+            "outlet": "Office of the House Majority Leader",
+            "primary": true
+          },
+          {
+            "url": "https://www.whitehouse.gov/ratepayer-protection-pledge/",
+            "outlet": "The White House",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18521.txt",
+            "outlet": "Federal Register, U.S. Department of Transportation",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+            "outlet": "Federal Register, U.S. Department of Energy",
+            "primary": true
+          },
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm",
+            "outlet": "Federal Register, Federal Energy Regulatory Commission",
+            "primary": true
+          },
+          {
+            "url": "https://www.ktoo.org/?s=SB+250+data+centers",
+            "outlet": "KTOO, Gavel Alaska",
+            "primary": true
+          },
+          {
+            "url": "https://www.billtrack50.com/billdetail/1974439",
+            "outlet": "BillTrack50",
+            "primary": false
+          },
+          {
+            "url": "https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps",
+            "outlet": "Davis Wright Tremaine, Energy and Environmental Law Blog",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-12/",
       "url": "https://alaskaaihq.com/archive/2026-09-12/",
       "title": "The Permit Knows Where the Machine Is",
@@ -3000,47 +3077,6 @@
           {
             "url": "https://alaskapublic.org/programs/alaska-news-nightly/2026-07-14/alaska-news-nightly-tuesday-july-14-2026",
             "outlet": "alaskapublic.org",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-07-15/",
-      "url": "https://alaskaaihq.com/archive/2026-07-15/",
-      "title": "Alaska's Critical Mineral Engine, and Its Unbuilt AI",
-      "summary": "A nine-slide look at Alaska's new NSF Critical Mineral Accelerator Engine, what the 15 million dollars buys now, why the 160 million is milestone-gated, and why the AI at its center is still one unbuilt sentence.",
-      "content_html": "<p><em>Alaska just won a decade-scale federal bet to find its critical minerals. The AI headlining it is one unbuilt sentence.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-15/og.jpg\" alt=\"Alaska's Critical Mineral Engine, and Its Unbuilt AI cover slide\" width=\"1080\" height=\"1350\"></p><p>IT ISN'T BUILT YET</p><p>THE NSF JUST FUNDED AN AI TO FIND ALASKA'S CRITICAL MINERALS</p><p>Alaska just won one of 12 new federal Innovation Engines.</p><p>NSF named a University of Alaska Fairbanks coalition its Critical Mineral Accelerator Engine. It opens with 15 million dollars for the first two years. Far more can follow, only if it delivers.</p><p>56 of the 60 minerals the U.S. calls essential are in this ground.</p><p>That is the U.S. Geological Survey count, essential to the nation's economy and its security. Alaska is not short on critical minerals. It is short on knowing exactly where, in a place this big.</p><p>Read the ground. Find the deposits. Pull the minerals out.</p><p>The Engine pairs advanced mining, processing and purification with two newer ideas, artificial intelligence to help locate mineral deposits, and new biological methods to extract them. This is what a prospectivity model would draw, if one existed.</p><p>It is announced and funded in principle. It is not yet specified. That is not a scandal. It is the stage this is at.</p><p>It is a ladder, not a check.</p><p>Seven minerals the announcement names.</p><p>One site is named so far. The rest is still a search.</p><p>The only location named so far is Alaska Silver's exploration site in western Alaska. NANA Regional Corporation is a partner, not an owner. UAF leads it, with geoscientist Lee Ann Munk as chief executive. The goal, cut U.S. dependence on China for mineral processing.</p><h3>Sources</h3><ul><li><a href=\"https://www.adn.com/business-economy/2026/07/07/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\">Anchorage Daily News</a>, report</li><li><a href=\"https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization\">Office of Sen. Dan Sullivan</a>, report</li><li><a href=\"https://www.nsf.gov/news/nsf-awards-12-new-regional-innovation-engines-fuel-research\">National Science Foundation</a>, report</li><li><a href=\"https://www.gi.alaska.edu/news/national-science-foundation-funds-uaf-led-critical-minerals-coalition\">UAF Geophysical Institute</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-07-15/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "IT ISN'T BUILT YET\n\nTHE NSF JUST FUNDED AN AI TO FIND ALASKA'S CRITICAL MINERALS\n\nAlaska just won one of 12 new federal Innovation Engines.\n\nNSF named a University of Alaska Fairbanks coalition its Critical Mineral Accelerator Engine. It opens with 15 million dollars for the first two years. Far more can follow, only if it delivers.\n\n56 of the 60 minerals the U.S. calls essential are in this ground.\n\nThat is the U.S. Geological Survey count, essential to the nation's economy and its security. Alaska is not short on critical minerals. It is short on knowing exactly where, in a place this big.\n\nRead the ground. Find the deposits. Pull the minerals out.\n\nThe Engine pairs advanced mining, processing and purification with two newer ideas, artificial intelligence to help locate mineral deposits, and new biological methods to extract them. This is what a prospectivity model would draw, if one existed.\n\nIt is announced and funded in principle. It is not yet specified. That is not a scandal. It is the stage this is at.\n\nIt is a ladder, not a check.\n\nSeven minerals the announcement names.\n\nOne site is named so far. The rest is still a search.\n\nThe only location named so far is Alaska Silver's exploration site in western Alaska. NANA Regional Corporation is a partner, not an owner. UAF leads it, with geoscientist Lee Ann Munk as chief executive. The goal, cut U.S. dependence on China for mineral processing.",
-      "date_published": "2026-07-15T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-15/og.jpg",
-      "tags": [
-        "CriticalMinerals",
-        "AlaskaPolicy",
-        "NSFEngines"
-      ],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 18,
-        "sources": [
-          {
-            "url": "https://www.adn.com/business-economy/2026/07/07/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-            "outlet": "Anchorage Daily News",
-            "primary": false
-          },
-          {
-            "url": "https://www.sullivan.senate.gov/newsroom/press-releases/sullivan-secures-56-provisions-historic-26-billion-for-alaska-in-fy-2027-defense-authorization",
-            "outlet": "Office of Sen. Dan Sullivan",
-            "primary": false
-          },
-          {
-            "url": "https://www.nsf.gov/news/nsf-awards-12-new-regional-innovation-engines-fuel-research",
-            "outlet": "National Science Foundation",
-            "primary": false
-          },
-          {
-            "url": "https://www.gi.alaska.edu/news/national-science-foundation-funds-uaf-led-critical-minerals-coalition",
-            "outlet": "UAF Geophysical Institute",
             "primary": false
           }
         ]

@@ -1,0 +1,19 @@
+{
+  "chars": 898,
+  "hook": "\"The Ratepayer Protection Act will ensure that data centers pay their own way, instead of passing costs onto hardworking families.\"",
+  "hook_len": 131,
+  "commas": 4,
+  "comma_per_100": 0.47,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#DataCenterPolicy",
+    "#LargeLoadCustomer",
+    "#SB250"
+  ],
+  "deck_summary": "A field labeled DATE OF ENACTMENT stays bare on all nine frames, because the bill is reported and on no published schedule.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 48
+}

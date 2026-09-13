@@ -175,6 +175,15 @@ AGENCY_RULES = [
     (r"Department of Administration", "Alaska DOA",
      ("doa", "department of administration", "state procurement office")),
     (r"Department of Energy", "the US DOE", ("doe", "department of energy")),
+    # Added 2026-09-13 with the first DOT item, the Great Corridors of Commerce
+    # request for information, and the self-test caught it the same way it
+    # caught the FCC one and the NMFS one: an item with no recognised agency,
+    # which is a reader asking who decided this and being handed nothing. The
+    # bureau is named in the vocabulary as well as the department, because the
+    # notice is signed by the bureau and a reader may well have read that name.
+    (r"Department of Transportation|\bUSDOT\b|Build America Bureau", "the US DOT",
+     ("dot", "usdot", "department of transportation", "build america bureau",
+      "federal highway")),
     (r"Administration for Native Americans", "ANA",
      ("ana", "administration for native americans", "hhs")),
     (r"School District", "the Kenai school board",

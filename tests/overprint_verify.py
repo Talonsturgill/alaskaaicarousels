@@ -109,17 +109,52 @@ def canvas_slide(broken):
 """)
 
 
-CASES = [("DOM register, value column at a constant", dom_slide(True), False),
-         ("DOM register, value column measured", dom_slide(False), True),
-         ("canvas register, value column at a constant", canvas_slide(True), False),
-         ("canvas register, value column measured", canvas_slide(False), True)]
+def mixed_slide(broken):
+    """A ROTATED canvas axis label and a DOM block of copy (2026-09-13).
+
+    Run No.58's slide 02 scribed a megawatt rail, drew '100 MW' up the side of
+    it with a 90-degree rotation, and set a DOM unit guard in the same 60px of
+    x. The deck's one load-bearing number was destroyed and every machine gate
+    passed the frame: canvas ink is not a DOM node, so no line box existed to
+    intersect, and the rotated string recorded a degenerate box that even the
+    canvas-against-canvas test skipped. The scorer caught it by eye and capped
+    the round at 6.9. Broken: the guard in the label's column. Repaired: the
+    same guard clear of it, everything else identical.
+    """
+    left = 120 if broken else 420
+    return (HEAD + TEXTURE + f"""
+  cx.save();
+  cx.translate(150, 1140);
+  cx.rotate(-Math.PI / 2);
+  cx.font = '500 22px "JetBrains Mono", monospace';
+  cx.textAlign = 'left';
+  cx.fillStyle = '#FFC72C';
+  cx.fillText('100 MW', 0, 0);
+  cx.restore();
+</script>
+<div class="row" style="left:{left}px; top:1040px; font-size:24px;
+     line-height:1.4; white-space:normal; width:420px">PEAK DEMAND, WHICH IS
+     POWER. NOT ANNUAL ENERGY.</div>
+</body></html>
+""")
+
+
+CASES = [("DOM register, value column at a constant", dom_slide(True), False,
+          "LEISNOI PROFESSIONAL SERVICES"),
+         ("DOM register, value column measured", dom_slide(False), True, None),
+         ("canvas register, value column at a constant", canvas_slide(True), False,
+          "LEISNOI PROFESSIONAL SERVICES"),
+         ("canvas register, value column measured", canvas_slide(False), True, None),
+         ("rotated canvas label under a DOM block", mixed_slide(True), False,
+          "100 MW"),
+         ("rotated canvas label, DOM block clear", mixed_slide(False), True, None)]
 
 
 def main():
     tmp = Path(tempfile.mkdtemp(prefix="overprint_"))
     sl = tmp / "slides"
     sl.mkdir()
-    for i, (_, html, _ok) in enumerate(CASES, 1):
+    for i, (_, html, _ok, _names) in enumerate(CASES, 1):
         (sl / f"slide-0{i}.html").write_text(html)
     try:
         subprocess.run([sys.executable, str(ENGINE / "render.py"),
@@ -134,14 +169,15 @@ def main():
 
     by = {s["file"]: s for s in qa["slides"]}
     ok = True
-    for i, (name, _html, should_pass) in enumerate(CASES, 1):
+    for i, (name, _html, should_pass, names) in enumerate(CASES, 1):
         s = by.get(f"slide-0{i}.html", {"fails": ["slide never rendered"]})
         hits = [f for f in s["fails"] if "sharing a column" in f
-                or "canvas text collision" in f]
+                or "canvas text collision" in f
+                or "canvas type through DOM type" in f]
         good = (not hits) if should_pass else bool(hits)
         # a broken variant must name the string that got shredded
-        if good and hits:
-            good = "LEISNOI PROFESSIONAL SERVICES" in hits[0]
+        if good and hits and names:
+            good = names in hits[0]
         ok &= good
         print("[%s] %-44s -> %s" % ("HOLD" if good else "BROKE", name,
                                     "clean" if not hits else hits[0][:120]))

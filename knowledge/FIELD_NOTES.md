@@ -7096,3 +7096,137 @@ And the cheaper half: **an outside reviewer is the only reader here who has not
 already agreed with the plan.** Six rooms reviewed the render against the
 storyboard. None of them read the library. Ask for the second kind of review
 before the merge, not after it.
+
+### CRAFT REFRESH (2026-09-13)
+
+- Oktopost's March 2026 LinkedIn benchmark, over 1,000 B2B pages, puts MEDIAN
+  page engagement at 5.72 percent and the top decile at 22.45 percent. That is
+  the first per-PAGE median this file has carried; every earlier number was a
+  per-FORMAT rate, and the two are not comparable. Judge a deck against our own
+  trailing median, as CAROUSEL_CRAFT already says, and treat 5.72 as the floor
+  a competent B2B page clears rather than as a target.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Native documents fell the LEAST in the 2025 to 2026 reach contraction, down
+  43 percent against a feed that fell further. The format's advantage is now
+  partly a smaller loss rather than a larger gain, which is a different reason
+  to keep shipping documents and the same conclusion.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- Reported 2026 reach multiplier for carousels is about 4.5x for accounts under
+  50,000 followers, higher than the all-accounts figure. Small pages get more
+  of the format's benefit, not less. Alaska.Ai is squarely in that band.
+  https://postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026
+- Visual craft leg of the refresh looked for something new on multi-scale
+  procedural detail and on notan value structure. Nothing new. The notan rules
+  it returned are the same four scripts/value_structure.py already measures,
+  and the hatching and stipple literature is the same body TECHNIQUE_LIBRARY
+  already indexes. Recording the null result so a later run does not spend the
+  searches again on these two.
+
+### RUN No.58, "THE UNSET BENCHMARK" (2026-09-13)
+
+**THE STORY INVERTED AT THE CLAIMS GATE AND CAME OUT BETTER.** Every scout came
+back with the same finding, that SB 250 died in committee and Alaska therefore
+missed the federal exemption. akleg.gov, LegiScan and Beacon all answer a bot
+with a 403, so none of it could be checked against the primary record. Two
+independent secondary sources, a Davis Wright Tremaine energy practice post and
+BillTrack50, both say the bill PASSED THE ALASKA SENATE on May 16th and then
+died in the House. The planned deck was factually wrong, and the deck that
+shipped is the better one, because "one chamber voted and the federal text does
+not say whether that counts" is a live question and "a bill died" is not. When
+a deck rests on secondary sourcing, say so IN TYPE ON THE FRAME and not only in
+the source comment; both outlets are named on slides 01 and 06.
+
+**EVERY LEGIBILITY DEVICE IS ALSO A LEGIBILITY RISK.** Three separate instances
+in one run, all of them in the machinery meant to protect type.
+
+- The troweled specular was a linear gradient inside a fillRect. A linear
+  gradient does not reach zero at its own left and right sides, so every text
+  block in the deck sat on a faintly lighter rectangle with two findable edges,
+  and four critics on four different frames reported it as a plate. Making it
+  radial removed the edges and lit the ground the type is read against: fourteen
+  runs of copy that had been clean came back at worst points between 3.0 and 4.5
+  while their box means sat at 5 to 7. The answer was neither. The box's own
+  shape, blurred, inset by roughly the blur radius so the lit area does not grow.
+- A hard four-way outline lifts a grey run's worst point and the machine sweep
+  then reads the outline's own edges as busy art under the line box. That is a
+  legibility warning traded for a legibility warning. Stacked blurs hold the
+  same floor with no edge to find.
+- The deck's motif label, DATE OF ENACTMENT, was drawn with fillText on all nine
+  frames, which ships the one string that names the spine as a bitmap the
+  LinkedIn ranker, copy_sync_check and a screen reader all read as nothing.
+  Moving it to DOM took the sweep from 29 warnings to 10 in a single change.
+
+**A CANVAS STRING HAS NO LINE BOX, AND qa.py SAYS SO IN ITS OWN WARNING TEXT.**
+The run shipped the same collision twice on slide 02. Round one found the unit
+guard printing through the rotated 100 MW axis label and moved the guard; round
+two put it where the label climbs, so the collision moved rather than cleared,
+and the SCORER caught it as a hard fail off the 432 px thumb. When a canvas
+string and a DOM block share a column of x, no machine gate in this repo can see
+what happens between them. Change the geometry twice over, or do not put them
+near each other.
+
+**A RECESS FLOOR IS NOT BLACK.** The deck's motif is a punched field that is
+bare because no date exists. Drawn near black it reads as a REDACTION, which
+asserts the date exists and is hidden, the exact opposite argument, and it also
+clusters with the night rather than with the pour, so value_structure counted
+each field as its own dark island. Lifting the floor a few L* below its host,
+and letting the lit FAR wall carry the read, fixed the argument and the notan in
+the same edit. Nine of nine frames hold their masses, against three of nine on
+the first build.
+
+**AUTHOR THE LINE BREAK OR THE FITTER WILL.** All nine headlines broke against
+meaning in the first build, because AK.fitText honours a <br> and soft-wraps
+anything you do not. Display type came down between 6 and 30 px to buy authored
+breaks and that is the right trade every time: a smaller headline that breaks at
+its sentence beats a bigger one that does not.
+
+**FIVE BODY PARAGRAPHS HAD SILENTLY LOST THEIR LAST SENTENCE.** Found one at a
+time by three different critics across two rounds, on slides 02, 03, 04, 05 and
+06. After the second one, diff EVERY body in the deck against its dossier's
+authored string in one pass rather than waiting for the next reader to find the
+next one.
+
+## 2026-09-13, No.58, Phase 12 frontier scan (g): accessibility and PDF/document format. TWO PARKED.
+
+Both findings were MEASURED in this repo's own shipped artifact rather than read
+somewhere, and both are about the file the post actually is, so both change the
+deliverable and neither is a same-day change.
+
+**PARKED: every shadowed line ships three or four times in the PDF.** Extract
+text from `runs/2026-09-13/carousel.pdf` and slide 02's body reads "The bill
+would make rates to a large-" four times in a row; the register block reads
+three times. A controlled probe through the engine's own Chromium and
+`page.pdf` gives the law exactly: extracted copies = 1 + the number of
+`text-shadow` layers (0 layers 1 copy, 1 layer 2, 2 layers 3, 3 layers 4).
+`-webkit-text-stroke` with `paint-order: stroke fill` still gives 2, because the
+stroke run and the fill run are both glyph runs. This house's halo idiom is a
+two or three layer `text-shadow` on `.body`, `.dfield` and the register blocks,
+so anything that reads the deck as TEXT rather than as pixels reads its body
+copy four times: LinkedIn's document indexing, a screen reader on the PDF, and
+any tool we write later. The single-run alternative is the canvas reserve the
+chassis already carries (`P.reserve`), which is a different way to seat grey
+type on a lit ground and needs a visual before and after on a real frame before
+anyone swaps an idiom that is currently doing a contrast job. The gate that
+would hold it: extract per-page text at assemble time and fail when a line of
+8 or more characters repeats. UNBLOCKS WHEN: a run has a slot free and a frame
+whose halo can be rebuilt as a reserve and compared at 432 px.
+
+**PARKED: the merged PDF is untagged and has no language.** The catalog of
+`runs/2026-09-13/carousel.pdf` holds exactly `/Pages` and `/Type`. No
+`/StructTreeRoot`, no `/MarkInfo`, no `/Lang`, no `/ViewerPreferences
+/DisplayDocTitle`. Chromium has emitted tagged PDFs since Chrome 85
+(https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html) and
+Playwright's `page.pdf` already takes `tagged=True`, but `assemble.py` merges
+the nine single-page PDFs with pypdf's `add_page`, which is documented not to
+carry the structure tree across; `clone_from` preserves `MarkInfo` and the tags
+(https://github.com/py-pdf/pypdf/discussions/2694). So the reading order and
+alt text Chromium may already be producing are thrown away at the merge, one
+line of code from the end. `/Lang` and `DisplayDocTitle` are two lines of
+`writer` metadata and would be worth having on their own. Regulatory context,
+no action: PDF/UA-2 (ISO 14289-2) is published and PDF/UA-1 is still what the
+validators support
+(https://pdfa.org/iso-14289-2-pdf-ua-2-the-gold-standard-for-accessibility-in-pdf-2-0-has-arrived/).
+UNBLOCKS WHEN: someone can verify a rebuilt merge page for page against the
+current one (vector text intact, file size, the JPEG recompression pass still
+applied) rather than trusting that a different merge call produces the same
+document.

@@ -1,0 +1,70 @@
+{
+  "run_date": "2026-09-13",
+  "carousel_no": 58,
+  "round": 2,
+  "weighted_total": 8.39,
+  "threshold": 8.3,
+  "ship": true,
+  "hard_fails": [],
+  "weakest_criterion": "Alaska authenticity & local relevance",
+  "one_sentence_fix": "Put one named Alaskan thing into the ARTWORK of the five frames that currently carry none, the simplest being to replace slide 03's anonymous cut bolt stub and slide 08's anonymous die with objects lettered to a named Railbelt utility or to the Alaska Legislature, so the deck stops looking like a federal explainer for five frames in a row.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 6,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(6x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 8.39",
+  "round_one": {
+    "weighted_total": 6.9,
+    "uncapped": 7.55,
+    "hard_fail": "clipped, overlapping or cut-off text: slide 02's rotated canvas axis label ran through the DOM unit guard, and slide 07's chisel crossed the motif label. Both cleared in round four and verified on the full PNG and the 432px thumb."
+  },
+  "editor_notes_for_email": "SHIPS at 8.39 against 8.3. No hard fails; the two text-collision instances that capped the first score at 6.9 are both cleared, verified on the full PNG and the 432px thumb rather than on the machine sweep, because qa.py says in its own warning text that it cannot see this class. Four things to know before posting. ONE: slide 08 draws a short leader rule between the last unstruck cell and '0 AGAINST' that reads like an em dash at a glance; it is a graphic, the copy string carries no dash character. TWO: this deck closes on the same DOE docket and the same October 9th deadline as No.54 four days ago and reuses FERC Project 15423-000; it is not a topic repeat, but two decks inside five days end with the identical ask and a reader who saw both will notice. THREE: every SB 250 fact is secondary, because akleg.gov refuses an automated read, and both sources are named in type on slides 01 and 06; the likeliest correction is someone holding the Alaska House journal, the aftercare list has that reply drafted, and it is a good reply to get. FOUR: the weakest criterion is Alaska authenticity at 6, because five of nine frames carry no Alaska content in the artwork; that is the work order for the next deck on a federal instrument."
+}

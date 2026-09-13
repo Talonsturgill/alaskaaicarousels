@@ -459,7 +459,24 @@ def check_declared_counts(sb_text, counts):
 # on rewrites would fail a third of historical dossiers for wording a run is
 # allowed to change; firing on cuts alone fires on 9 percent, and every one of
 # those four is a sentence a slide promised and did not print.
-BODY_RE = re.compile(r"^-\s*(?:\*{0,2})bod(?:y|ies)\b[^`\n]*`([^`]+)`", re.I | re.M)
+#
+# AND THE CHECK SPENT ITS FIRST NINE RUNS ASLEEP (2026-09-13, run No.58). It
+# was written against ONE dossier shape, "- body ... `the copy verbatim`" on a
+# single line, read against a copy.json carrying a `body` key. Neither half
+# survives contact with how the house actually writes: this run's dossiers put
+# the quote on the CONTINUATION line ("- Body, Archivo 34 px, 41 words:" then
+# an indented backticked string), and this run's copy.json carries `strings`,
+# an ordered list, and no `body` at all. So the check compared nothing, said so
+# in a note nobody reads as a failure, and run No.58 shipped five body
+# paragraphs (slides 02, 03, 04, 05, 06) that had silently lost their dossier's
+# LAST SENTENCE. Three different critics found them one at a time across two
+# review rounds. Two changes, both shape and neither threshold: the quote may
+# sit on the next line, and when there is no `body` key the slide's authored
+# strings are the counterpart. A dossier sentence counts as PRESENT if it
+# appears in ANY string on that slide, because a body split across two blocks
+# is a layout decision and not a cut.
+BODY_RE = re.compile(
+    r"^-\s*(?:\*{0,2})bod(?:y|ies)\b[^`\n]*(?:\n[ \t]*)?`([^`]+)`", re.I | re.M)
 BODY_MIN_WORDS = 8
 SENT_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
 
@@ -496,6 +513,28 @@ def copy_slide_rows(copy):
     return out
 
 
+def body_candidates(row):
+    """Every authored string on a slide that could BE the body, longest first.
+
+    `body` when copy.json carries one (the original shape, unchanged). When it
+    does not -- which is every copy.json this house has written since the
+    `strings` list became the shape -- the candidates are the slide's own
+    strings with at least BODY_MIN_WORDS words, which excludes headlines,
+    mono labels, counters and fixtures without naming any of them.
+    """
+    got = row.get("body")
+    if isinstance(got, list):
+        got = " ".join(str(x) for x in got)
+    if isinstance(got, str) and got.strip():
+        return [got.strip()]
+    out = []
+    for s in (row.get("strings") or []):
+        if isinstance(s, str) and len(s.split()) >= BODY_MIN_WORDS:
+            out.append(s.strip())
+    out.sort(key=len, reverse=True)
+    return out
+
+
 def check_body_copy(sb_text, copy):
     """The sentences the dossier quotes are still the sentences the deck says."""
     fails, notes = [], []
@@ -508,21 +547,37 @@ def check_body_copy(sb_text, copy):
         plan = re.sub(r"\s+", " ", m.group(1)).strip()
         if len(plan.split()) < BODY_MIN_WORDS:
             continue                      # a type token, not a sentence of copy
-        got = (rows.get(no) or {}).get("body")
-        if isinstance(got, list):
-            got = " ".join(str(x) for x in got)
-        if not isinstance(got, str) or not got.strip():
+        cands = body_candidates(rows.get(no) or {})
+        if not cands:
             notes.append("slide %02d: the dossier quotes %d words of body copy "
-                         "and copy.json carries no `body` for that slide, so "
-                         "they were not compared" % (no, len(plan.split())))
+                         "and copy.json carries neither a `body` nor any "
+                         "authored string for that slide, so they were not "
+                         "compared" % (no, len(plan.split())))
             continue
+        ps = _sentences(plan)
+        pk = [_sent_key(x) for x in ps]
+        # PRESENT ANYWHERE ON THE SLIDE IS PRESENT. Matched against the whole
+        # slide, so a body set as two blocks is not read as a cut; the ADDED
+        # side is read against the one block that carries the most of the
+        # dossier's sentences, which is the block the dossier was quoting.
+        here = {}
+        for cand in cands:
+            for s in _sentences(cand):
+                here[_sent_key(s)] = s
+        best, best_hits = cands[0], -1
+        for cand in cands:
+            hits = sum(1 for k in pk if k in [_sent_key(s) for s in _sentences(cand)])
+            if hits > best_hits or (hits == best_hits and len(cand) > len(best)):
+                best, best_hits = cand, hits
         checked += 1
-        ps, gs = _sentences(plan), _sentences(got)
-        pk, gk = [_sent_key(x) for x in ps], [_sent_key(x) for x in gs]
-        if _sent_key(plan) == _sent_key(got):
+        gs = _sentences(best)
+        gk = [_sent_key(x) for x in gs]
+        if _sent_key(plan) == _sent_key(best):
             continue
-        missing = [x for x in pk if x not in gk]
+        missing = [x for x in pk if x not in here]
         added = [x for x in gk if x not in pk]
+        if not missing and not added:
+            continue
         if missing and not added:
             lost = "; ".join('"%s"' % ps[pk.index(x)] for x in missing[:3])
             fails.append(
@@ -531,7 +586,7 @@ def check_body_copy(sb_text, copy):
                 "nothing put in their place: %s. Copy cut to fit is invisible "
                 "everywhere else, because copy_sync_check compares copy.json to "
                 "the render and both agree once the cut is made. %s"
-                % (no, len(plan.split()), len(got.split()), len(missing), lost,
+                % (no, len(plan.split()), len(best.split()), len(missing), lost,
                    REMEDY))
         elif missing or added:
             notes.append("slide %02d: the dossier's body copy and copy.json's "
@@ -544,10 +599,12 @@ def check_body_copy(sb_text, copy):
         # copy.json with no `body` key, and this check is silent on all four.
         # A silent check is indistinguishable from a clean one.
         notes.append("no body copy was compared: this check reads the dossier "
-                     "line `- body ... `the copy verbatim`` against copy.json's "
-                     "`body` for that slide, and this run's dossiers or copy.json "
-                     "carry neither. Quote the copy in the dossier if you want "
-                     "the plan checked against it.")
+                     "line `- body ... `the copy verbatim`` (the quote may sit "
+                     "on the next line) against copy.json's `body`, or failing "
+                     "that against the slide's authored `strings`, and this "
+                     "run's dossiers carry no backticked body quote at all. "
+                     "Quote the copy in the dossier if you want the plan "
+                     "checked against it.")
     return checked, fails, notes
 
 

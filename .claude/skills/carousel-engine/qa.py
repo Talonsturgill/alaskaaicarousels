@@ -2828,6 +2828,220 @@ def canvas_text_boxes(cts, k):
     return out
 
 
+def _poly_area(pts):
+    """Shoelace, absolute."""
+    a = 0.0
+    for i in range(len(pts)):
+        x0, y0 = pts[i]
+        x1, y1 = pts[(i + 1) % len(pts)]
+        a += x0 * y1 - x1 * y0
+    return abs(a) / 2.0
+
+
+def _clip_poly_to_rect(pts, rect):
+    """Sutherland-Hodgman: the part of a convex polygon inside an axis-aligned
+    rect (x, y, w, h). Four half-plane clips, no dependency, exact."""
+    x, y, w, h = rect
+    edges = ((0, x), (1, x + w), (2, y), (3, y + h))
+    out = list(pts)
+    for side, v in edges:
+        if not out:
+            return out
+        inp, out = out, []
+        for i in range(len(inp)):
+            cx, cy = inp[i]
+            px, py = inp[i - 1]
+
+            def inside(qx, qy):
+                return (qx >= v if side == 0 else qx <= v if side == 1 else
+                        qy >= v if side == 2 else qy <= v)
+
+            ci, pi = inside(cx, cy), inside(px, py)
+            if ci != pi:
+                if side in (0, 1):
+                    t = (v - px) / (cx - px) if cx != px else 0.0
+                    out.append((v, py + t * (cy - py)))
+                else:
+                    t = (v - py) / (cy - py) if cy != py else 0.0
+                    out.append((px + t * (cx - px), v))
+            if ci:
+                out.append((cx, cy))
+    return out
+
+
+def canvas_ink_polys(cts, canvases, design_w, fallback_k):
+    """Every drawn string as a polygon in DESIGN px, rotation included.
+
+    canvas_text_boxes() above skips rotated strings, because its four numbers
+    come from the transform's a and d alone. render.py now also records the ink
+    box's four corners through the WHOLE matrix, so a rotated label has an
+    honest quad; run No.58 lost its defining number to one (see the caller).
+    Device px are put on the page through the canvas element's own rect, so a
+    canvas smaller than the frame is placed correctly; when the element is not
+    in the telemetry, the old backing-ratio conversion is the fallback.
+
+    Returns [(index, text, poly, aabb, axis_aligned)].
+    """
+    rects = {c.get("id"): c for c in (canvases or []) if c.get("id")}
+    out = []
+    for i, ct in enumerate(cts):
+        quad = ct.get("quad")
+        if quad and len(quad) == 8:
+            pts = [(quad[2 * j], quad[2 * j + 1]) for j in range(4)]
+            aligned = not ct.get("skew")
+        elif ct.get("ink_left") is not None and not ct.get("skew"):
+            pts = [(ct["ink_left"], ct["ink_top"]), (ct["ink_right"], ct["ink_top"]),
+                   (ct["ink_right"], ct["ink_bottom"]), (ct["ink_left"], ct["ink_bottom"])]
+            aligned = True
+        else:
+            continue
+        cv = rects.get(ct.get("canvas_id"))
+        if cv and cv.get("bw") and cv.get("bh") and cv.get("w") and cv.get("h"):
+            sx, sy = cv["w"] / float(cv["bw"]), cv["h"] / float(cv["bh"])
+            ox, oy = cv.get("x", 0), cv.get("y", 0)
+        else:
+            sx = sy = 1.0 / max(1e-6, fallback_k)
+            ox = oy = 0
+        pts = [(ox + px * sx, oy + py * sy) for px, py in pts]
+        if _poly_area(pts) <= 1.0:
+            continue
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        aabb = [min(xs), min(ys), max(xs) - min(xs), max(ys) - min(ys)]
+        out.append((i, (ct.get("text") or "").strip(), pts, aabb, aligned))
+    return out
+
+
+# THE EM BOX, NOT THE LINE BOX. A line rect carries its half-leading, so at
+# this house's 1.36 leading a 34px line rect is about 46px tall and a third of
+# it is air. Intersecting paint against the rect would fail a label that passes
+# cleanly through the gap between two lines. The em box is the line rect's
+# centre plus and minus half the authored font size, which is tighter than the
+# rect wherever leading is over 1.0 and never larger than it.
+CANVAS_DOM_MIN_INK = 40.0   # square design px of shared INK; under this is a graze
+CANVAS_DOM_AREA = 0.30      # ... or 30 percent of the smaller box, as the DOM pair
+
+
+# RUN RAGGED (2026-09-13, run No.58). DESIGN_DOCTRINE has required display
+# type to break at a sense boundary, and forbidden a hanging preposition, since
+# the beginning, and until now nothing measured it: render.py recorded WHERE
+# each line sat and never which words ended it. Run No.58 opened with all nine
+# display headlines breaking against meaning and spent two full critic rounds,
+# on every frame, putting <br>s in by eye. The trade's rules are finite and
+# checkable (https://24ways.org/2013/run-ragged/); these are the three that need
+# no judgment. DISPLAY TYPE ONLY, at RAGGED_MIN_PX and up, because a 34px body
+# block's wrap is set by its box and re-breaking it by hand is not house
+# practice. A WARN and not a fail: it is a new instrument, the house has never
+# measured itself against it, and a warn in round one is worth a critic round.
+RAGGED_MIN_PX = 40.0
+RAGGED_STOP_WORDS = {
+    # articles and conjunctions
+    "a", "an", "the", "and", "or", "but", "nor", "so", "yet", "as", "if",
+    "than", "that", "though", "while", "because",
+    # prepositions this house's copy actually ends lines with
+    "at", "by", "for", "from", "in", "into", "of", "off", "on", "onto", "out",
+    "over", "per", "to", "up", "upon", "with", "within", "without", "under",
+    "after", "before", "between", "through", "against", "about", "across",
+    "is", "are", "was", "were", "be", "been", "its", "it", "their", "his",
+    "her", "our", "your", "my", "this", "these", "those", "no", "not",
+}
+RAGGED_END_PUNCT = ".,;:!?•·)/\"'”"
+
+
+def ragged_lines(node):
+    """[(line index, ending word, why)] for a display block that breaks badly."""
+    lt = node.get("line_text")
+    if not lt or len(lt) < 2:
+        return []
+    if (node.get("font_px") or 0) < RAGGED_MIN_PX:
+        return []
+    out = []
+    hyphen_prev = False
+    for i, raw in enumerate(lt[:-1]):
+        line = (raw or "").strip()
+        if not line:
+            hyphen_prev = False
+            continue
+        if line.endswith("-"):
+            if hyphen_prev:
+                out.append((i, line[-12:], "two line ends in a row break inside "
+                                           "a word"))
+            hyphen_prev = True
+            continue
+        hyphen_prev = False
+        words = re.findall(r"[A-Za-z'’-]+", line)
+        if not words:
+            continue
+        last = words[-1]
+        bare = last.strip("'’")
+        ends_clean = line[-1] in RAGGED_END_PUNCT
+        if bare.lower() in RAGGED_STOP_WORDS and not ends_clean:
+            out.append((i, last, "an article, conjunction or preposition left "
+                                 "hanging at the line end"))
+        elif len(bare) <= 3 and not ends_clean and bare.isalpha():
+            out.append((i, last, "a two or three letter word left at the line "
+                                 "end"))
+    return out
+
+
+def _em_box(line, font_px):
+    x, y, w, h = line[0], line[1], line[2], line[3]
+    if not font_px or font_px <= 0 or font_px >= h:
+        return [x, y, w, h]
+    cy = y + h / 2.0
+    return [x, cy - font_px / 2.0, w, float(font_px)]
+
+
+def canvas_dom_overprints(cts, canvases, fallback_k, tnodes):
+    """Drawn strings printed through DOM type. The pair no test could see.
+
+    Returns one dict per (canvas string, DOM node) that collides, worst line
+    first. Identical strings are skipped (canvas behind DOM is how this house
+    draws a halo), and the verdict needs either 30 percent of the smaller ink
+    box, which is the DOM pair's own threshold, or CANVAS_DOM_MIN_INK square px
+    of shared ink, which is the rotated-label shape that no proportional test
+    can see: a vertical axis label crossed by one horizontal line of copy loses
+    its middle glyphs while sharing 15 percent of its box.
+    """
+    out = []
+    for _i, ctext, poly, aabb, aligned in canvas_ink_polys(
+            cts, canvases, 0, fallback_k):
+        if not ctext:
+            continue
+        parea = _poly_area(poly)
+        for node in tnodes:
+            ntext = (node.get("text") or "").strip()
+            if not ntext or _norm_label(ntext) == _norm_label(ctext):
+                continue
+            lines = node.get("lines") or [[node["x"], node["y"],
+                                           node["w"], node["h"]]]
+            best = None
+            for ln in lines:
+                em = _em_box(ln, node.get("font_px"))
+                if em[2] <= 0 or em[3] <= 0:
+                    continue
+                ink = _poly_area(_clip_poly_to_rect(poly, em))
+                if ink <= 0:
+                    continue
+                ratio = ink / max(1e-6, min(parea, em[2] * em[3]))
+                if best is None or ink > best["ink"]:
+                    best = {"ink": ink, "ratio": ratio, "em": em}
+            if not best:
+                continue
+            if best["ratio"] >= CANVAS_DOM_AREA:
+                why = "%.0f%% of the smaller ink box overprinted" % (100 * best["ratio"])
+            elif best["ink"] >= CANVAS_DOM_MIN_INK:
+                why = "%.0f square px of glyph through glyph" % best["ink"]
+            else:
+                continue
+            best.update({"canvas_text": ctext, "dom_text": ntext, "why": why,
+                         "aabb": aabb, "aligned": aligned,
+                         "overlap_ok": bool(node.get("overlap_ok"))})
+            out.append(best)
+    out.sort(key=lambda d: -d["ink"])
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--render-dir", required=True)
@@ -3743,6 +3957,75 @@ def main():
                        else "%.0fpx of shared column on one line" % line[0],
                        tu[:36], tv[:36], bu[0], bu[0] + bu[2], bv[0], bv[0] + bv[2],
                        min(bu[1], bv[1]), max(bu[1] + bu[3], bv[1] + bv[3])))
+
+        # AND CANVAS TYPE AGAINST DOM TYPE, THE PAIR NOTHING COULD SEE
+        # (2026-09-13, run No.58). Three collision tests existed and all three
+        # compared like with like: DOM against DOM, canvas against canvas. The
+        # pair that actually ships is MIXED, because this house draws its
+        # instrument labels on canvas and its copy in the DOM, and the two
+        # never know about each other at all. Run No.58 drew '100 MW' rotated
+        # on the megawatt rail of slide 02, moved a DOM unit guard out of its
+        # column in round one, moved it back in round two, wrote REPAIRED in
+        # the build reconciliation, and shipped the deck's defining number
+        # destroyed. qa.py's own warning said it: "its POSITION is not
+        # confirmed, because a canvas string has no line box". Every gate was
+        # green; the SCORER caught it by eye and capped 7.55 to 6.9.
+        #
+        # Same two verdicts as the DOM pair and the canvas pair, so nothing new
+        # is being judged: 30 percent of the smaller ink area overprinted, or
+        # the ends of two strings meeting on one line. Two guards keep honest
+        # drawing silent. IDENTICAL strings are never compared, because drawing
+        # the same text on canvas behind the same text in the DOM is a halo.
+        # And the same-line test runs only on AXIS-ALIGNED strings, where a
+        # bounding box IS the ink; a rotated string is judged on its polygon
+        # alone, which is the geometry and not an approximation of it.
+        # It cannot see a canvas string a later fill covered, exactly as the
+        # canvas pair cannot; that reads as overprint, which is what the pixels
+        # would show if nothing covered it.
+        for hit in canvas_dom_overprints(cts, rec.get("canvases"),
+                                         max(1e-6, kdev), tnodes):
+            msg = (
+                "canvas type through DOM type (%s): the drawn string '%s' "
+                "crosses '%s'. The canvas ink spans x %.0f to %.0f, y %.0f to "
+                "%.0f in design px%s; the DOM line's em box is %.0f,%.0f "
+                "%.0fx%.0f, and they share %.0f square px of ink. Neither "
+                "knows the other is there, because one has a line box and the "
+                "other is paint. Move the DOM block clear of that column, or "
+                "place the drawn string from the block's measured rect "
+                "(getBoundingClientRect) and assert the gap with "
+                "window.__akAssert"
+                % (hit["why"], hit["canvas_text"][:36], hit["dom_text"][:36],
+                   hit["aabb"][0], hit["aabb"][0] + hit["aabb"][2],
+                   hit["aabb"][1], hit["aabb"][1] + hit["aabb"][3],
+                   "" if hit["aligned"] else " (rotated; judged on its quad)",
+                   hit["em"][0], hit["em"][1], hit["em"][2], hit["em"][3],
+                   hit["ink"]))
+            if hit["overlap_ok"]:
+                res["warns"].append(msg + " [marked data-overlap-ok]")
+            else:
+                res["fails"].append(msg)
+
+        # WHERE THE DISPLAY TYPE BROKE, AND WHETHER IT BROKE WITH THE SENSE
+        # (2026-09-13). See ragged_lines() above. Reported per block, worst
+        # first, with the WORD to break before, because a finding that names
+        # the repair is the one that gets repaired in round one.
+        for node in tnodes:
+            if node.get("decorative"):
+                continue
+            hits = ragged_lines(node)
+            if not hits:
+                continue
+            lt = node.get("line_text") or []
+            for idx, word, why in hits[:3]:
+                nxt = (lt[idx + 1] if idx + 1 < len(lt) else "").split(" ")[0]
+                res["warns"].append(
+                    "ragged display line: line %d of %d in '%s' ends '%s' -- %s. "
+                    "It reads at %gpx, so the break is the first thing a feed "
+                    "sees. Author the break with <br> before '%s' (AK.fitText "
+                    "honours an authored <br> and soft-wraps everything else), "
+                    "or shorten the line"
+                    % (idx + 1, len(lt), (node.get("full") or node.get("text") or "")[:44],
+                       word, why, node.get("font_px"), nxt or "the next word"))
 
         # TYPE NOBODY SIZED (2026-08-21). render.py reports, per text element,
         # whether ANY author font-size applies anywhere on its ancestor chain

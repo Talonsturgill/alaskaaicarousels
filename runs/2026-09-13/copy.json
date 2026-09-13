@@ -1,0 +1,180 @@
+{
+  "run_date": "2026-09-13",
+  "document_title": "Alaska's Half Vote and a Federal Bill",
+  "post_copy": "\"The Ratepayer Protection Act will ensure that data centers pay their own way, instead of passing costs onto hardworking families.\"\n\nEnergy and Commerce Chairman Brett Guthrie said that when his committee advanced H.R. 9340 by 52 to 0. The bill never writes \"data center\". It describes one, a customer with 100 megawatts or more of peak demand who would pay the full incremental cost of the grid built to serve it.\n\nA state whose legislature already voted on a comparable standard would be excused. Alaska's Senate passed SB 250 on May 16th, per Davis Wright Tremaine. No House floor vote appears in the public record.\n\nA field labeled DATE OF ENACTMENT stays bare on all nine frames, because the bill is reported and on no published schedule.\n\nThe Department of Energy's record closes October 9th. What would Alaska's line in that record have to admit?\n\n#DataCenterPolicy #LargeLoadCustomer #SB250",
+  "first_comment": "Sources, primary first. Raw URLs, so they survive the paste.\n\nH.R. 9340 as reported to the House, the Ratepayer Protection Act, carrying Union Calendar No. 713 and Report No. 119-814. C01, C02, C03 and C05 to C16. U.S. Government Publishing Office, govinfo, reported September 10th, 2026. https://www.govinfo.gov/content/pkg/BILLS-119hr9340rh/html/BILLS-119hr9340rh.htm\n\nThe bill's detail record, 119th Congress, second session. C04. U.S. Government Publishing Office, govinfo. https://www.govinfo.gov/app/details/BILLS-119hr9340rh\n\nRatepayer Protection Act advances from House Committee on Energy and Commerce, the 52 to 0 committee vote and the Guthrie quotation. C17, C18 and C19. U.S. House Committee on Energy and Commerce, July 21st, 2026. https://energycommerce.house.gov/posts/ratepayer-protection-act-advances-from-house-committee-on-energy-and-commerce\n\nThe published House floor schedule, which does not list H.R. 9340. C20. Office of the Clerk, U.S. House of Representatives, read September 13th, 2026. https://docs.house.gov/floor/\n\nThe House majority leader's schedule, which does not list it either. C21. Office of the House Majority Leader, read September 13th, 2026. https://www.majorityleader.gov/schedule\n\nThe Ratepayer Protection Pledge, 23 governors and more than 300 organizations, naming none of them. C22, C23 and C24. The White House, read September 13th, 2026. https://www.whitehouse.gov/ratepayer-protection-pledge/\n\nDepartment of Energy request for information on securing the bulk-power system, docket DOE-HQ-2026-1123, responses accepted on or before October 9th, 2026, public webinar September 16th, 2026. C29, C30 and C32. Federal Register, September 9th, 2026. https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt\n\nDepartment of Transportation request for information on America's Great Corridors of Commerce, docket DOT-OST-2026-3269, comments due October 2nd, 2026. C25 and C26. Federal Register, September 11th, 2026. https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18521.txt\n\nFederal Energy Regulatory Commission notice on the DeepGreen Cook Inlet preliminary permit application, Project No. 15423-000, comments and motions to intervene due November 2nd, 2026. C34 and C35. Federal Register, September 4th, 2026. https://www.govinfo.gov/content/pkg/FR-2026-09-04/html/2026-18151.htm\n\nGavel Alaska's archive, listing SB 250 as data centers and utilities business in a Senate floor session and in House Community and Regional Affairs. C47. KTOO, read September 13th, 2026. https://www.ktoo.org/?s=SB+250+data+centers\n\nSecondary, and named on the face of every slide that uses them.\n\nAlaska data center development, next steps. SB 250 passing the Senate on May 16th, 2026 and dying in House Community and Regional Affairs, the commission-approved contract requirement, and the 1 million dollar financial security amendment. C38, C40, C41, C43 and C46. Davis Wright Tremaine, Energy and Environmental Law Blog, June 29th, 2026. https://www.dwt.com/blogs/energy--environmental-law-blog/2026/06/alaska-data-center-development-next-steps\n\nThe SB 250 bill record. Title, sponsor, crossover May 16th, 2026, last action a House committee hearing May 18th, 2026, status dead as of May 20th, 2026. C36, C37, C39, C44 and C45. BillTrack50, read September 13th, 2026. https://www.billtrack50.com/billdetail/1974439\n\nakleg.gov and congress.gov both refuse an automated read. That is why the SB 250 record here is two independent secondary sources that agree, and why no cosponsor list and no delegation position appears anywhere in the deck.\n\nEvery open federal comment deadline this page is tracking sits on one page at alaskaaihq.com\n\nIf you hold the Alaska House side of this, or a Regulatory Commission of Alaska docket that bears on large load cost allocation, add it below and it goes into the record.",
+  "slides": [
+    {
+      "n": 1,
+      "strings": [
+        "H.R. 9340 · UNION CALENDAR 713",
+        "ALASKA'S SENATE VOTED ON WHO PAYS. ITS HOUSE DIDN'T.",
+        "SB 250 PASSED THE SENATE MAY 16TH NO HOUSE FLOOR VOTE IN THE RECORD",
+        "PER DAVIS WRIGHT TREMAINE AND BILLTRACK50, ON SENATE BILL 250",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C38",
+        "C46"
+      ]
+    },
+    {
+      "n": 2,
+      "strings": [
+        "BUILD THE WIRE FOR ONE CUSTOMER, CHARGE THAT CUSTOMER FOR IT.",
+        "The bill would make rates to a large-load customer recover the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it. A large-load customer draws 100 megawatts or more at one site or campus.",
+        "THE BILL NEVER WRITES DATA CENTER. IT DESCRIBES ONE.",
+        "PEAK DEMAND, WHICH IS POWER. NOT ANNUAL ENERGY.",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C05",
+        "C06",
+        "C07",
+        "C09",
+        "C22",
+        "C23",
+        "C24"
+      ]
+    },
+    {
+      "n": 3,
+      "strings": [
+        "THE CUSTOMER CAN LEAVE. THE COST STAYS.",
+        "The requirement keeps applying if the large-load customer terminates its contract or otherwise stops buying power. The upgrade is already built. Somebody is paying for it either way, and the bill says which somebody.",
+        "CUSTOMER, GONE",
+        "OBLIGATION, CONTINUING",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C10"
+      ]
+    },
+    {
+      "n": 4,
+      "strings": [
+        "TWO CLOCKS. NEITHER ONE HAS STARTED.",
+        "FROM ENACTMENT. NO DATE EXISTS.",
+        "State regulators would get one year from enactment to begin considering the standard and two years to decide. Both spans are measured from a date that does not exist yet, because the bill is reported and eligible for floor action, not scheduled.",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C03",
+        "C08",
+        "C11",
+        "C12",
+        "C13"
+      ]
+    },
+    {
+      "n": 5,
+      "strings": [
+        "THREE WAYS OUT. A STATE NEEDS ONLY ONE.",
+        "Before the bill becomes law, a state is excused if it already implemented a comparable standard, already conducted a proceeding on one, or its legislature already voted on one. The window is still open, because enactment has not happened.",
+        "01 IMPLEMENTED",
+        "02 A PROCEEDING NEEDS NO LEGISLATURE",
+        "03 THE LEGISLATURE HAS VOTED",
+        "ALASKA, UNRESOLVED",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C13",
+        "C14",
+        "C15",
+        "C16"
+      ]
+    },
+    {
+      "n": 6,
+      "strings": [
+        "THE SENATE STRUCK IT. THE HOUSE NEVER PICKED UP THE DIE.",
+        "SB 250 would have made utilities sign commission-approved contracts so a data center's costs fell on the data center. It passed the Alaska Senate on May 16th. The House held a committee hearing on May 18th and took no floor vote.",
+        "SENATE MAY 16TH",
+        "HOUSE NO FLOOR VOTE IN THE RECORD",
+        "SB 250 TRIGGER, $1,000,000 OF UTILITY CAPITAL COST A DIFFERENT THRESHOLD, NOT TWO VERSIONS OF ONE NUMBER",
+        "PER DAVIS WRIGHT TREMAINE AND BILLTRACK50",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C36",
+        "C37",
+        "C38",
+        "C39",
+        "C40",
+        "C41",
+        "C43",
+        "C44",
+        "C45",
+        "C46",
+        "C47"
+      ]
+    },
+    {
+      "n": 7,
+      "strings": [
+        "\"THE STATE LEGISLATURE HAS VOTED ON THE IMPLEMENTATION...\"",
+        "The bill does not say what counts as the legislature. Nobody has had to argue it, because the bill is not law.",
+        "TOOLED INTO THE POUR, NOT CAST IN",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C15",
+        "C16"
+      ]
+    },
+    {
+      "n": 8,
+      "strings": [
+        "REPORTED. NOT SCHEDULED.",
+        "52 TO 0 OUT OF COMMITTEE",
+        "REPORTED TO HOUSE · SEPT 10TH HOUSE REPORT 119-814 UNION CALENDAR 713",
+        "Eligible for floor action is not the same as scheduled. The committee vote was unanimous in July and the bill has not reached the floor since.",
+        "CLERK'S FLOOR SCHEDULE, NOT LISTED, READ SEPT 13TH",
+        "MAJORITY LEADER'S SCHEDULE, NOT LISTED, READ SEPT 13TH",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C17",
+        "C18",
+        "C20",
+        "C21"
+      ]
+    },
+    {
+      "n": 9,
+      "strings": [
+        "THE BILL HAS NO DATE. THE RECORD HAS THREE.",
+        "OCTOBER 9TH · DOE-HQ-2026-1123",
+        "OCTOBER 2ND · DOT-OST-2026-3269 NOVEMBER 2ND · FERC PROJECT 15423-000",
+        "Put Alaska in the Department of Energy's record before October 9th.",
+        "ALASKA.AI",
+        "DATE OF ENACTMENT"
+      ],
+      "claim_ids": [
+        "C25",
+        "C26",
+        "C29",
+        "C30",
+        "C34",
+        "C35"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post it Tuesday to Thursday, 8 to 11 a.m. Alaska time. Drafts land daily and the cadence is the human's call, so hold this one for the next strong slot rather than pushing it into a Friday afternoon.",
+    "Paste the sources block as the first comment within 60 seconds of posting. No slide prints a source note, so until that comment lands the claims have no visible provenance.",
+    "Reply to every comment in the first 90 minutes, as the analyst and not as a brand account.",
+    "At 48 hours, write the saves and the comment count into the run record. Slide 08 is the keepable frame and saves are the honest test of whether it earned the keep.",
+    "If a commenter says the Alaska House voted SB 250 down, reply. No House floor vote appears in the record at all. It passed the Senate on May 16th, went to House Community and Regional Affairs, and died there, per Davis Wright Tremaine and BillTrack50.",
+    "If a commenter says Alaska is already exempt, reply. That may well be right. One of the three doors is a state commission proceeding, which needs no legislature, and nothing reachable says whether the Regulatory Commission of Alaska has run one. That gap is why the deck asks the question instead of answering it.",
+    "If a commenter says the bill is headed to the floor, reply. It sits on the Union Calendar, which makes it eligible for floor action. The Clerk's schedule and the majority leader's schedule were both read on September 13th and neither one lists it.",
+    "If a commenter sets the DeepGreen Cook Inlet figure beside the 100 megawatt threshold, reply. The FERC notice describes annual generation, which is energy, and the bill's threshold is peak demand, which is power. Same numeral, different quantity."
+  ],
+  "editor_notes_for_email": "WHAT THE DECK CLAIMS. H.R. 9340, the Ratepayer Protection Act, was reported to the House on September 10th as Report 119-814 and sits on the Union Calendar as number 713. It would make a customer with peak demand of 100 megawatts or more at a single site or campus pay the full incremental cost of any generation, transmission or distribution upgrade built to serve it, and that obligation survives the customer walking away from its contract. A state is excused if it already implemented a comparable standard, already conducted a proceeding on one, or its legislature already voted on one. Alaska's Senate passed SB 250 on May 16th and no House floor vote appears in the record. Whether one chamber satisfies \"the State legislature has voted\" is the deck's question and it is left as a question.\n\nWHAT IT DELIBERATELY DOES NOT CLAIM. It never says Alaska is in or out of the exemption. It never says scheduled about this bill, only eligible for floor action. It puts no calendar date on the one year or two year clocks, because both run from an enactment that has not happened. Nothing about Begich, Sullivan or Murkowski, no cosponsor count, nothing about Gov. Dunleavy and the pledge, and nothing in either direction about what the Regulatory Commission of Alaska has or has not done. It never says the House voted SB 250 down. It never pairs the DeepGreen Cook Inlet 100 megawatt figure with the threshold, because that figure is annual energy and the threshold is peak power.\n\nWHAT COULD DRAW A CORRECTION. Every SB 250 fact is secondary. akleg.gov refuses an automated read, so May 16th rests on Davis Wright Tremaine's energy practice and BillTrack50 agreeing, and both are named in type on slides 01 and 06. A reader holding the House journal could add detail there, which is the likeliest reply and a good one to get. The second exposure is prong two, the commission proceeding, which is genuinely unknown in both directions and is why the close is a question.\n\nTHE PIXEL ROOM AND WHAT IT CHANGED. Five critics read the nine frames and none of them said ship. The round that followed forced every display headline to break at its sense boundary rather than wherever the fitter landed, restored three body sentences the build had dropped from the plan, put the deck's DATE OF ENACTMENT motif back on the frames that had lost it, turned the closing frame's gold dates from raised glowing plaques into marks struck INTO the pad, and corrected two objects that were lit from the wrong side. All of it is recorded, per slide and with the reason, in the run's BUILD RECONCILIATION.\n\nTHE CAPTION. Carried byte for byte from the caption room's winner, hashtags included, at 898 chars with a 131 char hook. Checked against claims.json line by line and no factual error was found in it.",
+  "deck_summary_line": "A field labeled DATE OF ENACTMENT stays bare on all nine frames, because the bill is reported and on no published schedule."
+}
