@@ -2260,6 +2260,51 @@
       "verification": "Fitted against three shipped decks rather than asserted. PASS on runs/2026-09-12 and runs/2026-09-11, the two decks rendered after the rule ('alaskaaihq.com on every slide; no banned slide string'), exit 0. FAIL on runs/2026-09-10, the deck before it, naming S1 through S8 for the missing fixture and S9 for printing 'sources in comments', exit 1. Checked in copy_sync_check and deliberately NOT in qa.py, because these are house rules and qa.py is the engine: examples/demo-deck carries no brand fixture and must keep passing.",
       "rollback": "Revert the upgrade(2026-09-12) commit. Or individually: delete WATERMARK, BANNED_SLIDE_STRINGS and fixture_check from copy_sync_check.py with their two call sites, and restore the old Phase 5 step 4 wording.",
       "commit": "upgrade(2026-09-12) commit, staged for the maintainer"
+    },
+    {
+      "run_date": "2026-09-13",
+      "kind": "fix",
+      "area": "engine",
+      "change": "Canvas type is now checked against DOM type. render.py records every fillText/strokeText ink box as a QUAD through the whole transform (so a ROTATED string has honest geometry for the first time) and stamps the canvas element's id into the canvas telemetry so device coordinates can be put on the page; qa.py FAILS when that polygon overlaps a DOM line's EM BOX by 30 percent of the smaller box or by 40 square px of glyph on glyph. data-overlap-ok demotes it to a warn, identical strings are never compared (canvas behind DOM is how a halo is drawn).",
+      "trigger": "Run No.58 incident 1, the defect class no gate in this repo could see. Slide 02 drew '100 MW' rotated on its megawatt rail and a DOM unit guard was moved back into that column by a round-two repair, destroying the deck's one load-bearing number; slide 07 carried a second instance. qa.py's own warning said it could not look ('its POSITION is not confirmed, because a canvas string has no line box'). Every machine gate was green, BUILD RECONCILIATION recorded it as repaired, and the SCORER caught it as a hard fail, capping 7.55 to 6.9.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/overprint_verify.py"
+      ],
+      "verification": "Reconstruction: tests/overprint_verify.py gains two fixtures, a rotated canvas label with a DOM block in its column and the same pair with the block moved clear; all SIX cases hold, and the broken one names '100 MW' (canvas type through DOM type (31% of the smaller ink box overprinted)). Live reconstruction on this run: out/2026-09-13/slides/slide-02.html with .guard put back at left 96px top 1040px renders and FAILS with the same message; the shipped slide passes. Negative controls: this run's nine slides re-rendered and re-QA'd, 0 fails and the same 10 warns as the shipped machine_qa; runs/2026-09-12's nine slides re-rendered from source, 0 fails; examples/demo-deck re-rendered, 0 fails, verdict WARN as before. Corpus sweep of the rule over the 136 shipped slides and 49 canvas strings in runs/*/render_report.json: fires 0 times.",
+      "rollback": "Revert the upgrade(2026-09-13) commit. Individually: delete canvas_dom_overprints(), canvas_ink_polys(), _em_box(), _poly_area(), _clip_poly_to_rect() and their one call site in qa.py; the render.py quad and canvas id are additive and harmless if left.",
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
+    },
+    {
+      "run_date": "2026-09-13",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "plan_drift_check.py's body-copy comparison actually runs. It now reads a dossier body quote that sits on the CONTINUATION line ('- Body, Archivo 34 px, 41 words:' then the indented backticked string), and when copy.json carries no `body` key it compares against the slide's authored `strings`; a dossier sentence counts as present if it appears in ANY string on that slide, so a body split across two blocks is not read as a cut. Thresholds and the cut-versus-rewrite rule are unchanged.",
+      "trigger": "Run No.58 incident 3. Five body paragraphs (slides 02, 03, 04, 05, 06) silently lost their dossier's last sentence and were found one at a time by three different critics across two review rounds. The check that exists for exactly this (the No.50 defect) was DORMANT: it matched only a single-line '- body ... `quote`' against a copy.json `body` key, and this run's artifacts have neither shape, so it compared nothing and said so in a note.",
+      "files": [
+        "scripts/plan_drift_check.py"
+      ],
+      "verification": "Reconstruction: out/2026-09-13 copied with slide 02's body shortened by its last sentence -> FAIL, exit 1, naming 'A large-load customer draws 100 megawatts or more at one site or campus.'. Negative control: the shipped run dir passes, 6 body quotes compared where it previously compared 0. Corpus: over the 13 shipped runs with a storyboard, copy.json and render report, comparisons rise from 17 to 38 and findings from 1 to 2; the one new finding (runs/2026-09-07 slide 09, 'The federal fiscal year ends September 30th.') is a real sentence a dossier promised and the deck never printed. plan_drift_check --self-test: 25 checks, 0 failures.",
+      "rollback": "Revert the upgrade(2026-09-13) commit. Individually: restore the old BODY_RE and drop body_candidates() with the candidate branch in check_body_copy().",
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
+    },
+    {
+      "run_date": "2026-09-13",
+      "kind": "fix",
+      "area": "engine",
+      "change": "The engine knows which words end each rendered line. render.py reports `line_text` per text node, found by BISECTING a Range against getClientRects() (O(lines * log characters), not O(characters)), and qa.py WARNs when display type at 40px and up leaves an article, conjunction or preposition hanging at a line end, strands a two or three letter word there, or breaks inside a word on two consecutive lines. A warn and not a fail: the instrument is new and the house has never measured itself against it.",
+      "trigger": "Run No.58 incident 2, plus the ragged-type rule set parked by the 2026-09-07 frontier scan (https://24ways.org/2013/run-ragged/). All nine display headlines broke against meaning in the first build and were repaired by eye across two full critic rounds on every frame. The park's stated blocker (per-line TEXT is not recorded, and the known technique costs one client-rect call per character) is retired by the bisection: measured over this run's nine slides the render time is unchanged inside noise (89.6s for the deck, per-slide 8316ms vs 9982ms, 8718 vs 8809, 23609 vs 24504).",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/line_text_verify.py"
+      ],
+      "verification": "Correctness first: over this run's nine slides every reported line_text joins back to the node's own `full` string, 0 mismatches, and the nine display headlines read as whole words (an earlier off-by-one that reported 'a large-l' / 'oad customer' is corrected and documented in the code). Reconstruction: tests/line_text_verify.py, four cases, all hold (an authored <br> block reports its three lines; a soft-wrapped block reports whole words; the badly broken headline is warned once; the clean two-line headline is not). Signal rate: 1 warn on this run's repaired deck (slide 07, 'HAS VOTED ON THE'), 6 on runs/2026-09-12's shipped deck, 3 on examples/demo-deck, 0 fails anywhere.",
+      "rollback": "Revert the upgrade(2026-09-13) commit. Individually: delete ragged_lines() and its call site in qa.py (the render.py line_text field is additive).",
+      "commit": "upgrade(2026-09-13) commit, staged for the showrunner"
     }
   ],
   "scan_log": [
@@ -2599,6 +2644,13 @@
       "searches": 6,
       "found": "6 searches, 4 fetches, 2 substantive reads, and both findings are about POINT AND LINE DENSITY, which is the specific weakness the reviews named. (1) WEIGHTED SAMPLE ELIMINATION (Yuksel, EUROGRAPHICS 2015) turns any dense seeded candidate set into a blue-noise subset of a target size with no radius chosen up front and with an optional density function, so a population reads as measured rather than as grain AT THE SAME COUNT. Parameters read out of the reference implementation and not the abstract: 2D r_max = sqrt(A / (2*sqrt(3)*N)), d_max = 2*r_max, weight = sum of (1 - d/d_max)^alpha over neighbours inside d_max with alpha 8, weight-limit fraction (1 - (N_out/N_in)^gamma)*beta with beta 0.65 and gamma 1.5. A uniform grid replaces the kd-tree at our counts, so about 100 lines of vanilla JS and no dependency. (2) JOBARD AND LEFER evenly-spaced streamline placement (1997) makes flow-field density a single parameter d_sep, with d_test = 0.5*d_sep and new seeds offered perpendicular at d_sep from each finished line, plus a multiresolution variant that fills gaps with the coarse lines frozen. Both are the honest answer to a field or population that is dense in one quadrant and bald in another. Sources: cemyuksel.com/research/sampleelimination, github.com/cemyuksel/cyCodeBase/blob/master/cySampleElim.h, semanticscholar Jobard-Lefer 1997, bookofshapes.com/patterns/flow_lines.",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-12 Phase 12 frontier scan entry, both with source URLs and what it would take). Nothing applied: the budget filled with three reactive fixes, and each of these wants a committed assets/js/ helper plus a before-and-after fit on a real frame, which is a next-run job."
+    },
+    {
+      "run_date": "2026-09-13",
+      "focus": "(g) accessibility and PDF/document-format changes. The stalest legal slot, last scanned 2026-09-04 (9 days), and distinct from the last three logged foci: 2026-09-12 generative/procedural art, 2026-09-10 headless Chromium, 2026-09-09 LinkedIn platform. Relevant as well as stale: this run's capping defect was type that no machine could read, and the deliverable is a PDF that a platform, a screen reader and an indexer all read as text.",
+      "searches": 4,
+      "found": "4 searches, 2 substantive reads, and the two findings that matter were MEASURED in this repo's own shipped artifact rather than read anywhere. (1) EVERY SHADOWED LINE SHIPS THREE OR FOUR TIMES IN THE PDF. Extracting text from runs/2026-09-13/carousel.pdf returns 'The bill would make rates to a large-' four times in a row, and the register block three times. A controlled probe through the engine's own Chromium and page.pdf gives the law exactly: extracted copies = 1 + the number of text-shadow layers (0 layers 1 copy, 1 layer 2, 2 layers 3, 3 layers 4), and -webkit-text-stroke with paint-order:stroke fill still gives 2. This house's halo idiom is a two or three layer text-shadow on .body, .dfield and the register, so anything that reads the deck as text (LinkedIn's document indexing, a screen reader, our own future tooling) reads the body copy four times. The single-run alternative is the canvas reserve the chassis already has (P.reserve), not a CSS halo. (2) THE MERGED PDF IS UNTAGGED AND HAS NO LANGUAGE. runs/2026-09-13/carousel.pdf's catalog holds exactly /Pages and /Type: no /StructTreeRoot, no /MarkInfo, no /Lang, no /ViewerPreferences /DisplayDocTitle. Playwright's page.pdf already takes tagged=True and Chromium has emitted tagged PDFs since Chrome 85 (https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html), but assemble.py merges the nine pages with pypdf's add_page, which is documented not to carry the structure tree across (https://github.com/py-pdf/pypdf/discussions/2694; clone_from preserves MarkInfo, add_page does not). Regulatory context, no action: PDF/UA-2 (ISO 14289-2) is published and PDF/UA-1 remains what validators support (https://pdfa.org/iso-14289-2-pdf-ua-2-the-gold-standard-for-accessibility-in-pdf-2-0-has-arrived/).",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-13 Phase 12 frontier scan, with both source URLs, the measured numbers and the check each would need). Nothing applied: the three-upgrade budget filled reactive-first with the defect class that capped this run's first score, the dormant copy-drift check, and the ragged-type rule set that cost two critic rounds. Both parked items are a change to the SHIPPED artifact and want their own gate plus a visual before-and-after, which is a next-run job and not a same-day one."
     }
   ]
 }

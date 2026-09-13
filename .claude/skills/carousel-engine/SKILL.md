@@ -108,6 +108,27 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   drawing the same text twice is how a halo or a knockout pass is done, and
   only strings on the same canvas are compared. Reconstruction:
   `python tests/overprint_verify.py`.
+  AND CANVAS TYPE AGAINST DOM TYPE, the mixed pair (2026-09-13). All three
+  tests above compare like with like, and the pair this house actually ships is
+  an instrument label drawn on canvas beside copy set in the DOM. Run No.58
+  drew `100 MW` ROTATED up its megawatt rail, moved a DOM unit guard back into
+  that column in a round-two repair, and destroyed the deck's one load-bearing
+  number with every gate green; the scorer capped the round at 6.9. render.py
+  now records each drawn string's ink box as a QUAD through the whole
+  transform, so a rotated label has honest geometry, and qa.py **FAILS** when
+  that polygon overlaps a DOM line's EM BOX (the line rect minus its
+  half-leading) by 30 percent of the smaller box or by 40 square px of glyph on
+  glyph. `data-overlap-ok` demotes it. Measured over 136 shipped slides it
+  fires on none of them.
+- **Display type breaks where the sense breaks** (2026-09-13). render.py
+  reports `line_text`, the words on each rendered line, found by bisecting a
+  Range against `getClientRects()`, and qa.py WARNs when display type
+  (40px and up, two lines or more) leaves an article, conjunction or
+  preposition hanging at a line end, strands a two or three letter word there,
+  or breaks inside a word on two consecutive lines
+  (https://24ways.org/2013/run-ragged/). `AK.fitText` honours an authored
+  `<br>` and soft-wraps everything else, so the repair is a `<br>` before the
+  word the warning names. Reconstruction: `python tests/line_text_verify.py`.
 - **Plates are sized from the MEASURED string, never a guessed constant**
   (2026-07-29): JetBrains Mono at 24px with 0.10em tracking advances exactly
   16.8px per character; hand-sizing at the eye's estimate of ~14 loses about

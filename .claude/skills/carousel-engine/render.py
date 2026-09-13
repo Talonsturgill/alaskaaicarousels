@@ -135,6 +135,26 @@ CANVAS_TEXT_HOOK_JS = """
                   _e.ink_top = _t.d * (arguments[2] - _asc) + _t.f;
                   _e.ink_bottom = _t.d * (arguments[2] + _dsc) + _t.f;
                   _e.sy = _t.d;
+                  /* AND THE SAME BOX AS A QUAD THROUGH THE WHOLE MATRIX
+                     (2026-09-13, run No.58). The four numbers above use only
+                     a and d, so a ROTATED string records a degenerate box and
+                     every check skips it. Run No.58's slide 02 drew its axis
+                     label '100 MW' under a 90-degree rotation, the DOM unit
+                     guard was moved into its column by a round-two repair, and
+                     the deck's defining number was destroyed with every
+                     machine gate green. The full affine transform of the ink
+                     box's four corners is exact for any rotation and costs
+                     eight multiplies, and a polygon is what a rotated
+                     collision has to be judged on. */
+                  var _cx = [arguments[1] - _il, arguments[1] + _ir,
+                             arguments[1] + _ir, arguments[1] - _il];
+                  var _cy = [arguments[2] - _asc, arguments[2] - _asc,
+                             arguments[2] + _dsc, arguments[2] + _dsc];
+                  _e.quad = [];
+                  for (var _q = 0; _q < 4; _q++) {
+                    _e.quad.push(Math.round(10 * (_t.a * _cx[_q] + _t.c * _cy[_q] + _t.e)) / 10);
+                    _e.quad.push(Math.round(10 * (_t.b * _cx[_q] + _t.d * _cy[_q] + _t.f)) / 10);
+                  }
                 }
               }
             } catch (e2) {}
@@ -1078,25 +1098,81 @@ IN_PAGE_QA_JS = """
     // compares line boxes, not block bboxes (block bboxes overlap on
     // whitespace and false-positive). SVG text keeps its bbox (single-line
     // labels; Range rects are unreliable in SVG).
-    let lines = [];
+    // AND THE WORDS ON EACH OF THOSE LINES (2026-09-13, run No.58). The rects
+    // alone say WHERE the lines are and nothing about where they BROKE, so
+    // DESIGN_DOCTRINE's oldest typographic rule -- break display type at a
+    // sense boundary, never leave a preposition or an article hanging -- has
+    // been enforced by eye since the beginning, which means by a pixel critic,
+    // which means by a build round. Run No.58 opened with all nine display
+    // headlines breaking against meaning and paid two full critic rounds on
+    // every frame for it.
+    //
+    // The technique parked on 2026-09-07 was a Range walk extended one
+    // character at a time, O(characters) client-rect calls per block, which is
+    // why it was parked. A BISECTION does the same job in O(lines * log
+    // characters): getClientRects() on a range from the node start to offset i
+    // returns one rect per line touched, and that count is non-decreasing in i,
+    // so the offset where a line ends is the smallest i whose count exceeds it.
+    // A 60-character headline costs about 18 rect reads instead of 60, and
+    // only blocks that actually wrapped are walked at all. qa.py holds the rule
+    // set and reports; nothing here judges.
+    let lines = [], lineText = [], lineTextOk = true;
     if (!isSvgText) {
       try {
         const range = document.createRange();
         for (const n of el.childNodes) {
           if (n.nodeType === 3 && n.textContent.trim().length > 0) {
             range.selectNodeContents(n);
+            const before = lines.length;
             for (const lr of range.getClientRects()) {
               if (lr.width > 1 && lr.height > 1)
                 lines.push([Math.round(lr.x), Math.round(lr.y),
                             Math.round(lr.width), Math.round(lr.height)]);
             }
+            const nLines = lines.length - before;
+            const s = n.textContent;
+            if (nLines === 1) {
+              lineText.push(s.trim().replace(/\\s+/g, " ").slice(0, 200));
+            } else if (nLines > 1 && nLines <= 12 && s.length <= 600) {
+              const countTo = (i) => {
+                range.setStart(n, 0); range.setEnd(n, i);
+                let c = 0;
+                for (const lr of range.getClientRects())
+                  if (lr.width > 1 && lr.height > 1) c++;
+                return c;
+              };
+              let prev = 0;
+              for (let k = 1; k < nLines; k++) {
+                let lo = prev + 1, hi = s.length;
+                while (lo < hi) {
+                  const mid = (lo + hi) >> 1;
+                  if (countTo(mid) > k) hi = mid; else lo = mid + 1;
+                }
+                /* countTo(lo) first exceeds k when the range has swallowed the
+                   FIRST INKED CHARACTER of line k+1, so the break is at lo-1,
+                   not at lo. Without this the walk reports "...a large-l" and
+                   "oad customer ...", which is a line break nobody wrote. */
+                const brk = Math.max(prev, lo - 1);
+                lineText.push(s.slice(prev, brk).trim().replace(/\\s+/g, " ").slice(0, 200));
+                prev = brk;
+              }
+              lineText.push(s.slice(prev).trim().replace(/\\s+/g, " ").slice(0, 200));
+              range.selectNodeContents(n);
+            } else {
+              lineTextOk = false;
+            }
+          } else if (n.nodeType === 1 &&
+                     (n.tagName || "").toUpperCase() !== "BR") {
+            lineTextOk = false;   // a <span> the Range walk above never enters
           }
         }
-      } catch (e) {}
+      } catch (e) { lineTextOk = false; }
     }
+    if (!lineTextOk || lineText.length !== lines.length) lineText = null;
     const linesMeasured = lines.length > 0;
     if (!lines.length) lines = [[Math.round(r.x), Math.round(r.y),
                                  Math.round(r.width), Math.round(r.height)]];
+    if (lineText && lineText.length !== lines.length) lineText = null;
     // WRAP DRIFT (2026-09-02). An author who writes <br> has DECLARED the line
     // structure of a block, and canvas furniture is routinely counted off that
     // declaration. Run No.48's slide 07 stamped four fields into a 330px plate
@@ -1195,6 +1271,7 @@ IN_PAGE_QA_JS = """
       overlap_ok: el.hasAttribute("data-overlap-ok") ||
                   (el.closest && !!el.closest("[data-overlap-ok]")),
       lines: lines,
+      line_text: lineText,
       wrap: wrap,
       anc: anc
     };
@@ -1693,6 +1770,9 @@ IN_PAGE_QA_JS = """
       x: Math.round(r2.x), y: Math.round(r2.y),
       w: Math.round(r2.width), h: Math.round(r2.height),
       bw: cv.width, bh: cv.height,
+      /* the id the canvas-text hook stamped on this element, so a drawn
+         string's device coordinates can be put on the page (2026-09-13) */
+      id: cv.__akId || null,
       area_frac: Math.round(1000 * Math.min(1,
         (Math.min(r2.width, W) * Math.min(r2.height, H)) / (W * H))) / 1000,
       backing_ratio: Math.round(100 * Math.min(cv.width / Math.max(1, r2.width),

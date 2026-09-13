@@ -7185,3 +7185,48 @@ time by three different critics across two rounds, on slides 02, 03, 04, 05 and
 06. After the second one, diff EVERY body in the deck against its dossier's
 authored string in one pass rather than waiting for the next reader to find the
 next one.
+
+## 2026-09-13, No.58, Phase 12 frontier scan (g): accessibility and PDF/document format. TWO PARKED.
+
+Both findings were MEASURED in this repo's own shipped artifact rather than read
+somewhere, and both are about the file the post actually is, so both change the
+deliverable and neither is a same-day change.
+
+**PARKED: every shadowed line ships three or four times in the PDF.** Extract
+text from `runs/2026-09-13/carousel.pdf` and slide 02's body reads "The bill
+would make rates to a large-" four times in a row; the register block reads
+three times. A controlled probe through the engine's own Chromium and
+`page.pdf` gives the law exactly: extracted copies = 1 + the number of
+`text-shadow` layers (0 layers 1 copy, 1 layer 2, 2 layers 3, 3 layers 4).
+`-webkit-text-stroke` with `paint-order: stroke fill` still gives 2, because the
+stroke run and the fill run are both glyph runs. This house's halo idiom is a
+two or three layer `text-shadow` on `.body`, `.dfield` and the register blocks,
+so anything that reads the deck as TEXT rather than as pixels reads its body
+copy four times: LinkedIn's document indexing, a screen reader on the PDF, and
+any tool we write later. The single-run alternative is the canvas reserve the
+chassis already carries (`P.reserve`), which is a different way to seat grey
+type on a lit ground and needs a visual before and after on a real frame before
+anyone swaps an idiom that is currently doing a contrast job. The gate that
+would hold it: extract per-page text at assemble time and fail when a line of
+8 or more characters repeats. UNBLOCKS WHEN: a run has a slot free and a frame
+whose halo can be rebuilt as a reserve and compared at 432 px.
+
+**PARKED: the merged PDF is untagged and has no language.** The catalog of
+`runs/2026-09-13/carousel.pdf` holds exactly `/Pages` and `/Type`. No
+`/StructTreeRoot`, no `/MarkInfo`, no `/Lang`, no `/ViewerPreferences
+/DisplayDocTitle`. Chromium has emitted tagged PDFs since Chrome 85
+(https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html) and
+Playwright's `page.pdf` already takes `tagged=True`, but `assemble.py` merges
+the nine single-page PDFs with pypdf's `add_page`, which is documented not to
+carry the structure tree across; `clone_from` preserves `MarkInfo` and the tags
+(https://github.com/py-pdf/pypdf/discussions/2694). So the reading order and
+alt text Chromium may already be producing are thrown away at the merge, one
+line of code from the end. `/Lang` and `DisplayDocTitle` are two lines of
+`writer` metadata and would be worth having on their own. Regulatory context,
+no action: PDF/UA-2 (ISO 14289-2) is published and PDF/UA-1 is still what the
+validators support
+(https://pdfa.org/iso-14289-2-pdf-ua-2-the-gold-standard-for-accessibility-in-pdf-2-0-has-arrived/).
+UNBLOCKS WHEN: someone can verify a rebuilt merge page for page against the
+current one (vector text intact, file size, the JPEG recompression pass still
+applied) rather than trusting that a different merge call produces the same
+document.
