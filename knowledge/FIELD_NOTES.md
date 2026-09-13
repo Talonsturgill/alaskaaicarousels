@@ -7096,3 +7096,28 @@ And the cheaper half: **an outside reviewer is the only reader here who has not
 already agreed with the plan.** Six rooms reviewed the render against the
 storyboard. None of them read the library. Ask for the second kind of review
 before the merge, not after it.
+
+### CRAFT REFRESH (2026-09-13)
+
+- Oktopost's March 2026 LinkedIn benchmark, over 1,000 B2B pages, puts MEDIAN
+  page engagement at 5.72 percent and the top decile at 22.45 percent. That is
+  the first per-PAGE median this file has carried; every earlier number was a
+  per-FORMAT rate, and the two are not comparable. Judge a deck against our own
+  trailing median, as CAROUSEL_CRAFT already says, and treat 5.72 as the floor
+  a competent B2B page clears rather than as a target.
+  https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/
+- Native documents fell the LEAST in the 2025 to 2026 reach contraction, down
+  43 percent against a feed that fell further. The format's advantage is now
+  partly a smaller loss rather than a larger gain, which is a different reason
+  to keep shipping documents and the same conclusion.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- Reported 2026 reach multiplier for carousels is about 4.5x for accounts under
+  50,000 followers, higher than the all-accounts figure. Small pages get more
+  of the format's benefit, not less. Alaska.Ai is squarely in that band.
+  https://postunreel.com/blog/linkedin-carousel-engagement-rate-statistics-2026
+- Visual craft leg of the refresh looked for something new on multi-scale
+  procedural detail and on notan value structure. Nothing new. The notan rules
+  it returned are the same four scripts/value_structure.py already measures,
+  and the hatching and stipple literature is the same body TECHNIQUE_LIBRARY
+  already indexes. Recording the null result so a later run does not spend the
+  searches again on these two.
