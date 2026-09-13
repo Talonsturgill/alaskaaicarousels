@@ -1488,6 +1488,30 @@
       "confidence": 0.92,
       "born": "2026-09-12",
       "evidence": "No.57 merged with two CI checks red on its own head. ask_answers.py had failed because the new docket item's decider matched no agency rule, so the site could not say who decided it, and the mobile suite had failed on two landscape devices because the item's new map pin sat under the sticky nav. Both notifications arrived in the same batch, after the merge. Local gate_status was 0 FAIL the whole time, because it does not run either check."
+    },
+    {
+      "id": "a-canvas-string-has-no-line-box",
+      "learned": "2026-09-13",
+      "instinct": "NEVER let a canvas string and a DOM block share a column of x. qa.py cannot see a collision between them and says so in its own warning text.",
+      "evidence": "No.58 shipped the same collision twice. Round one found the unit guard printing through slide 02's rotated 100 MW axis label and moved the guard; round two put it at top 906, inside the 224 px the label climbs, so the collision moved instead of clearing and the SCORER caught it as a hard fail off the thumb. The fix had to change the geometry twice over, shortening the label AND moving the guard out of that column, because one change is a coin flip.",
+      "confidence": 0.93,
+      "last_confirmed": "2026-09-13"
+    },
+    {
+      "id": "a-recess-floor-is-not-black",
+      "learned": "2026-09-13",
+      "instinct": "A punched or incised field steps DOWN from its host by a few L*, never to black, and its read comes from the lit FAR wall. A black rectangle on a light ground reads as a redaction, which asserts that the thing is hidden rather than absent.",
+      "evidence": "No.58's motif is a field that is bare because no date exists. Drawn near black on five frames it argued the opposite, and it also clustered with the night rather than the pour, so value_structure counted each one as its own dark island and read four of nine frames holding their masses. Lifting the floor into the pour's mid cluster fixed the argument and the notan in the same edit, nine of nine.",
+      "confidence": 0.9,
+      "last_confirmed": "2026-09-13"
+    },
+    {
+      "id": "author-the-line-break-or-the-fitter-will",
+      "learned": "2026-09-13",
+      "instinct": "Author every display line break as a <br>. AK.fitText honours them and soft-wraps anything you do not, so a headline handed over as one string has breaks chosen by a measurement and not by a meaning.",
+      "evidence": "All nine of No.58's headlines broke against sense in the first build. Slide 02 read ONE CUSTOMER, CHARGE with the verb orphaned from its object, slide 03 ended a line on THE straight after a full stop, and slide 08 put the word SCHEDULED. alone on line two in a deck whose factual fence forbids that word near this bill. Two critic rounds reported it on every frame. Type came down 6 to 30 px to buy the right breaks and that is the correct trade.",
+      "confidence": 0.95,
+      "last_confirmed": "2026-09-13"
     }
   ]
 }

@@ -1,0 +1,57 @@
+{
+  "run_date": "2026-09-13",
+  "note": "Every aggregate number this deck prints, with the claims it comes from. Written before the critics were read, so nothing here is back-fitted to a finding.",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "fragment": "23 GOVERNORS",
+      "text": "VOLUNTARY, BESIDE IT 23 GOVERNORS 300+ ORGANIZATIONS THE WHITE HOUSE",
+      "member": "C22"
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "fragment": "TWO CLOCKS",
+      "text": "TWO CLOCKS. NEITHER ONE HAS STARTED.",
+      "subject": "clocks",
+      "members": [
+        "C11",
+        "C12"
+      ]
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "fragment": "2 YEARS",
+      "text": "2 YEARS DETERMINE",
+      "member": "C12"
+    },
+    {
+      "kind": "count",
+      "slide": 5,
+      "fragment": "THREE WAYS",
+      "text": "THREE WAYS OUT. A STATE NEEDS ONLY ONE.",
+      "subject": "ways",
+      "members": [
+        "C14",
+        "C15",
+        "C16"
+      ]
+    },
+    {
+      "kind": "design",
+      "slide": 5,
+      "fragment": "02 A PROCEEDING NEEDS",
+      "text": "02 A PROCEEDING NEEDS NO LEGISLATURE",
+      "note": "The 02 is the list enumerator on a three item column, drawn as furniture beside 01 and 03. It counts nothing in the world."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "fragment": "52 TO 0",
+      "text": "52 TO 0 OUT OF COMMITTEE",
+      "member": "C17"
+    }
+  ]
+}

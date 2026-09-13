@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-13/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5211969,
+  "pdf_mb": 5.21,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-13/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-13/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's Half Vote and a Federal Bill",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "f7e8283d4b29262da1a4e4255e7090925304d3dae20e480283858761b2fe1aa0",
+        "bytes": 4582971
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "4f54c71634ede34c4adadf9e6da0bec36cd4b056bbc6a86e39e15d8c5d8333ff",
+        "bytes": 4555362
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "8e05795d0f1b4f216282796d369e86803eda30aca50121fb6f9054fb9a19a022",
+        "bytes": 4325004
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "95b29b0f0561968766e9e6393ca15c46c7df5fc836e968bb350183fc32c54e6c",
+        "bytes": 4450690
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "3a5291e72fdbcb5e3209f7d996580f2bba985502c49321be2da1417c791f39cd",
+        "bytes": 4412502
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "29c5e500de957319edc68453ffeccaab37073f4bf0374b4be71048d2facc9e4f",
+        "bytes": 4619092
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "75d02a87dc7c2f8d70bd8ee7209a73d21744e174f1ff249940be4ef902cde83d",
+        "bytes": 4047664
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "b24fc5d84d802f8558a45914c2cc1bc5fb2fbe69424087d4a261fc2d90bd674f",
+        "bytes": 4296567
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "d312b4430236546e8a05563852b528d5d98071cfa6c7cd308c58ed25f72318ee",
+        "bytes": 4210851
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "a20bdf99af986bed033a589a95317402668047efb000616aa614962ef9ddb5ea",
+        "bytes": 24636
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "40ac7750363eff58457ecc360f20f3ee1504511d4c882babdc6b833e792265c6",
+        "bytes": 14556
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "2f093a938d78d56901c1bbdf52c0876db31b1be8c3a74c0a273aa19f5799d3bd",
+        "bytes": 13515
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "b12fa7883edae14bc5da9277dd2ecc3002d86ce0a9e21d558c3ef52cd101ab9b",
+        "bytes": 15976
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "9d9b264ff2c0b419c28863725cd3b4db1185e5b21c23cb65c6fbe8093dfe85d2",
+        "bytes": 13965
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "8bc9cb2a3dc3c707480db6db99390b27983bdd49f39d46f8c88a1af0a08f4dbd",
+        "bytes": 16097
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "0c7c147922327e03b4b6b9ce0e2502a488868ce38a1041a9d6039f28a93cdba5",
+        "bytes": 10396
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "b6f1f2ddec274ec3175a0522249037e00fdd43ad5b20a23dbbca3901e0ff4202",
+        "bytes": 14940
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "ddbab4fb4ee88955674ca4ec3ffd3152ad8f7de27d871dffd1c4c0f66195a151",
+        "bytes": 15489
+      }
+    ]
+  }
+}
