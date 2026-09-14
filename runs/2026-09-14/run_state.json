@@ -37,7 +37,10 @@
   "copy": "out/2026-09-14/copy.json",
   "aggregates": "out/2026-09-14/aggregates.json",
   "render": "out/2026-09-14/render/",
-  "final": "out/2026-09-14/final/"
+  "final": "out/2026-09-14/final/",
+  "site_signoff": "PASS, 110 pages, 18 checks, every check clean",
+  "gas_watch": "WARN, read 2026-09-13, 39 days on record, chart present and matching the record, 1 missing day at 2026-09-08. The gap is the collector's own workflow and not this run's to write. REPORT only.",
+  "site_fixes": "three, all fixed at the source rather than on the page. (1) site_build.pretty_date and gaswatch_build.long_date printed a bare month and day with the year always attached, against the house rule of 2026-09-11 that drops the year when it is this year; both now emit the ordinal and drop it. (2) docket_dates_check and site_signoff had both ENCODED the banned date form in their own assertions, so they went red when the formatters became correct; both now assert the house form and still go red on real breakage. (3) ask_pack.py's RECENT_HISTORY was carrying six entries into a payload billed on every question, with unchanged notes repeated verbatim; it collapses them now and narrows to four, self-test clean at 26,657 tokens under its ceiling."
  },
  "site_signoff": "PASS, 109 pages, 18 checks",
  "gas_watch": "WARN, read 2026-09-13, 39 days on record, chart present, 1 missing day at 2026-09-08 (collector gap, REPORT only)",
