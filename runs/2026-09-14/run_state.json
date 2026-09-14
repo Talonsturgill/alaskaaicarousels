@@ -18,10 +18,10 @@
   "flow_review": "done",
   "assemble": "done",
   "scoring": "done",
-  "ship": "running",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "plan": "out/2026-09-14/plan.md",
@@ -47,5 +47,9 @@
  "editing_rounds": 3,
  "score": 8.76,
  "threshold": 8.3,
- "scoring_rounds": 2
+ "scoring_rounds": 2,
+ "merged_to_main": "bafa3c9cc8384a157ef521a49fc90d2b2a15824b",
+ "pull_request": 365,
+ "gmail_draft_id": "r5370768216818533757",
+ "complete": true
 }
