@@ -206,14 +206,25 @@ def visible(page_html, drop_svg=True, sep=" "):
 # ------------------------------------------------------- the published numbers
 
 def _gaswatch(out_dir):
-    """Newest verified reading, as the page writes it."""
+    """Newest verified reading, as the page writes it.
+
+    BOTH house renderings are offered, because either one is the page being
+    right. A date inside the year the page was built for drops its year
+    (owner, 2026-09-11) and one from an earlier year keeps it, and this
+    checker reads a built page without knowing which year it was built for.
+    Asking for either is the honest question: is the current reading ON the
+    page. It was never a question about punctuation, and pinning it to one
+    form made this row go red the day the formatter started obeying the rule.
+    """
     import gaswatch_build as gw
     series = gw.load_series()
     verified = [r for r in series if r.get("verified")]
     if not verified:
         return None, []
     newest = verified[-1]["date"]
-    return newest, [("the newest reading", gw.long_date(newest))]
+    with_year = gw.long_date(newest, this_year=None)
+    without = gw.long_date(newest, this_year=int(newest[:4]))
+    return newest, [("the newest reading", (without, with_year))]
 
 
 def _power(out_dir):
@@ -476,11 +487,22 @@ def check_site(out_dir, today=None):
             bad(f"{name} has a page to reach", f"{page_rel} missing")
             continue
         text = visible(html, drop_svg=False)
-        absent = [f"{label} ({value})" for label, value in figures
-                  if value and value not in text]
+        # A figure may offer SEVERAL acceptable renderings and any one of them
+        # on the page satisfies it. The first is the one named in a failure,
+        # because it is the form the page is expected to carry.
+        absent, present = [], []
+        for label, value in figures:
+            if not value:
+                continue
+            forms = value if isinstance(value, (tuple, list)) else (value,)
+            hit = next((f for f in forms if f in text), None)
+            if hit is None:
+                absent.append(f"{label} ({forms[0]})")
+            else:
+                present.append(hit)
         (ok if not absent else bad)(
             f"{name} reaches {page_rel}",
-            "; ".join(absent) or ", ".join(v for _, v in figures if v))
+            "; ".join(absent) or ", ".join(present))
 
     for ledger, cadence, field in QUEUES:
         name = os.path.basename(ledger)

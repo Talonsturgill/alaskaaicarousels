@@ -1,0 +1,164 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the unit crate on the seat track': shadow L* 9.1 vs ground L* 24.2, dL 15.0 at 432w"
+      ],
+      "motifs": [
+        "'the unit crate, one of them, strapped': canvas 51.8 dE, page 53.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div '$250,000' fits 1/1 lines at 149.5px",
+        "div '$4,171,115' fits 1/1 lines at 149.5px"
+      ],
+      "asserts": [
+        "'217 award rows, one dust mote each' holds: 217 vs 217 marks, counted over 217 declared marks (within 0)",
+        "'217 award rows, one dust mote each': 217 mark centres probed at r=7px, cohort median 39.0 dE, all present (weakest 14.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the crate on the door sill': shadow L* 1.8 vs ground L* 30.5, dL 28.7 at 432w"
+      ],
+      "motifs": [
+        "'the unit crate carrying its manifest tag': canvas 61.4 dE, page 60.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'The award saysimplementationnot planning' fits 3/3 lines at 59.5px"
+      ],
+      "asserts": [
+        "'80 villages, one milled sill notch each' holds: 80 vs 80 marks, counted over 80 declared marks (within 0)",
+        "'80 villages, one milled sill notch each': 80 mark centres probed at r=4px, cohort median 40.1 dE, all present (weakest 35.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the freight stack on the seat track': shadow L* 1.8 vs ground L* 10.1, dL 8.3 at 432w"
+      ],
+      "motifs": [
+        "'the unit crate, the only strapped freight': canvas 120.8 dE, page 120.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'A family freight linewith a grant' fits 2/2 lines at 64px"
+      ],
+      "asserts": [
+        "'24 aircraft, one rivet pair each' holds: 24 vs 24 marks, counted over 24 declared marks (within 0)",
+        "'24 aircraft, one rivet pair each': 24 mark centres probed at r=10px, cohort median 67.0 dE, all present (weakest 47.7 dE)",
+        "'eight hubs, one tie-down ring each' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)",
+        "'eight hubs, one tie-down ring each': 8 mark centres probed at r=14px, cohort median 65.0 dE, all present (weakest 50.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the sill lip standing off the floor behind it': shadow L* 3.8 vs ground L* 18.8, dL 15.1 at 432w"
+      ],
+      "motifs": [
+        "'the gap in the sill where the crate stood': canvas 42.0 dE, page 43.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'Aircraft takethe placeof ambulances' fits 3/3 lines at 54.5px"
+      ],
+      "asserts": [
+        "'82 of 100 graticule cells carry a mark' holds: 82 vs 82 marks, counted over 82 declared marks (within 0)",
+        "'82 of 100 graticule cells carry a mark': 82 mark centres probed at r=14px, cohort median 49.0 dE, all present (weakest 41.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the state paid many times more for the doing than for the planning': dE 9.3, AUC 0.80, visible 93%/100%, seen 30072/32336px at 432w"
+      ],
+      "contacts": [
+        "'the lone unit crate on the seat track': shadow L* 3.0 vs ground L* 11.9, dL 8.8 at 432w"
+      ],
+      "motifs": [
+        "'the lone unit crate, one of them': canvas 113.2 dE, page 113.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the stack of sixteen and a part crate': canvas 47.8 dE, page 48.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'One program.Two loads.' fits 2/2 lines at 81.5px"
+      ],
+      "asserts": [
+        "'sixteen full unit crates, one mark each' holds: 16 vs 16 marks, counted over 16 declared marks (within 0)",
+        "'sixteen full unit crates, one mark each': 16 mark centres probed at r=14px, cohort median 21.8 dE, all present (weakest 16.4 dE)",
+        "'the part crate drawn against the remainder of the award' holds: 0.4244 vs 0.4244 world units (within 0.002)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the coiled strap on the aft floor': shadow L* 4.3 vs ground L* 26.5, dL 22.2 at 432w"
+      ],
+      "motifs": [
+        "'the coiled strap and its wired tag': canvas 77.4 dE, page 77.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'The Interiorgot a year to plan' fits 2/2 lines at 56px"
+      ],
+      "asserts": [
+        "'42 Interior villages, one coil turn each' holds: 42 vs 42 marks, counted over 42 declared marks (within 0)",
+        "'42 Interior villages, one coil turn each': 42 mark centres probed at r=4px, cohort median 7.9 dE, all present (weakest 6.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the placard standing off the forward bulkhead': shadow L* 16.6 vs ground L* 21.0, dL 4.4 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the riveted limitation placard': canvas 41.4 dE, page 55.0 dE, 84% of its rect is clear of opaque DOM (div.ann stands on the rest)"
+      ],
+      "fits": [
+        "div 'First the waiverthen the aircraft' fits 2/2 lines at 57px"
+      ],
+      "asserts": [
+        "'seven FAA test sites, one placard rivet each' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven FAA test sites, one placard rivet each': 7 mark centres probed at r=14px, cohort median 55.2 dE, all present (weakest 44.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the manifest board on the bulkhead': shadow L* 1.5 vs ground L* 36.3, dL 34.8 at 432w"
+      ],
+      "scales": [
+        "'the award rail' runs 0 dollars at 520 to 7,500,000 dollars at 840; 8 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the strapped crate in the foreground': shadow L* 3.2 vs ground L* 8.0, dL 4.8 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the strapped unit crate in the foreground': canvas 119.6 dE, page 119.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'The roundsare not finished' fits 2/2 lines at 67.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN"
+}

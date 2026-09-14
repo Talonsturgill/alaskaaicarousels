@@ -84,12 +84,24 @@ Checks per slide (consuming render_report.json + the PNGs):
     stamp leader descending into empty paper) at PASS, 0 fails, 0 warns, with
     the leader gate returning ok on all three because all three landed on their
     targets. The gate could see one end of its own subject.
+  - A PAINTED LIGHT ON A DECLARED CONTACT (FAIL on the shadow rect, WARN on the
+    ground rect): render.py records every ADDITIVE radial ramp a frame paints,
+    with its footprint in design px. This fails a slide whose own declared
+    contact shadow is sitting inside one. Added 2026-09-14 after run No.59
+    shipped an additive pool down-light of every foot in the deck, the
+    brightest region on nine frames out of nine with no emitter in any picture,
+    past a green contact gate: a difference between two rects cannot see a
+    light with no source. See glow_on_declaration for the measurements.
   - STALE RENDER (FAIL): render.py records the SHA1 of the source that produced
-    each PNG, and this FAILs when that file has changed since. Added 2026-08-14
+    each PNG AND of every committed asset that slide loads, and this FAILs when
+    any of them has changed since. Added 2026-08-14
     after run No.33 applied two repairs to source and then re-rendered a
     different `--only` subset, so both were silent no-ops and the flow critic
     reviewed the pre-repair contact sheet and reported both repairs as still
-    broken. Two hashes, so it can't false-fail.
+    broken. Widened to shared assets 2026-09-14 after run No.59 fixed
+    AKHOLD.contact in assets/js/akhold.js and shipped three of nine frames
+    still carrying the defect, every HTML hash matching. Hashes only, so it
+    can't false-fail.
   - DECLARED maxLines EXCEEDED (FAIL): AK.fitText records every call's declared
     {min, max, maxLines} and what the element actually rendered; this FAILS a
     block that set more lines than it declared, or that bottomed out at `min`
@@ -173,6 +185,11 @@ import numpy as np
 from PIL import Image
 
 SAFE_MARGIN = 80  # px at 1080-wide design size
+
+# Where a repo-relative asset path in a render report resolves from. Slide
+# paths are recorded absolute; asset paths are recorded repo-relative so a
+# report stays readable after a checkout moves.
+REPO = Path(__file__).resolve().parents[3]
 
 
 def rel_luminance(rgb):
@@ -1412,6 +1429,101 @@ def _contact_reach(rs, rg):
             "`python3 scripts/contact_probe.py --render-dir <dir> --slides-dir "
             "<dir> --verify` prints the profile this pair was read off."
             % (gap, CONTACT_PAIR_SPAN, CONTACT_PAIR_SPAN))
+
+
+def _glow_covers(g, r):
+    """Does this painted light's own footprint reach that rect?
+
+    Parameter free on purpose. The light declares its own extent when it is
+    created (createRadialGradient's outer radius, carried into design px by
+    render.py), so the question "is this rect inside the light" needs no
+    threshold of mine: it is the ellipse test on the rect's nearest point.
+    """
+    try:
+        dx = max(r[0] - g["cx"], 0, g["cx"] - (r[0] + r[2]))
+        dy = max(r[1] - g["cy"], 0, g["cy"] - (r[1] + r[3]))
+        rx, ry = max(float(g.get("rx") or 0), 1e-6), max(float(g.get("ry") or 0), 1e-6)
+    except (TypeError, KeyError):
+        return False
+    return (dx / rx) ** 2 + (dy / ry) ** 2 <= 1.0
+
+
+def glow_on_declaration(con, glows):
+    """A PAINTED LIGHT SITTING ON A DECLARED CONTACT (2026-09-14, run No.59).
+
+    The defect five pixel critics found in five separate contexts, on nine
+    frames out of nine, and every machine gate passed: AKHOLD.contact laid a
+    SCREENED radial blob down-light of every foot in the deck, the brightest
+    region in each frame with nothing in any picture emitting it. Three of the
+    five reached independently for the same phrase, a glowing manhole. It had
+    shipped in every deck this routine has drawn.
+
+    WHY NOTHING SAW IT. contact_reads measures the DIFFERENCE between two
+    declared rects, and a bright pool beside a dark hole satisfies a difference
+    test perfectly -- better than an honest frame does. A gate built on a
+    difference cannot see a frame whose brightest region has no source.
+
+    WHY THIS IS NOT A PIXEL RULE. Measured before it was written, on this
+    deck's nine frames rendered both with the defect and without: the brightest
+    region within 140 design px of each declared contact ran 25.7 to 72.5 L*
+    above its local baseline BEFORE the fix and 18.9 to 75.0 after. There is no
+    threshold in that, because the neighbourhood of a foot is full of
+    legitimately bright things. The pixels cannot answer "what emits this";
+    the BRUSH can, exactly and with no threshold, and render.py now records
+    every additive radial ramp the frame paints.
+
+    THE ONE QUESTION THIS ASKS. Not "is there a glow" -- the house paints
+    honest additive radials constantly (window bloom, speckle, lamp haze) and
+    this says nothing about any of them. It asks whether a painted light's own
+    footprint covers a region THIS SLIDE DECLARED as a contact shadow or as the
+    lit ground that shadow is measured against. Both are the slide contradicting
+    its own declaration, which is the same standard that lets contact_reads FAIL:
+      - on the SHADOW rect it is light painted where the slide declared dark,
+        and there is no honest reading of that. FAIL.
+      - on the GROUND rect the declared dL is being read off paint rather than
+        off the picture's own ground, which is answering a measurement problem
+        with paint. It can be deliberate, so it WARNs.
+
+    Measured over the same eighteen frames: 7 of the 9 pre-fix frames fire (the
+    remaining two paint no additive radial within reach of their declaration),
+    and 0 of the 9 repaired frames do, on a deck whose slides still paint four
+    additive ramps of their own.
+    """
+    out = []
+    if con.get("error"):
+        return out
+    what = con.get("what", "") or "contact shadow"
+    for key, level in (("shadow", "fail"), ("ground", "warn")):
+        for r in (con.get(key) or []):
+            for g in glows:
+                if not _glow_covers(g, r):
+                    continue
+                bits = ("a %s radial ramp at (%s, %s), r %sx%s design px, peak "
+                        "alpha %s, %s" % (g.get("op"), g.get("cx"), g.get("cy"),
+                                          g.get("rx"), g.get("ry"),
+                                          g.get("a_max"), g.get("col")))
+                if level == "fail":
+                    out.append(("fail",
+                        "a painted light is sitting on the declared contact "
+                        "shadow of '%s': %s covers the shadow rect this slide "
+                        "declared. Light painted where the slide declared dark "
+                        "is a glow with no source in the picture, and the dL "
+                        "measurement can't see it because a bright pool beside "
+                        "a dark hole passes a difference test. Draw the cast the "
+                        "object actually throws and let the picture's own light "
+                        "supply the ground" % (what, bits)))
+                else:
+                    out.append(("warn",
+                        "the lit ground of '%s' is painted, not lit: %s covers "
+                        "the ground rect the contact dL is measured against, so "
+                        "that number is partly reading this ramp. Confirm the "
+                        "shadow would still read against the frame's own ground"
+                        % (what, bits)))
+                break
+            else:
+                continue
+            break
+    return out
 
 
 def contact_reads(img_arr, con, design_w, design_h):
@@ -3106,23 +3218,38 @@ def main():
         # and the flow critic reviewed and rejected the pre-repair sheet. Pure
         # arithmetic on two hashes, so it can't false-fail; a report written
         # before this field existed carries no source block and is skipped.
+        #
+        # THE SHARED LIBRARY COUNTS TOO (2026-09-14, run No.59). Round 2 fixed
+        # AKHOLD.contact in assets/js/akhold.js and re-rendered only the slides
+        # whose own HTML had changed, so three of nine frames shipped the exact
+        # additive pool the round existed to remove, with matching HTML hashes
+        # and nothing able to say otherwise. render.py now records the hash of
+        # every committed asset each slide loads; this reads them all.
         src = rec.get("source") or {}
         sp, sha = src.get("path"), src.get("sha1")
-        if sp and sha:
+        sources = ([(sp, sha, "this slide's HTML")] if sp and sha else [])
+        for a in src.get("assets") or []:
+            if a.get("path") and a.get("sha1"):
+                sources.append((a["path"], a["sha1"], "the shared asset it loads"))
+        for path, want, what in sources:
+            p = Path(path)
+            if not p.is_absolute():
+                p = REPO / path
             try:
-                cur = hashlib.sha1(Path(sp).read_bytes()).hexdigest()
+                cur = hashlib.sha1(p.read_bytes()).hexdigest()
             except OSError as e:
                 res["warns"].append(
                     "stale render unverifiable, the source recorded for this PNG "
-                    f"is no longer readable at {sp} ({e.__class__.__name__}), so "
+                    f"is no longer readable at {path} ({e.__class__.__name__}), so "
                     "nothing here can prove the image matches its HTML")
             else:
-                if cur != sha:
+                if cur != want:
                     res["fails"].append(
-                        f"stale render, {rec['file']} has been edited since this "
-                        "PNG was made, so every judgement on this slide is about "
-                        "a picture that no longer exists. Re-render it (drop "
-                        "--only, or add this slide to it) and re-run qa")
+                        f"stale render, {path} ({what}) has been edited since "
+                        f"{rec['file']}'s PNG was made, so every judgement on "
+                        "this slide is about a picture that no longer exists. "
+                        "Re-render it (drop --only, or add this slide to it) "
+                        "and re-run qa")
 
         # WRAP DRIFT (2026-09-02). render.py measures both counts on the laid
         # out page; this is the judgement. Writing <br> DECLARES a block's line
@@ -3458,6 +3585,8 @@ def main():
                 res["warns"].append("contact shadow: " + detail)
             else:
                 res.setdefault("contacts", []).append(detail)
+            for lvl, msg in glow_on_declaration(con, rec.get("add_glows") or []):
+                res["fails" if lvl == "fail" else "warns"].append(msg)
 
         # A CIRCULAR RAMP POURED INTO AN ELLIPSE (2026-08-26). Not a
         # declaration check: nothing is opted into here, the drawing itself is

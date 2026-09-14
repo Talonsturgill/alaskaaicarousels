@@ -77,9 +77,35 @@ def short_date(iso):
     return f"{MONTHS[d.month - 1][:3]} {ordinal(d.day)}"
 
 
-def long_date(iso):
+# The year the page is being rendered for. Set at the top of page_body() and
+# feed() from the run date they are handed, never from the clock, so the numeral
+# allow-list and the prose that spends it always agree about which dates carry a
+# year. See long_date below.
+THIS_YEAR = None
+
+
+def long_date(iso, this_year=None):
+    """August 10th. The year comes back only when it is not the reader's own.
+
+    The ordinal was always right here. The YEAR was not, after the owner's
+    2026-09-11 rule that a date inside the current calendar year drops it, which
+    reached caption_check and the page's inline JS and never reached this
+    function. The page's own lede read "Read September 13th, 2026, 39 days on
+    record" while the docket beside it read "September 13th".
+
+    The year comes from the run date the page was handed, through the module
+    global THIS_YEAR, and never from the clock, because this page is rebuilt and
+    byte-compared by site_fresh_check and a formatter that consults the wall
+    clock makes that comparison fail at a year boundary. `this_year` overrides
+    it for a caller that has its own. With neither, the year always prints,
+    which is the safe form.
+    """
     d = date.fromisoformat(iso)
-    return f"{MONTHS[d.month - 1]} {ordinal(d.day)}, {d.year}"
+    year = this_year if this_year is not None else THIS_YEAR
+    out = f"{MONTHS[d.month - 1]} {ordinal(d.day)}"
+    if year is None or d.year != year:
+        out += f", {d.year}"
+    return out
 
 
 # ------------------------------------------------------------------ reader
@@ -1025,6 +1051,8 @@ def feed(series, model, site_url, today, meta, figs=None):
     family and a consumer who parsed one can parse the other. Where the docket
     has items, this has series, one object per day, oldest first.
     """
+    global THIS_YEAR
+    THIS_YEAR = today.year
     hist, hdd_series = gc.load_hdd_history(model, REPO)
     return {
         "name": "Cook Inlet Gas Watch",
@@ -1564,6 +1592,8 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
     built here so this module keeps depending on the gas ledger alone, which is
     what lets gaswatch_pagecheck render a reference page with no site build.
     """
+    global THIS_YEAR
+    THIS_YEAR = today.year
     f = figures(series, model, figs)
     # Guard on a usable READING, not on a non-empty series. figures() correctly
     # drops as_of and the inventory keys when nothing is verified, and the body

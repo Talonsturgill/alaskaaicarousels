@@ -6665,9 +6665,40 @@ def video_count():
         return 0
 
 
+def ordinal(n):
+    """House style takes the ordinal. August 10th, never a bare August 10."""
+    suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
+# The year the site is being built for. Set once at the top of build() from the
+# --date argument, never from the clock, so the output stays deterministic and
+# site_fresh_check's byte comparison keeps working.
+THIS_YEAR = None
+
+
 def pretty_date(iso):
+    """The house date form, and the same one the page's own JS already used.
+
+    FIXED 2026-09-14, and it had been wrong in two separate ways since it was
+    written. It emitted "September 13, 2026", which is the bare non-ordinal form
+    brand.yaml lists under `bad` and caption_check hard-fails on a slide, and it
+    kept the year on a date inside the run's own calendar year, which the owner
+    ruled out on 2026-09-11. 358 dates on the published site carried the bare
+    form, across the homepage, the archive cards, the docket entries, the topic
+    pages and the source archive.
+
+    The tell was that assets already shipped the correct rule. `longDate` in the
+    docket's own inline JS (search for "does not need to be told the year twice")
+    has taken the ordinal and dropped the current year all along, so the same
+    page could print one date each way depending on whether Python or the
+    browser wrote it. This is now that function, in Python, to the letter.
+    """
     d = ddate.fromisoformat(iso)
-    return f"{MONTH_FULL[d.month - 1]} {d.day}, {d.year}"
+    out = f"{MONTH_FULL[d.month - 1]} {ordinal(d.day)}"
+    if THIS_YEAR is None or d.year != THIS_YEAR:
+        out += f", {d.year}"
+    return out
 
 
 # ---------- pages ----------
@@ -9799,6 +9830,8 @@ def power_placement_gate(pages):
 
 
 def build(today, out_dir, site_url=None, domain=""):
+    global THIS_YEAR
+    THIS_YEAR = today.year
     site_url = site_url or db.DEFAULT_SITE
     docket = load_docket(today)
     runs = load_runs()

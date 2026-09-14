@@ -7257,3 +7257,156 @@ chairman's quotation, which is strong and quotable and is not this page's own
 claim, so the analytical position does not arrive until the second paragraph.
 The caption room should treat "open on a source quotation" as a move that costs
 a paragraph of voice, and price that in when it picks.
+
+### CRAFT REFRESH (2026-09-14)
+
+- **The vendored three.js already ships AgX and Neutral tone mapping and
+  akthree.js hardcodes ACES.** `assets/js/three.module.min.js` carries
+  `AgXToneMapping` and `NeutralToneMapping` alongside `ACESFilmicToneMapping`,
+  and `akthree.js:76` sets ACES with no way to ask for anything else. AgX is
+  Blender 4.0's default precisely because ACES1 crushes and skews saturated
+  highlights, which is the exact failure mode a gold accent on a dark register
+  invites, and three.js's own issue thread argues AgX is the better starting
+  point from which to make an artistic choice. This is a real option the bench
+  has been unable to reach. Phase 12 candidate: an opt-in `toneMapping` option
+  on AKTHREE.renderer, ACES staying the default so no shipped deck changes.
+  https://github.com/mrdoob/three.js/issues/27362
+  https://threejs.org/docs/#api/en/renderers/WebGLRenderer.toneMapping
+- Socialinsider's 2026 organic benchmark puts the NATIVE DOCUMENT format at a
+  7.00 percent average engagement rate, up 14 percent year over year, against a
+  5.20 percent LinkedIn-wide average that rose 8 percent. The format's lead is
+  widening rather than narrowing, and documents are the only format whose own
+  growth beats the platform's.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- Oktopost's Q1 2026 B2B page benchmark reads 5.10 percent median, 8.61 percent
+  at the 75th percentile and 21.63 percent at the 90th. The March 2026 numbers
+  this file recorded on 2026-09-13 were 5.72 and 22.45, so the Q1 median moved
+  down and the top decile barely moved. Treat the decile as the stable figure
+  and the median as noisy.
+  https://www.oktopost.com/linkedin-benchmark-report/
+- A second search leg on seating type over generative imagery returned nothing
+  the doctrine does not already carry. Recording the null so a later run does
+  not spend the searches on it again. The two useful rules on that subject in
+  this repo were both measured here rather than read anywhere, No.57's reserve
+  as a BASIN handed to the field generator and No.58's reserve as the text
+  box's own blurred shape inset by the blur radius.
+
+## RUN No.59 (2026-09-14) -- THE DECK WHOSE BRIGHTEST PIXEL HAD NO SOURCE
+
+**FIVE CRITICS IN FIVE CONTEXTS FOUND ONE DEFECT, AND THAT IS WHY IT GOT
+FIXED IN THE LIBRARY.** The five pixel critics were handed disjoint slides and
+no shared memory. `AKHOLD.contact` was painting a screened radial pool
+down-light of every foot in the deck, and all five named it, three of them
+reaching for the same phrase. A single critic reading all nine would have
+found it once, and once reads as an opinion; five independent finds is
+evidence strong enough to justify changing a shared library in the middle of
+a run rather than patching nine slides. The bounded fan-out is not just
+throughput. It is a measurement.
+
+**A GATE THAT MEASURES A DIFFERENCE CANNOT SEE A FRAME WITH NO LIGHT SOURCE.**
+qa.py had passed every one of those contacts, on this deck and on every deck
+before it, because it compares a declared shadow rect against a declared
+ground rect and a bright pool beside a dark hole satisfies that test
+perfectly. The defence written into the routine, that a near-black floor
+leaves a cast nothing to darken, was TRUE and was still the wrong fix. What
+the frames were missing was the long shallow cast an object throws at
+elevation 12, and not one frame in any run using that routine had ever had
+one. Before shipping a frame, find its brightest region and name the thing in
+the picture that emits it.
+
+**A FIX AND ITS WORKAROUND SHOULD NEVER SHIP IN THE SAME ROUND UNMEASURED.**
+Round 2 rewrote the cast AND added `o.lit`, a hard-edged sliver, to keep the
+contact floor satisfied on near-black frames. The scorer named the sliver as
+the same defect in a second costume. Round 3 deleted it from all six frames
+and every contact still cleared the floor, because the raised floors and the
+real casts were already doing the work. The workaround had never been load
+bearing and nobody had measured whether it was still needed.
+
+**A SHARED LIBRARY CHANGE INVALIDATES EVERY RENDER, NOT ONLY THE SLIDES YOU
+EDITED.** Round 2 fixed `assets/js/akhold.js` and re-rendered with `--only`
+listing the slides whose own HTML had changed. Slides 01, 02 and 07 had not
+changed, so three of the nine frames in `final/` still carried the exact
+defect the round existed to remove, and only the flow critic caught it.
+`render.py` warns when a slide's HTML is newer than its PNG and cannot see an
+asset move underneath it. When a fix lands in `assets/`, re-render everything.
+
+**AN ISOTYPE'S FRACTION HAS TO BE CUT, NOT ONLY SCALED.** The part crate on
+slide 05 is drawn at 0.6844 of a unit and the machine assertion agreed with
+the mesh to within 0.002, and it still read as a whole crate to every critic.
+An isometric box's silhouette height carries a constant depth term that swamps
+a third of its height. Giving its top face a sawn-ply material and drawing the
+missing 0.3156 as a dashed ghost above it is what made the fraction legible.
+A number that is geometrically correct and perceptually wrong is wrong.
+
+**GOLD THAT MARKS A ROW IS NOT GOLD THAT MEANS SOMETHING.** Capping the zero
+end of nine bars with the implementation ink put a gold mark LONGER than the
+bar itself on the three smallest rows, which turns a meaning into a row
+marker and makes the smallest rows indistinguishable from each other. One rule
+down the implementation column, broken at the single planning row, says it
+once and leaves the measured band clean.
+
+**TWO GATES CAN BOTH BE RIGHT AND STILL CONTRADICT.** Slide 08's dossier
+required the footer to print BY OUR COUNT verbatim and a pixel critic
+correctly failed the frame for missing it; `caption_check` then correctly
+failed the restored string, because a maintainer rule bans first person in
+type on a slide. The frame now says NOT A STATE CATEGORY, which names what the
+qualification IS rather than who made it, and is the stronger line. When a
+dossier's acceptance checklist and a house rule disagree, the house rule wins
+and the checklist was the thing that needed writing better.
+
+**THE COVER SAID UPDATE AND NOTHING EVER SAID OF WHAT.** The deck's strongest
+structural asset was that it corrected a finding this publication had already
+published, and the first caption spent it on a single kicker word. It is also
+the thing that makes a 15 day repeat of an earlier deck's source file
+legitimate rather than a dedupe near miss. If a deck is an update, the caption
+has to say what it updates, in a sentence, where a reader will meet it.
+
+---
+
+## 2026-09-14, No.59, Phase 12 frontier scan (b): editorial dataviz and
+## cartography technique. ONE PARKED, and it AMENDS an existing park.
+
+Slot chosen as the stalest legal one (last scanned 2026-09-05, nine days;
+the last three logged foci were (g) 09-13, (c) 09-12, (e) 09-10) and because
+this run left a cartographic finding on the table: slide 04's dossier asked
+for the Alaska coastline through the aperture, projected true through AKGeo
+and drawn stroke only, and the frame carries a graded world and a ridge
+silhouette instead (BUILD RECONCILIATION, No.59).
+
+**PARKED, and it changes a constant inside the 2026-08-20 park rather than
+adding a second one.** That entry parked `AK.placeBand`, an occupancy bitmap
+plus the 8-position candidate model, and took the POSITION PRIORITY ORDER as
+given from cartographic convention: top-right first, then the other corners,
+then the sides. The convention is 60 years old, it traces to Imhof by way of
+Yoeli, and as of 2024 it has been measured rather than asserted.
+
+- **Readers prefer the label ABOVE the point, not up-right of it.**
+  "From Top-Right to User-Right: Perceptual Prioritization of Point-Feature
+  Label Positions" (arXiv 2407.11996) ran nearly 800 participants from 48
+  countries through more than 45,500 pairwise comparisons and published
+  PerceptPPO, a position priority order derived from what readers actually
+  chose. Its headline result is that the top-right position, which every GIS
+  and every textbook puts first, is NOT the preferred one; directly above the
+  feature is. For a deck whose maps carry four to eight place labels a frame,
+  that is one array's order in a helper that does not exist yet, and it is
+  free to get right before the helper is written.
+  https://arxiv.org/abs/2407.11996
+- **The rules that go with it, operationalised** (Penn State GEOG 486, the
+  standard teaching text for Imhof's conventions): a land feature's label
+  stays on land and a coastal feature's label goes in water, so the label
+  never miscategorises its own feature; area labels are set in caps and
+  tracked out across the feature's extent to SHOW that extent, and staggered
+  rather than aligned; multi-line labels break at sense boundaries and take
+  NEGATIVE leading so the lines read as one name; the distance from point to
+  label is one constant across the whole map, not per label.
+  https://courses.ems.psu.edu/geog486/node/557
+  The first of those is checkable against AKGeo's own polygons, which is the
+  interesting part: this house has the coastline as data, so "is this label
+  on the wrong side of the shore" is arithmetic and not taste.
+- WHY PARKED, not applied: the 0-3 budget went reactive-first to three run
+  deviations (incidents 7, 3 and 1), and this is a visual change with no
+  defect behind it in THIS run. UNBLOCKING CONDITION unchanged from
+  2026-08-20, with one addition: when `AK.placeBand` is built, seed its
+  candidate order from PerceptPPO rather than from convention, and cite the
+  measurement in the helper's header so nobody "corrects" it back to
+  top-right.

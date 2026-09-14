@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  
+  .kick{position:absolute;left:80px;top:96px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;font-weight:600;letter-spacing:.11em;color:#8FA0B0}
+  .head{position:absolute;left:74px;top:140px;width:900px;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;font-size:62px;line-height:1.0;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .note{position:absolute;left:136px;top:240px;width:864px;font-family:'JetBrains Mono',monospace;
+        font-size:24px;letter-spacing:.06em;color:#B9C8D6}
+  .foot{position:absolute;left:80px;font-family:'JetBrains Mono',monospace;
+        font-size:25px;letter-spacing:.04em;color:#C8D8E6}
+  .foot.a{top:1140px} .foot.b{top:1184px;color:#9FB0C0}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;letter-spacing:.09em}
+  .ann.s3{left:672px;top:584px;font-size:24px;color:#D7E4EE}
+  .ann.pol{left:320px;top:372px;width:680px;text-align:right;font-size:24px;color:#A8B8C6}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .bar{position:absolute;height:22px;background:#5AC8F0}
+  .bar.pl{background:#6EA5FF;opacity:1}
+  .lip{position:absolute;height:1.4px;background:#D7E4EE}
+  .cas{position:absolute;height:26px;border:1.25px dashed #6EA5FF}
+  .rn{position:absolute;left:80px;width:368px;font-family:'JetBrains Mono',monospace;
+      font-size:24px;letter-spacing:.04em;color:#DCE9F2;white-space:nowrap}
+  .rn .rk{position:absolute;left:396px;color:#B9C8D6}
+  .rv{position:absolute;left:810px;width:190px;text-align:right;
+      font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:600;color:#F4F8FF;
+      font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+  .rv .rc{color:#7F8FA0;font-size:17px;font-weight:400;margin-left:10px}
+  .tick{position:absolute;top:1064px;width:1.6px;height:20px;background:#8FA0B0}
+  .tk{position:absolute;top:1088px;width:36px;text-align:center;
+      font-family:'JetBrains Mono',monospace;font-size:20px;color:#8FA0B0}
+  .axis{position:absolute;left:520px;top:1060px;width:320px;height:2px;background:#8FA0B0}
+</style>
+</head>
+<body data-contacts='[{"what":"the manifest board on the bulkhead","shadow":[[389,1266,26,10]],"ground":[[494,1266,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"present"},{"hex":"#6EA5FF","means":"a planning row","state":"present"}]'
+      data-scale='[{"what":"the award rail","axis":"x","unit":"dollars","from":[520,0],"to":[840,7500000],"band":[1064,1084],"marks":[{"at":520,"means":"zero dollars"},{"at":560,"means":"1,000,000 dollars"},{"at":600,"means":"2,000,000 dollars"},{"at":640,"means":"3,000,000 dollars"},{"at":680,"means":"4,000,000 dollars"},{"at":720,"means":"5,000,000 dollars"},{"at":760,"means":"6,000,000 dollars"},{"at":800,"means":"7,000,000 dollars"}]}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="bar" style="left:520.0px;top:424px;width:260.7px;opacity:1.00"></div><div class="lip" style="left:520.0px;top:424px;width:260.7px;opacity:1.00"></div><div class="rn" style="top:422px">PEACEHEALTH KETCHIKAN<span class="rk">IA</span></div><div class="rv" style="top:422px">$6,518,029<span class="rc" data-decorative>C19</span></div>
+<div class="bar" style="left:520.0px;top:490px;width:166.9px;opacity:0.95"></div><div class="lip" style="left:520.0px;top:490px;width:166.9px;opacity:1.00"></div><div class="rn" style="top:488px">RYAN AIR<span class="rk">IA</span></div><div class="rv" style="top:488px">$4,171,115<span class="rc" data-decorative>C07</span></div>
+<div class="bar" style="left:520.0px;top:556px;width:126.3px;opacity:0.90"></div><div class="lip" style="left:520.0px;top:556px;width:126.3px;opacity:1.00"></div><div class="rn" style="top:554px">ALASKA STROKE COALITION<span class="rk">IA</span></div><div class="rv" style="top:554px">$3,156,626<span class="rc" data-decorative>C20</span></div>
+<div class="bar" style="left:520.0px;top:622px;width:49.7px;opacity:0.85"></div><div class="lip" style="left:520.0px;top:622px;width:49.7px;opacity:1.00"></div><div class="rn" style="top:620px">MAPHABIT<span class="rk">IA</span></div>
+<div class="bar" style="left:520.0px;top:688px;width:17.2px;opacity:0.80"></div><div class="lip" style="left:520.0px;top:688px;width:17.2px;opacity:1.00"></div><div class="rn" style="top:686px">MANIILAQ ASSOCIATION<span class="rk">IA</span></div>
+<div class="bar" style="left:520.0px;top:754px;width:9.9px;opacity:0.75"></div><div class="lip" style="left:520.0px;top:754px;width:9.9px;opacity:0.95"></div><div class="rn" style="top:752px">MAT-SU REGIONAL<span class="rk">IA</span></div>
+<div class="bar pl" style="left:520.0px;top:820px;width:9.9px"></div><div class="cas" style="left:517.0px;top:818px;width:15.0px"></div><div class="rn" style="top:818px">TANANA CHIEFS CONF.<span class="rk">PL</span></div><div class="rv" style="top:818px">$250,000<span class="rc" data-decorative>C13</span></div>
+<div class="bar" style="left:520.0px;top:886px;width:9.3px;opacity:0.65"></div><div class="lip" style="left:520.0px;top:886px;width:9.3px;opacity:0.85"></div><div class="rn" style="top:884px">BARTLETT REGIONAL<span class="rk">IA</span></div>
+<div class="bar" style="left:520.0px;top:952px;width:5.7px;opacity:0.60"></div><div class="lip" style="left:520.0px;top:952px;width:5.7px;opacity:0.80"></div><div class="rn" style="top:950px">STATEWIDE INDEP. LIVING<span class="rk">IA</span></div>
+<div class="bar" style="left:520.0px;top:1018px;width:1.0px;opacity:0.55"></div><div class="lip" style="left:520.0px;top:1018px;width:1.0px;opacity:0.75"></div><div class="rn" style="top:1016px">KODIAK COMMUNITY HEALTH<span class="rk">IA</span></div>
+<div class="tick" style="left:520.0px"></div><div class="tk" style="left:502.0px" data-decorative>0M</div>
+<div class="tick" style="left:560.0px"></div><div class="tk" style="left:542.0px" data-decorative>1M</div>
+<div class="tick" style="left:600.0px"></div><div class="tk" style="left:582.0px" data-decorative>2M</div>
+<div class="tick" style="left:640.0px"></div><div class="tk" style="left:622.0px" data-decorative>3M</div>
+<div class="tick" style="left:680.0px"></div><div class="tk" style="left:662.0px" data-decorative>4M</div>
+<div class="tick" style="left:720.0px"></div><div class="tk" style="left:702.0px" data-decorative>5M</div>
+<div class="tick" style="left:760.0px"></div><div class="tk" style="left:742.0px" data-decorative>6M</div>
+<div class="tick" style="left:800.0px"></div><div class="tk" style="left:782.0px" data-decorative>7M</div>
+<div class="axis"></div>
+  <div class="kick">THE MACHINE MANIFEST</div>
+  <div class="head">Ten rows name a machine</div>
+  <div class="note">ONE CRATE = $250,000&nbsp;&nbsp;&nbsp;IA IMPLEMENTATION&nbsp;&nbsp;&nbsp;PL PLANNING</div>
+  <div class="ann s3">21 HOSPITALS</div>
+  <div class="ann pol">BARS AT TRUE LENGTH. FIGURES WHERE CITED.</div>
+  <div class="foot a">TEN OF 217 ROWS NAME A MACHINE. NOT A STATE CATEGORY.</div>
+  <div class="foot b">$16,415,719.55 OF $207,690,348.33 AWARDED.&nbsp;&nbsp;C06&nbsp;&nbsp;C21</div>
+  <div class="ctr" data-decorative>08 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 08 -- THE MACHINE MANIFEST. THE DATA SLIDE.
+ * LIGHT az 76, el 12, key to fill 6 to 1. THE LIGHT IS TO THE UPPER RIGHT AND
+ * EVERY CAST RUNS TO THE LOWER LEFT.
+ * Camera station 08, ORTHOGRAPHIC, square on to a manifest board bolted to the
+ * bulkhead, because this frame claims a quantity and a quantity gets parallel
+ * projection. The board is a real object with a thickness and a cast, so the
+ * frame is a photograph of a load sheet and not a chart pasted on a picture.
+ *
+ * SIX OF THE TEN ROWS CARRY NO FIGURE AND THAT IS DELIBERATE. Four of the ten
+ * amounts are individually verified in this run's claims file and six are not.
+ * The bars are drawn to their true lengths off the same primary state file, and
+ * a figure this run can't cite is not printed in type.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .kick, .note, .foot, .ann', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. the bulkhead behind the board, softly out of focus */
+    var bulk = AKHOLD.offscreen(W, H, function (g) {
+      var bg = g.createLinearGradient(W, 0, 0, H);
+      bg.addColorStop(0, '#33424F'); bg.addColorStop(.5, '#18242F'); bg.addColorStop(1, '#0A121C');
+      g.fillStyle = bg; g.fillRect(0, 0, W, H);
+      for (var s = 0; s < 4; s++) {
+        g.strokeStyle = 'rgba(2,5,10,.6)'; g.lineWidth = 6;
+        g.beginPath(); g.moveTo(60 + s * 300, 0); g.lineTo(60 + s * 300, H); g.stroke();
+        g.strokeStyle = 'rgba(190,212,230,.14)'; g.lineWidth = 1.2;
+        g.beginPath(); g.moveTo(64 + s * 300, 0); g.lineTo(64 + s * 300, H); g.stroke();
+      }
+    });
+    cx.save(); cx.filter = 'blur(6px)'; cx.drawImage(bulk, 0, 0, W, H); cx.restore();
+
+    /* 2. THE BOARD. A real object with a chamfered edge, a thickness and a two
+     * part cast thrown onto the bulkhead to the lower left. */
+    var BX = 44, BY = 56, BW = 992, BH = 1176;
+    /* the bulkhead under the board's lower left is LIT first, because a cast
+     * needs something to subtract from and a blurred near-black wall is nothing */
+    (function () {
+      var g = cx.createLinearGradient(0, 1240, 0, 1354);
+      g.addColorStop(0, 'rgba(168,192,212,.10)'); g.addColorStop(.42, 'rgba(168,192,212,.46)');
+      g.addColorStop(1, 'rgba(168,192,212,.16)');
+      cx.save(); cx.globalCompositeOperation = 'screen';
+      cx.fillStyle = g; cx.fillRect(0, 1240, W, 114); cx.restore();
+    })();
+    AKHOLD.contact(cx, { x: BX + BW * .22, y: BY + BH + 22, w: 180, k: 1.15, seamW: 200 });
+    var bg2 = cx.createLinearGradient(BX + BW, BY, BX, BY + BH);
+    bg2.addColorStop(0, '#3B4E63'); bg2.addColorStop(.42, '#1E2C3A'); bg2.addColorStop(1, '#0E1721');
+    cx.fillStyle = bg2; cx.fillRect(BX, BY, BW, BH);
+    /* board tooth, reserved around every line box */
+    cx.save(); cx.beginPath(); cx.rect(BX, BY, BW, BH); cx.clip();
+    for (var q = 0; q < 2600; q++) {
+      var qx = BX + AK.rng(8821 + q)() * BW, qy = BY + AK.rng(3311 + q)() * BH;
+      if (mask(qx, qy) < 0.55) continue;
+      var v = AK.fbm2(qx * 0.011, qy * 0.006, 2);
+      cx.fillStyle = v > .5 ? 'rgba(200,218,232,.055)' : 'rgba(2,5,10,.13)';
+      cx.fillRect(qx, qy, 9 + (q % 7), 1.0);
+    }
+    cx.restore();
+    /* the chamfer, lit on the key side, struck on the lee, plus a real edge */
+    cx.strokeStyle = 'rgba(232,242,250,.62)'; cx.lineWidth = 2.6;
+    cx.beginPath(); cx.moveTo(BX, BY); cx.lineTo(BX + BW, BY); cx.lineTo(BX + BW, BY + BH); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 3.4;
+    cx.beginPath(); cx.moveTo(BX + BW, BY + BH); cx.lineTo(BX, BY + BH); cx.lineTo(BX, BY); cx.stroke();
+    var edge = cx.createLinearGradient(0, BY + BH, 0, BY + BH + 16);
+    edge.addColorStop(0, '#47586A'); edge.addColorStop(1, '#101A24');
+    cx.fillStyle = edge; cx.fillRect(BX, BY + BH, BW, 16);
+    /* four mounting rivets */
+    AKHOLD.rivet(cx, BX + 22, BY + 22, 7, 'rgba(232,242,250,.7)', 'rgba(2,5,10,.9)');
+    AKHOLD.rivet(cx, BX + BW - 22, BY + 22, 7, 'rgba(232,242,250,.7)', 'rgba(2,5,10,.9)');
+    AKHOLD.rivet(cx, BX + 22, BY + BH - 22, 7, 'rgba(232,242,250,.7)', 'rgba(2,5,10,.9)');
+    AKHOLD.rivet(cx, BX + BW - 22, BY + BH - 22, 7, 'rgba(232,242,250,.7)', 'rgba(2,5,10,.9)');
+    /* THE MOUNTING STRAP, and it runs BEHIND the board and out both sides, so
+     * the board reads as a thing held rather than a rectangle leaning. The
+     * first cut showed it only as a 40 px wedge in one corner. */
+    (function () {
+      function web(pts) {
+        cx.strokeStyle = '#46522F'; cx.lineWidth = 22; cx.lineCap = 'butt';
+        cx.beginPath(); cx.moveTo(pts[0][0], pts[0][1]);
+        cx.bezierCurveTo(pts[1][0], pts[1][1], pts[2][0], pts[2][1], pts[3][0], pts[3][1]);
+        cx.stroke();
+        cx.strokeStyle = 'rgba(147,162,176,.42)'; cx.lineWidth = 1.6;
+        cx.beginPath(); cx.moveTo(pts[0][0], pts[0][1] - 9);
+        cx.bezierCurveTo(pts[1][0], pts[1][1] - 9, pts[2][0], pts[2][1] - 9, pts[3][0], pts[3][1] - 9);
+        cx.stroke();
+      }
+      web([[1032, 962], [1058, 1000], [1062, 1080], [1096, 1140]]);
+      web([[-16, 1142], [24, 1188], [30, 1206], [58, 1222]]);
+    })();
+    /* the bulkhead's own hardware in the bottom band, so the lower third is
+     * modelled tone and not a lit strip under an empty floor */
+    (function () {
+      for (var tb = 0; tb < 7; tb++) {
+        var tx = 96 + tb * 148, ty = 1284 + (tb % 2) * 9;
+        cx.strokeStyle = 'rgba(147,162,176,.42)'; cx.lineWidth = 3;
+        cx.beginPath(); cx.ellipse(tx, ty, 17, 6, -0.12, 0, Math.PI * 2); cx.stroke();
+        cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.2;
+        cx.beginPath(); cx.ellipse(tx, ty + 2.6, 17, 6, -0.12, 0, Math.PI * 2); cx.stroke();
+        AKHOLD.rivet(cx, tx + 52, ty - 4, 4.2, 'rgba(200,218,232,.55)', 'rgba(2,5,10,.9)');
+      }
+      cx.strokeStyle = 'rgba(230,240,248,.22)'; cx.lineWidth = 2;
+      cx.beginPath(); cx.moveTo(0, 1258); cx.lineTo(1080, 1244); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.7)'; cx.lineWidth = 4;
+      cx.beginPath(); cx.moveTo(0, 1266); cx.lineTo(1080, 1252); cx.stroke();
+    })();
+
+    /* THE TWO LAW BEARING INKS, STRUCK ON THE CANVAS. A div background is not
+     * a brush, so a chart built in DOM promises the reader inks the paint census
+     * cannot see. The gold tick on the IA column rule and the planning row's
+     * dashed casing are drawn here, which is also where they belong. */
+    /* the unit crate, flattened to one printed glyph, so the legend line
+     * above the rail defines a mark the frame actually carries */
+    (function () {
+      var gx = 80, gy = 240, gw = 40, gh = 26;
+      cx.strokeStyle = '#93A2B0'; cx.lineWidth = 1.6;
+      cx.strokeRect(gx, gy, gw, gh);
+      cx.strokeStyle = 'rgba(147,162,176,.55)'; cx.lineWidth = 1;
+      cx.beginPath(); cx.moveTo(gx, gy + 7); cx.lineTo(gx + gw, gy + 7);
+      cx.moveTo(gx, gy + gh - 7); cx.lineTo(gx + gw, gy + gh - 7); cx.stroke();
+      cx.strokeStyle = '#FFC72C'; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(gx + gw * 0.42, gy - 2); cx.lineTo(gx + gw * 0.42, gy + gh + 2); cx.stroke();
+    })();
+    /* the leader from the hospital annotation to the row it annotates */
+    (function () {
+      cx.strokeStyle = 'rgba(143,160,174,.85)'; cx.lineWidth = 1.25;
+      cx.beginPath(); cx.moveTo(668, 592); cx.lineTo(650, 578); cx.stroke();
+      cx.fillStyle = 'rgba(143,160,174,.9)';
+      cx.beginPath(); cx.arc(650, 578, 2.6, 0, Math.PI * 2); cx.fill();
+    })();
+    /* THE IA COLUMN RULE, and the gold IS the rule. The first cut capped the
+     * zero end of every implementation bar, which put a gold mark LONGER than
+     * the bar itself on the three smallest rows and turned the deck's
+     * "a locked implementation" ink into "a row starts here". The second put
+     * the caps through the letterforms of the type codes. A single rule down
+     * the implementation column, BROKEN at the one planning row, says the
+     * same thing once and leaves the measured band clean. */
+    (function () {
+      var x = 453, w2 = 3.4;
+      cx.fillStyle = '#FFC72C';
+      cx.fillRect(x, 424, w2, 352);          /* rows 1 to 6, IA */
+      cx.fillRect(x, 886, w2, 154);          /* rows 8 to 10, IA */
+      cx.fillStyle = 'rgba(4,9,16,.9)';
+      cx.fillRect(x - 1, 812, w2 + 2, 62);   /* the gap is the planning row */
+    })();
+    cx.save();
+    cx.strokeStyle = '#6EA5FF'; cx.lineWidth = 1.6;
+    cx.setLineDash([30, 5, 6, 5, 6, 5]);
+    cx.strokeRect(516, 819, 16, 26);
+    cx.setLineDash([]);
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.84, strength: 0.10, radius: 6 },
+                       grain: { amount: 0.028, size: 2, seed: 20260914 }, sharpen: 0.34 });
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

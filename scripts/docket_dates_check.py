@@ -88,6 +88,12 @@ def mon_day_pair(iso):
     return MONTH_NAMES[d.month - 1], d.day
 
 
+def ordinal(n):
+    """House style takes the ordinal. September 15th, never September 15."""
+    suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
+
+
 # ---------- fixtures ----------
 #
 # Built to OBSERVE the failure, not to certify the current output. A fixture
@@ -475,12 +481,26 @@ def check_built_site(rep, items, today, out):
                    f"NEXT DATE says {stat.group(1)}, resolver says "
                    f"{db.mon_day(nearest['date'])}")
         htxt = text_of(home)
-        m = re.search(r"Next on the docket is (.+?), ([A-Z][a-z]+ \d{1,2}), (\d{4})\.", htxt)
+        # The date takes the ordinal and drops the year when it is the year the
+        # page was built for (owner, 2026-08-05 and 2026-09-11). This pattern
+        # used to demand "September 15, 2026", which is the bare non-ordinal
+        # form brand.yaml lists under `bad`, so on 2026-09-14, when
+        # site_build.pretty_date was corrected to the house form, this gate went
+        # red against a page that had just become RIGHT. The year group stays
+        # optional rather than banned, because a date in another calendar year
+        # still carries one.
+        m = re.search(r"Next on the docket is (.+?), "
+                      r"([A-Z][a-z]+ \d{1,2}(?:st|nd|rd|th))(?:, (\d{4}))?\.", htxt)
         rep.ok(m is not None, "home", "the next-on-the-docket line is missing")
         if m:
             want_m, want_d = mon_day_pair(nearest["date"])
-            rep.ok(m.group(2) == f"{want_m} {want_d}", "home",
-                   f"homepage says {m.group(2)}, resolver says {want_m} {want_d}")
+            want = f"{want_m} {ordinal(want_d)}"
+            rep.ok(m.group(2) == want, "home",
+                   f"homepage says {m.group(2)}, resolver says {want}")
+            want_year = ddate.fromisoformat(nearest["date"]).year
+            rep.ok((m.group(3) is None) == (want_year == today.year), "home",
+                   f"homepage {'prints' if m.group(3) else 'omits'} the year on a "
+                   f"{want_year} date built for {today.year}")
             # A title and a date in one sentence must belong to the SAME item.
             # The first fix corrected which date each surface shows and left
             # ordering keyed to the old value, so the home page could pair one

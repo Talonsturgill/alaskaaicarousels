@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;left:80px;top:186px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;font-weight:600;letter-spacing:.11em;color:#FFC72C}
+  .kickrule{position:absolute;left:80px;top:224px;width:210px;height:3px;background:#FFC72C}
+  .lab{position:absolute;left:80px;font-family:'Archivo',sans-serif;
+       font-variation-settings:'wdth' 96,'wght' 600;font-size:38px;letter-spacing:.02em;
+       color:#B9C8D6;text-transform:uppercase}
+  .lab.a{top:318px} .lab.b{top:626px}
+  .fig{position:absolute;left:74px;width:930px;overflow:hidden;font-family:'Archivo',sans-serif;
+       font-variation-settings:'wdth' 112,'wght' 700;line-height:1.10;letter-spacing:-.02em;
+       color:#F4F8FF;font-variant-numeric:tabular-nums lining-nums}
+  .fig.a{top:358px;font-size:132px;color:#6EA5FF}
+  .fig.b{top:666px;font-size:132px}
+  .tags{position:absolute;left:352px;bottom:27px;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+</style>
+</head>
+<body data-contacts='[{"what":"the unit crate on the seat track","shadow":[[556,1272,26,10]],"ground":[[642,1272,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"present"},{"hex":"#6EA5FF","means":"a planning row","state":"present"}]'>
+
+<canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="kick">UPDATE</div>
+  <div class="kickrule"></div>
+  <div class="lab a">The plan got</div>
+  <div class="fig a">$250,000</div>
+  <div class="lab b">The aircraft got</div>
+  <div class="fig b">$4,171,115</div>
+  <div class="tags" data-decorative>C13&nbsp;&nbsp;C07</div>
+  <div class="ctr" data-decorative>01 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 01 -- COVER. THE RAMP AT UNALAKLEET.
+ *
+ * LIGHT, once, for the whole deck. az 76, el 12, key to fill 6 to 1.
+ * THE LIGHT IS TO THE UPPER RIGHT AND EVERY CAST RUNS TO THE LOWER LEFT.
+ *
+ * The frame is the hold of a working freighter with the cargo door open on the
+ * ramp at Unalakleet. One unit crate stands on the seat track in the wedge of
+ * low sun. Nothing else is aboard yet, which is the loop the cover plants.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+
+    /* Display type is fitted, never guessed. AK.fitText honours the authored
+     * <br> and soft-wraps nothing, so the three lines break exactly where the
+     * sense breaks. All nine of No.58's headlines broke against meaning for
+     * want of this call. */
+    AK.fitText(document.querySelector('.fig.a'), { min: 104, max: 150, maxLines: 1 });
+    AK.fitText(document.querySelector('.fig.b'), { min: 104, max: 150, maxLines: 1 });
+
+    var W = 1080, H = 1350;
+    var cv = document.getElementById('art'), cx = cv.getContext('2d');
+    cx.scale(2, 2);
+
+    var R = {
+      base:'#050A12', bulk:'#0F1A26', rib:'#1B2A38',
+      alShade:'#54636F', alLit:'#93A2B0', wedge:'#AFC6D8',
+      frost:'#D7E4EE', web:'#5D6B4A', sea:'#17313F', cast:'#0A121C'
+    };
+    var ramp = AKHOLD.ramp(R.alShade, 7);
+    var pick = function (i) { return ramp[Math.max(0, Math.min(ramp.length - 1, i))]; };
+
+    /* Type reserves, measured per LINE BOX, handed to every field generator
+     * BEFORE it draws. No plate, no gradient in a rect, no outline. */
+    var boxes = AKHOLD.lineBoxes('.lab, .fig, .kick, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* ---- 1. THE HOLD, DARK FIRST. Values are held deliberately low across the
+     * whole frame so that the door's wedge is the only bright thing in it. The
+     * first build of this slide let a structural fill run pale and the frame
+     * came back reading as a grey wall, which is the opposite of a dark arctic
+     * register. Every value below is written with its target. ---- */
+    var bg = cx.createLinearGradient(0, 0, 260, H);
+    bg.addColorStop(0, '#04080F');    /* L* ~4, the crown, darkest */
+    bg.addColorStop(.46, '#0B131D');  /* L* ~8 */
+    bg.addColorStop(1, '#0E1824');    /* L* ~10, the near floor */
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+
+    /* the skin's rolled grain, everywhere, reserved around every line box.
+     * This is what keeps the dark from being empty at 100 percent. */
+    cx.save();
+    for (var ag = 0; ag < 5200; ag++) {
+      var ax = AK.rng(1200 + ag)() * W, ay = AK.rng(4400 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0042, ay * 0.010, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.055)' : 'rgba(2,5,10,.30)';
+      cx.fillRect(ax, ay, 7 + (ag % 11), .9);
+    }
+    cx.restore();
+
+    /* ---- 2. RIB STATIONS down the left and across the crown. Dark bodies with
+     * a single thin lit arris on the key side, so the structure reads by EDGE
+     * and never by fill. Pitch 42 near, compressing aft. ---- */
+    var ribPts = [];
+    for (var rb = 0; rb < 9; rb++) {
+      var t = rb / 8, pitch = 42 * (1 - t * 0.68);
+      var rx0 = -30 + rb * 74 * (1 - t * 0.42);
+      var yTop = 30 + rb * 9, yBot = 1046 - rb * 58;
+      cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 13 - t * 7;
+      cx.beginPath(); cx.moveTo(rx0, yTop); cx.quadraticCurveTo(rx0 + 26, yBot * .52, rx0 + 8, yBot); cx.stroke();
+      /* the lit arris, on the RIGHT of each member, because the key is upper right */
+      cx.strokeStyle = 'rgba(147,162,176,' + (0.30 - t * 0.20).toFixed(3) + ')';
+      cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(rx0 + 6, yTop); cx.quadraticCurveTo(rx0 + 32, yBot * .52, rx0 + 14, yBot); cx.stroke();
+      if (rb < 5) ribPts.push([rx0 + 8, yBot * .5]);
+    }
+    /* crown stringers, very dark, with hairline highlights */
+    for (var sg2 = 0; sg2 < 5; sg2++) {
+      var sy = 46 + sg2 * 38;
+      cx.strokeStyle = 'rgba(2,5,10,.7)'; cx.lineWidth = 5;
+      cx.beginPath(); cx.moveTo(-10, sy); cx.quadraticCurveTo(420, sy + 24, 800, sy + 96); cx.stroke();
+      cx.strokeStyle = 'rgba(175,198,216,.11)'; cx.lineWidth = .9;
+      cx.beginPath(); cx.moveTo(-10, sy - 2.6); cx.quadraticCurveTo(420, sy + 21.4, 800, sy + 93.4); cx.stroke();
+    }
+    /* a wire loom, the one warm-cool object on the crown */
+    cx.strokeStyle = '#22301F'; cx.lineWidth = 10;
+    cx.beginPath(); cx.moveTo(-10, 116); cx.quadraticCurveTo(400, 148, 792, 232); cx.stroke();
+    cx.strokeStyle = 'rgba(175,198,216,.16)'; cx.lineWidth = 1.8;
+    cx.beginPath(); cx.moveTo(-10, 111); cx.quadraticCurveTo(400, 143, 792, 227); cx.stroke();
+    /* rivet runs along two stringers, reserved around the type */
+    var riv = AKHOLD.rivetRun(cx, 16, 60, 792, 150, 42, 3.0,
+                              'rgba(175,198,216,.34)', 'rgba(2,5,10,.9)', mask);
+
+    /* ---- 3. THE CARGO DOOR. The aperture is the brightest region after the
+     * wedge, and the world inside it is smeared along the flight vector. ---- */
+    var AP = [[812, 286], [1092, 228], [1092, 1004], [828, 936]];
+    var world = AKHOLD.offscreen(W, H, function (g) {
+      var sg = g.createLinearGradient(0, 220, 0, 1010);
+      sg.addColorStop(0, '#7E98AC');  /* sky, the frame's brightest value */
+      sg.addColorStop(.30, '#56728A');
+      sg.addColorStop(.47, '#31506A');
+      sg.addColorStop(.56, '#1B3446'); /* Norton Sound */
+      sg.addColorStop(.72, '#233029'); /* tundra */
+      sg.addColorStop(1, '#2E3A32');
+      g.fillStyle = sg; g.fillRect(740, 200, 420, 860);
+      g.fillStyle = 'rgba(215,228,238,.55)'; g.fillRect(740, 686, 420, 2.2);
+      for (var i = 0; i < 520; i++) {
+        var gx = 740 + AK.rng(41 + i)() * 420, gy = 800 + AK.rng(900 + i)() * 170;
+        g.fillStyle = i % 3 ? 'rgba(175,198,216,.30)' : 'rgba(60,74,52,.34)';
+        g.fillRect(gx, gy, 3 + (i % 5), 1.5);
+      }
+      g.strokeStyle = '#AFC0CE'; g.lineWidth = 2.6;
+      g.beginPath(); g.moveTo(1000, 800); g.lineTo(1000, 676); g.stroke();
+      g.fillStyle = '#B96A34';
+      g.beginPath(); g.moveTo(1000, 678); g.lineTo(1054, 694); g.lineTo(1054, 712);
+      g.lineTo(1000, 704); g.closePath(); g.fill();
+    });
+    var smeared = AKHOLD.streak(world, 14);
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i3 = 1; i3 < AP.length; i3++) cx.lineTo(AP[i3][0], AP[i3][1]);
+    cx.closePath(); cx.clip();
+    cx.drawImage(smeared, 0, 0, W, H);
+    var fog = cx.createLinearGradient(812, 0, 1092, 0);
+    fog.addColorStop(0, 'rgba(27,52,70,.46)'); fog.addColorStop(1, 'rgba(27,52,70,0)');
+    cx.fillStyle = fog; cx.fillRect(790, 200, 320, 860);
+    cx.restore();
+
+    /* the door frame. A deep lee body, one lit arris on the key edge, one
+     * struck occlusion seam where the frame meets the hold. */
+    cx.lineJoin = 'miter';
+    cx.beginPath();
+    cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i4 = 1; i4 < AP.length; i4++) cx.lineTo(AP[i4][0], AP[i4][1]);
+    cx.closePath();
+    cx.lineWidth = 14; cx.strokeStyle = '#070D16'; cx.stroke();
+    cx.lineWidth = 3.0; cx.strokeStyle = 'rgba(175,198,216,.52)';
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]); cx.lineTo(AP[1][0], AP[1][1]); cx.stroke();
+    cx.lineWidth = 2.0; cx.strokeStyle = 'rgba(147,162,176,.22)';
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]); cx.lineTo(AP[3][0], AP[3][1]); cx.stroke();
+
+    /* ---- 4. THE FLOOR and THE LIT WEDGE. The floor stays dark; the wedge is a
+     * hard door shaped parallelogram screened onto it, so the deck's key is a
+     * SHAPE rather than a radial pool under an object. ---- */
+    var horizon = 1042;
+    var fl = cx.createLinearGradient(0, horizon, 0, H);
+    fl.addColorStop(0, '#0A121C'); fl.addColorStop(1, '#131F2C');
+    cx.fillStyle = fl; cx.fillRect(0, horizon, W, H - horizon);
+    cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 3;
+    cx.beginPath(); cx.moveTo(0, horizon); cx.lineTo(W, horizon - 24); cx.stroke();
+
+    var WEDGE = [[372, 1064], [852, 1010], [1140, 1340], [470, 1340]];
+    AKHOLD.wedge(cx, WEDGE, { alpha: .40, gx0: 852, gy0: 1010, gx1: 686, gy1: 1354 });
+
+    /* ---- 5. THE SEAT TRACK. Mid-dark metal with one thin lit arris, never a
+     * white band. Tie-down rings at a compressing pitch. ---- */
+    (function () {
+      var nY = 1230, nX0 = -60, nX1 = 1140, drop = 104;
+      var g = cx.createLinearGradient(0, nY - 20, 0, nY + 26);
+      g.addColorStop(0, '#4A5967'); g.addColorStop(.34, '#2A3A48');
+      g.addColorStop(1, '#141F2B');
+      cx.fillStyle = g;
+      cx.beginPath();
+      cx.moveTo(nX0, nY); cx.lineTo(nX1, nY - drop);
+      cx.lineTo(nX1, nY - drop + 30); cx.lineTo(nX0, nY + 32); cx.closePath(); cx.fill();
+      cx.strokeStyle = 'rgba(215,228,238,.40)'; cx.lineWidth = 1.25;
+      cx.beginPath(); cx.moveTo(nX0, nY); cx.lineTo(nX1, nY - drop); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(nX0, nY + 32); cx.lineTo(nX1, nY - drop + 30); cx.stroke();
+      for (var rg = 0; rg < 8; rg++) {
+        var rx = 24 + rg * 152, t2 = rx / 1140;
+        var ry = nY + 15 - drop * t2;
+        cx.strokeStyle = 'rgba(147,162,176,.50)'; cx.lineWidth = 2.6;
+        cx.beginPath(); cx.ellipse(rx, ry, 16, 5.4, 0, 0, Math.PI * 2); cx.stroke();
+        cx.strokeStyle = 'rgba(2,5,10,.75)'; cx.lineWidth = 1.2;
+        cx.beginPath(); cx.ellipse(rx, ry + 2.4, 16, 5.4, 0, 0, Math.PI * 2); cx.stroke();
+      }
+    })();
+
+    /* ---- 6. THE UNIT CRATE. ONE. $250,000 [C13], at unit size. Three faces
+     * with a declared value order, top lightest, front mid, right deepest but
+     * never black, so it reads as a solid and not as a hole. ---- */
+    var CX0 = 452, CY0 = 1254, CW = 214, CH = 146, CD = 82, RISE = 26;
+    AKHOLD.contact(cx, { x: CX0 + CW / 2, y: CY0 + 2, w: 150, k: 0.72, seamW: CW * 0.46,
+                         len: 250 });
+
+    function facePath(kind) {
+      cx.beginPath();
+      if (kind === 'top') {
+        cx.moveTo(CX0, CY0 - CH); cx.lineTo(CX0 + CW, CY0 - CH - RISE);
+        cx.lineTo(CX0 + CW + CD, CY0 - CH - RISE + 30); cx.lineTo(CX0 + CD, CY0 - CH + 30);
+      } else if (kind === 'right') {
+        cx.moveTo(CX0 + CW, CY0 - CH - RISE); cx.lineTo(CX0 + CW + CD, CY0 - CH - RISE + 30);
+        cx.lineTo(CX0 + CW + CD, CY0 - RISE + 30); cx.lineTo(CX0 + CW, CY0 - RISE);
+      } else {
+        cx.moveTo(CX0, CY0 - CH); cx.lineTo(CX0 + CW, CY0 - CH - RISE);
+        cx.lineTo(CX0 + CW, CY0 - RISE); cx.lineTo(CX0, CY0);
+      }
+      cx.closePath();
+    }
+    /* right face, L* ~13. deepest, and still separated from the floor behind it */
+    var rf = cx.createLinearGradient(CX0 + CW, CY0 - CH, CX0 + CW + CD, CY0);
+    rf.addColorStop(0, '#26313C'); rf.addColorStop(1, '#161F29');
+    cx.fillStyle = rf; facePath('right'); cx.fill();
+    /* front face, L* ~26 */
+    var ff = cx.createLinearGradient(CX0, CY0 - CH, CX0 + CW, CY0);
+    ff.addColorStop(0, '#33414E'); ff.addColorStop(1, '#48596A');
+    cx.fillStyle = ff; facePath('front'); cx.fill();
+    /* top face, L* ~46, the plane the key actually hits */
+    var tf = cx.createLinearGradient(CX0 + 40, CY0 - CH - RISE, CX0 + CW + CD, CY0 - CH + 30);
+    tf.addColorStop(0, '#6A7C8C'); tf.addColorStop(1, '#8C9EAC');
+    cx.fillStyle = tf; facePath('top'); cx.fill();
+
+    /* birch ply tooth and two construction bands on the front face */
+    cx.save(); facePath('front'); cx.clip();
+    for (var pg = 0; pg < 300; pg++) {
+      var gx2 = CX0 + AK.rng(770 + pg)() * CW;
+      var gy2 = CY0 - CH + AK.rng(311 + pg)() * (CH + 14) - (gx2 - CX0) / CW * RISE;
+      cx.fillStyle = pg % 2 ? 'rgba(200,218,232,.10)' : 'rgba(2,5,10,.16)';
+      cx.fillRect(gx2, gy2, 13 + (pg % 8), 1.3);
+    }
+    cx.strokeStyle = 'rgba(2,5,10,.34)'; cx.lineWidth = 5;
+    cx.beginPath(); cx.moveTo(CX0, CY0 - CH + 40); cx.lineTo(CX0 + CW, CY0 - CH - RISE + 40); cx.stroke();
+    cx.beginPath(); cx.moveTo(CX0, CY0 - 40); cx.lineTo(CX0 + CW, CY0 - RISE - 40); cx.stroke();
+    cx.strokeStyle = 'rgba(200,218,232,.12)'; cx.lineWidth = 1.2;
+    cx.beginPath(); cx.moveTo(CX0, CY0 - CH + 36); cx.lineTo(CX0 + CW, CY0 - CH - RISE + 36); cx.stroke();
+    cx.restore();
+
+    /* the arrises. a lit lid lip on the key side, a struck lower edge */
+    cx.strokeStyle = 'rgba(215,228,238,.66)'; cx.lineWidth = 1.7;
+    cx.beginPath(); cx.moveTo(CX0, CY0 - CH); cx.lineTo(CX0 + CW, CY0 - CH - RISE); cx.stroke();
+    cx.beginPath(); cx.moveTo(CX0 + CW, CY0 - CH - RISE); cx.lineTo(CX0 + CW + CD, CY0 - CH - RISE + 30); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 1.4;
+    cx.beginPath(); cx.moveTo(CX0, CY0); cx.lineTo(CX0 + CW, CY0 - RISE); cx.stroke();
+    cx.beginPath(); cx.moveTo(CX0 + CW, CY0 - RISE); cx.lineTo(CX0 + CW + CD, CY0 - RISE + 30); cx.stroke();
+
+    /* ---- 7. THE STRAP, olive webbing over the crate, the loose end whipping
+     * out past the right margin as the edge-tease. ---- */
+    cx.lineCap = 'butt';
+    cx.strokeStyle = '#46522F'; cx.lineWidth = 15;
+    cx.beginPath();
+    cx.moveTo(CX0 + 74, CY0 - 8);
+    cx.lineTo(CX0 + 74, CY0 - CH - 9);
+    cx.lineTo(CX0 + 74 + CD, CY0 - CH + 21);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(215,228,238,.18)'; cx.lineWidth = 2.6;
+    cx.beginPath(); cx.moveTo(CX0 + 68, CY0 - 8); cx.lineTo(CX0 + 68, CY0 - CH - 9); cx.stroke();
+    cx.strokeStyle = '#46522F'; cx.lineWidth = 12;
+    cx.beginPath();
+    cx.moveTo(CX0 + 74 + CD, CY0 - CH + 21);
+    cx.bezierCurveTo(790, 1150, 950, 1228, 1096, 1152);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(215,228,238,.14)'; cx.lineWidth = 2.2;
+    cx.beginPath();
+    cx.moveTo(CX0 + 74 + CD, CY0 - CH + 17);
+    cx.bezierCurveTo(790, 1146, 950, 1224, 1096, 1148);
+    cx.stroke();
+
+    /* ---- 8. the film grade, once, on the art canvas. IGN dither mandatory,
+     * because the unlit bulkhead is a large soft gradient and 8 bit banding is
+     * the defect that survives LinkedIn recompression. ---- */
+    /* THE MOTES GO LAST. They are dust in the air between the camera and the
+     * floor, so drawing them after the crate is physically right, and it is
+     * also the only way all 217 survive to the composited frame. */
+    var motes = AKHOLD.motes(cx, WEDGE, 217, 5914, 'rgba(215,228,238,.36)');
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.72, strength: 0.30, radius: 9 } });
+
+    /* The motes are 217, one per award row in the state file. The FRAME does
+     * the counting: `points` is the array the drawing loop actually used, so a
+     * loop bound cannot agree with itself. */
+    window.__akAssert = [{ what: '217 award rows, one dust mote each',
+                           expect: 217, points: motes, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the unit crate, one of them, strapped',
+                           rect: [CX0 - 8, CY0 - CH - 30, CW + CD + 16, CH + 40] }];
+
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

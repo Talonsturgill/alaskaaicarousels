@@ -1,0 +1,58 @@
+{
+ "run_date": "2026-09-14",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "402 Alaskan communities depend on aviation for year round access, where aircraft often take the place of cars, school buses, semitrucks, and ambulances. That is 82 percent of the state's communities, served by 235 airports.",
+   "fragment": "402 Alaskan communities",
+   "member": "C34",
+   "note": "Not derived. The state's own Division of Statewide Aviation page says it in these words."
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "One program. Two loads.",
+   "fragment": "Two loads",
+   "n": 2,
+   "subject": "awarded loads on this deck's two rows",
+   "members": [
+    "C07",
+    "C13"
+   ],
+   "note": "The two are the Ryan Air implementation row and the Tanana Chiefs planning row, which is the whole frame."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "94,000 SQ MI 42 VILLAGES",
+   "fragment": "42 VILLAGES",
+   "member": "C15",
+   "note": "Quoted from the project summary, not counted by us."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Ten rows name a machine",
+   "fragment": "Ten rows",
+   "member": "C21",
+   "note": "C21 is itself the count, made by us against the primary state file. The frame says NOT A STATE CATEGORY, which is the same qualification without the first person a maintainer rule bans in type on a slide."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "TEN OF 217 ROWS NAME A MACHINE. NOT A STATE CATEGORY.",
+   "fragment": "217 ROWS",
+   "member": "C06",
+   "note": "The file's own row count."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "21 HOSPITALS",
+   "fragment": "21 HOSPITALS",
+   "member": "C20",
+   "note": "Quoted from the Alaska Stroke Coalition award summary, not counted by us."
+  }
+ ]
+}

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  #scene{position:absolute;left:-4000px;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;left:80px;top:96px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;font-weight:600;letter-spacing:.11em;color:#8FA0B0}
+  .head{position:absolute;left:74px;top:140px;width:760px;overflow:hidden;
+        font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 96,'wght' 700;
+        font-size:74px;line-height:1.12;letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .lg{position:absolute;left:80px;top:880px;font-family:'JetBrains Mono',monospace;
+      font-size:25px;letter-spacing:.07em;color:#C8D8E6}
+  .lbl{position:absolute;font-family:'JetBrains Mono',monospace;font-size:24px;
+       letter-spacing:.09em}
+  .lbl.l{left:80px;top:1168px;width:430px;color:#6EA5FF;line-height:1.34}
+  .lbl.r{left:604px;top:1168px;width:400px;color:#DCE9F2;line-height:1.34}
+  .val{position:absolute;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;
+       font-variant-numeric:tabular-nums lining-nums}
+  .val.l{left:80px;top:1108px;color:#6EA5FF}
+  .val.r{left:604px;top:1108px;color:#F4F8FF}
+  .tags{position:absolute;left:352px;bottom:27px;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+</style>
+</head>
+<body data-contacts='[{"what":"the lone unit crate on the seat track","shadow":[[126,843,26,10]],"ground":[[218,843,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"present"},{"hex":"#6EA5FF","means":"a planning row","state":"present"}]'
+      data-encodes='[{"claim":"the state paid many times more for the doing than for the planning","reads":"differ","a":[[20,470,430,470]],"b":[[500,470,430,470]]}]'>
+
+<canvas id="art" width="2160" height="2700"></canvas>
+<canvas id="scene" width="2160" height="2700"></canvas>
+
+  <div class="kick">THE SAME FLOOR</div>
+  <div class="head">One program.<br>Two loads.</div>
+  <div class="lg">ONE CRATE = $250,000</div>
+  <div class="lbl l">TANANA CHIEFS CONFERENCE<br>PLANNING</div>
+  <div class="lbl r">RYAN AIR<br>IMPLEMENTATION</div>
+  <div class="val l">$250,000</div>
+  <div class="val r">$4,171,115</div>
+  <div class="tags" data-decorative>C13&nbsp;&nbsp;C07</div>
+  <div class="ctr" data-decorative>05 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script type="module">
+/* SLIDE 05 -- THE TWO LOADS. THE DECK'S ONE RENDERED FRAME.
+ *
+ * LIGHT az 76, el 12, key to fill 6 to 1.
+ * THE LIGHT IS TO THE UPPER RIGHT AND EVERY CAST RUNS TO THE LOWER LEFT.
+ *
+ * Camera station 05, square on to the seat track at eye level, and the
+ * projection is ORTHOGRAPHIC. Parallel projection is the only doctrine
+ * compliant way to render a quantity, and it is the reason a GPU pass is
+ * permitted on a frame that carries a number at all. Sixteen crates read as
+ * sixteen identical crates because in this projection they ARE identical, and
+ * they are one mesh instanced rather than seventeen boxes built separately.
+ *
+ * The unit is $250,000 [C13], because that is what Tanana Chiefs received.
+ * Ryan Air's $4,171,115 [C07] is that unit sixteen times over plus a part
+ * crate, and the part crate's drawn height is asserted against the remainder.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 2 });
+
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .kick, .lg, .lbl, .val, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* the two awards, and the unit they are counted in */
+    var UNIT = 250000, RYAN = 4171115;
+    var UNITS = RYAN / UNIT;              /* 16.6844... */
+    var FULL = Math.floor(UNITS);         /* 16 */
+    var PART = UNITS - FULL;              /* 0.6844... */
+
+    /* ---- the hold behind the loads, dark, so the loads own the frame ---- */
+    var bg = cx.createLinearGradient(W, 0, 0, H);
+    bg.addColorStop(0, '#16222E'); bg.addColorStop(.46, '#0A121C'); bg.addColorStop(1, '#05090F');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+    cx.save();
+    for (var ag = 0; ag < 3800; ag++) {
+      var ax = AK.rng(6100 + ag)() * W, ay = AK.rng(2200 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0046, ay * 0.0101, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    var TRACK_Y = 1074;
+    var rendered = false;
+    var threeCanvas = document.getElementById('scene');
+
+    /* ------------------------------------------------------------------ GPU */
+    try {
+      var THREE = await import('@@ASSETS@@/js/three.module.min.js');
+      var AKTmod = await import('@@ASSETS@@/js/akthree.js');
+      var AKT = AKTmod.init(THREE);
+
+      if (AKT.webglOK(threeCanvas)) {
+        var R = AKT.setup(threeCanvas, { width: W, height: H, exposure: 0.80, alpha: true });
+
+        /* ORTHOGRAPHIC, replacing the bench's perspective camera. A quantity
+         * never goes through a perspective camera. */
+        var VH = 9.4, VW = VH * (W / H);
+        R.camera = new THREE.OrthographicCamera(-VW / 2, VW / 2, VH / 2, -VH / 2, 0.1, 80);
+        R.camera.position.set(7.4, 3.9, 10.4);
+        R.camera.lookAt(0.10, 1.55, 0);
+
+        AKT.environment(R, { intensity: 0.58 });
+        AKT.rig(R, AKT.rigs.arcticNight);
+
+        /* the key, placed from the deck's own az 76 el 12 rather than a preset,
+         * so the render agrees with the eight drawn frames around it */
+        var az = 76 * Math.PI / 180, el = 12 * Math.PI / 180;
+        var kx = Math.cos(el) * Math.sin(az), kz = Math.cos(el) * Math.cos(az), ky = Math.sin(el);
+        /* THE KEY ONLY. The first cut walked every directional light in the
+         * rig and set all three to the same position and the same intensity,
+         * which is not a 6 to 1 key to fill ratio, it is one light struck
+         * three times. The key is the rig's first directional light. */
+        var keyLight = null;
+        R.scene.traverse(function (o) {
+          if (o.isDirectionalLight && !keyLight) keyLight = o;
+        });
+        if (keyLight) {
+          keyLight.position.set(kx * 13, ky * 13 + 5.2, kz * 13);
+          keyLight.intensity = 3.0;
+          keyLight.castShadow = true;
+        }
+
+        /* the floor is LIT, so the shadow map has something to subtract from,
+         * but only as lit as the eight DRAWN frames around it. At 0x2b3a49
+         * under a 1.05 exposure this ground composited to L* 26 while the
+         * rest of the deck sits near black, and the contact sheet read as
+         * one slide borrowed from a different deck. */
+        AKT.ground(R, { color: 0x1b2937, y: 0 });
+
+        /* the extruded aluminium seat track. Anisotropy along the extrusion is
+         * the material a 2D fake never gets right, and it is why this frame
+         * earns the render. */
+        var trackMat = new THREE.MeshPhysicalMaterial({
+          /* A metal at 0.90 with a dim environment is BLACK, and the first
+           * cut put a 1000px dead band across the frame's lower third and
+           * gave the contact shadows nothing to fall on. Aluminium reads as
+           * aluminium when it has something to reflect. */
+          color: 0x8494a2, metalness: 0.55, roughness: 0.40,
+          anisotropy: 0.85, anisotropyRotation: 0.0, envMapIntensity: 3.0
+        });
+        var track = new THREE.Mesh(new THREE.BoxGeometry(22, 0.10, 0.46), trackMat);
+        track.position.set(0, 0.05, 0);
+        AKT.add(R, track);
+        for (var ri = -6; ri <= 6; ri++) {
+          var ring = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.028, 10, 26), trackMat);
+          ring.rotation.x = Math.PI / 2;
+          ring.position.set(ri * 1.5, 0.11, 0);
+          AKT.add(R, ring);
+        }
+
+        /* ONE crate mesh, instanced. Identity is a construction, not a number. */
+        var CW = 0.92, CH = 0.62, CD = 0.70;
+        var plyMat = new THREE.MeshPhysicalMaterial({
+          color: 0x7f93a8, metalness: 0.02, roughness: 0.66, sheen: 0.20,
+          sheenColor: new THREE.Color(0xbfd0dc), envMapIntensity: 0.52
+        });
+        var crateGeo = new THREE.BoxGeometry(CW, CH, CD);
+        var lipGeo = new THREE.BoxGeometry(CW * 1.035, 0.028, CD * 1.035);
+        var lipMat = new THREE.MeshPhysicalMaterial({
+          color: 0x2a3746, metalness: 0.0, roughness: 0.88, envMapIntensity: 0.30
+        });
+        function crate(x, y, z, sy) {
+          var m = new THREE.Mesh(crateGeo, plyMat);
+          m.scale.set(1, sy == null ? 1 : sy, 1);
+          m.position.set(x, y, z);
+          AKT.add(R, m);
+          /* the lip sits proud of the crate at its own top, so the join
+           * between two stacked crates is a drawn line on EVERY visible
+           * face and not only on the ones turned away from the key */
+          var lip = new THREE.Mesh(lipGeo, lipMat);
+          lip.position.set(x, y + (CH * (sy == null ? 1 : sy)) / 2, z);
+          AKT.add(R, lip);
+          return m;
+        }
+
+        /* the lone crate, left of centre */
+        var lone = crate(-3.30, CH / 2 + 0.10, 0);
+
+        /* the stack, right of centre. 4 wide by 4 high, plus one part crate. */
+        var pts = [], bottomRow = [], columns = [[], [], [], []], STACK_X = 1.55;
+        for (var col = 0; col < 4; col++) {
+          for (var row = 0; row < 4; row++) {
+            var m = crate(STACK_X + (col - 1.5) * (CW + 0.045),
+                          CH / 2 + 0.10 + row * (CH + 0.045), 0);
+            if (row === 0) bottomRow.push(m);
+            columns[col].push(m);
+            /* the mark centre in DESIGN px, read back off the camera that
+             * actually drew it, so the frame can probe the composited png */
+            var b = AKT.screenBox(R, m);
+            /* the LID BAND, not the face centre. A crate face in this render is
+             * one flat value, so a probe disc dropped on its middle reads the
+             * same everywhere and says nothing about whether the crate is there.
+             * The lit lid against the face above it is the highest contrast
+             * feature each crate owns, and it is what a reader counts. */
+            pts.push([Math.round(b.x + b.w / 2), Math.round(b.y + 14)]);
+          }
+        }
+        var partH = CH * PART;
+        var cutMat = new THREE.MeshPhysicalMaterial({
+          color: 0x223141, metalness: 0.0, roughness: 0.94, envMapIntensity: 0.28
+        });
+        var part = new THREE.Mesh(crateGeo,
+          [plyMat, plyMat, cutMat, plyMat, plyMat, plyMat]);
+        part.scale.set(1, PART, 1);
+        part.position.set(STACK_X + 1.5 * (CW + 0.045),
+                          0.10 + 4 * (CH + 0.045) + partH / 2, 0);
+        AKT.add(R, part);
+
+        /* the woven nylon strap and the zinc cam buckle on the LONE crate, so
+         * the frame's one saturated gold sits on the SMALL load and the eye
+         * travels from it to the mass. */
+        var webMat = new THREE.MeshPhysicalMaterial({
+          color: 0x414a38, roughness: 0.90, metalness: 0.0,
+          sheen: 0.34, sheenRoughness: 0.86, sheenColor: new THREE.Color(0x6e7a58)
+        });
+        var web = new THREE.Mesh(new THREE.BoxGeometry(0.10, CH + 0.14, CD + 0.14), webMat);
+        web.position.set(-3.48, CH / 2 + 0.10, 0);
+        AKT.add(R, web);
+        var buckle = new THREE.Mesh(new THREE.BoxGeometry(0.115, 0.078, 0.05),
+          new THREE.MeshPhysicalMaterial({ color: 0xffc72c, metalness: 1.0, roughness: 0.22,
+                                           envMapIntensity: 1.4 }));
+        buckle.position.set(-3.48, CH * 0.72, CD / 2 + 0.10);
+        AKT.add(R, buckle);
+        window.__BUCKLE = AKT.screenBox(R, buckle, { pad: 3 });
+
+        /* frost on the lone crate's lid, a thin rough dielectric catching the
+         * key at grazing incidence, which is only possible at elevation 12 */
+        var frost = new THREE.Mesh(new THREE.BoxGeometry(CW * 0.92, 0.012, CD * 0.92),
+          new THREE.MeshPhysicalMaterial({ color: 0xd7e4ee, roughness: 0.42,
+                                           metalness: 0.0, transmission: 0.12,
+                                           envMapIntensity: 1.2 }));
+        frost.position.set(-3.30, CH + 0.118, 0);
+        AKT.add(R, frost);
+
+        var shot = await AKT.snapshot(R);
+        if (shot && shot.ok) {
+          cx.drawImage(threeCanvas, 0, 0, W, H);
+          rendered = true;
+          /* THE CONTACT IS STRUCK IN 2D ON THE COMPOSITE. The orthographic
+           * camera's shadow frustum does not cover the lone crate's own floor,
+           * so the GL pass lit the ground and cast nothing on it. The pool and
+           * the cast go down here, onto ground the GL pass already lit, which
+           * is the order technique 94a asks for either way. */
+          var lb = AKT.screenBox(R, lone);
+          window.__LONE = [Math.round(lb.x + lb.w / 2), Math.round(lb.y + lb.h)];
+          AKHOLD.contact(cx, { x: window.__LONE[0], y: window.__LONE[1] - 2,
+                               w: 152, k: 0.58, seamW: lb.w * 0.62 });
+          /* THE MASS GETS ONE TOO, per bottom row column. A 500px wide load
+           * with no cast under it is the float this rule exists to catch, and
+           * one contact sized to the whole base would throw a pool half the
+           * frame wide. Four at column pitch read as one strip. */
+          bottomRow.forEach(function (m0) {
+            var bb = AKT.screenBox(R, m0);
+            AKHOLD.contact(cx, { x: bb.x + bb.w / 2, y: bb.y + bb.h - 2,
+                                 w: 172, k: 0.34, seamW: bb.w * 0.58 });
+          });
+          window.__STACKBASE = (function () {
+            var sb = AKT.screenBox(R, bottomRow);
+            return [Math.round(sb.x), Math.round(sb.y + sb.h)];
+          })();
+          window.__COLBOX = columns.map(function (c) { return AKT.screenBox(R, c); });
+          window.__PARTBOX = AKT.screenBox(R, part);
+          window.__FULLBOX = AKT.screenBox(R, bottomRow[0]);
+
+          /* NO 2D COLUMN SEAMS. The first attempt struck them at the midpoint
+           * between adjacent screen boxes, which in an isometric view is
+           * inside the overlap rather than on the join, so four hard lines
+           * landed 27 design px right of the crates they were meant to
+           * separate and ran past the stack's own silhouette. In the darkened
+           * frame the columns already separate on their own lit arrises. */
+        }
+        window.__akAssert = [
+          { what: 'sixteen full unit crates, one mark each', expect: 16,
+            points: pts, unit: 'marks' },
+          { what: 'the part crate drawn against the remainder of the award',
+            expect: +(CH * (RYAN / UNIT - Math.floor(RYAN / UNIT))).toFixed(4),
+            actual: +(part.scale.y * CH).toFixed(4), tol: 0.002, unit: 'world units' }];
+      }
+    } catch (e) {
+      console.warn('akthree unavailable, using the designed fallback', e);
+    }
+
+    /* ------------------------------------------- THE DESIGNED CANVAS FALLBACK
+     * Not a degraded version. A cabinet extrusion of the identical seventeen
+     * crates at the identical footprint, three face light with the top the
+     * lightest plane, the left base and the right in lee, one global direction.
+     * It loses the anisotropy and keeps every number. */
+    if (!rendered) {
+      var CWp = 132, CHp = 88, CDp = 44, GAP = 6;
+      function cab(x, y, h) {
+        cx.fillStyle = '#1E2934';
+        cx.beginPath(); cx.moveTo(x + CWp, y - h); cx.lineTo(x + CWp + CDp, y - h - CDp * .55);
+        cx.lineTo(x + CWp + CDp, y - CDp * .55); cx.lineTo(x + CWp, y); cx.closePath(); cx.fill();
+        cx.fillStyle = '#8C9EAC';
+        cx.beginPath(); cx.moveTo(x, y - h); cx.lineTo(x + CWp, y - h);
+        cx.lineTo(x + CWp + CDp, y - h - CDp * .55); cx.lineTo(x + CDp, y - h - CDp * .55);
+        cx.closePath(); cx.fill();
+        var g = cx.createLinearGradient(x, y - h, x + CWp, y);
+        g.addColorStop(0, '#39485A'); g.addColorStop(1, '#4E5F70');
+        cx.fillStyle = g; cx.fillRect(x, y - h, CWp, h);
+        cx.strokeStyle = 'rgba(215,228,238,.5)'; cx.lineWidth = 1.4;
+        cx.beginPath(); cx.moveTo(x, y - h); cx.lineTo(x + CWp, y - h); cx.stroke();
+        cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.2;
+        cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x + CWp, y); cx.stroke();
+      }
+      cx.strokeStyle = '#3A4A58'; cx.lineWidth = 22;
+      cx.beginPath(); cx.moveTo(0, TRACK_Y + 8); cx.lineTo(W, TRACK_Y + 8); cx.stroke();
+      AKHOLD.contact(cx, { x: 262, y: TRACK_Y, w: 120, k: .9, seamW: 62 });
+      cab(196, TRACK_Y, CHp);
+      var pts2 = [];
+      for (var c2 = 0; c2 < 4; c2++) {
+        for (var r2 = 0; r2 < 4; r2++) {
+          var xx = 560 + c2 * (CWp + GAP), yy = TRACK_Y - r2 * (CHp + GAP);
+          if (r2 === 0) AKHOLD.contact(cx, { x: xx + CWp / 2, y: TRACK_Y, w: 108, k: .8, seamW: 58 });
+          cab(xx, yy, CHp);
+          pts2.push([xx + CWp / 2, yy - CHp / 2]);
+        }
+      }
+      cab(560, TRACK_Y - 4 * (CHp + GAP), CHp * PART);
+      window.__akAssert = [{ what: 'sixteen full unit crates, one mark each',
+                             expect: 16, points: pts2, unit: 'marks' }];
+      window.__BUCKLE = { x: 200, y: 1004, w: 34, h: 28 };
+    }
+
+    /* THE CAM BUCKLE, struck onto the composite as a 2D mark at the lone
+     * crate's own strap. The GL pass paints it too, but a drawImage is not a
+     * brush, so the frame's ink law had promised a gold no paint census could
+     * see. This is the same object in the same place, drawn where the census
+     * can read it. */
+    (function () {
+      /* MEASURED, NOT GUESSED. The first cut hardcoded this quad at 178,1006
+       * and the render put the buckle at 82,786, so the frame carried a gold
+       * lozenge floating on bare floor two hundred px under the crate it was
+       * supposed to be strapped to. window.__BUCKLE is the buckle mesh's own
+       * screen box, read off the camera that drew it. */
+      var b = window.__BUCKLE;
+      if (!b) return;
+      var bx = b.x, by = b.y, bw = b.w, bh = b.h;
+      cx.fillStyle = '#FFC72C';
+      cx.beginPath(); cx.moveTo(bx, by + bh * .16); cx.lineTo(bx + bw, by);
+      cx.lineTo(bx + bw, by + bh * .84); cx.lineTo(bx, by + bh); cx.closePath(); cx.fill();
+      cx.fillStyle = 'rgba(4,8,14,.62)';
+      cx.fillRect(bx + bw * .22, by + bh * .38, bw * .56, Math.max(4, bh * .20));
+      cx.strokeStyle = 'rgba(255,218,110,.85)'; cx.lineWidth = 1.4;
+      cx.beginPath(); cx.moveTo(bx, by + bh * .16); cx.lineTo(bx + bw, by); cx.stroke();
+    })();
+
+    /* THE MISSING THIRD OF THE PART CRATE, drawn as the outline of the unit
+     * it is not. The remainder is 0.6844 of $250,000 and the render draws it
+     * at 0.6844 of a crate's height, but alone on top of the stack with no
+     * full crate beside it there is nothing to measure the fraction AGAINST,
+     * so five critics read seventeen whole crates and $4,250,000. The ghost
+     * completes the unit and makes the cut legible without printing a ratio. */
+    (function () {
+      var pb = window.__PARTBOX, fb = window.__FULLBOX;
+      if (!pb || !fb) return;
+      var dH = fb.h - pb.h;
+      if (dH < 8) return;
+      cx.save();
+      cx.setLineDash([9, 7]);
+      cx.strokeStyle = 'rgba(167,186,204,.62)'; cx.lineWidth = 1.6;
+      cx.strokeRect(pb.x + 1, pb.y - dH, pb.w - 2, dH);
+      cx.setLineDash([]);
+      /* the cut line itself, solid, where the unit is actually sawn */
+      cx.strokeStyle = 'rgba(196,214,230,.50)'; cx.lineWidth = 1.4;
+      cx.beginPath(); cx.moveTo(pb.x + 1, pb.y); cx.lineTo(pb.x + pb.w - 1, pb.y); cx.stroke();
+      cx.restore();
+    })();
+
+    /* THE PLANNING REGISTER'S DASHED CASING. The ink law says forget-me-not
+     * is always dashed and never filled, and this is the one frame where the
+     * two law bearing inks stand side by side, so it is the frame that has to
+     * show the rule. It casings the planning column and nothing else. */
+    (function () {
+      var bs = AKHOLD.lineBoxes('.val.l, .lbl.l', 0);
+      if (!bs.length) return;
+      var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      bs.forEach(function (b2) {
+        x0 = Math.min(x0, b2[0]); y0 = Math.min(y0, b2[1]);
+        x1 = Math.max(x1, b2[0] + b2[2]); y1 = Math.max(y1, b2[1] + b2[3]);
+      });
+      cx.save();
+      cx.setLineDash([7, 6]);
+      cx.strokeStyle = '#6EA5FF'; cx.lineWidth = 1.5;
+      cx.strokeRect(x0 - 18, y0 - 15, (x1 - x0) + 36, (y1 - y0) + 30);
+      cx.setLineDash([]);
+      cx.restore();
+    })();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.72, strength: 0.28, radius: 9 } });
+    window.__akMotifs = [
+      { what: 'the lone unit crate, one of them', rect: [55, 722, 172, 124] },
+      { what: 'the stack of sixteen and a part crate', rect: [455, 470, 512, 470] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>
