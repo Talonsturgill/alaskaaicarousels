@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-14/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 17095645,
+  "pdf_mb": 17.1,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-14/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-14/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Update. The Plan Got 250,000. The Aircraft Got More",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "1af055ba3b824a4562cc398b7af2d6c7a6d2ce0827e31f1e106deb367501d1a9",
+        "bytes": 6124883
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "97fc39828d1b3067e663286a29e90b5e5adf0127984d2c9b235de5ce4733513b",
+        "bytes": 6645535
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "9eaec0f9ad7b557e44a17b07a0f68801cf153b955a3085111f6ffd274b4f84bd",
+        "bytes": 6486263
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "e2762ab1f3027835e5e5ed3d59ce72e4f3cdd78e361736aca2c7416af154ef2d",
+        "bytes": 6270857
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d58da734d7447fae1ccf42308c9b9b688c3e5494a0bf67a8a28c21af46f00e4b",
+        "bytes": 5392197
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "93a81b4f70fe441f3650864f8f8f838fe108bc67c9d5659ef9a74e2d0809e4fc",
+        "bytes": 6669717
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "cd46c9f3a60e3f7dfcf0d2140f5b9c512f2c59ed3d8a20396eb8b01bde79b4e6",
+        "bytes": 7251053
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "3114422fbc4d2ac36dc35917313ad22f0542339c1c06ce81bac8630a743ab7d9",
+        "bytes": 6122930
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "f92535206bd50775013e69499d22e23d3e3e230c04df5ea812572170c30fb114",
+        "bytes": 6211146
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "a50446f99dd4f144138c0607e230c73d9decd8a0fb48852971e861e9d647385c",
+        "bytes": 17521
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "a61b40bf2ad929b0bc04955f95e02e885d2d07810eaf40a9c9bcfb91f837bac0",
+        "bytes": 12894
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "65bd793963101abe08b11527c4a3506da6c1dfd904dedab8f64273e0c24c5dc1",
+        "bytes": 18685
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "fe772f07afda079c689f68736ede49690856eb5f1ac75e3a6200ce224af8cd90",
+        "bytes": 11437
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "9e3d9604b90868197392d1d2bfdd9dc4dbd25a82aecffaf69ce952854a3e184a",
+        "bytes": 21887
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "8c8f1b2e6a48c92e351776216a51e177a8858f9615c3f375f5a3d4db83affd2c",
+        "bytes": 14066
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "ac8c97776bf7ea5558b8dd75bbd8af3d5cb36aa0d03a756c5dc1512cfe898838",
+        "bytes": 11618
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "4bbbfcf8ce820dfc43e0429fb7db07002edc7f9f6fdb42f9899c4c8c2e7b9262",
+        "bytes": 16829
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "c92c632f9d0802978cae1ed447e2294b92e4af4a66bc79a5c78e528d75ec75f5",
+        "bytes": 13356
+      }
+    ]
+  }
+}

@@ -7290,3 +7290,73 @@ a paragraph of voice, and price that in when it picks.
   this repo were both measured here rather than read anywhere, No.57's reserve
   as a BASIN handed to the field generator and No.58's reserve as the text
   box's own blurred shape inset by the blur radius.
+
+## RUN No.59 (2026-09-14) -- THE DECK WHOSE BRIGHTEST PIXEL HAD NO SOURCE
+
+**FIVE CRITICS IN FIVE CONTEXTS FOUND ONE DEFECT, AND THAT IS WHY IT GOT
+FIXED IN THE LIBRARY.** The five pixel critics were handed disjoint slides and
+no shared memory. `AKHOLD.contact` was painting a screened radial pool
+down-light of every foot in the deck, and all five named it, three of them
+reaching for the same phrase. A single critic reading all nine would have
+found it once, and once reads as an opinion; five independent finds is
+evidence strong enough to justify changing a shared library in the middle of
+a run rather than patching nine slides. The bounded fan-out is not just
+throughput. It is a measurement.
+
+**A GATE THAT MEASURES A DIFFERENCE CANNOT SEE A FRAME WITH NO LIGHT SOURCE.**
+qa.py had passed every one of those contacts, on this deck and on every deck
+before it, because it compares a declared shadow rect against a declared
+ground rect and a bright pool beside a dark hole satisfies that test
+perfectly. The defence written into the routine, that a near-black floor
+leaves a cast nothing to darken, was TRUE and was still the wrong fix. What
+the frames were missing was the long shallow cast an object throws at
+elevation 12, and not one frame in any run using that routine had ever had
+one. Before shipping a frame, find its brightest region and name the thing in
+the picture that emits it.
+
+**A FIX AND ITS WORKAROUND SHOULD NEVER SHIP IN THE SAME ROUND UNMEASURED.**
+Round 2 rewrote the cast AND added `o.lit`, a hard-edged sliver, to keep the
+contact floor satisfied on near-black frames. The scorer named the sliver as
+the same defect in a second costume. Round 3 deleted it from all six frames
+and every contact still cleared the floor, because the raised floors and the
+real casts were already doing the work. The workaround had never been load
+bearing and nobody had measured whether it was still needed.
+
+**A SHARED LIBRARY CHANGE INVALIDATES EVERY RENDER, NOT ONLY THE SLIDES YOU
+EDITED.** Round 2 fixed `assets/js/akhold.js` and re-rendered with `--only`
+listing the slides whose own HTML had changed. Slides 01, 02 and 07 had not
+changed, so three of the nine frames in `final/` still carried the exact
+defect the round existed to remove, and only the flow critic caught it.
+`render.py` warns when a slide's HTML is newer than its PNG and cannot see an
+asset move underneath it. When a fix lands in `assets/`, re-render everything.
+
+**AN ISOTYPE'S FRACTION HAS TO BE CUT, NOT ONLY SCALED.** The part crate on
+slide 05 is drawn at 0.6844 of a unit and the machine assertion agreed with
+the mesh to within 0.002, and it still read as a whole crate to every critic.
+An isometric box's silhouette height carries a constant depth term that swamps
+a third of its height. Giving its top face a sawn-ply material and drawing the
+missing 0.3156 as a dashed ghost above it is what made the fraction legible.
+A number that is geometrically correct and perceptually wrong is wrong.
+
+**GOLD THAT MARKS A ROW IS NOT GOLD THAT MEANS SOMETHING.** Capping the zero
+end of nine bars with the implementation ink put a gold mark LONGER than the
+bar itself on the three smallest rows, which turns a meaning into a row
+marker and makes the smallest rows indistinguishable from each other. One rule
+down the implementation column, broken at the single planning row, says it
+once and leaves the measured band clean.
+
+**TWO GATES CAN BOTH BE RIGHT AND STILL CONTRADICT.** Slide 08's dossier
+required the footer to print BY OUR COUNT verbatim and a pixel critic
+correctly failed the frame for missing it; `caption_check` then correctly
+failed the restored string, because a maintainer rule bans first person in
+type on a slide. The frame now says NOT A STATE CATEGORY, which names what the
+qualification IS rather than who made it, and is the stronger line. When a
+dossier's acceptance checklist and a house rule disagree, the house rule wins
+and the checklist was the thing that needed writing better.
+
+**THE COVER SAID UPDATE AND NOTHING EVER SAID OF WHAT.** The deck's strongest
+structural asset was that it corrected a finding this publication had already
+published, and the first caption spent it on a single kicker word. It is also
+the thing that makes a 15 day repeat of an earlier deck's source file
+legitimate rather than a dedupe near miss. If a deck is an update, the caption
+has to say what it updates, in a sentence, where a reader will meet it.

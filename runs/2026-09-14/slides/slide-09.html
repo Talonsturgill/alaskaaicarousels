@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;font-family:'JetBrains Mono',monospace;font-size:26px;
+        font-weight:600;letter-spacing:.11em}
+  .head{position:absolute;overflow:hidden;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;line-height:1.12;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       letter-spacing:.08em;color:#D7E4EE}
+  .tags{position:absolute;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .kick{left:80px;top:0;display:none}
+  .head{left:74px;top:184px;width:600px;font-size:74px}
+  .body{left:80px;top:436px;width:520px}
+  .ask{position:absolute;left:80px;top:762px;font-family:'JetBrains Mono',monospace;
+       font-size:30px;font-weight:600;letter-spacing:.14em;color:#F4F8FF}
+  .askrule{position:absolute;left:80px;top:722px;width:210px;height:1.6px;background:#B9C8D6}
+  .wm{position:absolute;left:80px;top:1178px;font-family:'Archivo',sans-serif;
+      font-variation-settings:'wdth' 118,'wght' 700;font-size:46px;letter-spacing:.06em;color:#F4F8FF}
+  .tags{left:352px;bottom:27px}
+</style>
+</head>
+<body data-contacts='[{"what":"the strapped crate in the foreground","shadow":[[498,1246,26,10]],"ground":[[586,1246,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"present"},{"hex":"#6EA5FF","means":"a planning row","state":"absent"}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+  <div class="head">The rounds<br>are not finished</div>
+  <div class="body">Roughly $65 million is still expected to be awarded ahead of a federal deadline of October 30th. The next Friday is the next row.</div>
+  <div class="tags" data-decorative>C27</div>
+  <div class="ask">SAVE THIS ONE</div>
+  <div class="askrule"></div>
+  <div class="wm">ALASKA.AI</div>
+  <div class="ctr" data-decorative>09 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<svg style="position:absolute;left:0;top:0;width:1080px;height:1350px" viewBox="0 0 1080 1350">
+  <path d="M866 414 L878 450 L914 452 L878 466 L866 502 L854 466 L818 452 L854 450 Z"
+        fill="#FFC72C" opacity="0.96"
+        transform="translate(866,452) scale(0.458) translate(-866,-452)"/>
+</svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 09 -- CLOSE.
+ * LIGHT az 76, el 12 is OFF for this frame, because the cargo door is SHUT and
+ * the only source left is the round cabin window aft. Every cast still runs to
+ * the lower left, now thrown by that one small source.
+ * Camera station 09 returns to station 01, aft of the door, now loaded. ONE
+ * ask. NO SOURCE NOTE anywhere on this frame or on any other in the deck.
+ * IGN dither is mandatory here: a near black frame with a soft falloff is the
+ * single worst case for 8 bit banding under LinkedIn recompression.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 2 });
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .ask, .wm, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. the shut hold, the deck's darkest frame, with one monotone falloff
+     * from the window's own position. That is what a single small source does
+     * at distance and it is what welds the darks into one mass. */
+    var WINX = 866, WINY = 452, WINR = 62;
+    var bg = cx.createRadialGradient(WINX, WINY, 20, WINX, WINY, 1120);
+    bg.addColorStop(0, '#1E2E3C'); bg.addColorStop(.28, '#101A26');
+    bg.addColorStop(.62, '#080E17'); bg.addColorStop(1, '#03070D');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+
+    /* 2. THE SHUT DOOR, the darkest surface in the deck, read only by its
+     * seam and two latch lugs. */
+    var DR = [[690, 150], [1042, 108], [1042, 1064], [706, 1006]];
+    cx.fillStyle = '#04080F';
+    cx.beginPath(); cx.moveTo(DR[0][0], DR[0][1]);
+    for (var i = 1; i < 4; i++) cx.lineTo(DR[i][0], DR[i][1]);
+    cx.closePath(); cx.fill();
+    cx.strokeStyle = 'rgba(160,186,208,.22)'; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(DR[0][0], DR[0][1]);
+    for (var i2 = 1; i2 < 4; i2++) cx.lineTo(DR[i2][0], DR[i2][1]);
+    cx.closePath(); cx.stroke();
+    for (var lg = 0; lg < 4; lg++) {
+      var ly = 248 + lg * 212;
+      cx.fillStyle = 'rgba(120,146,168,.30)';
+      cx.fillRect(682, ly, 22, 34);
+      cx.fillStyle = 'rgba(2,5,10,.8)';
+      cx.fillRect(682, ly + 34, 22, 5);
+    }
+
+    /* 3. rib stations, barely read, one hairline each */
+    for (var rb = 0; rb < 7; rb++) {
+      var rx = -20 + rb * 106;
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 10 - rb * .9;
+      cx.beginPath(); cx.moveTo(rx, 60 + rb * 8); cx.quadraticCurveTo(rx + 40, 560, rx + 14, 1040); cx.stroke();
+      cx.strokeStyle = 'rgba(160,186,208,' + (0.09 - rb * 0.011).toFixed(3) + ')';
+      cx.lineWidth = 1;
+      cx.beginPath(); cx.moveTo(rx + 5, 60 + rb * 8); cx.quadraticCurveTo(rx + 45, 560, rx + 19, 1040); cx.stroke();
+    }
+
+    /* 4. THE CABIN WINDOW, the frame's only light, with its beam and dust */
+    var beam = AKHOLD.offscreen(W, H, function (g) {
+      var r = g.createRadialGradient(WINX, WINY, 8, WINX, WINY, 520);
+      r.addColorStop(0, 'rgba(200,222,238,.85)'); r.addColorStop(.22, 'rgba(140,172,196,.28)');
+      r.addColorStop(1, 'rgba(140,172,196,0)');
+      g.fillStyle = r;
+      g.beginPath(); g.moveTo(WINX, WINY); g.lineTo(WINX - 300, 1354); g.lineTo(WINX + 250, 1354);
+      g.closePath(); g.fill();
+    });
+    cx.save(); cx.globalCompositeOperation = 'screen'; cx.globalAlpha = .34;
+    cx.drawImage(beam, 0, 0, W, H); cx.restore();
+    /* the window itself */
+    var wg = cx.createRadialGradient(WINX - 14, WINY - 16, 4, WINX, WINY, WINR);
+    wg.addColorStop(0, '#C8DAE8'); wg.addColorStop(.6, '#6E8AA3'); wg.addColorStop(1, '#2E4356');
+    cx.fillStyle = wg;
+    cx.beginPath(); cx.ellipse(WINX, WINY, WINR, WINR * 1.16, 0, 0, Math.PI * 2); cx.fill();
+    cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 9;
+    cx.beginPath(); cx.ellipse(WINX, WINY, WINR + 5, WINR * 1.16 + 5, 0, 0, Math.PI * 2); cx.stroke();
+    cx.strokeStyle = 'rgba(200,222,238,.52)'; cx.lineWidth = 2.6;
+    cx.beginPath(); cx.ellipse(WINX, WINY, WINR + 10, WINR * 1.16 + 10, -0.2, -1.9, 0.6); cx.stroke();
+    cx.strokeStyle = 'rgba(62,76,90,.72)'; cx.lineWidth = 1.1;
+    cx.beginPath(); cx.ellipse(WINX, WINY, WINR + 10, WINR * 1.16 + 10, -0.2, 0.6, 4.383); cx.stroke();
+    AKHOLD.motes(cx, [[WINX - 300, 1354], [WINX, WINY], [WINX + 250, 1354]], 90, 3141,
+                 'rgba(200,222,238,.30)');
+
+    /* 5. THE FLOOR and the loaded track receding toward the window */
+    var fl = cx.createLinearGradient(0, 1040, 0, H);
+    fl.addColorStop(0, '#111C27'); fl.addColorStop(1, '#1A2733');
+    cx.fillStyle = fl; cx.fillRect(0, 1040, W, H - 1040);
+    (function () {
+      cx.strokeStyle = 'rgba(120,146,168,.34)'; cx.lineWidth = 26;
+      cx.beginPath(); cx.moveTo(-40, 1268); cx.lineTo(940, 1074); cx.stroke();
+      cx.strokeStyle = 'rgba(200,222,238,.26)'; cx.lineWidth = 1.4;
+      cx.beginPath(); cx.moveTo(-40, 1256); cx.lineTo(940, 1062); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 2;
+      cx.beginPath(); cx.moveTo(-40, 1282); cx.lineTo(940, 1088); cx.stroke();
+      /* the near ring, loaded, and a far ring still empty */
+      cx.strokeStyle = 'rgba(140,166,188,.5)'; cx.lineWidth = 3;
+      cx.beginPath(); cx.ellipse(690, 1140, 15, 5.4, -0.2, 0, Math.PI * 2); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.2;
+      cx.beginPath(); cx.ellipse(690, 1143, 15, 5.4, -0.2, 0, Math.PI * 2); cx.stroke();
+    })();
+
+    /* 6. THE UNIT CRATE, strapped, in the foreground, its buckle catching the
+     * window's light. The buckle and the Polaris are the deck's last gold. */
+    var KX = 408, KY = 1244, KW = 200, KH = 132, KD = 68;
+    AKHOLD.contact(cx, { x: KX + KW / 2, y: KY + 2, w: 124, k: .62, seamW: KW * .46 });
+    cx.fillStyle = '#151F2A';
+    cx.beginPath(); cx.moveTo(KX + KW, KY - KH - 18); cx.lineTo(KX + KW + KD, KY - KH + 8);
+    cx.lineTo(KX + KW + KD, KY + 8 - 18); cx.lineTo(KX + KW, KY - 18); cx.closePath(); cx.fill();
+    var kf = cx.createLinearGradient(KX, KY - KH, KX + KW, KY);
+    kf.addColorStop(0, '#1C2733'); kf.addColorStop(1, '#2E3D4B');
+    cx.fillStyle = kf;
+    cx.beginPath(); cx.moveTo(KX, KY - KH); cx.lineTo(KX + KW, KY - KH - 18);
+    cx.lineTo(KX + KW, KY - 18); cx.lineTo(KX, KY); cx.closePath(); cx.fill();
+    cx.fillStyle = '#3C4C5A';
+    cx.beginPath(); cx.moveTo(KX, KY - KH); cx.lineTo(KX + KW, KY - KH - 18);
+    cx.lineTo(KX + KW + KD, KY - KH + 8); cx.lineTo(KX + KD, KY - KH + 26); cx.closePath(); cx.fill();
+    cx.save();
+    cx.beginPath(); cx.moveTo(KX, KY - KH); cx.lineTo(KX + KW, KY - KH - 18);
+    cx.lineTo(KX + KW, KY - 18); cx.lineTo(KX, KY); cx.closePath(); cx.clip();
+    for (var pg = 0; pg < 200; pg++) {
+      var gx = KX + AK.rng(5150 + pg)() * KW;
+      var gy = KY - KH + AK.rng(9080 + pg)() * (KH + 8) - (gx - KX) / KW * 18;
+      cx.fillStyle = pg % 2 ? 'rgba(200,218,232,.055)' : 'rgba(2,5,10,.16)';
+      cx.fillRect(gx, gy, 11 + (pg % 6), 1.2);
+    }
+    cx.restore();
+    cx.strokeStyle = 'rgba(200,222,238,.34)'; cx.lineWidth = 1.5;
+    cx.beginPath(); cx.moveTo(KX, KY - KH); cx.lineTo(KX + KW, KY - KH - 18); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 1.3;
+    cx.beginPath(); cx.moveTo(KX, KY); cx.lineTo(KX + KW, KY - 18); cx.stroke();
+    /* the locked strap */
+    cx.strokeStyle = '#3A4428'; cx.lineWidth = 15;
+    cx.beginPath(); cx.moveTo(KX + 72, KY - 6); cx.lineTo(KX + 72, KY - KH - 6);
+    cx.lineTo(KX + 72 + KD, KY - KH + 20); cx.stroke();
+    cx.strokeStyle = 'rgba(200,222,238,.14)'; cx.lineWidth = 2.2;
+    cx.beginPath(); cx.moveTo(KX + 66, KY - 6); cx.lineTo(KX + 66, KY - KH - 6); cx.stroke();
+    /* THE CAM BUCKLE, gold, catching the window */
+    (function () {
+      var bx = KX + 56, by = KY - 78, bw = 44, bh = 34;
+      /* the buckle's own cast onto the webbing under it */
+      cx.fillStyle = 'rgba(2,5,10,.55)';
+      cx.beginPath(); cx.moveTo(bx - 4, by + 8); cx.lineTo(bx + bw - 6, by + 4);
+      cx.lineTo(bx + bw - 4, by + bh + 2); cx.lineTo(bx - 2, by + bh + 6); cx.closePath(); cx.fill();
+      /* the zinc body, keyed upper right */
+      var g = cx.createLinearGradient(bx + bw, by, bx, by + bh);
+      g.addColorStop(0, '#FFDE78'); g.addColorStop(.46, '#FFC72C'); g.addColorStop(1, '#B4820F');
+      cx.fillStyle = g;
+      cx.beginPath(); cx.moveTo(bx, by + 4); cx.lineTo(bx + bw, by);
+      cx.lineTo(bx + bw + 2, by + bh - 2); cx.lineTo(bx + 2, by + bh + 2); cx.closePath(); cx.fill();
+      /* the cam arm, proud of the body, with the slot as the gap under it */
+      cx.fillStyle = 'rgba(2,5,10,.62)';
+      cx.beginPath(); cx.moveTo(bx + 7, by + 13); cx.lineTo(bx + bw - 5, by + 9);
+      cx.lineTo(bx + bw - 5, by + 19); cx.lineTo(bx + 7, by + 23); cx.closePath(); cx.fill();
+      var ag = cx.createLinearGradient(bx + bw, by + 6, bx, by + 18);
+      ag.addColorStop(0, '#FFE7A0'); ag.addColorStop(1, '#D79E17');
+      cx.fillStyle = ag;
+      cx.beginPath(); cx.moveTo(bx + 6, by + 9); cx.lineTo(bx + bw - 4, by + 5);
+      cx.lineTo(bx + bw - 4, by + 12); cx.lineTo(bx + 6, by + 16); cx.closePath(); cx.fill();
+      /* the lit arris along the body's key edge, and the lee under it */
+      cx.strokeStyle = 'rgba(255,246,214,.85)'; cx.lineWidth = 1.3;
+      cx.beginPath(); cx.moveTo(bx, by + 4); cx.lineTo(bx + bw, by); cx.stroke();
+      cx.strokeStyle = 'rgba(60,38,2,.70)'; cx.lineWidth = 1.2;
+      cx.beginPath(); cx.moveTo(bx + 2, by + bh + 2); cx.lineTo(bx + bw + 2, by + bh - 2); cx.stroke();
+    })();
+
+    AKHOLD.grade(cx, { exposure: 0.02, contrast: 1.10,
+                       lift: [0.014, 0.020, 0.032],
+                       bloom: { threshold: 0.66, strength: 0.40, radius: 12 },
+                       grain: { amount: 0.052, size: 2, seed: 20260914 }, dither: true });
+    window.__akMotifs = [{ what: 'the strapped unit crate in the foreground',
+                           rect: [KX - 8, KY - KH - 30, KW + KD + 16, KH + 40] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;font-family:'JetBrains Mono',monospace;font-size:26px;
+        font-weight:600;letter-spacing:.11em}
+  .head{position:absolute;overflow:hidden;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;line-height:1.12;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       letter-spacing:.08em;color:#D7E4EE}
+  .tags{position:absolute;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .kick{left:80px;top:96px;color:#B9C8D6}
+  .head{left:74px;top:142px;width:700px;font-size:74px}
+  .body{left:80px;top:352px;width:520px}
+  .ann{left:80px;top:648px;width:620px;line-height:1.4}
+  .tags{left:352px;bottom:27px}
+</style>
+</head>
+<body data-contacts='[{"what":"the freight stack on the seat track","shadow":[[421,1258,26,10]],"ground":[[318,1258,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"present"},{"hex":"#6EA5FF","means":"a planning row","state":"absent"}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+  <div class="kick">UNALAKLEET, 1953</div>
+  <div class="head">A family freight line<br>with a grant</div>
+  <div class="body">Ryan Air started in 1953 in the village of Unalakleet and is managed by the third generation of the Ryan family. It serves 80 villages throughout Western Alaska and operates 24 aircraft out of eight hubs.</div>
+  <div class="ann">ALREADY ABOARD&nbsp;&nbsp;FURNITURE, CLOTHING, FOOD, MEDICAL SUPPLIES</div>
+  <div class="tags" data-decorative>C29&nbsp;&nbsp;C30&nbsp;&nbsp;C31&nbsp;&nbsp;C32</div>
+  <div class="ctr" data-decorative>03 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 03 -- WHO FLIES IT.
+ * LIGHT az 76, el 12, key to fill 6 to 1. THE LIGHT IS TO THE UPPER RIGHT AND
+ * EVERY CAST RUNS TO THE LOWER LEFT.
+ * Camera station 03, high near the ceiling, looking 55 degrees down and aft, so
+ * the floor fills the lower two thirds and the freight runs on a diagonal. The
+ * heaviest mass in the frame is in its lowest third, which is the opposite of
+ * the top loaded composition this studio keeps shipping.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 2 });
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .kick, .ann, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. the hold seen from above, the far end fogged */
+    var bg = cx.createLinearGradient(300, 0, 900, H);
+    bg.addColorStop(0, '#05090F'); bg.addColorStop(.55, '#0B131E'); bg.addColorStop(1, '#141F2B');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+
+    /* 2. the aperture, up and right, Norton Sound coast and tundra ponds */
+    var AP = [[812, 96], [1096, 60], [1096, 596], [826, 636]];
+    var world = AKHOLD.offscreen(W, H, function (g) {
+      var sg = g.createLinearGradient(0, 60, 0, 660);
+      sg.addColorStop(0, '#7E98AC'); sg.addColorStop(.34, '#40607A');
+      sg.addColorStop(.52, '#1E3A4E'); sg.addColorStop(.74, '#243128'); sg.addColorStop(1, '#2E3B2E');
+      g.fillStyle = sg; g.fillRect(760, 40, 400, 640);
+      g.fillStyle = 'rgba(215,228,238,.46)'; g.fillRect(760, 356, 400, 2);
+      /* tundra ponds, small bright lenses on the dark ground */
+      for (var i = 0; i < 42; i++) {
+        var px = 780 + AK.rng(311 + i)() * 360, py = 470 + AK.rng(707 + i)() * 190;
+        g.fillStyle = 'rgba(120,156,180,.50)';
+        g.beginPath(); g.ellipse(px, py, 7 + AK.rng(99 + i)() * 12, 3 + AK.rng(44 + i)() * 4, 0, 0, Math.PI * 2); g.fill();
+      }
+    });
+    cx.save();
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i = 1; i < 4; i++) cx.lineTo(AP[i][0], AP[i][1]);
+    cx.closePath(); cx.clip();
+    cx.drawImage(AKHOLD.streak(world, 14), 0, 0, W, H);
+    cx.restore();
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i2 = 1; i2 < 4; i2++) cx.lineTo(AP[i2][0], AP[i2][1]);
+    cx.closePath(); cx.lineWidth = 13; cx.strokeStyle = '#060C15'; cx.stroke();
+    cx.lineWidth = 3; cx.strokeStyle = 'rgba(190,212,230,.44)';
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]); cx.lineTo(AP[1][0], AP[1][1]); cx.stroke();
+
+    /* 3. ceiling loom and ribs at the very top, foreshortened hard */
+    for (var cb = 0; cb < 4; cb++) {
+      var cy2 = 24 + cb * 26;
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 7 - cb;
+      cx.beginPath(); cx.moveTo(-10, cy2); cx.quadraticCurveTo(380, cy2 + 34, 800, cy2 + 92); cx.stroke();
+      cx.strokeStyle = 'rgba(175,198,216,.13)'; cx.lineWidth = .9;
+      cx.beginPath(); cx.moveTo(-10, cy2 - 3); cx.quadraticCurveTo(380, cy2 + 31, 800, cy2 + 89); cx.stroke();
+    }
+
+    /* 4. the floor, and the wedge lying across the middle of the stack */
+    var fl = cx.createLinearGradient(0, 700, 0, H);
+    fl.addColorStop(0, '#0E1823'); fl.addColorStop(1, '#1C2A38');
+    cx.fillStyle = fl; cx.fillRect(0, 700, W, H - 700);
+    var WEDGE = [[300, 762], [826, 700], [1120, 1354], [520, 1354]];
+    AKHOLD.wedge(cx, WEDGE, { alpha: .22, gx0: 826, gy0: 700, gx1: 520, gy1: 1354 });
+
+    /* 5. THE SEAT TRACK running on the diagonal, with 24 rivet PAIRS, one per
+     * Ryan Air aircraft [C30], and 8 tie-down rings, one per hub [C30]. */
+    var trackA = [150, 1300], trackB = [1000, 792];
+    (function () {
+      var g = cx.createLinearGradient(trackA[0], trackA[1], trackB[0], trackB[1]);
+      g.addColorStop(0, '#475868');
+      g.addColorStop(.5, '#2C3C4A'); g.addColorStop(1, '#1A2632');
+      cx.strokeStyle = g; cx.lineWidth = 46; cx.lineCap = 'butt';
+      cx.beginPath(); cx.moveTo(trackA[0], trackA[1]); cx.lineTo(trackB[0], trackB[1]); cx.stroke();
+      cx.strokeStyle = 'rgba(230,240,248,.34)'; cx.lineWidth = 1.5;
+      cx.beginPath(); cx.moveTo(trackA[0] + 14, trackA[1] - 20); cx.lineTo(trackB[0] + 14, trackB[1] - 20); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.86)'; cx.lineWidth = 2;
+      cx.beginPath(); cx.moveTo(trackA[0] - 16, trackA[1] + 22); cx.lineTo(trackB[0] - 16, trackB[1] + 22); cx.stroke();
+    })();
+    var rivPairs = [], hubRings = [];
+
+    /* 6. ORDINARY FREIGHT on the diagonal. A sofa arm under a moving blanket in
+     * the near field and softly out of focus, banana boxes, a canvas mail tote.
+     * The unit crate is buried among them and is the only STRAPPED thing. */
+    function box(x, y, w, h, d, lit, mid, lee, tooth) {
+      cx.fillStyle = lee;
+      cx.beginPath(); cx.moveTo(x + w, y - h); cx.lineTo(x + w + d, y - h + d * .4);
+      cx.lineTo(x + w + d, y + d * .4); cx.lineTo(x + w, y); cx.closePath(); cx.fill();
+      cx.fillStyle = lit;
+      cx.beginPath(); cx.moveTo(x, y - h); cx.lineTo(x + w, y - h);
+      cx.lineTo(x + w + d, y - h + d * .4); cx.lineTo(x + d, y - h + d * .4); cx.closePath(); cx.fill();
+      var g = cx.createLinearGradient(x, y - h, x + w, y);
+      g.addColorStop(0, mid); g.addColorStop(1, lee);
+      cx.fillStyle = g;
+      cx.fillRect(x, y - h, w, h);
+      if (tooth) {
+        cx.save(); cx.beginPath(); cx.rect(x, y - h, w, h); cx.clip();
+        for (var q = 0; q < 90; q++) {
+          var qx = x + AK.rng(1500 + q + x)() * w, qy = y - h + AK.rng(2600 + q + y)() * h;
+          cx.fillStyle = q % 2 ? 'rgba(200,218,232,.08)' : 'rgba(2,5,10,.16)';
+          cx.fillRect(qx, qy, 8 + (q % 6), 1.1);
+        }
+        cx.restore();
+      }
+      cx.strokeStyle = 'rgba(230,240,248,.34)'; cx.lineWidth = 1.3;
+      cx.beginPath(); cx.moveTo(x, y - h); cx.lineTo(x + w, y - h); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.2;
+      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x + w, y); cx.stroke();
+    }
+    /* banana boxes, repeating at 0.78 per step going aft */
+    var bx = 600, by = 900, bw = 168, bh = 56;
+    for (var k = 0; k < 4; k++) {
+      box(bx, by, bw, bh, 34, '#6F8090', '#41505E', '#212D38', true);
+      /* the printed side: two bands and a hand vent, so this is a produce
+       * box and not another unit crate */
+      cx.save();
+      cx.beginPath(); cx.rect(bx, by - bh, bw, bh); cx.clip();
+      cx.fillStyle = 'rgba(206,224,238,.16)';
+      cx.fillRect(bx, by - bh * 0.74, bw, bh * 0.10);
+      cx.fillStyle = 'rgba(2,5,10,.34)';
+      cx.fillRect(bx, by - bh * 0.60, bw, bh * 0.045);
+      /* the hand vent, a real cut with a lit lower lip */
+      var vw = bw * 0.26, vh = bh * 0.13;
+      var vx = bx + bw * 0.37, vy = by - bh * 0.42;
+      cx.fillStyle = 'rgba(2,5,10,.86)';
+      cx.beginPath();
+      cx.moveTo(vx, vy); cx.lineTo(vx + vw, vy);
+      cx.lineTo(vx + vw, vy + vh); cx.lineTo(vx, vy + vh); cx.closePath(); cx.fill();
+      cx.strokeStyle = 'rgba(206,224,238,.30)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.moveTo(vx, vy + vh); cx.lineTo(vx + vw, vy + vh); cx.stroke();
+      cx.restore();
+      /* each box casts, and every cast runs to the lower left */
+      AKHOLD.contact(cx, { x: bx + bw * 0.5, y: by, w: bw * 0.62, k: 0.42,
+                           seamW: bw * 0.34, len: bh * 1.5 });
+      bx -= bw * .66; by += bh * 1.24; bw *= 1.12; bh *= 1.08;
+    }
+    /* THE MAIL TOTE, canvas, and it has to be an OBJECT. At #3B4650 against
+     * the lit wedge behind it the fill and the ground were within a couple of
+     * L* of each other, so all a reader saw was the hairline stroke and the
+     * scorer read it as a selection marquee lying on the floor. A canvas bag
+     * slumps, takes the key on its upper swell, goes to lee on its lower
+     * belly, carries webbing handles and casts like everything else here. */
+    (function () {
+      AKHOLD.contact(cx, { x: 822, y: 918, w: 104, k: 0.50, seamW: 58, len: 118 });
+      /* the lee belly first, so the lit swell sits proud of it */
+      cx.fillStyle = '#202B35';
+      cx.beginPath(); cx.moveTo(752, 872); cx.quadraticCurveTo(806, 836, 884, 852);
+      cx.lineTo(896, 910); cx.quadraticCurveTo(816, 938, 748, 918); cx.closePath(); cx.fill();
+      /* the lit swell, keyed from the upper right */
+      var tg = cx.createLinearGradient(896, 840, 752, 924);
+      tg.addColorStop(0, '#7D8D9B'); tg.addColorStop(.52, '#4E5C69'); tg.addColorStop(1, '#2A3642');
+      cx.fillStyle = tg;
+      cx.beginPath(); cx.moveTo(756, 866); cx.quadraticCurveTo(808, 826, 884, 844);
+      cx.lineTo(893, 900); cx.quadraticCurveTo(814, 926, 752, 908); cx.closePath(); cx.fill();
+      /* canvas tooth, clipped to the bag */
+      cx.save();
+      cx.beginPath(); cx.moveTo(756, 866); cx.quadraticCurveTo(808, 826, 884, 844);
+      cx.lineTo(893, 900); cx.quadraticCurveTo(814, 926, 752, 908); cx.closePath(); cx.clip();
+      for (var tq = 0; tq < 120; tq++) {
+        var tx2 = 748 + AK.rng(7711 + tq)() * 150, ty2 = 826 + AK.rng(8822 + tq)() * 104;
+        cx.fillStyle = tq % 2 ? 'rgba(206,224,238,.09)' : 'rgba(2,5,10,.16)';
+        cx.fillRect(tx2, ty2, 5 + (tq % 5), 1.0);
+      }
+      cx.restore();
+      /* the mouth, gathered, and the two webbing handles */
+      cx.strokeStyle = 'rgba(226,238,248,.42)'; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(756, 866); cx.quadraticCurveTo(808, 826, 884, 844); cx.stroke();
+      cx.strokeStyle = '#414A38'; cx.lineWidth = 5;
+      cx.beginPath(); cx.moveTo(786, 852); cx.quadraticCurveTo(806, 812, 830, 840); cx.stroke();
+      cx.beginPath(); cx.moveTo(838, 846); cx.quadraticCurveTo(858, 810, 878, 844); cx.stroke();
+      cx.strokeStyle = 'rgba(147,162,176,.34)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.moveTo(786, 850); cx.quadraticCurveTo(806, 810, 830, 838); cx.stroke();
+      /* the lee edge, struck */
+      cx.strokeStyle = 'rgba(2,5,10,.72)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(752, 908); cx.quadraticCurveTo(814, 926, 893, 900); cx.stroke();
+    })();
+
+    /* 6b. THE NEAR SEAT TRACK, the second rail of the same floor, running
+     * parallel to the loaded one and carrying the countable hardware. The
+     * isotype lives here and not on the loaded track because freight sits on
+     * a loaded track by definition: the first cut put 24 rivet pairs under
+     * the mail tote and the banana stack and the frame could only be counted
+     * to 19. A count a reader cannot take off the picture is not an encoding.
+     * 24 rivet PAIRS, one per Ryan Air aircraft [C30]; 8 tie-down RINGS, one
+     * per hub [C30]. Nothing is drawn over this rail after it. */
+    (function () {
+      var nA = [268, 1497], nB = [1118, 989];
+      var dx = nB[0] - nA[0], dy = nB[1] - nA[1];
+      var L = Math.sqrt(dx * dx + dy * dy);
+      var px = -dy / L, py = dx / L;            // perpendicular, down and right
+      function P(t) { return [nA[0] + dx * t, nA[1] + dy * t]; }
+      /* the rail is stroked from t 0.385 only: earlier than that it would run
+       * under the claim-id fixture line, and the unit crate's corner covers
+       * the cut so the rail reads as continuing behind the freight. */
+      var S = P(0.385), E = P(1);
+      var g = cx.createLinearGradient(S[0], S[1], E[0], E[1]);
+      g.addColorStop(0, '#54687A'); g.addColorStop(.5, '#324453'); g.addColorStop(1, '#1E2B38');
+      cx.strokeStyle = g; cx.lineWidth = 40; cx.lineCap = 'butt';
+      cx.beginPath(); cx.moveTo(S[0], S[1]); cx.lineTo(E[0], E[1]); cx.stroke();
+      cx.strokeStyle = 'rgba(232,242,250,.36)'; cx.lineWidth = 1.6;
+      cx.beginPath();
+      cx.moveTo(S[0] - px * 19, S[1] - py * 19); cx.lineTo(E[0] - px * 19, E[1] - py * 19); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.88)'; cx.lineWidth = 2.2;
+      cx.beginPath();
+      cx.moveTo(S[0] + px * 20, S[1] + py * 20); cx.lineTo(E[0] + px * 20, E[1] + py * 20); cx.stroke();
+      for (var rp = 0; rp < 24; rp++) {
+        var t = 0.42 + (rp + .5) / 24 * 0.50;
+        var p = P(t), sc = 1 - t * .30;
+        AKHOLD.rivet(cx, p[0] - px * 6.5 * sc, p[1] - py * 6.5 * sc, 2.8 * sc,
+                     'rgba(180,198,214,.70)', 'rgba(2,5,10,.92)');
+        AKHOLD.rivet(cx, p[0] + px * 6.5 * sc, p[1] + py * 6.5 * sc, 2.8 * sc,
+                     'rgba(180,198,214,.70)', 'rgba(2,5,10,.92)');
+        rivPairs.push([p[0], p[1]]);
+      }
+      for (var hb = 0; hb < 8; hb++) {
+        var t2 = 0.455 + (hb + .5) / 8 * 0.45;
+        var q = P(t2), s2 = 1 - t2 * .30;
+        cx.fillStyle = 'rgba(4,9,16,.92)';
+        cx.beginPath(); cx.ellipse(q[0], q[1], 21 * s2, 8.4 * s2, -0.54, 0, Math.PI * 2); cx.fill();
+        cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 1.4;
+        cx.beginPath(); cx.ellipse(q[0], q[1] + 3, 21 * s2, 8.4 * s2, -0.54, 0, Math.PI * 2); cx.stroke();
+        cx.strokeStyle = 'rgba(215,228,238,.92)'; cx.lineWidth = 3.8 * s2;
+        cx.beginPath(); cx.ellipse(q[0], q[1], 21 * s2, 8.4 * s2, -0.54, 0, Math.PI * 2); cx.stroke();
+        /* the lit arris on the key quadrant only */
+        cx.strokeStyle = 'rgba(244,248,255,.95)'; cx.lineWidth = 1.8 * s2;
+        cx.beginPath(); cx.ellipse(q[0], q[1], 21 * s2, 8.4 * s2, -0.54, -1.5, 0.4); cx.stroke();
+        hubRings.push([q[0], q[1]]);
+      }
+    })();
+
+    /* the sofa arm under a moving blanket, near field, deliberately soft */
+    var soft = AKHOLD.offscreen(W, H, function (g) {
+      g.fillStyle = '#2A3340';
+      g.beginPath(); g.moveTo(-40, 1354); g.quadraticCurveTo(60, 1140, 250, 1128);
+      g.quadraticCurveTo(330, 1210, 306, 1354); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(200,218,232,.22)'; g.lineWidth = 6;
+      for (var f = 0; f < 5; f++) {
+        g.beginPath(); g.moveTo(-30 + f * 22, 1354);
+        g.quadraticCurveTo(70 + f * 30, 1190 + f * 18, 250 + f * 8, 1150 + f * 26); g.stroke();
+      }
+    });
+    cx.save(); cx.filter = 'blur(9px)'; cx.drawImage(soft, 0, 0, W, H); cx.restore();
+
+    /* the unit crate, buried, the only strapped object, with the gold buckle */
+    var UX = 356, UY = 1258, UW = 178, UH = 120, UD = 62;
+    AKHOLD.contact(cx, { x: UX + UW / 2, y: UY + 2, w: 118, k: .9, seamW: UW * .46 });
+    box(UX, UY, UW, UH, UD, '#8195A4', '#46586A', '#232F3B', true);
+    cx.strokeStyle = '#46522F'; cx.lineWidth = 13;
+    cx.beginPath(); cx.moveTo(UX - 24, UY - 34); cx.lineTo(UX + UW + 30, UY - 58); cx.stroke();
+    cx.strokeStyle = 'rgba(215,228,238,.18)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.moveTo(UX - 24, UY - 39); cx.lineTo(UX + UW + 30, UY - 63); cx.stroke();
+    /* THE GOLD BUCKLE. The only gold on this frame, under 0.3 percent of area. */
+    cx.fillStyle = '#FFC72C';
+    cx.beginPath(); cx.moveTo(UX + 74, UY - 60); cx.lineTo(UX + 118, UY - 66);
+    cx.lineTo(UX + 120, UY - 40); cx.lineTo(UX + 76, UY - 34); cx.closePath(); cx.fill();
+    cx.fillStyle = 'rgba(2,5,10,.55)';
+    cx.fillRect(UX + 84, UY - 56, 26, 6);
+
+    cx.save();
+    for (var ag = 0; ag < 4200; ag++) {
+      var ax = AK.rng(2100 + ag)() * W, ay = AK.rng(6311 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0048, ay * 0.0098, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.74, strength: 0.24, radius: 8 } });
+
+    window.__akAssert = [
+      { what: '24 aircraft, one rivet pair each', expect: 24, points: rivPairs, unit: 'marks' },
+      { what: 'eight hubs, one tie-down ring each', expect: 8, points: hubRings, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the unit crate, the only strapped freight',
+                           rect: [UX - 10, UY - UH - 70, UW + UD + 20, UH + 80] }];
+
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

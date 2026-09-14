@@ -1,0 +1,245 @@
+{
+ "run_date": "2026-09-14",
+ "carousel_no": 59,
+ "document_title": "Update. The Plan Got 250,000. The Aircraft Got More",
+ "post_copy": "Alaska's rural health program awarded $250,000 for a drone plan on August 14th. On September 4th it awarded $4,171,115 for aircraft.\n\nThis page reported that planning year as the whole machine story. Three weeks later it is not.\n\nTanana Chiefs Conference took the planning grant. A year of beyond visual line of sight waiver work with ACUASI at UAF before one box flies.\n\nRyan Air got the implementation grant. A family line flying 80 villages out of Unalakleet since 1953. Its award names \"autonomous cargo drones and electric vertical take-off and landing aircraft\".\n\nBoth award rows are drawn as freight on one aircraft floor, with the ten rows out of 217 that name a machine.\n\nRoughly $65 million is unawarded before an October 30th deadline. Which of those two grants should the rest of that money look like?\n\n#AlaskaAviation #RuralHealthTransformation #BVLOS",
+ "deck_summary_line": "Both award rows are drawn as freight on one aircraft floor, with the ten rows out of 217 that name a machine.",
+ "caption_meta": {
+  "opening_move": "TIMELINE COLLAPSE",
+  "structure": "BRAID",
+  "closing_move": "WHICH GRANT THE REMAINDER FOLLOWS",
+  "hook_type": "TWO DATED SUMS FOR ONE IDEA",
+  "first_8_words": "Alaska's rural health program awarded $250,000 for a"
+ },
+ "first_comment": "Sources, primary first\n\nAlaska Department of Health, Notice of Intent to Award spreadsheet, the 217 award rows and the two rows this deck turns on, read September 14th, 2026. https://health.alaska.gov/media/tcvker5a/ak_rhtp_awardsnotice_2026.xlsx\n\nAlaska Department of Health, Rural Health Transformation Program page, the first year allocation and the October 30th obligation deadline, read September 14th, 2026. https://health.alaska.gov/en/education/rural-health-transformation-program/\n\nCenters for Medicare and Medicaid Services newsroom, the press release of August 25th, 2026 announcing a $160 million Rural Health Transformation investment in Alaska, which describes the Interior drone planning project, the Ketchikan robotic surgery award and the stroke imaging network. Search the CMS newsroom for the August 25th Alaska release.\n\nAlaska Beacon by James Brooks, carried by the Petersburg Pilot, \"Alaska continues rollout of Rural Health Transformation Program awards\", September 10th, 2026. https://www.petersburgpilot.com/story/2026/09/10/news/alaska-continues-rollout-of-rural-health-transformation-program-awards/16084.html\n\nAlaska Center for Unmanned Aircraft Systems Integration at the University of Alaska Fairbanks, the FAA test site designation, read September 14th, 2026. https://acuasi.alaska.edu/\n\nRyan Air, the carrier's own site, 1953 in Unalakleet, 80 villages, 24 aircraft out of eight hubs, read September 14th, 2026. https://www.ryanalaska.com/\n\nAlaska Department of Transportation and Public Facilities, Division of Statewide Aviation, 402 communities, 82 percent and 235 airports, read September 14th, 2026. https://dot.alaska.gov/stwdav/\n\nEvery decision this page tracks, with the live deadlines beside it, sits at alaskaaihq.com\n\nIf you work one of these rows and the file reads wrong from where you sit, add it below and it gets read.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "UPDATE",
+   "headline": "",
+   "body": "",
+   "labels": [
+    "UPDATE",
+    "THE PLAN GOT",
+    "$250,000",
+    "THE AIRCRAFT GOT",
+    "$4,171,115",
+    "01 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C13",
+    "C07"
+   ],
+   "claim_ids": [
+    "C13",
+    "C07"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "SEPTEMBER 4TH",
+   "headline": "THE AWARD SAYS IMPLEMENTATION NOT PLANNING",
+   "body": "Ryan Air was awarded $4,171,115 to deploy \"autonomous cargo drones and electric vertical take-off and landing aircraft\" carrying pharmaceuticals and moving patients across roadless communities. IA means aircraft, not a study.",
+   "labels": [
+    "SUMMARY SAYS BETHEL AND DILLINGHAM REGIONS",
+    "SERVICE AREA FIELD ANCHORAGE / BRISTOL BAY / DILLINGHAM / YUKON-KOYUKUK",
+    "02 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C07",
+    "C08",
+    "C10",
+    "C12"
+   ],
+   "claim_ids": [
+    "C07",
+    "C08",
+    "C10",
+    "C12"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "UNALAKLEET, 1953",
+   "headline": "A FAMILY FREIGHT LINE WITH A GRANT",
+   "body": "Ryan Air started in 1953 in the village of Unalakleet and is managed by the third generation of the Ryan family. It serves 80 villages throughout Western Alaska and operates 24 aircraft out of eight hubs.",
+   "labels": [
+    "ALREADY ABOARD FURNITURE, CLOTHING, FOOD, MEDICAL SUPPLIES",
+    "03 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C31",
+    "C29",
+    "C30",
+    "C32"
+   ],
+   "claim_ids": [
+    "C31",
+    "C29",
+    "C30",
+    "C32"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "ALASKA DOT AND PF",
+   "headline": "AIRCRAFT TAKE THE PLACE OF AMBULANCES",
+   "body": "402 Alaskan communities depend on aviation for year round access, where aircraft often take the place of cars, school buses, semitrucks, and ambulances. That is 82 percent of the state's communities, served by 235 airports. Ryan Air's own proposal calls the gap \"life-threatening\".",
+   "labels": [
+    "04 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C11",
+    "C33",
+    "C34",
+    "C35"
+   ],
+   "claim_ids": [
+    "C11",
+    "C33",
+    "C34",
+    "C35"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "THE SAME FLOOR",
+   "headline": "ONE PROGRAM. TWO LOADS.",
+   "body": "",
+   "labels": [
+    "ONE CRATE = $250,000",
+    "$250,000",
+    "TANANA CHIEFS CONFERENCE PLANNING",
+    "$4,171,115",
+    "RYAN AIR IMPLEMENTATION",
+    "05 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C13",
+    "C07"
+   ],
+   "claim_ids": [
+    "C13",
+    "C07"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "AUGUST 14TH BP1 PL 026",
+   "headline": "THE INTERIOR GOT A YEAR TO PLAN",
+   "body": "Tanana Chiefs Conference took $250,000 for a planning year on the same idea, a drone pharmaceutical route from a Fairbanks hub to 42 Interior villages across 94,000 square miles. Tanana Chiefs says winter medication delays of 5 to 14 days are common.",
+   "labels": [
+    "94,000 SQ MI 42 VILLAGES",
+    "06 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C13",
+    "C14",
+    "C15",
+    "C16"
+   ],
+   "claim_ids": [
+    "C13",
+    "C14",
+    "C15",
+    "C16"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "THE FORWARD BULKHEAD",
+   "headline": "FIRST THE WAIVER THEN THE AIRCRAFT",
+   "body": "Tanana Chiefs names the University of Alaska Fairbanks Alaska Center for Unmanned Aircraft Systems Integration as its partner on FAA beyond visual line of sight waivers. ACUASI was selected as one of the first seven FAA unmanned aircraft test sites.",
+   "labels": [
+    "ACUASI BVLOS",
+    "07 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C17",
+    "C18"
+   ],
+   "claim_ids": [
+    "C17",
+    "C18"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "THE MACHINE MANIFEST",
+   "headline": "TEN ROWS NAME A MACHINE",
+   "body": "",
+   "labels": [
+    "ONE CRATE = $250,000 IA IMPLEMENTATION PL PLANNING",
+    "BARS AT TRUE LENGTH. FIGURES WHERE CITED.",
+    "PEACEHEALTH KETCHIKAN",
+    "$6,518,029",
+    "RYAN AIR",
+    "$4,171,115",
+    "ALASKA STROKE COALITION",
+    "$3,156,626",
+    "MAPHABIT",
+    "MANIILAQ ASSOCIATION",
+    "MAT-SU REGIONAL",
+    "TANANA CHIEFS CONF.",
+    "$250,000",
+    "BARTLETT REGIONAL",
+    "STATEWIDE INDEP. LIVING",
+    "KODIAK COMMUNITY HEALTH",
+    "21 HOSPITALS",
+    "TEN OF 217 ROWS NAME A MACHINE. NOT A STATE CATEGORY.",
+    "$16,415,719.55 OF $207,690,348.33 AWARDED.",
+    "08 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C19",
+    "C07",
+    "C20",
+    "C13",
+    "C21",
+    "C06"
+   ],
+   "claim_ids": [
+    "C19",
+    "C07",
+    "C20",
+    "C13",
+    "C21",
+    "C06"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "THE ROUNDS ARE NOT FINISHED",
+   "body": "Roughly $65 million is still expected to be awarded ahead of a federal deadline of October 30th. The next Friday is the next row.",
+   "labels": [
+    "SAVE THIS ONE",
+    "ALASKA.AI",
+    "09 / 09",
+    "alaskaaihq.com"
+   ],
+   "claims": [
+    "C27"
+   ],
+   "claim_ids": [
+    "C27"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post on a Tuesday, Wednesday or Thursday between 8am and 11am Alaska time. A Friday morning also works for this one, because the state releases the next award round that afternoon.",
+  "Paste the first comment source block within 60 seconds of posting, as plain text with the raw URLs intact, so the links stay clickable and the primary spreadsheet sits at the top.",
+  "Reply to every comment in the first 90 minutes. Aviation and tribal health readers know these two organisations firsthand, and a named correction in the thread is worth more than the post.",
+  "Check saves and comments at 48 hours. Saves are the signal for slide 08, the manifest frame, and a low save count on a data slide means the next data slide has to be more keepable.",
+  "Do not post this if the Friday round has already landed and changed the 217 or the $207,690,348.33. Both are a snapshot read on September 14th."
+ ],
+ "editor_notes_for_email": "The deck argues that Alaska's Rural Health Transformation Program has now bought the same idea twice at two very different prices. $250,000 went to Tanana Chiefs Conference on August 14th for a year of planning drone pharmaceutical delivery in the Interior, and $4,171,115 went to Ryan Air on September 4th to actually fly autonomous cargo drones and electric vertical take off and landing aircraft. The gap between a planning row and an implementation row is the story, not the technology. Slide 05 draws the two awards as crates on one aircraft floor at one scale, so the ratio is shown and never printed. This run is an explicit update to carousel No.45 of August 30th, whose published finding was that the one award naming a machine acting alone had got a planning year rather than an aircraft. The caption now says so in its second paragraph; the first cut spent that asset on the cover kicker alone and a reader was never told what had changed.\n\nThe softest claim is C12. The Alaska Beacon says Ryan Air's award summary names the Bethel and Dillingham regions, while the state spreadsheet's own Service Area field for that row reads Anchorage, Bristol Bay, Dillingham and Yukon-Koyukuk and does not list Bethel. Slide 02 prints both strings side by side on the manifest tag and deliberately refuses to reconcile them. That is the honest handling and it is also the line a Ryan Air or state health reader is most likely to challenge.\n\nThree more things a reader may push on. The ten rows that name a machine are a keyword tally made by this run over the primary award file, not a category the state publishes, and slide 08's footer says NOT A STATE CATEGORY in the pixels for that reason. The dossier's acceptance line had asked for BY OUR COUNT verbatim, and the maintainer rule of 2026-08-05 bans first person in type on a slide, so the frame names what the qualification IS rather than who made it. The 217 rows and the $207,690,348.33 are a snapshot read on September 14th; the file updates every Friday, and the federal project count is never blended with it anywhere in the deck. The roughly $65 million remainder is the Beacon's rounding of an exact $64,484,507.67 subtraction, and only one of those two figures appears.\n\nSix of the ten rows on slide 08 carry no dollar figure because this run could not individually cite those amounts. The bars are drawn at their true lengths and the frame says so.\n\nOne omission to know about. The first comment cites the CMS press release of August 25th by outlet, title and date rather than by link. Its URL slug carries a phrase config/brand.yaml bans, caption_check reads a URL as prose, and the run chose to lose the link rather than hand-weaken a gate mid run. The release is the primary source behind the $250,000 planning award and it is one search away. This is logged as a machine upgrade candidate."
+}

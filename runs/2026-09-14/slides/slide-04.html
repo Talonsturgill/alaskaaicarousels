@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;font-family:'JetBrains Mono',monospace;font-size:26px;
+        font-weight:600;letter-spacing:.11em}
+  .head{position:absolute;overflow:hidden;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;line-height:1.0;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       letter-spacing:.08em;color:#D7E4EE}
+  .tags{position:absolute;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .kick{left:80px;top:96px;color:#8FA0B0}
+  .head{left:74px;top:142px;width:470px;font-size:74px}
+  .body{left:80px;top:432px;width:440px}
+  .tags{left:352px;bottom:27px}
+</style>
+</head>
+<body data-contacts='[{"what":"the sill lip standing off the floor behind it","shadow":[[736,1244,26,10]],"ground":[[643,1244,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"absent"},{"hex":"#6EA5FF","means":"a planning row","state":"absent"}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+  <div class="kick">ALASKA DOT AND PF</div>
+  <div class="head">Aircraft take<br>the place<br>of ambulances</div>
+  <div class="body">402 Alaskan communities depend on aviation for year round access, where aircraft often take the place of cars, school buses, semitrucks, and ambulances. That is 82 percent of the state's communities, served by 235 airports. Ryan Air's own proposal calls the gap "life-threatening".</div>
+  <div class="tags" data-decorative>C11&nbsp;&nbsp;C33&nbsp;&nbsp;C34&nbsp;&nbsp;C35</div>
+  <div class="ctr" data-decorative>04 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/akgeo.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 04 -- WHY AN AIRPLANE IS THE AMBULANCE.
+ * LIGHT az 76, el 12, key to fill 6 to 1. THE LIGHT IS TO THE UPPER RIGHT AND
+ * EVERY CAST RUNS TO THE LOWER LEFT.
+ * Camera station 04, at the aperture looking OUT. The airframe forms a hard
+ * dark L along the left and top, and EVERY glyph in the frame sits on that
+ * metal. Nothing is set over the world, which is the frame's whole legibility
+ * strategy. NO VILLAGE IS NAMED HERE, because no claim sources a service map.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 3 });
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .kick, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* the committed state outline, fetched before the world is drawn. If it
+     * cannot be read the frame still renders, with the shore and no coast,
+     * and the console carries the reason rather than the frame carrying a
+     * silent lie. */
+    var AKLAND = null;
+    try {
+      AKLAND = await (await fetch('@@ASSETS@@/geo/alaska-state.geo.json')).json();
+    } catch (e) { console.warn('alaska-state.geo.json unavailable', e); }
+
+    /* 1. THE WORLD, most of the frame, smeared and fogged */
+    var world = AKHOLD.offscreen(W, H, function (g) {
+      var sg = g.createLinearGradient(0, 0, 0, H);
+      sg.addColorStop(0, '#8EA8BC'); sg.addColorStop(.22, '#5D7B93');
+      sg.addColorStop(.40, '#35566E'); sg.addColorStop(.485, '#1C3849');
+      sg.addColorStop(.62, '#1A2A2A'); sg.addColorStop(.86, '#222F26'); sg.addColorStop(1, '#2A3629');
+      g.fillStyle = sg; g.fillRect(0, 0, W, H);
+      g.fillStyle = 'rgba(215,228,238,.44)'; g.fillRect(0, 660, W, 2.6);
+      if (AKLAND) {
+        var proj = AKGeo.alaskaProjection(AKLAND, [[0, 0], [1080, 1350]]);
+        /* Norton Sound, the water Ryan Air's own 80 villages sit around, with
+         * Unalakleet on its eastern shore. The coast lands across the
+         * aperture's lower half, which is the part of the door a reader can
+         * actually see past the graticule. */
+        AKGeo.zoomTo(proj, AKLAND, [-161.4, 63.9], [846, 842], 5.4);
+        var path = d3.geoPath(proj, g);
+        g.save();
+        g.beginPath(); g.rect(0, 600, W, H - 600); g.clip();
+        g.fillStyle = '#15221A';
+        g.beginPath(); path(AKLAND); g.fill();
+        /* the shoreline itself, struck on its lee side and lit on its key
+         * side, weighted to survive the 14 px flight-vector convolution that
+         * every other feature in this aperture goes through */
+        g.strokeStyle = 'rgba(8,14,22,.92)'; g.lineWidth = 7;
+        g.beginPath(); path(AKLAND); g.stroke();
+        g.strokeStyle = 'rgba(226,238,248,.95)'; g.lineWidth = 3.2;
+        g.beginPath(); path(AKLAND); g.stroke();
+        g.restore();
+      } else {
+        g.fillStyle = '#1B2A21';
+        g.fillRect(0, 830, W, H - 830);
+      }
+      /* one village strip, small, at the far left, the smallest scale in the deck */
+      g.fillStyle = 'rgba(190,212,230,.50)';
+      g.fillRect(126, 872, 62, 3);
+      g.fillStyle = 'rgba(190,212,230,.24)';
+      g.fillRect(120, 880, 74, 2);
+      /* nearshore water lenses */
+      for (var i = 0; i < 60; i++) {
+        var px = AK.rng(505 + i)() * W, py = 700 + AK.rng(808 + i)() * 90;
+        g.fillStyle = 'rgba(150,182,204,.24)';
+        g.fillRect(px, py, 20 + AK.rng(303 + i)() * 60, 1.6);
+      }
+    });
+    cx.drawImage(AKHOLD.streak(world, 14), 0, 0, W, H);
+    /* exp2 fog in the sea hue, never gray */
+    var fg = cx.createLinearGradient(0, 560, 0, 900);
+    fg.addColorStop(0, 'rgba(28,56,73,0)'); fg.addColorStop(1, 'rgba(28,56,73,.46)');
+    cx.fillStyle = fg; cx.fillRect(0, 560, W, 340);
+
+    /* 2. THE AIRFRAME, a hard dark L along the left and top, tack sharp. Every
+     * glyph in this frame sits on this metal. */
+    var LX = 596, TY = 400;
+    var af = cx.createLinearGradient(0, 0, LX, TY);
+    af.addColorStop(0, '#0A121C'); af.addColorStop(1, '#141F2B');
+    cx.fillStyle = af;
+    cx.beginPath();
+    cx.moveTo(0, 0); cx.lineTo(W, 0); cx.lineTo(W, 126); cx.lineTo(LX + 54, 176);
+    cx.lineTo(LX, 1354); cx.lineTo(0, 1354); cx.closePath(); cx.fill();
+    /* the door's inner arris, lit on the key side */
+    cx.strokeStyle = 'rgba(200,218,232,.56)'; cx.lineWidth = 3;
+    cx.beginPath(); cx.moveTo(W, 126); cx.lineTo(LX + 54, 176); cx.lineTo(LX, 1354); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 8;
+    cx.beginPath(); cx.moveTo(W, 134); cx.lineTo(LX + 60, 184); cx.lineTo(LX + 8, 1354); cx.stroke();
+
+    /* rib stations on the airframe L, dark bodies with one lit arris each */
+    for (var rb = 0; rb < 8; rb++) {
+      var ry = 208 + rb * 132;
+      var rxEnd = LX - (ry - 208) * 0.042;
+      cx.strokeStyle = 'rgba(2,5,10,.75)'; cx.lineWidth = 9;
+      cx.beginPath(); cx.moveTo(0, ry + 26); cx.lineTo(rxEnd, ry); cx.stroke();
+      cx.strokeStyle = 'rgba(175,198,216,.16)'; cx.lineWidth = 1.2;
+      cx.beginPath(); cx.moveTo(0, ry + 21); cx.lineTo(rxEnd, ry - 5); cx.stroke();
+    }
+
+    /* 3. THE GRATICULE on the aperture's inner edge. 100 cells, 82 of them
+     * carrying a mark = 82 percent of Alaska communities depending on aviation
+     * for year round access [C33]. Countable at full size. */
+    var cells = [];
+    for (var gi = 0; gi < 100; gi++) {
+      var col = gi % 10, row = (gi / 10) | 0;
+      var gx = LX + 22 + col * 30, gy = 236 + row * 30;
+      cx.strokeStyle = 'rgba(190,212,230,.22)'; cx.lineWidth = .75;
+      cx.strokeRect(gx, gy, 22, 22);
+      if (gi < 82) {
+        cx.fillStyle = 'rgba(215,228,238,.72)';
+        cx.fillRect(gx + 7, gy + 7, 8, 8);
+        cells.push([gx + 11, gy + 11]);
+      }
+    }
+    cx.fillStyle = 'rgba(143,160,176,.86)';
+    cx.font = '20px "JetBrains Mono", monospace';
+
+    /* 4. THE NEAR SILL, out of focus, bleeding off the bottom edge, with the
+     * clean unlit gap where the crate stood. This is the lower-third treatment. */
+    var sill = AKHOLD.offscreen(W, H, function (g) {
+      var sgd = g.createLinearGradient(0, 1170, 0, 1354);
+      sgd.addColorStop(0, '#5E7080'); sgd.addColorStop(.30, '#33424F'); sgd.addColorStop(1, '#0D1620');
+      g.fillStyle = sgd;
+      g.beginPath(); g.moveTo(-40, 1240); g.lineTo(1120, 1150);
+      g.lineTo(1120, 1360); g.lineTo(-40, 1360); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(230,240,248,.52)'; g.lineWidth = 3;
+      g.beginPath(); g.moveTo(-40, 1240); g.lineTo(1120, 1150); g.stroke();
+    });
+    cx.save(); cx.filter = 'blur(7px)'; cx.drawImage(sill, 0, 0, W, H); cx.restore();
+    /* THE CRATE'S ABSENCE, hard edged, drawn after the blur. It is the only
+     * scale reference on this frame and inside the r 7 blur it read as a
+     * stain on the floor rather than as a 132 px unit footprint. */
+    (function () {
+      cx.save();
+      cx.fillStyle = '#0D1620';
+      cx.beginPath(); cx.moveTo(300, 1222); cx.lineTo(520, 1205);
+      cx.lineTo(520, 1262); cx.lineTo(300, 1280); cx.closePath(); cx.fill();
+      cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 2;
+      cx.beginPath(); cx.moveTo(300, 1222); cx.lineTo(520, 1205); cx.stroke();
+      cx.strokeStyle = 'rgba(200,222,238,.30)'; cx.lineWidth = 1.4;
+      cx.beginPath(); cx.moveTo(300, 1280); cx.lineTo(520, 1262); cx.stroke();
+      cx.restore();
+    })();
+    /* the sill's own lip standing off the floor behind it. The first cut put
+     * this contact at x 410, which is INSIDE the unlit gap, so the probe was
+     * reading a deliberately dark rectangle as the frame's lit ground. */
+    AKHOLD.contact(cx, { x: 762, y: 1244, w: 122, k: .62, seamW: 96 });
+
+    cx.save();
+    for (var ag = 0; ag < 3000; ag++) {
+      var ax = AK.rng(3300 + ag)() * W, ay = AK.rng(9911 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0048, ay * 0.0098, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.78, strength: 0.20, radius: 8 }, sharpen: 0.24 });
+
+    window.__akAssert = [{ what: '82 of 100 graticule cells carry a mark',
+                           expect: 82, points: cells, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the gap in the sill where the crate stood',
+                           rect: [300, 1198, 224, 92] }];
+
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

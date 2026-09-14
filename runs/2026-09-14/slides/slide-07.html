@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;font-family:'JetBrains Mono',monospace;font-size:26px;
+        font-weight:600;letter-spacing:.11em}
+  .head{position:absolute;overflow:hidden;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;line-height:1.10;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       letter-spacing:.08em;color:#D7E4EE}
+  .tags{position:absolute;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .kick{left:80px;top:96px;color:#D7E4EE}
+  .head{left:74px;top:142px;width:560px;font-size:74px}
+  .body{left:80px;top:392px;width:470px}
+  .ann{left:626px;top:690px;width:340px;font-size:26px;color:#E4EDF4;letter-spacing:.18em}
+  .tags{left:352px;bottom:27px}
+</style>
+</head>
+<body data-contacts='[{"what":"the placard standing off the forward bulkhead","shadow":[[700,866,26,10]],"ground":[[700,950,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"absent"},{"hex":"#6EA5FF","means":"a planning row","state":"absent"}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+  <div class="kick">THE FORWARD BULKHEAD</div>
+  <div class="head">First the waiver<br>then the aircraft</div>
+  <div class="body">Tanana Chiefs names the University of Alaska Fairbanks Alaska Center for Unmanned Aircraft Systems Integration as its partner on FAA beyond visual line of sight waivers. ACUASI was selected as one of the first seven FAA unmanned aircraft test sites.</div>
+  <div class="ann">ACUASI&nbsp;&nbsp;BVLOS</div>
+  <div class="tags" data-decorative>C17&nbsp;&nbsp;C18</div>
+  <div class="ctr" data-decorative>07 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 07 -- WHAT A PLANNING YEAR BUYS.
+ * LIGHT az 76, el 12, key to fill 6 to 1. THE LIGHT IS TO THE UPPER RIGHT AND
+ * EVERY CAST RUNS TO THE LOWER LEFT. Note the formed channel at the bottom is
+ * an INTERIOR surface, so its lit wall reverses and sits on the lower left.
+ * Camera station 07, tilted up off the floor to the forward bulkhead. The unit
+ * crate is out of shot below frame and only its cast is in the picture, which
+ * is the deck's one use of an absent object with a present shadow.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 50, max: 72, maxLines: 2 });
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .kick, .ann, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. THE BULKHEAD, a wall of riveted aluminium seen from below, graded by
+     * the wedge's bounce from the lower right toward the darker lower edge. */
+    var bh = cx.createLinearGradient(1080, 120, 60, 1354);
+    bh.addColorStop(0, '#4E5F6E'); bh.addColorStop(.34, '#2A3846');
+    bh.addColorStop(.72, '#17222E'); bh.addColorStop(1, '#0C141E');
+    cx.fillStyle = bh; cx.fillRect(0, 0, W, H);
+
+    /* panel seams, converging slightly because the camera is tilted up */
+    for (var ps = 0; ps < 5; ps++) {
+      var px = 120 + ps * 224;
+      cx.strokeStyle = 'rgba(2,5,10,.65)'; cx.lineWidth = 4;
+      cx.beginPath(); cx.moveTo(px, 0); cx.lineTo(px + 26, 1354); cx.stroke();
+      cx.strokeStyle = 'rgba(190,212,230,.16)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.moveTo(px + 3.5, 0); cx.lineTo(px + 29.5, 1354); cx.stroke();
+    }
+    /* rivet rows on every seam, at a 42 px pitch, reserved around the type */
+    for (var ps2 = 0; ps2 < 5; ps2++) {
+      var px2 = 120 + ps2 * 224;
+      AKHOLD.rivetRun(cx, px2 - 16, 20, px2 + 10, 1340, 42, 3.4,
+                      'rgba(210,226,238,.44)', 'rgba(2,5,10,.9)', mask);
+    }
+    /* the ceiling loom crossing the top, out of focus */
+    var loom = AKHOLD.offscreen(W, H, function (g) {
+      g.strokeStyle = '#24321F'; g.lineWidth = 22;
+      g.beginPath(); g.moveTo(-20, 92); g.quadraticCurveTo(520, 26, 1110, 108); g.stroke();
+      g.strokeStyle = 'rgba(190,212,230,.24)'; g.lineWidth = 4;
+      g.beginPath(); g.moveTo(-20, 82); g.quadraticCurveTo(520, 16, 1110, 98); g.stroke();
+    });
+    cx.save(); cx.filter = 'blur(8px)'; cx.drawImage(loom, 0, 0, W, H); cx.restore();
+
+    /* 2. THE PLACARD, square on, chamfered, with SEVEN rivets, one per FAA test
+     * site in the first cohort [C18]. */
+    var PX = 596, PY = 636, PW = 396, PH = 214;
+    (function () {
+      var d = AKHOLD.castDir();                  // down-light, lower left
+      var ox = d[0] * 34, oy = d[1] * 34;
+      for (var L = 0; L < 4; L++) {
+        var g = 1 + L * 0.55;
+        cx.save();
+        cx.globalAlpha = [0.52, 0.33, 0.20, 0.12][L];
+        cx.fillStyle = '#0A121C';
+        cx.fillRect(PX + ox - g * 3, PY + oy - g * 3, PW + g * 6, PH + g * 6);
+        cx.restore();
+      }
+      /* the tight seam where the plate stands off the wall, on its lee edges */
+      cx.save();
+      cx.globalAlpha = 0.62; cx.fillStyle = '#060C14';
+      cx.fillRect(PX - 7, PY + 5, 7, PH);
+      cx.fillRect(PX - 7, PY + PH, PW + 7, 7);
+      cx.restore();
+      /* the bulkhead's bounce, a broad low vertical ramp off the frame's
+       * bottom edge, which is the only light a wall this far from the door
+       * actually receives. Never a radial pool: there is no floor here. */
+      var bg3 = cx.createLinearGradient(0, 1354, 0, 820);
+      bg3.addColorStop(0, 'rgba(175,198,216,.34)');
+      bg3.addColorStop(1, 'rgba(175,198,216,0)');
+      cx.save(); cx.globalCompositeOperation = 'screen';
+      cx.fillStyle = bg3; cx.fillRect(0, 820, W, 534); cx.restore();
+    })();
+    var pgz = cx.createLinearGradient(PX + PW, PY, PX, PY + PH);
+    pgz.addColorStop(0, '#7E8F9E'); pgz.addColorStop(.5, '#54636F'); pgz.addColorStop(1, '#33414D');
+    cx.fillStyle = pgz; cx.fillRect(PX, PY, PW, PH);
+    /* the chamfer, lit on the key side and struck on the lee */
+    cx.strokeStyle = 'rgba(232,242,250,.72)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.moveTo(PX, PY); cx.lineTo(PX + PW, PY); cx.lineTo(PX + PW, PY + PH); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.moveTo(PX + PW, PY + PH); cx.lineTo(PX, PY + PH); cx.lineTo(PX, PY); cx.stroke();
+    /* brushed tooth on the placard face */
+    cx.save(); cx.beginPath(); cx.rect(PX, PY, PW, PH); cx.clip();
+    for (var q2 = 0; q2 < 220; q2++) {
+      var qx2 = PX + AK.rng(3131 + q2)() * PW, qy2 = PY + AK.rng(4242 + q2)() * PH;
+      if (mask(qx2, qy2) < 0.55) continue;   /* never brush across the type */
+      cx.fillStyle = q2 % 2 ? 'rgba(232,242,250,.09)' : 'rgba(2,5,10,.14)';
+      cx.fillRect(qx2, qy2, 14 + (q2 % 9), 1.1);
+    }
+    cx.restore();
+    /* THE ENGRAVED CHANNEL the label sits in. The plate's own gradient runs
+     * from 7E8F9E at the key corner to 33414D at the lee, so a light label
+     * laid straight on it measured 5.1 at one end of its run and 3.8 at the
+     * other, which is one label with two different legibilities. A recessed
+     * channel is what a real limitation plate gives its text, and it is also
+     * a single uniform value under the whole run. */
+    cx.save();
+    cx.fillStyle = 'rgba(2,5,10,.74)';
+    cx.fillRect(PX + 20, PY + 44, PW - 40, 58);
+    cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(PX + 20, PY + 44); cx.lineTo(PX + PW - 20, PY + 44); cx.stroke();
+    cx.strokeStyle = 'rgba(232,242,250,.34)'; cx.lineWidth = 1.4;
+    cx.beginPath(); cx.moveTo(PX + 20, PY + 102.6); cx.lineTo(PX + PW - 20, PY + 102.6); cx.stroke();
+    cx.restore();
+    /* a scored rule across the placard, the kind a limitation plate carries */
+    cx.strokeStyle = 'rgba(2,5,10,.6)'; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(PX + 24, PY + 150); cx.lineTo(PX + PW - 24, PY + 150); cx.stroke();
+    cx.strokeStyle = 'rgba(232,242,250,.28)'; cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(PX + 24, PY + 147.6); cx.lineTo(PX + PW - 24, PY + 147.6); cx.stroke();
+    var rivets = [];
+    var rp = [[PX + 26, PY + 26], [PX + PW - 26, PY + 26], [PX + PW - 26, PY + PH - 26],
+              [PX + 26, PY + PH - 26], [PX + PW / 2, PY + 26], [PX + PW / 2, PY + PH - 26],
+              [PX + 26, PY + PH / 2]];
+    for (var r7 = 0; r7 < rp.length; r7++) {
+      AKHOLD.rivet(cx, rp[r7][0], rp[r7][1], 8.4, 'rgba(232,242,250,.72)', 'rgba(2,5,10,.9)');
+      rivets.push(rp[r7]);
+    }
+
+    /* 3. THE ABSENT CRATE'S CAST, thrown up the bulkhead from below frame, an
+     * attached subtraction from the bounce rather than a painted dark shape. */
+    cx.save();
+    cx.globalCompositeOperation = 'multiply';
+    var cst = cx.createLinearGradient(520, 1354, 180, 980);
+    cst.addColorStop(0, 'rgba(12,22,34,1)'); cst.addColorStop(1, 'rgba(255,255,255,1)');
+    cx.fillStyle = cst;
+    cx.beginPath(); cx.moveTo(96, 1354); cx.lineTo(206, 1010); cx.lineTo(572, 1046);
+    cx.lineTo(628, 1354); cx.closePath(); cx.fill();
+    cx.restore();
+
+    /* 4. THE FORMED CHANNEL at the bottom, an interior surface, so its LIT wall
+     * is on the lower left and its lee on the upper right, which reverses. */
+    (function () {
+      var y = 1214;
+      cx.fillStyle = '#0B131D'; cx.fillRect(0, y, W, H - y);
+      var g = cx.createLinearGradient(0, y, 0, y + 52);
+      g.addColorStop(0, '#1C2836'); g.addColorStop(1, '#39495A');
+      cx.fillStyle = g; cx.fillRect(0, y, W, 52);
+      cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 3;
+      cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y - 8); cx.stroke();
+      cx.strokeStyle = 'rgba(200,218,232,.34)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(0, y + 52); cx.lineTo(W, y + 44); cx.stroke();
+    })();
+
+    cx.save();
+    for (var ag = 0; ag < 3800; ag++) {
+      var ax = AK.rng(5200 + ag)() * W, ay = AK.rng(15611 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0048, ay * 0.0098, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.78, strength: 0.18, radius: 7 } });
+
+    window.__akAssert = [{ what: 'seven FAA test sites, one placard rivet each',
+                           expect: 7, points: rivets, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the riveted limitation placard',
+                           rect: [PX - 8, PY - 8, PW + 16, PH + 16] }];
+
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

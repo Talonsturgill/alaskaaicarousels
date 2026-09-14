@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;left:80px;top:96px;font-family:'JetBrains Mono',monospace;
+        font-size:26px;font-weight:600;letter-spacing:.11em;color:#B9C8D6}
+  .head{position:absolute;left:74px;top:142px;width:640px;overflow:hidden;
+        font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 96,'wght' 700;
+        font-size:74px;line-height:1.0;letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;left:80px;top:346px;width:560px;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .tag{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       line-height:1.5;letter-spacing:.06em;color:#D7E4EE}
+  .tag.a{left:700px;top:638px;width:300px}
+  .tag.b{left:700px;top:770px;width:300px}
+  .tagl{color:#8FA0B0;font-size:24px;letter-spacing:.08em}
+  .tags{position:absolute;left:352px;bottom:27px;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+</style>
+</head>
+<body data-contacts='[{"what":"the crate on the door sill","shadow":[[671,1218,26,10]],"ground":[[603,1218,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"absent"},{"hex":"#6EA5FF","means":"a planning row","state":"absent"}]'>
+
+<canvas id="art" width="2160" height="2700"></canvas>
+
+  <div class="kick">SEPTEMBER 4TH</div>
+  <div class="head">The award says<br>implementation<br>not planning</div>
+  <div class="body">Ryan Air was awarded $4,171,115 to deploy "autonomous cargo drones and electric vertical take-off and landing aircraft" carrying pharmaceuticals and moving patients across roadless communities. IA means aircraft, not a study.</div>
+  <div class="tag a"><span class="tagl">SUMMARY SAYS</span><br>BETHEL AND DILLINGHAM REGIONS</div>
+  <div class="tag b"><span class="tagl">SERVICE AREA FIELD</span><br>ANCHORAGE / BRISTOL BAY / DILLINGHAM / YUKON-KOYUKUK</div>
+  <div class="tags" data-decorative>C07&nbsp;&nbsp;C08&nbsp;&nbsp;C10&nbsp;&nbsp;C12</div>
+  <div class="ctr" data-decorative>02 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 02 -- THE ROW THAT CHANGED.
+ *
+ * LIGHT, az 76, el 12, key to fill 6 to 1.
+ * THE LIGHT IS TO THE UPPER RIGHT AND EVERY CAST RUNS TO THE LOWER LEFT.
+ *
+ * Camera station 02, nearly square at the door, shoulder height. The crate is
+ * half across the sill and backlit, so the tag on its end face is the brightest
+ * small type in the frame. The tag prints BOTH the award summary's regions and
+ * the same row's Service Area field, which disagree, and it reconciles neither.
+ * There is no map anywhere on this frame and there will not be one.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 3 });
+
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .kick, .tag, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. the hold, dark, graded toward the sill's backlight on the right */
+    var bg = cx.createLinearGradient(0, 0, W, 240);
+    bg.addColorStop(0, '#04080F'); bg.addColorStop(.62, '#0A121C'); bg.addColorStop(1, '#16232F');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+
+    /* 2. THE BACKLIGHT HAZE at the sill. One offscreen radial, composited in
+     * screen blend ONCE, never inside a loop. */
+    var haze = AKHOLD.offscreen(W, H, function (g) {
+      var r = g.createRadialGradient(846, 828, 20, 846, 828, 620);
+      r.addColorStop(0, 'rgba(190,212,230,.60)');
+      r.addColorStop(.42, 'rgba(120,150,178,.22)');
+      r.addColorStop(1, 'rgba(120,150,178,0)');
+      g.fillStyle = r; g.fillRect(0, 0, W, H);
+    });
+    cx.save(); cx.globalCompositeOperation = 'screen'; cx.globalAlpha = .58;
+    cx.drawImage(haze, 0, 0, W, H); cx.restore();
+
+    /* 3. THE APERTURE, a tall door opening filling the right third, its world
+     * smeared along the flight vector at 14 px. The strip is falling away as
+     * the aircraft rotates, so the horizon is tilting. */
+    var AP = [[690, 108], [1096, 60], [1096, 1108], [706, 1004]];
+    var world = AKHOLD.offscreen(W, H, function (g) {
+      g.save();
+      g.translate(900, 560); g.rotate(-0.07); g.translate(-900, -560);
+      var sg = g.createLinearGradient(0, 60, 0, 1100);
+      sg.addColorStop(0, '#93AEC2'); sg.addColorStop(.26, '#62809A');
+      sg.addColorStop(.44, '#3A5A74'); sg.addColorStop(.53, '#1E3A4E');
+      sg.addColorStop(.70, '#26352E'); sg.addColorStop(1, '#32402F');
+      g.fillStyle = sg; g.fillRect(640, 40, 480, 1080);
+      g.fillStyle = 'rgba(215,228,238,.50)'; g.fillRect(640, 520, 480, 2.4);
+      /* the gravel strip, falling away */
+      for (var i = 0; i < 460; i++) {
+        var gx = 640 + AK.rng(77 + i)() * 480, gy = 660 + AK.rng(1300 + i)() * 220;
+        g.fillStyle = i % 3 ? 'rgba(175,198,216,.26)' : 'rgba(70,82,47,.30)';
+        g.fillRect(gx, gy, 4 + (i % 6), 1.6);
+      }
+      g.restore();
+    });
+    var smeared = AKHOLD.streak(world, 14);
+    cx.save();
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i = 1; i < AP.length; i++) cx.lineTo(AP[i][0], AP[i][1]);
+    cx.closePath(); cx.clip();
+    cx.drawImage(smeared, 0, 0, W, H);
+    cx.restore();
+
+    /* the door jamb, a deep lee body with a lit arris on the key side */
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i2 = 1; i2 < AP.length; i2++) cx.lineTo(AP[i2][0], AP[i2][1]);
+    cx.closePath();
+    cx.lineWidth = 16; cx.strokeStyle = '#060C15'; cx.stroke();
+    cx.lineWidth = 3.4; cx.strokeStyle = 'rgba(190,212,230,.46)';
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]); cx.lineTo(AP[3][0], AP[3][1]); cx.stroke();
+
+    /* 4. THE THRESHOLD PLATE, an extruded aluminium section running the full
+     * frame width, lit along its outer lip and dropping into the wedge. This is
+     * the frame's lower-third treatment and it carries real modelled tone. */
+    (function () {
+      var y = 1152, d = 62;
+      var g = cx.createLinearGradient(0, y - 26, 0, y + d);
+      g.addColorStop(0, '#5C6E7E'); g.addColorStop(.22, '#8EA2B2');
+      g.addColorStop(.40, '#3A4A58'); g.addColorStop(1, '#101A26');
+      cx.fillStyle = g;
+      cx.beginPath();
+      cx.moveTo(-20, y + 44); cx.lineTo(1100, y - 66);
+      cx.lineTo(1100, y - 66 + d); cx.lineTo(-20, y + 44 + d); cx.closePath(); cx.fill();
+      cx.strokeStyle = 'rgba(230,240,248,.66)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(-20, y + 44); cx.lineTo(1100, y - 66); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.9)'; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(-20, y + 44 + d); cx.lineTo(1100, y - 66 + d); cx.stroke();
+      /* the sill's milled notches. EIGHTY of them, one per village Ryan Air
+       * serves [C29], at a 9 px pitch. Machined edge detail at full size, a
+       * fine texture at thumb. */
+      var notch = [];
+      for (var n = 0; n < 80; n++) {
+        var t = n / 79, nx = 64 + t * 486, ny = (y + 44) + (-(110) * ((nx + 20) / 1120));
+        cx.strokeStyle = 'rgba(2,5,10,.72)'; cx.lineWidth = 2.2;
+        cx.beginPath(); cx.moveTo(nx, ny + 3); cx.lineTo(nx - 2, ny + 15); cx.stroke();
+        cx.strokeStyle = 'rgba(230,240,248,.30)'; cx.lineWidth = .9;
+        cx.beginPath(); cx.moveTo(nx + 2.4, ny + 3); cx.lineTo(nx + .4, ny + 15); cx.stroke();
+        notch.push([nx, ny + 9]);
+      }
+      window.__notch = notch;
+    })();
+
+    /* 5. THE CRATE, half across the sill, backlit, its end face square to
+     * camera so the manifest tag is readable. */
+    var BX = 596, BY = 1218, BW = 228, BH = 168, BD = 74;
+    AKHOLD.contact(cx, { x: BX + BW / 2, y: BY + 2, w: 140, k: .96, seamW: BW * .46 });
+    /* the body, in lee because the light is behind it */
+    var bf = cx.createLinearGradient(BX, BY - BH, BX + BW, BY);
+    bf.addColorStop(0, '#1A242F'); bf.addColorStop(1, '#2B3946');
+    cx.fillStyle = bf;
+    cx.beginPath();
+    cx.moveTo(BX, BY - BH); cx.lineTo(BX + BW, BY - BH - 22);
+    cx.lineTo(BX + BW, BY - 22); cx.lineTo(BX, BY); cx.closePath(); cx.fill();
+    /* the right face, catching the door's backlight, which is the rim cue */
+    var rf = cx.createLinearGradient(BX + BW, BY - BH, BX + BW + BD, BY);
+    rf.addColorStop(0, '#7F93A4'); rf.addColorStop(1, '#3E4E5C');
+    cx.fillStyle = rf;
+    cx.beginPath();
+    cx.moveTo(BX + BW, BY - BH - 22); cx.lineTo(BX + BW + BD, BY - BH + 4);
+    cx.lineTo(BX + BW + BD, BY + 4 - 22); cx.lineTo(BX + BW, BY - 22); cx.closePath(); cx.fill();
+    /* the lid, a thin lit plane */
+    cx.fillStyle = '#5C6E7E';
+    cx.beginPath();
+    cx.moveTo(BX, BY - BH); cx.lineTo(BX + BW, BY - BH - 22);
+    cx.lineTo(BX + BW + BD, BY - BH + 4); cx.lineTo(BX + BD, BY - BH + 26); cx.closePath();
+    cx.fill();
+    /* ply tooth and construction bands */
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(BX, BY - BH); cx.lineTo(BX + BW, BY - BH - 22);
+    cx.lineTo(BX + BW, BY - 22); cx.lineTo(BX, BY); cx.closePath(); cx.clip();
+    for (var pg = 0; pg < 280; pg++) {
+      var gx2 = BX + AK.rng(640 + pg)() * BW;
+      var gy2 = BY - BH + AK.rng(918 + pg)() * (BH + 12) - (gx2 - BX) / BW * 22;
+      cx.fillStyle = pg % 2 ? 'rgba(190,212,230,.075)' : 'rgba(2,5,10,.18)';
+      cx.fillRect(gx2, gy2, 12 + (pg % 9), 1.25);
+    }
+    cx.restore();
+    cx.strokeStyle = 'rgba(230,240,248,.52)'; cx.lineWidth = 1.6;
+    cx.beginPath(); cx.moveTo(BX, BY - BH); cx.lineTo(BX + BW, BY - BH - 22); cx.stroke();
+    cx.beginPath(); cx.moveTo(BX + BW, BY - BH - 22); cx.lineTo(BX + BW + BD, BY - BH + 4); cx.stroke();
+
+    /* the strap hook, engaged in the ring, webbing slack and curved */
+    cx.strokeStyle = '#46522F'; cx.lineWidth = 13;
+    cx.beginPath();
+    cx.moveTo(BX + 40, BY - 6);
+    cx.bezierCurveTo(BX - 60, BY + 26, BX - 150, BY - 34, BX - 214, BY + 6);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(215,228,238,.16)'; cx.lineWidth = 2.2;
+    cx.beginPath();
+    cx.moveTo(BX + 40, BY - 10);
+    cx.bezierCurveTo(BX - 60, BY + 22, BX - 150, BY - 38, BX - 214, BY + 2);
+    cx.stroke();
+    cx.strokeStyle = 'rgba(147,162,176,.52)'; cx.lineWidth = 3.2;
+    cx.beginPath(); cx.ellipse(BX - 220, BY + 8, 17, 6, 0, 0, Math.PI * 2); cx.stroke();
+
+    /* 6. THE TAG PANEL behind the manifest type. NOT a plate. The tag is
+     * printed on the crate's end face, so the ground under it is the crate's
+     * own lit plane, and the basin punch below keeps the field off the glyphs. */
+    cx.save();
+    var tp = cx.createLinearGradient(686, 640, 1060, 900);
+    tp.addColorStop(0, '#101A26'); tp.addColorStop(1, '#0A121C');
+    cx.fillStyle = tp;
+    cx.beginPath();
+    cx.moveTo(684, 616); cx.lineTo(1068, 572); cx.lineTo(1068, 962); cx.lineTo(684, 992);
+    cx.closePath(); cx.fill();
+    cx.strokeStyle = 'rgba(190,212,230,.34)'; cx.lineWidth = 1.25; cx.stroke();
+    cx.restore();
+
+    /* 7. skin grain everywhere, reserved around every line box */
+    cx.save();
+    for (var ag = 0; ag < 4200; ag++) {
+      var ax = AK.rng(2100 + ag)() * W, ay = AK.rng(5500 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0050, ay * 0.0092, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.70, strength: 0.34, radius: 10 } });
+
+    /* The sill's notches are 80, one per village served [C29]. The FRAME does
+     * the counting; `points` is the array the drawing loop actually pushed. */
+    window.__akAssert = [{ what: '80 villages, one milled sill notch each',
+                           expect: 80, points: window.__notch, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the unit crate carrying its manifest tag',
+                           rect: [BX - 6, BY - BH - 30, BW + BD + 12, BH + 40] }];
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>

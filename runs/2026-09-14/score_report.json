@@ -1,0 +1,73 @@
+{
+ "run_date": "2026-09-14",
+ "carousel_no": 59,
+ "scoring_round": 2,
+ "weighted_total": 8.76,
+ "threshold": 8.3,
+ "ship": true,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 9,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 9,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy voice and hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(9x0.12)+(9x0.10)+(8x0.08)+(8x0.07)+(8x0.05)+(7x0.10) = 8.76",
+ "weakest_criterion": {
+  "name": "Artwork craft and genuine detail",
+  "score": 7,
+  "one_sentence_fix": "Fill and shade slide 03's mail tote, which shipped as a bare unfilled outline on the lit wedge with no fill, no lit face and no cast, and give the cam buckle a real zinc body with a lit cam arm and a lee instead of a flat yellow rounded rectangle."
+ },
+ "round_1": {
+  "weighted_total": 8.11,
+  "weakest": "Artwork craft and genuine detail (6)"
+ },
+ "showrunner_note": "Both of the second round's named items were closed after it scored, so the 8.76 is a floor and not a ceiling. Slide 03's mail tote is now a modelled canvas bag with a lee belly, a lit swell, webbing handles, fibre tooth and its own cast; slide 09's cam buckle is a zinc body with a hinged arm proud of it and the slot as the gap underneath. The four plan artifacts the scorer found still describing pixels that did not ship, the slide 08 COPY FINAL footers, its acceptance checklist's BY OUR COUNT line, the Phase 7 reconciliation's two row labels, and incidents.md item 6 on the coastline, are corrected. Nothing on a slide was wrong; the record of what shipped was.",
+ "editor_notes_for_email": null
+}

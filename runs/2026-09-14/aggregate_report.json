@@ -1,0 +1,63 @@
+{
+  "run_dir": "out/2026-09-14",
+  "render_report": "out/2026-09-14/render/render_report.json",
+  "aggregates_file": "out/2026-09-14/aggregates.json",
+  "detected": 6,
+  "declared": 6,
+  "detections": [
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "402 Alaskan communities",
+      "text": "402 Alaskan communities depend on aviation for year round access, where aircraft",
+      "n": 402,
+      "subject": "alaskan communities"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "Two loads",
+      "text": "One program. Two loads.",
+      "n": 2,
+      "subject": "loads"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "42 VILLAGES",
+      "text": "94,000 SQ MI 42 VILLAGES",
+      "n": 42,
+      "subject": "villages"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Ten rows",
+      "text": "Ten rows name a machine",
+      "n": 10,
+      "subject": "rows"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "21 HOSPITALS",
+      "text": "21 HOSPITALS",
+      "n": 21,
+      "subject": "hospitals"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "217 ROWS",
+      "text": "TEN OF 217 ROWS NAME A MACHINE. NOT A STATE CATEGORY.",
+      "n": 217,
+      "subject": "rows"
+    }
+  ],
+  "not_rederived": [],
+  "fails": [],
+  "warns": [
+    "S4 '402 Alaskan communities depend on aviation for y' [from_claim]: the noun 'community' does not appear in claim C34; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

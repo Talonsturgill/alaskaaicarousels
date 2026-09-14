@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;font-family:'JetBrains Mono',monospace;font-size:26px;
+        font-weight:600;letter-spacing:.11em}
+  .head{position:absolute;overflow:hidden;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 96,'wght' 700;line-height:1.12;
+        letter-spacing:-.02em;color:#F4F8FF;text-transform:uppercase}
+  .body{position:absolute;font-family:'Archivo',sans-serif;
+        font-variation-settings:'wdth' 88,'wght' 400;font-size:34px;line-height:1.38;color:#B9C8D6}
+  .ann{position:absolute;font-family:'JetBrains Mono',monospace;font-size:25px;
+       letter-spacing:.08em;color:#D7E4EE}
+  .tags{position:absolute;font-family:'JetBrains Mono',monospace;
+        font-size:16px;letter-spacing:.10em;color:#B9C8D6;opacity:.42}
+  .ctr{position:absolute;right:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+       font-size:20px;letter-spacing:.10em;color:#B9C8D6}
+  .site{position:absolute;left:80px;bottom:26px;font-family:'JetBrains Mono',monospace;
+        font-size:18px;letter-spacing:.10em;color:#46545F}
+  .kick{left:80px;top:170px;color:#6EA5FF}
+  .head{left:74px;top:216px;width:560px;font-size:74px}
+  .body{left:80px;top:452px;width:540px}
+  .ann{left:820px;top:600px;width:176px;font-size:24px;letter-spacing:0;color:#C8D8E6}
+  .annrule{position:absolute;left:820px;top:672px;width:176px;height:0;border-top:1.4px dashed #6EA5FF}
+  .tags{left:352px;bottom:27px}
+</style>
+</head>
+<body data-breather
+      data-contacts='[{"what":"the coiled strap on the aft floor","shadow":[[768,904,26,10]],"ground":[[798,904,26,10]]}]'
+      data-ink='[{"hex":"#FFC72C","means":"a locked implementation","state":"absent"},{"hex":"#6EA5FF","means":"a planning row","state":"present"}]'>
+<canvas id="art" width="2160" height="2700"></canvas>
+  <div class="kick">AUGUST 14TH&nbsp;&nbsp;BP1 PL 026</div>
+  <div class="head">The Interior<br>got a year to plan</div>
+  <div class="body">Tanana Chiefs Conference took $250,000 for a planning year on the same idea, a drone pharmaceutical route from a Fairbanks hub to 42 Interior villages across 94,000 square miles. Tanana Chiefs says winter medication delays of 5 to 14 days are common.</div>
+  <div class="ann">94,000 SQ MI<br>42 VILLAGES</div>
+  <div class="annrule" data-decorative></div>
+  <div class="tags" data-decorative>C13&nbsp;&nbsp;C14&nbsp;&nbsp;C15&nbsp;&nbsp;C16</div>
+  <div class="ctr" data-decorative>06 / 09</div>
+  <div class="site" data-decorative>alaskaaihq.com</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akhold.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+/* SLIDE 06 -- THE INTERIOR'S OWN ROW. THE DECLARED BREATHER.
+ * LIGHT az 76, el 12, key to fill 6 to 1. THE LIGHT IS TO THE UPPER RIGHT AND
+ * EVERY CAST RUNS TO THE LOWER LEFT.
+ * `data-breather` is on the body TAG, in the markup, not written at runtime.
+ * The deck needs a rest between the rendered hero and the data slide and this
+ * is it. Even so the bottom band is not empty. It carries the near floor in
+ * the wedge with the track's extrusion highlight running out of the lower left
+ * corner, graded aft, plus the coiled strap's own cast.
+ */
+window.renderReady = new Promise(function (resolve) {
+  (async function () {
+    await document.fonts.ready;
+    AK.fitText(document.querySelector('.head'), { min: 54, max: 82, maxLines: 2 });
+    var W = 1080, H = 1350;
+    var cx = document.getElementById('art').getContext('2d');
+    cx.scale(2, 2);
+    var boxes = AKHOLD.lineBoxes('.head, .body, .kick, .ann, .tags', 16);
+    var mask = AKHOLD.reserveMask(boxes, 26);
+
+    /* 1. the longest look in the deck, down the hold, fogged aft */
+    var bg = cx.createLinearGradient(0, 1354, 700, 520);
+    bg.addColorStop(0, '#17222E'); bg.addColorStop(.48, '#0B131E'); bg.addColorStop(1, '#060C15');
+    cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+
+    /* 2. rib stations receding, pitch 42 near to 11 aft, solved from the camera */
+    var VPX = 690, VPY = 742;
+    for (var rb = 0; rb < 11; rb++) {
+      var t = rb / 10, k = Math.pow(1 - t, 1.5);
+      var hw = 640 * k + 44, hh = 470 * k + 30;
+      var cxr = VPX - 300 * k, cyr = VPY + 40 * k;
+      cx.strokeStyle = 'rgba(2,5,10,' + (0.30 + 0.5 * k).toFixed(2) + ')';
+      cx.lineWidth = 3 + 9 * k;
+      cx.beginPath(); cx.ellipse(cxr, cyr, hw, hh, 0, Math.PI * 0.82, Math.PI * 2.18); cx.stroke();
+      cx.strokeStyle = 'rgba(175,198,216,' + (0.05 + 0.16 * k).toFixed(3) + ')';
+      cx.lineWidth = 1.1;
+      cx.beginPath(); cx.ellipse(cxr + 3, cyr - 3, hw, hh, 0, Math.PI * 1.62, Math.PI * 2.05); cx.stroke();
+    }
+    /* exp2 fog down the hold, in the fill hue */
+    var fog = cx.createRadialGradient(VPX, VPY, 30, VPX, VPY, 620);
+    fog.addColorStop(0, 'rgba(110,138,163,.30)'); fog.addColorStop(1, 'rgba(110,138,163,0)');
+    cx.fillStyle = fog; cx.fillRect(0, 0, W, H);
+
+    /* 3. the aperture, the Interior, spruce and a braided river, no coast */
+    var AP = [[766, 556], [1096, 524], [1096, 856], [778, 872]];
+    var world = AKHOLD.offscreen(W, H, function (g) {
+      var sg = g.createLinearGradient(0, 500, 0, 900);
+      sg.addColorStop(0, '#5E7382'); sg.addColorStop(.34, '#36474A');
+      sg.addColorStop(.62, '#2B3A34'); sg.addColorStop(1, '#202C24');
+      g.fillStyle = sg; g.fillRect(740, 500, 390, 400);
+      /* a braided river, pale threads on the dark ground */
+      g.strokeStyle = 'rgba(150,178,196,.44)';
+      for (var b = 0; b < 7; b++) {
+        g.lineWidth = .8 + (b % 3) * .6;
+        g.beginPath(); g.moveTo(740, 726 + b * 7);
+        g.bezierCurveTo(880, 700 + b * 12, 990, 760 - b * 6, 1130, 736 + b * 9); g.stroke();
+      }
+      /* spruce, small dark spikes */
+      for (var i = 0; i < 160; i++) {
+        var px = 744 + AK.rng(611 + i)() * 384, py = 786 + AK.rng(922 + i)() * 96;
+        g.fillStyle = 'rgba(16,26,20,.75)';
+        g.beginPath(); g.moveTo(px, py); g.lineTo(px + 3, py - 13); g.lineTo(px + 6, py); g.closePath(); g.fill();
+      }
+    });
+    cx.save();
+    cx.beginPath(); cx.moveTo(AP[0][0], AP[0][1]);
+    for (var i = 1; i < 4; i++) cx.lineTo(AP[i][0], AP[i][1]);
+    cx.closePath(); cx.clip();
+    cx.drawImage(AKHOLD.streak(world, 14), 0, 0, W, H);
+    cx.restore();
+    /* A CUT IN THE SKIN, NOT A BEZEL. A uniform dark outline on all four sides
+     * made this opening read as a desktop monitor, which is the last thing a
+     * frame set inside an aeroplane can afford. An opening cut in a lit skin
+     * shows its lee edges struck and its key edges lit, and nothing else. */
+    cx.lineWidth = 5; cx.strokeStyle = 'rgba(7,13,22,.92)';
+    cx.beginPath();
+    cx.moveTo(AP[3][0], AP[3][1]); cx.lineTo(AP[0][0], AP[0][1]);
+    cx.lineTo(AP[1][0], AP[1][1]); cx.stroke();
+    cx.lineWidth = 2.6; cx.strokeStyle = 'rgba(206,224,238,.62)';
+    cx.beginPath();
+    cx.moveTo(AP[1][0], AP[1][1]); cx.lineTo(AP[2][0], AP[2][1]);
+    cx.lineTo(AP[3][0], AP[3][1]); cx.stroke();
+    /* the skin's own thickness at the cut, a hairline inboard of the lit edge */
+    cx.lineWidth = 1.1; cx.strokeStyle = 'rgba(120,146,168,.34)';
+    cx.beginPath();
+    cx.moveTo(AP[0][0] + 7, AP[0][1] + 5); cx.lineTo(AP[1][0] - 7, AP[1][1] + 5);
+    cx.lineTo(AP[2][0] - 7, AP[2][1] - 5); cx.lineTo(AP[3][0] + 7, AP[3][1] - 5);
+    cx.closePath(); cx.stroke();
+
+    /* 4. THE NEAR FLOOR, graded from lit at the near edge to dark aft, with the
+     * track's extrusion highlight running out of the lower left corner. */
+    var fl = cx.createLinearGradient(0, 1354, 640, 800);
+    fl.addColorStop(0, '#2B3A48'); fl.addColorStop(.42, '#18242F'); fl.addColorStop(1, '#0A121C');
+    cx.fillStyle = fl;
+    cx.beginPath(); cx.moveTo(-40, 1354); cx.lineTo(1120, 1354);
+    cx.lineTo(1120, VPY + 150); cx.lineTo(VPX - 330, VPY + 150); cx.closePath(); cx.fill();
+    /* the aft floor carrying on under the coil and the tag, graded down */
+    (function () {
+      var af = cx.createLinearGradient(0, VPY + 150, 0, 1354);
+      af.addColorStop(0, '#101A25'); af.addColorStop(1, '#1E2B38');
+      cx.fillStyle = af;
+      cx.beginPath(); cx.moveTo(VPX - 330, VPY + 150); cx.lineTo(1120, VPY + 150);
+      cx.lineTo(1120, 1354); cx.lineTo(660, 1354); cx.closePath(); cx.fill();
+    })();
+    var WEDGE = [[-40, 1354], [372, 1060], [700, 1120], [520, 1354]];
+    AKHOLD.wedge(cx, WEDGE, { alpha: .40, gx0: 372, gy0: 1060, gx1: 240, gy1: 1354 });
+    (function () {
+      cx.strokeStyle = 'rgba(230,240,248,.34)'; cx.lineWidth = 2.2;
+      cx.beginPath(); cx.moveTo(-40, 1290); cx.lineTo(VPX + 60, VPY + 156); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.85)'; cx.lineWidth = 6;
+      cx.beginPath(); cx.moveTo(-40, 1316); cx.lineTo(VPX + 72, VPY + 160); cx.stroke();
+    })();
+
+    /* 5. THE COILED STRAP, far aft and small, with 42 TURNS, one per Interior
+     * village [C15], and a wired paper tag cut by the right edge. */
+    var COX = 828, COY = 900;
+
+    /* D1, THE UNIT CRATE, distant and aft, at the deck's own 132 x 132 x 88
+     * footprint. It was missing from this frame entirely, which is the deck's
+     * only undeclared motif drop and it fell on the slide immediately after
+     * the hero taught the reader that one crate is $250,000. It is small and
+     * the wedge visibly does not reach it, which is this frame's argument. */
+    (function () {
+      var UX = 560, UY = 1016, UW = 96, UH = 64, UD = 30;
+      AKHOLD.contact(cx, { x: UX + UW / 2, y: UY + 2, w: 84, k: .58,
+                           seamW: UW * .44 });
+      cx.fillStyle = '#18242F';
+      cx.beginPath(); cx.moveTo(UX + UW, UY - UH); cx.lineTo(UX + UW + UD, UY - UH + UD * .42);
+      cx.lineTo(UX + UW + UD, UY + UD * .42); cx.lineTo(UX + UW, UY); cx.closePath(); cx.fill();
+      var ug = cx.createLinearGradient(UX, UY - UH, UX + UW, UY);
+      ug.addColorStop(0, '#2E3D4B'); ug.addColorStop(1, '#1F2B37');
+      cx.fillStyle = ug; cx.fillRect(UX, UY - UH, UW, UH);
+      cx.fillStyle = '#54636F';
+      cx.beginPath(); cx.moveTo(UX, UY - UH); cx.lineTo(UX + UW, UY - UH);
+      cx.lineTo(UX + UW + UD, UY - UH + UD * .42); cx.lineTo(UX + UD, UY - UH + UD * .42);
+      cx.closePath(); cx.fill();
+      cx.strokeStyle = 'rgba(215,228,238,.34)'; cx.lineWidth = 1.2;
+      cx.beginPath(); cx.moveTo(UX, UY - UH); cx.lineTo(UX + UW, UY - UH); cx.stroke();
+      cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.moveTo(UX, UY); cx.lineTo(UX + UW, UY); cx.stroke();
+      /* the aluminium band, so it is the same object as the one on 05 */
+      cx.fillStyle = 'rgba(147,162,176,.30)';
+      cx.fillRect(UX, UY - UH * 0.62, UW, 5);
+      /* NO GOLD. This frame declares the implementation ink absent, so the
+       * crate here is unstrapped: the strap is coiled on the floor beside it
+       * and that is the whole point of the planning row. */
+    })();
+
+    AKHOLD.contact(cx, { x: COX, y: COY + 4, w: 84, k: .74, seamW: 52 });
+    cx.strokeStyle = 'rgba(147,162,176,.46)'; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.ellipse(COX - 92, COY + 2, 19, 7, 0, 0, Math.PI * 2); cx.stroke();
+    cx.strokeStyle = 'rgba(2,5,10,.8)'; cx.lineWidth = 1.1;
+    cx.beginPath(); cx.ellipse(COX - 92, COY + 4.6, 19, 7, 0, 0, Math.PI * 2); cx.stroke();
+    var turns = [];
+    for (var tn = 0; tn < 42; tn++) {
+      var a = tn / 41, rr = 18 + a * 30, th = -0.42 + a * 0.30;
+      var tx = COX + Math.cos(th) * 0, ty = COY - 6 - a * 3;
+      cx.strokeStyle = tn % 2 ? 'rgba(60,70,54,.95)' : 'rgba(78,90,69,.95)';
+      cx.lineWidth = 6.6;
+      cx.beginPath(); cx.ellipse(tx, ty, rr, rr * 0.30, th, Math.PI * 0.06, Math.PI * 1.94); cx.stroke();
+      cx.strokeStyle = 'rgba(215,228,238,.13)'; cx.lineWidth = 1.1;
+      cx.beginPath(); cx.ellipse(tx, ty - 2.2, rr, rr * 0.30, th, Math.PI * 1.15, Math.PI * 1.85); cx.stroke();
+      turns.push([tx, ty - rr * 0.30]);
+    }
+    /* the wired paper tag, cut by the right edge, with real fibre tooth */
+    cx.save();
+    cx.translate(996, 880); cx.rotate(-0.10);
+    var pg2 = cx.createLinearGradient(0, 0, 150, 90);
+    pg2.addColorStop(0, '#C2CFDA'); pg2.addColorStop(1, '#8896A4');
+    cx.fillStyle = pg2; cx.fillRect(0, 0, 160, 92);
+    for (var q = 0; q < 130; q++) {
+      var qx = AK.rng(1717 + q)() * 160, qy = AK.rng(2828 + q)() * 92;
+      cx.fillStyle = q % 2 ? 'rgba(255,255,255,.24)' : 'rgba(40,52,62,.16)';
+      cx.fillRect(qx, qy, 5 + (q % 4), 1.0);
+    }
+    cx.strokeStyle = 'rgba(2,5,10,.5)'; cx.lineWidth = 1.2; cx.strokeRect(0, 0, 160, 92);
+    cx.strokeStyle = 'rgba(110,165,255,.95)'; cx.lineWidth = 2.4;
+    cx.strokeRect(6, 6, 148, 80);
+    cx.setLineDash([9, 5]); cx.strokeStyle = 'rgba(110,165,255,.7)'; cx.lineWidth = 1.4;
+    cx.strokeRect(12, 12, 136, 68); cx.setLineDash([]);
+    cx.restore();
+    cx.strokeStyle = 'rgba(147,162,176,.6)'; cx.lineWidth = 1.6;
+    cx.beginPath(); cx.moveTo(COX + 44, COY - 26); cx.lineTo(996, 884); cx.stroke();
+
+    cx.save();
+    for (var ag = 0; ag < 3600; ag++) {
+      var ax = AK.rng(4100 + ag)() * W, ay = AK.rng(12311 + ag)() * H;
+      if (mask(ax, ay) < 0.55) continue;
+      var v = AK.fbm2(ax * 0.0048, ay * 0.0098, 4);
+      cx.fillStyle = v > .52 ? 'rgba(147,162,176,.05)' : 'rgba(2,5,10,.26)';
+      cx.fillRect(ax, ay, 6 + (ag % 10), .9);
+    }
+    cx.restore();
+
+    AKHOLD.grade(cx, { bloom: { threshold: 0.80, strength: 0.16, radius: 8 }, lift: [0.016, 0.021, 0.034] });
+
+    window.__akAssert = [{ what: '42 Interior villages, one coil turn each',
+                           expect: 42, points: turns, unit: 'marks' }];
+    window.__akMotifs = [{ what: 'the coiled strap and its wired tag',
+                           rect: [COX - 130, COY - 96, 320, 130] }];
+
+    resolve();
+  })();
+});
+</script>
+</body>
+</html>
