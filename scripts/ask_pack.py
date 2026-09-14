@@ -35,6 +35,7 @@ spend.
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import date
 
@@ -91,7 +92,88 @@ MAX_TOKENS = 32_000
 # the model can see the record is longer than what it holds and can say so
 # rather than implying the list is complete. Every note is still on the item's
 # own page, which is where the citation already points.
-RECENT_HISTORY = 6
+# NARROWED FROM 6 TO 4 ON 2026-09-14, together with the run collapse below.
+#
+# 6 was calibrated against a record of roughly twenty items. At twenty eight the
+# pack measured about 32,360 tokens against a 32,000 ceiling. The collapse below
+# takes it to about 30,360 on its own, which clears the gate by five percent and
+# is therefore not a fix, because the record adds an item every few days and
+# five percent is a couple of days.
+#
+# Four notes plus the first plus the collapse lines carries MORE of the record
+# than six raw notes did, because the six were routinely four restatements of
+# the same no change. The pair lands at about 26,600 tokens, which is 83 percent
+# of the ceiling and leaves room for five or six more tracked decisions before
+# anyone has to think about this again. MAX_TOKENS is untouched, which is the
+# point.
+RECENT_HISTORY = 4
+
+# COLLAPSING A RUN OF "CHECKED AND UNCHANGED" NOTES (2026-09-14).
+#
+# The window above stopped history growing with an item's AGE. It does not stop
+# the pack growing with the item COUNT, which is what actually happened next:
+# the record reached 28 tracked items and the pack came back at about 32,360
+# tokens against the 32,000 ceiling, with no duplication bug and nothing dumped
+# in raw. Every item was simply carrying its fair share.
+#
+# Lowering RECENT_HISTORY again would have bought two or three days, which is
+# the nudge this file's own header refuses. The measurement says where the waste
+# is instead. Of the 325 notes on the record, 79 open by reporting that a source
+# was re-read and nothing had moved, and 53 of those sit INSIDE the six-note
+# windows the pack renders, at a mean of 384 characters each. An item checked
+# daily therefore spends roughly 2,000 characters telling a model six times in
+# six different sentences that nothing happened.
+#
+# So a RUN of consecutive unchanged notes renders as its newest member plus one
+# line saying how many checks the run stands for and over what span. The newest
+# is kept rather than the oldest because these notes accrete detail, and the
+# count is kept because "checked every day for a week and nothing moved" is a
+# real fact about a decision that is waiting. Nothing is dropped that a reader
+# cannot reach: the citation already points at the item's own page, which
+# carries every note.
+#
+# A note that merely OPENS on those words and then reports something new is not
+# a no-op and must not be collapsed away, which is why only the older members of
+# a run are replaced and the newest always renders in full.
+UNCHANGED_RE = re.compile(
+    r"^\s*(?:checked|re-?checked|re-?verified|checked again)[\s,]*"
+    r"(?:and\s+)?(?:unchanged|nothing\b)", re.I)
+
+
+def is_unchanged_note(h):
+    """True when a history note opens by reporting that nothing had moved."""
+    return bool(h) and bool(UNCHANGED_RE.match(h.get("note") or ""))
+
+
+def collapse_unchanged(entries):
+    """Replace all but the newest member of each run of unchanged notes.
+
+    Takes the windowed entry list (which may carry a None marking the elision
+    point) and returns a list of the same shape, where a collapsed run appears
+    as a dict carrying `collapsed`, `count`, `first` and `last`. A run of one
+    is left exactly as it was, so an item nobody has had to revisit twice reads
+    as it always did.
+    """
+    out, run = [], []
+
+    def flush():
+        if not run:
+            return
+        if len(run) > 1:
+            out.append({"collapsed": True, "count": len(run) - 1,
+                        "first": run[0].get("date", ""),
+                        "last": run[-2].get("date", "")})
+        out.append(run[-1])
+        run.clear()
+
+    for h in entries:
+        if h is not None and is_unchanged_note(h):
+            run.append(h)
+            continue
+        flush()
+        out.append(h)
+    flush()
+    return out
 
 
 def esc_dashes(text):
@@ -173,10 +255,17 @@ def render_item(it):
     if hist:
         lines.append("History, oldest first:")
         shown, elided = window_history(hist)
-        for h in shown:
+        for h in collapse_unchanged(shown):
             if h is None:
                 lines.append(f"  ... {elided} earlier note(s) not shown here. "
                              f"The item's own page carries the full history.")
+                continue
+            if h.get("collapsed"):
+                span = (f"{h['first']} to {h['last']}" if h["first"] != h["last"]
+                        else h["first"])
+                lines.append(
+                    f"  {span}  {h['count']} further check(s) of this item found "
+                    f"nothing changed. The most recent check is the note below.")
                 continue
             lines.append(f"  {h.get('date', '')}  {esc_dashes(h.get('note'))}")
 
