@@ -250,6 +250,17 @@ parked in section 5.
   next.
 - **Loosening nothing.** No threshold was lowered and no hard fail became a
   warn. Recommendations for the maintainer: none this run.
+- **Observed, not fixed: `trend_check.canon` truncates an upgrade's prose at
+  its first "(" or ":" before matching it to a criterion.** `canon` was
+  written to fold three spellings of a criterion NAME and it is also used on
+  the whole change+trigger blob, so an entry whose first sentence carries a
+  parenthesis is matched on that fragment alone. Upgrade 3's ledger entry was
+  worded to put "Artwork craft and genuine detail" in front of any bracket,
+  and `last_worked` now returns 2026-09-14 for that criterion, so this run is
+  recorded honestly. But the same quirk means older entries UNDER-report, the
+  report's own header already warns that they might, and the one-line repair
+  (canon the blob without the truncation, or canon only the criterion name)
+  belongs to a run with a free slot.
 
 ## 5. FRONTIER SCAN (b): editorial dataviz and cartography
 
