@@ -13,7 +13,9 @@
   "deck_summary": "Both award rows are drawn as freight on one aircraft floor, with the ten rows out of 217 that name a machine.",
   "brand_phrases_loaded": 74,
   "fails": [],
-  "warns": [],
+  "warns": [
+    "PHRASE: banned phrase 'cutting-edge' in copy.json first_comment appears only inside a URL, which is allowed: a link is an address and not the house's words. Confirm the link is right."
+  ],
   "verdict": "PASS",
   "copy_fields_checked": 92
 }
