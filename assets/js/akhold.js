@@ -170,53 +170,102 @@
       cx.restore();
     }
 
+    /* ------------------------------------------------------------------
+     * THE ADDITIVE POOL IS GONE (2026-09-14, run No.59, five pixel critics).
+     *
+     * The version above this one laid a SCREENED radial blob of
+     * rgba(196,216,232) down-light of the foot and then bit a small round
+     * hole in it. On paper that was "the lit ground the cast falls on". In
+     * the pixels it was the brightest region of nine frames out of nine,
+     * with no source anywhere in the picture, and five critics reviewing
+     * the deck independently arrived at the same three words for it: a
+     * glowing manhole. One called it "an object glowing on its shadow
+     * side", which is the exact physics: ground DOWN-light of an object is
+     * the ground in shadow, and that is where the old routine put its
+     * brightest paint.
+     *
+     * What replaces it is the thing the frames were missing rather than a
+     * softer version of the thing they had. At the deck's elevation of 12
+     * degrees an object throws a LONG shallow cast, and none of the nine
+     * frames had one. The cast below is a tapering quad built inside a
+     * squashed transform, so it lies in the floor plane instead of standing
+     * up off it, drawn as four nested layers so its long edges are soft
+     * without the cost of a blur pass.
+     *
+     * THE LIT GROUND IS NOW THE SLIDE'S JOB, not this routine's. Every
+     * frame in this deck already draws a lit wedge or a lit floor; a
+     * contact routine that paints its own light is a routine competing with
+     * the picture's light. `o.lit` is available for a frame that genuinely
+     * stands on near-black, and it is a HARD-EDGED sliver at low alpha in
+     * source-over, never an additive blob.
+     * ------------------------------------------------------------------ */
+    var squash = o.squash != null ? o.squash : 0.34;
+    var len = o.len != null ? o.len : w * 1.30;
+    var seamW = o.seamW || w * 0.44;
+
     cx.save();
+    cx.translate(fx, fy);
+    cx.scale(1, squash);
 
-    /* 1. THE LIT POOL, SCREENED over the ground and laid down FIRST, centred
-     * UP-LIGHT of the foot. It has to be strong enough that there is something
-     * left to subtract: on a near black floor the cast has nothing to darken and
-     * the object floats, which is the failure qa.py names by name. The pool and
-     * the cast then sit SIDE BY SIDE on one piece of ground rather than stacked,
-     * which is also what keeps the declared pair inside CONTACT_PAIR_SPAN. */
-    /* THE POOL SITS DOWN-LIGHT OF THE FOOT, not under it. An object standing on
-     * its own pool hides the bright part and leaves the fringe, which is how
-     * three of this deck's first nine contacts measured dL 0.5 on ground the
-     * probe could see. Putting the peak beyond the cast means the lit ground is
-     * the strip the cast actually falls on, and the pair stays inside
-     * qa.CONTACT_PAIR_SPAN because the two are 0.43w apart rather than 2w. */
-    var px = fx + d[0] * (w * 0.66), py = fy + d[1] * (w * 0.66);
-    cx.globalCompositeOperation = 'screen';
-    blob(px, py, w * 0.70, 'rgba(196,216,232,' + (0.86 * strength).toFixed(3) + ')',
-                           'rgba(196,216,232,0)');
+    /* the cast direction inside the squashed frame: unsquashing it afterwards
+     * is what lays the shadow down onto the floor rather than up the wall */
+    var ex = d[0], ey = d[1] / squash;
+    var em = Math.hypot(ex, ey) || 1;
+    ex /= em; ey /= em;
+    var qx = -ey, qy = ex;                     /* perpendicular, squashed frame */
 
-    /* 2. THE CAST, an ATTACHED subtraction from that pool thrown down-light */
-    /* ATTACHED. The first pass put the cast's trough 45 design px from the
-     * object's base, which contact_probe named as the gap five critics once
-     * read as a detached hole in a spotlight. A contact shadow touches the
-     * thing that casts it. */
-    var qx = fx + d[0] * (2 + w * 0.12), qy = fy + d[1] * (2 + w * 0.12);
-    cx.globalCompositeOperation = 'source-over';
-    /* TIGHT. The first attempt gave the cast a radius wider than the gap to the
-     * pool's peak, so the cast simply painted over the lit ground it was meant
-     * to be subtracting from, and the pair measured dL 0.3 on a frame that
-     * plainly had both. */
-    blob(qx, qy, w * 0.30, 'rgba(4,9,16,' + (0.97 * strength).toFixed(3) + ')',
-                           'rgba(4,9,16,0)');
+    function castLayer(halfFoot, halfTip, a0) {
+      var g = cx.createLinearGradient(0, 0, ex * len, ey * len);
+      g.addColorStop(0, 'rgba(4,9,16,' + a0.toFixed(3) + ')');
+      g.addColorStop(0.40, 'rgba(4,9,16,' + (a0 * 0.58).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(4,9,16,0)');
+      cx.fillStyle = g;
+      cx.beginPath();
+      cx.moveTo(qx * halfFoot, qy * halfFoot);
+      cx.lineTo(ex * len + qx * halfTip, ey * len + qy * halfTip);
+      cx.lineTo(ex * len - qx * halfTip, ey * len - qy * halfTip);
+      cx.lineTo(-qx * halfFoot, -qy * halfFoot);
+      cx.closePath(); cx.fill();
+    }
+    var hf = w * 0.46, ht = w * 0.31;
+    castLayer(hf * 1.34, ht * 1.42, 0.15 * strength);
+    castLayer(hf * 1.14, ht * 1.18, 0.21 * strength);
+    castLayer(hf * 0.97, ht * 0.99, 0.29 * strength);
+    castLayer(hf * 0.79, ht * 0.80, 0.34 * strength);
 
-    /* 3. THE SEAM, hard and narrow, right at the foot */
-    cx.save();
-    cx.translate(fx, fy); cx.scale(1, 0.16);
-    cx.fillStyle = 'rgba(4,8,14,' + (0.78 * strength).toFixed(3) + ')';
-    cx.beginPath(); cx.arc(0, 0, (o.seamW || w * 0.44), 0, Math.PI * 2); cx.fill();
+    /* THE SEAM, hard and narrow, right at the foot. Drawn last so the darkest
+     * value in the whole contact is the line where the object meets the floor,
+     * which is the one place a contact shadow is genuinely near black. */
+    cx.save(); cx.scale(1, 0.47);
+    cx.fillStyle = 'rgba(4,8,14,' + (0.80 * strength).toFixed(3) + ')';
+    cx.beginPath(); cx.arc(0, 0, seamW, 0, Math.PI * 2); cx.fill();
     cx.restore();
     cx.restore();
 
-    /* The rects a slide should DECLARE for this contact, side by side at the
-     * base line. They are returned rather than guessed, and they are still
-     * re-measured off the render with scripts/contact_probe.py before ship. */
+    /* OPTIONAL LIT GROUND, for a frame that really does stand on near-black.
+     * A hard-edged sliver up-light of the foot at low alpha in source-over.
+     * It is off unless a slide asks, and it can never be additive. */
+    if (o.lit) {
+      var lk = o.litK == null ? 0.26 : o.litK;
+      cx.save();
+      cx.translate(fx - d[0] * (w * 0.42), fy - d[1] * (w * 0.42));
+      cx.scale(1, squash * 0.62);
+      cx.globalAlpha = lk;
+      cx.fillStyle = o.lit;
+      cx.beginPath(); cx.arc(0, 0, w * 0.40, 0, Math.PI * 2); cx.fill();
+      cx.restore();
+    }
+
+    /* The rects a slide should DECLARE for this contact: one ON the cast, one
+     * on clean ground the same distance the other side of the foot. They are
+     * returned rather than guessed, and they are still re-measured off the
+     * render with scripts/contact_probe.py before ship. */
+    var mid = len * 0.34;
+    var sx = fx + d[0] * mid, sy = fy + d[1] * mid * squash;
+    var gx = fx - d[0] * mid, gy = fy - d[1] * mid * squash;
     return {
-      shadow: [Math.round(qx - w * 0.5), Math.round(fy - 10), Math.round(w), 22],
-      ground: [Math.round(px - w * 0.5), Math.round(fy - 10), Math.round(w), 22]
+      shadow: [Math.round(sx - 13), Math.round(sy - 5), 26, 10],
+      ground: [Math.round(gx - 13), Math.round(gy - 5), 26, 10]
     };
   };
 
