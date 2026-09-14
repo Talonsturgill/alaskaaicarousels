@@ -7360,3 +7360,53 @@ published, and the first caption spent it on a single kicker word. It is also
 the thing that makes a 15 day repeat of an earlier deck's source file
 legitimate rather than a dedupe near miss. If a deck is an update, the caption
 has to say what it updates, in a sentence, where a reader will meet it.
+
+---
+
+## 2026-09-14, No.59, Phase 12 frontier scan (b): editorial dataviz and
+## cartography technique. ONE PARKED, and it AMENDS an existing park.
+
+Slot chosen as the stalest legal one (last scanned 2026-09-05, nine days;
+the last three logged foci were (g) 09-13, (c) 09-12, (e) 09-10) and because
+this run left a cartographic finding on the table: slide 04's dossier asked
+for the Alaska coastline through the aperture, projected true through AKGeo
+and drawn stroke only, and the frame carries a graded world and a ridge
+silhouette instead (BUILD RECONCILIATION, No.59).
+
+**PARKED, and it changes a constant inside the 2026-08-20 park rather than
+adding a second one.** That entry parked `AK.placeBand`, an occupancy bitmap
+plus the 8-position candidate model, and took the POSITION PRIORITY ORDER as
+given from cartographic convention: top-right first, then the other corners,
+then the sides. The convention is 60 years old, it traces to Imhof by way of
+Yoeli, and as of 2024 it has been measured rather than asserted.
+
+- **Readers prefer the label ABOVE the point, not up-right of it.**
+  "From Top-Right to User-Right: Perceptual Prioritization of Point-Feature
+  Label Positions" (arXiv 2407.11996) ran nearly 800 participants from 48
+  countries through more than 45,500 pairwise comparisons and published
+  PerceptPPO, a position priority order derived from what readers actually
+  chose. Its headline result is that the top-right position, which every GIS
+  and every textbook puts first, is NOT the preferred one; directly above the
+  feature is. For a deck whose maps carry four to eight place labels a frame,
+  that is one array's order in a helper that does not exist yet, and it is
+  free to get right before the helper is written.
+  https://arxiv.org/abs/2407.11996
+- **The rules that go with it, operationalised** (Penn State GEOG 486, the
+  standard teaching text for Imhof's conventions): a land feature's label
+  stays on land and a coastal feature's label goes in water, so the label
+  never miscategorises its own feature; area labels are set in caps and
+  tracked out across the feature's extent to SHOW that extent, and staggered
+  rather than aligned; multi-line labels break at sense boundaries and take
+  NEGATIVE leading so the lines read as one name; the distance from point to
+  label is one constant across the whole map, not per label.
+  https://courses.ems.psu.edu/geog486/node/557
+  The first of those is checkable against AKGeo's own polygons, which is the
+  interesting part: this house has the coastline as data, so "is this label
+  on the wrong side of the shore" is arithmetic and not taste.
+- WHY PARKED, not applied: the 0-3 budget went reactive-first to three run
+  deviations (incidents 7, 3 and 1), and this is a visual change with no
+  defect behind it in THIS run. UNBLOCKING CONDITION unchanged from
+  2026-08-20, with one addition: when `AK.placeBand` is built, seed its
+  candidate order from PerceptPPO rather than from convention, and cite the
+  measurement in the helper's header so nobody "corrects" it back to
+  top-right.

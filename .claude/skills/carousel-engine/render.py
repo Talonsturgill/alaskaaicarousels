@@ -223,6 +223,7 @@ GRADIENT_CLIP_HOOK_JS = """
   try {
     window.__akGradientClip = [];
     window.__akFlatCore = [];
+    window.__akAddGlow = [];
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     const gproto = window.CanvasGradient && window.CanvasGradient.prototype;
     if (!proto || !gproto) return;
@@ -319,6 +320,71 @@ GRADIENT_CLIP_HOOK_JS = """
       } catch (e) {}
     };
 
+    /* A LIGHT WITH NO SOURCE (2026-09-14, run No.59). AKHOLD.contact laid a
+       SCREENED radial blob down-light of every foot in the deck: the brightest
+       region on nine frames out of nine, with nothing in any picture emitting
+       it. Five pixel critics reviewing disjoint slides in five separate
+       contexts each named it, three of them as "a glowing manhole", and every
+       machine gate passed it, because qa.py's contact rule measures the
+       DIFFERENCE between two declared rects and a bright pool beside a dark
+       hole satisfies a difference test perfectly.
+       Measured on the pixels, it is not separable: over this deck's nine
+       frames rendered both ways, the brightest region near a contact ran 25 to
+       72 L* above its local baseline BEFORE the fix and 18 to 75 after, because
+       the neighbourhood is full of legitimately bright objects and type.
+       At the BRUSH it is exact and needs no threshold: an additive radial ramp
+       IS a painted light, whatever it lands on. So every one of them is
+       recorded here, in design space, with no verdict attached -- the house
+       paints honest additive radials all the time (window glow, speckle,
+       lamp bloom). qa.py holds the one question that can be answered without
+       taste: is this light sitting on a region the same slide DECLARED as its
+       contact shadow. */
+    const GLOW_MAX = 24;
+    const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
+                       'lighten': 1, 'color-dodge': 1 };
+    const glow = (ctx, how) => {
+      try {
+        if (window.__akAddGlow.length >= GLOW_MAX) return;
+        const op = ctx.globalCompositeOperation;
+        if (!ADDITIVE[op]) return;
+        const m = meta.get(ctx.fillStyle);
+        if (!m || !(m.r1 > 0) || !m.stops.length) return;
+        let amax = 0, col = '';
+        for (const s of m.stops) {
+          const a = alphaOf(s[1]) * (ctx.globalAlpha == null ? 1 : ctx.globalAlpha);
+          if (a > amax) { amax = a; col = String(s[1]); }
+        }
+        if (amax <= 0.05) return;          /* a whisper is not a light */
+        const t = ctx.getTransform ? ctx.getTransform() : null;
+        const a = t ? t.a : 1, d = t ? t.d : 1;
+        let x = t ? (t.a * m.x1 + t.c * m.y1 + t.e) : m.x1;
+        let y = t ? (t.b * m.x1 + t.d * m.y1 + t.f) : m.y1;
+        let rx = Math.abs(m.r1 * a), ry = Math.abs(m.r1 * d);
+        /* into design (CSS) pixels, which is the space every declaration and
+           every qa.py rect is written in */
+        const cv = ctx.canvas;
+        let k = 1, ox = 0, oy = 0;
+        if (cv && cv.getBoundingClientRect) {
+          const r = cv.getBoundingClientRect();
+          if (r.width > 0 && cv.width > 0) {
+            k = r.width / cv.width;
+            ox = r.left + (window.scrollX || 0);
+            oy = r.top + (window.scrollY || 0);
+          }
+        }
+        const e = {
+          key: [Math.round(x), Math.round(y), Math.round(m.r1), op, how].join('|'),
+          n: 1, how: how, op: op,
+          cx: Math.round(ox + x * k), cy: Math.round(oy + y * k),
+          rx: +(rx * k).toFixed(1), ry: +(ry * k).toFixed(1),
+          a_max: +amax.toFixed(3), col: col.slice(0, 32)
+        };
+        const hit = window.__akAddGlow.find((z) => z.key === e.key);
+        if (hit) { hit.n++; return; }
+        window.__akAddGlow.push(e);
+      } catch (err) {}
+    };
+
     const path = (ctx) => {
       if (!ctx.__akPath) ctx.__akPath = { ell: [], arcs: [], other: 0 };
       return ctx.__akPath;
@@ -335,6 +401,7 @@ GRADIENT_CLIP_HOOK_JS = """
           flatCore(this, 'fillRect', (m) =>
             x <= m.x1 && m.x1 <= x + w && y <= m.y1 && m.y1 <= y + h &&
             Math.min(Math.abs(w), Math.abs(h)) >= m.r0);
+          glow(this, 'fillRect');
         } catch (e) {}
         return origRect.apply(this, arguments);
       };
@@ -368,6 +435,7 @@ GRADIENT_CLIP_HOOK_JS = """
     const origFill = proto.fill;
     proto.fill = function () {
       try {
+        glow(this, 'fill');
         if (!(arguments.length && arguments[0] && typeof arguments[0] === 'object')) {
           const p = path(this);
           /* one concentric disc, drawn as an arc or an ellipse, is the other
@@ -2329,6 +2397,11 @@ IN_PAGE_QA_JS = """
   /* Radial ramps with a filled middle, from the same hook. */
   out.flat_cores = (Array.isArray(window.__akFlatCore)
                     ? window.__akFlatCore : []).slice(0, 24);
+  /* Additive radial ramps, i.e. painted lights, in design px. Same hook.
+     A MEASUREMENT and not a complaint: qa.py asks the one question about them
+     that needs no taste, whether one is sitting on a declared contact shadow. */
+  out.add_glows = (Array.isArray(window.__akAddGlow)
+                   ? window.__akAddGlow : []).slice(0, 24);
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -2937,6 +3010,88 @@ def source_sha1(p: Path) -> str:
     return hashlib.sha1(p.read_bytes()).hexdigest()
 
 
+# THE SLIDE IS NOT THE ONLY SOURCE (2026-09-14, run No.59). The hash above
+# answers "has this HTML moved since its PNG", and run No.59 proved that is
+# only half the question. Round 2 fixed AKHOLD.contact in assets/js/akhold.js,
+# a SHARED library, and then re-rendered with `--only` listing the slides whose
+# own HTML had changed. Slides 01, 02 and 07 had not changed, so three of the
+# nine frames in final/ still carried the exact additive pool the round existed
+# to remove, and nothing in the pipeline could say so: their HTML hashes
+# matched perfectly. The flow critic caught it by eye on the contact sheet,
+# which is luck, and it would have missed it just as easily by reading a
+# repaired frame first.
+#
+# A shared-library fix is exactly the kind a run makes when a defect is
+# systemic, which is exactly when a partial re-render is most damaging. So the
+# fingerprint of a PNG is now its slide PLUS every committed asset that slide
+# loads. Literal @@ASSETS@@ references only, which is what the slide contract
+# documents and what every slide in every shipped deck uses; a path built at
+# runtime cannot be read from the source and is simply not covered, so this
+# widens the existing check and can never narrow it.
+ASSET_REF_RE = re.compile(r"@@ASSETS@@/([A-Za-z0-9_./\-]+)")
+
+
+def asset_refs(html: str):
+    """[(repo-relative path, Path)] of the committed assets this slide loads."""
+    out, seen = [], set()
+    for m in ASSET_REF_RE.finditer(html):
+        rel = m.group(1).rstrip(".")
+        if rel in seen:
+            continue
+        seen.add(rel)
+        p = (ASSETS_DIR / rel).resolve()
+        try:
+            p.relative_to(ASSETS_DIR.resolve())
+        except ValueError:
+            continue                      # never step outside assets/
+        if p.is_file():
+            out.append((str(p.relative_to(REPO_ROOT)), p))
+    return sorted(out)
+
+
+def source_fingerprint(src: Path) -> dict:
+    """The slide's own hash, plus one per asset it references."""
+    rec = {"path": str(src), "sha1": source_sha1(src)}
+    try:
+        html = src.read_text()
+    except OSError:
+        return rec
+    rec["assets"] = [{"path": rel, "sha1": source_sha1(p)}
+                     for rel, p in asset_refs(html)]
+    return rec
+
+
+def stale_reasons(src_rec: dict):
+    """Why this PNG no longer matches what made it. [] means it still does.
+
+    Pure arithmetic on recorded hashes, so it cannot false-fail. A report
+    written before a field existed simply carries no entry for it and is
+    skipped, which is how this stayed backward compatible with every shipped
+    render report.
+    """
+    out = []
+    sp, sha = src_rec.get("path"), src_rec.get("sha1")
+    if sp and sha:
+        try:
+            if source_sha1(Path(sp)) != sha:
+                out.append(sp)
+        except OSError:
+            pass
+    for a in src_rec.get("assets") or []:
+        ap, asha = a.get("path"), a.get("sha1")
+        if not ap or not asha:
+            continue
+        p = Path(ap)
+        if not p.is_absolute():
+            p = REPO_ROOT / ap
+        try:
+            if source_sha1(p) != asha:
+                out.append(ap)
+        except OSError:
+            pass
+    return out
+
+
 # --- THE CANVAS LAYER, ON ITS OWN (2026-08-30) ------------------------------
 # Every collision check in qa.py that can see canvas ink reads the COMPOSITED
 # screenshot, where the DOM text is painted on top of the art. That forces each
@@ -3016,7 +3171,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "lights": [], "light_conflicts": [],
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
-           "gradient_clips": [], "flat_cores": [], "declaration_misses": [],
+           "gradient_clips": [], "flat_cores": [], "add_glows": [],
+           "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
            "render_ms": 0, "ok": False}
@@ -3056,6 +3212,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
+                                       "add_glows",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",
@@ -3143,7 +3300,7 @@ def main():
             light = scan_light_direction(s.read_text(), s.name)
             rec["lights"] = light["lights"]
             rec["light_conflicts"] = light["conflicts"]
-            rec["source"] = {"path": str(s), "sha1": source_sha1(s)}
+            rec["source"] = source_fingerprint(s)
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
@@ -3162,27 +3319,23 @@ def main():
     report_path.write_text(json.dumps(report, indent=2))
     print(f"report -> {report_path}")
 
-    # STALE PNGs (2026-08-14). Every record in the merged report names the
-    # source that made it and that source's hash. Any slide whose file on disk
-    # has moved on since is a PNG that no longer shows what its HTML says, which
-    # is what a `--only` subset quietly produces after an edit lands outside the
-    # subset. Announced here so the operator sees it at once; qa.py FAILs on it
-    # so it can never reach a reviewer or a ship gate unseen.
+    # STALE PNGs (2026-08-14, widened to shared assets 2026-09-14). Every record
+    # in the merged report names the source that made it and that source's hash,
+    # and since run No.59 the hash of every committed asset that slide loads too.
+    # Any slide whose HTML *or library* on disk has moved on since is a PNG that
+    # no longer shows what its source says, which is what a `--only` subset
+    # quietly produces after an edit lands outside the subset. Announced here so
+    # the operator sees it at once; qa.py FAILs on it so it can never reach a
+    # reviewer or a ship gate unseen.
     stale = []
     for r in merged:
-        src = r.get("source") or {}
-        sp, sha = src.get("path"), src.get("sha1")
-        if not sp or not sha:
-            continue
-        try:
-            if source_sha1(Path(sp)) != sha:
-                stale.append(r["file"])
-        except OSError:
-            continue
+        why = stale_reasons(r.get("source") or {})
+        if why:
+            stale.append("%s (%s)" % (r["file"], ", ".join(why)))
     if stale:
-        print("STALE: %s changed since its PNG was made. Re-render "
+        print("STALE: these PNGs no longer match what made them -- %s. Re-render "
               "(drop --only, or add the slide to it) before any review or gate "
-              "reads these images." % ", ".join(stale), file=sys.stderr)
+              "reads these images." % "; ".join(stale), file=sys.stderr)
 
     hard_fail = any((not r["ok"]) or r["page_errors"] or r["body_overflow"] for r in results)
     if hard_fail:

@@ -31,6 +31,9 @@ deliberately narrow:
     in AI_TELLS keeps failing anywhere in the text, quoted or not, so nothing
     that failed before this change passes after it.
   - unbalanced quotes mean no exemption.
+  - from 2026-09-14 it also covers a phrase inside a URL token in copy.json,
+    on the same reasoning and with the same warn: a link is a quoted address
+    and not the house's words. See check_copy_phrases.
 
 THE CAPTION IS NOT THE ONLY COPY A READER SEES (2026-08-08). Optional flag:
 
@@ -828,23 +831,49 @@ def check_copy_phrases(copy, brand_phrases):
     of the list. Same rule and same exemption as the caption, applied to the
     same fields check_copy_dates already walks. Widens an existing gate to the
     surface it was always meant to cover; adds no rule of its own.
+
+    A URL IS AN ADDRESS, NOT PROSE (2026-09-14, run No.59). brand.yaml bans
+    "cutting-edge", and the CMS press release behind that run's $250,000
+    planning award is published at a slug containing it. This gate read the
+    slug as house voice and hard-failed `first_comment`, so the run shipped
+    without a primary citation rather than hand-weaken a gate mid-run.
+    A banned phrase is a VOICE rule about the words the house chooses; a link
+    is a quoted address the house did not write, which is the same reasoning
+    the script has always applied to a phrase inside a straight-quoted
+    verbatim passage, where it warns instead of failing. So the existing
+    carve-out is extended to URL tokens and nothing else: the occurrence is
+    still reported, as a warn, so it can never be silent, and a banned phrase
+    one character outside the link still fails. check_copy_dates has stripped
+    URLs before judging since it was written, for exactly this reason.
     """
-    fails = []
+    fails, warns = [], []
     for path, s in copy_prose(copy):
         low = s.lower()
         spans = quoted_spans(s)
+        urls = [(m.start(), m.end()) for m in _URLISH_STRIP.finditer(s)]
         for phrase in (brand_phrases or []):
             p = phrase.lower().strip()
             if not p:
                 continue
+            in_url = False
             for m in re.finditer(re.escape(p), low):
                 i = m.start()
                 if any(a <= i and i + len(p) <= b for a, b in spans):
                     continue  # a source is allowed to write however it wrote
+                if any(a <= i and i + len(p) <= b for a, b in urls):
+                    in_url = True
+                    continue  # a link is an address, not the house's words
                 fails.append("PHRASE: banned phrase '%s' in copy.json %s "
                              "(config/brand.yaml banned_phrases)" % (p, path))
                 break
-    return fails
+            else:
+                if in_url:
+                    warns.append(
+                        "PHRASE: banned phrase '%s' in copy.json %s appears only "
+                        "inside a URL, which is allowed: a link is an address and "
+                        "not the house's words. Confirm the link is right."
+                        % (p, path))
+    return fails, warns
 
 
 def check_slide_openers(copy):
@@ -1282,7 +1311,9 @@ def main():
             rep["verdict"] = "FAIL"
         else:
             hits = check_copy_dates(copy_obj)
-            hits.extend(check_copy_phrases(copy_obj, brand_phrases))
+            phrase_fails, phrase_warns = check_copy_phrases(copy_obj, brand_phrases)
+            hits.extend(phrase_fails)
+            rep["warns"].extend(phrase_warns)
             hits.extend(check_slide_openers(copy_obj))
             hits.extend(check_slide_first_person(copy_obj))
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))

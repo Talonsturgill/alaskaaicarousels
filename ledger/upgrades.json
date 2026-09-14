@@ -2308,6 +2308,47 @@
       "rollback": "Revert the upgrade(2026-09-13) commit. Individually: delete ragged_lines() and its call site in qa.py (the render.py line_text field is additive).",
       "commit": "upgrade(2026-09-13) commit, staged for the showrunner",
       "merge_sha": "31689cbd6f0328155afa39b524da89e8d34fd989"
+    },
+    {
+      "run_date": "2026-09-14",
+      "kind": "fix",
+      "area": "engine",
+      "change": "The stale-render test hashes the LIBRARY, not just the slide. render.py records beside each PNG the SHA1 of every committed asset that slide loads (read off the literal @@ASSETS@@ references it already rewrites) as well as the slide's own, prints a STALE line naming the file that moved, and qa.py FAILs any slide whose HTML or whose loaded asset has changed since its PNG was made.",
+      "trigger": "Run No.59 incident 7. Round 2 fixed AKHOLD.contact in assets/js/akhold.js and re-rendered with --only listing the slides whose own HTML had changed, so slides 01, 02 and 07 kept the exact additive pool the round existed to remove and three of nine frames in final/ were stale. The flow critic caught it by eye; the stale-render gate built on 2026-08-14 for this exact failure shape was green throughout, because it hashed the slide and nothing else.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py"
+      ],
+      "verification": "Isolated copy of the repo (scratch), so the live run and live assets/ were untouched. BEFORE, the same qa binary on a report with the asset block removed (exactly what the old render.py emitted) and akhold.js edited after the render: 0 stale findings, verdict WARN -- the No.59 defect reproduced. AFTER, same PNGs with the asset block present: FAIL on all 9, 'stale render, assets/js/akhold.js (the shared asset it loads) has been edited since slide-01.html's PNG was made'. The incident's own shape: render.py --only 2 now prints STALE naming all eight unrepaired frames at the moment of the partial render. Negative controls with assets untouched: this run's 9 slides 0 fails / 2 warns before and after; examples/demo-deck 4/4 OK, 0 fails, 14 warns before and after. Asset lists correct by inspection (demo slide-02 records fonts.css, alaska-places.json, alaska-state.geo.json, d3.v7.min.js).",
+      "rollback": "Revert the upgrade(2026-09-14) commit. Individually: in render.py drop asset_refs/source_fingerprint/stale_reasons and restore rec['source'] = {'path','sha1'}; in qa.py restore the single-source stale block.",
+      "commit": "upgrade(2026-09-14) commit, staged for the showrunner"
+    },
+    {
+      "run_date": "2026-09-14",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "caption_check treats a brand.yaml banned phrase found only inside a URL token in copy.json as a WARN naming it, the same carve-out and the same warn it has always applied to a phrase inside a straight-quoted verbatim passage. A phrase one character outside the link still hard-fails, AI_TELLS still fail anywhere, and no threshold moves.",
+      "trigger": "Run No.59 incident 3. config/brand.yaml bans 'cutting-edge' and the CMS press release behind claim C13 is published at a slug containing it, so caption_check --copy hard-failed first_comment on the slug. The run dropped the primary citation rather than hand-weaken a gate mid-run and declared the omission in the draft. A banned phrase is a VOICE rule about words the house chooses; a link is a quoted address, which is the reasoning already behind the verbatim carve-out and behind check_copy_dates stripping URLs before judging.",
+      "files": [
+        "scripts/caption_check.py"
+      ],
+      "verification": "Fixtures built from this run's copy.json and the real CMS URL, against the committed config/brand.yaml. A) phrase only inside the link: BEFORE (git show HEAD: copy of the script) FAIL 'banned phrase cutting-edge in copy.json first_comment'; AFTER warn only, no fail. B) negative control, same phrase in the house's own prose one character outside the link: FAIL before and FAIL after. caption_check --self-test: brand date self-test PASS. The run's shipped copy.json reports the same single unrelated fail either way (the missing --deck-summary argument of the invocation).",
+      "rollback": "Revert the upgrade(2026-09-14) commit. Individually: make check_copy_phrases return a fails list again and drop the `urls` span test and its warn.",
+      "commit": "upgrade(2026-09-14) commit, staged for the showrunner"
+    },
+    {
+      "run_date": "2026-09-14",
+      "kind": "fix",
+      "area": "engine",
+      "change": "Artwork craft and genuine detail, the standing repeat offender, gets a gate aimed at it. The engine records every additive radial ramp a frame paints -- screen, lighter, plus-lighter, lighten or color-dodge above peak alpha 0.05 -- with its centre, radii, op, alpha and colour in design px, as add_glows in the render report; qa.py then FAILs a slide when such a painted light's own footprint covers the rect that slide DECLARED as its contact shadow, and WARNs when it covers the declared ground rect the dL is measured against. The measurement carries no verdict of its own, so honest additive radials such as window bloom, speckle and lamp haze are untouched.",
+      "trigger": "Run No.59 incidents 1 and 8, and the standing repeat offender 'Artwork craft and genuine detail' (weakest in 6 of the last 10 runs). AKHOLD.contact laid a screened radial blob down-light of every foot, the brightest region on nine frames out of nine with no emitter in any picture; five pixel critics in five separate contexts on disjoint slides each named it, three as 'a glowing manhole'. qa.py's contact rule passed all nine because it measures the DIFFERENCE between two declared rects and a bright pool beside a dark hole passes a difference test. It had shipped in every deck this routine has drawn.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py"
+      ],
+      "verification": "Defect reconstruction from the run's own history: git show 5878b16^:assets/js/akhold.js rendered over this run's nine slides in an isolated repo copy -> the new gate FAILS 7 of 9, naming the ramp (e.g. slide 01, 'a screen radial ramp at (463, 1280), r 105x35.7 design px, peak alpha 0.619, rgba(196,216,232,0.619)'); the two silent ones paint no additive radial within their declaration's reach. Negative control: the nine repaired frames record ZERO additive radial ramps, the gate is silent on all nine, and warn count is unchanged against the pre-change qa.py (2 and 2). examples/demo-deck: 4/4 render OK, 0 fails, 14 warns before and after, 0 glows, no contacts declared. THE HOOK CHANGES NO PIXELS: all 18 PNGs (9 slides + 9 canvas layers) are byte identical by sha256 before and after it was installed. The general 'brightest region with no source' gate was attempted first and rejected on measurement: brightest-region L* above local baseline near a declared contact runs 25.7-72.5 with the defect and 18.9-75.0 without, and a down-light ground probe fires 5 of 9 defective and 2-3 of 9 repaired. Written up in out/2026-09-14/automation_retro.md section 3 and parked.",
+      "rollback": "Revert the upgrade(2026-09-14) commit. Individually: in render.py drop the glow() recorder and __akAddGlow from GRADIENT_CLIP_HOOK_JS plus the add_glows plumbing; in qa.py drop glow_on_declaration/_glow_covers and its call in the contact loop.",
+      "commit": "upgrade(2026-09-14) commit, staged for the showrunner"
     }
   ],
   "scan_log": [
@@ -2654,6 +2695,13 @@
       "searches": 4,
       "found": "4 searches, 2 substantive reads, and the two findings that matter were MEASURED in this repo's own shipped artifact rather than read anywhere. (1) EVERY SHADOWED LINE SHIPS THREE OR FOUR TIMES IN THE PDF. Extracting text from runs/2026-09-13/carousel.pdf returns 'The bill would make rates to a large-' four times in a row, and the register block three times. A controlled probe through the engine's own Chromium and page.pdf gives the law exactly: extracted copies = 1 + the number of text-shadow layers (0 layers 1 copy, 1 layer 2, 2 layers 3, 3 layers 4), and -webkit-text-stroke with paint-order:stroke fill still gives 2. This house's halo idiom is a two or three layer text-shadow on .body, .dfield and the register, so anything that reads the deck as text (LinkedIn's document indexing, a screen reader, our own future tooling) reads the body copy four times. The single-run alternative is the canvas reserve the chassis already has (P.reserve), not a CSS halo. (2) THE MERGED PDF IS UNTAGGED AND HAS NO LANGUAGE. runs/2026-09-13/carousel.pdf's catalog holds exactly /Pages and /Type: no /StructTreeRoot, no /MarkInfo, no /Lang, no /ViewerPreferences /DisplayDocTitle. Playwright's page.pdf already takes tagged=True and Chromium has emitted tagged PDFs since Chrome 85 (https://blog.chromium.org/2020/07/using-chrome-to-generate-more.html), but assemble.py merges the nine pages with pypdf's add_page, which is documented not to carry the structure tree across (https://github.com/py-pdf/pypdf/discussions/2694; clone_from preserves MarkInfo, add_page does not). Regulatory context, no action: PDF/UA-2 (ISO 14289-2) is published and PDF/UA-1 remains what validators support (https://pdfa.org/iso-14289-2-pdf-ua-2-the-gold-standard-for-accessibility-in-pdf-2-0-has-arrived/).",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-13 Phase 12 frontier scan, with both source URLs, the measured numbers and the check each would need). Nothing applied: the three-upgrade budget filled reactive-first with the defect class that capped this run's first score, the dormant copy-drift check, and the ragged-type rule set that cost two critic rounds. Both parked items are a change to the SHIPPED artifact and want their own gate plus a visual before-and-after, which is a next-run job and not a same-day one."
+    },
+    {
+      "run_date": "2026-09-14",
+      "focus": "(b) editorial dataviz and cartography technique. The stalest legal slot, last scanned 2026-09-05 (9 days), and distinct from the last three logged foci: 2026-09-13 accessibility and PDF, 2026-09-12 generative/procedural art, 2026-09-10 headless rendering. Relevant as well as stale: the one substantial finding this run left open is cartographic, slide 04's dossier asking for the Alaska coastline projected true through AKGeo and the frame carrying a graded world and a ridge silhouette instead.",
+      "searches": 5,
+      "found": "5 searches, 3 fetches, 2 substantive reads, and the finding AMENDS an existing park rather than adding a rival to it. The 2026-08-20 park designed AK.placeBand (occupancy bitmap + the 8-position candidate model) and took the candidate ORDER from cartographic convention, top-right first, which traces to Imhof by way of Yoeli. That convention has now been MEASURED: 'From Top-Right to User-Right: Perceptual Prioritization of Point-Feature Label Positions' (https://arxiv.org/abs/2407.11996) ran nearly 800 participants from 48 countries through 45,500+ pairwise comparisons and published PerceptPPO, whose headline result is that readers prefer the label directly ABOVE the point and not up-right of it. That is one array's order in a helper that does not exist yet, free to get right before it is written. Penn State GEOG 486 (https://courses.ems.psu.edu/geog486/node/557) supplies Imhof operationalised, including one rule this house can CHECK rather than assert because it holds the coastline as data: a land feature's label stays on land and a coastal feature's label goes in water. Parked, not applied: the 0-3 budget went reactive-first to three run deviations and this is a visual change with no defect behind it this run.",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-14 entry, amending the 2026-08-20 park); nothing applied, this run's three upgrades are all reactive fixes"
     }
   ]
 }
