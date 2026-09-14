@@ -7257,3 +7257,36 @@ chairman's quotation, which is strong and quotable and is not this page's own
 claim, so the analytical position does not arrive until the second paragraph.
 The caption room should treat "open on a source quotation" as a move that costs
 a paragraph of voice, and price that in when it picks.
+
+### CRAFT REFRESH (2026-09-14)
+
+- **The vendored three.js already ships AgX and Neutral tone mapping and
+  akthree.js hardcodes ACES.** `assets/js/three.module.min.js` carries
+  `AgXToneMapping` and `NeutralToneMapping` alongside `ACESFilmicToneMapping`,
+  and `akthree.js:76` sets ACES with no way to ask for anything else. AgX is
+  Blender 4.0's default precisely because ACES1 crushes and skews saturated
+  highlights, which is the exact failure mode a gold accent on a dark register
+  invites, and three.js's own issue thread argues AgX is the better starting
+  point from which to make an artistic choice. This is a real option the bench
+  has been unable to reach. Phase 12 candidate: an opt-in `toneMapping` option
+  on AKTHREE.renderer, ACES staying the default so no shipped deck changes.
+  https://github.com/mrdoob/three.js/issues/27362
+  https://threejs.org/docs/#api/en/renderers/WebGLRenderer.toneMapping
+- Socialinsider's 2026 organic benchmark puts the NATIVE DOCUMENT format at a
+  7.00 percent average engagement rate, up 14 percent year over year, against a
+  5.20 percent LinkedIn-wide average that rose 8 percent. The format's lead is
+  widening rather than narrowing, and documents are the only format whose own
+  growth beats the platform's.
+  https://www.socialinsider.io/social-media-benchmarks/linkedin
+- Oktopost's Q1 2026 B2B page benchmark reads 5.10 percent median, 8.61 percent
+  at the 75th percentile and 21.63 percent at the 90th. The March 2026 numbers
+  this file recorded on 2026-09-13 were 5.72 and 22.45, so the Q1 median moved
+  down and the top decile barely moved. Treat the decile as the stable figure
+  and the median as noisy.
+  https://www.oktopost.com/linkedin-benchmark-report/
+- A second search leg on seating type over generative imagery returned nothing
+  the doctrine does not already carry. Recording the null so a later run does
+  not spend the searches on it again. The two useful rules on that subject in
+  this repo were both measured here rather than read anywhere, No.57's reserve
+  as a BASIN handed to the field generator and No.58's reserve as the text
+  box's own blurred shape inset by the blur radius.
