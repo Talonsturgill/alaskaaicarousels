@@ -338,6 +338,42 @@ border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
   .hask{margin-top:30px;}
   .haskshell input{font-size:15px;padding:13px 0;}
 }
+
+.home-docket .sub{margin-bottom:20px;}
+.home-docket .cards{display:block;border:1px solid var(--line);border-radius:14px;
+overflow:hidden;background:rgba(10,21,36,.55);}
+.home-docket .card{display:grid;grid-template-columns:112px minmax(0,1fr) auto 18px;
+grid-template-areas:"date title status arrow" "when who status arrow";
+align-items:center;gap:6px 22px;padding:20px 22px;border:0;border-radius:0;
+background:none;box-shadow:none;transform:none;transition:background .2s;}
+.home-docket .card + .card{border-top:1px solid var(--line);}
+.home-docket .card:hover,.home-docket .card:focus-visible{background:rgba(255,199,44,.045);
+box-shadow:none;transform:none;}
+.home-docket .card:focus-visible{outline-offset:-3px;}
+.home-docket .cardtop{grid-area:status;margin:0;}
+.home-docket .badge{padding:5px 8px;font-size:9px;letter-spacing:.08em;white-space:nowrap;}
+.home-docket .b-open{color:var(--gold);border-color:rgba(255,199,44,.25);
+background:rgba(255,199,44,.04);}
+.home-docket .card .big{grid-area:date;font-family:JBMono,monospace;
+font-size:21px;font-weight:500;line-height:1.2;}
+.home-docket .card .when{grid-area:when;margin:0;font-size:9px;letter-spacing:0;
+line-height:1.5;white-space:normal;font-variant-numeric:tabular-nums;}
+.home-docket .card h3{grid-area:title;margin:0;font-size:16px;line-height:1.45;}
+.home-docket .card .who{grid-area:who;margin:0;font-size:10px;letter-spacing:.04em;
+line-height:1.5;}
+.home-docket .card::after{content:"\2192";grid-area:arrow;color:var(--mute);font-size:20px;}
+.home-docket .card:hover::after{color:var(--gold);}
+.home-docket .ctarow{margin-top:20px;}
+@media(max-width:640px){
+  .home-docket .card{grid-template-columns:76px minmax(0,1fr) 12px;
+  grid-template-areas:"date status arrow" "date title arrow" "when title arrow" "who who who";
+  gap:6px 14px;padding:18px 16px;align-items:start;}
+  .home-docket .card .big{font-size:18px;align-self:center;}
+  .home-docket .card .when{font-size:9px;}
+  .home-docket .card h3{font-size:15px;line-height:1.45;}
+  .home-docket .card .who{margin-top:4px;}
+  .home-docket .card::after{align-self:center;font-size:17px;}
+}
 </style>
 <script>document.documentElement.classList.add('js');window.__revealFallback=setTimeout(function(){document.documentElement.classList.add('reveal-fallback')},3000)</script>
 </head>
@@ -360,8 +396,7 @@ border-bottom:1px solid rgba(255,199,44,.35);touch-action:manipulation;}
 <div class="hero heroanim">
 <div><div class="daylight">ANCHORAGE &middot; 12H 27M OF DAYLIGHT &middot; LOSING 6 MIN A DAY</div></div>
 <h1>AI is coming <em>north</em></h1>
-<p class="tag">Alaska AI watches it happen. Every deal, docket and decision on the state's
-AI beat, verified to the source and told for Alaskans. From the Slope to Southeast, daily.</p>
+<p class="tag">Every AI decision in Alaska and the source behind it.</p>
 <div class="ctarow">
   <a class="cta gold" href="docket/">DOCKET</a>
   <a class="cta ghost" href="archive/">ARTICLES</a>
@@ -395,16 +430,28 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 </div>
 <dialog class="askfb" id="askfb" aria-labelledby="askfbh"><form id="askfbform" method="POST" action="https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771"><h2 id="askfbh">Model in training</h2><p class="askfbnote">The search writes from the published record and is checked against it line by line. If an answer missed something or read oddly, that is worth knowing.</p><label class="askfbl" for="askfbtext">What happened</label><textarea id="askfbtext" name="feedback" rows="4" required placeholder="The answer missed something, or read oddly, or stopped short"></textarea><label class="askfbl" for="askfbmail">Email, only if you want a reply</label><input id="askfbmail" name="email" type="email" autocomplete="email" placeholder="Optional"><label class="askfbcheck" id="askfbattachrow" hidden><input type="checkbox" id="askfbattach" checked><span>Attach the last question and answer</span></label><pre class="askfbctx" id="askfbctxview" hidden></pre><input type="hidden" name="_subject" value="Alaska AI, feedback on the search"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="exchange" id="askfbctx"><p class="askfbmsg" id="askfbmsg" role="status" aria-live="polite"></p><div class="askfbrow"><button type="submit" class="askfbsend" id="askfbsend">Send</button><button type="button" class="askfblink" id="askfbclose">Close</button></div></form></dialog>
 </div>
-<h2 data-reveal id="scan">Would AI actually help your business</h2>
-<p class="sub" data-reveal>Our scanner reads your own public pages and hands back an honest map.
-The pockets where AI earns its place, the ones where a plain rule wins first, and the
-ones it should not touch. Free, about 20 minutes of real research, no signup to see it.</p>
-<form class="subscribe" data-reveal action="scan/" method="get">
-  <label class="vh" for="scan-url">Your website</label>
-  <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
-  autocomplete="url" inputmode="url">
-  <button class="cta gold" type="submit">SCAN MY BUSINESS</button>
-</form>
+<section class="home-docket" aria-labelledby="home-docket-title">
+<h2 data-reveal id="home-docket-title"><a href="docket/">The docket</a></h2>
+<p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
+every fact. Gold means a door is open to the public right now.</p>
+<div class="cards"><a class="card a-open" href="docket/#fcc-usf-ai-administration" data-reveal>
+  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
+  <div class="big" data-days="2026-09-30">SEP 30</div><div class="when chip days" data-date="2026-09-30">by SEP 30</div>
+  <h3>The FCC asks whether AI should help run the Universal Service Fund</h3>
+  <div class="who">COMMENTS DUE, WC DOCKET NO. 26-173</div>
+</a><a class="card a-open" href="docket/#dot-great-corridors-rfi-2026" data-reveal>
+  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
+  <div class="big" data-days="2026-10-02">OCT 2</div><div class="when chip days" data-date="2026-10-02">by OCT 2</div>
+  <h3>Renting the highway shoulder to power and fiber, with data centers named as the draw</h3>
+  <div class="who">WRITTEN COMMENTS DUE</div>
+</a><a class="card a-open" href="docket/#doe-bulk-power-rfi-2026" data-reveal>
+  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
+  <div class="big" data-days="2026-10-09">OCT 9</div><div class="when chip days" data-date="2026-10-09">by OCT 9</div>
+  <h3>Which grid equipment gets restricted, and the reason given is AI</h3>
+  <div class="who">WRITTEN RESPONSES ACCEPTED ON OR BEFORE THIS DATE</div>
+</a></div>
+<div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
+</section>
 <div id="homevidsec" hidden>
 <h2 data-reveal>Our Latest Video</h2>
 <p class="sub" data-reveal>The newest video from the daily feed. Tap through for the whole
@@ -610,27 +657,6 @@ fetch('videos/videos.json').then(function(r){return r.json()}).then(function(m){
     <a class="cta ghost" href="archive/">STORIES</a></div>
   </div>
 </div>
-<h2 data-reveal><a href="docket/">The docket</a></h2>
-<p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
-every fact. Gold means a door is open to the public right now.</p>
-<div class="cards"><a class="card a-open" href="docket/#fcc-usf-ai-administration" data-reveal>
-  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
-  <div class="big" data-days="2026-09-30">SEP 30</div><div class="when chip days" data-date="2026-09-30">by SEP 30</div>
-  <h3>The FCC asks whether AI should help run the Universal Service Fund</h3>
-  <div class="who">COMMENTS DUE, WC DOCKET NO. 26-173</div>
-</a><a class="card a-open" href="docket/#dot-great-corridors-rfi-2026" data-reveal>
-  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
-  <div class="big" data-days="2026-10-02">OCT 2</div><div class="when chip days" data-date="2026-10-02">by OCT 2</div>
-  <h3>Renting the highway shoulder to power and fiber, with data centers named as the draw</h3>
-  <div class="who">WRITTEN COMMENTS DUE</div>
-</a><a class="card a-open" href="docket/#doe-bulk-power-rfi-2026" data-reveal>
-  <div class="cardtop"><span class="badge b-open">OPEN TO YOU</span></div>
-  <div class="big" data-days="2026-10-09">OCT 9</div><div class="when chip days" data-date="2026-10-09">by OCT 9</div>
-  <h3>Which grid equipment gets restricted, and the reason given is AI</h3>
-  <div class="who">WRITTEN RESPONSES ACCEPTED ON OR BEFORE THIS DATE</div>
-</a></div>
-<div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
-
 <h2 data-reveal><a href="gas-watch/">Cook Inlet Gas Watch</a></h2>
 <p class="sub" data-reveal>How much gas Southcentral has in the ground, read every
 day and kept.</p>
@@ -695,15 +721,11 @@ them, and whether the public still has a way in.</p>
 </a></div>
 <h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
-intelligence, and an AI studio. The reporting side writes one verified
-story a day and keeps the Alaska AI Docket, a public record of
-30 AI infrastructure decisions in the state, 140 source
-documents on file, and for each one the plain answer to who decides it and whether an
-Alaskan still gets a say. It is published as
-<a class="proselink" href="data/">open data under CC BY 4.0</a> so anyone can check the
-work or build on it. The studio side builds
-<a class="proselink" href="services/">Alaska businesses</a> an agentic operating system,
-its flagship product, a package of 1 to 1000 AI agents working together to automate every
+intelligence, and an AI studio. Our Docket tracks 30 decisions with
+140 source documents, published as
+<a class="proselink" href="data/">open data under CC BY 4.0</a>. For
+<a class="proselink" href="services/">Alaska businesses</a>, our flagship agentic operating
+system brings 1 to 1000 AI agents together to automate every
 possible aspect of the business.</p>
 <h2 data-reveal id="alerts">Deadline alerts, in your inbox</h2>
 <p class="sub" data-reveal>One email when a public comment window opens or a decision is about
@@ -714,6 +736,16 @@ method="post" target="_blank">
   <input type="email" name="email" id="bd-email" required placeholder="you@example.com"
   autocomplete="email">
   <button class="cta gold" type="submit">GET ALERTS</button>
+</form>
+<h2 data-reveal id="scan">Would AI actually help your business</h2>
+<p class="sub" data-reveal>Our scanner reads your own public pages and hands back an honest map.
+The pockets where AI earns its place, the ones where a plain rule wins first, and the
+ones it should not touch. Free, about 20 minutes of real research, no signup to see it.</p>
+<form class="subscribe" data-reveal action="scan/" method="get">
+  <label class="vh" for="scan-url">Your website</label>
+  <input type="text" name="url" id="scan-url" required placeholder="yourbusiness.com"
+  autocomplete="url" inputmode="url">
+  <button class="cta gold" type="submit">SCAN MY BUSINESS</button>
 </form>
 <div class="about-line" data-reveal><p>Next on the docket is A national AI institute for Native communities, and the Alaska lane that closed with it, September 26th. All sources verified against claims.</p></div>
 </main>
