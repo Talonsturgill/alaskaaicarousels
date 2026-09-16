@@ -818,9 +818,12 @@ def self_test():
     guarded = [l for _, l, _ in rows if (fix_for(l) or "").startswith("REPORT")]
     check("most of them a run can repair itself", len(fixable) > len(guarded),
           f"{len(fixable)} fixable, {len(guarded)} report only")
-    check("a stale collector is never one a run repairs",
+    check("other collectors remain report-only",
           all("REPORT" in (fix_for(l) or "") for _, l, _ in rows
-              if l.endswith("is current")))
+              if l.endswith("is current") and not l.startswith("gaswatch.jsonl")))
+    check("Gas Watch uses its live audit and maintenance procedure",
+          "CHECK LIVE" in fix_for("gaswatch.jsonl is current") and
+          "maintenance" in fix_for("gaswatch.jsonl is current"))
     check("a stale page is one a run repairs, by rebuilding",
           all("REBUILDING" in (fix_for(l) or "") for _, l, _ in rows
               if " reaches " in l))
