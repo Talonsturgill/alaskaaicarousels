@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 28,
+  "count": 30,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -2592,6 +2592,16 @@
           "date": "2026-11-02",
           "label": "Comments, motions to intervene and competing applications due, 5:00 p.m. Eastern",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-09-20",
+          "label": "Alaska Energy Authority marine survey crews mobilise for the Cook Inlet PowerLink in the same inlet",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-22",
+          "label": "Cook Inlet PowerLink marine survey fieldwork ends",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2634,6 +2644,16 @@
           "url": "https://www.federalregister.gov/documents/2026/08/25/2026-17254/deepgreen-western-passage-spv-llc-notice-of-preliminary-permit-application-accepted-for-filing-and",
           "outlet": "Federal Register",
           "date": "2026-08-25"
+        },
+        {
+          "url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+          "outlet": "Peninsula Clarion",
+          "date": "2026-09-14"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+          "outlet": "Federal Register",
+          "date": "2026-09-04"
         }
       ],
       "history": [
@@ -2668,10 +2688,14 @@
         {
           "date": "2026-09-13",
           "note": "Re-verified against the FERC notice at govinfo for project P-15423-000. The window for comments, motions to intervene and competing applications runs to 5 p.m. Eastern on November 2nd, which is fifty days out. The notice describes the operational envelope as roughly 330 to 350 marine hydrokinetic turbines, 66 subsea data center pods and a 3.5 mile subsea cable in the East Foreland corridor of upper Cook Inlet, with about 100 megawatts of annual generation. Brief comment can be filed without registering through the Commission's eComment form."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Updated. The state's own energy authority has said it will fight this. Alaska Energy Authority chief executive Curtis W. Thayer told the Peninsula Clarion on September 14th that the authority will file to intervene and oppose the permit, because the company never contacted the agency even though its filing refers to the authority's Cook Inlet PowerLink project. The next day the authority announced it has the permits for marine survey work on that line, has hired Woolpert, and will mobilise crews to the Kenai Peninsula beginning September 20th with fieldwork running through October 22nd across a marine corridor of about 35 miles. Two claims on one inlet now have overlapping calendars. Re-read today against the Federal Register notice, which describes the project as 100 megawatts, approximately 330 to 350 marine hydrokinetic turbines, 66 modular subsea compute hives and an approximately 3.5 mile, 115 kV hybrid power and fibre optic armoured subsea cable landing in the Nikiski Industrial Corridor between the Agrium Kenai Nitrogen Operations and the Kenai Liquefied Natural Gas Plant. The notice states no acreage."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-15",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -3235,6 +3259,92 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
+    },
+    {
+      "id": "matsu-alpr-prohibition",
+      "title": "Mat-Su weighs a flat ban on automated license plate readers",
+      "kind": "legislation",
+      "status": "pending-decision",
+      "decider": "Matanuska-Susitna Borough Assembly",
+      "public_access": "indirect",
+      "access_note": "The public hearing was held on September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer. That testimony window has passed and the Assembly now decides, so the route to it is an Assembly member.",
+      "summary": "Ordinance OR 26-106 would adopt a new borough code chapter, MSB 23.30, whose title states that it would prohibit the acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology. It is a prohibition rather than a set of conditions, which makes it the opposite instrument to the surveillance rules Anchorage is weighing forty miles away. The borough's own public notice lists it for hearing alongside four other ordinances and names no sponsor.",
+      "key_dates": [
+        {
+          "date": "2026-09-15",
+          "label": "Public hearing at the Assembly meeting, 6 p.m., Assembly Chambers, Palmer",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Palmer",
+        "lon": -149.1128,
+        "lat": 61.5994
+      },
+      "sources": [
+        {
+          "url": "https://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date",
+          "outlet": "Matanuska-Susitna Borough",
+          "date": "2026-09-15"
+        }
+      ],
+      "first_seen": "2026-09-15",
+      "last_updated": "2026-09-15",
+      "history": [
+        {
+          "date": "2026-09-15",
+          "note": "Added from the borough's own public hearing notice, which prints the full title. The notice sets the hearing for Tuesday September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer, and lists OR 26-106 alongside OR 26-102 through OR 26-105. The notice does not name a sponsor and does not carry the ordinance text, so nothing is recorded here about what the prohibition would cover beyond the words of the title. The outcome of the hearing is not yet published."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/matsu-alpr-prohibition/"
+    },
+    {
+      "id": "kpb-weather-modification-code",
+      "title": "Kenai Peninsula Borough writes a weather modification code",
+      "kind": "legislation",
+      "status": "open-for-comment",
+      "decider": "Kenai Peninsula Borough Assembly",
+      "public_access": "open",
+      "access_note": "A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then.",
+      "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August.",
+      "key_dates": [
+        {
+          "date": "2026-09-03",
+          "label": "Ordinance 2026-35 introduced by the mayor",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "On the Policies and Procedures Committee agenda",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-20",
+          "label": "Public hearing on Ordinance 2026-35, the point at which the public can speak to it",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Soldotna",
+        "lon": -151.0583,
+        "lat": 60.4877
+      },
+      "sources": [
+        {
+          "url": "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
+          "outlet": "Kenai Peninsula Borough legislative record",
+          "date": "2026-09-15"
+        }
+      ],
+      "first_seen": "2026-09-15",
+      "last_updated": "2026-09-15",
+      "history": [
+        {
+          "date": "2026-09-15",
+          "note": "Added from the borough's own legislative record, which stores the title as an ordinance amending borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands, sponsored by the mayor, with a hearing noted for October 20th. The record shows an introduction date of September 3rd, an agenda date of September 15th, a status of New Business in the Policies and Procedures Committee, and no passage date. The ordinance text itself is stored as an attachment this record does not render, so nothing is recorded here about what the new section would require."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
     }
   ]
 }
