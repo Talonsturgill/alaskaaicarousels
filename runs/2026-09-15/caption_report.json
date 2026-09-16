@@ -1,0 +1,19 @@
+{
+  "chars": 897,
+  "hook": "Executive Order 14426 uses the phrase artificial intelligence exactly once. That one clause carries a 180 day clock.",
+  "hook_len": 116,
+  "commas": 7,
+  "comma_per_100": 0.82,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#VetPop2023",
+    "#RuralAlaska",
+    "#FederalRegister"
+  ],
+  "deck_summary": "Four sections off the Federal Register text. Nine boroughs off the VA's county model. Six shares off one Census table.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 95
+}

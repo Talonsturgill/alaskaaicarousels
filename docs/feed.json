@@ -13,6 +13,83 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-09-15/",
+      "url": "https://alaskaaihq.com/archive/2026-09-15/",
+      "title": "One Center, and the 17,210 Outside It",
+      "summary": "Four sections off the Federal Register text. Nine boroughs off the VA's county model. Six shares off one Census table.",
+      "content_html": "<p><em>Executive Order 14426 uses the phrase artificial intelligence exactly once. That one clause carries a 180 day clock.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-15/og.jpg\" alt=\"One Center, and the 17,210 Outside It cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.govinfo.gov/content/pkg/FR-2026-09-11/html/2026-18738.htm\">U.S. Government Publishing Office, govinfo</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt\">Office of the Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents/2026-18738.json\">Office of the Federal Register, documents API</a>, primary document</li><li><a href=\"https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023),sum(fy2000)&amp;$where=state=%27Alaska%27\">U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023</a>, primary document</li><li><a href=\"https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023)\">U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023</a>, primary document</li><li><a href=\"https://www.census.gov/newsroom/facts-for-features/2025/veterans-day.html\">U.S. Census Bureau</a>, primary document</li><li><a href=\"https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&amp;$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&amp;$group=county_state&amp;$order=sum_veterans%20DESC&amp;$limit=12\">U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L</a>, primary document</li><li><a href=\"https://department.va.gov/ai/ai-use-case-inventory/\">U.S. Department of Veterans Affairs, Office of the Chief AI Officer</a>, primary document</li><li><a href=\"https://www.benefits.va.gov/REPORTS/detailed_claims_data.asp\">U.S. Department of Veterans Affairs, Veterans Benefits Administration</a>, primary document</li><li><a href=\"https://alaskaasp.com/\">Alaska Department of Transportation and Public Facilities, Alaska Aviation System Plan</a>, primary document</li><li><a href=\"https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&amp;geo_ids=04000US02,01000US\">U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter</a>, report</li><li><a href=\"https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&amp;geo_ids=04000US28,04000US29,04000US30,04000US31,04000US32,04000US33,04000US34,04000US35,04000US36,04000US37,04000US38,04000US39,04000US40,04000US41,04000US42,04000US44,04000US45,04000US46,04000US47,04000US48,04000US49,04000US50,04000US51,04000US53,04000US54,04000US55,04000US56\">U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-15/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "",
+      "date_published": "2026-09-15T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-15/og.jpg",
+      "tags": [],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 33,
+        "sources": [
+          {
+            "url": "https://www.govinfo.gov/content/pkg/FR-2026-09-11/html/2026-18738.htm",
+            "outlet": "U.S. Government Publishing Office, govinfo",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+            "outlet": "Office of the Federal Register",
+            "primary": true
+          },
+          {
+            "url": "https://www.federalregister.gov/api/v1/documents/2026-18738.json",
+            "outlet": "Office of the Federal Register, documents API",
+            "primary": true
+          },
+          {
+            "url": "https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023),sum(fy2000)&$where=state=%27Alaska%27",
+            "outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023",
+            "primary": true
+          },
+          {
+            "url": "https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023)",
+            "outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023",
+            "primary": true
+          },
+          {
+            "url": "https://www.census.gov/newsroom/facts-for-features/2025/veterans-day.html",
+            "outlet": "U.S. Census Bureau",
+            "primary": true
+          },
+          {
+            "url": "https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&$group=county_state&$order=sum_veterans%20DESC&$limit=12",
+            "outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L",
+            "primary": true
+          },
+          {
+            "url": "https://department.va.gov/ai/ai-use-case-inventory/",
+            "outlet": "U.S. Department of Veterans Affairs, Office of the Chief AI Officer",
+            "primary": true
+          },
+          {
+            "url": "https://www.benefits.va.gov/REPORTS/detailed_claims_data.asp",
+            "outlet": "U.S. Department of Veterans Affairs, Veterans Benefits Administration",
+            "primary": true
+          },
+          {
+            "url": "https://alaskaasp.com/",
+            "outlet": "Alaska Department of Transportation and Public Facilities, Alaska Aviation System Plan",
+            "primary": true
+          },
+          {
+            "url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US02,01000US",
+            "outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+            "primary": false
+          },
+          {
+            "url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US28,04000US29,04000US30,04000US31,04000US32,04000US33,04000US34,04000US35,04000US36,04000US37,04000US38,04000US39,04000US40,04000US41,04000US42,04000US44,04000US45,04000US46,04000US47,04000US48,04000US49,04000US50,04000US51,04000US53,04000US54,04000US55,04000US56",
+            "outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-09-14/",
       "url": "https://alaskaaihq.com/archive/2026-09-14/",
       "title": "Update. The Plan Got 250,000. The Aircraft Got More",
@@ -3026,63 +3103,6 @@
           {
             "url": "https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/",
             "outlet": "northern.org",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-07-18/",
-      "url": "https://alaskaaihq.com/archive/2026-07-18/",
-      "title": "Alaska data centers and your power bill, on the grid or off",
-      "summary": "A data center on the North Slope cannot touch your Anchorage power bill. One in the Mat-Su can.",
-      "content_html": "<p><em>A data center on the North Slope cannot touch your Anchorage power bill. One in the Mat-Su can.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-18/og.jpg\" alt=\"Alaska data centers and your power bill, on the grid or off cover slide\" width=\"1080\" height=\"1350\"></p><p>Will a data center raise your power bill?</p><p>In Alaska the honest answer splits on one line.</p><p>On the grid, or off it.</p><p>OFF THE GRID. Runs on its own gas. Never touches your wires. ON THE GRID. Shares the wires, and the bill, with you.</p><p>The one everyone feared is off the line.</p><p>STAK's proposed campus sits about 25 miles south of Deadhorse and self-generates a gigawatt or more, roughly 30 percent above urban Alaska's peak. It burns gas behind the meter, with no wire to the Railbelt.</p><p>This one plugs into your grid.</p><p>The state just moved to hand AIDEA about 30 square miles of land near Houston for a data-center district, on the Railbelt. Public comment is open through August 19.</p><p>It all turns on the rate deal.</p><p>RATES COULD FALL. A big anchor load can spread fixed costs, Launch Alaska argues. RATES COULD RISE. Or compete for scarce Railbelt gas.</p><p>The case for lower, in one chart.</p><p>And every 1% drop leaves about $2.5M in fixed costs with nowhere to go. A big anchor load could spread those costs, the argument goes. Could.</p><p>Alaska is at the very beginning.</p><p>Eight data centers here, against the nation's leader at 639, as reported by Alaska's News Source. The rules get written while the count is still small.</p><p>Build vs ban is the wrong fight.</p><p>Houston is weighing a ban, postponed to August 13. But the lever is the rate deal. Anchorage adopted guardrails 10 to 2. The statewide bill that would set rate rules, HB 259, still sits in the House Energy Committee.</p><p>Before the next data center plugs in, ask one thing. Who writes the rate deal, and does it lower your bill or raise it?</p><p>On the grid or off it changes everything. What should Alaska require first?</p><h3>Sources</h3><ul><li><a href=\"https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/\">Alaska's News Source</a>, report</li><li><a href=\"https://alaskabeacon.com/2026/07/16/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/\">Alaska Beacon</a>, report</li><li><a href=\"https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\">Northern Journal</a>, report</li><li><a href=\"https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/\">Northern Alaska Environmental Center</a>, report</li><li><a href=\"https://www.adn.com/opinions/2026/04/29/opinion-the-hidden-threat-to-your-electric-bill-and-what-we-can-do-about-it/\">Anchorage Daily News (opinion)</a>, report</li><li><a href=\"https://www.adn.com/alaska-news/anchorage/2026/03/04/data-centers-powering-the-ai-boom-demand-local-energy-anchorage-assembly-members-want-to-regulate-them/\">Anchorage Daily News</a>, report</li><li><a href=\"https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/\">Anchorage Daily News</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session\">Alaska Public Media</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-07-18/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "Will a data center raise your power bill?\n\nIn Alaska the honest answer splits on one line.\n\nOn the grid, or off it.\n\nOFF THE GRID. Runs on its own gas. Never touches your wires. ON THE GRID. Shares the wires, and the bill, with you.\n\nThe one everyone feared is off the line.\n\nSTAK's proposed campus sits about 25 miles south of Deadhorse and self-generates a gigawatt or more, roughly 30 percent above urban Alaska's peak. It burns gas behind the meter, with no wire to the Railbelt.\n\nThis one plugs into your grid.\n\nThe state just moved to hand AIDEA about 30 square miles of land near Houston for a data-center district, on the Railbelt. Public comment is open through August 19.\n\nIt all turns on the rate deal.\n\nRATES COULD FALL. A big anchor load can spread fixed costs, Launch Alaska argues. RATES COULD RISE. Or compete for scarce Railbelt gas.\n\nThe case for lower, in one chart.\n\nAnd every 1% drop leaves about $2.5M in fixed costs with nowhere to go. A big anchor load could spread those costs, the argument goes. Could.\n\nAlaska is at the very beginning.\n\nEight data centers here, against the nation's leader at 639, as reported by Alaska's News Source. The rules get written while the count is still small.\n\nBuild vs ban is the wrong fight.\n\nHouston is weighing a ban, postponed to August 13. But the lever is the rate deal. Anchorage adopted guardrails 10 to 2. The statewide bill that would set rate rules, HB 259, still sits in the House Energy Committee.\n\nBefore the next data center plugs in, ask one thing. Who writes the rate deal, and does it lower your bill or raise it?\n\nOn the grid or off it changes everything. What should Alaska require first?",
-      "date_published": "2026-07-18T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-07-18/og.jpg",
-      "tags": [],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 16,
-        "sources": [
-          {
-            "url": "https://www.alaskasnewssource.com/2026/07/17/new-state-proposal-could-bring-data-centers-mat-su-part-industrial-park/",
-            "outlet": "Alaska's News Source",
-            "primary": false
-          },
-          {
-            "url": "https://alaskabeacon.com/2026/07/16/alaskas-economic-development-agency-plans-a-mat-su-industrial-park-with-data-centers/",
-            "outlet": "Alaska Beacon",
-            "primary": false
-          },
-          {
-            "url": "https://www.northernjournal.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/",
-            "outlet": "Northern Journal",
-            "primary": false
-          },
-          {
-            "url": "https://northern.org/news/stak-energy-campus-what-the-states-lease-documents-reveal-about-scale-risk-and-unanswered-questions/",
-            "outlet": "Northern Alaska Environmental Center",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/opinions/2026/04/29/opinion-the-hidden-threat-to-your-electric-bill-and-what-we-can-do-about-it/",
-            "outlet": "Anchorage Daily News (opinion)",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/alaska-news/anchorage/2026/03/04/data-centers-powering-the-ai-boom-demand-local-energy-anchorage-assembly-members-want-to-regulate-them/",
-            "outlet": "Anchorage Daily News",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/alaska-news/anchorage/2026/03/27/anchorage-assembly-preemptively-adopts-data-center-regulations/",
-            "outlet": "Anchorage Daily News",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
-            "outlet": "Alaska Public Media",
             "primary": false
           }
         ]

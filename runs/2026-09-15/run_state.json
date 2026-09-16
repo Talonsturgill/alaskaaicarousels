@@ -1,0 +1,26 @@
+{
+ "run_date": "2026-09-15",
+ "carousel_no": 60,
+ "date_note": "Anchorage date at wake was 2026-09-15 (23:09 AKDT); runs/2026-09-15/ did not exist, so the Anchorage date is the run date.",
+ "phases": {
+  "wake": "done: out/2026-09-15/plan.md",
+  "craft_refresh": "done: 2 searches, 3 bullets appended to knowledge/FIELD_NOTES.md",
+  "research": "done: 6 scouts, out/2026-09-15/scout_merge.md, 148 of 200 searches spent",
+  "claims": "done: out/2026-09-15/claims.json, 33 claims, 29 primary, claims_check PASS 33/33",
+  "docket": "done: 6 worklist items refreshed, 2 new items added, DeepGreen updated; ledger/docket.json, 30 tracked",
+  "gas_watch": "done: out/2026-09-15/site_signoff.md, SITE SIGN-OFF PASS 18/18, GAS WATCH WARN (collector gap, report-only)",
+  "selection": "done: out/2026-09-15/selection.md",
+  "directors_room": "done: 3 treatments, synthesis in out/2026-09-15/storyboard.md, hero THE MODEL AND THE PLATES",
+  "copy": "done: caption room 2 candidates + critic (caught a misquotation of the order), out/2026-09-15/caption.txt and copy.json",
+  "art_build": "done: out/2026-09-15/build_slides.py emits 02-09, slide-01 hand written, 9 slides render 0 page errors",
+  "pixel_review": "done: 3 pixel critics + flow critic over 2 render passes, then 3 repair rounds past the five-round cap (disclosed): 2 for machine-gate FAILs and factual defects, 1 on the round-1 score of 7.67",
+  "flow_review": "done: flow-critic verdict ship",
+  "assemble": "done: out/2026-09-15/final, vector PDF 4.16 MB, contact sheet, 9 thumbs",
+  "scoring": "done: round 1 7.67 (below 7.7, returned to Phase 8), round 2 8.61, ship=true, out/2026-09-15/score_report.json",
+  "ship": "in-progress: runs/2026-09-15 copied, webp encoded, site rebuilt, gates green, alerts sent 1 email",
+  "upgrade": "done: 3 upgrades in ledger/upgrades.json, out/2026-09-15/automation_retro.md",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "story": "Executive Order 14426 of September 8th and Alaska veterans"
+}

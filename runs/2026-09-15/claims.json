@@ -1,0 +1,433 @@
+{
+  "run_date": "2026-09-15",
+  "carousel_no": 60,
+  "story": "Executive Order 14426 puts an AI deadline on the veterans benefits pipeline, and Alaska has the highest veteran share of any state",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "Executive Order 14426 is titled Accelerating Access to Veterans' Benefits and Employment Opportunities.",
+      "value": "Executive Order 14426",
+      "verbatim": "Executive Order 14426 of September 8, 2026 - Accelerating Access to Veterans' Benefits and Employment Opportunities",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-11/html/2026-18738.htm",
+      "source_outlet": "U.S. Government Publishing Office, govinfo",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Corroborated independently by the Federal Register API record at https://www.federalregister.gov/api/v1/documents/2026-18738.json which returns executive_order_number 14426 and the identical title. Two primary surfaces agree."
+    },
+    {
+      "id": "C02",
+      "claim": "The President signed Executive Order 14426 on September 8th, 2026.",
+      "value": "September 8th, 2026",
+      "verbatim": "THE WHITE HOUSE, September 8, 2026.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Signing date also carried as the signing_date field in the Federal Register JSON record and in the govinfo header line."
+    },
+    {
+      "id": "C03",
+      "claim": "Executive Order 14426 was published in the Federal Register on September 11th, 2026 as document number 2026-18738.",
+      "value": "2026-18738",
+      "verbatim": "Federal Register / Vol. 91, No. 175 / Friday, September 11, 2026 / Presidential Documents",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-09-11/html/2026-18738.htm",
+      "source_outlet": "U.S. Government Publishing Office, govinfo",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "govinfo also prints FR Doc. 2026-18738 at the foot of the document. The Federal Register API confirms publication_date 2026-09-11 and document_number 2026-18738."
+    },
+    {
+      "id": "C04",
+      "claim": "The Federal Register citation for Executive Order 14426 is 91 FR 58003 and the order runs from page 58003 to page 58005.",
+      "value": "91 FR 58003",
+      "verbatim": "FR Volume: 91 / Pages: 58003-58005 / Citation: 91 FR 58003",
+      "source_url": "https://www.federalregister.gov/api/v1/documents/2026-18738.json",
+      "source_outlet": "Office of the Federal Register, documents API",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "The API record also reports page_length 3. govinfo independently places the text on page 58003 of Volume 91, Number 175. The verbatim here is the reassembled field set from the JSON record rather than one running sentence, since the API returns structured fields."
+    },
+    {
+      "id": "C05",
+      "claim": "Executive Order 14426 has four sections, headed Purpose and Policy, Requiring Prompt Sharing of Military Personnel and Medical Records, Accelerating Veterans' Access to Quality Employment, and General Provisions.",
+      "value": "4 sections",
+      "verbatim": "Section 1. Purpose and Policy. ... Sec. 2. Requiring Prompt Sharing of Military Personnel and Medical Records. ... Sec. 3. Accelerating Veterans' Access to Quality Employment. ... Sec. 4. General Provisions.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Read over the complete text of the order. Ellipses in the verbatim field mark the omitted section bodies, not omitted headings. There are no other section headings."
+    },
+    {
+      "id": "C06",
+      "claim": "The phrase artificial intelligence appears exactly once in the full text of Executive Order 14426.",
+      "value": "1 mention",
+      "verbatim": "create and deploy new digital tools using artificial intelligence and other emerging capabilities",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Counted twice over the complete raw text, once by reading the whole document and once by a separate targeted pass. Both passes returned one occurrence, in Sec. 2(a)(ii). The words machine learning, algorithm, automation and automated do not appear anywhere in the order. The phrase digital tools also appears exactly once, in the same clause."
+    },
+    {
+      "id": "C07",
+      "claim": "Section 2(a)(ii) of Executive Order 14426 directs the Secretary of War and the Secretary of Veterans Affairs to create and deploy new digital tools using artificial intelligence to streamline veterans' applications for benefits within 180 days.",
+      "value": "180 days",
+      "verbatim": "within 180 days of the date of this order, create and deploy new digital tools using artificial intelligence and other emerging capabilities to streamline veterans' applications for and access to benefits earned through military service in a comprehensive single source that includes job training and opportunities offered by the Department of Labor",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "This single clause is the entire artificial intelligence content of the order. Quoted identically on govinfo. The duty is placed on the two Secretaries jointly by the stem of Sec. 2(a)."
+    },
+    {
+      "id": "C08",
+      "claim": "The 180 day deadline for the artificial intelligence tools in Executive Order 14426 falls on March 7th, 2027.",
+      "value": "March 7th, 2027",
+      "verbatim": "within 180 days of the date of this order",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register, arithmetic by Alaska.Ai",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Counted by hand from the signing date of September 8th, 2026. 22 days to September 30th, 53 to October 31st, 83 to November 30th, 114 to December 31st, 145 to January 31st, 173 to February 28th since 2027 is not a leap year, then 7 more to March 7th, 2027. The order does not print a calendar date, so this is a derived date and the deck attributes the arithmetic."
+    },
+    {
+      "id": "C09",
+      "claim": "Section 2(a)(iii) of Executive Order 14426 sets a 30 day deadline, falling on October 8th, 2026, for the Department of War to share personnel and treatment records with the Department of Veterans Affairs immediately on a service member's discharge.",
+      "value": "30 days",
+      "verbatim": "within 30 days of the date of this order and at all times thereafter, ensure all current service member Official Military Personnel Files, health records, and Service Treatment Records are shared by the Department of War, or any service component thereof, with the Department of Veterans Affairs immediately when a service member is discharged or released from the Armed Forces",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "October 8th, 2026 derived by hand from the September 8th signing date, 22 days to September 30th plus 8. This is the earliest deadline in the order and the only one already close at the time of this run."
+    },
+    {
+      "id": "C10",
+      "claim": "Section 2(b) of Executive Order 14426 sets a 120 day deadline, falling on January 6th, 2027, to review and modify existing information technology contracts so that records systems are interoperable.",
+      "value": "120 days",
+      "verbatim": "Within 120 days of the date of this order, the Secretary of War and the Secretary of Veterans Affairs, in consultation with the Secretary of Health and Human Services (HHS), including HHS's Office of the National Coordinator for Health Information Technology, and the Director of the Office of Management and Budget (OMB)",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "January 6th, 2027 derived by hand, 114 days to December 31st plus 6. The consultation list also names OMB's Federal Chief Information Officer and the Administrator for Federal Procurement Policy."
+    },
+    {
+      "id": "C11",
+      "claim": "Section 2(a)(i) of Executive Order 14426 gives the same 180 day deadline for updated information technology systems and policy guidance to allow permanent and ongoing sharing of Official Military Personnel Files and Service Treatment Records.",
+      "value": "180 days",
+      "verbatim": "within 180 days of the date of this order, establish updated information technology systems and policy guidance and memoranda to ensure, between the Department of War and the Department of Veterans Affairs, the permanent, prospective, and ongoing sharing of all Official Military Personnel Files and Service Treatment Records",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "The phrase within 180 days appears three times in the order, in Sec. 2(a)(i), Sec. 2(a)(ii) and Sec. 3. There are five deadlines in total across three distinct clocks of 30, 120 and 180 days."
+    },
+    {
+      "id": "C12",
+      "claim": "Section 3 of Executive Order 14426 gives the Secretary of War 180 days to update the Transition Assistance Program so that every service member leaving active duty is connected to an open job or enrolled in training before separation.",
+      "value": "180 days",
+      "verbatim": "Within 180 days of the date of this order and at all times thereafter as applicable, the Secretary of War, in consultation with the Secretary of Labor and the Secretary of Veterans Affairs, shall update the Transition Assistance Program and other workforce programs",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Section 3 cites 10 U.S.C. 1142, 1143, 1144 and 38 U.S.C. 4113, and qualifies the duty with to the maximum extent practicable and applicable. That qualifier should survive into any slide copy about this section."
+    },
+    {
+      "id": "C13",
+      "claim": "Executive Order 14426 binds the Secretary of War and the Secretary of Veterans Affairs, and requires consultation with the Secretaries of Health and Human Services and Labor and the Director of the Office of Management and Budget.",
+      "value": "2 binding officials",
+      "verbatim": "The Secretary of War and the Secretary of Veterans Affairs shall:",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "No other officials are given duties. HHS, OMB and Labor appear only in consultation roles. The order uses Department of War and Secretary of War throughout and never says Department of Defense."
+    },
+    {
+      "id": "C14",
+      "claim": "Executive Order 14426 does not name Alaska or any other state anywhere in its text.",
+      "value": "0 states named",
+      "verbatim": "connected with appropriate veterans' representatives acting on behalf of a Federal, State, or local government",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Verified as an absence over the complete text, not assumed. The only use of the word State in the order is the generic phrase quoted here, in Sec. 3(b). The word Alaska does not appear."
+    },
+    {
+      "id": "C15",
+      "claim": "Executive Order 14426 states that it creates no right or benefit enforceable at law against the United States.",
+      "value": null,
+      "verbatim": "This order is not intended to, and does not, create any right or benefit, substantive or procedural, enforceable at law or in equity by any party against the United States",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Sec. 4(c), the standard general provisions clause. Sec. 4(b) further conditions the whole order on the availability of appropriations. Any slide implying a veteran gains an enforceable entitlement from this order would be wrong."
+    },
+    {
+      "id": "C16",
+      "claim": "Executive Order 14426 blames outdated records systems between the Department of War and the Department of Veterans Affairs for delays in veterans' healthcare coverage and benefits processing.",
+      "value": null,
+      "verbatim": "outdated and unwieldy records management and data systems and procedures hinder military personnel file and medical record sharing between the Department of War and the Department of Veterans Affairs",
+      "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/11/2026-18738.txt",
+      "source_outlet": "Office of the Federal Register",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-11",
+      "confidence": "high",
+      "notes": "Sec. 1. This is the order's own stated diagnosis and is attributed to the order rather than stated as fact by the deck."
+    },
+    {
+      "id": "C17",
+      "claim": "The number of veterans in Alaska is 53,386 according to the Census Bureau's 2024 American Community Survey one year estimates.",
+      "value": "53,386 veterans",
+      "verbatim": "Alaska | B21001001 estimate 539053 | B21001002 estimate 53386",
+      "source_url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US02,01000US",
+      "source_outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+      "source_is_primary": false,
+      "date_of_source": "2024-12-31",
+      "confidence": "medium",
+      "notes": "No Census primary surface was reachable. api.census.gov refused keyless requests and census.gov/quickfacts returned 403, so this is the Census Reporter mirror of ACS table B21001. The mirror validates strongly, because the United States row from the same query returns 15,701,246 veterans out of 265,909,570, which matches the Census Bureau's own published 15.7 million and 5.9 percent exactly. Margin of error on the Alaska veteran estimate is plus or minus 3,041. A competing figure exists, see C20."
+    },
+    {
+      "id": "C18",
+      "claim": "Veterans are 9.9 percent of Alaska's civilian population aged 18 and over.",
+      "value": "9.9 percent",
+      "verbatim": "Alaska | B21001001 estimate 539053 | B21001002 estimate 53386",
+      "source_url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US02,01000US",
+      "source_outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+      "source_is_primary": false,
+      "date_of_source": "2024-12-31",
+      "confidence": "medium",
+      "notes": "Derived. 53,386 divided by 539,053 is 9.903 percent. The denominator B21001001 is the civilian population 18 years and over, so the share is of adults and not of all Alaskans. Slide copy attributes it to Census Bureau survey estimates. This replaces the 8 percent figure the run brief carried, which was killed."
+    },
+    {
+      "id": "C19",
+      "claim": "Alaska has the highest veteran share of any state, at 9.9 percent of adults against 8.9 percent in second place Virginia.",
+      "value": "1st of 50 states",
+      "verbatim": "Alaska | 539053.0 | 53386.0 ... Virginia | 6804519.0 | 602994.0 ... Montana | 904135.0 | 76266.0",
+      "source_url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US28,04000US29,04000US30,04000US31,04000US32,04000US33,04000US34,04000US35,04000US36,04000US37,04000US38,04000US39,04000US40,04000US41,04000US42,04000US44,04000US45,04000US46,04000US47,04000US48,04000US49,04000US50,04000US51,04000US53,04000US54,04000US55,04000US56",
+      "source_outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+      "source_is_primary": false,
+      "date_of_source": "2024-12-31",
+      "confidence": "medium",
+      "notes": "B21001 was pulled for all 50 states in two batches and every share computed by hand. The ranking runs Alaska 9.90, Virginia 8.86, Montana 8.44, Wyoming 8.14, South Carolina 8.07, Maine 7.59. Alaska leads by more than a full percentage point, which is wider than the margin of error, so the first place claim is safe. The District of Columbia was excluded as it is not a state. This URL carries the second batch of 27 states; the first batch of 23 used the same endpoint with geo_ids 04000US01 through 04000US27. Derived ranking, attributed as calculated from Census survey data."
+    },
+    {
+      "id": "C20",
+      "claim": "The Department of Veterans Affairs VetPop2023 model puts Alaska's veteran population at 71,006 as of fiscal year 2023, down from 74,181 in fiscal year 2000.",
+      "value": "71,006 veterans",
+      "verbatim": "[{\"sum_fy2023\":\"71006\",\"sum_fy2000\":\"74181\"}]",
+      "source_url": "https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023),sum(fy2000)&$where=state=%27Alaska%27",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "A competing figure to C17 and the deck must pick one and say which. VA's VetPop2023 model says 71,006 for Alaska; Census ACS 2024 says 53,386. Both are correct on their own terms. VetPop is a VA administrative model of all living veterans; ACS is a self reported household survey of the civilian non institutionalised population aged 18 and over. Nationally VetPop runs 1.16 times ACS, in Alaska 1.33 times. Use ACS for the share and the rank because the rank was computed from ACS, and VetPop only where a VA count is wanted. Never divide a VetPop count by a Census denominator."
+    },
+    {
+      "id": "C21",
+      "claim": "The VA's VetPop2023 model counts 18,266,976 living veterans nationally in fiscal year 2023.",
+      "value": "18,266,976 veterans",
+      "verbatim": "[{\"sum_fy2023\":\"18266976\"}]",
+      "source_url": "https://www.datahub.va.gov/resource/ii4k-rqz2.json?$select=sum(fy2023)",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 State Estimates 2000 to 2023",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "The sanity check on C20. Summing the same dataset across all states returns a national figure matching VA's published roughly 18.3 million, which is what makes the Alaska row trustworthy."
+    },
+    {
+      "id": "C22",
+      "claim": "The United States had 15.7 million veterans in 2024, or 5.9 percent of the civilian population aged 18 and over.",
+      "value": "5.9 percent",
+      "verbatim": "The number of military veterans in the United States in 2024, representing 5.9% of the total civilian population age 18 and over",
+      "source_url": "https://www.census.gov/newsroom/facts-for-features/2025/veterans-day.html",
+      "source_outlet": "U.S. Census Bureau",
+      "source_is_primary": true,
+      "date_of_source": "2025-11-11",
+      "confidence": "high",
+      "notes": "The Census Bureau's own release, citing ACS table ACSST1Y2024.S2101. This is the national number Alaska's 9.9 percent is set against, and it is the figure that validated the Census Reporter mirror used for C17 through C19. Alaska's share is about 1.7 times the national share."
+    },
+    {
+      "id": "C23",
+      "claim": "Anchorage is home to 28,883 veterans, the largest concentration in Alaska, in the VA's VetPop2023 county estimates for September 30th, 2023.",
+      "value": "28,883 veterans",
+      "verbatim": "{\"county_state\":\"Anchorage, AK\",\"sum_veterans\":\"28883\"}",
+      "source_url": "https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&$group=county_state&$order=sum_veterans%20DESC&$limit=12",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "Summed across the dataset's sex and age group rows for the single date 2023-09-30. An unfiltered sum over all dates in this dataset returns impossible numbers, so the date filter is load bearing and any reuse of this query must keep it."
+    },
+    {
+      "id": "C24",
+      "claim": "Fairbanks North Star Borough has 13,223 veterans and Matanuska-Susitna Borough has 11,690 in the VA's VetPop2023 county estimates.",
+      "value": "13,223 and 11,690 veterans",
+      "verbatim": "{\"county_state\":\"Fairbanks North Star, AK\",\"sum_veterans\":\"13223\"},{\"county_state\":\"Matanuska-Susitna, AK\",\"sum_veterans\":\"11690\"}",
+      "source_url": "https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&$group=county_state&$order=sum_veterans%20DESC&$limit=12",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "Fairbanks North Star is second and Matanuska-Susitna third. Next are Kenai Peninsula 5,239, Juneau 2,396, Kodiak Island 1,152, Ketchikan Gateway 1,017, Bethel 1,005, Southeast Fairbanks 959, Sitka 630, Chugach 565 and Nome 505."
+    },
+    {
+      "id": "C25",
+      "claim": "Three boroughs hold 53,796 of Alaska's 71,006 veterans, leaving 17,210 spread across the rest of the state.",
+      "value": "53,796 of 71,006",
+      "verbatim": "{\"county_state\":\"Anchorage, AK\",\"sum_veterans\":\"28883\"},{\"county_state\":\"Fairbanks North Star, AK\",\"sum_veterans\":\"13223\"},{\"county_state\":\"Matanuska-Susitna, AK\",\"sum_veterans\":\"11690\"}",
+      "source_url": "https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&$group=county_state&$order=sum_veterans%20DESC&$limit=12",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "Derived by addition, 28,883 plus 13,223 plus 11,690 equals 53,796, which is 75.8 percent of the 71,006 VetPop state total in C20, leaving 17,210. Both numerator and denominator come from VetPop2023, so the units are consistent."
+    },
+    {
+      "id": "C26",
+      "claim": "The VA's 2025 artificial intelligence use case inventory lists 367 AI use cases in its individual inventory and 13 in its consolidated inventory.",
+      "value": "367 AI use cases",
+      "verbatim": "The 2025 inventory includes 367 AI use cases in the Individual AI Inventory and 13 AI Use Cases in the Consolidated AI Inventory.",
+      "source_url": "https://department.va.gov/ai/ai-use-case-inventory/",
+      "source_outlet": "U.S. Department of Veterans Affairs, Office of the Chief AI Officer",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-01",
+      "confidence": "high",
+      "notes": "The most useful document after the order itself, because it establishes that the VA was already running hundreds of AI systems before Executive Order 14426 asked for more. The page states it was last updated September 1st, 2026."
+    },
+    {
+      "id": "C27",
+      "claim": "The VA says it has granted no waivers from the minimum risk management practices required for high impact AI use cases.",
+      "value": "0 waivers",
+      "verbatim": "VA has not granted any waivers from the minimum risk management practices required for high-impact AI use cases.",
+      "source_url": "https://department.va.gov/ai/ai-use-case-inventory/",
+      "source_outlet": "U.S. Department of Veterans Affairs, Office of the Chief AI Officer",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-01",
+      "confidence": "high",
+      "notes": "The VA's own statement about itself and attributed that way. How many of the 367 use cases are flagged rights impacting or safety impacting could NOT be confirmed, because those counts live only in a spreadsheet and there is no spreadsheet extraction in this environment. No rights impacting count goes on a slide."
+    },
+    {
+      "id": "C28",
+      "claim": "The VA's published AI use case examples include a generative chat system called VA GPT and a Payment Redirect Fraud model that flags potentially fraudulent changes to veterans' payments.",
+      "value": null,
+      "verbatim": "Identifying potentially fraudulent changes related to payments",
+      "source_url": "https://department.va.gov/ai/ai-use-case-inventory/",
+      "source_outlet": "U.S. Department of Veterans Affairs, Office of the Chief AI Officer",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-01",
+      "confidence": "medium",
+      "notes": "Named examples on the page are VA GPT, AI-Assisted Software Development, AI-Assisted Clinical Decision Support, the Veterans Health Administration Stratification Tool for Opioid Risk Mitigation known as STORM, AI-Assisted Colonoscopy, and the Payment Redirect Fraud model. Confidence is medium only because the captured verbatim is the description rather than a single sentence naming both systems."
+    },
+    {
+      "id": "C29",
+      "claim": "The Veterans Benefits Administration reported 661,395 pending disability claims in its weekly workload report in mid September 2026.",
+      "value": "661,395 pending claims",
+      "verbatim": "661,395 Pending Claims",
+      "source_url": "https://www.benefits.va.gov/REPORTS/detailed_claims_data.asp",
+      "source_outlet": "U.S. Department of Veterans Affairs, Veterans Benefits Administration",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-14",
+      "confidence": "medium",
+      "notes": "The page reports itself last updated September 14th, 2026 and the most recent Monday Morning Workload Report linked is dated September 12th, 2026. Written as of mid September because the figure changes weekly and the deck outlives the week."
+    },
+    {
+      "id": "C30",
+      "claim": "The Veterans Benefits Administration reported 73,086 rating related claims in its backlog in mid September 2026.",
+      "value": "73,086 backlog claims",
+      "verbatim": "73,086 Rating-Related Backlog Claims",
+      "source_url": "https://www.benefits.va.gov/REPORTS/detailed_claims_data.asp",
+      "source_outlet": "U.S. Department of Veterans Affairs, Veterans Benefits Administration",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-14",
+      "confidence": "medium",
+      "notes": "The 125 day threshold that defines the backlog is VBA's standing definition rather than a string captured verbatim from this page, so slide copy says backlog rather than restating the threshold. Same weekly volatility caveat as C29."
+    },
+    {
+      "id": "C31",
+      "claim": "Nearly 82 percent of Alaska communities are inaccessible by road, according to the Alaska Aviation System Plan.",
+      "value": "82 percent",
+      "verbatim": "Nearly 82% of Alaska communities are inaccessible by road",
+      "source_url": "https://alaskaasp.com/",
+      "source_outlet": "Alaska Department of Transportation and Public Facilities, Alaska Aviation System Plan",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "confidence": "medium",
+      "notes": "The sentence continues, making aviation more than a convenience or a luxury, aviation is essential in the Alaskan way of life. The page identifies the Alaska Department of Transportation and Public Facilities as publisher. The word nearly is kept and the figure is attributed to the Alaska Aviation System Plan. The page carries no date for the underlying count, so date_of_source is the fetch date, not a publication date."
+    },
+    {
+      "id": "C32",
+      "claim": "After the three largest, Alaska's next nine boroughs and census areas by veteran count in the VA's VetPop2023 county estimates are Kenai Peninsula 5,239, Juneau 2,396, Kodiak Island 1,152, Ketchikan Gateway 1,017, Bethel 1,005, Southeast Fairbanks 959, Sitka 630, Chugach 565 and Nome 505.",
+      "value": "5,239 / 2,396 / 1,152 / 1,017 / 1,005 / 959 / 630 / 565 / 505",
+      "verbatim": "Next are Kenai Peninsula 5,239, Juneau 2,396, Kodiak Island 1,152, Ketchikan Gateway 1,017, Bethel 1,005, Southeast Fairbanks 959, Sitka 630, Chugach 565 and Nome 505.",
+      "source_url": "https://www.datahub.va.gov/resource/jrjd-qghv.json?$select=county_state,sum(veterans)&$where=state=%27Alaska%27%20AND%20date=%272023-09-30T00:00:00.000%27&$group=county_state&$order=sum_veterans%20DESC&$limit=12",
+      "source_outlet": "U.S. Department of Veterans Affairs, VA Data Hub, VetPop2023 County Data 9L",
+      "source_is_primary": true,
+      "date_of_source": "2023-09-30",
+      "confidence": "high",
+      "notes": "Promoted out of C24's notes into its own claim on 2026-09-15 because the deck prints these nine figures on slide 06 and dossier_check correctly refuses a figure that lives only in a claim's notes. Same single query, same date filter and same response rows as C23, C24 and C25; the date filter is load bearing and any reuse must keep it. These nine sum to 13,468, which with the three largest leaves 3,742 across the remaining boroughs and census areas. That residual is NOT printed anywhere in the deck."
+    },
+    {
+      "id": "C33",
+      "claim": "The six highest veteran shares among the states in the Census Bureau's 2024 American Community Survey one year estimates are Alaska 9.90 percent, Virginia 8.86, Montana 8.44, Wyoming 8.14, South Carolina 8.07 and Maine 7.59.",
+      "value": "9.90 / 8.86 / 8.44 / 8.14 / 8.07 / 7.59 percent",
+      "verbatim": "Ranking runs Alaska 9.90, Virginia 8.86, Montana 8.44, Wyoming 8.14, South Carolina 8.07, Maine 7.59.",
+      "source_url": "https://api.censusreporter.org/1.0/data/show/latest?table_ids=B21001&geo_ids=04000US28,04000US29,04000US30,04000US31,04000US32,04000US33,04000US34,04000US35,04000US36,04000US37,04000US38,04000US39,04000US40,04000US41,04000US42,04000US44,04000US45,04000US46,04000US47,04000US48,04000US49,04000US50,04000US51,04000US53,04000US54,04000US55,04000US56",
+      "source_outlet": "U.S. Census Bureau ACS 2024 1-year, table B21001, retrieved via Census Reporter",
+      "source_is_primary": false,
+      "date_of_source": "2024-12-31",
+      "confidence": "medium",
+      "notes": "Promoted out of C19's notes into its own claim on 2026-09-15 because the deck prints all six figures as bar labels on slide 07 and dossier_check correctly refuses a figure that lives only in a claim's notes. Each share is veterans (B21001002) over the civilian population 18 and over (B21001001), computed by hand for all fifty states in two batches from the same endpoint; this URL carries the second batch. Shares are printed to two decimals throughout because 8.14 and 8.07 would otherwise round to the same string. The District of Columbia is excluded as it is not a state."
+    }
+  ],
+  "killed": [
+    {
+      "claim": "Alaska has roughly 59,000 veterans",
+      "why": "Traced only to an Alaska Public Media article from November 2025 and matched by no reachable source. Census ACS 2024 one year gives 53,386 and VA VetPop2023 gives 71,006. The 59,000 figure sits between the two and belongs to neither."
+    },
+    {
+      "claim": "Veterans are about 8 percent of Alaskans against a 5 percent national average",
+      "why": "Both halves are wrong against the sources. ACS 2024 puts Alaska at 9.9 percent of adults and the Census Bureau's own release puts the nation at 5.9 percent. Printing 8 against 5 would understate Alaska."
+    },
+    {
+      "claim": "A count of VA medical centers, community based outpatient clinics and Vet Centers in Alaska",
+      "why": "The VA's Alaska locations page lists a main location in Anchorage and health clinics in Fairbanks, Homer, Joint Base Elmendorf-Richardson, Juneau, Wasilla, Soldotna and Anchorage, but gives no printed count and does not label each facility by type. The VA facilities API returns 401 without a key. Any count would be the studio's, not the VA's."
+    },
+    {
+      "claim": "A count of how many of the VA's 367 AI use cases are rights impacting or safety impacting",
+      "why": "Those flags live only in the inventory spreadsheet and there is no spreadsheet or PDF text extraction in this environment. The inventory page itself does not use the terms."
+    },
+    {
+      "claim": "VA average days to complete a disability claim",
+      "why": "The VBA page shows the string FDC ADC 80.6 Non-FDC ADC 74.1 but does not spell the labels out, and fully developed claims reading slower than non fully developed claims is the wrong way round. An ambiguous number is not a number."
+    },
+    {
+      "claim": "Executive Order 14426 mandates artificial intelligence across the veterans benefits pipeline",
+      "why": "Overstated against the text. The order mentions artificial intelligence exactly once, in one clause of one subsection, paired with and other emerging capabilities. The deck may say the order puts AI on a 180 day clock. It may not say the order is an AI order."
+    },
+    {
+      "claim": "A published count of Alaska communities off the road system",
+      "why": "Only a percentage is published, not a count. The Alaska Marine Highway page says over 30 communities served but that is a ferry route list, not an off road system census."
+    }
+  ]
+}

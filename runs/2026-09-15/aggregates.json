@@ -1,0 +1,121 @@
+{
+  "run_date": "2026-09-15",
+  "aggregates": [
+    {
+      "kind": "design",
+      "slide": 1,
+      "text": "500 MI STRAIGHT LINE",
+      "note": "A property of the drawing, not of the world. The ring is d3.geoCircle at 500 statute miles over 69.09 statute miles per degree, which is 7.236 degrees of great circle. Nothing in the record asserts a 500 mile figure; the radius is this deck's own choice, drawn to show what a single centre reaches."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Three boroughs hold 53,796 of Alaska's 71,006 veterans.",
+      "fragment": "Three boroughs",
+      "member": "C25"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 2,
+      "text": "Three boroughs hold 53,796 of Alaska's 71,006 veterans.",
+      "fragment": "71,006 veterans",
+      "member": "C20"
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "0.7790 SQ PX PER VETERAN",
+      "note": "A property of the drawing. The constant that turns a verified veteran count into a plate area, printed so a reader can check the plates against each other."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "The order runs four sections and names no state. The agency it binds already publishes 367 AI use cases and says it has granted 0 waivers from minimum risk practices.",
+      "fragment": "four sections and names",
+      "member": "C05"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "The order runs four sections and names no state. The agency it binds already publishes 367 AI use cases and says it has granted 0 waivers from minimum risk practices.",
+      "fragment": "367 AI use cases",
+      "member": "C26"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "367 LISTED USE CASES",
+      "member": "C26"
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "Three clocks. The AI one runs 180 days.",
+      "fragment": "Three clocks",
+      "subject": "clocks in Executive Order 14426",
+      "members": [
+        "C09",
+        "C10",
+        "C11"
+      ],
+      "note": "30 days, 120 days and 180 days. C11 records that the phrase within 180 days appears three times, which is five deadlines over three distinct clocks. The slide says clocks, not deadlines, deliberately."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Three clocks. The AI one runs 180 days.",
+      "fragment": "180 days",
+      "member": "C07"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "30 days to October 8th for records on discharge. 120 days to January 6th, 2027 for interoperable systems. 180 days to March 7th, 2027 for the digital tools.",
+      "fragment": "30 days",
+      "member": "C09"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "30 days to October 8th for records on discharge. 120 days to January 6th, 2027 for interoperable systems. 180 days to March 7th, 2027 for the digital tools.",
+      "fragment": "120 days",
+      "member": "C10"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "661,395 PENDING CLAIMS, MID SEPTEMBER",
+      "member": "C29"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "73,086 BACKLOG CLAIMS",
+      "member": "C30"
+    },
+    {
+      "kind": "design",
+      "slide": 4,
+      "text": "DAYS FROM SEPTEMBER 8TH",
+      "note": "A property of the drawing. The rule is linear in days from the signing date verified in C02, at 4.889 design px per day, and every mark inside its band is declared in data-scale."
+    },
+    {
+      "kind": "design",
+      "slide": 5,
+      "text": "SEVEN RINGS AT 100 TO 700 STATUTE MILES",
+      "note": "A property of the drawing. Seven true distance rings under an azimuthal equidistant projection centred on Anchorage."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "ONE MARK IS TEN VETERANS, PLACED IN ITS BOROUGH",
+      "note": "A property of the drawing. The mark count per borough is its verified veteran count divided by ten and rounded, and the positions are random inside the borough polygon and are not addresses."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "17,210 veterans live outside the three.",
+      "member": "C25"
+    }
+  ]
+}
