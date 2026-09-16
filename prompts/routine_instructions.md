@@ -1333,12 +1333,15 @@ JSON in its final message, which YOU persist to
    are decisions, not drafts. Do not "improve" them on a run, and Phase 12
    must not either. If one genuinely needs to change, the maintainer says so.
 
-   Homepage section order is hero, the Bottleneck Scanner, Our Latest Video,
-   Our Latest Article, the docket, the beats, What this is, subscribe. The
-   video sits directly under the scanner ON PURPOSE. It is the strongest
-   thing on the page and it had drifted to fifth. The variable holding it is
-   `video_html`; it was called `steps` after a section that no longer exists,
-   which is part of how it got lost.
+   Homepage section order (maintainer, 2026-09-16) is hero with Ask the Record,
+   the docket, Our Latest Video, Our Latest Article, Cook Inlet Gas Watch,
+   the beats, What this is, deadline alerts, then the Bottleneck Scanner at
+   the bottom. The docket preview uses compact rows with dates and status,
+   not tall cards. The hero paragraph is exactly "Every AI decision in
+   Alaska and the source behind it." What this is stays about half the
+   length of the earlier paragraph, keeping the publication, source-linked
+   open data and flagship studio offer. Preserve this layout and copy when
+   rebuilding the site. The video section variable is `video_html`.
 
    The homepage studio sentence names the FLAGSHIP PRODUCT, which is the
    agentic operating system, a package of 1 to 1000 AI agents working
