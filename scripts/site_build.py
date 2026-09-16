@@ -4838,7 +4838,9 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
        just moves a pin under it, which is what a 0.3 cap did to the Cook Inlet
        pin. The map still keeps roughly two thirds of its frame. */
     var nav = document.querySelector('.topnav');
-    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.36);
+    /* Leave one CSS pixel for the rounding in the serialized transforms. A
+       pin fitted exactly to the nav edge can otherwise land just under it. */
+    var top = Math.min(nav ? (nav.getBoundingClientRect().height + 1) * px() : 0, v.h * 0.36);
 
     var rest = need(1, mscale);
     var fits = rest.x0 >= v.x0 && rest.x1 <= v.x1 &&
