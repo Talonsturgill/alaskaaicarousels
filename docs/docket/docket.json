@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-16",
+  "updated": "2026-09-15",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 28,
+  "count": 30,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-07-08",
@@ -236,6 +236,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked and unchanged against the preliminary decision notice, Alaska DNR Online Public Notices id 224224. The notice still describes a 50 year lease offer to STAK Energy Corporation on 715.4 acres about 26 miles south of Deadhorse, for a commercial natural gas powered energy facility including modular high performance computing units. Comment closed at 4:30 p.m. on July 17th, 2026. No final finding and decision has been issued and none is scheduled. The notice says a copy will be sent to every person who commented, with an explanation of the appeal process, which is the only forward path the record names."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Checked and unchanged against the preliminary decision notice, Alaska DNR Online Public Notices id 224224. The notice still offers STAK Energy Corporation a 50 year lease on 715.4 acres, still carries the 4:30 p.m. July 17th comment close, and still shows its June 17th modification and a July 18th archive date. Nothing has been posted since the comment period closed, and DNR has published no date for a final best interest decision."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -500,10 +504,16 @@
           "url": "https://fm.kuac.org/2026-08-27/gvea-board-oks-continued-study-on-80-million-generator-purchase",
           "outlet": "KUAC",
           "date": "2026-08-27"
+        },
+        {
+          "url": "https://www.dermotcole.com/reportingfromalaska/2026/9/8/gvea-pegs-new-turbine-at-80-million-but-analyst-says-full-cost-more-likley-150-million-to-300-million",
+          "outlet": "Reporting From Alaska",
+          "is_primary": false,
+          "date": "2026-09-08"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-07-08",
@@ -580,6 +590,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked and unchanged against KUAC's account of the August 25th, 2026 board meeting. The 4 to 3 vote stands, with Rick Solie, Brad Swope, Krista Zappone and John Sloan in favour and Dave Messier, Gary Newman and Phil Wight opposed. Chief executive Travis Million said the co-op would return to the board if the unit falls through or the price goes through the roof, which puts the actual purchase decision still ahead. Board chair Messier said the matter would be considered further at the following month's meeting. No date for that has been published, so there is still no scheduled decision on the $80 million purchase."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Updated. On September 8th, Reporting From Alaska published an outside cost challenge to the co-op's figure. Andrew McDonnell, a co-founder of Alaska Renewables LLC, a Railbelt Reliability Council board member, a former University of Alaska Fairbanks professor and a former GVEA consultant, put the full cost of another LM6000 and the work around it at $150 million to $300 million against the co-op's stated ceiling of no more than $80 million. He argued the board should not commit to a long term purchase without further analysis, resource planning and competitive procurement. The board's August 25th motion left a final purchase decision to a later meeting, and no date for that meeting has been published."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -923,7 +937,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-07-11",
@@ -980,6 +994,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked and unchanged. Nothing new has been posted since the August rulings. The record still runs from the Regulatory Commission of Alaska's July order denying Enstar an advance determination of decisional prudence for the Kenai Loop Pool project, through Enstar's 31 page petition for reconsideration filed July 23rd, 2026, to the denial of that petition in August. Enstar's own description of the reservoir, in president John Sims's words, is that it is \"almost perfect for what Enstar views as short term and long term needs\". The estimated $240 million cost would be the largest single capital investment in the utility's history, and Southcentral goes into this heating season without the storage it would have added."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Checked and unchanged. Nothing new has been posted since the August rulings. The record still runs from the Regulatory Commission of Alaska's July order denying Enstar an advance determination of decisional prudence for the Kenai Loop Pool project, through Enstar's petition for reconsideration, to the commission's 3 to 2 denial of that petition on August 21st with a written order to follow. That written order has not appeared."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -1458,7 +1476,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-07-26",
@@ -1499,6 +1517,10 @@
         {
           "date": "2026-09-11",
           "note": "Re-read directly off the White House page today, enumerating the list rather than the summary counts. The pledge now carries 317 signatories, up from the 281 read here on July 26th, 2026. The governors addendum still stands at 23 signatures, Governor Mike Dunleavy among them. Cordova Electric Cooperative remains the only Alaska entity on the list, and no other Alaska utility appears, with Chugach Electric, Golden Valley Electric, Matanuska Electric and Homer Electric all absent. The pledge is still voluntary. Its own language is that companies voluntarily negotiate new, separate rate structures with their utilities and state governments, which is a commitment to bargain rather than a rule about who pays. The growing count is recorded here in the summary rather than as a dated event, because a reading is an observation and not something a reader can act on."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Checked and unchanged. The White House page today reads 317 of 317 signatories, the same count read here on September 11th, and the governors addendum still stands at 23. No utility, cooperative or developer on the enumerated list carries Alaska in its name."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -2185,7 +2207,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-08-06",
@@ -2214,6 +2236,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked and unchanged against the order's full text, read through the Government Publishing Office rather than the Federal Register site, which refuses an automated request. Executive Order 14318 of July 23rd, 2025 names no state and the word Alaska does not appear in it. Its deadlines all ran from the signing date and have all passed, 10 days for agencies to identify categorical exclusions to the Council on Environmental Quality, 180 days for the Environmental Protection Agency to develop guidance on expediting environmental reviews, and 180 days for the Army to review the nationwide permits. What reaches Alaska is the general machinery, not a provision written for it."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Checked and unchanged against the order's full text at the Government Publishing Office. Executive Order 14318 of July 23rd, 2025 still names no state, and no Alaska project has been identified as qualifying under its 100 megawatt or $500 million thresholds."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
@@ -2566,6 +2592,16 @@
           "date": "2026-11-02",
           "label": "Comments, motions to intervene and competing applications due, 5:00 p.m. Eastern",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-09-20",
+          "label": "Alaska Energy Authority marine survey crews mobilise for the Cook Inlet PowerLink in the same inlet",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-22",
+          "label": "Cook Inlet PowerLink marine survey fieldwork ends",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2608,6 +2644,16 @@
           "url": "https://www.federalregister.gov/documents/2026/08/25/2026-17254/deepgreen-western-passage-spv-llc-notice-of-preliminary-permit-application-accepted-for-filing-and",
           "outlet": "Federal Register",
           "date": "2026-08-25"
+        },
+        {
+          "url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+          "outlet": "Peninsula Clarion",
+          "date": "2026-09-14"
+        },
+        {
+          "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+          "outlet": "Federal Register",
+          "date": "2026-09-04"
         }
       ],
       "history": [
@@ -2642,10 +2688,14 @@
         {
           "date": "2026-09-13",
           "note": "Re-verified against the FERC notice at govinfo for project P-15423-000. The window for comments, motions to intervene and competing applications runs to 5 p.m. Eastern on November 2nd, which is fifty days out. The notice describes the operational envelope as roughly 330 to 350 marine hydrokinetic turbines, 66 subsea data center pods and a 3.5 mile subsea cable in the East Foreland corridor of upper Cook Inlet, with about 100 megawatts of annual generation. Brief comment can be filed without registering through the Commission's eComment form."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Updated. The state's own energy authority has said it will fight this. Alaska Energy Authority chief executive Curtis W. Thayer told the Peninsula Clarion on September 14th that the authority will file to intervene and oppose the permit, because the company never contacted the agency even though its filing refers to the authority's Cook Inlet PowerLink project. The next day the authority announced it has the permits for marine survey work on that line, has hired Woolpert, and will mobilise crews to the Kenai Peninsula beginning September 20th with fieldwork running through October 22nd across a marine corridor of about 35 miles. Two claims on one inlet now have overlapping calendars. Re-read today against the Federal Register notice, which describes the project as 100 megawatts, approximately 330 to 350 marine hydrokinetic turbines, 66 modular subsea compute hives and an approximately 3.5 mile, 115 kV hybrid power and fibre optic armoured subsea cable landing in the Nikiski Industrial Corridor between the Agrium Kenai Nitrogen Operations and the Kenai Liquefied Natural Gas Plant. The notice states no acreage."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-15",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -2727,7 +2777,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-15",
       "history": [
         {
           "date": "2026-08-25",
@@ -2788,6 +2838,10 @@
         {
           "date": "2026-09-14",
           "note": "The September 15th testimony date now rests on the Anchorage Daily News rather than on a single opinion column. Reporting by Bella Biondini on September 2nd says the Assembly approved the roughly $600,000 ThunderCat Technology contract for the Real Time Crime Center 8 to 4, and that the Assembly did not take action on the privacy protection proposal and instead continued the public hearing to its next meeting on Sept. 15. Volland, Scout and McCormick sponsor that ordinance, and Volland, Martinez, Scout and McCormick were the four votes against the money. The municipality's own agenda system still refuses an automated request, so the ordinance number can't be confirmed against a primary document. Anyone planning to testify should confirm the item is on the published agenda first."
+        },
+        {
+          "date": "2026-09-15",
+          "note": "Re-verified today. The continued public hearing on AO 2026-108 is tonight, September 15th, at the regular Assembly meeting that begins at 6 p.m. in the Assembly Chambers at the Z.J. Loussac Library, 3600 Denali Street, and testimony can be given in person or online. Alaska Public Media's September 3rd account by Wesley Early puts the crime center equipment contract at just under $600,000, approved 8 to 4, and names the ordinance's three sponsors as Keith McCormick of South Anchorage, Sydney Scout of North Anchorage and Assembly Vice Chair Daniel Volland. The sponsors said they would bring a refined version back on the 15th, so the text taking testimony tonight may differ from the one introduced on August 18th."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3205,6 +3259,92 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
+    },
+    {
+      "id": "matsu-alpr-prohibition",
+      "title": "Mat-Su weighs a flat ban on automated license plate readers",
+      "kind": "legislation",
+      "status": "pending-decision",
+      "decider": "Matanuska-Susitna Borough Assembly",
+      "public_access": "indirect",
+      "access_note": "The public hearing was held on September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer. That testimony window has passed and the Assembly now decides, so the route to it is an Assembly member.",
+      "summary": "Ordinance OR 26-106 would adopt a new borough code chapter, MSB 23.30, whose title states that it would prohibit the acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology. It is a prohibition rather than a set of conditions, which makes it the opposite instrument to the surveillance rules Anchorage is weighing forty miles away. The borough's own public notice lists it for hearing alongside four other ordinances and names no sponsor.",
+      "key_dates": [
+        {
+          "date": "2026-09-15",
+          "label": "Public hearing at the Assembly meeting, 6 p.m., Assembly Chambers, Palmer",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Palmer",
+        "lon": -149.1128,
+        "lat": 61.5994
+      },
+      "sources": [
+        {
+          "url": "https://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date",
+          "outlet": "Matanuska-Susitna Borough",
+          "date": "2026-09-15"
+        }
+      ],
+      "first_seen": "2026-09-15",
+      "last_updated": "2026-09-15",
+      "history": [
+        {
+          "date": "2026-09-15",
+          "note": "Added from the borough's own public hearing notice, which prints the full title. The notice sets the hearing for Tuesday September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer, and lists OR 26-106 alongside OR 26-102 through OR 26-105. The notice does not name a sponsor and does not carry the ordinance text, so nothing is recorded here about what the prohibition would cover beyond the words of the title. The outcome of the hearing is not yet published."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/matsu-alpr-prohibition/"
+    },
+    {
+      "id": "kpb-weather-modification-code",
+      "title": "Kenai Peninsula Borough writes a weather modification code",
+      "kind": "legislation",
+      "status": "open-for-comment",
+      "decider": "Kenai Peninsula Borough Assembly",
+      "public_access": "open",
+      "access_note": "A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then.",
+      "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August.",
+      "key_dates": [
+        {
+          "date": "2026-09-03",
+          "label": "Ordinance 2026-35 introduced by the mayor",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "On the Policies and Procedures Committee agenda",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-20",
+          "label": "Public hearing on Ordinance 2026-35, the point at which the public can speak to it",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Soldotna",
+        "lon": -151.0583,
+        "lat": 60.4877
+      },
+      "sources": [
+        {
+          "url": "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
+          "outlet": "Kenai Peninsula Borough legislative record",
+          "date": "2026-09-15"
+        }
+      ],
+      "first_seen": "2026-09-15",
+      "last_updated": "2026-09-15",
+      "history": [
+        {
+          "date": "2026-09-15",
+          "note": "Added from the borough's own legislative record, which stores the title as an ordinance amending borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands, sponsored by the mayor, with a hearing noted for October 20th. The record shows an introduction date of September 3rd, an agenda date of September 15th, a status of New Business in the Policies and Procedures Committee, and no passage date. The ordinance text itself is stored as an attachment this record does not render, so nothing is recorded here about what the new section would require."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
     }
   ]
 }

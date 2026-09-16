@@ -7410,3 +7410,125 @@ Yoeli, and as of 2024 it has been measured rather than asserted.
   candidate order from PerceptPPO rather than from convention, and cite the
   measurement in the helper's header so nobody "corrects" it back to
   top-right.
+
+## 2026-09-15 (run No.60, Phase 1 craft refresh)
+
+- **Slide count is a reach lever, not only a pacing choice.** Van der Blom's
+  2025-2026 LinkedIn algorithm report and the Socialinsider 2026 cut both
+  land on the same mechanism, dwell time. Document posts average 35 to 55
+  seconds of attention against 3 to 5x that of a text post, and a 10-slide
+  document measures about 22 percent more reach than a 3-slide one across
+  roughly 100,000 posts, because the swipe itself is the dwell. This deck's
+  default of 8 to 10 is already right; the note is that trimming to 7 to save
+  build effort is a reach decision and should be made as one.
+  https://blog.hootsuite.com/linkedin-algorithm/
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
+- **Hashtags no longer classify the post; the full copy does.** LinkedIn's
+  March 2026 authenticity update stopped reading hashtags as topic signals
+  and reads post copy plus the author's topic authority instead. The tag line
+  stays (it is a house fixture and costs nothing), but the CAPTION is what
+  files this page under Alaska and AI, which raises the value of naming the
+  agency, the docket number and the place in the body text rather than only
+  on the slides.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- **Relief shading has a measured aesthetic defect and a named fix.** The
+  standing complaint against analytical (single-azimuth) hillshade is that it
+  is fast and flat, and the current answer in the cartographic literature is
+  LOCALLY ADJUSTED ILLUMINATION, where the light direction is perturbed per
+  landform so ridgelines that run parallel to the key do not vanish. That is
+  a per-pixel azimuth field, not a second light, so it stays inside this
+  house's one-declared-light rule. PARKED as a candidate for AK.reliefShade,
+  not applied this run.
+  https://doi.org/10.3390/ijgi9040253
+
+## 2026-09-15 (run No.60, retro)
+
+- **A halo is not a knockout, and qa.py knows the difference.** Three labels
+  FAILed "label crossed by art" this run while carrying a four-stop
+  `text-shadow` glow in the frame's own darkest ink. The check measures, in the
+  ring around the glyphs, how much ink sits at the GLYPHS' OWN VALUE, and a 6 px
+  blur against a bright plate face or a dense mark field does not clear enough
+  of it. What cleared it was an opaque plate: `background rgba(8,16,24,.90)`,
+  12 px of side padding, a 2 px gold rule on the leading edge. That is now
+  `.knock` in this deck's head CSS and it is worth carrying forward. The rule of
+  thumb: a halo works against a BUSY ground of mixed value, and loses against a
+  ground that is uniformly brighter than the type.
+
+- **An opaque label on a counted field erases the count.** The fix above broke
+  the next gate on the same slide. Slide 06 declares 1,347 marks at ten veterans
+  each; three knockout plates landed on top of the field and `marks_disperse`
+  correctly reported four probed centres carrying no mark at all. The label is
+  DOM and the marks are canvas, so no drawing order could save it. The fix is
+  ordering the OTHER way: place and measure the labels FIRST with
+  `getBoundingClientRect`, then reject-sample the marks around those rects. The
+  marks relocate inside their own borough and the total never moves. Any time an
+  opaque element lands on a field whose COUNT is the claim, the field has to be
+  told where the element is before it is generated.
+
+- **The instinct learned yesterday caught its own second occurrence today.**
+  `an-unexplained-bright-region-is-a-defect-no-difference-test-can-see` was
+  written on 2026-09-14 off No.59's glowing manhole. No.60 slide 07 reproduced
+  the shape in a different geometry: each bar's lit ground pool, at r 44, reached
+  132 px past its own bar and landed on the NEXT bar's declared contact shadow,
+  five times. The dL test still passed every contact, because a bright pool
+  beside a dark hole passes a difference test. qa.py's painted-light check is
+  what found it. Confidence bumped. The generalisation: when contact furniture is
+  REPEATED at a pitch, check the pool radius against the PITCH, not against its
+  own object.
+
+- **A repair pass that rewrites a slide string has no idea copy.json exists.**
+  Slide 05's projection line was rewritten during repair to `AZIMUTHAL
+  EQUIDISTANT AT ANCHORAGE . DISTANCE TRUE`. `copy.json` kept the pre-repair
+  string and nothing noticed until `copy_sync_check` ran three phases later, at
+  the completion gate, where the only correct move is to reconcile copy.json to
+  the shipped render. It worked, but the gap is real: the build script is the
+  only thing that knows a string changed, and it says nothing. A build-time
+  string inventory, diffed against copy.json, would close it.
+
+- **A gate that crashes reports nothing about the deck.** `qa.py` died on
+  `NameError: MARK_PROBE_MAX` the first time any deck declared more than 240
+  dispersed marks, which is the first time that branch had ever been taken. The
+  constant was quoted by name and by value in three of qa.py's own docstrings
+  and never bound in Python. This machine is mostly gates, most of their branches
+  fire only on defects, and a rare branch is exactly where an unbound name hides.
+  `scripts/unbound_names_check.py` now walks the AST of every file in `scripts/`
+  and the engine and reports module-scope names nothing binds.
+
+- **A floor is the answer to a contact measurement, not a pool.** The contact
+  class has been open since No.55 and it reopened here on five frames, as 14
+  "the lit ground is painted, not lit" warns. Every one traced to the same
+  reflex: the dL test needs a lit ground to subtract from, so the frame paints a
+  bright radial at each object's foot. That is a lamp under a plate. What works
+  is to give the frame a GROUND PLANE, one wash across the whole floor along the
+  light axis, and let each cast be subtracted from it. Two details make it ship:
+  the wash must stop short of the furniture rows, because a lit floor under 19px
+  mono is a fresh contrast defect (it produced six of them on the first attempt),
+  and it must be LAID rather than filled, because a gradient rectangle scores as
+  blocky and costs the deck its drawn share (70 percent filled, 61 percent when
+  it was a rect, 70 percent again once it became a lay of rules at 1.7px pitch).
+
+- **The engraver reserves the boxes that exist when you call it.** Slide 07's bar
+  labels are DOM written after `eng7.surface()`, so the surface had never heard
+  of them and engraved straight through 'MAINE' and '7.59'. There is no flag for
+  this and no gate that names the cause; the warn says "busy art under text" and
+  leaves you to find it. The order is always: geometry, then the DOM the
+  geometry implies, then `reserve`, then draw. Same lesson as slide 06's mark
+  field, in the opposite direction.
+
+- **A mobile floor is cheap and it is the highest-leverage score there is.** The
+  first score put Legibility at 5 of 10 and called it "the weakest score and the
+  cheapest fix". Raising nine eyebrows, one guard row, three plate labels, six
+  state names and seven ring labels to 24px, and declaring the projection stamp,
+  slide counter and plate tally as the margin apparatus they are, took machine QA
+  from 150 warns to 6 in one pass. Sixty of those 150 were a single check saying
+  the same thing sixty times. Read the warn histogram before touching the art.
+
+- **A correct claim is not a correct quotation.** The caption critic caught
+  "One comprehensive single source" on the COVER HEADLINE and in the storyboard
+  thesis. C07's verbatim reads "in **a** comprehensive single source". The claim
+  had been right since the fact-checker wrote it; the error entered when copy
+  paraphrased the claim into a headline and nothing re-read the claim.
+  `claims_check` cannot see this, because the claim is fine. `copy_sync` cannot
+  see it, because copy.json and the render agree with each other. PARKED as a
+  gate candidate: find quotation marks in any slide string or caption sentence
+  and require the quoted span to appear verbatim inside the cited claim.

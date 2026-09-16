@@ -1,0 +1,165 @@
+{
+  "run_dir": "out/2026-09-15",
+  "render_report": "out/2026-09-15/render/render_report.json",
+  "aggregates_file": "out/2026-09-15/aggregates.json",
+  "detected": 15,
+  "declared": 17,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Three boroughs",
+      "text": "Three boroughs hold 53,796 of Alaska's 71,006 veterans.",
+      "n": 3,
+      "subject": "boroughs"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "71,006 veterans",
+      "text": "Three boroughs hold 53,796 of Alaska's 71,006 veterans.",
+      "n": 71006,
+      "subject": "veterans"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "four sections and names",
+      "text": "The order runs four sections and names no state. The agency it binds already pub",
+      "n": 4,
+      "subject": "sections and names"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "367 LISTED USE CASES",
+      "text": "367 LISTED USE CASES",
+      "n": 367,
+      "subject": "listed use cases"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "THREE CLOCKS",
+      "text": "THE ORDER CARRIES THREE CLOCKS",
+      "n": 3,
+      "subject": "clocks"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "180 days",
+      "text": "Three clocks. The AI one runs 180 days.",
+      "n": 180,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Three clocks",
+      "text": "Three clocks. The AI one runs 180 days.",
+      "n": 3,
+      "subject": "clocks"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "30 days",
+      "text": "30 days to October 8th for records on discharge. 120 days to January 6th, 2027 f",
+      "n": 30,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "120 days",
+      "text": "30 days to October 8th for records on discharge. 120 days to January 6th, 2027 f",
+      "n": 120,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "661,395 PENDING CLAIMS",
+      "text": "661,395 PENDING CLAIMS, MID SEPTEMBER",
+      "n": 661395,
+      "subject": "pending claims"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "73,086 BACKLOG CLAIMS",
+      "text": "73,086 BACKLOG CLAIMS",
+      "n": 73086,
+      "subject": "backlog claims"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "SEVEN RINGS",
+      "text": "SEVEN RINGS AT 100 TO 700 STATUTE MILES",
+      "n": 7,
+      "subject": "rings"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "700 STATUTE MILES",
+      "text": "SEVEN RINGS AT 100 TO 700 STATUTE MILES",
+      "n": 700,
+      "subject": "statute miles"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TEN VETERANS",
+      "text": "ONE MARK IS TEN VETERANS, PLACED IN ITS BOROUGH",
+      "n": 10,
+      "subject": "veterans"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "17,210 veterans",
+      "text": "17,210 veterans live outside the three.",
+      "n": 17210,
+      "subject": "veterans"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "500 MI STRAIGHT LINE",
+      "note": "A property of the drawing, not of the world. The ring is d3.geoCircle at 500 statute miles over 69.09 statute miles per degree, which is 7.236 degrees of great circle. Nothing in the record asserts a 500 mile figure; the radius is this deck's own choice, drawn to show what a single centre reaches."
+    },
+    {
+      "slide": 2,
+      "text": "0.7790 SQ PX PER VETERAN",
+      "note": "A property of the drawing. The constant that turns a verified veteran count into a plate area, printed so a reader can check the plates against each other."
+    },
+    {
+      "slide": 4,
+      "text": "DAYS FROM SEPTEMBER 8TH",
+      "note": "A property of the drawing. The rule is linear in days from the signing date verified in C02, at 4.889 design px per day, and every mark inside its band is declared in data-scale."
+    },
+    {
+      "slide": 5,
+      "text": "SEVEN RINGS AT 100 TO 700 STATUTE MILES",
+      "note": "A property of the drawing. Seven true distance rings under an azimuthal equidistant projection centred on Anchorage."
+    },
+    {
+      "slide": 6,
+      "text": "ONE MARK IS TEN VETERANS, PLACED IN ITS BOROUGH",
+      "note": "A property of the drawing. The mark count per borough is its verified veteran count divided by ten and rounded, and the positions are random inside the borough polygon and are not addresses."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S1 '500 MI STRAIGHT LINE' [design]",
+    "STALE declaration, no rendered string matches it: S2 '0.7790 SQ PX PER VETERAN' [design]",
+    "STALE declaration, no rendered string matches it: S3 'The order runs four sections and names no state. T' [from_claim]",
+    "STALE declaration, no rendered string matches it: S4 'DAYS FROM SEPTEMBER 8TH' [design]",
+    "S3 'The order runs four sections and names no state.' [from_claim]: the noun 'name' does not appear in claim C05; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

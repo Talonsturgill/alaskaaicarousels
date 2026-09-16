@@ -1,0 +1,102 @@
+{
+  "run_date": "2026-09-15",
+  "carousel_no": 60,
+  "round": 2,
+  "weighted_total": 8.61,
+  "threshold": 7.7,
+  "threshold_note": "7.7 is the 4-plus revision round threshold. This deck also clears the unrelaxed 8.3.",
+  "ship": true,
+  "hard_fails": [],
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(8x0.05)+(7x0.10) = 8.61",
+  "round_1": {
+    "weighted_total": 7.67,
+    "weakest_criterion": "Legibility and platform fitness",
+    "weakest_score": 5,
+    "outcome": "below threshold, returned to Phase 8 as a work order per CLAUDE.md"
+  },
+  "one_sentence_fix_from_scorer": "Darken slide 04's '73,086 BACKLOG CLAIMS' from the roe orange to roughly #B8400F so the deck's lowest-contrast content string clears 4.5:1 against the plate face, and probe it rather than eyeballing it.",
+  "one_sentence_fix_disposition": "PROBED AND DECLINED, with the measurement. The scorer said plainly it could not run a numeric probe and was reporting rather than asserting. The probe was run on the shipped render at the string's own bounding box: glyph core rgb(142,47,28) at relative luminance 0.0787 against plate face rgb(205,212,215) at 0.6497, which is 5.44:1, above the 4.5:1 floor. qa.py's own contrast check does not flag the string either. The colour is unchanged, because changing it on a mistaken premise would be the worse error.",
+  "carried_shortfalls": [
+    "Slide 05's seven ring labels are legible at feed width and the knockout plates stack into a dark ladder that occludes much of the landmass they measure. Legibility was bought at a cost to that frame's picture.",
+    "Slide 06's nine dot columns are now unlabelled. Removing the 14px MARK counts removed the deck's likeliest misreading and left a band that is honest and close to information-free; the last four columns are near-invisible at 432px.",
+    "Four frames carry a light-grey plate system, and slide 07's six near-identical bars fill the bottom 60 percent of that frame.",
+    "bespoke_check median pairwise art similarity rose from 0.343 to 0.426 because floorWash is one helper shared by five frames. The fail line is 0.60 and drawn share held at 70 percent.",
+    "Top-loaded composition warns survive on slide 06 (78 percent) and slide 09 (70 percent), both improved.",
+    "Slide 03's '0 waivers from minimum risk practices' drops the source's qualifier, which is 'minimum risk management practices required for high-impact AI use cases'. Sitting beside '367 listed use cases' it can be heard more broadly than C27 supports. The aftercare block carries the correction."
+  ],
+  "process_disclosure": "This run went past the five-round editing cap (owner, 2026-08-26). Two repair passes were taken for machine-gate FAILs and factual or legibility defects, and a third after the round-1 score of 7.67 against a 7.7 threshold, because CLAUDE.md makes a below-threshold score a work order and scripts/ship_gate.py exits non-zero on a run that stops below it. Nothing in any of those rounds was a taste change.",
+  "machine_state": {
+    "machine_qa": {
+      "fails": 0,
+      "warns": 3,
+      "verdict": "WARN",
+      "round_1": {
+        "fails": 0,
+        "warns": 150
+      }
+    },
+    "render": {
+      "page_errors": 0,
+      "overflow_warnings": 0,
+      "round_1_overflow_warnings": 91
+    },
+    "pdf_mode": "vector",
+    "bespoke": {
+      "median_pairwise_similarity": 0.426,
+      "drawn_share_pct": 70
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-15/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 4214371,
+  "pdf_mb": 4.21,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-15/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-15/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "One Center, and the 17,210 Outside It",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "ea7c84e7ee2b1c8ea871e9a23ad9c8f4ef2953dcb393510de84c1c4f1dd352d0",
+        "bytes": 3093673
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "8b23fe68b382e3539b88c241045e529d9439bdca6ffd72582ead59f5814ab890",
+        "bytes": 3311923
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "83575739ca81427d3dad5c888084e9acc6641ddd633a7c09c3c848a81b8335df",
+        "bytes": 2577869
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "83f692e57d0ae62fc025a2e255fcca88ba6c2bd02ae3954a16c05c5d8344bb24",
+        "bytes": 2939777
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "7a6b347f2c1f61525a9ff2e7238b6c2c047a90d25ad94ff34a6c8d431542aa51",
+        "bytes": 3597813
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "6637e10bac716e492d0226921e14ff38706d9c756598113f07d3095c7d41d205",
+        "bytes": 3183560
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "1561c298e4ab9b4d490510c97f6e94e06dbbbc87e8b0e7c06ebd9b441aad380a",
+        "bytes": 2896648
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "93828c8c1fbc3b5fdaa58888e4e7aed41c70ee4edb18f6cce973c49c9687bce7",
+        "bytes": 3439559
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "4b44375b4a06d5b5b7d3dbe17483b6784df354d11e302f04e09660f4d98617e6",
+        "bytes": 2468284
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "b864d36f2008b4137a353c524e81b37a8632b2255ba9893cf82275cda884c28a",
+        "bytes": 10629
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "db7b113fc96a4d4d685b96b1f6692511ed7b3c1f5679fd6ff7d8baa3a545866d",
+        "bytes": 16247
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d4a8f5bfd5846384dc49f3b32ce419b5965e8c2623741cfa5b3d68342280a405",
+        "bytes": 14061
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "7124945753a6863907ad21d75429c2439d22d9ab6546dca9465711bf3e3a2e66",
+        "bytes": 12839
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "880990d6611a0c8842563809fe85621c0c148566e8167d1bf3dfcb865af11bee",
+        "bytes": 11530
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "d7a564094be0251883048e440cac1a3c70616f808c97273270212bda6f3c37f1",
+        "bytes": 18467
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "00e59a9a00e4bc08bfbbfefd9aaacc10be0203970fc8a14d8fc7def3d72b2a9c",
+        "bytes": 13241
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "3b93e0abc9cb3807b92a4b22bf9a05b68d5f4dc0a6e0c0d4d42922c6722b6521",
+        "bytes": 15692
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1a38ac84f6723c1bd7c9855a7c0b3b29446c00ce512ec731b5ab5dd39e019e40",
+        "bytes": 12647
+      }
+    ]
+  }
+}

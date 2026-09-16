@@ -1,0 +1,177 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the 500 mile geodesic ring, whole and gold': canvas 125.9 dE, page 125.3 dE, 81% of its rect is clear of opaque DOM (div#rlab.ringlab stands on the rest)"
+      ],
+      "leaders": [
+        "leader \"the 500 mile ring's western arc\" lands 0.0px from its target",
+        "leader \"the 500 mile ring's western arc\" meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'One center.17,210 outside it.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'contact shadow': shadow L* 3.9 vs ground L* 31.5, dL 27.6 at 432w",
+        "'contact shadow': shadow L* 4.4 vs ground L* 25.6, dL 21.2 at 432w",
+        "'contact shadow': shadow L* 3.7 vs ground L* 21.4, dL 17.7 at 432w"
+      ],
+      "motifs": [
+        "'the Anchorage plate, 28,883 veterans as area': canvas 9.0 dE, page 82.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'Anchorage' lands 0.0px from its target",
+        "leader 'Fairbanks North Star' lands 0.0px from its target",
+        "leader 'Matanuska-Susitna' lands 0.0px from its target",
+        "leader 'Anchorage' meets its label 0.0px away",
+        "leader 'Fairbanks North Star' meets its label 0.0px away",
+        "leader 'Matanuska-Susitna' meets its label 0.0px away"
+      ],
+      "fits": [
+        "hd 'Three boroughs hold 53,796of Alaska's 71,006' fits 2/2 lines at 66.5px"
+      ],
+      "asserts": [
+        "'the Anchorage plate side, solved from the count' holds: 150 vs 150 px (within 0.2)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'contact shadow': shadow L* 6.0 vs ground L* 26.1, dL 20.1 at 432w"
+      ],
+      "motifs": [
+        "'the one overprint tick, the order's single AI mention': canvas 89.1 dE, page 90.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'The phrase artificial intelligenceappears on' fits 2/2 lines at 60.5px"
+      ],
+      "asserts": [
+        "'367 listed AI use cases, one tick each' holds: 367 vs 367 marks, counted over 367 declared marks (within 0)",
+        "'367 listed AI use cases, one tick each': 184 mark centres probed at r=14px, sampled every 2 marks, cohort median 81.3 dE, all present (weakest 78.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'contact shadow': shadow L* 18.0 vs ground L* 26.3, dL 8.2 at 432w"
+      ],
+      "motifs": [
+        "'the backlog band at the head of the queue stack': canvas 94.2 dE, page 94.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the deadline rule' runs 0 days at 120 to 180 days at 1000; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Three clocks.The AI one runs 180 days.' fits 2/2 lines at 78.5px"
+      ],
+      "asserts": [
+        "'the 180 day span, printed as an 880 px rule' holds: 880 vs 880 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the 500 mile ring, one of seven true rings': canvas 92.9 dE, page 94.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Distance is truefrom one point only.' fits 2/2 lines at 59.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 24% / mid 25% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "declared scatter: '1347 marks at ten veterans each, extent only' declares `dispersed: true` over 1347 marks, more than the 240 the frame exports, so the centres are sampled every 6 and a sample of a scatter is not the scatter. Not measured."
+      ],
+      "motifs": [
+        "'the Anchorage hole, knocked out of the mark field': canvas 83.7 dE, page 85.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd '17,210 veterans live outside the three.' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'1347 marks at ten veterans each, extent only' holds: 1347 vs 1347 marks, counted over 1347 declared marks (within 0)",
+        "'1347 marks at ten veterans each, extent only': 225 mark centres probed at r=4px, sampled every 6 marks, cohort median 84.3 dE, all present (weakest 48.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'contact shadow': shadow L* 7.3 vs ground L* 51.8, dL 44.5 at 432w",
+        "'contact shadow': shadow L* 6.6 vs ground L* 23.3, dL 16.7 at 432w",
+        "'contact shadow': shadow L* 5.7 vs ground L* 20.4, dL 14.6 at 432w",
+        "'contact shadow': shadow L* 5.1 vs ground L* 18.8, dL 13.7 at 432w",
+        "'contact shadow': shadow L* 4.8 vs ground L* 16.2, dL 11.4 at 432w",
+        "'contact shadow': shadow L* 4.4 vs ground L* 14.7, dL 10.3 at 432w"
+      ],
+      "motifs": [
+        "'the Alaska bar, tallest of six': canvas 3.1 dE, page 81.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the veteran share axis' runs 0 percent of adults at 1140 to 10 percent of adults at 652; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Alaska is first of fifty,and it is not close' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'the Alaska bar height, solved from the share at 48.8 px per point' holds: 483.1 vs 483.12 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'contact shadow': shadow L* 3.4 vs ground L* 28.6, dL 25.1 at 432w",
+        "'contact shadow': shadow L* 3.8 vs ground L* 22.9, dL 19.1 at 432w",
+        "'contact shadow': shadow L* 3.1 vs ground L* 19.0, dL 15.9 at 432w"
+      ],
+      "motifs": [
+        "'the overprint mark on the Anchorage plate, the order's own presence': canvas 87.5 dE, page 91.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'The order names no stateand creates no right' fits 2/2 lines at 75px"
+      ],
+      "asserts": [
+        "'the Anchorage plate, the same side it was cut at on slide 02' holds: 150 vs 150 px (within 0.2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 14% / mid 25% / bottom 12% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "motifs": [
+        "'the sealed ring with the Polaris inside it': canvas 96.8 dE, page 98.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the sealed ring radius, the cover ring contracted': canvas 70.4 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'If it works in Anchorageand not in Bethel, d' fits 2/2 lines at 67.5px"
+      ],
+      "asserts": [
+        "'the sealed ring radius, the cover ring contracted' holds: 44 vs 44 px (within 0.01)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}

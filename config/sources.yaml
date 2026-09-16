@@ -83,16 +83,38 @@ refuses_automated_fetch:
   hosts:
     - {host: "alaskabeacon.com",        route: "FIRST TRY https://alaskabeacon.com/feed/ , which answers a bot and carries FULL article text in content:encoded rather than excerpts, measured 2026-09-12 on the September 11th AYEA commentary after the article page returned 403 on both the plain and ?amp forms. Cite the Beacon's own article URL and date, because the feed is the same publication. Two limits, both real. The feed holds only the newest handful of items, so it is useless for anything older than a few days, and it can carry a collective byline where the page names an author, so do not attribute to an individual on the strength of the feed alone. THEN the old route, which still works for older stories: the Beacon syndicates under Creative Commons and alaskapublic.org republishes most of it, though NOT all, measured the same day, when the AYEA commentary had no alaskapublic republication. newsfromthestates.com and sitkasentinel.com both 403 as well, so neither is a route."}
     - {host: "rca.alaska.gov",          route: "none known, and it is why power_collect.py reads EIA's bulk file instead. Docket filings are sometimes summarised by the utility's own newsroom"}
-    - {host: "sam.gov",                 route: "none known; a federal solicitation is normally also announced by the awarding agency's newsroom"}
+    - {host: "sam.gov",                 route: "the HTML opportunity page is a JavaScript shell, but two undocumented API paths answer plain text (2026-09-15, No.60): sam.gov/api/prod/sgs/v1/search/?index=opp&q=<term>&page=0&size=25&mode=search for a search, and sam.gov/api/prod/opps/v2/opportunities/<uuid> for one notice. A federal solicitation is normally also announced by the awarding agency's newsroom"}
     - {host: "gvea.com",                route: "none known; board actions are reported by newsminer or KUAC"}
     - {host: "miningnewsnorth.com",     route: "none known"}
     - {host: "muni.org",                route: "NONE KNOWN, and this one is expensive: an Anchorage ordinance's own text and its AO number were unobtainable for No.40, which had to ship an explicit caveat instead. Assembly coverage in ADN or Alaska Public Media is the only route, and it does not carry AO numbers reliably"}
     - {host: "anchorage.legistar.com",  route: "none known; same hole as muni.org, same caveat"}
     - {host: "reddit.com",              route: "NONE, and it is worse than a 403: WebFetch refuses www.reddit.com and old.reddit.com before any request is made, and a site:reddit.com WebSearch returns results from everywhere except Reddit, so a scout can spend a beat on it and read the absence as 'nothing being discussed'. Measured 2026-08-29 (run No.44), and the briefs since have simply told scouts to skip it, which costs nothing. Community signal comes from letters and op-ed threads at ADN and the Landmine, and above all from minuted public testimony. See Beat F in the routine instructions"}
-    - {host: "federalregister.gov",     route: "NEW 2026-08-31 (No.46): the HTML document pages and the /documents/full_text/text/ endpoints now 302 to unblock.federalregister.gov and will not fetch. Two routes still work and both are keyless. Search and metadata through the JSON API at federalregister.gov/api/v1/documents.json, and FULL TEXT at https://www.govinfo.gov/content/pkg/FR-YYYY-MM-DD/html/<docnumber>.htm. Every Federal Register quotation in run No.46 came through govinfo"}
+    - {host: "federalregister.gov",     route: "CORRECTED 2026-09-15 (No.60). The entry here said the raw-text endpoint would not fetch, and that was wrong for six weeks. What 302s to unblock.federalregister.gov is the HTML DOCUMENT PAGE. The RAW TEXT endpoint answers cleanly and is the fastest route to a full notice: https://www.federalregister.gov/documents/full_text/text/YYYY/MM/DD/<docnum>.txt . Measured four times on 2026-09-15 by three scouts and the showrunner independently, on 2026-18738 (EO 14426), 2026-18151 (the DeepGreen FERC notice), 2026-18370 (the DOE bulk-power RFI) and 2026-18165 (the NPFMC meeting notice). The JSON API at federalregister.gov/api/v1/documents.json also answers and carries raw_text_url. govinfo.gov/content/pkg/FR-YYYY-MM-DD/html/<docnum>.htm remains a good third route. Three scouts rediscovered the raw-text route independently this run and wrote it into their new_sources lists, which is the exact duplicated cost this block exists to prevent, inverted"}
     - {host: "cms.gov",                 route: "403 (observed 2026-08-31). The Alaska half of a CMS award is normally also published by the Alaska Department of Health, and community papers such as the Kodiak Daily Mirror carry the per-awardee dollar figures the national release omits"}
     - {host: "govtribe.com",            route: "403 (observed 2026-08-31). highergov.com fetches and carries solicitation status, amendment history and response deadlines, so it is the SAM.gov mirror of record"}
     - {host: "datacenterdynamics.com",  route: "403 plus a bot interstitial (observed 2026-08-31). No route known"}
+
+# KEYLESS PRIMARY ROUTES, each measured working by a scout or the showrunner on
+# the date given. These turn a secondary story into a primary one, which is what
+# the claims gate rewards, and none of them needs a key or an account.
+keyless_primary_routes:
+  observed: "2026-09-15 (run No.60)"
+  routes:
+    - {what: "any NSF award to an Alaska institution, with the full abstract",
+       url: "https://api.nsf.gov/services/v1/awards.json?awardeeStateCode=AK&printFields=id,title,date,startDate,awardeeName,fundsObligatedAmt,piFirstName,piLastName,abstractText",
+       note: "the HTML award pages are JavaScript-rendered and return an empty template, which is why nobody was using them. This route surfaced four Alaska AI awards with no press coverage at all"}
+    - {what: "any Legistar borough's legislative record, by file number or by date",
+       url: "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
+       note: "swap kpb for another client code. Returns the stored title, intro date, agenda date, status, body and type as clean JSON. This is how the Kenai weather modification ordinance was verified, and it is the shape of route that would partly answer the standing muni.org and anchorage.legistar.com hole above"}
+    - {what: "the date and authorship of a paywalled paper",
+       url: "https://api.crossref.org/works/<DOI>",
+       note: "answers when the publisher 403s"}
+    - {what: "a Federal Register notice in full",
+       url: "https://www.federalregister.gov/documents/full_text/text/YYYY/MM/DD/<docnum>.txt",
+       note: "see the refusal block above; the HTML page redirects and this does not"}
+    - {what: "text out of a PDF when nothing local can read one",
+       url: "https://r.jina.ai/<the pdf url>",
+       note: "a proxy to TRY rather than a route to rely on. It made a 70-page NPFMC deployment plan fully quotable on 2026-09-15 and returned an empty body for other PDFs on the same host the same day"}
 
 discover:
   enabled: true
