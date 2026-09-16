@@ -7410,3 +7410,33 @@ Yoeli, and as of 2024 it has been measured rather than asserted.
   candidate order from PerceptPPO rather than from convention, and cite the
   measurement in the helper's header so nobody "corrects" it back to
   top-right.
+
+## 2026-09-15 (run No.60, Phase 1 craft refresh)
+
+- **Slide count is a reach lever, not only a pacing choice.** Van der Blom's
+  2025-2026 LinkedIn algorithm report and the Socialinsider 2026 cut both
+  land on the same mechanism, dwell time. Document posts average 35 to 55
+  seconds of attention against 3 to 5x that of a text post, and a 10-slide
+  document measures about 22 percent more reach than a 3-slide one across
+  roughly 100,000 posts, because the swipe itself is the dwell. This deck's
+  default of 8 to 10 is already right; the note is that trimming to 7 to save
+  build effort is a reach decision and should be made as one.
+  https://blog.hootsuite.com/linkedin-algorithm/
+  https://usevisuals.com/blog/linkedin-carousel-engagement-statistics-2026
+- **Hashtags no longer classify the post; the full copy does.** LinkedIn's
+  March 2026 authenticity update stopped reading hashtags as topic signals
+  and reads post copy plus the author's topic authority instead. The tag line
+  stays (it is a house fixture and costs nothing), but the CAPTION is what
+  files this page under Alaska and AI, which raises the value of naming the
+  agency, the docket number and the place in the body text rather than only
+  on the slides.
+  https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now
+- **Relief shading has a measured aesthetic defect and a named fix.** The
+  standing complaint against analytical (single-azimuth) hillshade is that it
+  is fast and flat, and the current answer in the cartographic literature is
+  LOCALLY ADJUSTED ILLUMINATION, where the light direction is perturbed per
+  landform so ridgelines that run parallel to the key do not vanish. That is
+  a per-pixel azimuth field, not a second light, so it stays inside this
+  house's one-declared-light rule. PARKED as a candidate for AK.reliefShade,
+  not applied this run.
+  https://doi.org/10.3390/ijgi9040253
