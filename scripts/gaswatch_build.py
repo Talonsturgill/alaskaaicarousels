@@ -1693,17 +1693,11 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
     availability = ""
     if status["state"] != "current":
         window = status.get("maintenance_window")
-        maintenance = (f' CINGSA announces shut-in maintenance from '
-                       f'{long_date(window["start_date"])} until '
-                       f'{long_date(window["end_date"])}.' if window else "")
-        availability = (
-            '<aside class="gw-availability" aria-labelledby="gw-source-status">'
-            '<h2 id="gw-source-status">New storage readings unavailable</h2>'
-            f'<p>The last verified storage reading is from {long_date(f["as_of"])}.'
-            f'{maintenance} The collector is still checking the '
-            f'<a href="{esc(gc.CINGSA_URL)}">CINGSA dashboard</a>. '
-            'The storage figures below describe that last reading. Missing dates '
-            'remain unverified, and available weather data is collected separately.</p></aside>')
+        note = (f'has not posted a new reading since {long_date(f["as_of"])}.' if not window or
+                today.isoformat() >= window["end_date"] else
+                f'has no new readings. Maintenance scheduled until {long_date(window["end_date"])}.')
+        availability = (f'<p class="gw-tnote" id="gw-source-status" data-reveal>'
+                        f'<a href="{esc(gc.CINGSA_URL)}">CINGSA</a> {note}</p>')
 
     source_note = ""
     latest = latest_verified(series)
@@ -1839,7 +1833,6 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 {long_date(f["as_of"])}, {count(f["days_of_record"], "day")} on record.</p>
 </div>
 
-{availability}
 {gauge(f)}
 
 <!-- The primary action under the meter used to be GET THE JSON, which asks a
@@ -1889,6 +1882,7 @@ that it is not, is using it wrong.</p>
 <h2 data-reveal>Day by day</h2>
 {chart_block}
 {table_html(series, model)}
+{availability}
 {stale_note}
 
 {balance}
@@ -2065,10 +2059,6 @@ GW_JS = r"""
 """
 
 GW_CSS = """
-.gw-availability{margin:24px 0;padding:22px 26px;border:1px solid var(--gold,#ba945b);border-radius:12px;background:rgba(186,148,91,.08);}
-.gw-availability h2{margin:0 0 10px;font-size:clamp(21px,3vw,28px);}
-.gw-availability p{margin:0;line-height:1.65;max-width:80ch;}
-.gw-availability a{text-decoration:underline;text-underline-offset:3px;}
 .gw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));
 gap:12px;margin:26px 0 30px;}
 .gw-stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;

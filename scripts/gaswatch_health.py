@@ -77,7 +77,7 @@ def assess(feed, page, source, runs, now):
     unavailable = stale or (latest and any(d > latest["date"] for d in dates))
     add("source gap disclosed", not unavailable or 'id="gw-source-status"' in page,
         "source notice present" if 'id="gw-source-status"' in page else "no source notice",
-        "Rebuild the page with the source notice above the storage meter.")
+        "Explain unavailable readings briefly beside the dated table, then rebuild and deploy.")
     hidden = [r["date"] for r in series[-14:] if not r.get("verified") and
               f'<tr><td>{r["date"]}</td><td>Unavailable</td>' not in page]
     add("missing readings visible", not hidden, ", ".join(hidden) or "unverified rows visible",

@@ -203,7 +203,7 @@ def check_page(out_dir, today=None):
     status = gw.source_status(series, today)
     if status["state"] != "current" and verified:
         (ok if 'id="gw-source-status"' in body else bad)(
-            "unavailable source is explained above the readings", status["state"])
+            "unavailable readings are explained beside the table", status["state"])
     absent = [r["date"] for r in series[-gw.TABLE_LIMIT:]
               if not r.get("verified") and
               f'<tr><td>{r["date"]}</td><td>Unavailable</td>' not in body]
