@@ -1792,6 +1792,14 @@ MARK_LOST_FRAC = 0.30      # of the cohort median: nothing is there
 MARK_COHORT_MIN = 5        # fewer probes than this and there is no cohort
 MARK_COHORT_FLAT = MOTIF_FLAT_DE
 MARK_R_MIN, MARK_R_MAX = 4.0, 14.0   # probe half-width, design px
+# render.py's export cap for assertion mark centres, `const MARK_PROBE_MAX = 240`.
+# It is the number this file's docstrings have always quoted and the number
+# marks_disperse() prints when a census is strided, and it was never DEFINED
+# here, so any deck declaring `dispersed: true` over more than 240 marks
+# crashed qa.py with a NameError instead of getting its warning. Found on
+# 2026-09-15 by run No.60, whose slide 06 declares 1,347. Keep in sync with
+# render.py; if that cap moves, this moves.
+MARK_PROBE_MAX = 240
 MARK_EDGE_KEEP = 0.6       # of the probe box must be on-frame to be measured
 
 
