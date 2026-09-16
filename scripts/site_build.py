@@ -1884,6 +1884,46 @@ transition:background .16s ease,color .16s ease,border-color .16s ease;}
 color:var(--snow);border-left-color:var(--gold);outline:none;}
 """
 
+# Compact homepage preview. Keep the shared docket renderer and date hooks;
+# these styles apply only to the homepage list, not the full docket.
+HOME_DOCKET_CSS = r"""
+.home-docket .sub{margin-bottom:20px;}
+.home-docket .cards{display:block;border:1px solid var(--line);border-radius:14px;
+overflow:hidden;background:rgba(10,21,36,.55);}
+.home-docket .card{display:grid;grid-template-columns:112px minmax(0,1fr) auto 18px;
+grid-template-areas:"date title status arrow" "when who status arrow";
+align-items:center;gap:6px 22px;padding:20px 22px;border:0;border-radius:0;
+background:none;box-shadow:none;transform:none;transition:background .2s;}
+.home-docket .card + .card{border-top:1px solid var(--line);}
+.home-docket .card:hover,.home-docket .card:focus-visible{background:rgba(255,199,44,.045);
+box-shadow:none;transform:none;}
+.home-docket .card:focus-visible{outline-offset:-3px;}
+.home-docket .cardtop{grid-area:status;margin:0;}
+.home-docket .badge{padding:5px 8px;font-size:9px;letter-spacing:.08em;white-space:nowrap;}
+.home-docket .b-open{color:var(--gold);border-color:rgba(255,199,44,.25);
+background:rgba(255,199,44,.04);}
+.home-docket .card .big{grid-area:date;font-family:JBMono,monospace;
+font-size:21px;font-weight:500;line-height:1.2;}
+.home-docket .card .when{grid-area:when;margin:0;font-size:9px;letter-spacing:0;
+line-height:1.5;white-space:normal;font-variant-numeric:tabular-nums;}
+.home-docket .card h3{grid-area:title;margin:0;font-size:16px;line-height:1.45;}
+.home-docket .card .who{grid-area:who;margin:0;font-size:10px;letter-spacing:.04em;
+line-height:1.5;}
+.home-docket .card::after{content:"\2192";grid-area:arrow;color:var(--mute);font-size:20px;}
+.home-docket .card:hover::after{color:var(--gold);}
+.home-docket .ctarow{margin-top:20px;}
+@media(max-width:640px){
+  .home-docket .card{grid-template-columns:76px minmax(0,1fr) 12px;
+  grid-template-areas:"date status arrow" "date title arrow" "when title arrow" "who who who";
+  gap:6px 14px;padding:18px 16px;align-items:start;}
+  .home-docket .card .big{font-size:18px;align-self:center;}
+  .home-docket .card .when{font-size:9px;}
+  .home-docket .card h3{font-size:15px;line-height:1.45;}
+  .home-docket .card .who{margin-top:4px;}
+  .home-docket .card::after{align-self:center;font-size:17px;}
+}
+"""
+
 # THE HOMEPAGE ASK BOX.
 #
 # One field and one line, and nothing else until somebody types. The docket
@@ -4838,7 +4878,9 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
        just moves a pin under it, which is what a 0.3 cap did to the Cook Inlet
        pin. The map still keeps roughly two thirds of its frame. */
     var nav = document.querySelector('.topnav');
-    var top = Math.min(nav ? nav.getBoundingClientRect().height * px() : 0, v.h * 0.36);
+    /* Serialized SVG transforms round the fitted marks. Keep one CSS pixel
+       of clearance so that rounding can't put a pin under the sticky nav. */
+    var top = Math.min(nav ? (nav.getBoundingClientRect().height + 1) * px() : 0, v.h * 0.36);
 
     var rest = need(1, mscale);
     var fits = rest.x0 >= v.x0 && rest.x1 <= v.x1 &&
@@ -6740,17 +6782,16 @@ def home_page(today, site_url, docket, runs, gas_series=(), gas_model=None,
     # DOORS OPEN TO YOU stat directly above it claims.
     cards = "".join(db.card_html(it, today, prefix="docket/")
                     for it in db.home_cards(dated, today, 3))
-    # The gas watch meter, directly under the docket. The two datasets sit
-    # together here the same way they do in the nav. It renders empty when
-    # there is no verified reading, so the homepage never explains an absence.
+    # Keep Gas Watch below the latest article when the docket moves up.
+    # It renders empty when there is no verified reading.
     gas_strip = gw.home_strip(gas_series, gas_model, figs=gas_figs) if gas_model else ""
-    closing = f"""<h2 data-reveal><a href="docket/">The docket</a></h2>
+    closing = f"""<section class="home-docket" aria-labelledby="home-docket-title">
+<h2 data-reveal id="home-docket-title"><a href="docket/">The docket</a></h2>
 <p class="sub" data-reveal>Every AI infrastructure decision in Alaska, tracked daily with a source on
 every fact. Gold means a door is open to the public right now.</p>
 <div class="cards">{cards}</div>
 <div class="ctarow" data-reveal><a class="cta gold" href="docket/">OPEN THE FULL DOCKET</a></div>
-
-{gas_strip}"""
+</section>"""
 
     # Our Latest Video: the skeleton is baked, the newest entry is pulled live
     # from videos/videos.json (owned by the video automation) so this section
@@ -6973,15 +7014,11 @@ them, and whether the public still has a way in.</p>
 
     what_html = f"""<h2 data-reveal>What this is</h2>
 <p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
-intelligence, and an AI studio. The reporting side writes one verified
-story a day and keeps the Alaska AI Docket, a public record of
-{len(live) + len(done)} AI infrastructure decisions in the state, {n_src} source
-documents on file, and for each one the plain answer to who decides it and whether an
-Alaskan still gets a say. It is published as
-<a class="proselink" href="data/">open data under CC BY 4.0</a> so anyone can check the
-work or build on it. The studio side builds
-<a class="proselink" href="services/">Alaska businesses</a> an agentic operating system,
-its flagship product, a package of 1 to 1000 AI agents working together to automate every
+intelligence, and an AI studio. Our Docket tracks {len(live) + len(done)} decisions with
+{n_src} source documents, published as
+<a class="proselink" href="data/">open data under CC BY 4.0</a>. For
+<a class="proselink" href="services/">Alaska businesses</a>, our flagship agentic operating
+system brings 1 to 1000 AI agents together to automate every
 possible aspect of the business.</p>"""
 
     next_line = ""
@@ -6991,8 +7028,7 @@ possible aspect of the business.</p>"""
     body = f"""<div class="hero heroanim">
 <div><div class="daylight">{daylight_chip(today)}</div></div>
 <h1>AI is coming <em>north</em></h1>
-<p class="tag">Alaska AI watches it happen. Every deal, docket and decision on the state's
-AI beat, verified to the source and told for Alaskans. From the Slope to Southeast, daily.</p>
+<p class="tag">Every AI decision in Alaska and the source behind it.</p>
 <div class="ctarow">
   <a class="cta gold" href="docket/">DOCKET</a>
   <a class="cta ghost" href="archive/">ARTICLES</a>
@@ -7001,13 +7037,14 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
 {stats}
 {home_ask_html(len(live) + len(done))}
 </div>
-{scan_html()}
+{closing}
 {video_html}
 {latest_html}
-{closing}
+{gas_strip}
 {beats_html}
 {what_html}
 {subscribe_html()}
+{scan_html()}
 <div class="about-line" data-reveal><p>{next_line}All sources verified against claims.</p></div>"""
     ld = {"@context": "https://schema.org", "@graph": [
         org_ld(site_url),
@@ -7018,7 +7055,7 @@ AI beat, verified to the source and told for Alaskans. From the Slope to Southea
                 "Alaska's AI studio in Anchorage. Daily verified stories on Alaska and AI, "
                 "a public docket of AI infrastructure decisions, and AI consulting for "
                 "Alaska businesses.", body, "", "home", today, site_url, "",
-                ld=ld, extra_css=(gw.GW_CSS if gas_strip else "") + HOMEASK_CSS,
+                ld=ld, extra_css=(gw.GW_CSS if gas_strip else "") + HOMEASK_CSS + HOME_DOCKET_CSS,
                 extra_js=ASK_COMMON_JS + HOMEASK_JS)
 
 
