@@ -480,7 +480,11 @@ def check_site(out_dir, today=None):
         if age is None:
             warn(f"{name} carries a date", "no timestamp to age")
         else:
-            (ok if age <= cadence else warn)(
+            current = age <= cadence
+            if name == "gaswatch.jsonl":
+                import gaswatch_build as gw
+                current = current and gw.source_status(gw.load_series(), today)["state"] == "current"
+            (ok if current else warn)(
                 f"{name} is current", f"{age} day(s) old, cadence {cadence}")
         html = loaded.get(page_rel)
         if html is None:
@@ -576,6 +580,11 @@ FIXES = [
      "failure this checker exists for. python3 scripts/site_build.py --date "
      "<date> --out docs, then run this again. If it still disagrees after a "
      "rebuild, the page's builder is not reading that ledger."),
+    (r"gaswatch\.jsonl is current",
+     "CHECK LIVE. Run scripts/gaswatch_health.py with a dated --output file. "
+     "Distinguish announced source maintenance from a stopped or failed "
+     "collector. Follow CLAUDE.md's autonomous Gas Watch maintenance procedure; "
+     "never invent a missing measurement."),
     (r"is current",
      "REPORT, DO NOT FIX. A collector has not run. Its ledger is cron written "
      "and off limits to a run (CLAUDE.md, routine rule 19). Say so in the "

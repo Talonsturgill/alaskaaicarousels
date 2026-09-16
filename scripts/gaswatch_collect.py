@@ -32,6 +32,8 @@ Exit codes, so .github/workflows/gaswatch.yml can tell the cases apart:
   2  wrote an unverified record, a fetch failed or the source is stale
   3  an unverified record already stands for this date and this attempt also
      failed, so nothing was written
+  4  source stale inside an explicitly announced shut-in window; warn, keep
+     storage unverified and resume failures on the announced return date
 
 Run:
   python3 scripts/gaswatch_collect.py --self-test     # hermetic, no network
@@ -43,6 +45,7 @@ import argparse
 import calendar
 import collections
 import html
+import hashlib
 import json
 import os
 import re
@@ -52,8 +55,9 @@ import traceback
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
-COLLECTOR_VERSION = "1.1"
+COLLECTOR_VERSION = "1.2"
 
 UA = "AlaskaAI-GasWatch/1.1 (+https://alaskaaihq.com; docket@alaskaaihq.com)"
 
@@ -618,6 +622,100 @@ def same_reading(a, b):
     return all((a or {}).get(k) == (b or {}).get(k) for k in MEASURED)
 
 
+def maintenance_window(note):
+    """A bounded, explicitly announced shut-in, never inferred from old data."""
+    if not re.search(r"no nominations will be accepted", note, re.I):
+        return None
+    match = re.search(
+        r"shut-in.*?from\s+(\d{1,2})[;.,]?\s+([a-z.]+)\s+(\d{4})"
+        r"\s+until\s+(\d{1,2})[;.,]?\s+([a-z.]+)\s+(\d{4})", note, re.I)
+    if not match:
+        return None
+    months = {name.lower(): i for i, name in enumerate(calendar.month_abbr) if name}
+    try:
+        sd, sm, sy, ed, em, ey = match.groups()
+        start = datetime(int(sy), months[sm[:3].lower()], int(sd))
+        end = datetime(int(ey), months[em[:3].lower()], int(ed))
+        if not timedelta(0) < end - start <= timedelta(days=31):
+            return None
+    except (ValueError, KeyError):
+        return None
+    return {"start_date": start.date().isoformat(),
+            "end_date": end.date().isoformat(), "source_url": CINGSA_URL}
+
+
+def maintenance_pause(cingsa, flags, ak_today):
+    """Only a successful stale fetch inside the source's stated window qualifies.
+
+    The end date is exclusive: an unchanged source goes red on the announced
+    return date. Network/parser failures and other stale sources stay failures.
+    """
+    window = maintenance_window(cingsa.get("operational_note") or "")
+    stamp = (cingsa.get("source_timestamp") or "")[:10]
+    earliest = ((datetime.fromisoformat(window["start_date"]) - timedelta(days=1))
+                .date().isoformat()) if window else None
+    return bool(cingsa.get("fetch_status") == "ok" and "cingsa_stale" in flags
+                and window and earliest <= stamp <= ak_today
+                and window["start_date"] <= ak_today < window["end_date"])
+
+
+def without_stale_measurements(record):
+    """Keep the fetched snapshot as evidence, never as this day's measurements."""
+    if record.get("verified"):
+        return record
+    cin = record.get("cingsa") or {}
+    if any(cin.get(key) is not None for key in MEASURED):
+        record["last_published_cingsa"] = dict(cin)
+        record["cingsa"] = {key: value for key, value in cin.items()
+                            if key not in MEASURED
+                            and key not in ("withdrawal_design_mcfd",
+                                            "capacity_identity_mismatches")}
+        record["cingsa"]["data_status"] = "unavailable"
+    for key in ("storage_withdrawal_mmcfd", "non_cingsa_supply_mmcfd",
+                "days_cover_at_peak"):
+        if key in (record.get("derived") or {}):
+            record["derived"][key] = None
+    return record
+
+
+def recover_calendar_days(records, now):
+    """Append explicit calendar gaps; never backdate a live fetch.
+
+    Check the whole series so a later good reading cannot hide a skipped day.
+    """
+    verified = [r["date"] for r in records if r.get("verified")]
+    if not verified:
+        return []
+    day = datetime.fromisoformat(min(r["date"] for r in records)) + timedelta(days=1)
+    today = now.astimezone(alaska_tz()).date()
+    recovered = []
+    while day.date() < today:
+        stamp = day.date().isoformat()
+        prior = standing(records, stamp)
+        if prior and (prior.get("verified") or
+                      not any((prior.get("cingsa") or {}).get(k) is not None
+                              for k in MEASURED)):
+            day += timedelta(days=1)
+            continue
+        if prior:
+            rec = without_stale_measurements(json.loads(json.dumps(prior)))
+            rec["supersedes_unverified"] = prior.get("collected_utc")
+        else:
+            rec = {"date": stamp, "collected_utc": None,
+                   "collector_version": COLLECTOR_VERSION, "verified": False,
+                   "cingsa": {"fetch_status": "not_recorded",
+                              "data_status": "unavailable"},
+                   "forecast": [], "derived": {}, "sources": [],
+                   "flags": ["storage_reading_unavailable"]}
+        rec["recovery"] = {
+            "recorded_utc": iso_z(now),
+            "reason": "No verified storage reading exists for this date. "
+                      "No historical storage value has been inferred."}
+        recovered.append(rec)
+        day += timedelta(days=1)
+    return recovered
+
+
 def what_to_do(prior, verified, new_stamp, new_cingsa=None):
     """(action, detail) for a fresh reading against whatever already stands.
 
@@ -652,6 +750,8 @@ def what_to_do(prior, verified, new_stamp, new_cingsa=None):
                             f"figure changed")
         return "revision", prior_stamp
     if not verified:
+        if any((prior.get("cingsa") or {}).get(k) is not None for k in MEASURED):
+            return "refresh", "remove stale measurements from an unverified day"
         return "refuse", "an unverified record stands and this attempt also failed"
     return "repair", prior.get("collected_utc")
 
@@ -709,7 +809,7 @@ def reconciliation_index(records):
 
 
 def unresolved_reconciliation_dates(records, before_date):
-    """Verified storage days before `before_date` still missing a balance."""
+    """Retry observed weather even when the day's storage is unavailable."""
     standings = {}
     for record in records:
         if record.get("date"):
@@ -717,8 +817,10 @@ def unresolved_reconciliation_dates(records, before_date):
     reconciled = reconciliation_index(records)
     return sorted(
         day for day, record in standings.items()
-        if day < before_date and record.get("verified")
-        and (reconciled.get(day) or {}).get("non_cingsa_supply_mmcfd") is None
+        if day < before_date and (
+            (reconciled.get(day) or {}).get("actual_hdd65") is None or
+            (record.get("verified") and
+             (reconciled.get(day) or {}).get("non_cingsa_supply_mmcfd") is None))
     )
 
 
@@ -815,7 +917,7 @@ def reconcile(records, recon_date, actual_hdd, model):
     return block
 
 
-def build_record(model, records, now, ak_today):
+def build_record(model, records, now, ak_today, snapshot_dir=None):
     """Fetch everything, derive everything, return the record and its probes."""
     probes = []
     flags = []
@@ -824,8 +926,13 @@ def build_record(model, records, now, ak_today):
     probes.append(cingsa_probe)
     cingsa = None
     stale = False
+    raw = None
     try:
-        cingsa = parse_cingsa(http(cingsa_probe))
+        raw = http(cingsa_probe)
+        cingsa = parse_cingsa(raw)
+        window = maintenance_window(cingsa.get("operational_note") or "")
+        if window:
+            cingsa["maintenance_window"] = window
         age = now - datetime.fromisoformat(cingsa["source_timestamp_utc"].replace("Z", "+00:00"))
         cingsa["source_age_hours"] = round(age.total_seconds() / 3600, 1)
         stale = age > timedelta(hours=STALE_HOURS)
@@ -840,6 +947,16 @@ def build_record(model, records, now, ak_today):
             "error": cingsa_probe.error,
             "source_timestamp": None,
         }
+
+    if snapshot_dir:
+        dest = Path(snapshot_dir)
+        dest.mkdir(parents=True, exist_ok=True)
+        evidence = cingsa_probe.as_dict()
+        if raw is not None:
+            body = raw.encode("utf-8")
+            (dest / "cingsa.html").write_bytes(body)
+            evidence["sha256"] = hashlib.sha256(body).hexdigest()
+        (dest / "source.json").write_text(json.dumps(evidence, indent=2) + "\n")
 
     verified = cingsa["fetch_status"] == "ok" and not stale
     if cingsa["fetch_status"] != "ok":
@@ -923,7 +1040,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now,
     # Resolve the balance before the flags are settled, so a day whose residual
     # could not be computed is visible in flags rather than only as a null.
     recon = reconcile(records, recon_date, observed_hdd.get(recon_date), model)
-    if cingsa.get("fetch_status") == "ok":
+    if verified:
         if cingsa["withdrawal_restriction_mcfd"] > 0:
             flags.append("withdrawal_restriction_active")
         if cingsa["injection_restriction_mcfd"] > 0:
@@ -963,8 +1080,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now,
         if actual_hdd is None:
             continue
         block = reconcile(records, trueup_date, actual_hdd, model)
-        if block.get("non_cingsa_supply_mmcfd") is not None:
-            trueups.append(block)
+        trueups.append(block)
     if trueups:
         record["reconciliation_trueups"] = trueups
     record = merge_reconciliation_history(prior, record)
@@ -972,7 +1088,7 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now,
         record["flags"] = sorted(set(record["flags"] + ["balance_unresolved"]))
     else:
         record["flags"] = [f for f in record["flags"] if f != "balance_unresolved"]
-    return record
+    return without_stale_measurements(record)
 
 
 # ------------------------------------------------------------------ self test
@@ -1303,6 +1419,7 @@ def main():
                     help="fetch and print the record, write nothing")
     ap.add_argument("--self-test", action="store_true",
                     help="hermetic model and parser checks, no network")
+    ap.add_argument("--snapshot-dir", help="save the fetched source and provenance")
     args = ap.parse_args()
 
     if args.self_test:
@@ -1313,8 +1430,22 @@ def main():
     now = now_utc()
     ak_today = now.astimezone(alaska_tz()).strftime("%Y-%m-%d")
 
+    for recovered in recover_calendar_days(records, now):
+        if not args.dry_run:
+            append_record(args.ledger, recovered)
+        records.append(recovered)
+        print(f"{recovered['date']}: recorded unavailable storage, no value inferred.")
+
     date, cingsa, verified, stale, flags, probes = build_record(
-        model, records, now, ak_today)
+        model, records, now, ak_today, args.snapshot_dir)
+    paused = maintenance_pause(cingsa, flags, ak_today)
+    if stale:
+        print(f"CINGSA source unchanged since {cingsa['source_timestamp']} Alaska, "
+              f"{cingsa['source_age_hours']} hours old.")
+    if paused:
+        flags.append("announced_maintenance_window")
+        print("Source stale during announced shut-in maintenance; storage remains "
+              "UNVERIFIED. Collection continues and the end-date guard stays active.")
 
     # Idempotency, before the remaining fetches so a retry costs one request.
     # A verified record for the day is final and a second run does nothing. An
@@ -1334,7 +1465,7 @@ def main():
         for probe in probes:
             if probe.status != "ok":
                 print(f"  {probe.name}, {probe.status}, {probe.error}")
-        return 3
+        return 4 if paused else 3
 
     record = finish_record(date, cingsa, verified, flags, probes, model,
                            records, now, prior)
@@ -1342,8 +1473,7 @@ def main():
     after = reconciliation_index([record])
     resolved_trueups = [
         day for day in pending_trueups
-        if (after.get(day) or {}).get("non_cingsa_supply_mmcfd") is not None
-        and (before.get(day) or {}).get("non_cingsa_supply_mmcfd") is None
+        if reconciliation_quality(after.get(day)) > reconciliation_quality(before.get(day))
     ]
     if action in ("skip", "refuse"):
         if not resolved_trueups:
@@ -1356,7 +1486,7 @@ def main():
             for probe in probes:
                 if probe.status != "ok":
                     print(f"  {probe.name}, {probe.status}, {probe.error}")
-            return 3
+            return 4 if paused else 3
         action = "trueup"
         detail = resolved_trueups
 
@@ -1372,17 +1502,19 @@ def main():
               f"{cingsa.get('inventory_mcf')}.")
     elif action == "trueup":
         record["reconciles_dates"] = detail
-        print("Resolved delayed balance data for " + ", ".join(detail) + ".")
+        print("Recovered observed weather or balance data for " + ", ".join(detail) + ".")
+    elif action == "refresh":
+        record["supersedes_unverified"] = prior.get("collected_utc")
 
     if args.dry_run:
         print(json.dumps(record, indent=2))
-        return 0 if verified else 2
+        return 0 if verified else (4 if paused else 2)
 
     append_record(args.ledger, record)
 
     cin, der = record["cingsa"], record["derived"]
     print(f"{record['date']}  {'verified' if verified else 'UNVERIFIED'}")
-    if cin.get("fetch_status") == "ok":
+    if verified:
         print(f"  CINGSA {cin['source_timestamp']} "
               f"({cin.get('source_age_hours')}h old)  "
               f"{cin['inventory_mcf'] / 1e6:.2f} Bcf "
@@ -1390,7 +1522,8 @@ def main():
               f"withdrawal capacity "
               f"{cin['withdrawal_operating_mcfd'] / 1000:.0f} MMcf/d")
     else:
-        print(f"  CINGSA {cin.get('fetch_status')}, {cin.get('error')}")
+        print(f"  CINGSA storage unavailable; fetch {cin.get('fetch_status')}"
+              + (f", {cin['error']}" if cin.get('error') else ""))
     if der["peak_forecast_date"]:
         print(f"  peak {der['peak_forecast_date']} HDD "
               f"{der['peak_forecast_hdd']} gives "
@@ -1402,7 +1535,7 @@ def main():
               f"{rec['storage_withdrawal_mmcfd']} gives non CINGSA supply "
               f"{rec['non_cingsa_supply_mmcfd']} MMcf/d")
     if resolved_trueups:
-        print(f"  restored {len(resolved_trueups)} delayed balance "
+        print(f"  recovered weather or balance for {len(resolved_trueups)} "
               f"{'day' if len(resolved_trueups) == 1 else 'days'}: "
               + ", ".join(resolved_trueups))
     print(f"  flags {', '.join(record['flags']) or 'none'}")
@@ -1410,7 +1543,7 @@ def main():
     if not verified:
         print("  record written UNVERIFIED. No number was carried forward.",
               file=sys.stderr)
-        return 2
+        return 4 if paused else 2
     return 0
 
 

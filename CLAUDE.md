@@ -132,12 +132,11 @@ are siblings, not parent and child. These rules do not bend:
   docket's Buttondown tag. That list carries its own narrow written promise.
 - A failed fetch writes an explicit unverified record and carries NO number
   forward from yesterday.
-- The daily carousel routine LOOKS at the page every run (Phase 3.6, which
-  signs off the whole site and reads this page more deeply) and may
-  fix presentation only. The collectors, the model config and the two gas
-  ledgers are off limits to it, because cron writes them and a run that edits
-  them corrupts a series CINGSA keeps no archive to rebuild. That phase never
-  blocks a run and a bad run never stops the check.
+- The daily carousel routine checks the LIVE page, JSON, source and cron in
+  Phase 3.6, even if the deck fails. It fixes presentation directly. Collector
+  repairs use the separate maintenance procedure below; editorial work never
+  hand-edits measurements or the model. An upstream outage does not block a
+  deck, but skipping the live audit or leaving a failure undiagnosed does.
 - Its accuracy claims are CHECKED, not asserted. The demand model is compared
   monthly against observed EIA deliveries, and the page publishes the gap.
   Nothing on that page trains or learns on its own, and saying otherwise is a
@@ -149,6 +148,35 @@ does not merge, which is right for editorial output and wrong for a time
 series: a carousel run failing its gates on a Tuesday would cost Tuesday's
 storage reading permanently, and CINGSA keeps no archive to backfill from.
 A missed day is the one irreversible failure this project has.
+
+### Daily autonomous Gas Watch maintenance (owner, September 16th)
+
+Run `python3 scripts/gaswatch_health.py --output out/<date>/gaswatch_health.json`
+in every daily routine, and again after a repair/deployment. The live audit checks
+calendar coverage, numeric provenance, weather true-ups, source freshness,
+visible page output and GitHub Actions. `gate_status.py --require` requires this
+evidence for runs dated September 16th onward. A local build is not live proof.
+
+If it fails, investigate the named cause in that run. Fix stale presentation,
+rerun transient collection/deployment failures, and verify the live result.
+For a collector or workflow defect, create an isolated maintenance branch from
+current main, add a focused regression check, run the relevant Gas Watch gates,
+open a ready PR, merge after CI, run the production collector and verify Pages
+and the live audit. This is a narrow exception to the editorial collector ban.
+Do not alter model coefficients, hand-type storage values, rewrite ledger lines,
+change schedules or credentials, send messages, or touch other collectors.
+
+Source measurements that were never published stay unavailable. Announced
+maintenance is a disclosed warning only inside its parsed date window; verify
+the cron still runs and its snapshots are archived. Unexpected source failures
+must not be painted green. If upstream service, GitHub service or credentials
+actually prevent repair, retain the failed audit and write
+`out/<date>/gaswatch_incident.json` with `blocker` (`upstream`, `github`, or
+`credentials`), `reason`, nonempty `attempts` and `evidence_urls`. Include the
+unresolved cause prominently in the existing Gmail DRAFT and completion report.
+The gate then shows WARN, not PASS, while the deck can ship. Resume the check on
+the next daily run. Never defer a fixable problem just because it is outside
+the article's subject.
 
 ## Layout
 
