@@ -2363,7 +2363,8 @@
         ".claude/skills/carousel-engine/qa.py"
       ],
       "verification": "Reconstructed both ways. With the constant removed again, scripts/unbound_names_check.py reports qa.py:2030 references MARK_PROBE_MAX and exits 1. With the fix in place, qa.py runs to a verdict over this run's nine slides and the same check passes 49 files. The value is pinned to render.py's 240 and the comment names render.py as the source of truth so the two cannot drift silently.",
-      "rollback": "Delete the MARK_PROBE_MAX assignment and its comment block from qa.py, restoring the crash."
+      "rollback": "Delete the MARK_PROBE_MAX assignment and its comment block from qa.py, restoring the crash.",
+      "commit": "9940fe3272e9b93dd7631c4a161b032aabf6a215"
     },
     {
       "run_date": "2026-09-15",
@@ -2375,7 +2376,8 @@
         "scripts/unbound_names_check.py"
       ],
       "verification": "The defect reconstructs. Run against a copy of qa.py with MARK_PROBE_MAX removed, the check reports the exact line and exits 1. Run against the repaired tree it passes 49 files at exit 0, so it is not crying wolf across the existing machine. It was also run against a path outside the repo, which crashed the first draft on relative_to and is now handled.",
-      "rollback": "Delete scripts/unbound_names_check.py. Nothing else imports it."
+      "rollback": "Delete scripts/unbound_names_check.py. Nothing else imports it.",
+      "commit": "9940fe3272e9b93dd7631c4a161b032aabf6a215"
     },
     {
       "run_date": "2026-09-15",
@@ -2387,7 +2389,8 @@
         "config/sources.yaml"
       ],
       "verification": "The file still parses as YAML and its five top-level keys are unchanged plus the new one. The four raw-text URLs named in the entry were each fetched successfully during this run, on 2026-18738, 2026-18151, 2026-18370 and 2026-18165.",
-      "rollback": "Restore the previous federalregister.gov and sam.gov entries and delete the keyless_primary_routes block. Nothing reads that block programmatically; it is a record for the scouts' briefs."
+      "rollback": "Restore the previous federalregister.gov and sam.gov entries and delete the keyless_primary_routes block. Nothing reads that block programmatically; it is a record for the scouts' briefs.",
+      "commit": "9940fe3272e9b93dd7631c4a161b032aabf6a215"
     }
   ],
   "scan_log": [
