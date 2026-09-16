@@ -17,10 +17,25 @@
   "flow_review": "done: flow-critic verdict ship",
   "assemble": "done: out/2026-09-15/final, vector PDF 4.16 MB, contact sheet, 9 thumbs",
   "scoring": "done: round 1 7.67 (below 7.7, returned to Phase 8), round 2 8.61, ship=true, out/2026-09-15/score_report.json",
-  "ship": "in-progress: runs/2026-09-15 copied, webp encoded, site rebuilt, gates green, alerts sent 1 email",
+  "ship": "done: runs/2026-09-15 on main, PR #367 merged as 266ebefa, raw URLs verified live",
   "upgrade": "done: 3 upgrades in ledger/upgrades.json, out/2026-09-15/automation_retro.md",
-  "gmail": "pending",
-  "retro": "pending"
+  "gmail": "done: draft r-1741906938262155447 in docket@alaskaaihq.com. First create_draft call went out with a PLACEHOLDER body by mistake and was corrected in place with update_draft before anything else happened; the draft now carries gmail_draft.py's output verbatim. DRAFT ONLY, never sent.",
+  "retro": "done: out/2026-09-15/automation_retro.md, FIELD_NOTES appended, 3 instincts added and 3 confirmed"
  },
- "story": "Executive Order 14426 of September 8th and Alaska veterans"
+ "story": "Executive Order 14426 of September 8th and Alaska veterans",
+ "artifacts": {
+  "site_signoff": "PASS, 113 pages, 18 checks. Every published page read against the BUILT directory, 18 of 18 clean.",
+  "gas_watch": "WARN, page reads September 13th, 41 days on record, chart present, feed and ledger agree at 41. The WARN is the series, not the page: 2 days carry no reading, first 2026-09-08, and the most recent records are explicit unverified ones flagged cingsa_stale carrying no number forward. THE COLLECTOR HAS FAILED ON ITS LAST FOUR SCHEDULED RUNS on main (.github/workflows/gaswatch.yml runs 274 through 277). That is cron's to fix and a run may not touch those ledgers, so it is reported here and not repaired. A missed day is the one irreversible failure this project has.",
+  "site_fixes": "none. Nothing on the live site needed repair this run. The daily page check and the whole-site sign-off both came back clean against the built directory."
+ },
+ "result": {
+  "score": 8.61,
+  "threshold": 7.7,
+  "rounds": 2,
+  "round_1_score": 7.67,
+  "machine_qa": "0 fails, 3 warns",
+  "pr": 367,
+  "merge_sha": "266ebefa8b7ac641209600bd71fecf1a1185411d",
+  "gmail_draft_id": "r-1741906938262155447"
+ }
 }
