@@ -480,7 +480,11 @@ def check_site(out_dir, today=None):
         if age is None:
             warn(f"{name} carries a date", "no timestamp to age")
         else:
-            (ok if age <= cadence else warn)(
+            current = age <= cadence
+            if name == "gaswatch.jsonl":
+                import gaswatch_build as gw
+                current = current and gw.source_status(gw.load_series(), today)["state"] == "current"
+            (ok if current else warn)(
                 f"{name} is current", f"{age} day(s) old, cadence {cadence}")
         html = loaded.get(page_rel)
         if html is None:
@@ -576,6 +580,11 @@ FIXES = [
      "failure this checker exists for. python3 scripts/site_build.py --date "
      "<date> --out docs, then run this again. If it still disagrees after a "
      "rebuild, the page's builder is not reading that ledger."),
+    (r"gaswatch\.jsonl is current",
+     "CHECK LIVE. Run scripts/gaswatch_health.py with a dated --output file. "
+     "Distinguish announced source maintenance from a stopped or failed "
+     "collector. Follow CLAUDE.md's autonomous Gas Watch maintenance procedure; "
+     "never invent a missing measurement."),
     (r"is current",
      "REPORT, DO NOT FIX. A collector has not run. Its ledger is cron written "
      "and off limits to a run (CLAUDE.md, routine rule 19). Say so in the "
@@ -809,9 +818,12 @@ def self_test():
     guarded = [l for _, l, _ in rows if (fix_for(l) or "").startswith("REPORT")]
     check("most of them a run can repair itself", len(fixable) > len(guarded),
           f"{len(fixable)} fixable, {len(guarded)} report only")
-    check("a stale collector is never one a run repairs",
+    check("other collectors remain report-only",
           all("REPORT" in (fix_for(l) or "") for _, l, _ in rows
-              if l.endswith("is current")))
+              if l.endswith("is current") and not l.startswith("gaswatch.jsonl")))
+    check("Gas Watch uses its live audit and maintenance procedure",
+          "CHECK LIVE" in fix_for("gaswatch.jsonl is current") and
+          "maintenance" in fix_for("gaswatch.jsonl is current"))
     check("a stale page is one a run repairs, by rebuilding",
           all("REBUILDING" in (fix_for(l) or "") for _, l, _ in rows
               if " reaches " in l))
@@ -820,6 +832,24 @@ def self_test():
     check("a page fault is a 2, never a 1",
           exit_code("FAIL") == 2 and exit_code("WARN") == 2
           and exit_code("PASS") == 0)
+    now = datetime(2026, 9, 16, 23, tzinfo=timezone.utc)
+    source = {"state": "announced_maintenance",
+              "last_collection_utc": "2026-09-16T22:00:00Z",
+              "maintenance_window": {"start_date": "2026-09-14",
+                                     "end_date": "2026-09-21"}}
+    pause_rows = [("PASS", "every page renders", ""),
+                  ("WARN", "gaswatch.jsonl is current", "source paused")]
+    check("CI permits the disclosed pause while preserving its warning",
+          ci_exit_code(pause_rows, source, now) == 0)
+    check("CI never permits an unrelated warning or a broken page",
+          all(ci_exit_code(pause_rows + [(s, l, "")], source, now) == 2
+              for s, l in [("WARN", "power.json is current"),
+                           ("FAIL", "gaswatch.jsonl reaches gas-watch/index.html")]))
+    check("CI blocks stopped collection, missing evidence and an expired pause",
+          all(ci_exit_code(pause_rows, s, n) == 2 for s, n in [
+              ({}, now), ({**source, "state": "unavailable"}, now),
+              ({**source, "last_collection_utc": "2026-09-14T00:00:00Z"}, now),
+              (source, datetime(2026, 9, 21, 0, tzinfo=timezone.utc))]))
     check("the summary line names what went wrong",
           "SITE SIGN-OFF: WARN" in summary_line(
               [("WARN", "power.json is current", "60 days old")], "WARN", 73)
@@ -846,6 +876,27 @@ def exit_code(verdict):
     return 0 if verdict == "PASS" else 2
 
 
+def ci_exit_code(rows, source, now=None):
+    """Allow only a disclosed, bounded source pause with a recent collection.
+
+    Keep the WARN in the report. Every other warning/failure still blocks CI,
+    including an expired announcement or a collector that has stopped running.
+    """
+    now = now or datetime.now(timezone.utc)
+    try:
+        stamp = datetime.fromisoformat(source["last_collection_utc"].replace("Z", "+00:00"))
+        window = source["maintenance_window"]
+        pause = (source["state"] == "announced_maintenance"
+                 and window["start_date"] <= now.date().isoformat() < window["end_date"]
+                 and 0 <= (now - stamp).total_seconds() <= 36 * 3600)
+    except (KeyError, TypeError, ValueError):
+        pause = False
+    return 0 if rows and all(
+        status == "PASS" or (pause and status == "WARN"
+                             and label == "gaswatch.jsonl is current")
+        for status, label, _ in rows) else 2
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Daily once over of every published page")
@@ -853,6 +904,8 @@ def main():
                     help="built site directory, default docs/")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--ci", action="store_true",
+                    help="allow only a recent, announced Gas Watch maintenance warning")
     args = ap.parse_args()
     if args.self_test:
         return self_test()
@@ -868,6 +921,14 @@ def main():
     else:
         render(rows, verdict)
         print(summary_line(rows, verdict, pages))
+    if args.ci:
+        import gaswatch_build as gw
+        source = gw.source_status(gw.load_series(), date.today())
+        code = ci_exit_code(rows, source)
+        if not code and verdict == "WARN":
+            print("::warning::Gas Watch source is in announced maintenance; dated rows remain unavailable.",
+                  file=sys.stderr)
+        return code
     return exit_code(verdict)
 
 

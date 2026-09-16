@@ -577,6 +577,41 @@ def gas_watch_row(rows):
         rows.add("gas_watch", "PASS", note)
 
 
+def gas_watch_live_row(rows, run):
+    """A daily AI run must inspect production, not only its own built files."""
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", run.name) and run.name < "2026-09-16":
+        return  # Never impose a new artifact contract on published history.
+    report, note = load_json(run / "gaswatch_health.json")
+    if not report:
+        rows.absent("gas_watch_live", "gaswatch_health.json " + (note or "empty"))
+        return
+    from datetime import datetime, timezone
+    try:
+        checked = datetime.fromisoformat(report["checked_utc"].replace("Z", "+00:00"))
+        age = (datetime.now(timezone.utc) - checked).total_seconds() / 3600
+        valid = (-0.1 <= age <= 24 and report.get("site_url") == "https://alaskaaihq.com"
+                 and bool(report.get("checks")))
+    except (KeyError, TypeError, ValueError):
+        valid = False
+    if not valid:
+        rows.add("gas_watch_live", "FAIL", "live audit is missing evidence, stale or not production")
+        return
+    verdict = report.get("verdict")
+    failures = [c for c in report["checks"] if c.get("status") == "FAIL"]
+    if verdict in ("PASS", "WARN", "MAINTENANCE") and not failures:
+        rows.add("gas_watch_live", "PASS" if verdict == "PASS" else "WARN",
+                 "%s, checked %s" % (verdict, report["checked_utc"]))
+        return
+    incident, _ = load_json(run / "gaswatch_incident.json")
+    if (incident and incident.get("blocker") in ("upstream", "github", "credentials")
+            and incident.get("reason") and incident.get("attempts")
+            and incident.get("evidence_urls")):
+        rows.add("gas_watch_live", "WARN", "UNRESOLVED %s: %s" %
+                 (incident["blocker"], incident["reason"]))
+    else:
+        rows.add("gas_watch_live", "FAIL", "live audit failed; repair or document a real external blocker")
+
+
 def site_fresh_row(rows, run):
     """Repo-level: proves the committed docs/ is byte-identical to what
     site_build.py makes from the data this run just committed. A stale page
@@ -1135,6 +1170,7 @@ def main():
     scanner_sync_row(rows)
     docket_dates_row(rows)
     gas_watch_row(rows)
+    gas_watch_live_row(rows, run)
     site_fresh_row(rows, run)
     sdir = run / "slides" if (run / "slides").is_dir() else run
     assemble_row(rows, run, rep, fdir, rdir, sdir)

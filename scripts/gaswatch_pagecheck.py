@@ -181,7 +181,7 @@ def check_page(out_dir, today=None):
     else:
         ok("a verified reading exists", f"{len(verified)} of {len(series)}")
         age = (today - date.fromisoformat(figs["as_of"])).days
-        (ok if age <= STALE_DAYS else warn)(
+        (ok if age <= STALE_DAYS and gw.source_status(series, today)["state"] == "current" else warn)(
             "the published reading is current",
             f"read {figs['as_of']}, {age} day(s) old")
         # The headline figure has to be ON the page, not merely computed.
@@ -199,6 +199,15 @@ def check_page(out_dir, today=None):
     (ok if not gaps else warn)(
         "no gap in the series",
         f"{len(gaps)} missing, first {gaps[0]}" if gaps else "continuous")
+
+    status = gw.source_status(series, today)
+    if status["state"] != "current" and verified:
+        (ok if 'id="gw-source-status"' in body else bad)(
+            "unavailable readings are explained beside the table", status["state"])
+    absent = [r["date"] for r in series[-gw.TABLE_LIMIT:]
+              if not r.get("verified") and
+              f'<tr><td>{r["date"]}</td><td>Unavailable</td>' not in body]
+    (ok if not absent else bad)("unverified dates remain visible", ", ".join(absent) or "all shown")
 
     # The chart is a claim about having a trend. It must appear when there is
     # one and stay away when there is not.

@@ -116,13 +116,13 @@ jobs:
       # broken. Pointing at docs/ has the useful side effect that a PR which
       # changes the builder and forgets to rebuild is caught here.
       #
-      # Exit 2 is its "needs attention", which is a CI failure even though it
-      # is deliberately not one inside a run. A routine must not abort on it. A
-      # merge should.
+      # Warnings block a merge except a bounded, announced source pause with a
+      # recent Gas Watch collection. That remains a visible warning; stale
+      # collection, expired maintenance and every page fault still fail CI.
       - name: Every page signs off
         run: |
           python3 scripts/site_signoff.py --self-test
-          python3 scripts/site_signoff.py --out docs
+          python3 scripts/site_signoff.py --out docs --ci
 
       # The engine runs in a browser, so it is tested in one. Every catalogued
       # question is asked for real and the answer is read back out of the DOM.

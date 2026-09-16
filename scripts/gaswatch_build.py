@@ -141,6 +141,25 @@ def latest_verified(series):
     return None
 
 
+def source_status(series, today):
+    """Separate a working collector from the availability of source readings."""
+    latest = latest_verified(series)
+    last = series[-1] if series else {}
+    cin = last.get("cingsa") or {}
+    as_of = latest["date"] if latest else None
+    unavailable = (not as_of or last.get("date", "") > as_of or
+                   (today - date.fromisoformat(as_of)).days > 1)
+    window = gc.maintenance_window(cin.get("operational_note") or "")
+    state = "current"
+    if unavailable:
+        state = "unavailable"
+        if gc.maintenance_pause(cin, last.get("flags") or [], today.isoformat()):
+            state = "announced_maintenance"
+    return {"state": state, "last_verified_date": as_of,
+            "last_collection_utc": last.get("collected_utc"),
+            "maintenance_window": window, "source_url": gc.CINGSA_URL}
+
+
 def continuity(series):
     """Missing calendar days between the first and last record."""
     if len(series) < 2:
@@ -272,6 +291,17 @@ def figures(series, model, figs=None):
     # Comparisons are computed for the same reason numerals are. A page that
     # says "a minority" in prose is asserting a fact about two figures, and it
     # would keep saying it after those figures crossed over.
+    forecasts = [r for r in series if r.get("forecast")]
+    if forecasts:
+        newest = max(forecasts, key=lambda r: r.get("collected_utc") or "")
+        der, _ = remodel(newest, model)
+        for key in ("peak_forecast_date", "peak_forecast_hdd", "peak_modeled_demand_mmcfd"):
+            f[key] = der.get(key)
+    if series:
+        window = gc.maintenance_window((series[-1].get("cingsa") or {}).get("operational_note") or "")
+        if window:
+            f["maintenance_start_date"] = window["start_date"]
+            f["maintenance_end_date"] = window["end_date"]
     for key in ("record_average_direction", "record_average_gap_pct",
                 "inventory_delta_direction", "residual_regime"):
         try:
@@ -433,6 +463,14 @@ def display_numerals(series, model):
     # once the series outgrows the window. It read "14 verified readings" with
     # nothing authorising 14.
     rendered.append(str(min(len(rows), TABLE_LIMIT)))
+    # Unavailable storage days are visible rows too. Their forecasts can still
+    # be valid, and every displayed date and number needs the same provenance.
+    rendered.append(str(min(len(series), TABLE_LIMIT)))
+    for r in series[-TABLE_LIMIT:]:
+        rendered += [r["date"], long_date(r["date"])]
+        peak = remodel(r, model)[0].get("peak_modeled_demand_mmcfd")
+        if peak is not None:
+            rendered += [str(peak), f"{peak:g}"]
     return tokens(" ".join(rendered))
 
 
@@ -993,7 +1031,7 @@ def table_html(series, model, limit=TABLE_LIMIT):
     This is also the form a reporter actually wants, since it can be copied
     into a story without reading pixels off a line.
     """
-    rows = [r for r in series if r.get("verified")][-limit:]
+    rows = series[-limit:]
     if not rows:
         return ""
     # Keyed by the day the figure is ABOUT, so a value can never land on a row
@@ -1006,23 +1044,23 @@ def table_html(series, model, limit=TABLE_LIMIT):
     body = ""
     gaps = 0
     for r in rows:
-        cin = r["cingsa"]
+        cin = r["cingsa"] if r.get("verified") else {}
         der, _ = remodel(r, model)
         resid = residual.get(r["date"])
         if der.get("peak_modeled_demand_mmcfd") is None or resid is None:
             gaps += 1
         body += (
             f'<tr><td>{esc(r["date"])}</td>'
-            f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2)}</td>'
-            f'<td>{cin["inventory_pct_of_design"]}</td>'
+            f'<td>{round(cin["inventory_mcf"] / 1_000_000, 2) if cin.get("inventory_mcf") is not None else "Unavailable"}</td>'
+            f'<td>{blank(cin.get("inventory_pct_of_design"))}</td>'
             f'<td>{blank(der.get("peak_modeled_demand_mmcfd"))}</td>'
             f'<td>{blank(resid)}</td></tr>')
     # An empty cell is deliberate (see blank()), but on a short table it reads
     # as data this page failed to collect rather than as a figure the model had
     # no input for. One sentence, shown only when a cell is actually empty, and
     # it names no specific input so no arrangement of the data can falsify it.
-    gap_note = (" A blank cell is a figure the model had no input for that day,"
-                " not a reading that went missing." if gaps else "")
+    gap_note = (" A blank cell means a required input is unavailable. Missing"
+                " storage is never filled with a previous reading." if gaps else "")
     # The note lives OUTSIDE the scrolling wrapper on purpose. It used to be a
     # <caption> inside the table, which meant it took the TABLE's intrinsic
     # width, 684 px at five columns, and on a 390 px phone the sentence was
@@ -1038,7 +1076,7 @@ def table_html(series, model, limit=TABLE_LIMIT):
 <th scope="col">Non CINGSA supply MMcf/d</th></tr></thead>
 <tbody>{body}</tbody></table></div>
 <p class="gw-tnote" id="gw-tablenote" data-reveal>The most recent
-{count(len(rows), "verified reading")}. Storage and percent of design are
+{count(len(rows), "day")}. Storage and percent of design are
 measured. Modeled peak and non CINGSA supply are model output.{gap_note}</p>"""
 
 
@@ -1081,6 +1119,8 @@ def feed(series, model, site_url, today, meta, figs=None):
         "temporal_coverage": (f"{series[0]['date']}/{series[-1]['date']}"
                               if series else None),
         "count": len(series),
+        "source_status": source_status(series, max(today, date.fromisoformat(series[-1]["date"]))
+                                       if series else today),
         "related_docket_item": f"{site_url}/docket/{meta['docket_item_id']}/",
         "warning": ("This dataset must not be used to state or imply whether the "
                     "region will make it through a cold snap. Supply side "
@@ -1649,11 +1689,21 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
             f'unverified in the data and carry no number forward from the day '
             f'before.</p>')
 
+    status = source_status(series, today)
+    availability = ""
+    if status["state"] != "current":
+        window = status.get("maintenance_window")
+        note = (f'has not posted a new reading since {long_date(f["as_of"])}.' if not window or
+                today.isoformat() >= window["end_date"] else
+                f'has no new readings. Maintenance scheduled until {long_date(window["end_date"])}.')
+        availability = (f'<p class="gw-tnote" id="gw-source-status" data-reveal>'
+                        f'<a href="{esc(gc.CINGSA_URL)}">CINGSA</a> {note}</p>')
+
     source_note = ""
     latest = latest_verified(series)
     if latest and (latest.get("cingsa") or {}).get("capacity_identity_mismatches"):
         source_note = (
-            '<p class="sub" data-reveal>CINGSA\'s current capacity rows do not '
+            '<p class="sub" data-reveal>CINGSA\'s last published capacity rows do not '
             'match the arithmetic in its own definitions. This page preserves '
             'the published Operating and Available values and does not choose a '
             'correction. The storage reading comes from the separate inventory '
@@ -1796,8 +1846,8 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 </div>
 
 <div class="gw-stats" data-reveal>
-{stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured")}
-{stat("MMcf/d injection rate now", f["injection_in_progress_mmcfd"], "measured")}
+{stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured " + long_date(f["as_of"]))}
+{stat("MMcf/d injection rate", f["injection_in_progress_mmcfd"], "measured " + long_date(f["as_of"]))}
 {stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
       "model output", "blue")}
 {stat(noun(f["days_of_record"], "day") + " on record", f["days_of_record"],
@@ -1832,6 +1882,7 @@ that it is not, is using it wrong.</p>
 <h2 data-reveal>Day by day</h2>
 {chart_block}
 {table_html(series, model)}
+{availability}
 {stale_note}
 
 {balance}
