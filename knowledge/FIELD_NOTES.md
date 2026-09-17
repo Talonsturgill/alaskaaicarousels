@@ -7569,3 +7569,73 @@ Yoeli, and as of 2024 it has been measured rather than asserted.
   primary, the report itself or vdB's own post carrying the figure and the
   sample it came from. The direction of the change does not alter any decision
   this machine makes, since documents are already the only format it ships.
+
+## 2026-09-17, No.61 THE DRIFT LINE: five silences the machine did not catch
+
+Every defect below rendered a plausible frame and reported nothing. The run's
+machine gates were green on the first pass (qa.py PASS 0/0, frame_balance clear
+on all nine) and the pixel critics still came back 3.5 to 7.5. That gap is the
+lesson: GREEN IS NOT A DECK.
+
+**1. A quarter turn inverted the deck's own data.** `D.fence` steps along
+(sin yaw, 0, cos yaw); a three.js mesh rotated by `rotation.y = phi` sends its
+local X to (cos phi, 0, -sin phi). They agree only at phi = yaw - 90. Every
+mesh got the line's own yaw, so rails ran perpendicular to the line and read as
+diagonal bracing, and every slat showed its 0.028 m EDGE instead of its 0.055 m
+face. The Restricted panel drew about 0.45 open against a printed 0.12. Four
+critic findings across three slides, one missing 90 degrees. It is in
+instincts.json now, but write it here too, because the shape of the bug is
+general: ANY helper that steps a direction and also rotates a mesh has two
+conventions and they are not the same one.
+
+**2. A material flag set after the material was built.** The drift's vertices
+were blended toward the ground colour to kill its rectangular outline.
+`vertexColors = true` without `needsUpdate = true` leaves the shader compiled
+without USE_COLOR, so the material sat at its base colour, which was WHITE.
+Every deposit in the deck rendered as a bright slab for a whole revision round,
+and the fix for the hard edge looked like it had done nothing.
+
+**3. A plane that ends inside the frame is a seam.** Three at once: a
+full-width step at slide 01's y 473 where fog `#16304C` met a sky gradient
+ending at `#20415F`; the same at slide 06's y 380 from a 300 m ground plane
+whose edge fell at 150 m; and a 50 by 22 m drift carrier that three separate
+critics called a table top, a folded sheet and a compositing seam. The rule:
+run the ground past the fog, tie the sky's last stop to the fog colour, and
+size a deposit's carrier so its own rectangle is outside the picture.
+
+**4. A 2D mark at a constant floats.** Moving the gold gate and the stake marks
+into 2D fixed the ink census and the 432 px legibility, and both were real
+gains. But laid at hand-tuned constants they sat on open snow attached to
+nothing, and critics called them scratches, a stray legend key, dirt on the
+snow and a render artifact on four frames. Slide 06 carried BOTH a gold mark on
+one patch of snow and the GL gate rendering as two dark dashes on another.
+`D.camera` and `D.snapToSilhouette` exist now so a mark is projected and then
+snapped to the thing it names. The ground in this house is a drift, never a
+plane, so the projection alone is not enough.
+
+**5. An assertion that cannot disagree.** Slide 05 spaced its slats on a 5.4 px
+width and stroked them at 2.4, and `window.__akAssert` computed the open
+fraction from 5.4. It agreed with the pitch, not with the picture, and passed
+green while the deck's ONE measurable frame contradicted its own printed
+ratios. An assertion has to read its `actual` back off the drawing.
+
+**And one finding declined, on measurement.** Round two hard-failed slide 05 at
+4.5 for the same porosity, saying the drawn fractions were INVERTED. A
+luminance-run measurement of the three panels returned dark (open) fractions of
+0.636 / 0.287 / 0.131 against printed 0.62 / 0.28 / 0.12, every one inside
+0.016: the light bars are the SLATS on a dark sheet, not the apertures. The
+same verdict reported curly apostrophes and a sweep of all nine sources for
+U+2018, U+2019, U+201C, U+201D, U+2013 and U+2014 returned nothing. Critics are
+the best instrument this run has and they are not a measuring device. Measure
+the render before spending a round on a drawing that was already right, and
+write the declined finding into the reconciliation so the next run does not
+re-fix it.
+
+**When the arithmetic will not close, move the claim.** Slide 06 was planned as
+the one frame showing the whole line, bays 01 to 25. 24 bays at 2.4 m subtend
+2180 px at that camera inside a 1080 px frame, bay 21 projected to x 1574, and
+the stakes had been authored on a SECOND line that did not continue the fence
+at all. The built-versus-proposed boundary moved whole to slide 09, where it is
+now in frame, and 06's field 11a declares NO wordless claim with the
+measurement written out. A dossier that keeps asserting a claim the pixels do
+not contain is a defect in the record even when the pixels are fine.

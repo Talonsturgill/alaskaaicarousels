@@ -1,0 +1,59 @@
+{
+  "run_dir": "out/2026-09-17",
+  "render_report": "out/2026-09-17/render/render_report.json",
+  "aggregates_file": "out/2026-09-17/aggregates.json",
+  "detected": 5,
+  "declared": 5,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "duration",
+      "fragment": "TWENTY MONTHS",
+      "text": "THE MANDATORY AI RULE IS TWENTY MONTHS OLD",
+      "n": 20,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Three classes",
+      "text": "Three classes. Three different answers about where a tool may take them.",
+      "n": 3,
+      "subject": "classes"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Three different answers",
+      "text": "Three classes. Three different answers about where a tool may take them.",
+      "n": 3,
+      "subject": "different answers"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "3 CHUTES",
+      "text": "GATE, 3 CHUTES",
+      "n": 3,
+      "subject": "chutes"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "THREE CAMPUSES",
+      "text": "THREE CAMPUSES. THEN YOUR SYLLABUS.",
+      "n": 3,
+      "subject": "campuses"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 5,
+      "text": "GATE, 3 CHUTES",
+      "note": "A property of the ARTWORK. The gate is drawn with three graduated chutes because the deck's gate carries its whole gold budget and the opening is the point; no source says the standard has three of anything at the gate. The three CLASSIFICATIONS are a separate assertion and are declared on slide 4 against C12, C13 and C14."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

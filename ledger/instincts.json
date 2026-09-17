@@ -1544,6 +1544,27 @@
       "evidence": "No.60 scored Legibility 5 of 10 with 150 machine warns and the scorer called it the weakest score and the cheapest fix. Sixty of those 150 were a single tiny-text check saying the same thing sixty times. Raising nine eyebrows, one instrument guard row, three plate labels, six state names and seven ring labels to the 24 px mobile floor, and declaring the projection stamp, slide counter and plate tally as the margin apparatus they are, took the deck from 150 warns to 3 in one pass and Legibility from 5 to 7. No artwork was redrawn for any of it. The scorer disputed the data-decorative call on the instrument lines, which is worth reading before reusing it.",
       "confidence": 0.85,
       "last_confirmed": "2026-09-15"
+    },
+    {
+      "id": "a-mesh-turns-by-yaw-minus-ninety",
+      "learned": "2026-09-17",
+      "instinct": "When a chassis STEPS a line along (sin yaw, 0, cos yaw), every three.js mesh on that line must rotate by yaw MINUS 90, because rotation.y = phi sends local X to (cos phi, 0, -sin phi). Passing the line's own yaw turns every mesh a quarter turn and still renders a plausible frame.",
+      "evidence": "No.61 shipped a whole deck that way. Rails stabbed away from camera and read as diagonal bracing; every slat presented its 0.028 m edge instead of its 0.055 m face, so the Restricted panel drew about 0.45 open against a printed 0.12 and the deck's entire data-in-art mapping was inverted; a notice board stood edge on and a critic reported that frame's anchor as absent. Four separate critic findings, one missing 90 degrees.",
+      "confidence": 0.95
+    },
+    {
+      "id": "an-assertion-must-read-the-drawing-not-the-intent",
+      "learned": "2026-09-17",
+      "instinct": "A self-asserted measurement has to compute `actual` from something read back OFF the drawing, a stroke-width attribute or a pixel run, never from the constant the drawing was supposed to use. An assertion sharing its input with the thing it checks cannot disagree.",
+      "evidence": "No.61 slide 05 spaced its slats on a 5.4 px width and STROKED them at 2.4. window.__akAssert computed the open fraction from 5.4, agreed with the pitch and not the picture, and passed green while the deck's one measurable frame contradicted its own printed ratios. It now reads stroke-width back off the DOM.",
+      "confidence": 0.9
+    },
+    {
+      "id": "measure-the-picture-before-accepting-a-measurement-finding",
+      "learned": "2026-09-17",
+      "instinct": "When a critic reports that a drawing contradicts its printed numbers, MEASURE THE RENDER YOURSELF before changing anything. A verdict that mixes up which bars are the object and which are the gaps sends a whole round at a drawing that was already right.",
+      "evidence": "No.61 round two hard-failed slide 05 at 4.5 saying the open fractions were inverted. A luminance-run measurement returned dark (open) fractions of 0.636 / 0.287 / 0.131 against printed 0.62 / 0.28 / 0.12, every one inside 0.016: the light bars were the slats. The same verdict reported curly apostrophes and a sweep of all nine sources found none. Both declined, both written into the reconciliation.",
+      "confidence": 0.9
     }
   ]
 }

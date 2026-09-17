@@ -603,6 +603,14 @@
       "closing_move": "NEW: THE ASK ON THE DAY AFTER",
       "first_words": "Executive Order 14426 uses the phrase artificial",
       "hook_type": "a count of one, on a phrase nobody counts: the order says artificial intelligence exactly once, and that one clause carries the whole clock"
+    },
+    {
+      "run_date": "2026-09-17",
+      "opening_move": "SECOND PERSON STAKE",
+      "structure": "CLAIM THEN COUNTER-CLAIM",
+      "closing_move": "NEW: WHAT COUNTS AS BEING TOLD",
+      "first_words": "Your University of Alaska login has been",
+      "hook_type": "the reader is already bound and does not know it: the second person puts the rule on their own login before the first fact arrives"
     }
   ]
 }

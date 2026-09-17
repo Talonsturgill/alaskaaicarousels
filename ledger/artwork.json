@@ -1961,6 +1961,26 @@
       "type_pairing": "Bricolage Grotesque over Fraunces over JetBrains Mono",
       "narrative_structure": "the argument, walked inward then outward: the center and the remainder, the payload, the instrument, the clocks, a declared breather on distance itself, the keepable, the rank as the turn, the position, one ask",
       "note": "THE LESSON IS THAT A LIT GROUND IS A FLOOR, NOT A LAMP. This deck reopened the contact class the ledger has been chasing since No.55, on five frames, in the same shape No.59 committed a fix for: an additive screen radial at every object's foot, painted because the dL test needs something to subtract from. qa.py's painted light check caught it as 14 warns and 5 fails. The fix that holds is a GROUND PLANE: one wash across the whole floor along the light axis, feathered out before it reaches any furniture row, with the casts unchanged. Two details are load bearing. It must stop short of the margin type, because a lit floor under 19 px mono produced six fresh contrast defects on the first attempt. And it must be LAID rather than filled, because a gradient rectangle scores as blocky and took drawn share from 70 percent to 61; drawn as a lay of rules at 1.7 px pitch it measures the same and returns the share. ALSO: a halo is not a knockout. Three labels failed label crossed by art while carrying a four stop text shadow in the frame's own darkest ink, because the check measures ink at the GLYPHS' OWN VALUE in the ring and a 6 px blur does not clear a bright plate face. An opaque plate does. ALSO: an opaque label on a COUNTED field erases the count, so the labels must be placed and measured with getBoundingClientRect BEFORE the field is rejection sampled. ALSO: the engraver reserves the boxes that exist when you call reserve, which is why slide 07 engraved through MAINE until the bar labels were written first. BURNED: the shared areal model with cut plates as a hero structure, the ring state machine as a continuity device, and the center and the remainder as a hook."
+    },
+    {
+      "run_date": "2026-09-17",
+      "carousel_no": 61,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE DRIFT LINE. A Wyoming-pattern snow fence on open tundra at civil twilight, where the BAY INDEX IS A CALENDAR (bay 01 is January 2025, one bay per month, the built line ends at bay 21) and the PANEL POROSITY IS A DATA CLASSIFICATION (public 0.62 open, internal use 0.28, restricted 0.12). A CONTINUOUS RECEDING LINE STRUCTURE seen from nine places, never an object on a surface, which is the explicit divergence from three of the last four decks. Drift accumulating in the lee is the evidence that time has passed; the cast bar duty cycle on the ground equals the gap ratio of the panel that cast it, so the bottom band literally carries the classification data.",
+      "chassis": "assets/js/akdrift.js",
+      "palette": "blue hour: zenith #050B18, haze and fog #16304C, lit snow #6E8FB4, crest #AFC6E2, silvered timber #5D6B7C on #2A3340, gold #FFC72C, forget-me-not #6EA5FF",
+      "light": "declared once and never varied: azimuth 158, elevation 14, key to fill 5.0, with one disclosed exception at elevation 22 for micro relief",
+      "type": "Space Grotesk 700 display with a hard 64 px floor, Manrope body, JetBrains Mono telemetry",
+      "register_shift": "slide 05 is the deck's only orthographic frame, a pure SVG drafting sheet with no canvas and no GPU, entered by an exact object match from slide 04's three panels",
+      "techniques": [
+        "akthree GPU PBR",
+        "AKSNOW modelled relief",
+        "converging barred cast with penumbra",
+        "two-part painted foot contact",
+        "per-line-box measured veil",
+        "vector-colour drift blend",
+        "true-projection locator at parallels 55/65 rotate 154"
+      ]
     }
   ]
 }

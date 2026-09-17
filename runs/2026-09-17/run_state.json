@@ -1,0 +1,33 @@
+{
+  "run_date": "2026-09-17",
+  "carousel_no": 61,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "in_progress",
+    "ship": "in_progress",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-09-17/plan.md",
+    "selection": "out/2026-09-17/selection.md",
+    "claims": "out/2026-09-17/claims.json",
+    "gaswatch_health": "out/2026-09-17/gaswatch_health.json"
+  },
+  "gas_watch_verdict": "MAINTENANCE",
+  "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",
+  "revision_rounds": 4
+}

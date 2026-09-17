@@ -604,6 +604,14 @@
     g.setAttribute("color", new THREE.BufferAttribute(cols, 3));
     var mat = AKT.mat.clay(0xFFFFFF, { roughness: 0.95, metalness: 0.0 });
     mat.vertexColors = true;
+    /* AND THE SHADER HAS TO BE TOLD. three.js compiles USE_COLOR from
+     * vertexColors at first build, so flipping it afterwards without
+     * needsUpdate leaves the attribute ignored and the material at its base
+     * colour, which here is WHITE. Every deposit in the deck rendered as a
+     * bright slab with a hard edge for a whole revision round because of this
+     * one missing line, and the fix for the hard edge looked like it had done
+     * nothing. */
+    mat.needsUpdate = true;
     var m = new THREE.Mesh(g, mat);
     m.rotation.x = -Math.PI / 2;
     m.position.set(o.x == null ? 0 : o.x, 0.012, o.z == null ? 0 : o.z);

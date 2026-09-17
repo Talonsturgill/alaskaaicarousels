@@ -1,0 +1,49 @@
+{
+  "run_date": "2026-09-17",
+  "aggregates": [
+    {
+      "kind": "duration",
+      "slide": 1,
+      "text": "THE MANDATORY AI RULE IS TWENTY MONTHS OLD",
+      "fragment": "TWENTY MONTHS",
+      "n": 20,
+      "unit": "months",
+      "from": {"claim": "C01", "date": "2025-01-01"},
+      "to": {"claim": "C21", "date": "2026-09-16"},
+      "note": "The standard's own effective date line to the day the regents reviewed the draft that would follow it. Completed calendar months, and the cover's whole assertion."
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "Three classes. Three different answers about where a tool may take them.",
+      "fragment": "Three classes",
+      "subject": "classes",
+      "members": ["C12", "C13", "C14"],
+      "note": "The three data classifications the standard itself defines: Public, Internal Use, Restricted."
+    },
+    {
+      "kind": "count",
+      "slide": 4,
+      "text": "Three classes. Three different answers about where a tool may take them.",
+      "fragment": "Three different answers",
+      "subject": "different answers",
+      "members": ["C12", "C13", "C14"],
+      "note": "The same three classifications counted again in the second sentence. One answer per class, so the two counts are the same three claims and can never disagree."
+    },
+    {
+      "kind": "design",
+      "slide": 5,
+      "text": "GATE, 3 CHUTES",
+      "fragment": "3 CHUTES",
+      "note": "A property of the ARTWORK. The gate is drawn with three graduated chutes because the deck's gate carries its whole gold budget and the opening is the point; no source says the standard has three of anything at the gate. The three CLASSIFICATIONS are a separate assertion and are declared on slide 4 against C12, C13 and C14."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "THREE CAMPUSES. THEN YOUR SYLLABUS.",
+      "fragment": "THREE CAMPUSES",
+      "member": "C22",
+      "note": "Not derived. Quoted from KTOO's account of the draft policy, which says it would require all three campuses to develop AI implementation plans."
+    }
+  ]
+}
