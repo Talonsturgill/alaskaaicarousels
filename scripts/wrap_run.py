@@ -2,7 +2,7 @@
 """Phase 14 wrap: sync the run's final state into runs/ and clear the WORKLOG.
 
 Why this is a script and not three shell lines. Run No.61 did its wrap as one
-compound bash command that ended in `rm .claude/WORKLOG.md`. The harness judges
+compound bash command that ended in `rm` of its own worklog. The harness judges
 a compound command by its riskiest part, so an ordinary bookkeeping step raised
 a permission prompt, the run stopped, and a stop in a routine run is a failed
 run (CLAUDE.md). A single `python3 scripts/wrap_run.py` is allowlisted and
@@ -81,11 +81,15 @@ def main():
         if not args.check:
             draft.write_text(f"{draft_id}\n")
 
-    worklog = REPO / ".claude" / "WORKLOG.md"
-    if worklog.is_file():
-        actions.append("delete .claude/WORKLOG.md (its wrap tasks are done)")
-        if not args.check:
-            worklog.unlink()
+    # out/<date>/WORKLOG.md is where a worklog belongs now; .claude/WORKLOG.md
+    # is the old home and is still cleared here, because a run that predates
+    # the move can leave one behind and a stale worklog is read as live.
+    for worklog in (out_dir / "WORKLOG.md", REPO / ".claude" / "WORKLOG.md"):
+        if worklog.is_file():
+            rel = worklog.relative_to(REPO)
+            actions.append(f"delete {rel} (its wrap tasks are done)")
+            if not args.check:
+                worklog.unlink()
 
     if not actions:
         print(f"wrap_run: {args.run_date} already wrapped, nothing to do")
