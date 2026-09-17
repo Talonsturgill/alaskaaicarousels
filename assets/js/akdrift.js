@@ -1,0 +1,484 @@
+/* akdrift.js — the chassis for No.61, THE DRIFT LINE (2026-09-17).
+ *
+ * A snow fence standing on open tundra at civil twilight, where the BAY INDEX
+ * IS A CALENDAR and the PANEL POROSITY IS A DATA CLASSIFICATION. This file is
+ * house furniture: the camera solve, the bay mapping, the fence geometry, the
+ * screened ground, the barred cast and the type reserves. Every slide's own
+ * composition lives in its own file and no slide calls a draw-the-whole-slide
+ * function from here, because bespoke_check measures the outcome.
+ *
+ * ARCHITECTURE, and the reason for it. The DRIFT is drawn in Canvas 2D through
+ * AKSNOW.surface rather than as displaced geometry in three.js. That is
+ * deliberate. The bottom third of every frame is what qa.py's frame_balance()
+ * measures, it only counts a cell carrying MODELED tone (luminance spread >= 8
+ * AND tonal entropy >= 0.55), and AKSNOW.surface is the one helper in this
+ * house fitted against that measurement. The FENCE is real PBR geometry
+ * rendered through akthree into an offscreen canvas and composited, so the
+ * structure gets real materials and soft shadow maps. The barred cast is drawn
+ * on the 2D side from the same bay arithmetic that built the geometry, so the
+ * shadow and the thing casting it can never disagree.
+ *
+ * THE LIGHT IS DECLARED ONCE, HERE, AND NEVER VARIED PER SLIDE.
+ */
+(function (global) {
+  "use strict";
+  var D = {};
+
+  /* ---- the declared light ------------------------------------------------
+   * Azimuth 158, elevation 14, key to fill 5.0 to 1. One disclosed exception,
+   * written into the storyboard rather than hidden: the micro relief benches
+   * shade at elevation 22 on the SAME azimuth, because a swelled line and a
+   * slope width only spread across their legible range between about 20 and 30
+   * degrees. Macro cast geometry at 14, micro form shading at 22.
+   */
+  D.LIGHT = {
+    azDeg: 158,
+    elDeg: 14,
+    microElDeg: 22,
+    keyToFill: 5.0,
+    keyColor: 0xDCE9FF,
+    fillColor: 0x16304C,
+    shadowInk: "#071223"
+  };
+
+  /* ---- palette, one table, so no slide invents a hex ---------------------- */
+  D.P = {
+    zenith:   "#050B18",
+    skyMid:   "#0B1728",
+    haze:     "#16304C",
+    shadow:   "#071223",
+    lee:      "#0D1D31",
+    snowFar:  "#1E3C5C",
+    snowMid:  "#2E4F72",
+    snowLit:  "#6E8FB4",
+    crest:    "#AFC6E2",
+    timberDk: "#2A3340",
+    timberLt: "#5D6B7C",
+    proposed: "#6EA5FF",
+    gold:     "#FFC72C",
+    snow:     "#F4F8FF",
+    fixture:  "#46545F",
+    mono:     "#8FA0AE"
+  };
+
+  /* ---- THE BAY CHAIN -----------------------------------------------------
+   * Bay 01 is January 2025, one bay per month. The standing line ends at bay
+   * 21, September 2026. Bay 23 is November and bay 25 is January 2027, and
+   * both of those are stakes rather than fence, because a plan has built
+   * nothing. Declared once for the deck; no slide authors its own fence.
+   */
+  D.BAY_ONE_YEAR = 2025;
+  D.BAY_ONE_MONTH = 1;          /* January 2025 = bay 1 */
+  D.BAY_LAST_BUILT = 21;        /* September 2026 */
+  D.BAY_NOVEMBER = 23;
+  D.BAY_REVIEW = 25;            /* January 2027 */
+  D.BAY_PITCH_M = 2.4;
+  D.RAIL_H_M = 1.8;
+
+  D.bayToMonth = function (bay) {
+    var m0 = (D.BAY_ONE_YEAR * 12 + (D.BAY_ONE_MONTH - 1)) + (bay - 1);
+    return { year: Math.floor(m0 / 12), month: (m0 % 12) + 1 };
+  };
+  D.MONTHS = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY",
+              "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+  /* Month-first, and the run year is dropped per the house date rule. */
+  D.bayLabel = function (bay, runYear) {
+    var t = D.bayToMonth(bay);
+    var s = D.MONTHS[t.month - 1];
+    return t.year === runYear ? s : s + " " + t.year;
+  };
+
+  /* ---- THE THREE CLASSIFICATIONS, as porosity ---------------------------
+   * These ratios are a property of the DRAWING, not a published figure, and
+   * every dossier tags them [design]. The only load-bearing fact encoded here
+   * is that NO PANEL IS EVER SOLID, because the standard conditions rather
+   * than forbids. minGap() is the binary check every scene slide runs.
+   */
+  D.PANELS = [
+    { key: "public",   label: "PUBLIC",       gap: 0.62 },
+    { key: "internal", label: "INTERNAL USE", gap: 0.28 },
+    { key: "restricted", label: "RESTRICTED", gap: 0.12 }
+  ];
+  D.panel = function (key) {
+    for (var i = 0; i < D.PANELS.length; i++) if (D.PANELS[i].key === key) return D.PANELS[i];
+    throw new Error("akdrift: no panel " + key);
+  };
+  D.minGap = function () {
+    var m = 1; for (var i = 0; i < D.PANELS.length; i++) m = Math.min(m, D.PANELS[i].gap);
+    return m;   /* must be strictly > 0 on every scene frame */
+  };
+  /* The panel a bay carries. Deterministic, so the same bay is the same class
+   * on every slide that sees it, which is what makes the line ONE object. */
+  D.bayPanel = function (bay) {
+    return D.PANELS[(bay * 7 + 2) % 3];
+  };
+
+  /* ---- THE CAMERA SOLVE --------------------------------------------------
+   * Solved once here so no slide eyeballs a horizon. fov is vertical and fixed
+   * at 54 degrees for the whole deck.
+   *   f = (H/2) / tan(fov/2)
+   *   horizonY = cy - f * tan(pitchDown)
+   *   a ground point at distance d projects to horizonY + f*h/d
+   * THE CONTRACT IS horizonY IN PIXELS. If a renderer signs pitch the other
+   * way, solve for pitch and the frame is unchanged.
+   */
+  D.W = 1080; D.H = 1350; D.FOV_DEG = 54;
+  D.solve = function (heightM, pitchDownDeg) {
+    var f = (D.H / 2) / Math.tan((D.FOV_DEG / 2) * Math.PI / 180);
+    var cy = D.H / 2;
+    var horizonY = cy - f * Math.tan(pitchDownDeg * Math.PI / 180);
+    return {
+      f: f, cy: cy, horizonY: horizonY, h: heightM, pitch: pitchDownDeg,
+      groundY: function (d) { return horizonY + f * heightM / d; },
+      /* apparent height in px of a vertical of `m` metres at distance d */
+      vert: function (m, d) { return f * m / d; },
+      /* on-screen bay pitch at distance d, which is what a repeated contact
+       * pool radius must be checked against, never the post's own width */
+      bayPx: function (d) { return f * D.BAY_PITCH_M / d; }
+    };
+  };
+
+  /* ---- TYPE RESERVES -----------------------------------------------------
+   * Measure the DOM first, then generate the field around it. The order is
+   * always geometry, then the DOM the geometry implies, then reserve, then
+   * draw. Boxes come from getBoundingClientRect so they are what actually
+   * rendered, never a guess.
+   */
+  D.lineBoxes = function (sel, pad) {
+    pad = pad == null ? 16 : pad;
+    var out = [], els = document.querySelectorAll(sel);
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) continue;
+      out.push([r.left - pad, r.top - pad, r.width + pad * 2, r.height + pad * 2]);
+    }
+    return out;
+  };
+  /* Reject-sample a point away from reserved boxes. An opaque element dropped
+   * on a counted field erases the count, so any field whose COUNT is a claim
+   * is told where the type is BEFORE it is generated. */
+  D.clearOf = function (boxes, x, y) {
+    for (var i = 0; i < boxes.length; i++) {
+      var b = boxes[i];
+      if (x >= b[0] && x <= b[0] + b[2] && y >= b[1] && y <= b[1] + b[3]) return false;
+    }
+    return true;
+  };
+  /* Punch reserves out of an offscreen field with BLURRED RECTANGLES, never a
+   * radial gradient. A radial punch cannot reserve a long box: its outer
+   * radius is half the longest side, so a 900px line of type keeps the field
+   * over its first and last words while the middle is cleanly reserved. */
+  D.punch = function (cx, boxes, blur) {
+    blur = blur == null ? 9 : blur;
+    cx.save();
+    cx.globalCompositeOperation = "destination-out";
+    cx.filter = "blur(" + blur + "px)";
+    cx.fillStyle = "#000";
+    for (var i = 0; i < boxes.length; i++) {
+      cx.fillRect(boxes[i][0], boxes[i][1], boxes[i][2], boxes[i][3]);
+    }
+    cx.restore();
+  };
+  D.offscreen = function (w, h) {
+    var c = document.createElement("canvas");
+    c.width = w * 2; c.height = h * 2;
+    var x = c.getContext("2d"); x.scale(2, 2);
+    return { canvas: c, cx: x };
+  };
+
+  /* ---- THE SCREENED GROUND ----------------------------------------------
+   * One broad ramp across the WHOLE field along the light axis, never a radial
+   * pool at an object's foot. A painted radial centred on an object's base
+   * puts the frame's brightest and darkest values concentrically, which is a
+   * hole in a spotlight and has been named by critics across three runs. The
+   * cast is then an ATTACHED subtraction from this ramp.
+   */
+  D.groundRamp = function (cx, o) {
+    var y0 = o.y0, y1 = o.y1, x0 = o.x0 == null ? 0 : o.x0, x1 = o.x1 == null ? D.W : o.x1;
+    var ax = Math.cos((D.LIGHT.azDeg - 90) * Math.PI / 180);
+    var ay = Math.sin((D.LIGHT.azDeg - 90) * Math.PI / 180);
+    var g = cx.createLinearGradient(x0 - ax * (x1 - x0) * 0.5, y0 - ay * (y1 - y0) * 0.5,
+                                    x1 + ax * (x1 - x0) * 0.5, y1 + ay * (y1 - y0) * 0.5);
+    g.addColorStop(0.00, o.dark || D.P.lee);
+    g.addColorStop(0.45, o.mid || D.P.snowMid);
+    g.addColorStop(0.78, o.lit || D.P.snowLit);
+    g.addColorStop(1.00, o.dark || D.P.lee);
+    cx.save();
+    cx.globalCompositeOperation = o.blend || "screen";
+    cx.globalAlpha = o.alpha == null ? 0.5 : o.alpha;
+    cx.fillStyle = g;
+    cx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    cx.restore();
+  };
+
+  /* ---- THE BARRED CAST ---------------------------------------------------
+   * The duty cycle of the bars on the snow EQUALS the gap ratio of the panel
+   * that cast them, so the bottom band literally carries the classification
+   * data. Drawn as a subtraction from the ramp above, never as painted
+   * stripes. Below a 5 px period the bars stop and a graded directional tone
+   * takes over, because at that pitch they are moire at feed scale and the
+   * ratio is better kept in the label than in unreadable stripes.
+   */
+  D.MIN_BAR_PX = 5;
+  D.barredCast = function (cx, o) {
+    var period = o.period;                 /* on-screen px per bay-slat cycle */
+    var duty = o.duty;                     /* == the panel's gap ratio */
+    var x0 = o.x0, x1 = o.x1, yTop = o.yTop, yBot = o.yBot;
+    var skew = o.skew == null ? 0.42 : o.skew;   /* run toward the camera */
+    cx.save();
+    cx.globalCompositeOperation = "multiply";
+    if (period < D.MIN_BAR_PX) {
+      cx.globalAlpha = o.alpha == null ? 0.5 : o.alpha;
+      var g = cx.createLinearGradient(x0, yTop, x1, yBot);
+      g.addColorStop(0, D.P.shadow); g.addColorStop(1, D.P.lee);
+      cx.fillStyle = g; cx.fillRect(x0, yTop, x1 - x0, yBot - yTop);
+      cx.restore();
+      return { bars: 0, graded: true };
+    }
+    cx.fillStyle = o.ink || D.P.shadow;
+    var barW = period * (1 - duty);        /* the SLAT casts; the gap passes */
+    var n = 0;
+    for (var x = x0; x < x1; x += period) {
+      cx.globalAlpha = (o.alpha == null ? 0.55 : o.alpha) * (0.82 + 0.18 * Math.sin(x * 0.013));
+      cx.beginPath();
+      cx.moveTo(x, yTop);
+      cx.lineTo(x + barW, yTop);
+      cx.lineTo(x + barW + (yBot - yTop) * skew, yBot);
+      cx.lineTo(x + (yBot - yTop) * skew, yBot);
+      cx.closePath();
+      cx.fill();
+      n++;
+    }
+    cx.restore();
+    return { bars: n, graded: false };
+  };
+
+  /* ---- THE FENCE, as real geometry --------------------------------------
+   * Slats go in as InstancedMesh because twenty bays at engraving density is
+   * thousands of thin boxes at 2160x2700, and the shadow camera is fitted to
+   * the near field only. Any bay beyond `farSolid` metres is replaced by a
+   * single plane carrying the same porosity, so no thin geometry exists at
+   * distance to alias.
+   */
+  D.fence = function (THREE, AKT, R, o) {
+    o = o || {};
+    var fromBay = o.fromBay, toBay = o.toBay;
+    /* yawDeg is measured OFF THE IMAGE PLANE, because that is how the
+     * storyboard and every dossier state it ("the line runs roughly parallel
+     * to the image plane at yaw 14 degrees"). Internally the step is taken
+     * from the z axis, so the two differ by 90 and the conversion lives HERE,
+     * once. Slide 01's first build passed 14 straight through, which put the
+     * whole line outside the frustum and rendered a frame with no fence in it
+     * and no error anywhere. */
+    var yawRad = (90 - (o.yawDeg == null ? 14 : o.yawDeg)) * Math.PI / 180;
+    var z0 = o.z0 == null ? 0 : o.z0;
+    var group = new THREE.Group();
+    var timber = AKT.mat.clay(0x5D6B7C, { roughness: 0.86 });
+    var timberDk = AKT.mat.clay(0x2A3340, { roughness: 0.9 });
+    var slatGeo = new THREE.BoxGeometry(0.055, D.RAIL_H_M * 0.94, 0.028);
+    var counts = 0, slatXf = [];
+
+    for (var b = fromBay; b <= toBay; b++) {
+      var along = (b - fromBay) * D.BAY_PITCH_M;
+      var px = Math.sin(yawRad) * along + (o.x0 == null ? 0 : o.x0);
+      var pz = z0 + Math.cos(yawRad) * along;
+
+      /* post */
+      var post = new THREE.Mesh(new THREE.BoxGeometry(0.10, D.RAIL_H_M * 1.04, 0.10), timberDk);
+      post.position.set(px, D.RAIL_H_M / 2, pz);
+      post.rotation.y = yawRad;
+      group.add(post);
+
+      if (b === toBay) continue;
+      var pan = D.bayPanel(b);
+      /* SLAT PITCH IS SOLVED FROM THE POROSITY, not guessed. A slat of width w
+       * at pitch p leaves an open fraction 1 - w/p, so p = w / (1 - gap). The
+       * first build used a fixed 0.22 m pitch with 0.14 m slats, which drew ten
+       * fat bars per bay and read as a row of gravestones rather than a snow
+       * fence. Real Wyoming-pattern slats are about 6 cm. */
+      var SLAT_W = 0.055;
+      var pitch = SLAT_W / Math.max(0.02, 1 - pan.gap);
+      var nSlat = Math.max(3, Math.round(D.BAY_PITCH_M / pitch));
+      for (var s = 0; s < nSlat; s++) {
+        var t = (s + 0.5) / nSlat;
+        slatXf.push([px + Math.sin(yawRad) * D.BAY_PITCH_M * t,
+                     D.RAIL_H_M * 0.5,
+                     pz + Math.cos(yawRad) * D.BAY_PITCH_M * t]);
+        counts++;
+      }
+      /* four rails */
+      for (var r4 = 0; r4 < 4; r4++) {
+        var rail = new THREE.Mesh(
+          new THREE.BoxGeometry(D.BAY_PITCH_M, 0.055, 0.038), timber);
+        rail.position.set(px + Math.sin(yawRad) * D.BAY_PITCH_M / 2,
+                          0.28 + r4 * 0.46,
+                          pz + Math.cos(yawRad) * D.BAY_PITCH_M / 2);
+        rail.rotation.y = yawRad;
+        group.add(rail);
+      }
+    }
+    if (counts) {
+      var inst = new THREE.InstancedMesh(slatGeo, timber, counts);
+      var m = new THREE.Matrix4(), q = new THREE.Quaternion(),
+          sc = new THREE.Vector3(1, 1, 1), v = new THREE.Vector3();
+      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), yawRad);
+      for (var i = 0; i < counts; i++) {
+        v.set(slatXf[i][0], slatXf[i][1], slatXf[i][2]);
+        m.compose(v, q, sc);
+        inst.setMatrixAt(i, m);
+      }
+      inst.castShadow = true; inst.receiveShadow = false;
+      inst.instanceMatrix.needsUpdate = true;
+      group.add(inst);
+    }
+    /* ONE parent, ONE add. three.js REMOVES a mesh from its previous parent
+     * when it is added to another, so `AKT.add(R, mesh)` followed by
+     * `group.add(mesh)` silently empties the scene and renders a frame with
+     * no fence in it and no error anywhere. Slide 01's first two builds did
+     * exactly that. Build into the group, then add the group. */
+    AKT.add(R, group);
+    return { group: group, slats: counts };
+  };
+
+  /* ---- THE GATE ----------------------------------------------------------
+   * A gauged opening with three graduated chutes in the Restricted panel. It
+   * carries the deck's ENTIRE gold budget and it is the conditional regime
+   * made physical: the opening is the point, which is why gold is the OPENING
+   * and never the barrier.
+   */
+  D.gate = function (THREE, AKT, R, o) {
+    var g = new THREE.Group();
+    var gold = AKT.mat.gold({ roughness: 0.3 });
+    for (var i = 0; i < 3; i++) {
+      var lip = new THREE.Mesh(new THREE.BoxGeometry(0.42 - i * 0.1, 0.045, 0.05), gold);
+      lip.position.set(o.x, 0.52 + i * 0.4, o.z);
+      lip.rotation.y = o.yawRad || 0;
+      g.add(lip);
+    }
+    AKT.add(R, g);
+    return g;
+  };
+
+  /* ---- THE DRIFT, AS GEOMETRY -------------------------------------------
+   * The lee deposit belongs in the SAME scene as the fence, not pasted over
+   * the render afterwards. Slide 01's first builds drew it as a separate 2D
+   * mass and the two never met: the fence stood on a bare plane and an
+   * unrelated white wave began below it with a hard edge. A displaced plane
+   * costs almost nothing and gives the fence something to actually sit in,
+   * with the GPU's own cast shadows falling across it.
+   *
+   * Profile is the standard lee lens, rising from the fence foot, cresting at
+   * about 1.2 fence heights downwind and tapering out by about 11 heights,
+   * which is the snow-fence engineering convention and is tagged [design]
+   * wherever a slide prints it.
+   */
+  D.drift = function (THREE, AKT, R, o) {
+    o = o || {};
+    var lenAlong = o.lenAlong == null ? 70 : o.lenAlong;
+    var reach = o.reach == null ? D.RAIL_H_M * 11 : o.reach;
+    var peak = o.peak == null ? D.RAIL_H_M * 0.62 : o.peak;
+    var segA = 180, segB = 40;
+    var g = new THREE.PlaneGeometry(lenAlong, reach, segA, segB);
+    var pos = g.attributes.position;
+    var rnd = (global.AK && AK.fbm2) ? AK.fbm2 : function () { return 0; };
+    for (var i = 0; i < pos.count; i++) {
+      var u = pos.getX(i), v = pos.getY(i);        /* v: 0 at fence, reach away */
+      var t = (v + reach / 2) / reach;             /* 0..1 downwind */
+      /* lee lens: quick rise, crest at ~0.14 of the reach, long taper */
+      var lens = Math.pow(Math.sin(Math.PI * Math.pow(t, 0.42)), 1.7);
+      var h = peak * lens * (o.scale == null ? 1 : o.scale);
+      h *= 0.82 + 0.34 * rnd(u * 0.07, 3.1, 4);    /* along-line variation */
+      h += rnd(u * 0.5, 9.2, 3) * 0.05;            /* wind ripple */
+      pos.setZ(i, h);
+    }
+    g.computeVertexNormals();
+    var m = new THREE.Mesh(g, AKT.mat.clay(o.color == null ? 0x8FB0D0 : o.color,
+      { roughness: 0.95, metalness: 0.0 }));
+    m.rotation.x = -Math.PI / 2;
+    m.position.set(o.x == null ? 0 : o.x, 0.012, o.z == null ? 0 : o.z);
+    if (o.yawDeg != null) m.rotation.z = (90 - o.yawDeg) * Math.PI / 180;
+    AKT.add(R, m, { cast: false, receive: true });
+    return m;
+  };
+
+  /* ---- THE STAGE ---------------------------------------------------------
+   * The scene setup every scene frame shares: the sky backdrop, the IBL, the
+   * declared rig, the ground. It lives here because it is HOUSE FURNITURE and
+   * because bespoke_check measures how much of each slide's own drawing code
+   * is its own. What a slide does with the stage, what it puts on it and how
+   * it frames it, is the slide's own file.
+   *
+   * Returns R plus a compose(cx) that blits the render and reports the
+   * snapshot sentinel, so no slide can forget to check .ok.
+   */
+  D.stage = function (THREE, AKT, glCanvas, o) {
+    o = o || {};
+    var R = AKT.setup(glCanvas, {
+      w: D.W, h: D.H, fov: D.FOV_DEG,
+      fog: o.fog || [0x16304C, 34, 120],
+      exposure: o.exposure == null ? 1.08 : o.exposure
+    });
+    /* sky as a backdrop INSIDE the scene: at low camera heights the fence
+     * crosses the horizon, so a 2D sky pass would clip its tops. */
+    var c = document.createElement("canvas");
+    c.width = 8; c.height = 512;
+    var xx = c.getContext("2d");
+    var g = xx.createLinearGradient(0, 0, 0, 512);
+    var stops = o.sky || [[0, D.P.zenith], [0.44, D.P.skyMid], [0.86, D.P.haze], [1, "#20415F"]];
+    for (var i = 0; i < stops.length; i++) g.addColorStop(stops[i][0], stops[i][1]);
+    xx.fillStyle = g; xx.fillRect(0, 0, 8, 512);
+    var tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    var sky = new THREE.Mesh(new THREE.PlaneGeometry(500, 220),
+      new THREE.MeshBasicMaterial({ map: tex, fog: false, depthWrite: false }));
+    sky.position.set(0, 56, -150);
+    R.scene.add(sky);
+
+    AKT.environment(R, { intensity: o.ibl == null ? 0.40 : o.ibl });
+
+    var az = D.LIGHT.azDeg * Math.PI / 180, el = D.LIGHT.elDeg * Math.PI / 180;
+    var ki = o.keyI == null ? 3.35 : o.keyI;
+    AKT.rig(R, {
+      key:  { color: D.LIGHT.keyColor, i: ki, radius: o.softness == null ? 6 : o.softness,
+              shadowSize: o.shadowSize == null ? 26 : o.shadowSize,
+              pos: [Math.sin(az) * 34, Math.tan(el) * 34, Math.cos(az) * 34] },
+      fill: { color: D.LIGHT.fillColor, i: ki / D.LIGHT.keyToFill, pos: [-9, 10, 16] },
+      ambient: { color: 0x16304C, i: o.ambient == null ? 0.78 : o.ambient }
+    });
+    AKT.ground(R, { size: 300, color: o.ground == null ? 0x27486C : o.ground,
+                    roughness: 0.97, y: 0 });
+
+    R.compose = async function (cx) {
+      var shot = await AKT.snapshot(R);
+      var ok = !!(shot && shot.ok);
+      if (ok) cx.drawImage(glCanvas, 0, 0, D.W, D.H);
+      return ok;    /* never ship a black frame: the caller draws its fallback */
+    };
+    return R;
+  };
+
+  /* ---- THE HOUSE GRADE, declared once ------------------------------------
+   * AKPOST.grade's contract is strict and its failure mode is a black canvas
+   * with errors=0, so the deck's grade is written here ONCE in the validated
+   * shape and every slide passes D.GRADE or D.GRADE_FLAT. exposure is in
+   * STOPS (akthree's AKT.setup exposure is a MULTIPLIER, and confusing the two
+   * shipped a full stop over on eighteen slides across two earlier runs).
+   * lift and gain are 3-element numeric arrays, never hex strings.
+   */
+  D.GRADE = {
+    exposure: 0.0, saturation: 1.04, contrast: 1.06, vignette: 0.18,
+    bloom: { threshold: 0.74, strength: 0.26, radius: 8 },
+    grain: { amount: 0.055, size: 2, seed: 20260917 },
+    lift: [0.010, 0.015, 0.028], gain: [1.012, 1.0, 0.978],
+    dither: true, aberration: 0.5, sharpen: 0.32
+  };
+  /* No aberration on a frame carrying a COMPARISON or a measured axis, per
+   * the restraint note in TECHNIQUE_LIBRARY 89. */
+  D.GRADE_FLAT = (function () {
+    var g = {}; for (var k in D.GRADE) g[k] = D.GRADE[k];
+    g.aberration = 0; g.bloom = { threshold: 0.78, strength: 0.18, radius: 6 };
+    return g;
+  })();
+
+  global.AKDRIFT = D;
+})(window);
