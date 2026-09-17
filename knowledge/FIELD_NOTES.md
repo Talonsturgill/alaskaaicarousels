@@ -7532,3 +7532,40 @@ Yoeli, and as of 2024 it has been measured rather than asserted.
   see it, because copy.json and the render agree with each other. PARKED as a
   gate candidate: find quotation marks in any slide string or caption sentence
   and require the quoted span to appear verbatim inside the cited claim.
+
+## 2026-09-17 (run No.61, Phase 1 craft refresh)
+
+- **REPOUSSOIR is the four-hundred-year-old name for the defect this machine
+  keeps shipping.** `frame_balance` has warned top-loaded in 4 of the last 10
+  runs, and the house answer has been to put something in the bottom band after
+  the fact. The classical answer is the opposite move and it is compositional.
+  A repoussoir is a figure or object placed in the near foreground along one
+  lower edge, which brackets the frame and pushes the subject back, and it is
+  the reason Dutch landscape does not read top-heavy despite putting its whole
+  subject above the horizon. Van Ruisdael's tree in the right foreground of
+  The Jewish Cemetery, Caillebotte's umbrella figure at the right of Paris
+  Street, Rainy Day. What makes it useful here rather than decorative is that
+  it is a DEPTH cue and a BALANCE cue at once, so it pays the frame_balance
+  gate and the artwork-craft criterion with one element instead of two.
+  DESIGN_DOCTRINE section 4 already asks for "a blurred foreground element
+  bleeding off-frame" as depth cue 4 and never connects it to the lower band.
+  They are the same element. Build it once, at planning time, and it fills
+  field 4a with something that has modeled tone by construction.
+  https://en.wikipedia.org/wiki/Repoussoir
+- **The tonal rule the encyclopaedia does not state, and this house needs.** The
+  device only reads as near if it is the frame's darkest mass and its largest
+  unbroken silhouette, and it only reads as a frame rather than an obstruction
+  if it is cut by the frame edge on at least two sides. On the dark arctic
+  register that means the repoussoir is BELOW the base, not above it, which is
+  the opposite reflex from adding a lit plate. The frame gets deeper and the
+  bottom band gets tone, and nothing was added to the picture's information.
+- **Document posts may be worth more reach than CAROUSEL_CRAFT currently
+  records, and the number is not yet verified to primary.** Secondhand summaries
+  of van der Blom's fifth-edition algorithm report put PDF documents at 2.2x to
+  3.4x the reach of text and image posts, against the 1.45x this repo's doctrine
+  cites from the 2024/2025 editions. PARKED rather than applied. The doctrine
+  file is not edited during a run, and a reach multiplier sourced from a
+  reseller's product page is not evidence. UNBLOCKING CONDITION is a fetched
+  primary, the report itself or vdB's own post carrying the figure and the
+  sample it came from. The direction of the change does not alter any decision
+  this machine makes, since documents are already the only format it ships.
