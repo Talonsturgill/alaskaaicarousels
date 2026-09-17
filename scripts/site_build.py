@@ -6068,7 +6068,11 @@ def _alt_clip(text, limit=160):
     # period as a boundary cut a good description back to "That is the U.S."
     # A token made of single letters joined by periods (U.S., e.g., i.e.) is an
     # abbreviation.
-    ABBREV = re.compile(r"(?:^|\s)(?:[A-Za-z]\.)+$")
+    # Single-letter runs (U.S., e.g., i.e.) AND ordinary title/rank
+    # abbreviations, whose periods are equally not sentence ends.
+    ABBREV = re.compile(
+        r"(?:^|\s)(?:(?:[A-Za-z]\.)+|(?:Mr|Mrs|Ms|Dr|Prof|Sen|Rep|Gov|Lt|Sgt|Capt|Col|Gen|Adm|Hon|St|Jr|Sr|Inc|Ltd|Co|Corp|Dept|Est|Fig|No|Vol|vs|etc|approx)\.)$",
+        re.IGNORECASE)
 
     # The cut landed exactly on a sentence end. Take it, and take it BEFORE
     # looking for an earlier one: 2026-07-15 slide 03 ends "...essential to the

@@ -551,14 +551,17 @@ def main():
                     _flat.setdefault("site_fixes", _v["fixes"])
 
         def _look(*keys):
-            for _src in (_art, _rs):          # every real key, before any fallback
-                for _k in keys:
+            # KEY-outer, source-inner. The keys are in priority order, so
+            # gas_watch_verdict (the LIVE audit) must be searched across every
+            # scope before gas_watch (the local page check) is searched in any.
+            # Looping sources first meant a local PASS sitting in artifacts
+            # still answered ahead of a live MAINTENANCE at the top level,
+            # which is the same incident-hiding bug in its third costume.
+            for _k in keys:
+                for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
                     if _v and not isinstance(_v, dict):
                         return _v
-            for _k in keys:
-                if _flat.get(_k):
-                    return _flat[_k]
             return None
 
         _substantive = 0
