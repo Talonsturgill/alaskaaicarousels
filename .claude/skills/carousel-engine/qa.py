@@ -3375,6 +3375,26 @@ def main():
                 f"span, the projected point); if the subject is a count, declare "
                 f"`points:` and let the frame do the counting")
 
+        # A MATERIAL FLAG THE SHADER WAS NEVER TOLD ABOUT (2026-09-17).
+        # render.py scans the source; this is the judgement. Run No.61 set
+        # vertexColors on a built material and never set needsUpdate, so the
+        # program stayed compiled without USE_COLOR and every deposit rendered
+        # white for a full revision round while every gate here read green. A
+        # FAIL, not a WARN, for the same reason the collapsed-box check is: the
+        # code says the drawing has a property the drawing does not have, and
+        # there is no picture for which that is correct.
+        for mf in rec.get("material_flags", []):
+            res["fails"].append(
+                f"a material flag the shader was never told about: "
+                f"{mf['receiver']}.{mf['flag']} is assigned at "
+                f"{mf['where']}:{mf['line']} after the material was built, and "
+                f"nothing sets {mf['receiver']}.needsUpdate afterwards. three.js "
+                f"compiles this property into the program at first build, so the "
+                f"flag is ignored and the material keeps drawing at its base "
+                f"state -- a silent wrong picture, not an error. Add "
+                f"{mf['receiver']}.needsUpdate = true, or pass the property in "
+                f"the constructor's options object")
+
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually
         # produces from it, and reads the slide's own comments for a direction

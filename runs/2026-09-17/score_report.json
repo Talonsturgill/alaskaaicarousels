@@ -1,0 +1,86 @@
+{
+  "run_date": "2026-09-17",
+  "carousel_no": 61,
+  "deck_title": "THE DRIFT LINE",
+  "scored_utc": "2026-09-17T14:30:00Z",
+  "revision_rounds": 4,
+  "threshold": 7.7,
+  "threshold_note": "iteration ladder rung 4+, whose note reads 'ship best version, flag shortfall in email'. The deck also clears the unrelaxed base threshold of 8.3, so there is no shortfall to flag on score.",
+  "weighted_total": 8.79,
+  "ship": true,
+  "hard_fails": [],
+  "hard_fail_history": [
+    {
+      "round": 4,
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "found": "a severed acceptance line in slide 06's dossier reading '... under the stakes', left by a careless string replace when the built-versus-proposed claim moved to slide 09",
+      "capped_at": 6.9,
+      "uncapped_was": 8.62,
+      "cleared": true,
+      "note": "the cap was bookkeeping, not artwork, and cost no re-render"
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 9,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(9x0.14)+(8x0.12)+(8x0.10)+(9x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 8.79",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "On slide 06, carve the lower half with the cornice, scour and crest relief the dossier promises instead of the near-flat gradient it currently carries, and feather the span label's veil out of existence, so the deck's declared highest-craft-density frame stops being its emptiest.",
+  "flow_critic_score": 7.8,
+  "editor_notes_for_email": [
+    "Scored 8.79 against a threshold of 7.7 (iteration ladder, four revision rounds). It also clears the unrelaxed 8.3, so there is no score shortfall to flag.",
+    "An earlier pass capped the deck at 6.9 on a single unfinished string in the storyboard, not on the artwork. It is repaired and the scorer re-swept every run artifact for placeholders and found none.",
+    "The weakest criterion is artwork craft at 7 of 10, and the named fix is slide 06's lower half. That frame is the deck's declared rest beat and its one frame with no data-in-art, by a decision recorded in the reconciliation with the arithmetic that forced it.",
+    "Gas Watch is WARN MAINTENANCE. The collector is healthy (run 35222216509 succeeded at 12:37 UTC and wrote today's record), but CINGSA's own published reading is from September 13th because Compressor B is down for required semiannual shut-in maintenance. Nothing was carried forward and no measurement was invented.",
+    "Two bookkeeping items the scorer raised were fixed before ship: slide 07's claim strip now carries C42 so it matches the claims index, and the storyboard's slide 09 section no longer prints the superseded sting REOPENED."
+  ]
+}
