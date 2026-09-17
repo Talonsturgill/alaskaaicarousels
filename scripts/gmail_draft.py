@@ -532,6 +532,13 @@ def main():
         # Left unpacked, str() of that dict lands in the table cell, the gas
         # watch reads as UNREPORTED although its line is right there, and the
         # "nothing needed repair" default prints over a real fixes entry.
+        # THE LIVE GAS WATCH VERDICT OUTRANKS THE LOCAL PAGE CHECK, ALWAYS.
+        # The structured record's gas_watch_line is the LOCAL once-over and can
+        # read "GAS WATCH: PASS" on a day the LIVE audit returned MAINTENANCE or
+        # FAIL. Letting the local line answer first would print PASS over an open
+        # incident in the maintainer's only report, which is the precise failure
+        # this whole section exists to prevent, so the flattened values are the
+        # LAST resort for every key and never merely the last source for one.
         _flat = {}
         for _src in (_art, _rs):
             _v = _src.get("site_signoff") or _src.get("site_sign_off")
@@ -544,11 +551,12 @@ def main():
                     _flat.setdefault("site_fixes", _v["fixes"])
 
         def _look(*keys):
-            for _k in keys:
-                for _src in (_art, _rs, _flat):
+            for _src in (_art, _rs):          # every real key, before any fallback
+                for _k in keys:
                     _v = _src.get(_k)
                     if _v and not isinstance(_v, dict):
                         return _v
+            for _k in keys:
                 if _flat.get(_k):
                     return _flat[_k]
             return None
@@ -556,7 +564,8 @@ def main():
         _substantive = 0
         _rows = []
         for _label, _keys in (("SITE SIGN-OFF", ("site_signoff", "site_sign_off")),
-                              ("GAS WATCH", ("gas_watch", "gas_watch_verdict")),
+                              # live verdict first, local line only if nothing live
+                              ("GAS WATCH", ("gas_watch_verdict", "gas_watch")),
                               ("SITE FIXES", ("site_fixes",))):
             _v = _look(*_keys)
             if _v and _keys[0] != "site_fixes":

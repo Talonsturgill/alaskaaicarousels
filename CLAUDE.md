@@ -67,14 +67,26 @@ which applies without a trust step.
 
 Be precise about what that file does and does not guarantee, because a false
 safeguard is worse than none. It is NOT a sandbox: `Bash` is allowed, and an
-interpreter runs anything. What it really enforces is its DENY list, and that
-list is where a rule belongs once it can be expressed there. Two of the
-never-do-this rules now live there instead of only in this document: SENDING
-mail (the Gmail send, forward and reply tools are denied outright, so DRAFT
-ONLY is checked rather than remembered) and writing a cron-written ledger. The
-rest, a push, a merge, a delete under `runs/`, are still prose here plus guards
-inside the scripts that do the work, which is the next best thing and is why
-`scripts/wrap_run.py` refuses any path under `runs/` that is not its own.
+interpreter runs anything. Its deny list has two kinds of entry and they are
+not equally strong.
+
+A TOOL-level deny is solid. The Gmail send, forward and reply tools are denied
+outright, so DRAFT ONLY is now checked rather than remembered: there is no
+other tool that sends and Bash has no credentials for one.
+
+A PATH-level deny is a seatbelt, not a lock, because a heredoc or `python3 -c`
+or `sed -i` reaches a path without ever consulting a Write rule. So the
+cron-written ledgers get a real guard as well as the deny entry:
+`scripts/ledger_guard.py` is a row in `gate_status.py`, it compares the shipped
+diff against the base branch, and it FAILS the run if any of those files moved.
+That catches the write however it was made and in time to stop the merge. It is
+the pattern to copy whenever a rule here has to be a guarantee: name it in the
+deny list for the easy cases, and enforce it in a check that runs on the
+artifact.
+
+A push, a merge and a delete under `runs/` are still prose here plus guards
+inside the scripts that do the work, which is why `scripts/wrap_run.py` refuses
+any path under `runs/` that is not its own.
 
 **A COMPOUND COMMAND IS JUDGED BY ITS RISKIEST PART** (2026-09-17, same run,
 second stop). The rule above was already written when No.61 stopped AGAIN, on
