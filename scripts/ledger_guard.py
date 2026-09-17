@@ -48,6 +48,12 @@ PROTECTED = [
     "ledger/power_utility.json",
     "ledger/watch.json",
     "config/gaswatch_model.json",
+    # The observed weather history behind the demand model, written by
+    # scripts/gaswatch_hdd.py inside .github/workflows/gaswatch-eia.yml. It was
+    # missed on the first pass and it is not hypothetical: the last commit to
+    # touch it came in on a routine run's PR, which is the exact leak this
+    # guard exists to close.
+    "config/gaswatch_hdd_history.json",
 ]
 
 REMEDY = (
@@ -74,25 +80,79 @@ def changed(base="origin/main"):
 
 
 def self_test():
-    """The guard has to be able to go red, or it is decoration."""
-    fails = []
-    for name, paths, want in (
-        ("no protected path changed reads clean", [], True),
-        ("a changed gas watch line is caught", ["ledger/gaswatch.jsonl"], False),
-        ("a changed model is caught", ["config/gaswatch_model.json"], False),
-        ("two at once are both reported", PROTECTED[:2], False),
-    ):
-        ok = not paths
-        if ok != want:
-            fails.append(name)
-        print("  [%s]   %s" % ("ok  " if ok == want else "FAIL", name))
-    # every protected path must be a real file, or the guard watches nothing
-    for p in PROTECTED:
-        exists = (REPO / p).exists()
-        print("  [%s]   %s is a real path" % ("ok  " if exists else "FAIL", p))
-        if not exists:
-            fails.append(p)
-    print("SELF-TEST: %d check(s), %d failure(s)" % (len(PROTECTED) + 4, len(fails)))
+    """The guard has to be able to go red, and the test has to prove it DOES.
+
+    The first version of this function asserted `ok = not paths` over a
+    hard-coded fixture and never called changed() at all, so it stayed green no
+    matter what the merge-base, the pathspec or the result parsing did. That is
+    the same mistake this repo just spent a day correcting elsewhere: a test
+    that shows the detector fires is not a test that the detector works. This
+    builds a real git repository in a temporary directory, commits a baseline,
+    edits protected and unprotected files, and runs the actual diff against it.
+    """
+    import tempfile
+    global REPO
+    fails, checks = [], 0
+
+    def check(name, got, want):
+        nonlocal checks
+        checks += 1
+        ok = got == want
+        if not ok:
+            fails.append("%s (got %r, wanted %r)" % (name, got, want))
+        print("  [%s]   %s" % ("ok  " if ok else "FAIL", name))
+
+    real_repo = REPO
+    with tempfile.TemporaryDirectory() as td:
+        sand = Path(td)
+        REPO = sand                                  # changed() reads REPO
+        try:
+            _git("init", "-q", "-b", "main")
+            _git("config", "user.email", "t@t"); _git("config", "user.name", "t")
+            for p in PROTECTED + ["scripts/keep.py", "docs/index.html"]:
+                f = sand / p
+                f.parent.mkdir(parents=True, exist_ok=True)
+                f.write_text("baseline\n")
+            _git("add", "-A"); _git("commit", "-qm", "baseline")
+            # Work on a BRANCH, the way a run does. Committing onto main itself
+            # makes the merge-base equal HEAD and every diff empty, which is
+            # how the first version of this test read green against a guard
+            # that was never asked anything.
+            _git("checkout", "-q", "-b", "work")
+
+            check("a clean tree reports nothing", changed("main")[0], [])
+
+            (sand / "scripts/keep.py").write_text("an ordinary edit\n")
+            (sand / "docs/index.html").write_text("a rebuilt page\n")
+            _git("add", "-A"); _git("commit", "-qm", "unprotected work")
+            check("editing unprotected files stays clean", changed("main")[0], [])
+
+            (sand / "ledger/gaswatch.jsonl").write_text("a hand-typed reading\n")
+            _git("add", "-A"); _git("commit", "-qm", "touch the gas watch")
+            check("a changed gas watch line is caught",
+                  changed("main")[0], ["ledger/gaswatch.jsonl"])
+
+            (sand / "config/gaswatch_model.json").write_text("{}\n")
+            _git("add", "-A"); _git("commit", "-qm", "touch the model")
+            check("two at once are both reported", sorted(changed("main")[0]),
+                  sorted(["ledger/gaswatch.jsonl", "config/gaswatch_model.json"]))
+
+            # every protected path must be reachable by the pathspec, or the
+            # guard silently watches nothing
+            for p in PROTECTED:
+                (sand / p).write_text("moved\n")
+            _git("add", "-A"); _git("commit", "-qm", "touch them all")
+            check("every protected path is detectable",
+                  sorted(changed("main")[0]), sorted(PROTECTED))
+        finally:
+            REPO = real_repo
+
+    for p in PROTECTED:                              # back in the real repo
+        check("%s is a real file here" % p, (REPO / p).exists(), True)
+
+    print("SELF-TEST: %d check(s), %d failure(s)" % (checks, len(fails)))
+    for f in fails:
+        print("  %s" % f)
     return 1 if fails else 0
 
 

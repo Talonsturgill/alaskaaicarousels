@@ -6089,7 +6089,15 @@ def _alt_clip(text, limit=160):
     # limit in every run ever shipped, ZERO land the cut on an abbreviation
     # period and ZERO have an abbreviation as their only boundary candidate.
     # Do not "fix" this without re-running that count.
-    if head[-1] in ".?!" and not (head[-1] == "." and ABBREV.search(head)):
+    # The character AFTER the limit has to be a boundary, or that period is
+    # inside a token rather than after one: "version 2.0" and "example.com"
+    # both put a period at the cut and neither ends a sentence, and the
+    # abbreviation test above does not see them because neither is a run of
+    # single letters. Without this the function returns "... 2." or
+    # "... example.", which is the same severed-token bug in a new costume.
+    if (head[-1] in ".?!"
+            and (len(t) <= limit or t[limit] in " \t\n")
+            and not (head[-1] == "." and ABBREV.search(head))):
         return head
 
     stop = -1

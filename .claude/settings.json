@@ -166,6 +166,8 @@
       "Edit(ledger/watch.json)",
       "Write(config/gaswatch_model.json)",
       "Edit(config/gaswatch_model.json)",
+      "Write(config/gaswatch_hdd_history.json)",
+      "Edit(config/gaswatch_hdd_history.json)",
       "Write(docs/videos/index.html)",
       "Edit(docs/videos/index.html)",
       "Write(docs/videos/videos.json)",

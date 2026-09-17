@@ -37,6 +37,12 @@ jobs:
         run: python3 scripts/ledger_guard.py --self-test
 
       - name: No cron-written ledger moved in this PR
+        env:
+          # base_ref is only populated for pull_request events, so a
+          # workflow_dispatch run would otherwise pass --base origin/ and the
+          # guard would exit 2 on "bad revision". Fall back to the repository's
+          # default branch, which is what a manual run means by "the base".
+          BASE: ${{ github.base_ref || github.event.repository.default_branch }}
         run: |
-          git fetch --no-tags origin "${{ github.base_ref }}"
-          python3 scripts/ledger_guard.py --base "origin/${{ github.base_ref }}"
+          git fetch --no-tags origin "$BASE"
+          python3 scripts/ledger_guard.py --base "origin/$BASE"
