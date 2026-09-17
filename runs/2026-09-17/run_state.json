@@ -19,7 +19,8 @@
     "ship": "in_progress",
     "upgrade": "pending",
     "gmail": "pending",
-    "retro": "pending"
+    "retro": "done",
+    "gmail_draft": "done"
   },
   "artifacts": {
     "plan": "out/2026-09-17/plan.md",
@@ -29,5 +30,8 @@
   },
   "gas_watch_verdict": "MAINTENANCE",
   "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",
-  "revision_rounds": 4
+  "revision_rounds": 4,
+  "gmail_draft_id": "r-2513932699700435699",
+  "merged_to_main": "3b724b5db712c5cd1fd316db9d9f35b5ee912a3f",
+  "status": "complete"
 }

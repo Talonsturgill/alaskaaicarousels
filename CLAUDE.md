@@ -56,6 +56,19 @@ allowlist stays scoped: it never covers a push, a merge, a send, a delete under
 `runs/`, or a write to a cron-written ledger, because those are the three
 things that are SUPPOSED to stop and ask.
 
+**A COMPOUND COMMAND IS JUDGED BY ITS RISKIEST PART** (2026-09-17, same run,
+second stop). The rule above was already written when No.61 stopped AGAIN, on
+its Phase 14 wrap: one bash line that synced `run_state.json` into `runs/` and
+then ran `rm .claude/WORKLOG.md`. Two harmless bookkeeping steps, but the
+prompt the owner saw named the whole line, and an allowlist entry for the safe
+half cannot rescue it. So a routine run does not chain shell steps when one of
+them is a delete, a move or a redirect over an existing file. Anything with a
+destructive step goes in a script, invoked as a single allowlisted `python3`
+call, with the guard written INTO the script where it can be tested. The wrap
+is `scripts/wrap_run.py`, and it is the pattern to copy: it writes two named
+files under one dated run directory, refuses every other path, and exits
+non-zero rather than improvising.
+
 Neither rule licenses weakening the stop hook. It is a real check and it did
 its job here.
 
