@@ -25,7 +25,7 @@ a 4.5 deck is not wrong about what it measures, it is silent about what broke.
 | # | defect | what the machine said | why nothing saw it |
 |---|---|---|---|
 | 1 | mesh rotation: the chassis stepped along (sin yaw, 0, cos yaw) and rotated every mesh by that same yaw, but three.js sends local X to (cos phi, 0, -sin phi), so they agree only at phi = yaw - 90 | PASS | rails ran perpendicular to their own line and read as diagonal bracing; every slat presented its 0.028 m edge, so the Restricted panel drew about 0.45 open against a printed 0.12. The deck's whole data-in-art mapping was inverted and rendered cleanly |
-| 2 | `mat.vertexColors = true` set after the material was built, with no `needsUpdate` | PASS | three.js compiles USE_COLOR at first build, so the flag was ignored and every deposit drew at the base colour, white, for a full round. Not an error, a wrong picture |
+| 2 | ~~`mat.vertexColors = true` set after the material was built, with no `needsUpdate`~~ WITHDRAWN, see the correction below | PASS | the deposits did draw white for a full round, but NOT for this reason. Measured after the fact: deleting the `needsUpdate` line changes nothing, 0 pixels on 4 slides |
 | 3 | three planes ending inside the frame: a 300 m ground plane whose edge fell at 150 m, a sky gradient whose last stop was not the fog colour, a drift carrier small enough to show its own rectangle | PASS | a full-width straight seam is a legitimate horizon to every gate here |
 | 4 | law-bearing gold and forget-me-not marks moved into 2D at hand-tuned constants | PASS | the move itself was right (it fixed the ink census and 432 px legibility); the marks then floated on open snow on four frames. `D.camera` and `D.snapToSilhouette` were written this run to fix it |
 | 5 | slide 05 spaced slats on a 5.4 px width, stroked them at 2.4, and `window.__akAssert` computed the open fraction from 5.4 | PASS, and cited as proof | the assertion agreed with the pitch and not with the picture. The deck's only measurable frame contradicted its own printed ratios under a green assertion row |
@@ -112,6 +112,53 @@ knowledge/FIELD_NOTES.md with source URLs, and logged in `scan_log`.
   are real and pre-existing; not touched here, because editing those files
   changes four render fingerprints for no pixel, and the instrument has no
   authority to fail anything. Worth a separate cleanup.
+
+## 4b. A CORRECTION TO THIS RETRO, MADE THE SAME DAY
+
+Nine Codex findings arrived on PR #373 five minutes after it merged, so they
+landed on `main` rather than on a reviewable branch. Six were real and are
+fixed. Two were wrong and were declined on measurement. One had already been
+fixed before the merge. The one that matters here retracts defect 2 above.
+
+**Defect 2 was a misdiagnosis, and upgrade 1 was built on it.** Codex objected
+that a material flag assigned before a material's FIRST RENDER needs no
+`needsUpdate`, because three.js compiles the program lazily. That is correct,
+and this run never tested the claim it made: the round-one "proof" only showed
+that deleting the line makes the SCANNER fire, which says nothing about pixels.
+Measured properly, by deleting `mat.needsUpdate = true` from `akdrift.js` and
+re-rendering the four drift-bearing slides:
+
+```
+slide-01: max diff 0   mean 0.000   pixels>3: 0 (0.000%)
+slide-06: max diff 0   mean 0.000   pixels>3: 0 (0.000%)
+slide-07: max diff 0   mean 0.000   pixels>3: 0 (0.000%)
+slide-09: max diff 0   mean 0.000   pixels>3: 0 (0.000%)
+```
+
+Zero. The line is a no-op in this chassis and the white drift had another
+cause, almost certainly the vertex colour attribute that was added in the same
+edit and got none of the credit. So the scanner matches the ordinary CORRECT
+sequence (construct, set the flag, build the mesh, render), and whether an
+assignment precedes first render is not decidable from source. It is now a
+WARN. A FAIL on an undecidable question blocks a correct deck, which is a worse
+failure than the one it was built to catch, and this house's own rule is that a
+run must never be stopped by its own plumbing.
+
+The lesson is narrower than "test your gates" and worth stating exactly: **a
+test that shows the DETECTOR fires is not a test that the DEFECT exists.** Both
+of this run's other declines were settled by measuring the artifact. This one
+shipped a hard gate on an unmeasured story about a bug, and a reviewer had to
+catch it.
+
+**Two findings declined, both on measurement.** Codex read the porosity
+polarity from the stale commit it reviewed, where it was `(sum(px)/len(px)) >
+thr`; the merged version already compares class populations and takes an
+explicit `--ink`. And it predicted hard top and bottom edges on `D.footAO`'s
+pool ellipses, on the premise that a Canvas2D gradient freezes the transform
+from creation time. It does not, the CTM applies at paint time. Measured in
+Chromium at `rx 150, ry 45`: alpha runs 252 at the centre, 127 midway, 8 just
+inside the top edge and 0 outside, against 3 at the unscaled right edge. A
+frozen circular gradient would have read about 178 at that edge.
 
 ## 5. WHAT IS NOT FIXED, AND IS A RECOMMENDATION RATHER THAN CODE
 
