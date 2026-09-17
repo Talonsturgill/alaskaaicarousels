@@ -535,6 +535,18 @@
       var h = peak * lens * (o.scale == null ? 1 : o.scale);
       h *= 0.82 + 0.34 * rnd(u * 0.07, 3.1, 4);    /* along-line variation */
       h += rnd(u * 0.5, 9.2, 3) * 0.05;            /* wind ripple */
+      /* THE DEPOSIT HAS ENDS AND THEY ARE NOT WALLS. The carrier is a
+       * rectangular plane, so the height field ran square off both ends of the
+       * line: slide 06 of run No.61 rendered a pale mass with a near vertical
+       * right edge dropping into fogged ground, which reads as a compositing
+       * seam and is the exact thing that frame's own dossier said to avoid, "a
+       * tapering lens with its own falloff, never an edge". Real drift stops
+       * where the fence stops, and it takes a few metres to do it. */
+      if (endTaper > 0.01) {
+        var e = Math.min(u + lenAlong / 2, lenAlong / 2 - u) / endTaper;
+        e = Math.min(1, Math.max(0, e));
+        h *= e * e * (3 - 2 * e);                  /* smoothstep, both ends */
+      }
       pos.setZ(i, h);
     }
     g.computeVertexNormals();
