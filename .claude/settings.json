@@ -68,7 +68,26 @@
       "Bash(curl:*)",
       "Bash(timeout:*)",
       "Bash(rm out/*)",
-      "Bash(rm -rf out/*)"
+      "Bash(rm -rf out/*)",
+      "Bash(rm .claude/WORKLOG.md)",
+      "Bash(rm -f .claude/WORKLOG.md)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(date:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(cut:*)",
+      "Bash(awk:*)",
+      "Bash(diff:*)",
+      "Bash(find:*)",
+      "Bash(jq:*)",
+      "Bash(touch:*)",
+      "Bash(git stash:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git cat-file:*)",
+      "Bash(git describe:*)",
+      "Bash(git remote:*)"
     ]
   }
 }
