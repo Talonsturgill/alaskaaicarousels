@@ -28,7 +28,8 @@
     "claims": "out/2026-09-17/claims.json",
     "gaswatch_health": "out/2026-09-17/gaswatch_health.json",
     "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",
-    "gas_watch": "MAINTENANCE"
+    "gas_watch": "MAINTENANCE",
+    "site_fixes": "alt text on 36 archive pages was being cut mid-word and is repaired; docs/ rebuilt and live."
   },
   "gas_watch_verdict": "MAINTENANCE",
   "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",
