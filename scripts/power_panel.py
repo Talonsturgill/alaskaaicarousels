@@ -395,14 +395,11 @@ state, so it shows which way prices are moving and not what any one utility char
 {spark}
 <div class="pwaxis"><span>{esc(month_name(pts[0][0]))}</span><span>{esc(month_name(pts[-1][0]))}</span></div>
 </div>
-<p class="pwnote" data-reveal>{esc(res["latest_label"])} is the most recent month EIA has
-published, out of {esc(gw.count(res["points"], "month"))} going back to
-{esc(month_name(res["first_period"]))}. The line is every month it has published for
-households since {esc(month_name(pts[0][0]))}, each one placed on its own date.
-<span class="pwtouch">Drag a finger along it to read any month exactly.</span><span class="pwpoint">Point
-along it, or tab to it and use the arrow keys, to read any month exactly.</span> This page
-states what the number did and never why, because the data can't say why, and it publishes no
-figure for a month that hasn't happened.</p>
+<p class="pwnote" data-reveal>EIA's latest household reading is
+{esc(res["latest_label"])}. The chart shows monthly prices since {esc(month_name(pts[0][0]))}.
+<span class="pwtouch">Drag along it to inspect a month.</span><span class="pwpoint">Point
+along it or use Tab and arrow keys to inspect a month.</span> These are observed prices
+only; the data doesn't explain why they changed.</p>
 {utilities_html()}
 <p class="pwnote" data-reveal>The decisions behind Alaska's grid are tracked on
 <a class="proselink" href="../docket/">the Alaska AI Docket</a>.</p>"""
@@ -416,12 +413,8 @@ def utilities_html():
     is now. Eleven retail systems, the boroughs each one serves, and what a
     household on it actually paid across a year.
 
-    The prices are not blended with the monthly series above them and the copy
-    says why. The state line is current to within about two months; Form 861 is
-    annual and the newest year is usually the year before last. Two figures on
-    the same page in the same unit is exactly the setup where a reader subtracts
-    one from the other and gets a number that means nothing, so each one carries
-    its own date in its own heading and the note says not to do it.
+    The monthly state series and annual utility prices carry their own dates
+    and are never blended. The owner removed the comparison warning paragraph.
 
     NO COMPARISON IS COMPUTED HERE, deliberately. Anchorage against the state
     average is the sentence this section is for and it is a sentence about two
@@ -455,14 +448,11 @@ def utilities_html():
                 f'<span class="bar" style="width:{cents / hi * 100:.0f}%"></span>'
                 f'</td></tr>')
 
-    left = d.get("not_shown", {}).get("short_form_filers")
     return f"""<h3 class="pwh3" data-reveal>What each utility charged in {d["data_year"]}</h3>
-<p class="pwnote" data-reveal>Alaska is not one grid. These are the
-{esc(gw.count(len(rows), "utility", "utilities"))} that reported a household price on the long
-form of the federal power survey, what a household on each one paid per kilowatthour across the
-year, and the boroughs each serves. It is a year of revenue divided by a year of sales, so it
-is an average of what was billed and not a tariff. Your own bill is the authority on your own
-rate.</p>
+<p class="pwnote" data-reveal>These {esc(gw.count(len(rows), "utility", "utilities"))}
+reported annual household prices and the boroughs they serve. Each price divides
+annual revenue by electricity sold, giving an average billed price, not a tariff.
+Your own utility bill is the authority on your rate.</p>
 <div class="pwu" data-reveal><table>
 <thead><tr><th>Utility and the boroughs it serves</th><th class="n hh">Households</th>
 <th class="n">Cents per kilowatthour</th></tr></thead>
@@ -470,13 +460,7 @@ rate.</p>
 <p class="pwnote" data-reveal>A household paid {esc(f'{low_u["sectors"]["residential"]["cents_per_kwh"]:.2f}')} cents
 on {esc(low_u["name"])} and {esc(f'{high_u["sectors"]["residential"]["cents_per_kwh"]:.2f}')} cents on
 {esc(high_u["name"])}. That spread is the reason the single state figure above answers almost
-nobody, and it is why this page shows both.</p>
-<p class="pwnote" data-reveal>Do not subtract one of these numbers from the other.
-{d["data_year"]} is the most recent year the federal power survey has published and the line
-above is monthly and much more current, so the two describe different periods as well as
-different things. {esc(gw.count(left, "smaller utility", "smaller utilities"))} file a short
-form that reports one figure across every kind of customer, and a household rate and an all
-customers rate are not the same measurement, so they are counted here and not listed above.</p>"""
+nobody, and it is why this page shows both.</p>"""
 
 
 def month_name(period):
@@ -596,15 +580,8 @@ def self_test():
         check("the boroughs each serves come with it", "Matanuska Susitna" in page)
         check("the annual year is stated on the table",
               f"charged in {u['data_year']}" in flat, str(u["data_year"]))
-        # The state line is monthly and near current, this is annual and two
-        # years back. A reader who subtracts one from the other gets a figure
-        # that describes nothing, so the page has to say so out loud.
-        check("it warns against subtracting one from the other",
-              "not subtract one of these numbers from the other" in flat)
         check("it says the figure is an average and not a tariff",
               "not a tariff" in flat)
-        check("the utilities left out are counted, not hidden",
-              "short form" in low)
         check("no cross year comparison is asserted", not any(
             p in low for p in ("less than the state", "more than the state",
                                "below the state average", "above the state average")))
