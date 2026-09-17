@@ -1740,11 +1740,15 @@ the showrunner's.
      run. DECLINE what is wrong, and decline it on MEASUREMENT rather than on
      argument, writing the measurement into the BUILD RECONCILIATION or the
      retro so a later run does not "fix" correct code.
-   - **Check which commit it reviewed.** It sometimes reports on a stale head,
-     and a finding already fixed in a later commit needs no second fix.
-   - **It will review your fixes too.** Re-push, wait for the new Completed,
-     and work that round as well. There is no round limit; repeated findings
-     mean fix the root cause.
+   - **Check which commit it reviewed.** The summary table names it and it is
+     often NOT your current head, so a finding already fixed in a later commit
+     needs no second fix.
+   - **A PUSH DOES NOT RE-TRIGGER IT.** Its triggers are a PR opening, a draft
+     marked ready, and the comment `@codex review`. After pushing fixes, post
+     `@codex review` and wait for the new Completed, or you are reading a
+     verdict on code you have already replaced.
+   - **It will review your fixes too**, and there is no round limit; repeated
+     findings on your own pushes mean fix the root cause rather than stop.
    - **If it has not completed after about fifteen minutes, merge anyway** and
      work whatever arrives afterwards as a follow-up PR. A stalled bot is not a
      reason to hold the day's deck, and the Gmail draft's URLs need the merge.

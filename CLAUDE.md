@@ -137,9 +137,16 @@ Work its findings like a colleague's, not like a linter's:
 - Verify each one before acting. Fix what is real, in the same run.
 - DECLINE what is wrong, on MEASUREMENT rather than argument, and write the
   measurement down so a later run does not "fix" correct code.
-- Check which commit it reviewed; it sometimes reports on a stale head.
-- It reviews your fixes too. Re-push, wait for the next Completed, work that
-  round. There is no round limit.
+- Check which commit it reviewed. The summary table names the commit, and it is
+  often NOT your current head.
+- **A PUSH DOES NOT RE-TRIGGER IT.** Its triggers are a PR opening, a draft
+  being marked ready, and the comment `@codex review`. So after pushing fixes,
+  post `@codex review` on the PR and wait for the new Completed; otherwise you
+  are reading a verdict on code you have already replaced. This cost 2026-09-17
+  a round of confusion, waiting for a review of a head that was never going to
+  be reviewed.
+- It reviews your fixes too, and there is no round limit. Repeated findings on
+  your own pushes mean fix the root cause rather than stop.
 
 The rule exists because 2026-09-17 merged three PRs the instant CI went green
 and collected THIRTEEN findings on `main` afterwards, on published code rather
