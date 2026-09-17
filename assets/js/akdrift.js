@@ -375,13 +375,28 @@
     cx.fillStyle = o.ink || D.P.shadow;
     var barW = period * (1 - duty);        /* the SLAT casts; the gap passes */
     var n = 0;
+    /* PERSPECTIVE, when the caller hands over its horizon (2026-09-17, No.61).
+     * Parallel bars of constant period are right for a short band and wrong for
+     * a ladder that runs to the bottom edge: ground scale is proportional to
+     * (y - horizonY), so real bars widen AND spread as they come at you, and a
+     * constant period reads as a printed stripe pattern rather than as light on
+     * snow. With horizonY given, every bar edge is carried down the ray from
+     * the vanishing point through its own start, which is what makes the set
+     * converge. Without it, the old parallel behaviour is unchanged. */
+    var hz = o.horizonY, k = 1;
+    if (hz != null && yTop > hz) k = (yBot - hz) / (yTop - hz);
+    var vpX = o.vpX == null ? (x0 + x1) / 2 - (yTop - (hz == null ? yTop : hz)) * skew : o.vpX;
+    function foot(x) {
+      if (hz == null || !(yTop > hz)) return x + (yBot - yTop) * skew;
+      return vpX + (x - vpX) * k;
+    }
     for (var x = x0; x < x1; x += period) {
       cx.globalAlpha = (o.alpha == null ? 0.55 : o.alpha) * (0.82 + 0.18 * Math.sin(x * 0.013));
       cx.beginPath();
       cx.moveTo(x, yTop);
       cx.lineTo(x + barW, yTop);
-      cx.lineTo(x + barW + (yBot - yTop) * skew, yBot);
-      cx.lineTo(x + (yBot - yTop) * skew, yBot);
+      cx.lineTo(foot(x + barW), yBot);
+      cx.lineTo(foot(x), yBot);
       cx.closePath();
       cx.fill();
       n++;
@@ -408,6 +423,20 @@
      * whole line outside the frustum and rendered a frame with no fence in it
      * and no error anywhere. */
     var yawRad = (90 - (o.yawDeg == null ? 14 : o.yawDeg)) * Math.PI / 180;
+    /* AND THE MESHES TURN BY A DIFFERENT NUMBER (2026-09-17, No.61). The line
+     * STEPS along (sin yaw, 0, cos yaw). A three.js mesh rotated by
+     * rotation.y = phi sends its local X to (cos phi, 0, -sin phi), and those
+     * two are the SAME direction only when phi = yaw - 90. Passing yawRad
+     * straight to rotation.y turns every mesh a quarter turn off the line it
+     * belongs to, and it rendered plausibly for a whole deck: the four rails
+     * per bay, whose length runs along local X, stabbed away from the camera
+     * and read as diagonal bracing (a critic called slide 04's gate "a tangle
+     * of heavy black diagonal beams"), and every slat presented its 0.028 m
+     * EDGE instead of its 0.055 m face, so the drawn open fraction was
+     * 1 - 0.028/pitch instead of 1 - 0.055/pitch. That is why the Restricted
+     * panel measured about 0.45 open against a printed 0.12: the frame's whole
+     * data-in-art mapping was inverted by a missing 90 degrees. */
+    var meshYaw = yawRad - Math.PI / 2;
     var z0 = o.z0 == null ? 0 : o.z0;
     var group = new THREE.Group();
     var timber = AKT.mat.clay(0x5D6B7C, { roughness: 0.86 });
@@ -427,7 +456,7 @@
       /* post */
       var post = new THREE.Mesh(new THREE.BoxGeometry(0.10, D.RAIL_H_M * 1.04, 0.10), timberDk);
       post.position.set(px, D.RAIL_H_M / 2, pz);
-      post.rotation.y = yawRad;
+      post.rotation.y = meshYaw;
       group.add(post);
       feet.push([px, 0, pz]);
 
@@ -455,7 +484,7 @@
         rail.position.set(px + Math.sin(yawRad) * D.BAY_PITCH_M / 2,
                           0.28 + r4 * 0.46,
                           pz + Math.cos(yawRad) * D.BAY_PITCH_M / 2);
-        rail.rotation.y = yawRad;
+        rail.rotation.y = meshYaw;
         group.add(rail);
       }
     }
@@ -463,7 +492,7 @@
       var inst = new THREE.InstancedMesh(slatGeo, timber, counts);
       var m = new THREE.Matrix4(), q = new THREE.Quaternion(),
           sc = new THREE.Vector3(1, 1, 1), v = new THREE.Vector3();
-      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), yawRad);
+      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), meshYaw);
       for (var i = 0; i < counts; i++) {
         v.set(slatXf[i][0], slatXf[i][1], slatXf[i][2]);
         m.compose(v, q, sc);
@@ -494,7 +523,9 @@
     for (var i = 0; i < 3; i++) {
       var lip = new THREE.Mesh(new THREE.BoxGeometry(0.42 - i * 0.1, 0.045, 0.05), gold);
       lip.position.set(o.x, 0.52 + i * 0.4, o.z);
-      lip.rotation.y = o.yawRad || 0;
+      /* the caller passes the LINE's yaw, the mesh turns by yaw - 90; see the
+       * note in D.fence for the quarter turn this cost a whole deck */
+      lip.rotation.y = (o.yawRad || 0) - Math.PI / 2;
       g.add(lip);
     }
     AKT.add(R, g);
@@ -520,6 +551,8 @@
     var reach = o.reach == null ? D.RAIL_H_M * 11 : o.reach;
     var peak = o.peak == null ? D.RAIL_H_M * 0.62 : o.peak;
     var segA = 180, segB = 40;
+    /* how many metres the deposit takes to die at each end of the line */
+    var endTaper = o.endTaper == null ? Math.min(7, lenAlong * 0.16) : o.endTaper;
     var g = new THREE.PlaneGeometry(lenAlong, reach, segA, segB);
     var pos = g.attributes.position;
     var rnd = (global.AK && AK.fbm2) ? AK.fbm2 : function () { return 0; };
@@ -582,7 +615,19 @@
     c.width = 8; c.height = 512;
     var xx = c.getContext("2d");
     var g = xx.createLinearGradient(0, 0, 0, 512);
-    var stops = o.sky || [[0, D.P.zenith], [0.44, D.P.skyMid], [0.86, D.P.haze], [1, "#20415F"]];
+    var stops = (o.sky || [[0, D.P.zenith], [0.44, D.P.skyMid], [0.86, D.P.haze], [1, D.P.haze]]).slice();
+    /* THE SKY'S LAST STOP IS THE FOG COLOUR, ALWAYS (2026-09-17, No.61).
+     * The ground plane is 300 m across and the fog closes at 120, so the ground
+     * is EXACTLY the fog colour long before its own far edge. The sky backdrop
+     * hangs behind that edge. If the gradient's bottom stop is any other hue,
+     * the two meet in a dead straight full width step with no physical cause:
+     * slide 01 shipped one at y 473 in #16304C against #20415F and a critic
+     * read it as a composite seam in the deck's largest soft gradient. Tying
+     * the stop to the fog argument makes the two unable to disagree, whatever
+     * a slide passes for the rest of the ramp. */
+    var fogArg = o.fog || [0x16304C, 34, 120];
+    var fogHex = "#" + ("000000" + (fogArg[0] >>> 0).toString(16)).slice(-6);
+    stops[stops.length - 1] = [stops[stops.length - 1][0], fogHex];
     for (var i = 0; i < stops.length; i++) g.addColorStop(stops[i][0], stops[i][1]);
     xx.fillStyle = g; xx.fillRect(0, 0, 8, 512);
     var tex = new THREE.CanvasTexture(c);
@@ -713,19 +758,96 @@
    */
   D.veil = function (cx, boxes, o) {
     o = o || {};
-    var pad = o.pad == null ? 10 : o.pad;
-    var off = D.offscreen(D.W, D.H);
-    off.cx.fillStyle = o.ink || "#040A14";
+    /* THE FEATHER IS SOLVED FROM THE BOX, NEVER FIXED (2026-09-17, No.61).
+     * The first version filled hard rectangles and blurred the whole sheet by
+     * a constant 16 px. On a 40 px line that is a soft wash; on slide 02's
+     * 240 px block under MAY it left four straight edges, and the critic
+     * called it the single most damaging craft defect on the frame, visible
+     * as a black box even in the 432 px thumb. A wash that is trying not to
+     * read as a plate cannot have a straight edge anywhere, at any size.
+     *
+     * So each box is drawn as a LOZENGE, inset by its own feather and blurred
+     * by it, which means the ink never reaches a corner and the falloff is
+     * always about as wide as the line is tall. The blur is set per box while
+     * it is drawn, so a mono kicker and a 186 px display word get the falloff
+     * each of them needs out of one call. */
+    var off = D.offscreen(D.W, D.H), ox = off.cx;
+    var ink = o.ink || "#040A14";
+    var placed = [];
     for (var i = 0; i < boxes.length; i++) {
       var b = boxes[i];
-      off.cx.fillRect(b[0] - pad, b[1] - pad, b[2] + pad * 2, b[3] + pad * 2);
+      var w = b[2], h = b[3];
+      if (!(w > 1 && h > 1)) continue;
+      var feather = o.feather == null
+        ? Math.max(16, Math.min(h * 0.60, w * 0.30)) : o.feather;
+      /* INSET, BUT NEVER MORE THAN A FIFTH OF EITHER SIDE. Insetting by the
+       * full feather on a long thin line box eats its two ends: the lozenge
+       * shrinks to the middle of the run and the blur tapers away before the
+       * first and last words, which is the same end-of-line weakness a radial
+       * reserve has. qa.py measured it as 4.3 at the ends of a 205 px line
+       * whose middle read 10.2. Give the box its own inset per axis. */
+      var ix = Math.min(feather * 0.5, w * 0.20);
+      var iy = Math.min(feather * 0.5, h * 0.20);
+      var x = b[0] + ix, y = b[1] + iy;
+      var ww = Math.max(2, w - ix * 2), hh = Math.max(2, h - iy * 2);
+      var r = Math.min(hh / 2, ww / 2);
+      ox.save();
+      ox.filter = "blur(" + feather.toFixed(1) + "px)";
+      ox.fillStyle = ink;
+      ox.beginPath();
+      if (ox.roundRect) {
+        ox.roundRect(x, y, ww, hh, r);
+      } else {
+        ox.moveTo(x + r, y);
+        ox.arcTo(x + ww, y, x + ww, y + hh, r);
+        ox.arcTo(x + ww, y + hh, x, y + hh, r);
+        ox.arcTo(x, y + hh, x, y, r);
+        ox.arcTo(x, y, x + ww, y, r);
+      }
+      ox.fill();
+      ox.restore();
+      placed.push([x, y, ww, hh, feather]);
     }
     cx.save();
     cx.globalCompositeOperation = "multiply";
     cx.globalAlpha = o.alpha == null ? 0.62 : o.alpha;
-    cx.filter = "blur(" + (o.blur == null ? 16 : o.blur) + "px)";
     cx.drawImage(off.canvas, 0, 0, D.W, D.H);
     cx.restore();
+    return placed;
+  };
+
+  /* ---- INK EXTENTS, NOT ELEMENT BOXES -----------------------------------
+   * getBoundingClientRect on a text block returns the BLOCK, so a two line ask
+   * whose longest line ends at x 690 hands back a box to x 885 and the veil
+   * under it overruns its own type by 195 px and reads as a third plate
+   * (slide 09, No.61). Range.getClientRects returns one rect per LINE BOX, at
+   * the width the line actually inked, which is the thing a wash is supposed
+   * to follow. Falls back to the element box when a node has no text.
+   */
+  D.inkBoxes = function (sel, pad) {
+    pad = pad == null ? 12 : pad;
+    var out = [], els = document.querySelectorAll(sel);
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i], got = 0;
+      try {
+        var rng = document.createRange();
+        rng.selectNodeContents(el);
+        var rects = rng.getClientRects();
+        for (var k = 0; k < rects.length; k++) {
+          var r = rects[k];
+          if (r.width < 2 || r.height < 2) continue;
+          out.push([r.left - pad, r.top - pad, r.width + pad * 2, r.height + pad * 2]);
+          got++;
+        }
+      } catch (e) { /* fall through to the element box */ }
+      if (!got) {
+        var b = el.getBoundingClientRect();
+        if (b.width > 1 && b.height > 1) {
+          out.push([b.left - pad, b.top - pad, b.width + pad * 2, b.height + pad * 2]);
+        }
+      }
+    }
+    return out;
   };
 
   /* ---- THE HOUSE GRADE, declared once ------------------------------------
