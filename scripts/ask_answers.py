@@ -190,6 +190,18 @@ AGENCY_RULES = [
       "federal highway")),
     (r"Administration for Native Americans", "ANA",
      ("ana", "administration for native americans", "hhs")),
+    # Added 2026-09-17 with the first University of Alaska item, the regents'
+    # draft AI policy, and the self-test caught it the same hour the item
+    # landed, the same way it caught the FCC one, the NMFS one and the DOT one:
+    # an item with no recognised agency, which is a reader asking who decided
+    # this and being handed nothing. The campus abbreviations are in the
+    # vocabulary as well as the body, because a reader is far likelier to type
+    # UAF than to type Board of Regents, and the standard that actually binds
+    # users today was issued by the Office of Information Technology rather
+    # than voted on by the regents, so both names have to reach the item.
+    (r"Board of Regents|University of Alaska", "the UA Board of Regents",
+     ("regents", "board of regents", "university of alaska", "uaa", "uaf",
+      "uas", "office of information technology")),
     (r"School District", "the Kenai school board",
      ("school board", "kpbsd", "school district", "board of education")),
     (r"^The President", "the President",

@@ -2855,10 +2855,10 @@ def scan_vacuous_asserts(html: str, name: str) -> list:
 # Inline scripts AND the house libraries the slide loads (assets/js/ak*.js) are
 # both read, because this defect lived in a shared chassis; vendored libraries
 # (three, d3, zdog, noise, topojson) are not house code and are not read.
-# Measured over the 58 slides and 14 house libraries on disk: 1 assignment
-# found, `akdrift.js` line 606, correctly paired with its needsUpdate, and 0
-# hits. The reconstruction with that one line deleted fires on all 6 slides
-# that load the chassis.
+# Measured over the 49 slides on disk (out/2026-09-17, examples/demo-deck, the
+# runs/2026-09-1x decks): 1 assignment found, `akdrift.js` line 606, correctly
+# paired with its needsUpdate, and 0 hits. The reconstruction with that one line
+# deleted fires on all 9 slides of this run's deck, and qa.py FAILs them.
 MATERIAL_RECOMPILE_FLAGS = [
     "vertexColors", "flatShading", "fog", "map", "alphaMap", "aoMap",
     "bumpMap", "displacementMap", "emissiveMap", "envMap", "lightMap",
