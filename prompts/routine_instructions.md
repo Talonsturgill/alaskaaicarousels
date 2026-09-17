@@ -228,6 +228,28 @@ artifact existing. If the session restarts, resume from run_state.
    carry that instruction across sessions except hoping the next run's operator
    remembered.
 
+0.5. **IS THIS A NEW DAY, OR A RE-FIRE?** Run `python3 scripts/run_guard.py`
+   BEFORE bootstrap. A firing is not always a new day: on 2026-09-17 the
+   schedule delivered its stored prompt again minutes after that day's run had
+   already merged to main and drafted its email, because the first firing was
+   interrupted during its wrap.
+
+   - exit 0, CLEAR: proceed to step 1. This is a new day.
+   - exit 3, ALREADY_SHIPPED: **do not start a second deck for this date.**
+     Drawing the same day twice would put two entries in topics.json for one
+     day, collide on `runs/<date>/`, and leave two decks in a mailbox whose job
+     is to hold one postable deck per day. Instead: finish whatever is still
+     outstanding (open PRs to green and merged, the Phase 3.6 site and gas
+     watch checks, the docket), report what you found, and stop.
+   - exit 1, PARTIAL: some of the run landed and some did not. RESUME the
+     unfinished phases from the evidence on disk. Do not start over, and do not
+     treat a partial run as a clean slate.
+
+   A duplicate is not an empty run and the two must never be confused. NO EMPTY
+   RUNS is about a day that has no deck. ALREADY_SHIPPED is a day that already
+   has one, and the honest move there is to finish the outstanding work rather
+   than manufacture a second deliverable to look busy.
+
 1. `bash .claude/skills/carousel-engine/bootstrap.sh`
 2. Read the three ledgers + all knowledge/config files listed above.
 3. carousel_no = number of entries in ledger/topics.json + 1.
