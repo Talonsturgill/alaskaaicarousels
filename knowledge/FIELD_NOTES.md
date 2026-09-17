@@ -7,6 +7,41 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-17, Phase 12 frontier scan (d): typography and layout craft. ONE PARK AMENDED, one null reconfirmed for the fourth time.
+
+The stalest legal slot (last read September 7th) and distinct from the last
+three foci, which were (g), (b) and (f). Six searches, three fetches, and the
+honest result is that this slot is now well mined: the scan found no new
+technique, and its value was in AMENDING a park that is already here.
+
+- **PARK AMENDED (from September 7th): optical margin alignment now has a
+  shipped reference implementation to check ours against.** The park stands as
+  written, and the route is confirmed: no browser route exists, because Chromium
+  still does not support `hanging-punctuation`, and the numbers come from
+  `measureText().actualBoundingBoxLeft/Right`. What is new is that somebody has
+  built it in the open, so a house `AK.inkAlign()` can be diffed against a
+  working one instead of derived from scratch: Liiift-Studio/OpticalMargin
+  measures each punctuation glyph's hang from canvas metrics rather than from a
+  lookup table (the overhang is advance width minus visual bounds) and applies
+  it as a negative margin, which is exactly the shape the September 7th note
+  described. https://github.com/Liiift-Studio/OpticalMargin ,
+  https://opticalmargin.com/ , https://fonts.google.com/knowledge/using_type/working_with_hanging_punctuation
+  Still parked for the same reason: it is a visual change with no defect behind
+  it, and this run's three upgrade slots went to reactive fixes, all three of
+  which were about defects that rendered a plausible frame and reported nothing.
+
+- **RECONFIRMED NULL (fourth time): `text-wrap: balance` and `pretty`.** Nothing
+  has changed since July 9th, August 20th and September 7th. `balance` is still
+  capped at six lines in Chromium and `pretty` still only prevents last-line
+  orphans and consecutive end-of-paragraph hyphens; neither is a line-break rule
+  and neither is a substitute for measuring where the break landed. Firefox
+  support is irrelevant to an engine that renders in headless Chromium.
+  https://developer.chrome.com/blog/css-text-wrap-pretty ,
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-style
+  This slot should rotate away from CSS wrapping; four nulls is an answer.
+
+---
+
 ## 2026-09-07, Phase 12 frontier scan (d): typography and layout craft. TWO PARKED, one reconfirmed null.
 
 The stalest legal slot (last read 2026-08-31) and the right one for this run:

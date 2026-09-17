@@ -2391,6 +2391,46 @@
       "verification": "The file still parses as YAML and its five top-level keys are unchanged plus the new one. The four raw-text URLs named in the entry were each fetched successfully during this run, on 2026-18738, 2026-18151, 2026-18370 and 2026-18165.",
       "rollback": "Restore the previous federalregister.gov and sam.gov entries and delete the keyless_primary_routes block. Nothing reads that block programmatically; it is a record for the scouts' briefs.",
       "commit": "9940fe3272e9b93dd7631c4a161b032aabf6a215"
+    },
+    {
+      "run_date": "2026-09-17",
+      "kind": "fix",
+      "area": "engine",
+      "change": "A MATERIAL FLAG THE SHADER WAS NEVER TOLD ABOUT. render.py gains scan_material_flags(): a recompile-triggering three.js material property (vertexColors, flatShading, fog, the map slots, alphaTest, blending, premultipliedAlpha, combine) assigned as a STATEMENT after the material was built, with no needsUpdate on the same receiver later in the same file, is recorded per slide; qa.py turns each one into a FAIL. It reads inline scripts AND the house libraries the slide loads (assets/js/ak*.js), because the defect lived in a shared chassis, and skips vendored libraries. Narrowed to receivers whose last identifier segment looks like a material, so scene.fog and an options object's map are never judged; the constructor's object-literal form has no '=' and can never match.",
+      "trigger": "Run No.61 set mat.vertexColors = true on a built clay material in assets/js/akdrift.js and never set needsUpdate. three.js compiles USE_COLOR into the program at first build, so the flag was ignored and every deposit in the deck rendered at the material's base colour, white, a bright slab with a hard edge, for a full revision round. render 9/9 OK with 0 page errors and qa.py PASS with 0 fails and 0 warns on that deck: a wrong picture, not an error, and nothing in the machine could see a flag that had been set and never applied.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py"
+      ],
+      "verification": "Corpus: scan_material_flags over the 49 slides on disk (out/2026-09-17, examples/demo-deck, runs/2026-09-1x) finds 1 assignment, akdrift.js:606, correctly paired with its needsUpdate, and reports 0 hits. Pipeline: render.py + qa.py on out/2026-09-17/slides -> 9/9 OK, 0 page errors, 0 overflow warnings, verdict PASS, 0 fails, 0 warns (unchanged); on examples/demo-deck/slides -> 4/4 OK, verdict WARN, 0 fails, the same busy-art warns that deck has always carried. RECONSTRUCTION: with the single line 'mat.needsUpdate = true;' deleted from assets/js/akdrift.js, render prints '[material] slide-01.html: mat.vertexColors at assets/js/akdrift.js:606 with no needsUpdate' and qa.py returns FAIL, fails=1; the source-level scan fires on 9 of 9 slides. The chassis was restored byte for byte afterwards.",
+      "rollback": "NOTE ON ISOLATION: the showrunner committed concurrently while Phase 12 was working, so the CODE of this upgrade set was swept into ship(2026-09-17) 93c5677 (and a comment fix into 74e6a18) rather than into the upgrade(2026-09-17) commit, which carries the ledger and the field notes. Reverting that commit will NOT roll this back; roll back by the named edit below, which is self-contained. delete scan_material_flags/_scan_material_flags_js and the two wiring lines in render.py (rec['material_flags'], the default dict key) and the material_flags loop in qa.py. No slide authoring depends on it.",
+      "commit": "93c5677 (code, swept by a concurrent ship commit) + the upgrade(2026-09-17) commit (ledger, field notes, retro)"
+    },
+    {
+      "run_date": "2026-09-17",
+      "kind": "fix",
+      "area": "gates",
+      "change": "A SUBHEADING IS PART OF THE SECTION. gate_status.reconciliation_section() used to end the BUILD RECONCILIATION body at the next markdown heading of ANY level; it now ends at the next heading of the SAME OR HIGHER level, which is what markdown nesting means. Two self-test checks added.",
+      "trigger": "Run No.61 wrote its reconciliation with ### subheads under a ## heading, so the gate read the first three lines only and the reconciled row WARNed on a complete section. The run flattened its subheads to bold under revision pressure to get past it. The gate was wrong, not the storyboard, and this is a trap for the next author.",
+      "files": [
+        "scripts/gate_status.py"
+      ],
+      "verification": "python3 scripts/gate_status.py --self-test -> 27 checks, 0 failures, including the two new ones: 'a section written with ### subheads is read whole' (PASS, 5 lines) and 'the same section truncated at its first subhead still fails' (FAIL). NOT a loosening: the change can only ever read MORE of a section than before, so nothing that used to FAIL can start passing on a shorter body, and every pre-existing check (the No.39 absence case, the empty case, the No.49 boilerplate case, the later-empty-section case) still holds.",
+      "rollback": "NOTE ON ISOLATION: the showrunner committed concurrently while Phase 12 was working, so the CODE of this upgrade set was swept into ship(2026-09-17) 93c5677 (and a comment fix into 74e6a18) rather than into the upgrade(2026-09-17) commit, which carries the ledger and the field notes. Reverting that commit will NOT roll this back; roll back by the named edit below, which is self-contained. restore the three-line loop that breaks on ANY_HEAD_RE and drop the two self-test checks.",
+      "commit": "93c5677 (code, swept by a concurrent ship commit) + the upgrade(2026-09-17) commit (ledger, field notes, retro)"
+    },
+    {
+      "run_date": "2026-09-17",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/measure_frame.py, a measuring instrument for answering a critic's claim about a frame. 'porosity' reads the open fraction of a region straight off a render in luminance runs (Otsu split inside the region, so there is no threshold to tune; region quoted in design px; --ink names which class is the mark, because a panel 0.12 open and one 0.88 open are the same pixels read two ways) and reports open fraction, row median, and median mark / gap / pitch in design px. 'glyphs' sweeps any set of sources for curly quotes, en and em dashes, ellipses, raw non-breaking spaces and emoji-class symbols, with file, line, column and codepoint. No thresholds, nothing in the pipeline depends on it, and it never exits 1: it is not a gate and must not read like one.",
+      "trigger": "A round-two pixel verdict in run No.61 hard-failed slide 05 for inverted porosity and reported curly apostrophes in the copy. Both were wrong, and proving it cost two hand-improvised measurements mid revision round plus a BUILD RECONCILIATION note so the next run would not 'fix' a correct drawing. A measurement that expensive gets skipped, and a skipped measurement means the critic wins by assertion.",
+      "files": [
+        "scripts/measure_frame.py"
+      ],
+      "verification": "Reproduces both halves of this run's decline from a committed command. porosity on the shipped out/2026-09-17/render/slide-05.png, all three panels at --ink light: 0.6216 against a printed 0.62, 0.2637 against 0.28, 0.1153 against 0.12, every one within 0.017, which matches the 0.016 the run measured by hand. glyphs over the nine shipped slides: 0 findings. glyphs over itself: 0 findings (the banned characters are keyed by codepoint so the file cannot trip its own sweep). glyphs over examples/demo-deck/slides: 5 em dashes, all in HTML comments, all real and pre-existing, left alone and noted in the retro.",
+      "rollback": "NOTE ON ISOLATION: the showrunner committed concurrently while Phase 12 was working, so the CODE of this upgrade set was swept into ship(2026-09-17) 93c5677 (and a comment fix into 74e6a18) rather than into the upgrade(2026-09-17) commit, which carries the ledger and the field notes. Reverting that commit will NOT roll this back; roll back by the named edit below, which is self-contained. delete scripts/measure_frame.py. Nothing imports it and no gate calls it.",
+      "commit": "93c5677 (code, swept by a concurrent ship commit) + the upgrade(2026-09-17) commit (ledger, field notes, retro)"
     }
   ],
   "scan_log": [
@@ -2757,6 +2797,13 @@
         "https://futureagi.com/blog/self-improving-ai-agent-pipeline/",
         "https://www.velsof.com/ai-automation/ai-agent-continuous-evaluation/"
       ]
+    },
+    {
+      "run_date": "2026-09-17",
+      "focus": "(d) typography and layout craft. The stalest legal slot, last read September 7th, and distinct from the last three logged foci: 2026-09-15 (f) self-improving pipelines, 2026-09-14 (b) editorial dataviz, 2026-09-13 (g) accessibility and document formats.",
+      "searches": 6,
+      "found": "No new technique, and the honest read is that this slot is now well mined. (1) The September 7th park on OPTICAL MARGIN ALIGNMENT is amended rather than replaced: the route is reconfirmed (Chromium still does not support hanging-punctuation, so the numbers come from measureText().actualBoundingBoxLeft/Right), and what is new is a shipped open implementation to diff a house AK.inkAlign() against instead of deriving it from scratch, measuring each punctuation glyph's hang from canvas metrics rather than a lookup table, the overhang being advance width minus visual bounds. https://github.com/Liiift-Studio/OpticalMargin , https://opticalmargin.com/ , https://fonts.google.com/knowledge/using_type/working_with_hanging_punctuation (2) RECONFIRMED NULL for the fourth time: text-wrap balance and pretty. balance is still capped at six lines in Chromium and pretty still only prevents last-line orphans and consecutive end-of-paragraph hyphens, so neither is a line-break rule. https://developer.chrome.com/blog/css-text-wrap-pretty , https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap-style Four nulls is an answer; this slot should rotate away from CSS wrapping.",
+      "outcome": "parked / nothing applied (knowledge/FIELD_NOTES.md, 2026-09-17 entry, with source URLs and why). All three upgrade slots went to reactive fixes, which is the ordering the phase requires: every one of this run's five hard findings rendered a plausible frame and reported nothing."
     }
   ]
 }
