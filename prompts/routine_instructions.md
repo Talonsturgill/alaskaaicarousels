@@ -1725,6 +1725,13 @@ the showrunner's.
    branch by now, so this is the run's single merge. If CI is red, fix it and
    re-push; a red run does not merge (FAILURE PROTOCOL).
 
+   **Re-run `python3 scripts/ledger_guard.py` immediately before the merge.**
+   The gate battery ran it back in Phase 11, and this phase has committed
+   upgrades and review fixes since, so that reading is about a diff that is no
+   longer the one shipping. The `cron ledgers` workflow checks the PR head for
+   the same reason and is the backstop if this step is skipped; a run should not
+   need the backstop.
+
    **CODEX REVIEWS EVERY PR IN THIS REPO, AUTOMATICALLY, AND IT IS SLOWER THAN
    CI.** Green checks are not a finished review. Its review posts a comment
    headed "Codex Review Summary" carrying a table that reads Running and then

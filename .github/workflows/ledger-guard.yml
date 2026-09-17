@@ -1,0 +1,42 @@
+name: cron ledgers
+
+# The six files below are written by their own scheduled workflows and never by
+# a routine run. gate_status.py carries a ledger_guard row, but that gate runs
+# at Phase 11 and the run keeps committing afterwards: Phase 12 lands the
+# automation upgrades and any review-driven fixes, and nothing re-checked the
+# diff that actually merges. A guard that inspects an intermediate state is not
+# guarding the artifact.
+#
+# So it runs here too, on the PR head, with no path filter. It is one git diff
+# and it costs a few seconds, and running it unconditionally means the check is
+# always present on the PR rather than appearing only when something is already
+# wrong. A scheduled collector committing to main is a push and not a pull
+# request, so the legitimate writers are never caught by this.
+#
+# ledger/gaswatch.jsonl is the reason this exists. CINGSA keeps no archive, so
+# a day overwritten is a day gone, and that is the one irreversible failure
+# this project has.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ledgers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # the guard diffs against the merge-base
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: The guard can still go red
+        run: python3 scripts/ledger_guard.py --self-test
+
+      - name: No cron-written ledger moved in this PR
+        run: |
+          git fetch --no-tags origin "${{ github.base_ref }}"
+          python3 scripts/ledger_guard.py --base "origin/${{ github.base_ref }}"

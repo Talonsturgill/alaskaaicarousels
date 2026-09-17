@@ -6076,6 +6076,19 @@ def _alt_clip(text, limit=160):
     # search below would otherwise cut it back. The abbreviation test applies
     # here too, or a prefix ending "... U.S." with the sentence still running
     # would be accepted as complete on exactly this shortcut.
+    #
+    # A REVIEW FINDING DECLINED HERE, ON MEASUREMENT (2026-09-17). The converse
+    # case is real: a sentence that genuinely ENDS in "U.S." is rejected by this
+    # test and falls back to a word-boundary clip. Two reasons it stays. English
+    # does not distinguish the two without a parser ("the U.S. Geological
+    # Survey" against "he returned to the U.S. Later..."), and the two errors
+    # are not equally bad: reading an abbreviation as a sentence end published
+    # the nonsense "That is the U.S.", while reading a real ending as an
+    # abbreviation only costs a tidier boundary and still returns whole words.
+    # And it has never once come up: over the 490 alt sources longer than the
+    # limit in every run ever shipped, ZERO land the cut on an abbreviation
+    # period and ZERO have an abbreviation as their only boundary candidate.
+    # Do not "fix" this without re-running that count.
     if head[-1] in ".?!" and not (head[-1] == "." and ABBREV.search(head)):
         return head
 
