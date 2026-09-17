@@ -6062,9 +6062,28 @@ def _alt_clip(text, limit=160):
     if len(t) <= limit:
         return t
     head = t[:limit]
-    stop = max(head.rfind(". "), head.rfind("? "), head.rfind("! "))
+
+    # The cut landed exactly on a sentence end. Take it, and take it BEFORE
+    # looking for an earlier one. The first version of this function missed
+    # this case and threw away a whole good sentence: 2026-07-15 slide 03 ends
+    # "...essential to the nation's economy and its security." at exactly 160
+    # characters, and the search below then cut it back to "That is the U.S."
+    if head[-1] in ".?!":
+        return head
+
+    # An abbreviation's period is not a sentence end. "That is the U.S.
+    # Geological Survey count" contains ". " and is one sentence; treating that
+    # period as a boundary is what produced the regression above. A token made
+    # of single letters joined by periods (U.S., e.g., i.e.) is an abbreviation.
+    ABBREV = re.compile(r"(?:^|\s)(?:[A-Za-z]\.)+$")
+    stop = -1
+    for m in re.finditer(r"[.?!] ", head):
+        if head[m.start()] == "." and ABBREV.search(head[:m.start() + 1]):
+            continue
+        stop = m.start()
     if stop > limit * 0.5:
         return head[:stop + 1]
+
     sp = head.rfind(" ")
     out = (head[:sp] if sp > 0 else head).rstrip(",;:")
     # Drop a trailing function word. Cutting on a word boundary already fixes

@@ -527,12 +527,30 @@ def main():
         # site sign-off of WARN and a gas watch of MAINTENANCE. A reporting
         # section that omits the warning and still looks complete is the one
         # failure mode this section exists to prevent.
+        # Some runs stored the whole sign-off as ONE dict instead of three
+        # scalars: runs/2026-08-25 has {line, gas_watch_line, eye_check, fixes}.
+        # Left unpacked, str() of that dict lands in the table cell, the gas
+        # watch reads as UNREPORTED although its line is right there, and the
+        # "nothing needed repair" default prints over a real fixes entry.
+        _flat = {}
+        for _src in (_art, _rs):
+            _v = _src.get("site_signoff") or _src.get("site_sign_off")
+            if isinstance(_v, dict):
+                if _v.get("line"):
+                    _flat.setdefault("site_signoff", _v["line"])
+                if _v.get("gas_watch_line"):
+                    _flat.setdefault("gas_watch", _v["gas_watch_line"])
+                if _v.get("fixes"):
+                    _flat.setdefault("site_fixes", _v["fixes"])
+
         def _look(*keys):
             for _k in keys:
-                for _src in (_art, _rs):
+                for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
-                    if _v:
+                    if _v and not isinstance(_v, dict):
                         return _v
+                if _flat.get(_k):
+                    return _flat[_k]
             return None
 
         _substantive = 0

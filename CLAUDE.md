@@ -59,10 +59,22 @@ So the standing rule is: never hand control back, and never do the thing that
 invites the harness to hand control back for you. Everything this routine does
 on every run is allowlisted in `.claude/settings.json`; when a run meets a
 prompt anyway, the fix is to add the rule to that file in the same run, commit
-it, and carry on, so the next run cannot be stopped by the same plumbing. The
-allowlist stays scoped: it never covers a push, a merge, a send, a delete under
-`runs/`, or a write to a cron-written ledger, because those are the three
-things that are SUPPOSED to stop and ask.
+it, and carry on, so the next run cannot be stopped by the same plumbing. That
+file is TRACKED, and that matters more than it sounds: this routine wakes in a
+fresh container cloned from the repo, so a rule that is not committed does not
+exist on the run that needs it. `bootstrap.sh` mirrors it to the local scope,
+which applies without a trust step.
+
+Be precise about what that file does and does not guarantee, because a false
+safeguard is worse than none. It is NOT a sandbox: `Bash` is allowed, and an
+interpreter runs anything. What it really enforces is its DENY list, and that
+list is where a rule belongs once it can be expressed there. Two of the
+never-do-this rules now live there instead of only in this document: SENDING
+mail (the Gmail send, forward and reply tools are denied outright, so DRAFT
+ONLY is checked rather than remembered) and writing a cron-written ledger. The
+rest, a push, a merge, a delete under `runs/`, are still prose here plus guards
+inside the scripts that do the work, which is the next best thing and is why
+`scripts/wrap_run.py` refuses any path under `runs/` that is not its own.
 
 **A COMPOUND COMMAND IS JUDGED BY ITS RISKIEST PART** (2026-09-17, same run,
 second stop). The rule above was already written when No.61 stopped AGAIN, on
