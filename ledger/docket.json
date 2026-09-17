@@ -3387,6 +3387,78 @@
           "note": "Added from the borough's own legislative record, which stores the title as an ordinance amending borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands, sponsored by the mayor, with a hearing noted for October 20th. The record shows an introduction date of September 3rd, an agenda date of September 15th, a status of New Business in the Policies and Procedures Committee, and no passage date. The ordinance text itself is stored as an attachment this record does not render, so nothing is recorded here about what the new section would require."
         }
       ]
+    },
+    {
+      "id": "ua-regents-ai-policy",
+      "title": "The University of Alaska's AI policy",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "University of Alaska Board of Regents",
+      "public_access": "indirect",
+      "access_note": "There is no comment room on this one yet. The university says it plans listening sessions and online surveys this fall, and as of September 16th no session dates had been scheduled. The document binding users today is a security standard issued through the Office of Information Technology rather than anything the regents have voted on, and it has been in effect since January 2025. It applies to the UA System and all users of UA computing resources, and violations may subject employees to disciplinary action up to and including termination and students to disciplinary action including expulsion.",
+      "summary": "A mandatory University of Alaska security standard has governed generative AI use across the system since January 2025, while the university's own guidance page, last updated March 11th, 2025, still says UA System regulations are currently under development. University leadership plans to submit a finalized draft artificial intelligence policy for approval at the November regents meeting, which KTOO reports would require all three campuses to develop AI plans for their communities.",
+      "key_dates": [
+        {
+          "date": "2025-01-01",
+          "label": "UA Generative AI Security Standard takes effect, dated January 2025 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2025-03-11",
+          "label": "The GenAI policies and guidelines page carries its last update stamp",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-16",
+          "label": "KTOO reports the Board of Regents reviewed a draft AI policy at a meeting at UAS",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-01-01",
+          "label": "The security standard's own next scheduled review, January 2027 with no day given",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "University of Alaska System, Fairbanks",
+        "lon": -147.8262,
+        "lat": 64.8586
+      },
+      "sources": [
+        {
+          "url": "https://www.alaska.edu/oit/policies-standards/generative-ai.php",
+          "outlet": "University of Alaska Office of Information Technology",
+          "date": "2025-03-01"
+        },
+        {
+          "url": "https://www.alaska.edu/ai/policies/",
+          "outlet": "University of Alaska",
+          "date": "2025-03-11"
+        },
+        {
+          "url": "https://www.alaska.edu/bor/policy-regulations/index.php",
+          "outlet": "University of Alaska Board of Regents",
+          "date": "2026-09-17"
+        },
+        {
+          "url": "https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/",
+          "outlet": "KTOO",
+          "date": "2026-09-16"
+        },
+        {
+          "url": "https://www.uaa.alaska.edu/news/archive/2026/09/building-uaa-we-love.cshtml",
+          "outlet": "University of Alaska Anchorage",
+          "date": "2026-09-10"
+        }
+      ],
+      "first_seen": "2026-09-17",
+      "last_updated": "2026-09-17",
+      "history": [
+        {
+          "date": "2026-09-17",
+          "note": "Tracked. Two instruments govern artificial intelligence at the University of Alaska and only one of them binds anybody today. The UA Generative AI Security Standard took effect in January 2025, was updated in March 2025, supplements Board of Regents Policy and Regulation R02.07, and sets its own next review for January 2027. It applies to the UA System and all users of UA computing resources. It does not forbid Internal or Restricted data from generative AI, it requires such use to meet published requirements for data storage, computing environments and model deployment. The university's GenAI policies and guidelines page, stamped March 11th, 2025, says UA System regulations are currently under development and leaves classroom and research rules to individual universities and departments. KTOO reported on September 16th that the Board of Regents reviewed a draft AI policy at a meeting at UAS and that leadership plans to submit a finalized draft for approval in November. No date for that meeting is published where it could be read today, so none is recorded here."
+        }
+      ]
     }
   ]
 }
