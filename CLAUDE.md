@@ -8,14 +8,22 @@ reviews it pixel by pixel, and delivers a post-ready Gmail draft.
 
 ## Work in progress
 
-If `.claude/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and
-progress ledger for a long multi-context task, written to survive context
-compaction: the approved scope, the measured reason behind each decision, a
-file map, and a per-task status table. Resume from that table and update it
-after every commit. Delete the file when its wrap tasks are all DONE.
+The worklog lives at `out/<date>/WORKLOG.md`. If one exists for the run you are
+on, READ IT FIRST. It is the durable plan and progress ledger for a long
+multi-context task, written to survive context compaction: the approved scope,
+the measured reason behind each decision, a file map, and a per-task status
+table. Resume from that table and update it after every commit. Delete it when
+its wrap tasks are all DONE (`scripts/wrap_run.py` does this).
 
 Write one at the START of any task too large for a single context, before
 touching code. A plan that lives only in context does not survive compaction.
+
+IT GOES IN `out/`, NOT IN `.claude/` (2026-09-17, owner, after the third
+permission prompt of one run). `out/` is this routine's scratch, it is
+gitignored, and it is allowlisted wide open, so writing there can never raise
+a prompt. `.claude/` is configuration, tools treat it as sensitive, and a run
+that stops to ask about its own scratch file is a failed run. Older runs wrote
+`.claude/WORKLOG.md`; if you find one there, read it, then move it.
 
 ## A ROUTINE RUN NEVER YIELDS AND NEVER SITS DIRTY (2026-08-29, owner)
 
