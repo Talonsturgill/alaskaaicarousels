@@ -50,6 +50,26 @@ from PIL import Image
 # evergreen daily-draft cadence). Used only when copy.json omits 'aftercare',
 # so the one human deliverable never ships an empty aftercare block (the
 # post_copy/aftercare gap recurred 2026-07-17/18/19). No dashes, no colons.
+def _clip(text, limit):
+    """Shorten to `limit` chars on a word boundary, for display in a table cell.
+
+    Two bugs this exists to prevent, both seen in the No.61 draft. A raw
+    `esc(s)[:200]` cuts mid-word, so the email printed "the flag was ignored a"
+    and stopped, which reads as a corrupted record rather than a shortened one.
+    It also slices the ESCAPED string, so a cut landing inside an entity emits a
+    bare "&amp" or "&#3" into the body. Clip first, escape after, and say so
+    when something was dropped.
+    """
+    s = " ".join(str(text or "").split())
+    if len(s) <= limit:
+        return s
+    cut = s[:limit]
+    sp = cut.rfind(" ")
+    if sp > limit * 0.6:
+        cut = cut[:sp]
+    return cut.rstrip(",;:.") + " [clipped]"
+
+
 DEFAULT_AFTERCARE = [
     "Post Tuesday to Thursday, 8 to 11am Alaska time. The day signal is the robust one; you own the hour.",
     "Paste the sources comment immediately, within 60 seconds of posting, so the first comment locks in.",
@@ -273,7 +293,7 @@ def main():
 
     score_rows = "\n".join(
         f"<tr><td>{esc(c['name'])}</td><td>{esc(str(c['score']))}</td>"
-        f"<td>{esc(str(c['weight']))}</td><td>{esc(_why(c))[:160]}</td></tr>"
+        f"<td>{esc(str(c['weight']))}</td><td>{esc(_clip(_why(c), 200))}</td></tr>"
         for c in score.get("criteria", []))
     # Scorer-key aliasing: the scorer agent's native JSON uses 'ships',
     # 'ship_threshold', and 'weakest_criteria' (a list), while the documented
@@ -473,7 +493,7 @@ def main():
             f"<tr><td>{esc(u.get('kind','fix'))}<br>"
             f"<span style='color:#98a2b3'>{esc(u.get('area',''))}</span></td>"
             f"<td>{esc(u.get('change',''))}<br>"
-            f"<span style='color:#98a2b3'>why: {esc(u.get('trigger',''))[:200]}</span></td>"
+            f"<span style='color:#98a2b3'>why: {esc(_clip(u.get('trigger',''), 260))}</span></td>"
             f"<td>{esc(u.get('rollback',''))}<br>"
             f"<span style='color:#98a2b3'>{esc(str(u.get('commit','')))}</span></td></tr>"
             for u in upgrades)
