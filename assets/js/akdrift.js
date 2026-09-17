@@ -138,6 +138,143 @@
     };
   };
 
+  /* ---- WORLD TO SCREEN ---------------------------------------------------
+   * The same pinhole the GL stage is framed with, handed to the 2D pass.
+   * D.solve answers questions about a FLAT ground at a known depth, which is
+   * all a plan needs; this answers where an arbitrary world point lands, which
+   * is what a 2D mark laid on a rendered object needs. Every law-bearing mark
+   * in this deck was first placed at a hand-tuned constant, and a constant is
+   * a number that has to be re-tuned every time the camera moves and is
+   * silently wrong in between.
+   *
+   * Give it the frame's own `from` and `look`, the same two arrays passed to
+   * AKT.frame, so there is one camera and not two. fov is VERTICAL, the way
+   * three.js reads it, so f = (H/2) / tan(fov/2), which is the same f D.solve
+   * computes. Returns null BEHIND the camera rather than a mirrored point.
+   */
+  D.camera = function (from, look, fovDeg) {
+    var f = (D.H / 2) / Math.tan((fovDeg == null ? D.FOV_DEG : fovDeg) * Math.PI / 360);
+    var fx = look[0] - from[0], fy = look[1] - from[1], fz = look[2] - from[2];
+    var fl = Math.sqrt(fx * fx + fy * fy + fz * fz) || 1;
+    fx /= fl; fy /= fl; fz /= fl;
+    /* right = normalize(forward x worldUp); worldUp is (0,1,0) */
+    var rx = -fz, ry = 0, rz = fx;
+    var rl = Math.sqrt(rx * rx + rz * rz) || 1;
+    rx /= rl; rz /= rl;
+    /* up = right x forward */
+    var ux = ry * fz - rz * fy, uy = rz * fx - rx * fz, uz = rx * fy - ry * fx;
+    return {
+      f: f,
+      toScreen: function (x, y, z) {
+        var dx = x - from[0], dy = y - from[1], dz = z - from[2];
+        var d = dx * fx + dy * fy + dz * fz;
+        if (!(d > 0.05)) return null;
+        return {
+          x: D.W / 2 + f * (dx * rx + dy * ry + dz * rz) / d,
+          y: D.H / 2 - f * (dx * ux + dy * uy + dz * uz) / d,
+          d: d
+        };
+      },
+      /* apparent size in px of `m` metres at depth d, for a mark that has to
+       * match the object it sits under */
+      px: function (m, d) { return f * m / d; }
+    };
+  };
+
+  /* ---- THE CONTACT COROLLARY ---------------------------------------------
+   * A shadow map fitted to tens of metres of fence line cannot resolve the
+   * centimetre of darkness where a post enters snow. Measured on slide 01 of
+   * run No.61, the feet sat 1.7 L* under the snow beside them, which qa.py's
+   * contact gate calls floating and which is also what the eye calls it. The
+   * doctrine asks for a TWO-PART shadow, a tight contact plus a wide ambient,
+   * and this paints exactly that at each foot: a core about a post wide and a
+   * pool four times that, sized out of the depth so a near foot gets a bigger
+   * pool than a far one for free.
+   *
+   * MULTIPLY, never an additive pool. A bright ring under every object with no
+   * emitter anywhere in the picture is its own defect, it is what run No.59
+   * shipped on nine frames out of nine, and qa.py now FAILS a declared contact
+   * that sits inside one.
+   *
+   * SNAPPED TO THE SILHOUETTE, not to the flat-ground projection. This deck's
+   * ground is a drift, so a post's real meeting with the snow is above where a
+   * bare plane would put it; on slide 01 the sixth bay stands about 60 px of
+   * deposit proud of its own flat-ground point. The mark walks UP the post's
+   * own column in the composite and stops at the last row dark enough to be
+   * timber, so it lands where the object and the snow actually meet. With no
+   * separation in the strip it leaves the point alone rather than guessing.
+   */
+  D.footAO = function (cx, marks, o) {
+    o = o || {};
+    var tint = o.tint || "6,16,30";
+    var coreA = o.core == null ? 0.62 : o.core;
+    var poolA = o.pool == null ? 0.34 : o.pool;
+    var off = D.offscreen(D.W, D.H), ox = off.cx;
+    var placed = [];
+
+    function ellipse(c, x, y, rx, ry, a0, stops) {
+      var g = c.createRadialGradient(x, y, 0, x, y, rx);
+      for (var i = 0; i < stops.length; i++) {
+        g.addColorStop(stops[i][0], "rgba(" + tint + "," + (a0 * stops[i][1]).toFixed(4) + ")");
+      }
+      c.save();
+      c.translate(x, y); c.scale(1, ry / rx); c.translate(-x, -y);
+      c.fillStyle = g;
+      c.beginPath(); c.arc(x, y, rx, 0, Math.PI * 2); c.fill();
+      c.restore();
+    }
+
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      if (!m) continue;
+      var x = m.x, y = m.y, w = Math.max(1.2, m.w);
+      if (x < -60 || x > D.W + 60) continue;
+      if (o.snap !== false) y = D.snapToSilhouette(cx, x, y, w, o.snapReach == null ? 150 : o.snapReach);
+      var pr = Math.max(18, w * 5.0);
+      ellipse(ox, x, y, pr, Math.max(5, pr * 0.30), poolA, [[0, 1], [0.55, 0.42], [1, 0]]);
+      var cr = Math.max(4.5, w * 1.30);
+      ellipse(ox, x, y, cr, Math.max(2.4, cr * 0.42), coreA, [[0, 1], [0.60, 0.70], [1, 0]]);
+      placed.push({ x: x, y: y, w: w, core: cr, pool: pr });
+    }
+
+    cx.save();
+    cx.globalCompositeOperation = "multiply";
+    if (o.blur !== 0) cx.filter = "blur(" + (o.blur == null ? 2 : o.blur) + "px)";
+    cx.drawImage(off.canvas, 0, 0, D.W, D.H);
+    cx.restore();
+    return placed;
+  };
+
+  /* The silhouette walk, separate because it is the part that can be wrong and
+   * the part worth reading on its own. Device pixels, because getImageData
+   * ignores the context transform and this deck draws at scale(2,2).
+   */
+  D.snapToSilhouette = function (cx, x, y, w, reach) {
+    var dpr = cx.canvas.width / D.W;
+    var sx = Math.max(0, Math.round((x - w * 0.6) * dpr));
+    var sw = Math.max(2, Math.min(cx.canvas.width - sx, Math.round(w * 1.2 * dpr)));
+    var y0 = Math.max(0, Math.round((y - reach) * dpr));
+    var y1 = Math.min(cx.canvas.height, Math.round((y + 26) * dpr));
+    if (sw < 2 || y1 - y0 < 8) return y;
+    var d;
+    try { d = cx.getImageData(sx, y0, sw, y1 - y0).data; } catch (e) { return y; }
+    var rows = y1 - y0, lum = new Float32Array(rows), lo = Infinity, hi = -Infinity;
+    for (var r = 0; r < rows; r++) {
+      var s = 0;
+      for (var c = 0; c < sw; c++) {
+        var i = (r * sw + c) * 4;
+        s += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      }
+      lum[r] = s / sw;
+      if (lum[r] < lo) lo = lum[r];
+      if (lum[r] > hi) hi = lum[r];
+    }
+    if (hi - lo < 24) return y;
+    var cut = lo + (hi - lo) * 0.42;
+    for (r = rows - 1; r >= 0; r--) if (lum[r] < cut) return y0 / dpr + r / dpr;
+    return y;
+  };
+
   /* ---- TYPE RESERVES -----------------------------------------------------
    * Measure the DOM first, then generate the field around it. The order is
    * always geometry, then the DOM the geometry implies, then reserve, then
@@ -277,6 +414,10 @@
     var timberDk = AKT.mat.clay(0x2A3340, { roughness: 0.9 });
     var slatGeo = new THREE.BoxGeometry(0.055, D.RAIL_H_M * 0.94, 0.028);
     var counts = 0, slatXf = [];
+    /* the world point where each post enters the ground, returned so the 2D
+     * pass can lay its contact under the post it belongs to instead of at a
+     * constant that stops being true the next time the camera moves */
+    var feet = [];
 
     for (var b = fromBay; b <= toBay; b++) {
       var along = (b - fromBay) * D.BAY_PITCH_M;
@@ -288,9 +429,10 @@
       post.position.set(px, D.RAIL_H_M / 2, pz);
       post.rotation.y = yawRad;
       group.add(post);
+      feet.push([px, 0, pz]);
 
       if (b === toBay) continue;
-      var pan = D.bayPanel(b);
+      var pan = o.forcePanel ? D.panel(o.forcePanel) : D.bayPanel(b);
       /* SLAT PITCH IS SOLVED FROM THE POROSITY, not guessed. A slat of width w
        * at pitch p leaves an open fraction 1 - w/p, so p = w / (1 - gap). The
        * first build used a fixed 0.22 m pitch with 0.14 m slats, which drew ten
@@ -337,7 +479,7 @@
      * no fence in it and no error anywhere. Slide 01's first two builds did
      * exactly that. Build into the group, then add the group. */
     AKT.add(R, group);
-    return { group: group, slats: counts };
+    return { group: group, slats: counts, feet: feet, postW: 0.10 };
   };
 
   /* ---- THE GATE ----------------------------------------------------------
@@ -383,7 +525,11 @@
     var rnd = (global.AK && AK.fbm2) ? AK.fbm2 : function () { return 0; };
     for (var i = 0; i < pos.count; i++) {
       var u = pos.getX(i), v = pos.getY(i);        /* v: 0 at fence, reach away */
-      var t = (v + reach / 2) / reach;             /* 0..1 downwind */
+      /* CLAMPED. A hair of floating-point slop at the leading edge makes t
+       * negative, and Math.pow(negative, 0.42) is NaN, which poisons the
+       * whole position attribute and prints a NaN bounding-sphere error
+       * while still rendering a plausible frame. */
+      var t = Math.min(1, Math.max(0, (v + reach / 2) / reach));
       /* lee lens: quick rise, crest at ~0.14 of the reach, long taper */
       var lens = Math.pow(Math.sin(Math.PI * Math.pow(t, 0.42)), 1.7);
       var h = peak * lens * (o.scale == null ? 1 : o.scale);
@@ -455,6 +601,119 @@
       return ok;    /* never ship a black frame: the caller draws its fallback */
     };
     return R;
+  };
+
+  /* ---- THE STAKE LINE ----------------------------------------------------
+   * What is PROPOSED and not built. Survey stakes beyond the last standing
+   * bay, drawn in forget-me-not, carrying NO drift and casting NO shadow,
+   * because a plan has deposited nothing. Gold never touches this line.
+   */
+  D.stakes = function (THREE, AKT, R, o) {
+    var g = new THREE.Group();
+    var yawRad = (90 - (o.yawDeg == null ? 14 : o.yawDeg)) * Math.PI / 180;
+    var mat = new THREE.MeshBasicMaterial({ color: 0x6EA5FF, fog: true });
+    for (var b = o.fromBay; b <= o.toBay; b++) {
+      var along = (b - o.fromBay) * D.BAY_PITCH_M;
+      var px = Math.sin(yawRad) * along + o.x0;
+      var pz = o.z0 + Math.cos(yawRad) * along;
+      /* a stake is a dashed vertical: short segments with gaps, so it reads as
+       * a drafting phantom rather than as a post */
+      for (var k = 0; k < 5; k++) {
+        var seg = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.13, 0.045), mat);
+        seg.position.set(px, 0.10 + k * 0.23, pz);
+        seg.castShadow = false; seg.receiveShadow = false;
+        g.add(seg);
+      }
+    }
+    R.scene.add(g);      /* NOT AKT.add: these must not cast or receive */
+    return g;
+  };
+
+  /* ---- THE LAW-BEARING INKS, DRAWN IN 2D --------------------------------
+   * The gate and the stake line are geometry in the GL scene, and the GL frame
+   * reaches the art canvas through a single drawImage. qa.py's ink-law census
+   * reads the BRUSH, meaning canvas ops, gradient stops, DOM text and SVG
+   * shapes, and it cannot see inside a composited bitmap. So a frame whose
+   * data-ink promises gold, with the only gold inside the render, fails its
+   * own declaration while looking correct.
+   *
+   * These two draw the law-bearing inks ON the art canvas, at the gate's and
+   * the stakes' own projected positions. That satisfies the census honestly,
+   * because the mark IS the thing the law is about, and it fixes a real
+   * legibility problem at the same time: at 432 px the gate was a few pixels
+   * of specular and the stake line nearly vanished.
+   */
+  D.gateMark = function (cx, o) {
+    var x = o.x, y = o.y, w = o.w == null ? 46 : o.w;
+    cx.save();
+    cx.strokeStyle = D.P.gold;
+    cx.lineCap = "round";
+    for (var i = 0; i < 3; i++) {
+      var ww = w * (1 - i * 0.22);
+      cx.lineWidth = (o.weight == null ? 3.2 : o.weight) * (1 - i * 0.12);
+      cx.globalAlpha = 0.95 - i * 0.12;
+      cx.beginPath();
+      cx.moveTo(x - ww / 2, y + i * (o.pitch == null ? 15 : o.pitch));
+      cx.lineTo(x + ww / 2, y + i * (o.pitch == null ? 15 : o.pitch));
+      cx.stroke();
+    }
+    cx.restore();
+    return { what: "the gate, three graduated chutes",
+             rect: [x - w / 2 - 4, y - 6, w + 8, 2 * (o.pitch == null ? 15 : o.pitch) + 12] };
+  };
+
+  D.stakeMark = function (cx, pts, o) {
+    o = o || {};
+    cx.save();
+    cx.strokeStyle = D.P.proposed;
+    cx.lineWidth = o.weight == null ? 2.6 : o.weight;
+    cx.globalAlpha = o.alpha == null ? 0.92 : o.alpha;
+    cx.setLineDash(o.dash || [7, 9]);
+    for (var i = 0; i < pts.length; i++) {
+      cx.beginPath();
+      cx.moveTo(pts[i][0], pts[i][1]);
+      cx.lineTo(pts[i][0], pts[i][1] - (pts[i][2] == null ? 44 : pts[i][2]));
+      cx.stroke();
+    }
+    /* the run of the proposed line, dashed, carrying nothing */
+    if (o.run && pts.length > 1) {
+      cx.globalAlpha = 0.55;
+      cx.beginPath();
+      for (var k = 0; k < pts.length; k++) {
+        var yy = pts[k][1] - (pts[k][2] == null ? 44 : pts[k][2]);
+        if (k === 0) cx.moveTo(pts[k][0], yy); else cx.lineTo(pts[k][0], yy);
+      }
+      cx.stroke();
+    }
+    cx.setLineDash([]);
+    cx.restore();
+  };
+
+  /* ---- THE MEASURED VEIL -------------------------------------------------
+   * A soft dark wash laid under MEASURED line boxes, on the art canvas, before
+   * the DOM paints over it. This is how display type keeps its worst-point
+   * contrast over a lit ground without a hard plate, which would read as
+   * furniture and would score as flat in the bottom band. Boxes come from
+   * getBoundingClientRect, so the veil is under what actually rendered.
+   *
+   * Per line box, never one rect over a paragraph: a single wash over a block
+   * darkens the gaps between lines as much as the glyphs and reads as a plate.
+   */
+  D.veil = function (cx, boxes, o) {
+    o = o || {};
+    var pad = o.pad == null ? 10 : o.pad;
+    var off = D.offscreen(D.W, D.H);
+    off.cx.fillStyle = o.ink || "#040A14";
+    for (var i = 0; i < boxes.length; i++) {
+      var b = boxes[i];
+      off.cx.fillRect(b[0] - pad, b[1] - pad, b[2] + pad * 2, b[3] + pad * 2);
+    }
+    cx.save();
+    cx.globalCompositeOperation = "multiply";
+    cx.globalAlpha = o.alpha == null ? 0.62 : o.alpha;
+    cx.filter = "blur(" + (o.blur == null ? 16 : o.blur) + "px)";
+    cx.drawImage(off.canvas, 0, 0, D.W, D.H);
+    cx.restore();
   };
 
   /* ---- THE HOUSE GRADE, declared once ------------------------------------
