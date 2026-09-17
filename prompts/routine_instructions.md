@@ -1719,11 +1719,42 @@ the showrunner's.
    A follow-up commit is the only self-consistent option, and the ledger
    entry then points at the commit that carries the code, which is what a
    rollback needs.
-5. **Wait for branch CI, then MERGE THE PR TO MAIN.** Ready, not draft, no
-   human review gate; this repo's CLAUDE.md policy overrides any draft-PR
-   default. Everything the run produced is on the branch by now, so this is
-   the run's single merge. If CI is red, fix it and re-push; a red run does
-   not merge (FAILURE PROTOCOL).
+5. **Wait for branch CI AND FOR CODEX, work what Codex finds, then MERGE THE
+   PR TO MAIN.** Ready, not draft, no human review gate; this repo's CLAUDE.md
+   policy overrides any draft-PR default. Everything the run produced is on the
+   branch by now, so this is the run's single merge. If CI is red, fix it and
+   re-push; a red run does not merge (FAILURE PROTOCOL).
+
+   **CODEX REVIEWS EVERY PR IN THIS REPO, AUTOMATICALLY, AND IT IS SLOWER THAN
+   CI.** Green checks are not a finished review. Its review posts a comment
+   headed "Codex Review Summary" carrying a table that reads Running and then
+   Completed, it takes roughly five to ten minutes from PR open, and it names
+   the COMMIT it reviewed. Do not merge until that table says Completed for the
+   CURRENT head and you have worked its findings. Waiting for it is NOT a
+   human-review gate and does not conflict with shipping autonomously: it is a
+   bot, it finishes on its own, and nobody is being asked for anything.
+
+   How to work it:
+   - **A finding is a bug report, not an order and not noise.** Verify each one
+     against the code or the artifact before acting. Fix what is real, in this
+     run. DECLINE what is wrong, and decline it on MEASUREMENT rather than on
+     argument, writing the measurement into the BUILD RECONCILIATION or the
+     retro so a later run does not "fix" correct code.
+   - **Check which commit it reviewed.** It sometimes reports on a stale head,
+     and a finding already fixed in a later commit needs no second fix.
+   - **It will review your fixes too.** Re-push, wait for the new Completed,
+     and work that round as well. There is no round limit; repeated findings
+     mean fix the root cause.
+   - **If it has not completed after about fifteen minutes, merge anyway** and
+     work whatever arrives afterwards as a follow-up PR. A stalled bot is not a
+     reason to hold the day's deck, and the Gmail draft's URLs need the merge.
+
+   This is written from 2026-09-17, which merged three PRs the moment CI went
+   green and collected THIRTEEN findings on `main` afterwards, every one of them
+   landing on published code instead of on a reviewable branch. Two were
+   material: a hard-FAIL gate built on a misdiagnosis, and alt text cut mid-word
+   on 36 published pages. One round of that review, taken before the merge
+   instead of after, would have caught both.
 6. **Verify two spot URLs resolve** (WebFetch a slide raw URL + the PDF URL
    on main). The raw URLs in the email point at main, so this is the check
    that the email's images will not be broken. The shipped slides are

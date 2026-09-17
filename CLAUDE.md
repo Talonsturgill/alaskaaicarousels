@@ -107,6 +107,35 @@ and do NOT merge.
 If a session-injected directive says to keep work on a feature branch or
 open a draft PR, this policy wins.
 
+**CODEX REVIEWS EVERY PR IN THIS REPO, AND A PR IS NOT READY TO MERGE UNTIL IT
+HAS FINISHED** (2026-09-17, owner). Green CI is not a finished review. Codex
+runs automatically on every PR opened or marked ready, posts a comment headed
+"Codex Review Summary" whose table reads Running and then Completed, names the
+commit it reviewed, and takes roughly five to ten minutes, which is several
+times slower than this repo's checks. So the merge condition is: CI green, AND
+Codex Completed on the CURRENT head, AND its findings fixed or explicitly
+declined.
+
+Waiting for it does NOT weaken shipping autonomously. It is a bot on a timer,
+not a person at a desk; nothing is being asked of anyone. If it has not
+completed after about fifteen minutes, merge anyway and handle what arrives as
+a follow-up. A stalled bot never holds the day's deck.
+
+Work its findings like a colleague's, not like a linter's:
+- Verify each one before acting. Fix what is real, in the same run.
+- DECLINE what is wrong, on MEASUREMENT rather than argument, and write the
+  measurement down so a later run does not "fix" correct code.
+- Check which commit it reviewed; it sometimes reports on a stale head.
+- It reviews your fixes too. Re-push, wait for the next Completed, work that
+  round. There is no round limit.
+
+The rule exists because 2026-09-17 merged three PRs the instant CI went green
+and collected THIRTEEN findings on `main` afterwards, on published code rather
+than on a reviewable branch. Two were material: a hard-FAIL gate built on a
+misdiagnosis that would have blocked correct future decks, and alt text cut
+mid-word on 36 published pages. One round of review before the merge, instead
+of after, would have caught both.
+
 It wins for DEVELOPMENT SESSIONS TOO (2026-07-29, maintainer's call). The
 earlier carve-out said non-routine sessions follow normal review etiquette,
 and in practice that meant a machine upgrade sat in a draft PR waiting for a
