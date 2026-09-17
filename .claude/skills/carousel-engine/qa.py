@@ -3375,25 +3375,36 @@ def main():
                 f"span, the projected point); if the subject is a count, declare "
                 f"`points:` and let the frame do the counting")
 
-        # A MATERIAL FLAG THE SHADER WAS NEVER TOLD ABOUT (2026-09-17).
-        # render.py scans the source; this is the judgement. Run No.61 set
-        # vertexColors on a built material and never set needsUpdate, so the
-        # program stayed compiled without USE_COLOR and every deposit rendered
-        # white for a full revision round while every gate here read green. A
-        # FAIL, not a WARN, for the same reason the collapsed-box check is: the
-        # code says the drawing has a property the drawing does not have, and
-        # there is no picture for which that is correct.
+        # A MATERIAL FLAG THE SHADER MAY NEVER HAVE BEEN TOLD ABOUT
+        # (2026-09-17, downgraded to a WARN the same day on measurement).
+        #
+        # This shipped as a FAIL on the belief that No.61's drift rendered
+        # white because vertexColors was set without needsUpdate. That belief
+        # was not measured, and it is wrong. Deleting the needsUpdate line from
+        # assets/js/akdrift.js and re-rendering the four drift-bearing slides
+        # gives a max per-pixel difference of 0 on every one of them: three.js
+        # compiles a material's program lazily at FIRST RENDER, so a flag set
+        # between construction and first render is picked up with no
+        # needsUpdate at all. The original white drift had another cause.
+        #
+        # So the common correct sequence (construct, set the flag, build the
+        # mesh, render) is exactly what this scanner matches, and whether an
+        # assignment lands before or after that first render is not decidable
+        # from the source. A FAIL on an undecidable question blocks correct
+        # decks, which is worse than the defect it was built for. It stays as a
+        # WARN because the genuine case it does catch (a flag set on a material
+        # that has ALREADY rendered) is real and worth a human glance.
         for mf in rec.get("material_flags", []):
-            res["fails"].append(
-                f"a material flag the shader was never told about: "
+            res["warns"].append(
+                f"a material flag that may not reach the shader: "
                 f"{mf['receiver']}.{mf['flag']} is assigned at "
                 f"{mf['where']}:{mf['line']} after the material was built, and "
-                f"nothing sets {mf['receiver']}.needsUpdate afterwards. three.js "
-                f"compiles this property into the program at first build, so the "
-                f"flag is ignored and the material keeps drawing at its base "
-                f"state -- a silent wrong picture, not an error. Add "
-                f"{mf['receiver']}.needsUpdate = true, or pass the property in "
-                f"the constructor's options object")
+                f"nothing sets {mf['receiver']}.needsUpdate afterwards. This is "
+                f"CORRECT and needs nothing if the material has not been "
+                f"rendered yet, because three.js compiles the program at first "
+                f"render. Check it only if this material was already drawn, in "
+                f"which case add {mf['receiver']}.needsUpdate = true or pass "
+                f"the property in the constructor's options object")
 
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually

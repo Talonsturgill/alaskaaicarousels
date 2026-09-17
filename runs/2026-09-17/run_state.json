@@ -15,10 +15,10 @@
     "pixel_review": "done",
     "flow_review": "done",
     "assemble": "done",
-    "scoring": "in_progress",
-    "ship": "in_progress",
-    "upgrade": "pending",
-    "gmail": "pending",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
     "retro": "done",
     "gmail_draft": "done"
   },
@@ -26,7 +26,9 @@
     "plan": "out/2026-09-17/plan.md",
     "selection": "out/2026-09-17/selection.md",
     "claims": "out/2026-09-17/claims.json",
-    "gaswatch_health": "out/2026-09-17/gaswatch_health.json"
+    "gaswatch_health": "out/2026-09-17/gaswatch_health.json",
+    "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",
+    "gas_watch": "MAINTENANCE"
   },
   "gas_watch_verdict": "MAINTENANCE",
   "site_signoff": "WARN, 115 pages, 18 checks, gaswatch.jsonl source is 4 days old under announced CINGSA compressor maintenance",

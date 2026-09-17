@@ -517,12 +517,33 @@ def main():
     try:
         _rs = json.loads((run / "run_state.json").read_text())
         _art = _rs.get("artifacts", {}) or {}
+
+        # Look in artifacts AND at the top level, under either spelling. The
+        # 2026-09-17 run wrote site_signoff and gas_watch_verdict at the top
+        # level, this block read only artifacts, and the result was worse than
+        # an empty section: site_fixes defaults to a cheerful "none", so _rows
+        # came out non-empty, the except-path UNREPORTED warning never fired,
+        # and the draft showed a tidy one-row table while silently dropping a
+        # site sign-off of WARN and a gas watch of MAINTENANCE. A reporting
+        # section that omits the warning and still looks complete is the one
+        # failure mode this section exists to prevent.
+        def _look(*keys):
+            for _k in keys:
+                for _src in (_art, _rs):
+                    _v = _src.get(_k)
+                    if _v:
+                        return _v
+            return None
+
+        _substantive = 0
         _rows = []
-        for _label, _key in (("SITE SIGN-OFF", "site_signoff"),
-                             ("GAS WATCH", "gas_watch"),
-                             ("SITE FIXES", "site_fixes")):
-            _v = _art.get(_key)
-            if _key == "site_fixes" and not _v:
+        for _label, _keys in (("SITE SIGN-OFF", ("site_signoff", "site_sign_off")),
+                              ("GAS WATCH", ("gas_watch", "gas_watch_verdict")),
+                              ("SITE FIXES", ("site_fixes",))):
+            _v = _look(*_keys)
+            if _v and _keys[0] != "site_fixes":
+                _substantive += 1
+            if _keys[0] == "site_fixes" and not _v:
                 _v = "none. Nothing on the live site needed repair this run."
             if _v:
                 _t = str(_v)
@@ -531,6 +552,17 @@ def main():
                     _t = _t[len(_label) + 1:].strip()
                 _rows.append(f"<tr><th style='white-space:nowrap'>{esc(_label)}</th>"
                              f"<td>{esc(_t)}</td></tr>")
+        if _substantive < 2:
+            _missing = []
+            if not _look("site_signoff", "site_sign_off"):
+                _missing.append("site sign-off")
+            if not _look("gas_watch", "gas_watch_verdict"):
+                _missing.append("gas watch verdict")
+            _note = ("The run state carried no "
+                     + " and no ".join(_missing)
+                     + ". Treat that as UNREPORTED, not as clean.")
+            _rows.insert(0, "<tr><th style='white-space:nowrap'>UNREPORTED</th>"
+                            f"<td>{esc(_note)}</td></tr>")
         if _rows:
             signoff_html = (
                 '<h2>The live site, looked at today</h2>'

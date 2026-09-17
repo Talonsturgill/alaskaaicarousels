@@ -6048,6 +6048,40 @@ def _prose_lines(strings):
     return out
 
 
+def _alt_clip(text, limit=160):
+    """Shorten alt text without cutting a word in half.
+
+    A bare `text[:160]` published slides 08 and 09 of 2026-09-17 ending in
+    "in thei" and "to develop". Alt text is what a screen reader says out
+    loud, so a severed word is not a cosmetic blemish, it is the description
+    breaking off mid sentence. Prefer the last complete sentence inside the
+    limit, fall back to the last whole word, and never emit a marker: alt text
+    is a description of a picture, not a quotation of a document.
+    """
+    t = " ".join(str(text or "").split())
+    if len(t) <= limit:
+        return t
+    head = t[:limit]
+    stop = max(head.rfind(". "), head.rfind("? "), head.rfind("! "))
+    if stop > limit * 0.5:
+        return head[:stop + 1]
+    sp = head.rfind(" ")
+    out = (head[:sp] if sp > 0 else head).rstrip(",;:")
+    # Drop a trailing function word. Cutting on a word boundary already fixes
+    # the severed "in thei", but it can still leave "...all three campuses to",
+    # which a screen reader reads as a sentence that lost its object.
+    DANGLE = {"a", "an", "and", "as", "at", "but", "by", "for", "from", "in",
+              "into", "of", "on", "or", "so", "than", "that", "the", "their",
+              "to", "with", "under", "over", "its", "it", "is", "was", "were"}
+    while True:
+        bits = out.rsplit(" ", 1)
+        if len(bits) == 2 and bits[1].lower().strip(",;:.") in DANGLE:
+            out = bits[0].rstrip(",;:")
+            continue
+        break
+    return out
+
+
 def slide_alts(r):
     """Descriptive alt text per slide from the run's own per-slide copy, so
     the story inside the PNGs is legible to search engines and screen
@@ -6059,7 +6093,7 @@ def slide_alts(r):
         body = _slide_text(s, BODY_KEYS).rstrip(".")
         text = ". ".join(t for t in (head, body) if t)
         if text:
-            alts[i] = text.replace(": ", ", ")[:160]
+            alts[i] = _alt_clip(text.replace(": ", ", "))
     return alts
 
 

@@ -61,6 +61,13 @@
     mono:     "#8FA0AE"
   };
 
+  /* The stage's ground colour, in ONE place. D.stage painted its ground
+   * 0x27486C while D.drift blended its zero-height vertices toward 0x2A4C73,
+   * so a scene built from both defaults still showed the drift carrier's
+   * rectangular footprint at exactly the boundary that blend exists to hide.
+   * Two constants meaning "the ground" is the bug; one constant is the fix. */
+  D.GROUND = 0x27486C;
+
   /* ---- THE BAY CHAIN -----------------------------------------------------
    * Bay 01 is January 2025, one bay per month. The standing line ends at bay
    * 21, September 2026. Bay 23 is November and bay 25 is January 2027, and
@@ -593,7 +600,8 @@
      * zero height to the drift colour at the peak, so the deposit fades into
      * the ground exactly where it stops being a deposit. */
     var dCol = new THREE.Color(o.color == null ? 0x8FB0D0 : o.color);
-    var gCol = new THREE.Color(o.groundColor == null ? 0x2A4C73 : o.groundColor);
+    var gCol = new THREE.Color(o.groundColor != null ? o.groundColor
+      : (R && R.groundColor != null ? R.groundColor : D.GROUND));
     var cols = new Float32Array(pos.count * 3), tmp = new THREE.Color();
     var hMax = Math.max(1e-4, peak * (o.scale == null ? 1 : o.scale));
     for (var ci = 0; ci < pos.count; ci++) {
@@ -604,13 +612,15 @@
     g.setAttribute("color", new THREE.BufferAttribute(cols, 3));
     var mat = AKT.mat.clay(0xFFFFFF, { roughness: 0.95, metalness: 0.0 });
     mat.vertexColors = true;
-    /* AND THE SHADER HAS TO BE TOLD. three.js compiles USE_COLOR from
-     * vertexColors at first build, so flipping it afterwards without
-     * needsUpdate leaves the attribute ignored and the material at its base
-     * colour, which here is WHITE. Every deposit in the deck rendered as a
-     * bright slab with a hard edge for a whole revision round because of this
-     * one missing line, and the fix for the hard edge looked like it had done
-     * nothing. */
+    /* Belt and braces, and measured to be exactly that. This line was once
+     * credited with fixing the round where every deposit rendered white, and
+     * that was a misdiagnosis: deleting it and re-rendering slides 01, 06, 07
+     * and 09 gives a max per-pixel difference of ZERO on all four. three.js
+     * compiles a material's program at FIRST RENDER, not at construction, so
+     * a flag set here, before any mesh using it has been drawn, is picked up
+     * on its own. It stays because it costs nothing and keeps this correct if
+     * the material ever becomes one that has already been drawn. The white
+     * drift had another cause; do not cite this line for it. */
     mat.needsUpdate = true;
     var m = new THREE.Mesh(g, mat);
     m.rotation.x = -Math.PI / 2;
@@ -686,7 +696,12 @@
      * out to 2 km so its edge sits on the horizon line itself, where the fog
      * colour and the gradient's last stop are the same colour by
      * construction. */
-    AKT.ground(R, { size: 4000, color: o.ground == null ? 0x27486C : o.ground,
+    /* Record the ground colour the stage ACTUALLY used, so D.drift can blend
+     * its zero-height vertices into this ground rather than into a second
+     * constant that only happens to agree. A slide that recolours its ground
+     * gets a drift that follows; D.GROUND is only the default of last resort. */
+    R.groundColor = o.ground == null ? D.GROUND : o.ground;
+    AKT.ground(R, { size: 4000, color: R.groundColor,
                     roughness: 0.97, y: 0 });
 
     R.compose = async function (cx) {

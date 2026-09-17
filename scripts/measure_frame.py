@@ -241,7 +241,14 @@ def main():
                       % (h["file"], h["line"], h["col"], h["char"], h["name"],
                          h["context"]))
         print("%d file(s) read, %d finding(s)" % (rec["files_read"], len(rec["hits"])))
-    return 0 if rec["files_read"] or not paths else 2
+    # An input that could not be READ is not a clean input. Returning 0 because
+    # some other path happened to parse lets a partial sweep stand as evidence
+    # that a source set is clean, which is the one thing this command is used
+    # for. Exit 2 whenever any requested input was not measured.
+    unreadable = sum(1 for h in rec["hits"] if h.get("error"))
+    if unreadable or (paths and not rec["files_read"]):
+        return 2
+    return 0
 
 
 if __name__ == "__main__":
