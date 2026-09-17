@@ -1694,25 +1694,17 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
         # definition, and the page was publishing 134.1 percent of it on a summer
         # injection day. The number was right and the noun was wrong.
         regime = {
-            "filling": ("It exceeds demand because the field was filling, so "
-                        "some went to storage rather than a burner"),
-            "drawing": ("It falls short of demand because the field was "
-                        "draining, and measured storage covered the difference"),
-            "flat": ("It matches demand because storage neither filled nor "
-                     "drained that day"),
+            "filling": "Storage filling explains the excess over demand",
+            "drawing": "Storage withdrawals cover the remaining demand",
+            "flat": "Storage neither filled nor drained that day",
         }[f["residual_regime"]]
         balance = f"""<h2 data-reveal>What is not measured by anyone</h2>
-<p class="prose" data-reveal>Demand equals field production plus storage
-withdrawal. Withdrawal is measured, demand is modeled, and everything not CINGSA
-falls out by subtraction. On {long_date(f["balance_date"])} that residual was
-{f["non_cingsa_supply_mmcfd"]} MMcf per day against modeled demand of
-{f["modeled_demand_mmcfd"]}, or {f["unmeasured_share_pct"]} percent, all from
-sources no public feed reports daily. {regime}. That ratio is the hole in the
-public record, and why this page draws no adequacy conclusion.</p>
-<p class="prose" data-reveal>Strictly it is production plus any Hilcorp
-storage movement, which public data can't separate,
-so the field is named non_cingsa_supply and never
-production.</p>"""
+<p class="prose" data-reveal>Subtract measured storage withdrawals from modeled
+demand to estimate non CINGSA supply. On {long_date(f["balance_date"])}, the result
+was {f["non_cingsa_supply_mmcfd"]} MMcf per day against modeled demand of
+{f["modeled_demand_mmcfd"]}, or {f["unmeasured_share_pct"]} percent. {regime}.
+This includes field production and Hilcorp storage movement, which public data
+can't separate.</p>"""
 
     return f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">LIVE INSTRUMENT &middot; {esc(meta["license_label"])}</div>
@@ -1761,12 +1753,10 @@ residual is the number no other source publishes.</p></div>
 
 
 <h2 data-reveal>This page will never tell you whether the lights stay on</h2>
-<p class="prose" data-reveal>It publishes what is measured, what is modeled, and
-what is missing. It does not publish a verdict. A compressor failure or a sanded
-well can produce curtailment on a day these numbers looked comfortable, and
-supply side deliverability is not public, so no adequacy conclusion can honestly
-be drawn from what is here. Anyone using this data to say the region is fine, or
-that it is not, is using it wrong.</p>
+<p class="prose" data-reveal>Measured storage, modeled demand, and missing data
+offer no verdict on reliability. Equipment failures can disrupt supply despite
+reassuring figures. Supply side deliverability is not public, so these numbers
+can't predict whether the lights stay on.</p>
 
 <h2 data-reveal>Day by day</h2>
 {chart_block}
