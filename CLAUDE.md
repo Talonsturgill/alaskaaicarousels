@@ -138,7 +138,7 @@ are siblings, not parent and child. These rules do not bend:
   hand-edits measurements or the model. An upstream outage does not block a
   deck, but skipping the live audit or leaving a failure undiagnosed does.
 - Its accuracy claims are CHECKED, not asserted. The demand model is compared
-  monthly against observed EIA deliveries, and the page publishes the gap.
+  monthly against observed EIA deliveries, and the published data includes the gap.
   Nothing on that page trains or learns on its own, and saying otherwise is a
   hard fail in scripts/gaswatch_build.py.
 
@@ -148,6 +148,11 @@ does not merge, which is right for editorial output and wrong for a time
 series: a carousel run failing its gates on a Tuesday would cost Tuesday's
 storage reading permanently, and CINGSA keeps no archive to backfill from.
 A missed day is the one irreversible failure this project has.
+
+The owner requested a chart-only history on September 16th: no daily number
+table, "The model, in full", "Fitted to what Alaska burned", or "What is not
+reported daily" sections. Keep the interactive chart and linked raw data;
+the daily checks must not restore those removed sections.
 
 ### Daily autonomous Gas Watch maintenance (owner, September 16th)
 

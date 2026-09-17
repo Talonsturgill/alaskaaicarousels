@@ -57,8 +57,7 @@ FORBIDDEN = [
 # it may never do is claim the model retrains itself or drop the limit.
 REQUIRED = [
     ("estimate", "the demand figure called an estimate"),
-    ("not reported daily", "the disclosure of what nothing reports daily"),
-    ("enstar realtime sendout", "sendout named in that disclosure"),
+    ("deliverability is not public", "the limit on what the data can show"),
     ("verdict", "the no-verdict statement"),
 ]
 
@@ -203,11 +202,7 @@ def check_page(out_dir, today=None):
     status = gw.source_status(series, today)
     if status["state"] != "current" and verified:
         (ok if 'id="gw-source-status"' in body else bad)(
-            "unavailable readings are explained beside the table", status["state"])
-    absent = [r["date"] for r in series[-gw.TABLE_LIMIT:]
-              if not r.get("verified") and
-              f'<tr><td>{r["date"]}</td><td>Unavailable</td>' not in body]
-    (ok if not absent else bad)("unverified dates remain visible", ", ".join(absent) or "all shown")
+            "unavailable readings are explained beside the chart", status["state"])
 
     # The chart is a claim about having a trend. It must appear when there is
     # one and stay away when there is not.
@@ -345,8 +340,8 @@ def self_test():
          page.replace("</main>", "<p>Southcentral is safe, supply is adequate.</p></main>")),
         ("a claim that the model trains itself",
          page.replace("</main>", "<p>The model fine-tunes itself daily.</p></main>")),
-        ("the not-reported-daily disclosure removed",
-         page.replace("not reported daily", "all fully reported")),
+        ("the data limit removed",
+         page.replace("deliverability is not public", "deliverability is fully reported")),
         ("a numeral nothing computed",
          page.replace("</main>", "<p>Storage sits at 87.3 percent.</p></main>")),
     ]
