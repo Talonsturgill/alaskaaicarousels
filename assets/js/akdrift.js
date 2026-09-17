@@ -583,8 +583,28 @@
       pos.setZ(i, h);
     }
     g.computeVertexNormals();
-    var m = new THREE.Mesh(g, AKT.mat.clay(o.color == null ? 0x8FB0D0 : o.color,
-      { roughness: 0.95, metalness: 0.0 }));
+    /* THE DEPOSIT HAS NO OUTLINE (2026-09-17, No.61). The carrier plane keeps
+     * its own albedo right out to its boundary, so even where the height has
+     * tapered to nothing the drift is still a LIGHTER PLANE than the ground it
+     * sits on, and its rectangle shows as a hard straight edge: slide 07's
+     * third campus rendered as a flat pale quadrilateral with a straight top
+     * and a critic read it as a solid panel, which would break that frame's
+     * binary accuracy tripwire. Blend each vertex from the GROUND colour at
+     * zero height to the drift colour at the peak, so the deposit fades into
+     * the ground exactly where it stops being a deposit. */
+    var dCol = new THREE.Color(o.color == null ? 0x8FB0D0 : o.color);
+    var gCol = new THREE.Color(o.groundColor == null ? 0x2A4C73 : o.groundColor);
+    var cols = new Float32Array(pos.count * 3), tmp = new THREE.Color();
+    var hMax = Math.max(1e-4, peak * (o.scale == null ? 1 : o.scale));
+    for (var ci = 0; ci < pos.count; ci++) {
+      var t2 = Math.min(1, Math.max(0, pos.getZ(ci) / hMax));
+      tmp.copy(gCol).lerp(dCol, Math.pow(t2, 0.55));
+      cols[ci * 3] = tmp.r; cols[ci * 3 + 1] = tmp.g; cols[ci * 3 + 2] = tmp.b;
+    }
+    g.setAttribute("color", new THREE.BufferAttribute(cols, 3));
+    var mat = AKT.mat.clay(0xFFFFFF, { roughness: 0.95, metalness: 0.0 });
+    mat.vertexColors = true;
+    var m = new THREE.Mesh(g, mat);
     m.rotation.x = -Math.PI / 2;
     m.position.set(o.x == null ? 0 : o.x, 0.012, o.z == null ? 0 : o.z);
     if (o.yawDeg != null) m.rotation.z = (90 - o.yawDeg) * Math.PI / 180;
@@ -648,7 +668,17 @@
       fill: { color: D.LIGHT.fillColor, i: ki / D.LIGHT.keyToFill, pos: [-9, 10, 16] },
       ambient: { color: 0x16304C, i: o.ambient == null ? 0.78 : o.ambient }
     });
-    AKT.ground(R, { size: 300, color: o.ground == null ? 0x27486C : o.ground,
+    /* THE GROUND RUNS PAST THE FOG, NOT INTO IT (2026-09-17, No.61). A 300 m
+     * plane ends at 150 m, which at slide 06's camera projects to y 380: the
+     * fog has closed by 120 m so the plane's far edge is exactly the fog
+     * colour, but the sky backdrop behind it is still part way up its own
+     * gradient, and the two met in a razor straight full width value step
+     * with no cause. A critic read it as a composite seam and it cost that
+     * frame its declared horizon and its six band atmosphere. Run the plane
+     * out to 2 km so its edge sits on the horizon line itself, where the fog
+     * colour and the gradient's last stop are the same colour by
+     * construction. */
+    AKT.ground(R, { size: 4000, color: o.ground == null ? 0x27486C : o.ground,
                     roughness: 0.97, y: 0 });
 
     R.compose = async function (cx) {
@@ -721,6 +751,26 @@
 
   D.stakeMark = function (cx, pts, o) {
     o = o || {};
+    /* AN UNDER-STROKE, WHEN THE GROUND IS LIT. Forget-me-not on #6E8FB4 lit
+     * drift is nearly invisible at full size and gone at 432 px, which on
+     * slide 06 hid the four marks the frame's whole wordless claim rests on.
+     * A dark stroke laid under the dash at twice the weight gives it an edge
+     * to read against without changing its own colour or its budget. */
+    if (o.under) {
+      cx.save();
+      cx.strokeStyle = o.under;
+      cx.lineWidth = (o.weight == null ? 2.6 : o.weight) + 2.2;
+      cx.globalAlpha = 0.85;
+      cx.setLineDash(o.dash || [7, 9]);
+      for (var u = 0; u < pts.length; u++) {
+        cx.beginPath();
+        cx.moveTo(pts[u][0], pts[u][1]);
+        cx.lineTo(pts[u][0], pts[u][1] - (pts[u][2] == null ? 44 : pts[u][2]));
+        cx.stroke();
+      }
+      cx.setLineDash([]);
+      cx.restore();
+    }
     cx.save();
     cx.strokeStyle = D.P.proposed;
     cx.lineWidth = o.weight == null ? 2.6 : o.weight;
