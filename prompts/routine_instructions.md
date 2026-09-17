@@ -1719,11 +1719,53 @@ the showrunner's.
    A follow-up commit is the only self-consistent option, and the ledger
    entry then points at the commit that carries the code, which is what a
    rollback needs.
-5. **Wait for branch CI, then MERGE THE PR TO MAIN.** Ready, not draft, no
-   human review gate; this repo's CLAUDE.md policy overrides any draft-PR
-   default. Everything the run produced is on the branch by now, so this is
-   the run's single merge. If CI is red, fix it and re-push; a red run does
-   not merge (FAILURE PROTOCOL).
+5. **Wait for branch CI AND FOR CODEX, work what Codex finds, then MERGE THE
+   PR TO MAIN.** Ready, not draft, no human review gate; this repo's CLAUDE.md
+   policy overrides any draft-PR default. Everything the run produced is on the
+   branch by now, so this is the run's single merge. If CI is red, fix it and
+   re-push; a red run does not merge (FAILURE PROTOCOL).
+
+   **Re-run `python3 scripts/ledger_guard.py` immediately before the merge.**
+   The gate battery ran it back in Phase 11, and this phase has committed
+   upgrades and review fixes since, so that reading is about a diff that is no
+   longer the one shipping. The `cron ledgers` workflow checks the PR head for
+   the same reason and is the backstop if this step is skipped; a run should not
+   need the backstop.
+
+   **CODEX REVIEWS EVERY PR IN THIS REPO, AUTOMATICALLY, AND IT IS SLOWER THAN
+   CI.** Green checks are not a finished review. Its review posts a comment
+   headed "Codex Review Summary" carrying a table that reads Running and then
+   Completed, it takes roughly five to ten minutes from PR open, and it names
+   the COMMIT it reviewed. Do not merge until that table says Completed for the
+   CURRENT head and you have worked its findings. Waiting for it is NOT a
+   human-review gate and does not conflict with shipping autonomously: it is a
+   bot, it finishes on its own, and nobody is being asked for anything.
+
+   How to work it:
+   - **A finding is a bug report, not an order and not noise.** Verify each one
+     against the code or the artifact before acting. Fix what is real, in this
+     run. DECLINE what is wrong, and decline it on MEASUREMENT rather than on
+     argument, writing the measurement into the BUILD RECONCILIATION or the
+     retro so a later run does not "fix" correct code.
+   - **Check which commit it reviewed.** The summary table names it and it is
+     often NOT your current head, so a finding already fixed in a later commit
+     needs no second fix.
+   - **A PUSH DOES NOT RE-TRIGGER IT.** Its triggers are a PR opening, a draft
+     marked ready, and the comment `@codex review`. After pushing fixes, post
+     `@codex review` and wait for the new Completed, or you are reading a
+     verdict on code you have already replaced.
+   - **It will review your fixes too**, and there is no round limit; repeated
+     findings on your own pushes mean fix the root cause rather than stop.
+   - **If it has not completed after about fifteen minutes, merge anyway** and
+     work whatever arrives afterwards as a follow-up PR. A stalled bot is not a
+     reason to hold the day's deck, and the Gmail draft's URLs need the merge.
+
+   This is written from 2026-09-17, which merged three PRs the moment CI went
+   green and collected THIRTEEN findings on `main` afterwards, every one of them
+   landing on published code instead of on a reviewable branch. Two were
+   material: a hard-FAIL gate built on a misdiagnosis, and alt text cut mid-word
+   on 36 published pages. One round of that review, taken before the merge
+   instead of after, would have caught both.
 6. **Verify two spot URLs resolve** (WebFetch a slide raw URL + the PDF URL
    on main). The raw URLs in the email point at main, so this is the check
    that the email's images will not be broken. The shipped slides are

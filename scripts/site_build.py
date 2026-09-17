@@ -6062,9 +6062,56 @@ def _alt_clip(text, limit=160):
     if len(t) <= limit:
         return t
     head = t[:limit]
-    stop = max(head.rfind(". "), head.rfind("? "), head.rfind("! "))
+
+    # An abbreviation's period is not a sentence end. "That is the U.S.
+    # Geological Survey count" contains ". " and is one sentence; treating that
+    # period as a boundary cut a good description back to "That is the U.S."
+    # A token made of single letters joined by periods (U.S., e.g., i.e.) is an
+    # abbreviation.
+    # Single-letter runs (U.S., e.g., i.e.) AND ordinary title/rank
+    # abbreviations, whose periods are equally not sentence ends.
+    ABBREV = re.compile(
+        r"(?:^|\s)(?:(?:[A-Za-z]\.)+|(?:Mr|Mrs|Ms|Dr|Prof|Sen|Rep|Gov|Lt|Sgt|Capt|Col|Gen|Adm|Hon|St|Jr|Sr|Inc|Ltd|Co|Corp|Dept|Est|Fig|No|Vol|vs|etc|approx)\.)$",
+        re.IGNORECASE)
+
+    # The cut landed exactly on a sentence end. Take it, and take it BEFORE
+    # looking for an earlier one: 2026-07-15 slide 03 ends "...essential to the
+    # nation's economy and its security." at exactly 160 characters, and the
+    # search below would otherwise cut it back. The abbreviation test applies
+    # here too, or a prefix ending "... U.S." with the sentence still running
+    # would be accepted as complete on exactly this shortcut.
+    #
+    # A REVIEW FINDING DECLINED HERE, ON MEASUREMENT (2026-09-17). The converse
+    # case is real: a sentence that genuinely ENDS in "U.S." is rejected by this
+    # test and falls back to a word-boundary clip. Two reasons it stays. English
+    # does not distinguish the two without a parser ("the U.S. Geological
+    # Survey" against "he returned to the U.S. Later..."), and the two errors
+    # are not equally bad: reading an abbreviation as a sentence end published
+    # the nonsense "That is the U.S.", while reading a real ending as an
+    # abbreviation only costs a tidier boundary and still returns whole words.
+    # And it has never once come up: over the 490 alt sources longer than the
+    # limit in every run ever shipped, ZERO land the cut on an abbreviation
+    # period and ZERO have an abbreviation as their only boundary candidate.
+    # Do not "fix" this without re-running that count.
+    # The character AFTER the limit has to be a boundary, or that period is
+    # inside a token rather than after one: "version 2.0" and "example.com"
+    # both put a period at the cut and neither ends a sentence, and the
+    # abbreviation test above does not see them because neither is a run of
+    # single letters. Without this the function returns "... 2." or
+    # "... example.", which is the same severed-token bug in a new costume.
+    if (head[-1] in ".?!"
+            and (len(t) <= limit or t[limit] in " \t\n")
+            and not (head[-1] == "." and ABBREV.search(head))):
+        return head
+
+    stop = -1
+    for m in re.finditer(r"[.?!] ", head):
+        if head[m.start()] == "." and ABBREV.search(head[:m.start() + 1]):
+            continue
+        stop = m.start()
     if stop > limit * 0.5:
         return head[:stop + 1]
+
     sp = head.rfind(" ")
     out = (head[:sp] if sp > 0 else head).rstrip(",;:")
     # Drop a trailing function word. Cutting on a word boundary already fixes

@@ -491,6 +491,38 @@ def scanner_sync_row(rows):
         rows.add("scanner_sync", "FAIL", out[0][:140])
 
 
+def ledger_guard_row(rows):
+    """Did the run modify a file only cron may write?
+
+    Repo-level like scanner_sync. This is the row that makes the cron-ledger
+    rule ENFORCED rather than merely written down. The permission allowlist
+    denies Write and Edit on those paths, but the same allowlist permits Bash,
+    and a heredoc or `python3 -c` reaches them without consulting a Write rule.
+    A deny an interpreter walks around is a claim. This runs on the shipped
+    diff, so it catches the write however it was made, in time to stop a merge.
+
+    Exit 2 means the check could not look, which is a FAIL for the same reason
+    it is everywhere else here: a blind check is not a pass."""
+    script = REPO / "scripts" / "ledger_guard.py"
+    if not script.exists():
+        rows.absent("ledger_guard", "scripts/ledger_guard.py missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script)],
+                           capture_output=True, text=True, timeout=120)
+    except Exception as e:
+        rows.add("ledger_guard", "FAIL",
+                 "could not run ledger_guard (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 0:
+        rows.add("ledger_guard", "PASS", out[0][:140])
+    elif p.returncode == 2:
+        rows.add("ledger_guard", "FAIL", "check could not run: %s" % out[0][:120])
+    else:
+        rows.add("ledger_guard", "FAIL", out[0][:140])
+
+
 def docket_dates_row(rows):
     """Repo-level like scanner_sync: the run rebuilds docs/ from the ledger
     Phase 3.5 just edited, so a date rendered into the wrong slot ships with
@@ -1192,6 +1224,7 @@ def main():
     plan_drift_row(rows, run, rdir)
     bespoke_row(rows, run)
     scanner_sync_row(rows)
+    ledger_guard_row(rows)
     docket_dates_row(rows)
     gas_watch_row(rows)
     gas_watch_live_row(rows, run)

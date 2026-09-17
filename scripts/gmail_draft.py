@@ -527,18 +527,48 @@ def main():
         # site sign-off of WARN and a gas watch of MAINTENANCE. A reporting
         # section that omits the warning and still looks complete is the one
         # failure mode this section exists to prevent.
+        # Some runs stored the whole sign-off as ONE dict instead of three
+        # scalars: runs/2026-08-25 has {line, gas_watch_line, eye_check, fixes}.
+        # Left unpacked, str() of that dict lands in the table cell, the gas
+        # watch reads as UNREPORTED although its line is right there, and the
+        # "nothing needed repair" default prints over a real fixes entry.
+        # THE LIVE GAS WATCH VERDICT OUTRANKS THE LOCAL PAGE CHECK, ALWAYS.
+        # The structured record's gas_watch_line is the LOCAL once-over and can
+        # read "GAS WATCH: PASS" on a day the LIVE audit returned MAINTENANCE or
+        # FAIL. Letting the local line answer first would print PASS over an open
+        # incident in the maintainer's only report, which is the precise failure
+        # this whole section exists to prevent, so the flattened values are the
+        # LAST resort for every key and never merely the last source for one.
+        _flat = {}
+        for _src in (_art, _rs):
+            _v = _src.get("site_signoff") or _src.get("site_sign_off")
+            if isinstance(_v, dict):
+                if _v.get("line"):
+                    _flat.setdefault("site_signoff", _v["line"])
+                if _v.get("gas_watch_line"):
+                    _flat.setdefault("gas_watch", _v["gas_watch_line"])
+                if _v.get("fixes"):
+                    _flat.setdefault("site_fixes", _v["fixes"])
+
         def _look(*keys):
+            # KEY-outer, source-inner. The keys are in priority order, so
+            # gas_watch_verdict (the LIVE audit) must be searched across every
+            # scope before gas_watch (the local page check) is searched in any.
+            # Looping sources first meant a local PASS sitting in artifacts
+            # still answered ahead of a live MAINTENANCE at the top level,
+            # which is the same incident-hiding bug in its third costume.
             for _k in keys:
-                for _src in (_art, _rs):
+                for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
-                    if _v:
+                    if _v and not isinstance(_v, dict):
                         return _v
             return None
 
         _substantive = 0
         _rows = []
         for _label, _keys in (("SITE SIGN-OFF", ("site_signoff", "site_sign_off")),
-                              ("GAS WATCH", ("gas_watch", "gas_watch_verdict")),
+                              # live verdict first, local line only if nothing live
+                              ("GAS WATCH", ("gas_watch_verdict", "gas_watch")),
                               ("SITE FIXES", ("site_fixes",))):
             _v = _look(*_keys)
             if _v and _keys[0] != "site_fixes":
