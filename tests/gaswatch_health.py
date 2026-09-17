@@ -28,8 +28,7 @@ class HealthTests(unittest.TestCase):
             "reconciliation_trueups": [{"date": "2026-09-13", "actual_hdd65": 12,
                                         "non_cingsa_supply_mmcfd": 120},
                                        {"date": "2026-09-14", "actual_hdd65": 10}]})
-        self.page = ('<div class="gw-hero">49.4</div><h2 id="gw-source-status">Unavailable</h2>'
-                     + ''.join(f'<tr><td>2026-09-{d}</td><td>Unavailable</td>' for d in (14, 15, 16)))
+        self.page = '<div class="gw-hero">49.4</div><p id="gw-source-status">Unavailable</p>'
         self.feed["model"] = gc.load_model(gc.MODEL_CONFIG)
         self.page += (f'<div class="gw-num">{gc.demand(20, self.feed["model"])}</div>'
                       '<div class="gw-lab">MMcf/d modeled peak ahead</div>')

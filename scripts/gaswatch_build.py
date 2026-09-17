@@ -945,8 +945,7 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38, pad_l=62, mode="wide"):
     # The readout layer. One crosshair snapping to the nearest date and one
     # readout carrying every series for it, so the pointer never has to land on
     # a 2px line. Values are written by script from a payload the numeral lint
-    # does not scan, and every one of them is already in the table below, so
-    # the readout enhances and never gates.
+    # does not scan. The complete values remain available in the linked raw data.
     #
     # ONE SURFACE, NOT ONE PER DAY. This was a hit rect, a crosshair and three
     # dots for every day in the record, which is markup that grows forever: at
@@ -997,7 +996,7 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38, pad_l=62, mode="wide"):
  aria-label="{esc(len(live))} charts sharing one time axis, covering
  {esc(long_date(pts[0][0]))} to {esc(long_date(pts[-1][0]))}. Measured Cook Inlet
  storage in Bcf, modeled peak daily demand, and derived non CINGSA supply, both
- in MMcf per day. Every value is in the table below.">
+ in MMcf per day. Drag or use the arrow keys for daily readings.">
 <defs>{defs}</defs>
 {body}{dates}{rules}{dots}{hit}</svg>
 </div>"""
@@ -1017,7 +1016,7 @@ def chart_html(series, model):
     """Both frames of the chart. CSS puts exactly one of them in the layout.
 
     Returns "" when the record is too short to plot, which is the caller's
-    signal to fall back to the meter and the table.
+    signal to fall back to the meter.
     """
     wide = chart_svg(series, model)
     if not wide:
@@ -1509,9 +1508,8 @@ def self_test():
           underclaims({"calibration": "working hypothesis"}) == [])
     check("the page calls the demand figure an estimate",
           "estimate" in body.lower())
-    check("the page still discloses what nothing reports daily",
-          "not reported daily" in body.lower()
-          and "enstar realtime sendout" in body.lower())
+    check("the page still states the limit on what the data can show",
+          "deliverability is not public" in body.lower())
     check("no em dash, en dash, curly quote or emoji",
           not re.search("[–—‘’“”]"
                         "|[\U0001F000-\U0001FAFF]", body))
@@ -1622,13 +1620,11 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
 
     Structure follows what a reporter on deadline needs, in order. What the
     number is, when it was read, where it came from, how the modeled parts were
-    derived, and what nobody can see. The methodology is not an appendix here,
-    it is the product.
+    derived, and what nobody can see. Full model details stay in the linked data.
 
     `aside` is a sibling measurement the site composes and this module does not
     own, currently the retail power price. It lands after the gas balance and
-    before the methodology, because the methodology that follows describes the
-    gas figures above it and nothing in the aside uses it. Passed in rather than
+    before the data citation. Passed in rather than
     built here so this module keeps depending on the gas ledger alone, which is
     what lets gaswatch_pagecheck render a reference page with no site build.
     """
@@ -1669,25 +1665,7 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
         chart_block = (
             f'<p class="sub" data-reveal>'
             f'{count(f["days_of_record"], "day")} on record, which is not yet a '
-            f'trend to plot. The table below is the whole series.</p>')
-
-    # The forecast error scoreboard lived here and shipped with the paragraph
-    # that carried it. Removed 2026-08-12 at the maintainer's call, because the
-    # page was crowded and this was the third accuracy figure on it. The two
-    # that matter are still published: how far the model misses the months it is
-    # fitted to, in "The model, in full", and how its record average compares
-    # against the published average day, in the paragraph under the backtests.
-    # CLAUDE.md requires the model be CHECKED rather than asserted, and both of
-    # those are the check.
-
-    stale_note = ""
-    if f.get("unverified_days"):
-        stale_note = (
-            f'<p class="sub" data-reveal>Of {count(f["days_of_record"], "day")} on '
-            f'record, {f["unverified_days"]} carry no verified reading because a fetch '
-            f'failed or the source had stopped updating. Those days are marked '
-            f'unverified in the data and carry no number forward from the day '
-            f'before.</p>')
+            f'trend to plot.</p>')
 
     status = source_status(series, today)
     availability = ""
@@ -1736,95 +1714,6 @@ storage movement, which public data can't separate,
 so the field is named non_cingsa_supply and never
 production.</p>"""
 
-    bt_rows = ""
-    for b in model.get("backtests", []):
-        bid = b["id"].replace("-", "_")
-        got = f.get(f"{bid}_mmcfd") or f.get(f"{bid}_bcf")
-        unit = "Bcf" if f.get(f"{bid}_bcf") is not None else "MMcf/d"
-        bt_rows += (f'<li><p><strong>{esc(b["description"])}</strong> '
-                    f'The model returns {got} {unit}.</p></li>')
-
-    not_public = "".join(f"<li><p>{esc(x.replace('_', ' '))}</p></li>"
-                         for x in model.get("not_public", []))
-
-    # The build brief called all three of these not public, and this page said
-    # so. Two of them have monthly public figures, which is where the cross
-    # check comes from. Correcting that is the difference between a limitation
-    # and an excuse.
-    # The statewide paragraph needs the EIA-191 storage series, which lags the
-    # delivery series that sets latest_month. eia_crosscheck leaves those keys
-    # absent on purpose when it does, and this paragraph indexed them anyway,
-    # so an ordinary reporting lead crashed the whole site build. The delivery
-    # months and the storage months are separate facts, so they are now
-    # separate paragraphs and the second one waits for its data.
-    # figures() drops every None-valued key, so an optional model field is
-    # absent rather than empty. Two sentences indexed those keys anyway and
-    # took the whole site build down with a KeyError. A model with no `fit`
-    # block is a case underclaims() explicitly supports, and backtest_facts
-    # sets days_at_or_above_design_day to None on purpose when the design day
-    # anchor is gone. Both are now sentences that appear when their data does.
-    fitted = ""
-    if "fit_months" in f and "fit_mean_error_pct" in f:
-        fitted = (f" Fitted by least squares to {count(f['fit_months'], 'month')}"
-                  f" of observed Alaska deliveries, refit on each new one, and"
-                  f" off by {f['fit_mean_error_pct']} percent on average.")
-
-    # Same shape. This whole paragraph is about the published design day, so it
-    # belongs to that anchor and goes with it if the anchor is ever dropped.
-    planning_gap = ""
-    if "anchor_published_design_day_mmcfd" in f:
-        planning_gap = f"""<p class="prose" data-reveal>It sits below the published
-planning figures, as expected. A design day of
-{f["anchor_published_design_day_mmcfd"]} MMcf per day is a margin to build
-against, not a prediction, and the gap is published rather than tuned
-away.</p>"""
-
-    # The comparison against the published average day, and its magnitude and
-    # direction, all come from one anchor. _comparison already declines to set
-    # the last two when it is missing, so the clause travels as a unit.
-    against_average = ""
-    if all(k in f for k in ("anchor_published_average_day_mmcfd",
-                            "record_average_gap_pct", "record_average_direction")):
-        against_average = (
-            f" against the published average day of "
-            f"{f['anchor_published_average_day_mmcfd']}, which is "
-            f"{f['record_average_gap_pct']} percent "
-            f"{f['record_average_direction']}")
-
-    over_design = ""
-    if "record_maximum_day_days_at_or_above_design_day" in f:
-        over_design = (
-            f" Of the {f['hdd_record_days']:,} days on file, "
-            f"{spell(f['record_maximum_day_days_at_or_above_design_day']).lower()}"
-            f" model at or above the published design day. That is a fact about"
-            f" the weather, not a statement about whether the system coped.")
-
-    statewide = ""
-    if all(k in f for k in ("eia_ak_working_gas_bcf", "eia_storage_fields",
-                            "eia_ak_capacity_bcf")):
-        statewide = f"""
-<p class="prose" data-reveal>Through {long_month(f["eia_latest_month"])} Alaska
-held {f["eia_ak_working_gas_bcf"]} Bcf of working gas across
-{count(f["eia_storage_fields"], "storage field")}, against
-{f["eia_ak_capacity_bcf"]} Bcf of capacity. Only CINGSA reports daily.</p>"""
-
-    if f.get("eia_months_checked"):
-        not_public_note = (
-            f"{spell(f['not_public_with_monthly_source'])} of them do have monthly "
-            f"statewide figures, which is what the model above is fitted to. What "
-            f"no source gives is a daily regional number, and that is the gap "
-            f"that matters here.")
-        crosscheck = f"""<h2 data-reveal>Fitted to what Alaska burned</h2>
-<p class="prose" data-reveal>EIA publishes Alaska gas deliveries monthly. The
-model is fitted to {count(f["eia_months_checked"], "month")} of them and refits
-on each new one, so the estimate answers to measured consumption, not a design
-document. The figures are statewide and two months behind, so they correct the
-model, not the record here.</p>
-{statewide}"""
-    else:
-        not_public_note = ""
-        crosscheck = ""
-
     return f"""<div class="hero" style="min-height:auto;padding-top:9vh">
 <div class="chip kind">LIVE INSTRUMENT &middot; {esc(meta["license_label"])}</div>
 <h1 style="font-size:clamp(34px,5vw,60px);margin-top:14px">Cook Inlet Gas Watch</h1>
@@ -1863,8 +1752,8 @@ near Kenai, run by CINGSA. Utilities fill it in summer and draw on it in winter.
 The level is published once a day and never archived, so this page reads it and
 keeps the history.</p></div>
 <div><h3>The demand</h3><p>How much gas the region burns is not published at all.
-It tracks how cold it is, so we model it from the Anchorage forecast and show the
-formula and its errors rather than asking anyone to take it on faith.</p></div>
+We estimate it from the Anchorage forecast. The model and its error history
+are included in the raw data linked below.</p></div>
 <div><h3>The gap</h3><p>Subtract what came out of storage from what the region
 likely burned, and what is left came from somewhere nobody reports daily. That
 residual is the number no other source publishes.</p></div>
@@ -1881,37 +1770,11 @@ that it is not, is using it wrong.</p>
 
 <h2 data-reveal>Day by day</h2>
 {chart_block}
-{table_html(series, model)}
 {availability}
-{stale_note}
 
 {balance}
 
 {aside}
-
-<h2 data-reveal>The model, in full</h2>
-<p class="prose" data-reveal>Regional demand in MMcf per day is
-{f["base_mmcfd"]} plus {f["slope_mmcfd_per_hdd"]} times heating degree days,
-base {f["hdd_base_f"]} Fahrenheit. Version {f["model_version"]}.{fitted}</p>
-{planning_gap}
-<p class="prose" data-reveal>Every figure below is recomputed from
-{f["hdd_record_days"]:,} days of observed Anchorage degree days,
-{long_date(f["hdd_record_start"])} to {long_date(f["hdd_record_end"])}. Nothing
-here is a number somebody typed.</p>
-<ol class="claims" data-reveal>{bt_rows}</ol>
-<p class="prose" data-reveal>Across that record the model averages
-{f["record_average_day_mmcfd"]} MMcf per day{against_average}. The coldest
-day in the record is {long_date(f["record_maximum_day_date"])} at
-{f["record_maximum_day_hdd65"]:g} degree days, which models to
-{f["record_maximum_day_mmcfd"]} MMcf per day.{over_design}</p>
-
-{crosscheck}
-
-<h2 data-reveal>What is not reported daily</h2>
-<p class="prose" data-reveal>These are the things no public feed reports daily,
-and their absence is why this page publishes numbers rather than conclusions.
-{not_public_note}</p>
-<ol class="claims" data-reveal>{not_public}</ol>
 
 <h2 data-reveal>How to cite it</h2>
 <p class="prose" data-reveal>The whole series is one JSON document at
@@ -1931,7 +1794,7 @@ Cook Inlet gas storage plan</a>.</p>
 
 
 # The chart's readout layer. Small enough to inline, and it degrades to the
-# static picture plus the table if it never runs.
+# static picture if it never runs.
 #
 # It wires EVERY .gw-plot on the page, because the chart ships as two frames
 # and CSS decides which one is in the layout. The frame that is not shown gets

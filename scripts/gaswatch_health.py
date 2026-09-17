@@ -77,11 +77,11 @@ def assess(feed, page, source, runs, now):
     unavailable = stale or (latest and any(d > latest["date"] for d in dates))
     add("source gap disclosed", not unavailable or 'id="gw-source-status"' in page,
         "source notice present" if 'id="gw-source-status"' in page else "no source notice",
-        "Explain unavailable readings briefly beside the dated table, then rebuild and deploy.")
-    hidden = [r["date"] for r in series[-14:] if not r.get("verified") and
-              f'<tr><td>{r["date"]}</td><td>Unavailable</td>' not in page]
-    add("missing readings visible", not hidden, ", ".join(hidden) or "unverified rows visible",
-        "Fix the generated table so missing readings remain visible, then rebuild and deploy.")
+        "Explain unavailable readings briefly beside the chart, then rebuild and deploy.")
+    has_chart = '<div class="gw-chart"' in page and 'data-gw-plot=' in page
+    add("history chart present", len(verified) < 2 or has_chart,
+        "chart present" if has_chart else "fewer than two readings" if len(verified) < 2 else "chart missing",
+        "Rebuild and deploy the history chart. Keep unavailable storage empty in the published data.")
 
     forecasts = [r for r in series if r.get("forecast") and r.get("forecast_source_updated")]
     newest = max(forecasts, key=lambda r: r["forecast_source_updated"]) if forecasts else None
