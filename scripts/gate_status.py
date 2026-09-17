@@ -242,9 +242,21 @@ def reconciliation_section(text):
     starts = [i for i, ln in enumerate(lines) if RECON_HEAD_RE.match(ln)]
     if not starts:
         return None
+    # A SUBHEADING IS PART OF THE SECTION (2026-09-17). This used to end the
+    # body at the NEXT heading of any level, so run No.61's reconciliation,
+    # written with ### subheads under a ## heading, was read as its first three
+    # lines and the row warned on a section that was complete. A section ends at
+    # the next heading of the SAME OR HIGHER level, which is what markdown
+    # nesting means. This can only ever read MORE of the section than before, so
+    # nothing it used to fail can start passing on a shorter body; the run
+    # flattened its subheads to bold to get past it, and the next author should
+    # not have to.
+    start = starts[-1]
+    level = len(re.match(r"^\s{0,3}(#+)", lines[start]).group(1))
     body = []
-    for ln in lines[starts[-1] + 1:]:
-        if ANY_HEAD_RE.match(ln):
+    for ln in lines[start + 1:]:
+        m = ANY_HEAD_RE.match(ln)
+        if m and len(re.match(r"^\s{0,3}(#+)", ln).group(1)) <= level:
             break
         body.append(ln)
     return body
@@ -1113,6 +1125,18 @@ def self_test():
                   require=True)
         check("  and one real slide note under the same boilerplate passes",
               r["status"] == "PASS", r["detail"][:80])
+        # THE No.61 TRAP (2026-09-17): a section written with ### subheads was
+        # read as its first lines only, and warned on a complete reconciliation.
+        subs = ("## BUILD RECONCILIATION\n\nThree rounds, nine frames.\n\n"
+                "### Round one\n\n**Slide 05.** the slat porosity drew 0.45 "
+                "open against a printed 0.12.\n\n### Round two\n\n"
+                "**Slide 03.** the rails ran perpendicular to their own line.\n")
+        r = recon(dossiers + subs + gateblk, require=True)
+        check("  a section written with ### subheads is read whole",
+              r["status"] == "PASS" and "5 line" in r["detail"], r["detail"][:90])
+        r = recon(dossiers + subs.split("### Round one")[0] + gateblk, require=True)
+        check("  and the same section truncated at its first subhead still fails",
+              r["status"] == "FAIL", r["detail"][:90])
         r = recon(dossiers + real + gateblk + "\n## BUILD RECONCILIATION\n\n",
                   require=True)
         check("  a later EMPTY section wins over an earlier full one",

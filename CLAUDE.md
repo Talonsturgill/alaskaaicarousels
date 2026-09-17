@@ -40,6 +40,22 @@ each phase to the run branch as that phase finishes, with an ordinary message
 and pushes the run; it simply stops being the first time anything is written
 down. The upgrade commit stays its own `upgrade(<date>):` commit, unchanged.
 
+**A PERMISSION PROMPT IS A STOP, AND A STOP IS A FAILED RUN** (2026-09-17,
+owner). Run No.61 halted in the middle of Phase 8 on a permission prompt for an
+ordinary file write. It does not matter that the harness raised it rather than
+the showrunner: from the owner's side a run that is sitting there waiting is a
+run that did not happen, and there is nobody at the desk to click yes. Asking
+for anything, in any form, is BANNED in a routine run.
+
+So the standing rule is: never hand control back, and never do the thing that
+invites the harness to hand control back for you. Everything this routine does
+on every run is allowlisted in `.claude/settings.json`; when a run meets a
+prompt anyway, the fix is to add the rule to that file in the same run, commit
+it, and carry on, so the next run cannot be stopped by the same plumbing. The
+allowlist stays scoped: it never covers a push, a merge, a send, a delete under
+`runs/`, or a write to a cron-written ledger, because those are the three
+things that are SUPPOSED to stop and ask.
+
 Neither rule licenses weakening the stop hook. It is a real check and it did
 its job here.
 

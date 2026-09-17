@@ -1,0 +1,236 @@
+{
+  "run_date": "2026-09-17",
+  "carousel_no": 61,
+  "post_copy": "Your University of Alaska login has been bound by a mandatory AI rule since January 2025.\n\nIt binds every user of UA computing resources. Violations may subject employees to discipline up to termination, students to expulsion. The university's own policies page, last updated March 11th, 2025, says \"UA System regulations are currently under development.\"\n\nThe rule in force governs where data goes. The public argument is about how people learn. Ben Shier, the Chief Information Technology Officer, told the regents the university assesses a tool against a data type and says where that data can and can't go.\n\nThe standard's scope and penalties, the page that contradicts them, and the three data classes.\n\nThe only notice duty in the record sits on instructors. What counts as having been told about a rule that already binds you?\n\n#DataClassification #AcademicIntegrity #AKPolicy",
+  "hook_chars": 89,
+  "total_chars": 883,
+  "hashtags": [
+    "#DataClassification",
+    "#AcademicIntegrity",
+    "#AKPolicy"
+  ],
+  "first_comment": "Sources, primary first\n\nUniversity of Alaska Office of Information Technology, Generative AI Security Standard, effective January 2025, next review January 2027 https://www.alaska.edu/oit/policies-standards/generative-ai.php\n\nUniversity of Alaska, GenAI Policies and Guidelines, \"UA System regulations are currently under development\", last updated March 11th, 2025 https://www.alaska.edu/ai/policies/\n\nUniversity of Alaska, GenAI hub, last updated January 9th, 2026 https://www.alaska.edu/ai/\n\nUAF Office of Rights, Compliance and Accountability, work created by an artificial intelligence engine is covered by the student code of conduct https://www.uaf.edu/orca/student-conduct/academic-misconduct.php\n\nUniversity of Alaska Southeast Center for Excellence in Learning and Teaching, generative AI guidance, AI detection tools have high error rates and on their own are not sufficient as evidence, July 24th, 2026 https://uas.alaska.edu/celt/knowledge-base/generative-ai-guidance.html\n\nUAF Center for Teaching and Learning, clarify your expectations for generative AI up front in your syllabus https://ctl.uaf.edu/ai-in-education/\n\nKTOO, University of Alaska regents consider draft AI policy, reporting by Jamie Diep, September 16th, 2026 https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/\n\nEvery Alaska AI decision tracked here, with its live deadlines, sits at https://alaskaaihq.com\n\nIf a campus rule, a syllabus line or a department policy belongs in this record, add it in a reply and it gets checked against the source.",
+  "document_title": "The UA AI Rule That Already Binds",
+  "slide_copy_corrections": [
+    {
+      "slide": 7,
+      "field": "body block 1",
+      "was": "Adoption and use are guided by individual university and department policies.",
+      "now": "Adoption and use are guided by individual university and department policies, currently under development.",
+      "why": "C19's own sentence ends with currently under development, and dropping that clause makes the delegated policies sound finished. Restoring it IS the slide's argument. Applied.",
+      "applied": true
+    },
+    {
+      "slide": 9,
+      "field": "sting",
+      "was": "THE RULE IN FORCE IS NOT REOPENED UNTIL JANUARY 2027",
+      "now": "THE RULE IN FORCE IS NOT REVIEWED UNTIL JANUARY 2027",
+      "why": "C04 records Next Review January 2027 and nothing more. REOPENED claims a second thing the record does not carry, that the standard can't be touched before that date. REVIEWED is the source's own word. Applied.",
+      "applied": true
+    },
+    {
+      "slide": 5,
+      "field": "attribution line",
+      "was": "Ben Shier, the Chief Information Technology Officer, told the regents the university assesses a tool against a data type and says where that data can and can't go.",
+      "now": "Ben Shier, the university's Chief Information Technology Officer, told the regents each tool is assessed against a data type, and users are told where that data can and can't go.",
+      "why": "C25's verbatim is the university's Chief Information Technology Officer and the build had dropped the possessive. The rephrase also stops the slide duplicating the caption almost word for word, which CAROUSEL_CRAFT bars; the caption is locked byte for byte so the slide is the side that moves. Applied.",
+      "applied": true
+    }
+  ],
+  "aftercare": [
+    "Post this draft Tuesday through Thursday, 8 to 11am Alaska time, the strongest slots on the day signal. Drafts land daily and the posting cadence is yours, so hold it for the next strong slot rather than stacking two posts in a week.",
+    "Paste the first comment source block within 60 seconds of posting, before the first readers arrive. It is plain text with full raw URLs on purpose, because hyperlink-only text loses the link on LinkedIn.",
+    "Reply substantively to every comment in the first 90 minutes. Threaded author replies drive up to 2.4x reach and a dead first hour is rarely recovered.",
+    "At 48 hours, note saves and comments against the trailing median, weighting saves over comments over shares over likes, and log the result for the next run."
+  ],
+  "claims_used": [
+    "C01",
+    "C04",
+    "C05",
+    "C06",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "C24",
+    "C25",
+    "C27",
+    "C28",
+    "C30",
+    "C31",
+    "C38",
+    "C40",
+    "C41",
+    "C42"
+  ],
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "UNIVERSITY OF ALASKA",
+      "headline": "THE MANDATORY AI RULE IS TWENTY MONTHS OLD",
+      "labels": [
+        "EFFECTIVE JANUARY 2025"
+      ],
+      "claim_ids": [
+        "C01",
+        "C05"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "WHO IT REACHES",
+      "headline": "IT REACHES EVERY USER OF UA COMPUTING RESOURCES",
+      "body": "subject employees to disciplinary action, up to and including termination",
+      "labels": [
+        "MAY",
+        "subject students to disciplinary action including expulsion",
+        "Systems and services may be disconnected from the UA network",
+        "SUPPLEMENTS R02.07"
+      ],
+      "claim_ids": [
+        "C05",
+        "C06",
+        "C09",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "THE UNIVERSITY'S OWN PAGE",
+      "headline": "\"UA System regulations are currently under development.\"",
+      "body": "One page was restamped this January. The page that says no rules exist yet was not.",
+      "labels": [
+        "LAST UPDATED MARCH 11TH, 2025",
+        "AI HUB LAST UPDATED JANUARY 9TH"
+      ],
+      "claim_ids": [
+        "C17",
+        "C18",
+        "C20"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "WHAT THE RULE SORTS",
+      "headline": "Three classes. Three different answers about where a tool may take them.",
+      "labels": [
+        "PUBLIC",
+        "INTERNAL USE",
+        "RESTRICTED",
+        "can be freely shared with the public",
+        "generally not available outside the UA community",
+        "may be subject to disclosure laws"
+      ],
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE INSTRUMENT, IN ELEVATION",
+      "headline": "CONDITIONED, NOT BANNED",
+      "body": "Ben Shier, the university's Chief Information Technology",
+      "labels": [
+        "PUBLIC",
+        "INTERNAL USE",
+        "RESTRICTED",
+        "OPEN 0.62",
+        "OPEN 0.28",
+        "OPEN 0.12",
+        "GATE, 3 CHUTES",
+        "UA GENERATIVE AI SECURITY STANDARD",
+        "EFFECTIVE JANUARY 2025",
+        "SUPPLEMENTS R02.07"
+      ],
+      "claim_ids": [
+        "C01",
+        "C06",
+        "C12",
+        "C13",
+        "C14",
+        "C16",
+        "C25",
+        "C27"
+      ]
+    },
+    {
+      "n": 6,
+      "headline": "THE RULE GOVERNS WHERE DATA GOES. THE ARGUMENT IS ABOUT LEARNING.",
+      "labels": [
+        "JANUARY 2025 TO JANUARY 2027"
+      ],
+      "claim_ids": [
+        "C01",
+        "C05",
+        "C16"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "WHERE THE LEARNING RULE LIVES",
+      "headline": "THREE CAMPUSES. THEN YOUR SYLLABUS.",
+      "body": "Adoption and use are guided by individual university and department policies, currently under development.",
+      "labels": [
+        "UAA",
+        "UAF",
+        "UAS",
+        "UAF puts work created by an artificial intelligence engine under the student code of conduct.",
+        "UAS tells instructors to avoid relying on AI detection tools alone, because the tools have high error rates and on their own are not sufficient as evidence.",
+        "UAS also tells instructors the key is to clearly communicate their policies to students."
+      ],
+      "claim_ids": [
+        "C19",
+        "C38",
+        "C40",
+        "C41",
+        "C42"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT IS NOT MEASURED",
+      "headline": "KTOO reported that Shier said the university currently can't control and track every usage of AI.",
+      "body": "About 85 percent of college students use generative AI in their coursework.",
+      "labels": [
+        "NATIONAL . 2025 INSIDE HIGHER ED SURVEY . COLLEGE STUDENTS GENERALLY",
+        "NO READING"
+      ],
+      "claim_ids": [
+        "C24",
+        "C25",
+        "C28"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "WHAT IS PROPOSED",
+      "headline": "THE RULE IN FORCE IS NOT REVIEWED UNTIL JANUARY 2027",
+      "body": "KTOO reported that the regents reviewed a draft AI policy that would require all three campuses to develop AI plans, and that leadership plans to submit a finalized draft for approval at the November regents meeting.",
+      "labels": [
+        "NO LISTENING SESSION DATES WERE SCHEDULED AS OF SEPTEMBER 16TH",
+        "READ THE RULE THAT ALREADY BINDS.",
+        "ALASKA.AI"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C21",
+        "C22",
+        "C30",
+        "C31"
+      ]
+    }
+  ]
+}

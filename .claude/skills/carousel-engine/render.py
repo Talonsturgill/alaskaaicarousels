@@ -2827,6 +2827,96 @@ def scan_vacuous_asserts(html: str, name: str) -> list:
     return hits
 
 
+# --- A MATERIAL FLAG THE SHADER WAS NEVER TOLD ABOUT (2026-09-17) -----------
+# Run No.61's chassis built a clay material, set `mat.vertexColors = true`
+# afterwards, and never set `mat.needsUpdate`. three.js compiles USE_COLOR into
+# the program at FIRST BUILD, so the per-vertex colours were ignored and every
+# deposit in the deck rendered at the material's base colour, which was white:
+# a bright slab with a hard edge, through a whole revision round. The frame
+# rendered, the page threw nothing, and every machine gate was green. The fix
+# was one line, and the round spent hunting it was spent because nothing in the
+# machine could see a flag that had been set and never applied.
+#
+# Decidable from the source, no threshold and no taste: a recompile-triggering
+# material property assigned as a STATEMENT after construction, with no
+# `needsUpdate` on the same receiver anywhere later in the same file. The flag
+# list is the documented set of properties that change the compiled program
+# (three.js "Materials / needsUpdate"); `transparent`, `side`, `opacity` and
+# `wireframe` are uniform-or-state changes and are deliberately absent, because
+# flagging them would be noise.
+#
+# Two deliberate narrowings, both to keep false positives at zero:
+#   - Only a RECEIVER THAT LOOKS LIKE A MATERIAL is read (last identifier
+#     segment contains "mat"), so `scene.fog = ...` and an options object's
+#     `o.map` are not material flags and are never judged.
+#   - Only the object-literal form is exempt by construction: `{vertexColors:
+#     true}` passed to a constructor compiles correctly and has no `=`, so it
+#     never matches.
+# Inline scripts AND the house libraries the slide loads (assets/js/ak*.js) are
+# both read, because this defect lived in a shared chassis; vendored libraries
+# (three, d3, zdog, noise, topojson) are not house code and are not read.
+# Measured over the 49 slides on disk (out/2026-09-17, examples/demo-deck, the
+# runs/2026-09-1x decks): 1 assignment found, `akdrift.js` line 606, correctly
+# paired with its needsUpdate, and 0 hits. The reconstruction with that one line
+# deleted fires on all 9 slides of this run's deck, and qa.py FAILs them.
+MATERIAL_RECOMPILE_FLAGS = [
+    "vertexColors", "flatShading", "fog", "map", "alphaMap", "aoMap",
+    "bumpMap", "displacementMap", "emissiveMap", "envMap", "lightMap",
+    "metalnessMap", "normalMap", "roughnessMap", "specularMap", "gradientMap",
+    "alphaTest", "combine", "blending", "premultipliedAlpha",
+]
+MAT_FLAG_RE = re.compile(
+    r"(?:^|[;{}\)]|\n)\s*((?:[A-Za-z_$][\w$]*)(?:\s*\.\s*[A-Za-z_$][\w$]*)*)"
+    r"\s*\.\s*(" + "|".join(MATERIAL_RECOMPILE_FLAGS) + r")\s*=\s*(?!=)")
+MAT_RECEIVER_RE = re.compile(r"mat", re.I)
+
+
+def _scan_material_flags_js(js: str, where: str, line0: int = 0) -> list:
+    """Recompile-triggering material flags set with no needsUpdate to follow."""
+    clean = _strip_js_comments(js)
+    hits = []
+    for m in MAT_FLAG_RE.finditer(clean):
+        recv, flag = " ".join(m.group(1).split()), m.group(2)
+        last = recv.split(".")[-1].strip()
+        if not MAT_RECEIVER_RE.search(last):
+            continue                       # not a material, not our business
+        tail = clean[m.end():]
+        pat = re.compile(r"\b" + re.escape(recv).replace(r"\ ", r"\s*")
+                         + r"\s*\.\s*needsUpdate\s*=")
+        if pat.search(tail):
+            continue
+        hits.append({"where": where, "receiver": recv, "flag": flag,
+                     "line": line0 + clean.count("\n", 0, m.start(2)) + 1})
+    return hits
+
+
+def scan_material_flags(html: str, name: str) -> list:
+    """Inline scripts plus the house libraries this slide loads."""
+    hits = []
+    for m in SCRIPT_RE.finditer(html):
+        attrs, body = m.group(1), m.group(2)
+        if re.search(r"\bsrc\s*=", attrs, re.I):
+            continue
+        tm = re.search(r"""\btype\s*=\s*["']?([^"'\s>]*)""", attrs, re.I)
+        if tm and tm.group(1).strip().lower() not in JS_TYPE_OK:
+            continue
+        hits += _scan_material_flags_js(
+            body, name, html.count("\n", 0, m.start(2)))
+    for rel, p in asset_refs(html):
+        base = p.name
+        if p.suffix != ".js" or not base.startswith("ak"):
+            continue                       # vendored libraries are not house code
+        try:
+            hits += _scan_material_flags_js(p.read_text(), rel)
+        except OSError:
+            continue
+    if hits:
+        print(f"    [material] {name}: " + ", ".join(
+            f"{h['receiver']}.{h['flag']} at {h['where']}:{h['line']} "
+            f"with no needsUpdate" for h in hits))
+    return hits
+
+
 # --- TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05) -------------------------
 # `AK.reliefShade({lights:[{az:205, el:14}]})` resolves, through akrelief.js's
 # own lightVec(), to [-0.41, +0.88, 0.24]: a light from the LOWER LEFT, because
@@ -3167,7 +3257,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
-           "collapsed_fits": [], "vacuous_asserts": [],
+           "collapsed_fits": [], "vacuous_asserts": [], "material_flags": [],
            "lights": [], "light_conflicts": [],
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
@@ -3297,6 +3387,7 @@ def main():
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
             rec["collapsed_fits"] = scan_collapsed_fit(s.read_text(), s.name)
             rec["vacuous_asserts"] = scan_vacuous_asserts(s.read_text(), s.name)
+            rec["material_flags"] = scan_material_flags(s.read_text(), s.name)
             light = scan_light_direction(s.read_text(), s.name)
             rec["lights"] = light["lights"]
             rec["light_conflicts"] = light["conflicts"]

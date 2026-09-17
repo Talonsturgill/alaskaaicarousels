@@ -2461,6 +2461,51 @@
         "https://data.census.gov/table/ACSST1Y2024.S2101"
       ],
       "outcome_notes": ""
+    },
+    {
+      "run_date": "2026-09-17",
+      "carousel_no": 61,
+      "topic": "The University of Alaska Generative AI Security Standard, effective January 2025 and therefore twenty months old, which binds every user of UA computing resources, carries termination for employees and expulsion for students among its penalties, and sorts data into Public, Internal Use and Restricted. A separate university page, last updated March 11th, 2025, says UA System regulations are currently under development. KTOO reported on September 16th that the Board of Regents reviewed a draft AI policy that would require all three campuses to develop AI plans, with a finalized draft due at the November regents meeting. The standard's own next review is January 2027.",
+      "entities": [
+        "University of Alaska",
+        "UA Office of Information Technology",
+        "Board of Regents",
+        "Ben Shier",
+        "UAA",
+        "UAF",
+        "UAS",
+        "KTOO"
+      ],
+      "angle": "The rule is not arriving. It has been in force for twenty months, it governs where data goes, and the public argument is about how people learn.",
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C05",
+        "C06",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C24",
+        "C25",
+        "C27",
+        "C28",
+        "C30",
+        "C31",
+        "C38",
+        "C40",
+        "C41",
+        "C42"
+      ]
     }
   ]
 }

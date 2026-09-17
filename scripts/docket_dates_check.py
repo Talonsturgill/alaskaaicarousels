@@ -579,19 +579,42 @@ def self_test(items, today):
                     d["kind"] = "deadline"
                     if ddate.fromisoformat(d["date"]) > today:
                         hit += 1
-    b_today = today
-    if not hit:
-        # No upcoming vote or decision anywhere in the live ledger, which is the
-        # normal state of a docket between sessions. Fall back to the fixture,
-        # and judge it at the fixture anchor rather than at the live date, or
-        # the fallback rots exactly the way the ledger path just did.
-        broken = copy.deepcopy([FIXTURES[0][1]])
-        b_today = TODAY
-        for d in broken[0]["key_dates"]:
+    def fixture_mislabel():
+        # The fixture is the injection the gate is SPECIFIED to catch: its prose
+        # names a different date than its metadata, which is the disagreement
+        # the gate exists to find. Judged at the fixture anchor, never at the
+        # live date, or the fallback rots the way the ledger path does.
+        fx = copy.deepcopy([FIXTURES[0][1]])
+        for d in fx[0]["key_dates"]:
             if d["kind"] == "vote":
                 d["kind"] = "deadline"
+        return fx, TODAY
+
     rep_b = Report()
-    check_items(rep_b, broken, b_today, label="mislabelled")
+    if hit:
+        check_items(rep_b, broken, today, label="mislabelled")
+    # AND THE INJECTION HAS TO BE DETECTABLE, NOT MERELY PRESENT (2026-09-17).
+    # Counting an upcoming vote was still not enough. This gate finds a mislabel
+    # by catching the entry's PROSE disagreeing with its metadata, so relabelling
+    # a live vote whose prose names no competing date produces a record that is
+    # internally consistent and therefore invisible, by design. On 2026-09-17 the
+    # AIDEA item gained a Houston City Council vote on October 8th, the ledger
+    # path took over from the fixture for the first time in weeks, the injected
+    # breakage was undetectable, and the self-test announced the gate was blind
+    # while the gate was passing 384 assertions on the real ledger.
+    #
+    # An injection the gate cannot see proves nothing either way. So: when the
+    # ledger offers no DETECTABLE mislabel, fall through to the fixture, which
+    # always does. The test only fails when the fixture itself passes clean,
+    # which is the one outcome that really does mean the gate stopped watching.
+    if not rep_b.bad:
+        broken, b_today = fixture_mislabel()
+        rep_b = Report()
+        check_items(rep_b, broken, b_today, label="mislabelled")
+        if hit:
+            print("self-test B: the live ledger offered no DETECTABLE mislabel "
+                  "(its upcoming votes carry no competing date in their prose), "
+                  "so the fixture carried the injection")
     if not rep_b.bad:
         failures.append("a mislabelled date passed the gate")
     else:

@@ -988,11 +988,11 @@
       "id": "aidea-houston-industrial-park",
       "title": "AIDEA's free state land for a Mat-Su data center park",
       "kind": "state-land-lease",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Alaska DNR, Commissioner John Crowther",
-      "public_access": "open",
-      "access_note": "The comment room is open and today is the last full day of it. DNR extended written comment on ADL 234762 through September 14th, and the extension notice states the window runs from July 10th through September 14th without restating a clock time, where the original notice had set 5 p.m. on its own close date. Comments go to Dan Jenkins, DMLW Program Support, 550 West 7th Avenue, Suite 1050, Anchorage 99501, or dmlwprogramsupport@alaska.gov, or (907) 269-8609. The original notice says that if no significant change is required, the preliminary decision is issued as the Final Finding and Decision, with the area plan amendment, the land classification order and the mineral order, without further notice. DNR held informational Zoom meetings on August 27th and September 2nd and took no comment during them. More than 2,000 written comments had arrived by the time DNR noticed those meetings. Houston's city council has asked AIDEA to a September meeting for which no date is set.",
-      "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th and DNR extended it to September 14th.",
+      "public_access": "indirect",
+      "access_note": "The comment room is closed. Written comment on ADL 234762 ran from July 10th through September 14th, the state's notice archived the day after, and Alaska DNR received more than 2,100 comments. Only people from whom the division received timely written comment during that period may appeal the Final Finding and Decision, so the appeal stays open to those who wrote in and is shut to everyone else. No final finding and decision has been published. The rooms still open belong to other bodies. Houston's city council has introduced a two-year moratorium on the construction of new data centers, to be heard October 8th, and anyone may address that council.",
+      "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th, DNR extended it to September 14th, and it is now closed. The decision sits with the department.",
       "key_dates": [
         {
           "date": "2026-07-13",
@@ -1030,9 +1030,24 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-09-09",
+          "label": "Five Senate Resources Committee members write to DNR questioning the conveyance's legality",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-09-14",
           "label": "Extended public comment period ends",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "Matanuska-Susitna Borough Assembly votes unanimously to oppose the transfer",
+          "kind": "vote"
+        },
+        {
+          "date": "2026-10-08",
+          "label": "Houston City Council hears a two-year moratorium on new data center construction",
+          "kind": "vote"
         }
       ],
       "location": {
@@ -1090,10 +1105,20 @@
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224930",
           "outlet": "Alaska DNR Online Public Notices",
           "date": "2026-08-24"
+        },
+        {
+          "url": "https://alaskabeacon.com/2026/09/16/alaska-senators-question-legality-of-state-land-transfer-for-possible-mat-su-data-centers/",
+          "outlet": "Alaska Beacon",
+          "date": "2026-09-16"
+        },
+        {
+          "url": "https://www.matsusentinel.com/mat-su-assembly-calls-for-industrial-projects-at-point-mackenzie-west-susitna-opposes-aidea-transfer/",
+          "outlet": "Mat-Su Sentinel",
+          "date": "2026-09-16"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-07-17",
@@ -1250,6 +1275,10 @@
         {
           "date": "2026-09-14",
           "note": "Re-verified today against the extension notice, Alaska DNR Online Public Notices id 224879. Written comment on the proposed conveyance of about 19,950 acres to AIDEA closes at 5:00 p.m. today, Monday, September 14th, and the notice archives tomorrow. The notice repeats in its own words that only persons from whom DNR DMLW receives timely, written comment during the identified comment period will be eligible to file an appeal of the Final Finding and Decision or related actions, so today is the last day to preserve that standing. No final finding and decision has been published."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "The comment room closed and the argument moved to other rooms. Written comment on ADL 234762 closed September 14th and Alaska DNR received more than 2,100 comments. This entry carried the room as open for three days after it shut, and the state's own notice archived on September 15th. Five members of the Senate Resources Committee, Cathy Giessel, Bill Wielechowski, Forrest Dunbar, Matt Claman and Scott Kawasaki, wrote to the department on September 9th citing a Legislative Affairs Agency attorney's finding that the conveyance may raise legal issues without a DNR review of the proposed projects for the industrial district. The Matanuska-Susitna Borough Assembly voted unanimously on September 15th to oppose the transfer and asked that development of this size go to the Point MacKenzie and West Susitna areas instead. Houston's city council has introduced a two-year moratorium on the construction of new data centers, to be heard October 8th. No final finding and decision has been published."
         }
       ]
     },
@@ -1530,7 +1559,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-02",
@@ -1583,6 +1612,10 @@
         {
           "date": "2026-09-13",
           "note": "Checked and unchanged. The notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th, which moved the proposal deadline to 3:30 p.m. August 28th. Sixteen days after proposals were due, no award, no intent to award and no cancellation is posted."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. The notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th and a proposal deadline of 3:30 p.m. Alaska daylight time on Friday, August 28th. The notice archived on August 31st and no award or intent to award has been posted. Twenty days have passed since proposals were due."
         }
       ]
     },
@@ -1734,7 +1767,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-04",
@@ -1791,6 +1824,10 @@
         {
           "date": "2026-09-13",
           "note": "Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with FERC on June 30th as its most recent action, and puts estimated construction cost at about $400 million. The FERC comment window closed 5 p.m. Eastern on August 28th, so the matter sits with the Commission and any change arrives unannounced."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with the Federal Energy Regulatory Commission on June 30th as its most recent action, and still puts estimated construction cost near $400 million. Nothing posted there reflects any action after that filing."
         }
       ]
     },
@@ -1858,7 +1895,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-05",
@@ -1911,6 +1948,10 @@
         {
           "date": "2026-09-13",
           "note": "Checked and unchanged. The grants.gov listing for HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, shows the opportunity closed August 27th, with one award expected between $2,500,000 and $3,500,000 and an archive date of September 26th. Seventeen days after applications closed, no award is announced. The floor of $2,500,000 is new to this entry, which had carried only the ceiling."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. Applications on the AI3 Action Institute closed August 27th and the posted opportunity archives on September 26th. One award is planned against a ceiling of $3,500,000 and no selection has been published."
         }
       ]
     },
@@ -2251,7 +2292,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-06",
@@ -2288,6 +2329,10 @@
         {
           "date": "2026-09-11",
           "note": "Re-verified against the Department of Energy's own selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project is still listed at $89,000,000 with Terra Energy Center Corporation of Anchorage as the selectee and the facility sited in the Matanuska-Susitna Borough. The page is a list of selections and says nothing about the award being finalized. What it does say about timing is that the project aims to complete FEL-3, or Class 3, engineering in 2027, so no construction decision is near."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. The Department of Energy's own selection page still lists the Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project at $89,000,000 to Terra Energy Center Corporation of Anchorage, and still describes it as a selection rather than an award. The page puts the aim at completing FEL-3 and Class 3 engineering in 2027."
         }
       ]
     },
@@ -2330,7 +2375,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-11",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-06",
@@ -2363,6 +2408,10 @@
         {
           "date": "2026-09-11",
           "note": "Checked. The commission's own carbon storage page again answered an automated request with a 403, so this was verified against Petroleum News. Alaska's bid to run its own Class VI carbon storage permits went to a public hearing at 10 a.m. on May 14th, 2026 at the commission's Anchorage offices, and written and oral comment closed at the conclusion of that hearing. If the Environmental Protection Agency grants primacy, the Alaska Oil and Gas Conservation Commission would regulate the underground injection control program for every Class VI well in the state. No decision has been published and no decision date has been set, which is now four months after the hearing."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. The commission's own carbon storage page again answered an automated request with a 403, so this was verified against Petroleum News, which remains the readable record. The commission held its public hearing on the intention to seek Class VI primacy on May 14th and took written and oral comment through the close of that hearing. Nothing published since names a date for an Environmental Protection Agency decision, and nothing published names the date the application itself went to the agency."
         }
       ]
     },
@@ -2657,10 +2706,14 @@
         {
           "date": "2026-09-15",
           "note": "Updated. The state's own energy authority has said it will fight this. Alaska Energy Authority chief executive Curtis W. Thayer told the Peninsula Clarion on September 14th that the authority will file to intervene and oppose the permit, because the company never contacted the agency even though its filing refers to the authority's Cook Inlet PowerLink project. The next day the authority announced it has the permits for marine survey work on that line, has hired Woolpert, and will mobilise crews to the Kenai Peninsula beginning September 20th with fieldwork running through October 22nd across a marine corridor of about 35 miles. Two claims on one inlet now have overlapping calendars. Re-read today against the Federal Register notice, which describes the project as 100 megawatts, approximately 330 to 350 marine hydrokinetic turbines, 66 modular subsea compute hives and an approximately 3.5 mile, 115 kV hybrid power and fibre optic armoured subsea cable landing in the Nikiski Industrial Corridor between the Agrium Kenai Nitrogen Operations and the Kenai Liquefied Natural Gas Plant. The notice states no acreage."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. Comments, motions to intervene, competing applications and notices of intent to file a competing application on Project No. P-15423-000 are still due by 5:00 p.m. Eastern on November 2nd, and no further FERC action has been published since the acceptance notice of September 4th. Forty-six days remain to file."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-15"
+      "last_updated": "2026-09-17"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -2860,7 +2913,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-12",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-08-31",
@@ -2881,6 +2934,10 @@
         {
           "date": "2026-09-12",
           "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, 2026, and reply comments are due on or before October 30th, 2026. The notice was adopted August 6th, 2026 and released August 7th. Eighteen days are left in the comment window and nothing in it has moved."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, and reply comments are due on or before October 30th. Thirteen days remain to file."
         }
       ]
     },
@@ -2953,7 +3010,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-09-01",
@@ -2970,6 +3027,10 @@
         {
           "date": "2026-09-13",
           "note": "Checked and unchanged. Nothing has been posted by the Fairbanks North Star Borough since the Assembly adopted Resolution 2026-25 on August 27th. The state half of the ask can't be taken up before the 35th Alaska Legislature convenes January 19th, 2027, and the congressional half has no scheduled step at all."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. Resolution 2026-25 stands as adopted on August 27th, and the request for a moratorium on new commercial data center development still appears under both the state and the federal halves of the borough's 2027 priorities. Nothing can be acted on by the body it asks until the 35th Alaska Legislature convenes on January 19th, 2027."
         }
       ]
     },
@@ -3037,7 +3098,7 @@
         }
       ],
       "first_seen": "2026-09-12",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-09-12",
@@ -3054,6 +3115,10 @@
         {
           "date": "2026-09-14",
           "note": "Checked and unchanged. The authorization takes effect today and runs to September 13th, 2027, one year being the statutory maximum. The Federal Register record still carries a single document for it, 2026-18459, published September 10th, with no correction, amendment or withdrawal since."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Checked and unchanged. The Year 9 incidental harassment authorization took effect September 14th and expires September 13th, 2027, one year being the statutory maximum. The first research cruise under it is planned to begin September 22nd, five days out."
         }
       ]
     },
@@ -3064,7 +3129,7 @@
       "status": "pending-decision",
       "decider": "U.S. House of Representatives, then the Senate and the President, and after that every state regulatory authority including the Regulatory Commission of Alaska",
       "public_access": "indirect",
-      "access_note": "There is no comment room on a bill. The route is the congressional delegation, and after enactment it becomes a proceeding at the Regulatory Commission of Alaska, which is a room with a docket and a public record. The bill sits on the Union Calendar at number 713, which makes it eligible for floor action and not scheduled for it, and neither published House schedule listed it on September 13th. Nothing is said here about Alaska's delegation, because the cosponsor list could not be read.",
+      "access_note": "There is no comment room on a bill. The route is the congressional delegation, and after enactment it becomes a proceeding at the Regulatory Commission of Alaska, which is a room with a docket and a public record. The House passed the bill on September 16th and it is now before the Senate, so Alaska's two senators are who to write to while it sits there.",
       "summary": "H.R. 9340, the Ratepayer Protection Act, would add a standard to the Public Utility Regulatory Policies Act requiring that rates charged a large-load customer recover from that customer the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it, and keep recovering it if the customer walks away. A large-load customer is a non-residential consumer with aggregate peak demand of 100 megawatts or more at one site or campus, running information technology infrastructure for data storage and computation, which is a data center described without the phrase. State regulators would get one year from enactment to begin considering it and two to decide. A state is excused if, before enactment, it implemented a comparable standard, conducted a proceeding on one, or its legislature voted on one. Alaska's Senate passed SB 250, a comparable cost-allocation bill, on May 16th, and the House never voted. Whether one chamber satisfies the words the State legislature has voted is unresolved, and it decides whether Alaska is already excused.",
       "key_dates": [
         {
@@ -3076,6 +3141,11 @@
           "date": "2026-09-10",
           "label": "Reported to the House as H. Rept. 119-814 and placed on Union Calendar 713",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-16",
+          "label": "House passes the bill 417 to 3 on Roll No. 312",
+          "kind": "vote"
         }
       ],
       "sources": [
@@ -3103,14 +3173,23 @@
           "url": "https://www.billtrack50.com/billdetail/1974439",
           "outlet": "BillTrack50, Alaska SB 250",
           "date": "2026-09-13"
+        },
+        {
+          "url": "https://repcloakroom.house.gov/floor/wednesday-september-16th-2026/",
+          "outlet": "U.S. House Republican Cloakroom, floor record",
+          "date": "2026-09-16"
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-09-13",
           "note": "Tracked. The threshold is aggregate peak demand, which is power, so a project describing its output in megawatts of generation is not automatically above or below the line. The Alaska question is the third exemption prong. SB 250 passed the Senate on May 16th per Davis Wright Tremaine, crossed over the same day per BillTrack50, then died in House Community and Regional Affairs after a May 18th hearing. The second prong, a proceeding by the state commission alone, is unknown here because that docket search refuses an automated read."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "The House passed it. On September 16th the House agreed to H.R. 9340 on a motion to suspend the rules and pass the bill as amended, by 417 to 3 on Roll No. 312, with 210 Republicans and 206 Democrats voting yes and 3 Democrats voting no. This entry said on September 13th that the bill was eligible for floor action and not scheduled for it, which was true when written and is now overtaken. The bill goes to the Senate. The Alaska consequence is unchanged, a state commission proceeding on large load rates for customers drawing 100 megawatts or more at a single site or campus, which would land at the Regulatory Commission of Alaska."
         }
       ]
     },
@@ -3163,7 +3242,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-09-13",
@@ -3172,6 +3251,10 @@
         {
           "date": "2026-09-14",
           "note": "Re-verified against the Federal Register text. Written responses are accepted on or before October 9th, filed under docket DOE-HQ-2026-1123, and a public webinar runs from 3 to 4 p.m. Eastern on Wednesday, September 16th, two days out. The request names its own cause, saying the rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity and magnified the consequences of a potential successful attack or supply disruption."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Re-read the Federal Register text at the source. Written responses, data and information on the Department of Energy request for information, Docket DOE-HQ-2026-1123, are accepted on or before October 9th. The informational webinar the notice announced for 3 to 4 p.m. Eastern on September 16th has now been held. Twenty-two days remain to respond."
         }
       ]
     },
@@ -3209,11 +3292,15 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-13",
+      "last_updated": "2026-09-17",
       "history": [
         {
           "date": "2026-09-13",
           "note": "Tracked. Two separate sweeps of the Federal Register reached this notice independently, which is why it is here rather than in a footnote."
+        },
+        {
+          "date": "2026-09-17",
+          "note": "Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Fifteen days remain to file."
         }
       ]
     },
@@ -3298,6 +3385,78 @@
         {
           "date": "2026-09-15",
           "note": "Added from the borough's own legislative record, which stores the title as an ordinance amending borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands, sponsored by the mayor, with a hearing noted for October 20th. The record shows an introduction date of September 3rd, an agenda date of September 15th, a status of New Business in the Policies and Procedures Committee, and no passage date. The ordinance text itself is stored as an attachment this record does not render, so nothing is recorded here about what the new section would require."
+        }
+      ]
+    },
+    {
+      "id": "ua-regents-ai-policy",
+      "title": "The University of Alaska's AI policy",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "University of Alaska Board of Regents",
+      "public_access": "indirect",
+      "access_note": "There is no comment room on this one yet. The university says it plans listening sessions and online surveys this fall, and as of September 16th no session dates had been scheduled. The document binding users today is a security standard issued through the Office of Information Technology rather than anything the regents have voted on, and it has been in effect since January 2025. It applies to the UA System and all users of UA computing resources, and violations may subject employees to disciplinary action up to and including termination and students to disciplinary action including expulsion.",
+      "summary": "A mandatory University of Alaska security standard has governed generative AI use across the system since January 2025, while the university's own guidance page, last updated March 11th, 2025, still says UA System regulations are currently under development. University leadership plans to submit a finalized draft artificial intelligence policy for approval at the November regents meeting, which KTOO reports would require all three campuses to develop AI plans for their communities.",
+      "key_dates": [
+        {
+          "date": "2025-01-01",
+          "label": "UA Generative AI Security Standard takes effect, dated January 2025 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2025-03-11",
+          "label": "The GenAI policies and guidelines page carries its last update stamp",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-16",
+          "label": "KTOO reports the Board of Regents reviewed a draft AI policy at a meeting at UAS",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-01-01",
+          "label": "The security standard's own next scheduled review, January 2027 with no day given",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "University of Alaska System, Fairbanks",
+        "lon": -147.8262,
+        "lat": 64.8586
+      },
+      "sources": [
+        {
+          "url": "https://www.alaska.edu/oit/policies-standards/generative-ai.php",
+          "outlet": "University of Alaska Office of Information Technology",
+          "date": "2025-03-01"
+        },
+        {
+          "url": "https://www.alaska.edu/ai/policies/",
+          "outlet": "University of Alaska",
+          "date": "2025-03-11"
+        },
+        {
+          "url": "https://www.alaska.edu/bor/policy-regulations/index.php",
+          "outlet": "University of Alaska Board of Regents",
+          "date": "2026-09-17"
+        },
+        {
+          "url": "https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/",
+          "outlet": "KTOO",
+          "date": "2026-09-16"
+        },
+        {
+          "url": "https://www.uaa.alaska.edu/news/archive/2026/09/building-uaa-we-love.cshtml",
+          "outlet": "University of Alaska Anchorage",
+          "date": "2026-09-10"
+        }
+      ],
+      "first_seen": "2026-09-17",
+      "last_updated": "2026-09-17",
+      "history": [
+        {
+          "date": "2026-09-17",
+          "note": "Tracked. Two instruments govern artificial intelligence at the University of Alaska and only one of them binds anybody today. The UA Generative AI Security Standard took effect in January 2025, was updated in March 2025, supplements Board of Regents Policy and Regulation R02.07, and sets its own next review for January 2027. It applies to the UA System and all users of UA computing resources. It does not forbid Internal or Restricted data from generative AI, it requires such use to meet published requirements for data storage, computing environments and model deployment. The university's GenAI policies and guidelines page, stamped March 11th, 2025, says UA System regulations are currently under development and leaves classroom and research rules to individual universities and departments. KTOO reported on September 16th that the Board of Regents reviewed a draft AI policy at a meeting at UAS and that leadership plans to submit a finalized draft for approval in November. No date for that meeting is published where it could be read today, so none is recorded here."
         }
       ]
     }

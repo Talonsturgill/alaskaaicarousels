@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-17/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11584814,
+  "pdf_mb": 11.58,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-17/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-17/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The UA AI Rule That Already Binds",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "ed45677f11f12259d43a09ea16434d98a391d5e63dd9469524dafd369c1d504c",
+        "bytes": 6443425
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d101cf33113d9a20ce90fdba3ff990fc15e5f6aa469498fd78a88ada099c1c64",
+        "bytes": 5910641
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "c5786fba842f49998956839c416ef13665ea1ed1fe7240ea8875102c69342711",
+        "bytes": 6182158
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "c23f734b35da786e97962e3d8e1c1ab0b63ceab8324f1637daa1e6d1c41a50b5",
+        "bytes": 6446811
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "3b53862fa0aa9ed998ee3ee822e4830db6b589ce9db990f0e8ad29126d588c01",
+        "bytes": 1977759
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "37d9f1f00a713560ed2ecb2b9e57a53bac0cbdc79bf9ca14e0fa85ffc561038a",
+        "bytes": 6210377
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "2c7eb2e7b8646cdc1023ebb5fe4cc019191887b7b481983e9e7a8fa513020151",
+        "bytes": 6499244
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "0846709761d4158599200b621f55193ddf4ae126d8a595a741906050f9f1d7be",
+        "bytes": 6294423
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "9f9a7592bcca42e64ca88fa7ac9684618180287f9864ea350b1437b54a10344b",
+        "bytes": 5801743
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "a45cc96d37fc2d3a84909340d485f461dc7ced374ea1043afa14fee8b69dfbc5",
+        "bytes": 16798
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "dded511516760d7b103bc4d8f36c3207beb86cb931b8bce5d2f9208522d61d5e",
+        "bytes": 13522
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "9fd585954dd8328b31e508a62176067513b08527c1ac563ff046e2cf96468dfe",
+        "bytes": 12144
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "35afa7d48c9e425a205bf8c8ff65a5391bdcbda3e85602e75e1320e09bedcc19",
+        "bytes": 12152
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ac188b592b89e566a38ca3a8ac910cc6bd3728f7363a2085bc5ad2002e7959c6",
+        "bytes": 13325
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "3bed9b48ae4a395db36380a342a65bfe8b0c61e472ade86c1adaaad986ad9b8e",
+        "bytes": 14637
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "3348fac63c661582cb43b88fadbd9979f468e28bef911cc66289437e46795316",
+        "bytes": 13462
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "35620e0e04ee008e77570b66770b69cacbcc97a7615978c48582a39e9f8e8b7e",
+        "bytes": 13639
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "bc6151c1caffb89873a199a11fdaa91bb3bbc80ed1fe9add4b3b406fa5a2a482",
+        "bytes": 12527
+      }
+    ]
+  }
+}

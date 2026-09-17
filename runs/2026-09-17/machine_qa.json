@@ -1,0 +1,122 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the bay 05 post where it enters the snow': shadow L* 60.7 vs ground L* 69.1, dL 8.4 at 432w"
+      ],
+      "motifs": [
+        "'the gate, distant and closed': canvas 34.4 dE, page 34.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'THE MANDATORY AI RULEIS TWENTY MONTHS OLD' fits 2/2 lines at 82px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the modal MAY, employee consequence' lands 0.0px from its target",
+        "leader 'the modal MAY, student consequence' lands 0.0px from its target",
+        "leader 'the modal MAY, employee consequence' meets its label 11.0px away",
+        "leader 'the modal MAY, student consequence' meets its label 11.0px away"
+      ],
+      "fits": [
+        "div 'IT REACHES EVERY USEROF UA COMPUTINGRESOURCE' fits 3/3 lines at 85.5px",
+        "div 'subject employees to disciplinary action, up' fits 3/3 lines at 31.5px",
+        "div 'subject students to disciplinary action incl' fits 3/3 lines at 31.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the bolted notice, the deck's document anchor': canvas 57.1 dE, page 74.3 dE, 78% of its rect is clear of opaque DOM (div.hstamp stands on the rest)"
+      ],
+      "fits": [
+        "div '\"UA System regulations are currently under d' fits 3/3 lines at 29.5px",
+        "div 'One page was restamped this January. The pag' fits 2/3 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "div 'Three classes. Three differentanswers about ' fits 3/3 lines at 63.5px",
+        "div 'can be freely shared with the public' fits 3/3 lines at 28.5px",
+        "div 'generally not available outside the UA commu' fits 3/3 lines at 27px",
+        "div 'may be subject to disclosure laws' fits 3/3 lines at 28.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "asserts": [
+        "'the PUBLIC panel is drawn at its printed open ratio' holds: 0.62 vs 0.637931 open fraction (within 0.035)",
+        "'the INTERNAL USE panel is drawn at its printed open ratio' holds: 0.28 vs 0.275862 open fraction (within 0.035)",
+        "'the RESTRICTED panel is drawn at its printed open ratio' holds: 0.12 vs 0.12069 open fraction (within 0.035)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gate, one gold tick in a long line': canvas 99.1 dE, page 101.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'THE RULE GOVERNSWHERE DATA GOES.THE ARGUMENT' fits 4/4 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "div 'THREE CAMPUSES.THEN YOUR SYLLABUS.' fits 2/2 lines at 58.5px",
+        "div 'Adoption and use are guided by individual un' fits 4/4 lines at 26.5px",
+        "div 'UAF puts work created by an artificial intel' fits 3/4 lines at 26.5px",
+        "div 'UAS tells instructors to avoid relying on AI' fits 4/4 lines at 24px",
+        "div 'UAS also tells instructors the key is to cle' fits 3/4 lines at 26.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gauge board's right leg where it enters the drift': shadow L* 31.4 vs ground L* 39.8, dL 8.4 at 432w"
+      ],
+      "motifs": [
+        "'the gauge board, blank dial, one unlit index': canvas 44.9 dE, page 64.2 dE, 81% of its rect is clear of opaque DOM (div.gauge stands on the rest)"
+      ],
+      "fits": [
+        "div 'KTOO reported that Shier said the university' fits 4/4 lines at 29.5px",
+        "div 'About 85 percent of college students use gen' fits 3/4 lines at 29.5px",
+        "div 'NATIONAL . 2025 INSIDE HIGHER ED SURVEY . CO' fits 4/4 lines at 27.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gate on the built line, sealed': canvas 130.6 dE, page 131.9 dE, 71% of its rect is clear of opaque DOM (div.nod stands on the rest)"
+      ],
+      "fits": [
+        "div 'THE RULE IN FORCEIS NOT REVIEWEDUNTIL JANUAR' fits 3/3 lines at 71.5px",
+        "div 'KTOO reported that the regents reviewed a dr' fits 5/5 lines at 25px",
+        "div 'READ THE RULETHAT ALREADY BINDS.' fits 2/2 lines at 57.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}
