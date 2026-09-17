@@ -397,7 +397,7 @@ state, so it shows which way prices are moving and not what any one utility char
 </div>
 <p class="pwnote" data-reveal>EIA's latest household reading is
 {esc(res["latest_label"])}. The chart shows monthly prices since {esc(month_name(pts[0][0]))}.
-<span class="pwtouch">Drag along it to inspect a month.</span><span class="pwpoint">Point
+<span class="pwtouch">Drag a finger along it to inspect a month.</span><span class="pwpoint">Point
 along it or use Tab and arrow keys to inspect a month.</span> These are observed prices
 only; the data doesn't explain why they changed.</p>
 {utilities_html()}
