@@ -20,7 +20,9 @@ WHAT IT DOES
     1. DETECT. Scans every rendered text node (render_report.json, which is
        what the browser actually laid out) for four aggregate shapes:
          count     "FOUR STATE POSTINGS", "Eight kinds", "TWO AIR FORCE NOTICES"
-         duration  "21 DAYS", "TWO DAYS EARLIER", "three weeks"
+         duration  "21 DAYS", "TWO DAYS EARLIER", "three weeks",
+                   "TWENTY MONTHS OLD", "two years" (months and years are
+                   counted as CALENDAR months, never as 30-day blocks)
          span      "27 TO 31 JUL"
          ratio     "0 OF 5 FOUND"
     2. REQUIRE a declaration for each detection in out/<date>/aggregates.json.
@@ -120,7 +122,17 @@ NUMWORD = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
 _NUM = r"(?:\d[\d,]*|" + "|".join(sorted(NUMWORD, key=len, reverse=True)) + r")"
 
 UNIT_DAYS = {"day": 1, "days": 1, "week": 7, "weeks": 7}
-RX_DURATION = re.compile(r"(?i)\b(" + _NUM + r")\s+(days?|weeks?)\b")
+# CALENDAR UNITS (2026-09-17, run No.61). Months and years were not in the
+# duration detector, so "THE MANDATORY AI RULE IS TWENTY MONTHS OLD" -- a real
+# derivation off a real effective date -- was detected as a COUNT of twenty
+# things called months, which no honest declaration can satisfy: there is no
+# claim enumerating twenty months and there never will be. The only shape that
+# cleared the gate was `design`, the artwork escape hatch, for a fact about the
+# world. A gate that can only be satisfied by misfiling a claim is a gate that
+# teaches runs to misfile claims. These are counted in MONTHS, not days, because
+# a month is not 30 days and a year is not 365.
+UNIT_MONTHS = {"month": 1, "months": 1, "year": 12, "years": 12}
+RX_DURATION = re.compile(r"(?i)\b(" + _NUM + r")\s+(days?|weeks?|months?|years?)\b")
 RX_RATIO = re.compile(r"(?i)\b(\d+)\s+of\s+(\d+)\b")
 RX_SPAN = re.compile(r"(?i)\b(\d{1,2})\s+to\s+(\d{1,2})\b")
 RX_COUNT = re.compile(r"(?i)\b(" + _NUM + r")\s+((?:[a-z][a-z-]*\s+){0,2}[a-z][a-z-]*s)\b")
@@ -436,6 +448,21 @@ def verify(decl, claims, fails, warns):
         a = check_endpoint(decl.get("from"), claims, "from", fails, where)
         b = check_endpoint(decl.get("to"), claims, "to", fails, where)
         if a is None or b is None:
+            return
+        if unit in UNIT_MONTHS:
+            # COMPLETED calendar months between the two dates, which is what
+            # "twenty months old" means in English: the month index difference,
+            # less one when the later date has not yet reached the earlier
+            # date's day of the month.
+            lo, hi = (a, b) if a <= b else (b, a)
+            months = (hi.year * 12 + hi.month) - (lo.year * 12 + lo.month)
+            if hi.day < lo.day:
+                months -= 1
+            per = UNIT_MONTHS[unit]
+            if months % per or months // per != n:
+                got = months / per if months % per else months // per
+                fails.append("%s: prints %d %s but %s to %s re-derives to %s %s"
+                             % (where, n, unit, a.isoformat(), b.isoformat(), got, unit))
             return
         days = abs((b - a).days)
         per = UNIT_DAYS.get(unit, 1)
