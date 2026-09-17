@@ -39,23 +39,26 @@ Three defects repeat across frames and each one is CHASSIS, not slide:
 
 | # | Task | Status |
 |---|---|---|
-| C1 | D.drift end taper, so the deposit stops without a wall | DONE |
-| C2 | D.veil: feather solved from the box, stadium shape, no straight edge | TODO |
-| C3 | Fog colour to meet the sky's own bottom stop (slide 01 seam) | TODO |
-| C4 | Seat D.gateMark / D.stakeMark on geometry via D.camera | TODO |
-| C5 | Feather the volumetric shaft polygon (slide 06) | TODO |
-| S1 | Slide 01: headline sense break (TWENTY/MONTHS split), barred cast to the bottom edge, repoussoir to the left edge | TODO |
-| S2 | Slide 02: veil, vertical plaid in the lower band, missing cut-post repoussoir, headline under its own 64 px floor, mono plate wrap | TODO |
-| S3 | Slide 03: gate state wrong (three chutes where the plan says one occluded arris), notice board is a flat rectangle, stamp detached from the board, "LAST" dropped from the copy | TODO |
-| S4 | Slide 04: REBUILD. Three panels are not at one standoff, the centre is an empty void where INTERNAL USE belongs, the duty-cycle argument is inverted, definitions are plates not veils, INTERNAL USE sets 4 lines | TODO |
-| S5 | Slides 05 to 08: awaiting their critics | TODO |
-| S6 | Slide 09: stake line occluded by the ask, no terminal post anchor, gate mark floating, no stake tags, repoussoir ends mid-air | TODO |
-| X1 | Copywriter's three copy corrections (S7 "currently under development", S9 REOPENED to REVIEWED, S5 attribution rephrase) | TODO |
-| W1 | Re-render, qa, dossier, aggregate, bespoke, re-sync gate block | TODO |
-| W2 | Second critic round on every revised frame | TODO |
-| W3 | copy.json gates: style_lint, copy_sync, plan_drift, caption_check --copy | TODO |
-| W4 | Flow critic on the re-assembled contact sheet | TODO |
-| W5 | Score, then Phases 11 to 14 | TODO |
+| C1 | D.drift end taper | DONE |
+| C2 | D.veil feathered from the box, plus D.inkBoxes | DONE |
+| C3 | Sky's last stop tied to the fog colour | DONE |
+| C4 | D.camera + D.snapToSilhouette; marks projected, not placed | DONE |
+| C5 | Volumetric shaft feathered across its width | DONE |
+| C6 | Mesh rotation yaw minus 90 (the quarter turn) | DONE |
+| C7 | Ground plane out to 2 km | DONE |
+| C8 | Drift vertex-colour blend, with needsUpdate | DONE |
+| S1..S9 | All nine slides through four revision rounds | DONE |
+| X1 | Copywriter's three copy corrections | DONE |
+| W1 | Render, qa, dossier, aggregate, bespoke, gate sync | DONE |
+| W2 | Second and third critic rounds | DONE |
+| W3 | copy.json gates: style_lint, copy_sync, plan_drift, caption_check | DONE |
+| W4 | Flow critic (7.8) | DONE |
+| W5 | Score: 8.79 vs threshold 7.70, ship=true | DONE |
+| P11 | runs/2026-09-17, webp, PDF, site rebuild, ledgers, FIELD_NOTES | DONE |
+| P11b | Push both branches, PR #373 ready, subscribed | DONE |
+| P12 | Upgrade engineer, then merge to main | IN PROGRESS |
+| P13 | Gmail draft (after the merge; image URLs point at main) | TODO |
+| P14 | Retro, run_state complete, delete this file | TODO |
 
 ## Decisions already made, do not relitigate
 

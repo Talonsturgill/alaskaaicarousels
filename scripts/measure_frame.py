@@ -39,14 +39,17 @@ from pathlib import Path
 # present by eye far more often than they are: the curly apostrophe and the
 # curly double quote. Named, so a finding has a word a human can search for.
 BANNED_GLYPHS = {
-    "‘": "left curly single quote",
-    "’": "right curly single quote / curly apostrophe",
-    "“": "left curly double quote",
-    "”": "right curly double quote",
-    "–": "en dash",
-    "—": "em dash",
-    "…": "horizontal ellipsis",
-    " ": "non-breaking space",      # legal in HTML entity form, not raw
+    # Keyed by CODEPOINT and never by the character itself: this file would
+    # otherwise be the one place in the repo that carries every glyph the
+    # house bans, and it would trip its own sweep.
+    chr(0x2018): "left curly single quote",
+    chr(0x2019): "right curly single quote / curly apostrophe",
+    chr(0x201C): "left curly double quote",
+    chr(0x201D): "right curly double quote",
+    chr(0x2013): "en dash",
+    chr(0x2014): "em dash",
+    chr(0x2026): "horizontal ellipsis",
+    chr(0x00A0): "non-breaking space",   # legal as an HTML entity, not raw
 }
 
 
@@ -95,7 +98,7 @@ def _median(xs):
     return float(s[m]) if len(s) % 2 else (s[m - 1] + s[m]) / 2.0
 
 
-def porosity(png, region, design_w, axis):
+def porosity(png, region, design_w, axis, ink="auto"):
     """The open fraction of a region, measured in luminance runs.
 
     `region` is x,y,w,h in DESIGN px; the PNG's own width against --design-w
@@ -103,6 +106,13 @@ def porosity(png, region, design_w, axis):
     uses. Ink is the darker class of an Otsu split INSIDE the region, so a
     light-on-dark panel measures the same way a dark-on-light one does, and the
     threshold is never a parameter anyone tunes to get an answer they wanted.
+
+    WHICH CLASS IS THE MARK is the one thing pixels cannot tell you: a panel
+    that is 0.12 open and one that is 0.88 open are the same picture read two
+    ways. `ink="auto"` guesses the MINORITY class, which is right whenever the
+    marks are sparse and exactly wrong for a nearly solid panel, so say
+    ink="dark" or ink="light" whenever you know, and the reading is then a
+    measurement of a stated thing rather than a guess.
     """
     from PIL import Image
     im = Image.open(png).convert("L")
@@ -115,9 +125,14 @@ def porosity(png, region, design_w, axis):
     if axis == "y":                          # rule the other way
         crop = crop.transpose(Image.ROTATE_90)
         w, h = h, w
-    px = list(crop.getdata())
+    px = list(crop.tobytes())
     thr = _otsu(px)
-    dark_is_ink = (sum(px) / len(px)) > thr  # the minority class is the mark
+    if ink == "dark":
+        dark_is_ink = True
+    elif ink == "light":
+        dark_is_ink = False
+    else:
+        dark_is_ink = sum(1 for v in px if v <= thr) <= len(px) / 2.0
     rows, ink_px, marks, gaps = [], 0, [], []
     for r in range(h):
         row = px[r * w:(r + 1) * w]
@@ -132,6 +147,7 @@ def porosity(png, region, design_w, axis):
     return {
         "png": str(png), "region": list(region), "axis": axis, "scale": sc,
         "threshold": thr, "ink_is": "dark" if dark_is_ink else "light",
+        "ink_class": ink,
         "open_fraction": round(1.0 - ink_px / total, 4),
         "open_fraction_row_median": round(_median(rows) or 0.0, 4),
         "mark_px_median": None if mark_w is None else round(mark_w, 2),
@@ -176,6 +192,9 @@ def main():
     po.add_argument("--png", required=True)
     po.add_argument("--region", required=True, help="x,y,w,h in design px")
     po.add_argument("--design-w", type=float, default=1080.0)
+    po.add_argument("--ink", choices=("auto", "dark", "light"), default="auto",
+                    help="which luminance class is the MARK; auto guesses the "
+                         "minority class and is wrong on a nearly solid panel")
     po.add_argument("--axis", choices=("x", "y"), default="x",
                     help="x = marks ruled across the region's width")
     po.add_argument("--json", action="store_true")
@@ -189,7 +208,7 @@ def main():
             reg = [float(v) for v in a.region.split(",")]
             if len(reg) != 4:
                 raise ValueError("--region takes x,y,w,h")
-            rec = porosity(Path(a.png), reg, a.design_w, a.axis)
+            rec = porosity(Path(a.png), reg, a.design_w, a.axis, a.ink)
         except Exception as e:
             print("could not measure: %s" % e, file=sys.stderr)
             return 2
@@ -202,8 +221,9 @@ def main():
             print("  mark / gap / pitch, design px   %s / %s / %s"
                   % (rec["mark_px_median"], rec["gap_px_median"],
                      rec["pitch_px_median"]))
-            print("  %d marks measured, ink is the %s class at luminance %d"
-                  % (rec["marks_counted"], rec["ink_is"], rec["threshold"]))
+            print("  %d marks measured, ink is the %s class (%s) at luminance %d"
+                  % (rec["marks_counted"], rec["ink_is"], rec["ink_class"],
+                     rec["threshold"]))
         return 0
 
     paths = []
