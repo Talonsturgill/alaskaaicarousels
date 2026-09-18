@@ -28,7 +28,7 @@
   "model": {
     "_spec": {
       "purpose": "Demand model for Cook Inlet Gas Watch. The coefficients live here as data rather than as constants inside scripts/gaswatch_collect.py, so a refit is a data change with its own commit and never a code change. Every collected record carries a copy of this block, so a record always states the model that produced its numbers.",
-      "refit_procedure": "scripts/gaswatch_fit.py refits on the monthly EIA workflow. It bumps the version, rewrites the coefficients, recomputes every backtest expectation and appends a model_history entry naming the month count and the error before and after. A fit is rejected unless it has enough months behind it, lands inside physically sane bounds and beats the model it would replace by more than rounding, and a rejected fit leaves the model alone and prints why. To move the coefficients by hand instead, edit them, run python3 scripts/gaswatch_collect.py --self-test, paste the recomputed figures into the backtests below and append the history entry yourself. Either way that self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if a recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit. Backtest notes carry no numerals, because a refit cannot recompute prose.",
+      "refit_procedure": "scripts/gaswatch_fit.py refits on the monthly EIA workflow. It bumps the version, rewrites the coefficients, recomputes every backtest expectation and appends a model_history entry naming the month count and the error before and after. A fit is rejected unless it has enough months behind it, lands inside physically sane bounds and beats the model it would replace by more than rounding, and a rejected fit leaves the coefficients and fit history alone and prints why. Backtest expectations still refresh when the observed weather record grows. To move the coefficients by hand instead, edit them, run python3 scripts/gaswatch_collect.py --self-test, paste the recomputed figures into the backtests below and append the history entry yourself. Either way that self-test recomputes every backtest from config/gaswatch_hdd_history.json and fails if a recorded expectation disagrees, so a typed number that nothing produced cannot survive a commit. Backtest notes carry no numerals, because a refit cannot recompute prose.",
       "honesty_note": "This model is fitted by least squares to observed EIA Alaska deliveries to residential, commercial and electric power consumers, and refitted whenever another month is published. The published design day and average day are external reference points, not fit targets, so a gap against them is expected and is published rather than tuned away. Nothing derived from this model may be published as a safety verdict, a shortfall prediction, or an all clear.",
       "no_typed_numbers_rule": "Every figure in backtests below is reproduced by code from the committed HDD record. Nothing here is an estimate, a recollection, or a figure copied from prose.",
       "not_public_note": "not_public lists what no source reports DAILY for this region. not_public_monthly_source names the ones that do have a monthly statewide figure, and the page counts them rather than stating a number in prose, so moving an item between these two changes the sentence automatically."
@@ -99,7 +99,7 @@
           "end": "2026-06-30"
         },
         "expect_days": 365,
-        "expect_season_hdd65": 10545.0,
+        "expect_season_hdd65": 10545,
         "expect_bcf": 65.8,
         "compare_to_anchor": "published_season_consumption_bcf",
         "note": "The gap against stated regional consumption across a full gas year is published rather than hidden. The published figure is a planning total and this one is modeled consumption, so they are close relatives and not the same measurement.",
@@ -110,8 +110,8 @@
         "id": "record-average-day",
         "description": "Mean modeled demand across every day in the committed record, against the published average day figure.",
         "computed_from": "hdd_history",
-        "expect_mean_hdd65": 25.9,
-        "expect_mmcfd": 169.8,
+        "expect_mean_hdd65": 25.7,
+        "expect_mmcfd": 169.3,
         "compare_to_anchor": "published_average_day_mmcfd",
         "note": "The gap against the published average day is published rather than tuned away. A planning average carries margin that a fit to observed deliveries does not, so the model is expected to sit under it.",
         "sanity_gap_pct": 40,
@@ -171,9 +171,9 @@
       "geography": "EIA reports Alaska statewide. Residential and commercial gas is overwhelmingly Enstar in Southcentral and gas fired power is overwhelmingly Railbelt, so statewide heating and power deliveries stand in for the region. Industrial load is excluded, because Kenai plant demand does not track the weather.",
       "refit_by": "scripts/gaswatch_fit.py, on the monthly EIA workflow"
     },
-    "hdd_history_days": 4599,
+    "hdd_history_days": 4643,
     "hdd_history_start": "2014-01-01",
-    "hdd_history_end": "2026-08-04"
+    "hdd_history_end": "2026-09-17"
   },
   "model_history": [
     {
@@ -217,12 +217,12 @@
     }
   ],
   "crosscheck": {
-    "eia_latest_month": "202605",
+    "eia_latest_month": "202606",
     "eia_months_checked": 131,
     "eia_model_ratio": 1.0,
     "eia_model_gap_pct": 0,
     "eia_model_runs": "high",
-    "eia_ak_working_gas_bcf": 30.0,
+    "eia_ak_working_gas_bcf": 32.5,
     "eia_ak_capacity_bcf": 69.9,
     "eia_storage_fields": 5
   },
