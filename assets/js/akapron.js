@@ -547,6 +547,34 @@
     for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
     cx.lineTo(W, hz); cx.closePath(); cx.fill();
 
+    // AND THE APRON IS NOT ONE TONE. With direction but no tonal variation the
+    // band still read as a dead field: uniform speckle, no value change, nothing
+    // for an eye to cross. A graded surface has low spots that hold shade and
+    // crowns that catch the key, on a scale of metres rather than of stones. Two
+    // periods, both pure functions of GLOBAL x so the lobes carry across a seam,
+    // giving the band a swing of roughly eight percent luminance.
+    // AS A GRADIENT, NOT AS STRIPS. Sampling the lobe function into a row of
+    // 8 px fillRects gave every strip its own flat alpha, and adjacent strips
+    // banded against each other: the apron came out as CORDUROY, which is a
+    // worse defect than the uniformity it was added to cure. A gradient
+    // interpolates between its stops, so the same function sampled every 45 px
+    // lands as smooth lobes with no edge anywhere.
+    var lobe = cx.createLinearGradient(0, 0, W, 0);
+    for (i = 0; i <= 24; i++) {
+      var fx = i / 24, G2 = gx0 + fx * W;
+      var u = Math.sin(2 * Math.PI * (G2 - 480) / 1460)
+            + 0.55 * Math.sin(2 * Math.PI * G2 / 3700);
+      var la = Math.min(0.16, Math.abs(u) * 0.085);
+      lobe.addColorStop(fx, u > 0 ? "rgba(168,148,111," + la + ")"
+                                  : "rgba(26,23,18," + la + ")");
+    }
+    cx.fillStyle = lobe;
+    cx.beginPath();
+    cx.moveTo(0, hz + (ap - hz) * 0.16);
+    for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
+    cx.lineTo(W, hz + (ap - hz) * 0.16);
+    cx.closePath(); cx.fill();
+
     hachure(cx, gx0, { y0: hz + 6, y1: ap + 20, field: field, grid: 16,
                        passes: 2, seed: seed, hi: PAL.gravelHi, alpha: 0.13, lenMul: 0.52,
                        scale0: 0.46, scale1: 0.95, haze0: 0.60 });
