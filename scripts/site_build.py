@@ -9543,19 +9543,15 @@ Alaska businesses, statewide. That work lives on the
 <a href="../services/">services page</a>. Writing the beat every morning is
 exactly why the studio knows what actually pays.</p>
 <h2>Who runs it</h2>
-<p>Alaska AI is founded and run by <a href="https://www.linkedin.com/in/talonsturgill">Talon
+<p>Alaska AI is lead by <a href="https://www.linkedin.com/in/talonsturgill">Talon
 Sturgill</a>, born and raised in Anchorage. He is also the lead AI engineer for a large
 Lower 48 lab serving enterprise clients, work he does remotely. Alaska AI brings that
 expertise home to help Alaska businesses that rarely get access to it.</p>
 <h2>How the work gets verified</h2>
-<p>Every day Alaska AI works {count_word(len(TOPICS))} beats across the state, from power and
-compute to policy and money to what Alaskans are actually saying. Every
-number and quote is re-fetched from a primary source before it can appear
-on a slide, the docket, or this site, and each one carries its own claim
-record. Every deck's artwork is drawn fresh from code for its story. The
-same team maintains <a href="../docket/">the Alaska AI Docket</a>, a public
-tracker of every AI infrastructure decision in the state and whether the
-public gets a say in it, published as open data.</p>
+<p>Alaska AI covers {count_word(len(TOPICS))} beats daily, verifying every number and quote
+against primary sources. Each claim has a record, and every deck gets original
+artwork drawn from code. We also maintain <a href="../docket/">the Alaska AI Docket</a>,
+an open-data tracker of infrastructure decisions and opportunities for public input.</p>
 <h2>The rules we work by</h2>
 <p>The publication runs on receipts. The studio runs on four commitments,
 written down here so clients can hold us to them.</p>
