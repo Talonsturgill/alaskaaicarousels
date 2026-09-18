@@ -1,0 +1,46 @@
+name: Daily cron supervision checks
+
+on:
+  pull_request:
+    paths:
+      - "scripts/cron_health.py"
+      - "scripts/gate_status.py"
+      - "scripts/site_signoff.py"
+      - "scripts/gaswatch_fit.py"
+      - "tests/cron_health.py"
+      - "tests/gaswatch_fit_refresh.py"
+      - ".github/workflows/cron-health.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/cron_health.py"
+      - "scripts/gate_status.py"
+      - "scripts/site_signoff.py"
+      - "scripts/gaswatch_fit.py"
+      - "tests/cron_health.py"
+      - "tests/gaswatch_fit_refresh.py"
+      - ".github/workflows/cron-health.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet PyYAML
+      - name: Missed jobs, failed steps and incomplete evidence stay red
+        run: python3 tests/cron_health.py
+      - name: A rejected refit still refreshes weather-dependent backtests
+        run: python3 tests/gaswatch_fit_refresh.py
+      - name: Existing routine and model checks still pass
+        run: |
+          python3 scripts/gate_status.py --self-test
+          python3 scripts/gaswatch_fit.py --self-test
+          python3 scripts/gaswatch_collect.py --self-test
+          python3 scripts/site_signoff.py --self-test
