@@ -7870,3 +7870,26 @@ fine-tunes a causal LM as a dual encoder over **textual input only**, which
 raises the 2026-09-13 park about the shipped PDF's text from a craft matter to a
 distribution one, since every shadowed line currently extracts three or four
 times.
+
+### A note on the second sweep, added after Phase 12
+
+Phase 12's retro found that BOTH of this deck's worst findings passed every
+machine gate, and that both were geometrically checkable after the fact. It
+built the length half (`leader_span` in `qa.py`, warn at 360 design px, fail at
+540) and DECLINED the angle half with its measurement: the deck's 28 degree
+vector exists only as prose, 17 occurrences across `design_notes.md` and
+`storyboard.md` and zero machine-readable, so checking it would need a declared
+surface no deck has ever written. The length ceiling catches the defect without
+inventing a contract.
+
+That is the right shape for an upgrade born of a review: build the half that
+needs no new contract, and write down why the other half waits.
+
+It also found a gate that was ALREADY DEAD before this run touched anything.
+`tests/empty_paint_verify.py` returns the same result for its good fixture and
+its defect fixture, which means `PAINT_HOOK_JS` has stopped attributing fills to
+call sites and the empty-paint gate can no longer tell a routine that painted
+nothing from one that painted. That gate exists because run No.47 solved nine
+analytic shadow tips and drew none of them. **It is the first thing the next
+Phase 12 takes, and it outranks anything on the frontier.** A dead gate is worse
+than a missing one, because the run believes it is covered.
