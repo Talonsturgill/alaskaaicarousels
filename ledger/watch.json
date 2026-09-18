@@ -1,14 +1,14 @@
 {
- "generated": "2026-09-17T18:21:29Z",
- "for_date": "2026-09-17",
+ "generated": "2026-09-18T17:44:47Z",
+ "for_date": "2026-09-18",
  "session": "34",
  "counted": {
   "basis_bills": 856,
-  "basis_meetings": 2856,
-  "fedreg_federal-energy-regulatory-commission": 7,
+  "basis_meetings": 2854,
+  "fedreg_federal-energy-regulatory-commission": 8,
   "fedreg_land-management-bureau": 2,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 7,
+  "fedreg_energy-department": 8,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -297,6 +297,34 @@
   {
    "source": "federal-register",
    "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-19197",
+   "title": "Southeast Alaska Power Agency; Notice of Application Accepted for Filing and Soliciting Comments, Motions To Intervene, and Protests",
+   "type": "Notice",
+   "published": "2026-09-18",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/09/18/2026-19197/southeast-alaska-power-agency-notice-of-application-accepted-for-filing-and-soliciting-comments",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
+  },
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-19196",
+   "title": "Southeast Alaska Power Agency; Notice of Application Accepted for Filing and Soliciting Comments, Motions To Intervene, and Protests",
+   "type": "Notice",
+   "published": "2026-09-18",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/09/18/2026-19196/southeast-alaska-power-agency-notice-of-application-accepted-for-filing-and-soliciting-comments",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
+  },
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
    "doc": "2026-18150",
    "title": "Juneau Hydropower, Inc.; Notice of Request for Extension of Time To Commence and Complete Construction Accepted for Filing, Soliciting Comments, Motions To Intervene, and Protests",
    "type": "Notice",
@@ -307,22 +335,8 @@
     "Energy Department",
     "Federal Energy Regulatory Commission"
    ]
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-15691",
-   "title": "Alaska Energy Authority; Notice of Application for Non-Capacity Amendment of License Accepted for Filing, Soliciting Comments, Motions To Intervene, and Protests",
-   "type": "Notice",
-   "published": "2026-08-03",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/08/03/2026-15691/alaska-energy-authority-notice-of-application-for-non-capacity-amendment-of-license-accepted-for",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
   }
  ],
  "failed": [],
- "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2856 meetings and 1 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
+ "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2854 meetings and 1 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
 }
