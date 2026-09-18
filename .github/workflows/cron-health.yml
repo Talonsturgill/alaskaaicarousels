@@ -9,6 +9,10 @@ on:
       - "scripts/gaswatch_fit.py"
       - "tests/cron_health.py"
       - "tests/gaswatch_fit_refresh.py"
+      - "tests/collector_push.py"
+      - ".github/workflows/power.yml"
+      - ".github/workflows/power-utility.yml"
+      - ".github/workflows/docket-watch.yml"
       - ".github/workflows/cron-health.yml"
   push:
     branches: [main]
@@ -19,6 +23,10 @@ on:
       - "scripts/gaswatch_fit.py"
       - "tests/cron_health.py"
       - "tests/gaswatch_fit_refresh.py"
+      - "tests/collector_push.py"
+      - ".github/workflows/power.yml"
+      - ".github/workflows/power-utility.yml"
+      - ".github/workflows/docket-watch.yml"
       - ".github/workflows/cron-health.yml"
   workflow_dispatch:
 
@@ -38,6 +46,8 @@ jobs:
         run: python3 tests/cron_health.py
       - name: A rejected refit still refreshes weather-dependent backtests
         run: python3 tests/gaswatch_fit_refresh.py
+      - name: Collector push failures stay failed after all retries
+        run: python3 tests/collector_push.py
       - name: Existing routine and model checks still pass
         run: |
           python3 scripts/gate_status.py --self-test
