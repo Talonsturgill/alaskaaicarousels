@@ -713,6 +713,44 @@ INK_HOOK_JS = """
     };
     const ERASE = { 'destination-out': 1, 'destination-in': 1, 'destination-atop': 1,
                     'xor': 1 };
+    /* THE LAW'S OWN INKS ARE PINNED (2026-09-18, run No.62). The cap above is
+       what keeps this report bounded, and it evicts by ARRIVAL: once 160
+       distinct colours are recorded, colour 161 is dropped. A deck's gold is
+       one to three marks on a frame and it is often drawn LAST, so it is
+       exactly the colour a flood evicts. No.62's first build lerped aerial
+       perspective per row, minted a fresh literal on every row of the hachure,
+       filled the census, and qa.py then FAILED two frames for "no brush on
+       this frame ever carried #FFC72C" on frames that plainly had gold on
+       them. A gate that returns a false FAIL costs a render cycle and sends
+       the repair at the art instead of at the instrument.
+       So every hex named in this frame's own data-ink law is admitted past the
+       cap. That is a handful of entries, the report stays bounded, and the one
+       colour the ink law exists to look for is the one colour it cannot lose.
+       It does not soften the law: the same pin is what lets a FORBIDDEN ink be
+       seen after a flood too, and the census is read before it is judged.
+       Read lazily because this is an init script and <body> does not exist
+       yet; `pinned` stays null until it does, so a later op tries again. */
+    let pinned = null;
+    const PIN_MAX = 12;
+    const pins = () => {
+      if (pinned) return pinned;
+      if (!document.body) return null;
+      pinned = new Set();
+      try {
+        const raw = document.body.getAttribute('data-ink');
+        if (raw) {
+          const law = JSON.parse(raw);
+          if (Array.isArray(law)) {
+            for (const d of law) {
+              if (pinned.size >= PIN_MAX) break;
+              const v = norm(d && d.hex);
+              if (v) pinned.add(v[0] + ',' + v[1] + ',' + v[2]);
+            }
+          }
+        }
+      } catch (e) {}
+      return pinned;
+    };
     const note = (col, kind, mul) => {
       const v = norm(col);
       if (!v) return;
@@ -720,7 +758,11 @@ INK_HOOK_JS = """
       const key = kind + '|' + v[0] + ',' + v[1] + ',' + v[2];
       let e = rep.inks[key];
       if (!e) {
-        if (Object.keys(rep.inks).length >= MAX) { rep.cap = true; return; }
+        if (Object.keys(rep.inks).length >= MAX) {
+          const p = pins();
+          if (!(p && p.has(v[0] + ',' + v[1] + ',' + v[2]))) { rep.cap = true; return; }
+          rep.pinned = (rep.pinned || 0) + 1;
+        }
         e = rep.inks[key] = { kind: kind, rgb: [v[0], v[1], v[2]],
                               color: String(col).trim().toLowerCase().slice(0, 30),
                               ops: 0, amax: 0 };
@@ -1951,6 +1993,26 @@ IN_PAGE_QA_JS = """
       return [Math.round(p[0]), Math.round(p[1]), Math.round(p[2]),
               p.length >= 4 ? p[3] : 1];
     };
+    /* The same pin as INK_HOOK_JS, on the export side, where <body> is laid
+       out and the law can simply be read. Both caps have to honour it: the
+       hook's, which drops by arrival, and this one, which also slices the
+       final list by op count -- and a gold mark is one or two ops against a
+       flood of thousands, so it loses that sort as surely as it loses the cap.
+       (2026-09-18, run No.62.) */
+    const PIN = new Set();
+    try {
+      const rawLaw = document.body && document.body.getAttribute("data-ink");
+      if (rawLaw) {
+        const law = JSON.parse(rawLaw);
+        if (Array.isArray(law)) {
+          for (const d of law.slice(0, 12)) {
+            const v = norm(String((d && d.hex) || "").trim().toLowerCase());
+            if (v) PIN.add(v[0] + "," + v[1] + "," + v[2]);
+          }
+        }
+      }
+    } catch (e) {}
+    const isPinned = (rgb) => PIN.has(rgb[0] + "," + rgb[1] + "," + rgb[2]);
     const add = (col, kind, mul) => {
       const raw = String(col == null ? "" : col).trim().toLowerCase();
       if (!raw || raw === "none" || raw === "transparent") return;
@@ -1958,7 +2020,9 @@ IN_PAGE_QA_JS = """
       if (!v) return;
       const k = kind + "|" + v[0] + "," + v[1] + "," + v[2];
       if (!acc[k]) {
-        if (Object.keys(acc).length >= 240) { out.ink_cap = true; return; }
+        if (Object.keys(acc).length >= 240 && !isPinned(v)) {
+          out.ink_cap = true; return;
+        }
         acc[k] = { kind: kind, rgb: [v[0], v[1], v[2]], color: raw.slice(0, 30),
                    ops: 0, amax: 0 };
       }
@@ -1970,7 +2034,9 @@ IN_PAGE_QA_JS = """
       for (const k of Object.keys(ir.inks)) {
         const e = ir.inks[k];
         if (!acc[k]) {
-          if (Object.keys(acc).length >= 240) { out.ink_cap = true; continue; }
+          if (Object.keys(acc).length >= 240 && !isPinned(e.rgb)) {
+            out.ink_cap = true; continue;
+          }
           acc[k] = { kind: e.kind, rgb: e.rgb, color: e.color, ops: 0, amax: 0 };
         }
         acc[k].ops += e.ops;
@@ -2001,8 +2067,14 @@ IN_PAGE_QA_JS = """
       const op2 = parseFloat(cs.opacity);
       add(cs.color, "dom-text", isFinite(op2) ? op2 : 1);
     }
-    out.inks = Object.keys(acc).map((k) => acc[k])
-      .sort((a, b) => b.ops - a.ops).slice(0, 160);
+    const ranked = Object.keys(acc).map((k) => acc[k])
+      .sort((a, b) => b.ops - a.ops);
+    out.inks = ranked.slice(0, 160);
+    /* and any law ink the op-count sort pushed out goes back on the end, so
+       the list the gate reads always contains what the law names */
+    for (const e of ranked.slice(160)) {
+      if (isPinned(e.rgb) && out.inks.length < 172) out.inks.push(e);
+    }
   } catch (e) {
     out.inks = [{ error: String(e).slice(0, 140) }];
   }

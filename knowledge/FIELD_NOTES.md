@@ -7800,3 +7800,73 @@ chosen. Write the reason into the file; a later round will otherwise re-open it.
 recorded bespoke at 0.251 and 50 percent drawn share; the shipped render measured
 0.149 and 46 percent. That file is what future runs read for divergence. Numbers
 in a ledger are claims, and this house does not publish a claim nobody measured.
+
+---
+
+## 2026-09-18, Phase 12: what the machine now does about all that
+
+Three upgrades, all reactive, all with a reconstruction that fails before and
+passes after. `tests/leader_span_verify.py` and `tests/ink_census_evict_verify.py`
+are the receipts.
+
+**A leader is now measured as a MARK, not only as two ends.** The 1,020 px
+hairline above passed both existing leader gates because both ask where the line
+STOPS. qa.py now warns past 360 design px and FAILS past 540, measured `from` to
+`to`. The calibration is the two spans this house has actually measured: No.62's
+shipped slide 07 leader is 123 px, the deleted slide 02 leader was 1,020. Past
+half the frame width a leader is the longest drawn line in the picture, and the
+eye reads a long line as a thing before it reads it as a pointer.
+
+**A declared law ink can no longer be evicted from the paint census.** The
+per-row aerial lerp minted a fresh colour literal on every row, filled the
+160-entry census, pushed `#FFC72C` out, and qa.py FAILED two frames for "no
+brush on this frame ever carried it" on frames that plainly had gold. A gate
+that returns a FALSE FAIL is worse than a missing gate: the run spends its
+budget repairing art that was never broken, and this one cost a full render
+cycle. Every hex named in the frame's own `data-ink` is now pinned, at the paint
+hook and again at export, and a saturated census names itself first in the
+failure message. Nothing was loosened; the same pin is what lets a FORBIDDEN ink
+be seen after a flood too.
+
+**A PDF is no longer a dead end for a scout.** Two beats lost primary sources
+this morning (the DNR preliminary decision for ADL 234762, the NPFMC Draft 2027
+Annual Deployment Plan) and both blamed a missing poppler-utils. The diagnosis
+was wrong: pypdf is installed and reads these fine, and what was missing was a
+way to FETCH the bytes, since WebFetch hands a PDF back as binary.
+`scripts/fetch_pdf_text.py` is urllib plus pypdf, no new dependency, and it
+refuses to call an HTML login page a document. It was proven on the frontier
+scan's own source the same hour.
+
+### Parked, 2026-09-18 Phase 12 frontier scan, focus (a), LinkedIn platform
+
+**LINKEDIN'S OWN RANKING PAPER NAMES ITS TWO HEADS AND ONE THRESHOLD, and one
+of them is a number this studio can design against.** "An Industrial-Scale
+Sequential Recommender for LinkedIn Feed Ranking" (Hertel et al., CIKM 2026,
+https://arxiv.org/abs/2602.12354) is LinkedIn describing the ranker that now
+serves the majority of Feed traffic to 1.2B members. Read in full rather than
+summarised, it gives three things no marketing blog does:
+
+- The model optimises two named responses, **Long Dwell** and **Contributions**
+  (likes, comments, reshares). Every ablation in the paper is reported as
+  "Long Dwell AUC" and "Contributions AUC", so those are the objectives.
+- **The long-dwell label is thresholded at 15 seconds.** Section 4.6.3, on
+  in-session leakage, states it outright: "conditioning on the first item in a
+  session having dwell time > 15s increases the likelihood that subsequent items
+  in the same session also exceed 15s". This is the only published number of its
+  kind, and it is the bar a nine-slide document has to clear.
+- **Item popularity and viewer-to-author affinity survive as explicit features**
+  (removing candidate popularity costs 2.5% Long Dwell AUC; removing
+  member-to-member affinity costs 0.3%), so reach is not purely content-shaped.
+
+PARKED, not applied. Dwell is reader behaviour and this machine cannot measure
+it offline; a gate that estimated it from slide count would be exactly the prose
+vibes this phase is supposed to refuse. What it IS good for is planning: the
+directors room and the copywriter can treat 15 seconds as the design target for
+the deck's first three frames, and the scorer's "legibility and platform
+fitness" criterion (weakest twice in ten runs, never worked on by any upgrade)
+now has a published number behind it instead of an intuition. The companion
+retrieval paper (https://arxiv.org/abs/2510.14223) is the second half: LinkedIn
+fine-tunes a causal LM as a dual encoder over **textual input only**, which
+raises the 2026-09-13 park about the shipped PDF's text from a craft matter to a
+distribution one, since every shadowed line currently extracts three or four
+times.
