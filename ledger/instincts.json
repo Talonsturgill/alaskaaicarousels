@@ -1583,6 +1583,41 @@
       "confidence": 0.92,
       "area": "craft",
       "instinct": "WHAT A PUNCHED RESERVE REVEALS MATTERS AS MUCH AS THE PUNCH. The reserve removes art from a box and whatever sits UNDER that box is what the reader sees. On this deck's first build that was bare body background, so five frames showed a flat dark rectangle behind their copy, which is exactly the plate the doctrine bans and the reserve exists to avoid. Lay a full height graded wash on the visible canvas BEFORE the buffer composites, so a hole reveals continuing modelled atmosphere instead of a box."
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "confidence": 0.98,
+      "instinct": "A REPAIR CAN LAND A BIGGER DEFECT THAN THE ONE IT FIXED, AND ONLY A FRESH ADVERSARIAL READ CATCHES IT.",
+      "evidence": "Round one moved slide 02's leader off the gold figure, correctly, because a quantity roped to a mark on the ground is a dimension call. Re-originating it at the disclosure made it a 1,020 px hairline at 37 degrees across the lower right quadrant, which reads as A PLOTTED ROUTE sitting directly under the sentence THE ROUTE IS NOT. The same round gave the figure a rule with 45 degree cut terminals, which is not a flourish, it is a dimension bar. Both were round two's worst findings on the deck, both scored 4.0, and both were deleted. Every machine gate was green through all of it."
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "confidence": 0.97,
+      "instinct": "WHAT SEPARATES GRAVEL FROM GRASS IS NOT LENGTH OR WEIGHT, IT IS WHETHER ANYTHING IS OCCLUDED.",
+      "evidence": "Five critics across two rounds read the hachure field as straw, stubble, fur or a mown hayfield. Shorter strokes, heavier strokes and rotation jitter were all tried and none was the cause. The cause was that every mark in the field was LIGHTER than its ground, so nothing ever cast into anything: a population of pale needles with no dark counterpart is a crop whatever its geometry. One dark companion stroke per lit stroke, offset opposite the key at half weight, fixed it."
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "confidence": 0.95,
+      "instinct": "A PUNCHED RESERVE IS FOUND BY ITS TEXTURE BOUNDARY, NOT BY ITS VALUE STEP, SO MATCHING THE VALUE IS ONLY HALF THE REPAIR.",
+      "evidence": "baseWash was rebuilt from ground()'s own recipe so the two could not drift apart. That made the wash peak at exactly the horizon, because the apron's top edge is its brightest part, while the ART there is a dark treeline drawn over it, so the punch revealed a bright ridge. Two critics independently found a hard bright rule under the trees on the punched frames and absent on the one unpunched frame, which is what identified the cause. The scorer's closing note is that the value matches now and the RECTANGLE still does not."
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "confidence": 0.93,
+      "instinct": "WHEN A CRITIC ASKS FOR TWO THINGS THAT PULL OPPOSITE WAYS, THE SEAM CONTRACT WINS AND THE REASON GETS WRITTEN DOWN.",
+      "evidence": "Slide 04 was asked to lift its aircraft 210 px to kill a dead band AND to put its mainwheels in the deck's tyre track. The track's centreline is a pure function of global x and cannot move without breaking the panorama, so WINGY was solved from it rather than chosen: trackY(GX0+540) minus GEAR_DROP. Continuity is the deck's spine; a dead band is a composition problem with other solutions."
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "confidence": 0.92,
+      "instinct": "A LEDGER THAT PUBLISHES A NUMBER NOBODY MEASURED IS THE ONE THING THIS HOUSE DOES NOT DO, AND ONLY THE SCORER CAUGHT IT.",
+      "evidence": "ledger/artwork.json recorded bespoke at median 0.251 and drawn share 50 percent, which were the round zero numbers, while the shipped render measured 0.149 and 46 percent. That file is the variety engine future runs read for divergence. The row is corrected and now also carries the warning that drawn share FELL to within one point of its 45 percent floor across the rounds, so whoever reaches for akapron.js next owes it more drawn form."
     }
   ]
 }

@@ -7742,3 +7742,61 @@ floor with 64 percent of region A sitting on ground that measured type occupies.
 The probe was reading the reserve, not the encoding. A declaration that cannot
 be evidence is worse than none, so the frame makes none and the claim is left to
 the critics, who can read.
+
+## 2026-09-18, No.62 ROUND TWO: when the repair is the defect
+
+The first sweep of nine pixel critics returned `revise` nine times. The second
+sweep, after a full round of repairs, returned `revise` nine times again, and
+**the two worst findings on the deck were both things the first round had
+added.** That is the lesson worth keeping, above any of the individual fixes.
+
+Slide 02's leader was moved off the gold figure for a good reason: a quantity
+roped by a rule to a mark on the ground is a dimension call, and this frame
+prints "THE LENGTH IS PUBLISHED. THE ROUTE IS NOT." Re-originating that leader
+at the disclosure turned it into a 1,020 px hairline running at 37 degrees
+across the whole lower right quadrant, which at feed scale is the most
+prominent non-type mark on the slide. It reads as a plotted vector. The frame
+drew the one thing the deck exists to refuse, forty pixels under the sentence
+refusing it. In the same round the gold figure was given its own rule with 45
+degree cut terminals, which is not a flourish; it is technique 73, a dimension
+bar, in gold, under a gold quantity, on the frame that will not draw a length.
+
+Every machine gate was green through all of it. `qa.py` read zero fails and
+zero warns on both frames. No gate in this house can tell you that a correct
+line means the wrong thing.
+
+So: **a repair aimed at a named defect can land a bigger one, and only a fresh
+adversarial read catches it.** Budget the second sweep. It is not a formality.
+
+Four other things were learned on measurement:
+
+**Gravel against grass is about occlusion, not geometry.** Five critics called
+the hachure field straw, stubble, fur or a mown hayfield. Shorter strokes,
+heavier strokes and rotation jitter were all tried; none was the cause. The
+cause was that every mark in the field was LIGHTER than its ground, so nothing
+was ever occluded by anything. A stone is legible because it casts into its own
+bed. One dark companion stroke per lit stroke, offset opposite the key at half
+weight, plus a sparse population of lit convex chips, and the surface became
+mineral. Also: one full-strength pass over the whole plane was tried FIRST and
+was worse than the dead band it replaced, because a receding graded surface
+needs DIRECTION, not coverage.
+
+**A punched reserve is found by its texture boundary, not by its value step.**
+`baseWash` was rebuilt from `ground()`'s own recipe so the two could not drift
+apart, and that made it peak at exactly the horizon, where the art is a dark
+treeline. The punch revealed a bright ridge. The frame that identified the
+cause was the only one with no punch, which did not show it. Matching the value
+is half the repair; the reader still finds the box because the grain stops
+inside it, and the scorer's closing note is that the value matches now and the
+rectangle still does not.
+
+**Two critic asks can pull opposite ways, and the seam contract wins.** Slide 04
+was asked both to lift its aircraft 210 px and to seat its mainwheels in the
+deck's tyre track. The track is a pure function of global x and cannot move
+without breaking the panorama, so the wing datum was SOLVED from it rather than
+chosen. Write the reason into the file; a later round will otherwise re-open it.
+
+**Only the scorer checked the ledger against the artifact.** `ledger/artwork.json`
+recorded bespoke at 0.251 and 50 percent drawn share; the shipped render measured
+0.149 and 46 percent. That file is what future runs read for divergence. Numbers
+in a ledger are claims, and this house does not publish a claim nobody measured.

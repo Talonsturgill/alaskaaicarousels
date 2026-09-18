@@ -1986,7 +1986,7 @@
       "run_date": "2026-09-18",
       "carousel_no": 62,
       "slide_count": 9,
-      "hero_structure": "NEW: THE RETURNED APRON. One airport apron at Nenana seen from a KNEELING CAMERA about 620 mm off the shoulder, drawn as a 9 x 1080 = 9720 px panorama and PANNED LATERALLY at constant depth, one slide per 1080 px, with the camera never changing height, lens or light. Three planes on every frame, a tack sharp hachured gravel shoulder in the near field, worn asphalt with exposed aggregate in the mid, spruce treeline and haze in the far. The continuity motif is a TYRE TRACK that on slide 02 leaves the window and comes back INTO ITS OWN IMPRESSION, a second pass offset 40 px crushing the first, which is a closed loop drawn with no diagram. The chassis is committed as assets/js/akapron.js.",
+      "hero_structure": "NEW: THE RETURNED APRON. One airport apron at Nenana seen from a KNEELING CAMERA about 620 mm off the shoulder, drawn as a 9 x 1080 = 9720 px panorama and PANNED LATERALLY at constant depth, one slide per 1080 px, with the camera never changing height, lens or light. Three planes on every frame, a tack sharp hachured gravel shoulder in the near field, worn asphalt with exposed aggregate in the mid, spruce treeline and haze in the far. The continuity motif is a TYRE TRACK that on slide 02 leaves the window and comes back INTO ITS OWN IMPRESSION, a second pass that CROSSES it at global x 1480 and crushes it there, which is a closed loop drawn with no diagram. The offset started as a constant 40 px and that failed on measurement: against a 210 px track it is a 19 percent shift the frame cannot resolve and it read as the two walls of one rut. A return has to cross. The chassis is committed as assets/js/akapron.js.",
       "chassis": "assets/js/akapron.js",
       "atmosphere": "INTERIOR AUGUST, LOW SUN AND HAZE. Daylight, outdoors, mid dark, with the horizon at 620 and the sky's warm glow confined to a narrow rim at that horizon so the band above it stays dark enough to carry snow type at the contrast floor.",
       "palette": "interior august: floor #1A1712, gravel #2A241B to #7A6A4F with crowns at #A8946F, treeline #3A3B33, haze #6E6252, sky ramp #2A241D to #9A8460, sky bounce fill #5A6A78, snow #F4F8FF, bone #C9C2B4, fixture #6B6355, PHANTOM #9FB3C4, gold #FFC72C",
@@ -2018,7 +2018,7 @@
         "type_temperature": 2
       },
       "machine_qa": "PASS, 9 slides, 0 fails, 0 warns. None of the five defect classes trend_check named fired on any frame.",
-      "bespoke": "median pairwise art similarity 0.251 against a 0.60 fail, max pair 0.448, drawn share 50 percent against a 45 percent floor"
+      "bespoke": "median pairwise art similarity 0.149 against a 0.60 fail, max pair 0.300, drawn share 46 percent against a 45 percent floor. MEASURED ON THE SHIPPED RENDER after three editing rounds. The first write of this row carried 0.251 and 50 percent, which were the round zero numbers, and the scorer caught them: this file is the variety engine future runs read for divergence, so a number nobody measured must never sit in it. Drawn share FELL from 50 to 46 across the rounds and the floor is 45, so akapron.js is one point off a gate before it is reused: whoever reaches for this chassis next owes it more drawn form and fewer rectangles."
     }
   ]
 }
