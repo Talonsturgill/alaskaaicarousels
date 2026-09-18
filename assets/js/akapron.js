@@ -252,7 +252,13 @@
           var aspect = Math.atan2(dzdy, dzdx);
           // stroke width from slope, rotation from aspect, per Lehmann
           var wdt = (0.6 + Math.min(1.0, slope * 26) * 1.8) * (0.42 + 0.58 * sc);
-          var len = grid * sc * (1.5 + rnd() * 0.7);
+          // STROKE LENGTH RELATIVE TO SPACING IS WHAT SEPARATES GRAVEL FROM
+          // GRASS. Marks shorter than their spacing read as chips lying on a
+          // plane; marks longer than it overlap into fibres and the frame grows a
+          // lawn. The shoulder has always run at 1.5 to 2.2 cells and reads
+          // correctly because its cell is 9 px, but the apron's cell is 16 and
+          // the same ratio gave it 24 to 35 px strokes, which is straw.
+          var len = grid * sc * (1.5 + rnd() * 0.7) * (o.lenMul === undefined ? 1 : o.lenMul);
           // shade against this pass's sun azimuth
           var nd = Math.max(0, Math.cos(aspect - azP));
           var step = Math.max(0, Math.min(hazeBands - 1,
@@ -506,7 +512,7 @@
     cx.lineTo(W, hz); cx.closePath(); cx.fill();
 
     hachure(cx, gx0, { y0: hz + 6, y1: ap + 20, field: field, grid: 16,
-                       passes: 2, seed: seed, hi: PAL.gravelHi, alpha: 0.13,
+                       passes: 2, seed: seed, hi: PAL.gravelHi, alpha: 0.13, lenMul: 0.52,
                        scale0: 0.46, scale1: 0.95, haze0: 0.60 });
     // The shoulder pass is EXACTLY what it was on the first build (scale 1, no
     // haze lerp, four passes). Every critic who looked at it called it the best
