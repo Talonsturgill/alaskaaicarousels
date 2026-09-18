@@ -461,9 +461,29 @@
     cx.restore();
   }
 
+  /* ---- the base wash --------------------------------------------------- */
+  // WHAT A PUNCHED RESERVE REVEALS MATTERS AS MUCH AS THE PUNCH. The reserve
+  // removes the art from a box, and whatever is UNDER that box is what the
+  // reader sees. On the first build that was bare body background, so five
+  // frames showed a flat dark rectangle behind their copy, which is precisely
+  // the plate the doctrine bans and the reserve exists to avoid. This lays a
+  // full-height graded wash on the visible canvas BEFORE the buffer composites,
+  // so a hole reveals continuing modelled atmosphere instead of a box.
+  function baseWash(cx, gx0) {
+    var hz = yHorizon(gx0 + W / 2);
+    var g = cx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0.00, "#2A241D");
+    g.addColorStop(hz / H * 0.82, "#3C342A");
+    g.addColorStop(hz / H, "#5A4E3C");
+    g.addColorStop(Math.min(0.98, hz / H + 0.20), "#332B21");
+    g.addColorStop(1.00, "#221D17");
+    cx.fillStyle = g;
+    cx.fillRect(0, 0, W, H);
+  }
+
   global.APRON = {
     W: W, H: H,
-    litPool: litPool,
+    litPool: litPool, baseWash: baseWash,
     trackY: trackY, trackPts: trackPts, returnPts: returnPts,
     ground: ground, trackMark: trackMark,
     yHorizon: yHorizon, yApron: yApron,

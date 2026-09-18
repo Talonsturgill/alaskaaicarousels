@@ -2506,6 +2506,43 @@
         "C41",
         "C42"
       ]
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "headline": "Out of Nenana and Back, With the Finding Pending",
+      "topic": "On August 19th ACUASI, part of the University of Alaska Fairbanks, flew a Windracers ULTRA 1,000 kilometres out of Nenana Municipal Airport carrying chilled human blood for the International Testing Agency, the body that runs anti-doping for most of Olympic sport. UAF puts the flight at 8 hours and 47 minutes and the ITA's own release says only several hours. The test began and ended at the same airport, each volunteer gave two samples so a flown one could be compared against a ground control, five sensor channels were logged, and both groups were analysed on site in a satellite laboratory set up in an airport hangar and run by the director of the WADA accredited Dresden laboratory. The ITA published the flight on September 16th. It has not published the finding, and says the results will be communicated once the evaluation has been completed and that it intends to submit them to a peer reviewed journal.",
+      "angle": "THE CIRCLE IS THE CONTROL, WHICH IS WHY IT IS ALSO THE PROBLEM. The cheap read is that a thousand kilometres ending at its own start is a shortfall, and that read is both unfair and wrong on the science. You close a route precisely so the route stops being a variable and the blood is the only thing that changed. The consequence is sharper than the complaint. The distance Alaska supplied was the part deliberately held still, so the variable nobody varied is the one a village clinic needs varied. A circle tests the cargo and a line delivers the care.",
+      "entities": [
+        "ACUASI",
+        "University of Alaska Fairbanks",
+        "International Testing Agency",
+        "Windracers",
+        "Sysmex America",
+        "Interior Region EMS Council",
+        "Nenana Municipal Airport",
+        "Cathy Cahill",
+        "Neil Robinson",
+        "Sven Voss",
+        "Benjamin Cohen",
+        "WADA"
+      ],
+      "keywords": [
+        "1,000 kilometres",
+        "8 hours 47 minutes",
+        "autonomous aircraft",
+        "blood sample transport",
+        "anti-doping",
+        "ground control",
+        "five sensor channels",
+        "unpublished finding",
+        "Doha 20 km",
+        "closed route",
+        "rural medical logistics",
+        "FAA test site"
+      ],
+      "sources_lead": "https://ita.sport/news/integrity-in-flight-ita-completes-a-long-distance-drone-test-flight-to-advance-anti-doping-sample-transport/",
+      "note": "TWO INDEPENDENT SCOUTS LED WITH THIS, Beat B and Beat C, working different briefs with no knowledge of each other. Beat C also wrote 'and the samples survived the trip' in its headline, which no source supports and which is exactly the ending this story wants rather than the one the record carries. That is why the deck's whole argument is that the flight is published and the finding is not. Dedupe returned soft overlaps only, strongest No.59 at jaccard 0.065 on one shared entity, ACUASI, four days. No.59 was read in full and is a money story about the ratio between a planning row and an implementation row. The LANE question mattered more than the jaccard here and pointed the other way for once: five of six scouts came back pointing at data centre siting, a lane the ledger already carries four times in thirty days with No.47's own note saying the next run should change beat, so this story was the way OUT of the crowded lane rather than into it."
     }
   ]
 }

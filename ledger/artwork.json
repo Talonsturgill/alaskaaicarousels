@@ -1981,6 +1981,44 @@
         "vector-colour drift blend",
         "true-projection locator at parallels 55/65 rotate 154"
       ]
+    },
+    {
+      "run_date": "2026-09-18",
+      "carousel_no": 62,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE RETURNED APRON. One airport apron at Nenana seen from a KNEELING CAMERA about 620 mm off the shoulder, drawn as a 9 x 1080 = 9720 px panorama and PANNED LATERALLY at constant depth, one slide per 1080 px, with the camera never changing height, lens or light. Three planes on every frame, a tack sharp hachured gravel shoulder in the near field, worn asphalt with exposed aggregate in the mid, spruce treeline and haze in the far. The continuity motif is a TYRE TRACK that on slide 02 leaves the window and comes back INTO ITS OWN IMPRESSION, a second pass offset 40 px crushing the first, which is a closed loop drawn with no diagram. The chassis is committed as assets/js/akapron.js.",
+      "chassis": "assets/js/akapron.js",
+      "atmosphere": "INTERIOR AUGUST, LOW SUN AND HAZE. Daylight, outdoors, mid dark, with the horizon at 620 and the sky's warm glow confined to a narrow rim at that horizon so the band above it stays dark enough to carry snow type at the contrast floor.",
+      "palette": "interior august: floor #1A1712, gravel #2A241B to #7A6A4F with crowns at #A8946F, treeline #3A3B33, haze #6E6252, sky ramp #2A241D to #9A8460, sky bounce fill #5A6A78, snow #F4F8FF, bone #C9C2B4, fixture #6B6355, PHANTOM #9FB3C4, gold #FFC72C",
+      "light": "declared once and never varied: azimuth 208, elevation 24, key to fill 3.5 to 1, with the whole sky dome as fill so nothing falls off to black. Every cast runs down and right at 28 degrees below horizontal at 2.25 times object height, in a darkened sky hue and never in black.",
+      "hook_archetype": "NEW: THE COMPLETED CONTRADICTION. A fact the reader has to resolve rather than a tease. 1,000 km of blood, out of Nenana, back to Nenana. The repetition of one place name is a shape a thumb reads before it reads words.",
+      "continuity_devices": [
+        "panorama spine, every seam a pure function of global x",
+        "the tyre track, nine states, every change a SHAPE change",
+        "edge tease, cut by the right edge on eight frames",
+        "phantom arc, the cool slate absent from frames 01 to 07, arriving on 08 and last on 09"
+      ],
+      "type_pairing": "Archivo (display, wdth 118 down to 74 across the deck) over Instrument Serif (body and pull quotes) over JetBrains Mono (instrument)",
+      "type_system": "three registers with an EMPTY BAND between 63 and 87 px, deck wide. Archivo 88 and above, Instrument Serif 34 to 62, JetBrains Mono 26 to 30, plus three declared decorative fixtures at 19 to 22. Archivo is never set in caps and JetBrains Mono is never set in lowercase, so the two faces can never be mistaken for two similar sans sharing a register.",
+      "techniques": [
+        "akhachure slope and aspect field over a height field that is a pure function of global x",
+        "drawn tyre trough with a lit far wall and a shaded near wall",
+        "AKENGRAVE.punchReserves with blurred rectangles over a graded base wash",
+        "APRON.litPool, an elliptical lit pool with the ramp built on a circle inside a transform",
+        "smeared attached cast along the light vector",
+        "parallel projection front elevation with the scale solved from the lock",
+        "measured axis with every mark enumerated",
+        "measured knockout plates from AK.svgPlate"
+      ],
+      "gold_law": "GOLD MARKS WHAT THE RECORD CARRIES, one to three marks a frame, never more than about 1.2 percent of frame area, and it is only ever applied to a SEALED form. The phantom register is what the record does NOT carry and is only ever an OPEN form, dashed, unfilled, unlit, and where it is a bar it has no terminator. The distinction is carried by SHAPE and not by value, because a brightness only state change reads as a static logo at 432 px.",
+      "divergence": "The light and the camera, and both are total. Two of the last three atmospheres were night and the third was twilight; this is daylight at 24 degrees of sun elevation and the flight really did happen in daylight. Three of the last four decks were an object under one hard key with a pool of light at its foot; here there is no key, no pool, the ground is lit edge to edge, casts LEAVE the frame, and the camera is INSIDE the scene kneeling on the shoulder with out of focus gravel in the near field. Against No.61 specifically, which is the closest, that fence receded INTO the frame along a vanishing line and was one object repeated, where this pans LATERALLY at constant depth and the repeated element is a SURFACE. There is NO MAP in this deck, no projection and no geodata file loaded, which is the deliberate refusal of the treatment this story begs for and which No.60 already shipped.",
+      "dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "machine_qa": "PASS, 9 slides, 0 fails, 0 warns. None of the five defect classes trend_check named fired on any frame.",
+      "bespoke": "median pairwise art similarity 0.251 against a 0.60 fail, max pair 0.448, drawn share 50 percent against a 45 percent floor"
     }
   ]
 }

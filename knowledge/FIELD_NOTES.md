@@ -7674,3 +7674,71 @@ at all. The built-versus-proposed boundary moved whole to slide 09, where it is
 now in frame, and 06's field 11a declares NO wordless claim with the
 measurement written out. A dossier that keeps asserting a claim the pixels do
 not contain is a defect in the record even when the pixels are fine.
+
+---
+
+## 2026-09-18, No.62 THE RETURNED APRON: five engine lessons, and one device killed on measurement
+
+**A GPU HERO CANNOT CARRY TYPE UNTIL IT HAS BEEN COMPOSITED INTO 2D.** This was
+probed before any slide was written, which is the only reason it did not cost a
+build round. `AKENGRAVE.punchReserves` is a 2D offscreen technique and it cannot
+reach a GL canvas sitting in the DOM, so a rendered frame with a headline over
+it fails by construction. The identical akthree scene returned FOUR qa fails,
+label crossed by art plus canvas mark inside reserved text on two separate
+lines, and then ZERO fails, on one change: render GL offscreen, paint the base
+ground on the visible canvas, `drawImage` the GL frame into an
+`AKENGRAVE.drawOffscreen` buffer, punch THAT, composite, grade once. SKILL.md
+already says to render offscreen and composite. It does not say that the punch
+is the reason, and that is the sentence that was missing.
+
+**AND WHAT THE PUNCH REVEALS MATTERS AS MUCH AS THE PUNCH.** The reserve removes
+art from a box, and whatever sits UNDER that box is what the reader sees. On the
+first build that was bare body background, so five frames showed a flat dark
+rectangle behind their copy, which is precisely the plate the doctrine bans and
+the reserve exists to avoid. `APRON.baseWash` lays a full height graded wash on
+the visible canvas before the buffer composites, so a hole reveals continuing
+modelled atmosphere. A reserve is not finished when the art is gone; it is
+finished when what replaces the art is worth looking at.
+
+**`AK.grainTile` RETURNS A DATA URL, NOT A CANVAS.** Passing it to
+`createPattern` throws, and the slide produces NO PNG AT ALL, which is a hard
+render failure rather than a warning. It is documented for a repeating CSS
+background on a DOM div and that is how the demo deck uses it. Cost one render.
+
+**CANVAS HAS NO ELLIPTICAL GRADIENT.** A lit pool is not a rectangle, and the
+first build carried every one of them on a `fillRect`, which is both wrong about
+light and is what `bespoke_check` counts as blocky. Replacing them with ellipses
+then introduced a subtler defect: a circular ramp poured into an ellipse stops
+the paint on the short axis while the ramp still carries alpha, and leaves a
+hard arc. qa.py caught it on seven frames at once and printed the exact repair,
+which is to build the ramp on a CIRCLE inside a transform. Two of this run's
+best fixes came from gate text rather than from a critic.
+
+**ARCHIVO AT wdth 100 AND ABOVE NEEDS ABOUT 20 CHARACTERS A LINE.** In a 926 px
+box at the 88 px display floor, a 26 character line does not fit, and
+`AK.fitText` clamps to `min` and sets more lines than declared rather than
+failing loudly. Three headlines were written too long and all three were
+rewritten SHORTER and all three got better. `1,000 km of blood. Out of Nenana.
+Back to Nenana.` is a stronger cover than the sentence it replaced, because the
+repetition of one place name is a shape a thumb reads before it reads words.
+
+**AND ONE DEVICE KILLED ON MEASUREMENT, WHICH IS THE ENTRY THAT MATTERS.** The
+winning treatment carried 527 specular crowns per column, one per minute aloft,
+declared in `window.__akAssert`. It is a lovely idea. It is also unshippable in
+this deck, because the repoussoir clod and the track walls are drawn over the
+shoulder BY DESIGN, and a probe found 24 of 176 sampled centres carrying no mark
+at all, so the frame showed 152 where the declaration said 527. The temptation
+was to re-aim the declaration at the marks that survived. That is the No.46
+defect wearing a repair's clothes. The count was DROPPED, the crowns ship as
+what they honestly are, surface texture, and the duration is carried in type on
+two frames where it is checkable. **A deck may not declare a number its own
+composited picture contradicts, and the fix for that is never a smaller
+declaration.**
+
+The same discipline killed the `data-encodes` on slide 08. Its wordless claim is
+that the same card in the same hand has numbers in one half and none in the
+other, which is a claim about TEXT, and the engine reported dE 2.5 against a 4.0
+floor with 64 percent of region A sitting on ground that measured type occupies.
+The probe was reading the reserve, not the encoding. A declaration that cannot
+be evidence is worse than none, so the frame makes none and the claim is left to
+the critics, who can read.

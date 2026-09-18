@@ -1565,6 +1565,24 @@
       "instinct": "When a critic reports that a drawing contradicts its printed numbers, MEASURE THE RENDER YOURSELF before changing anything. A verdict that mixes up which bars are the object and which are the gaps sends a whole round at a drawing that was already right.",
       "evidence": "No.61 round two hard-failed slide 05 at 4.5 saying the open fractions were inverted. A luminance-run measurement returned dark (open) fractions of 0.636 / 0.287 / 0.131 against printed 0.62 / 0.28 / 0.12, every one inside 0.016: the light bars were the slats. The same verdict reported curly apostrophes and a sweep of all nine sources found none. Both declined, both written into the reconciliation.",
       "confidence": 0.9
+    },
+    {
+      "run_date": "2026-09-18",
+      "confidence": 0.95,
+      "area": "engine",
+      "instinct": "A GPU HERO CANNOT CARRY TYPE UNTIL IT HAS BEEN COMPOSITED INTO 2D. AKENGRAVE.punchReserves cannot reach a GL canvas sitting in the DOM, so a rendered frame with a headline over it fails by construction. Measured on a probe this run: the same akthree scene went from FOUR qa fails, label crossed by art plus canvas mark inside reserved text on two lines, to ZERO, on this change alone. Render GL to an offscreen canvas, paint the base ground on the visible 2D canvas, drawImage the GL frame into an AKENGRAVE.drawOffscreen buffer, punch THAT buffer, composite, then grade once."
+    },
+    {
+      "run_date": "2026-09-18",
+      "confidence": 0.99,
+      "area": "engine",
+      "instinct": "AK.grainTile RETURNS A DATA URL, NOT A CANVAS. Passing it to createPattern throws, the page errors, and the slide produces NO PNG AT ALL, which is a hard render failure rather than a warning. It is documented for a repeating CSS background on a DOM div at mix-blend-mode overlay and opacity 0.05 to 0.12, which is also how the demo deck uses it. Grain is a DOM layer over the graded art canvas, never a canvas fill."
+    },
+    {
+      "run_date": "2026-09-18",
+      "confidence": 0.92,
+      "area": "craft",
+      "instinct": "WHAT A PUNCHED RESERVE REVEALS MATTERS AS MUCH AS THE PUNCH. The reserve removes art from a box and whatever sits UNDER that box is what the reader sees. On this deck's first build that was bare body background, so five frames showed a flat dark rectangle behind their copy, which is exactly the plate the doctrine bans and the reserve exists to avoid. Lay a full height graded wash on the visible canvas BEFORE the buffer composites, so a hole reveals continuing modelled atmosphere instead of a box."
     }
   ]
 }
