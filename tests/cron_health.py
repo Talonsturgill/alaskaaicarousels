@@ -83,6 +83,20 @@ class CronHealthTests(unittest.TestCase):
             with patch.object(health, "REPO", Path(td)):
                 self.assertEqual(health.inventory(), {"new.yml": ["0 6 * * *"]})
 
+    def test_current_deployment_with_stale_gas_inputs_is_not_healthy(self):
+        model = {"base_mmcfd": 80, "backtests": [{"expect_mmcfd": 169}]}
+        history = {"end_date": "2026-09-17", "days": 4643}
+        eia = {"latest_month": "202606"}
+        feed = {"model": dict(model, hdd_history_end=history["end_date"], hdd_history_days=history["days"]),
+                "crosscheck": {"eia_latest_month": eia["latest_month"]}}
+        self.assertTrue(health.gas_model_published(feed, model, eia, history))
+        for mutate in (lambda f: f["model"].update(base_mmcfd=81),
+                       lambda f: f["model"].update(hdd_history_end="2026-08-04"),
+                       lambda f: f["crosscheck"].update(eia_latest_month="202605")):
+            stale = copy.deepcopy(feed)
+            mutate(stale)
+            self.assertFalse(health.gas_model_published(stale, model, eia, history))
+
     def test_missing_stale_incomplete_and_blanket_waivers_fail(self):
         workflows = {self.name: self.crons}
         report = {"schema_version": 1, "repository": health.REPOSITORY,

@@ -25,7 +25,7 @@ MAX_RUNNING = timedelta(hours=2)
 KINDS = ("enabled", "schedule", "completion", "steps")
 OUTPUT_IDS = {"pages:enabled", "pages:completion", "pages:steps",
               "live:gas-watch/", "live:gas-watch.json", "output:power",
-              "output:power-utility", "output:docket-watch", "output:weather"}
+              "output:power-utility", "output:docket-watch", "output:weather", "output:gas-model"}
 
 
 def stamp(value):
@@ -200,6 +200,15 @@ def expected_ids(workflows):
     return {f"{name}:{kind}" for name in workflows for kind in KINDS} | OUTPUT_IDS
 
 
+def gas_model_published(feed, model, eia, history):
+    """A current deployment can still contain a page built before its inputs."""
+    shown = feed.get("model", {})
+    return (bool(model) and all(shown.get(k) == v for k, v in model.items())
+            and shown.get("hdd_history_end") == history["end_date"]
+            and shown.get("hdd_history_days") == history["days"]
+            and feed.get("crosscheck", {}).get("eia_latest_month") == eia["latest_month"])
+
+
 def audit(now):
     git("fetch", "--quiet", "origin", "main")
     main_sha = git("rev-parse", "origin/main").decode().strip()
@@ -229,7 +238,7 @@ def audit(now):
     except Exception as exc:
         checks += [row("pages:" + k, False, f"audit unavailable: {exc}") for k in ("enabled", "completion", "steps")]
 
-    page = ""
+    page, feed = "", {}
     for route, path in [("gas-watch/", "docs/gas-watch/index.html"), ("gas-watch.json", "docs/gas-watch.json")]:
         try:
             actual = fetch(SITE + "/" + route)
@@ -238,13 +247,15 @@ def audit(now):
                               f"public bytes {'match' if actual == expected else 'differ from'} main {main_sha[:12]}", SITE + "/" + route))
             if route.endswith("/"):
                 page = actual.decode()
+            else:
+                feed = json.loads(actual)
         except Exception as exc:
             checks.append(row("live:" + route, False, f"public output unavailable: {exc}", SITE + "/" + route))
 
     def data(path):
         return json.loads(git("show", f"{main_sha}:{path}"))
 
-    for kind in ("power", "power-utility", "docket-watch", "weather"):
+    for kind in ("power", "power-utility", "docket-watch", "weather", "gas-model"):
         try:
             if kind == "power":
                 res = data("ledger/power.json")["sectors"]["residential"]
@@ -267,6 +278,10 @@ def audit(now):
                 age = now - stamp(queue["generated"])
                 ok = timedelta(0) <= age <= timedelta(hours=36) and not queue.get("failed")
                 detail = f"queue generated {queue['generated']}; failed sources: {queue.get('failed')}"
+            elif kind == "gas-model":
+                ok = gas_model_published(feed, data("config/gaswatch_model.json"),
+                                         data("ledger/gaswatch_eia.json"), data("config/gaswatch_hdd_history.json"))
+                detail = "published model, EIA month and weather span " + ("match main" if ok else "lag or differ from main")
             else:
                 hist = data("config/gaswatch_hdd_history.json")
                 run = last_runs.get("gaswatch-eia.yml")
