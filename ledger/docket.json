@@ -339,7 +339,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-07-08",
@@ -440,6 +440,10 @@
         {
           "date": "2026-09-14",
           "note": "Checked and unchanged, re-read on HigherGov, which answers while SAM.gov refuses an automated request. Solicitation AFCEC-26-R-0006 reads past due, posted April 10th at 2:01 p.m. Eastern, with a response deadline of 5:00 p.m. Eastern on June 29th and an archive date of July 14th. Every award field is empty, so no awardee, award number, amount or award date is public two and a half months after proposals closed. The record carries an estimated value range of $1,000,000 to $10,000,000 under NAICS 531190, lessors of other real estate property, a code that covers the ground lease and not what a tenant would build on it."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged. The enhanced use lease offering still stands as posted, about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station, with no selection and no award announced. The Air Force set no public decision date when it posted the offering, so a decision here arrives without a calendar."
         }
       ]
     },
@@ -1648,7 +1652,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-08-02",
@@ -1705,6 +1709,10 @@
         {
           "date": "2026-09-14",
           "note": "Checked and unchanged. The state notice for request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One as the current posting, with vendor responses due at 2:00 p.m. on August 20th and an archive date of August 21st. No award is posted, and the notice still prints neither artificial intelligence nor machine learning."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged. The state notice for request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One as the current posting, with responses due at 2:00 p.m. on August 20th and an archive date of August 21st. No award, cancellation or follow-on solicitation has been posted."
         }
       ]
     },
@@ -2001,10 +2009,15 @@
           "url": "https://www.world-nuclear-news.org/articles/oklo-named-to-supply-microreactor-for-alaska-airbase",
           "outlet": "World Nuclear News",
           "date": "2025-06-17"
+        },
+        {
+          "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents",
+          "outlet": "U.S. Nuclear Regulatory Commission",
+          "date": "2026-09-18"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-08-06",
@@ -2045,6 +2058,10 @@
         {
           "date": "2026-09-14",
           "note": "Checked and unchanged. The base's own microreactor page refused an automated request today, so the status was re-read against World Nuclear News and the American Nuclear Society. What stands is a notice of intent to award issued by Defense Logistics Agency Energy, not a signed contract. Oklo would own and operate a 5 megawatt reactor at Eielson and the Air Force would buy the power under a 30 year fixed price agreement, conditional on a Nuclear Regulatory Commission license and on the environmental analysis now under way."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged, and checked this time against the licensing record rather than the base page, which refused an automated read. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice and not a signed contract, and the contract follows a Nuclear Regulatory Commission license. The commission's own record for the Aurora combined license application shows it was submitted on March 11th, 2020, accepted for review on June 5th, 2020, and denied on January 6th, 2022 for failure to supply information, and that application names Idaho National Laboratory rather than Alaska. No license covering an Eielson unit is on the record."
         }
       ]
     },
@@ -2423,7 +2440,7 @@
       "decider": "Kenai Peninsula Borough School District Board of Education",
       "public_access": "indirect",
       "access_note": "An elected school board decides, and its regular meetings carry a public comment period. There is no formal comment window on these documents and no published date for a final vote, so an Alaskan reaches this one through a board member or from the podium at a meeting.",
-      "summary": "The Kenai Peninsula Borough School District is writing the rules for artificial intelligence in its 39 schools while the school year starts. Its Policy Review Committee took up AR 5131.9 Academic Honesty, a new administrative regulation the district says was brought forward in relation to the inclusion of AI, on August 3rd, 2026, with two competing drafts posted, one from Administration and one from board member Mica VanBuskirk. That same evening the full board took first readings on three more documents the district describes as revised for AI-related policy shifts, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and BP 5131.9 Academic Honesty, plus AR 6161.4 Acceptable Use. Nothing in the package is adopted. The district told KBBI in July that it has spent 8,300 dollars to date on a three year MagicSchool subscription for students and staff, so the classroom AI tool was bought before the rulebook was finished. Upstream sits Alaska's Strategic Framework, Artificial Intelligence for K-12, issued by the Department of Education and Early Development, which means what Kenai adopts previews what other Alaska districts face.",
+      "summary": "The Kenai Peninsula Borough School District is writing the rules for artificial intelligence in its 39 schools while the school year starts. Its Policy Review Committee took up AR 5131.9 Academic Honesty, a new administrative regulation the district says was brought forward in relation to the inclusion of AI, on August 3rd, 2026, with two competing drafts posted, one from Administration and one from board member Mica VanBuskirk. That same evening the full board took first readings on three more documents the district describes as revised for AI-related policy shifts, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and BP 5131.9 Academic Honesty, plus AR 6161.4 Acceptable Use. The board adopted both academic honesty documents on September 14th, BP 5131.9 on a second reading and AR 5131.9 as a new administrative regulation, inside a single unanimous consent agenda motion. The rest of the package has no adoption recorded. The district told KBBI in July that it has spent 8,300 dollars to date on a three year MagicSchool subscription for students and staff, so the classroom AI tool was bought before the rulebook was finished. Upstream sits Alaska's Strategic Framework, Artificial Intelligence for K-12, issued by the Department of Education and Early Development, which means what Kenai adopts previews what other Alaska districts face.",
       "key_dates": [
         {
           "date": "2026-07-06",
@@ -2442,7 +2459,7 @@
         },
         {
           "date": "2026-09-14",
-          "label": "Board takes second reading and action on BP 5131.9 Academic Honesty, and first reading and action on AR 5131.9",
+          "label": "Board adopts BP 5131.9 on second reading and approves AR 5131.9 as a new administrative regulation, 9 to 0 on the consent agenda",
           "kind": "decision"
         }
       ],
@@ -2496,10 +2513,20 @@
           "url": "https://egov.kpbsd.org/agenda/672",
           "outlet": "KPBSD E-Governance, September 14th work session",
           "date": "2026-09-14"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/673?item=10147",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-09-14"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/673?item=10145",
+          "outlet": "KPBSD E-Governance",
+          "date": "2026-09-14"
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-09-14",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-08-09",
@@ -2564,6 +2591,10 @@
         {
           "date": "2026-09-14",
           "note": "Confirmed against the district's own work session agenda for today. AR 5131.9 Academic Honesty, item 10097, was presented in work session with revisions and is also featured on the consent agenda this evening for a first reading and action. A consent agenda is adopted in a single motion, so the rule is adopted tonight unless a board member asks for the item to be pulled."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Decided, for the academic honesty half of the package. At its regular meeting on September 14th the board approved consent agenda items A through K in one motion, moved by Ash-Lee Waddell and seconded by Sarah Douthit, and it passed 9 yes, 0 no, 0 abstaining. Item 10147 inside that motion was the second reading and action on BP 5131.9 Academic Honesty, and item 10145 was the first reading and action approving AR 5131.9 Academic Honesty as a new administrative regulation, the document the district brought forward in relation to the inclusion of AI. Neither was pulled for separate discussion. The district's other AI-revised documents, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and AR 6161.4 Acceptable Use, have no adoption recorded at this meeting."
         }
       ]
     },
@@ -2710,10 +2741,14 @@
         {
           "date": "2026-09-17",
           "note": "Checked and unchanged. Comments, motions to intervene, competing applications and notices of intent to file a competing application on Project No. P-15423-000 are still due by 5:00 p.m. Eastern on November 2nd, and no further FERC action has been published since the acceptance notice of September 4th. Forty-six days remain to file."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged, with the comment date re-verified today against the Federal Register notice itself. Comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd, on project number P-15423-000. FERC has issued no further notice in the docket since accepting the application on September 4th."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-17"
+      "last_updated": "2026-09-18"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3098,7 +3133,7 @@
         }
       ],
       "first_seen": "2026-09-12",
-      "last_updated": "2026-09-17",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-09-12",
@@ -3119,6 +3154,10 @@
         {
           "date": "2026-09-17",
           "note": "Checked and unchanged. The Year 9 incidental harassment authorization took effect September 14th and expires September 13th, 2027, one year being the statutory maximum. The first research cruise under it is planned to begin September 22nd, five days out."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged. The Federal Register record still carries one document for the Year 9 authorization, 2026-18459, published September 10th, with no correction, amendment or withdrawal since. The authorization reads that it is effective from September 14th, 2026 through September 13th, 2027, and the first research cruise is planned to begin on September 22nd."
         }
       ]
     },
@@ -3380,11 +3419,15 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-18",
       "history": [
         {
           "date": "2026-09-15",
           "note": "Added from the borough's own legislative record, which stores the title as an ordinance amending borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands, sponsored by the mayor, with a hearing noted for October 20th. The record shows an introduction date of September 3rd, an agenda date of September 15th, a status of New Business in the Policies and Procedures Committee, and no passage date. The ordinance text itself is stored as an attachment this record does not render, so nothing is recorded here about what the new section would require."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "Checked and unchanged. The borough's own legislative record still carries Ordinance 2026-35 as New Business in the Policies and Procedures Committee, introduced September 3rd, with an agenda date of September 15th and no passage or enactment date. The public hearing stays set for October 20th, which is the point at which an Alaskan can speak to it."
         }
       ]
     },
