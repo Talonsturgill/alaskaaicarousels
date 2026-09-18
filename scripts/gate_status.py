@@ -38,7 +38,8 @@ Usage:
   python scripts/gate_status.py --self-test        # hermetic block-plumbing test
 
 Read-only apart from --sync (which rewrites only the block inside the file it is
-given). Stdlib only. Exit 0 when no gate row is FAIL (WARN rows are fine),
+given). The cron audit uses bootstrap's existing PyYAML dependency. Exit 0
+when no gate row is FAIL (WARN rows are fine),
 1 when any row FAILs (with --require, a missing or unparseable artifact FAILs).
 """
 
@@ -684,6 +685,25 @@ def site_fresh_row(rows, run):
     rows.add("site_fresh", "PASS" if p.returncode == 0 else "FAIL", out[-1 if p.returncode == 0 else 0][:140])
 
 
+def cron_health_row(rows, run):
+    """All scheduled jobs need fresh production evidence, beginning next run."""
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", run.name) and run.name < "2026-09-19":
+        return  # September 18th already shipped before this requirement.
+    report, note = load_json(run / "cron_health.json")
+    if not report:
+        rows.absent("cron_health", "cron_health.json " + (note or "empty"))
+        return
+    try:
+        from datetime import datetime, timezone
+        import cron_health
+        incidents, _ = load_json(run / "cron_incidents.json")
+        status, detail = cron_health.gate(report, incidents, cron_health.inventory(),
+                                          datetime.now(timezone.utc))
+        rows.add("cron_health", status, detail)
+    except Exception as exc:
+        rows.add("cron_health", "FAIL", "cron evidence could not be checked: " + str(exc))
+
+
 def _sha256(path):
     h = hashlib.sha256()
     with open(path, "rb") as f:
@@ -1228,6 +1248,7 @@ def main():
     docket_dates_row(rows)
     gas_watch_row(rows)
     gas_watch_live_row(rows, run)
+    cron_health_row(rows, run)
     site_fresh_row(rows, run)
     sdir = run / "slides" if (run / "slides").is_dir() else run
     assemble_row(rows, run, rep, fdir, rdir, sdir)

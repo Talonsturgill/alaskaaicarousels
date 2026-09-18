@@ -38,10 +38,9 @@ back a list of complaints has moved the work rather than done it. The routine's
 job in Phase 3.6 is to FIX what this finds and then report what is left, not to
 copy the complaints into an email.
 
-Two categories are marked REPORT and must not be fixed by a run: a collector
-that has stopped running, whose ledger is cron written and would be corrupted
-by a run writing into it, and a surface another repo owns. Everything else is
-presentation or a stale build, and both are a run's to repair.
+Collector failures use CLAUDE.md's isolated maintenance procedure; the routine
+repairs the writer and runs its production workflow, never types ledger values.
+Surfaces another repo owns remain report-only.
 
 CONTRACT, the same one gaswatch_pagecheck signs. This SCRIPT is read only, it
 asserts and never repairs; the repairing is the routine's. Exit 0 clean, exit 2
@@ -547,9 +546,8 @@ def check_site(out_dir, today=None):
 #
 # So every check carries its own remedy. Almost all of them are fixable inside
 # a run, because almost all of them are presentation or a stale build. The two
-# that are not are marked REPORT, and they are the same two CLAUDE.md already
-# protects: a collector that has stopped running, and a surface another repo
-# owns. A run that "fixed" either would be writing a number it does not produce.
+# outside this repo are marked REPORT. Collector faults use the maintenance
+# procedure so repairs never become hand-written measurements.
 FIXES = [
     (r"^every page is on disk|^the built site",
      "Rebuild. python3 scripts/site_build.py --date <date> --out docs"),
@@ -583,12 +581,12 @@ FIXES = [
     (r"gaswatch\.jsonl is current",
      "CHECK LIVE. Run scripts/gaswatch_health.py with a dated --output file. "
      "Distinguish announced source maintenance from a stopped or failed "
-     "collector. Follow CLAUDE.md's autonomous Gas Watch maintenance procedure; "
+     "collector. Follow CLAUDE.md's scheduled-job maintenance procedure; "
      "never invent a missing measurement."),
     (r"is current",
-     "REPORT, DO NOT FIX. A collector has not run. Its ledger is cron written "
-     "and off limits to a run (CLAUDE.md, routine rule 19). Say so in the "
-     "draft and ship the deck."),
+     "CHECK CRON. Run scripts/cron_health.py with a dated --output file. "
+     "Diagnose the collector and follow CLAUDE.md's scheduled-job maintenance "
+     "procedure. Repair and rerun the writer; never hand-edit its ledger."),
     (r"videos passthrough",
      "REPORT, DO NOT FIX. docs/videos/ is a hard guard owned by another repo. "
      "Never write, reformat or regenerate it."),
@@ -818,8 +816,8 @@ def self_test():
     guarded = [l for _, l, _ in rows if (fix_for(l) or "").startswith("REPORT")]
     check("most of them a run can repair itself", len(fixable) > len(guarded),
           f"{len(fixable)} fixable, {len(guarded)} report only")
-    check("other collectors remain report-only",
-          all("REPORT" in (fix_for(l) or "") for _, l, _ in rows
+    check("other collectors use autonomous maintenance",
+          all("CHECK CRON" in (fix_for(l) or "") for _, l, _ in rows
               if l.endswith("is current") and not l.startswith("gaswatch.jsonl")))
     check("Gas Watch uses its live audit and maintenance procedure",
           "CHECK LIVE" in fix_for("gaswatch.jsonl is current") and

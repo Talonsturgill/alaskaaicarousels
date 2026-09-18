@@ -23,7 +23,8 @@ because Kenai plant loads have nothing to do with weather.
 GUARDS, because an automatic refit that can go wrong unattended is worse than
 no refit. A new fit is rejected unless it has enough months behind it, lands
 inside physically sane bounds, and actually beats the model it would replace.
-A rejected fit leaves the model alone and says why.
+A rejected fit leaves the coefficients alone and says why. Backtest
+expectations still refresh when the observed weather record grows.
 
 Run:
   python3 scripts/gaswatch_fit.py --self-test   # hermetic
@@ -125,6 +126,23 @@ def evaluate(model, rows):
     }, f"fit improves mean monthly error from {was:.2f} to {now:.2f} percent"
 
 
+def refresh_backtests(model, hdd):
+    """Recompute expectations without changing coefficients or fit history.
+
+    The monthly job extends the weather record even when EIA has no new month.
+    Record-wide means then move without earning a refit. Leaving their stored
+    expectations stale used to fail the collector gate and discard the update.
+    """
+    out = json.loads(json.dumps(model))
+    facts = gc.backtest_facts(out, hdd)
+    for bt in out.get("backtests", []):
+        got = facts.get(bt["id"], {})
+        for key in list(bt):
+            if key.startswith("expect_") and key[7:] in got:
+                bt[key] = got[key[7:]]
+    return out
+
+
 def apply_fit(model, prop, today, months_label):
     """Return the model with the new coefficients and recomputed backtests.
 
@@ -159,17 +177,7 @@ def apply_fit(model, prop, today, months_label):
 
     # Recompute every backtest expectation from the new coefficients.
     _, hdd = gc.load_hdd_history(out, REPO)
-    facts = gc.backtest_facts(out, hdd)
-    for bt in out.get("backtests", []):
-        got = facts.get(bt["id"])
-        if not got:
-            continue
-        for key in list(bt):
-            if not key.startswith("expect_"):
-                continue
-            field = key[len("expect_"):]
-            if field in got:
-                bt[key] = got[field]
+    out = refresh_backtests(out, hdd)
 
     out.setdefault("model_history", []).append({
         "version": out["version"],
@@ -288,15 +296,19 @@ def main():
     prop, why = evaluate(model, rows)
     if prop is None:
         print(f"No refit. {why}")
-        return 0
-
-    new = apply_fit(model, prop, date.today(), through)
-    print(f"Refit on {prop['months']} months through {through}")
-    print(f"  base   {model['base_mmcfd']} to {new['base_mmcfd']}")
-    print(f"  slope  {model['slope_mmcfd_per_hdd']} to {new['slope_mmcfd_per_hdd']}")
-    print(f"  mean monthly error {prop['previous_mean_error_pct']} to "
-          f"{prop['mean_error_pct']} percent")
-    print(f"  version {model['version']} to {new['version']}")
+        _, hdd = gc.load_hdd_history(model, REPO)
+        new = refresh_backtests(model, hdd)
+        if new == model:
+            return 0
+        print("Refreshing backtests for the extended weather record; coefficients unchanged.")
+    else:
+        new = apply_fit(model, prop, date.today(), through)
+        print(f"Refit on {prop['months']} months through {through}")
+        print(f"  base   {model['base_mmcfd']} to {new['base_mmcfd']}")
+        print(f"  slope  {model['slope_mmcfd_per_hdd']} to {new['slope_mmcfd_per_hdd']}")
+        print(f"  mean monthly error {prop['previous_mean_error_pct']} to "
+              f"{prop['mean_error_pct']} percent")
+        print(f"  version {model['version']} to {new['version']}")
     if args.dry_run:
         return 0
     with open(args.model, "w", encoding="utf-8") as fh:
