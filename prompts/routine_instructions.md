@@ -123,7 +123,7 @@ maintainer can post in ninety seconds.
    time series that cannot be rebuilt, because CINGSA keeps no archive.
    Editorial edits are limited to PRESENTATION (`scripts/gaswatch_build.py`
    HTML and CSS, `site_build.gas_watch_page`, `scripts/power_panel.py`). The
-   owner's September 16th daily Gas Watch maintenance procedure in CLAUDE.md
+   owner's September 18th daily scheduled-job maintenance procedure in CLAUDE.md
    authorizes a separate, tested maintenance branch when the live audit finds
    a collector/workflow defect. It never authorizes invented or rewritten data.
    Phase 3.6 is the daily
@@ -560,7 +560,7 @@ Gas Watch carries hard rules no generic checker knows. Read the Gas Watch
 section of CLAUDE.md before touching anything there.
 
 **THE HARD LINE. Editorial work does not produce or edit the numbers.**
-Off limits to editorial edits (the separate Gas Watch maintenance exception
+Off limits to editorial edits (the separate scheduled-job maintenance exception
 in CLAUDE.md applies only to a diagnosed collector/workflow defect):
 
     scripts/gaswatch_collect.py     the parser, the model arithmetic, the
@@ -576,11 +576,34 @@ in CLAUDE.md applies only to a diagnosed collector/workflow defect):
                                     never written by a run
 
 Those are written by cron jobs and deliberate human refits. Never repair a
-missing measurement by typing a plausible value into a ledger. For Gas Watch,
-follow the live audit and maintenance procedure below. Other collectors remain
-report-only unless separately authorized.
+missing measurement by typing a plausible value into a ledger. Follow the
+maintenance procedure for any diagnosed scheduled-job failure, not just Gas Watch.
 
-0. **Check Gas Watch live, every day, before the local build can hide a problem.**
+0a. **Audit every cron job daily and resolve failures.** Before rebuilding:
+
+       python3 scripts/cron_health.py --output out/<date>/cron_health.json
+
+   This discovers all scheduled workflows from current main, including future
+   additions. It checks their own cadence, enablement, production collection
+   runs and individual steps, then Pages and published output. Weekly/monthly
+   collectors remain weekly/monthly; they get a daily health check, not an
+   unnecessary daily source download. A green PR or test-only push is not a
+   successful collection. A retry still running is not a verified recovery.
+
+   Read the failed logs and fix the cause in this run. Retry transient failures;
+   repair code/workflows on an isolated maintenance branch under CLAUDE.md's
+   policy, pass CI and current-head Codex review, merge, and run the owning
+   production workflow. Verify actual output and deployment, then repeat this
+   audit. Never hand-edit protected ledgers, relax checks, or change schedules
+   or credentials. A bad deck or ALREADY_SHIPPED re-fire does not skip this work.
+
+   From September 19th, `gate_status.py --require` rejects missing, stale or
+   incomplete cron evidence and undiagnosed failures. Real external blockers
+   use `cron_incidents.json` as specified in CLAUDE.md. Preserve both artifacts
+   in the shipped run, name unresolved causes in the existing draft/completion
+   report, and retry next day. Fixable failures do not qualify as blockers.
+
+0b. **Check Gas Watch live, every day, before the local build can hide a problem.**
 
        python3 scripts/gaswatch_health.py --output out/<date>/gaswatch_health.json
 
@@ -631,14 +654,12 @@ why. The default is repair, and the report is what survived the repair.
 
    **It prints the remedy for anything it finds, under "what to do about it",
    and returns the same string as `fix` in `--json`. Follow it.** Almost every
-   finding is presentation or a stale build and both are yours to repair. Two
-   are marked REPORT and you must not touch them:
+   finding is presentation or a stale build and both are yours to repair.
+   Collector incidents use step 0a; only another repo's surface is report-only:
 
-       "<ledger> is current" failing     investigate the collector. Gas Watch
-                                         uses step 0's maintenance procedure.
-                                         Other collectors remain report-only. Its
-                                         ledger is cron written (rule 19). Say
-                                         so in the draft; never write it.
+       "<ledger> is current" failing     diagnose and repair the owning job via
+                                         isolated maintenance, rerun production
+                                         and verify. Never hand-write its ledger.
        "videos passthrough"              another repo owns it. Never write it.
 
    Everything else you FIX, now, in this phase.
@@ -693,7 +714,7 @@ why. The default is repair, and the report is what survived the repair.
    you find yourself typing a number into copy, you are doing it wrong, and
    the build will refuse it anyway.
 
-4. Record TWO lines in the run record and in the Gmail draft (Phase 13), even
+4. Record these lines in the run record and in the Gmail draft (Phase 13), even
    when clean, so the maintainer sees the whole site was looked at:
 
        SITE SIGN-OFF: <PASS|WARN|FAIL>, <N> pages, <M> checks<, UNFIXED ...>
@@ -702,9 +723,13 @@ why. The default is repair, and the report is what survived the repair.
        GAS WATCH LIVE: <PASS|WARN|MAINTENANCE|FAIL>, checked <timestamp>,
        <repairs verified or exact external blocker>
 
+       CRON HEALTH: <PASS|WARN|FAIL>, <N> scheduled workflows checked,
+       <repairs verified or exact external blockers>
+
    Copy the live verdict from gaswatch_health.json. Never replace MAINTENANCE
    or FAIL with PASS because the local build succeeded. Preserve that JSON and
-   any gaswatch_incident.json in the shipped run directory.
+   any gaswatch_incident.json in the shipped run directory. Likewise preserve
+   cron_health.json and any cron_incidents.json. Never describe WARN as resolved.
 
    `site_signoff.py` prints its own line ready to copy, and it says UNFIXED
    rather than FAILED on purpose: by the time you write that line you were
@@ -1644,7 +1669,7 @@ JSON in its final message, which YOU persist to
 GAS WATCH GUARDRAIL, read before proposing any upgrade that touches it. The
 collectors, the model config and the two gas ledgers are off limits to this
 routine's editorial upgrades (non-negotiable 19). A diagnosed incident follows
-the separate maintenance procedure in CLAUDE.md and Phase 3.6 step 0. That is
+the separate maintenance procedure in CLAUDE.md and Phase 3.6 step 0a. That is
 not permission for speculative collector changes or model refits. An upgrade may improve the PAGE, the checker or
 the gates around them. If an upgrade would change a coefficient, a parser, a
 derivation or a committed record, it is not an upgrade this routine makes;

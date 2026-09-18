@@ -77,8 +77,12 @@ jobs:
           git add ledger/watch.json
           git commit -m "watch($(TZ=America/Anchorage date +%F)): sweep BASIS and the Federal Register"
           for i in 1 2 3 4; do
-            git push && break
+            if git push; then exit 0; fi
+            if [ "$i" = "4" ]; then
+              echo "Collector commit could not reach main after every retry."
+              exit 1
+            fi
             echo "push failed, refetching and retrying"
-            git pull --rebase origin main || true
+            git pull --rebase origin main || exit 1
             sleep $((2 ** i))
           done

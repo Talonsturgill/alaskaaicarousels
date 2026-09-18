@@ -76,7 +76,11 @@ jobs:
           git add ledger/power.json
           git commit -m "power($(TZ=America/Anchorage date +%F)): new EIA month"
           for i in 1 2 3 4; do
-            git push && break
-            git pull --rebase origin main || true
+            if git push; then exit 0; fi
+            if [ "$i" = "4" ]; then
+              echo "Collector commit could not reach main after every retry."
+              exit 1
+            fi
+            git pull --rebase origin main || exit 1
             sleep $((2 ** i))
           done

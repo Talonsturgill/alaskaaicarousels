@@ -251,7 +251,29 @@ table, "The model, in full", "Fitted to what Alaska burned", or "What is not
 reported daily" sections. Keep the interactive chart and linked raw data;
 the daily checks must not restore those removed sections.
 
-### Daily autonomous Gas Watch maintenance (owner, September 16th)
+### Daily autonomous scheduled-job maintenance (owner, September 18th)
+
+Every daily run checks ALL scheduled workflows in this repository, even if
+the deck fails or this is an ALREADY_SHIPPED re-fire. Start Phase 3.6 with
+`python3 scripts/cron_health.py --output out/<date>/cron_health.json`.
+It fetches current main, discovers every workflow with a schedule, checks
+enablement, missed runs, the latest real collection/dispatch, individual job
+steps, Pages, public Gas Watch bytes and power figures, the docket queue and
+weather history. PR/push test-only success is not evidence of collection.
+Daily, weekly and monthly jobs keep their existing schedules; the AI checks
+their health daily. New scheduled workflows enter the inventory automatically.
+An eight-hour dispatch grace accommodates observed GitHub delays; a job stuck
+for two hours still fails. A failed completed job is reported immediately.
+New or changed schedules are expected only after they reach main; a manual
+production run validates them while waiting for their first scheduled occurrence.
+
+From September 19th, `gate_status.py --require` requires a complete audit
+less than 24 hours old. Never skip it, omit a failing workflow, or mark a
+failure resolved because a retry merely started. Read failed job logs, fix
+the cause, await the production rerun and deployment, then repeat the audit.
+Fixable failures must be resolved in this run, not left for the owner to find.
+
+The Gas Watch still gets its deeper source and numeric audit:
 
 Run `python3 scripts/gaswatch_health.py --output out/<date>/gaswatch_health.json`
 in every daily routine, and again after a repair/deployment. The live audit checks
@@ -261,12 +283,17 @@ evidence for runs dated September 16th onward. A local build is not live proof.
 
 If it fails, investigate the named cause in that run. Fix stale presentation,
 rerun transient collection/deployment failures, and verify the live result.
-For a collector or workflow defect, create an isolated maintenance branch from
-current main, add a focused regression check, run the relevant Gas Watch gates,
-open a ready PR, merge after CI, run the production collector and verify Pages
-and the live audit. This is a narrow exception to the editorial collector ban.
+For a defect in ANY of this repo's scheduled collectors or workflows, create
+an isolated maintenance branch from current main, add a focused regression
+check, run the relevant gates, open a ready PR and merge under the delivery
+policy above (CI and current-head Codex review). Run the owning production
+workflow on main and verify its actual data, Pages where applicable, and both
+audits. This is a narrow exception to the editorial collector ban.
 Do not alter model coefficients, hand-type storage values, rewrite ledger lines,
-change schedules or credentials, send messages, or touch other collectors.
+change schedules or credentials, send messages, or edit sibling repositories.
+Keep protected data out of maintenance PRs: let the owning production workflow
+write it with its existing guards, including any already-authorized model refit.
+Do not bypass `ledger_guard.py`. Maintenance repairs ship even if the deck fails.
 
 Source measurements that were never published stay unavailable. Announced
 maintenance is a disclosed warning only inside its parsed date window; verify
@@ -279,6 +306,16 @@ unresolved cause prominently in the existing Gmail DRAFT and completion report.
 The gate then shows WARN, not PASS, while the deck can ship. Resume the check on
 the next daily run. Never defer a fixable problem just because it is outside
 the article's subject.
+
+For other cron failures that genuinely remain blocked after repair attempts,
+keep the failed audit and write `out/<date>/cron_incidents.json`, a JSON array.
+Each entry names `check_ids` from the current audit, its exact
+`audit_checked_utc`, `blocker` (`upstream`, `github`, or `credentials`), a nonempty
+string `reason`, and nonempty string arrays `check_ids`, `attempts` and
+`evidence_urls` (HTTP(S) URLs). Every failing check needs its own
+applicable evidence; a blanket incident cannot excuse unrelated failures.
+The gate remains WARN and the existing Gmail DRAFT/completion report names the
+unresolved cause. Retry it on the next daily run. No extra messages are sent.
 
 ## Layout
 
@@ -364,8 +401,8 @@ the article's subject.
   page that publishes it. Exit 2 for attention and never 1, so it cannot abort
   a run. Every check carries its own remedy, printed under any failure and
   returned in --json, because Phase 3.6 exists to REPAIR what it finds and not
-  to forward complaints; only a stopped collector and another repo's surface
-  are marked report-only. docs/videos/ and docs/awesomeproposal/ are not this
+  to forward complaints; collectors use isolated maintenance and only another
+  repo's surface is report-only. docs/videos/ and docs/awesomeproposal/ are not this
   repo's to sign off and are skipped, with the count of what was skipped
   printed), and
   power_utility.py (what each Alaska utility charges, annually from Form EIA-861

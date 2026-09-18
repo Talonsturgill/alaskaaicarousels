@@ -59,8 +59,8 @@ PROTECTED = [
 REMEDY = (
     "A routine run never writes these; their own scheduled workflows do. "
     "Restore the file (git checkout <base> -- <path>) and, if a number on the "
-    "live page looked wrong, fix the PRESENTATION or follow CLAUDE.md's Gas "
-    "Watch maintenance procedure. Never hand-type a measurement."
+    "live page looked wrong, fix the PRESENTATION or follow CLAUDE.md's "
+    "scheduled-job maintenance procedure. Never hand-type a measurement."
 )
 
 

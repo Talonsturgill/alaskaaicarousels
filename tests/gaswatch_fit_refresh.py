@@ -1,0 +1,76 @@
+"""Reproduce the monthly job: extend weather, reject an unchanged fit, validate."""
+import contextlib
+import io
+import json
+import sys
+import tempfile
+import unittest
+from datetime import date, timedelta
+from pathlib import Path
+from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import gaswatch_collect as gc
+import gaswatch_fit as fit
+
+
+class FitRefreshTests(unittest.TestCase):
+    def test_next_cycle_accepts_an_optimum_below_the_refit_threshold(self):
+        model = gc.load_model(gc.MODEL_CONFIG)
+        # A source revision shifts the optimum but not enough to earn a refit.
+        rows = [(d, h, y * 1.001) for d, h, y in fit.observations(model)]
+        self.assertIsNone(fit.evaluate(model, rows)[0])
+        self.assertGreater(abs(fit.least_squares(rows)[0] - model["base_mmcfd"]), 0.01)
+        with patch.object(fit, "observations", return_value=rows), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(fit.self_test(), 0)
+
+    def test_unchanged_fit_refreshes_only_backtests_and_is_idempotent(self):
+        model = gc.load_model(gc.MODEL_CONFIG)
+        metadata, history = gc.load_hdd_history(model, fit.REPO)
+        end = date.fromisoformat(history[-1][0])
+        extended = history + [((end + timedelta(days=i)).isoformat(), 0.0) for i in range(1, 45)]
+        rows = [(30, h, model["base_mmcfd"]*30 + model["slope_mmcfd_per_hdd"]*h)
+                for h in range(0, 1800, 30)]
+        self.assertIsNone(fit.evaluate(model, rows)[0])
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "model.json"
+            path.write_text(json.dumps(model))
+            with patch.object(sys, "argv", ["fit", "--model", str(path)]), \
+                    patch.object(fit, "observations", return_value=rows), \
+                    patch.object(gc, "load_hdd_history", return_value=(metadata, extended)), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(fit.main(), 0)
+                new = json.loads(path.read_text())
+                self.assertNotEqual(new["backtests"], model["backtests"])
+                self.assertEqual({k:v for k,v in new.items() if k not in ("backtests", "_spec")},
+                                 {k:v for k,v in model.items() if k not in ("backtests", "_spec")})
+                self.assertIn("Backtest expectations still refresh", new["_spec"]["refit_procedure"])
+                self.assertNotIn("a rejected fit leaves the model alone", new["_spec"]["refit_procedure"])
+                self.assertEqual({k:v for k,v in new["_spec"].items() if k != "refit_procedure"},
+                                 {k:v for k,v in model["_spec"].items() if k != "refit_procedure"})
+                facts = gc.backtest_facts(new, extended)
+                for bt in new["backtests"]:
+                    for k, v in bt.items():
+                        if k.startswith("expect_") and k[7:] in facts[bt["id"]]:
+                            self.assertEqual(v, facts[bt["id"]][k[7:]])
+                before = path.stat().st_mtime_ns
+                self.assertEqual(fit.main(), 0)
+                self.assertEqual(path.stat().st_mtime_ns, before)
+
+    def test_dry_run_preserves_model_bytes(self):
+        model = gc.load_model(gc.MODEL_CONFIG)
+        model["backtests"][-1]["expect_mmcfd"] = -1
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "model.json"
+            path.write_text(json.dumps(model))
+            original = path.read_bytes()
+            with patch.object(sys, "argv", ["fit", "--model", str(path), "--dry-run"]), \
+                    patch.object(fit, "evaluate", return_value=(None, "no change")), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(fit.main(), 0)
+            self.assertEqual(path.read_bytes(), original)
+
+
+if __name__ == "__main__":
+    unittest.main()
