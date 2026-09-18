@@ -43,6 +43,15 @@ def git(*args):
     return subprocess.check_output(["git", *args], cwd=REPO, timeout=120)
 
 
+def scheduled_crons(contents):
+    data = yaml.load(contents, Loader=yaml.BaseLoader)
+    triggers = data.get("on", {})
+    schedules = triggers.get("schedule", []) if isinstance(triggers, dict) else []
+    if any(set(s) != {"cron"} for s in schedules):
+        raise ValueError("Review unsupported schedule options")
+    return sorted(s["cron"] for s in schedules)
+
+
 def inventory(ref=None):
     """Read every schedule, including jobs added after this checker ships."""
     if ref:
@@ -55,16 +64,30 @@ def inventory(ref=None):
     for path in sorted(files):
         if not path.endswith((".yml", ".yaml")):
             continue
-        data = yaml.load(read(path), Loader=yaml.BaseLoader)
-        triggers = data.get("on", {})
-        schedules = triggers.get("schedule", []) if isinstance(triggers, dict) else []
-        if schedules:
-            if any(set(s) != {"cron"} for s in schedules):
-                raise ValueError(f"Review unsupported schedule options in {path}")
-            found[Path(path).name] = [s["cron"] for s in schedules]
+        crons = scheduled_crons(read(path))
+        if crons:
+            found[Path(path).name] = crons
     if not found:
         raise ValueError("No scheduled workflows found; the inventory is incomplete")
     return found
+
+
+def schedule_activated(name, crons, ref):
+    """Find when this schedule reached main, ignoring unrelated workflow edits."""
+    path = ".github/workflows/" + name
+    history = git("log", "--first-parent", "--format=%H%x09%cI", ref, "--", path).decode().splitlines()
+    activated = None
+    for line in history:
+        sha, committed = line.split("\t")
+        # A previous deletion ends the current incarnation of this workflow.
+        if not git("ls-tree", "--name-only", sha, "--", path).strip():
+            break
+        if scheduled_crons(git("show", f"{sha}:{path}").decode()) != sorted(crons):
+            break
+        activated = stamp(committed)
+    if activated is None:
+        raise ValueError(f"Cannot establish when {name}'s schedule became active")
+    return activated
 
 
 def field_values(field, low, high):
@@ -157,16 +180,18 @@ def completion_rows(prefix, runs, jobs, now, due=None):
     return rows
 
 
-def assess_workflow(name, crons, state, runs, jobs, now):
+def assess_workflow(name, crons, state, runs, jobs, now, activated=None):
     runs = production(runs, {"schedule", "workflow_dispatch"})
     due = last_due(crons, now - GRACE)
     scheduled = next((r for r in runs if r["event"] == "schedule"), None)
+    not_due_yet = activated is not None and due < activated
     url = f"https://github.com/{REPOSITORY}/actions/workflows/{name}"
     rows = [row(name + ":enabled", state == "active", f"workflow state: {state}", url),
-            row(name + ":schedule", bool(scheduled) and stamp(scheduled["created_at"]) >= due,
-                f"scheduled run due since {iso(due)}; latest " +
-                (scheduled["created_at"] if scheduled else "missing"), url)]
-    return rows + completion_rows(name, runs, jobs, now, due)
+            row(name + ":schedule", not_due_yet or bool(scheduled) and stamp(scheduled["created_at"]) >= due,
+                (f"schedule activated {iso(activated)}; first occurrence not yet due" if not_due_yet else
+                 f"scheduled run due since {iso(due)}; latest " +
+                 (scheduled["created_at"] if scheduled else "missing")), url)]
+    return rows + completion_rows(name, runs, jobs, now, max(due, activated) if activated else due)
 
 
 def fetch(url):
@@ -220,8 +245,21 @@ def gas_model_published(feed, model, eia, history):
             and feed.get("crosscheck", {}).get("eia_latest_month") == eia["latest_month"])
 
 
+def power_published(page, residential):
+    month = re.search(r'class="pwread-m">([^<]+)', page)
+    price = re.search(r'class="pwread-v"><b>([\d.]+)', page)
+    observed_month = html.unescape(month[1]) if month else None
+    observed_price = float(price[1]) if price else None
+    ok = observed_month == residential["latest_label"] and observed_price == residential["latest"]
+    detail = (f"household price and month match main: {residential['latest_label']}" if ok else
+              f"live household price/month {observed_price!r}/{observed_month!r}; "
+              f"expected {residential['latest']!r}/{residential['latest_label']!r}")
+    return ok, detail
+
+
 def audit(now):
-    git("fetch", "--quiet", "origin", "main")
+    shallow = git("rev-parse", "--is-shallow-repository").decode().strip() == "true"
+    git("fetch", "--quiet", *( ["--unshallow"] if shallow else []), "origin", "main")
     main_sha = git("rev-parse", "origin/main").decode().strip()
     workflows = inventory(main_sha)
     checks, last_runs = [], {}
@@ -235,7 +273,8 @@ def audit(now):
             for event in ("schedule", "workflow_dispatch"):
                 runs += api(f"actions/workflows/{name}/runs?branch=main&event={event}&per_page=20")["workflow_runs"]
             runs = production(runs, {"schedule", "workflow_dispatch"})
-            checks += assess_workflow(name, crons, states.get(name), runs, jobs_for(runs), now)
+            checks += assess_workflow(name, crons, states.get(name), runs, jobs_for(runs), now,
+                                      schedule_activated(name, crons, main_sha))
             last_runs[name] = completed_run(runs)
         except Exception as exc:
             checks += [row(f"{name}:{kind}", False, f"audit unavailable: {exc}") for kind in KINDS]
@@ -273,11 +312,7 @@ def audit(now):
         try:
             if kind == "power":
                 res = data("ledger/power.json")["sectors"]["residential"]
-                month = re.search(r'class="pwread-m">([^<]+)', page)
-                price = re.search(r'class="pwread-v"><b>([\d.]+)', page)
-                ok = bool(month and price and html.unescape(month[1]) == res["latest_label"]
-                          and float(price[1]) == res["latest"])
-                detail = f"household price and month match main: {res['latest_label']}"
+                ok, detail = power_published(page, res)
             elif kind == "power-utility":
                 ledger = data("ledger/power_utility.json")
                 trs = re.findall(r"<tr>.*?</tr>", page, re.S)
@@ -328,12 +363,22 @@ def gate(report, incidents, workflows, now):
         if not failures:
             return ("WARN" if any(r["status"] == "WARN" for r in checks) else "PASS",
                     f"{len(workflows)} scheduled workflows audited at {report['checked_utc']}")
+        if incidents is not None and not isinstance(incidents, list):
+            return "FAIL", "cron incident evidence must be an array"
         covered = set()
         for incident in incidents or []:
+            if not isinstance(incident, dict):
+                continue
+            text = lambda v: isinstance(v, str) and bool(v.strip())
+            texts = lambda v: isinstance(v, list) and bool(v) and all(text(s) for s in v)
             if (incident.get("audit_checked_utc") == report["checked_utc"]
                     and incident.get("blocker") in ("upstream", "github", "credentials")
-                    and incident.get("reason") and incident.get("attempts") and incident.get("evidence_urls")):
-                covered.update(incident.get("check_ids", []))
+                    and text(incident.get("reason")) and texts(incident.get("attempts"))
+                    and texts(incident.get("evidence_urls")) and texts(incident.get("check_ids"))
+                    and set(incident["check_ids"]) <= failures
+                    and all(re.fullmatch(r"https?://[^\s/]+(?:/[^\s]*)?", url)
+                            for url in incident["evidence_urls"])):
+                covered.update(incident["check_ids"])
         if failures <= covered:
             return "WARN", "UNRESOLVED external blockers: " + ", ".join(sorted(failures))
         return "FAIL", "repair unresolved cron checks: " + ", ".join(sorted(failures - covered))

@@ -1,6 +1,8 @@
 """Production failures must stay visible despite green tests or stale evidence."""
 import copy
 import json
+import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -57,6 +59,53 @@ class CronHealthTests(unittest.TestCase):
         self.assertEqual(self.audit([repair, self.run])[1]["status"], "FAIL")
         self.assertEqual(self.audit(state="disabled_inactivity")[0]["status"], "FAIL")
 
+    def test_new_or_changed_schedule_requires_only_occurrences_after_activation(self):
+        activated = self.now - timedelta(days=1)
+        repair = dict(self.run, event="workflow_dispatch", created_at=health.iso(self.now - timedelta(hours=1)))
+        rows = health.assess_workflow(self.name, self.crons, "active", [repair], self.jobs,
+                                     self.now, activated)
+        self.assertTrue(all(r["status"] == "PASS" for r in rows))
+        # Prior collection cannot validate a newly introduced configuration.
+        rows = health.assess_workflow(self.name, self.crons, "active", [self.run], self.jobs,
+                                     self.now, activated)
+        self.assertEqual(rows[2]["status"], "FAIL")
+        # After the first real due time, manual collection no longer excuses a
+        # scheduler that never fired.
+        later = self.now + timedelta(days=10)
+        repair["created_at"] = health.iso(later - timedelta(hours=1))
+        rows = health.assess_workflow(self.name, self.crons, "active", [repair], self.jobs,
+                                     later, activated)
+        self.assertEqual(rows[1]["status"], "FAIL")
+
+    def test_schedule_activation_tracks_main_merges_not_unrelated_step_edits(self):
+        with tempfile.TemporaryDirectory() as td:
+            repo = Path(td)
+            def git(*args, date="2026-09-01T00:00:00Z"):
+                return subprocess.check_output(["git", "-c", "user.name=Test", "-c",
+                                                "user.email=test@example.org", *args], cwd=repo,
+                    env=dict(os.environ, GIT_AUTHOR_DATE=date, GIT_COMMITTER_DATE=date), stderr=subprocess.DEVNULL)
+            git("init", "-q", "-b", "main")
+            path = repo / ".github/workflows/power.yml"
+            path.parent.mkdir(parents=True)
+            def write(cron, extra=""):
+                path.write_text(f'name: test\non:\n  schedule:\n    - cron: "{cron}"\n' + extra)
+                git("add", ".")
+            write(self.crons[0])
+            git("commit", "-qm", "new schedule")
+            write(self.crons[0], "jobs: {}\n")
+            git("commit", "-qm", "unrelated steps", date="2026-09-12T00:00:00Z")
+            with patch.object(health, "REPO", repo):
+                self.assertEqual(health.schedule_activated(self.name, self.crons, "HEAD"),
+                                 health.stamp("2026-09-01T00:00:00Z"))
+                git("checkout", "-qb", "change")
+                new = ["30 15 10 * *"]
+                write(new[0])
+                git("commit", "-qm", "change schedule", date="2026-09-16T00:00:00Z")
+                git("checkout", "-q", "main")
+                git("merge", "--no-ff", "-m", "merge schedule", "change", date="2026-09-18T00:00:00Z")
+                self.assertEqual(health.schedule_activated(self.name, new, "HEAD"),
+                                 health.stamp("2026-09-18T00:00:00Z"))
+
     def test_continued_step_failure_and_skipped_refresh_are_caught(self):
         self.jobs[0]["steps"][0]["conclusion"] = "failure"
         self.assertEqual(self.audit()[3]["status"], "FAIL")
@@ -105,6 +154,16 @@ class CronHealthTests(unittest.TestCase):
             mutate(stale)
             self.assertFalse(health.gas_model_published(stale, model, eia, history))
 
+    def test_live_power_failure_reports_observed_and_expected_values(self):
+        residential = {"latest_label": "May 2026", "latest": 28.23}
+        page = '<div class="pwread-m">May 2026</div><div class="pwread-v"><b>28.23</b></div>'
+        self.assertTrue(health.power_published(page, residential)[0])
+        for stale in ("", page.replace("May 2026", "April 2026"), page.replace("28.23", "20.00")):
+            ok, detail = health.power_published(stale, residential)
+            self.assertFalse(ok)
+            self.assertIn("expected 28.23/'May 2026'", detail)
+            self.assertNotIn("match main", detail)
+
     def test_missing_stale_incomplete_and_blanket_waivers_fail(self):
         workflows = {self.name: self.crons}
         report = {"schema_version": 1, "repository": health.REPOSITORY,
@@ -126,6 +185,14 @@ class CronHealthTests(unittest.TestCase):
         self.assertEqual(health.gate(report, [incident], workflows, self.now)[0], "FAIL")
         incident["check_ids"].append(report["checks"][1]["id"])
         self.assertEqual(health.gate(report, [incident], workflows, self.now)[0], "WARN")
+        for key, value in [("reason", True), ("reason", " "), ("attempts", "retried"),
+                           ("attempts", []), ("attempts", [True]), ("evidence_urls", "https://example.org"),
+                           ("evidence_urls", ["not a URL"]), ("check_ids", "power.yml:steps"),
+                           ("check_ids", ["unrelated"])]:
+            with self.subTest(key=key, value=value):
+                malformed = dict(incident, **{key: value})
+                self.assertEqual(health.gate(report, [malformed], workflows, self.now)[0], "FAIL")
+        self.assertEqual(health.gate(report, incident, workflows, self.now)[0], "FAIL")
         incident["audit_checked_utc"] = health.iso(self.now-timedelta(days=1))
         self.assertEqual(health.gate(report, [incident], workflows, self.now)[0], "FAIL")
 
