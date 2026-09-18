@@ -17,9 +17,9 @@
     "assemble": "done",
     "scoring": "done",
     "ship": "done",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-09-18/plan.md",
@@ -101,5 +101,10 @@
   "known_defects_shipped": [
     "The punched reserve still leaves a findable rectangle edge on slides 02, 05, 07 and 09. The value matches the surround; the rectangle does not. Scorer's weakest criterion.",
     "Drawn share fell from 50 to 46 percent across the editing rounds against a 45 percent floor, so assets/js/akapron.js is one point off a gate before it is reused."
-  ]
+  ],
+  "gas_watch_verdict": "MAINTENANCE, checked 2026-09-18T07:12:28Z, no repair needed, CINGSA's announced semiannual shut-in September 14th to 21st verified against the source page today",
+  "gas_watch": "WARN, read 2026-09-13, 44 days on record, 37 verified, no gaps, chart present, model misses by 6.82 percent, EIA through 202605 over 131 months",
+  "gmail_draft_id": "r2064983669238155196",
+  "merged_to_main": "80c8a737a05fda68fa4d90effaa647fd0148d458",
+  "complete": true
 }
