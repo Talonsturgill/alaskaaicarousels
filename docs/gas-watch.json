@@ -15,7 +15,7 @@
   "source_status": {
     "state": "announced_maintenance",
     "last_verified_date": "2026-09-13",
-    "last_collection_utc": "2026-09-18T09:11:28Z",
+    "last_collection_utc": "2026-09-18T12:16:49Z",
     "maintenance_window": {
       "start_date": "2026-09-14",
       "end_date": "2026-09-21",
@@ -7148,7 +7148,7 @@
     },
     {
       "date": "2026-09-18",
-      "collected_utc": "2026-09-18T09:11:28Z",
+      "collected_utc": "2026-09-18T12:16:49Z",
       "collector_version": "1.2",
       "verified": false,
       "cingsa": {
@@ -7161,16 +7161,16 @@
           "end_date": "2026-09-21",
           "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
         },
-        "source_age_hours": 100.2,
+        "source_age_hours": 103.3,
         "data_status": "unavailable"
       },
       "forecast": [
         {
           "date": "2026-09-18",
-          "hours": 23,
-          "mean_temp_f": 51.0,
+          "hours": 21,
+          "mean_temp_f": 51.1,
           "min_temp_f": 48,
-          "hdd65": 14.0,
+          "hdd65": 13.9,
           "modeled_demand_mmcfd": 129
         },
         {
@@ -7214,7 +7214,7 @@
           "modeled_demand_mmcfd": 159
         }
       ],
-      "forecast_source_updated": "2026-09-18T05:27:44+00:00",
+      "forecast_source_updated": "2026-09-18T11:06:24+00:00",
       "derived": {
         "peak_forecast_date": "2026-09-23",
         "peak_forecast_hdd": 22.6,
@@ -7228,13 +7228,14 @@
       "reconciliation": {
         "date": "2026-09-17",
         "forecast_hdd65": 14.1,
-        "actual_hdd65": null,
-        "error": null,
-        "modeled_demand_mmcfd": null,
+        "actual_hdd65": 12.0,
+        "error": 2.1,
+        "modeled_demand_mmcfd": 122,
         "storage_withdrawal_mmcfd": null,
         "non_cingsa_supply_mmcfd": null,
         "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date",
-        "unresolved": true
+        "unresolved": true,
+        "unresolved_reason": "verified_storage_reading_unavailable"
       },
       "model": {
         "version": "2.0",
@@ -7269,7 +7270,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-18T09:11:28Z",
+          "fetched_utc": "2026-09-18T12:16:49Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -7278,7 +7279,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-18T09:11:28Z",
+          "fetched_utc": "2026-09-18T12:16:49Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -7287,7 +7288,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-18T09:11:29Z",
+          "fetched_utc": "2026-09-18T12:16:50Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -7339,8 +7340,11 @@
           "end_date": "2026-09-21",
           "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
         },
-        "source_age_hours": 100.2
-      }
+        "source_age_hours": 103.3
+      },
+      "reconciles_dates": [
+        "2026-09-17"
+      ]
     }
   ]
 }
