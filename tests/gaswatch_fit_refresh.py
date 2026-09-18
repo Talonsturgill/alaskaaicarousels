@@ -43,8 +43,12 @@ class FitRefreshTests(unittest.TestCase):
                 self.assertEqual(fit.main(), 0)
                 new = json.loads(path.read_text())
                 self.assertNotEqual(new["backtests"], model["backtests"])
-                self.assertEqual({k:v for k,v in new.items() if k != "backtests"},
-                                 {k:v for k,v in model.items() if k != "backtests"})
+                self.assertEqual({k:v for k,v in new.items() if k not in ("backtests", "_spec")},
+                                 {k:v for k,v in model.items() if k not in ("backtests", "_spec")})
+                self.assertIn("Backtest expectations still refresh", new["_spec"]["refit_procedure"])
+                self.assertNotIn("a rejected fit leaves the model alone", new["_spec"]["refit_procedure"])
+                self.assertEqual({k:v for k,v in new["_spec"].items() if k != "refit_procedure"},
+                                 {k:v for k,v in model["_spec"].items() if k != "refit_procedure"})
                 facts = gc.backtest_facts(new, extended)
                 for bt in new["backtests"]:
                     for k, v in bt.items():

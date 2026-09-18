@@ -83,6 +83,14 @@ class CronHealthTests(unittest.TestCase):
             with patch.object(health, "REPO", Path(td)):
                 self.assertEqual(health.inventory(), {"new.yml": ["0 6 * * *"]})
 
+    def test_old_green_deployment_cannot_hide_an_unpublished_docs_change(self):
+        run = dict(self.run, head_sha="previous-site")
+        for comparison, status in [("behind", "FAIL"), ("diverged", "FAIL"),
+                                   ("identical", "PASS"), ("ahead", "PASS")]:
+            with patch.object(health, "api", return_value={"status": comparison}) as request:
+                self.assertEqual(health.deployment_revision(run, "new-homepage")["status"], status)
+                request.assert_called_once_with("compare/new-homepage...previous-site")
+
     def test_current_deployment_with_stale_gas_inputs_is_not_healthy(self):
         model = {"base_mmcfd": 80, "backtests": [{"expect_mmcfd": 169}]}
         history = {"end_date": "2026-09-17", "days": 4643}

@@ -23,7 +23,7 @@ SITE = "https://alaskaaihq.com"
 GRACE = timedelta(hours=8)  # GitHub has delayed the weekly job over six hours.
 MAX_RUNNING = timedelta(hours=2)
 KINDS = ("enabled", "schedule", "completion", "steps")
-OUTPUT_IDS = {"pages:enabled", "pages:completion", "pages:steps",
+OUTPUT_IDS = {"pages:enabled", "pages:completion", "pages:steps", "pages:revision",
               "live:gas-watch/", "live:gas-watch.json", "output:power",
               "output:power-utility", "output:docket-watch", "output:weather", "output:gas-model"}
 
@@ -196,6 +196,17 @@ def jobs_for(runs):
     return result["jobs"]
 
 
+def deployment_revision(run, docs_sha):
+    """Deployment must include the latest published-file change, not just gas."""
+    if not run:
+        return row("pages:revision", False, "no completed deployment")
+    comparison = api(f"compare/{docs_sha}...{run['head_sha']}")
+    included = comparison.get("status") in ("identical", "ahead")
+    return row("pages:revision", included,
+               f"deployment {run['head_sha'][:12]} {'includes' if included else 'does not include'} latest docs {docs_sha[:12]}",
+               run.get("html_url", ""))
+
+
 def expected_ids(workflows):
     return {f"{name}:{kind}" for name in workflows for kind in KINDS} | OUTPUT_IDS
 
@@ -235,8 +246,11 @@ def audit(now):
                 if r.get("conclusion") != "skipped"]
         checks.append(row("pages:enabled", states.get("pages.yml") == "active", str(states.get("pages.yml"))))
         checks += completion_rows("pages", runs, jobs_for(runs), now)
+        docs_sha = git("log", "-1", "--format=%H", main_sha, "--", "docs", ".github/workflows/pages.yml").decode().strip()
+        checks.append(deployment_revision(completed_run(runs), docs_sha))
     except Exception as exc:
-        checks += [row("pages:" + k, False, f"audit unavailable: {exc}") for k in ("enabled", "completion", "steps")]
+        checks = [c for c in checks if not c["id"].startswith("pages:")]
+        checks += [row("pages:" + k, False, f"audit unavailable: {exc}") for k in ("enabled", "completion", "steps", "revision")]
 
     page, feed = "", {}
     for route, path in [("gas-watch/", "docs/gas-watch/index.html"), ("gas-watch.json", "docs/gas-watch.json")]:

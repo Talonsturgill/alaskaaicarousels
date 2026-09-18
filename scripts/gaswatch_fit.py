@@ -134,6 +134,12 @@ def refresh_backtests(model, hdd):
     expectations stale used to fail the collector gate and discard the update.
     """
     out = json.loads(json.dumps(model))
+    spec = out.get("_spec", {})
+    if "refit_procedure" in spec:
+        spec["refit_procedure"] = spec["refit_procedure"].replace(
+            "a rejected fit leaves the model alone and prints why",
+            "a rejected fit leaves the coefficients and fit history alone and prints why. "
+            "Backtest expectations still refresh when the observed weather record grows")
     facts = gc.backtest_facts(out, hdd)
     for bt in out.get("backtests", []):
         got = facts.get(bt["id"], {})
