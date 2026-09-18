@@ -435,8 +435,35 @@
     wall(-halfW * 0.10, halfW * 0.10, dark, 0.34);
   }
 
+  /* ---- a lit pool ------------------------------------------------------ */
+  // A LIT POOL IS NOT A RECTANGLE. It was one in the first build of this deck,
+  // carried on a fillRect, which is both wrong about light and is what
+  // bespoke_check counts as blocky. The pool an object sits in is an ellipse
+  // stretched along the light's own axis, and the cast subtracts from it.
+  function litPool(cx, x, y, rx, ry, alpha) {
+    // CANVAS HAS NO ELLIPTICAL GRADIENT. Pouring a circular ramp into an ellipse
+    // stops the paint on the short axis while the ramp still carries alpha, and
+    // leaves a hard arc. The ramp is built on a CIRCLE inside a transform, which
+    // is the only way to get an elliptical falloff that actually falls off.
+    var a = (alpha === undefined ? 0.30 : alpha);
+    cx.save();
+    cx.translate(x, y);
+    cx.rotate(LIGHT.shadowDeg * Math.PI / 180);
+    cx.scale(1, ry / rx);
+    var g = cx.createRadialGradient(0, 0, rx * 0.10, 0, 0, rx);
+    g.addColorStop(0, "rgba(168,148,111," + a + ")");
+    g.addColorStop(0.46, "rgba(168,148,111," + a * 0.42 + ")");
+    g.addColorStop(1, "rgba(168,148,111,0)");
+    cx.fillStyle = g;
+    cx.beginPath();
+    cx.arc(0, 0, rx, 0, Math.PI * 2);
+    cx.fill();
+    cx.restore();
+  }
+
   global.APRON = {
     W: W, H: H,
+    litPool: litPool,
     trackY: trackY, trackPts: trackPts, returnPts: returnPts,
     ground: ground, trackMark: trackMark,
     yHorizon: yHorizon, yApron: yApron,
