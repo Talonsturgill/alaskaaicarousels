@@ -107,12 +107,21 @@
     // TWO RANKS. The far rank is lerped harder toward haze and sits a little
     // higher, which is atmospheric perspective doing the work rather than a
     // drawn outline, and it stops the treeline reading as one sawtooth strip.
+    // A FIXED PERIOD IS WHAT MAKES A TREELINE READ AS A COMB. The first build
+    // stepped both ranks on an exact grid with a symmetric triangle at every
+    // node, and two critics independently called the result a sawtooth, one of
+    // them noting it sat close enough to a waveform to be mistaken for the
+    // sensor trace this deck refuses to draw. So each tree now gets its own
+    // jitter off the grid, its own height multiplier and an asymmetric profile.
+    // The multiplier only ever SHORTENS (0.42 to 1.00): the rank ceilings were
+    // already lowered once to keep spruce out of the slide 02 body block, and a
+    // taller tree would buy irregularity by reopening a type collision.
     var ranks = [
-      { step: 11, hMin: 16, hMax: 38, lift: 8,  mix: 0.62, salt: 3301 },
-      { step: 15, hMin: 22, hMax: 58, lift: 0,  mix: 0.26, salt: 7919 }
+      { step: 13, hMin: 10, hMax: 34, lift: 10, mix: 0.74, salt: 3301 },
+      { step: 17, hMin: 18, hMax: 58, lift: 0,  mix: 0.18, salt: 7919 }
     ];
     for (var k = 0; k < ranks.length; k++) {
-      var R = ranks[k], i, gx, y, idx, rr, hgt, wd, t, spike;
+      var R = ranks[k], i, gx, y, idx, rr, hgt, wd, t, spike, jit, prof;
       cx.beginPath();
       cx.moveTo(-40, H);
       for (i = -40; i <= W + 40; i += 2) {
@@ -120,11 +129,15 @@
         y = yHorizon(gx) - R.lift;
         idx = Math.floor(gx / R.step);
         rr = AK.rng(idx * R.salt);
-        hgt = R.hMin + rr() * (R.hMax - R.hMin);
-        wd = R.step * (0.55 + rr() * 0.75);
-        t = (gx - idx * R.step) / wd;
+        jit = (rr() - 0.5) * R.step * 0.85;
+        hgt = (R.hMin + rr() * (R.hMax - R.hMin)) * (0.42 + rr() * 0.58);
+        wd = R.step * (0.45 + rr() * 0.85);
+        t = (gx - idx * R.step - jit) / wd;
         spike = t >= 0 && t < 1 ? (1 - Math.abs(2 * t - 1)) : 0;
-        cx.lineTo(i, y - hgt * Math.pow(spike, 1.35));
+        // a spruce is not an isosceles triangle. The windward half climbs fast
+        // and the leeward half falls away slowly, so the two exponents differ.
+        prof = Math.pow(spike, t < 0.5 ? 1.65 : 1.10);
+        cx.lineTo(i, y - hgt * prof);
       }
       cx.lineTo(W + 40, H);
       cx.closePath();
@@ -194,19 +207,41 @@
     var passes = o.passes || 4;
     var seed = o.seed || 1;
     var lo = o.lo || PAL.gravelLo, hi = o.hi || PAL.gravelHi;
-    var ramp = AKC.ramp(hi, { steps: 7, keyHue: 60, ambientHue: 220 });
+    var base = AKC.ramp(hi, { steps: 7, keyHue: 60, ambientHue: 220 });
     var sunAz = LIGHT.az * Math.PI / 180;
-    var p, gy, gxl, rnd;
+    // THE SCALE GRADIENT IS WHAT MAKES THIS ONE SURFACE INSTEAD OF TWO. The first
+    // build hachured only the shoulder and filled the apron above it with round
+    // isotropic dots, which five critics read as dust, noise or a dead band, and
+    // one measured the hard horizontal seam where the two textures butted. A
+    // receding plane does not change texture with distance, it changes SCALE: the
+    // same strokes get shorter, finer, denser and hazier toward the horizon.
+    var s0 = o.scale0 === undefined ? 0.34 : o.scale0;   // stroke scale at y0
+    var s1 = o.scale1 === undefined ? 1.00 : o.scale1;   // stroke scale at y1
+    var hz0 = o.haze0 === undefined ? 0.52 : o.haze0;    // haze lerp at y0
+    // the banded ramp, flattened: index = shadeStep + hazeBands * distanceBand
+    var hazeBands = base.length, ramp = base.slice(), bi, si;
+    if (hz0 > 0) {
+      ramp = [];
+      for (bi = 0; bi < 6; bi++) {
+        for (si = 0; si < hazeBands; si++) {
+          ramp[si + hazeBands * bi] = AKC.mixOklab(base[si], PAL.haze, hz0 * bi / 5);
+        }
+      }
+    }
+    var p, gy, gxl, rnd, span = Math.max(1, y1 - y0);
     for (p = 0; p < passes; p++) {
       rnd = AK.rng(seed * 131 + p * 17);
       var azP = sunAz + (p - (passes - 1) / 2) * (3 * Math.PI / 180);
       cx.save();
-      cx.globalAlpha = 0.22;
+      cx.globalAlpha = o.alpha === undefined ? 0.22 : o.alpha;
       cx.lineCap = "round";
-      for (gy = y0; gy < y1; gy += grid) {
-        for (gxl = -grid; gxl < W + grid; gxl += grid) {
-          var jx = gxl + (rnd() - 0.5) * grid * 0.9;
-          var jy = gy + (rnd() - 0.5) * grid * 0.9;
+      for (gy = y0; gy < y1; gy += Math.max(3.4, grid * (s0 + ((gy - y0) / span) * (s1 - s0)))) {
+        var tRow = (gy - y0) / span;
+        var sc = s0 + tRow * (s1 - s0);
+        var cell = Math.max(3.4, grid * sc);
+        for (gxl = -cell; gxl < W + cell; gxl += cell) {
+          var jx = gxl + (rnd() - 0.5) * cell * 0.9;
+          var jy = gy + (rnd() - 0.5) * cell * 0.9;
           var G = gx0 + jx;
           // central differences give slope and aspect
           var e = 2.2;
@@ -216,13 +251,23 @@
           var slope = Math.hypot(dzdx, dzdy);
           var aspect = Math.atan2(dzdy, dzdx);
           // stroke width from slope, rotation from aspect, per Lehmann
-          var wdt = 0.6 + Math.min(1.0, slope * 26) * 1.8;
-          var len = grid * (1.5 + rnd() * 0.7);
+          var wdt = (0.6 + Math.min(1.0, slope * 26) * 1.8) * (0.42 + 0.58 * sc);
+          var len = grid * sc * (1.5 + rnd() * 0.7);
           // shade against this pass's sun azimuth
           var nd = Math.max(0, Math.cos(aspect - azP));
-          var step = Math.max(0, Math.min(ramp.length - 1,
-                     Math.round(nd * (ramp.length - 1))));
-          cx.strokeStyle = ramp[step];
+          var step = Math.max(0, Math.min(hazeBands - 1,
+                     Math.round(nd * (hazeBands - 1))));
+          // AERIAL PERSPECTIVE, IN SIX BANDS AND NOT AS A CONTINUUM. Contrast
+          // falls toward the horizon because the air between is doing the work.
+          // The band count is not a stylistic preference: qa.py's paint census
+          // holds 160 entries, and lerping every row to its own haze value minted
+          // a fresh colour literal per row, which flooded the census and EVICTED
+          // #FFC72C, so two frames failed the ink law reporting no gold on frames
+          // that plainly had gold on them. Six bands times the seven step ramp is
+          // 42 literals. It is also how an engraver actually cuts distance.
+          cx.strokeStyle = hz0 > 0
+            ? ramp[step + hazeBands * Math.min(5, Math.floor((1 - tRow) * 6))]
+            : ramp[step];
           cx.lineWidth = wdt;
           var bend = (rnd() - 0.5) * 0.24;
           cx.beginPath();
@@ -275,19 +320,38 @@
   // and fades with distance. A detached core is what reads as a hole, and the
   // fix for a weak contact is never a stronger shadow, it is a LIT GROUND laid
   // down first for the cast to subtract from.
+  // A SHADOW'S TERMINATOR IS ITS ARGUMENT. The first build smeared sixteen
+  // translucent copies of the silhouette straight onto the frame, and five
+  // critics independently reported that no cast on any frame carried a readable
+  // 28 degree edge: one called it a bruise, another said the chocks appeared to
+  // EMIT light. The cause is that every step contributes another three percent
+  // ramp, so the union never acquires a hard edge and the angle has nothing to
+  // live in. The union is therefore built at FULL alpha in a 2x buffer and
+  // composited once, and a second shorter union is laid over its near half, so
+  // the cast is darkest at the foot and steps once on its way out. Two hard
+  // edged tones model a cast. Twenty soft ones model nothing.
+  function castUnion(cx, path, v, steps, alpha, ink) {
+    var off = document.createElement("canvas"), i;
+    off.width = W * 2; off.height = H * 2;
+    var b = off.getContext("2d");
+    b.scale(2, 2);
+    b.fillStyle = ink;
+    b.beginPath();
+    for (i = 0; i <= steps; i++) path(b, v[0] * i / steps, v[1] * i / steps);
+    b.fill();                                  // ONE fill, nonzero winding = union
+    cx.save();
+    cx.globalAlpha = alpha;
+    cx.drawImage(off, 0, 0, W, H);
+    cx.restore();
+  }
   function cast(cx, path, h, alpha) {
-    var v = castVec(h), steps = 16, i, t;
+    var v = castVec(h);
     var a = (alpha === undefined ? 0.55 : alpha);
+    var ink = AKC.mixOklab(PAL.bounce, PAL.floor, 0.62);
     cx.save();
     cx.globalCompositeOperation = "multiply";
-    cx.fillStyle = AKC.mixOklab(PAL.bounce, PAL.floor, 0.62);
-    for (i = 1; i <= steps; i++) {
-      t = i / steps;
-      cx.globalAlpha = a * (1 - t * 0.62) * (2.6 / steps);
-      cx.beginPath();
-      path(cx, v[0] * t, v[1] * t);
-      cx.fill();
-    }
+    castUnion(cx, path, v, 26, a * 0.54, ink);                       // full throw
+    castUnion(cx, path, [v[0] * 0.42, v[1] * 0.42], 14, a * 0.48, ink); // near half
     cx.restore();
   }
 
@@ -329,10 +393,23 @@
   }
   // The second pass of slide 02, offset and crushing the first. THIS IS THE
   // DECK'S THESIS: a thousand kilometres that came back into its own impression.
+  // NOT A CONSTANT GAP. The first build laid the return 40 px below the outbound
+  // for the whole width. Against a 210 px track that is a 19 percent shift the
+  // frame cannot resolve, and the critic's verdict was exact: it read as the two
+  // WALLS OF ONE RUT, identical in structure to slide 01's, so the deck's thesis
+  // was absent from the frame that exists to carry it. A return has to CROSS. It
+  // comes in wide on the east and crosses the outbound at gx 1480, which is the
+  // left third of slide 02's window, so the overlap is a lens in ONE PLACE rather
+  // than a gap everywhere. Still a pure function of global x, so the seam holds.
+  function returnOffset(gx) {
+    return 86 * Math.tanh((gx - 1480) / 430);
+  }
   function returnPts(gxFrom, gxTo, step) {
     var pts = [], gx;
     step = step || 18;
-    for (gx = gxFrom; gx <= gxTo; gx += step) pts.push([gx, trackY(gx) + 40]);
+    for (gx = gxFrom; gx <= gxTo; gx += step) {
+      pts.push([gx, trackY(gx) + returnOffset(gx)]);
+    }
     return pts;
   }
 
@@ -358,28 +435,6 @@
     cx.closePath();
     cx.fill();
 
-    // AGGREGATE. The apron is not a flat fill. Exposed stone in the wearing
-    // course, scale-graded with distance so the band carries a depth cue as
-    // well as a texture, plus two polished tyre lanes where traffic runs.
-    cx.save();
-    cx.beginPath();
-    cx.moveTo(0, hz);
-    for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
-    cx.lineTo(W, hz); cx.closePath(); cx.clip();
-    rnd = AK.rng(seed * 401);
-    for (i = 0; i < 11000; i++) {
-      var ax = rnd() * W;
-      var d = Math.pow(rnd(), 0.55);                 // 0 far, 1 near
-      var ay = hz + d * (yApron(gx0 + ax) - hz);
-      var ar = 0.35 + d * 2.2;
-      var lit = rnd();
-      cx.globalAlpha = (0.05 + d * 0.30) * (0.35 + 0.65 * d);
-      cx.fillStyle = lit > 0.62 ? PAL.gravelHi
-                   : (lit > 0.3 ? PAL.gravelMid : PAL.floor);
-      cx.beginPath(); cx.arc(ax, ay, ar, 0, Math.PI * 2); cx.fill();
-    }
-    cx.restore();
-
     // the gravel shoulder, which the hachure models
     var sg = cx.createLinearGradient(0, ap - 10, 0, H);
     sg.addColorStop(0, PAL.gravelLo);
@@ -391,8 +446,74 @@
     for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
     cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath(); cx.fill();
 
-    hachure(cx, gx0, { y0: ap - 12, y1: H, field: field, grid: o.grid || 9,
-                       passes: o.passes || 4, seed: seed, hi: PAL.gravelHi });
+    // AGGREGATE. Exposed stone in the wearing course, scale graded with distance.
+    // These are ELLIPSES RAKED TO THE LIGHT, not discs: a round dot has no
+    // orientation, so eleven thousand of them read as dirt on the lens, which is
+    // what the first build shipped and what every critic who looked at the apron
+    // called noise. A chip of aggregate is longer than it is tall and it lies down.
+    // CLIPPED TO THE APRON, and only mildly elongated. Carried down over the
+    // shoulder at a 3:1 axis ratio they stopped reading as chips of stone and
+    // started reading as straw, which turned the best band in the deck into a
+    // hedge. The shoulder already has the hachure and the crowns; this is the
+    // apron's texture and it stops where the apron stops.
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(0, hz);
+    for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
+    cx.lineTo(W, hz); cx.closePath(); cx.clip();
+    rnd = AK.rng(seed * 401);
+    for (i = 0; i < 6400; i++) {
+      var ax = rnd() * W;
+      var d = Math.pow(rnd(), 0.55);                 // 0 far, 1 near
+      var ay = hz + d * (yApron(gx0 + ax) - hz);
+      var ar = 0.32 + d * 1.9;
+      var lit = rnd();
+      cx.globalAlpha = (0.05 + d * 0.24) * (0.35 + 0.65 * d);
+      cx.fillStyle = lit > 0.62 ? PAL.gravelHi
+                   : (lit > 0.3 ? PAL.gravelMid : PAL.floor);
+      cx.beginPath();
+      cx.ellipse(ax, ay, ar * 1.55, ar * 0.82, -0.28 + (rnd() - 0.5) * 0.5,
+                 0, Math.PI * 2);
+      cx.fill();
+    }
+    cx.restore();
+
+    // ONE SURFACE, HORIZON TO FOOT, IN TWO WEIGHTS THAT OVERLAP. Not a hachured
+    // shoulder above a stippled apron with a seam between them, which is what the
+    // first build shipped and what five critics called a dead band.
+    //
+    // But not a single full-strength pass over the whole thing either. That was
+    // tried here and it was WORSE than the defect it replaced: at the shoulder's
+    // density, carried up 724 px instead of 362, the frame read as fur. It also
+    // kept the punched reserve visible, because a reserve is found by the fact
+    // that the TEXTURE STOPS inside it, and matching the value underneath cannot
+    // help when the surround is that loud. The apron is a graded surface seen at a
+    // shallow angle: what it needs is DIRECTION, not coverage. So the far pass is
+    // one sweep at a third of the alpha on a wide grid, and the near pass is the
+    // shoulder's own weight, and the two overlap by 34 px so no seam can print.
+    // ONE LONG LIT SWEEP along the apron's own y function, laid before the far
+    // hachure so the strokes sit IN it. Without it the apron has direction but no
+    // falloff, and 380 px of evenly lit ground is the same dead band by another
+    // route. The camera kneels, so the light pools in the middle distance.
+    var sw = cx.createLinearGradient(0, hz + 40, 0, ap);
+    sw.addColorStop(0, "rgba(168,148,111,0)");
+    sw.addColorStop(0.45, "rgba(168,148,111,0.13)");
+    sw.addColorStop(1, "rgba(168,148,111,0)");
+    cx.fillStyle = sw;
+    cx.beginPath();
+    cx.moveTo(0, hz);
+    for (i = 0; i <= W; i += 6) cx.lineTo(i, yApron(gx0 + i));
+    cx.lineTo(W, hz); cx.closePath(); cx.fill();
+
+    hachure(cx, gx0, { y0: hz + 6, y1: ap + 20, field: field, grid: 16,
+                       passes: 2, seed: seed, hi: PAL.gravelHi, alpha: 0.13,
+                       scale0: 0.46, scale1: 0.95, haze0: 0.60 });
+    // The shoulder pass is EXACTLY what it was on the first build (scale 1, no
+    // haze lerp, four passes). Every critic who looked at it called it the best
+    // ground this house has shipped, so it is not what the repair is for.
+    hachure(cx, gx0, { y0: ap - 14, y1: H, field: field, grid: o.grid || 9,
+                       passes: o.passes || 4, seed: seed, hi: PAL.gravelHi,
+                       scale0: 1.00, scale1: 1.00, haze0: 0 });
 
     var crowns = crownPoints(gx0, ap + 10, H - 24, seed);
     drawCrowns(cx, crowns, field, gx0);
@@ -469,20 +590,147 @@
   // the plate the doctrine bans and the reserve exists to avoid. This lays a
   // full-height graded wash on the visible canvas BEFORE the buffer composites,
   // so a hole reveals continuing modelled atmosphere instead of a box.
+  // MATCHING THE VALUE IS HALF THE JOB, AND THE FIRST BUILD DID NEITHER HALF.
+  // Five frames shipped a reserve that read as a LIT rectangle, because this ramp
+  // was a hand-picked guess several percent ABOVE the apron it stands in for, and
+  // because a matched but FLAT reveal is still findable: the reader locates the
+  // box by the fact that the grain stops inside it. So the wash is now built from
+  // the ground's own recipe rather than beside it, and it carries its own
+  // scale-graded fleck field, so a punched hole reveals CONTINUING GROUND.
   function baseWash(cx, gx0) {
-    var hz = yHorizon(gx0 + W / 2);
+    var hz = yHorizon(gx0 + W / 2), ap = yApron(gx0 + W / 2), i;
     var g = cx.createLinearGradient(0, 0, 0, H);
     g.addColorStop(0.00, "#2A241D");
-    g.addColorStop(hz / H * 0.82, "#3C342A");
-    g.addColorStop(hz / H, "#5A4E3C");
-    g.addColorStop(Math.min(0.98, hz / H + 0.20), "#332B21");
-    g.addColorStop(1.00, "#221D17");
+    g.addColorStop(Math.max(0.01, hz / H - 0.07), "#383026");
+    // from the horizon down these are literally the stops ground() lays, so the
+    // two cannot drift apart again the way they did on the first build
+    g.addColorStop(hz / H, AKC.mixOklab(PAL.gravelLo, PAL.haze, 0.34));
+    g.addColorStop((hz + (ap - hz) * 0.55) / H,
+                   AKC.mixOklab(PAL.gravelLo, PAL.haze, 0.12));
+    g.addColorStop(ap / H, "#231E17");
+    g.addColorStop(Math.min(0.995, (ap + (H - ap) * 0.5) / H), PAL.gravelMid);
+    g.addColorStop(1.00, "#241F18");
     cx.fillStyle = g;
     cx.fillRect(0, 0, W, H);
+
+    // the reveal's own aggregate, scale graded with distance exactly as the
+    // apron's is, so there is no grain boundary for an eye to find a box by
+    var rnd = AK.rng(Math.floor(gx0) * 7 + 11);
+    cx.save();
+    for (i = 0; i < 5400; i++) {
+      var d = Math.pow(rnd(), 0.55);
+      var ax = rnd() * W;
+      var ay = hz + d * (H - hz);
+      var ar = 0.30 + d * 1.45;
+      cx.globalAlpha = 0.05 + d * 0.15;
+      cx.fillStyle = rnd() > 0.52 ? PAL.gravelHi : PAL.floor;
+      cx.beginPath();
+      cx.ellipse(ax, ay, ar * 2.0, ar * 0.70, -0.24, 0, Math.PI * 2);
+      cx.fill();
+    }
+    cx.restore();
+  }
+
+  /* ---- the deck's one prop, modelled -------------------------------------- */
+  // A FILLED POLYGON IN A BRIGHT HUE IS A SHAPE, NOT A THING. The first build
+  // authored this wedge twice, inline, as one flat trapezoid with hairline ribs,
+  // and the verdicts were unanimous across four frames: a sticker on the cover,
+  // a yellow tab on 02, an unreadable smudge on 06, and on 09 three values of
+  // dark brown laid on dark brown gravel where no critic could find it at all.
+  // What makes it a thing is three planes under the one declared light. It lives
+  // here rather than in four slides because it is the object that has meant the
+  // flight's two ends since slide 01, and a prop drawn four ways is four props.
+  function chockGeom(x, y, o) {
+    var hw = o.hw || 46, h = o.h || 46;
+    return {
+      hw: hw, h: h,
+      A: [x - hw, y], B: [x + hw, y],
+      C: [x + hw * 0.65, y - h], D: [x - hw * 0.65, y - h * 0.86],
+      dp: [-hw * 0.20, -h * 0.26]          // the top plane's recession
+    };
+  }
+  // The SILHOUETTE, handed to cast() so the shadow is the object's own outline
+  // and not a second guess at it.
+  function chockPath(x, y, o) {
+    var G = chockGeom(x, y, o || {});
+    return function (g, dx, dy) {
+      g.moveTo(G.A[0] + dx, G.A[1] + dy);
+      g.lineTo(G.B[0] + dx, G.B[1] + dy);
+      g.lineTo(G.C[0] + dx, G.C[1] + dy);
+      g.lineTo(G.C[0] + G.dp[0] + dx, G.C[1] + G.dp[1] + dy);
+      g.lineTo(G.D[0] + G.dp[0] + dx, G.D[1] + G.dp[1] + dy);
+      g.lineTo(G.D[0] + dx, G.D[1] + dy);
+      g.closePath();
+    };
+  }
+  function chock(cx, x, y, opts) {
+    var o = opts || {}, G = chockGeom(x, y, o), k;
+    var body = o.body || ["#5A5145", "#3B342B", "#241F19"];
+    var quad = function (p1, p2, p3, p4, fill) {
+      cx.fillStyle = fill;
+      cx.beginPath();
+      cx.moveTo(p1[0], p1[1]); cx.lineTo(p2[0], p2[1]);
+      cx.lineTo(p3[0], p3[1]); cx.lineTo(p4[0], p4[1]);
+      cx.closePath(); cx.fill();
+    };
+    var Cp = [G.C[0] + G.dp[0], G.C[1] + G.dp[1]];
+    var Dp = [G.D[0] + G.dp[0], G.D[1] + G.dp[1]];
+
+    // 1. THE TOP PLANE, which the key at elevation 24 strikes most squarely and
+    //    which is therefore the brightest thing on the object.
+    quad(G.D, G.C, Cp, Dp, AKC.mixOklab(PAL.gravelHi, PAL.crown, 0.45));
+    // 2. THE SHADOW END, turned away from azimuth 208, in the bounce hue because
+    //    the only light reaching it is sky.
+    quad(G.B, G.C, Cp, [G.B[0] + G.dp[0], G.B[1] + G.dp[1]],
+         AKC.mixOklab(PAL.bounce, PAL.floor, 0.72));
+    // 3. THE FRONT PLANE, the rubber body, carrying the paint.
+    var g = cx.createLinearGradient(G.D[0], G.D[1], G.B[0], G.B[1]);
+    g.addColorStop(0, body[0]); g.addColorStop(0.5, body[1]); g.addColorStop(1, body[2]);
+    quad(G.A, G.B, G.C, G.D, g);
+
+    // the painted face, worn, inset from the rubber so the paint sits ON it
+    if (o.gold !== false) {
+      var gp = cx.createLinearGradient(G.D[0], G.D[1], G.C[0], G.C[1] + G.h * 0.7);
+      gp.addColorStop(0, PAL.gold);
+      gp.addColorStop(0.62, "#D9A526");
+      gp.addColorStop(1, "#9A7A22");
+      cx.save();
+      cx.globalAlpha = 0.93;
+      quad([G.A[0] + 8, G.A[1] - 9], [G.B[0] - 8, G.B[1] - 9],
+           [G.C[0] - 2, G.C[1] + G.h * 0.05], [G.D[0] + 2, G.D[1] + G.h * 0.04], gp);
+      cx.restore();
+    }
+    // moulded ribs, following the front plane's own rake
+    cx.strokeStyle = "rgba(26,23,18,0.45)";
+    cx.lineWidth = Math.max(1, G.hw * 0.027);
+    for (k = -G.hw * 0.48; k <= G.hw * 0.48; k += G.hw * 0.24) {
+      cx.beginPath();
+      cx.moveTo(x + k, y - 3);
+      cx.lineTo(x + k * 0.68, y - G.h * 0.9);
+      cx.stroke();
+    }
+    // ONE hard highlight, on the chamfer where the top plane meets the front.
+    cx.strokeStyle = "rgba(244,248,255,0.55)";
+    cx.lineWidth = Math.max(1.4, G.hw * 0.043);
+    cx.beginPath();
+    cx.moveTo(G.D[0], G.D[1]); cx.lineTo(G.C[0], G.C[1]); cx.stroke();
+    // the rope eye, a punched hole with an interior shadow and a lit lower rim
+    cx.save();
+    cx.fillStyle = PAL.floor;
+    cx.beginPath();
+    cx.ellipse(x - G.hw * 0.34, y - G.h * 0.52, G.hw * 0.10, G.hw * 0.07, 0, 0, Math.PI * 2);
+    cx.fill();
+    cx.strokeStyle = "rgba(168,148,111,0.6)";
+    cx.lineWidth = 1;
+    cx.beginPath();
+    cx.ellipse(x - G.hw * 0.34, y - G.h * 0.50, G.hw * 0.10, G.hw * 0.07, 0, 0.2, Math.PI - 0.2);
+    cx.stroke();
+    cx.restore();
   }
 
   global.APRON = {
     W: W, H: H,
+    chock: chock, chockPath: chockPath, returnOffset: returnOffset,
     litPool: litPool, baseWash: baseWash,
     trackY: trackY, trackPts: trackPts, returnPts: returnPts,
     ground: ground, trackMark: trackMark,

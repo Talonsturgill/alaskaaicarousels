@@ -528,8 +528,38 @@
       var pad = mono ? padMono : padBody;
       /* half any halo/stroke the caller declared */
       var hs = parseFloat(el.getAttribute("data-halo") || "0") / 2;
-      out.push([r.left - pad - hs, r.top - pad - hs,
-                r.width + 2 * (pad + hs), r.height + 2 * (pad + hs)]);
+
+      /* RESERVE THE TYPE, NOT THE BOX IT SITS IN. getBoundingClientRect returns
+       * the ELEMENT, so a 900 px div holding a 600 px line of ragged-right copy
+       * reserved 300 px of empty rectangle, and the punch duly knocked a hole in
+       * the art where there was nothing to protect. Every critic who looked at
+       * slides 04, 05, 07 and 09 reported the same thing in the same words: a
+       * lighter rectangle with a readable vertical edge, hanging to the right of
+       * the words. A Range over the node's contents returns one rect PER LINE
+       * BOX, so the reservation follows the rag and no empty corner is punched.
+       * Falls back to the element box for SVG and for anything a Range cannot
+       * walk, which is the old behaviour and is correct for a tight node. */
+      var rects = null;
+      try {
+        if (el.namespaceURI !== "http://www.w3.org/2000/svg" && document.createRange) {
+          var rng = document.createRange();
+          rng.selectNodeContents(el);
+          var rl = rng.getClientRects();
+          if (rl && rl.length) rects = rl;
+        }
+      } catch (e) { rects = null; }
+
+      if (!rects) {
+        out.push([r.left - pad - hs, r.top - pad - hs,
+                  r.width + 2 * (pad + hs), r.height + 2 * (pad + hs)]);
+        continue;
+      }
+      for (var j = 0; j < rects.length; j++) {
+        var b = rects[j];
+        if (!(b.width > 0 && b.height > 0)) continue;
+        out.push([b.left - pad - hs, b.top - pad - hs,
+                  b.width + 2 * (pad + hs), b.height + 2 * (pad + hs)]);
+      }
     }
     return out;
   }
