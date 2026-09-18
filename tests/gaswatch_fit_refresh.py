@@ -15,6 +15,16 @@ import gaswatch_fit as fit
 
 
 class FitRefreshTests(unittest.TestCase):
+    def test_next_cycle_accepts_an_optimum_below_the_refit_threshold(self):
+        model = gc.load_model(gc.MODEL_CONFIG)
+        # A source revision shifts the optimum but not enough to earn a refit.
+        rows = [(d, h, y * 1.001) for d, h, y in fit.observations(model)]
+        self.assertIsNone(fit.evaluate(model, rows)[0])
+        self.assertGreater(abs(fit.least_squares(rows)[0] - model["base_mmcfd"]), 0.01)
+        with patch.object(fit, "observations", return_value=rows), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(fit.self_test(), 0)
+
     def test_unchanged_fit_refreshes_only_backtests_and_is_idempotent(self):
         model = gc.load_model(gc.MODEL_CONFIG)
         metadata, history = gc.load_hdd_history(model, fit.REPO)

@@ -247,9 +247,14 @@ def self_test():
         check("the fit beats the model it replaces",
               prop["mean_error_pct"] < prop["previous_mean_error_pct"],
               f"{prop['previous_mean_error_pct']} to {prop['mean_error_pct']} percent")
-        check("the fit recovers the committed coefficients",
-              abs(prop["base_mmcfd"] - model["base_mmcfd"]) < 0.01
-              and abs(prop["slope_mmcfd_per_hdd"] - model["slope_mmcfd_per_hdd"]) < 0.001,
+        # A new EIA month can shift the optimum without clearing the minimum
+        # improvement threshold. The committed coefficients correctly stay
+        # put then. A drifted model should recover today's fitted optimum,
+        # not coefficients accepted against an older set of months.
+        fitted_base, fitted_slope = least_squares(rows)
+        check("the fit recovers the current observations' coefficients",
+              prop["base_mmcfd"] == round(fitted_base, 3)
+              and prop["slope_mmcfd_per_hdd"] == round(fitted_slope, 4),
               f"base {prop['base_mmcfd']}, slope {prop['slope_mmcfd_per_hdd']}")
         new = apply_fit(drifted, prop, date(2026, 8, 5), "202605")
         _, hdd = gc.load_hdd_history(new, REPO)
