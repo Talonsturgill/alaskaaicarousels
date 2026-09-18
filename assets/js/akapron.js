@@ -251,14 +251,18 @@
           var slope = Math.hypot(dzdx, dzdy);
           var aspect = Math.atan2(dzdy, dzdx);
           // stroke width from slope, rotation from aspect, per Lehmann
-          var wdt = (0.6 + Math.min(1.0, slope * 26) * 1.8) * (0.42 + 0.58 * sc);
-          // STROKE LENGTH RELATIVE TO SPACING IS WHAT SEPARATES GRAVEL FROM
-          // GRASS. Marks shorter than their spacing read as chips lying on a
-          // plane; marks longer than it overlap into fibres and the frame grows a
-          // lawn. The shoulder has always run at 1.5 to 2.2 cells and reads
-          // correctly because its cell is 9 px, but the apron's cell is 16 and
-          // the same ratio gave it 24 to 35 px strokes, which is straw.
-          var len = grid * sc * (1.5 + rnd() * 0.7) * (o.lenMul === undefined ? 1 : o.lenMul);
+          // SHORTER AND HEAVIER. Three critics independently read this ground as
+          // straw, stubble, dry grass, fur or a mown hayfield, which is the
+          // deck's declared material missed on every frame at once. Three things
+          // were making blades instead of chips: the strokes were long (up to 35
+          // px), they were fine (0.6 to 2.4 px), and they all took their rotation
+          // from the aspect field, so they COMBED into rows and the rows read as
+          // a crop. Length is halved and capped, weight is roughly doubled, and
+          // the cap below is absolute because a long fine stroke is a blade
+          // whatever the grid says.
+          var wdt = (1.4 + Math.min(1.0, slope * 26) * 1.8) * (0.52 + 0.48 * sc);
+          var len = Math.min(11, grid * sc * (0.8 + rnd() * 0.45)
+                                 * (o.lenMul === undefined ? 1 : o.lenMul));
           // shade against this pass's sun azimuth
           var nd = Math.max(0, Math.cos(aspect - azP));
           var step = Math.max(0, Math.min(hazeBands - 1,
@@ -275,11 +279,38 @@
             ? ramp[step + hazeBands * Math.min(5, Math.floor((1 - tRow) * 6))]
             : ramp[step];
           cx.lineWidth = wdt;
-          var bend = (rnd() - 0.5) * 0.24;
+          // AND THE COMB IS BROKEN. Every stroke took its rotation purely from
+          // the local aspect, so neighbouring strokes were near parallel and
+          // ganged into visible rows. Gravel has no grain: each chip lies how it
+          // fell. A wide rotation jitter on top of the aspect term keeps the
+          // slope reading (the field still sets the population's mean direction)
+          // while destroying the alignment that made it a crop.
+          var rot = aspect + (rnd() - 0.5) * 1.22;      // +/- 35 degrees
+          var bend = (rnd() - 0.5) * 0.16;
+          var hx = Math.cos(rot) * len / 2, hy = Math.sin(rot) * len / 2;
+
+          // THE SHADOW POCKET. This is the difference between gravel and grass,
+          // and it is the one thing none of the earlier repairs supplied. Every
+          // mark in this field was LIGHTER than the ground it sat on, so nothing
+          // was ever occluded by anything: a population of pale needles with no
+          // dark counterpart is stubble, whatever its length or weight. A stone
+          // is legible because it casts into its own bed. So each lit stroke gets
+          // a companion in the floor value, offset UP AND LEFT, which is opposite
+          // the 208 degree key, at half the weight. The field acquires mass, and
+          // the 24 degree raking light finally has evidence in the surface.
+          cx.save();
+          cx.strokeStyle = PAL.floor;
+          cx.globalAlpha = 0.55;
+          cx.lineWidth = wdt * 0.5;
           cx.beginPath();
-          cx.moveTo(jx - Math.cos(aspect) * len / 2, jy - Math.sin(aspect) * len / 2);
-          cx.quadraticCurveTo(jx + bend * len, jy + bend * len,
-                              jx + Math.cos(aspect) * len / 2, jy + Math.sin(aspect) * len / 2);
+          cx.moveTo(jx - hx - 2.4, jy - hy - 1.7);
+          cx.lineTo(jx + hx - 2.4, jy + hy - 1.7);
+          cx.stroke();
+          cx.restore();
+
+          cx.beginPath();
+          cx.moveTo(jx - hx, jy - hy);
+          cx.quadraticCurveTo(jx + bend * len, jy + bend * len, jx + hx, jy + hy);
           cx.stroke();
         }
       }
@@ -356,8 +387,13 @@
     var ink = AKC.mixOklab(PAL.bounce, PAL.floor, 0.62);
     cx.save();
     cx.globalCompositeOperation = "multiply";
-    castUnion(cx, path, v, 26, a * 0.54, ink);                       // full throw
-    castUnion(cx, path, [v[0] * 0.42, v[1] * 0.42], 14, a * 0.48, ink); // near half
+    // 0.85 and 0.72, not 0.54 and 0.48. The rebuilt cast has a hard terminator
+    // but critics still could not FIND it, because at 27 percent a multiply of a
+    // mid-dark ink over dark gravel moves the value by less than the lit pool
+    // beside it moves it the other way, and the pool is the larger shape. A
+    // shadow that loses to its own key light is not a shadow.
+    castUnion(cx, path, v, 26, a * 0.85, ink);                       // full throw
+    castUnion(cx, path, [v[0] * 0.42, v[1] * 0.42], 14, a * 0.72, ink); // near half
     cx.restore();
   }
 
@@ -521,6 +557,40 @@
                        passes: o.passes || 4, seed: seed, hi: PAL.gravelHi,
                        scale0: 1.00, scale1: 1.00, haze0: 0 });
 
+    // CHIPS. A hachure field models a SURFACE, and every critic who looked at
+    // this one named a crop, because nothing in it was a discrete solid object.
+    // A gravel shoulder is stone lying loose on graded fines, so a sparse
+    // population of small convex solids, each lit from 208 and each with a seam
+    // where it meets the ground, gives the eye something to land on that is
+    // unmistakably not a blade. Sparse on purpose, about one per 900 px2.
+    cx.save();
+    rnd = AK.rng(seed * 1597);
+    var chipN = Math.round((H - ap) * W / 900);
+    for (i = 0; i < chipN; i++) {
+      var px = rnd() * W;
+      var dd = Math.pow(rnd(), 0.62);
+      var py = ap + dd * (H - ap);
+      var pr = (1.6 + rnd() * 2.0) * (0.55 + 0.45 * dd);
+      var rot2 = rnd() * Math.PI;
+      var cg = cx.createLinearGradient(px - pr, py - pr, px + pr, py + pr);
+      cg.addColorStop(0, PAL.crown);
+      cg.addColorStop(0.52, PAL.gravelHi);
+      cg.addColorStop(1, PAL.gravelLo);
+      cx.globalAlpha = 0.30 + dd * 0.42;
+      cx.fillStyle = cg;
+      cx.beginPath();
+      cx.ellipse(px, py, pr * 1.25, pr * 0.82, rot2, 0, Math.PI * 2);
+      cx.fill();
+      // the seam where the stone meets the fines, on the shadow side
+      cx.globalAlpha = (0.30 + dd * 0.42) * 0.7;
+      cx.strokeStyle = PAL.floor;
+      cx.lineWidth = 0.9;
+      cx.beginPath();
+      cx.ellipse(px + 0.7, py + 0.7, pr * 1.25, pr * 0.82, rot2, 0.5, 2.9);
+      cx.stroke();
+    }
+    cx.restore();
+
     var crowns = crownPoints(gx0, ap + 10, H - 24, seed);
     drawCrowns(cx, crowns, field, gx0);
     return crowns;
@@ -608,9 +678,18 @@
     var g = cx.createLinearGradient(0, 0, 0, H);
     g.addColorStop(0.00, "#2A241D");
     g.addColorStop(Math.max(0.01, hz / H - 0.07), "#383026");
-    // from the horizon down these are literally the stops ground() lays, so the
-    // two cannot drift apart again the way they did on the first build
-    g.addColorStop(hz / H, AKC.mixOklab(PAL.gravelLo, PAL.haze, 0.34));
+    // THE WASH HAS TO MATCH WHAT THE ART PUTS THERE, NOT WHAT THE GROUND RECIPE
+    // SAYS. Copying ground()'s stops made the wash peak at exactly the horizon,
+    // because the apron's top edge IS its brightest part. But the ART at that
+    // line is the TREELINE, a dark silhouette drawn over it, so a punch revealed
+    // a bright ridge where the frame is dark and two critics independently found
+    // a hard bright rule with square ends running under the treeline on the
+    // punched frames and absent on the one frame with no punch. The wash
+    // therefore carries the treeline's own value through that band and only
+    // reaches the apron's value once the trees have ended.
+    g.addColorStop(hz / H, AKC.mixOklab(PAL.tree, PAL.haze, 0.42));
+    g.addColorStop(Math.min(0.99, (hz + 54) / H),
+                   AKC.mixOklab(PAL.gravelLo, PAL.haze, 0.30));
     g.addColorStop((hz + (ap - hz) * 0.55) / H,
                    AKC.mixOklab(PAL.gravelLo, PAL.haze, 0.12));
     g.addColorStop(ap / H, "#231E17");
@@ -652,7 +731,10 @@
       hw: hw, h: h,
       A: [x - hw, y], B: [x + hw, y],
       C: [x + hw * 0.65, y - h], D: [x - hw * 0.65, y - h * 0.86],
-      dp: [-hw * 0.20, -h * 0.26]          // the top plane's recession
+      // 0.13, not 0.26. At a quarter of the face height the top plane was nearly
+      // as deep as the front was tall, which a camera kneeling at 620 mm cannot
+      // see, and it made the prop read as a flat tray viewed from above.
+      dp: [-hw * 0.12, -h * 0.13]          // the top plane's recession
     };
   }
   // The SILHOUETTE, handed to cast() so the shadow is the object's own outline
@@ -683,8 +765,14 @@
     var Dp = [G.D[0] + G.dp[0], G.D[1] + G.dp[1]];
 
     // 1. THE TOP PLANE, which the key at elevation 24 strikes most squarely and
-    //    which is therefore the brightest thing on the object.
-    quad(G.D, G.C, Cp, Dp, AKC.mixOklab(PAL.gravelHi, PAL.crown, 0.45));
+    //    which is therefore the brightest thing on the object. ONE MATERIAL MEANS
+    //    ONE HUE: this was set in the bone register while the front carried gold,
+    //    so it read as a separate pale card lying on a yellow wedge and the pair
+    //    came out as two dustpans on the deck's cover. A lit plane of a painted
+    //    object is a lighter VALUE of that object's own colour.
+    quad(G.D, G.C, Cp, Dp, o.gold === false
+         ? AKC.mixOklab(body[0], PAL.crown, 0.45)
+         : AKC.mixOklab(PAL.gold, PAL.snow, 0.22));
     // 2. THE SHADOW END, turned away from azimuth 208, in the bounce hue because
     //    the only light reaching it is sky.
     quad(G.B, G.C, Cp, [G.B[0] + G.dp[0], G.B[1] + G.dp[1]],
@@ -706,13 +794,16 @@
            [G.C[0] - 2, G.C[1] + G.h * 0.05], [G.D[0] + 2, G.D[1] + G.h * 0.04], gp);
       cx.restore();
     }
-    // moulded ribs, following the front plane's own rake
-    cx.strokeStyle = "rgba(26,23,18,0.45)";
-    cx.lineWidth = Math.max(1, G.hw * 0.027);
-    for (k = -G.hw * 0.48; k <= G.hw * 0.48; k += G.hw * 0.24) {
+    // THREE shallow grooves, not eight full-height lines. Eight evenly spaced
+    // dark strokes across the whole face read as keys, or as the bristles of a
+    // brush, which is half of why the pair came out as dustpans. A moulded rubber
+    // chock has a few deep grooves, and they do not reach the chamfer.
+    cx.strokeStyle = "rgba(26,23,18,0.35)";
+    cx.lineWidth = Math.max(2, G.hw * 0.045);
+    for (k = -G.hw * 0.34; k <= G.hw * 0.34; k += G.hw * 0.34) {
       cx.beginPath();
-      cx.moveTo(x + k, y - 3);
-      cx.lineTo(x + k * 0.68, y - G.h * 0.9);
+      cx.moveTo(x + k, y - G.h * 0.16);
+      cx.lineTo(x + k * 0.78, y - G.h * 0.62);
       cx.stroke();
     }
     // ONE hard highlight, on the chamfer where the top plane meets the front.
