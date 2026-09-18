@@ -1,0 +1,95 @@
+{
+ "run_date": "2026-09-18",
+ "carousel_no": 62,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "in_progress",
+  "flow_review": "pending",
+  "assemble": "done",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-09-18/plan.md",
+  "gaswatch_health": "out/2026-09-18/gaswatch_health.json",
+  "caption_burns": "out/2026-09-18/caption_burns.txt",
+  "scout_merge": "out/2026-09-18/scout_merge.md",
+  "selection": "out/2026-09-18/selection.md",
+  "claims": "out/2026-09-18/claims.json",
+  "design_notes": "out/2026-09-18/design_notes.md",
+  "storyboard": "out/2026-09-18/storyboard.md",
+  "directors_room": "out/2026-09-18/directors_room.md",
+  "deck_laws": "out/2026-09-18/deck_laws.md",
+  "caption": "out/2026-09-18/caption.txt",
+  "caption_report": "out/2026-09-18/caption_report.json",
+  "copy": "out/2026-09-18/copy.json",
+  "aggregates": "out/2026-09-18/aggregates.json",
+  "slides": "out/2026-09-18/slides",
+  "render": "out/2026-09-18/render",
+  "final": "out/2026-09-18/final"
+ },
+ "site_signoff": "WARN, 115 pages, 18 checks, UNFIXED gaswatch.jsonl is current",
+ "gas_watch_live": "MAINTENANCE, checked 2026-09-18T07:12:28Z",
+ "story": "ACUASI flew 1,000 km out of Nenana on August 19th carrying human blood for the International Testing Agency. The flight is published, the finding is not.",
+ "phase12_candidates": [
+  "A PRIMARY DOCUMENT THIS ROUTINE CANNOT READ IS A HOLE IN THE CLAIMS GATE. Two scouts lost primary sources to PDFs today, Beat D on the DNR preliminary decision for ADL 234762 and Beat C on the NPFMC Draft 2027 Annual Deployment Plan, and both reported PDF extraction as unavailable because poppler-utils is missing. VERIFIED THIS RUN that the diagnosis is wrong and the fix is cheap: pypdf 6.19.0 is already installed by bootstrap.sh and extracts text correctly (tested against runs/2026-09-17/carousel.pdf, 9 pages, first page text returned clean). What is missing is a way to FETCH a remote pdf and read it, since WebFetch hands back binary. A scripts/fetch_pdf_text.py taking a url, using urllib plus pypdf, adds no new dependency and turns two dead ends into primary sources. Proposed as this run's reactive fix.",
+  "sources.yaml refuses_automated_fetch needs two new hosts, BoardDocs (University of Alaska regents packets) and newsminer.com (429 rather than 403), plus the route AROUND federalregister.gov, whose article pages redirect an automated fetch while /api/v1/documents/<num>.json and the raw text endpoint both work. Three scouts rediscovered that route independently today.",
+  "trend_check says Legibility and platform fitness has been the weakest criterion twice in ten runs and has NEVER been worked on by any upgrade. Named in plan.md as a standing candidate."
+ ],
+ "claims_gate": "PASS, 41/41 usable, 37 primary, 41 with outlet",
+ "caption_assignments": {
+  "burned_openings_last_6": [
+   "SECOND PERSON STAKE",
+   "THE ABSURD DETAIL",
+   "TIMELINE COLLAPSE",
+   "SOURCE QUOTATION COLD",
+   "LEDGER TALLY",
+   "NEW:OBJECT FIRST"
+  ],
+  "burned_structures_last_3": [
+   "CLAIM THEN COUNTER-CLAIM",
+   "ZOOM",
+   "BRAID"
+  ],
+  "burned_close_last_1": [
+   "NEW: WHAT COUNTS AS BEING TOLD"
+  ],
+  "director_A": {
+   "opening_move": "COLD NUMBER",
+   "structure": "PUNCH THEN PROOF",
+   "why": "The story's strongest asset is one figure that means the opposite of what it looks like. A thousand kilometres that arrived nowhere is a cold number whose second clause does the work, and PUNCH THEN PROOF lets the receipts land one per line underneath it."
+  },
+  "director_B": {
+   "opening_move": "CONTRADICTION",
+   "structure": "INVERTED PYRAMID",
+   "why": "Two true things that can't both be comfortable. Everything about this test is documented except the thing it was for. INVERTED PYRAMID puts the hardest fact first and widens, which suits a story whose context is what makes the fact bite."
+  },
+  "note": "QUOTE FIRST was left off the menu deliberately. It is close enough to SOURCE QUOTATION COLD, burned on September 13th, that the critic would have to adjudicate a distinction the ledger does not draw."
+ },
+ "phase12_verified": "Remote PDF text extraction PROVEN in this container. urllib plus pypdf 6.19.0 fetched the 199,663 byte Federal Register PDF for document 2026-18459 and extracted page text cleanly. fontTools warnings go to stderr and are cosmetic. No new dependency needed.",
+ "engine_derisk": {
+  "render_engine": "PASS. examples/demo-deck rendered 4 of 4 clean, qa.py exit 0 at WARN with the house's own standing defect classes present, art touching glyphs and busy art under text, which is the class this run is attacking.",
+  "gpu_pbr": "PASS AND PROVEN THIS RUN. akthree init(THREE) pattern rendered a full PBR frame at 2160x2700 with snapshot ok=true, variance 81.4, 90,395 lit pixels, 1,577 ms. Real gold material, procedural IBL reflection, soft shadow map and a readable contact shadow. The rendered hero is available and costs under two seconds a frame.",
+  "gotcha_found": "akthree.js exports ONE function, init(THREE). A bare import gives a namespace with one key and no AKT methods. The correct line is (await import('@@ASSETS@@/js/akthree.js')).init(THREE) after importing three.module.min.js. Found by probe rather than by a failed build round.",
+  "determinism_note": "render.py flagged Date.now() in the probe, correctly. Slide code uses AK.rng(seed) and never a clock.",
+  "helpers": "PASS, all ten probed in one page in the documented load order. AK.rng, AK.fbm2, AK.grainTile, AKC.ramp (7 steps returned), AKC.mixOklab, AK.reliefShade honouring its low/high option contract, AKENGRAVE.drawOffscreen, AK.fitText, AK.canvasLabel and AKPOST.grade all returned clean with zero page errors and zero console errors. Load order noise.js, akcolor.js, akrelief.js, akpost.js, aktype.js, aklabel.js, akengrave.js works, which matters because akengrave throws AKC is not defined unless akcolor loads first.",
+  "geo": "PASS. alaska-state.geo.json loads as a FeatureCollection, the canonical conic equal area at parallels 55/65 rotate 154 projects and fills, AKGeo exposes alaskaProjection, zoomTo, fitAxis and bounds, and Nenana at -149.0742, 64.5472 projects to 681.0, 742.9 inside a 90 to 990 by 420 to 1180 extent. A true projection locator is available to any frame that wants one.",
+  "hero_pattern": "PROVEN. A GPU hero with type over it FAILED qa.py four ways, all of them this run's target defect class, because punchReserves cannot reach a GL canvas in the DOM. Compositing the GL frame into an AKENGRAVE.drawOffscreen buffer, punching the reserves on that buffer at blur 11, then drawing it onto the visible 2D canvas and grading once returned ZERO FAILS on the identical scene. The only remaining warn was top-loaded composition, which is a layout problem and not a technique problem."
+ },
+ "machine_qa": "PASS, 9 slides, 0 fails, 0 warns",
+ "bespoke": "median pairwise 0.251 (fail at 0.60), drawn share 50 percent (floor 45)",
+ "assemble": "9 slides, vector pdf 5.42 MB, title from copy.json",
+ "chassis": "assets/js/akapron.js"
+}

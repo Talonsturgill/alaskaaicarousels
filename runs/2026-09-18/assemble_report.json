@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-18/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5780387,
+  "pdf_mb": 5.78,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-18/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-18/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Out of Nenana and Back, With the Finding Pending",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "c0a979479c623ccb2780201715753650753e14b8cd491ba220d59d1da6029580",
+        "bytes": 4201337
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "51bbe9943e53d6f255cb90f8eeb5e5270db0d3a87ac276abdc82258e1336d8d7",
+        "bytes": 4010070
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "ae1f5cbae809c0a850c69abae8ecb1c347e0560aa5cbf927284779b155df59b3",
+        "bytes": 4760457
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "e51632a8bacda9350d625bea11d2d26c1e502e323776f9def3daa8002a7ae414",
+        "bytes": 4025440
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "57005271ac646a7d1a19342c48429aae6d9d30531ec312d2630fcd2de39fb080",
+        "bytes": 3773795
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "871544ce64425519b2a8a2ee4c3298d2aff45960d9bbe0005ffd2f5b388df6de",
+        "bytes": 5253606
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "9b1d070f588f5d2770277e958d6b05a6d95584f2108750c6fc5ea6011e2124a3",
+        "bytes": 3913176
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "aae39dab4712b488c146fdb5883a4a81c985e62b0c1f2b4b0021dc62137e596a",
+        "bytes": 4229738
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "467a2df816c5e5ed482514205f39e5e4af986a2d171496bf33d8a56b6aa3437f",
+        "bytes": 4100892
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "dd025bf03a659ee520edc8a4d21e5116e4dca85666c7d97b44db4aa7262e45e5",
+        "bytes": 5724
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "f26cb6d264fbb7d3b5a6bc3e7dc8185c867197930716947f28de0801ecac7805",
+        "bytes": 9156
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a87b0481dd584d8fc00a0c279cb4aa4fd3a6894584104ac6cbaf2259560d6c2e",
+        "bytes": 10686
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "ee26ac673a740364fe7f8c675e62779ec00630a09712d108d8b21f885cabf07f",
+        "bytes": 16382
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "e0e6fe4b73619b241c6c74c94efac70d3944103ce798b8453da39814c767dd78",
+        "bytes": 7902
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "8b4e7b66597b8d79daecd412fe0714eaf962d019dfb25a1689239a552546534f",
+        "bytes": 6085
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "951c7a90b7ee0c86ce6b178c19d1dce379ff9e48ee91a18ea3579f9429e2fd47",
+        "bytes": 10698
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "135917eee0996385c1dcde4b92ada9bfe91584fcebab84af7c48a72f36f8c870",
+        "bytes": 14898
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "2e559890eed1ef9b86873b7261c43c3e5056d112de1706939ddda909c8626104",
+        "bytes": 9992
+      }
+    ]
+  }
+}

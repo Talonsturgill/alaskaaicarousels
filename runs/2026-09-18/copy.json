@@ -1,0 +1,190 @@
+{
+  "run_date": "2026-09-18",
+  "carousel_no": 62,
+  "document_title": "Out of Nenana and Back, With the Finding Pending",
+  "post_copy": "A 1,000 kilometre blood flight out of Nenana is documented down to five logged sensor channels. The finding is not published.\n\nThe International Testing Agency published the flight on September 16th and said the results will come once the evaluation is complete. It intends to submit them to a peer reviewed journal. No date.\n\nACUASI, part of the University of Alaska Fairbanks, flew it on August 19th. The test began and ended at Nenana Municipal Airport. Closing the route is the control. That leaves the blood as the only thing that changed.\n\nThe deck holds the paired samples, the hangar laboratory at the same airport, and five logged channels as empty rows.\n\nAlaska supplied the distance and the distance was the part held still. A route that isn't closed has to end somewhere. Which Alaska community should that be?\n\n#AlaskaAviation #DroneLogistics #AntiDoping",
+  "deck_summary_line": "The deck holds the paired samples, the hangar laboratory at the same airport, and five logged channels as empty rows.",
+  "first_comment": "Sources, primary first\nInternational Testing Agency, ITA completes a long distance drone test flight, September 16th, https://ita.sport/news/integrity-in-flight-ita-completes-a-long-distance-drone-test-flight-to-advance-anti-doping-sample-transport/\nUniversity of Alaska Fairbanks, UAF drone program tests long distance blood sample delivery, September 16th, https://www.uaf.edu/news/uaf-drone-program-tests-long-distance-blood-sample-delivery.php\nUAF Geophysical Institute, the test began and ended at Nenana Municipal Airport, September 16th, https://www.gi.alaska.edu/news/uaf-drone-program-tests-long-distance-blood-sample-delivery\nSysmex America via PR Newswire, Sysmex supports a 1,000 kilometer drone test flight, September 17th, https://www.prnewswire.com/news-releases/sysmex-america-supports-1-000-kilometer-drone-test-flight-to-advance-anti-doping-sample-transport-302881475.html\nEvery Alaska AI decision tracked, with live deadlines, https://alaskaaihq.com\nAnyone holding the flight plan or the sensor logs, add what you have in the comments.",
+  "caption_meta": {
+    "opening_move": "CONTRADICTION",
+    "structure": "INVERTED PYRAMID",
+    "closing_move": "NEW: NAME THE ENDPOINT"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "NENANA MUNICIPAL AIRPORT, AUGUST 19TH",
+      "headline": "1,000 km of blood. Out of Nenana. Back to Nenana.",
+      "body": "",
+      "labels": [
+        "64 33 N 149 04 W"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE TRACK",
+      "headline": "8 h 47 min aloft. Back at Nenana.",
+      "body": "ACUASI, part of the University of Alaska Fairbanks, flew human blood for the International Testing Agency. UAF puts the flight at 8 hours and 47 minutes. The ITA's own release says only several hours.",
+      "labels": [
+        "DURATION PER UAF AND ACUASI",
+        "THE LENGTH IS PUBLISHED. THE ROUTE IS NOT.",
+        "1,000 KM"
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C04",
+        "C05",
+        "C09"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "THE DAY BEFORE, AT UAF",
+      "headline": "Two samples each. One flew. One stayed.",
+      "body": "The Interior Region EMS Council drew the blood at UAF the day before. It was anonymised and chilled, then split into two groups.",
+      "labels": [
+        "FLOWN",
+        "GROUND CONTROL"
+      ],
+      "claim_ids": [
+        "C13",
+        "C14",
+        "C15",
+        "C35"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "ACUASI OWNS TWO OF THEM",
+      "headline": "A 31 foot span, and a 200 pound bay.",
+      "body": "They are twin engine aircraft with three cargo drop doors, and they work off dirt, grass, ice or tarmac. UAF is one of nine FAA designated test sites for uncrewed aircraft.",
+      "labels": [
+        "TRACKED THROUGHOUT, SO NOBODY HAD TO TAKE ITS WORD",
+        "31 FT"
+      ],
+      "claim_ids": [
+        "C11",
+        "C16",
+        "C36"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "WHY A CIRCLE",
+      "headline": "A circle tests the cargo. A line delivers the care.",
+      "body": "The flight began and ended at Nenana Municipal Airport. Closing a route holds everything still except the blood, which is how you find out whether the blood minds. It also means this test measured a sample and not a delivery.",
+      "labels": [
+        "BEFORE THIS, UP TO ABOUT 20 KM, IN DOHA",
+        "THAT TRIAL INDICATED NO ADVERSE EFFECT, FOR SHORT DISTANCE TRANSPORT"
+      ],
+      "claim_ids": [
+        "C03",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "",
+      "headline": "The distance was the point. Alaska had the distance.",
+      "body": "\"I'm not saying we're ready today, but I think we'll be ready tomorrow.\"",
+      "labels": [
+        "NEIL ROBINSON, ITA, TO UAF"
+      ],
+      "claim_ids": [
+        "C31"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "ON SITE",
+      "headline": "The laboratory was in a building at the same airport.",
+      "body": "Sysmex equipped a satellite laboratory inside an airport hangar with XN-Series analysers. Dr. Sven Voss, who directs the WADA accredited laboratory in Dresden, ran it. Both groups were analysed on site.",
+      "labels": [
+        "SYSMEX, WHOSE ANALYSERS WERE USED, HELPED PAY FOR THE FLIGHT"
+      ],
+      "claim_ids": [
+        "C03",
+        "C19",
+        "C20",
+        "C21",
+        "C34"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "THE RECORD, AS PUBLISHED",
+      "headline": "",
+      "body": "",
+      "labels": [
+        "FROM",
+        "NENANA MUNICIPAL",
+        "TO",
+        "FLOWN",
+        "AUGUST 19TH",
+        "ALOFT",
+        "8 H 47 MIN",
+        "LENGTH",
+        "1,000 KM",
+        "LAB",
+        "AIRPORT HANGAR, ON SITE",
+        "PUBLISHED",
+        "SEPTEMBER 16TH",
+        "RESULTS",
+        "ONCE EVALUATION IS COMPLETE",
+        "JOURNAL",
+        "SUBMISSION INTENDED",
+        "TEMPERATURE",
+        "ATMOSPHERIC PRESSURE",
+        "HUMIDITY",
+        "VIBRATION",
+        "ACCELERATION",
+        "FIVE CHANNELS LOGGED. NO VALUES PUBLISHED.",
+        "NO DATE"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C06",
+        "C18",
+        "C19",
+        "C23",
+        "C24"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Alaska supplied the distance.",
+      "body": "Cathy Cahill, who directs ACUASI, describes nurses taking samples in a community and getting the medication back before they leave. That is a line, not a loop.",
+      "labels": [
+        "A longer loop, or a shorter line? Which does Alaska need next?",
+        "THE FINDING HAS NO DATE",
+        "ALASKA.AI"
+      ],
+      "claim_ids": [
+        "C09",
+        "C23",
+        "C29"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post on a Tuesday, Wednesday or Thursday between 8 and 11am Alaska time, which is the strongest window. Drafts arrive daily, so the cadence stays yours.",
+    "Paste the source comment within about 60 seconds of posting, as plain text with the raw URLs intact.",
+    "Reply to every comment in the first 60 to 90 minutes, which is the window that decides how far the deck travels.",
+    "If a reader asks what the blood test found, the honest answer is that no result is published. Slide 08 is the frame that shows it. Never guess a finding.",
+    "If anyone reads the closed loop as a failure, slide 05 is the reply. The loop was the control, and the analysis is still running.",
+    "If anyone raises the funding, Sysmex helped pay for the flight and the ITA disclosed it in its own release, which is what slide 07 prints.",
+    "Note saves and comments at 48 hours and log them against carousel No. 62."
+  ],
+  "editor_notes_for_email": "Three things before posting. This deck states no result, because none is published anywhere. The ITA says the results will be communicated once the evaluation is complete and that it intends to submit them to a peer reviewed journal, with no date attached, so slide 08 prints the five logged sensor channels as named empty rows rather than inventing a number. Second, the closed loop out of Nenana and back is treated as the test's control and not as a shortfall. Closing the route holds everything still except the blood, which is good experimental design, and slide 05 concedes that before it argues that a village clinic needs the line rather than the loop. Third, Sysmex helped pay for the flight and its analysers were the ones used, which the ITA disclosed in its own release, so slide 07 carries that in flat wording. The range comparison of about 600 published miles against about 621 flown is deliberately absent from every frame, since no source explains it."
+}

@@ -1,0 +1,24 @@
+{
+  "run_date": "2026-09-18",
+  "aggregates": [
+    {"kind": "count", "slide": 3,
+     "text": "Two samples each. One flew. One stayed.",
+     "subject": "samples per volunteer", "n": 2,
+     "members": ["C13", "C14"],
+     "items": ["transported onboard the drone", "remained on the ground as a control group"]},
+
+    {"kind": "from_claim", "slide": 4, "text": "three cargo drop doors", "member": "C11"},
+
+    {"kind": "count", "slide": 8,
+     "text": "FIVE CHANNELS LOGGED. NO VALUES PUBLISHED.",
+     "subject": "logged sensor channels", "n": 5,
+     "members": ["C18"],
+     "items": ["temperature", "atmospheric pressure", "humidity", "vibrations", "acceleration"]},
+
+    {"kind": "design", "slide": 4, "text": "840 px of rule for 31 feet of span",
+     "note": "the frame's scale constant, 27.096 px per foot, solved from the 31 foot span in C11 so the printed dimension and the drawn rule are one number rather than two typed constants. A property of the drawing, not of the world, and declared in window.__akAssert so the render decides it."},
+
+    {"kind": "design", "slide": 8, "text": "20 px per day on the tape",
+     "note": "the measured axis constant, solved from the 28 days between the flight on August 19th (C02) and the ITA's publication on September 16th (C06). Declared in data-scale with every mark inside the band enumerated, because there is no decorative tick on a measured axis. A property of the drawing."}
+  ]
+}
