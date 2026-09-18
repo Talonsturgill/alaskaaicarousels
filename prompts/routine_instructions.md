@@ -347,6 +347,23 @@ Phase 12 scan_log records ZERO searches available on 2026-08-14, 2026-08-16,
 frontier at all. WebFetch is unaffected by this ceiling; when it bites, say so
 in `dead_ends` and keep working.
 
+A PRIMARY SOURCE THAT IS A PDF IS NOT A DEAD END. WebFetch converts a page to
+markdown and hands a PDF back as binary, which reads in a transcript as an
+unusable blob, and a scout that meets one reasonably concludes it cannot read
+the document. Run No.62 lost TWO primary sources that way in one morning, the
+DNR preliminary decision for ADL 234762 and the NPFMC Draft 2027 Annual
+Deployment Plan, and both reports blamed a missing poppler-utils. That
+diagnosis was wrong. Run
+
+    python3 scripts/fetch_pdf_text.py <url> [--pages 1-6] [--max-chars 40000]
+
+which fetches with urllib and extracts with pypdf, both already installed. It
+refuses to report success on a redirect to an HTML login page and it says so out
+loud when a document is a scan with no text layer, so what it returns is safe to
+cite. Every scout brief names it. A claim that is never made cannot fail the
+claims gate, which is why an unreadable primary document is a silent hole in
+that gate rather than a visible one.
+
 RUN PHASE 1 BEFORE PHASE 2, ALWAYS, for the same reason: the craft refresh also
 searches, and No.40 got its craft refresh only by luck of ordering.
 
@@ -970,6 +987,14 @@ type spec. Craft expectations:
   offsets from each circle's own centre and the target was never named
   anywhere. A leader stopping in void looks exactly like a leader reaching
   something small, so no reviewer can catch this and no pixel test can.
+  AND A LEADER STAYS A POINTER: qa.py warns past 360 design px and FAILS past
+  540 px measured `from` to `to`, because past half the frame width the line is
+  the longest drawn mark in the picture and reads as a depicted feature rather
+  than as drafting furniture. No.62's slide 02 re-originated its leader to fix a
+  real honesty defect and produced a 1,020 px hairline at 37 degrees that two
+  pixel critics read as a plotted route, on the frame that prints THE ROUTE IS
+  NOT, with both declared ends perfect and every gate green. A repair can land a
+  bigger defect than the one it fixed.
 
 - EVERY MEASURED AXIS IS DECLARED, AND EVERY MARK ON IT MEANS SOMETHING.
   If a position in the artwork carries a number (a money rail, a timeline, a

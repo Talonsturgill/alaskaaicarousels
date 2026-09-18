@@ -1,0 +1,51 @@
+{
+  "run_dir": "out/2026-09-18",
+  "render_report": "out/2026-09-18/render/render_report.json",
+  "aggregates_file": "out/2026-09-18/aggregates.json",
+  "detected": 3,
+  "declared": 5,
+  "detections": [
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Two samples",
+      "text": "Two samples each. One flew. One stayed.",
+      "n": 2,
+      "subject": "samples"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "three cargo drop doors",
+      "text": "They are twin engine aircraft with three cargo drop doors, and they work off dir",
+      "n": 3,
+      "subject": "cargo drop doors"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "FIVE CHANNELS",
+      "text": "FIVE CHANNELS LOGGED. NO VALUES PUBLISHED.",
+      "n": 5,
+      "subject": "channels"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "840 px of rule for 31 feet of span",
+      "note": "the frame's scale constant, 27.096 px per foot, solved from the 31 foot span in C11 so the printed dimension and the drawn rule are one number rather than two typed constants. A property of the drawing, not of the world, and declared in window.__akAssert so the render decides it."
+    },
+    {
+      "slide": 8,
+      "text": "20 px per day on the tape",
+      "note": "the measured axis constant, solved from the 28 days between the flight on August 19th (C02) and the ITA's publication on September 16th (C06). Declared in data-scale with every mark inside the band enumerated, because there is no decorative tick on a measured axis. A property of the drawing."
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S4 '840 px of rule for 31 feet of span' [design]",
+    "STALE declaration, no rendered string matches it: S8 '20 px per day on the tape' [design]"
+  ],
+  "verdict": "PASS"
+}

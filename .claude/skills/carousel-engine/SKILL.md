@@ -396,6 +396,21 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   see that one end. A leader is a sentence with two ends. Set the label as DOM
   or SVG text: a canvas label's existence can be confirmed but its position
   can't, so it WARNs instead of clearing the check.
+- **And it must stay a pointer** (2026-09-18). The two checks above judge the
+  leader's ENDS; this one judges the MARK. qa.py **WARNs** at
+  `LEADER_SPAN_WARN` (360 design px, a third of the frame width) and **FAILS**
+  at `LEADER_SPAN_FAIL` (540 px, half of it), measured `from` to `to`. Run
+  No.62's slide 02 re-originated its leader at the disclosure line and drew a
+  1,020 px hairline at 37 degrees across the lower right quadrant. Both ends
+  were declared perfectly, both end checks returned ok, machine QA returned
+  PASS at zero fails and zero warns, and two pixel critics and the flow critic
+  read the line as A PLOTTED ROUTE on the one frame in the deck whose sentence
+  is THE LENGTH IS PUBLISHED. THE ROUTE IS NOT. Past about half the frame a
+  leader is the longest drawn line in the picture and the eye reads a long line
+  as a thing (a road, a trajectory, a rule) before it reads it as a pointer;
+  it is also a label that has left its subject's neighbourhood. Move the label,
+  or drop the line and let position do the joining. For reference, No.62's one
+  shipped leader spans 123 px.
 - **A printed number and the geometry it names must be checkable against each
   other** (2026-08-12). Any slide that sets a MEASUREMENT in type (a dimension
   rule, a count, a frame width, a scale bar) declares the relationship and lets

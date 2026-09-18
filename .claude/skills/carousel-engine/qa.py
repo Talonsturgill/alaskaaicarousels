@@ -1083,6 +1083,90 @@ def leader_labelled(ld, boxes, canvas_strings):
     return "ok", "leader %r meets its label %.1fpx away" % (name, d)
 
 
+# A LEADER IS A POINTER, NOT A DEPICTED FEATURE (2026-09-18, run No.62).
+#
+# The two checks above judge a leader's ENDS: does it reach its feature, does it
+# reach its words. Both are about whether the line is connected to anything.
+# Neither asks the question a reader asks first, which is WHAT THE LINE LOOKS
+# LIKE, and that is the question run No.62 lost a round to.
+#
+# Round one of that deck moved slide 02's leader off the gold "1,000 KM" figure,
+# correctly: a quantity roped to a mark on the ground is a dimension call, and
+# the frame's own sentence is THE LENGTH IS PUBLISHED. THE ROUTE IS NOT.
+# Re-originating it at the disclosure line made it a 1,020 design px hairline
+# running at 37 degrees across the lower right quadrant. Both declared ends were
+# perfect. leader_lands returned ok, leader_labelled returned ok, machine QA
+# returned PASS at zero fails and zero warns, and at feed width that line was
+# the most prominent non-type mark on the slide and read as A PLOTTED ROUTE, on
+# the one frame in the deck that exists to refuse to draw one. Two pixel critics
+# and the flow critic all scored it 4.0 and it was deleted in round two.
+#
+# The general defect is not about routes. It is that a leader long enough to
+# cross the picture stops being drafting furniture and becomes the longest drawn
+# line in the frame, and the eye reads a long line as a THING -- a road, a
+# trajectory, a horizon, a rule -- before it reads it as a pointer. It is also,
+# independently, a layout failure: a label 1,020 px from its subject is a label
+# in the wrong place, whatever it points at.
+#
+# THRESHOLDS, from the two spans this house has actually measured rather than
+# from taste. The frame is 1080 x 1350 design px.
+#   shipped and good  run No.62 slide 07, the analyser indicator      123 px
+#   the defect        run No.62 slide 02 round one, deleted         1,020 px
+# FAIL at 540 px is half the frame width and 31 percent of the diagonal: past
+# it the line is longer than any drafting gesture in the library and reads at
+# 432 px feed width as a 216 px stroke. It sits 4.4x above the good span and
+# 1.9x below the defect, so neither verdict is close. WARN at 360 px is a third
+# of the frame width, the point at which the label has left its subject's
+# neighbourhood. Raising these is a tightening; lowering them is the
+# maintainer's call.
+#
+# Measured on `from` to `to`, the two ends of the DRAWN line, because that is
+# the mark on the page. A polyline that bends is longer than this chord, never
+# shorter, so the measurement can only under-report and never invent a defect.
+LEADER_SPAN_FAIL = 540.0
+LEADER_SPAN_WARN = 360.0
+
+
+def leader_span(ld):
+    """Judge how far a declared leader REACHES ACROSS THE FRAME. Returns
+    (verdict, detail) with verdict in "ok" | "warn" | "fail". Silent (returns
+    None) when the declaration lacks the two points, because leader_lands and
+    leader_labelled already own that complaint and one authoring slip should
+    not print three times."""
+    frm, to = ld.get("from"), ld.get("to")
+    if not frm or not to:
+        return None
+    name = ld.get("target") or "an unnamed leader"
+    d = math.hypot(to[0] - frm[0], to[1] - frm[1])
+    deg = abs(math.degrees(math.atan2(to[1] - frm[1], to[0] - frm[0])))
+    if deg > 90.0:
+        deg = 180.0 - deg
+    if d >= LEADER_SPAN_FAIL:
+        return "fail", (
+            "the leader for %r is drawn %.0f design px long, from (%g,%g) to "
+            "(%g,%g) at %.0f degrees, over the %.0f px ceiling. That is %.0f "
+            "percent of the frame width: at feed scale it is the longest drawn "
+            "line on the slide, and a long line reads as a depicted thing (a "
+            "route, a road, a trajectory) before it reads as a pointer. Move "
+            "the label next to what it names and keep the line short, or drop "
+            "the line and let position do the joining. Run No.62's slide 02 "
+            "shipped a 1,020 px leader past both end checks and two critics "
+            "read it as a plotted route on the frame that says the route is "
+            "not published"
+            % (name, d, frm[0], frm[1], to[0], to[1], deg, LEADER_SPAN_FAIL,
+               100.0 * d / 1080.0))
+    if d >= LEADER_SPAN_WARN:
+        return "warn", (
+            "the leader for %r is drawn %.0f design px long (from (%g,%g) to "
+            "(%g,%g) at %.0f degrees), past the %.0f px comfort band and a "
+            "third of the frame width. Check at 432 px that it still reads as "
+            "a pointer and not as a drawn feature; if the label can move "
+            "closer to its subject, move it"
+            % (name, d, frm[0], frm[1], to[0], to[1], deg, LEADER_SPAN_WARN))
+    return "ok", ("leader %r is drawn %.0f px at %.0f degrees, inside the "
+                  "pointer band" % (name, d, deg))
+
+
 def fit_holds(ft):
     """A BLOCK MUST NOT SET MORE LINES THAN IT DECLARED (2026-08-12).
 
@@ -2716,6 +2800,27 @@ def ink_law(img_arr, rec, scale):
             continue
         # present
         if not hits:
+            # A SATURATED CENSUS NAMES ITSELF FIRST (2026-09-18, run No.62). The
+            # census is pinned now, so a declared hex cannot be evicted by a
+            # colour flood; but a report rendered before that fix, or a brush
+            # carrying a NEARBY hex rather than the declared one, can still land
+            # here with the cap set. When it does, the instrument is the first
+            # suspect and the message says so, because No.62 spent a full render
+            # cycle repairing art that was never broken.
+            if capped:
+                out.append(("fail",
+                            "promised ink %s%s: no brush in the census carried "
+                            "it, AND THIS FRAME'S CENSUS HIT ITS ENTRY CAP "
+                            "(%d colours), so read the instrument before the "
+                            "art. A per-row or per-mark colour lerp mints a "
+                            "fresh literal per iteration and floods it; band "
+                            "the ramp into a handful of steps and re-render. "
+                            "The census pins every hex named in data-ink, so if "
+                            "this survives a re-render on a current render.py "
+                            "the brush really is carrying a different colour "
+                            "than the law declares"
+                            % (d.get("hex"), why, len(census))))
+                continue
             out.append(("fail",
                         "promised ink %s%s: no brush on this frame ever carried "
                         "it (%d colours in the paint census, none within dE %.0f "
@@ -3910,6 +4015,22 @@ def main():
                     res["warns"].append("leader label unverifiable: " + detail)
                 else:
                     res.setdefault("leaders", []).append(detail)
+
+        # AND HOW FAR THE LINE REACHES (2026-09-18). Both checks above are about
+        # the leader's ENDS; this one is about the MARK. Run No.62's slide 02
+        # passed both with a 1,020 px hairline that read as a plotted route. See
+        # LEADER_SPAN_FAIL for the two measured spans behind the thresholds.
+        for ld in rec.get("leaders", []):
+            verdict = leader_span(ld)
+            if verdict is None:
+                continue
+            level, detail = verdict
+            if level == "fail":
+                res["fails"].append("leader is drawn as a feature: " + detail)
+            elif level == "warn":
+                res["warns"].append("leader reaches across the frame: " + detail)
+            else:
+                res.setdefault("leaders", []).append(detail)
 
         # BLOCK SET MORE LINES THAN IT DECLARED (2026-08-12). Not opt-in: the
         # declaration is the maxLines argument already present in every

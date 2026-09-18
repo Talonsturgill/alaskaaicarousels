@@ -1,0 +1,151 @@
+{
+  "run_date": "2026-09-18",
+  "carousel_no": 62,
+  "title": "THE RETURNED APRON",
+  "document_title": "Out of Nenana and Back, With the Finding Pending",
+  "revision_rounds": 3,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere",
+      "status": "pass",
+      "evidence": "Every rendered string on all nine frames plus copy.json, caption.txt and the first_comment block transcribed. Only hyphens appear, in XN-Series and inside source URLs. claims.json C19 records that the Sysmex source sets its hangar clause between em dashes and is therefore carried as paraphrase with no verbatim, which applies the house rule at the source rather than at the render."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None in any render, in copy.json, in caption.txt, in the first comment or in the aftercare list. The only pictographic mark is the four point Polaris on slide 09, a brand constellation fixture per config/brand.yaml."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Every on-slide fact walked back to claims.json across all nine frames. 41 claims, 37 primary, every load bearing fact carrying a verbatim. The 600 against 621 mile range tension (C12) is deliberately absent from every frame, which is the honest call since no source explains it."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass",
+      "evidence": "All 61 authored strings transcribed off the PNGs. Nenana, ACUASI, Sysmex, XN-Series, Sven Voss, Dresden, WADA, Cathy Cahill, Neil Robinson, ATMOSPHERIC PRESSURE all correct. British forms are consistent across slides 03, 07 and the caption and match the source releases."
+    },
+    {
+      "rule": "clipped, overlapping or cut-off text in any render",
+      "status": "pass",
+      "evidence": "Every headline fitted inside its declared line cap, 0 overflow warnings, 0 fails, 0 warns. No descender clipping and no text on text collision."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point",
+      "status": "pass",
+      "evidence": "Display type is snow on the dark sky band. Body serif measures roughly 6:1 to 8:1 over ground. Round two's one real contrast defect, slide 09's phantom sentence at 4.2 to 4.7:1, is repaired: it is bone serif now and the phantom register is carried by a dashed unterminated rule. The only sub floor strings are the three declared decorative fixtures."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "Nine slides, nine dossiers, counters 01/09 through 09/09."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json PASS, 0 fails, 0 warns across all nine. assemble_report.json pdf_mode vector, 5780387 bytes."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days",
+      "status": "pass",
+      "evidence": "Strongest match is No.59 at jaccard 0.065 on one shared entity, ACUASI. No.59 is a money story about a 16.68 to 1 funding ratio; this is an ITA anti-doping test flight and its unpublished finding. A lane adjacency, not a repeat."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks",
+      "status": "pass",
+      "evidence": "First daylight exterior after two nights and a twilight, no key light, no pool at any foot, casts leaving frame, a lateral pan over a SURFACE where No.61 receded along a vanishing line, and a deliberate refusal of the map treatment No.60 shipped."
+    },
+    {
+      "rule": "banned phrase from brand.yaml",
+      "status": "pass",
+      "evidence": "All 61 slide strings and the caption scanned against the 76 entry list. No hits. Also: no colon on any slide or in the caption, no 'cannot', dates month first ordinal with the year correctly dropped, and about 4 commas per 140 words against a 6.2 per 100 ceiling."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three niche hashtags at the end. No URL in post_copy; sources sit in first_comment."
+    },
+    {
+      "rule": "placeholder, lorem, TODO or unfinished element",
+      "status": "pass",
+      "evidence": "None in any render, dossier, claim or copy field."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Eleven words carrying a number, a named Alaska place and a contradiction, at 95 px Archivo wdth 118, all three lines reading cleanly at 432 px. Held off 9 because the art half is inert at thumb: the mid apron reads as one brown mass and the two gold chocks are 30 px objects a reader cannot identify. The claim carries this cover; the picture does not help it."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Real beat structure with a genuine hinge at 05, which concedes the reader's suspicion before replacing it. The loop planted on 01 is paid on 08's five empty rows and 09's closing sentence. Deductions: 04 and 07 are both 'how it was done' beats and are reorderable, and 06's breather restates 09's headline, so the deck spends its quietest frame on a line it says again three frames later."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "One declared light held on all nine frames; the shoulder hachure with its new dark counter stroke per lit stroke now reads as gravel rather than the straw five critics called; slide 08's card is a genuinely modelled object; slide 03's table has an attached contact at every foot; the chock is one modelled prop rather than four. But four defects are still ON THE FRAMES. The punched reserve's own edge is still findable as a hard bright horizontal rule under the treeline terminating at a vertical edge mid frame on 02, 05, 07 and 09; a large low incident mid apron runs about a third of frame height on 01, 03, 04 and 06; slide 04's aircraft ships as flat gradient solids where its dossier argues the opposite; and the treeline is still close to a repeating comb despite the jitter fix."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Slide 04's 31 FT dimension is 840 px solved at 27.096 px per foot and holds within 1 px; slide 08's tape is a measured axis at 20 px per day with all 28 day ticks enumerated, gold to September 16th then phantom and unterminated off the edge, which is the deck's whole argument as one object; the five named EMPTY channel rows in the same hand as the filled ones are the thesis as a picture. Held at 8 because slide 02's return does not resolve at 432 px and slide 05's pairing is faint."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "Nenana Municipal named on 01 and twice on 08, coordinates that check against the field's actual position, ACUASI and UAF, the Interior Region EMS Council, UAF as one of nine FAA test sites, and a close that turns toward a village clinic in Cahill's own words. An interior gravel apron with a spruce treeline in low August sun is what that place looks like, and the deck refuses the state map treatment the story begs for."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1,
+      "notes": "Every content slide adds a new verified specific, and 02 surfaces a real sourcing discrepancy rather than smoothing it. Thin spots: 03's body is 24 words and 06 carries only a quote."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "Hero structure, atmosphere, hook archetype and continuity system are all new and argued on measurement. Deductions: five of nine frames are compositionally near identical at thumb, which is the panorama's cost, and the artwork ledger entry carried stale bespoke numbers (corrected before merge)."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "notes": "Every headline fitted inside its line cap with zero overflow. Nothing below 26 px except three declared fixtures. The hard case passes: slide 08's nine card rows and five channel labels are legible at 432 px. Squeakers: the 04 and 05 counters sit over lighter gravel, and slide 05's mono block is the softest read in the deck."
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook is 125 characters and complete before the fold, opening on a contradiction. 867 characters. Analytical and position taking without hedging, and the close is a real debatable question that is specifically Alaskan. One soft line: the deck summary paragraph reads as housekeeping between the two strongest paragraphs."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "Everything a draft needs is on disk. Marked down because the GATE STATUS block and ledger/artwork.json both carried measurements staler than the artifacts they claim to read (bespoke 0.251 and 50 percent against the shipped 0.149 and 46 percent; assemble 5.42 MB against 5.78 MB on disk). Both corrected before the merge, but a ledger publishing a number nobody measured is an honesty matter, not a convenience one."
+    }
+  ],
+  "calculation": "(8*0.14)+(8*0.14)+(7*0.16)+(8*0.14)+(9*0.12)+(9*0.10)+(8*0.08)+(8*0.07)+(8*0.05)+(7*0.10) = 1.12+1.12+1.12+1.12+1.08+0.90+0.64+0.56+0.40+0.70 = 8.76",
+  "weighted_total": 8.76,
+  "threshold": 8.0,
+  "ship": true,
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Kill the punched reserve's own RECTANGLE rather than only its value: feather baseWash to zero at the punch boundary, or reserve per line box with a radial falloff instead of a blurred rect, so slides 02, 05, 07 and 09 stop carrying a hard bright rule that starts at the frame edge and stops in mid air.",
+  "flow_critic": {
+    "score_0_10": 7.8,
+    "verdict": "revise",
+    "predicted_bail_point": 5,
+    "weakest_junction": "04 to 05, where nothing legible crosses the cut so the reader meets 'WHY A CIRCLE' without a question they wanted answered",
+    "seam_break": "the hangar runs hard to slide 07's right edge and is absent from 08's left edge, which is the deck's only detectable panorama break",
+    "one_change": "make 05's closed return the darkest and sharpest mark in the deck and the straight rut the brightest, with clear ground between them, and move the headline below them so the picture is read before the words"
+  },
+  "editor_notes_for_email": "SHIPS at 8.76 against the 8.0 threshold, earned over three revision rounds, and it would also have cleared the unrelaxed 8.3. Zero hard fails, machine QA PASS with 0 fails and 0 warns, vector PDF 5.78 MB. The deck states NO result, because none is published anywhere: if a commenter asks what the blood test found, the honest answer is slide 08's five named empty rows, and never guess a finding. Sysmex, whose analysers were used, helped pay for the flight, the ITA disclosed it in its own release, and slide 07 prints it in flat wording, so that frame is the reply if anyone raises the funding. Two known defects ship with it and are logged for the next run: the punched reserve still leaves a findable rectangle edge on four frames, and drawn share fell from 50 to 46 percent against a 45 percent floor, so akapron.js is one point off a gate before it is reused."
+}

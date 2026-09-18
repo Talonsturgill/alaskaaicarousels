@@ -7674,3 +7674,222 @@ at all. The built-versus-proposed boundary moved whole to slide 09, where it is
 now in frame, and 06's field 11a declares NO wordless claim with the
 measurement written out. A dossier that keeps asserting a claim the pixels do
 not contain is a defect in the record even when the pixels are fine.
+
+---
+
+## 2026-09-18, No.62 THE RETURNED APRON: five engine lessons, and one device killed on measurement
+
+**A GPU HERO CANNOT CARRY TYPE UNTIL IT HAS BEEN COMPOSITED INTO 2D.** This was
+probed before any slide was written, which is the only reason it did not cost a
+build round. `AKENGRAVE.punchReserves` is a 2D offscreen technique and it cannot
+reach a GL canvas sitting in the DOM, so a rendered frame with a headline over
+it fails by construction. The identical akthree scene returned FOUR qa fails,
+label crossed by art plus canvas mark inside reserved text on two separate
+lines, and then ZERO fails, on one change: render GL offscreen, paint the base
+ground on the visible canvas, `drawImage` the GL frame into an
+`AKENGRAVE.drawOffscreen` buffer, punch THAT, composite, grade once. SKILL.md
+already says to render offscreen and composite. It does not say that the punch
+is the reason, and that is the sentence that was missing.
+
+**AND WHAT THE PUNCH REVEALS MATTERS AS MUCH AS THE PUNCH.** The reserve removes
+art from a box, and whatever sits UNDER that box is what the reader sees. On the
+first build that was bare body background, so five frames showed a flat dark
+rectangle behind their copy, which is precisely the plate the doctrine bans and
+the reserve exists to avoid. `APRON.baseWash` lays a full height graded wash on
+the visible canvas before the buffer composites, so a hole reveals continuing
+modelled atmosphere. A reserve is not finished when the art is gone; it is
+finished when what replaces the art is worth looking at.
+
+**`AK.grainTile` RETURNS A DATA URL, NOT A CANVAS.** Passing it to
+`createPattern` throws, and the slide produces NO PNG AT ALL, which is a hard
+render failure rather than a warning. It is documented for a repeating CSS
+background on a DOM div and that is how the demo deck uses it. Cost one render.
+
+**CANVAS HAS NO ELLIPTICAL GRADIENT.** A lit pool is not a rectangle, and the
+first build carried every one of them on a `fillRect`, which is both wrong about
+light and is what `bespoke_check` counts as blocky. Replacing them with ellipses
+then introduced a subtler defect: a circular ramp poured into an ellipse stops
+the paint on the short axis while the ramp still carries alpha, and leaves a
+hard arc. qa.py caught it on seven frames at once and printed the exact repair,
+which is to build the ramp on a CIRCLE inside a transform. Two of this run's
+best fixes came from gate text rather than from a critic.
+
+**ARCHIVO AT wdth 100 AND ABOVE NEEDS ABOUT 20 CHARACTERS A LINE.** In a 926 px
+box at the 88 px display floor, a 26 character line does not fit, and
+`AK.fitText` clamps to `min` and sets more lines than declared rather than
+failing loudly. Three headlines were written too long and all three were
+rewritten SHORTER and all three got better. `1,000 km of blood. Out of Nenana.
+Back to Nenana.` is a stronger cover than the sentence it replaced, because the
+repetition of one place name is a shape a thumb reads before it reads words.
+
+**AND ONE DEVICE KILLED ON MEASUREMENT, WHICH IS THE ENTRY THAT MATTERS.** The
+winning treatment carried 527 specular crowns per column, one per minute aloft,
+declared in `window.__akAssert`. It is a lovely idea. It is also unshippable in
+this deck, because the repoussoir clod and the track walls are drawn over the
+shoulder BY DESIGN, and a probe found 24 of 176 sampled centres carrying no mark
+at all, so the frame showed 152 where the declaration said 527. The temptation
+was to re-aim the declaration at the marks that survived. That is the No.46
+defect wearing a repair's clothes. The count was DROPPED, the crowns ship as
+what they honestly are, surface texture, and the duration is carried in type on
+two frames where it is checkable. **A deck may not declare a number its own
+composited picture contradicts, and the fix for that is never a smaller
+declaration.**
+
+The same discipline killed the `data-encodes` on slide 08. Its wordless claim is
+that the same card in the same hand has numbers in one half and none in the
+other, which is a claim about TEXT, and the engine reported dE 2.5 against a 4.0
+floor with 64 percent of region A sitting on ground that measured type occupies.
+The probe was reading the reserve, not the encoding. A declaration that cannot
+be evidence is worse than none, so the frame makes none and the claim is left to
+the critics, who can read.
+
+## 2026-09-18, No.62 ROUND TWO: when the repair is the defect
+
+The first sweep of nine pixel critics returned `revise` nine times. The second
+sweep, after a full round of repairs, returned `revise` nine times again, and
+**the two worst findings on the deck were both things the first round had
+added.** That is the lesson worth keeping, above any of the individual fixes.
+
+Slide 02's leader was moved off the gold figure for a good reason: a quantity
+roped by a rule to a mark on the ground is a dimension call, and this frame
+prints "THE LENGTH IS PUBLISHED. THE ROUTE IS NOT." Re-originating that leader
+at the disclosure turned it into a 1,020 px hairline running at 37 degrees
+across the whole lower right quadrant, which at feed scale is the most
+prominent non-type mark on the slide. It reads as a plotted vector. The frame
+drew the one thing the deck exists to refuse, forty pixels under the sentence
+refusing it. In the same round the gold figure was given its own rule with 45
+degree cut terminals, which is not a flourish; it is technique 73, a dimension
+bar, in gold, under a gold quantity, on the frame that will not draw a length.
+
+Every machine gate was green through all of it. `qa.py` read zero fails and
+zero warns on both frames. No gate in this house can tell you that a correct
+line means the wrong thing.
+
+So: **a repair aimed at a named defect can land a bigger one, and only a fresh
+adversarial read catches it.** Budget the second sweep. It is not a formality.
+
+Four other things were learned on measurement:
+
+**Gravel against grass is about occlusion, not geometry.** Five critics called
+the hachure field straw, stubble, fur or a mown hayfield. Shorter strokes,
+heavier strokes and rotation jitter were all tried; none was the cause. The
+cause was that every mark in the field was LIGHTER than its ground, so nothing
+was ever occluded by anything. A stone is legible because it casts into its own
+bed. One dark companion stroke per lit stroke, offset opposite the key at half
+weight, plus a sparse population of lit convex chips, and the surface became
+mineral. Also: one full-strength pass over the whole plane was tried FIRST and
+was worse than the dead band it replaced, because a receding graded surface
+needs DIRECTION, not coverage.
+
+**A punched reserve is found by its texture boundary, not by its value step.**
+`baseWash` was rebuilt from `ground()`'s own recipe so the two could not drift
+apart, and that made it peak at exactly the horizon, where the art is a dark
+treeline. The punch revealed a bright ridge. The frame that identified the
+cause was the only one with no punch, which did not show it. Matching the value
+is half the repair; the reader still finds the box because the grain stops
+inside it, and the scorer's closing note is that the value matches now and the
+rectangle still does not.
+
+**Two critic asks can pull opposite ways, and the seam contract wins.** Slide 04
+was asked both to lift its aircraft 210 px and to seat its mainwheels in the
+deck's tyre track. The track is a pure function of global x and cannot move
+without breaking the panorama, so the wing datum was SOLVED from it rather than
+chosen. Write the reason into the file; a later round will otherwise re-open it.
+
+**Only the scorer checked the ledger against the artifact.** `ledger/artwork.json`
+recorded bespoke at 0.251 and 50 percent drawn share; the shipped render measured
+0.149 and 46 percent. That file is what future runs read for divergence. Numbers
+in a ledger are claims, and this house does not publish a claim nobody measured.
+
+---
+
+## 2026-09-18, Phase 12: what the machine now does about all that
+
+Three upgrades, all reactive, all with a reconstruction that fails before and
+passes after. `tests/leader_span_verify.py` and `tests/ink_census_evict_verify.py`
+are the receipts.
+
+**A leader is now measured as a MARK, not only as two ends.** The 1,020 px
+hairline above passed both existing leader gates because both ask where the line
+STOPS. qa.py now warns past 360 design px and FAILS past 540, measured `from` to
+`to`. The calibration is the two spans this house has actually measured: No.62's
+shipped slide 07 leader is 123 px, the deleted slide 02 leader was 1,020. Past
+half the frame width a leader is the longest drawn line in the picture, and the
+eye reads a long line as a thing before it reads it as a pointer.
+
+**A declared law ink can no longer be evicted from the paint census.** The
+per-row aerial lerp minted a fresh colour literal on every row, filled the
+160-entry census, pushed `#FFC72C` out, and qa.py FAILED two frames for "no
+brush on this frame ever carried it" on frames that plainly had gold. A gate
+that returns a FALSE FAIL is worse than a missing gate: the run spends its
+budget repairing art that was never broken, and this one cost a full render
+cycle. Every hex named in the frame's own `data-ink` is now pinned, at the paint
+hook and again at export, and a saturated census names itself first in the
+failure message. Nothing was loosened; the same pin is what lets a FORBIDDEN ink
+be seen after a flood too.
+
+**A PDF is no longer a dead end for a scout.** Two beats lost primary sources
+this morning (the DNR preliminary decision for ADL 234762, the NPFMC Draft 2027
+Annual Deployment Plan) and both blamed a missing poppler-utils. The diagnosis
+was wrong: pypdf is installed and reads these fine, and what was missing was a
+way to FETCH the bytes, since WebFetch hands a PDF back as binary.
+`scripts/fetch_pdf_text.py` is urllib plus pypdf, no new dependency, and it
+refuses to call an HTML login page a document. It was proven on the frontier
+scan's own source the same hour.
+
+### Parked, 2026-09-18 Phase 12 frontier scan, focus (a), LinkedIn platform
+
+**LINKEDIN'S OWN RANKING PAPER NAMES ITS TWO HEADS AND ONE THRESHOLD, and one
+of them is a number this studio can design against.** "An Industrial-Scale
+Sequential Recommender for LinkedIn Feed Ranking" (Hertel et al., CIKM 2026,
+https://arxiv.org/abs/2602.12354) is LinkedIn describing the ranker that now
+serves the majority of Feed traffic to 1.2B members. Read in full rather than
+summarised, it gives three things no marketing blog does:
+
+- The model optimises two named responses, **Long Dwell** and **Contributions**
+  (likes, comments, reshares). Every ablation in the paper is reported as
+  "Long Dwell AUC" and "Contributions AUC", so those are the objectives.
+- **The long-dwell label is thresholded at 15 seconds.** Section 4.6.3, on
+  in-session leakage, states it outright: "conditioning on the first item in a
+  session having dwell time > 15s increases the likelihood that subsequent items
+  in the same session also exceed 15s". This is the only published number of its
+  kind, and it is the bar a nine-slide document has to clear.
+- **Item popularity and viewer-to-author affinity survive as explicit features**
+  (removing candidate popularity costs 2.5% Long Dwell AUC; removing
+  member-to-member affinity costs 0.3%), so reach is not purely content-shaped.
+
+PARKED, not applied. Dwell is reader behaviour and this machine cannot measure
+it offline; a gate that estimated it from slide count would be exactly the prose
+vibes this phase is supposed to refuse. What it IS good for is planning: the
+directors room and the copywriter can treat 15 seconds as the design target for
+the deck's first three frames, and the scorer's "legibility and platform
+fitness" criterion (weakest twice in ten runs, never worked on by any upgrade)
+now has a published number behind it instead of an intuition. The companion
+retrieval paper (https://arxiv.org/abs/2510.14223) is the second half: LinkedIn
+fine-tunes a causal LM as a dual encoder over **textual input only**, which
+raises the 2026-09-13 park about the shipped PDF's text from a craft matter to a
+distribution one, since every shadowed line currently extracts three or four
+times.
+
+### A note on the second sweep, added after Phase 12
+
+Phase 12's retro found that BOTH of this deck's worst findings passed every
+machine gate, and that both were geometrically checkable after the fact. It
+built the length half (`leader_span` in `qa.py`, warn at 360 design px, fail at
+540) and DECLINED the angle half with its measurement: the deck's 28 degree
+vector exists only as prose, 17 occurrences across `design_notes.md` and
+`storyboard.md` and zero machine-readable, so checking it would need a declared
+surface no deck has ever written. The length ceiling catches the defect without
+inventing a contract.
+
+That is the right shape for an upgrade born of a review: build the half that
+needs no new contract, and write down why the other half waits.
+
+It also found a gate that was ALREADY DEAD before this run touched anything.
+`tests/empty_paint_verify.py` returns the same result for its good fixture and
+its defect fixture, which means `PAINT_HOOK_JS` has stopped attributing fills to
+call sites and the empty-paint gate can no longer tell a routine that painted
+nothing from one that painted. That gate exists because run No.47 solved nine
+analytic shadow tips and drew none of them. **It is the first thing the next
+Phase 12 takes, and it outranks anything on the frontier.** A dead gate is worse
+than a missing one, because the run believes it is covered.
