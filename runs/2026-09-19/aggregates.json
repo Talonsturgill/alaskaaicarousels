@@ -1,0 +1,44 @@
+{
+  "run_date": "2026-09-19",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 4,
+      "text": "Over 12,000 observations, more than 1,500 km of coast.",
+      "fragment": "12,000 observations",
+      "member": "C05",
+      "note": "Not an aggregate. C05 verifies the AAOKH database holds over 12,000 records, verbatim, and the slide prints the claim's own figure with the claim's own hedge, over. Nothing is counted or summed here."
+    },
+    {
+      "kind": "design",
+      "slide": 4,
+      "text": "ONE MARK REPRESENTS 100 RECORDS",
+      "fragment": "100 RECORDS",
+      "note": "A property of the DRAWING, not of the world. It is the tally's printed ratio, chosen so that over 12,000 records (C05) render as a countable block of 120 marks rather than as an uncountable field. The frame prints the ratio precisely so the reader can do the arithmetic; the paper publishes no per-mark quantity of any kind."
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "text": "THE SAME INSTRUMENT, TWELVE DEGREES AWAY",
+      "fragment": "TWELVE DEGREES",
+      "note": "A property of the DRAWING. It is the angular distance on this deck's own season disc between the freeze-up sector broken out on slides 01 and 02 and the flush seam shown here, measured in the artwork's own parallel-oblique construction. It asserts nothing about the world, and in particular it is not a temperature, not a bearing and not a figure from the paper."
+    },
+    {
+      "kind": "count",
+      "slide": 7,
+      "text": "Most of the time the two records agree.",
+      "fragment": "two records",
+      "subject": "records being compared",
+      "members": ["C09", "C05"],
+      "note": "Exactly two records are compared in this paper and the deck names both. C09 is the model record, the MOM6 COBALT ARC11k hindcast. C05 is the observation record, the AAOKH database. The count is two because the comparison has two sides."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 8,
+      "text": "Ten authors. The observers are among them.",
+      "fragment": "Ten authors",
+      "member": "C03",
+      "note": "Not an aggregate. C03 verifies the paper has ten authors and lists all ten by name from the Crossref deposit, confirmed independently against the article page. The slide prints the claim's own figure. The scouts had reported six, which is the error this claim exists to have corrected."
+    }
+  ]
+}

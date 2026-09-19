@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-07-08",
@@ -517,7 +517,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-07-08",
@@ -941,7 +941,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-07-11",
@@ -1346,7 +1346,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-08-19",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-07-18",
@@ -1509,7 +1509,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-07-26",
@@ -1554,6 +1554,10 @@
         {
           "date": "2026-09-15",
           "note": "Checked and unchanged. The White House page today reads 317 of 317 signatories, the same count read here on September 11th, and the governors addendum still stands at 23. No utility, cooperative or developer on the enumerated list carries Alaska in its name."
+        },
+        {
+          "date": "2026-09-19",
+          "note": "Checked the pledge's published signatory list again today. No Alaska utility, cooperative or state office appears on it. The list now counts more than 300 organizations across four groups, 23 governors, 7 AI companies, more than 250 utilities and cooperatives, and 44 data center developers. Alaska's absence is unchanged since this item was opened."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -1930,7 +1934,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-17",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-08-05",
@@ -2265,7 +2269,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-08-06",
@@ -2783,7 +2787,7 @@
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-19",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -2825,6 +2829,11 @@
           "date": "2026-09-15",
           "label": "Public testimony on AO-2026-108 at the regular Assembly meeting, in person or online",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-10-20",
+          "label": "The Assembly takes the surveillance ordinance up again at its regular meeting",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2862,10 +2871,15 @@
           "url": "https://www.adn.com/alaska-news/anchorage/2026/09/02/anchorage-assembly-approves-police-crime-center-buildout-without-additional-surveillance-protections-in-place/",
           "outlet": "Anchorage Daily News, by Bella Biondini",
           "date": "2026-09-02"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-09-16"
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-08-25",
@@ -2930,6 +2944,10 @@
         {
           "date": "2026-09-15",
           "note": "Re-verified today. The continued public hearing on AO 2026-108 is tonight, September 15th, at the regular Assembly meeting that begins at 6 p.m. in the Assembly Chambers at the Z.J. Loussac Library, 3600 Denali Street, and testimony can be given in person or online. Alaska Public Media's September 3rd account by Wesley Early puts the crime center equipment contract at just under $600,000, approved 8 to 4, and names the ordinance's three sponsors as Keith McCormick of South Anchorage, Sydney Scout of North Anchorage and Assembly Vice Chair Daniel Volland. The sponsors said they would bring a refined version back on the 15th, so the text taking testimony tonight may differ from the one introduced on August 18th."
+        },
+        {
+          "date": "2026-09-19",
+          "note": "Re-verified today. The Assembly did not act on AO 2026-108 on September 15th. It voted unanimously to postpone further work on the surveillance rules until its regular meeting on October 20th. Two texts are now in play, the sponsors' original and a substitute drafted by the municipal Department of Law, and the sponsors say they could not reach agreement with the administration on how long data may be held and on what the Assembly must approve before police acquire a technology. Yarrow Silvers urged the body not to rush a policy it does not yet fully understand. Verified against Anchorage Daily News reporting of September 16th, the municipality's own agenda system still refusing an automated read."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3172,7 +3190,7 @@
         }
       ],
       "first_seen": "2026-09-12",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-09-12",
@@ -3415,7 +3433,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-09-19",
       "history": [
         {
           "date": "2026-09-15",

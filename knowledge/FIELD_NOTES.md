@@ -7893,3 +7893,134 @@ nothing from one that painted. That gate exists because run No.47 solved nine
 analytic shadow tips and drew none of them. **It is the first thing the next
 Phase 12 takes, and it outranks anything on the frontier.** A dead gate is worse
 than a missing one, because the run believes it is covered.
+
+## 2026-09-19, No.63: a critic reading a contact sheet cannot see three pixels
+
+The flow critic's top finding was that all three of this deck's edge teases were
+undelivered. Measured on the full-size renders: slide 01's disc carries ink to
+x 1079 of 1080, and slide 04's 121st tally mark carries ink at x 1077 to 1079.
+Both ARE cut by the frame edge, and the round-5 pixel critic, reading the full
+render, had already confirmed both. The contact sheet is downscaled about five
+times, where a two or three pixel sliver simply does not exist.
+
+Two other cross-round misreads came from the same cause. A claimed 66px drift in
+the `alaskaaihq.com` fixture: it is at y 1244 on all nine slides, baseline 1267,
+read straight out of `render_report.json`. A claimed value gradient in slide
+06's rail channel, reported as reading like a bar filled to twenty: sampled at
+x 883 width 28 down its length it is flat within 0.1 L*, and the one spike is
+the declared hairline reference at twenty.
+
+So: judge an edge tease, a fixture position or a value ramp on the RENDER and on
+a measurement, never on a contact sheet. And when a measurement settles
+something, HAND IT TO THE NEXT CRITIC IN ITS PROMPT. Every round that spent
+itself re-litigating a settled question was a round not spent on the artwork,
+and this deck had only five.
+
+The inverse also happened and is worth the same weight. Asking a critic DIRECTLY
+whether a specific repair read is what unlocked slide 04. Round 2 had added a
+dark floor arc and a lit lip to the five community markers and I assumed the
+incising worked. It did not, and the missing pass was the FIRST one, and its HUE
+was the whole point: a lit lip drawn in the marker's own blue reads as more ink,
+never as light falling on a grey plate. Three passes, shoulder in substrate dark
+along the key, stroke in marker ink, lip in the substrate's LIFTED value against
+it. A critic will confirm a repair landed if you tell it the repair landed; it
+will measure if you ask it a question.
+
+Three of this run's defects were repairs of mine that broke something else.
+Enlarging slide 02's caret made it cross its own OBSERVED label. Adding slide
+06's displacement trough as a clipped box produced the axis-aligned filled
+rectangle the deck header says appears nowhere in its art. Deleting slide 04's
+knurl band left its bevel behind as two naked rules floating on bare substrate,
+which the final critic called the one thing on the frame that looked like a bug.
+Deleting a composite mark means deleting all of it, and enlarging a drawn mark
+means re-checking the type beside it, in the same pass.
+
+---
+
+## 2026-09-19, Phase 12: an upgrade killed a gate, and nothing noticed for a week
+
+The 2026-09-18 note said the empty-paint gate had gone dead and should be the
+next Phase 12's first move. It was right, and it was understated.
+
+`PAINT_HOOK_JS` read its caller as stack frame `[2]`, which was correct on
+2026-09-01 when it was the only thing wrapping `fill()`. INK_HOOK_JS landed on
+2026-09-12, also wraps `fill()`, and is registered AFTER it, so the page called
+the ink wrapper, the ink wrapper called the paint wrapper, and frame `[2]`
+became `proto.<computed> [as fill] (<anonymous>:138:21)`, which is the ink
+hook's own `orig.apply` line. Every fill in the document then keyed to that one
+synthetic site.
+
+**MEASURE THE BLAST RADIUS OF A DEAD GATE BEFORE YOU FIX IT, because the
+fixture understates it.** The reconstruction merely returned the same census
+for its good and its defect fixture. The real decks said more: this run's nine
+shipped slides reported 31,956 fills at `sites: 1` on EVERY frame, and
+examples/demo-deck the same, against the 155 sites over 22 slides the gate was
+calibrated on. The verdict is a ratio measured WITHIN a site, so once every
+fill in a document shares one site the ratio cannot reach 0.8 by construction.
+The gate was not degraded or noisy. It was incapable of firing on any deck ever
+again, and it had been for a week.
+
+**FIND A STACK FRAME BY WALKING IT, NEVER BY INDEXING IT.** The fix walks down
+from frame 2 to the first frame carrying a real source URL. Every hook in
+render.py is injected by `add_init_script`, which Chromium reports with no
+source URL as `<anonymous>:line:col`, and slide code and everything under
+`assets/` is always `file://`. So the walk skips this wrapper and any number of
+sibling wrappers, in any install order. The fixed index could not promise that;
+this can, and the next hook on `fill()` cannot re-break it.
+
+**THE PROOF THAT AN ATTRIBUTION FIX IS RIGHT IS THAT IT REPRODUCES THE ORIGINAL
+CALIBRATION, not that it produces more sites.** More sites only proves it
+changed. The 2026-09-01 comment recorded the single degenerate fill in the
+22-slide corpus as ak3d.js's triangle rasteriser, 1 of 9,216, ratio 0.0001.
+Post-fix, demo-deck slide-04 reports `Object.render (ak3d.js:198:11)  bad 1 of
+9216  ratio 0.0001`. Same routine, same line, same count. That is the receipt.
+Both decks' QA verdicts were byte-identical before and after, 0/54 and 0/14.
+
+### Parked, 2026-09-19: nothing automatically runs the engine's reconstructions
+
+`tests/` holds about twenty-five browser-based defect reconstructions, the
+receipts for most of the gates in `qa.py`. NO workflow in `.github/workflows/`
+runs any of the engine ones; `cron-health.yml`, `ask.yml` and
+`power-utility.yml` run their own and nothing else. That is the whole reason
+the empty-paint gate survived seven days and a dozen runs after it died: a gate
+whose reconstruction is only ever run by hand is trusted, not checked.
+
+PARKED rather than built, because standing up a headless-Chromium CI job is not
+a bounded one-run change and its runtime cost is the maintainer's call. It is
+the highest-value machinery change available to this repo right now, and the
+argument for it is no longer hypothetical: it has a named casualty.
+
+### Parked, 2026-09-19 frontier scan, focus (e), headless Chromium rendering
+
+**CANVAS 2D LAYERS ARE THE RIGHT INSTRUMENT FOR THIS DECK'S RECURRING CONTACT
+SHADOW WARN, AND THIS CONTAINER CANNOT REACH THEM.** `ctx.beginLayer()` /
+`endLayer()` apply one shadow, filter or alpha to a GROUP of draw calls rather
+than to each call separately, which is exactly the shape of the `contact
+shadow` warn class (3 of the last 10 runs), where per-mark shadows stack into
+mud. Spec: https://github.com/fserb/canvas2D/blob/master/spec/layers.md ,
+status: https://chromestatus.com/feature/5629802309484544 .
+
+Measured in the engine's own launch path rather than taken from a blog, which
+is the point of logging it:
+
+```
+ua: HeadlessChrome/141.0.0.0
+beginLayer: undefined    endLayer: undefined    CanvasFilter: undefined
+createConicGradient: function   reset: function   roundRect: function
+ctx.filter: true  letterSpacing: true  wordSpacing: true
+fontStretch: true fontVariantCaps: true textRendering: true
+```
+
+Layers are still behind `#canvas-2d-layers` in 141. Reaching them means adding
+a browser flag, and a flag changes the rendering surface under every slide in
+every future deck for a craft gain nobody has measured yet. Parked. Re-probe
+when the container's Chromium moves; the probe is four lines and belongs in any
+future scan of this slot.
+
+Worth knowing from the same scan, since it saves the next run the search: the
+string form `ctx.filter` IS available and so are all the CSS text modifiers
+(`letterSpacing`, `wordSpacing`, `fontStretch`, `fontVariantCaps`,
+`textRendering`), which is the cheap half of the same capability. And
+Playwright 1.62's `scale: "device"` screenshot option buys this engine nothing:
+it already renders at an explicit 2x backing store and asserts exact pixel
+dimensions.
