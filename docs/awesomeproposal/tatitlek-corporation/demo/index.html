@@ -363,6 +363,67 @@ var BOUNCED_OWNER = 4;            /* the address held for Colleen B. */
 var tab = 0;
 var s1 = {step:0, assigned:null, approved:false, out:{}};
 for (var i=0;i<OWNERS.length;i++) s1.out[i] = false;
+
+/* THE APPROVED SNAPSHOT. Every artifact in "What the proposal manager gets"
+   depicts a send that already happened, so it has to read what was approved and
+   never what is being drafted. Codex caught this on the second 2026-09-19
+   review: uncheck a name without pressing Approve and the log recorded the list
+   as approved and the requests as sent, which is the one guarantee this demo
+   makes. Until Approve is pressed, the artifacts show the walkthrough's own
+   default, nobody held and the hand assignment standing in. */
+var sent1 = null;
+function snap(){
+  if (sent1) return sent1;
+  var out = {};
+  for (var i=0;i<OWNERS.length;i++) out[i] = false;
+  return {assigned:FALLBACK_OWNER, out:out};
+}
+function takeSnapshot(){
+  var out = {};
+  for (var i=0;i<OWNERS.length;i++) out[i] = !!s1.out[i];
+  sent1 = {assigned:(s1.assigned === null ? FALLBACK_OWNER : s1.assigned), out:out};
+}
+
+/* The one live-item model every artifact reads. It was written inside logRows
+   on the first fix and three sibling artifacts kept their own hand written
+   copy, which is how the log ended up honest while the tiles, the morning note
+   and the contributor mail still described a different send. */
+var CHASE1 = 80600, CHASE2 = 120600, END = 999999;
+function liveItems(){
+  var sn = snap(), live = [];
+  for (var i=0;i<ITEMS.length;i++){
+    var it = ITEMS[i], ow = it.rule ? it.who : sn.assigned;
+    if (ow === null || sn.out[ow]) continue;
+    live.push({it:it, ow:ow});
+  }
+  return live;
+}
+function openAt(t){
+  var live = liveItems(), items = 0, seen = {}, people = 0;
+  for (var k=0;k<live.length;k++){
+    var sb = SUBMITTED[live[k].it.id];
+    if (sb && sb.ord < t) continue;
+    items++;
+    if (!seen[live[k].ow]){ seen[live[k].ow] = 1; people++; }
+  }
+  return {items:items, people:people};
+}
+function bouncedItems(){
+  var live = liveItems(), ids = [];
+  for (var i=0;i<live.length;i++) if (live[i].ow === BOUNCED_OWNER) ids.push(live[i].it.id);
+  return ids;
+}
+function chaseCount(step){
+  var n = 0;
+  if (step >= 5 && openAt(CHASE1).items) n++;
+  if (step >= 6 && openAt(CHASE2).items) n++;
+  return n;
+}
+function joinIds(ids){
+  if (ids.length === 2) return ids[0] + " and " + ids[1];
+  if (ids.length <= 1) return ids.join("");
+  return ids.slice(0, -1).join(", ") + " and " + ids[ids.length-1];
+}
 var s2 = {step:0, assigned:null};
 var s3 = {step:0};
 var art = 0;
@@ -446,20 +507,25 @@ function counts(step){
   return {
     items: ITEMS.length, routed: routed, hand: hand, sub: sub,
     outstanding: Math.max(0, sent - sub), held: held,
-    chases: step<5 ? 0 : (step<6 ? 1 : 2),
+    chases: chaseCount(step),
     fails: (step<5 || !bounceLive()) ? 0 : 1
   };
 }
 
-/* The artifacts read the board at the cutoff. If the viewer has not made the
-   hand assignment yet, stand in the walkthrough's own choice, so the note and
-   the board can never disagree with each other. */
+/* The artifacts read the board AS IT WAS SENT, so this runs fn against the
+   approved snapshot and puts the working state back afterwards. It used to
+   stand in only the hand assignment, which was enough while every artifact was
+   hard coded and not enough once they started deriving: the log would follow
+   the approved list while these counts followed whatever the viewer was in the
+   middle of editing, and the two would disagree in the same document. */
 function atCutoff(fn){
-  var saved = s1.assigned;
-  if (saved === null) s1.assigned = FALLBACK_OWNER;
-  var out = fn();
-  s1.assigned = saved;
-  return out;
+  var sn = snap();
+  var savedA = s1.assigned, savedO = s1.out, i;
+  s1.assigned = sn.assigned;
+  s1.out = {};
+  for (i=0;i<OWNERS.length;i++) s1.out[i] = sn.out[i];
+  try { return fn(); }
+  finally { s1.assigned = savedA; s1.out = savedO; }
 }
 
 function tile(n, l, cls){
@@ -605,10 +671,20 @@ function noteRows(){
 function morningNote(){
   var c = atCutoff(function(){ return counts(6); });
   var rows = noteRows();
-  var deliv = bounceLive()
+  var bounced = bouncedItems(), backIn = [], stillOut = [];
+  for (var bi=0; bi<bounced.length; bi++)
+    (SUBMITTED[bounced[bi]] ? backIn : stillOut).push(bounced[bi]);
+  var deliv = (bounced.length && c.chases)
     ? '<h4>Delivery, which is not the same as silence</h4>' +
-      '<p>The address in the owner map for Colleen B. rejected chase one on October 8th. You ' +
-      'corrected the map on October 9th and both of her items came in on October 13th.</p>'
+      '<p>The address in the owner map for ' + esc(OWNERS[BOUNCED_OWNER].nm) + ' rejected chase ' +
+      'one on October 8th, which held ' + bounced.length + ' item(s), ' + esc(joinIds(bounced)) +
+      '. You corrected the map on October 9th and ' +
+      (stillOut.length
+        ? (backIn.length ? esc(joinIds(backIn)) + ' came in on October 13th. ' +
+                           esc(joinIds(stillOut)) + ' is still outstanding.'
+                         : 'none of them had come in by the cutoff.')
+        : 'all of them came in on October 13th.') +
+      '</p>'
     : "";
   var heldBlock = rows.held ? '<h4>Held out of this send by you</h4>' + rows.held : "";
   return '<div class="mail">' +
@@ -621,7 +697,11 @@ function morningNote(){
     '</div>' +
     '<div class="mb">' +
       '<p>' + c.sub + ' of ' + c.items + ' items submitted. ' + c.outstanding +
-      ' outstanding. Two chase rounds went out on the cadence you set on October 5th.</p>' +
+      ' outstanding. ' + (c.chases
+        ? (c.chases === 1 ? 'One chase round went out' : c.chases + ' chase rounds went out') +
+          ' on the cadence you set on October 5th.'
+        : 'No chase round was needed, everything asked for came in before the first one was due.') +
+      '</p>' +
       '<h4>Outstanding, oldest first</h4>' + rows.out + deliv + heldBlock +
       '<h4>What this note doesn\'t say</h4>' +
       '<p>Nothing here says an answer is correct or complete. Every line says who submitted and ' +
@@ -632,18 +712,49 @@ function morningNote(){
 }
 
 function requestNote(){
+  /* Shows a real recipient off the approved list. Codex caught on the second
+     2026-09-19 review that this was hard coded to Priya N. while every other
+     artifact had moved onto the approved list, so holding her still produced a
+     message the board said was never sent. The demo's contributor is now
+     whoever the approved list actually wrote to. */
+  var live = liveItems(), byOwner = {}, order = [];
+  for (var i=0;i<live.length;i++){
+    if (!byOwner[live[i].ow]){ byOwner[live[i].ow] = []; order.push(live[i].ow); }
+    byOwner[live[i].ow].push(live[i].it);
+  }
+  var pick = null;
+  var PREF = 2;                                   /* Priya N., the walkthrough's own example */
+  if (byOwner[PREF]) pick = PREF;
+  else for (var k=0;k<order.length;k++) if (byOwner[order[k]].length >= 1){ pick = order[k]; break; }
+
+  if (pick === null)
+    return '<div class="mail"><div class="mb"><p>You left every recipient off the approved ' +
+      'list, so no message was written to anybody. Nothing here sends without a name on it ' +
+      'and an approval behind it. Go back to step three, approve a list, and this is the ' +
+      'message that recipient gets.</p></div></div>';
+
+  var o = OWNERS[pick], mine = byOwner[pick], n = mine.length;
+  var rows = "";
+  for (var m=0;m<n;m++){
+    var it = mine[m];
+    rows += '<p class="ln">' + esc(it.id) + " " + esc(it.req) + '<i>Due October 10th. ' +
+      (it.rule ? "Routed by rule " + esc(it.rule) + "." :
+                 "Assigned by hand by " + esc(PM) + ", no rule matched it.") + '</i></p>';
+  }
+  var word = n === 1 ? "One item" : (n === 2 ? "Two items" : n + " items");
   return '<div class="mail">' +
     '<div class="mh">' +
       '<div class="r"><b>From</b><span>Data Call Tracker, sending from your own mail domain</span></div>' +
-      '<div class="r"><b>To</b><span>Priya N., Information systems, GeoNorth (sample)</span></div>' +
+      '<div class="r"><b>To</b><span>' + esc(o.nm) + ", " + esc(o.role) + ", " + esc(o.sub) +
+        ' (sample)</span></div>' +
       '<div class="r"><b>Sent</b><span>October 5th, 8:16 am</span></div>' +
-      '<div class="r"><b>Subject</b><span>Data call RFP-SAMPLE-1042, 2 items for you, due October 10th</span></div>' +
+      '<div class="r"><b>Subject</b><span>Data call RFP-SAMPLE-1042, ' + n +
+        ' item(s) for you, due October 10th</span></div>' +
     '</div>' +
     '<div class="mb">' +
-      '<p>Two items on the compliance matrix for RFP-SAMPLE-1042 are routed to you. ' + esc(PM) +
-      ' approved this list before it went out.</p>' +
-      '<p class="ln">L-14 SPRS score and system security plan status<i>Due October 10th. Routed by rule R3.</i></p>' +
-      '<p class="ln">L-16 Section 508 conformance statement for delivered software<i>Due October 10th. Routed by rule R3.</i></p>' +
+      '<p>' + word + ' on the compliance matrix for RFP-SAMPLE-1042 ' +
+      (n === 1 ? "is" : "are") + ' routed to you. ' + esc(PM) +
+      ' approved this list before it went out.</p>' + rows +
       '<h4>What to do</h4>' +
       '<p>Mark each item submitted and point at where your file already lives. The file stays where ' +
       'it is. Nothing gets copied into the proposal from here.</p>' +
@@ -662,32 +773,10 @@ function requestNote(){
    histories. In a demo whose whole claim is that the log is the honest record,
    that is the worst place in the file for them to disagree. */
 function logRows(){
-  var CHASE1 = 80600, CHASE2 = 120600, END = 999999;
-  var hand = (s1.assigned === null) ? FALLBACK_OWNER : s1.assigned;
-  var who  = OWNERS[hand].nm;
-
-  /* live is what the viewer actually approved. Everything below counts these
-     and nothing else, so a held recipient can never leave a request in the
-     record that was never sent. */
-  var live = [], approved = 0, i;
-  for (i=0;i<OWNERS.length;i++) if (!s1.out[i]) approved++;
-  for (i=0;i<ITEMS.length;i++){
-    var it = ITEMS[i], ow = it.rule ? it.who : hand;
-    if (ow === null || s1.out[ow]) continue;
-    live.push({it:it, ow:ow});
-  }
-
-  /* what was still open at a given moment, in items and in people */
-  function openAt(t){
-    var items = 0, seen = {}, people = 0;
-    for (var k=0;k<live.length;k++){
-      var sb = SUBMITTED[live[k].it.id];
-      if (sb && sb.ord < t) continue;
-      items++;
-      if (!seen[live[k].ow]){ seen[live[k].ow] = 1; people++; }
-    }
-    return {items:items, people:people};
-  }
+  var sn = snap();
+  var who = OWNERS[sn.assigned].nm;
+  var live = liveItems(), approved = 0, i;
+  for (i=0;i<OWNERS.length;i++) if (!sn.out[i]) approved++;
 
   var all = openAt(0), c1 = openAt(CHASE1), c2 = openAt(CHASE2), fin = openAt(END);
   var routed = 0;
@@ -713,15 +802,10 @@ function logRows(){
     add( 80600, "October 8th, 6:00 am",  "Chase 1 sent",
          c1.items + " items to " + c1.people + " people, cadence set October 5th");
 
-  /* the bounce only happened to the people who were actually written to */
-  var bounced = [];
-  for (i=0;i<live.length;i++) if (live[i].ow === BOUNCED_OWNER) bounced.push(live[i].it.id);
+  var bounced = bouncedItems();
   if (bounced.length && c1.items){
-    var ids = bounced.length === 2
-      ? bounced[0] + " and " + bounced[1]
-      : bounced.join(", ");
     add( 80600, "October 8th, 6:00 am",  "Delivery failed",
-         ids + ", address in the owner map rejected");
+         joinIds(bounced) + ", address in the owner map rejected");
     add( 90920, "October 9th, 9:20 am",  "Owner map corrected",
          "address for " + OWNERS[BOUNCED_OWNER].nm + ", " + bounced.length +
          " items re-sent, by " + PM);
@@ -731,7 +815,6 @@ function logRows(){
     add(120600, "October 12th, 6:00 am", "Chase 2 sent",
         c2.items + " items to " + c2.people + " people");
 
-  /* every submission, not a selection of them */
   for (i=0;i<live.length;i++){
     var sub = SUBMITTED[live[i].it.id];
     if (!sub) continue;
@@ -965,11 +1048,11 @@ document.addEventListener("click", function(e){
   if (t.hasAttribute("data-art")){ art = +t.getAttribute("data-art"); render(); return; }
   var a = t.getAttribute("data-act");
   if (!a) return;
-  if (a === "approve" && s1.assigned !== null) s1.approved = true;
+  if (a === "approve" && s1.assigned !== null){ s1.approved = true; takeSnapshot(); }
   if (a === "next" && !(s1.step===2 && !s1.approved)) s1.step = Math.min(STEPS1.length-1, s1.step+1);
   if (a === "back") s1.step = Math.max(0, s1.step-1);
   if (a === "restart"){
-    s1.step = 0; s1.assigned = null; s1.approved = false;
+    s1.step = 0; s1.assigned = null; s1.approved = false; sent1 = null;
     for (var k=0;k<OWNERS.length;k++) s1.out[k] = false;
   }
   if (a === "next2") s2.step = Math.min(STEPS2.length-1, s2.step+1);
