@@ -419,6 +419,30 @@ function chaseCount(step){
   if (step >= 6 && openAt(CHASE2).items) n++;
   return n;
 }
+/* Which chase waves actually reached one item, and what happened to them. The
+   fourth 2026-09-19 review round found the outstanding rows asserting "Chased
+   October 8th and October 12th, both delivered" on an item whose owner had just
+   been described, four lines below, as the one whose address rejected chase
+   one. Same defect as the rest, a sentence written out by hand. */
+function chaseStory(entry){
+  var sb = SUBMITTED[entry.it.id], waves = [];
+  if (!sb || sb.ord >= CHASE1) waves.push({when:"October 8th", ord:CHASE1});
+  if (!sb || sb.ord >= CHASE2) waves.push({when:"October 12th", ord:CHASE2});
+  if (!waves.length) return {n:0, text:"Not chased, it came in before the first chase was due."};
+
+  var bounced = (entry.ow === BOUNCED_OWNER);
+  var parts = [];
+  for (var i=0;i<waves.length;i++){
+    if (bounced && waves[i].ord === CHASE1)
+      parts.push("chased " + waves[i].when + ", rejected by the address in the owner map and " +
+                 "re-sent " + "October 9th");
+    else
+      parts.push("chased " + waves[i].when + ", delivered");
+  }
+  var text = parts.join(", then ");
+  return {n:waves.length, text:text.charAt(0).toUpperCase() + text.slice(1) + "."};
+}
+
 function joinIds(ids){
   if (ids.length === 2) return ids[0] + " and " + ids[1];
   if (ids.length <= 1) return ids.join("");
@@ -626,16 +650,35 @@ function approveCard(){
 }
 
 function storeCard(){
-  return '<div class="two">' +
-    '<div class="card"><h3>What the tracker stores for L-01</h3><dl class="kv">' +
-    '<dt>Item</dt><dd>L-01</dd>' +
-    '<dt>Routed by</dt><dd>Rule R1</dd>' +
-    '<dt>Owner</dt><dd>Dana R., Tatitlek Government Services</dd>' +
-    '<dt>Request sent</dt><dd>October 5th, 8:16 am</dd>' +
-    '<dt>Chases</dt><dd>0</dd>' +
-    '<dt>Submitted by</dt><dd>Dana R.</dd>' +
-    '<dt>Submitted at</dt><dd>October 6th, 8:41 am</dd>' +
-    '<dt>Pointer</dt><dd>the owner\'s own file location</dd></dl></div>' +
+  /* Shows one REAL record off the approved send. It was L-01's, written out by
+     hand, which said "Request sent October 5th" and "Submitted by Dana R." even
+     when the viewer had held Dana off the list and the board said L-01 was
+     never asked for. */
+  var live = liveItems(), pick = null, i;
+  for (i=0;i<live.length;i++) if (live[i].it.id === "L-01"){ pick = live[i]; break; }
+  if (!pick) for (i=0;i<live.length;i++) if (SUBMITTED[live[i].it.id]){ pick = live[i]; break; }
+  if (!pick && live.length) pick = live[0];
+
+  var body;
+  if (!pick){
+    body = '<div class="card"><h3>What the tracker stores</h3>' +
+      '<p>Nothing, for this send. You left every recipient off the approved list, so no request ' +
+      'went out and there is no record to hold. The tracker never writes a row for something it ' +
+      'did not do.</p></div>';
+  } else {
+    var it = pick.it, o = OWNERS[pick.ow], sb = SUBMITTED[it.id], story = chaseStory(pick);
+    body = '<div class="card"><h3>What the tracker stores for ' + esc(it.id) + '</h3><dl class="kv">' +
+      '<dt>Item</dt><dd>' + esc(it.id) + '</dd>' +
+      '<dt>Routed by</dt><dd>' + (it.rule ? "Rule " + esc(it.rule)
+        : "No rule, assigned by hand by " + esc(PM)) + '</dd>' +
+      '<dt>Owner</dt><dd>' + esc(o.nm) + ", " + esc(o.sub) + '</dd>' +
+      '<dt>Request sent</dt><dd>October 5th, 8:16 am</dd>' +
+      '<dt>Chases</dt><dd>' + story.n + '</dd>' +
+      '<dt>Submitted by</dt><dd>' + (sb ? esc(o.nm) : "not yet, still outstanding") + '</dd>' +
+      '<dt>Submitted at</dt><dd>' + (sb ? esc(sb.when) : "not yet") + '</dd>' +
+      '<dt>Pointer</dt><dd>' + (sb ? "the owner's own file location" : "none yet") + '</dd></dl></div>';
+  }
+  return '<div class="two">' + body +
     '<div class="card"><h3>What it never stores</h3>' +
     '<p>Whether the answer is correct. Whether it is complete. A quality score, a confidence number ' +
     'or a rating of any kind.</p>' +
@@ -653,9 +696,10 @@ function noteRows(){
     for (var i=0;i<ITEMS.length;i++){
       var it = ITEMS[i], st = stateFor(it, 6), o = OWNERS[ownerOf(it)];
       if (st.k === "Outstanding"){
+        var story = chaseStory({it:it, ow:ownerOf(it)});
         out.push('<p class="ln">' + it.id + " " + esc(it.req) + '<i>' + esc(o.nm) + ", " +
-          esc(o.sub) + '. Requested October 5th, 9 days. Chased October 8th and October 12th, both ' +
-          'delivered.' + (it.rule ? "" : " No rule matched this item, you assigned it by hand on " +
+          esc(o.sub) + '. Requested October 5th, 9 days. ' + esc(story.text) +
+          (it.rule ? "" : " No rule matched this item, you assigned it by hand on " +
           "October 5th.") + '</i></p>');
       }
       if (st.k === "Held by you"){
@@ -700,7 +744,9 @@ function morningNote(){
       ' outstanding. ' + (c.chases
         ? (c.chases === 1 ? 'One chase round went out' : c.chases + ' chase rounds went out') +
           ' on the cadence you set on October 5th.'
-        : 'No chase round was needed, everything asked for came in before the first one was due.') +
+        : (openAt(0).items
+            ? 'No chase round was needed, everything asked for came in before the first one was due.'
+            : 'Nothing was sent at all, because you left every recipient off the approved list.')) +
       '</p>' +
       '<h4>Outstanding, oldest first</h4>' + rows.out + deliv + heldBlock +
       '<h4>What this note doesn\'t say</h4>' +
