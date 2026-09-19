@@ -339,19 +339,23 @@ var ITEMS = [
 
 /* when each item comes back. step 4 is the first wave, step 6 is everything
    that came in after chase one went out. */
+/* ord is the same moment as when, as a sortable number, day*10000 + hhmm on a
+   24 hour clock. The log builds itself from these rather than from a written
+   out table, so a submission can never be in the board and missing from the
+   record. */
 var SUBMITTED = {
-  "L-01":{step:4, when:"October 6th, 8:41 am"},
-  "L-04":{step:4, when:"October 6th, 9:02 am"},
-  "L-09":{step:4, when:"October 6th, 4:18 pm"},
-  "L-19":{step:4, when:"October 7th, 7:55 am"},
-  "L-31":{step:4, when:"October 7th, 11:20 am"},
-  "L-06":{step:6, when:"October 9th, 10:04 am"},
-  "L-11":{step:6, when:"October 9th, 1:37 pm"},
-  "L-14":{step:6, when:"October 9th, 3:12 pm"},
-  "L-21":{step:6, when:"October 10th, 8:26 am"},
-  "L-29":{step:6, when:"October 10th, 2:44 pm"},
-  "L-24":{step:6, when:"October 13th, 9:15 am"},
-  "L-26":{step:6, when:"October 13th, 9:19 am"}
+  "L-01":{step:4, ord: 60841, when:"October 6th, 8:41 am"},
+  "L-04":{step:4, ord: 60902, when:"October 6th, 9:02 am"},
+  "L-09":{step:4, ord: 61618, when:"October 6th, 4:18 pm"},
+  "L-19":{step:4, ord: 70755, when:"October 7th, 7:55 am"},
+  "L-31":{step:4, ord: 71120, when:"October 7th, 11:20 am"},
+  "L-06":{step:6, ord: 91004, when:"October 9th, 10:04 am"},
+  "L-11":{step:6, ord: 91337, when:"October 9th, 1:37 pm"},
+  "L-14":{step:6, ord: 91512, when:"October 9th, 3:12 pm"},
+  "L-21":{step:6, ord:100826, when:"October 10th, 8:26 am"},
+  "L-29":{step:6, ord:101444, when:"October 10th, 2:44 pm"},
+  "L-24":{step:6, ord:130915, when:"October 13th, 9:15 am"},
+  "L-26":{step:6, ord:130919, when:"October 13th, 9:19 am"}
 };
 var BOUNCED_OWNER = 4;            /* the address held for Colleen B. */
 
@@ -658,24 +662,92 @@ function requestNote(){
    histories. In a demo whose whole claim is that the log is the honest record,
    that is the worst place in the file for them to disagree. */
 function logRows(){
-  var who = OWNERS[s1.assigned === null ? FALLBACK_OWNER : s1.assigned].nm;
-  return [
-  ["October 5th, 7:02 am",  "Matrix imported",         "14 rows, taken in from GovEagle, by " + PM],
-  ["October 5th, 7:02 am",  "Routed by rule",          "13 of 14, rules R1 to R7"],
-  ["October 5th, 7:03 am",  "No rule matched",         "L-33, listed for assignment"],
-  ["October 5th, 8:15 am",  "Assigned by hand",        "L-33 to " + who + ", by " + PM],
-  ["October 5th, 8:16 am",  "Recipient list approved", "7 people, by " + PM],
-  ["October 5th, 8:16 am",  "Requests sent",           "14 items to 7 people, from your mail domain"],
-  ["October 6th, 8:41 am",  "Submitted",               "L-01, by Dana R."],
-  ["October 6th, 9:02 am",  "Submitted",               "L-04, by Dana R."],
-  ["October 8th, 6:00 am",  "Chase 1 sent",            "9 items to 6 people, cadence set October 5th"],
-  ["October 8th, 6:00 am",  "Delivery failed",         "L-24 and L-26, address in the owner map rejected"],
-  ["October 9th, 9:20 am",  "Owner map corrected",     "address for Colleen B., 2 items re-sent, by " + PM],
-  ["October 12th, 6:00 am", "Chase 2 sent",            "4 items to 3 people"],
-  ["October 13th, 9:15 am", "Submitted",               "L-24, by Colleen B."],
-  ["October 13th, 9:19 am", "Submitted",               "L-26, by Colleen B."],
-  ["October 14th, 6:00 am", "Cutoff note sent",        "2 outstanding, to " + PM]
-  ];
+  var CHASE1 = 80600, CHASE2 = 120600, END = 999999;
+  var hand = (s1.assigned === null) ? FALLBACK_OWNER : s1.assigned;
+  var who  = OWNERS[hand].nm;
+
+  /* live is what the viewer actually approved. Everything below counts these
+     and nothing else, so a held recipient can never leave a request in the
+     record that was never sent. */
+  var live = [], approved = 0, i;
+  for (i=0;i<OWNERS.length;i++) if (!s1.out[i]) approved++;
+  for (i=0;i<ITEMS.length;i++){
+    var it = ITEMS[i], ow = it.rule ? it.who : hand;
+    if (ow === null || s1.out[ow]) continue;
+    live.push({it:it, ow:ow});
+  }
+
+  /* what was still open at a given moment, in items and in people */
+  function openAt(t){
+    var items = 0, seen = {}, people = 0;
+    for (var k=0;k<live.length;k++){
+      var sb = SUBMITTED[live[k].it.id];
+      if (sb && sb.ord < t) continue;
+      items++;
+      if (!seen[live[k].ow]){ seen[live[k].ow] = 1; people++; }
+    }
+    return {items:items, people:people};
+  }
+
+  var all = openAt(0), c1 = openAt(CHASE1), c2 = openAt(CHASE2), fin = openAt(END);
+  var routed = 0;
+  for (i=0;i<ITEMS.length;i++) if (ITEMS[i].rule) routed++;
+
+  var rows = [];
+  function add(ord, when, what, detail){ rows.push([ord, when, what, detail]); }
+
+  add( 50702, "October 5th, 7:02 am",  "Matrix imported",
+       ITEMS.length + " rows, taken in from GovEagle, by " + PM);
+  add( 50702, "October 5th, 7:02 am",  "Routed by rule",
+       routed + " of " + ITEMS.length + ", rules R1 to R7");
+  add( 50703, "October 5th, 7:03 am",  "No rule matched",
+       "L-33, listed for assignment");
+  add( 50815, "October 5th, 8:15 am",  "Assigned by hand",
+       "L-33 to " + who + ", by " + PM);
+  add( 50816, "October 5th, 8:16 am",  "Recipient list approved",
+       approved + " people, by " + PM);
+  add( 50816, "October 5th, 8:16 am",  "Requests sent",
+       all.items + " items to " + all.people + " people, from your mail domain");
+
+  if (c1.items)
+    add( 80600, "October 8th, 6:00 am",  "Chase 1 sent",
+         c1.items + " items to " + c1.people + " people, cadence set October 5th");
+
+  /* the bounce only happened to the people who were actually written to */
+  var bounced = [];
+  for (i=0;i<live.length;i++) if (live[i].ow === BOUNCED_OWNER) bounced.push(live[i].it.id);
+  if (bounced.length && c1.items){
+    var ids = bounced.length === 2
+      ? bounced[0] + " and " + bounced[1]
+      : bounced.join(", ");
+    add( 80600, "October 8th, 6:00 am",  "Delivery failed",
+         ids + ", address in the owner map rejected");
+    add( 90920, "October 9th, 9:20 am",  "Owner map corrected",
+         "address for " + OWNERS[BOUNCED_OWNER].nm + ", " + bounced.length +
+         " items re-sent, by " + PM);
+  }
+
+  if (c2.items)
+    add(120600, "October 12th, 6:00 am", "Chase 2 sent",
+        c2.items + " items to " + c2.people + " people");
+
+  /* every submission, not a selection of them */
+  for (i=0;i<live.length;i++){
+    var sub = SUBMITTED[live[i].it.id];
+    if (!sub) continue;
+    add(sub.ord, sub.when, "Submitted",
+        live[i].it.id + ", by " + OWNERS[live[i].ow].nm);
+  }
+
+  add(140600, "October 14th, 6:00 am", "Cutoff note sent",
+      fin.items + " outstanding, to " + PM);
+
+  for (i=0;i<rows.length;i++) rows[i].push(i);          /* keep ties in order */
+  rows.sort(function(a,b){ return a[0] - b[0] || a[4] - b[4]; });
+
+  var out = [];
+  for (i=0;i<rows.length;i++) out.push([rows[i][1], rows[i][2], rows[i][3]]);
+  return out;
 }
 
 function logCard(){
