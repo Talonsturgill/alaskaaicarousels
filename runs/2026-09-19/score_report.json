@@ -1,0 +1,65 @@
+{
+  "run_date": "2026-09-19",
+  "carousel_no": 63,
+  "weighted_total": 8.36,
+  "threshold": 8.3,
+  "ship": true,
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 6,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 6,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy voice and hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "1.12 + 1.12 + 0.96 + 1.12 + 1.08 + 0.80 + 0.64 + 0.42 + 0.40 + 0.70 = 8.36",
+  "weakest_criterion": "Artwork craft and genuine detail (6 of 10, weight 0.16)",
+  "one_sentence_fix": "Build slide 04's coast the way its own dossier specifies, incising the datum, the five community markers and the tally into a modelled substrate with lit lips and shadowed shoulders instead of stroking hairlines onto a gradient, because it is the deck's flattest frame and the same lower-third emptiness that costs slide 07 the only composition warn the machine raised.",
+  "second_weakest": "Legibility and platform fitness (6 of 10): six content-bearing strings ship at 17px, half the 24px mobile floor, carrying C09 C19 C01 C04 C23.",
+  "post_score_fix_applied": "The caption read 'The records cover 1,500 km of coast' where C06 and slide 04 both say MORE THAN 1,500 km. The hedge was restored before ship; caption_check re-run PASS at 899 chars."
+}

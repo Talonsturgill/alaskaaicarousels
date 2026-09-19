@@ -7893,3 +7893,44 @@ nothing from one that painted. That gate exists because run No.47 solved nine
 analytic shadow tips and drew none of them. **It is the first thing the next
 Phase 12 takes, and it outranks anything on the frontier.** A dead gate is worse
 than a missing one, because the run believes it is covered.
+
+## 2026-09-19, No.63: a critic reading a contact sheet cannot see three pixels
+
+The flow critic's top finding was that all three of this deck's edge teases were
+undelivered. Measured on the full-size renders: slide 01's disc carries ink to
+x 1079 of 1080, and slide 04's 121st tally mark carries ink at x 1077 to 1079.
+Both ARE cut by the frame edge, and the round-5 pixel critic, reading the full
+render, had already confirmed both. The contact sheet is downscaled about five
+times, where a two or three pixel sliver simply does not exist.
+
+Two other cross-round misreads came from the same cause. A claimed 66px drift in
+the `alaskaaihq.com` fixture: it is at y 1244 on all nine slides, baseline 1267,
+read straight out of `render_report.json`. A claimed value gradient in slide
+06's rail channel, reported as reading like a bar filled to twenty: sampled at
+x 883 width 28 down its length it is flat within 0.1 L*, and the one spike is
+the declared hairline reference at twenty.
+
+So: judge an edge tease, a fixture position or a value ramp on the RENDER and on
+a measurement, never on a contact sheet. And when a measurement settles
+something, HAND IT TO THE NEXT CRITIC IN ITS PROMPT. Every round that spent
+itself re-litigating a settled question was a round not spent on the artwork,
+and this deck had only five.
+
+The inverse also happened and is worth the same weight. Asking a critic DIRECTLY
+whether a specific repair read is what unlocked slide 04. Round 2 had added a
+dark floor arc and a lit lip to the five community markers and I assumed the
+incising worked. It did not, and the missing pass was the FIRST one, and its HUE
+was the whole point: a lit lip drawn in the marker's own blue reads as more ink,
+never as light falling on a grey plate. Three passes, shoulder in substrate dark
+along the key, stroke in marker ink, lip in the substrate's LIFTED value against
+it. A critic will confirm a repair landed if you tell it the repair landed; it
+will measure if you ask it a question.
+
+Three of this run's defects were repairs of mine that broke something else.
+Enlarging slide 02's caret made it cross its own OBSERVED label. Adding slide
+06's displacement trough as a clipped box produced the axis-aligned filled
+rectangle the deck header says appears nowhere in its art. Deleting slide 04's
+knurl band left its bevel behind as two naked rules floating on bare substrate,
+which the final critic called the one thing on the frame that looked like a bug.
+Deleting a composite mark means deleting all of it, and enlarging a drawn mark
+means re-checking the type beside it, in the same pass.

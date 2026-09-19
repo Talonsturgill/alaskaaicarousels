@@ -2543,6 +2543,27 @@
       ],
       "sources_lead": "https://ita.sport/news/integrity-in-flight-ita-completes-a-long-distance-drone-test-flight-to-advance-anti-doping-sample-transport/",
       "note": "TWO INDEPENDENT SCOUTS LED WITH THIS, Beat B and Beat C, working different briefs with no knowledge of each other. Beat C also wrote 'and the samples survived the trip' in its headline, which no source supports and which is exactly the ending this story wants rather than the one the record carries. That is why the deck's whole argument is that the flight is published and the finding is not. Dedupe returned soft overlaps only, strongest No.59 at jaccard 0.065 on one shared entity, ACUASI, four days. No.59 was read in full and is a money story about the ratio between a planning row and an implementation row. The LANE question mattered more than the jaccard here and pointed the other way for once: five of six scouts came back pointing at data centre siting, a lane the ledger already carries four times in thirty days with No.47's own note saying the next run should change beat, so this story was the way OUT of the crowded lane rather than into it."
+    },
+    {
+      "run_date": "2026-09-19",
+      "carousel_no": 63,
+      "headline": "Utqiagvik Observers and an Arctic Ocean Model",
+      "topic": "Hauri et al. published \"Indigenous Knowledge and observations improve Arctic Ocean model skill and relevance\" in Communications Earth and Environment on September 18th, DOI 10.1038/s43247-026-03899-w, led from the International Arctic Research Center at the University of Alaska Fairbanks with Inupiaq observers among its ten named co-authors. The Alaska Arctic Observatory and Knowledge Hub holds over 12,000 observation records spanning more than 1,500 km of coast, and the program and the one before it have run since 2006. Those records caught the MOM6 COBALT ARC11k hindcast putting 2019 freeze-up at Utqiagvik earlier than it actually happened, during that year's marine heatwave. The paper's own line is that Indigenous Knowledge does not require validation by scientific frameworks. That fall Utqiagvik took one bowhead, against past fall harvests reaching up to about 30.",
+      "entities": [
+        "AAOKH",
+        "International Arctic Research Center",
+        "University of Alaska Fairbanks",
+        "MOM6 COBALT ARC11k",
+        "Communications Earth and Environment",
+        "NOAA CEFI",
+        "Utqiagvik",
+        "Kotzebue",
+        "Tikigaq",
+        "Wainwright",
+        "Kaktovik"
+      ],
+      "claim_count": 29,
+      "score": 8.36
     }
   ]
 }

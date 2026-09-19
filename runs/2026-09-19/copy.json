@@ -1,0 +1,164 @@
+{
+  "run_date": "2026-09-19",
+  "carousel_no": 63,
+  "document_title": "Utqiagvik Observers and an Arctic Ocean Model",
+  "post_copy": "Validation is what science does to data to decide if it is good enough. A paper published September 18th inverts that.\n\nDid the model fail? No. It generally caught seasonal timing, especially the end of open water.\n\nWhere did it break? During the 2019 marine heatwave the model had ice freezing up earlier than the ocean did. The records cover more than 1,500 km of coast and show late freeze-up and storms that made hunting hard. That fall Utqiagvik took one bowhead, against past fall harvests of up to about 30.\n\nThe paper's line is that Indigenous Knowledge \"does not require validation by scientific frameworks\". Observers are co-authors.\n\nThe deck holds a season disc broken open where the records disagree, the observer's October 1st, 2019 entry, and ten author slots.\n\nWhen a model and a coastline disagree about the same week, which one gets corrected?\n\n#SeaIce #OceanModeling #ArcticAlaska",
+  "deck_summary_line": "The deck holds a season disc broken open where the records disagree, the observer's October 1st, 2019 entry, and ten author slots.",
+  "first_comment": "Sources, primary first\nCommunications Earth and Environment, Hauri et al., \"Indigenous Knowledge and observations improve Arctic Ocean model skill and relevance\", September 18th, 2026, https://www.nature.com/articles/s43247-026-03899-w\nCrossref, registry record for DOI 10.1038/s43247-026-03899-w, deposited September 18th, 2026, https://api.crossref.org/works/10.1038/s43247-026-03899-w\nUniversity of Alaska Fairbanks, \"Indigenous observations make Arctic Ocean models more accurate\", September 18th, 2026, https://www.uaf.edu/news/indigenous-observations-make-arctic-ocean-models-more-accurate.php\nInternational Arctic Research Center, Alaska Arctic Observatory and Knowledge Hub program page, read September 19th, 2026, https://uaf-iarc.org/aaokh/\nThe full Alaska AI Docket, with live deadlines on every decision tracked here, sits at https://alaskaaihq.com\nCorrections and added context are welcome in the comments, especially from anyone who has worked with the AAOKH record or with CEFI model output.\nEvery claim id printed on the slides, C01 through C29, traces back to one of the four sources above.",
+  "caption_meta": {
+    "opening_move": "DEFINITION SUBVERSION (the word is \"validation\")",
+    "structure": "Q AND A",
+    "closing_move": "NEW: THE DIRECTION OF CORRECTION"
+  },
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "",
+      "headline": "\"Everyone is waiting for snow.\"",
+      "body": "The model had already frozen the sea.",
+      "labels": [
+        "UTQIAGVIK OBSERVER RECORD, OCTOBER 1ST, 2019"
+      ],
+      "claim_ids": [
+        "C20",
+        "C25",
+        "C12"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE BROKEN-OUT DETAIL",
+      "headline": "In 2019 the model froze the sea early. The coast froze late.",
+      "body": "The paper publishes the direction and no magnitude. This drawing does the same. The two marks sit inside a declared break, so the space between them carries no value.",
+      "labels": [
+        "NOT TO SCALE",
+        "MODEL",
+        "OBSERVED",
+        "SPACING CARRIES NO VALUE",
+        "HINDCAST 1993 TO 2023",
+        "MODEL OUTPUT AVERAGED OVER ABOUT 4,100 KM2 AROUND UTQIAGVIK"
+      ],
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "THE OBSERVATION, AS RECORDED",
+      "headline": "\"It has rained so much that the roads are falling apart and we may have broken a temperature record. Everyone is waiting for snow. The bowhead whales are not close to Barrow yet either.\"",
+      "body": "",
+      "labels": [
+        "BILLY ADAMS, AAOKH OBSERVER IN UTQIAGVIK OCTOBER 1ST, 2019"
+      ],
+      "claim_ids": [
+        "C25"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE RECORD BEHIND THE RECORD",
+      "headline": "Over 12,000 observations, more than 1,500 km of coast.",
+      "body": "Observers document sea ice, ocean conditions, weather, fish and marine wildlife, and unusual or extreme events. The program and the one before it have run since 2006.",
+      "labels": [
+        "TIKIGAQ",
+        "KOTZEBUE",
+        "WAINWRIGHT",
+        "UTQIAGVIK",
+        "KAKTOVIK",
+        "ORDER ALONG THE COAST. NOT TO SCALE.",
+        "ONE MARK REPRESENTS 100 RECORDS",
+        "DISTRIBUTION ALONG THE COAST IS NOT PUBLISHED. THE PAPER GIVES A TOTAL AND AN EXTENT, NOT A SPREAD."
+      ],
+      "claim_ids": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C29"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "",
+      "headline": "which made hunting especially difficult.",
+      "body": "Observers reported late freeze-up, warm conditions and stormy weather,",
+      "labels": [],
+      "claim_ids": [
+        "C13"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "UTQIAGVIK, FALL 2019",
+      "headline": "The fall hunt took one whale.",
+      "body": "Historical fall harvests have reached up to about 30. Spring is a separate season and is not in this count.",
+      "labels": [
+        "WHALES, FALL SEASON",
+        "UPPER BOUND OF PAST FALL HARVESTS, ABOUT 30"
+      ],
+      "claim_ids": [
+        "C18"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "THE SAME INSTRUMENT, TWELVE DEGREES AWAY",
+      "headline": "Most of the time the two records agree.",
+      "body": "The paper reports the model generally captured the timing of seasonal changes, especially the end of the open water season. That is what makes one wrong season worth finding.",
+      "labels": [
+        "MOM6 COBALT ARC11k COUPLES OCEAN, SEA ICE AND BIOGEOCHEMISTRY",
+        "A PHYSICAL OCEAN MODEL, NOT A MACHINE LEARNING SYSTEM",
+        "NOAA CHANGING ECOSYSTEMS AND FISHERIES INITIATIVE"
+      ],
+      "claim_ids": [
+        "C17",
+        "C09",
+        "C19"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHO IS ON THE PAPER",
+      "headline": "Ten authors. The observers are among them.",
+      "body": "The paper says Indigenous observers are co-authors and shape its research questions, the interpretation of results and the priorities for model development. It argues Indigenous Knowledge can identify model deficiencies that conventional metrics miss.",
+      "labels": [
+        "\"Indigenous Knowledge does not require validation by scientific frameworks.\"",
+        "THE PAPER'S OWN WORDS. C15",
+        "PUBLISHED SEPTEMBER 18TH IN COMMUNICATIONS EARTH AND ENVIRONMENT",
+        "LED FROM THE INTERNATIONAL ARCTIC RESEARCH CENTER, UNIVERSITY OF ALASKA FAIRBANKS",
+        "OBSERVER STIPENDS HAVE BECOME A PROJECT BY PROJECT EFFORT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C04",
+        "C14",
+        "C15",
+        "C16",
+        "C23"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "A model can be broadly right and still wrong about the season you live in.",
+      "body": "",
+      "labels": [
+        "Which Alaska forecast should be checked against the people living under it?"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "aftercare": [
+    "This draft is dated Saturday September 19th, which is the weakest slot of the week. Hold it for Tuesday September 22nd through Thursday the 24th, 8 to 11am AKT, and post it on whichever of those mornings is clear.",
+    "Paste the source block as the FIRST comment within 60 seconds of posting, with all four raw URLs intact as plain text. A hyperlink-only paste loses the link on LinkedIn.",
+    "Stay on the post for the first 90 minutes and reply to every comment, including the one-word ones. The ask on slide 09 is a real question and the replies are where it earns its saves.",
+    "Expect the reading that the model is bad. It is not what the paper says. The reply is slide 07 and C17, that the model generally captured the timing of seasonal changes, especially the end of the open water season, and that a model broadly right is exactly the kind nobody audits.",
+    "Expect someone to ask how big the freeze-up error was, in days or in kilometres of ice. The paper publishes a direction and no magnitude, and the deck withholds it on purpose. Say that plainly and don't estimate a number in a comment.",
+    "Check saves, comments and dwell at 48 hours and note them against the run, since the one-whale frame and the empty dimension field are both new devices for this page."
+  ],
+  "editor_notes_for_email": "Three things to know before this one goes up. First, the deck prints no magnitude anywhere for the freeze-up error, and that is deliberate rather than an omission. The paper, published September 18th, states only the direction, that in 2019 the model had sea ice freezing up earlier than it actually did, and it publishes no figure for the size of that gap. Slide 02 draws the withholding as a declared break with an empty dimension field. If a reader asks how many days, the honest answer is that the number is not in the paper. Second, the one whale on slide 06 is set against fall harvests of up to about 30. That 30 is a ceiling on past FALL harvests, never an annual average, and the spring hunt is a separate season that is not in the count. The frame says so and any reply should repeat it. Third, no individual in this deck is identified as Indigenous. Billy Adams appears on slide 03 only as an AAOKH observer in Utqiagvik, which is what the UAF release supports. The paper says Indigenous observers are co-authors without saying which of the ten, so a reply that assigns identity to a named author goes past the record."
+}

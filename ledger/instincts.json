@@ -1618,6 +1618,13 @@
       "confidence": 0.92,
       "instinct": "A LEDGER THAT PUBLISHES A NUMBER NOBODY MEASURED IS THE ONE THING THIS HOUSE DOES NOT DO, AND ONLY THE SCORER CAUGHT IT.",
       "evidence": "ledger/artwork.json recorded bespoke at median 0.251 and drawn share 50 percent, which were the round zero numbers, while the shipped render measured 0.149 and 46 percent. That file is the variety engine future runs read for divergence. The row is corrected and now also carries the warning that drawn share FELL to within one point of its 45 percent floor across the rounds, so whoever reaches for akapron.js next owes it more drawn form."
+    },
+    {
+      "run_date": "2026-09-19",
+      "carousel_no": 63,
+      "confidence": 0.93,
+      "instinct": "A CRITIC READING A CONTACT SHEET CANNOT SEE A THREE PIXEL SLIVER, AND WILL REPORT THE DEVICE MISSING.",
+      "evidence": "The flow critic reported all three of this deck's edge teases undelivered and made that its top finding. Measured on the full-size renders: slide 01's disc carries ink to x 1079 of 1080 and slide 04's 121st tally mark carries ink at x 1077 to 1079. Both ARE cut by the frame edge, and the round 5 pixel critic reading the full render had confirmed both independently. The contact sheet is downscaled about 5x, where a 2 to 3px sliver disappears. Two other cross-round misreads came from the same cause: a claimed 66px watermark drift (it is y 1244 on all nine, read from render_report.json) and a claimed value gradient in slide 06's rail channel (flat within 0.1 L* end to end). The rule is to judge an edge tease, a fixture position or a value ramp on the RENDER and on a measurement, never on a contact sheet, and to hand the measurement to the next critic in its prompt so the round is not spent re-litigating it."
     }
   ]
 }

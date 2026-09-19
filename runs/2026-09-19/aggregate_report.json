@@ -1,0 +1,64 @@
+{
+  "run_dir": "out/2026-09-19",
+  "render_report": "out/2026-09-19/render/render_report.json",
+  "aggregates_file": "out/2026-09-19/aggregates.json",
+  "detected": 5,
+  "declared": 5,
+  "detections": [
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "12,000 observations",
+      "text": "Over 12,000 observations, more than 1,500 km of coast.",
+      "n": 12000,
+      "subject": "observations"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "100 RECORDS",
+      "text": "ONE MARK REPRESENTS 100 RECORDS",
+      "n": 100,
+      "subject": "records"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "TWELVE DEGREES",
+      "text": "THE SAME INSTRUMENT, TWELVE DEGREES AWAY",
+      "n": 12,
+      "subject": "degrees"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "two records",
+      "text": "Most of the time the two records agree.",
+      "n": 2,
+      "subject": "records"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Ten authors",
+      "text": "Ten authors. The observers are among them.",
+      "n": 10,
+      "subject": "authors"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "ONE MARK REPRESENTS 100 RECORDS",
+      "note": "A property of the DRAWING, not of the world. It is the tally's printed ratio, chosen so that over 12,000 records (C05) render as a countable block of 120 marks rather than as an uncountable field. The frame prints the ratio precisely so the reader can do the arithmetic; the paper publishes no per-mark quantity of any kind."
+    },
+    {
+      "slide": 7,
+      "text": "THE SAME INSTRUMENT, TWELVE DEGREES AWAY",
+      "note": "A property of the DRAWING. It is the angular distance on this deck's own season disc between the freeze-up sector broken out on slides 01 and 02 and the flush seam shown here, measured in the artwork's own parallel-oblique construction. It asserts nothing about the world, and in particular it is not a temperature, not a bearing and not a figure from the paper."
+    }
+  ],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

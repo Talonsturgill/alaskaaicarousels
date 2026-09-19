@@ -2019,6 +2019,33 @@
       },
       "machine_qa": "PASS, 9 slides, 0 fails, 0 warns. None of the five defect classes trend_check named fired on any frame.",
       "bespoke": "median pairwise art similarity 0.149 against a 0.60 fail, max pair 0.300, drawn share 46 percent against a 45 percent floor. MEASURED ON THE SHIPPED RENDER after three editing rounds. The first write of this row carried 0.251 and 50 percent, which were the round zero numbers, and the scorer caught them: this file is the variety engine future runs read for divergence, so a number nobody measured must never sit in it. Drawn share FELL from 50 to 46 across the rounds and the floor is 45, so akapron.js is one point off a gate before it is reused: whoever reaches for this chassis next owes it more drawn form and fewer rectangles."
+    },
+    {
+      "run_date": "2026-09-19",
+      "carousel_no": 63,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE SEASON DISC. One machined instrument on a bench under studio light, drawn in parallel oblique at squash 0.44, where ANGLE around the disc is the seasonal cycle (twelve month divisions, September at twelve o'clock running clockwise) and RADIUS is the hindcast record, one groove per year from 1993 innermost to 2023 outermost. A 28 degree wedge is broken clean out of it at freeze-up, exposing the ice's own cross section through a 46px thickness, and the 2019 groove is the only one lit gold. The SAME object returns on slide 07 rotated twelve degrees to its agreement face, machined flush, with the wedge gone, and on slide 09 as a phantom dashed ring carrying the cover's own notch. Chosen because three of the last four decks were outdoor eye-height scenes under a raking low sun and a fourth would have read as a house style.",
+      "atmosphere": "NILAS, BLACK WATER AND MILLED ICE. Studio key at azimuth 168, elevation 22, one light for all nine frames.",
+      "hook_archetype": "NEW: THE QUOTED ABSENCE",
+      "type_pairing": "Space Grotesk / Manrope / JetBrains Mono (no serif at all)",
+      "palette_family": "nilas, black water and milled ice",
+      "continuity_devices": [
+        "the disc as one object across 01, 02, 07 and 09",
+        "the 28 degree wedge changing STATE and never brightness",
+        "edge teases: the disc cut by the right margin on 01 (ink to x 1079) and the 121st tally mark severed on 04 (ink x 1077 to 1079)",
+        "palette arc coolest at 01 warming to the brown of 06 then cooling hard into 09"
+      ],
+      "measured": {
+        "bespoke_median_pairwise": 0.098,
+        "max_pair": 0.161,
+        "drawn_share_pct": 64,
+        "drawn": 37,
+        "blocky": 21,
+        "machine_qa": "WARN, 0 fails, 54 warns",
+        "pdf_mode": "vector",
+        "pdf_mb": 3.43
+      },
+      "note": "MEASURED OFF THE SHIPPED RENDER, not off round zero. The numbers moved across five pixel rounds: median 0.124 to 0.098, drawn share 61 to 64 percent, qa warns 71 to 54, per-slide mean 6.9 to 8.3. The scorer still put ARTWORK CRAFT at 6 of 10, the heaviest criterion on the card, and named slide 04 the flattest frame: its datum, five community markers and tally are stroked onto a gradient where the dossier specifies them incised into a modelled substrate with lit lips and shadowed shoulders. Drawn share 64 percent is against the dossier's own 80 percent target. That is the work order for the next deck that reaches for akdisc.js."
     }
   ]
 }

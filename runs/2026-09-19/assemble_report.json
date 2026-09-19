@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-19/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 4185215,
+  "pdf_mb": 4.19,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-19/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-19/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Utqiagvik Observers and an Arctic Ocean Model",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "fb5b21706cba5a63a3b220a49e723b98557d75b51b41c3a8128aec1b1fd8d7fc",
+        "bytes": 2563898
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "18f3df3f7cf288d9769927c7a1ef533e59f56fdb75833105ebe5faa97c461dac",
+        "bytes": 4379087
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "348290c13ed68235ac6cbe664a83c54d8e9454fd73ea41c6078fc589e371c7bb",
+        "bytes": 4636189
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "bb0d3e0a112a376ee685ede993477bda40117867a60b69e0821b45edfb4e9332",
+        "bytes": 4540129
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "68167c1ba625121789375be131f07b19a690cac26a8bd439a227f66db2a67767",
+        "bytes": 2347830
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "7a0ce7b687b3a23f764e388c37da28830ebac35e7249114202dae46a5786dab7",
+        "bytes": 3132776
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "88f8d29cd2625d14c7b01c6da0ac79428c28af25e359c2c584fe9a02f904e495",
+        "bytes": 3852446
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "86f5695a149394164b8209f5b7a94634be2a32388c5e79b12955a5a799096fee",
+        "bytes": 4357583
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "9b8cb08f61ec9561f22e3fa3baf7718f8ebfc13924c7d2971ff1ed0d64e2616d",
+        "bytes": 1793012
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "659fc12bab5e95703589929c88e5202c4a0c555df46c47d626a9090d03633355",
+        "bytes": 20083
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "c182c3d5db2bccd7306bdbd7d65b27314fd69ed54efc7b079d69ba3c68f30777",
+        "bytes": 13691
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "55e908d14e689d4c39bd02d93bce7cac501eaee4b174d2d829b05aba886077d3",
+        "bytes": 8492
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "06a70d87e7a457ab5622e53e3de83949bd8f98b295cac1981c4290f76f781fdd",
+        "bytes": 13651
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "0a5fcae9077c5bc7735ca78f7d6518c648583022fddc4ae195875ba3f46a2344",
+        "bytes": 8066
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "a8490424991f968534afeadf8c1ff806aca5c15f86c32b304d78630fc067ba8b",
+        "bytes": 15993
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "5fa01f04c681c459125a73dac661cdc9f1b328e9613f7818c11280adf3aae213",
+        "bytes": 12317
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "550392c6602211de8f31299290bb5e7e169793360f8a48545ace0abf62b2bfdf",
+        "bytes": 10587
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "6ca0e5fee81ca4e4e61d953abb713d720f44e46ecd0276d435f62111d86db819",
+        "bytes": 6792
+      }
+    ]
+  }
+}
