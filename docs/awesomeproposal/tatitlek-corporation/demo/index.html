@@ -776,8 +776,9 @@ function requestNote(){
   if (pick === null)
     return '<div class="mail"><div class="mb"><p>You left every recipient off the approved ' +
       'list, so no message was written to anybody. Nothing here sends without a name on it ' +
-      'and an approval behind it. Go back to step three, approve a list, and this is the ' +
-      'message that recipient gets.</p></div></div>';
+      'and an approval behind it. The approved list is locked once you approve it, which is ' +
+      'the point of approving it, so press Start again on scenario one to build another one ' +
+      'and this is the message that recipient gets.</p></div></div>';
 
   var o = OWNERS[pick], mine = byOwner[pick], n = mine.length;
   var rows = "";
