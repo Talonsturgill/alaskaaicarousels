@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Data Call Tracker, a scripted demonstration for The Tatitlek Corporation</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#02060f;
+  --surface:#122a46;
+  --surface2:#0b1c31;
+  --rule:#1c3350;
+  --ink:#e2eaf6;
+  --sub:#c3d2e6;
+  --cap:#a6b9d1;
+  --accent:#3ce6b4;
+  --gold:#ffc72c;
+  --warn:#f2a43a;
+  --ui:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--ui);
+  letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:22px 20px 34px}
+
+/* ---------- header ---------- */
+.hdr{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:10px 24px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.hdr .co{font:400 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cap);margin:0 0 9px}
+.hdr h1{margin:0;font-size:25px;line-height:1.15;font-weight:650;letter-spacing:-.015em}
+.hdr .by{font:400 11px/1.7 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cap);text-align:right}
+.hdr .by i{display:inline-block;width:10px;height:10px;background:var(--gold);vertical-align:-1px;
+  margin-right:7px;clip-path:polygon(50% 0,55.5% 44.5%,100% 50%,55.5% 55.5%,50% 100%,44.5% 55.5%,0 50%,44.5% 44.5%)}
+
+.strip{margin:14px 0 0;padding:11px 14px;border-left:2px solid var(--gold);
+  background:var(--surface2);font-size:14px;line-height:1.5;color:var(--sub)}
+.strip b{color:var(--ink);font-weight:650}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0}
+.tabs button{appearance:none;border:1px solid var(--rule);background:transparent;color:var(--cap);
+  font:650 13px/1 var(--ui);padding:10px 13px;border-radius:7px;cursor:pointer;letter-spacing:-.005em}
+.tabs button:hover{color:var(--ink);border-color:#2a4a72}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);border-color:#2f5580}
+
+/* ---------- panel ---------- */
+.panel{margin-top:16px}
+.stephead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.stepn{font:400 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.panel h2{margin:7px 0 0;font-size:20px;line-height:1.25;font-weight:650;letter-spacing:-.012em}
+.say{margin:10px 0 0;color:var(--sub);font-size:15px;line-height:1.55;max-width:62ch}
+.say.gold{color:var(--gold)}
+
+.nav{display:flex;gap:8px;align-items:center;margin:16px 0 0;flex-wrap:wrap}
+.nav button{appearance:none;border:1px solid #2f5580;background:var(--surface);color:var(--ink);
+  font:650 13px/1 var(--ui);padding:11px 15px;border-radius:7px;cursor:pointer}
+.nav button.primary{background:var(--accent);border-color:var(--accent);color:#04241c}
+.nav button:disabled{opacity:.42;cursor:not-allowed}
+.nav .hint{font-size:13px;color:var(--warn);margin-left:2px}
+.nav .ghost{background:transparent;border-color:var(--rule);color:var(--cap)}
+
+/* ---------- counts ---------- */
+.counts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.tile{flex:1 1 104px;background:var(--surface2);border:1px solid var(--rule);border-radius:7px;padding:9px 11px}
+.tile .n{font:400 21px/1.1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.tile .l{font-size:11px;line-height:1.35;color:var(--cap);margin-top:4px;letter-spacing:.02em}
+.tile.hot .n{color:var(--warn)}
+.tile.good .n{color:var(--accent)}
+
+/* ---------- board ---------- */
+.board{margin:14px 0 0;background:var(--surface2);border:1px solid var(--rule);border-radius:9px;overflow:hidden}
+.board .cap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:10px 14px;border-bottom:1px solid var(--rule);font:400 11px/1.5 var(--mono);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--cap)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font:650 11px/1 var(--ui);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--cap);padding:10px 12px;border-bottom:1px solid var(--rule)}
+td{padding:9px 12px;vertical-align:top;border-bottom:1px solid rgba(28,51,80,.6);color:var(--sub)}
+tr:last-child td{border-bottom:0}
+td.id{font:400 12.5px/1.5 var(--mono);color:var(--cap);white-space:nowrap}
+td.req{color:var(--ink);max-width:31ch}
+.nm{display:block;color:var(--ink)}
+.sub2{display:block;font-size:12px;color:var(--cap);margin-top:2px}
+.chip{display:inline-block;margin-top:4px;font:400 11px/1 var(--mono);letter-spacing:.06em;
+  color:var(--accent);border:1px solid rgba(60,230,180,.4);border-radius:4px;padding:3px 5px}
+.chip.hand{color:var(--gold);border-color:rgba(255,199,44,.45)}
+.pill{display:inline-block;font:650 11px/1 var(--ui);letter-spacing:.04em;padding:5px 7px;border-radius:4px;
+  border:1px solid var(--rule);color:var(--cap);white-space:nowrap}
+.pill.rule{color:var(--accent);border-color:rgba(60,230,180,.4)}
+.pill.ok{color:#04241c;background:var(--accent);border-color:var(--accent)}
+.pill.warn{color:var(--warn);border-color:rgba(242,164,58,.5)}
+.pill.gold{color:var(--gold);border-color:rgba(255,199,44,.45)}
+.det{display:block;font-size:12px;color:var(--cap);margin-top:5px;line-height:1.4}
+.det.inline{display:inline;margin:0}
+
+/* ---------- cards ---------- */
+.card{margin:14px 0 0;background:var(--surface2);border:1px solid var(--rule);border-radius:9px;padding:14px 16px}
+.card h3{margin:0 0 9px;font:650 13px/1.3 var(--ui);letter-spacing:.02em;color:var(--ink)}
+.card h3.gap{margin-top:16px}
+.card p{margin:0 0 9px;font-size:14px;color:var(--sub)}
+.card p:last-child{margin-bottom:0}
+.card p.item{color:var(--ink)}
+.card p.after{margin-top:11px}
+.big{font:400 34px/1 var(--mono);color:var(--warn);font-variant-numeric:tabular-nums}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:13.5px}
+.kv dt{color:var(--cap)}
+.kv dd{margin:0;color:var(--ink);font-family:var(--mono);font-size:12.5px}
+.rules{list-style:none;margin:0;padding:0;font-size:13.5px}
+.rules li{padding:7px 0;border-bottom:1px solid rgba(28,51,80,.6);color:var(--sub);display:flex;gap:10px}
+.rules li:last-child{border-bottom:0}
+.rules b{color:var(--accent);font:400 12.5px/1.55 var(--mono);flex:0 0 26px}
+.rules span{flex:1}
+.rules em{font-style:normal;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.approve{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin:4px 0 0}
+.approve label{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--sub);
+  background:rgba(18,42,70,.45);border:1px solid var(--rule);border-radius:6px;padding:9px 10px;cursor:pointer}
+.approve input{margin:2px 0 0;accent-color:#3ce6b4}
+.approve .nm{color:var(--ink);font-weight:650}
+select{appearance:none;background:var(--surface);color:var(--ink);border:1px solid #2f5580;
+  border-radius:6px;padding:9px 11px;font:400 13.5px/1 var(--ui);max-width:100%}
+.act{appearance:none;border:1px solid var(--gold);background:var(--gold);color:#241a00;
+  font:650 13px/1 var(--ui);padding:11px 15px;border-radius:7px;cursor:pointer;margin-top:13px}
+.act:disabled{opacity:.42;cursor:not-allowed}
+.warnline{color:var(--warn);font-size:13px;margin:9px 0 0}
+.goldline{color:var(--gold);font-size:13px;margin:9px 0 0}
+.bounce{font-family:var(--mono);font-size:12.5px;color:var(--warn);
+  border-left:2px solid var(--warn);padding:7px 0 7px 11px;margin:0}
+
+/* ---------- mail artifact ---------- */
+.mail{margin:14px 0 0;background:#0e2034;border:1px solid #294a72;border-radius:9px;overflow:hidden}
+.mail .mh{padding:12px 16px;border-bottom:1px solid var(--rule);background:rgba(18,42,70,.6)}
+.mail .mh .r{display:flex;gap:10px;font-size:13px;color:var(--sub);padding:2px 0}
+.mail .mh .r b{flex:0 0 62px;color:var(--cap);font-weight:400;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;padding-top:2px}
+.mail .mh .r span{color:var(--ink)}
+.mail .mb{padding:15px 17px;font-size:14px;line-height:1.6;color:var(--sub)}
+.mail .mb p{margin:0 0 11px}
+.mail .mb p:last-child{margin-bottom:0}
+.mail .mb h4{margin:15px 0 7px;font:650 12px/1.3 var(--ui);letter-spacing:.09em;
+  text-transform:uppercase;color:var(--cap)}
+.mail .mb .ln{font-family:var(--mono);font-size:12.5px;line-height:1.55;color:var(--ink);
+  padding:7px 0 7px 11px;border-left:2px solid var(--rule);margin:0 0 7px}
+.mail .mb .ln i{font-style:normal;color:var(--cap);display:block;margin-top:3px}
+.mail .sig{border-top:1px solid var(--rule);padding:11px 17px;font-size:12.5px;color:var(--cap)}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 0}
+.seg button{appearance:none;border:1px solid var(--rule);background:transparent;color:var(--cap);
+  font:650 12.5px/1 var(--ui);padding:9px 12px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);border-color:#2f5580}
+
+.log{width:100%;border-collapse:collapse;font:400 12.5px/1.5 var(--mono)}
+.log td{padding:7px 12px;border-bottom:1px solid rgba(28,51,80,.6);color:var(--sub);vertical-align:top}
+.log td.t{color:var(--cap);white-space:nowrap}
+.log td.w{color:var(--ink)}
+.log tr:last-child td{border-bottom:0}
+
+/* ---------- standing sections ---------- */
+.sits{margin:28px 0 0;padding-top:20px;border-top:1px solid var(--rule)}
+.sits h2,.never h2{margin:0 0 4px;font-size:19px;font-weight:650;letter-spacing:-.012em}
+.sits .lede{color:var(--cap);font-size:14px;margin:0 0 14px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.steps3 div{background:var(--surface2);border:1px solid var(--rule);border-radius:9px;padding:13px 14px}
+.steps3 .n{font:400 11px/1 var(--mono);letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:8px}
+.steps3 h3{margin:0 0 6px;font-size:14.5px;font-weight:650;color:var(--ink);line-height:1.3}
+.steps3 p{margin:0;font-size:13.5px;color:var(--sub);line-height:1.5}
+.never{margin:26px 0 0;padding:16px 18px;background:var(--surface2);border:1px solid var(--rule);border-radius:9px}
+.never ul{list-style:none;margin:12px 0 0;padding:0}
+.never li{position:relative;padding:0 0 10px 20px;font-size:14px;color:var(--sub);line-height:1.5}
+.never li:last-child{padding-bottom:0}
+.never li::before{content:"";position:absolute;left:1px;top:8px;width:6px;height:6px;
+  border-radius:50%;background:var(--accent)}
+.never li b{color:var(--ink);font-weight:650}
+.foot{margin:26px 0 0;padding-top:18px;border-top:1px solid var(--rule);font-size:13.5px;
+  color:var(--cap);line-height:1.6}
+.foot b{color:var(--sub);font-weight:650}
+.foot p{margin:0 0 11px;max-width:74ch}
+.foot p:last-child{margin-bottom:0}
+
+@media (max-width:700px){
+  .two,.steps3,.approve{grid-template-columns:1fr}
+  td.req{max-width:none}
+  .hdr .by{text-align:left}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#eef1f5;--surface2:#f6f8fa;--rule:#c9d2dc;
+        --ink:#12181f;--sub:#39434f;--cap:#5a6472;--accent:#0f6f60;--gold:#8a6300;--warn:#8a4b00}
+  body{font-size:11pt}
+  .wrap{max-width:none;padding:0}
+  .tabs,.nav,.seg,.act{display:none}
+  .mail{background:#f6f8fa;border-color:#c9d2dc}
+  .mail .mh{background:#eef1f5}
+  .pill.ok{background:transparent;color:var(--accent);border-color:var(--accent)}
+  .board,.card,.mail,.never,.steps3 div{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hdr">
+    <div>
+      <p class="co">The Tatitlek Corporation</p>
+      <h1>Data Call Tracker</h1>
+    </div>
+    <div class="by"><i></i>Prepared by Alaska AI<br>September 19th</div>
+  </header>
+
+  <p class="strip"><b>A scripted demonstration, not a live system.</b> It was built from public
+  information about The Tatitlek Corporation and it runs on sample data. It isn't connected to
+  anything of yours, and no model runs anywhere in it. The subsidiary names are the seven listed on
+  your own Our Company page. Every requirement line, person, role, address and date on the board below is
+  sample data we invented so the flow can be shown end to end, including which role we put at
+  which subsidiary.</p>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Scenarios"></nav>
+
+  <main class="panel" id="panel"></main>
+
+  <section class="sits">
+    <h2>How it sits in your operation</h2>
+    <p class="lede">Three steps, and a person is on the trigger in two of them.</p>
+    <div class="steps3">
+      <div>
+        <span class="n">01</span>
+        <h3>GovEagle stays the source of what a data call needs</h3>
+        <p>The compliance matrix comes out of GovEagle. No page we read says it exports as a file, which is one of the three questions for your rep, and if it gives you only a screen this first step is a paste and nothing else changes. The tracker holds status against it and nothing
+        else. It never edits the matrix, never copies an answer out of it, and never writes into a
+        submitted volume.</p>
+      </div>
+      <div>
+        <span class="n">02</span>
+        <h3>Your proposal manager approves every list before anything sends</h3>
+        <p>Rules propose the owners, a person approves the recipients, a person sets the chase
+        cadence. The tracker has no way to mail somebody who isn't on an approved list.</p>
+      </div>
+      <div>
+        <span class="n">03</span>
+        <h3>The named owner still decides whether the answer is right</h3>
+        <p>The board records who submitted what and when. There's no verified state in it, because
+        whether a returned answer is correct is a judgement with somebody's name on it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="never">
+    <h2>What this build deliberately doesn't do</h2>
+    <ul>
+      <li><b>No model runs in this path.</b> Routing is a written rule you can read, test and repeat.
+      Chaining the same routing through four judgement steps instead, each right nine times in ten, would hand you several silently wrong rows on every pursuit with nobody assigned to catch them. It doesn't draft prose, rewrite an answer, score a
+      response or fill a gap. It counts what is outstanding and it says who is holding it.</li>
+      <li><b>There is no verified state.</b> Submitted means a named person pressed submit. It never
+      means the answer is correct or complete.</li>
+      <li><b>Nothing sends on its own.</b> The recipient list is approved by a person and the chase
+      clock is set by a person.</li>
+    </ul>
+  </section>
+
+  <footer class="foot">
+    <p><b>What this is.</b> A demonstration of the build proposed in the field study, drawn from
+    public information and running on sample data. Nothing here has been installed, connected or
+    measured inside your building.</p>
+    <p><b>What would happen before any of it gets built.</b> One real data call measured end to end,
+    after September 30th, so the fiscal year close is left alone. If the measurement says your
+    process holds, the honest answer is that you need none of this.</p>
+    <p><b>Who would build it.</b> GeoNorth is your own information systems subsidiary, which makes it the obvious place
+    for this to live, and whether it has capacity is your call. What we'd sell is the measurement, the owner map and the specification, not a
+    licence and not a dependency.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+   SRC, the quoted-span register.
+
+   No verbatim quotation appears anywhere in this demonstration. Every
+   source-grounded line on the page is paraphrase, and every requirement,
+   person, address and date on the board is sample data, labelled as such
+   on the face of the page. There is nothing here for a sharpening reflex
+   to rewrite, so the table is empty on purpose.
+------------------------------------------------------------------ */
+var SRC = {
+};
+
+/* ---------- sample cast, invented, labelled ---------- */
+var OWNERS = [
+  {nm:"Dana R.",    role:"Contracts",            sub:"Tatitlek Government Services"},
+  {nm:"Marcus T.",  role:"Facility security",    sub:"Tatitlek Federal Services"},
+  {nm:"Priya N.",   role:"Information systems",  sub:"GeoNorth"},
+  {nm:"Evan K.",    role:"Pricing",              sub:"Tatitlek Management Services"},
+  {nm:"Colleen B.", role:"Quality and safety",   sub:"Tatitlek Universal Services"},
+  {nm:"Sam O.",     role:"Program operations",   sub:"Tatitlek Professional Services"},
+  {nm:"Hal W.",     role:"Systems and training", sub:"Tatitlek Technologies"}
+];
+var PM = "J. Adler, proposal manager (sample)";
+var FALLBACK_OWNER = 5;           /* Sam O., the walkthrough's own hand assignment */
+
+var RULES = [
+  {id:"R1", when:"cage code, UEI, signatory, representations, subcontracting plan", who:0},
+  {id:"R2", when:"clearance, cleared, visitor control, security office",            who:1},
+  {id:"R3", when:"SPRS, system security plan, cyber, section 508",                  who:2},
+  {id:"R4", when:"labour category, rate, escalation, pricing basis",                who:3},
+  {id:"R5", when:"ISO 9001, quality system, safety, recordable incident",           who:4},
+  {id:"R6", when:"transition, staffing plan, government furnished, property",       who:5},
+  {id:"R7", when:"help desk, system administration, training records",              who:6}
+];
+
+var ITEMS = [
+  {id:"L-01", req:"Authorised signatory and title for the cover letter",                       rule:"R1", who:0},
+  {id:"L-04", req:"CAGE code and UEI for the proposing entity",                                rule:"R1", who:0},
+  {id:"L-06", req:"Subcontracting plan goals for small business participation",                rule:"R1", who:0},
+  {id:"L-09", req:"Facility clearance level and cognizant security office",                    rule:"R2", who:1},
+  {id:"L-11", req:"Visitor control procedure for the performance site",                        rule:"R2", who:1},
+  {id:"L-14", req:"SPRS score and system security plan status",                                rule:"R3", who:2},
+  {id:"L-16", req:"Section 508 conformance statement for delivered software",                  rule:"R3", who:2},
+  {id:"L-19", req:"Labour category mapping to the solicitation labour categories",             rule:"R4", who:3},
+  {id:"L-21", req:"Escalation basis used on the current contract year",                        rule:"R4", who:3},
+  {id:"L-24", req:"ISO 9001:2015 certificate number and expiry date",                          rule:"R5", who:4},
+  {id:"L-26", req:"Recordable safety incidents for the last three years",                      rule:"R5", who:4},
+  {id:"L-29", req:"Transition in staffing plan, week one headcount",                           rule:"R6", who:5},
+  {id:"L-31", req:"Help desk coverage hours and system administration staffing",               rule:"R7", who:6},
+  {id:"L-33", req:"Continuity of operations approach during a regional communications outage", rule:null, who:null}
+];
+
+/* when each item comes back. step 4 is the first wave, step 6 is everything
+   that came in after chase one went out. */
+var SUBMITTED = {
+  "L-01":{step:4, when:"October 6th, 8:41 am"},
+  "L-04":{step:4, when:"October 6th, 9:02 am"},
+  "L-09":{step:4, when:"October 6th, 4:18 pm"},
+  "L-19":{step:4, when:"October 7th, 7:55 am"},
+  "L-31":{step:4, when:"October 7th, 11:20 am"},
+  "L-06":{step:6, when:"October 9th, 10:04 am"},
+  "L-11":{step:6, when:"October 9th, 1:37 pm"},
+  "L-14":{step:6, when:"October 9th, 3:12 pm"},
+  "L-21":{step:6, when:"October 10th, 8:26 am"},
+  "L-29":{step:6, when:"October 10th, 2:44 pm"},
+  "L-24":{step:6, when:"October 13th, 9:15 am"},
+  "L-26":{step:6, when:"October 13th, 9:19 am"}
+};
+var BOUNCED_OWNER = 4;            /* the address held for Colleen B. */
+
+/* ---------- state ---------- */
+var tab = 0;
+var s1 = {step:0, assigned:null, approved:false, out:{}};
+for (var i=0;i<OWNERS.length;i++) s1.out[i] = false;
+var s2 = {step:0, assigned:null};
+var s3 = {step:0};
+var art = 0;
+
+var TABS = [
+  "One data call, end to end",
+  "When no rule matches",
+  "When a chase doesn't land",
+  "What the proposal manager gets"
+];
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function ownerOf(it){ return it.rule ? it.who : s1.assigned; }
+function bounceLive(){ return !s1.out[BOUNCED_OWNER]; }
+
+/* ---------- scenario one, the board ---------- */
+var STEPS1 = [
+  {h:"The compliance matrix comes in as a file",
+   p:["GovEagle makes the compliance matrix. The tracker takes it in, as a file if GovEagle exports one, or as a paste if it does not and holds status against it. It never edits the matrix, never copies an answer out of it, and never writes into a proposal volume.",
+      "Fourteen rows here so the board fits on one screen. A real matrix runs longer than this one."]},
+  {h:"Rules route each item to a named owner",
+   p:["Every routed row says which rule fired, so you can read the reason, test it, and get the same answer every time.",
+      "Thirteen of the fourteen match a written rule. The fourteenth matches nothing, so it gets listed by name rather than guessed at."]},
+  {h:"A person approves the recipient list",
+   p:["Nothing has left the building yet. Your proposal manager puts a name on the unrouted item, checks who is on the list, then presses approve.",
+      "The tracker has no way to mail somebody who isn't on an approved list. That is the whole reason this screen exists."]},
+  {h:"Requests go out on a cadence a person set",
+   p:["Requests go from your own mail domain, so a contributor at one of the subsidiaries sees a sender they recognise.",
+      "The clock below was set by the proposal manager on October 5th and the tracker follows it. It doesn't decide when to chase."]},
+  {h:"Contributors mark their own items submitted",
+   p:["Five items are in by the morning of October 7th. Submitted means a named person pressed submit and pointed at where their file already lives, so the file stays where it is.",
+      "Submitted doesn't mean the answer is right. Nothing in this system ever says that."]},
+  {h:"Chase one goes to the outstanding, and one address rejects it",
+   p:["Nine items are still open across six people, so chase one goes to those six on the cadence set in step four.",
+      "The address in the owner map for Colleen B. rejects the message. In an inbox a silent contributor and an undelivered request look identical. On the board they don't."]},
+  {h:"The board at the internal cutoff",
+   p:["Twelve of fourteen in, two outstanding, both chased twice. The rejected address was caught on October 8th, corrected on October 9th, and both of those items came in on October 13th.",
+      "The note underneath is what the proposal manager reads at six in the morning on cutoff day."]},
+  {h:"The row nothing here touches",
+   p:["The named owner decides whether their own answer is correct and complete. That row is identical before and after, on purpose.",
+      "There's no verified state in the data model, no review queue and no score. A state meaning somebody checked the answer is a person's judgement with their name on it, so this build stays out of it."]}
+];
+
+function stateFor(it, step){
+  var ow = ownerOf(it);
+  if (step === 0) return {k:"Imported", c:"", d:"Status only, no owner yet"};
+  if (step === 1){
+    if (it.rule) return {k:"Routed", c:"rule", d:"Rule " + it.rule + " to " + OWNERS[it.who].nm};
+    return {k:"No rule matched", c:"warn", d:"Listed by name for a person to assign"};
+  }
+  if (step === 2){
+    if (it.rule) return {k:"Waiting on approval", c:"", d:"Nothing has been sent"};
+    if (s1.assigned === null) return {k:"No rule matched", c:"warn", d:"Needs a name before this list can go"};
+    return {k:"Assigned by hand", c:"gold", d:OWNERS[s1.assigned].nm + ", assigned by the proposal manager"};
+  }
+  if (ow === null) return {k:"No rule matched", c:"warn", d:"Still waiting on a name"};
+  if (s1.out[ow]) return {k:"Held by you", c:"gold", d:"Left off the approved list, nothing sent"};
+  var sb = SUBMITTED[it.id];
+  if (sb && step >= sb.step)
+    return {k:"Submitted", c:"ok", d:"By " + OWNERS[ow].nm + ", " + sb.when};
+  if (step === 3) return {k:"Request sent", c:"", d:"October 5th, 8:16 am, due October 10th"};
+  if (step === 4) return {k:"Outstanding", c:"", d:"Request sent October 5th, no answer yet"};
+  if (step === 5){
+    if (ow === BOUNCED_OWNER)
+      return {k:"Delivery failed", c:"warn", d:"Chase 1 rejected by the address in the owner map, October 8th"};
+    return {k:"Chased", c:"", d:"Chase 1 sent October 8th, 6:00 am"};
+  }
+  return {k:"Outstanding", c:"warn", d:"Chased twice, 9 days since the request went out"};
+}
+
+function counts(step){
+  var sent=0, sub=0, held=0, hand=0, routed=0;
+  for (var i=0;i<ITEMS.length;i++){
+    var it = ITEMS[i], st = stateFor(it, step);
+    if (it.rule && step>=1) routed++;
+    if (!it.rule && s1.assigned!==null && step>=2) hand++;
+    if (st.k === "Submitted") sub++;
+    if (st.k === "Held by you") held++;
+    if (step>=3 && st.k!=="Held by you" && st.k!=="No rule matched") sent++;
+  }
+  return {
+    items: ITEMS.length, routed: routed, hand: hand, sub: sub,
+    outstanding: Math.max(0, sent - sub), held: held,
+    chases: step<5 ? 0 : (step<6 ? 1 : 2),
+    fails: (step<5 || !bounceLive()) ? 0 : 1
+  };
+}
+
+/* The artifacts read the board at the cutoff. If the viewer has not made the
+   hand assignment yet, stand in the walkthrough's own choice, so the note and
+   the board can never disagree with each other. */
+function atCutoff(fn){
+  var saved = s1.assigned;
+  if (saved === null) s1.assigned = FALLBACK_OWNER;
+  var out = fn();
+  s1.assigned = saved;
+  return out;
+}
+
+function tile(n, l, cls){
+  return '<div class="tile ' + (cls||"") + '"><div class="n">' + n + '</div><div class="l">' + l + '</div></div>';
+}
+
+function countsHtml(step){
+  var c = counts(step);
+  var h = '<div class="counts">';
+  h += tile(c.items, "Items on the matrix");
+  h += tile(c.routed, "Routed by rule");
+  h += tile(c.hand, "Assigned by hand", c.hand ? "hot" : "");
+  h += tile(c.sub, "Submitted by a named person", c.sub ? "good" : "");
+  h += tile(c.outstanding, "Outstanding", c.outstanding ? "hot" : "");
+  h += tile(c.chases, "Chase rounds sent");
+  h += tile(c.fails, "Delivery failures", c.fails ? "hot" : "");
+  if (c.held) h += tile(c.held, "Held out by you", "hot");
+  return h + '</div>';
+}
+
+function boardHtml(step, title){
+  var h = '<div class="board"><div class="cap"><span>' + esc(title) +
+          '</span><span>Sample data call, RFP-SAMPLE-1042, internal cutoff October 14th</span></div>' +
+          '<table><thead><tr><th>Item</th><th>Requirement (sample text)</th>' +
+          '<th>Owner (sample name)</th><th>State</th></tr></thead><tbody>';
+  for (var i=0;i<ITEMS.length;i++){
+    var it = ITEMS[i], st = stateFor(it, step), ow = ownerOf(it);
+    var who = '<span class="sub2">Not assigned</span>';
+    if (ow !== null && step >= 1){
+      var o = OWNERS[ow];
+      who = '<span class="nm">' + esc(o.nm) + '</span><span class="sub2">' + esc(o.role) +
+            ", " + esc(o.sub) + '</span>' +
+            (it.rule ? '<span class="chip">' + it.rule + '</span>'
+                     : '<span class="chip hand">by hand</span>');
+    }
+    h += '<tr><td class="id">' + it.id + '</td><td class="req">' + esc(it.req) + '</td>' +
+         '<td>' + who + '</td><td><span class="pill ' + st.c + '">' + esc(st.k) + '</span>' +
+         '<span class="det">' + esc(st.d) + '</span></td></tr>';
+  }
+  return h + '</tbody></table></div>';
+}
+
+function rulesCard(){
+  var h = '<div class="card"><h3>The owner map, all of it</h3>' +
+          '<p>Seven rules, written down and testable. A rule is keywords in the requirement text ' +
+          'resolving to one named owner at one subsidiary. Nothing else routes anything.</p><ul class="rules">';
+  for (var i=0;i<RULES.length;i++){
+    var r = RULES[i], o = OWNERS[r.who];
+    h += '<li><b>' + r.id + '</b><span>Text carries ' + esc(r.when) + '. Goes to <em>' +
+         esc(o.nm) + '</em>, ' + esc(o.role) + ", " + esc(o.sub) + '.</span></li>';
+  }
+  return h + '</ul></div>';
+}
+
+function cadenceCard(){
+  return '<div class="card"><h3>The chase cadence, set by a person on October 5th</h3>' +
+    '<dl class="kv">' +
+    '<dt>First request</dt><dd>October 5th, 8:16 am</dd>' +
+    '<dt>Answers due</dt><dd>October 10th</dd>' +
+    '<dt>Chase one</dt><dd>October 8th, 6:00 am, outstanding items only</dd>' +
+    '<dt>Chase two</dt><dd>October 12th, 6:00 am, outstanding items only</dd>' +
+    '<dt>Escalation</dt><dd>October 13th, to the proposal manager, no further</dd>' +
+    '<dt>Internal cutoff</dt><dd>October 14th, 6:00 am, board note goes out</dd>' +
+    '<dt>Set by</dt><dd>' + esc(PM) + '</dd></dl>' +
+    '<p class="after">Every one of those is a field a person filled in. The tracker has no opinion ' +
+    'about when to chase and no way to form one.</p></div>';
+}
+
+function approveCard(){
+  var h = '<div class="card"><h3>Before anything sends</h3>' +
+          '<p>One item matched no rule. Put a name on it, then approve the list.</p>' +
+          '<p class="item"><b>L-33</b> ' + esc(ITEMS[13].req) + '</p>' +
+          '<select id="assign"' + (s1.approved ? " disabled" : "") + '>' +
+          '<option value="">Choose an owner from the map</option>';
+  for (var i=0;i<OWNERS.length;i++){
+    h += '<option value="' + i + '"' + (s1.assigned===i ? " selected" : "") + '>' +
+         esc(OWNERS[i].nm) + ", " + esc(OWNERS[i].role) + ", " + esc(OWNERS[i].sub) + '</option>';
+  }
+  h += '</select><h3 class="gap">The recipient list, seven people across seven subsidiaries</h3>' +
+       '<div class="approve">';
+  for (var j=0;j<OWNERS.length;j++){
+    h += '<label><input type="checkbox" data-ow="' + j + '"' + (s1.out[j] ? "" : " checked") +
+         (s1.approved ? " disabled" : "") + '><span><span class="nm">' + esc(OWNERS[j].nm) +
+         '</span>' + esc(OWNERS[j].role) + ", " + esc(OWNERS[j].sub) + '</span></label>';
+  }
+  h += '</div>';
+  if (s1.approved){
+    h += '<p class="goldline">Approved by ' + esc(PM) + ' on October 5th, 8:16 am. The approval is ' +
+         'in the log with a name and a time on it.</p>';
+  } else {
+    h += '<button class="act" data-act="approve"' + (s1.assigned===null ? " disabled" : "") +
+         '>Approve the list and queue the requests</button>';
+    h += (s1.assigned === null)
+      ? '<p class="warnline">L-33 needs an owner before this list can go anywhere.</p>'
+      : '<p class="warnline">Nothing has been sent. Uncheck anyone who should be left out of this send.</p>';
+  }
+  return h + '</div>';
+}
+
+function storeCard(){
+  return '<div class="two">' +
+    '<div class="card"><h3>What the tracker stores for L-01</h3><dl class="kv">' +
+    '<dt>Item</dt><dd>L-01</dd>' +
+    '<dt>Routed by</dt><dd>Rule R1</dd>' +
+    '<dt>Owner</dt><dd>Dana R., Tatitlek Government Services</dd>' +
+    '<dt>Request sent</dt><dd>October 5th, 8:16 am</dd>' +
+    '<dt>Chases</dt><dd>0</dd>' +
+    '<dt>Submitted by</dt><dd>Dana R.</dd>' +
+    '<dt>Submitted at</dt><dd>October 6th, 8:41 am</dd>' +
+    '<dt>Pointer</dt><dd>the owner\'s own file location</dd></dl></div>' +
+    '<div class="card"><h3>What it never stores</h3>' +
+    '<p>Whether the answer is correct. Whether it is complete. A quality score, a confidence number ' +
+    'or a rating of any kind.</p>' +
+    '<p>Generated text. The tracker writes no prose, into this record or into a proposal volume.</p>' +
+    '<p>A copy of the file. The answer stays where the owner already keeps it and the board holds a ' +
+    'pointer to it.</p>' +
+    '<p>A verified state. There isn\'t one, because the person who wrote the answer is the one who ' +
+    'knows whether it holds.</p></div></div>';
+}
+
+/* ---------- the handoff artifacts ---------- */
+function noteRows(){
+  return atCutoff(function(){
+    var out = [], held = [];
+    for (var i=0;i<ITEMS.length;i++){
+      var it = ITEMS[i], st = stateFor(it, 6), o = OWNERS[ownerOf(it)];
+      if (st.k === "Outstanding"){
+        out.push('<p class="ln">' + it.id + " " + esc(it.req) + '<i>' + esc(o.nm) + ", " +
+          esc(o.sub) + '. Requested October 5th, 9 days. Chased October 8th and October 12th, both ' +
+          'delivered.' + (it.rule ? "" : " No rule matched this item, you assigned it by hand on " +
+          "October 5th.") + '</i></p>');
+      }
+      if (st.k === "Held by you"){
+        held.push('<p class="ln">' + it.id + " " + esc(it.req) + '<i>' + esc(o.nm) + ", " +
+          esc(o.sub) + '. Left off the approved recipient list on October 5th, so nobody was asked ' +
+          'for it.</i></p>');
+      }
+    }
+    return {out:out.join(""), held:held.join("")};
+  });
+}
+
+function morningNote(){
+  var c = atCutoff(function(){ return counts(6); });
+  var rows = noteRows();
+  var deliv = bounceLive()
+    ? '<h4>Delivery, which is not the same as silence</h4>' +
+      '<p>The address in the owner map for Colleen B. rejected chase one on October 8th. You ' +
+      'corrected the map on October 9th and both of her items came in on October 13th.</p>'
+    : "";
+  var heldBlock = rows.held ? '<h4>Held out of this send by you</h4>' + rows.held : "";
+  return '<div class="mail">' +
+    '<div class="mh">' +
+      '<div class="r"><b>From</b><span>Data Call Tracker, sending from your own mail domain</span></div>' +
+      '<div class="r"><b>To</b><span>' + esc(PM) + '</span></div>' +
+      '<div class="r"><b>Sent</b><span>October 14th, 6:00 am</span></div>' +
+      '<div class="r"><b>Subject</b><span>Data call RFP-SAMPLE-1042, ' + c.outstanding +
+        ' outstanding at the internal cutoff</span></div>' +
+    '</div>' +
+    '<div class="mb">' +
+      '<p>' + c.sub + ' of ' + c.items + ' items submitted. ' + c.outstanding +
+      ' outstanding. Two chase rounds went out on the cadence you set on October 5th.</p>' +
+      '<h4>Outstanding, oldest first</h4>' + rows.out + deliv + heldBlock +
+      '<h4>What this note doesn\'t say</h4>' +
+      '<p>Nothing here says an answer is correct or complete. Every line says who submitted and ' +
+      'when. The named owner holds whether their answer is right.</p>' +
+    '</div>' +
+    '<div class="sig">Sent by the Data Call Tracker. No person wrote this note and no model wrote it ' +
+    'either, it is a count read off the board. Replies go to your proposal manager.</div></div>';
+}
+
+function requestNote(){
+  return '<div class="mail">' +
+    '<div class="mh">' +
+      '<div class="r"><b>From</b><span>Data Call Tracker, sending from your own mail domain</span></div>' +
+      '<div class="r"><b>To</b><span>Priya N., Information systems, GeoNorth (sample)</span></div>' +
+      '<div class="r"><b>Sent</b><span>October 5th, 8:16 am</span></div>' +
+      '<div class="r"><b>Subject</b><span>Data call RFP-SAMPLE-1042, 2 items for you, due October 10th</span></div>' +
+    '</div>' +
+    '<div class="mb">' +
+      '<p>Two items on the compliance matrix for RFP-SAMPLE-1042 are routed to you. ' + esc(PM) +
+      ' approved this list before it went out.</p>' +
+      '<p class="ln">L-14 SPRS score and system security plan status<i>Due October 10th. Routed by rule R3.</i></p>' +
+      '<p class="ln">L-16 Section 508 conformance statement for delivered software<i>Due October 10th. Routed by rule R3.</i></p>' +
+      '<h4>What to do</h4>' +
+      '<p>Mark each item submitted and point at where your file already lives. The file stays where ' +
+      'it is. Nothing gets copied into the proposal from here.</p>' +
+      '<h4>If one of these isn\'t yours</h4>' +
+      '<p>Say so and it goes back to the proposal manager to re-route. A rule sent it to you, so a ' +
+      'wrong one is a rule to fix rather than a mystery to solve.</p>' +
+    '</div>' +
+    '<div class="sig">Sent by the Data Call Tracker on the cadence your proposal manager set. Chase ' +
+    'one goes out October 8th if an item is still open.</div></div>';
+}
+
+var LOG = [
+  ["October 5th, 7:02 am",  "Matrix imported",         "14 rows, taken in from GovEagle, by " + PM],
+  ["October 5th, 7:02 am",  "Routed by rule",          "13 of 14, rules R1 to R7"],
+  ["October 5th, 7:03 am",  "No rule matched",         "L-33, listed for assignment"],
+  ["October 5th, 8:15 am",  "Assigned by hand",        "L-33 to Sam O., by " + PM],
+  ["October 5th, 8:16 am",  "Recipient list approved", "7 people, by " + PM],
+  ["October 5th, 8:16 am",  "Requests sent",           "14 items to 7 people, from your mail domain"],
+  ["October 6th, 8:41 am",  "Submitted",               "L-01, by Dana R."],
+  ["October 6th, 9:02 am",  "Submitted",               "L-04, by Dana R."],
+  ["October 8th, 6:00 am",  "Chase 1 sent",            "9 items to 6 people, cadence set October 5th"],
+  ["October 8th, 6:00 am",  "Delivery failed",         "L-24 and L-26, address in the owner map rejected"],
+  ["October 9th, 9:20 am",  "Owner map corrected",     "address for Colleen B., 2 items re-sent, by " + PM],
+  ["October 12th, 6:00 am", "Chase 2 sent",            "4 items to 3 people"],
+  ["October 13th, 9:15 am", "Submitted",               "L-24, by Colleen B."],
+  ["October 13th, 9:19 am", "Submitted",               "L-26, by Colleen B."],
+  ["October 14th, 6:00 am", "Cutoff note sent",        "2 outstanding, to " + PM]
+];
+
+function logCard(){
+  var h = '<div class="board"><div class="cap"><span>The log, the walkthrough call</span>' +
+          '<span>Every state change carries a name and a time</span></div><table class="log"><tbody>';
+  for (var i=0;i<LOG.length;i++){
+    h += '<tr><td class="t">' + esc(LOG[i][0]) + '</td><td class="w">' + esc(LOG[i][1]) +
+         '</td><td>' + esc(LOG[i][2]) + '</td></tr>';
+  }
+  return h + '</tbody></table></div>';
+}
+
+/* ---------- panels ---------- */
+function panel1(){
+  var st = s1.step, s = STEPS1[st], c = counts(st), h = "";
+  h += '<div class="stephead"><span class="stepn">Step ' + (st+1) + ' of ' + STEPS1.length +
+       '</span></div><h2>' + esc(s.h) + '</h2>';
+  for (var i=0;i<s.p.length;i++) h += '<p class="say">' + esc(s.p[i]) + '</p>';
+  if (st >= 3 && c.held){
+    h += '<p class="say gold">You left ' + c.held + ' item(s) off the approved list at step three, ' +
+         'so nobody was asked for them. The board follows what you approved, so these counts read ' +
+         'lower than the walkthrough above.</p>';
+  }
+
+  var lock = (st===2 && !s1.approved);
+  h += '<div class="nav">' +
+       '<button data-act="back"' + (st===0 ? " disabled" : "") + '>Back</button>' +
+       '<button class="primary" data-act="next"' +
+       ((st===STEPS1.length-1 || lock) ? " disabled" : "") + '>Next step</button>' +
+       '<button class="ghost" data-act="restart">Start again</button>' +
+       (lock ? '<span class="hint">A person has to approve the list before this moves.</span>' : "") +
+       '</div>';
+
+  h += countsHtml(st);
+  if (st === 1) h += rulesCard();
+  if (st === 2) h += approveCard();
+  if (st === 3) h += cadenceCard();
+  h += boardHtml(st, "Completeness board");
+  if (st === 6) h += morningNote();
+  if (st === 7) h += storeCard();
+  return h;
+}
+
+var STEPS2 = [
+  {h:"An item with none of the keywords in it",
+   p:["The owner map is seven written rules. This requirement carries none of their keywords, so none of them fire.",
+      "There's no guess here. A model would have picked somebody. The rule says it found nobody, which is the answer that gets a person involved instead of a plausible wrong name going out under your mail domain."]},
+  {h:"A person puts a name on it",
+   p:["The item sits under its own heading until somebody assigns it. That takes a few seconds and it happens once."]},
+  {h:"The miss gets counted",
+   p:["How often the rules miss is one of the numbers the measurement collects, and it is the only thing that could ever earn a single model call here later.",
+      "We're not proposing one. The specification says that count has to justify it first, or it never happens."]}
+];
+
+function panel2(){
+  var st = s2.step, s = STEPS2[st], it = ITEMS[13], h = "";
+  h += '<div class="stephead"><span class="stepn">Step ' + (st+1) + ' of ' + STEPS2.length +
+       '</span></div><h2>' + esc(s.h) + '</h2>';
+  for (var i=0;i<s.p.length;i++) h += '<p class="say">' + esc(s.p[i]) + '</p>';
+  h += '<div class="nav">' +
+       '<button data-act="back2"' + (st===0 ? " disabled" : "") + '>Back</button>' +
+       '<button class="primary" data-act="next2"' +
+       ((st===STEPS2.length-1 || (st===1 && s2.assigned===null)) ? " disabled" : "") + '>Next step</button>' +
+       '<button class="ghost" data-act="restart2">Start again</button>' +
+       ((st===1 && s2.assigned===null) ? '<span class="hint">Choose an owner to move on.</span>' : "") +
+       '</div>';
+
+  h += '<div class="card"><h3>The unrouted item</h3>' +
+       '<p class="item"><b>L-33</b> ' + esc(it.req) + '</p>' +
+       '<p><span class="pill ' + (s2.assigned===null ? "warn" : "gold") + '">' +
+       (s2.assigned===null ? "No rule matched" : "Assigned by hand") + '</span> ' +
+       '<span class="det inline">' +
+       (s2.assigned===null
+          ? 'Listed by name. Nothing sent, nobody guessed at.'
+          : esc(OWNERS[s2.assigned].nm) + ", " + esc(OWNERS[s2.assigned].sub) + ', assigned by ' +
+            esc(PM) + ' on October 5th, 8:15 am.') +
+       '</span></p></div>';
+
+  if (st === 0) h += rulesCard();
+  if (st === 1){
+    h += '<div class="card"><h3>Assign it from the map</h3><select id="assign2">' +
+         '<option value="">Choose an owner from the map</option>';
+    for (var j=0;j<OWNERS.length;j++){
+      h += '<option value="' + j + '"' + (s2.assigned===j ? " selected" : "") + '>' +
+           esc(OWNERS[j].nm) + ", " + esc(OWNERS[j].role) + ", " + esc(OWNERS[j].sub) + '</option>';
+    }
+    h += '</select><p class="after">The assignment goes in the log with the proposal manager\'s name ' +
+         'and the time on it, the same as every other state change.</p></div>';
+  }
+  if (st === 2){
+    h += '<div class="two">' +
+      '<div class="card"><h3>Rule misses, this data call</h3><div class="big">1 of 14</div>' +
+      '<p class="after">One item in fourteen needed a person. The bar, written before we measure, is ' +
+      'that rules resolve at least 80 percent of the matrix. Below that we report that rules are the ' +
+      'wrong spine, rather than reaching for a model to paper over it.</p></div>' +
+      '<div class="card"><h3>Where that number goes</h3>' +
+      '<p>Into the measurement, beside elapsed hours, distinct people asked, chase rounds, items ' +
+      'where the first person asked was wrong, items outstanding at your internal cutoff, and the ' +
+      'proposal manager hours spent routing and chasing, plus the annual ' +
+      'volume count you pull off your own pipeline for nothing.</p>' +
+      '<p>It is the number that would decide whether a single model call is ever earned for mapping a ' +
+      'free text requirement to an owner. Until that count says so, the answer stays no.</p></div></div>';
+  }
+  return h;
+}
+
+var STEPS3 = [
+  {h:"Chase one goes out on October 8th",
+   p:["Nine items are still open across six people. The chase goes to the outstanding only, so nobody who already answered gets chased."]},
+  {h:"One address rejects the message",
+   p:["The mail server returns a hard rejection for the address held in the owner map. The tracker records it against both of that owner's items."]},
+  {h:"It reads as a delivery failure, not as a non-response",
+   p:["A contributor who is ignoring you and a contributor who never got the request look identical in an inbox. They are different problems and only one of them is about the person.",
+      "The owner map is the thing that goes stale, so every failure to deliver lands in front of a person the next morning rather than at the cutoff."]}
+];
+
+function panel3(){
+  var st = s3.step, s = STEPS3[st], h = "";
+  h += '<div class="stephead"><span class="stepn">Step ' + (st+1) + ' of ' + STEPS3.length +
+       '</span></div><h2>' + esc(s.h) + '</h2>';
+  for (var i=0;i<s.p.length;i++) h += '<p class="say">' + esc(s.p[i]) + '</p>';
+  h += '<div class="nav">' +
+       '<button data-act="back3"' + (st===0 ? " disabled" : "") + '>Back</button>' +
+       '<button class="primary" data-act="next3"' + (st===STEPS3.length-1 ? " disabled" : "") +
+       '>Next step</button>' +
+       '<button class="ghost" data-act="restart3">Start again</button></div>';
+
+  if (st === 0){
+    h += '<div class="card"><h3>Chase one, October 8th, 6:00 am</h3><dl class="kv">' +
+      '<dt>Goes to</dt><dd>6 people, 9 outstanding items</dd>' +
+      '<dt>Skips</dt><dd>5 items already submitted</dd>' +
+      '<dt>Cadence set by</dt><dd>' + esc(PM) + ', October 5th</dd>' +
+      '<dt>Sent from</dt><dd>your own mail domain</dd></dl></div>';
+  }
+  if (st >= 1){
+    h += '<div class="card"><h3>What came back from the mail server</h3>' +
+      '<p class="bounce">550 5.1.1 recipient address rejected</p>' +
+      '<p class="after">Recorded against L-24 and L-26, the two items held by Colleen B., Quality ' +
+      'and safety, Tatitlek Universal Services. The tracker doesn\'t retry a rejected address on its ' +
+      'own, because the fix is a correction to the owner map and that belongs to a person.</p></div>';
+    h += '<div class="board"><div class="cap"><span>The two affected rows</span>' +
+      '<span>Sample data</span></div><table><tbody>' +
+      '<tr><td class="id">L-24</td><td class="req">ISO 9001:2015 certificate number and expiry date</td>' +
+      '<td><span class="nm">Colleen B.</span><span class="sub2">Quality and safety, Tatitlek Universal Services</span></td>' +
+      '<td><span class="pill warn">Delivery failed</span>' +
+      '<span class="det">Chase 1 rejected, October 8th, 6:00 am</span></td></tr>' +
+      '<tr><td class="id">L-26</td><td class="req">Recordable safety incidents for the last three years</td>' +
+      '<td><span class="nm">Colleen B.</span><span class="sub2">Quality and safety, Tatitlek Universal Services</span></td>' +
+      '<td><span class="pill warn">Delivery failed</span>' +
+      '<span class="det">Chase 1 rejected, October 8th, 6:00 am</span></td></tr>' +
+      '</tbody></table></div>';
+  }
+  if (st === 2){
+    h += '<div class="mail"><div class="mh">' +
+      '<div class="r"><b>From</b><span>Data Call Tracker, sending from your own mail domain</span></div>' +
+      '<div class="r"><b>To</b><span>' + esc(PM) + '</span></div>' +
+      '<div class="r"><b>Sent</b><span>October 9th, 6:00 am</span></div>' +
+      '<div class="r"><b>Subject</b><span>Data call RFP-SAMPLE-1042, 2 items never reached anyone</span></div>' +
+      '</div><div class="mb">' +
+      '<h4>Didn\'t reach anyone</h4>' +
+      '<p class="ln">L-24 and L-26<i>The address in the owner map for Colleen B. rejected chase one ' +
+      'on October 8th. These two items have not been seen by anybody.</i></p>' +
+      '<h4>What the board needs from you</h4>' +
+      '<p>Correct the address in the owner map and the two requests go again. The tracker holds them ' +
+      'until you do.</p>' +
+      '</div><div class="sig">Sent by the Data Call Tracker. It reports delivery, never intent.</div></div>';
+    h += '<div class="card"><h3>What happened next in the sample call</h3>' +
+      '<p>The map was corrected on October 9th at 9:20 am and both requests went again the same ' +
+      'morning. Both items came in on October 13th, a day ahead of the internal cutoff.</p>' +
+      '<p>Caught at the cutoff instead, that is two items missing on the day the Bid and Proposal ' +
+      'team is holding a submission to a deadline.</p></div>';
+  }
+  return h;
+}
+
+var ARTS = ["The morning note", "What a contributor gets", "The log"];
+
+function panel4(){
+  var h = '<h2>What the humans actually receive</h2>' +
+    '<p class="say">Three artifacts, rendered as they would arrive. This is the whole visible ' +
+    'surface of the build for everybody except the proposal manager, who also has the board.</p>' +
+    '<p class="say">Every one of them is status. None of them carries a sentence something wrote ' +
+    'for you, and none of them says an answer is correct.</p><div class="seg">';
+  for (var i=0;i<ARTS.length;i++){
+    h += '<button data-art="' + i + '" aria-pressed="' + (art===i) + '">' + esc(ARTS[i]) + '</button>';
+  }
+  h += '</div>';
+  if (art === 0) h += morningNote();
+  if (art === 1) h += requestNote();
+  if (art === 2) h += logCard();
+  return h;
+}
+
+/* ---------- wiring ---------- */
+function renderTabs(){
+  var h = "";
+  for (var i=0;i<TABS.length;i++){
+    h += '<button role="tab" data-tab="' + i + '" aria-selected="' + (tab===i) + '">' +
+         (i+1) + ". " + esc(TABS[i]) + '</button>';
+  }
+  document.getElementById("tabs").innerHTML = h;
+}
+
+function render(){
+  renderTabs();
+  document.getElementById("panel").innerHTML =
+    tab===0 ? panel1() : tab===1 ? panel2() : tab===2 ? panel3() : panel4();
+}
+
+document.addEventListener("click", function(e){
+  var t = e.target && e.target.closest ? e.target.closest("button") : null;
+  if (!t) return;
+  if (t.hasAttribute("data-tab")){ tab = +t.getAttribute("data-tab"); render(); return; }
+  if (t.hasAttribute("data-art")){ art = +t.getAttribute("data-art"); render(); return; }
+  var a = t.getAttribute("data-act");
+  if (!a) return;
+  if (a === "approve" && s1.assigned !== null) s1.approved = true;
+  if (a === "next" && !(s1.step===2 && !s1.approved)) s1.step = Math.min(STEPS1.length-1, s1.step+1);
+  if (a === "back") s1.step = Math.max(0, s1.step-1);
+  if (a === "restart"){
+    s1.step = 0; s1.assigned = null; s1.approved = false;
+    for (var k=0;k<OWNERS.length;k++) s1.out[k] = false;
+  }
+  if (a === "next2") s2.step = Math.min(STEPS2.length-1, s2.step+1);
+  if (a === "back2") s2.step = Math.max(0, s2.step-1);
+  if (a === "restart2"){ s2.step = 0; s2.assigned = null; }
+  if (a === "next3") s3.step = Math.min(STEPS3.length-1, s3.step+1);
+  if (a === "back3") s3.step = Math.max(0, s3.step-1);
+  if (a === "restart3") s3.step = 0;
+  render();
+});
+
+document.addEventListener("change", function(e){
+  var el = e.target;
+  if (!el) return;
+  if (el.id === "assign"){ s1.assigned = el.value === "" ? null : +el.value; render(); return; }
+  if (el.id === "assign2"){ s2.assigned = el.value === "" ? null : +el.value; render(); return; }
+  if (el.hasAttribute && el.hasAttribute("data-ow")){
+    s1.out[+el.getAttribute("data-ow")] = !el.checked; render();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
