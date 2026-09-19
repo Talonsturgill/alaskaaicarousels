@@ -523,6 +523,30 @@ GRADIENT_CLIP_HOOK_JS = """
 # 60 ms of a 280 ms render, all of it the per-fill stack. Error.stackTraceLimit
 # is deliberately left alone, because lowering it to 4 saved nothing measurable
 # and it would have truncated the page-error stacks this same run collects.
+#
+# THE CALL SITE IS FOUND BY WALKING THE STACK, NOT BY INDEXING IT (2026-09-19,
+# run No.63, repairing a gate that had been dead for a week). This hook read the
+# caller as stack frame [2], which was correct on 2026-09-01 when it was the only
+# thing wrapping fill(). INK_HOOK_JS (2026-09-12) also wraps fill(), and it is
+# installed AFTER this one, so the page calls the ink wrapper, the ink wrapper
+# calls this one, and frame [2] became the ink wrapper's own `orig.apply` line
+# instead of the slide's drawing routine. Every fill on every frame then keyed to
+# one synthetic site, `proto.<computed> [as fill] (<anonymous>:138:21)`, and a
+# ratio that is only ever measured WITHIN a site can never reach 0.8 once every
+# fill in the document shares one. MEASURED on the unfixed engine: run No.63's
+# nine shipped slides reported 31,956 fills at sites=1 on every single frame, and
+# examples/demo-deck the same, against the 155 sites over 22 slides this gate was
+# calibrated on. tests/empty_paint_verify.py returned the identical census for its
+# good fixture and its 9-of-9 defect fixture, which is what a dead gate looks like
+# from the outside: not a false PASS you can see, but no difference at all.
+#
+# So the frame is SEARCHED rather than counted. Every hook in this file is
+# injected by add_init_script, which Chromium reports with no source URL, as
+# `<anonymous>:line:col`; slide code and everything under assets/ is always a
+# file:// (or http(s)://) URL. Walking down to the first frame that carries a
+# real source URL therefore skips this wrapper and any number of sibling
+# wrappers, whatever order they are installed in, which is the property the fixed
+# index did not have. A future hook on fill() cannot re-break it.
 PAINT_HOOK_JS = """
 (() => {
   try {
@@ -586,7 +610,19 @@ PAINT_HOOK_JS = """
         const b = box(this);
         if (!foreign && b.n > 0) {
           let site = '?';
-          try { site = ((new Error()).stack.split('\\n')[2] || '?').trim(); } catch (e) {}
+          try {
+            /* Frame 0 is "Error", frame 1 is this wrapper. Walk down past every
+               OTHER init-script wrapper on fill() (INK_HOOK_JS is one) to the
+               first frame that names a real source, which is the slide's own
+               drawing routine or the asset library it called. An injected hook
+               has no source URL and reports as <anonymous>. */
+            const st = (new Error()).stack.split('\\n');
+            for (let i = 2; i < st.length; i++) {
+              if (/(?:file|https?|blob):/.test(st[i])) { site = st[i]; break; }
+            }
+            if (site === '?' && st[2]) site = st[2];
+          } catch (e) {}
+          site = site.trim();
           site = site.replace(/^at\\s+/, '').replace(/file:\\/\\/\\S*?([^\\/]+:\\d+:\\d+)/, '$1').slice(0, 160);
           let s = rep.sites[site];
           if (!s) {
