@@ -73,7 +73,16 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--ui);
 .tile.good .n{color:var(--accent)}
 
 /* ---------- board ---------- */
-.board{margin:14px 0 0;background:var(--surface2);border:1px solid var(--rule);border-radius:9px;overflow:hidden}
+/* Horizontal scroll rather than a clip. Codex caught this on the 2026-09-19
+   review: the identifier and status columns can't wrap, so on a phone the
+   board's intrinsic width exceeds the viewport and overflow:hidden cut the
+   owner and state columns off with no way to reach them, including inside
+   the study's iframe. overflow-y stays hidden so the rounded corners still
+   clip. The prospect reads this on a phone, so it had to move. */
+.board{margin:14px 0 0;background:var(--surface2);border:1px solid var(--rule);
+  border-radius:9px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.board table{min-width:560px}
+.board .cap{position:sticky;left:0}
 .board .cap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
   padding:10px 14px;border-bottom:1px solid var(--rule);font:400 11px/1.5 var(--mono);
   letter-spacing:.12em;text-transform:uppercase;color:var(--cap)}
@@ -642,11 +651,19 @@ function requestNote(){
     'one goes out October 8th if an item is still open.</div></div>';
 }
 
-var LOG = [
+/* The log is BUILT from the walkthrough's state, not hard coded. Codex caught
+   this on the 2026-09-19 review: assign L-33 to anyone other than the
+   walkthrough's own stand-in and the cutoff note followed the viewer's choice
+   while this table still said Sam O., so the two artifacts told different audit
+   histories. In a demo whose whole claim is that the log is the honest record,
+   that is the worst place in the file for them to disagree. */
+function logRows(){
+  var who = OWNERS[s1.assigned === null ? FALLBACK_OWNER : s1.assigned].nm;
+  return [
   ["October 5th, 7:02 am",  "Matrix imported",         "14 rows, taken in from GovEagle, by " + PM],
   ["October 5th, 7:02 am",  "Routed by rule",          "13 of 14, rules R1 to R7"],
   ["October 5th, 7:03 am",  "No rule matched",         "L-33, listed for assignment"],
-  ["October 5th, 8:15 am",  "Assigned by hand",        "L-33 to Sam O., by " + PM],
+  ["October 5th, 8:15 am",  "Assigned by hand",        "L-33 to " + who + ", by " + PM],
   ["October 5th, 8:16 am",  "Recipient list approved", "7 people, by " + PM],
   ["October 5th, 8:16 am",  "Requests sent",           "14 items to 7 people, from your mail domain"],
   ["October 6th, 8:41 am",  "Submitted",               "L-01, by Dana R."],
@@ -658,9 +675,11 @@ var LOG = [
   ["October 13th, 9:15 am", "Submitted",               "L-24, by Colleen B."],
   ["October 13th, 9:19 am", "Submitted",               "L-26, by Colleen B."],
   ["October 14th, 6:00 am", "Cutoff note sent",        "2 outstanding, to " + PM]
-];
+  ];
+}
 
 function logCard(){
+  var LOG = logRows();
   var h = '<div class="board"><div class="cap"><span>The log, the walkthrough call</span>' +
           '<span>Every state change carries a name and a time</span></div><table class="log"><tbody>';
   for (var i=0;i<LOG.length;i++){
