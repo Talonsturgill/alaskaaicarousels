@@ -219,25 +219,43 @@
    */
   function contactTriple(cx, o) {
     var fx = o.x, fy = o.y, w = o.w || 96;
-    var g = cx.createRadialGradient(fx, fy + 14, 0, fx, fy + 14, o.pool || 210);
+
+    /* A CIRCLE INSIDE A TRANSFORM, never a ramp poured into an ellipse.
+     * Canvas has no elliptical gradient: createRadialGradient is always round,
+     * so filling an ellipse with one leaves the ramp still carrying alpha where
+     * the short axis has already run out of shape, and the pool terminates in a
+     * hard arc instead of fading. Squashing the SPACE puts the ramp and the
+     * silhouette on the same ellipse, so the fade reaches zero in every
+     * direction at once. */
+    var pool = o.pool || 210;
+    cx.save();
+    cx.translate(fx, fy + 14);
+    cx.scale(1, 0.34);
+    var g = cx.createRadialGradient(0, 0, 0, 0, 0, pool);
     g.addColorStop(0.00, o.poolHi || "#3B4A58");
     g.addColorStop(0.62, o.poolHi || "#3B4A58");   /* ramp HOLDS before it falls */
     g.addColorStop(1.00, "rgba(0,0,0,0)");
     cx.globalAlpha = o.poolAlpha != null ? o.poolAlpha : 0.55;
     cx.fillStyle = g;
     cx.beginPath();
-    cx.ellipse(fx, fy + 14, o.pool || 210, (o.pool || 210) * 0.34, 0, 0, Math.PI * 2);
+    cx.arc(0, 0, pool, 0, Math.PI * 2);
     cx.fill();
+    cx.restore();
     cx.globalAlpha = 1;
 
-    var c = cx.createRadialGradient(fx, fy + 2, 0, fx, fy + 2, o.ambient || 150);
+    var amb = o.ambient || 150;
+    cx.save();
+    cx.translate(fx, fy + 2);
+    cx.scale(1, 0.22);
+    var c = cx.createRadialGradient(0, 0, 0, 0, 0, amb);
     c.addColorStop(0, o.cast || PAL.shadow);
     c.addColorStop(1, "rgba(0,0,0,0)");
     cx.globalAlpha = 0.62;
     cx.fillStyle = c;
     cx.beginPath();
-    cx.ellipse(fx, fy + 2, o.ambient || 150, (o.ambient || 150) * 0.22, 0, 0, Math.PI * 2);
+    cx.arc(0, 0, amb, 0, Math.PI * 2);
     cx.fill();
+    cx.restore();
     cx.globalAlpha = 1;
 
     cx.beginPath();                              /* the tight core */
