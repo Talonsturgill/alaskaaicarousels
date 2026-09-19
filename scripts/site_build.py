@@ -1046,6 +1046,28 @@ border:1px solid var(--line);border-radius:12px;padding:24px 26px;min-width:0;}
 /* ---------- prose (about) ---------- */
 .prose{max-width:660px;font-size:17px;}
 .prose p{margin:18px 0;}
+/* Small generated spot illustrations, kept beside the copy and out of the
+   reporting, charts and controls. Intrinsic image dimensions reserve space. */
+.editorial-row{display:grid;grid-template-columns:minmax(0,660px) minmax(0,1fr);
+gap:40px;align-items:center;}
+.editorial-art{display:block;width:100%;height:auto;max-width:340px;
+justify-self:center;opacity:.72;pointer-events:none;user-select:none;}
+.home-intro{margin-top:84px;}
+.home-intro h2{margin-top:0;}
+.item.field-study{display:grid;grid-template-columns:minmax(0,1fr) 240px;
+align-items:center;gap:32px;}
+.field-study .editorial-art{max-width:240px;opacity:.58;}
+@media(max-width:1000px){
+  .editorial-row{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;}
+  .item.field-study{grid-template-columns:minmax(0,1fr) 180px;gap:24px;}
+}
+@media(max-width:720px){
+  .editorial-row,.item.field-study{display:block;}
+  .editorial-row > .editorial-art{width:180px;margin:0 0 -44px auto;opacity:.64;}
+  .home-intro > .editorial-art{width:144px;margin-top:4px;}
+  .field-study > .editorial-art{width:132px;margin:12px 0 0 auto;opacity:.56;}
+}
+@media print, (forced-colors:active){.editorial-art{display:none;}}
 /* a.proselink is for an inline link OUTSIDE a .prose block. The base rule is
    a{color:inherit} with no decoration reset, so a bare anchor in a plain
    paragraph falls back to the browser's underline and the paragraph's colour,
@@ -7093,14 +7115,18 @@ them, and whether the public still has a way in.</p>
 
     n_src = source_doc_count(items)
 
-    what_html = f"""<h2 data-reveal>What this is</h2>
-<p class="prose" data-reveal>Alaska AI is a daily publication on Alaska and artificial
+    what_html = f"""<section class="editorial-row home-intro" data-reveal>
+<div><h2>What this is</h2>
+<p class="prose">Alaska AI is a daily publication on Alaska and artificial
 intelligence, and an AI studio. Our Docket tracks {len(live) + len(done)} decisions with
 {n_src} source documents, published as
 <a class="proselink" href="data/">open data under CC BY 4.0</a>. For
 <a class="proselink" href="services/">Alaska businesses</a>, our flagship agentic operating
 system brings 1 to 1000 AI agents together to automate every
-possible aspect of the business.</p>"""
+possible aspect of the business.</p></div>
+<img class="editorial-art" src="editorial/northern-ridgeline-v1.webp"
+width="960" height="480" alt="" aria-hidden="true" loading="lazy" decoding="async">
+</section>"""
 
     next_line = ""
     if nearest and dated:
@@ -8303,7 +8329,7 @@ built. Bring us a specific ask or let the Field Study find the highest payers.</
     tiers = f"""<h2 data-reveal>Three ways in</h2>
 <p class="sub" data-reveal>Every engagement starts with the truth about your operation and
 ends with something you own. Scope and price get set on a call, against your numbers.</p>
-<div class="item a-open" id="field-study" data-reveal>
+<div class="item a-open field-study" id="field-study" data-reveal>
   <div class="body">
     <div class="top"><span class="chip days">PRICED ON A CALL</span><span class="chip kind">1 TO 2 WEEKS &middot; THE FLAGSHIP</span></div>
     <h3>The Field Study</h3>
@@ -8315,6 +8341,8 @@ ends with something you own. Scope and price get set on a call, against your num
     that is the answer you get. The same people who verify every claim on the docket do not
     sell systems that do not pay.</div>
   </div>
+  <img class="editorial-art" src="../editorial/field-notebook-v1.webp"
+  width="720" height="480" alt="" aria-hidden="true" loading="lazy" decoding="async">
 </div>
 <div class="item" data-reveal>
   <div class="body">
@@ -9525,10 +9553,14 @@ every observation.</p>
 
 
 def about_page(today, site_url):
-    body = f"""<div class="hero" style="min-height:auto;padding-top:9vh">
+    body = f"""<div class="hero editorial-row" style="min-height:auto;padding-top:9vh">
+<div>
 <h1>Built in the <em>North</em></h1>
 <p class="tag">Alaska AI is a daily publication and an AI studio focused on Alaska.
 One team, two jobs.</p>
+</div>
+<img class="editorial-art" src="../editorial/northern-ridgeline-v1.webp"
+width="960" height="480" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
 </div>
 <div class="prose" data-reveal>
 <h2>What Alaska AI is</h2>
@@ -9951,6 +9983,12 @@ def build(today, out_dir, site_url=None, domain=""):
     docket = load_docket(today)
     runs = load_runs()
     out = REPO / out_dir
+    # Source art lives outside the generated tree. Read before writing any
+    # output, so a missing source asset fails before a partial publication.
+    editorial_assets = {
+        name: (REPO / "assets/site/editorial" / name).read_bytes()
+        for name in ("northern-ridgeline-v1.webp", "field-notebook-v1.webp")
+    }
 
     # Feeds, Markdown mirrors and deck pages all want the same reconstructed
     # article, so build it once per run here rather than three times downstream.
@@ -10071,6 +10109,9 @@ def build(today, out_dir, site_url=None, domain=""):
     (out / "site.css").write_text(
         SITE_CSS.replace("FONTPREFIX", "").replace("GRAIN_URI", grain))
     (out / "site.js").write_text(JS)
+    (out / "editorial").mkdir(exist_ok=True)
+    for name, content in editorial_assets.items():
+        (out / "editorial" / name).write_bytes(content)
     for rel, html in pages.items():
         p = out / rel
         p.parent.mkdir(parents=True, exist_ok=True)
