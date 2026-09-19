@@ -788,6 +788,25 @@ function requestNote(){
                  "Assigned by hand by " + esc(PM) + ", no rule matched it.") + '</i></p>';
   }
   var word = n === 1 ? "One item" : (n === 2 ? "Two items" : n + " items");
+
+  /* How this item reached them decides what the dispute paragraph can promise.
+     The fifth 2026-09-19 review round found it saying "A rule sent it to you"
+     under a row that had just said the proposal manager assigned it by hand. */
+  var byRule = 0, byHand = 0;
+  for (var r=0;r<n;r++) (mine[r].rule ? byRule++ : byHand++);
+  var dispute;
+  if (byHand && !byRule)
+    dispute = 'Say so and it goes back to the proposal manager to re-route. ' + esc(PM) +
+      ' assigned this by hand, so a wrong one is a decision to revisit rather than a mystery ' +
+      'to solve.';
+  else if (byRule && !byHand)
+    dispute = 'Say so and it goes back to the proposal manager to re-route. A rule sent it to ' +
+      'you, so a wrong one is a rule to fix rather than a mystery to solve.';
+  else
+    dispute = 'Say so and it goes back to the proposal manager to re-route. Each row above says ' +
+      'whether a rule sent it or somebody assigned it by hand, so a wrong one is either a rule ' +
+      'to fix or a decision to revisit, never a mystery to solve.';
+
   return '<div class="mail">' +
     '<div class="mh">' +
       '<div class="r"><b>From</b><span>Data Call Tracker, sending from your own mail domain</span></div>' +
@@ -799,14 +818,13 @@ function requestNote(){
     '</div>' +
     '<div class="mb">' +
       '<p>' + word + ' on the compliance matrix for RFP-SAMPLE-1042 ' +
-      (n === 1 ? "is" : "are") + ' routed to you. ' + esc(PM) +
-      ' approved this list before it went out.</p>' + rows +
+      (n === 1 ? "is" : "are") + (byHand && !byRule ? ' assigned to you. ' : ' routed to you. ') +
+      esc(PM) + ' approved this list before it went out.</p>' + rows +
       '<h4>What to do</h4>' +
       '<p>Mark each item submitted and point at where your file already lives. The file stays where ' +
       'it is. Nothing gets copied into the proposal from here.</p>' +
       '<h4>If one of these isn\'t yours</h4>' +
-      '<p>Say so and it goes back to the proposal manager to re-route. A rule sent it to you, so a ' +
-      'wrong one is a rule to fix rather than a mystery to solve.</p>' +
+      '<p>' + dispute + '</p>' +
     '</div>' +
     '<div class="sig">Sent by the Data Call Tracker on the cadence your proposal manager set. Chase ' +
     'one goes out October 8th if an item is still open.</div></div>';
