@@ -255,6 +255,51 @@
     cx.globalAlpha = 1;
   }
 
+  /* ---- a FLAT thing lying on a surface gets a different shadow ----
+   *
+   * contactTriple() is for an object that STANDS. A card or a sheet lying flat
+   * has no standing height to cast from, and giving it a pool plus a cast plus a
+   * seam produces a dark ellipse under a rectangle, which reads as a puck the
+   * object is balanced on rather than as contact. What a flat sheet actually
+   * has is its own silhouette, offset a little along the key and softened, plus
+   * a tight dark line where the edge meets the surface and light cannot get in.
+   *
+   * pathFn(ctx) contributes the object's outline as a subpath and must NOT call
+   * beginPath(), because the caller owns the path.
+   */
+  function flatShadow(cx, pathFn, o) {
+    var opt = o || {};
+    var dx = opt.dx != null ? opt.dx : 10, dy = opt.dy != null ? opt.dy : 14;
+    var soft = D_offscreen(opt.w || 1080, opt.h || 1350);
+    soft.x.save();
+    soft.x.translate(dx, dy);
+    soft.x.beginPath();
+    pathFn(soft.x);
+    soft.x.fillStyle = opt.colour || "#04090F";
+    soft.x.globalAlpha = opt.alpha != null ? opt.alpha : 0.62;
+    soft.x.fill();
+    soft.x.restore();
+    cx.save();
+    cx.filter = "blur(" + (opt.blur != null ? opt.blur : 13) + "px)";
+    cx.drawImage(soft.c, 0, 0, opt.w || 1080, opt.h || 1350);
+    cx.restore();
+
+    /* the tight line of true occlusion, unblurred, hugging the edge */
+    var tight = D_offscreen(opt.w || 1080, opt.h || 1350);
+    tight.x.save();
+    tight.x.translate(dx * 0.22, dy * 0.26);
+    tight.x.beginPath();
+    pathFn(tight.x);
+    tight.x.fillStyle = opt.seam || "#02060B";
+    tight.x.globalAlpha = 0.85;
+    tight.x.fill();
+    tight.x.restore();
+    cx.save();
+    cx.filter = "blur(2.2px)";
+    cx.drawImage(tight.c, 0, 0, opt.w || 1080, opt.h || 1350);
+    cx.restore();
+  }
+
   /* ---- reserve punch. BLURRED RECTANGLES, never a radial gradient ----
    * A radial punch's outer radius is half the box's longest side, so on a 900px
    * line of type the circle has faded to nothing well before the ends of the
@@ -290,6 +335,8 @@
     return out;
   }
 
+  function D_offscreen(w, h) { return offscreen(w, h); }
+
   function offscreen(w, h) {
     var c = document.createElement("canvas");
     c.width = w * 2; c.height = h * 2;
@@ -312,6 +359,7 @@
     KEY: KEY,
     ruled: ruled, swelled: swelled,
     clastField: clastField, chopField: chopField, contactTriple: contactTriple,
-    punch: punch, boxesFor: boxesFor, offscreen: offscreen, grainCss: grainCss
+    punch: punch, boxesFor: boxesFor, offscreen: offscreen, grainCss: grainCss,
+    flatShadow: flatShadow
   };
 })(typeof window !== "undefined" ? window : globalThis);
