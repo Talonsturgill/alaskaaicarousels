@@ -202,11 +202,17 @@ _NUMC = (r"(?:\d[\d,]*"
          r"|(?:" + "|".join(_TENS) + r")[\s\-](?:one|two|three|four|five|six|"
          r"seven|eight|nine)"
          r"|" + "|".join(sorted(NUMWORD, key=len, reverse=True)) + r")")
-RX_SUBSET = re.compile(r"(?i)\b(" + _NUMC + r")\s+of\s+(?:the\s+)?(" + _NUMC + r")\b")
-RX_ALLBUT = re.compile(r"(?i)\ball\s+but\s+(" + _NUMC + r")\s+of\s+(?:the\s+)?("
-                       + _NUMC + r")\b")
-RX_QUANT = re.compile(r"(?i)\b(every\s+one|each\s+one|not\s+one|none|all)\s+of\s+"
-                      r"(?:the\s+)?(" + _NUMC + r")\b")
+# "OUT OF" AND A BARE "ALL TEN" ARE THE SAME ASSERTION (Codex, PR #391, fourth
+# pass). The first grammar required an "of the" construction, so "Nine out of
+# ten items" and "All ten items ask about the payload" both walked past it into
+# the ordinary count detector, which checks that a number is DETECTED and never
+# what the items are.
+_OF = r"(?:out\s+of|of)\s+(?:the\s+)?"
+RX_SUBSET = re.compile(r"(?i)\b(" + _NUMC + r")\s+" + _OF + r"(" + _NUMC + r")\b")
+RX_ALLBUT = re.compile(r"(?i)\ball\s+but\s+(" + _NUMC + r")\s+" + _OF
+                       + r"(" + _NUMC + r")\b")
+RX_QUANT = re.compile(r"(?i)\b(every\s+one|each\s+one|not\s+one|none|all)\s+"
+                      r"(?:" + _OF + r"|the\s+)?(" + _NUMC + r")\b")
 # An item index is an ADDRESS, not a quantity. Blanked out of a claim before
 # any number is read out of it, for the same reason dossier_check blanks a
 # statute citation: otherwise C27's "(9) Maximum total flights" makes the
@@ -467,7 +473,18 @@ def rendered_strings(render_report):
             # the laid-out text is node["text"] (line breaks arrive as bare
             # concatenation, which is why the count detector ignores N < 2 and
             # a glued "documentprints" cannot fire).
-            out.append((n, re.sub(r"\s+", " ", str(node.get("text", ""))).strip()))
+            # READ `full`, NOT `text` (Codex, PR #391, fourth pass). render.py
+            # caps node["text"] at EIGHTY characters for display and carries
+            # the whole one-line textContent in node["full"] at 400, which is
+            # what copy_sync_check already compares against. This gate was
+            # reading the display string, so every assertion past character 80
+            # of a paragraph was invisible to it -- including THIS RUN'S OWN
+            # payoff sentence, "Every one of the ten items asks about the
+            # payload, the pyrotechnics or the flight", which begins at
+            # character 148 of slide 07's body. The regexes were never the
+            # reason that sentence went unchecked; the gate could not see it.
+            txt = node.get("full") or node.get("text", "")
+            out.append((n, re.sub(r"\s+", " ", str(txt)).strip()))
         for c in (s.get("canvas_text") or []):
             txt = c.get("text", "") if isinstance(c, dict) else str(c)
             out.append((n, re.sub(r"\s+", " ", str(txt)).strip()))

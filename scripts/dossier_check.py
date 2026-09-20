@@ -495,6 +495,14 @@ SCRIPT_SRC_RE = re.compile(r"""<script[^>]*\bsrc\s*=\s*['"]([^'"]+)['"]""", re.I
 IMPORT_CALL_RE = re.compile(r"\bimport\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)")
 IMPORT_FROM_RE = re.compile(r"""\bfrom\s*['"]([^'"]+\.js)['"]""")
 JS_LITERAL_RE = re.compile(r"""['"]([^'"]*\.js)['"]""")
+SCRIPT_BODY_RE = re.compile(r"(<script\b[^>]*>)(.*?)(</script\s*>)", re.I | re.S)
+JS_BLOCK_COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
+# Not after a colon, so a protocol-relative or absolute URL keeps its slashes.
+JS_LINE_COMMENT_RE = re.compile(r"(?<!:)//[^\n]*")
+
+
+def strip_js_comments(js):
+    return JS_LINE_COMMENT_RE.sub(" ", JS_BLOCK_COMMENT_RE.sub(" ", js or ""))
 # Library names that are not the stem of their own file.
 LIB_ALIAS = {
     "d3": "d3.v7.min.js",
@@ -557,6 +565,13 @@ def libs_loaded(src):
     out = set()
     for u in SCRIPT_SRC_RE.findall(src):
         out.add(u.rsplit("/", 1)[-1])
+    # AND JS COMMENTS ARE NOT CODE (Codex, PR #391, fourth pass). The same
+    # argument as the HTML comment: `// import('/js/akthree.js')` and its
+    # block-comment twin are exactly what an abandoned technique leaves in a
+    # slide's script. Stripped from the SCRIPT BODIES only, and a line comment
+    # is not recognised after a colon, so `https://` in a url survives.
+    src = SCRIPT_BODY_RE.sub(lambda m: m.group(1) + strip_js_comments(m.group(2))
+                             + m.group(3), src)
     for arg in IMPORT_CALL_RE.findall(src):
         for u in JS_LITERAL_RE.findall(arg):
             out.add(u.rsplit("/", 1)[-1])

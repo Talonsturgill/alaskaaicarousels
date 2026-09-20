@@ -12,7 +12,7 @@
       ],
       "motifs": [
         "'the notice path leaving the top of the frame': canvas 125.4 dE, page 125.4 dE, 98% of its rect is clear of opaque DOM (div.count stands on the rest)",
-        "'the lit lip of the earth slab at the datum': canvas 35.9 dE, page 51.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)"
+        "'the lit lip of the earth slab at the datum': canvas 37.0 dE, page 52.3 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)"
       ],
       "fits": [
         "disp 'EVERY NOTICE WENT UP.NONE CAME DOWN.' fits 2/2 lines at 58px"
@@ -44,7 +44,7 @@
         "'state ground is one continuous solid and borough ground is a scatter of separated mesas': dE 14.8, AUC 0.66, visible 100%/100%, seen 437/437px at 432w"
       ],
       "contacts": [
-        "'the galvanized rail on the state ground': shadow L* 9.7 vs ground L* 61.9, dL 52.3 at 432w"
+        "'the galvanized rail on the state ground': shadow L* 9.6 vs ground L* 61.9, dL 52.3 at 432w"
       ],
       "motifs": [
         "'the separated borough mesas': canvas 82.8 dE, page 85.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)",
@@ -89,8 +89,8 @@
         "'the blind port boss on borough ground': shadow L* 17.6 vs ground L* 36.1, dL 18.5 at 432w"
       ],
       "motifs": [
-        "'the blind port, cast and never drilled': canvas 107.5 dE, page 107.8 dE, 100% of its rect is clear of opaque DOM",
-        "'the drilled bore it is compared against': canvas 60.8 dE, page 60.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the blind port, cast and never drilled': canvas 107.8 dE, page 107.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the drilled bore it is compared against': canvas 60.9 dE, page 61.1 dE, 100% of its rect is clear of opaque DOM",
         "'the scribed circle is the same diameter as the drilled bore': canvas 106.4 dE, page 107.1 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
@@ -108,7 +108,7 @@
         "'ten things are cut into the ground and an eleventh is drawn and never opened': dE 6.5, AUC 0.69, visible 64%/68%, seen 43008/8682px at 432w"
       ],
       "motifs": [
-        "'the ten cut terraces': canvas 47.3 dE, page 89.9 dE, 63% of its rect is clear of opaque DOM (div.row stands on the rest)",
+        "'the ten cut terraces': canvas 48.9 dE, page 89.9 dE, 63% of its rect is clear of opaque DOM (div.row stands on the rest)",
         "'the eleventh position, scribed and never cut': canvas 4.3 dE, page 31.8 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [

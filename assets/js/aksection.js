@@ -319,7 +319,17 @@
     if (!pts || pts.length < 2) return null;
     var lx = this.lightX, ly = this.lightY;
 
-    function band(offset, thick, colour, alpha) {
+    /* UP-LIGHT IS A PROPERTY OF EACH SEGMENT, NOT OF THE WHOLE PATH (Codex,
+     * PR #391, fourth pass). `perSeg` picks the shoulder from the vertex's own
+     * normal against the key instead of taking one sign for the path. It has
+     * to, because locator() passes a CLOSED RECTANGLE for the window, whose
+     * normals sum to roughly zero: the mean was meaningless, opposite edges
+     * were bevelled with opposing normals, and half the window's lip sat on
+     * the shadowed shoulder. On an open path whose normals all agree this is
+     * the same answer the mean gave. */
+    function segSign(nx, ny) { return (nx * lx + ny * ly) >= 0 ? 1 : -1; }
+
+    function band(offset, thick, colour, alpha, perSeg) {
       cx.beginPath();
       var first = true;
       for (var k = 0; k < pts.length; k++) {
@@ -329,7 +339,8 @@
         var tx = next[0] - prev[0], ty = next[1] - prev[1];
         var tl = Math.sqrt(tx * tx + ty * ty) || 1;
         var nx = -ty / tl, ny = tx / tl;
-        var x = p[0] + nx * offset, y = p[1] + ny * offset;
+        var s = perSeg ? segSign(nx, ny) : 1;
+        var x = p[0] + nx * offset * s, y = p[1] + ny * offset * s;
         if (first) { cx.moveTo(x, y); first = false; } else cx.lineTo(x, y);
       }
       for (var m = pts.length - 1; m >= 0; m--) {
@@ -339,7 +350,9 @@
         var ux = nx2[0] - pv[0], uy = nx2[1] - pv[1];
         var ul = Math.sqrt(ux * ux + uy * uy) || 1;
         var mx = -uy / ul, my = ux / ul;
-        cx.lineTo(q[0] + mx * (offset + thick), q[1] + my * (offset + thick));
+        var s2 = perSeg ? segSign(mx, my) : 1;
+        cx.lineTo(q[0] + mx * (offset + thick) * s2,
+                  q[1] + my * (offset + thick) * s2);
       }
       cx.closePath();
       cx.globalAlpha = alpha == null ? 1 : alpha;
@@ -351,24 +364,15 @@
     /* WHICH SIDE IS UP-LIGHT IS A PROPERTY OF THE PATH, NOT OF THE GLOBAL Y
      * (Codex, PR #391). The first build read `lx * 0 + ly * -1`, so the
      * horizontal key was multiplied out and a vertical groove could not put
-     * its lip up-light at all. A single-offset band can only take one side,
-     * so the side comes from the path's MEAN normal against the key. */
-    var mnx = 0, mny = 0;
-    for (var s0 = 0; s0 < pts.length; s0++) {
-      var pp = pts[s0 - 1] || pts[s0], nn = pts[s0 + 1] || pts[s0];
-      var sx = nn[0] - pp[0], sy = nn[1] - pp[1];
-      var sl = Math.sqrt(sx * sx + sy * sy) || 1;
-      mnx += -sy / sl; mny += sx / sl;
-    }
-    var ml = Math.sqrt(mnx * mnx + mny * mny) || 1;
-    mnx /= ml; mny /= ml;
-
+     * its lip up-light at all. The second build took the PATH'S MEAN normal,
+     * which is right for an open groove and meaningless for a closed one:
+     * see segSign above, which is where the answer is now made. */
     cx.save();
-    /* the trough first, centred on the path and biased down-light */
+    /* the trough first, CENTRED on the path, so it spans -w/2 to +w/2 and no
+     * side has to be chosen for it */
     band(-w * 0.5, w, trough, 0.92);
-    /* then the lit lip on the up-light shoulder, thinner and brighter */
-    var upSign = (mnx * lx + mny * ly) >= 0 ? 1 : -1;
-    band(upSign * w * 0.5, Math.max(1.2, w * 0.36), lip, 0.95);
+    /* then the lit lip, on whichever shoulder each segment turns to the key */
+    band(w * 0.5, Math.max(1.2, w * 0.36), lip, 0.95, true);
     cx.restore();
     return pts;
   };

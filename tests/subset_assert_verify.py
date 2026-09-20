@@ -106,6 +106,20 @@ CODEX ROUND TWO (PR #391, head 80792e7)
   2 ratio_found   NEGATIVE CONTROL: the "0 OF 5 FOUND"
                   shape ratio was built for, over a notice
                   that enumerates nothing                   -> PASS
+CODEX ROUND FOUR (PR #391)
+  1 full_text     THE ONE THAT MATTERED. render.py caps
+                  node["text"] at EIGHTY characters for
+                  display and carries the whole line in
+                  node["full"]. This gate read the display
+                  string, so every assertion past char 80
+                  of a paragraph was invisible -- including
+                  THIS DECK'S OWN payoff sentence, which
+                  starts at character 148 of slide 07      -> FAIL, undeclared
+  1 all_ten       "All ten items ask about the payload":
+                  the grammar demanded an "of the", so this
+                  fell through to the count detector       -> FAIL, undeclared
+  1 out_of        "Nine out of ten items", same bypass     -> FAIL, undeclared
+
   4 tie_later     two completed enumerations of EQUAL
                   length, the superseded list first and the
                   adopted one second. max() returns the
@@ -240,6 +254,16 @@ NINE_DIGITS = "9 of 10 items ask about the payload."
 FIVE_DIGITS = "5 of 10 items ask about the payload."
 FOUND = "0 OF 5 FOUND"
 ADOPTED = "Two of the two entries name the adopted pair."
+ALL_TEN = "All ten items ask about the payload."
+OUT_OF = "Nine out of ten items ask about the payload."
+# render.py's own two fields, verbatim in shape: `text` is the 80 character
+# display string, `full` is the whole line at 400.
+SHIPPED_S7 = ("The state's own letter says the company uses drones, "
+              "atmospheric observations, weather radar and modeling to "
+              "identify clouds and conditions suitable for seeding. Every one "
+              "of the ten items asks about the payload, the pyrotechnics or "
+              "the flight.")
+TRUNCATED = {"text": SHIPPED_S7[:80], "full": SHIPPED_S7}
 SEARCH_TERMS = ["artificial intelligence", "machine learning",
                 "automated speech recognition", "ASR", "AI"]
 
@@ -356,6 +380,11 @@ FIXTURES = [
        "selected": [1, 3], "terms": ["air"],
        "predicate": "name the air and the land"}],
      has_fail("matches NONE of the declared terms"), True),
+    # ---- Codex round four -------------------------------------------
+    ("1 full_text", TRUNCATED, [], has_fail("UNDECLARED subset"), True),
+    ("1 all_ten", ALL_TEN, [], has_fail("UNDECLARED subset"), True),
+    ("1 out_of", OUT_OF, [], has_fail("UNDECLARED subset"), True),
+
     # ---- Codex round two --------------------------------------------
     ("2 ratio_digits", NINE_DIGITS,
      [{"kind": "ratio", "slide": 7, "text": NINE_DIGITS, "members": ["C27"],
@@ -384,8 +413,9 @@ FIXTURES = [
 
 
 def render_report(text):
-    return {"slides": [{"file": "slide-07.html",
-                        "text_nodes": [{"text": text}]}]}
+    """A node is a string, or the {text, full} pair render.py actually emits."""
+    node = dict(text) if isinstance(text, dict) else {"text": text}
+    return {"slides": [{"file": "slide-07.html", "text_nodes": [node]}]}
 
 
 def main():
