@@ -1841,7 +1841,20 @@ too, SITE SIGN-OFF and GAS WATCH clean or not, plus SITE FIXES whenever
 the run repaired something. They are the only report the maintainer gets
 that the live site was looked at, and a silent pass is worth as much as a
 failure here, because silence is what a broken site would also produce.
-Anything the sign-off names as UNFIXED needs its reason beside it. Create the draft via the Gmail MCP
+Anything the sign-off names as UNFIXED needs its reason beside it.
+
+READ THE BUILT TABLE BEFORE YOU CREATE THE DRAFT (2026-09-20, No.64). Every
+gate in the battery reads the deck; nothing reads the BODY, and the body is
+prose assembled at write time from whatever shape the run recorded. No.64's
+table printed `GAS WATCH ['out/.../gaswatch_health.json', ...]` and no
+SITE SIGN-OFF row at all, on a day the live audit returned MAINTENANCE and
+the sign-off returned WARN with an UNFIXED finding. The same repr had
+already shipped in the drafts for 2026-08-08 and 2026-08-20. So after the
+payload is built, pull the sign-off table out of `html_body` and confirm it
+names VERDICTS and not filenames. One command, and it is the only thing
+standing between a WARN and a maintainer who never sees it.
+
+Create the draft via the Gmail MCP
 `create_draft` tool with the payload EXACTLY as the script emits it
 (subject, to, html_body).
 

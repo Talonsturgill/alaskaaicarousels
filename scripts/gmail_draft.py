@@ -38,6 +38,7 @@ import glob
 import html
 import io
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -103,6 +104,11 @@ ul.check{padding-left:20px;font-size:14px;} ul.check li{margin:5px 0;}
 import re as _re
 
 _POST_URL = _re.compile(r"https?://|doi\.org|www\.", _re.I)
+# A path to a file this run wrote, in the shapes run_state's artifact index
+# uses: no spaces, at least one directory separator, ending in a file
+# extension. A verdict line is prose and never matches; "out/2026-09-19/
+# cron_health.json" does. See _look.
+_PATHY = _re.compile(r"^[^\s]+/[^\s/]+\.[A-Za-z0-9]{1,6}$")
 # Sources/credits headers ("Sources for this deck", "Credits") match loosely;
 # media words ("Music", "Audio", "Sound", "Track") need the stronger
 # by/courtesy/credit signal so story sentences about sound never match.
@@ -550,6 +556,26 @@ def main():
                 if _v.get("fixes"):
                     _flat.setdefault("site_fixes", _v["fixes"])
 
+        # PHASE 3.6 WRITES ITS OWN BLOCK, and 2026-09-20 found it unread. That
+        # run recorded the checks under run_state["phase_3_6"] with the phase's
+        # own key names (site_signoff, gaswatch_live, gaswatch_pagecheck,
+        # cron_health, site_fixes), which is the tidiest shape any run has used
+        # and the only one this block could not see. Read it, mapping the live
+        # audit to gas_watch_verdict and the local page check to gas_watch so
+        # the outranking rule above still decides which one answers.
+        _p36 = _rs.get("phase_3_6") or _rs.get("phase36") or {}
+        if isinstance(_p36, dict):
+            for _dst, _srcs in (("site_signoff", ("site_signoff", "site_sign_off")),
+                                ("gas_watch_verdict", ("gaswatch_live", "gas_watch_live")),
+                                ("gas_watch", ("gaswatch_pagecheck", "gas_watch_pagecheck")),
+                                ("cron_health", ("cron_health",)),
+                                ("site_fixes", ("site_fixes", "fixes"))):
+                for _k in _srcs:
+                    _v = _p36.get(_k)
+                    if _v and not isinstance(_v, (dict, list, tuple)):
+                        _flat.setdefault(_dst, _v)
+                        break
+
         def _look(*keys):
             # KEY-outer, source-inner. The keys are in priority order, so
             # gas_watch_verdict (the LIVE audit) must be searched across every
@@ -557,11 +583,31 @@ def main():
             # Looping sources first meant a local PASS sitting in artifacts
             # still answered ahead of a live MAINTENANCE at the top level,
             # which is the same incident-hiding bug in its third costume.
+            #
+            # A FILENAME IS NEVER A VERDICT, in either of the two shapes the
+            # artifact index writes one. run_state's artifacts map each phase to
+            # a LIST OF FILENAMES, which is that field's documented shape, so
+            # artifacts["gas_watch"] is always a list of paths: truthy, not a
+            # dict, and 2026-09-20's draft duly printed
+            # "GAS WATCH ['out/2026-09-20/gaswatch_health.json', ...]" over a
+            # live verdict of MAINTENANCE. Some runs write ONE path instead of a
+            # list, and 2026-09-19's artifacts.cron_health is the bare string
+            # "out/2026-09-19/cron_health.json" while its phase_3_6.cron_health
+            # is "PASS" (Codex, PR #391): rejecting only lists would print the
+            # filename there and suppress the verdict, which is the same
+            # incident-hiding bug wearing a shorter coat. A verdict is prose, so
+            # anything that parses as a path to a file is refused whatever its
+            # type.
             for _k in keys:
                 for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
-                    if _v and not isinstance(_v, dict):
-                        return _v
+                    if not _v or isinstance(_v, bool):
+                        continue
+                    if not isinstance(_v, (str, int, float)):
+                        continue
+                    if isinstance(_v, str) and _PATHY.match(_v.strip()):
+                        continue
+                    return _v
             return None
 
         _substantive = 0
@@ -569,9 +615,18 @@ def main():
         for _label, _keys in (("SITE SIGN-OFF", ("site_signoff", "site_sign_off")),
                               # live verdict first, local line only if nothing live
                               ("GAS WATCH", ("gas_watch_verdict", "gas_watch")),
+                              # the scheduled-job audit, when the run recorded one.
+                              # It reports an UNRESOLVED blocker on days the gas
+                              # watch itself is clean, and this table is where the
+                              # maintainer looks for what was checked today.
+                              ("CRON HEALTH", ("cron_health",)),
                               ("SITE FIXES", ("site_fixes",))):
             _v = _look(*_keys)
-            if _v and _keys[0] != "site_fixes":
+            # Only the two the routine REQUIRES count toward the UNREPORTED
+            # guard below. cron_health and site_fixes are extras, and letting
+            # either satisfy the count would let a draft go out with no site
+            # sign-off and no warning that there is none.
+            if _v and _keys[0] not in ("site_fixes", "cron_health"):
                 _substantive += 1
             if _keys[0] == "site_fixes" and not _v:
                 _v = "none. Nothing on the live site needed repair this run."
@@ -613,10 +668,18 @@ def main():
     # anything measured whether they were read, which made every editorial call
     # a guess. Needs no credentials, the figures come from a public aggregate
     # endpoint. Never fatal: any failure just omits the section.
+    # GMAIL_DRAFT_NO_NETWORK=1 skips it entirely. The sign-off regression suite
+    # builds a real body per fixture and once per archived run, and at 70 calls
+    # a slow or half-open endpoint turns a bounded test into a 30 minute one
+    # issuing dozens of live requests (Codex, PR #391). A test is hermetic or it
+    # is not a test, and this section is the only thing in the build that leaves
+    # the machine.
     reader_html = ""
     try:
         rs_path = Path(__file__).resolve().parent / "read_stats.py"
-        if rs_path.exists():
+        if os.environ.get("GMAIL_DRAFT_NO_NETWORK") == "1":
+            rs_path = None
+        if rs_path and rs_path.exists():
             p = subprocess.run([sys.executable, str(rs_path), "--days", "7"],
                                capture_output=True, text=True, timeout=60)
             txt = (p.stdout or "").strip()

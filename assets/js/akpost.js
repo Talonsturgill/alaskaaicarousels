@@ -34,6 +34,31 @@
  *     sharpen: 0.35                     // unsharp amount; skip on halftone regions (moire)
  *   });
  *
+ * EVERY GRADING OPTION IS STICKY. THERE IS NO "JUST THE DITHER" CALL.
+ * (2026-09-20, run No.64, and it cost a whole render cycle.) The block above
+ * is a FULL options object, so it reads like a list of what you are passing.
+ * It is not: it is a list of what you get whether you pass it or not. Omit an
+ * option and grade() supplies its own default, and the defaults are not
+ * identities:
+ *
+ *     filmic      true    <- the ACES curve. `o.filmic !== false`
+ *     saturation  1.06
+ *     contrast    1.10    <- log-space, pivot 0.18
+ *     exposure    0.0     (this one IS an identity)
+ *
+ * So `AKPOST.grade(cx, {w, h, dither: true})` does NOT dither a frame and
+ * leave it otherwise alone. It runs the full tone chain over every pixel. Run
+ * No.64's risk register named IGN dither as the mitigation for a 900 px sky
+ * ramp; adding what looked like a dither-only call moved every value in every
+ * frame, took slide 06 from clean to nine label-crossing failures in ONE
+ * render, and silently invalidated the contact, contrast and encoding numbers
+ * already measured off the previous render. A grade is not additive to a
+ * finished frame; it REPLACES that frame's tone.
+ *
+ * To add dither and nothing else, say so:
+ *     AKPOST.grade(cx, {w, h, dither: true, filmic: false,
+ *                       saturation: 1, contrast: 1});
+ *
  * THE SHAPES ABOVE ARE ENFORCED (2026-07-26): a wrong option shape THROWS
  * (contrast is a NUMBER, lift/gain are TOP-LEVEL 3-element arrays), and an
  * unknown key is reported via console.error rather than silently ignored.

@@ -1,0 +1,224 @@
+{
+  "run_dir": "out/2026-09-20",
+  "render_report": "out/2026-09-20/render/render_report.json",
+  "aggregates_file": "out/2026-09-20/aggregates.json",
+  "detected": 16,
+  "declared": 17,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "19 FLARES",
+      "text": "19 FLARES OVER THE SOUTHERN KENAI, AUGUST 23RD",
+      "n": 19,
+      "subject": "flares"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 days",
+      "text": "Federal law bars anyone from changing the weather without filing a report, and the rule sets that filing at least 10 days before the activity begins. Rainmaker asked Alaska DNR first, and it answered with a letter of no objection.",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 days",
+      "text": "at least 10 days",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 DAYS",
+      "text": "FEDERAL, A FILING 10 DAYS AHEAD",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 DAYS",
+      "text": "SURFACE = NOTICE LEAD, 10 DAYS (C23)",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "10 drone flights",
+      "text": "Rainmaker flew 10 drone flights on August 23rd and its report puts the result at about 57 acre-feet, or roughly 19 million gallons, which works out to about 0.01 inches across the area. The state calls these modeled estimates, not water measured at the ground.",
+      "n": 10,
+      "subject": "drone flights"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "19 million gallons",
+      "text": "Rainmaker flew 10 drone flights on August 23rd and its report puts the result at about 57 acre-feet, or roughly 19 million gallons, which works out to about 0.01 inches across the area. The state calls these modeled estimates, not water measured at the ground.",
+      "n": 19,
+      "subject": "million gallons"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Ten required items",
+      "text": "Ten required items, on borough land only.",
+      "n": 10,
+      "subject": "required items"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TEN REQUIRED ITEMS",
+      "text": "SURFACE = TEN REQUIRED ITEMS (C27)",
+      "n": 10,
+      "subject": "required items"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Ten questions",
+      "text": "Ten questions. None about the model.",
+      "n": 10,
+      "subject": "questions"
+    },
+    {
+      "slide": 7,
+      "kind": "subset",
+      "fragment": "Every one of the ten",
+      "text": "The state's own letter says the company uses drones, atmospheric observations, weather radar and modeling to identify clouds and conditions suitable for seeding. Every one of the ten items asks about the payload, the pyrotechnics or the flight.",
+      "n": 10,
+      "of": 10
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 bills",
+      "text": "Alaska has no framework specific to weather modification and no state permit is required for cloud seeding. This session carries 856 bills and not one of them is on the subject. Federal law takes a filing, not a permission.",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 bills",
+      "text": "856 bills",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 BILLS",
+      "text": "856 BILLS. NONE FILED.",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 BILLS",
+      "text": "SURFACE = 856 BILLS, NONE FILED (C36)",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "ten questions",
+      "text": "Read the ten questions before that date.",
+      "n": 10,
+      "subject": "questions"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "4 km",
+      "note": "the section's printed span, a property of the drawing's own projection. This repo commits no Alaska elevation data, so the transect profile is shaped and never surveyed."
+    },
+    {
+      "slide": 1,
+      "text": "DATUM 0 m",
+      "note": "the fixed ground datum at y 960, a property of the drawing."
+    },
+    {
+      "slide": 6,
+      "text": "01TYPE OF CHEMICALS",
+      "note": "the zero padded row numbering. The ordinance numbers these items (1) through (10) in its own text; the two digit rendering is the drawing's."
+    }
+  ],
+  "subsets": [
+    {
+      "slide": 7,
+      "fragment": "Every one of the ten",
+      "member": "C27",
+      "predicate": "asks about the payload, the pyrotechnics or the flight, and not one asks about the model that chose the cloud and the moment. Items 1 to 5 are the payload, 3 and 4 the pyrotechnics, 6 to 10 the flight and the release",
+      "terms": [
+        "chemical",
+        "flare",
+        "pyrotechnic",
+        "material",
+        "msds",
+        "activities",
+        "flights",
+        "coordinates"
+      ],
+      "selected": [
+        {
+          "i": 1,
+          "text": "Type of chemicals that will be used to attempt weather modification"
+        },
+        {
+          "i": 2,
+          "text": "Quantity of chemicals that will be used"
+        },
+        {
+          "i": 3,
+          "text": "Quantity, type, manufacturer, serial number, and total weight of flares"
+        },
+        {
+          "i": 4,
+          "text": "Total pyrotechnic material used"
+        },
+        {
+          "i": 5,
+          "text": "MSDS for any chemicals or materials to be released"
+        },
+        {
+          "i": 6,
+          "text": "Frequency of weather modification activities or attempts"
+        },
+        {
+          "i": 7,
+          "text": "Duration and altitude of individual flights or activities"
+        },
+        {
+          "i": 8,
+          "text": "Total duration of all flights or activities"
+        },
+        {
+          "i": 9,
+          "text": "Maximum total flights or activities that will be attempted"
+        },
+        {
+          "i": 10,
+          "text": "Release coordinates, including predicted impacted areas"
+        }
+      ],
+      "remainder": []
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S1 '4 km' [design]",
+    "STALE declaration, no rendered string matches it: S1 'DATUM 0 m' [design]",
+    "STALE declaration, no rendered string matches it: S6 '01TYPE OF CHEMICALS' [design]",
+    "S7 'Ten questions. None about the model.' [from_claim]: the noun 'question' does not appear in claim C27; check that the number is being attached to what the claim actually counts.",
+    "S9 'Read the ten questions before that date.' [from_claim]: the noun 'question' does not appear in claim C27; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

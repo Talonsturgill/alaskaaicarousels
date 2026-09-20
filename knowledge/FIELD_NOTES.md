@@ -8024,3 +8024,142 @@ string form `ctx.filter` IS available and so are all the CSS text modifiers
 Playwright 1.62's `scale: "device"` screenshot option buys this engine nothing:
 it already renders at an explicit 2x backing store and asserts exact pixel
 dimensions.
+
+---
+
+## 2026-09-20 craft refresh (No.64)
+
+- **THE ENGRAVER'S LINE LAW IS THE FIX FOR "HAIRLINES ON A GRADIENT".** No.63's
+  scorer put artwork craft at 6 because slide 04 stroked uniform hairlines onto
+  a gradient where its dossier had specified an incised substrate. Traditional
+  engraving already solves this and states it as a rule: the cut line SWELLS
+  toward solid in shadow and THINS toward nothing in the highlight, and depth
+  increases with width, so a groove's width IS its depth and its darkness. A
+  constant-weight stroke is therefore not a shallow incision, it is a drawing of
+  a wire lying on top. Any incised feature this studio draws gets three strokes,
+  not one: a bright lip on the light side offset OUTSIDE the boundary, a dark
+  trough whose width varies with depth, and a shoulder that falls off. Source:
+  Longstride, engraving-style-techniques; Wikipedia, Engraving.
+- **THE RENDERED LADDER'S CURRENT REGISTER IS CLAY, NOT CHROME.** The 2022-2023
+  hyper-rendered look (chrome reflections, neon rims, mirror floors) now reads
+  as dated slop; what reads as expensive in 2026 is matte and muted, soft
+  shadows, restrained palette, simple geometric mass. This matters here because
+  akthree's PBR defaults land nearer chrome than clay, so a hero climbing the
+  ladder needs roughness pushed high and metalness near zero unless the story's
+  material is genuinely metal. Sources: getillustrations, emerging illustration
+  styles 2026; manypixels 2026 trends.
+- **TEXTURE IS BEING READ AS THE ANTI-AI SIGNAL.** The stated counter-movement
+  to generative art is heavy grain, visible tooth, litho flaws, physical
+  artifact. That is an argument for the grain tile and the paper-tooth pass
+  being load-bearing craft rather than finishing polish, and for the house
+  ban on unmotivated glassmorphism being a commercial rule and not only a taste
+  one. Source: RMCAD, science of texture in illustration.
+- Socialinsider's 2026 benchmark (1.3 million posts across 16,000 pages) still
+  puts native documents first at 7.00 percent engagement, now up 14 percent
+  year over year, with multi-image second at 6.45 and video third at 6.00. The
+  format bet in CAROUSEL_CRAFT is unchanged and strengthening; no rule moves.
+- One dissenting read worth holding lightly: several 2026 write-ups argue the
+  platform is shifting reward from slide decks toward original perspective and
+  expert framing. If that is real it is not a threat to this deck, which is
+  already an argument rather than a listicle, but it is a reason to keep the
+  thesis on the cover rather than a topic label.
+
+### Parked, 2026-09-20 frontier scan, focus (c), generative/procedural art
+
+**EROSION IS THE ONE LAND-SURFACE TECHNIQUE THIS HOUSE HAS NEVER BUILT, AND
+IT IS THE CHEAPER HALF THAT IS WORTH BUILDING.** The scan was run against this
+deck's own standing weakness, artwork craft, weakest in 8 of the last 11 runs
+and 6/10 again on No.64's first scoring pass for "a flat brown field carrying
+only faint contour squiggles". Two of the three usual answers are already
+mined out here: DOMAIN WARPING is `AK.warp2` in noise.js and is what
+`akrelief` already defaults to at strength 0.5, and RIDGED MULTIFRACTAL is
+already written down in TECHNIQUE_LIBRARY. What is genuinely absent is any
+form of EROSION, and erosion is the thing that separates a noise field from
+land, because it is what puts concave valley floors under convex ridges. A
+reader recognises the result without being able to name it.
+
+Two algorithms, and for an engraved SECTION the second is the better buy:
+
+1. DROPLET HYDRAULIC EROSION. Spawn a droplet at a random cell, blend its
+   heading with the negative bilinear gradient by `inertia`, step one cell,
+   set capacity from speed x water x slope, erode through a distance-weighted
+   brush or deposit bilinearly, evaporate, repeat. Reference defaults:
+   erosionRadius 3, inertia 0.05, sedimentCapacityFactor 4,
+   minSedimentCapacity 0.01, erodeSpeed 0.3, depositSpeed 0.3,
+   evaporateSpeed 0.01, gravity 4, maxDropletLifetime 30, initialWaterVolume
+   1, initialSpeed 1.
+   https://github.com/SebLague/Hydraulic-Erosion/blob/master/Assets/Scripts/Erosion.cs
+   It produces dendritic drainage, which is a PLAN-VIEW pleasure. On a section
+   line it mostly buys a smoother profile, so its natural customer here is the
+   locator key and `akrelief`, not `aksection`.
+
+2. THERMAL EROSION, the talus-angle model (Benes; Jako's parallel form).
+   For each cell take the eight height differences, move `Kt * (Hmax / 2)` of
+   material and distribute it among the lower neighbours in proportion to
+   their height difference, but ONLY to neighbours whose slope exceeds the
+   talus threshold `R(x,y) * Ka + Ki`, where R is a local hardness field. HALF
+   the maximum difference is the anti-oscillation term and is not a tuning
+   choice. https://old.cescg.org/CESCG-2011/papers/TUBudapest-Jako-Balazs.pdf
+   (read with scripts/fetch_pdf_text.py; WebFetch returns it as binary).
+   This is the one for a cut section: it makes crisp ridgelines with straight
+   scree slopes standing at a constant angle, which is what a drawn bluff and
+   a talus fan actually look like, it is a handful of neighbour passes rather
+   than tens of thousands of droplets, and it converges instead of needing a
+   droplet budget. It also has an honest hook into this house's existing
+   vocabulary: `R(x,y)` is hardness, so a STORY QUANTITY can drive which
+   ground resists, exactly the way `akengrave`'s `form` already carries one.
+
+WHY PARKED, not applied. The 0-3 budget went reactive-first to the two gate
+gaps that cost this run five editing rounds, plus the akpost note. Beyond the
+budget, this is not a bounded one-run change: it needs a decision about WHICH
+surface it feeds (`akrelief`'s heightfield, `akengrave`'s `form`, or
+`AKSECT.profile`), a render-deadline budget measured against the engine's real
+per-slide times, and its own reconstruction proving the surface MEASURABLY
+changes rather than merely that the function was called. Build it in a run
+whose deck actually wants a bluff, not in a retro.
+
+### READ THE DRAFT BEFORE YOU SEND IT TO THE MAILBOX (2026-09-20, Phase 13, No.64)
+
+The one human deliverable is the email. Every gate in the battery reads the
+DECK. Nothing reads the BODY, and the body is prose assembled at write time
+from whatever shape the run happened to record, which is where this kind of
+defect lives.
+
+No.64's sign-off table read:
+
+    GAS WATCH   ['out/2026-09-20/gaswatch_health.json', 'out/2026-09-20/cron_health.json']
+
+with no SITE SIGN-OFF row at all, on a day the live audit returned
+MAINTENANCE and the sign-off returned WARN with an UNFIXED finding. Both
+verdicts existed and both were in `run_state.json`. Two faults met:
+`artifacts` maps each phase to a LIST OF FILENAMES, which is that field's
+documented shape, and `_look` rejected dicts while accepting everything else,
+so the list answered ahead of the verdict; and this run recorded Phase 3.6
+under `run_state["phase_3_6"]`, a tidier shape than any earlier run had used
+and therefore one nothing read.
+
+That section already carries three comment blocks about three earlier
+versions of the same bug. This was the fourth, and the UNREPORTED guard could
+not catch it either, because a filename list counted as a substantive answer.
+
+Two lessons, and the second is the transferable one.
+
+1. A LIST IS NEVER A VERDICT. When a reporting field can be fed from several
+   scopes, accept only the TYPE a line can be, and reject everything else.
+   `not isinstance(v, dict)` was a blocklist, and a blocklist of shapes is
+   wrong the moment a new shape appears. `isinstance(v, str)` is an allowlist.
+2. A GUARD THAT COUNTS ANSWERS IS FOOLED BY A WRONG ANSWER. The UNREPORTED
+   banner fires when fewer than two substantive lines are found. Anything
+   truthy satisfied it, so the section's own safety net was defeated by the
+   very value that made it necessary. If a guard exists to catch a MISSING
+   report, it has to be satisfied by a VALID report, not a present one.
+
+`tests/gmail_signoff_verify.py` is the reconstruction: it renders a real draft
+body per fixture, reads the table out of the emitted bytes, and renders all 64
+shipped `run_state.json` files. It found the same repr had already shipped in
+the drafts for 2026-08-08 and 2026-08-20, so this had been wrong in the
+maintainer's inbox three times before anyone read a table closely.
+
+So Phase 13 now has a step before `create_draft`: read the built body's
+sign-off table and confirm it names verdicts. It costs one command and it is
+the only check that stands between a WARN and a maintainer who never sees it.

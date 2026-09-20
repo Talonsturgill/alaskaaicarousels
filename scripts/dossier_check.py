@@ -454,6 +454,169 @@ def strip_citations(s):
     return s
 
 
+# --- THE DECLARED TECHNIQUE STACK, AGAINST THE SLIDE'S OWN SCRIPT TAGS ------
+#
+# (2026-09-20, run No.64.) EIGHT OF NINE DOSSIERS NAMED `akthree` -- for the
+# slab, the steps, the port and the ring -- AND NO FRAME IN THE DECK LOADED
+# three.js. Every slab, step, boss and ring was an `aksection` primitive or
+# canvas lathing. The claim survived planning, the build, two full pixel rounds
+# and a flow read; three pixel critics then found it INDEPENDENTLY in round
+# three by opening the slides and reading the `<script>` list themselves, which
+# is a machine's job. It cost most of a review round.
+#
+# Both sides of that comparison are a list of library names, and both were
+# already on disk. So: a library named in a dossier's field 7 must be loaded by
+# that slide. One direction only, deliberately, and the same way the contact
+# promise is policed -- a slide that USES something its dossier never mentioned
+# is unremarkable, while a plan that promises a technique the frame can't
+# possibly contain is the defect.
+#
+# If a dossier needs to mention a library it did NOT use, it must not put it in
+# backticks. A backtick in field 7 is this house's notation for "this shipped",
+# and the fix for a false positive is to write around it, not to teach the gate
+# to read negations (the 2026-09-20 "NO CONTACT SHADOW IS PROMISED" precedent).
+F7_RE = re.compile(
+    r"^\s*(?:\*{1,2}|_{1,2})?\s*7[.)]\s*\*{0,2}\s*Technique\s+stack", re.I | re.M)
+F7_END_RE = re.compile(
+    r"^\s*(?:\*{1,2}|_{1,2})?\s*(?:7[a-z]|8)[.)]|^#{1,4}[ \t]+\S", re.M)
+BACKTICK_RE = re.compile(r"`([^`]+)`")
+SCRIPT_SRC_RE = re.compile(r"""<script[^>]*\bsrc\s*=\s*['"]([^'"]+)['"]""", re.I)
+# A COMPUTED IMPORT PATH IS THE ESTABLISHED FORM HERE, NOT AN EDGE CASE (Codex,
+# PR #391). The first cut only recognised `import('literal')`, and
+# runs/2026-09-01's five akthree slides all write
+# `const {init} = await import(A + '/js/akthree.js')` inside glRow(), with the
+# asset root in a variable. Run against that archived deck the check reported
+# that slide 01's field 7 named `AKT.objectHero` while the slide never loaded
+# akthree.js, which is a FALSE FAILURE on a correct technique stack, and a gate
+# that false-fails is worse than no gate because the next run learns to ignore
+# it. So the whole import ARGUMENT is read and any .js string literal in it
+# counts, whatever it is concatenated with. One level of nested parens is
+# tolerated inside the argument.
+IMPORT_CALL_RE = re.compile(r"\bimport\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)")
+IMPORT_FROM_RE = re.compile(r"""\bfrom\s*['"]([^'"]+\.js)['"]""")
+JS_LITERAL_RE = re.compile(r"""['"]([^'"]*\.js)['"]""")
+SCRIPT_BODY_RE = re.compile(r"(<script\b[^>]*>)(.*?)(</script\s*>)", re.I | re.S)
+JS_BLOCK_COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
+# Not after a colon, so a protocol-relative or absolute URL keeps its slashes.
+JS_LINE_COMMENT_RE = re.compile(r"(?<!:)//[^\n]*")
+
+
+def strip_js_comments(js):
+    return JS_LINE_COMMENT_RE.sub(" ", JS_BLOCK_COMMENT_RE.sub(" ", js or ""))
+# Library names that are not the stem of their own file.
+LIB_ALIAS = {
+    "d3": "d3.v7.min.js",
+    "topojson": "topojson-client.min.js",
+    "zdog": "zdog.min.js",
+    "three": "three.module.min.js",
+    "three.js": "three.module.min.js",
+}
+# Global handles that belong to EXACTLY ONE library, so a dossier that writes
+# `AKT.environment` has named akthree as surely as if it had written the file
+# name. `AK` is deliberately absent: noise.js, aktype.js, aklabel.js,
+# akrelief.js and akhachure.js all publish into it, so `AK.grainTile` is not
+# attributable to any one library and this gate does not guess.
+HANDLE_LIB = {
+    "AKT": "akthree", "AKTHREE": "akthree", "AKSDF": "aksdf", "AKPOST": "akpost",
+    "AKSECT": "aksection", "AKENGRAVE": "akengrave", "AK3D": "ak3d",
+    "AKC": "akcolor", "AKSNOW": "aksnow", "AKDISC": "akdisc", "AKDRIFT": "akdrift",
+    "AKHOLD": "akhold", "AKNIGHT": "aknight", "AKPOUR": "akpour",
+    "AKRAIL": "akrail", "AKSEAM": "akseam", "AKSHEET": "aksheet",
+    "AKSTIPPLE": "akstipple", "AKICE": "akunderice", "AKFIT": "akfit",
+    "AKPARCEL": "akparcel", "AKCOL": "akcolumn", "AKAX": "akcolumn",
+}
+ASSET_JS = Path(__file__).resolve().parents[1] / "assets" / "js"
+
+
+def library_files():
+    """{library name -> filename} for every art library committed to assets/js."""
+    table = {}
+    if not ASSET_JS.is_dir():
+        return table
+    for p in sorted(ASSET_JS.glob("*.js")):
+        table[p.stem.lower()] = p.name
+    for alias, fname in LIB_ALIAS.items():
+        if (ASSET_JS / fname).exists():
+            table[alias] = fname
+    return table
+
+
+def field_7(body):
+    """The dossier's TECHNIQUE STACK block, or None."""
+    m = F7_RE.search(body)
+    if not m:
+        return None
+    rest = body[m.end():]
+    n = F7_END_RE.search(rest)
+    return rest[:n.start()] if n else rest
+
+
+def libs_loaded(src):
+    """{filename} every .js the slide actually pulls in, static or dynamic.
+
+    HTML COMMENTS ARE NOT MARKUP (Codex, PR #391). The first cut scanned raw
+    source, so a dossier could promise `akthree`, leave an obsolete
+    `<!-- <script src=".../akthree.js"></script> -->` in the file, and pass on
+    a tag the browser never executes. Commented-out script tags are exactly
+    what a build leaves behind when a technique is abandoned, which is the
+    same moment the dossier goes stale, so this is the likeliest way the gate
+    would have been fooled."""
+    src = re.sub(r"<!--.*?-->", " ", src or "", flags=re.S)
+    out = set()
+    for u in SCRIPT_SRC_RE.findall(src):
+        out.add(u.rsplit("/", 1)[-1])
+    # AND JS COMMENTS ARE NOT CODE (Codex, PR #391, fourth pass). The same
+    # argument as the HTML comment: `// import('/js/akthree.js')` and its
+    # block-comment twin are exactly what an abandoned technique leaves in a
+    # slide's script. Stripped from the SCRIPT BODIES only, and a line comment
+    # is not recognised after a colon, so `https://` in a url survives.
+    src = SCRIPT_BODY_RE.sub(lambda m: m.group(1) + strip_js_comments(m.group(2))
+                             + m.group(3), src)
+    for arg in IMPORT_CALL_RE.findall(src):
+        for u in JS_LITERAL_RE.findall(arg):
+            out.add(u.rsplit("/", 1)[-1])
+    for u in IMPORT_FROM_RE.findall(src):
+        out.add(u.rsplit("/", 1)[-1])
+    return out
+
+
+def libs_named(block, table):
+    """{library name -> the token that named it} for a field-7 block."""
+    named = {}
+    for tok in BACKTICK_RE.findall(block or ""):
+        t = tok.strip()
+        low = t.lower()
+        if low in table:
+            named.setdefault(low, t)
+            continue
+        m = re.match(r"^(AK[A-Z0-9]*)\s*\.", t)
+        if m and m.group(1) in HANDLE_LIB:
+            lib = HANDLE_LIB[m.group(1)]
+            if lib in table:
+                named.setdefault(lib, t)
+    return named
+
+
+def technique_fails(no, body, loaded, table):
+    """FAIL lines for libraries this dossier names and this slide never loads."""
+    block = field_7(body)
+    if block is None or not table:
+        return []
+    fails = []
+    for lib, tok in sorted(libs_named(block, table).items()):
+        if table[lib] in loaded:
+            continue
+        fails.append(
+            f"slide {no:02d}: field 7 names `{tok}` and the slide never loads "
+            f"{table[lib]}. It loads {', '.join(sorted(loaded)) or 'nothing'}. "
+            "Eight of nine dossiers claimed akthree on 2026-09-20 and no frame "
+            "in that deck loaded three.js; three pixel critics found it by "
+            "reading the script tags in round three. Name what shipped, or "
+            "load it. A library you mention but did not use does not go in "
+            "backticks")
+    return fails
+
+
 def copy_field(body):
     """The dossier's COPY block, or None."""
     m = COPY_FIELD_RE.search(body)
@@ -652,6 +815,8 @@ def main():
     contacts = {}
     parse_fails = {}
     runtime = {}
+    loaded = {}
+    lib_table = library_files()
     built = set()
     if sdir.is_dir():
         for p in sdir.glob("slide-*.html"):
@@ -664,6 +829,7 @@ def main():
                 contacts[n] = contacts_declared(src)
                 parse_fails[n] = declaration_parse_fails(n, src)
                 runtime[n] = runtime_declarations(src)
+                loaded[n] = libs_loaded(src)
                 built.add(n)
 
     # THE CLAIMS THE COPY LEANS ON. Read here rather than in check_slide so a
@@ -693,6 +859,8 @@ def main():
         # An unparseable declaration is a fail whether or not the dossier
         # promised anything, so it is merged in outside check_slide().
         f = parse_fails.get(no, []) + f
+        if no in built:
+            f = f + technique_fails(no, body, loaded.get(no, set()), lib_table)
         if no == sections[0][0]:
             w = runtime_warn({k: v for k, v in runtime.items() if v}) + w
         if claims_note is None:

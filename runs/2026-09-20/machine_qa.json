@@ -1,0 +1,176 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'a gold line leaves the top and nothing returns to the ground it left': dE 15.7, AUC 0.88, visible 100%/100%, seen 2912/3072px at 432w"
+      ],
+      "contacts": [
+        "'the spruce stand on the cut face': shadow L* 5.7 vs ground L* 18.2, dL 12.5 at 432w"
+      ],
+      "motifs": [
+        "'the notice path leaving the top of the frame': canvas 125.4 dE, page 125.4 dE, 98% of its rect is clear of opaque DOM (div.count stands on the rest)",
+        "'the lit lip of the earth slab at the datum': canvas 37.0 dE, page 52.3 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)"
+      ],
+      "fits": [
+        "disp 'EVERY NOTICE WENT UP.NONE CAME DOWN.' fits 2/2 lines at 58px"
+      ],
+      "asserts": [
+        "'19 flares, one mark each' holds: 19 vs 19 marks, counted over 19 declared marks (within 0)",
+        "'19 flares, one mark each': 19 mark centres probed at r=14px, cohort median 71.2 dE, all present (weakest 62.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'two lines leave the top and the ground label has none': dE 17.0, AUC 0.91, visible 100%/98%, seen 2880/4704px at 432w"
+      ],
+      "motifs": [
+        "'the ten day rise cut into the slab': canvas 35.2 dE, page 58.8 dE, 91% of its rect is clear of opaque DOM (div.chip stands on the rest)"
+      ],
+      "fits": [
+        "head 'Notice was given.It went up.' fits 2/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'state ground is one continuous solid and borough ground is a scatter of separated mesas': dE 14.8, AUC 0.66, visible 100%/100%, seen 437/437px at 432w"
+      ],
+      "contacts": [
+        "'the galvanized rail on the state ground': shadow L* 9.6 vs ground L* 61.9, dL 52.3 at 432w"
+      ],
+      "motifs": [
+        "'the separated borough mesas': canvas 82.8 dE, page 85.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)",
+        "'the water film on the galvanized rail': canvas 22.3 dE, page 34.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The drones flewover state land.' fits 2/2 lines at 67.5px"
+      ],
+      "asserts": [
+        "'the film is drawn at the thickness the label prints' holds: 12 vs 12 px (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the film the story is about is a sliver against a one inch reference that does not fit the': dE 10.8, AUC 0.64, visible 100%/100%, seen 296/1976px at 432w"
+      ],
+      "contacts": [
+        "'the dry rail on the deep ground': shadow L* 15.9 vs ground L* 30.0, dL 14.1 at 432w"
+      ],
+      "motifs": [
+        "'the 0.01 inch film at the foot of the reference column': canvas 63.7 dE, page 65.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the dashed phantom film on the dry rail': canvas 43.5 dE, page 48.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head '19 million gallonsis a hundredth of an inch.' fits 2/2 lines at 65.5px"
+      ],
+      "asserts": [
+        "'0.01 in drawn against a 1.00 in reference, both from one variable' holds: 8.8 vs 8.8 px (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'a drilled bore on the left and a port that was cast and never drilled on the right': dE 21.0, AUC 0.77, visible 100%/100%, seen 1225/1280px at 432w"
+      ],
+      "contacts": [
+        "'the blind port boss on borough ground': shadow L* 17.6 vs ground L* 36.1, dL 18.5 at 432w"
+      ],
+      "motifs": [
+        "'the blind port, cast and never drilled': canvas 107.8 dE, page 107.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the drilled bore it is compared against': canvas 60.9 dE, page 61.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the scribed circle is the same diameter as the drilled bore': canvas 106.4 dE, page 107.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The borough's portwas never drilled.' fits 2/2 lines at 67.5px"
+      ],
+      "asserts": [
+        "'the scribed circle is the same diameter as the drilled bore' holds: 40 vs 40 px (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'ten things are cut into the ground and an eleventh is drawn and never opened': dE 6.5, AUC 0.69, visible 64%/68%, seen 43008/8682px at 432w"
+      ],
+      "motifs": [
+        "'the ten cut terraces': canvas 48.9 dE, page 89.9 dE, 63% of its rect is clear of opaque DOM (div.row stands on the rest)",
+        "'the eleventh position, scribed and never cut': canvas 4.3 dE, page 31.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The boroughwrote a form.' fits 2/2 lines at 63.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the form has a row shaped hole in it': dE 7.7, AUC 0.82, visible 100%/100%, seen 12288/1040px at 432w"
+      ],
+      "motifs": [
+        "'the void at the eleventh position': canvas 66.1 dE, page 116.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Ten questions.None about the model.' fits 2/2 lines at 65.5px"
+      ],
+      "asserts": [
+        "'the void is exactly one terrace wide' holds: 348 vs 348 px (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the tally band is a dense population of incised marks and the ground above it is bare': dE 11.2, AUC 0.70, visible 100%/100%, seen 9240/2800px at 432w"
+      ],
+      "motifs": [
+        "'the tally band of 856 incised marks': canvas 63.2 dE, page 65.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the empty gold ring at Juneau': canvas 109.6 dE, page 109.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Everyone can ask.Almost nobody can act.' fits 2/2 lines at 63.5px"
+      ],
+      "asserts": [
+        "'855 of 856 bills cut as one mark each, the 856th socket left open' holds: 855 vs 855 marks, counted over 855 declared marks (within 0)",
+        "'855 of 856 bills cut as one mark each, the 856th socket left open': 214 mark centres probed at r=4px, sampled every 4 marks, cohort median 49.9 dE, all present (weakest 40.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'after eight frames of lines leaving the top, one line comes down and stops on a dated ring': dE 34.3, AUC 0.92, visible 100%/100%, seen 15680/595px at 432w"
+      ],
+      "contacts": [
+        "'the dated ring on the final step': shadow L* 5.5 vs ground L* 26.4, dL 20.8 at 432w"
+      ],
+      "motifs": [
+        "'the thirty daily steps descending to the hearing': canvas 96.1 dE, page 83.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the dated ring seated on the landing': canvas 79.6 dE, page 80.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'One room.October 20th.' fits 2/2 lines at 67.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

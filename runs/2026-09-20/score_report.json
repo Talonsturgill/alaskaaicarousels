@@ -1,0 +1,99 @@
+{
+ "run_date": "2026-09-20",
+ "carousel_no": 64,
+ "threshold": 8.3,
+ "weighted_total": 8.5,
+ "ship": true,
+ "passes": 2,
+ "pass_1": {
+  "raw": 7.88,
+  "weighted_total": 6.9,
+  "capped_by": "one hard fail: slide 07 printed 'Nine of the ten items ask about the payload. The tenth asks for coordinates.', which C27's verbatim contradicts. Items 6 through 9 are flight questions; five of ten are payload. Slide 06 printed those four rows verbatim one swipe earlier."
+ },
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc and swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft and genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity and local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density and factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility and platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice and hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "0.98+1.12+1.12+1.12+0.96+0.80+0.64+0.56+0.40+0.80 = 8.50",
+ "weakest_criterion": "Artwork craft and genuine detail, 7 of 10, heaviest weight at 0.16",
+ "one_sentence_fix": "Carry the strata beds all the way to the bottom of the slab on 01, 06, 08 and 09 instead of thinning them out, and rebuild slide 09's room so its thirty treads read as steps rather than as a striped trapezoid.",
+ "review_history": {
+  "pixel_rounds": [
+   {
+    "round": 1,
+    "mean": 6.4
+   },
+   {
+    "round": 2,
+    "mean": 6.1
+   },
+   {
+    "round": 3,
+    "mean": 6.6
+   }
+  ],
+  "flow_rounds": [
+   {
+    "round": 1,
+    "score": 7.5,
+    "bail_point": 6
+   }
+  ],
+  "edit_rounds_after_first_render": 5
+ },
+ "editor_notes": [
+  "The Phase 11 docs/ rebuild and the merge to main must land BEFORE the draft is mailed: the email's image and PDF URLs point at main and site_fresh is FAIL until then.",
+  "Three gate rows are amber by design and are named in the draft: gas_watch and gas_watch_live inside CINGSA's disclosed September 14th to 21st maintenance window, and cron_health on output:docket-watch, where the collector fix merged to main as 3ddad816 and only the 14:20Z scheduled run, after this run ends, can supply production evidence.",
+  "Comment risk: slide 02's two gold terminals can be read as asserting Rainmaker filed with NOAA, which the copy was deliberately corrected NOT to claim. The frame names the federal REQUIREMENT. No claim in this run verifies the filing was made.",
+  "On Rep. Sarah Vance, hold the line C36 sets: none of the 856 bills is filed, never that nobody is working on one."
+ ]
+}
