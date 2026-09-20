@@ -8024,3 +8024,42 @@ string form `ctx.filter` IS available and so are all the CSS text modifiers
 Playwright 1.62's `scale: "device"` screenshot option buys this engine nothing:
 it already renders at an explicit 2x backing store and asserts exact pixel
 dimensions.
+
+---
+
+## 2026-09-20 craft refresh (No.64)
+
+- **THE ENGRAVER'S LINE LAW IS THE FIX FOR "HAIRLINES ON A GRADIENT".** No.63's
+  scorer put artwork craft at 6 because slide 04 stroked uniform hairlines onto
+  a gradient where its dossier had specified an incised substrate. Traditional
+  engraving already solves this and states it as a rule: the cut line SWELLS
+  toward solid in shadow and THINS toward nothing in the highlight, and depth
+  increases with width, so a groove's width IS its depth and its darkness. A
+  constant-weight stroke is therefore not a shallow incision, it is a drawing of
+  a wire lying on top. Any incised feature this studio draws gets three strokes,
+  not one: a bright lip on the light side offset OUTSIDE the boundary, a dark
+  trough whose width varies with depth, and a shoulder that falls off. Source:
+  Longstride, engraving-style-techniques; Wikipedia, Engraving.
+- **THE RENDERED LADDER'S CURRENT REGISTER IS CLAY, NOT CHROME.** The 2022-2023
+  hyper-rendered look (chrome reflections, neon rims, mirror floors) now reads
+  as dated slop; what reads as expensive in 2026 is matte and muted, soft
+  shadows, restrained palette, simple geometric mass. This matters here because
+  akthree's PBR defaults land nearer chrome than clay, so a hero climbing the
+  ladder needs roughness pushed high and metalness near zero unless the story's
+  material is genuinely metal. Sources: getillustrations, emerging illustration
+  styles 2026; manypixels 2026 trends.
+- **TEXTURE IS BEING READ AS THE ANTI-AI SIGNAL.** The stated counter-movement
+  to generative art is heavy grain, visible tooth, litho flaws, physical
+  artifact. That is an argument for the grain tile and the paper-tooth pass
+  being load-bearing craft rather than finishing polish, and for the house
+  ban on unmotivated glassmorphism being a commercial rule and not only a taste
+  one. Source: RMCAD, science of texture in illustration.
+- Socialinsider's 2026 benchmark (1.3 million posts across 16,000 pages) still
+  puts native documents first at 7.00 percent engagement, now up 14 percent
+  year over year, with multi-image second at 6.45 and video third at 6.00. The
+  format bet in CAROUSEL_CRAFT is unchanged and strengthening; no rule moves.
+- One dissenting read worth holding lightly: several 2026 write-ups argue the
+  platform is shifting reward from slide decks toward original perspective and
+  expert framing. If that is real it is not a threat to this deck, which is
+  already an argument rather than a listicle, but it is a reason to keep the
+  thesis on the cover rather than a topic label.
