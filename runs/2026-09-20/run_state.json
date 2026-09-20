@@ -1,115 +1,124 @@
 {
- "run_date": "2026-09-20",
- "carousel_no": 64,
- "date_note": "run_guard CLEAR; runs/2026-09-19 holds No.63. Anchorage clock read 23:08 on Sep 19 at wake, so this run takes the date Anchorage rolls into.",
- "branch": "tsturg/nifty-ptolemy-ck4aaz",
- "phases": {
-  "wake": "done",
-  "craft_refresh": "done",
-  "research": "done",
-  "claims": "done",
-  "docket": "done",
-  "gas_watch": "done",
-  "selection": "done",
-  "directors_room": "done",
-  "copy": "done",
-  "art_build": "done",
-  "pixel_review": "done",
-  "flow_review": "done",
-  "assemble": "done",
-  "scoring": "done",
-  "ship": "done",
-  "upgrade": "done",
-  "gmail": "pending",
-  "retro": "pending"
- },
- "artifacts": {
-  "wake": [
-   "out/2026-09-20/plan.md",
-   "out/2026-09-20/run_state.json",
-   "out/2026-09-20/WORKLOG.md"
-  ],
-  "craft_refresh": [
-   "knowledge/FIELD_NOTES.md (2026-09-20 entry)"
-  ],
-  "research": [
-   "out/2026-09-20/scout_merge.md",
-   "out/2026-09-20/scouts/"
-  ],
-  "docket": [
-   "ledger/docket.json (6 items refreshed)"
-  ],
-  "gas_watch": [
-   "out/2026-09-20/gaswatch_health.json",
-   "out/2026-09-20/cron_health.json"
-  ],
-  "selection": [
-   "out/2026-09-20/selection.md"
-  ],
-  "claims": [
-   "out/2026-09-20/claims.json (38 claims, 35 primary, gate PASS)",
-   "out/2026-09-20/primary_sources.md"
-  ],
-  "directors_room": [
-   "out/2026-09-20/storyboard.md (dossier_check PASS, 9 dossiers, 0 fails, 0 warns)"
-  ],
-  "copy": [
-   "out/2026-09-20/caption.txt",
-   "out/2026-09-20/copy.json",
-   "out/2026-09-20/caption_report.json"
-  ],
-  "art_build": [
-   "out/2026-09-20/slides/ (9)",
-   "out/2026-09-20/render/ (9 PNG)",
-   "assets/js/aksection.js"
-  ],
-  "assemble": [
-   "out/2026-09-20/final/carousel.pdf (vector, 9.33 MB)",
-   "out/2026-09-20/final/contact_sheet.png",
-   "out/2026-09-20/final/thumbs/"
-  ],
-  "pixel_review": [
-   "3 rounds across 9 slides, per-slide means 6.4, 6.1, 6.6",
-   "5 editing rounds after the first render",
-   "out/2026-09-20/render/machine_qa.json (PASS, 0 fails, 0 warns)"
-  ],
-  "flow_review": [
-   "1 round, 7.5, predicted bail point slide 06, fixed by retitle plus a take-home line"
-  ],
-  "scoring": [
-   "out/2026-09-20/score_report.json (pass 1: 7.88 raw capped to 6.9 by one hard fail; pass 2: 8.50, ship)"
-  ],
-  "ship": [
-   "runs/2026-09-20/ (WebP + og.jpg + vector PDF, 17 MB)",
-   "docs/ rebuilt, 118 pages, 64 decks",
-   "ledger/topics.json, artwork.json, captions.json, instincts.json appended",
-   "PR #391"
-  ],
-  "upgrade": [
-   "ledger/upgrades.json",
-   "out/2026-09-20/automation_retro.md"
-  ],
-  "gmail": [
-   "NOT YET WRITTEN. Phase 13 runs after the merge to main, because the draft's image and PDF URLs point at raw.githubusercontent.com on main. scripts/wrap_run.py syncs the draft id into this file when it exists."
-  ],
-  "retro": [
-   "out/2026-09-20/automation_retro.md",
-   "out/2026-09-20/WORKLOG.md (deleted by scripts/wrap_run.py at wrap)"
-  ]
- },
- "phase_3_6": {
-  "site_signoff": "WARN, 117 pages, 18 checks, UNFIXED gaswatch.jsonl is current",
-  "gaswatch_pagecheck": "WARN, published reading 2026-09-13, 7 days old",
-  "gaswatch_live": "MAINTENANCE, checked 2026-09-20T07:15:15Z, CINGSA announced window 2026-09-14 to 2026-09-21, cron healthy, nothing carried forward",
-  "cron_health": "WARN at ship time on output:docket-watch, with out/2026-09-20/cron_incidents.json carrying the record. The collector defect was diagnosed, fixed, reviewed by Codex on the current head and merged to main as 3ddad816 (PR #390) at 07:25Z. The audit row reads the queue committed on main, which only the scheduled collection rewrites; the cron is 20 14 * * * and today's 14:20Z run, after this run ends, is the first to carry the fix. Re-audited at 09:00Z with every other row passing. The next daily run re-audits it.",
-  "site_fixes": "none needed on presentation; the only site finding is the disclosed CINGSA pause"
- },
- "status": "shipped",
- "codex_review": {
-  "pr": 391,
-  "head_reviewed": "ad2e9e4",
-  "findings": 7,
-  "disposition": "All seven verified and FIXED, none declined. P1: C10 read 'public hearing and final vote' where its verbatim is '(Hearing on 10/20/26)', which schedules a hearing and does not establish that the Assembly acts the same day; the claim, slide 09 and the dossier now say hearing. P2 x6 in assets/js/aksection.js and this file: the vertical light came from azimuth so elDeg fed nothing but rake and every flat lit lip sat on its 0.30 floor; incise() multiplied the horizontal key by zero so a vertical groove could not put its lip up-light; a two point ribbon had zero area so every locator tick rendered as bare casing; a constant casing pad ended every tapered ribbon in a blunt cap; strata depth was measured off the canvas rather than the slab so beds 3 to 6 fell off the frame; and this run_state was committed still marking five phases pending."
- },
- "status_note": "shipped means the deck cleared every gate, scored 8.50 against 8.30 and is merged; it becomes complete when Phase 13 records the Gmail draft id. The deck itself is final: nothing after this point changes a pixel or a claim."
+  "run_date": "2026-09-20",
+  "carousel_no": 64,
+  "date_note": "run_guard CLEAR; runs/2026-09-19 holds No.63. Anchorage clock read 23:08 on Sep 19 at wake, so this run takes the date Anchorage rolls into.",
+  "branch": "tsturg/nifty-ptolemy-ck4aaz",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": "done",
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
+  },
+  "artifacts": {
+    "wake": [
+      "out/2026-09-20/plan.md",
+      "out/2026-09-20/run_state.json",
+      "out/2026-09-20/WORKLOG.md"
+    ],
+    "craft_refresh": [
+      "knowledge/FIELD_NOTES.md (2026-09-20 entry)"
+    ],
+    "research": [
+      "out/2026-09-20/scout_merge.md",
+      "out/2026-09-20/scouts/"
+    ],
+    "docket": [
+      "ledger/docket.json (6 items refreshed)"
+    ],
+    "gas_watch": [
+      "out/2026-09-20/gaswatch_health.json",
+      "out/2026-09-20/cron_health.json"
+    ],
+    "selection": [
+      "out/2026-09-20/selection.md"
+    ],
+    "claims": [
+      "out/2026-09-20/claims.json (38 claims, 35 primary, gate PASS)",
+      "out/2026-09-20/primary_sources.md"
+    ],
+    "directors_room": [
+      "out/2026-09-20/storyboard.md (dossier_check PASS, 9 dossiers, 0 fails, 0 warns)"
+    ],
+    "copy": [
+      "out/2026-09-20/caption.txt",
+      "out/2026-09-20/copy.json",
+      "out/2026-09-20/caption_report.json"
+    ],
+    "art_build": [
+      "out/2026-09-20/slides/ (9)",
+      "out/2026-09-20/render/ (9 PNG)",
+      "assets/js/aksection.js"
+    ],
+    "assemble": [
+      "out/2026-09-20/final/carousel.pdf (vector, 9.33 MB)",
+      "out/2026-09-20/final/contact_sheet.png",
+      "out/2026-09-20/final/thumbs/"
+    ],
+    "pixel_review": [
+      "3 rounds across 9 slides, per-slide means 6.4, 6.1, 6.6",
+      "5 editing rounds after the first render",
+      "out/2026-09-20/render/machine_qa.json (PASS, 0 fails, 0 warns)"
+    ],
+    "flow_review": [
+      "1 round, 7.5, predicted bail point slide 06, fixed by retitle plus a take-home line"
+    ],
+    "scoring": [
+      "out/2026-09-20/score_report.json (pass 1: 7.88 raw capped to 6.9 by one hard fail; pass 2: 8.50, ship)"
+    ],
+    "ship": [
+      "runs/2026-09-20/ (WebP + og.jpg + vector PDF, 17 MB)",
+      "docs/ rebuilt, 118 pages, 64 decks",
+      "ledger/topics.json, artwork.json, captions.json, instincts.json appended",
+      "PR #391"
+    ],
+    "upgrade": [
+      "ledger/upgrades.json",
+      "out/2026-09-20/automation_retro.md"
+    ],
+    "gmail": [
+      "runs/2026-09-20/gmail_draft_id.txt (r2062345709871339001)",
+      "out/2026-09-20/gmail_payload.json",
+      "draft created 2026-09-20T13:08Z in docket@alaskaaihq.com, DRAFT ONLY, nothing sent"
+    ],
+    "retro": [
+      "out/2026-09-20/automation_retro.md",
+      "out/2026-09-20/WORKLOG.md (deleted by scripts/wrap_run.py at wrap)"
+    ]
+  },
+  "phase_3_6": {
+    "site_signoff": "WARN, 117 pages, 18 checks, UNFIXED gaswatch.jsonl is current",
+    "gaswatch_pagecheck": "WARN, published reading 2026-09-13, 7 days old",
+    "gaswatch_live": "MAINTENANCE, checked 2026-09-20T07:15:15Z, CINGSA announced window 2026-09-14 to 2026-09-21, cron healthy, nothing carried forward",
+    "cron_health": "WARN at ship time on output:docket-watch, with out/2026-09-20/cron_incidents.json carrying the record. The collector defect was diagnosed, fixed, reviewed by Codex on the current head and merged to main as 3ddad816 (PR #390) at 07:25Z. The audit row reads the queue committed on main, which only the scheduled collection rewrites; the cron is 20 14 * * * and today's 14:20Z run, after this run ends, is the first to carry the fix. Re-audited at 09:00Z with every other row passing. The next daily run re-audits it.",
+    "site_fixes": "none needed on presentation; the only site finding is the disclosed CINGSA pause"
+  },
+  "status": "complete",
+  "codex_review": {
+    "pr": 391,
+    "head_reviewed": "7447102f (round five, requested 12:38Z)",
+    "findings": 7,
+    "disposition": "All seven verified and FIXED, none declined. P1: C10 read 'public hearing and final vote' where its verbatim is '(Hearing on 10/20/26)', which schedules a hearing and does not establish that the Assembly acts the same day; the claim, slide 09 and the dossier now say hearing. P2 x6 in assets/js/aksection.js and this file: the vertical light came from azimuth so elDeg fed nothing but rake and every flat lit lip sat on its 0.30 floor; incise() multiplied the horizontal key by zero so a vertical groove could not put its lip up-light; a two point ribbon had zero area so every locator tick rendered as bare casing; a constant casing pad ended every tapered ribbon in a blunt cap; strata depth was measured off the canvas rather than the slab so beds 3 to 6 fell off the frame; and this run_state was committed still marking five phases pending. ROUND FIVE, requested after the base merge and the Phase 13 repair. Rounds one to four raised 29 findings on this branch: 25 fixed, 4 declined on measurement and written into the retro so a later run does not reverse them blind.",
+    "rounds": 5
+  },
+  "status_note": "complete. Merged to main as 0aced2a3 (PR #391) at 13:06Z, every raw URL in the draft verified live, and the Gmail draft created. Nothing was sent; posting is the owner's step.",
+  "merge": {
+    "base_merge": "b7ad61eb, after main moved twice for today's gas watch collection (4179e4bd, 92e7f8f2). Every conflict was in generated docs/, so the resolution was a rebuild with site_build.py and not a hand edit; the rebuilt gas-watch page and JSON come out byte identical to main's, so today's reading is intact.",
+    "artifact_restore": "ad2e9e41 had dropped seven files under runs/2026-08-20/ as collateral. Shipped run artifacts are never deleted, so they were restored from main; git diff origin/main -- runs/2026-08-20/ is empty.",
+    "phase_13_repair": "7447102f. The built draft's sign-off table printed the artifact index where the gas watch verdict belongs and carried no SITE SIGN-OFF row, on a day the live audit read MAINTENANCE and the sign-off read WARN with an UNFIXED finding. Fixed in gmail_draft.py, pinned by tests/gmail_signoff_verify.py (16 checks, all proven red against the pre-fix script). The same repr had shipped in the drafts for 2026-08-08 and 2026-08-20."
+  },
+  "gmail_draft_id": "r2062345709871339001"
 }
