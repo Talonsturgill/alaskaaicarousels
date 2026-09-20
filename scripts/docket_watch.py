@@ -42,6 +42,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -87,11 +88,46 @@ FED_TERMS = re.compile(
     r"|carbon|geotherm|hydro|power|energy", re.I)
 
 
-def fetch(url):
+# BASIS goes away, and it goes away in bursts. Measured over the 25 queue
+# files on main to 2026-09-19: the bills endpoint failed on 8 of them, seven
+# consecutive days of HTTP 503 from September 2nd to 8th and a read timeout on
+# September 19th. It answered this sweep in about 1.2 seconds on the days it
+# was up, so a 45 second timeout is not the constraint; the endpoint simply
+# stalls or sheds load and then comes back. One attempt per day against a
+# source that behaves like that throws away the whole legislative half of the
+# queue for the day, and the hearings sweep with it.
+#
+# Only a TRANSIENT condition is retried. A 404 is an answer and is raised at
+# once, because retrying a real answer is how a collector turns a bug into a
+# slow bug.
+RETRY_WAITS = (2, 5)
+
+
+def _transient(e):
+    if isinstance(e, urllib.error.HTTPError):
+        return e.code in (408, 425, 429, 500, 502, 503, 504)
+    return isinstance(e, (urllib.error.URLError, TimeoutError, OSError))
+
+
+def _read(url):
     req = urllib.request.Request(url, headers={"User-Agent": UA,
                                                "Accept": "*/*"})
     with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
         return r.read()
+
+
+def fetch(url, sleep=time.sleep):
+    last = None
+    for wait in (0,) + RETRY_WAITS:
+        if wait:
+            sleep(wait)
+        try:
+            return _read(url)
+        except Exception as e:  # noqa: BLE001 - re-raised below unless transient
+            if not _transient(e):
+                raise
+            last = e
+    raise last
 
 
 def tracked(items):
@@ -130,7 +166,10 @@ def sweep_basis(session, known_bills, today, out):
         root = ET.fromstring(raw)
     except Exception as e:
         out["failed"].append({"source": "basis-bills", "error": str(e)[:180]})
-        return set()
+        # None, not an empty set. An empty set is the ordinary answer when no
+        # tracked bill sits in a committee, and build() has to be able to tell
+        # that apart from never having asked.
+        return None
 
     watched_committees = set()
     seen = 0
@@ -278,7 +317,18 @@ def build(today=None, session="34", days=45):
         "failed": [],
     }
     committees = sweep_basis(session, known_bills, today, out)
-    sweep_hearings(session, committees, today, out)
+    if committees is None:
+        # The hearings sweep reads the committees the bill sweep found, so a
+        # failed bill sweep means the forward half of this queue was never
+        # asked for. Say that. Zero hearings is the normal answer from June to
+        # December and a reviewer is told to read it that way, so an unasked
+        # question that looks like a quiet legislature is the exact shape of
+        # error this file's own header warns about.
+        out["failed"].append({
+            "source": "basis-hearings",
+            "error": "not swept, because the bill sweep it depends on failed"})
+    else:
+        sweep_hearings(session, committees, today, out)
     sweep_fedreg(known_docs, titles, (today - timedelta(days=days)).isoformat(), out)
 
     # One notice, one candidate. A FERC document is filed under the Energy
@@ -446,6 +496,67 @@ def self_test():
           str([f["source"] for f in bad["failed"]]))
     check("and nothing is invented to fill the gap",
           not bad["bills"] and not bad["candidates"] and not bad["hearings"])
+    # Regression, 2026-09-20. A failed bill sweep used to return an empty set,
+    # which sweep_hearings read as "no committee to watch" and returned from
+    # without a word. The queue then carried zero hearings and no failure for
+    # them, which is indistinguishable from the Legislature being out.
+    check("an unasked hearings sweep is recorded rather than read as a quiet day",
+          any(f["source"] == "basis-hearings" for f in bad["failed"]),
+          str([f["source"] for f in bad["failed"]]))
+    check("and it is not dressed up as the out-of-session note",
+          "note_hearings" not in bad)
+
+    print("a flaky source is retried, an answer is not")
+    global _read
+    real_read = _read
+    waited = []
+    try:
+        attempts = [0]
+
+        def flaky(url):
+            attempts[0] += 1
+            if attempts[0] < 3:
+                raise urllib.error.HTTPError(url, 503, "Service Unavailable",
+                                             None, None)
+            return b"recovered"
+        _read = flaky
+        got = fetch("https://example.invalid/x", sleep=waited.append)
+        check("a 503 burst is retried until the source comes back",
+              got == b"recovered" and attempts[0] == 3,
+              f"attempts={attempts[0]} got={got!r}")
+        check("and it backs off between attempts rather than hammering",
+              waited == list(RETRY_WAITS), str(waited))
+
+        attempts[0] = 0
+
+        def timing_out(url):
+            attempts[0] += 1
+            raise TimeoutError("The read operation timed out")
+        _read = timing_out
+        try:
+            fetch("https://example.invalid/x", sleep=lambda s: None)
+            raised = False
+        except TimeoutError:
+            raised = True
+        check("a source that never answers still fails, after its retries",
+              raised and attempts[0] == len(RETRY_WAITS) + 1,
+              f"attempts={attempts[0]} raised={raised}")
+
+        attempts[0] = 0
+
+        def gone(url):
+            attempts[0] += 1
+            raise urllib.error.HTTPError(url, 404, "Not Found", None, None)
+        _read = gone
+        try:
+            fetch("https://example.invalid/x", sleep=lambda s: None)
+            raised = False
+        except urllib.error.HTTPError:
+            raised = True
+        check("a 404 is an answer and is not retried",
+              raised and attempts[0] == 1, f"attempts={attempts[0]}")
+    finally:
+        _read = real_read
 
     print()
     print("self-test clean" if ok[0] else "self-test FAILED")
