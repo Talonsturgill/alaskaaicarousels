@@ -762,12 +762,19 @@ def verify_subset(decl, claims, fails, warns, where, text):
                      "total is re-derived from the claim, never from the slide."
                      % (where, tot, source, len(enum)))
         return
-    try:
-        idx = sorted({int(i) for i in selected})
-    except (TypeError, ValueError):
-        fails.append("%s: \"selected\" must be a list of 1-based item numbers, "
-                     "got %r" % (where, selected))
+    # A STRING IS NOT A LIST, and Python will iterate one without complaining
+    # (Codex, PR #391). `selected: "12"` became the characters '1' and '2', so a
+    # typed-out declaration validated a printed two-item subset by accident, and
+    # int() silently truncated 2.9 to 2. The schema says a list of whole item
+    # numbers, so anything else is refused rather than coerced.
+    if not isinstance(selected, (list, tuple)) or any(
+            isinstance(i, bool) or not isinstance(i, int) for i in selected):
+        fails.append("%s: \"selected\" must be a LIST of 1-based whole item "
+                     "numbers, got %r. A string is iterated character by "
+                     "character and a fraction is truncated, so neither is "
+                     "accepted." % (where, selected))
         return
+    idx = sorted(set(selected))
     bad = [i for i in idx if i < 1 or i > len(enum)]
     if bad:
         fails.append("%s: \"selected\" names item(s) %s and the enumeration runs "
@@ -1187,6 +1194,7 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
                             h["n"], h["of"]))
 
     used = [False] * len(decls)
+    covered = {}
     undeclared = []
     for h in hits:
         idx = [i for i, d in enumerate(decls) if isinstance(d, dict) and covers(d, h)]
@@ -1196,6 +1204,7 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
             continue
         for i in idx:
             used[i] = True
+            covered.setdefault(i, []).append(h)
     for h in undeclared:
         fails.append("UNDECLARED %s on S%d: %r (in %r). An aggregate is a fresh "
                      "factual assertion; declare it in %s with the claims it is "
@@ -1205,6 +1214,24 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
         if not used[i] and isinstance(d, dict):
             warns.append("STALE declaration, no rendered string matches it: S%s %r [%s]"
                          % (d.get("slide", "?"), str(d.get("text", ""))[:50], d.get("kind")))
+    # ONE DECLARATION ANSWERS FOR ONE PRINTED PHRASE (Codex, PR #391). Without
+    # "fragment" a declaration covers every detection whose fragment sits inside
+    # its text, and verify() then reads that text with a single .search(), which
+    # finds the FIRST phrase only. So a node printing "Two of the four items
+    # name air. Three of the four items name land." was covered twice by one
+    # declaration and checked once, and the second assertion was never verified
+    # at all. The declaration has to say which phrase it answers for.
+    for i, hs in covered.items():
+        frags = {norm(h["fragment"]) for h in hs}
+        if len(frags) < 2 or decls[i].get("fragment"):
+            continue
+        fails.append("AMBIGUOUS declaration on S%s: %r covers %d different "
+                     "printed assertion(s) (%s) and can only be checked against "
+                     "one of them. Give each its own declaration with an exact "
+                     "\"fragment\"."
+                     % (decls[i].get("slide", "?"),
+                        str(decls[i].get("text", ""))[:60], len(frags),
+                        "; ".join(sorted(repr(h["fragment"]) for h in hs)[:4])))
 
     for d in decls:
         if isinstance(d, dict):

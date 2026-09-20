@@ -38,6 +38,7 @@ import glob
 import html
 import io
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -103,6 +104,11 @@ ul.check{padding-left:20px;font-size:14px;} ul.check li{margin:5px 0;}
 import re as _re
 
 _POST_URL = _re.compile(r"https?://|doi\.org|www\.", _re.I)
+# A path to a file this run wrote, in the shapes run_state's artifact index
+# uses: no spaces, at least one directory separator, ending in a file
+# extension. A verdict line is prose and never matches; "out/2026-09-19/
+# cron_health.json" does. See _look.
+_PATHY = _re.compile(r"^[^\s]+/[^\s/]+\.[A-Za-z0-9]{1,6}$")
 # Sources/credits headers ("Sources for this deck", "Credits") match loosely;
 # media words ("Music", "Audio", "Sound", "Track") need the stronger
 # by/courtesy/credit signal so story sentences about sound never match.
@@ -578,19 +584,30 @@ def main():
             # still answered ahead of a live MAINTENANCE at the top level,
             # which is the same incident-hiding bug in its third costume.
             #
-            # A LIST IS NEVER A VERDICT. run_state's artifacts map each phase to
-            # a LIST OF FILENAMES, which is that field's documented shape, and
-            # artifacts["gas_watch"] is therefore always a list of paths. It is
-            # truthy and it is not a dict, so 2026-09-20's draft printed
+            # A FILENAME IS NEVER A VERDICT, in either of the two shapes the
+            # artifact index writes one. run_state's artifacts map each phase to
+            # a LIST OF FILENAMES, which is that field's documented shape, so
+            # artifacts["gas_watch"] is always a list of paths: truthy, not a
+            # dict, and 2026-09-20's draft duly printed
             # "GAS WATCH ['out/2026-09-20/gaswatch_health.json', ...]" over a
-            # live verdict of MAINTENANCE: the same incident-hiding bug in its
-            # fourth costume, wearing the artifact index this time. Only a
-            # scalar can be a line, so only a scalar is accepted.
+            # live verdict of MAINTENANCE. Some runs write ONE path instead of a
+            # list, and 2026-09-19's artifacts.cron_health is the bare string
+            # "out/2026-09-19/cron_health.json" while its phase_3_6.cron_health
+            # is "PASS" (Codex, PR #391): rejecting only lists would print the
+            # filename there and suppress the verdict, which is the same
+            # incident-hiding bug wearing a shorter coat. A verdict is prose, so
+            # anything that parses as a path to a file is refused whatever its
+            # type.
             for _k in keys:
                 for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
-                    if _v and isinstance(_v, (str, int, float)) and not isinstance(_v, bool):
-                        return _v
+                    if not _v or isinstance(_v, bool):
+                        continue
+                    if not isinstance(_v, (str, int, float)):
+                        continue
+                    if isinstance(_v, str) and _PATHY.match(_v.strip()):
+                        continue
+                    return _v
             return None
 
         _substantive = 0
@@ -651,10 +668,18 @@ def main():
     # anything measured whether they were read, which made every editorial call
     # a guess. Needs no credentials, the figures come from a public aggregate
     # endpoint. Never fatal: any failure just omits the section.
+    # GMAIL_DRAFT_NO_NETWORK=1 skips it entirely. The sign-off regression suite
+    # builds a real body per fixture and once per archived run, and at 70 calls
+    # a slow or half-open endpoint turns a bounded test into a 30 minute one
+    # issuing dozens of live requests (Codex, PR #391). A test is hermetic or it
+    # is not a test, and this section is the only thing in the build that leaves
+    # the machine.
     reader_html = ""
     try:
         rs_path = Path(__file__).resolve().parent / "read_stats.py"
-        if rs_path.exists():
+        if os.environ.get("GMAIL_DRAFT_NO_NETWORK") == "1":
+            rs_path = None
+        if rs_path and rs_path.exists():
             p = subprocess.run([sys.executable, str(rs_path), "--days", "7"],
                                capture_output=True, text=True, timeout=60)
             txt = (p.stdout or "").strip()

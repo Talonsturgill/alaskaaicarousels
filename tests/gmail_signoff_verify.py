@@ -45,6 +45,7 @@ Exit 0 = HOLDS, 1 = a defect is present.
 """
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -78,6 +79,15 @@ MIN_SCORE = {
 
 MIN_ASM = {"pdf_mode": "vector", "pdf_mb": 9.47, "slides": 1, "thumbs": []}
 
+# HERMETIC OR IT IS NOT A TEST (Codex, PR #391). gmail_draft.py's readership
+# section shells out to read_stats.py against a public endpoint with a 60
+# second timeout. This suite builds a body once per fixture and once per
+# archived run, so a slow or half-open endpoint would turn a bounded check into
+# a half-hour one issuing dozens of live requests. The script's own
+# GMAIL_DRAFT_NO_NETWORK switch skips that section; nothing this suite reads
+# comes from it.
+ENV = dict(os.environ, GMAIL_DRAFT_NO_NETWORK="1")
+
 
 def render(run_state):
     """Build a draft against a throwaway run dir and return its plain text."""
@@ -96,7 +106,7 @@ def render(run_state):
              "--carousel-no", "64", "--branch", "main",
              "--raw-base", "https://raw.githubusercontent.com/o/r/main",
              "--payload-out", str(out), "--preview-mode", "remote"],
-            capture_output=True, text=True, cwd=str(ROOT))
+            capture_output=True, text=True, cwd=str(ROOT), env=ENV)
         if r.returncode != 0:
             raise RuntimeError("gmail_draft.py failed:\n" + (r.stderr or r.stdout))
         body = json.loads(out.read_text())["html_body"]
@@ -174,8 +184,25 @@ def main():
           (row(t, "SITE SIGN-OFF") or "").startswith("PASS, 110")
           and "two links" in t and "UNREPORTED" not in t, t)
 
-    print("5. every shipped run renders clean")
-    seen = 0
+    print("5. a single artifact PATH is no more a verdict than a list of them")
+    # 2026-09-19's artifacts.cron_health is the bare string
+    # "out/2026-09-19/cron_health.json" while its phase_3_6.cron_health is
+    # "PASS". Rejecting only list reprs printed the filename and suppressed the
+    # verdict (Codex, PR #391).
+    t = render(json.loads((ROOT / "runs" / "2026-09-19" / "run_state.json").read_text()))
+    check("the 2026-09-19 cron row is its verdict", (row(t, "CRON HEALTH") or "") == "PASS", t)
+    t = render({"artifacts": {"site_signoff": "out/x/site_signoff.json",
+                              "gas_watch": "out/x/gaswatch_health.json"},
+                "phase_3_6": {"site_signoff": "PASS, 117 pages",
+                              "gaswatch_live": "MAINTENANCE"}})
+    check("a path never answers for a verdict",
+          (row(t, "SITE SIGN-OFF") or "").startswith("PASS, 117")
+          and "MAINTENANCE" in (row(t, "GAS WATCH") or ""), t)
+    t = render({"artifacts": {"site_signoff": "out/x/site_signoff.json"}})
+    check("a path alone still reads UNREPORTED", "UNREPORTED" in t, t)
+
+    print("6. every shipped run renders clean")
+    seen, pathy = 0, re.compile(r"\S+/\S+\.[A-Za-z0-9]{1,6}\b")
     for st in sorted((ROOT / "runs").glob("*/run_state.json")):
         try:
             rs = json.loads(st.read_text())
@@ -183,8 +210,14 @@ def main():
             continue
         t = render(rs)
         seen += 1
-        if "[" in t or ".json'" in t or ".json\"" in t:
-            check("runs/" + st.parent.name + " renders no repr", False, t)
+        for label in ("SITE SIGN-OFF", "GAS WATCH", "CRON HEALTH", "SITE FIXES"):
+            cell = row(t, label)
+            if not cell:
+                continue
+            # No repr, and no bare artifact path standing in for a line. A cell
+            # MENTIONING a file in prose is fine; a cell that IS one is not.
+            if "[" in cell or (pathy.fullmatch(cell.strip()) is not None):
+                check("runs/" + st.parent.name + " " + label + " is a verdict", False, cell)
     check("at least one shipped run was rendered", seen > 0, str(seen))
     print("  (" + str(seen) + " shipped run_state files rendered)")
 

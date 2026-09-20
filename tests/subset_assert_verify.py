@@ -249,6 +249,14 @@ ALLBUT9 = "All but nine of the ten items ask about the payload."
 PRECINCTS30 = "Two of 30 precincts were sampled."
 GAUGES = "None of the ten stations reported measurable rain."
 CAPITAL = "Two of the four items name the air and the land."
+# Codex round five, finding 3. ONE rendered node, TWO subset assertions. A
+# declaration with no "fragment" covers both, and verify() reads the node with a
+# single .search() that finds only the first, so the second is never checked.
+# Both assertions are TRUE of C43's enumeration, so the only thing that can
+# fail either fixture is the gate's handling of two phrases in one node.
+TWO_ASSERTIONS = ("Two of the four items name the air and the land. "
+                  "Three of the four items name the dock, the roads and the "
+                  "surveys.")
 PARCELS = "Two of the two entries name a place and a span."
 NINE_DIGITS = "9 of 10 items ask about the payload."
 FIVE_DIGITS = "5 of 10 items ask about the payload."
@@ -409,6 +417,40 @@ FIXTURES = [
        "selected": [3, 4], "terms": ["air", "land"],
        "predicate": "name the air and the land"}],
      receipts_read("Air quality monitoring", "Land surveys"), True),
+
+    # ---- Codex round five -------------------------------------------
+    # One declaration cannot answer for two printed assertions: it is checked
+    # against the first phrase only, so the three-of-four is never verified.
+    ("5 ambiguous", TWO_ASSERTIONS,
+     [{"kind": "subset", "slide": 7, "text": TWO_ASSERTIONS, "member": "C43",
+       "selected": [3, 4], "terms": ["air", "land"],
+       "predicate": "name the air and the land"}],
+     has_fail("AMBIGUOUS declaration"), True),
+    # ...and an exact fragment is the way through, so the honest author still
+    # has a path. Each assertion gets its own declaration.
+    ("5 fragmented", TWO_ASSERTIONS,
+     [{"kind": "subset", "slide": 7, "text": TWO_ASSERTIONS, "member": "C43",
+       "fragment": "Two of the four", "selected": [3, 4],
+       "terms": ["air", "land"],
+       "predicate": "name the air and the land"},
+      {"kind": "subset", "slide": 7, "text": TWO_ASSERTIONS, "member": "C43",
+       "fragment": "Three of the four", "selected": [1, 2, 4],
+       "terms": ["dock", "roads", "surveys"],
+       "predicate": "name the dock, the roads and the surveys"}],
+     clean, True),
+    # A STRING IS NOT A LIST. "12" iterates as the characters 1 and 2, which
+    # validated a printed two-item subset by accident.
+    ("5 selected_str", CAPITAL,
+     [{"kind": "subset", "slide": 7, "text": CAPITAL, "member": "C43",
+       "selected": "34", "terms": ["air", "land"],
+       "predicate": "name the air and the land"}],
+     has_fail("must be a LIST of 1-based whole item"), True),
+    # ...and a fraction is truncated rather than refused.
+    ("5 selected_frac", CAPITAL,
+     [{"kind": "subset", "slide": 7, "text": CAPITAL, "member": "C43",
+       "selected": [3.9, 4.2], "terms": ["air", "land"],
+       "predicate": "name the air and the land"}],
+     has_fail("must be a LIST of 1-based whole item"), True),
 ]
 
 
