@@ -617,6 +617,103 @@
     return { box: [x, y, s, s], project: proj };
   };
 
+  /* -------------------------------------------------------------- strata
+   * BEDS IN THE SLAB, and the reason this exists is a measurement.
+   *
+   * The 2026-09-20 scorer put artwork craft at 6 and named the cause: the
+   * earth on five frames was "a large flat brown field carrying only faint
+   * contour squiggles across roughly a third of each frame", which is the
+   * deck's own banned failure wearing a texture. More hatching does not fix
+   * it. An engraved lay is TONE; what a flat field is short of is STRUCTURE,
+   * and a section's structure is beds.
+   *
+   * So this draws n beds parallel to the surface, each a filled polygon with
+   * a lit upper lip and a shadowed base, thinning with depth the way a
+   * section's beds do, with sparse clasts sitting in them. Every mark is a
+   * fill, so the drawn share goes up rather than down.
+   *
+   * It is a DRAWING PROPERTY and never a measurement: this repo commits no
+   * Alaska stratigraphy any more than it commits elevation, and any dossier
+   * using it marks the bullet [design].
+   */
+  Section.prototype.strata = function (cx, o) {
+    var prof = need(o.profile, "profile");
+    var bottom = o.bottom == null ? 1350 : o.bottom;
+    var W = o.width == null ? 1080 : o.width;
+    var x0 = o.x0 == null ? 0 : o.x0;
+    var n = o.beds == null ? 6 : o.beds;
+    var top = o.topPx == null ? 70 : o.topPx;   /* first bed below the surface */
+    var lip = o.lip || "#6E6250";
+    var base = o.base || "#16150F";
+    var body = o.body || "#33302A";
+    var seed = this.seed + (o.salt || 0) + 911;
+    var step = o.step == null ? 6 : o.step;
+    var x, i, k;
+
+    cx.save();
+    for (i = 0; i < n; i++) {
+      var t0 = i / n;
+      /* beds thin with depth, and each one wanders on its own low frequency */
+      var depth = top + Math.pow(t0, 0.82) * (bottom - top) * 0.78;
+      var thick = (o.thickPx == null ? 52 : o.thickPx) * (1 - t0 * 0.58);
+      var amp = 9 + hash1(i * 7 + 1, seed) * 13;
+      var freq = 0.0035 + hash1(i * 11 + 2, seed) * 0.004;
+      var ph = hash1(i * 13 + 3, seed) * 6.28;
+      function bedY(xx) {
+        return prof(xx) + depth + Math.sin(xx * freq + ph) * amp;
+      }
+      /* the bed body */
+      cx.beginPath();
+      for (x = x0; x <= x0 + W; x += step) cx.lineTo(x, bedY(x));
+      for (x = x0 + W; x >= x0; x -= step) cx.lineTo(x, bedY(x) + thick);
+      cx.closePath();
+      cx.globalAlpha = 0.55 - t0 * 0.18;
+      cx.fillStyle = body;
+      cx.fill();
+      /* the shadowed base, drawn first so the lip sits over it */
+      cx.beginPath();
+      for (x = x0; x <= x0 + W; x += step) cx.lineTo(x, bedY(x) + thick - 4);
+      for (x = x0 + W; x >= x0; x -= step) cx.lineTo(x, bedY(x) + thick + 2.4);
+      cx.closePath();
+      cx.globalAlpha = 0.72;
+      cx.fillStyle = base;
+      cx.fill();
+      /* the lit upper lip, thinner where the bed dips away from the key */
+      cx.beginPath();
+      for (x = x0; x <= x0 + W; x += step) {
+        var dy = bedY(x + step) - bedY(x);
+        var nl = Math.sqrt(dy * dy + step * step) || 1;
+        var ndotl = clamp((dy / nl) * this.lightX + (-step / nl) * this.lightY, 0, 1);
+        cx.rect(x, bedY(x) - 1.0, step + 0.8,
+                Math.max(0.7, 2.6 * (0.34 + 0.66 * ndotl)));
+      }
+      cx.globalAlpha = 0.62 - t0 * 0.16;
+      cx.fillStyle = lip;
+      cx.fill();
+      /* clasts: a few pebbles sitting IN the bed, each with its own lit crown */
+      var clasts = Math.max(0, (o.clasts == null ? 7 : o.clasts) - i);
+      for (k = 0; k < clasts; k++) {
+        var cxp = x0 + hash1(i * 31 + k * 3 + 5, seed) * W;
+        var cyp = bedY(cxp) + thick * (0.3 + hash1(i * 17 + k, seed) * 0.4);
+        var cr = 2.4 + hash1(i * 23 + k * 5, seed) * 4.2;
+        cx.globalAlpha = 0.85;
+        cx.fillStyle = base;
+        cx.beginPath();
+        cx.ellipse(cxp, cyp, cr, cr * 0.74, 0, 0, Math.PI * 2);
+        cx.fill();
+        cx.fillStyle = lip;
+        cx.globalAlpha = 0.7;
+        cx.beginPath();
+        cx.ellipse(cxp + this.lightX * cr * 0.3, cyp - cr * 0.34,
+                   cr * 0.62, cr * 0.3, 0, 0, Math.PI * 2);
+        cx.fill();
+      }
+    }
+    cx.globalAlpha = 1;
+    cx.restore();
+    return this;
+  };
+
   /* --------------------------------------------------------- counterTick
    * The deck header declares "a 6 px counter tick which is a declared
    * fixture on all nine", and slide 04's acceptance list is built on it:
