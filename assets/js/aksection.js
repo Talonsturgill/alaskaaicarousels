@@ -382,6 +382,13 @@
     var w = o.w == null ? 90 : o.w;
     var castHex = o.cast || "#0B0C08";
     var squash = o.squash == null ? 0.26 : o.squash;
+    /* HOW FAR THE CAST IS THROWN, in px of key direction. The default of
+     * 5 is right for a small object sitting flat, and wrong for anything
+     * whose own silhouette covers the pool: a ring 88 px across leaves the
+     * shadow nowhere to be measured, and qa.py reads the object's own lit
+     * face as the shadow. At el 23 a raking key throws a long way, so a
+     * wide object asks for a long throw rather than a wider pool. */
+    var throwPx = o.offPx == null ? 5 : o.offPx;
 
     /* A CONTACT SHADOW IS A SUBTRACTION AND NOTHING ELSE (2026-09-20).
      *
@@ -405,7 +412,7 @@
     var off = this.lightX * -1;
     cx.save();
     cx.globalAlpha = o.alpha == null ? 0.82 : o.alpha;
-    cx.translate(cxx + off * 5, cyy + 3);
+    cx.translate(cxx + off * throwPx, cyy + 3);
     cx.scale(1, squash);
     var g = cx.createRadialGradient(0, 0, 0, 0, 0, w * 0.52);
     g.addColorStop(0.00, castHex);
@@ -419,7 +426,7 @@
      * ATTACHED, because a gap is what reads as a hole. */
     cx.save();
     cx.globalAlpha = 0.9;
-    cx.translate(cxx + off * 3, cyy + 1);
+    cx.translate(cxx + off * throwPx * 0.6, cyy + 1);
     cx.scale(1, squash * 0.8);
     var g2 = cx.createRadialGradient(0, 0, 0, 0, 0, w * 0.30);
     g2.addColorStop(0.00, "#050604");
@@ -428,6 +435,160 @@
     cx.beginPath(); cx.arc(0, 0, w * 0.30, 0, Math.PI * 2); cx.fill();
     cx.restore();
     return this;
+  };
+
+  /* ------------------------------------------------------------- locator
+   * D4, the locator key. The deck's ONLY plan view: a small incised window in
+   * the upper right carrying the true Kenai Peninsula Borough outline in the
+   * canonical projection, with the section's own transect stamped across it,
+   * and a per-slide STATE that is the only thing allowed to change.
+   *
+   * It lives in the chassis rather than in nine slides because furniture that
+   * is redrawn frame by frame stops being furniture. A reader only tracks a
+   * key if the window, the projection and the transect are pixel-identical
+   * every time and the state is the one variable. Nine hand-written copies
+   * guarantee the opposite, and round one of 2026-09-20's pixel review found
+   * the cheaper failure mode first: it was promised in every dossier and
+   * drawn on no frame at all.
+   *
+   * THERE ARE NO LETTERS IN HERE. The slide contract keeps text in the DOM,
+   * so the transect is stamped as an incised line ticked at both ends and the
+   * A end is marked by the state that needs it, never by a drawn glyph.
+   *
+   * Requires d3 (projection + path) and GeoJSON the caller has already
+   * fetched, so the key never guesses at geography it was not handed.
+   *
+   *   S.locator(cx, {x: 820, y: 150, borough: kpb, release: [-151.55, 59.64]})
+   */
+  Section.prototype.locator = function (cx, o) {
+    if (typeof d3 === "undefined") throw new Error("AKSECT.locator requires d3");
+    var x = need(o.x, "x"), y = need(o.y, "y");
+    var s = o.size == null ? 180 : o.size;
+    var borough = need(o.borough, "borough");
+    var pad = Math.max(9, s * 0.10);
+    var gold = o.gold || "#FFC72C";
+    var blue = o.blue || "#6EA5FF";
+    var bone = o.bone || "#C6D4DC";
+    var hero = !!o.hero;
+    var seed = this.seed + 419;
+
+    var fitTo = o.inset ? need(o.state, "state") : borough;
+    var proj = d3.geoConicEqualArea().parallels([55, 65]).rotate([154, 0])
+      .fitExtent([[x + pad, y + pad], [x + s - pad, y + s - pad]], fitTo);
+    var gp = d3.geoPath(proj, cx);
+
+    cx.save();
+
+    /* 1. the window itself, a recess in the plate rather than a ruled box */
+    cx.fillStyle = "#060B12";
+    cx.globalAlpha = 0.62;
+    cx.fillRect(x, y, s, s);
+    cx.globalAlpha = 1;
+    this.incise(cx, [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]],
+                { w: 3.4, lip: "#6E6250", trough: "#0B0C08" });
+
+    /* 2. the geography. Alaska first when the key is inset, so the borough
+     *    reads as a piece OF something and not as an island. */
+    if (o.inset) {
+      cx.beginPath(); gp(o.state);
+      cx.fillStyle = "#151C22"; cx.fill();
+      cx.lineWidth = 1.0; cx.strokeStyle = "#39454E"; cx.stroke();
+    }
+
+    /* 3. state ground under the borough, when the slide is about whose land
+     *    it is. Continuous, because that is the claim. */
+    if (o.parcels) {
+      cx.save();
+      cx.beginPath(); gp(borough); cx.clip();
+      cx.fillStyle = "#3A3222"; cx.globalAlpha = 0.85;
+      cx.fillRect(x, y, s, s);
+      cx.globalAlpha = 1;
+      /* and the borough's own reach scattered across it, DISCONTINUOUS,
+       * because a second-class borough's land is parcels and not a blanket */
+      for (var p = 0; p < 90; p++) {
+        var px = x + pad + hash1(p * 2 + 1, seed) * (s - pad * 2);
+        var py = y + pad + hash1(p * 2 + 2, seed) * (s - pad * 2);
+        var pr = 0.9 + hash1(p + 700, seed) * 1.5;
+        cx.globalAlpha = 0.42 + hash1(p + 900, seed) * 0.5;
+        cx.fillStyle = blue;
+        cx.beginPath(); cx.arc(px, py, pr, 0, Math.PI * 2); cx.fill();
+      }
+      cx.globalAlpha = 1;
+      cx.restore();
+    }
+
+    /* 4. the borough outline. Weight is the state, not a decoration: hero
+     *    weight is how the key says THIS frame is inside the borough. */
+    cx.beginPath(); gp(borough);
+    if (!o.inset && !o.parcels) { cx.fillStyle = "#101820"; cx.fill(); }
+    cx.lineWidth = hero ? 2.6 : 1.4;
+    cx.strokeStyle = hero ? bone : "#8FA3B0";
+    cx.stroke();
+    if (hero) {
+      /* a lit shoulder on the up-light side of the outline, so hero weight
+       * reads as a raised edge rather than as a thicker pen */
+      cx.save();
+      cx.translate(this.lightX * 1.3, -Math.abs(this.lightY) * 1.3);
+      cx.beginPath(); gp(borough);
+      cx.lineWidth = 1.0; cx.globalAlpha = 0.55;
+      cx.strokeStyle = "#F4F8FF"; cx.stroke();
+      cx.restore();
+    }
+
+    /* 5. the transect, stamped across the key in the same ink the section
+     *    uses for its datum, with a tick at each end. */
+    var tr = o.transect;
+    var a = null, b = null;
+    if (tr) {
+      a = proj(tr[0]); b = proj(tr[1]);
+      if (a && b) {
+        this.incise(cx, [a, b], { w: 2.4, lip: "#A4B6C4", trough: "#080D12" });
+        var tx = b[0] - a[0], ty = b[1] - a[1];
+        var tl = Math.sqrt(tx * tx + ty * ty) || 1;
+        var nx = -ty / tl * 4.2, ny = tx / tl * 4.2;
+        cx.beginPath();
+        cx.moveTo(a[0] - nx, a[1] - ny); cx.lineTo(a[0] + nx, a[1] + ny);
+        cx.moveTo(b[0] - nx, b[1] - ny); cx.lineTo(b[0] + nx, b[1] + ny);
+        cx.lineWidth = 1.8; cx.strokeStyle = "#A4B6C4"; cx.stroke();
+      }
+    }
+
+    /* 6. the states that add a mark */
+    if (o.release) {
+      var r = proj(o.release);
+      if (r) {
+        cx.beginPath(); cx.arc(r[0], r[1], 3.4, 0, Math.PI * 2);
+        cx.fillStyle = gold; cx.fill();
+        cx.beginPath(); cx.arc(r[0], r[1], 6.2, 0, Math.PI * 2);
+        cx.lineWidth = 1.0; cx.globalAlpha = 0.55;
+        cx.strokeStyle = gold; cx.stroke(); cx.globalAlpha = 1;
+      }
+    }
+    if (o.aDot && a) {
+      cx.beginPath(); cx.arc(a[0], a[1], 3.8, 0, Math.PI * 2);
+      cx.fillStyle = gold; cx.fill();
+    }
+    if (o.ring) {
+      var rg = proj(o.ring);
+      if (rg) {
+        /* EMPTY on purpose. Juneau is where the bill would have been filed. */
+        cx.beginPath(); cx.arc(rg[0], rg[1], 5.0, 0, Math.PI * 2);
+        cx.lineWidth = 1.8; cx.strokeStyle = gold; cx.stroke();
+      }
+    }
+    if (o.ticks) {
+      /* notice leaving the key through its own top edge, which is the whole
+       * of D1 compressed into 180 px */
+      for (var t = 0; t < o.ticks; t++) {
+        var gx = x + s * (0.42 + t * 0.21);
+        this.ribbon(cx, [[gx, y + s * 0.34], [gx + 2, y - 16]],
+                    { w: 5.0, hex: gold, casing: "#5A4A18", casePx: 1.8,
+                      taper: 0.5 });
+      }
+    }
+
+    cx.restore();
+    return { box: [x, y, s, s], project: proj };
   };
 
   global.AKSECT = {
