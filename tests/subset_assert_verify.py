@@ -89,6 +89,29 @@ THE EIGHT CODEX HOLES (PR #391), numbered as he filed them
                   "Land surveys" used to FAIL, because
                   "air" is in "Repairs" and "land" is in
                   "Island"                                  -> PASS
+
+CODEX ROUND TWO (PR #391, head 80792e7)
+  2 ratio_digits  "9 of 10 items ask about the payload"
+                  declared as a `ratio` over C27's real
+                  enumeration with the WRONG first nine.
+                  RX_RATIO is digits-only and runs first,
+                  so it claimed the span and verify_subset
+                  never saw the string; ratio proves the
+                  arithmetic and never reads a predicate
+                  or a term                                 -> FAIL, ENUMERATES
+  2 ratio_subset  the same digit form declared HONESTLY as
+                  a subset, which the detector records as a
+                  ratio: covers() has to let the stronger
+                  declaration answer for it                 -> PASS
+  2 ratio_found   NEGATIVE CONTROL: the "0 OF 5 FOUND"
+                  shape ratio was built for, over a notice
+                  that enumerates nothing                   -> PASS
+  4 tie_later     two completed enumerations of EQUAL
+                  length, the superseded list first and the
+                  adopted one second. max() returns the
+                  FIRST maximal element, against the
+                  documented policy that a tie takes the
+                  later run                                 -> PASS, on New A/B
 """
 
 import json
@@ -171,6 +194,27 @@ CLAIMS = {"claims": [
      "source_url": "https://kpb.legistar1.com/kpb/attachments/capital.pdf",
      "source_is_primary": True,
      "notes": ""},
+    # Codex round two, finding 2's negative control: the shape `ratio` was
+    # built for. A notice, not a list, so nothing enumerates.
+    {"id": "C05",
+     "claim": "The solicitation never uses any of the five machine-learning terms.",
+     "value": "0 of 5",
+     "verbatim": "A full text search of the solicitation for artificial "
+                 "intelligence, machine learning, automated speech recognition, "
+                 "ASR and AI returned no occurrence of any of the five.",
+     "source_url": "https://sam.gov/opp/abc",
+     "source_is_primary": True,
+     "notes": ""},
+    # Codex round two, finding 4: two completed runs of the same length, the
+    # superseded list first and the adopted one second.
+    {"id": "C45",
+     "claim": "The adopted permit names two entries.",
+     "value": "two entries",
+     "verbatim": "The list was amended. Superseded: (1) Old A; (2) Old B. "
+                 "As adopted: (1) New A; and (2) New B.",
+     "source_url": "https://kpb.legistar1.com/kpb/attachments/amended.pdf",
+     "source_is_primary": True,
+     "notes": ""},
     {"id": "C44",
      "claim": "The permit names two borough parcels.",
      "value": "two parcels",
@@ -192,6 +236,12 @@ PRECINCTS30 = "Two of 30 precincts were sampled."
 GAUGES = "None of the ten stations reported measurable rain."
 CAPITAL = "Two of the four items name the air and the land."
 PARCELS = "Two of the two entries name a place and a span."
+NINE_DIGITS = "9 of 10 items ask about the payload."
+FIVE_DIGITS = "5 of 10 items ask about the payload."
+FOUND = "0 OF 5 FOUND"
+ADOPTED = "Two of the two entries name the adopted pair."
+SEARCH_TERMS = ["artificial intelligence", "machine learning",
+                "automated speech recognition", "ASR", "AI"]
 
 PAYLOAD_TERMS = ["chemical", "flare", "pyrotechnic", "material", "msds"]
 FLIGHT_TERMS = ["flights or activities", "weather modification activities"]
@@ -306,6 +356,25 @@ FIXTURES = [
        "selected": [1, 3], "terms": ["air"],
        "predicate": "name the air and the land"}],
      has_fail("matches NONE of the declared terms"), True),
+    # ---- Codex round two --------------------------------------------
+    ("2 ratio_digits", NINE_DIGITS,
+     [{"kind": "ratio", "slide": 7, "text": NINE_DIGITS, "members": ["C27"],
+       "items": TEN_ITEMS, "found": TEN_ITEMS[:9]}],
+     has_fail("ENUMERATES its 10 item(s)"), False),
+    ("2 ratio_subset", FIVE_DIGITS,
+     [{"kind": "subset", "slide": 7, "text": FIVE_DIGITS, "member": "C27",
+       "selected": [1, 2, 3, 4, 5], "terms": PAYLOAD_TERMS,
+       "predicate": "ask about the payload, the chemicals or the pyrotechnics"}],
+     clean, False),
+    ("2 ratio_found", FOUND,
+     [{"kind": "ratio", "slide": 7, "text": FOUND, "members": ["C05"],
+       "items": SEARCH_TERMS, "found": []}],
+     clean, False),
+    ("4 tie_later", ADOPTED,
+     [{"kind": "subset", "slide": 7, "text": ADOPTED, "member": "C45",
+       "selected": [1, 2], "terms": ["new a", "new b"],
+       "predicate": "name the adopted pair"}],
+     receipts_read("New A", "New B"), True),
     ("8b term_words", CAPITAL,
      [{"kind": "subset", "slide": 7, "text": CAPITAL, "member": "C43",
        "selected": [3, 4], "terms": ["air", "land"],

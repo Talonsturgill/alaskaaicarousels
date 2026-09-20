@@ -230,14 +230,25 @@
      * else, so the coloured polygon had zero area and every locator tick
      * rendered as bare casing. The path is resampled so the taper always has
      * interior points to be expressed at, whatever the caller passed. */
-    var DENSE = 6;
-    if (total / (pts.length - 1) > DENSE) {
+    /* And the promise above is kept for a SHORT two point path too (Codex,
+     * second round on PR #391). The condition was `total / (pts.length - 1) >
+     * DENSE`, so a two point ribbon 6 design px or shorter skipped the
+     * resample entirely and went back to sampling only t = 0 and t = 1, where
+     * widthAt is zero by construction: zero area again, exactly the defect
+     * this block exists to remove. The locator ticks are about 40 px and do
+     * densify today, so nothing on a shipped frame moves; the comment simply
+     * has to be true of every input, not of the ones this deck happens to
+     * pass. A path that arrives with two points is always resampled, to at
+     * least MIN2 segments, so the taper has somewhere to be expressed. */
+    var DENSE = 6, MIN2 = 4;
+    var wasTwo = (pts.length === 2);
+    if (wasTwo || total / (pts.length - 1) > DENSE) {
       var dense = [pts[0]];
       for (i = 1; i < pts.length; i++) {
         var ax = pts[i - 1][0], ay = pts[i - 1][1];
         var bx = pts[i][0], by = pts[i][1];
         var segLen = Math.sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay));
-        var steps = Math.max(1, Math.ceil(segLen / DENSE));
+        var steps = Math.max(wasTwo ? MIN2 : 1, Math.ceil(segLen / DENSE));
         for (var q = 1; q <= steps; q++) {
           dense.push([ax + (bx - ax) * q / steps, ay + (by - ay) * q / steps]);
         }

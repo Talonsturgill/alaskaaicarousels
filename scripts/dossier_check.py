@@ -481,7 +481,20 @@ F7_END_RE = re.compile(
     r"^\s*(?:\*{1,2}|_{1,2})?\s*(?:7[a-z]|8)[.)]|^#{1,4}[ \t]+\S", re.M)
 BACKTICK_RE = re.compile(r"`([^`]+)`")
 SCRIPT_SRC_RE = re.compile(r"""<script[^>]*\bsrc\s*=\s*['"]([^'"]+)['"]""", re.I)
-IMPORT_RE = re.compile(r"""import\s*\(\s*['"]([^'"]+)['"]|from\s*['"]([^'"]+\.js)['"]""")
+# A COMPUTED IMPORT PATH IS THE ESTABLISHED FORM HERE, NOT AN EDGE CASE (Codex,
+# PR #391). The first cut only recognised `import('literal')`, and
+# runs/2026-09-01's five akthree slides all write
+# `const {init} = await import(A + '/js/akthree.js')` inside glRow(), with the
+# asset root in a variable. Run against that archived deck the check reported
+# that slide 01's field 7 named `AKT.objectHero` while the slide never loaded
+# akthree.js, which is a FALSE FAILURE on a correct technique stack, and a gate
+# that false-fails is worse than no gate because the next run learns to ignore
+# it. So the whole import ARGUMENT is read and any .js string literal in it
+# counts, whatever it is concatenated with. One level of nested parens is
+# tolerated inside the argument.
+IMPORT_CALL_RE = re.compile(r"\bimport\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)")
+IMPORT_FROM_RE = re.compile(r"""\bfrom\s*['"]([^'"]+\.js)['"]""")
+JS_LITERAL_RE = re.compile(r"""['"]([^'"]*\.js)['"]""")
 # Library names that are not the stem of their own file.
 LIB_ALIAS = {
     "d3": "d3.v7.min.js",
@@ -544,10 +557,11 @@ def libs_loaded(src):
     out = set()
     for u in SCRIPT_SRC_RE.findall(src):
         out.add(u.rsplit("/", 1)[-1])
-    for a, b in IMPORT_RE.findall(src):
-        u = a or b
-        if u.endswith(".js"):
+    for arg in IMPORT_CALL_RE.findall(src):
+        for u in JS_LITERAL_RE.findall(arg):
             out.add(u.rsplit("/", 1)[-1])
+    for u in IMPORT_FROM_RE.findall(src):
+        out.add(u.rsplit("/", 1)[-1])
     return out
 
 

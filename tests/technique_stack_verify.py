@@ -33,6 +33,15 @@ akengrave.js and akpost.js and nothing else:
       loaded, and a commented-out tag is exactly what an
       abandoned technique leaves behind -- the same
       moment the dossier goes stale                     -> FAIL, akthree.js
+  07  NEGATIVE CONTROL, and the one Codex found by
+      running this check over runs/2026-09-01: the slide
+      loads akthree through a COMPUTED path,
+      `await import(A + '/js/akthree.js')`, which is the
+      established form in this repo (five slides of that
+      deck, and examples/proof-3d uses the literal one).
+      The first cut read only quoted literals and
+      false-failed a correct technique stack, and a gate
+      that false-fails is worse than no gate            -> holds
 """
 
 import subprocess
@@ -46,7 +55,7 @@ SLIDE = """<!doctype html>
 <html><head><meta charset="utf-8"></head>
 <body data-ink='{{}}'>
 <canvas id="c" width="2160" height="2700"></canvas>
-{commented}<script src="@@ASSETS@@/js/aksection.js"></script>
+{commented}{computed}<script src="@@ASSETS@@/js/aksection.js"></script>
 <script src="@@ASSETS@@/js/akengrave.js"></script>
 <script src="@@ASSETS@@/js/akpost.js"></script>
 <script>/* the slab is an aksection primitive */</script>
@@ -54,6 +63,13 @@ SLIDE = """<!doctype html>
 """
 # The abandoned tag, left where a build leaves it.
 COMMENTED = '<!-- <script src="@@ASSETS@@/js/akthree.js"></script> -->\n'
+# runs/2026-09-01's own glRow(), verbatim in shape: the asset root is a
+# variable and the module path is concatenated onto it.
+COMPUTED = ('<script type="module">\n'
+            "const A = document.body.dataset.assets;\n"
+            "const THREE = await import(A+'/js/three.module.min.js');\n"
+            "const {init} = await import(A+'/js/akthree.js');\n"
+            "</script>\n")
 
 F4A = ("**4a. Lower-third treatment.** The modelled earth slab fills the bottom "
        "31 percent of the frame, its engraved tone carrying the story quantity, "
@@ -72,19 +88,22 @@ DOSSIER = """## SLIDE {n:02d} -- THE SECTION
 """
 
 FIXTURES = [
-    # slide, field 7, must it FAIL, the needle, is the akthree tag commented in
+    # slide, field 7, must it FAIL, the needle, akthree tag commented,
+    # akthree loaded through a COMPUTED import path
     (1, "`aksection` `S.slab` for the slab, `akengrave` tone, `akpost` grade.",
-     False, "", False),
+     False, "", False, False),
     (2, "`akthree` GPU PBR for the slab, `akengrave` tone, `akpost` grade.",
-     True, "akthree.js", False),
+     True, "akthree.js", False, False),
     (3, "`aksection` for the slab, `AKT.snapshot` read back onto the 2D canvas, "
-        "`akpost` grade.", True, "akthree.js", False),
+        "`akpost` grade.", True, "akthree.js", False, False),
     (4, "`aksection` for the slab, `AK.grainTile` over the sky, `akpost` grade.",
-     False, "", False),
+     False, "", False, False),
     (5, "The slab is lathed by hand on the 2D canvas, no library involved.",
-     False, "", False),
+     False, "", False, False),
     (6, "`akthree` GPU PBR for the slab, `akengrave` tone, `akpost` grade.",
-     True, "akthree.js", True),
+     True, "akthree.js", True, False),
+    (7, "`akthree` for the hero, `AKT.objectHero` lit toward the key, "
+        "`akengrave` tone, `akpost` grade.", False, "", False, True),
 ]
 
 
@@ -92,9 +111,10 @@ def main():
     tmp = Path(tempfile.mkdtemp(prefix="technique-stack-"))
     (tmp / "slides").mkdir()
     parts = []
-    for n, stack, _want, _needle, commented in FIXTURES:
+    for n, stack, _want, _needle, commented, computed in FIXTURES:
         (tmp / "slides" / ("slide-%02d.html" % n)).write_text(
-            SLIDE.format(commented=COMMENTED if commented else ""))
+            SLIDE.format(commented=COMMENTED if commented else "",
+                         computed=COMPUTED if computed else ""))
         parts.append(DOSSIER.format(n=n, f4a=F4A, stack=stack))
     (tmp / "storyboard.md").write_text("# DECK\n\n" + "\n".join(parts))
 
@@ -111,7 +131,7 @@ def main():
 
     by_slide = {s["slide"]: s for s in rep["slides"]}
     ok = True
-    for n, _stack, want_fail, needle, _commented in FIXTURES:
+    for n, _stack, want_fail, needle, _commented, _computed in FIXTURES:
         fails = [f for f in by_slide.get(n, {}).get("fails", []) if "field 7" in f]
         got = bool(fails)
         line = (fails or by_slide.get(n, {}).get("fails") or ["(clean)"])[0]

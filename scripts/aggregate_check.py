@@ -376,7 +376,11 @@ def parse_enumeration(text):
     runs = [r for r in runs if len(r[0]) >= 2]
     if not runs:
         return []
-    run, stop = max(runs, key=lambda r: len(r[0]))
+    # The longest run wins, AND A TIE GOES TO THE LATER ONE, which is what the
+    # paragraph above promises and what bare max() did not do: max() returns
+    # the FIRST maximal element (Codex, PR #391). The run's own start offset is
+    # the tiebreak, so the rule is the documented one.
+    run, stop = max(runs, key=lambda r: (len(r[0]), r[0][0][0]))
     items = []
     for i, (_start, end) in enumerate(run):
         end_at = run[i + 1][0] if i + 1 < len(run) else stop
@@ -927,6 +931,28 @@ def verify(decl, claims, fails, warns):
                 fails.append("%s: enumerated items need at least one member claim "
                              "they can be read out of" % where)
             check_items(items, members, claims, fails, where)
+        # A RATIO OVER A CLAIM'S OWN ENUMERATION IS A SUBSET ASSERTION WEARING
+        # THE DIGIT FORM (Codex, PR #391). RX_RATIO is digits-only and runs
+        # first, so it claims the span of "9 of 10 items ask about the
+        # payload" and verify_subset never sees it. Codex demonstrated that
+        # string passing as a `ratio` against C27's real enumeration with the
+        # WRONG first nine, verdict PASS, because ratio proves the ARITHMETIC
+        # and nothing else: it never reads a predicate or a separating term.
+        # That is this gate's own defect, in digits. So when the counted
+        # universe IS one claim's parsed enumeration, the ratio kind is
+        # refused and the assertion has to go through verify_subset.
+        uniq_members = sorted(set(members))
+        if len(uniq_members) == 1 and uniq_members[0] in claims and a < b:
+            enum = parse_enumeration(str(claims[uniq_members[0]].get("verbatim") or ""))
+            if len(enum) == b:
+                fails.append(
+                    "%s: claim %s ENUMERATES its %d item(s), and this counts %d of "
+                    "them, so it is a subset assertion and not a search result. "
+                    "Declare it as kind 'subset': 'ratio' proves the arithmetic "
+                    "and never reads a predicate or a separating term, which is "
+                    "how 'Nine of the ten items ask about the payload' shipped on "
+                    "2026-09-20. The digit form is the same assertion."
+                    % (where, uniq_members[0], len(enum), a))
 
     elif kind == "from_claim":
         cid = str(decl.get("member", decl.get("claim", ""))).strip()
@@ -998,6 +1024,14 @@ def covers(decl, hit):
         # substring test that C27's own "(9)" would have satisfied. A subset
         # assertion is declared as a subset or it is not declared (2026-09-20).
         return hit["kind"] != "subset"
+    # A SUBSET DECLARATION MAY ANSWER FOR A RATIO DETECTION, never the reverse.
+    # RX_RATIO is digits-only and claims the span of "9 of 10 items ask about
+    # the payload" before the subset detector sees it, so the honest author who
+    # reaches for kind 'subset' there has to be able to (Codex, PR #391).
+    # Subset obligations are strictly stronger than ratio's, so this is a
+    # tightening in the only direction it travels.
+    if decl.get("kind") == "subset" and hit["kind"] == "ratio":
+        return True
     return decl.get("kind") == hit["kind"]
 
 

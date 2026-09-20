@@ -1,0 +1,27 @@
+[
+ {
+  "check_ids": [
+   "output:docket-watch"
+  ],
+  "audit_checked_utc": "2026-09-20T09:00:52.469429Z",
+  "blocker": "credentials",
+  "reason": "The defect itself is diagnosed and FIXED, not deferred. ledger/watch.json on main was generated 2026-09-19T17:20:08Z with basis-bills failing on a read timeout, which cost that day the legislative half of the docket watch queue. Reading the 25 queue revisions on main back to 2026-08-26 showed the BASIS bills endpoint failing on 8 of them, seven consecutive days of HTTP 503 from September 2nd to 8th plus the September 19th timeout, against a collector that made exactly one attempt. A retry with backoff, and an explicit record when a failed bill sweep takes the hearings sweep with it, were implemented on an isolated maintenance branch, passed a hermetic self test at 26 of 26 with four new regression checks, were proven to fail against a reconstruction of each defect, passed CI, passed Codex review on the current head with no findings, and were merged to main as 3ddad816. A live dry run of the fixed collector against BASIS and the Federal Register, without --write, completed with 0 sources failed. What remains blocked is only the PRODUCTION EVIDENCE. This audit row reads the queue committed on main, and that queue is only rewritten when the scheduled workflow next runs. Forcing it requires workflow_dispatch, and the GitHub App this session authenticates as is refused with 403 Resource not accessible by integration. The next scheduled docket-watch run is due about 14:20 UTC, which is after this run ends. The row is expected to clear on its own at that point, and the next daily run re-audits it.",
+  "attempts": [
+   "Diagnosed the failure from ledger/watch.json on main rather than from the workflow log alone, and established recurrence across 25 queue revisions.",
+   "Probed the BASIS bills endpoint three times directly, which answered HTTP 200 with 218,597 bytes in 1.1 to 1.5 seconds, ruling out the 45 second timeout as the cause and identifying intermittent load shedding.",
+   "Implemented a bounded retry and an explicit unasked-sweep record in scripts/docket_watch.py on an isolated maintenance branch, per the scheduled-job maintenance procedure in CLAUDE.md.",
+   "Added four regression checks to the hermetic self test and verified each one FAILS against a reconstruction of the defect it guards.",
+   "Ran the fixed collector end to end against the live sources without --write, result 0 sources failed, HB259 observed, out-of-session hearings note present.",
+   "Opened PR #390 ready, not draft, waited for CI green and for Codex to report Completed on the current head with no findings, re-ran scripts/ledger_guard.py immediately before merging, and merged to main.",
+   "Attempted to trigger the owning production workflow on main with workflow_dispatch to regenerate the queue and clear the audit row. Refused with 403 Resource not accessible by integration.",
+   "Re-ran the full scheduled-workflow audit at 09:00Z, after the fix merged at 07:25Z. Every other row passes; output:docket-watch still reads the queue the 2026-09-19 17:19Z run wrote, because the cron is 20 14 * * * and the first run carrying the fix is today at 14:20Z, after this run ends."
+  ],
+  "evidence_urls": [
+   "https://github.com/Talonsturgill/alaskaaicarousels/pull/390",
+   "https://github.com/Talonsturgill/alaskaaicarousels/commit/3ddad816dfff989dcba474eb96792a0300a684df",
+   "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/scripts/docket_watch.py",
+   "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/ledger/watch.json",
+   "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/docket-watch.yml"
+  ]
+ }
+]
