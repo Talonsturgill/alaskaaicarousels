@@ -479,11 +479,20 @@
 
     cx.save();
 
-    /* 1. the window itself, a recess in the plate rather than a ruled box */
-    cx.fillStyle = "#060B12";
-    cx.globalAlpha = 0.62;
+    /* 1. the window itself, and it is OPAQUE on purpose.
+     * A plan view and a section are two coordinate spaces, and a section
+     * line that runs visibly across the plan makes them one air. Round two
+     * called the translucent first build a decal for exactly that reason.
+     * Filled solid and drawn last, the window OCCLUDES whatever the frame
+     * ran past it, which turns the collision into the cleanest depth cue
+     * on the page. */
+    cx.fillStyle = "#0A121C";
     cx.fillRect(x, y, s, s);
-    cx.globalAlpha = 1;
+    /* the recess: a lit inner bevel on the up-light side, dark opposite */
+    cx.fillStyle = "#46545F";
+    cx.fillRect(x, y, s, 2); cx.fillRect(x, y, 2, s);
+    cx.fillStyle = "#080D14";
+    cx.fillRect(x, y + s - 2, s, 2); cx.fillRect(x + s - 2, y, 2, s);
     this.incise(cx, [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]],
                 { w: 3.4, lip: "#6E6250", trough: "#0B0C08" });
 
@@ -537,19 +546,36 @@
 
     /* 5. the transect, stamped across the key in the same ink the section
      *    uses for its datum, with a tick at each end. */
+    /* A TRANSECT HAS TO CROSS THE THING IT CUTS (round two).
+     * The first build incised the line between the two true endpoints,
+     * which at borough extent is a 25 px scratch in the middle of a 180 px
+     * key: "at full size it is barely findable and at 432 px the key is a
+     * bare outline." The cut is now extended along its own bearing to the
+     * window edges and clipped there, so it reads as a section line drawn
+     * across a plan, while the TICKS stay on the real endpoints and a
+     * filled square marks the A end, which is where the reader stands. */
     var tr = o.transect;
     var a = null, b = null;
     if (tr) {
       a = proj(tr[0]); b = proj(tr[1]);
       if (a && b) {
-        this.incise(cx, [a, b], { w: 2.4, lip: "#A4B6C4", trough: "#080D12" });
         var tx = b[0] - a[0], ty = b[1] - a[1];
         var tl = Math.sqrt(tx * tx + ty * ty) || 1;
-        var nx = -ty / tl * 4.2, ny = tx / tl * 4.2;
+        var ux = tx / tl, uy = ty / tl;
+        cx.save();
+        cx.beginPath(); cx.rect(x + 2, y + 2, s - 4, s - 4); cx.clip();
+        this.incise(cx, [[a[0] - ux * s, a[1] - uy * s],
+                         [b[0] + ux * s, b[1] + uy * s]],
+                    { w: 3.0, lip: "#DCE6EC", trough: "#05070A" });
+        cx.restore();
+        var nx = -uy * 5.4, ny = ux * 5.4;
         cx.beginPath();
         cx.moveTo(a[0] - nx, a[1] - ny); cx.lineTo(a[0] + nx, a[1] + ny);
         cx.moveTo(b[0] - nx, b[1] - ny); cx.lineTo(b[0] + nx, b[1] + ny);
-        cx.lineWidth = 1.8; cx.strokeStyle = "#A4B6C4"; cx.stroke();
+        cx.lineWidth = 2.0; cx.strokeStyle = "#DCE6EC"; cx.stroke();
+        /* the A end, a filled square: the station the section is drawn from */
+        cx.fillStyle = "#F4F8FF";
+        cx.fillRect(a[0] - 2.6, a[1] - 2.6, 5.2, 5.2);
       }
     }
 
@@ -589,6 +615,25 @@
 
     cx.restore();
     return { box: [x, y, s, s], project: proj };
+  };
+
+  /* --------------------------------------------------------- counterTick
+   * The deck header declares "a 6 px counter tick which is a declared
+   * fixture on all nine", and slide 04's acceptance list is built on it:
+   * that frame holds the notice path out entirely, so the tick is its only
+   * tie to what gold means here. Round two found it drawn on no frame. It
+   * lives in the chassis so nine frames cannot disagree about where the
+   * one fixture sits.
+   */
+  Section.prototype.counterTick = function (cx, o) {
+    o = o || {};
+    var x = o.x == null ? 866 : o.x;
+    var y = o.y == null ? 96 : o.y;
+    cx.save();
+    cx.fillStyle = o.hex || "#FFC72C";
+    cx.fillRect(x, y, 6, o.h == null ? 26 : o.h);
+    cx.restore();
+    return this;
   };
 
   global.AKSECT = {
