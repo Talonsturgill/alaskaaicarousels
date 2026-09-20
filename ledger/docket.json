@@ -3430,7 +3430,7 @@
    "decider": "Kenai Peninsula Borough Assembly",
    "public_access": "open",
    "access_note": "A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then.",
-   "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August.",
+   "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August. The ordinance would require ten items in a borough lease or land use permit application, prohibit the activity on borough lands open for casual use, and carry a $1,000 per day fine and a five year application ban for a missing closeout summary. Its reach is borough land; the August flight that prompted it was over state land.",
    "key_dates": [
     {
      "date": "2026-09-03",
@@ -3458,10 +3458,20 @@
      "url": "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
      "outlet": "Kenai Peninsula Borough legislative record",
      "date": "2026-09-15"
+    },
+    {
+     "url": "https://kpb.legistar1.com/kpb/attachments/73cfabad-36b5-4283-b7b5-005382ca41e3.docx",
+     "outlet": "Kenai Peninsula Borough, Ordinance 2026-35 as introduced",
+     "date": "2026-09-15"
+    },
+    {
+     "url": "https://kpb.legistar1.com/kpb/attachments/16f1fe75-2de4-493c-b8d6-0286e73a1763.pdf",
+     "outlet": "Alaska Department of Environmental Conservation, Commissioner's letter to the borough mayor",
+     "date": "2026-09-11"
     }
    ],
    "first_seen": "2026-09-15",
-   "last_updated": "2026-09-18",
+   "last_updated": "2026-09-20",
    "history": [
     {
      "date": "2026-09-15",
@@ -3470,6 +3480,14 @@
     {
      "date": "2026-09-18",
      "note": "Checked and unchanged. The borough's own legislative record still carries Ordinance 2026-35 as New Business in the Policies and Procedures Committee, introduced September 3rd, with an agenda date of September 15th and no passage or enactment date. The public hearing stays set for October 20th, which is the point at which an Alaskan can speak to it."
+    },
+    {
+     "date": "2026-09-20",
+     "note": "Read the ordinance itself, which is stored as an attachment on the borough's legislative record. KPB 17.10.165 would apply to an application for a commercial lease or commercial land use permit for the temporary use of borough land, and would require ten items in that application, covering the type and quantity of chemicals, the quantity, type, manufacturer, serial number and total weight of flares, the total pyrotechnic material, safety data sheets, the frequency of activities, the duration and altitude of individual flights, the total duration of all flights, the maximum number of flights attempted, and release coordinates including predicted impacted areas. It would prohibit the activity outright on borough lands open for casual use, and define weather modification and geoengineering to cover cloud seeding, solar radiation modification and stratospheric aerosol injection. A signed closeout summary is required, and failing to file one carries a $1,000 per day fine and a five year ban on applying for a commercial lease or land use permit. The ordinance would take effect immediately on enactment."
+    },
+    {
+     "date": "2026-09-20",
+     "note": "A September 11th letter from the Commissioner of the Alaska Department of Environmental Conservation to the borough mayor is laid down on the same file. It states that no DEC permit is currently required solely for conducting cloud seeding, that Alaska has no regulatory framework specific to weather modification, and that the department can't create a permitting requirement that does not exist in statute or regulation. It reports that the August 23rd operation dispersed approximately 374 grams of silver iodide from 19 flares, and that the company's own estimate of about 57 acre feet, or roughly 19 million gallons, corresponds to about 0.01 inches of precipitation across the area analyzed. The letter says the department has not identified a violation or an adverse impact requiring action under its existing authorities, and points to the Legislature as the body that would decide whether Alaska adopts a framework."
     }
    ]
   },
