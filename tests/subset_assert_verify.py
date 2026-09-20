@@ -254,6 +254,12 @@ CAPITAL = "Two of the four items name the air and the land."
 # single .search() that finds only the first, so the second is never checked.
 # Both assertions are TRUE of C43's enumeration, so the only thing that can
 # fail either fixture is the gate's handling of two phrases in one node.
+# Codex round six. TWO DISTINCT assertions whose printed fragments are
+# IDENTICAL. The detector keyed on fragment text, so the second collapsed into
+# the first and was never detected at all; one correct declaration for the air
+# pair then returned a clean PASS over an unchecked claim about the roads.
+SAME_FRAGMENT = ("Two of the four items name the air and the land. "
+                 "Two of the four items name the dock and the roads.")
 TWO_ASSERTIONS = ("Two of the four items name the air and the land. "
                   "Three of the four items name the dock, the roads and the "
                   "surveys.")
@@ -451,13 +457,35 @@ FIXTURES = [
        "selected": [3.9, 4.2], "terms": ["air", "land"],
        "predicate": "name the air and the land"}],
      has_fail("must be a LIST of 1-based whole item"), True),
+
+    # ---- Codex round six --------------------------------------------
+    # The air declaration is CORRECT. The roads assertion beside it is never
+    # checked, and before the fix was never even detected.
+    ("6 same_frag", SAME_FRAGMENT,
+     [{"kind": "subset", "slide": 7, "text": SAME_FRAGMENT, "member": "C43",
+       "selected": [3, 4], "terms": ["air", "land"],
+       "predicate": "name the air and the land"}],
+     has_fail("AMBIGUOUS declaration"), True),
+    # The same phrase printed twice in DIFFERENT nodes is one assertion said
+    # twice, and one declaration answers for both. This is the control that
+    # keeps the rule above from failing correct decks: slide 02 of run No.64
+    # prints "10 days" in four places.
+    ("6 two_nodes", {"nodes": [CAPITAL, CAPITAL]},
+     [{"kind": "subset", "slide": 7, "text": CAPITAL, "member": "C43",
+       "selected": [3, 4], "terms": ["air", "land"],
+       "predicate": "name the air and the land"}],
+     clean, True),
 ]
 
 
 def render_report(text):
-    """A node is a string, or the {text, full} pair render.py actually emits."""
-    node = dict(text) if isinstance(text, dict) else {"text": text}
-    return {"slides": [{"file": "slide-07.html", "text_nodes": [node]}]}
+    """A node is a string, the {text, full} pair render.py actually emits, or
+    {"nodes": [...]} for a slide that lays out more than one of them."""
+    if isinstance(text, dict) and "nodes" in text:
+        nodes = [dict(n) if isinstance(n, dict) else {"text": n} for n in text["nodes"]]
+    else:
+        nodes = [dict(text) if isinstance(text, dict) else {"text": text}]
+    return {"slides": [{"file": "slide-07.html", "text_nodes": nodes}]}
 
 
 def main():

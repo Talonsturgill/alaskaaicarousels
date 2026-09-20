@@ -509,11 +509,11 @@ def detect(strings):
             n = parse_number(m.group(1))
             if n is None:
                 continue
-            hits.append({"slide": slide, "kind": "duration", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "duration", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": n, "unit": m.group(2).lower()})
             spans.append((m.start(), m.end()))
         for m in RX_RATIO.finditer(text):
-            hits.append({"slide": slide, "kind": "ratio", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "ratio", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": int(m.group(1)), "of": int(m.group(2))})
             spans.append((m.start(), m.end()))
         # SUBSET before span and count, so "Nine of the ten items" claims the
@@ -534,13 +534,13 @@ def detect(strings):
             # gate went looking for a nine-item subset.
             spans.append((m.start(), m.end()))
             if k > tot:
-                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0), "at": m.start(),
                              "text": text, "n": tot - k, "of": tot, "impossible": True})
                 continue
             n = tot - k
             if n == 1:
                 continue                 # one member is membership, not a count
-            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": n, "of": tot})
         for m in RX_QUANT.finditer(text):
             if overlaps(m):
@@ -550,7 +550,7 @@ def detect(strings):
                 continue
             word = re.sub(r"\s+", " ", m.group(1).strip().lower())
             n = 0 if word in ("none", "not one") else tot
-            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": n, "of": tot})
             spans.append((m.start(), m.end()))
         for m in RX_SUBSET.finditer(text):
@@ -565,20 +565,20 @@ def detect(strings):
             # "ten items", matched a ten-member count declaration and PASSED.
             # No declaration can ever make it true, so it is reported here.
             if n > tot:
-                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0), "at": m.start(),
                              "text": text, "n": n, "of": tot, "impossible": True})
                 spans.append((m.start(), m.end()))
                 continue
             # N < 2 is membership ("one of the four"), not a counted subset.
             if n < 2:
                 continue
-            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": n, "of": tot})
             spans.append((m.start(), m.end()))
         for m in RX_SPAN.finditer(text):
             if overlaps(m):
                 continue
-            hits.append({"slide": slide, "kind": "span", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "span", "fragment": m.group(0), "at": m.start(),
                          "text": text, "from_n": int(m.group(1)), "to_n": int(m.group(2))})
             spans.append((m.start(), m.end()))
         for m in RX_COUNT.finditer(text):
@@ -588,13 +588,20 @@ def detect(strings):
             noun = m.group(2).split()[-1].lower()
             if n is None or n < 2 or noun in STOP_PLURAL or len(noun) < 4:
                 continue
-            hits.append({"slide": slide, "kind": "count", "fragment": m.group(0),
+            hits.append({"slide": slide, "kind": "count", "fragment": m.group(0), "at": m.start(),
                          "text": text, "n": n, "subject": m.group(2).lower()})
             spans.append((m.start(), m.end()))
 
     uniq = []
     for h in hits:
-        key = (h["slide"], h["kind"], norm(h["fragment"]), norm(h["text"]))
+        # TWO OCCURRENCES ARE TWO ASSERTIONS (Codex, PR #391). Keying on the
+        # fragment TEXT collapsed "Two of the four items name the air and the
+        # land. Two of the four items name the dock and the roads." into one
+        # hit, so one correct declaration covered it and the second assertion
+        # was never detected, let alone verified. The offset distinguishes two
+        # occurrences while still collapsing the same span caught twice, which
+        # is what this dedupe was for.
+        key = (h["slide"], h["kind"], h.get("at"), norm(h["fragment"]), norm(h["text"]))
         if key in seen:
             continue
         seen.add(key)
@@ -1222,16 +1229,34 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
     # declaration and checked once, and the second assertion was never verified
     # at all. The declaration has to say which phrase it answers for.
     for i, hs in covered.items():
-        frags = {norm(h["fragment"]) for h in hs}
-        if len(frags) < 2 or decls[i].get("fragment"):
+        # By OCCURRENCE, not by text. Two identical phrases in one node are two
+        # assertions, and "fragment" cannot tell them apart because it matches
+        # on text, so it is no escape here: a declaration covering more than one
+        # occurrence is refused whether or not it carries one. The cure is one
+        # declaration per assertion, and where the two read identically, a slide
+        # that says them differently.
+        # WITHIN ONE NODE. A number printed in four places on a slide is one
+        # assertion said four times, correctly answered by one declaration, and
+        # verify() reads the same thing for each. The defect is two occurrences
+        # inside ONE rendered string, because verify() reads that string with a
+        # single .search() and sees only the first.
+        per_node = {}
+        for h in hs:
+            per_node.setdefault(norm(h["text"]), set()).add(
+                (h.get("at"), norm(h["fragment"])))
+        occ = max(per_node.values(), key=len) if per_node else set()
+        if len(occ) < 2:
             continue
-        fails.append("AMBIGUOUS declaration on S%s: %r covers %d different "
-                     "printed assertion(s) (%s) and can only be checked against "
-                     "one of them. Give each its own declaration with an exact "
-                     "\"fragment\"."
+        hs = [h for h in hs if (h.get("at"), norm(h["fragment"])) in occ]
+        frags = sorted({repr(h["fragment"]) for h in hs})
+        fails.append("AMBIGUOUS declaration on S%s: %r covers %d printed "
+                     "assertion(s) (%s) and is checked against only one of them. "
+                     "Declare each separately with its own exact \"fragment\"; "
+                     "where two read identically, rewrite the slide so they do "
+                     "not."
                      % (decls[i].get("slide", "?"),
-                        str(decls[i].get("text", ""))[:60], len(frags),
-                        "; ".join(sorted(repr(h["fragment"]) for h in hs)[:4])))
+                        str(decls[i].get("text", ""))[:60], len(occ),
+                        "; ".join(frags[:4])))
 
     for d in decls:
         if isinstance(d, dict):
