@@ -81,9 +81,16 @@
     /* The light reduced to the two numbers every primitive actually needs:
      * which way is up-light in screen x, and how hard the falloff is. An
      * azimuth left of 180 lights from the left. */
-    var az = this.azDeg * DEG;
-    this.lightX = -Math.sin(az);          /* screen x component of the key */
-    this.lightY = -Math.cos(az) * 0.35;   /* shallow, this is a section */
+    var az = this.azDeg * DEG, el = this.elDeg * DEG;
+    /* AZIMUTH GIVES THE HORIZONTAL, ELEVATION GIVES THE VERTICAL (Codex, PR
+     * #391). The first build took the vertical from cos(azimuth), so elDeg
+     * fed nothing but `rake`, the key pointed DOWN-screen at az 205, and a
+     * flat surface's upward normal (0, -1) clamped ndotl to zero: every flat
+     * lit lip in the deck sat on its 0.30 floor. It also meant rotating the
+     * light changed its apparent elevation, and that at az 90 or 270 the
+     * vertical component vanished whatever elevation was asked for. */
+    this.lightX = -Math.sin(az) * Math.cos(el);
+    this.lightY = -Math.sin(el);          /* negative y is up-screen: the key is above */
     var n = Math.sqrt(this.lightX * this.lightX + this.lightY * this.lightY) || 1;
     this.lightX /= n; this.lightY /= n;
     /* A raking key spreads the shading across its range. At elevation 23 this
@@ -218,6 +225,33 @@
     }
     if (!total) return null;
 
+    /* A TWO POINT RIBBON HAD NO BODY (Codex, PR #391). widthAt() tapers to
+     * nothing at t = 0 and t = 1, and a two point polyline samples nothing
+     * else, so the coloured polygon had zero area and every locator tick
+     * rendered as bare casing. The path is resampled so the taper always has
+     * interior points to be expressed at, whatever the caller passed. */
+    var DENSE = 6;
+    if (total / (pts.length - 1) > DENSE) {
+      var dense = [pts[0]];
+      for (i = 1; i < pts.length; i++) {
+        var ax = pts[i - 1][0], ay = pts[i - 1][1];
+        var bx = pts[i][0], by = pts[i][1];
+        var segLen = Math.sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay));
+        var steps = Math.max(1, Math.ceil(segLen / DENSE));
+        for (var q = 1; q <= steps; q++) {
+          dense.push([ax + (bx - ax) * q / steps, ay + (by - ay) * q / steps]);
+        }
+      }
+      pts = dense;
+      seg = [0]; total = 0;
+      for (i = 1; i < pts.length; i++) {
+        var ddx = pts[i][0] - pts[i - 1][0], ddy = pts[i][1] - pts[i - 1][1];
+        total += Math.sqrt(ddx * ddx + ddy * ddy);
+        seg.push(total);
+      }
+      if (!total) return null;
+    }
+
     function widthAt(t) {
       /* sin gives a true taper to nothing at both ends */
       return wMax * Math.pow(Math.sin(Math.PI * clamp(t, 0, 1)), taper);
@@ -232,7 +266,11 @@
         var tx = next[0] - prev[0], ty = next[1] - prev[1];
         var tl = Math.sqrt(tx * tx + ty * ty) || 1;
         var nx = -ty / tl, ny = tx / tl;
-        var w = widthAt(seg[k] / total) * 0.5 + pad;
+        /* the casing tapers WITH the ribbon, or a ribbon that ends in a
+         * point ends in a blunt casing-coloured cap instead */
+        var tt = seg[k] / total;
+        var ww = widthAt(tt);
+        var w = ww * 0.5 + pad * clamp(ww / (wMax * 0.28), 0, 1);
         out.push([p[0] + nx * w * sign, p[1] + ny * w * sign]);
       }
       return out;
@@ -299,11 +337,26 @@
       cx.globalAlpha = 1;
     }
 
+    /* WHICH SIDE IS UP-LIGHT IS A PROPERTY OF THE PATH, NOT OF THE GLOBAL Y
+     * (Codex, PR #391). The first build read `lx * 0 + ly * -1`, so the
+     * horizontal key was multiplied out and a vertical groove could not put
+     * its lip up-light at all. A single-offset band can only take one side,
+     * so the side comes from the path's MEAN normal against the key. */
+    var mnx = 0, mny = 0;
+    for (var s0 = 0; s0 < pts.length; s0++) {
+      var pp = pts[s0 - 1] || pts[s0], nn = pts[s0 + 1] || pts[s0];
+      var sx = nn[0] - pp[0], sy = nn[1] - pp[1];
+      var sl = Math.sqrt(sx * sx + sy * sy) || 1;
+      mnx += -sy / sl; mny += sx / sl;
+    }
+    var ml = Math.sqrt(mnx * mnx + mny * mny) || 1;
+    mnx /= ml; mny /= ml;
+
     cx.save();
     /* the trough first, centred on the path and biased down-light */
     band(-w * 0.5, w, trough, 0.92);
     /* then the lit lip on the up-light shoulder, thinner and brighter */
-    var upSign = (lx * 0 + ly * -1) >= 0 ? -1 : 1;
+    var upSign = (mnx * lx + mny * ly) >= 0 ? 1 : -1;
     band(upSign * w * 0.5, Math.max(1.2, w * 0.36), lip, 0.95);
     cx.restore();
     return pts;
@@ -649,12 +702,21 @@
     var seed = this.seed + (o.salt || 0) + 911;
     var step = o.step == null ? 6 : o.step;
     var x, i, k;
+    /* the earth actually available below the surface, measured across the run */
+    var surf = prof(x0 + W * 0.5);
+    for (x = x0; x <= x0 + W; x += 60) surf = Math.max(surf, prof(x));
+    var span = Math.max(top + 40, bottom - surf);
 
     cx.save();
     for (i = 0; i < n; i++) {
       var t0 = i / n;
-      /* beds thin with depth, and each one wanders on its own low frequency */
-      var depth = top + Math.pow(t0, 0.82) * (bottom - top) * 0.78;
+      /* THE DEPTH RANGE IS THE SLAB, NOT THE CANVAS (Codex, PR #391).
+       * `bottom` is an absolute canvas coordinate and bedY() adds depth to
+       * prof(x), so subtracting `top` from it treated almost the whole frame
+       * as available earth: with the defaults the third bed started 476 px
+       * below a surface at 960 and every bed after it fell off the canvas, so
+       * `beds: 6` rendered about two. */
+      var depth = top + Math.pow(t0, 0.82) * (span - top) * 0.88;
       var thick = (o.thickPx == null ? 52 : o.thickPx) * (1 - t0 * 0.58);
       var amp = 9 + hash1(i * 7 + 1, seed) * 13;
       var freq = 0.0035 + hash1(i * 11 + 2, seed) * 0.004;

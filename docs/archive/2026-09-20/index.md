@@ -41,7 +41,7 @@ Alaska has no framework specific to weather modification and no state permit is 
 
 One room. October 20th.
 
-The public hearing and final vote on the ordinance is October 20th, and if the Assembly enacts it, it takes effect immediately. Until then it is introduced and not law.
+The public hearing on the ordinance is October 20th, and if the Assembly enacts it, it takes effect immediately. Until then it is introduced and not law.
 
 ## What we verified
 
@@ -54,7 +54,7 @@ The public hearing and final vote on the ordinance is October 20th, and if the A
 - Resolution 2026-046 asks the Legislature, as an alternative to a ban, to set notice and permitting requirements carrying civil or criminal penalties. [Kenai Peninsula Borough, signed Resolution 2026-046](https://kpb.legistar1.com/kpb/attachments/f85b5524-f9ce-4ee7-9971-fccf71e01f6a.pdf), primary document, 2026-09-15.
 - Resolution 2026-046 asks Alaska's congressional delegation to direct a review of federal law to strengthen notice, reporting and approval requirements before the activities take place. [Kenai Peninsula Borough, signed Resolution 2026-046](https://kpb.legistar1.com/kpb/attachments/f85b5524-f9ce-4ee7-9971-fccf71e01f6a.pdf), primary document, 2026-09-15.
 - Ordinance 2026-35 was introduced and set for public hearing on September 15th and has not been enacted. [Kenai Peninsula Borough via the Legistar Web API](https://webapi.legistar.com/v1/kpb/matters/32039/histories), primary document, 2026-09-15.
-- The public hearing and final vote on Ordinance 2026-35 is set for October 20th. [Kenai Peninsula Borough Clerk, Legistar meeting agenda](https://kpb.legistar1.com/kpb/meetings/2026/9/7904_A_Assembly_26-09-15_Meeting_Agenda.pdf), primary document, 2026-09-15.
+- The public hearing on Ordinance 2026-35 is set for October 20th. [Kenai Peninsula Borough Clerk, Legistar meeting agenda](https://kpb.legistar1.com/kpb/meetings/2026/9/7904_A_Assembly_26-09-15_Meeting_Agenda.pdf), primary document, 2026-09-15.
 - Ordinance 2026-35 would enact a new borough code section, KPB 17.10.165, reaching weather modification and geoengineering activities on borough lands. [Kenai Peninsula Borough Legal Department memorandum](https://kpb.legistar1.com/kpb/attachments/1d1c099e-8eff-4370-98ed-22faa1d86abc.pdf), primary document, 2026-09-03.
 - The borough's own attorney wrote that as a second class borough the Kenai Peninsula Borough does not have authority to fully regulate weather modification activities or airspace rights. [Kenai Peninsula Borough Legal Department memorandum](https://kpb.legistar1.com/kpb/attachments/1d1c099e-8eff-4370-98ed-22faa1d86abc.pdf), primary document, 2026-09-03.
 - Rainmaker's press release was the first notice the Kenai Peninsula Borough received that drones carrying weather modification payloads were operating inside the borough. [Kenai Peninsula Borough Legal Department memorandum](https://kpb.legistar1.com/kpb/attachments/1d1c099e-8eff-4370-98ed-22faa1d86abc.pdf), primary document, 2026-09-03.

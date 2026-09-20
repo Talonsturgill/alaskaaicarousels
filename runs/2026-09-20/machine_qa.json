@@ -5,14 +5,14 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'a gold line leaves the top and nothing returns to the ground it left': dE 15.7, AUC 0.86, visible 100%/100%, seen 2912/3072px at 432w"
+        "'a gold line leaves the top and nothing returns to the ground it left': dE 15.7, AUC 0.88, visible 100%/100%, seen 2912/3072px at 432w"
       ],
       "contacts": [
         "'the spruce stand on the cut face': shadow L* 5.7 vs ground L* 18.2, dL 12.5 at 432w"
       ],
       "motifs": [
         "'the notice path leaving the top of the frame': canvas 125.4 dE, page 125.4 dE, 98% of its rect is clear of opaque DOM (div.count stands on the rest)",
-        "'the lit lip of the earth slab at the datum': canvas 35.8 dE, page 51.6 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)"
+        "'the lit lip of the earth slab at the datum': canvas 35.9 dE, page 51.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)"
       ],
       "fits": [
         "disp 'EVERY NOTICE WENT UP.NONE CAME DOWN.' fits 2/2 lines at 58px"
@@ -27,10 +27,10 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'two lines leave the top and the ground label has none': dE 16.3, AUC 0.91, visible 100%/98%, seen 2880/4704px at 432w"
+        "'two lines leave the top and the ground label has none': dE 17.0, AUC 0.91, visible 100%/98%, seen 2880/4704px at 432w"
       ],
       "motifs": [
-        "'the ten day rise cut into the slab': canvas 35.8 dE, page 59.1 dE, 91% of its rect is clear of opaque DOM (div.chip stands on the rest)"
+        "'the ten day rise cut into the slab': canvas 35.2 dE, page 58.8 dE, 91% of its rect is clear of opaque DOM (div.chip stands on the rest)"
       ],
       "fits": [
         "head 'Notice was given.It went up.' fits 2/2 lines at 67.5px"
@@ -41,13 +41,13 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'state ground is one continuous solid and borough ground is a scatter of separated mesas': dE 15.0, AUC 0.67, visible 100%/100%, seen 437/437px at 432w"
+        "'state ground is one continuous solid and borough ground is a scatter of separated mesas': dE 14.8, AUC 0.66, visible 100%/100%, seen 437/437px at 432w"
       ],
       "contacts": [
-        "'the galvanized rail on the state ground': shadow L* 9.4 vs ground L* 61.9, dL 52.5 at 432w"
+        "'the galvanized rail on the state ground': shadow L* 9.7 vs ground L* 61.9, dL 52.3 at 432w"
       ],
       "motifs": [
-        "'the separated borough mesas': canvas 82.9 dE, page 85.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)",
+        "'the separated borough mesas': canvas 82.8 dE, page 85.7 dE, 98% of its rect is clear of opaque DOM (div.datum stands on the rest)",
         "'the water film on the galvanized rail': canvas 22.3 dE, page 34.7 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
@@ -69,7 +69,7 @@
       ],
       "motifs": [
         "'the 0.01 inch film at the foot of the reference column': canvas 63.7 dE, page 65.6 dE, 100% of its rect is clear of opaque DOM",
-        "'the dashed phantom film on the dry rail': canvas 45.5 dE, page 49.8 dE, 100% of its rect is clear of opaque DOM"
+        "'the dashed phantom film on the dry rail': canvas 43.5 dE, page 48.7 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "head '19 million gallonsis a hundredth of an inch.' fits 2/2 lines at 65.5px"
@@ -83,15 +83,15 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'a drilled bore on the left and a port that was cast and never drilled on the right': dE 21.1, AUC 0.76, visible 100%/100%, seen 1225/1280px at 432w"
+        "'a drilled bore on the left and a port that was cast and never drilled on the right': dE 21.0, AUC 0.77, visible 100%/100%, seen 1225/1280px at 432w"
       ],
       "contacts": [
-        "'the blind port boss on borough ground': shadow L* 17.3 vs ground L* 36.1, dL 18.8 at 432w"
+        "'the blind port boss on borough ground': shadow L* 17.6 vs ground L* 36.1, dL 18.5 at 432w"
       ],
       "motifs": [
-        "'the blind port, cast and never drilled': canvas 106.8 dE, page 107.8 dE, 100% of its rect is clear of opaque DOM",
-        "'the drilled bore it is compared against': canvas 61.0 dE, page 61.2 dE, 100% of its rect is clear of opaque DOM",
-        "'the scribed circle is the same diameter as the drilled bore': canvas 106.9 dE, page 107.0 dE, 100% of its rect is clear of opaque DOM"
+        "'the blind port, cast and never drilled': canvas 107.5 dE, page 107.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the drilled bore it is compared against': canvas 60.8 dE, page 60.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the scribed circle is the same diameter as the drilled bore': canvas 106.4 dE, page 107.1 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "head 'The borough's portwas never drilled.' fits 2/2 lines at 67.5px"
@@ -137,10 +137,10 @@
       "fails": [],
       "warns": [],
       "encodings": [
-        "'the tally band is a dense population of incised marks and the ground above it is bare': dE 18.1, AUC 0.87, visible 100%/100%, seen 9240/2800px at 432w"
+        "'the tally band is a dense population of incised marks and the ground above it is bare': dE 11.2, AUC 0.70, visible 100%/100%, seen 9240/2800px at 432w"
       ],
       "motifs": [
-        "'the tally band of 856 incised marks': canvas 54.7 dE, page 60.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the tally band of 856 incised marks': canvas 63.2 dE, page 65.8 dE, 100% of its rect is clear of opaque DOM",
         "'the empty gold ring at Juneau': canvas 109.6 dE, page 109.9 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
@@ -159,11 +159,11 @@
         "'after eight frames of lines leaving the top, one line comes down and stops on a dated ring': dE 34.3, AUC 0.92, visible 100%/100%, seen 15680/595px at 432w"
       ],
       "contacts": [
-        "'the dated ring on the final step': shadow L* 5.1 vs ground L* 22.0, dL 16.9 at 432w"
+        "'the dated ring on the final step': shadow L* 5.5 vs ground L* 26.4, dL 20.8 at 432w"
       ],
       "motifs": [
-        "'the thirty daily steps descending to the hearing': canvas 96.1 dE, page 81.3 dE, 100% of its rect is clear of opaque DOM",
-        "'the dated ring seated on the landing': canvas 79.6 dE, page 79.9 dE, 100% of its rect is clear of opaque DOM"
+        "'the thirty daily steps descending to the hearing': canvas 96.1 dE, page 83.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the dated ring seated on the landing': canvas 79.6 dE, page 80.2 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "head 'One room.October 20th.' fits 2/2 lines at 67.5px"

@@ -113,7 +113,7 @@
   },
   {
    "id": "C10",
-   "claim": "The public hearing and final vote on Ordinance 2026-35 is set for October 20th.",
+   "claim": "The public hearing on Ordinance 2026-35 is set for October 20th.",
    "value": "October 20th",
    "verbatim": "(Hearing on 10/20/26)",
    "source_url": "https://kpb.legistar1.com/kpb/meetings/2026/9/7904_A_Assembly_26-09-15_Meeting_Agenda.pdf",
@@ -121,7 +121,7 @@
    "source_is_primary": true,
    "date_of_source": "2026-09-15",
    "confidence": "high",
-   "notes": "Carried inside the ordinance's own agenda title and repeated in the Legistar MatterTitle. Three other ordinances on the same agenda carry Hearing on 10/06/26, so the borough distinguishes the two October dates deliberately."
+   "notes": "Carried inside the ordinance's own agenda title and repeated in the Legistar MatterTitle. Three other ordinances on the same agenda carry Hearing on 10/06/26, so the borough distinguishes the two October dates deliberately. CORRECTED 2026-09-20 after Codex review of PR #391: this claim read 'public hearing and final vote'. The verbatim schedules a HEARING and nothing in the agenda establishes that the Assembly acts on it the same day. The deck says hearing."
   },
   {
    "id": "C11",

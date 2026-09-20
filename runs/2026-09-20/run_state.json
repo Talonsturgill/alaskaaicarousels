@@ -14,14 +14,14 @@
   "directors_room": "done",
   "copy": "done",
   "art_build": "done",
-  "pixel_review": "in-progress",
-  "flow_review": "pending",
+  "pixel_review": "done",
+  "flow_review": "done",
   "assemble": "done",
-  "scoring": "pending",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "scoring": "done",
+  "ship": "done",
+  "upgrade": "done",
+  "gmail": "done",
+  "retro": "done"
  },
  "artifacts": {
   "wake": [
@@ -67,13 +67,47 @@
    "out/2026-09-20/final/carousel.pdf (vector, 9.33 MB)",
    "out/2026-09-20/final/contact_sheet.png",
    "out/2026-09-20/final/thumbs/"
+  ],
+  "pixel_review": [
+   "3 rounds across 9 slides, per-slide means 6.4, 6.1, 6.6",
+   "5 editing rounds after the first render",
+   "out/2026-09-20/render/machine_qa.json (PASS, 0 fails, 0 warns)"
+  ],
+  "flow_review": [
+   "1 round, 7.5, predicted bail point slide 06, fixed by retitle plus a take-home line"
+  ],
+  "scoring": [
+   "out/2026-09-20/score_report.json (pass 1: 7.88 raw capped to 6.9 by one hard fail; pass 2: 8.50, ship)"
+  ],
+  "ship": [
+   "runs/2026-09-20/ (WebP + og.jpg + vector PDF, 17 MB)",
+   "docs/ rebuilt, 118 pages, 64 decks",
+   "ledger/topics.json, artwork.json, captions.json, instincts.json appended",
+   "PR #391"
+  ],
+  "upgrade": [
+   "ledger/upgrades.json",
+   "out/2026-09-20/automation_retro.md"
+  ],
+  "gmail": [
+   "runs/2026-09-20/gmail_draft_id.txt"
+  ],
+  "retro": [
+   "out/2026-09-20/WORKLOG.md deleted by scripts/wrap_run.py"
   ]
  },
  "phase_3_6": {
   "site_signoff": "WARN, 117 pages, 18 checks, UNFIXED gaswatch.jsonl is current",
   "gaswatch_pagecheck": "WARN, published reading 2026-09-13, 7 days old",
   "gaswatch_live": "MAINTENANCE, checked 2026-09-20T07:15:15Z, CINGSA announced window 2026-09-14 to 2026-09-21, cron healthy, nothing carried forward",
-  "cron_health": "FAIL at audit time on output:docket-watch (basis-bills read timeout 2026-09-19). REPAIRED in PR #390, merged to main. Re-audit later in the run once the next scheduled collection writes a clean queue.",
+  "cron_health": "WARN at ship time on output:docket-watch, with out/2026-09-20/cron_incidents.json carrying the record. The collector defect was diagnosed, fixed, reviewed by Codex on the current head and merged to main as 3ddad816 (PR #390) at 07:25Z. The audit row reads the queue committed on main, which only the scheduled collection rewrites; the cron is 20 14 * * * and today's 14:20Z run, after this run ends, is the first to carry the fix. Re-audited at 09:00Z with every other row passing. The next daily run re-audits it.",
   "site_fixes": "none needed on presentation; the only site finding is the disclosed CINGSA pause"
+ },
+ "status": "complete",
+ "codex_review": {
+  "pr": 391,
+  "head_reviewed": "ad2e9e4",
+  "findings": 7,
+  "disposition": "All seven verified and FIXED, none declined. P1: C10 read 'public hearing and final vote' where its verbatim is '(Hearing on 10/20/26)', which schedules a hearing and does not establish that the Assembly acts the same day; the claim, slide 09 and the dossier now say hearing. P2 x6 in assets/js/aksection.js and this file: the vertical light came from azimuth so elDeg fed nothing but rake and every flat lit lip sat on its 0.30 floor; incise() multiplied the horizontal key by zero so a vertical groove could not put its lip up-light; a two point ribbon had zero area so every locator tick rendered as bare casing; a constant casing pad ended every tapered ribbon in a blunt cap; strata depth was measured off the canvas rather than the slab so beds 3 to 6 fell off the frame; and this run_state was committed still marking five phases pending."
  }
 }
