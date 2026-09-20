@@ -8063,3 +8063,57 @@ dimensions.
   expert framing. If that is real it is not a threat to this deck, which is
   already an argument rather than a listicle, but it is a reason to keep the
   thesis on the cover rather than a topic label.
+
+### Parked, 2026-09-20 frontier scan, focus (c), generative/procedural art
+
+**EROSION IS THE ONE LAND-SURFACE TECHNIQUE THIS HOUSE HAS NEVER BUILT, AND
+IT IS THE CHEAPER HALF THAT IS WORTH BUILDING.** The scan was run against this
+deck's own standing weakness, artwork craft, weakest in 8 of the last 11 runs
+and 6/10 again on No.64's first scoring pass for "a flat brown field carrying
+only faint contour squiggles". Two of the three usual answers are already
+mined out here: DOMAIN WARPING is `AK.warp2` in noise.js and is what
+`akrelief` already defaults to at strength 0.5, and RIDGED MULTIFRACTAL is
+already written down in TECHNIQUE_LIBRARY. What is genuinely absent is any
+form of EROSION, and erosion is the thing that separates a noise field from
+land, because it is what puts concave valley floors under convex ridges. A
+reader recognises the result without being able to name it.
+
+Two algorithms, and for an engraved SECTION the second is the better buy:
+
+1. DROPLET HYDRAULIC EROSION. Spawn a droplet at a random cell, blend its
+   heading with the negative bilinear gradient by `inertia`, step one cell,
+   set capacity from speed x water x slope, erode through a distance-weighted
+   brush or deposit bilinearly, evaporate, repeat. Reference defaults:
+   erosionRadius 3, inertia 0.05, sedimentCapacityFactor 4,
+   minSedimentCapacity 0.01, erodeSpeed 0.3, depositSpeed 0.3,
+   evaporateSpeed 0.01, gravity 4, maxDropletLifetime 30, initialWaterVolume
+   1, initialSpeed 1.
+   https://github.com/SebLague/Hydraulic-Erosion/blob/master/Assets/Scripts/Erosion.cs
+   It produces dendritic drainage, which is a PLAN-VIEW pleasure. On a section
+   line it mostly buys a smoother profile, so its natural customer here is the
+   locator key and `akrelief`, not `aksection`.
+
+2. THERMAL EROSION, the talus-angle model (Benes; Jako's parallel form).
+   For each cell take the eight height differences, move `Kt * (Hmax / 2)` of
+   material and distribute it among the lower neighbours in proportion to
+   their height difference, but ONLY to neighbours whose slope exceeds the
+   talus threshold `R(x,y) * Ka + Ki`, where R is a local hardness field. HALF
+   the maximum difference is the anti-oscillation term and is not a tuning
+   choice. https://old.cescg.org/CESCG-2011/papers/TUBudapest-Jako-Balazs.pdf
+   (read with scripts/fetch_pdf_text.py; WebFetch returns it as binary).
+   This is the one for a cut section: it makes crisp ridgelines with straight
+   scree slopes standing at a constant angle, which is what a drawn bluff and
+   a talus fan actually look like, it is a handful of neighbour passes rather
+   than tens of thousands of droplets, and it converges instead of needing a
+   droplet budget. It also has an honest hook into this house's existing
+   vocabulary: `R(x,y)` is hardness, so a STORY QUANTITY can drive which
+   ground resists, exactly the way `akengrave`'s `form` already carries one.
+
+WHY PARKED, not applied. The 0-3 budget went reactive-first to the two gate
+gaps that cost this run five editing rounds, plus the akpost note. Beyond the
+budget, this is not a bounded one-run change: it needs a decision about WHICH
+surface it feeds (`akrelief`'s heightfield, `akengrave`'s `form`, or
+`AKSECT.profile`), a render-deadline budget measured against the engine's real
+per-slide times, and its own reconstruction proving the surface MEASURABLY
+changes rather than merely that the function was called. Build it in a run
+whose deck actually wants a bluff, not in a retro.
