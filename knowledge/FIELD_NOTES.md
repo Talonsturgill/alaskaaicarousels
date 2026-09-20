@@ -8117,3 +8117,49 @@ surface it feeds (`akrelief`'s heightfield, `akengrave`'s `form`, or
 per-slide times, and its own reconstruction proving the surface MEASURABLY
 changes rather than merely that the function was called. Build it in a run
 whose deck actually wants a bluff, not in a retro.
+
+### READ THE DRAFT BEFORE YOU SEND IT TO THE MAILBOX (2026-09-20, Phase 13, No.64)
+
+The one human deliverable is the email. Every gate in the battery reads the
+DECK. Nothing reads the BODY, and the body is prose assembled at write time
+from whatever shape the run happened to record, which is where this kind of
+defect lives.
+
+No.64's sign-off table read:
+
+    GAS WATCH   ['out/2026-09-20/gaswatch_health.json', 'out/2026-09-20/cron_health.json']
+
+with no SITE SIGN-OFF row at all, on a day the live audit returned
+MAINTENANCE and the sign-off returned WARN with an UNFIXED finding. Both
+verdicts existed and both were in `run_state.json`. Two faults met:
+`artifacts` maps each phase to a LIST OF FILENAMES, which is that field's
+documented shape, and `_look` rejected dicts while accepting everything else,
+so the list answered ahead of the verdict; and this run recorded Phase 3.6
+under `run_state["phase_3_6"]`, a tidier shape than any earlier run had used
+and therefore one nothing read.
+
+That section already carries three comment blocks about three earlier
+versions of the same bug. This was the fourth, and the UNREPORTED guard could
+not catch it either, because a filename list counted as a substantive answer.
+
+Two lessons, and the second is the transferable one.
+
+1. A LIST IS NEVER A VERDICT. When a reporting field can be fed from several
+   scopes, accept only the TYPE a line can be, and reject everything else.
+   `not isinstance(v, dict)` was a blocklist, and a blocklist of shapes is
+   wrong the moment a new shape appears. `isinstance(v, str)` is an allowlist.
+2. A GUARD THAT COUNTS ANSWERS IS FOOLED BY A WRONG ANSWER. The UNREPORTED
+   banner fires when fewer than two substantive lines are found. Anything
+   truthy satisfied it, so the section's own safety net was defeated by the
+   very value that made it necessary. If a guard exists to catch a MISSING
+   report, it has to be satisfied by a VALID report, not a present one.
+
+`tests/gmail_signoff_verify.py` is the reconstruction: it renders a real draft
+body per fixture, reads the table out of the emitted bytes, and renders all 64
+shipped `run_state.json` files. It found the same repr had already shipped in
+the drafts for 2026-08-08 and 2026-08-20, so this had been wrong in the
+maintainer's inbox three times before anyone read a table closely.
+
+So Phase 13 now has a step before `create_draft`: read the built body's
+sign-off table and confirm it names verdicts. It costs one command and it is
+the only check that stands between a WARN and a maintainer who never sees it.
