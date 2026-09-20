@@ -212,7 +212,27 @@ RX_QUANT = re.compile(r"(?i)\b(every\s+one|each\s+one|not\s+one|none|all)\s+of\s
 # statute citation: otherwise C27's "(9) Maximum total flights" makes the
 # figure 9 look verified by the very claim that refutes it.
 RX_ENUM_MARK = re.compile(r"\(\s*(\d{1,2})\s*\)")
-RX_BARE_NUM = re.compile(r"(?<![A-Za-z0-9.])(\d[\d,]*)(?![A-Za-z0-9])")
+# THE WHOLE NUMERIC TOKEN, decimal point and all, and then only integers are
+# kept (Codex, PR #391). The first cut ended the match at a dot, so "0.01
+# inches" donated a standalone 0, "57.5" donated 57 and "2.0" donated 2, and
+# Route B could borrow a printed figure from an unrelated decimal.
+RX_BARE_NUM = re.compile(r"(?<![A-Za-z0-9.,])(\d[\d,]*(?:\.\d+)?)(?![A-Za-z0-9])")
+_ONES = ("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+RX_COMPOUND_TEN = re.compile(r"(?i)\b(" + "|".join(_TENS) + r")[\s\-](" +
+                             "|".join(_ONES) + r")\b")
+RX_NUMWORD = re.compile(r"(?i)\b(" + "|".join(NUMWORD) + r")\b")
+# An enumerated item's separating punctuation, and then a conjunction as a
+# WORD. `strip(" ;.,and")` is a CHARACTER SET, so it ate the tail off "Borough
+# land" and "Flight duration" (Codex, PR #391), which both corrupts the
+# receipts printed in the report and makes a legitimate separating term miss.
+RX_ITEM_EDGE = re.compile(r"^[\s;:.,\-]+|[\s;:.,\-]+$")
+RX_ITEM_CONJ = re.compile(r"(?i)^(?:and|or)\b\s*|\s*\b(?:and|or)$")
+# The inflection policy for a separating term, stated rather than implied: a
+# term matches its item as a WHOLE WORD (or whole phrase), optionally carrying
+# one plural or participle suffix, so `chemical` finds "chemicals" and `flare`
+# finds "flares" while `air` does NOT find "repairs" and `land` does NOT find
+# "island" (Codex, PR #391).
+_INFLECT = r"(?:s|es|ed|ing)?"
 
 # Words that end in "s" without being a plural noun, so the count detector does
 # not fire on "less time" or "this month".
@@ -305,28 +325,62 @@ def parse_number_c(tok):
     return parse_number(t)
 
 
+def clean_item(s):
+    """One enumerated item, with its separating punctuation and its trailing
+    conjunction removed IN THAT ORDER and as words."""
+    s = re.sub(r"\s+", " ", s or "").strip()
+    s = RX_ITEM_EDGE.sub("", s)
+    s = RX_ITEM_CONJ.sub("", s)
+    return RX_ITEM_EDGE.sub("", s).strip()
+
+
+def term_matches(term, item):
+    """Does a declared separating term occur in this item, as a whole word or
+    whole phrase, allowing one inflection on its last word? See _INFLECT."""
+    parts = [re.escape(w) for w in re.findall(r"[a-z0-9]+", (term or "").lower())]
+    if not parts:
+        return False
+    pat = (r"(?<![a-z0-9])" + r"[^a-z0-9]+".join(parts) + _INFLECT + r"(?![a-z0-9])")
+    return re.search(pat, (item or "").lower()) is not None
+
+
 def parse_enumeration(text):
     """['Type of chemicals...', ...] for a "(1) ... (2) ..." enumeration.
 
     Requires the markers to run 1, 2, 3 ... with no gaps and no repeats, which
     is how an ordinance, a statute and a Federal Register list are written, and
     which is also what makes a stray "(2)" inside prose harmless: it will not
-    form a complete run. Returns [] when there is no such run."""
-    marks = [(m.start(), m.end(), int(m.group(1))) for m in RX_ENUM_MARK.finditer(text or "")]
-    run = []
+    form a complete run.
+
+    A COMPLETED RUN IS KEPT, NOT DISCARDED (Codex, PR #391). The first cut
+    cleared `run` on any marker that was neither the next index nor a fresh
+    (1), so an ordinance that follows its own ten-item list with a cross
+    reference to subsection (9) reported as having NO enumeration at all, and
+    Route B would then let that claim skip the item-by-item check entirely.
+    Every completed run is now recorded with the position that ended it, which
+    also stops the last item swallowing the trailing cross reference, and the
+    longest one wins (ties go to the later, which is the one a reader has just
+    been shown). Returns [] when there is no run of two or more."""
+    text = text or ""
+    marks = [(m.start(), m.end(), int(m.group(1))) for m in RX_ENUM_MARK.finditer(text)]
+    runs, run = [], []
     for start, end, n in marks:
         if n == len(run) + 1:
             run.append((start, end))
-        elif n == 1:
-            run = [(start, end)]
-        else:
-            run = []
-    if len(run) < 2:
+            continue
+        if run:
+            runs.append((run, start))
+        run = [(start, end)] if n == 1 else []
+    if run:
+        runs.append((run, len(text)))
+    runs = [r for r in runs if len(r[0]) >= 2]
+    if not runs:
         return []
+    run, stop = max(runs, key=lambda r: len(r[0]))
     items = []
     for i, (_start, end) in enumerate(run):
-        stop = run[i + 1][0] if i + 1 < len(run) else len(text)
-        items.append(re.sub(r"\s+", " ", text[end:stop]).strip(" ;.,and").strip())
+        end_at = run[i + 1][0] if i + 1 < len(run) else stop
+        items.append(clean_item(text[end:end_at]))
     return items
 
 
@@ -335,19 +389,26 @@ def claim_figures(claim):
 
     Enumeration markers are blanked first (an index is an address), and notes
     are excluded (the fact-checker reasoning is not the fact-checker
-    verifying, per dossier_check's 2026-09-07 rule)."""
+    verifying, per dossier_check's 2026-09-07 rule).
+
+    A COMPOUND TEN IS ONE FIGURE (Codex, PR #391). The first cut read "thirty
+    two precincts" as {2, 30, 32}, so Route B would ratify a printed "Two of 30
+    precincts" against a claim in which neither figure stands alone. The
+    compounds are read first and their spans are blanked before the single
+    words are scanned, so only 32 survives."""
     out = set()
     for f in ("claim", "value", "verbatim"):
         txt = RX_ENUM_MARK.sub(" ", str(claim.get(f) or ""))
         for tok in RX_BARE_NUM.findall(txt):
+            if "." in tok:
+                continue                 # a decimal is not a standalone figure
             v = parse_number(tok)
             if v is not None:
                 out.add(v)
-        for w in re.findall(r"(?i)\b(" + "|".join(NUMWORD) + r")\b", txt):
+        for m in RX_COMPOUND_TEN.finditer(txt):
+            out.add(NUMWORD[m.group(1).lower()] + NUMWORD[m.group(2).lower()])
+        for w in RX_NUMWORD.findall(RX_COMPOUND_TEN.sub(" ", txt)):
             out.add(NUMWORD[w.lower()])
-        for a, b in re.findall(r"(?i)\b(" + "|".join(_TENS) + r")[\s\-](one|two|three|"
-                               r"four|five|six|seven|eight|nine)\b", txt):
-            out.add(NUMWORD[a.lower()] + NUMWORD[b.lower()])
     return out
 
 
@@ -442,11 +503,24 @@ def detect(strings):
             if overlaps(m):
                 continue
             k, tot = parse_number_c(m.group(1)), parse_number_c(m.group(2))
-            if k is None or tot is None or tot - k < 2 or k < 0 or k >= tot:
+            if k is None or tot is None or k < 0 or tot < 1:
                 continue
-            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
-                         "text": text, "n": tot - k, "of": tot})
+            # RESERVE THE WHOLE ALL-BUT SPAN, WHATEVER HAPPENS NEXT (Codex,
+            # PR #391). The first cut skipped without claiming the match when
+            # the subset came to fewer than two members, and RX_SUBSET then
+            # reinterpreted the phrase NESTED INSIDE it with the opposite
+            # meaning: "All but nine of the ten items" is ONE item, and the
+            # gate went looking for a nine-item subset.
             spans.append((m.start(), m.end()))
+            if k > tot:
+                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+                             "text": text, "n": tot - k, "of": tot, "impossible": True})
+                continue
+            n = tot - k
+            if n == 1:
+                continue                 # one member is membership, not a count
+            hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+                         "text": text, "n": n, "of": tot})
         for m in RX_QUANT.finditer(text):
             if overlaps(m):
                 continue
@@ -462,10 +536,20 @@ def detect(strings):
             if overlaps(m):
                 continue
             n, tot = parse_number_c(m.group(1)), parse_number_c(m.group(2))
+            if n is None or tot is None or tot < 1:
+                continue
+            # N > TOTAL IS A FAILING ASSERTION, NOT A SHAPE TO HAND ON (Codex,
+            # PR #391). The first cut skipped it, so "Twelve of the ten items"
+            # fell through to the ordinary count detector, which reads only
+            # "ten items", matched a ten-member count declaration and PASSED.
+            # No declaration can ever make it true, so it is reported here.
+            if n > tot:
+                hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
+                             "text": text, "n": n, "of": tot, "impossible": True})
+                spans.append((m.start(), m.end()))
+                continue
             # N < 2 is membership ("one of the four"), not a counted subset.
-            # N > total is not a subset at all and is left to the other
-            # detectors rather than reported as a shape this gate owns.
-            if n is None or tot is None or n < 2 or n > tot:
+            if n < 2:
                 continue
             hits.append({"slide": slide, "kind": "subset", "fragment": m.group(0),
                          "text": text, "n": n, "of": tot})
@@ -549,34 +633,64 @@ def check_items(items, members, claims, fails, where):
                          % (where, it, ", ".join(members) or "none"))
 
 
-def subset_numbers(text, decl):
-    """(n, total) for a subset declaration: declared if given, else re-read out
-    of the fragment the declaration answers for."""
-    n, tot = decl.get("n"), decl.get("of")
-    if n is not None and tot is not None:
-        return n, tot
+def parse_subset_phrase(text):
+    """(n, total) read out of an 'N of M' phrase in the text, or (None, None).
+
+    This is what the SLIDE says. A declaration's own "n"/"of" never replace it;
+    see verify_subset."""
     for rx in (RX_ALLBUT, RX_QUANT, RX_SUBSET):
-        m = rx.search(text)
+        m = rx.search(text or "")
         if not m:
             continue
         if rx is RX_QUANT:
             t = parse_number_c(m.group(2))
             w = re.sub(r"\s+", " ", m.group(1).strip().lower())
+            if t is None:
+                continue
             return (0 if w in ("none", "not one") else t), t
         a, b = parse_number_c(m.group(1)), parse_number_c(m.group(2))
         if a is None or b is None:
-            return n, tot
+            continue
         return (b - a if rx is RX_ALLBUT else a), b
-    return n, tot
+    return None, None
 
 
 def verify_subset(decl, claims, fails, warns, where, text):
     """A count of a SUBSET of one claim's enumerated list. See the module
     docstring's `subset` entry and the 2026-09-20 note for why this exists."""
-    n, tot = subset_numbers(text, decl)
+    # A DECLARED NUMBER CORROBORATES THE PRINTED ONE, IT NEVER REPLACES IT
+    # (Codex, PR #391). The first cut returned "n" and "of" unread when both
+    # were present, so a rendered "Nine of the ten" could be covered by a
+    # declaration carrying n 5 / of 10 with five correctly selected items and
+    # the gate returned PASS while its own detection had recorded 9 of 10.
+    # Explicit numbers stay useful for a fragment with no N-of-M phrase in it
+    # ("Four ask about the flight"), which is the only case they now decide.
+    pn, ptot = parse_subset_phrase(text)
+    dn, dtot = decl.get("n"), decl.get("of")
+    if pn is None:
+        n, tot = dn, dtot
+    else:
+        n, tot = pn, ptot
+        for got, want, label in ((dn, pn, "n"), (dtot, ptot, "of")):
+            if got is None:
+                continue
+            try:
+                got = int(got)
+            except (TypeError, ValueError):
+                fails.append("%s: %r is not a whole number" % (where, decl.get(label)))
+                continue
+            if got != want:
+                fails.append("%s: the declaration says %s %d and the slide prints "
+                             "%d. A declared figure corroborates the printed one, "
+                             "it never replaces it; the printed string is the "
+                             "assertion being judged." % (where, label, got, want))
     if n is None or tot is None:
         fails.append("%s: no printed 'N of the M' found; give explicit \"n\" and "
                      "\"of\"" % where)
+        return
+    if n > tot:
+        fails.append("%s: prints a subset of %d out of a total of %d, which no "
+                     "declaration can make true." % (where, n, tot))
         return
     cid = str(decl.get("member", decl.get("claim", ""))).strip()
     if cid not in claims:
@@ -654,8 +768,7 @@ def verify_subset(decl, claims, fails, warns, where, text):
         fails.append("%s: give the \"predicate\", in prose: what the selected "
                      "items are being said to have in common" % where)
     for i in idx:
-        low = enum[i - 1].lower()
-        if not any(t in low for t in terms):
+        if not any(term_matches(t, enum[i - 1]) for t in terms):
             fails.append("%s: item (%d) %r is counted in the subset but matches "
                          "NONE of the declared terms (%s). This is the 2026-09-20 "
                          "defect exactly: four flight questions were counted as "
@@ -664,8 +777,7 @@ def verify_subset(decl, claims, fails, warns, where, text):
     for i, item in enumerate(enum, 1):
         if i in idx:
             continue
-        low = item.lower()
-        hit = [t for t in terms if t in low]
+        hit = [t for t in terms if term_matches(t, item)]
         if hit:
             fails.append("%s: item (%d) %r is LEFT OUT of the subset but matches "
                          "the declared term(s) %s, so the terms do not separate "
@@ -1009,12 +1121,26 @@ def run(run_dir, render_report_path=None, aggregates_path=None, claims_path=None
     if not claims and hits:
         fails.append("CLAIMS: %s not found, so no aggregate can be re-derived." % cl_path)
 
+    # AN IMPOSSIBLE SUBSET IS REPORTED WHETHER OR NOT ANYONE DECLARED IT
+    # (Codex, PR #391). "Twelve of the ten items" counts more members than the
+    # set has, and no declaration can make it true, so it does not get to be a
+    # missing-paperwork finding. It is also the shape the count detector used
+    # to be handed, where only "ten items" was read and the numerator was
+    # ignored.
+    for h in hits:
+        if h.get("impossible"):
+            fails.append("IMPOSSIBLE subset on S%d: %r (in %r) counts %d of a set "
+                         "of %d. Re-read the claim's enumeration or rewrite the "
+                         "slide; no declaration can make this true."
+                         % (h["slide"], h["fragment"], h["text"][:70],
+                            h["n"], h["of"]))
+
     used = [False] * len(decls)
     undeclared = []
     for h in hits:
         idx = [i for i, d in enumerate(decls) if isinstance(d, dict) and covers(d, h)]
         if not idx:
-            if ag_path.exists():
+            if ag_path.exists() and not h.get("impossible"):
                 undeclared.append(h)
             continue
         for i in idx:

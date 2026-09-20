@@ -1,0 +1,132 @@
+{
+  "run_dir": "out/2026-09-20",
+  "render_report": "out/2026-09-20/render/render_report.json",
+  "aggregates_file": "out/2026-09-20/aggregates.json",
+  "detected": 12,
+  "declared": 15,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "19 FLARES",
+      "text": "19 FLARES OVER THE SOUTHERN KENAI, AUGUST 23RD",
+      "n": 19,
+      "subject": "flares"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 days",
+      "text": "at least 10 days",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 DAYS",
+      "text": "FEDERAL, A FILING 10 DAYS AHEAD",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 2,
+      "kind": "duration",
+      "fragment": "10 DAYS",
+      "text": "SURFACE = NOTICE LEAD, 10 DAYS (C23)",
+      "n": 10,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "10 drone flights",
+      "text": "Rainmaker flew 10 drone flights on August 23rd and its report puts the result at",
+      "n": 10,
+      "subject": "drone flights"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Ten required items",
+      "text": "Ten required items, on borough land only.",
+      "n": 10,
+      "subject": "required items"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TEN REQUIRED ITEMS",
+      "text": "SURFACE = TEN REQUIRED ITEMS (C27)",
+      "n": 10,
+      "subject": "required items"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Ten questions",
+      "text": "Ten questions. None about the model.",
+      "n": 10,
+      "subject": "questions"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 bills",
+      "text": "856 bills",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 BILLS",
+      "text": "856 BILLS. NONE FILED.",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "856 BILLS",
+      "text": "SURFACE = 856 BILLS, NONE FILED (C36)",
+      "n": 856,
+      "subject": "bills"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "ten questions",
+      "text": "Read the ten questions before that date.",
+      "n": 10,
+      "subject": "questions"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 1,
+      "text": "4 km",
+      "note": "the section's printed span, a property of the drawing's own projection. This repo commits no Alaska elevation data, so the transect profile is shaped and never surveyed."
+    },
+    {
+      "slide": 1,
+      "text": "DATUM 0 m",
+      "note": "the fixed ground datum at y 960, a property of the drawing."
+    },
+    {
+      "slide": 6,
+      "text": "01TYPE OF CHEMICALS",
+      "note": "the zero padded row numbering. The ordinance numbers these items (1) through (10) in its own text; the two digit rendering is the drawing's."
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S1 '4 km' [design]",
+    "STALE declaration, no rendered string matches it: S1 'DATUM 0 m' [design]",
+    "STALE declaration, no rendered string matches it: S6 '01TYPE OF CHEMICALS' [design]",
+    "S7 'Ten questions. None about the model.' [from_claim]: the noun 'question' does not appear in claim C27; check that the number is being attached to what the claim actually counts.",
+    "S9 'Read the ten questions before that date.' [from_claim]: the noun 'question' does not appear in claim C27; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

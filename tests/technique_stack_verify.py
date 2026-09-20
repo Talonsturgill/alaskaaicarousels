@@ -26,6 +26,13 @@ akengrave.js and akpost.js and nothing else:
       attributable and the gate must not guess          -> holds
   05  NEGATIVE CONTROL: field 7 is prose with no
       backticked library at all                         -> holds
+  06  names `akthree` and the slide carries an obsolete
+      akthree.js tag INSIDE AN HTML COMMENT. Codex's
+      finding on PR #391: the first cut scanned raw
+      source, so a tag the browser never runs counted as
+      loaded, and a commented-out tag is exactly what an
+      abandoned technique leaves behind -- the same
+      moment the dossier goes stale                     -> FAIL, akthree.js
 """
 
 import subprocess
@@ -37,14 +44,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 SLIDE = """<!doctype html>
 <html><head><meta charset="utf-8"></head>
-<body data-ink='{}'>
+<body data-ink='{{}}'>
 <canvas id="c" width="2160" height="2700"></canvas>
-<script src="@@ASSETS@@/js/aksection.js"></script>
+{commented}<script src="@@ASSETS@@/js/aksection.js"></script>
 <script src="@@ASSETS@@/js/akengrave.js"></script>
 <script src="@@ASSETS@@/js/akpost.js"></script>
 <script>/* the slab is an aksection primitive */</script>
 </body></html>
 """
+# The abandoned tag, left where a build leaves it.
+COMMENTED = '<!-- <script src="@@ASSETS@@/js/akthree.js"></script> -->\n'
 
 F4A = ("**4a. Lower-third treatment.** The modelled earth slab fills the bottom "
        "31 percent of the frame, its engraved tone carrying the story quantity, "
@@ -63,16 +72,19 @@ DOSSIER = """## SLIDE {n:02d} -- THE SECTION
 """
 
 FIXTURES = [
+    # slide, field 7, must it FAIL, the needle, is the akthree tag commented in
     (1, "`aksection` `S.slab` for the slab, `akengrave` tone, `akpost` grade.",
-     False, ""),
+     False, "", False),
     (2, "`akthree` GPU PBR for the slab, `akengrave` tone, `akpost` grade.",
-     True, "akthree.js"),
+     True, "akthree.js", False),
     (3, "`aksection` for the slab, `AKT.snapshot` read back onto the 2D canvas, "
-        "`akpost` grade.", True, "akthree.js"),
+        "`akpost` grade.", True, "akthree.js", False),
     (4, "`aksection` for the slab, `AK.grainTile` over the sky, `akpost` grade.",
-     False, ""),
+     False, "", False),
     (5, "The slab is lathed by hand on the 2D canvas, no library involved.",
-     False, ""),
+     False, "", False),
+    (6, "`akthree` GPU PBR for the slab, `akengrave` tone, `akpost` grade.",
+     True, "akthree.js", True),
 ]
 
 
@@ -80,8 +92,9 @@ def main():
     tmp = Path(tempfile.mkdtemp(prefix="technique-stack-"))
     (tmp / "slides").mkdir()
     parts = []
-    for n, stack, _want, _needle in FIXTURES:
-        (tmp / "slides" / ("slide-%02d.html" % n)).write_text(SLIDE)
+    for n, stack, _want, _needle, commented in FIXTURES:
+        (tmp / "slides" / ("slide-%02d.html" % n)).write_text(
+            SLIDE.format(commented=COMMENTED if commented else ""))
         parts.append(DOSSIER.format(n=n, f4a=F4A, stack=stack))
     (tmp / "storyboard.md").write_text("# DECK\n\n" + "\n".join(parts))
 
@@ -98,7 +111,7 @@ def main():
 
     by_slide = {s["slide"]: s for s in rep["slides"]}
     ok = True
-    for n, _stack, want_fail, needle in FIXTURES:
+    for n, _stack, want_fail, needle, _commented in FIXTURES:
         fails = [f for f in by_slide.get(n, {}).get("fails", []) if "field 7" in f]
         got = bool(fails)
         line = (fails or by_slide.get(n, {}).get("fails") or ["(clean)"])[0]

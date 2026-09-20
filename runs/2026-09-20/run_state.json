@@ -20,8 +20,8 @@
   "scoring": "done",
   "ship": "done",
   "upgrade": "done",
-  "gmail": "done",
-  "retro": "done"
+  "gmail": "pending",
+  "retro": "pending"
  },
  "artifacts": {
   "wake": [
@@ -90,10 +90,11 @@
    "out/2026-09-20/automation_retro.md"
   ],
   "gmail": [
-   "runs/2026-09-20/gmail_draft_id.txt"
+   "NOT YET WRITTEN. Phase 13 runs after the merge to main, because the draft's image and PDF URLs point at raw.githubusercontent.com on main. scripts/wrap_run.py syncs the draft id into this file when it exists."
   ],
   "retro": [
-   "out/2026-09-20/WORKLOG.md deleted by scripts/wrap_run.py"
+   "out/2026-09-20/automation_retro.md",
+   "out/2026-09-20/WORKLOG.md (deleted by scripts/wrap_run.py at wrap)"
   ]
  },
  "phase_3_6": {
@@ -103,11 +104,12 @@
   "cron_health": "WARN at ship time on output:docket-watch, with out/2026-09-20/cron_incidents.json carrying the record. The collector defect was diagnosed, fixed, reviewed by Codex on the current head and merged to main as 3ddad816 (PR #390) at 07:25Z. The audit row reads the queue committed on main, which only the scheduled collection rewrites; the cron is 20 14 * * * and today's 14:20Z run, after this run ends, is the first to carry the fix. Re-audited at 09:00Z with every other row passing. The next daily run re-audits it.",
   "site_fixes": "none needed on presentation; the only site finding is the disclosed CINGSA pause"
  },
- "status": "complete",
+ "status": "shipped",
  "codex_review": {
   "pr": 391,
   "head_reviewed": "ad2e9e4",
   "findings": 7,
   "disposition": "All seven verified and FIXED, none declined. P1: C10 read 'public hearing and final vote' where its verbatim is '(Hearing on 10/20/26)', which schedules a hearing and does not establish that the Assembly acts the same day; the claim, slide 09 and the dossier now say hearing. P2 x6 in assets/js/aksection.js and this file: the vertical light came from azimuth so elDeg fed nothing but rake and every flat lit lip sat on its 0.30 floor; incise() multiplied the horizontal key by zero so a vertical groove could not put its lip up-light; a two point ribbon had zero area so every locator tick rendered as bare casing; a constant casing pad ended every tapered ribbon in a blunt cap; strata depth was measured off the canvas rather than the slab so beds 3 to 6 fell off the frame; and this run_state was committed still marking five phases pending."
- }
+ },
+ "status_note": "shipped means the deck cleared every gate, scored 8.50 against 8.30 and is merged; it becomes complete when Phase 13 records the Gmail draft id. The deck itself is final: nothing after this point changes a pixel or a claim."
 }

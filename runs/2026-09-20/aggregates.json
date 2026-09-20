@@ -1,0 +1,119 @@
+{
+ "run_date": "2026-09-20",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "19 FLARES OVER THE SOUTHERN KENAI, AUGUST 23RD",
+   "fragment": "19 FLARES",
+   "member": "C18",
+   "note": "C18 carries the flare count in its own claim text, 19 flares dispersed approximately 374 grams."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "Federal law bars anyone from changing the weather without filing a report, and the rule sets that filing at least 10 days before the activity begins. Rainmaker asked Alaska DNR first, and it answered with a letter of no objection.",
+   "fragment": "10 days",
+   "member": "C23",
+   "note": "C23's value is the string at least 10 days, quoted from 15 CFR 908.4."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "at least 10 days",
+   "fragment": "10 days",
+   "member": "C23",
+   "note": "the same figure, emphasised in the body block."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "FEDERAL, A FILING 10 DAYS AHEAD",
+   "fragment": "10 DAYS",
+   "member": "C23",
+   "note": "the terminal names the REQUIREMENT. It deliberately does not assert that the filing was made, because no claim verifies that."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "SURFACE = NOTICE LEAD, 10 DAYS",
+   "fragment": "10 DAYS",
+   "member": "C23",
+   "note": "the engrave surface provenance chip, naming the quantity the form carries."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Rainmaker flew 10 drone flights on August 23rd and its report puts the result at about 57 acre-feet, or roughly 19 million gallons, which works out to about 0.01 inches across the area. The state calls these modeled estimates, not water measured at the ground.",
+   "fragment": "10 drone flights",
+   "member": "C14",
+   "note": "C14 carries 10 drone flights verbatim, attributed by the borough memo to Rainmaker's own press release."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "SURFACE = TEN REQUIRED ITEMS",
+   "fragment": "TEN REQUIRED ITEMS",
+   "member": "C27",
+   "note": "the same count, as the frame's engrave provenance chip."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Ten questions. None about the model.",
+   "fragment": "Ten questions",
+   "member": "C27",
+   "note": "the same count, restated as the payoff frame's head."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Alaska has no framework specific to weather modification and no state permit is required for cloud seeding. This session carries 856 bills and not one of them is on the subject. Federal law takes a filing, not a permission.",
+   "fragment": "856 bills",
+   "member": "C36",
+   "note": "C36's value is 856 bills, none on weather modification, read directly from the Legislature's own BASIS endpoint on 2026-09-20."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "856 BILLS. NONE FILED.",
+   "fragment": "856 BILLS",
+   "member": "C36",
+   "note": "the same count as the ring label. NONE FILED is the honest form; C36 warns against implying nobody is drafting one."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "SURFACE = 856 BILLS, NONE FILED",
+   "fragment": "856 BILLS",
+   "member": "C36",
+   "note": "the same count, as the frame's engrave provenance chip."
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "Read the ten questions before that date.",
+   "fragment": "ten questions",
+   "member": "C27",
+   "note": "the close's single ask, pointing at the same ten items."
+  },
+  {
+   "kind": "design",
+   "slide": 1,
+   "text": "4 km",
+   "note": "the section's printed span, a property of the drawing's own projection. This repo commits no Alaska elevation data, so the transect profile is shaped and never surveyed."
+  },
+  {
+   "kind": "design",
+   "slide": 1,
+   "text": "DATUM 0 m",
+   "note": "the fixed ground datum at y 960, a property of the drawing."
+  },
+  {
+   "kind": "design",
+   "slide": 6,
+   "text": "01TYPE OF CHEMICALS",
+   "note": "the zero padded row numbering. The ordinance numbers these items (1) through (10) in its own text; the two digit rendering is the drawing's."
+  }
+ ]
+}

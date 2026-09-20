@@ -531,7 +531,16 @@ def field_7(body):
 
 
 def libs_loaded(src):
-    """{filename} every .js the slide actually pulls in, static or dynamic."""
+    """{filename} every .js the slide actually pulls in, static or dynamic.
+
+    HTML COMMENTS ARE NOT MARKUP (Codex, PR #391). The first cut scanned raw
+    source, so a dossier could promise `akthree`, leave an obsolete
+    `<!-- <script src=".../akthree.js"></script> -->` in the file, and pass on
+    a tag the browser never executes. Commented-out script tags are exactly
+    what a build leaves behind when a technique is abandoned, which is the
+    same moment the dossier goes stale, so this is the likeliest way the gate
+    would have been fooled."""
+    src = re.sub(r"<!--.*?-->", " ", src or "", flags=re.S)
     out = set()
     for u in SCRIPT_SRC_RE.findall(src):
         out.add(u.rsplit("/", 1)[-1])
