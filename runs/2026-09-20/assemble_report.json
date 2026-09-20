@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-20/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9373680,
+  "pdf_mb": 9.37,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-20/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-20/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Every Notice Went Up",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "0e773fc20db310d1bbb65528fda6e2360b80e0c17d2ad99036922805abe39c26",
+        "bytes": 3266562
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "c53b5b7ded50fd421aa8068cbc9df85fb6296e4aa45d6b085f856933c1ba2d56",
+        "bytes": 2182073
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "28580ef5f4c07209a0c7b39f96225c7bb8c71856fa3491a7acd307eeb135d0c4",
+        "bytes": 1810782
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "490f2cbdfe4d5180154f06bdf69b681a215069db73dd072dba404c408b0ab26d",
+        "bytes": 2325328
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "a0e01dbe3eb038e7b8d12433d35979ba92d48c8a06e36a5b78b9d9809366b7ed",
+        "bytes": 1828563
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "308abd1daa3e9ebf99db8d400c9640abc1e69ddc1bcf8f59ba9929c0d66fe22f",
+        "bytes": 1771746
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "8572b0e792076d577fbb7da84651c69ee812917c1e0ffbaee86604c690385675",
+        "bytes": 2549158
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "00c5361608bda8eeb122fbb0caefde4d94a2c23be4af7657788c5dac25d9a8e8",
+        "bytes": 1579792
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6bbb8b6fee2f503615aaa943b50c930b4be5b7723845bfab4d43216244d687a4",
+        "bytes": 2004830
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "4961a11e28c60e390b73e94e6d06812b5a16613a4bf16869060193c27d189539",
+        "bytes": 15354
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "755e197c650f2a44c658a4424af2eb0aab781d6d135ae1fb1a49b68180060ef1",
+        "bytes": 14461
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "4dc324b6ed6a83b9b90d312a8e56e9a750e4f7838f910b840d81cc5340432ecf",
+        "bytes": 14404
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "b7d9ad40d243a521d33bebd682e42ef11ce6fef91118b860f7e7a083505b15d4",
+        "bytes": 14386
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "8759bbea9445176a7bddf07fd78aa857e07d3e58f0bf99b18b0a9e9ec6b84e92",
+        "bytes": 13955
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "6ad1dd15a014292fb1b22c293944a8256dfd844296d8d0e785bdb1d9ba90a9f9",
+        "bytes": 12499
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "5c94f0ce71096ef4aafd363543f1e5e75fd4076dd5dcb65823307ec6fa9a92fb",
+        "bytes": 14730
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "eb18bb70d768676ca37f3a0b4b2d23d72fd6d9a17c7c2d50108607481db2845f",
+        "bytes": 16783
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "6e7f41c7d2c871cfd1f0e946b27f8c84fc2ea3d56a85f3b4bc7c94db76df32ec",
+        "bytes": 14692
+      }
+    ]
+  }
+}

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1934,7 +1934,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-08-05",
@@ -1991,6 +1991,10 @@
         {
           "date": "2026-09-17",
           "note": "Checked and unchanged. Applications on the AI3 Action Institute closed August 27th and the posted opportunity archives on September 26th. One award is planned against a ceiling of $3,500,000 and no selection has been published."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Checked and unchanged. Applications on the AI3 Action Institute closed August 27th, one award is planned against a ceiling of $3,500,000, and no selection has been published. The posted opportunity archives on September 26th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2784,10 +2788,14 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged, with the comment date re-verified today against the Federal Register notice itself. Comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd, on project number P-15423-000. FERC has issued no further notice in the docket since accepting the application on September 4th."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Checked and unchanged. The Federal Register notice accepting the application for filing still governs, and comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd on project number P-15423-000. The notice places the project in the Upper Cook Inlet East Foreland corridor of the Kenai Peninsula Borough, with a subsea cable landing connecting to the Nikiski industrial corridor."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -3003,7 +3011,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-17",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-08-31",
@@ -3028,6 +3036,10 @@
         {
           "date": "2026-09-17",
           "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, and reply comments are due on or before October 30th. Thirteen days remain to file."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, and reply comments are due on or before October 30th. Ten days remain to file."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -3190,7 +3202,7 @@
         }
       ],
       "first_seen": "2026-09-12",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-09-12",
@@ -3215,6 +3227,10 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged. The Federal Register record still carries one document for the Year 9 authorization, 2026-18459, published September 10th, with no correction, amendment or withdrawal since. The authorization reads that it is effective from September 14th, 2026 through September 13th, 2027, and the first research cruise is planned to begin on September 22nd."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Checked and unchanged. The authorization published September 10th still reads effective from September 14th through September 13th, 2027, and the Federal Register carries no correction, amendment or withdrawal. The first research cruise is planned to begin on September 22nd."
         }
       ],
       "url": "https://alaskaaihq.com/docket/onr-arctic-iha-year-9/"
@@ -3340,7 +3356,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-17",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-09-13",
@@ -3353,6 +3369,10 @@
         {
           "date": "2026-09-17",
           "note": "Re-read the Federal Register text at the source. Written responses, data and information on the Department of Energy request for information, Docket DOE-HQ-2026-1123, are accepted on or before October 9th. The informational webinar the notice announced for 3 to 4 p.m. Eastern on September 16th has now been held. Twenty-two days remain to respond."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Re-read the Federal Register text at the source. Written responses, data and information on the Department of Energy request for information, Docket DOE-HQ-2026-1123, are accepted on or before October 9th. Nineteen days remain to respond."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -3391,7 +3411,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-17",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-09-13",
@@ -3400,6 +3420,10 @@
         {
           "date": "2026-09-17",
           "note": "Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Fifteen days remain to file."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Twelve days remain to file."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
@@ -3450,7 +3474,7 @@
       "decider": "Kenai Peninsula Borough Assembly",
       "public_access": "open",
       "access_note": "A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then.",
-      "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August.",
+      "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August. The ordinance would require ten items in a borough lease or land use permit application, prohibit the activity on borough lands open for casual use, and carry a $1,000 per day fine and a five year application ban for a missing closeout summary. Its reach is borough land; the August flight that prompted it was over state land.",
       "key_dates": [
         {
           "date": "2026-09-03",
@@ -3461,6 +3485,11 @@
           "date": "2026-09-15",
           "label": "On the Policies and Procedures Committee agenda",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "Companion Resolution 2026-046 adopted, 7 yes, 0 no, 2 absent",
+          "kind": "vote"
         },
         {
           "date": "2026-10-20",
@@ -3478,10 +3507,25 @@
           "url": "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
           "outlet": "Kenai Peninsula Borough legislative record",
           "date": "2026-09-15"
+        },
+        {
+          "url": "https://kpb.legistar1.com/kpb/attachments/73cfabad-36b5-4283-b7b5-005382ca41e3.docx",
+          "outlet": "Kenai Peninsula Borough, Ordinance 2026-35 as introduced",
+          "date": "2026-09-15"
+        },
+        {
+          "url": "https://kpb.legistar1.com/kpb/attachments/16f1fe75-2de4-493c-b8d6-0286e73a1763.pdf",
+          "outlet": "Alaska Department of Environmental Conservation, Commissioner's letter to the borough mayor",
+          "date": "2026-09-11"
+        },
+        {
+          "url": "https://kpb.legistar1.com/kpb/attachments/f85b5524-f9ce-4ee7-9971-fccf71e01f6a.pdf",
+          "outlet": "Kenai Peninsula Borough, signed Resolution 2026-046",
+          "date": "2026-09-15"
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-20",
       "history": [
         {
           "date": "2026-09-15",
@@ -3490,6 +3534,18 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged. The borough's own legislative record still carries Ordinance 2026-35 as New Business in the Policies and Procedures Committee, introduced September 3rd, with an agenda date of September 15th and no passage or enactment date. The public hearing stays set for October 20th, which is the point at which an Alaskan can speak to it."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "Read the ordinance itself, which is stored as an attachment on the borough's legislative record. KPB 17.10.165 would apply to an application for a commercial lease or commercial land use permit for the temporary use of borough land, and would require ten items in that application, covering the type and quantity of chemicals, the quantity, type, manufacturer, serial number and total weight of flares, the total pyrotechnic material, safety data sheets, the frequency of activities, the duration and altitude of individual flights, the total duration of all flights, the maximum number of flights attempted, and release coordinates including predicted impacted areas. It would prohibit the activity outright on borough lands open for casual use, and define weather modification and geoengineering to cover cloud seeding, solar radiation modification and stratospheric aerosol injection. A signed closeout summary is required, and failing to file one carries a $1,000 per day fine and a five year ban on applying for a commercial lease or land use permit. The ordinance would take effect immediately on enactment."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "A September 11th letter from the Commissioner of the Alaska Department of Environmental Conservation to the borough mayor is laid down on the same file. It states that no DEC permit is currently required solely for conducting cloud seeding, that Alaska has no regulatory framework specific to weather modification, and that the department can't create a permitting requirement that does not exist in statute or regulation. It reports that the August 23rd operation dispersed approximately 374 grams of silver iodide from 19 flares, and that the company's own estimate of about 57 acre feet, or roughly 19 million gallons, corresponds to about 0.01 inches of precipitation across the area analyzed. The letter says the department has not identified a violation or an adverse impact requiring action under its existing authorities, and points to the Legislature as the body that would decide whether Alaska adopts a framework."
+        },
+        {
+          "date": "2026-09-20",
+          "note": "The companion resolution was adopted on September 15th by a vote of 7 yes, 0 no and 2 absent, recorded on the signed resolution itself. It urges the Legislature and the Governor to prohibit weather modification and geoengineering, or in place of a ban to require notice and permits carrying civil or criminal penalties, and asks Alaska's congressional delegation to review federal law to strengthen notice and reporting before such activities take place. The ordinance is a separate measure and remains introduced rather than enacted."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"

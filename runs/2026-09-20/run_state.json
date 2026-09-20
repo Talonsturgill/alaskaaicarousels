@@ -1,0 +1,79 @@
+{
+ "run_date": "2026-09-20",
+ "carousel_no": 64,
+ "date_note": "run_guard CLEAR; runs/2026-09-19 holds No.63. Anchorage clock read 23:08 on Sep 19 at wake, so this run takes the date Anchorage rolls into.",
+ "branch": "tsturg/nifty-ptolemy-ck4aaz",
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "in-progress",
+  "flow_review": "pending",
+  "assemble": "done",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "wake": [
+   "out/2026-09-20/plan.md",
+   "out/2026-09-20/run_state.json",
+   "out/2026-09-20/WORKLOG.md"
+  ],
+  "craft_refresh": [
+   "knowledge/FIELD_NOTES.md (2026-09-20 entry)"
+  ],
+  "research": [
+   "out/2026-09-20/scout_merge.md",
+   "out/2026-09-20/scouts/"
+  ],
+  "docket": [
+   "ledger/docket.json (6 items refreshed)"
+  ],
+  "gas_watch": [
+   "out/2026-09-20/gaswatch_health.json",
+   "out/2026-09-20/cron_health.json"
+  ],
+  "selection": [
+   "out/2026-09-20/selection.md"
+  ],
+  "claims": [
+   "out/2026-09-20/claims.json (38 claims, 35 primary, gate PASS)",
+   "out/2026-09-20/primary_sources.md"
+  ],
+  "directors_room": [
+   "out/2026-09-20/storyboard.md (dossier_check PASS, 9 dossiers, 0 fails, 0 warns)"
+  ],
+  "copy": [
+   "out/2026-09-20/caption.txt",
+   "out/2026-09-20/copy.json",
+   "out/2026-09-20/caption_report.json"
+  ],
+  "art_build": [
+   "out/2026-09-20/slides/ (9)",
+   "out/2026-09-20/render/ (9 PNG)",
+   "assets/js/aksection.js"
+  ],
+  "assemble": [
+   "out/2026-09-20/final/carousel.pdf (vector, 9.33 MB)",
+   "out/2026-09-20/final/contact_sheet.png",
+   "out/2026-09-20/final/thumbs/"
+  ]
+ },
+ "phase_3_6": {
+  "site_signoff": "WARN, 117 pages, 18 checks, UNFIXED gaswatch.jsonl is current",
+  "gaswatch_pagecheck": "WARN, published reading 2026-09-13, 7 days old",
+  "gaswatch_live": "MAINTENANCE, checked 2026-09-20T07:15:15Z, CINGSA announced window 2026-09-14 to 2026-09-21, cron healthy, nothing carried forward",
+  "cron_health": "FAIL at audit time on output:docket-watch (basis-bills read timeout 2026-09-19). REPAIRED in PR #390, merged to main. Re-audit later in the run once the next scheduled collection writes a clean queue.",
+  "site_fixes": "none needed on presentation; the only site finding is the disclosed CINGSA pause"
+ }
+}
