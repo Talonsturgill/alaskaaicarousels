@@ -550,6 +550,26 @@ def main():
                 if _v.get("fixes"):
                     _flat.setdefault("site_fixes", _v["fixes"])
 
+        # PHASE 3.6 WRITES ITS OWN BLOCK, and 2026-09-20 found it unread. That
+        # run recorded the checks under run_state["phase_3_6"] with the phase's
+        # own key names (site_signoff, gaswatch_live, gaswatch_pagecheck,
+        # cron_health, site_fixes), which is the tidiest shape any run has used
+        # and the only one this block could not see. Read it, mapping the live
+        # audit to gas_watch_verdict and the local page check to gas_watch so
+        # the outranking rule above still decides which one answers.
+        _p36 = _rs.get("phase_3_6") or _rs.get("phase36") or {}
+        if isinstance(_p36, dict):
+            for _dst, _srcs in (("site_signoff", ("site_signoff", "site_sign_off")),
+                                ("gas_watch_verdict", ("gaswatch_live", "gas_watch_live")),
+                                ("gas_watch", ("gaswatch_pagecheck", "gas_watch_pagecheck")),
+                                ("cron_health", ("cron_health",)),
+                                ("site_fixes", ("site_fixes", "fixes"))):
+                for _k in _srcs:
+                    _v = _p36.get(_k)
+                    if _v and not isinstance(_v, (dict, list, tuple)):
+                        _flat.setdefault(_dst, _v)
+                        break
+
         def _look(*keys):
             # KEY-outer, source-inner. The keys are in priority order, so
             # gas_watch_verdict (the LIVE audit) must be searched across every
@@ -557,10 +577,19 @@ def main():
             # Looping sources first meant a local PASS sitting in artifacts
             # still answered ahead of a live MAINTENANCE at the top level,
             # which is the same incident-hiding bug in its third costume.
+            #
+            # A LIST IS NEVER A VERDICT. run_state's artifacts map each phase to
+            # a LIST OF FILENAMES, which is that field's documented shape, and
+            # artifacts["gas_watch"] is therefore always a list of paths. It is
+            # truthy and it is not a dict, so 2026-09-20's draft printed
+            # "GAS WATCH ['out/2026-09-20/gaswatch_health.json', ...]" over a
+            # live verdict of MAINTENANCE: the same incident-hiding bug in its
+            # fourth costume, wearing the artifact index this time. Only a
+            # scalar can be a line, so only a scalar is accepted.
             for _k in keys:
                 for _src in (_art, _rs, _flat):
                     _v = _src.get(_k)
-                    if _v and not isinstance(_v, dict):
+                    if _v and isinstance(_v, (str, int, float)) and not isinstance(_v, bool):
                         return _v
             return None
 
@@ -569,9 +598,18 @@ def main():
         for _label, _keys in (("SITE SIGN-OFF", ("site_signoff", "site_sign_off")),
                               # live verdict first, local line only if nothing live
                               ("GAS WATCH", ("gas_watch_verdict", "gas_watch")),
+                              # the scheduled-job audit, when the run recorded one.
+                              # It reports an UNRESOLVED blocker on days the gas
+                              # watch itself is clean, and this table is where the
+                              # maintainer looks for what was checked today.
+                              ("CRON HEALTH", ("cron_health",)),
                               ("SITE FIXES", ("site_fixes",))):
             _v = _look(*_keys)
-            if _v and _keys[0] != "site_fixes":
+            # Only the two the routine REQUIRES count toward the UNREPORTED
+            # guard below. cron_health and site_fixes are extras, and letting
+            # either satisfy the count would let a draft go out with no site
+            # sign-off and no warning that there is none.
+            if _v and _keys[0] not in ("site_fixes", "cron_health"):
                 _substantive += 1
             if _keys[0] == "site_fixes" and not _v:
                 _v = "none. Nothing on the live site needed repair this run."
