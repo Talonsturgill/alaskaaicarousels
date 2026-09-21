@@ -165,15 +165,15 @@
        * a measured choice rather than a taste one, because the three probes
        * still have to come back nearfield > midsilt > extinction. */
       var f = AK.fbm2(u * 4.6, v * 0.9 + 11.4, 4);
-      var g = AK.fbm2(u * 1.3 + 31.7, v * 2.7, 3);
+      var g = AK.fbm2(u * 1.3 + 31.7, v * 0.7, 3);
       return Math.max(0, Math.min(1,
-        0.34 + 0.30 * e + 0.26 * (f * 0.5 + 0.5) + 0.10 * (g * 0.5 + 0.5)));
+        0.34 + 0.16 * e + 0.40 * (f * 0.5 + 0.5) + 0.10 * (g * 0.5 + 0.5)));
     };
   };
 
   AKI.HACHURE = {
-    cell: 14, passes: 3, sunAz: 208, sunEl: 34, sunJitter: 9,
-    slopeGamma: 1.35, minWidth: 0.75, maxWidth: 3.2, lenScale: 2.1,
+    cell: 14, passes: 2, sunAz: 208, sunEl: 34, sunJitter: 9,
+    slopeGamma: 1.35, minWidth: 0.75, maxWidth: 3.2, lenScale: 3.6,
     bend: 0.12, lightBias: true
   };
   /* BEND WAS 0.35 AND FOUR CRITICS READ THE FIELD AS A HEDGEROW. A bend that
@@ -271,7 +271,7 @@
       if (rnd() > 0.14 + 0.86 * e) continue;
       var r = 0.7 + rnd() * 1.5;
       var len = 5 + rnd() * 9;
-      var a = 0.045 + e * 0.33;
+      var a = 0.065 + e * 0.31;
       cx.globalAlpha = a;
       cx.strokeStyle = AKI.MOTE_INKS[Math.min(5, (e * 6) | 0)];
       cx.lineWidth = r;
@@ -565,7 +565,7 @@
     ox.restore();
   };
 
-  AKI.scrim = function (cx, W, H, rects, blur, alpha) {
+  AKI.scrim = function (cx, W, H, rects, blur, alpha, edge) {
     var off = document.createElement('canvas');
     off.width = W * 2; off.height = H * 2;
     var ox = off.getContext('2d');
@@ -575,7 +575,7 @@
       pad.width = W * 2; pad.height = H * 2;
       var px = pad.getContext('2d');
       px.scale(2, 2);
-      AKI._feather(px, rects[i], AKI.INK.extinction);
+      AKI._feather(px, rects[i], AKI.INK.extinction, edge);
       ox.drawImage(pad, 0, 0, W, H);
     }
     cx.save();
