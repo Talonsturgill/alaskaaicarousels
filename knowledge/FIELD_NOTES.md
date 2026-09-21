@@ -8241,3 +8241,63 @@ the only check that stands between a WARN and a maintainer who never sees it.
   Markdown twins and the feeds that site_build.py already emits: the deck is
   not a one-day object, and the thing that makes it resurface is that its
   subject is legible. Source: as above.
+
+## 2026-09-21, No.65, Phase 12 frontier scan (g): accessibility and PDF/document format. ONE PARK, AMENDED WITH MEASUREMENTS, AND A DEAD END CLOSED.
+
+Slot (g) was the stalest legal one (last read 2026-09-13, eight days) and it
+returns to the same park, so this entry is worth only what it MEASURES. Every
+number below came out of this repo's own Chromium and its own pypdf, not out of
+a blog post. Four of them are new, and one of them kills the recipe the
+2026-09-13 park left behind as the way in.
+
+**Chromium's tagged export works, per page.** `page.pdf(..., tagged=True)` on
+Playwright 1.63 against the committed demo deck emits a page catalog carrying
+`/StructTreeRoot`, `/MarkInfo {/Marked true}` and `/Lang en-US` on every page,
+with no flag change and no new dependency. That half is free.
+
+**What it tags on an art deck is nearly nothing.** Walking slide 02's tree:
+`/Document` 1, `/Div` 14, `/NonStruct` 12, `/H2` 1, and `/Alt` ZERO. The frames
+are canvas plus positioned divs with no `aria-label` and no `alt`, so a reader
+of the tags gets a heading and twenty-six anonymous boxes. Tagging without
+authored labels buys a structure with nothing in it.
+
+**pypdf loses the tree at the merge, by both documented routes, and the third
+route only saves page one.** Same two tagged pages, three merges, measured:
+`add_page` -> no `/StructTreeRoot`; `append()` -> no `/StructTreeRoot`;
+`PdfWriter(clone_from=first)` then `append` the rest -> `/StructTreeRoot`,
+`/MarkInfo` and `/Lang` all survive, 20 tagged elements in the tree, and every
+one of them points at page object 3. Page object 137, the second page, is not in
+the tree at all. So `clone_from`, which the 2026-09-13 park named as the way
+forward (py-pdf discussion 2694), preserves the FIRST document's tree and does
+not extend it: on a nine-slide deck it would tag slide 01 and lie about the rest.
+A real fix needs structure-tree merging, which pypdf does not provide, so it is
+a new dependency or about 200 lines of `/K`, `/ParentTree` and `/StructParents`
+renumbering. That is the reason this stays parked and not the absence of a slot.
+
+**What the destination actually does with tags, sourced.** Intopia tested
+LinkedIn's carousel Accessibility Mode with NVDA: it "picks up heading levels,
+but not other tag types such as lists", it "will acknowledge the presence of a
+graphic but fail to provide the corresponding alt text", everything arrives
+nested in a list, and the announced order does not always follow the PDF's
+reading order. LinkedIn has no alt-text field on a document post at all, unlike
+a multi-image post. So the ceiling on this whole line of work is modest and the
+caption is still where a screen-reader user gets the deck.
+https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+
+**UNBLOCKS WHEN** two things are true together, and they are separable:
+(1) the frames carry authored `aria-label`/`alt` on the art containers, which is
+a dossier field and a copy-room job before it is an engine job; and (2) assemble
+gains a tested structure-tree merge. Until (1), (2) would ship an empty tree.
+The one piece that is boundable on its own and was NOT taken this run only
+because the budget filled reactive-first: `/Lang` and `/ViewerPreferences
+/DisplayDocTitle` on the merged writer, two lines of metadata that need no tags
+to be worth having.
+
+Regulatory context, unchanged from the 2026-09-13 park and still no action:
+PDF/UA-1 remains what validators support, PDF/UA-2 (ISO 14289-2) is published,
+and the US Section 508 deadlines moved to April 2027 / April 2028 under the
+April 2026 DOJ interim final rule. None of it binds a LinkedIn post.
+
+Note for the scouts, since this is the third 403 logged today: `pdfa.org`
+refuses a plain WebFetch from this container (HTTP 403), same as
+`aws.state.ak.us` and `go.boarddocs.com`.

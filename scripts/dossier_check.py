@@ -132,6 +132,12 @@ FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
 THIN_PLAN_CHARS = 200
 
 HEAD_RE = re.compile(r"^##\s+SLIDE\s+(\d+)\b(.*)$", re.I | re.M)
+# The section gate_status.py's `reconciled` row reads, matched here only to tell
+# a storyboard that has not been written yet from one that has been truncated.
+# Kept as its own literal rather than imported, like every other pattern in this
+# file: this gate carries no dependency of its own.
+RECON_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s*BUILD\s+RECONCILIATION\b",
+                           re.I | re.M)
 # Any top-level heading (# or ##, never ###+). A dossier's own fields are ###
 # and deeper, so this only ever finds where the DECK starts talking again.
 TOP_HEAD_RE = re.compile(r"^#{1,2}(?!#)[ \t]+\S.*$", re.M)
@@ -791,6 +797,25 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
         # contacts == -2 (the declaration does not parse) is reported once, by
         # declaration_parse_fails(), with the byte the parser stopped on.
     return fails, warns
+
+
+def _early_exit(args, fail, human):
+    """Leave on a whole-file failure, in the FORMAT THE CALLER ASKED FOR.
+
+    A --json run that dies before it can build a report still owes its caller
+    JSON. Both of this gate's early exits printed prose on that path, so
+    gate_status.py's wrapper (json.loads of stdout) raised JSONDecodeError and
+    reported "dossier_check could not run", which reads like plumbing and is
+    scored like an absent artifact. The finding was real and loud and arrived
+    disguised as an n/a. The report shape is the same one main() emits, with the
+    file-level failure in slides[0] so a caller that walks slides sees it too.
+    """
+    if getattr(args, "json", False):
+        print(json.dumps({"slides": [{"slide": 0, "fails": [fail], "warns": []}],
+                          "fails": 1, "warns": 0, "verdict": "FAIL"}, indent=2))
+    else:
+        print(human)
+    sys.exit(1)
 
 
 def main():

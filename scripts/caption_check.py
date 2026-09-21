@@ -81,14 +81,28 @@ AI_TELLS = ["delve", "tapestry", "testament", "landscape of", "ever-evolving",
 # surfaces cannot drift apart.
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
 ABBREV = r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept|Sep|Oct|Nov|Dec"
+# CASE-INSENSITIVE, WHICH IS WHAT THE HOUSE RULE ALWAYS SAID (2026-09-21, run
+# No.65). CLAUDE.md has described this table as enforced "on the caption AND on
+# every slide string, case-insensitively, because the surface that prompted the
+# rule was mono caps on a cover", and the table was compiled without re.I, so
+# every one of these forms was invisible in the exact typography this studio
+# sets its slide furniture in. No.65 shipped `SEPT 4 TO NOV 2` through round one
+# on slide 01's axis key; a human-proxy critic caught it, not the gate. Measured
+# on the whole table at the time of the repair, `SEPTEMBER 4` and `2 SEPTEMBER`
+# were equally invisible, so this is not only the abbreviation branch. The
+# caption's own DAY_FIRST/BARE_CARDINAL pair below has been re.I since it was
+# written, which is why the caption surface never showed the hole.
+#
+# The abbreviation branch also takes an optional ordinal, because `SEPT 4TH` is
+# still an abbreviation: the fix for it is spelling the month, not the suffix.
 DATE_FORMS = [
-    (re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + MONTHS + r")\b"),
+    (re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + MONTHS + r")\b", re.I),
      "day-first", "write the month first with an ordinal day, e.g. August 10th"),
-    (re.compile(r"\b(" + MONTHS + r")\s+(\d{1,2})(?!\s*(?:st|nd|rd|th))(?!\d)"),
+    (re.compile(r"\b(" + MONTHS + r")\s+(\d{1,2})(?!\s*(?:st|nd|rd|th))(?!\d)", re.I),
      "no ordinal", "add the ordinal, e.g. August 10th"),
-    (re.compile(r"\bthe\s+\d{1,2}(?:st|nd|rd|th)\s+of\s+(" + MONTHS + r")\b"),
+    (re.compile(r"\bthe\s+\d{1,2}(?:st|nd|rd|th)\s+of\s+(" + MONTHS + r")\b", re.I),
      "of-form", "write it plainly, e.g. August 10th"),
-    (re.compile(r"\b(" + ABBREV + r")\.?\s+\d{1,2}\b"),
+    (re.compile(r"\b(" + ABBREV + r")\.?\s+\d{1,2}(?:st|nd|rd|th)?\b", re.I),
      "abbreviated month", "spell the month out with an ordinal day, e.g. August 10th"),
 ]
 
@@ -1214,10 +1228,51 @@ def brand_date_self_test():
     return 1 if bad_count else 0
 
 
+def mono_caps_date_self_test():
+    """Fail-first reconstruction of run No.65's shipped date (2026-09-21).
+
+    `SEPT 4 TO NOV 2` went onto slide 01's axis key and through round one, and a
+    human-proxy critic caught it rather than this gate, because DATE_FORMS was
+    compiled without re.I while CLAUDE.md described it as enforced on every
+    slide string case-insensitively. Slide furniture is set in mono caps, which
+    is the surface the rule was made for, so the table was blind in exactly the
+    typography it exists to police: `SEPTEMBER 4` and `2 SEPTEMBER` were
+    invisible too. Measured at the time of the repair, 19 shipped decks carry 96
+    strings this table could not see.
+
+    Run through check_copy_dates(), not through the regexes alone, because the
+    surface that shipped it is copy.json's slide strings and a rule is only
+    enforced where it is actually applied.
+    """
+    cases = [
+        # (name, the slide string, must_fail)
+        ("the shipped one: 'SEPT 4 TO NOV 2' on an axis key", "SEPT 4 TO NOV 2", True),
+        ("a mono-caps bare cardinal", "COMMENTS CLOSE SEPTEMBER 4", True),
+        ("a mono-caps day-first", "FILED 2 SEPTEMBER", True),
+        ("an abbreviation carrying its ordinal", "READ SEPT 4TH", True),
+        ("the house form in mono caps stays clean", "COMMENTS CLOSE NOVEMBER 2ND", False),
+        ("the house form in sentence case stays clean", "Comments close November 2nd.", False),
+        ("an ISO provenance stamp stays clean", "CHECKED 2026-09-21 / C14", False),
+        ("a quantity that is not a date stays clean", "100 MEGAWATTS, 18 CFR 4.36", False),
+        ("a different calendar year keeps its year", "IN SERVICE Q4 2029", False),
+    ]
+    bad_count = 0
+    for name, s, must_fail in cases:
+        hits = check_copy_dates({"run_date": "2026-09-21", "slides": [[s]]})
+        got = bool(hits)
+        if got != must_fail:
+            bad_count += 1
+        print("%s %-62s expected %s, got %d fail(s)"
+              % ("ok " if got == must_fail else "BAD", name[:62],
+                 "FAIL" if must_fail else "clean", len(hits)))
+    print("mono-caps date self-test: %s" % ("PASS" if not bad_count else "FAIL"))
+    return 1 if bad_count else 0
+
+
 def main():
     args = [a for a in sys.argv[1:]]
     if "--self-test" in args:
-        sys.exit(brand_date_self_test())
+        sys.exit(brand_date_self_test() | mono_caps_date_self_test())
     if "--burns" in args:
         i = args.index("--burns")
         lp = Path(args[i + 1]) if len(args) > i + 1 else Path("ledger/captions.json")
