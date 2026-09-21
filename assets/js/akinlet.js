@@ -174,8 +174,15 @@
   AKI.HACHURE = {
     cell: 14, passes: 3, sunAz: 208, sunEl: 34, sunJitter: 9,
     slopeGamma: 1.35, minWidth: 0.75, maxWidth: 3.2, lenScale: 2.1,
-    bend: 0.35, lightBias: true
+    bend: 0.12, lightBias: true
   };
+  /* BEND WAS 0.35 AND FOUR CRITICS READ THE FIELD AS A HEDGEROW. A bend that
+   * large curls each stroke's tail up out of the flow direction, and a curled
+   * stroke has a vertical component whatever its base angle, so the field
+   * reads as standing vegetation rather than as suspension carried sideways.
+   * 0.12 keeps the hand-drawn irregularity that stops the field looking
+   * machine-ruled and loses the upward hook entirely. Measured on 08, whose
+   * water is the largest uninterrupted field in the deck. */
 
   /* Three probes on every frame, and their mean stroke widths must come back
    * in descending order or the field is not carrying its data. Positions are
@@ -254,10 +261,17 @@
       var y = box.y + rnd() * box.h;
       if (y < meniscusY) continue;
       var e = AKI.E(AKI.depthAt(y, meniscusY));
-      if (rnd() > e) continue;
+      /* THE SUSPENSION DOES NOT STOP, IT GOES DARK. Rejecting on `e` alone
+       * gave the population a hard floor: below roughly 0.9 m the acceptance
+       * rate is under 0.18 and the lower third of every frame came back
+       * literally empty, which reads as a cutoff line across the water rather
+       * than as extinction. Glacial flour is present at depth; what falls off
+       * is the light returning from it. So the floor keeps 14 percent of the
+       * sampling all the way down and the ALPHA carries the decay. */
+      if (rnd() > 0.14 + 0.86 * e) continue;
       var r = 0.7 + rnd() * 1.5;
       var len = 5 + rnd() * 9;
-      var a = 0.08 + e * 0.30;
+      var a = 0.045 + e * 0.33;
       cx.globalAlpha = a;
       cx.strokeStyle = AKI.MOTE_INKS[Math.min(5, (e * 6) | 0)];
       cx.lineWidth = r;
@@ -452,15 +466,20 @@
      * first build of No.65's cover shipped three of them. The punch takes an
      * alpha and a generous blur so the result is a graded scrim in the
      * frame's own darkest value, felt and not seen. */
+    /* AND IT IS FEATHERED IN BOTH AXES, for the reason written on AKI.scrim:
+     * a partial punch with a flat interior is still a rectangle, and the
+     * cover shipped two of them into round one. The punch mask is built with
+     * the same ramp the scrim uses so the two surfaces cannot drift apart. */
+    var mask = document.createElement('canvas');
+    mask.width = W * 2; mask.height = H * 2;
+    var mx = mask.getContext('2d');
+    mx.scale(2, 2);
+    for (var i = 0; i < rects.length; i++) AKI._feather(mx, rects[i], '#000');
     ox.save();
     ox.filter = 'blur(' + (blur === undefined ? 64 : blur) + 'px)';
     ox.globalCompositeOperation = 'destination-out';
     ox.globalAlpha = (alpha === undefined ? 0.72 : alpha);
-    ox.fillStyle = '#000';
-    for (var i = 0; i < rects.length; i++) {
-      var r = rects[i];
-      ox.fillRect(r[0], r[1], r[2], r[3]);
-    }
+    ox.drawImage(mask, 0, 0, W, H);
     ox.restore();
     return off;
   };
@@ -508,18 +527,59 @@
    * radial's outer radius is half the box's longest side, so on a long line
    * of type it has faded to nothing before the ends and the field stays over
    * the first and last words. */
+  /* A BLUR SOFTENS AN EDGE, IT DOES NOT SOFTEN AN INTERIOR, and that is why
+   * round one's scrims were still legible as boxes. An 840 x 470 rectangle
+   * blurred at 42 px is a flat slab with eight soft pixels around it: the eye
+   * reads the plateau, not the edge. Three critics named the same three
+   * shapes on 01, 05 and 09.
+   *
+   * So a scrim rectangle is now FEATHERED IN BOTH AXES before it is blurred.
+   * A vertical multi-stop ramp gives the band its falloff, a horizontal ramp
+   * is composited through destination-in, and the product has no plateau at
+   * all: the darkest value sits on the type's own centreline and every
+   * boundary decays to nothing inside the box. The blur that follows is then
+   * doing what a blur is good at, hiding the ramp's own banding. */
+  AKI._feather = function (ox, r, color, edge) {
+    var x = r[0], y = r[1], w = r[2], h = r[3];
+    var e = edge === undefined ? 0.30 : edge;
+    var g = ox.createLinearGradient(0, y, 0, y + h);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(e * 0.5, 'rgba(0,0,0,0.55)');
+    g.addColorStop(e, 'rgba(0,0,0,1)');
+    g.addColorStop(1 - e, 'rgba(0,0,0,1)');
+    g.addColorStop(1 - e * 0.5, 'rgba(0,0,0,0.55)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ox.save();
+    ox.beginPath(); ox.rect(x, y, w, h); ox.clip();
+    ox.fillStyle = g; ox.fillRect(x, y, w, h);
+    ox.globalCompositeOperation = 'destination-in';
+    var hx = ox.createLinearGradient(x, 0, x + w, 0);
+    var ex = Math.min(0.30, 90 / Math.max(1, w));
+    hx.addColorStop(0, 'rgba(0,0,0,0)');
+    hx.addColorStop(ex, 'rgba(0,0,0,1)');
+    hx.addColorStop(1 - ex, 'rgba(0,0,0,1)');
+    hx.addColorStop(1, 'rgba(0,0,0,0)');
+    ox.fillStyle = hx; ox.fillRect(x, y, w, h);
+    ox.globalCompositeOperation = 'source-in';
+    ox.fillStyle = color; ox.fillRect(x, y, w, h);
+    ox.restore();
+  };
+
   AKI.scrim = function (cx, W, H, rects, blur, alpha) {
     var off = document.createElement('canvas');
     off.width = W * 2; off.height = H * 2;
     var ox = off.getContext('2d');
     ox.scale(2, 2);
-    ox.filter = 'blur(' + (blur === undefined ? 34 : blur) + 'px)';
-    ox.fillStyle = AKI.INK.extinction;
     for (var i = 0; i < rects.length; i++) {
-      var r = rects[i];
-      ox.fillRect(r[0], r[1], r[2], r[3]);
+      var pad = document.createElement('canvas');
+      pad.width = W * 2; pad.height = H * 2;
+      var px = pad.getContext('2d');
+      px.scale(2, 2);
+      AKI._feather(px, rects[i], AKI.INK.extinction);
+      ox.drawImage(pad, 0, 0, W, H);
     }
     cx.save();
+    cx.filter = 'blur(' + (blur === undefined ? 34 : blur) + 'px)';
     cx.globalAlpha = (alpha === undefined ? 0.80 : alpha);
     cx.drawImage(off, 0, 0, W, H);
     cx.restore();
