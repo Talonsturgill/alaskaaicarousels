@@ -57,5 +57,6 @@
     "squash_sha": "b8ee935d5aa526b8c19efcc9b47ae83ff5894cc8",
     "codex": "Completed on 6745ff71b5, no major issues",
     "ci": "green except the checks job, red on the disclosed CINGSA upstream pause"
-  }
+  },
+  "status": "complete"
 }
