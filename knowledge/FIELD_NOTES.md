@@ -8163,3 +8163,30 @@ maintainer's inbox three times before anyone read a table closely.
 So Phase 13 now has a step before `create_draft`: read the built body's
 sign-off table and confirm it names verdicts. It costs one command and it is
 the only check that stands between a WARN and a maintainer who never sees it.
+
+## 2026-09-21 craft refresh (No.65)
+
+- **THE SAVE IS NOW THE MOST VALUABLE SIGNAL ON THE PLATFORM, BY A WIDE
+  MARGIN.** Hootsuite's 2026 algorithm guide puts it in numbers: "a save can
+  drive around five times the reach of a like ... and roughly twice the reach
+  of a comment." That reorders this studio's priorities. The routine already
+  requires "a keepable data slide exists", and that requirement has been read
+  as one slide's job. It is actually the deck's single highest-leverage
+  property, and it should be designed for on purpose: the frame a reader
+  screenshots or saves is the frame that carries a reference they will want
+  again, printed large enough to read at thumb size. A deck with one saveable
+  frame outperforms a deck with nine admirable ones. Source: Hootsuite, How
+  the LinkedIn algorithm works in 2026.
+- **ENGAGEMENT BAIT IS NOW ACTIVELY DEPRIORITIZED, WHICH RETROACTIVELY
+  VINDICATES THE CLOSING-MOVE LAW.** The same guide names a "Comment YES"
+  crackdown as one of five 2026 changes. The caption room's rule that a close
+  must be a real question a real reader could answer from the record, rather
+  than a prompt for a one-word reply, is therefore a distribution rule and not
+  only a taste rule. No rule moves; the reason behind it got stronger.
+- **SEMANTIC UNDERSTANDING AND RELEVANCE OVER RECENCY BOTH FAVOUR THE
+  MACHINE-READABLE MOAT.** The algorithm is described as reading for meaning
+  rather than keywords, and posts from weeks earlier can resurface when they
+  become relevant again. That is an argument for the archive pages, the
+  Markdown twins and the feeds that site_build.py already emits: the deck is
+  not a one-day object, and the thing that makes it resurface is that its
+  subject is legible. Source: as above.
