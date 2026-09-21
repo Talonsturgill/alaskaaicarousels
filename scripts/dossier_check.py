@@ -802,12 +802,37 @@ def main():
     rdir = Path(args.run_dir)
     sb = rdir / "storyboard.md"
     if not sb.exists():
-        print(f"FAIL: {sb} missing")
-        sys.exit(1)
-    sections = slide_sections(sb.read_text())
+        _early_exit(args, "storyboard.md missing",
+                    f"FAIL: {sb} missing")
+    text = sb.read_text()
+    sections = slide_sections(text)
     if not sections:
-        print(f"FAIL: no '## SLIDE NN' dossiers found in {sb}")
-        sys.exit(1)
+        # A STORYBOARD THAT LOST ITS DOSSIERS IS A TRUNCATED ARTIFACT, AND IT
+        # HAS TO SAY SO BY NAME (2026-09-21, run No.65). That run's storyboard
+        # reached round three with its deck header, its continuity tables and
+        # its BUILD RECONCILIATION section intact and ZERO dossiers under them:
+        # a rewrite had dropped the middle of the file. Nothing said so. This
+        # exit printed prose on the --json path, gate_status.py's wrapper died
+        # on json.loads and printed "[n/a ] dossier_check could not run
+        # (JSONDecodeError)", and an n/a row stops nothing, so two full review
+        # rounds ran with no per-slide contract on disk. All six critics in
+        # round two reported judging the frames against the deck header, and
+        # the `reconciled` row passed the whole time because it tests presence.
+        # The combination below -- a reconciliation section written, and not one
+        # slide to reconcile -- is only ever that defect.
+        if RECON_HEAD_RE.search(text):
+            _early_exit(
+                args,
+                "storyboard.md is TRUNCATED: it carries a BUILD RECONCILIATION "
+                "section and zero '## SLIDE NN' dossiers, which is a storyboard "
+                "that lost its middle. Nothing downstream has a per-slide "
+                "contract to check the frames against: restore the dossiers "
+                "from the last good commit or rewrite them before the critics "
+                "run again.",
+                f"FAIL: {sb} is truncated (BUILD RECONCILIATION present, no "
+                f"'## SLIDE NN' dossiers)")
+        _early_exit(args, "no '## SLIDE NN' dossiers found in storyboard.md",
+                    f"FAIL: no '## SLIDE NN' dossiers found in {sb}")
 
     # slide sources are optional: this gate is meant to run BEFORE they exist
     sdir = rdir / "slides"
