@@ -1,0 +1,100 @@
+{
+  "run_date": "2026-09-21",
+  "aggregates": [
+    {
+      "kind": "design",
+      "slide": 1,
+      "text": "DAY 17 OF 59 SEP 4TH TO NOV 2ND",
+      "note": "the deck's own printed axis key. 59 is the whole window from the notice's publication (C20) to the filing deadline (C14) and 17 is today's position in it, which is a property of the DRAWING's calendar scale rather than a figure taken from the record."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "330 to 350 marine hydrokinetic turbines",
+      "fragment": "350 marine hydrokinetic turbines",
+      "member": "C06"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "66 modular subsea-compute hives",
+      "fragment": "66 modular subsea-compute hives",
+      "member": "C07"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "100 megawatts",
+      "fragment": "100 megawatts",
+      "member": "C11"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 5,
+      "text": "\"The estimated annual generation of the DeepGreen Project would be 100 megawatts, which would primarily be utilized to power the subsea data center.\"",
+      "fragment": "100 megawatts",
+      "member": "C11"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "GENERATION 100 MEGAWATTS",
+      "fragment": "100 MEGAWATTS",
+      "member": "C11"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 6,
+      "text": "CABLE 3.5 MILES AT 115 KV",
+      "fragment": "5 MILES",
+      "member": "C08",
+      "note": "the detector splits 3.5 at the decimal point and reports the fragment as 5 MILES. The declaration answers for the fragment the detector found, because a declaration that answers for a string the detector never saw is a declaration nobody checked."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "200 megawatts",
+      "fragment": "200 megawatts",
+      "member": "C25"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "38 miles",
+      "fragment": "38 miles",
+      "member": "C24"
+    },
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "3.5 MILES",
+      "fragment": "5 MILES",
+      "member": "C08",
+      "note": "the checkerboard scale bar's own end label, added in round two because a scale bar nobody can read the unit of is not a scale bar. It measures the SAME cable length the body of this slide already states, so it is the claim restated at the bar rather than a fresh assertion. The detector splits 3.5 at the decimal point and reports the fragment as 5 MILES; the declaration answers for the fragment the detector found."
+    },
+    {
+      "kind": "design",
+      "slide": 6,
+      "text": "DOCKET STAFF, DAY 17 OF 59",
+      "note": "the keepable frame's key for the instrument it draws, added in round two because the frame claimed a hero-scale staff and never named it. Same standing as the cover's axis key on slide 1: 59 is the whole window from the notice's publication (C20) to the filing deadline (C14) and 17 is today's position in it, which is a property of the DRAWING's calendar scale rather than a figure taken from the record."
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "text": "0",
+      "note": "the checkerboard scale bar's origin label, added in round three. It marks where the bar starts and measures nothing about the world; the bar's END label carries the claim."
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "50 DAYS",
+      "note": "the printed RATE for the filing sill's own axis, added in round three. It is a length on the drawing (155 design px at 3.1 px a day) and not an interval in the record; no event on this frame spans 50 days. It exists because the frame carries two axes both measured in days at rates 4.6x apart, and a reader given two rates has to be told them rather than left to infer one from the other."
+    },
+    {
+      "kind": "design",
+      "slide": 3,
+      "text": "ONE MARK IS TEN TURBINES",
+      "note": "the turbine row's own legend, added in round three. It states the drawing's glyph-to-object ratio, which is a property of the picture: 35 glyphs are drawn for the 330 to 350 turbines of C06, 33 full plus 2 half, so the row spans the range without inventing a midpoint. The same frame sets a one-to-one expectation 300 design px above it where 66 pods are 66 outlines, so leaving the ratio unstated invites a reader to count 35."
+    }
+  ]
+}

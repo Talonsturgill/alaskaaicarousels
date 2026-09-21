@@ -1,0 +1,178 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the dome port ring against the water it is pressed into' is painted, not lit: a screen radial ramp at (434, 1166), r 96x26 design px, peak alpha 0.28, rgba(160,168,140,0.28) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the dome port ring against the water it is pressed into': shadow L* 3.3 vs ground L* 14.9, dL 11.5 at 432w"
+      ],
+      "motifs": [
+        "'the gold day 59 graduation, the deck only accent': canvas 69.6 dE, page 68.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the cased meniscus at the left margin, the silhouette read': canvas 56.0 dE, page 56.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 1180 to 59 days at 340; 10 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h1 'So far, the CookInlet data centeris a docume' fits 3/3 lines at 78.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the filing sill where it rests on the silt bed' is painted, not lit: a screen radial ramp at (426, 1286), r 88x20 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the filing sill where it rests on the silt bed': shadow L* 4.3 vs ground L* 19.2, dL 14.9 at 432w"
+      ],
+      "motifs": [
+        "'the filing sill lit top face, the frame own modelled edge': canvas 50.7 dE, page 53.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 1040 to 59 days at 200; 10 declared mark(s), and the band's census finds no others",
+        "'the filing sill, elapsed days either side of publication, struck along its top face' runs -205 days at 244.5 to 0 days at 880; 3 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the staff where it enters the silt bed' is painted, not lit: a screen radial ramp at (968, 1252), r 94.6x18 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the staff where it enters the silt bed': shadow L* 1.1 vs ground L* 21.7, dL 20.6 at 432w"
+      ],
+      "motifs": [
+        "'the cable scale bar, 160 px to the mile': canvas 58.0 dE, page 60.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 830 to 58.30 days at 0; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "asserts": [
+        "'66 proposed pods, one outline each' holds: 66 vs 66 marks, counted over 66 declared marks (within 0)",
+        "'66 proposed pods, one outline each': 66 mark centres probed at r=14px, cohort median 25.2 dE, all present (weakest 24.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the staff foot standing on the bed' is painted, not lit: a screen radial ramp at (966, 1206), r 91.3x18 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "encodings": [
+        "'there is nothing in this water': dE 0.1, AUC 0.52, visible 100%/100%, seen 3888/3888px at 432w"
+      ],
+      "contacts": [
+        "'the staff foot standing on the bed': shadow L* 0.8 vs ground L* 19.8, dL 19.0 at 432w"
+      ],
+      "motifs": [
+        "'the underside of the surface, the frame only bright edge': canvas 46.4 dE, page 46.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 420 to 29.50 days at 0; 6 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the notice plate where it stands on the berm' is painted, not lit: a screen radial ramp at (424, 1118), r 94.6x20 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the notice plate where it stands on the berm': shadow L* 8.8 vs ground L* 24.7, dL 15.9 at 432w"
+      ],
+      "motifs": [
+        "'the notice plate lit top edge, the frame own modelled arris': canvas 33.4 dE, page 33.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 690 to 48.46 days at 0; 8 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 '100 megawatts' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the third void rim against the lit bed just outboard of it' is painted, not lit: a screen radial ramp at (788, 1214), r 70.4x14 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the third void rim against the lit bed just outboard of it': shadow L* 1.6 vs ground L* 20.9, dL 19.3 at 432w"
+      ],
+      "motifs": [
+        "'the first void, the deck only use of the extinction floor as a fill': canvas 31.4 dE, page 36.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 660 to 46.36 days at 0; 8 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'What it says.What it doesn't.' fits 2/2 lines at 72.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the quotation plate on the upper shelf, a half depth contact' is painted, not lit: a screen radial ramp at (450, 1182), r 88x16 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the quotation plate on the upper shelf, a half depth contact': shadow L* 8.3 vs ground L* 20.7, dL 12.4 at 432w"
+      ],
+      "motifs": [
+        "'the day 10 graduation in the state own ink, the one coloured mark': canvas 54.3 dE, page 52.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 920 to 59 days at 80; 11 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the real staff foot on the silt floor' is painted, not lit: a screen radial ramp at (986, 1228), r 88x18 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the real staff foot on the silt floor': shadow L* 11.0 vs ground L* 26.2, dL 15.2 at 432w"
+      ],
+      "motifs": [
+        "'the real staff foot and its attached cast, the only contact in frame': canvas 25.3 dE, page 26.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 980 to 59 days at 140; 10 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'Anyone.Including a rival.' fits 2/2 lines at 76.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the staff where it enters the water it is standing in' is painted, not lit: a screen radial ramp at (1002, 986), r 88x18 design px, peak alpha 0.44, rgba(160,168,140,0.44) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the staff where it enters the water it is standing in': shadow L* 14.3 vs ground L* 36.6, dL 22.3 at 432w"
+      ],
+      "motifs": [
+        "'the gold day 59 graduation at hero weight, the deck resolution': canvas 69.7 dE, page 73.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the docket staff, days from publication to deadline' runs 0 days at 1180 to 59 days at 340; 11 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h2 'File.November 2nd.' fits 2/2 lines at 81px"
+      ],
+      "asserts": [
+        "'day 57 is drawn 28.5 px below day 59 on the declared axis' holds: 28.5 vs 28.4746 px (within 0.2)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 9,
+  "verdict": "WARN"
+}

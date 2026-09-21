@@ -1,0 +1,155 @@
+{
+  "run_date": "2026-09-21",
+  "carousel_no": 65,
+  "document_title": "Priority, Not Permission",
+  "post_copy": "66 data center pods. 330 to 350 turbines. 3.5 miles of cable. The federal notice never says how much seabed.\n\nNothing is being built on the floor of Cook Inlet.\n\nFERC says the sole purpose of a preliminary permit is \"priority to file a license application.\"\nIt authorizes no land-disturbing work and no entry onto lands or waters owned by others.\nThe notice doesn't say how deep the water is or how long the permit runs.\nAlaska Energy Authority says it will file to intervene and oppose. It says it has had no communication with the applicant.\n\nThe record is one federal notice with three blanks in it, and one September 14th newspaper report quoting Curtis W. Thayer for the state.\n\nComments on FERC docket P-15423-000 close 5:00 p.m. Eastern on November 2nd. The window takes competing applications for the same site. Who does it serve more, objectors or a rival?\n\n#CookInlet #FERC #TidalEnergy",
+  "deck_summary_line": "The record is one federal notice with three blanks in it, and one September 14th newspaper report quoting Curtis W. Thayer for the state.",
+  "caption_meta": {
+    "opening_move": "COLD NUMBER",
+    "structure": "PUNCH THEN PROOF",
+    "closing_move": "NEW: WHO THE WINDOW FAVORS",
+    "hook_type": "three counted things then a counted absence"
+  },
+  "first_comment": "Sources, primary first.\n\nFederal Energy Regulatory Commission, Notice of Preliminary Permit Application Accepted for Filing, Project No. 15423-000, published in the Federal Register September 4th. This is the primary document behind the docket number, the applicant, the project description, the pods, the turbines, the cable, the Nikiski landing, the 100 megawatt sentence, both preliminary permit sentences, the November 2nd deadline, 18 CFR 4.36 and eFiling.\nhttps://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt\n\nPeninsula Clarion, September 14th, \"Federal review advances for subsea data center off Nikiski\", the only newspaper report on this docket. It carries the Curtis W. Thayer quotation, the PowerLink reference and the note on the moved deadline.\nhttps://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/\n\nHomer News, the same Peninsula Clarion reporting on a second masthead, listed once because it is one article and not a second source.\nhttps://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/\n\nEvery Alaska AI decision tracked daily, with live deadlines.\nhttps://alaskaaihq.com\n\nIf you have filed on P-15423-000, or you work the water off the East Foreland, add what you know below.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "FERC P-15423-000",
+      "headline": "So far, the Cook Inlet data center is a document.",
+      "body": "",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C05"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE RECORD",
+      "headline": "Applied.",
+      "body": "DeepGreen Cook Inlet SPV, LLC filed an application for a preliminary permit on February 11th and supplemented it on June 26th. FERC signed the notice September 1st. The Federal Register published it September 4th.",
+      "claim_ids": [
+        "C02",
+        "C03",
+        "C19",
+        "C20"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHAT THE NOTICE DESCRIBES",
+      "headline": "Proposed.",
+      "body": "66 modular subsea-compute hives, which the notice also calls data center pods. 330 to 350 marine hydrokinetic turbines. A 3.5 mile, 115 kV hybrid power and fiber-optic armored cable, landing in the Nikiski Industrial Corridor.",
+      "claim_ids": [
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "WHAT A PERMIT IS",
+      "headline": "Priority.",
+      "body": "\"The sole purpose of a preliminary permit, if issued, is to grant the permit holder priority to file a license application during the permit term.\" It would not authorize construction, land-disturbing work or entry onto property owned by others.",
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C20",
+        "C27"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "AS THE NOTICE PRINTS IT",
+      "headline": "100 megawatts",
+      "body": "\"The estimated annual generation of the DeepGreen Project would be 100 megawatts, which would primarily be utilized to power the subsea data center.\" A megawatt measures power, not a year of it. That is the notice's own wording.",
+      "claim_ids": [
+        "C11"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "THE DEEPGREEN COOK INLET NOTICE",
+      "headline": "What it says. What it doesn't.",
+      "body": "IN THE FEDERAL NOTICE",
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C14",
+        "C20"
+      ],
+      "labels": [
+        "DOCKET P-15423-000",
+        "FILED FEBRUARY 11TH",
+        "PUBLISHED SEPTEMBER 4TH",
+        "PODS 66",
+        "TURBINES 330 TO 350",
+        "CABLE 3.5 MILES AT 115 KV",
+        "LANDING NIKISKI",
+        "GENERATION 100 MEGAWATTS",
+        "CLOSES NOVEMBER 2ND",
+        "NOT IN THE FEDERAL NOTICE",
+        "HOW MUCH SEABED",
+        "HOW DEEP THE WATER IS",
+        "HOW LONG THE PERMIT RUNS",
+        "EACH CHECKED AND ABSENT",
+        "DOCKET STAFF, DAY 17 OF 59, SEPTEMBER 21ST"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "ALASKA ENERGY AUTHORITY, SEPTEMBER 14TH",
+      "headline": "Nobody called.",
+      "body": "\"We're going to file to intervene and oppose it, just so we have a position. We've had no communication with them.\" The Peninsula Clarion reports that DeepGreen cited AEA's own planned Cook Inlet PowerLink, 38 miles and up to 200 megawatts, in its federal filing. ORPC says it has no affiliation with the project and is not participating in it.",
+      "claim_ids": [
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHO ELSE CAN FILE",
+      "headline": "Anyone. Including a rival.",
+      "body": "The window takes comments, protests and motions to intervene. It also takes competing applications for the same site, and notices of intent to file one, under 18 CFR 4.36. A place in line is a thing other people can want.",
+      "claim_ids": [
+        "C14",
+        "C16"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "File. November 2nd.",
+      "body": "Comments, protests, motions to intervene and competing applications are due 5:00 p.m. Eastern Time on November 2nd, on FERC docket P-15423-000, through the Commission's eFiling system. The Peninsula Clarion reports the deadline moved from October 31st, a Saturday.",
+      "claim_ids": [
+        "C01",
+        "C14",
+        "C15",
+        "C17",
+        "C18"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday through Thursday, 8 to 11 a.m. Alaska time, which are the strongest slots for this audience.",
+    "This deck has a shelf life. Its single ask is a filing deadline of November 2nd, so post it well before that date or it reads as history.",
+    "Paste the source block as the FIRST comment within 60 seconds of posting, with the full raw URLs visible.",
+    "Reply to every comment in the first 60 to 90 minutes. Early replies are what turn a docket post into a conversation.",
+    "First correction to keep ready. Nothing is being built on the floor of Cook Inlet. A preliminary permit grants priority to file a license application, not permission to construct anything.",
+    "Second correction to keep ready. The Alaska Energy Authority STATED AN INTENTION to file to intervene and oppose, as of September 14th. The deck never says it has filed, and neither should a reply.",
+    "Check saves at 48 hours and log them. A save is worth about five times a like on this platform now, and slide 06 was built for exactly that."
+  ],
+  "editor_notes_for_email": "The caption room's winner was candidate B, COLD NUMBER over PUNCH THEN PROOF, and it ships byte for byte. The caption-critic made one fix, replacing the deck summary line so it names the actual record, one federal notice with three blanks and one newspaper report quoting Curtis W. Thayer. The showrunner additionally added the docket number to the close, because the critic found that NEITHER candidate carried it while slide 09's single ask is a filing, and an ask to file that doesn't name the docket is an ask nobody can act on. The fact-checker killed nine claims, including the seabed acreage, the water depth and the four year permit term that were circulating in coverage, and three of those kills became the keepable frame at slide 06, where the absences are printed as voids rather than quietly dropped."
+}

@@ -7,6 +7,57 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-21, No.65. FOUR REVISION ROUNDS, AND THE THREE THINGS THAT COST THEM.
+
+Shipped at 7.98 normalised against a relaxed threshold of 7.7, flagged short of
+the unrelaxed 8.3. Four revision rounds is the most this studio has spent since
+No.34. Three lessons, all of them cheap to avoid next time.
+
+- **A PLANNING ARTIFACT CAN LOSE A SECTION AND NOTHING NOTICES.**
+  `out/<date>/storyboard.md` reached round three carrying its deck header, its
+  continuity tables and its BUILD RECONCILIATION with NO per-slide dossiers at
+  all. `gate_status` printed `[n/a ] dossier_check could not run` for two rounds
+  and an `[n/a]` row does not stop a run. All six human-proxy critics in round
+  two reported INDEPENDENTLY that they had judged the frames against the deck
+  header because the contracts were not on disk, so two full rounds of
+  acceptance checklists were never checked. The `reconciled` row passed the
+  whole time, because it tests for PRESENCE. Two repairs are in the worklog:
+  treat `[n/a]` on a required row as a FAIL under `--require`, and fail
+  `dossier_check` loudly when a storyboard has a reconciliation section and zero
+  `## SLIDE NN` sections, since that combination is only ever a truncation.
+
+- **A RECONCILIATION TABLE THAT PASSES ON PRESENCE IS NOT A RECONCILIATION.**
+  The camera table carried the ROUND ONE offsets through the whole of round two
+  while the frames moved under it, and three separate critics measured renders
+  against superseded numbers and said so. A check that reads the `CAM` constant
+  out of each built slide and diffs it against the table is about fifteen lines.
+
+- **WHEN THREE ROUNDS OF CRITICS SAY THE SAME THING ABOUT THE SAME BAND, THE
+  DIAGNOSIS IS WRONG, NOT THE FIX.** The water read as turf from round one. The
+  bend was blamed, then the gradient anisotropy, and both were real defects worth
+  fixing, and neither changed what a reader called it. What worked was giving the
+  job to a DIFFERENT SUBSYSTEM: the mote streaks, which every critic had already
+  said read as lateral current, got longer, curved, tailed and roughly doubled,
+  and the hachure field dropped a third in alpha and went back to being the
+  middle frequency. Two rounds would have been saved by asking, at round two,
+  which element already does the thing rather than which parameter is wrong.
+
+- **AND ONE PIECE OF PROCESS THAT WORKED.** Round four tried the obvious repair
+  for a warn every frame carried, MEASURED it worse (the warn stayed and four
+  frames lost contact dL from 11.4-20.6 to 5.8-7.6 against a comfort band of
+  8.0), reverted, and wrote the measurement into the chassis where the next run
+  will read it before spending the round again. Do that every time. A recorded
+  negative result is worth as much as a fix.
+
+- **A NULL WORTH KNOWING: `shrink_pdfs.py` CANNOT SHRINK THIS KIND OF ART.**
+  Every image came back at 41.4 dB against a 42.0 dB floor and the script
+  correctly refused all of them, so the PDF ships at 59.24 MB against the house
+  band of 2 to 25. High-frequency generative texture, mote streaks and hachure
+  at one to three px, is exactly what a second lossy generation destroys. This
+  is not a bug in the shrinker; it is the cost of this art direction, and a deck
+  built this way should expect to ship a large PDF or to plan its textures
+  coarser.
+
 ## 2026-09-17, Phase 12 frontier scan (d): typography and layout craft. ONE PARK AMENDED, one null reconfirmed for the fourth time.
 
 The stalest legal slot (last read September 7th) and distinct from the last
