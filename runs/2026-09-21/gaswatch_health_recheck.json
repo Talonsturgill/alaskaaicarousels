@@ -1,0 +1,91 @@
+{
+  "checked_utc": "2026-09-21T10:08:25Z",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "name": "live dataset",
+      "status": "PASS",
+      "detail": "47 daily records",
+      "remedy": ""
+    },
+    {
+      "name": "recent calendar days",
+      "status": "PASS",
+      "detail": "last three days accounted for",
+      "remedy": ""
+    },
+    {
+      "name": "unverified storage stays empty",
+      "status": "PASS",
+      "detail": "no carried-forward measurements",
+      "remedy": ""
+    },
+    {
+      "name": "source freshness",
+      "status": "FAIL",
+      "detail": "source 2026-09-13T21:00:00 Alaska, 173.1 hours old",
+      "remedy": "Check CINGSA and its archived snapshots. Keep missing storage unverified; disclose upstream unavailability."
+    },
+    {
+      "name": "live headline agrees",
+      "status": "PASS",
+      "detail": "last verified 2026-09-13, 59.4 percent",
+      "remedy": ""
+    },
+    {
+      "name": "source reading published",
+      "status": "PASS",
+      "detail": "published 2026-09-13; source 2026-09-13T21:00:00",
+      "remedy": ""
+    },
+    {
+      "name": "source gap disclosed",
+      "status": "PASS",
+      "detail": "source notice present",
+      "remedy": ""
+    },
+    {
+      "name": "history chart present",
+      "status": "PASS",
+      "detail": "chart present",
+      "remedy": ""
+    },
+    {
+      "name": "weather forecast current",
+      "status": "PASS",
+      "detail": "forecast age 23.6 hours",
+      "remedy": ""
+    },
+    {
+      "name": "live modeled peak agrees",
+      "status": "PASS",
+      "detail": "page 158, computed 158",
+      "remedy": ""
+    },
+    {
+      "name": "observations and true-ups",
+      "status": "PASS",
+      "detail": "available observations reconciled",
+      "remedy": ""
+    },
+    {
+      "name": "cron is running",
+      "status": "PASS",
+      "detail": "last run 12.5 hours ago",
+      "remedy": ""
+    },
+    {
+      "name": "cron completed successfully",
+      "status": "PASS",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35539285154",
+      "remedy": ""
+    }
+  ],
+  "last_verified_date": "2026-09-13",
+  "maintenance_window": {
+    "start_date": "2026-09-14",
+    "end_date": "2026-09-21",
+    "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
+  },
+  "site_url": "https://alaskaaihq.com"
+}

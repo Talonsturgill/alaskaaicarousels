@@ -1,0 +1,107 @@
+{
+  "run_date": "2026-09-21",
+  "carousel_no": 65,
+  "rounds": {
+    "build": 1,
+    "revision_rounds_completed": 4,
+    "cap": 5
+  },
+  "hard_fails": [],
+  "hard_fails_all_pass": true,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 9,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 8,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 9,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 9,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "weight_sum": 1.1,
+  "weighted_total_literal": 8.78,
+  "weighted_total": 7.98,
+  "convention": "normalised by the weight sum of 1.10, the same convention round four was scored in, so the two rounds are comparable. The verdict does not depend on the choice: 8.78 literal and 7.98 normalised both clear 7.7.",
+  "threshold": 7.7,
+  "threshold_source": "config/scoring_rubric.yaml iteration_ladder, revision_rounds 4+, note 'ship best version, flag shortfall in email'",
+  "unrelaxed_threshold": 8.3,
+  "clears_unrelaxed": false,
+  "ship": true,
+  "shortfall_flagged": true,
+  "score_history": [
+    {
+      "round": 3,
+      "weighted_total": 8.13,
+      "threshold_applied": 8.3,
+      "ship": false
+    },
+    {
+      "round": 4,
+      "weighted_total": 8.25,
+      "threshold_applied": 8.3,
+      "ship": false
+    },
+    {
+      "round": 5,
+      "weighted_total": 7.98,
+      "threshold_applied": 7.7,
+      "ship": true
+    }
+  ],
+  "score_history_note": "Round five's number is LOWER than round four's while the deck improved, and that is not a regression. Every round-five edit landed and was verified in the pixels. Scoring fresh, the scorer named three things earlier rounds had not: the painted-lit-ground warn is one defect class on nine of nine frames and a documented repeat of No.59 and No.60; slides 02 and 07 carry dead bands as large as the one slide 05 was ordered to fix, so the class was moved rather than removed; and slide 05's body was 30px against the 32px house floor while round four raised slide 03 to 33 and left 05 behind.",
+  "post_score_fix": "The 30px floor violation on slide 05 was repaired AFTER this score was computed: its body is now 33px over 810px of measure and its argument line moved to design y 802 to make room. Render and qa.py were re-run and both come back clean, 0 page errors, 0 overflow warnings, 0 qa fails. The change can only help the Legibility criterion the scorer marked it down for, and the score is NOT adjusted upward here, because a scorer's number belongs to the artifact the scorer read.",
+  "weakest_criterion": "Artwork craft and genuine detail",
+  "one_sentence_fix": "Replace the additive screen radial at every object's foot with the ground plane ledger/artwork.json already specifies from No.60, one wash across the whole floor along the light axis drawn as a lay of fine rules at about 1.7px pitch and feathered out before it reaches any furniture row, with the casts left unchanged, because that single change clears all nine of this run's qa warns, makes the declared contact separations measure the shadow instead of the lamp, and raises drawn share at the same time.",
+  "machine_state": {
+    "render": "PASS 9/9, 0 page errors, 0 overflow warnings",
+    "qa": "WARN, 0 fails, 9 warns, all one idiom",
+    "dossier_check": "PASS 9 dossiers, 0 fails, 0 warns",
+    "caption_check": "PASS",
+    "copy_sync": "PASS 40 strings",
+    "aggregate": "PASS 13 detected, 14 declared",
+    "plan_drift": "PASS 0 drift",
+    "bespoke": "WARN median pairwise 0.224, max pair 0.405, drawn share 51 percent"
+  }
+}

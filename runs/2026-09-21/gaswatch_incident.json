@@ -1,0 +1,22 @@
+{
+  "run_date": "2026-09-21",
+  "blocker": "upstream",
+  "check_ids": [
+    "source freshness"
+  ],
+  "audit_checked_utc": "2026-09-21T10:12:00Z",
+  "reason": "CINGSA is in ANNOUNCED SEMIANNUAL MAINTENANCE and has published no new reading since 2026-09-13T21:00 Alaska, 173.1 hours old at the time of the audit. The dashboard's own Operational Notes, fetched live today, read: 'CINGSA will be performing required semiannual shut-in field balance & maintenance from 14; Sept. 2026 until 21 Sept. 2026. No nominations will be accepted during this time.' and 'Compressor B is down for needed maintenance and checks.' THE COLLECTOR IS HEALTHY AND IS NOT THE PROBLEM. gaswatch.yml ran 12.5 hours ago and succeeded, the live dataset holds 47 daily records with no calendar gaps, and every day since the shut-in is recorded UNVERIFIED with no measurement carried forward from the 13th, which is exactly what the rules require. There is nothing to repair in this repository: the source measurements were never published, and CLAUDE.md says source measurements that were never published stay unavailable. WHY IT ONLY TURNED RED TODAY. scripts/site_signoff.py's CI allowance admits a disclosed pause while start_date <= today < end_date. The announced window ends 2026-09-21, so the allowance expired at midnight today, on the final day of the maintenance CINGSA itself announced. Yesterday's run of the same job on main was green on the same 7-day-old reading. Nothing in this run's diff touched the collector, the ledger or the gate: ledger_guard reports all 7 cron-written files untouched.",
+  "attempts": [
+    "scripts/gaswatch_health.py re-run live at 10:12Z: 13 of 14 checks PASS, the one FAIL is 'source freshness', and 'cron is running' and 'cron completed successfully' both PASS against run 35539285154",
+    "Fetched https://cingsa.com/operations/PublicDashBoard.html directly: HTTP 200, 12,996 bytes, dashboard timestamp still 09/13/2026 21:00, Operational Notes carry the shut-in announcement quoted above",
+    "Checked the gaswatch.yml workflow's own history: last scheduled run succeeded 12.5 hours ago, so this is not a stopped or failing collector",
+    "Confirmed the same site_signoff job passed on main yesterday on the same stale reading, so the change today is the calendar and not this run's diff",
+    "Considered and REJECTED widening the maintenance window parse so CI would go green: the announced window genuinely ends today, and moving a gate's date arithmetic to make a red check pass is weakening a gate rather than fixing one"
+  ],
+  "evidence_urls": [
+    "https://cingsa.com/operations/PublicDashBoard.html",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35539285154",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35586809870/job/106291947854"
+  ],
+  "resume": "Next daily run re-audits. If CINGSA resumes publishing on the 21st as announced, the first post-maintenance collection clears both the gate and CI. If it has not resumed by the next run, the window has been exceeded and that is a NEW condition to report rather than this one continuing."
+}

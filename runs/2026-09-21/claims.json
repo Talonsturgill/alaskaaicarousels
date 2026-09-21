@@ -1,0 +1,395 @@
+{
+ "run_date": "2026-09-21",
+ "story": "FERC docket P-15423-000. A preliminary permit application, not an approval, for a subsea data center and tidal turbine array proposed on the floor of Upper Cook Inlet off Nikiski.",
+ "claims": [
+  {
+   "id": "C01",
+   "claim": "The proposal is docketed at FERC as Project No. 15423-000.",
+   "value": "P-15423-000",
+   "verbatim": "Project No. 15423-000",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "The notice header renders it 'Project No. 15423-000'. The Peninsula Clarion renders the same number in docket form as 'P-15423-000'. Either string is safe on a slide. Do not print both as if they were two dockets."
+  },
+  {
+   "id": "C02",
+   "claim": "DeepGreen Cook Inlet SPV, LLC has applied to FERC for a preliminary permit under section 4(f) of the Federal Power Act.",
+   "value": "preliminary permit application",
+   "verbatim": "DeepGreen Cook Inlet SPV, LLC filed an application for a preliminary permit, pursuant to section 4(f) of the Federal Power Act (FPA)",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "This is an APPLICATION. Nothing has been issued, licensed or approved. Slide phrasing must survive being read alone, so write 'has applied for' and never 'has received' or 'has been granted'."
+  },
+  {
+   "id": "C03",
+   "claim": "The application was filed on February 11th and supplemented on June 26th.",
+   "value": "February 11th",
+   "verbatim": "On February 11, 2026, as supplemented on June 26, 2026, DeepGreen Cook Inlet SPV, LLC filed an application for a preliminary permit",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "Corroborated independently in the Peninsula Clarion report of September 14th, which gives the same two dates. Both dates are 2026, so the year is dropped in prose per house rule."
+  },
+  {
+   "id": "C04",
+   "claim": "The applicant calls the proposal the DeepGreen Cook Inlet Subsea-Compute & Infrastructure Hub Project.",
+   "value": "DeepGreen Cook Inlet Subsea-Compute & Infrastructure Hub Project",
+   "verbatim": "DeepGreen Cook Inlet Subsea-Compute & Infrastructure Hub Project (DeepGreen Project or project)",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "Ampersand and hyphen are the applicant's own styling and should be reproduced exactly if the name is set on a slide."
+  },
+  {
+   "id": "C05",
+   "claim": "The application proposes to study the feasibility of a project to be located in the Upper Cook Inlet, East Foreland Corridor, Kenai Peninsula Borough, Alaska.",
+   "value": "Upper Cook Inlet, East Foreland Corridor",
+   "verbatim": "proposing to study the feasibility of the DeepGreen Cook Inlet Subsea-Compute & Infrastructure Hub Project (DeepGreen Project or project) to be located in the Upper Cook Inlet, East Foreland Corridor, Kenai Peninsula Borough, Alaska.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "The notice's own verb is 'study the feasibility of', which is the single most important hedge in this story. The Clarion places the site north of Nikiski. The notice itself does not use the word Nikiski for the array location, only for the cable landing."
+  },
+  {
+   "id": "C06",
+   "claim": "The proposed project as described to FERC would include approximately 330 to 350 marine hydrokinetic turbines.",
+   "value": "330 to 350 turbines",
+   "verbatim": "approximately 330-350 marine hydrokinetic turbines utilizing a proprietary universal docking cradle system",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "Always carry the word proposed. These turbines do not exist. The source hyphenates the range and house style writes it '330 to 350'."
+  },
+  {
+   "id": "C07",
+   "claim": "The proposed project as described to FERC would include 66 modular subsea-compute hives, which the notice also calls data center pods.",
+   "value": "66 pods",
+   "verbatim": "66 modular subsea-compute hives (data center pods) integrated within the turbine array to utilize direct-coupled power and passive subsea cooling",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "The notice's own gloss, data center pods, is what licenses calling this a data center at all. Corroborated in the Clarion as 66 modular data-center pods."
+  },
+  {
+   "id": "C08",
+   "claim": "The proposed project as described to FERC would include a subsea cable approximately 3.5 miles long.",
+   "value": "3.5 miles",
+   "verbatim": "an approximately 3.5-mile long, 115 kV hybrid power/fiber-optic armored subsea cable",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "Same verbatim string also supports C09. Corroborated in the Clarion as a 3.5-mile line to the Nikiski industrial corridor."
+  },
+  {
+   "id": "C09",
+   "claim": "The proposed subsea cable is described as a 115 kV hybrid power and fiber-optic armored cable.",
+   "value": "115 kV",
+   "verbatim": "an approximately 3.5-mile long, 115 kV hybrid power/fiber-optic armored subsea cable",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "The Clarion writes 115-kilovolt. Both readings are the same number. A cable that carries both power and fibre is the detail that makes this a compute proposal rather than a generation proposal."
+  },
+  {
+   "id": "C10",
+   "claim": "The proposed subsea cable would come ashore in the Nikiski Industrial Corridor.",
+   "value": "Nikiski Industrial Corridor",
+   "verbatim": "Nikiski Industrial Corridor",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Confirmed as the cable landing in the works description. The fetch returned this as a short phrase rather than inside a full sentence, so confidence is a notch below the other notice claims. The Clarion independently describes the line as running to the Nikiski industrial corridor."
+  },
+  {
+   "id": "C11",
+   "claim": "FERC's notice states that the estimated annual generation of the DeepGreen Project would be 100 megawatts, primarily to power the subsea data center.",
+   "value": "100 megawatts",
+   "verbatim": "The estimated annual generation of the DeepGreen Project would be 100 megawatts, which would primarily be utilized to power the subsea data center.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "THIS IS THE UNITS FINDING AND IT IS REPORTED, NOT CORRECTED. A megawatt is a unit of power. An annual generation figure would normally be megawatt hours. The notice as published pairs annual generation with megawatts. Do not convert to MWh, do not silently rewrite it as capacity, and do not print 100 MW per year. The safe slide phrasing attributes it to the notice. The Clarion, independently, describes it simply as a 100-megawatt project, which is the reading a power figure would support."
+  },
+  {
+   "id": "C12",
+   "claim": "FERC states that the sole purpose of a preliminary permit is to grant the permit holder priority to file a license application during the permit term.",
+   "value": "priority to file a license application",
+   "verbatim": "The sole purpose of a preliminary permit, if issued, is to grant the permit holder priority to file a license application during the permit term.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "This is the load-bearing honesty claim of the whole deck. A preliminary permit is a place in a queue, not a permission to build. Pair it with C13 anywhere the deck shows turbines or pods."
+  },
+  {
+   "id": "C13",
+   "claim": "FERC states that a preliminary permit does not authorize the holder to perform any land-disturbing activities or to enter upon lands or waters owned by others without the owners' express permission.",
+   "value": "no land-disturbing activities",
+   "verbatim": "A preliminary permit does not authorize the permit holder to perform any land-disturbing activities or otherwise enter upon lands or waters owned by others without the owners' express permission.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "Straight quotes throughout. The apostrophe in owners' is the source's own."
+  },
+  {
+   "id": "C14",
+   "claim": "The deadline for filing comments, motions to intervene, competing applications and notices of intent is 5:00 p.m. Eastern Time on November 2nd.",
+   "value": "November 2nd, 5:00 p.m. Eastern",
+   "verbatim": "Deadline for filing comments, motions to intervene, competing applications (without notices of intent), or notices of intent to file competing applications: by 5:00 p.m. Eastern Time on November 2, 2026.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.98,
+   "notes": "This is the live, actionable fact of the story and the one thing a reader can act on. Verified in the primary notice and corroborated in the Clarion. Year dropped in prose per house rule. The verbatim keeps the source's own 2026."
+  },
+  {
+   "id": "C15",
+   "claim": "The Peninsula Clarion reported that the filing deadline was moved from October 31st because that date falls on a Saturday.",
+   "value": "moved from October 31st",
+   "verbatim": "The deadline was moved from Oct. 31 because that date falls on a Saturday.",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Attribute this one. The notice itself states only the November 2nd date and does not explain the shift, so the Saturday reasoning rests on the newspaper alone."
+  },
+  {
+   "id": "C16",
+   "claim": "FERC states that competing applications and notices of intent must meet the requirements of 18 CFR 4.36.",
+   "value": "18 CFR 4.36",
+   "verbatim": "Competing applications and notices of intent must meet the requirements of 18 CFR 4.36.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Useful because it shows the window is open to rival applicants for the same site, not only to objectors."
+  },
+  {
+   "id": "C17",
+   "claim": "FERC directs the public to file comments, motions to intervene, notices of intent and competing applications through the Commission's eFiling system.",
+   "value": "eFiling",
+   "verbatim": "Please file comments, motions to intervene, notices of intent, and competing applications using the Commission's eFiling system",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "The notice also references an eComment system for brief comments. The fetch returned the eComment reference as a fragment rather than a full sentence, so the claim rests on the eFiling sentence only."
+  },
+  {
+   "id": "C18",
+   "claim": "The FERC contact named on the notice is Christopher Brosman, reachable at (202) 502-8573.",
+   "value": "(202) 502-8573",
+   "verbatim": "Christopher Brosman; phone: (202) 502-8573.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.96,
+   "notes": "A working phone number for a named federal staffer is publishable because the notice publishes it. It is correct as of the September 4th notice."
+  },
+  {
+   "id": "C19",
+   "claim": "The applicant contact named on the notice is Louis Wolfson, Managing Member of DeepGreen Cook Inlet SPV, LLC.",
+   "value": "Louis Wolfson, Managing Member",
+   "verbatim": "Louis Wolfson, Managing Member, DeepGreen Cook Inlet SPV, LLC",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": "The only named human on the applicant's side that could be verified. Nothing else about the company, its funding, its staff or its prior projects was verifiable from any fetchable source, and the deck must not imply otherwise."
+  },
+  {
+   "id": "C20",
+   "claim": "The notice is dated September 1st and signed by Carlos D. Clay, Deputy Secretary, and it was published in the Federal Register on September 4th.",
+   "value": "September 4th",
+   "verbatim": "Dated: September 1, 2026. Carlos D. Clay, Deputy Secretary.",
+   "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
+   "source_outlet": "Federal Energy Regulatory Commission, notice published in the Federal Register",
+   "source_is_primary": true,
+   "date_of_source": "2026-09-04",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Two different dates sit on this document and the deck must not blur them. FERC signed it September 1st. The Federal Register published it September 4th, which is the date in the document URL and the date the public window effectively opened. If only one date is shown on a slide, use September 4th."
+  },
+  {
+   "id": "C21",
+   "claim": "Alaska Energy Authority CEO and Executive Director Curtis W. Thayer said the authority will file to intervene and oppose the application.",
+   "value": "file to intervene and oppose",
+   "verbatim": "We're going to file to intervene and oppose it, just so we have a position,",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Quote confirmed verbatim on the fetched Clarion page. It is a stated INTENTION as of September 14th. FERC eLibrary could not be reached to confirm whether AEA has actually filed, so the deck must write 'said it will file' and never 'has filed'."
+  },
+  {
+   "id": "C22",
+   "claim": "Thayer said the Alaska Energy Authority has had no communication with the applicant.",
+   "value": "no communication",
+   "verbatim": "We've had no communication with them.",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Second half of the same quotation as C21. If both are used on one slide, present them as one quotation rather than two, so the deck is not implying two separate statements."
+  },
+  {
+   "id": "C23",
+   "claim": "The Peninsula Clarion reported that DeepGreen referenced the Cook Inlet PowerLink in its federal filing while AEA said it has had no discussions with the company.",
+   "value": "referenced PowerLink in its filing",
+   "verbatim": "DeepGreen referenced PowerLink in its federal filing, but AEA said it has had no discussions with the company.",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.82,
+   "notes": "NEEDS SOFTENING AND ATTRIBUTION. The Federal Register notice does not mention PowerLink at all, so the reference must sit in the underlying application rather than in the published notice, and the application itself was unreachable. This is the sharpest edge in the story and also the least independently confirmed."
+  },
+  {
+   "id": "C24",
+   "claim": "The Peninsula Clarion described AEA's Cook Inlet PowerLink as a planned 38 mile underwater transmission connection between the Kenai Peninsula and the Anchorage Matanuska Susitna region.",
+   "value": "38 miles",
+   "verbatim": "AEA is developing the Cook Inlet PowerLink, a planned 38-mile underwater transmission connection between the Kenai Peninsula and the Anchorage-Matanuska-Susitna region with capacity to move up to 200 megawatts in either direction.",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.8,
+   "notes": "SINGLE SOURCED AND NOT PRIMARY. Two plausible AEA programme URLs returned 404 and a search route hit a CAPTCHA. PowerLink is itself only PLANNED, so a slide must not present it as existing infrastructure."
+  },
+  {
+   "id": "C25",
+   "claim": "The Peninsula Clarion reported that the planned Cook Inlet PowerLink would have capacity to move up to 200 megawatts in either direction.",
+   "value": "up to 200 megawatts",
+   "verbatim": "with capacity to move up to 200 megawatts in either direction",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.8,
+   "notes": "Same sentence as C24, same single-source caveat. Sanity check against C11. 100 megawatts is half of PowerLink's stated 200 megawatt capability, which is a real and printable comparison only if both are labelled as proposed or planned."
+  },
+  {
+   "id": "C26",
+   "claim": "ORPC CEO Stuart Davies said ORPC has no affiliation with the DeepGreen project and is not participating in its development, permitting, financing or deployment.",
+   "value": "no affiliation",
+   "verbatim": "ORPC has no affiliation with the DeepGreen project and is not participating in its development, permitting, financing, or deployment.",
+   "source_url": "https://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Homer News",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "IMPORTANT SOURCING CAVEAT. Homer News and the Peninsula Clarion carry the identical article by Jeffrey Kennett on both sites. They are the same publisher chain and the same reporting. They are NOT two sources and must never be cited as corroboration of each other. This story has effectively ONE newspaper source and ONE primary federal document."
+  },
+  {
+   "id": "C27",
+   "claim": "The Peninsula Clarion reported that a preliminary permit would give the company priority to pursue a future license while it studies feasibility and would not authorize construction, land-disturbing work or entry onto property owned by others.",
+   "value": "would not authorize construction",
+   "verbatim": "It would not authorize construction, land-disturbing work or entry onto property owned by others.",
+   "source_url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+   "source_outlet": "Peninsula Clarion",
+   "source_is_primary": false,
+   "date_of_source": "2026-09-14",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Independent restatement of C12 and C13 in plain language, useful as slide copy because it is already written for a general reader. The underlying authority is the FERC notice."
+  }
+ ],
+ "killed": [
+  {
+   "claim": "Approximately 1,650 acres of seabed",
+   "why": "Absent from the primary notice and from both newspaper pages. A direct query of the document for acres or acreage returned ABSENT."
+  },
+  {
+   "claim": "Water depth of 45 to 166 feet",
+   "why": "Absent from every fetched source."
+  },
+  {
+   "claim": "Preliminary permit term of four years",
+   "why": "The notice uses the phrase 'the permit term' and states no number of years. Customarily four years is general FERC background and not a fact about this docket."
+  },
+  {
+   "claim": "Intervenors named as the Kenai Peninsula Borough, the Center for Biological Diversity and the Alaska Commercial Fisheries Conservation Alliance",
+   "why": "Single advocacy source opposing the project. FERC eLibrary is a JavaScript shell no route reached. An advocacy tally of its own allies is exactly the claim that needs independent confirmation."
+  },
+  {
+   "claim": "About 40 public comments, most or all opposed",
+   "why": "Same single advocacy source. Both the count and the characterisation of sentiment come from an opponent."
+  },
+  {
+   "claim": "ORPC's own tidal project is 1.98 megawatts",
+   "why": "No verbatim string returned on re-fetch, so under the verbatim rule it is not verified."
+  },
+  {
+   "claim": "Southcentral burns roughly 70 Bcf of gas a year",
+   "why": "No fetchable source supplied. Deck No.56 covered the gas position ten days ago in any case."
+  },
+  {
+   "claim": "The Shanghai subsea data center is 24 MW",
+   "why": "No fetchable source supplied, and the comparison would quietly imply Cook Inlet is at a similar stage of reality, which it is not."
+  },
+  {
+   "claim": "AEA has filed its intervention",
+   "why": "Only an intention was stated as of September 14th, and the docket record was unreachable."
+  }
+ ]
+}

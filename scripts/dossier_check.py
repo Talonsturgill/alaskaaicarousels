@@ -132,6 +132,12 @@ FLAT_ONLY = ("plate", "hairline", "rule", "caption", "footer", "fixture",
 THIN_PLAN_CHARS = 200
 
 HEAD_RE = re.compile(r"^##\s+SLIDE\s+(\d+)\b(.*)$", re.I | re.M)
+# The section gate_status.py's `reconciled` row reads, matched here only to tell
+# a storyboard that has not been written yet from one that has been truncated.
+# Kept as its own literal rather than imported, like every other pattern in this
+# file: this gate carries no dependency of its own.
+RECON_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s*BUILD\s+RECONCILIATION\b",
+                           re.I | re.M)
 # Any top-level heading (# or ##, never ###+). A dossier's own fields are ###
 # and deeper, so this only ever finds where the DECK starts talking again.
 TOP_HEAD_RE = re.compile(r"^#{1,2}(?!#)[ \t]+\S.*$", re.M)
@@ -793,6 +799,25 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
     return fails, warns
 
 
+def _early_exit(args, fail, human):
+    """Leave on a whole-file failure, in the FORMAT THE CALLER ASKED FOR.
+
+    A --json run that dies before it can build a report still owes its caller
+    JSON. Both of this gate's early exits printed prose on that path, so
+    gate_status.py's wrapper (json.loads of stdout) raised JSONDecodeError and
+    reported "dossier_check could not run", which reads like plumbing and is
+    scored like an absent artifact. The finding was real and loud and arrived
+    disguised as an n/a. The report shape is the same one main() emits, with the
+    file-level failure in slides[0] so a caller that walks slides sees it too.
+    """
+    if getattr(args, "json", False):
+        print(json.dumps({"slides": [{"slide": 0, "fails": [fail], "warns": []}],
+                          "fails": 1, "warns": 0, "verdict": "FAIL"}, indent=2))
+    else:
+        print(human)
+    sys.exit(1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -802,12 +827,37 @@ def main():
     rdir = Path(args.run_dir)
     sb = rdir / "storyboard.md"
     if not sb.exists():
-        print(f"FAIL: {sb} missing")
-        sys.exit(1)
-    sections = slide_sections(sb.read_text())
+        _early_exit(args, "storyboard.md missing",
+                    f"FAIL: {sb} missing")
+    text = sb.read_text()
+    sections = slide_sections(text)
     if not sections:
-        print(f"FAIL: no '## SLIDE NN' dossiers found in {sb}")
-        sys.exit(1)
+        # A STORYBOARD THAT LOST ITS DOSSIERS IS A TRUNCATED ARTIFACT, AND IT
+        # HAS TO SAY SO BY NAME (2026-09-21, run No.65). That run's storyboard
+        # reached round three with its deck header, its continuity tables and
+        # its BUILD RECONCILIATION section intact and ZERO dossiers under them:
+        # a rewrite had dropped the middle of the file. Nothing said so. This
+        # exit printed prose on the --json path, gate_status.py's wrapper died
+        # on json.loads and printed "[n/a ] dossier_check could not run
+        # (JSONDecodeError)", and an n/a row stops nothing, so two full review
+        # rounds ran with no per-slide contract on disk. All six critics in
+        # round two reported judging the frames against the deck header, and
+        # the `reconciled` row passed the whole time because it tests presence.
+        # The combination below -- a reconciliation section written, and not one
+        # slide to reconcile -- is only ever that defect.
+        if RECON_HEAD_RE.search(text):
+            _early_exit(
+                args,
+                "storyboard.md is TRUNCATED: it carries a BUILD RECONCILIATION "
+                "section and zero '## SLIDE NN' dossiers, which is a storyboard "
+                "that lost its middle. Nothing downstream has a per-slide "
+                "contract to check the frames against: restore the dossiers "
+                "from the last good commit or rewrite them before the critics "
+                "run again.",
+                f"FAIL: {sb} is truncated (BUILD RECONCILIATION present, no "
+                f"'## SLIDE NN' dossiers)")
+        _early_exit(args, "no '## SLIDE NN' dossiers found in storyboard.md",
+                    f"FAIL: no '## SLIDE NN' dossiers found in {sb}")
 
     # slide sources are optional: this gate is meant to run BEFORE they exist
     sdir = rdir / "slides"

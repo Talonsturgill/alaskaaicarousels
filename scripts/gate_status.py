@@ -199,12 +199,36 @@ def dossier_row(rows, run):
             capture_output=True, text=True, timeout=60)
         rep = json.loads(p.stdout)
     except Exception as e:
-        rows.absent("dossier_check", "could not run (%s)" % type(e).__name__)
+        # THE ARTIFACT IS HERE AND THE CHECK DIED ON IT, SO THIS IS A FAIL AND
+        # NOT AN n/a (2026-09-21, run No.65). `absent()` exists for a gate whose
+        # artifact has not been written yet, which is an ordinary mid-run state;
+        # storyboard.md was read three lines up, so anything that happens here
+        # is the check failing ON a present artifact, and a run that is not at
+        # its ship gate yet still needs to see that in red. No.65's storyboard
+        # lost every dossier, dossier_check said so on stderr and exited 1, the
+        # json.loads raised, and this row printed "[n/a ] could not run
+        # (JSONDecodeError)" for two review rounds while six critics judged
+        # frames against no contract at all. The output is quoted now, because
+        # the exception type was the least informative half of what was known.
+        why = ((locals().get("p").stderr or locals().get("p").stdout or "").strip()
+               if isinstance(locals().get("p"), subprocess.CompletedProcess) else "")
+        rows.add("dossier_check", "FAIL",
+                 "storyboard.md is present and dossier_check could not be read "
+                 "(%s)%s" % (type(e).__name__,
+                             (": " + " ".join(why.split())[:200]) if why else ""))
         return
-    rows.add("dossier_check", rep.get("verdict", "?"),
-             "%s, %d dossiers, %s fails, %s warns" % (
-                 rep.get("verdict", "?"), len(rep.get("slides", [])),
-                 rep.get("fails", "?"), rep.get("warns", "?")))
+    detail = "%s, %d dossiers, %s fails, %s warns" % (
+        rep.get("verdict", "?"), len(rep.get("slides", [])),
+        rep.get("fails", "?"), rep.get("warns", "?"))
+    # A WHOLE-FILE FAILURE HAS TO REACH THIS LINE (2026-09-21). dossier_check
+    # reports one now (a missing or truncated storyboard is slides[0] with the
+    # sentence in it), and a row reading "FAIL, 1 dossiers, 1 fails" would bury
+    # the one thing worth saying.
+    first = next((f for s in rep.get("slides", []) if s.get("slide") == 0
+                  for f in s.get("fails", [])), None)
+    if first:
+        detail = "%s -- %s" % (rep.get("verdict", "?"), first)
+    rows.add("dossier_check", rep.get("verdict", "?"), detail)
 
 
 RECON_HEAD_RE = re.compile(r"^\s{0,3}#{1,4}\s*BUILD\s+RECONCILIATION\b", re.I)

@@ -2268,7 +2268,11 @@ def _census_band_hunt(img_arr, design_w, marks, axis, lo, hi, band):
     # deviation from each row's own ground, so a graded field does not read as ink
     dev = np.abs(win_lab - np.median(win_lab, axis=1, keepdims=True))
     origin_perp = (r0 if axis == "x" else c0) / ns
-    origin_axis = lo
+    # CLAMPED, for the reason spelled out at axis_census's `origin` (2026-09-21):
+    # this window is cut to the frame too, so an axis declared off the frame put
+    # every mark in the wrong column of `dev` and the hunt named a strip that
+    # was not where the marks are.
+    origin_axis = (r0 if axis == "y" else c0) / ns
 
     hits = np.zeros(dev.shape[0], dtype=int)
     for p in marks:
@@ -2479,7 +2483,20 @@ def axis_census(img_arr, sc, design_w, design_h):
     prof = prof[:keep].reshape(-1, n).mean(axis=1)
     k = np.ones(3) / 3.0
     prof = np.convolve(prof, k, mode="same")
-    origin = lo
+    # THE ORIGIN IS WHERE THE SAMPLE STARTS, NOT WHERE THE AXIS STARTS
+    # (2026-09-21, run No.65). `prof` was just built from the CLAMPED window
+    # above, so its index 0 is design px r0/ns (or c0/ns), which is only the
+    # declared `lo` when `lo` is on the frame. A slide may legitimately declare
+    # an endpoint off the frame -- a camera that has descended past the top of
+    # its own scale draws the fragment that is still on screen and declares the
+    # scale it measures against -- and `origin = lo` then offset every lookup
+    # below by exactly the amount clamped. No.65 declared `to:[-180,59]` on
+    # slide 06 and this census answered "the nearest mark-strength ink to the
+    # mark declared at 418 is at 238, 180 px away": 180 was the clamp, reported
+    # as a drawing defect, and four frames were re-declared to placate it. See
+    # tests/axis_origin_verify.py, and _census_band_hunt's origin_perp, which
+    # was already doing this division correctly two lines from origin_axis.
+    origin = (r0 if axis == "y" else c0) / ns
 
     def peak_at(p):
         i = int(round(p - origin))

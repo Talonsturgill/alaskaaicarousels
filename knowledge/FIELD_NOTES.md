@@ -7,6 +7,57 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-21, No.65. FOUR REVISION ROUNDS, AND THE THREE THINGS THAT COST THEM.
+
+Shipped at 7.98 normalised against a relaxed threshold of 7.7, flagged short of
+the unrelaxed 8.3. Four revision rounds is the most this studio has spent since
+No.34. Three lessons, all of them cheap to avoid next time.
+
+- **A PLANNING ARTIFACT CAN LOSE A SECTION AND NOTHING NOTICES.**
+  `out/<date>/storyboard.md` reached round three carrying its deck header, its
+  continuity tables and its BUILD RECONCILIATION with NO per-slide dossiers at
+  all. `gate_status` printed `[n/a ] dossier_check could not run` for two rounds
+  and an `[n/a]` row does not stop a run. All six human-proxy critics in round
+  two reported INDEPENDENTLY that they had judged the frames against the deck
+  header because the contracts were not on disk, so two full rounds of
+  acceptance checklists were never checked. The `reconciled` row passed the
+  whole time, because it tests for PRESENCE. Two repairs are in the worklog:
+  treat `[n/a]` on a required row as a FAIL under `--require`, and fail
+  `dossier_check` loudly when a storyboard has a reconciliation section and zero
+  `## SLIDE NN` sections, since that combination is only ever a truncation.
+
+- **A RECONCILIATION TABLE THAT PASSES ON PRESENCE IS NOT A RECONCILIATION.**
+  The camera table carried the ROUND ONE offsets through the whole of round two
+  while the frames moved under it, and three separate critics measured renders
+  against superseded numbers and said so. A check that reads the `CAM` constant
+  out of each built slide and diffs it against the table is about fifteen lines.
+
+- **WHEN THREE ROUNDS OF CRITICS SAY THE SAME THING ABOUT THE SAME BAND, THE
+  DIAGNOSIS IS WRONG, NOT THE FIX.** The water read as turf from round one. The
+  bend was blamed, then the gradient anisotropy, and both were real defects worth
+  fixing, and neither changed what a reader called it. What worked was giving the
+  job to a DIFFERENT SUBSYSTEM: the mote streaks, which every critic had already
+  said read as lateral current, got longer, curved, tailed and roughly doubled,
+  and the hachure field dropped a third in alpha and went back to being the
+  middle frequency. Two rounds would have been saved by asking, at round two,
+  which element already does the thing rather than which parameter is wrong.
+
+- **AND ONE PIECE OF PROCESS THAT WORKED.** Round four tried the obvious repair
+  for a warn every frame carried, MEASURED it worse (the warn stayed and four
+  frames lost contact dL from 11.4-20.6 to 5.8-7.6 against a comfort band of
+  8.0), reverted, and wrote the measurement into the chassis where the next run
+  will read it before spending the round again. Do that every time. A recorded
+  negative result is worth as much as a fix.
+
+- **A NULL WORTH KNOWING: `shrink_pdfs.py` CANNOT SHRINK THIS KIND OF ART.**
+  Every image came back at 41.4 dB against a 42.0 dB floor and the script
+  correctly refused all of them, so the PDF ships at 59.24 MB against the house
+  band of 2 to 25. High-frequency generative texture, mote streaks and hachure
+  at one to three px, is exactly what a second lossy generation destroys. This
+  is not a bug in the shrinker; it is the cost of this art direction, and a deck
+  built this way should expect to ship a large PDF or to plan its textures
+  coarser.
+
 ## 2026-09-17, Phase 12 frontier scan (d): typography and layout craft. ONE PARK AMENDED, one null reconfirmed for the fourth time.
 
 The stalest legal slot (last read September 7th) and distinct from the last
@@ -8163,3 +8214,90 @@ maintainer's inbox three times before anyone read a table closely.
 So Phase 13 now has a step before `create_draft`: read the built body's
 sign-off table and confirm it names verdicts. It costs one command and it is
 the only check that stands between a WARN and a maintainer who never sees it.
+
+## 2026-09-21 craft refresh (No.65)
+
+- **THE SAVE IS NOW THE MOST VALUABLE SIGNAL ON THE PLATFORM, BY A WIDE
+  MARGIN.** Hootsuite's 2026 algorithm guide puts it in numbers: "a save can
+  drive around five times the reach of a like ... and roughly twice the reach
+  of a comment." That reorders this studio's priorities. The routine already
+  requires "a keepable data slide exists", and that requirement has been read
+  as one slide's job. It is actually the deck's single highest-leverage
+  property, and it should be designed for on purpose: the frame a reader
+  screenshots or saves is the frame that carries a reference they will want
+  again, printed large enough to read at thumb size. A deck with one saveable
+  frame outperforms a deck with nine admirable ones. Source: Hootsuite, How
+  the LinkedIn algorithm works in 2026.
+- **ENGAGEMENT BAIT IS NOW ACTIVELY DEPRIORITIZED, WHICH RETROACTIVELY
+  VINDICATES THE CLOSING-MOVE LAW.** The same guide names a "Comment YES"
+  crackdown as one of five 2026 changes. The caption room's rule that a close
+  must be a real question a real reader could answer from the record, rather
+  than a prompt for a one-word reply, is therefore a distribution rule and not
+  only a taste rule. No rule moves; the reason behind it got stronger.
+- **SEMANTIC UNDERSTANDING AND RELEVANCE OVER RECENCY BOTH FAVOUR THE
+  MACHINE-READABLE MOAT.** The algorithm is described as reading for meaning
+  rather than keywords, and posts from weeks earlier can resurface when they
+  become relevant again. That is an argument for the archive pages, the
+  Markdown twins and the feeds that site_build.py already emits: the deck is
+  not a one-day object, and the thing that makes it resurface is that its
+  subject is legible. Source: as above.
+
+## 2026-09-21, No.65, Phase 12 frontier scan (g): accessibility and PDF/document format. ONE PARK, AMENDED WITH MEASUREMENTS, AND A DEAD END CLOSED.
+
+Slot (g) was the stalest legal one (last read 2026-09-13, eight days) and it
+returns to the same park, so this entry is worth only what it MEASURES. Every
+number below came out of this repo's own Chromium and its own pypdf, not out of
+a blog post. Four of them are new, and one of them kills the recipe the
+2026-09-13 park left behind as the way in.
+
+**Chromium's tagged export works, per page.** `page.pdf(..., tagged=True)` on
+Playwright 1.63 against the committed demo deck emits a page catalog carrying
+`/StructTreeRoot`, `/MarkInfo {/Marked true}` and `/Lang en-US` on every page,
+with no flag change and no new dependency. That half is free.
+
+**What it tags on an art deck is nearly nothing.** Walking slide 02's tree:
+`/Document` 1, `/Div` 14, `/NonStruct` 12, `/H2` 1, and `/Alt` ZERO. The frames
+are canvas plus positioned divs with no `aria-label` and no `alt`, so a reader
+of the tags gets a heading and twenty-six anonymous boxes. Tagging without
+authored labels buys a structure with nothing in it.
+
+**pypdf loses the tree at the merge, by both documented routes, and the third
+route only saves page one.** Same two tagged pages, three merges, measured:
+`add_page` -> no `/StructTreeRoot`; `append()` -> no `/StructTreeRoot`;
+`PdfWriter(clone_from=first)` then `append` the rest -> `/StructTreeRoot`,
+`/MarkInfo` and `/Lang` all survive, 20 tagged elements in the tree, and every
+one of them points at page object 3. Page object 137, the second page, is not in
+the tree at all. So `clone_from`, which the 2026-09-13 park named as the way
+forward (py-pdf discussion 2694), preserves the FIRST document's tree and does
+not extend it: on a nine-slide deck it would tag slide 01 and lie about the rest.
+A real fix needs structure-tree merging, which pypdf does not provide, so it is
+a new dependency or about 200 lines of `/K`, `/ParentTree` and `/StructParents`
+renumbering. That is the reason this stays parked and not the absence of a slot.
+
+**What the destination actually does with tags, sourced.** Intopia tested
+LinkedIn's carousel Accessibility Mode with NVDA: it "picks up heading levels,
+but not other tag types such as lists", it "will acknowledge the presence of a
+graphic but fail to provide the corresponding alt text", everything arrives
+nested in a list, and the announced order does not always follow the PDF's
+reading order. LinkedIn has no alt-text field on a document post at all, unlike
+a multi-image post. So the ceiling on this whole line of work is modest and the
+caption is still where a screen-reader user gets the deck.
+https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels/
+
+**UNBLOCKS WHEN** two things are true together, and they are separable:
+(1) the frames carry authored `aria-label`/`alt` on the art containers, which is
+a dossier field and a copy-room job before it is an engine job; and (2) assemble
+gains a tested structure-tree merge. Until (1), (2) would ship an empty tree.
+The one piece that is boundable on its own and was NOT taken this run only
+because the budget filled reactive-first: `/Lang` and `/ViewerPreferences
+/DisplayDocTitle` on the merged writer, two lines of metadata that need no tags
+to be worth having.
+
+Regulatory context, unchanged from the 2026-09-13 park and still no action:
+PDF/UA-1 remains what validators support, PDF/UA-2 (ISO 14289-2) is published,
+and the US Section 508 deadlines moved to April 2027 / April 2028 under the
+April 2026 DOJ interim final rule. None of it binds a LinkedIn post.
+
+Note for the scouts, since this is the third 403 logged today: `pdfa.org`
+refuses a plain WebFetch from this container (HTTP 403), same as
+`aws.state.ak.us` and `go.boarddocs.com`.
