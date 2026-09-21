@@ -13,14 +13,14 @@
     "directors_room": "done",
     "copy": "done",
     "art_build": "done",
-    "pixel_review": "pending",
-    "flow_review": "pending",
+    "pixel_review": "done",
+    "flow_review": "done",
     "assemble": "done",
-    "scoring": "pending",
-    "ship": "pending",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done",
+    "gmail": "done",
+    "retro": "done"
   },
   "artifacts": {
     "plan": "out/2026-09-21/plan.md",
@@ -43,5 +43,19 @@
   "gas_watch_line": "GAS WATCH: WARN, read 2026-09-13, 47 days on record, chart present",
   "gas_watch_live_line": "GAS WATCH LIVE: MAINTENANCE, checked 2026-09-21T07:16:05Z, CINGSA announced maintenance September 14th to September 21st and has published no storage reading since September 13th; the collector ran 9.6 hours ago and completed successfully, storage stays unverified and no value was carried forward",
   "cron_health_line": "CRON HEALTH: PASS, 6 scheduled workflows checked plus Pages and published output, no repairs needed",
-  "site_fixes_line": "SITE FIXES: none needed. The one sign-off WARN is the same upstream CINGSA source pause the live audit diagnosed, so there was no presentation defect to repair."
+  "site_fixes_line": "SITE FIXES: none needed. The one sign-off WARN is the same upstream CINGSA source pause the live audit diagnosed, so there was no presentation defect to repair.",
+  "site_signoff": "SITE SIGN-OFF: WARN, 119 pages, 18 checks, UNFIXED gaswatch.jsonl is current. 17 of 18 clean. The one warn is the Gas Watch staleness below, not a page fault: every page is on disk and substantial, 5,050 clickable links resolve, every asset is present, every sitemap entry has a page, and the videos passthrough is intact.",
+  "gas_watch_verdict": "GAS WATCH LIVE: FAIL on source freshness, DISCLOSED UPSTREAM, re-audited 2026-09-21T10:12Z. 13 of 14 checks PASS. CINGSA has published no reading since 2026-09-13T21:00 Alaska, 173.1 hours, because it is in its announced semiannual shut-in field balance and maintenance, September 14th to September 21st, with Compressor B down. Its dashboard answers HTTP 200 and carries that notice. THE COLLECTOR IS HEALTHY: gaswatch.yml ran and succeeded, the live dataset holds 48 daily records with no calendar gaps, and every day since the shut-in is recorded UNVERIFIED with no measurement carried forward. Recorded in runs/2026-09-21/gaswatch_incident.json, blocker upstream, five attempts, three evidence URLs. It is also why CI's checks job is red on this run's PR, which is explained there.",
+  "gas_watch": "GAS WATCH PAGE: 48 days on record, 37 verified, no gaps, latest verified reading 2026-09-13, chart present, source gap disclosed on the page, EIA cross check through 202606 over 131 months, model misses observed deliveries by 6.82 percent.",
+  "cron_health": "CRON HEALTH: PASS, 6 scheduled workflows audited at 2026-09-21T07:15Z plus Pages and published output, no repairs needed.",
+  "site_fixes": "SITE FIXES: one, and it was a merge rather than a defect. main moved during Phase 12 when the Gas Watch collector appended 2026-09-21's record and rebuilt the gas watch page, which conflicted with this run's docs/ in seven generated files. Resolved by taking the base side and re-running site_build.py, never by hand-editing a build product; site_fresh_check confirms docs/ is exactly a fresh build, 208 generated files. Nothing on the live site was broken.",
+  "score_line": "SCORE: 7.98 normalised against a relaxed threshold of 7.70 after four revision rounds, SHIPS WITH THE SHORTFALL FLAGGED. It does not clear the unrelaxed 8.3. Literal weighted sum 8.78; the rubric's ten weights sum to 1.10 rather than 1.00, which is a maintainer call recorded in the worklog.",
+  "gmail_draft_id": "r-6459397447135824040",
+  "gmail_thread_id": "1a0c38ebf6ebf13c",
+  "merge": {
+    "pr": 392,
+    "squash_sha": "b8ee935d5aa526b8c19efcc9b47ae83ff5894cc8",
+    "codex": "Completed on 6745ff71b5, no major issues",
+    "ci": "green except the checks job, red on the disclosed CINGSA upstream pause"
+  }
 }
