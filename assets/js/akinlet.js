@@ -270,15 +270,26 @@
        * sampling all the way down and the ALPHA carries the decay. */
       if (rnd() > 0.14 + 0.86 * e) continue;
       var r = 0.7 + rnd() * 1.5;
-      var len = 5 + rnd() * 9;
+      var len = (9 + rnd() * 20) * (0.55 + 0.45 * e);
       var a = 0.065 + e * 0.31;
       cx.globalAlpha = a;
       cx.strokeStyle = AKI.MOTE_INKS[Math.min(5, (e * 6) | 0)];
       cx.lineWidth = r;
       cx.beginPath();
       cx.moveTo(x + len * 0.5, y);
-      cx.lineTo(x - len * 0.5, y + (rnd() - 0.5) * 1.6);
+      cx.quadraticCurveTo(x, y + (rnd() - 0.5) * 2.2,
+                          x - len * 0.5, y + (rnd() - 0.5) * 2.6);
       cx.stroke();
+      // a faint tail beyond the head, so a streak has a direction and the
+      // field it sits in reads as flow rather than as stipple
+      if (rnd() < 0.42) {
+        cx.globalAlpha = a * 0.45;
+        cx.lineWidth = r * 0.55;
+        cx.beginPath();
+        cx.moveTo(x - len * 0.5, y);
+        cx.lineTo(x - len * 0.95, y + (rnd() - 0.5) * 2.0);
+        cx.stroke();
+      }
       placed++;
     }
     cx.restore();
@@ -346,7 +357,7 @@
   AKI.PHANTOM_DASH = [30, 5, 6, 5, 6, 5];
   AKI.phantomStyle = function (cx, alpha) {
     cx.setLineDash(AKI.PHANTOM_DASH);
-    cx.lineWidth = 1.25;
+    cx.lineWidth = 1.9;
     cx.strokeStyle = AKI.INK.phantom;
     cx.globalAlpha = alpha === undefined ? 1 : alpha;
     cx.lineCap = "butt";
@@ -506,6 +517,18 @@
     var r = Math.min(o.r || 1e9, sep * 0.55);
     var ry = o.ry || Math.max(16, r * 0.17);
     var hw = Math.min(64, r * 0.62);
+    /* THE POOL IS DRAWN AT THE SEPARATION RADIUS, NOT AT THE DECLARED RECT,
+     * AND THAT IS MEASURED RATHER THAN ASSUMED. Round four tried the obvious
+     * repair for the "lit ground is painted, not lit" warn every frame carries:
+     * shrink the pool to the rect's own half-width so the ramp cannot spread
+     * past the region the dL reads. It made the deck WORSE. The warn stayed,
+     * because the objection is to a screen radial being the lit ground at all
+     * rather than to its extent, and four frames picked up a NEW warn, contact
+     * dL falling under the 8.0 comfort band, because a pool that small no
+     * longer lifts the ground it is lighting. Measured on 02, 05, 07 and 08:
+     * dL 7.3, 7.6, 5.8 and 7.3 against 11.4 to 20.6 at the radius below. So
+     * the radius stays, the warn stays, and the reason it stays is written
+     * here so a later run does not spend the round again. */
     AKI.litPool(cx, xGround, y, r, ry, o.light === undefined ? 0.44 : o.light);
     AKI.cast(cx, xShadow, y, r * 0.78, ry * 0.8, o.dark === undefined ? 0.60 : o.dark);
     return {
