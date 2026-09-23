@@ -142,6 +142,61 @@ def unquoted_metachar(cmd):
     return None
 
 
+# THE ONLY FLAGS AN ACCEPTED HOOK MAY CARRY, and every one of them is a plain
+# switch: no value, no attached payload, no early exit. Their absence from a
+# hook is normal; their presence is hygiene rather than behaviour.
+SAFE_PY_FLAGS = set("EsSIuB")
+
+
+def python_script_operand(args):
+    """The file this python command certainly RUNS, or None if we can't be sure.
+
+    A CLOSED GRAMMAR, ON PURPOSE, AFTER ELEVEN ROUNDS OF THE OPEN ONE. The
+    previous version tried to model python's command line: skip the options,
+    honour the ones that take a value, stop at the first operand. Review broke
+    that model four times running, and each break was a new corner of the real
+    grammar rather than a mistake in the last patch:
+
+        python3 /tmp/noop.py guard.py          runs noop.py, guard.py is data
+        python3 -Ximporttime guard.py          the m in "importtime" is not -m
+        python3 --check-hash-based-pycs -c g   an invalid value, exit 2
+        python3 -V -X -c guard.py              prints a version and exits
+
+    The lesson is not that the model needed a fifth fix. It is that python's
+    command line is an open surface with exit options, value options, attached
+    values, enumerated values and clusters of all of them, and ANY divergence
+    between our model and CPython's parser certifies a command that never runs
+    the guard. A check that has to be right about someone else's parser to be
+    safe is the wrong check.
+
+    So this accepts a small, documented set of shapes and refuses everything
+    else, including spellings that would work. `python3 -Ximporttime guard.py`
+    really does run the guard and is refused here, which is a deliberate
+    tightening rather than the false negative review found in the open scan:
+    the answer is to write the hook the documented way, and the error says so.
+    Nobody profiles a PreToolUse hook, and the cost of refusing an exotic
+    spelling is one clear message, while the cost of accepting one we modelled
+    wrongly is a shell nobody is watching.
+
+        <python> <guard>
+        <python> -E -s <guard>        any cluster drawn from SAFE_PY_FLAGS
+
+    The operand must be LAST, because a hook is handed its input on stdin and
+    has no business taking arguments.
+    """
+    if not args:
+        return None                              # no operand at all is a REPL
+    for a in args[:-1]:
+        if not a.startswith("-") or a == "-":
+            return None                          # an earlier operand wins
+        if a.startswith("--") or not set(a[1:]) <= SAFE_PY_FLAGS or not a[1:]:
+            return None                          # anything we do not vouch for
+    last = args[-1]
+    if last.startswith("-"):
+        return None                              # options only, still no file
+    return last
+
+
 def is_guard_path(tok):
     """True when this argument names THIS guard file and nothing else.
 
@@ -350,18 +405,23 @@ def hook_is_wired(fm_text):
             interp = os.path.basename(parts[0]).lower()
             if interp not in ("python3", "python", "python3.11", "python3.12"):
                 continue
-            # -c and -m never run THIS FILE. `-c` runs the string that follows
-            # and `-m` runs whatever the import system finds, so the name
-            # appearing after either proves nothing about what executes.
-            if any(a in ("-c", "-m") for a in parts[1:]):
-                continue
-            # AND THE PATH IS RESOLVED, not read for its last component.
-            # `python3 /tmp/scout_bash_guard.py` has the right shape and the
-            # right basename and can be anything at all.
-            if any(is_guard_path(a) for a in parts[1:] if not a.startswith("-")):
+            # AND THE SCRIPT OPERAND, which is one particular argument and not
+            # any of them. `python3 /tmp/noop.py scripts/scout_bash_guard.py`
+            # runs /tmp/noop.py and hands it the guard's path as DATA, and an
+            # "is the guard anywhere in the arguments" test called that wired.
+            # Python runs the FIRST non-option argument and nothing else, so
+            # that is the only one worth looking at.
+            operand = python_script_operand(parts[1:])
+            if operand and is_guard_path(operand):
                 return None
-        return ("the PreToolUse entry matching Bash has no command hook "
-                "running this repository's scripts/scout_bash_guard.py")
+        return ("the PreToolUse entry matching Bash has no command hook that "
+                "certainly runs this repository's scripts/scout_bash_guard.py. "
+                "Accepted shapes are deliberately few, because a check that "
+                "has to model python's whole command line to be safe is the "
+                "wrong check: `python3 <guard>`, optionally with a cluster of "
+                "plain switches from -E -s -S -I -u -B, and the guard path "
+                "last. Write it as `python3 \"$CLAUDE_PROJECT_DIR/%s\"`"
+                % GUARD_REL)
     return "no PreToolUse entry matches Bash"
 
 
@@ -497,6 +557,32 @@ def self_test():
             ("bash -c 'scout_bash_guard.py'", False),
             ('python3 -c \'print("scout_bash_guard.py")\'', False),
             ("python3 -m scout_bash_guard", False),
+            ("python3 -E -s scripts/scout_bash_guard.py", True),
+            ("python3 -Es scripts/scout_bash_guard.py", True),
+            ("python3 -I scripts/scout_bash_guard.py", True),
+            # REFUSED BY THE CLOSED GRAMMAR, and the first four of these really
+            # would run the guard. That is the trade: an exotic spelling costs
+            # one clear message, and a spelling we modelled wrongly costs an
+            # unguarded shell. Write the hook the documented way.
+            ("python3 -X importtime scripts/scout_bash_guard.py", False),
+            ("python3 -Ximporttime scripts/scout_bash_guard.py", False),
+            ("python3 -W ignore scripts/scout_bash_guard.py", False),
+            ("python3 --check-hash-based-pycs always scripts/scout_bash_guard.py", False),
+            # And these do not run it at all, which is why the grammar is shut.
+            ("python3 --check-hash-based-pycs -c scripts/scout_bash_guard.py", False),
+            ("python3 -V -X -c scripts/scout_bash_guard.py", False),
+            ("python3 -V scripts/scout_bash_guard.py", False),
+            ("python3 -h scripts/scout_bash_guard.py", False),
+            ("python3 -cprint(1) scripts/scout_bash_guard.py", False),
+            ("python3 -mpdb scripts/scout_bash_guard.py", False),
+            ("python3 scripts/scout_bash_guard.py --extra", False),
+            # The guard's path as DATA to something else, which is the shape
+            # that made "anywhere in the arguments" the wrong question.
+            ("python3 /tmp/noop.py scripts/scout_bash_guard.py", False),
+            ("python3 -X importtime /tmp/noop.py scripts/scout_bash_guard.py", False),
+            ("python3 - scripts/scout_bash_guard.py", False),
+            ("python3 -Ec 'x' scripts/scout_bash_guard.py", False),
+            ("python3", False),
             ("python3 /tmp/scout_bash_guard.py", False),
             ("python3 ./fake/scout_bash_guard.py", False),
             ("python3 ../scout_bash_guard.py", False),
