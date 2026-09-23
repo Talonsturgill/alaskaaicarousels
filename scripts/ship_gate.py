@@ -50,13 +50,6 @@ import json
 import sys
 from pathlib import Path
 
-# One reader for the scorer's weakest-criterion value, shared with
-# trend_check.py and gmail_draft.py. runs/2026-09-14 wrote it as an object
-# where the schema declares a string, and three separate readers each took the
-# container as a name (2026-09-23).
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from trend_check import weakest_criterion_name  # noqa: E402
-
 REPO = Path(__file__).resolve().parent.parent
 
 
@@ -145,9 +138,7 @@ def main() -> int:
         _emit(out, args.json)
         return 0
 
-    weakest, _ = weakest_criterion_name(score.get("weakest_criterion")
-                                        or score.get("weakest_criteria"))
-    weakest = weakest or "(not named by the scorer)"
+    weakest = score.get("weakest_criterion") or "(not named by the scorer)"
     fix = (score.get("one_sentence_fix") or score.get("fix_next_time")
            or "(the scorer named no fix; read its criterion notes)")
     lows = [c for c in score.get("criteria", [])

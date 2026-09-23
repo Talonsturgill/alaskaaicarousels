@@ -29,7 +29,7 @@ Return ONLY JSON:
   "weighted_total": 7.86,
   "threshold": 8.3,
   "ship": false,
-  "weakest_criterion": "the criterion's NAME, a plain string, never an object",
+  "weakest_criterion": "...",
   "one_sentence_fix": "the highest-leverage single improvement",
   "editor_notes_for_email": "anything the human must know before posting"
 }
