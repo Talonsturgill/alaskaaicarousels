@@ -60,6 +60,48 @@ generative idiom. Four lessons, in the order they were worth.
 
 ---
 
+## 2026-09-23, Phase 12 frontier scan (b): editorial dataviz and cartography. ONE PARKED, one null.
+
+The stalest legal slot (last read September 14th) and distinct from the last
+three foci, which were (g), (c) and (e). Relevant as well as stale: this run put
+a typed "20 KM" or "50 KM" chip on five frames of real projected geography, with
+no bar and nothing measuring it, on a deck whose own D4 device says the register
+is computed and never typed. Five searches, four fetches, two of them 403.
+
+- **PARKED: the scale bar this run improvised has a shipped reference
+  implementation, and two parameters worth stealing outright.**
+  `HarryStevens/d3-geo-scale-bar` derives the bar from the d3 projection rather
+  than from a typed number. Its two usable constants: pick the smallest of 1, 2,
+  4 or 5 times a power of ten that renders the bar AT LEAST 80 px wide, and
+  convert through a stated Earth radius (6371.0088 km mean) so the printed
+  number is a geodesic rather than a screen measurement. Our geodata is true
+  lon/lat and d3-geo is already in `assets/`, so a house `AK.scaleBar(projection,
+  {atLonLat, minPx})` in about sixty lines needs no new dependency.
+  https://github.com/HarryStevens/d3-geo-scale-bar
+  The caveat is what makes it a design decision and not a utility: on a
+  projected map spanning a range of latitudes a scale bar is correct along ONE
+  LINE only, which is why the bar belongs WHERE it is measured and not parked in
+  a corner chip. Esri and the Ordnance Survey cartography guide both say it
+  plainly.
+  https://www.esri.com/arcgis-blog/products/product/mapping/back-to-the-issue-of-scale-bars
+  , https://docs.os.uk/more-than-maps/geographic-data-visualisation/guide-to-cartography/scale
+  Parked because all three upgrade slots went to reactive fixes, and because the
+  helper and the check that would enforce it are one piece of work that deserves
+  its own run rather than riding on three others.
+
+- **NULL, and worth recording so the slot is not spent on it again: the
+  annotation layer finding is doctrine we already hold.** The current best
+  practice in news graphics is that the annotation carries the CONCLUSION and
+  not the data label ("this is where prices broke", never "June 2022"). Our
+  DESIGN_DOCTRINE and SLIDE_DOSSIER_SPEC already require exactly that of every
+  callout and every kicker. Nothing to add.
+
+- **Two hosts refuse this container and should join `refuses_automated_fetch`
+  next time config/sources.yaml is edited: gijn.org and danielroelfs.com, both
+  403 on WebFetch.**
+
+---
+
 ## 2026-09-21, No.65. FOUR REVISION ROUNDS, AND THE THREE THINGS THAT COST THEM.
 
 Shipped at 7.98 normalised against a relaxed threshold of 7.7, flagged short of
