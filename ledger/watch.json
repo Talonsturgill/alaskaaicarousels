@@ -1,10 +1,10 @@
 {
- "generated": "2026-09-22T18:10:03Z",
- "for_date": "2026-09-22",
+ "generated": "2026-09-23T18:27:47Z",
+ "for_date": "2026-09-23",
  "session": "34",
  "counted": {
   "basis_bills": 856,
-  "basis_meetings": 2852,
+  "basis_meetings": 2850,
   "fedreg_federal-energy-regulatory-commission": 7,
   "fedreg_land-management-bureau": 2,
   "fedreg_air-force-department": 0,
@@ -167,8 +167,8 @@
   {
    "bill": "HJR18",
    "title": "URGING SUPPORT FOR NATURAL GAS PROJECT",
-   "status": "TRANSM TO GOVERNOR",
-   "status_date": "2026-06-15",
+   "status": "LEGIS RESOLVE 56",
+   "status_date": "2026-09-22",
    "committee": "",
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HJR18",
    "source": "basis",
@@ -338,5 +338,5 @@
   }
  ],
  "failed": [],
- "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2852 meetings and 1 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
+ "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2850 meetings and 1 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
 }
