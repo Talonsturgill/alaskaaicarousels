@@ -7,6 +7,59 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-23, No.66. THE HOUSE DEFECT, ATTACKED AT ITS CAUSE FOR ONCE.
+
+Artwork craft has been the weakest criterion in 7 of the last 10 runs, mean 6.9.
+This run went at it with the engraver's bench (technique 93) as the whole tone
+system and finished with `qa.py` at PASS, zero fails and ZERO WARNINGS across
+nine frames, which this studio has not managed before on a deck built from one
+generative idiom. Four lessons, in the order they were worth.
+
+- **READ THE CHECK BEFORE YOU TUNE AGAINST IT.** AKENGRAVE's lay-collapse
+  warning names an alignment figure and suggests two remedies in prose. Round
+  four spent two attempts on the prose: second-axis sine terms everywhere, which
+  moved alignment not at all, then trial `seedDeg` values, which fixed three
+  regions and broke two. Opening `_layCheck` in `assets/js/akengrave.js` took
+  under a minute and turned the fix into arithmetic. Alignment is the mean
+  absolute cosine between the seeding raster and the WALK direction; the walk
+  runs along the isolines at `atan2(gx,-gy) + angOff`; `angOff` is 0 for the main
+  channel and `crossDeg` for the cross channel. **One `eng.surface` call therefore
+  has TWO angles to avoid, 90 degrees off each of those, and the safe `seedDeg`
+  is the midpoint between the two perpendiculars.** Slide 03's terraces went to
+  `[114,122,130,138]` and slide 04's trough to 116, derived not guessed, and nine
+  warnings went to zero on the first try. This belongs in the technique library.
+
+- **A CONTEXT BAND DOES NOT NEED TWO CHANNELS.** Dropping `cross` to 0 on the
+  bands and aprons behind type (slides 02, 04, 05, 07), with the main budget
+  raised to compensate, cut the lay warnings almost in half AND cured the moire
+  the scorer had flagged as a separate finding. One channel behind type, two
+  channels on objects, is the rule that came out of it.
+
+- **PROTOTYPE THE IDIOM BEFORE THE DOSSIERS, NOT AFTER.** Three prototypes, run
+  before any dossier was finalised, found three defects that would otherwise each
+  have cost a Phase 8 repair round: noise inside `form` drives the direction field
+  and the lay prints as TERRAIN; a Gaussian cone is a radial form and prints a
+  bullseye with a void at its centre; and a bounded chip with a LINEAR form inside
+  it is both the fix and the better picture, because a city police department's
+  authority stops at a line rather than falling off with distance. The terrain
+  defect still got past all of that into two frames and was caught by the pixel
+  critics, which says the rule needs to be a machine check and not a memory.
+
+- **SCOUTS HAD NO BASH TOOL, SO THE PDF READER THE BRIEF NAMED WAS UNREACHABLE.**
+  Four of six scouts said so explicitly and several primary PDFs went unread.
+  The showrunner ran `scripts/fetch_pdf_text.py` directly and it worked first time
+  on both Mat-Su documents, which is how this deck got its primary sources at all.
+  Naming a script in a brief is not the same as handing over the tool that runs it.
+  This is the single most actionable finding of the sweep and it went to Phase 12.
+
+- **A KNOWN-BARRED CAPTION SHAPE SHIPPED ANYWAY, FOUR TIMES.** The caption room's
+  own critic recorded the deck-summary VERB-SLOT OPENER family as barred four
+  times and then let it through as a burn-forward note. It was repaired at ship
+  into the 2026-09-03 sources-naming shape. A burn list that only warns the NEXT
+  room is not a burn list.
+
+---
+
 ## 2026-09-21, No.65. FOUR REVISION ROUNDS, AND THE THREE THINGS THAT COST THEM.
 
 Shipped at 7.98 normalised against a relaxed threshold of 7.7, flagged short of
