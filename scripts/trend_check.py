@@ -76,6 +76,12 @@ NONE_ISH = re.compile(r"^\s*(none|no hard fail|n/?a|zero)\b", re.I)
 
 WEAKEST_NAME_KEYS = ("name", "criterion", "weakest_criterion", "title", "label")
 
+# The instruction a scorer writes beside the criterion, under whichever of
+# these names it used. When weakest_criterion is an OBJECT, the fix usually
+# travels inside it, and reading only the name threw it away.
+WEAKEST_FIX_KEYS = ("one_sentence_fix", "fix", "fix_next_time",
+                    "next_run_fix", "instruction")
+
 
 def weakest_criterion_name(value):
     """Resolve a score report's weakest-criterion value to a NAME, or complain.
@@ -121,6 +127,35 @@ def weakest_criterion_name(value):
                       "name" % len(value))
     return None, ("weakest_criterion has unsupported type %s"
                   % type(value).__name__)
+
+
+def weakest_criterion_fix(value):
+    """The one-sentence fix carried INSIDE an object-shaped weakest_criterion.
+
+    WHY (2026-09-23, the round after weakest_criterion_name). Normalising the
+    2026-09-14 shape to a name alone threw away the instruction sitting beside
+    it. That shape carries both:
+
+        {"name": "Artwork craft and genuine detail", "score": 7,
+         "one_sentence_fix": "Fill and shade slide 03's mail tote ..."}
+
+    and those reports have no top-level fix, so the maintainer's email printed
+    "Fix next time: not stated by the scorer" about a report that stated it
+    plainly. The fix is the whole point of the field: it is what the next run
+    reads to decide what to work on. Recovering a name and discarding the
+    instruction is a worse failure than the junk row this normalisation was
+    written to remove, because it is silent and it reads as true.
+
+    Returns a non-empty str or None. Callers prefer a top-level fix and fall
+    back to this, so an explicit top-level value always wins.
+    """
+    if not isinstance(value, dict):
+        return None
+    for k in WEAKEST_FIX_KEYS:
+        v = value.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
 
 
 def iter_hard_fails(s):

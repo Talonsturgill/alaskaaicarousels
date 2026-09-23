@@ -84,13 +84,19 @@ def is_public(addr):
     stdlib tracks the registry; a list maintained here would go stale the
     next time IANA allocates one.
 
-    The explicit flags stay as a belt-and-braces second condition. They are
-    redundant with is_global today and cost nothing, and if a future stdlib
-    ever loosens is_global the obvious cases still fail closed.
+    The explicit flags are NOT merely belt and braces, and review proved it on
+    the round after this function was written. fec0::/10, the deprecated IPv6
+    site-local range, reads is_global TRUE and is_private FALSE on this
+    stdlib, and is_site_local is the only flag that catches it. So the two
+    conditions cover different gaps and both are load bearing: is_global
+    catches the special-purpose IPv4 ranges a hand list forgets, and the
+    explicit flags catch what is_global is willing to call global.
     """
+    site_local = getattr(addr, "is_site_local", False)
     return bool(addr.is_global) and not (
         addr.is_loopback or addr.is_private or addr.is_link_local
-        or addr.is_reserved or addr.is_multicast or addr.is_unspecified)
+        or addr.is_reserved or addr.is_multicast or addr.is_unspecified
+        or site_local)
 
 
 def literal_address(host):
@@ -228,6 +234,12 @@ def self_test():
                      ("http://[2001:db8::1]/x", "documentation"),
                      ("http://[::]/x", "unspecified")]:
         check("refuses %r, %s" % (u, means),
+              check_url(u, resolve=False) is not None)
+    for u, means in [("http://[fec0::1]/x", "deprecated site-local"),
+                     ("http://[fec0::]/x", "the bottom of the same range"),
+                     ("http://[feff:ffff:ffff:ffff:ffff:ffff:ffff:ffff]/x",
+                      "the top of it")]:
+        check("refuses %r, %s, which is_global calls global" % (u, means),
               check_url(u, resolve=False) is not None)
     check("but a real public IPv6 document still fetches",
           check_url("http://[2606:4700:4700::1111]/x", resolve=False) is None)
