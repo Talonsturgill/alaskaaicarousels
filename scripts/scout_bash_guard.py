@@ -370,11 +370,29 @@ def self_test():
         print("  FAIL  .claude/agents/scout.md has no readable frontmatter")
         ok = False
     else:
-        for needle in FRONTMATTER_MUST_CONTAIN:
-            if needle not in fm:
-                print("  FAIL  scout.md frontmatter is missing %r; the guard is "
-                      "not attached and the scout's Bash would be unguarded" % needle)
-                ok = False
+        # THE INVARIANT IS CONDITIONAL, and that is the point of it: IF the
+        # scout is granted Bash, THEN this guard must be attached. It is not
+        # "the scout must have Bash". Run No.66 withheld the grant after five
+        # rounds of review found a bypass every round and a reproduced DNS
+        # rebinding it could not close in the time it had, and an assertion
+        # that demanded the grant would have failed the build for doing the
+        # careful thing. Written this way it stays useful for the case that
+        # actually matters: a future run pastes the grant back and forgets the
+        # hook, and this goes red instead of shipping an unguarded shell to six
+        # leaf workers at once.
+        tools_line = next((l for l in fm.splitlines()
+                           if l.strip().startswith("tools:")), "")
+        grants_bash = "Bash" in tools_line
+        if not grants_bash:
+            print("  ok    scout.md withholds Bash, so the guard is inert and "
+                  "its wiring is not required")
+        else:
+            for needle in FRONTMATTER_MUST_CONTAIN:
+                if needle not in fm:
+                    print("  FAIL  scout.md grants Bash but its frontmatter is "
+                          "missing %r; the guard is not attached and that Bash "
+                          "would be unguarded" % needle)
+                    ok = False
         for banned in ("Task", "Write", "Edit", "NotebookEdit"):
             line = [l for l in fm.splitlines() if l.strip().startswith("tools:")]
             if line and banned in line[0]:

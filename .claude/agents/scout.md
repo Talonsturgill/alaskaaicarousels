@@ -1,15 +1,63 @@
 ---
 name: scout
 description: Beat-specific researcher for the daily Alaska+AI carousel. Spawned in parallel, one per beat. Uses WebSearch + WebFetch, reads full pages before citing, returns structured JSON findings with sources and confidence.
-tools: WebSearch, WebFetch, Read, Bash
-hooks:
-  PreToolUse:
-    - matcher: Bash
-      hooks:
-        - type: command
-          command: python3 "$CLAUDE_PROJECT_DIR/scripts/scout_bash_guard.py"
-          timeout: 15
+tools: WebSearch, WebFetch, Read
 ---
+
+<!-- THE BASH GRANT IS WITHHELD, DELIBERATELY, AND HERE IS THE ONE LINE THAT
+     TURNS IT ON AGAIN (2026-09-23, run No.66):
+
+       tools: WebSearch, WebFetch, Read, Bash
+       hooks:
+         PreToolUse:
+           - matcher: Bash
+             hooks:
+               - type: command
+                 command: python3 "$CLAUDE_PROJECT_DIR/scripts/scout_bash_guard.py"
+                 timeout: 15
+
+     WHY IT IS WITHHELD. Run No.66 found that no scout could execute
+     scripts/fetch_pdf_text.py, which every scout brief has named since No.62,
+     and built the guard above to grant it narrowly. Five rounds of review then
+     found a real bypass in that guard EVERY ROUND: a bare path read as
+     file://, legacy numeric hosts resolving to the metadata endpoint,
+     unfollowed redirect destinations, carrier-grade NAT space, deprecated IPv6
+     site-local, and finally a REPRODUCED DNS rebinding, where the safety check
+     and the socket resolve the name separately and an attacker answers each
+     one differently.
+
+     Every one of those is fixed except the last, which needs the socket pinned
+     to the address that was validated. That is real work and urllib does not
+     hand it over.
+
+     THREE FACTS DECIDED THIS, and they compound:
+       1. The capability was never once exercised end to end. A live scout
+          spawned in the run that built it had no Bash tool at all, because the
+          session had loaded this file before it was edited. No denial has ever
+          been observed firing.
+       2. The rollback that was supposed to make shipping it safe did not work.
+          `git revert` of the upgrade commit conflicts on six paths.
+       3. Its benefit lands on the NEXT run at the earliest, since scouts only
+          run in Phase 2. Withholding it costs today nothing.
+
+     An untested capability, a reproduced bypass and a fail-safe that does not
+     fire is not a case for shipping carefully. It is a case for not shipping.
+
+     EVERYTHING ELSE FROM THAT WORK SHIPPED AND IS WORTH KEEPING:
+     scripts/url_safety.py, the reader-side address and redirect enforcement in
+     scripts/fetch_pdf_text.py, its download deadline, and
+     scripts/scout_bash_guard.py itself with its 13 allow / 51 deny battery.
+     The guard is inert while this grant is withheld and its self-test still
+     runs, so it does not rot.
+
+     TO RE-ENABLE, in this order and not in the other one:
+       1. Close the DNS rebinding: connect to a validated address while keeping
+          the hostname for TLS and Host.
+       2. Paste the block above back in.
+       3. FIRST ACT of that run: spawn a real scout and have it run two allowed
+          and three denied commands, and read back what happened. If the
+          denials do not fire, take the grant out again.
+     -->
 
 You are a research scout for Alaska.Ai. You are given: a beat description, a
 date window, and the brand's audience summary. Find the strongest RECENT

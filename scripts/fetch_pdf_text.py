@@ -57,6 +57,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -72,6 +73,12 @@ UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
       "Chrome/141.0.0.0 Safari/537.36")
 DEFAULT_MAX_MB = 48
 CHUNK = 1 << 16
+
+# The whole transfer gets this multiple of --timeout before it is abandoned.
+# Generous, because a large government PDF on a slow host is a real thing and
+# the point is to bound the worst case rather than to be strict about the
+# ordinary one. At the default 45 second timeout that is 4 minutes.
+DEADLINE_FACTOR = 6
 
 
 class _GuardedRedirects(urllib.request.HTTPRedirectHandler):
@@ -135,8 +142,29 @@ def _fetch(url, max_mb, timeout, allow_local=False):
         with opener.open(req, timeout=timeout) as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()
             buf = io.BytesIO()
+            # A WALL-CLOCK DEADLINE ACROSS THE WHOLE TRANSFER, not just per
+            # read. urllib's timeout applies to each blocking operation, so a
+            # server that sends one byte just inside every timeout keeps this
+            # loop running forever: measured at 3.12 seconds of transfer under
+            # a 0.2 second timeout, and that scales to no limit at all. The
+            # size ceiling does not help, because a slow dribble never reaches
+            # it. A scout that never returns is a run that never finishes.
+            deadline = time.monotonic() + max(1.0, float(timeout)) * DEADLINE_FACTOR
             while True:
-                chunk = resp.read(CHUNK)
+                if time.monotonic() > deadline:
+                    raise RuntimeError(
+                        "the download was still running %.0f seconds after it "
+                        "started and has been abandoned; a server that trickles "
+                        "bytes can outlast a per-read timeout forever. Raise "
+                        "--timeout deliberately if this document really is that "
+                        "slow" % (max(1.0, float(timeout)) * DEADLINE_FACTOR))
+                # read1 RATHER THAN read, and this is the half that makes the
+                # deadline above reachable. read(CHUNK) blocks until it has all
+                # 64 KB or the stream ends, so a server dribbling one byte per
+                # tick stays INSIDE a single read for hours and the loop never
+                # gets to look at the clock. read1 returns whatever arrived,
+                # so the loop turns over and the deadline can fire.
+                chunk = resp.read1(CHUNK) if hasattr(resp, "read1") else resp.read(CHUNK)
                 if not chunk:
                     break
                 buf.write(chunk)
@@ -283,6 +311,20 @@ def _self_test():
             # One fixture that redirects somewhere it must not be followed to.
             # A public host answering 302 to the metadata endpoint is the
             # bypass review found, and the only way to test it is to serve one.
+            if self.path.startswith("/drip.pdf"):
+                # One byte every 0.1s, forever, which is the shape that
+                # outlasts a per-read timeout.
+                self.send_response(200)
+                self.send_header("Content-Type", "application/pdf")
+                self.end_headers()
+                try:
+                    for _ in range(3000):
+                        self.wfile.write(b"x")
+                        self.wfile.flush()
+                        time.sleep(0.1)
+                except Exception:
+                    pass
+                return
             if self.path.startswith("/redirect-to-metadata"):
                 self.send_response(302)
                 self.send_header("Location",
@@ -309,6 +351,21 @@ def _self_test():
                          % rec["text"][:120])
         if rec["pages_total"] != 1:
             fails.append("page count read as %r" % rec["pages_total"])
+
+        # THE WHOLE-TRANSFER DEADLINE. A server that trickles one byte just
+        # inside every per-read timeout outlasts that timeout forever, so this
+        # serves exactly that and asserts the fetch is abandoned. Without the
+        # deadline, or with read() in place of read1(), this hangs.
+        t0 = time.monotonic()
+        try:
+            read_pdf_text(base + "drip.pdf", timeout=0.2, allow_local=True)
+            fails.append("a trickling server was never abandoned")
+        except RuntimeError as exc:
+            if "abandoned" not in str(exc):
+                fails.append("trickle refused for the wrong reason: %s" % exc)
+        elapsed = time.monotonic() - t0
+        if elapsed > 30:
+            fails.append("the deadline took %.1fs to fire" % elapsed)
 
         # THE REDIRECT GUARD, exercised through the real opener. allow_local
         # is deliberately NOT passed, so this is the same path a scout takes.

@@ -331,3 +331,72 @@ to the showrunner's own procedure in the middle of a run that is using it.
     out/2026-09-23/automation_retro.md
 
 No cron-written ledger, config or collector was read for writing or touched.
+
+---
+
+## 7. WHAT REVIEW CHANGED, AND THE UPGRADE THAT WAS WITHHELD (added at ship)
+
+Codex reviewed this PR five times and found a real defect every round. All of
+them are fixed. The last round changed a decision rather than a line, and that
+is the part worth recording.
+
+### The rounds, and what each one caught
+1. Six findings, two security. The scout guard pinned the COMMAND and never the
+   TARGET, so `fetch_pdf_text.py /etc/passwd` was allowed; the reader turns a
+   bare path into file:// by itself. And a killed claim, the mover of adoption,
+   was still published on the docket page in `key_dates` and `history` after
+   the summary prose had been repaired.
+2. Legacy numeric hosts. `http://2852039166/` is 169.254.169.254 and was
+   ALLOWED, because `ipaddress.ip_address` rejects that spelling and the code
+   treated a parse failure as proof of safety. Plus redirects, which a
+   PreToolUse hook cannot see at all.
+3. Carrier-grade NAT. `is_public` negated a hand-written list of flags and
+   100.64.0.0/10 is neither private nor reserved.
+4. Deprecated IPv6 site-local, which `is_global` itself calls global.
+5. A REPRODUCED DNS rebinding, a transfer with no wall-clock bound, and the
+   discovery that the documented rollback did not work.
+
+### The decision
+The scout's Bash grant is WITHHELD. `.claude/agents/scout.md` no longer grants
+it, and the exact block that restores it sits in a comment at the top of that
+file with the order to do it in.
+
+Three facts compounded, and any two of them would have been survivable:
+
+- **It was never exercised end to end.** The live scout this run spawned to
+  probe the guard had no Bash tool at all, because the session loaded the agent
+  definition before the file was edited. No denial has ever been seen to fire.
+- **The fail-safe did not work.** I argued in three separate PR comments that
+  shipping an untested capability was acceptable because the rollback was one
+  commit. Review tested that claim and it is false: `git revert 444f6cd09171`
+  conflicts on six paths. The argument I was relying on was wrong, and I only
+  found out because someone checked it.
+- **A reproduced bypass remained open.** DNS rebinding needs the socket pinned
+  to the address that was validated, and urllib does not hand that over. It is
+  real work, not a line.
+
+Its benefit lands on the NEXT run at the earliest, because scouts only run in
+Phase 2, so withholding it costs today nothing at all. An untested capability,
+a live bypass and a fail-safe that does not fire is not a case for shipping
+carefully. It is a case for not shipping.
+
+### What did ship, and is worth keeping
+`scripts/url_safety.py`, one address policy called by the reader before the
+first request and again on every redirect hop. `scripts/fetch_pdf_text.py`
+enforcing it, plus a whole-transfer deadline and `read1` so a server that
+trickles one byte per tick cannot outlast a per-read timeout. The guard itself
+with a 13 allow / 51 deny battery, inert while the grant is withheld and still
+self-tested so it does not rot, and its wiring assertion rewritten as a
+CONDITIONAL: if the scout is granted Bash, the hook must be attached. That
+version stays useful for the case that actually matters, a future run pasting
+the grant back and forgetting the hook.
+
+U2 and U3 ship unchanged and are unaffected by any of this.
+
+### For the next Phase 12, in this order
+1. Close the DNS rebinding, connecting to a validated address while keeping the
+   hostname for TLS and Host.
+2. Paste the grant back.
+3. FIRST ACT of that run, before anything else: spawn a real scout, have it run
+   two allowed and three denied commands, and read back what happened. If the
+   denials do not fire, take the grant out again.
