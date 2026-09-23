@@ -48,12 +48,14 @@ Stdlib only. Reads nothing but stdin and, under --self-test, the agent file.
 """
 from __future__ import annotations
 
-import ipaddress
 import json
 import os
 import shlex
 import sys
 from pathlib import Path
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import url_safety  # noqa: E402  (same directory, after sys.path is set)
 
 REPO = Path(__file__).resolve().parent.parent
 READER_REL = "scripts/fetch_pdf_text.py"
@@ -74,21 +76,20 @@ FLAGS_DENIED = ("--out",)
 # meets them.
 FLAG_CEILINGS = {"--max-mb": 64, "--max-chars": 400000, "--timeout": 120}
 
-# THE TARGET MUST BE A PUBLIC http(s) URL, and this is the half of the guard
-# that matters most. The command shape was pinned from the first version, but
-# the TARGET was not, so the reader would accept a local path or a file:// URL
-# and print the first bytes of whatever it found; it converts a bare path to
-# file:// itself. That turns a read-only PDF tool into local-file disclosure,
-# and a loopback or private-range host turns it into a request from inside this
-# container. A scout takes its URLs from search results, which is exactly the
-# untrusted-input path this has to survive.
-ALLOWED_SCHEMES = ("http://", "https://")
-
-# Hostnames and literal addresses that never name a public document. Matched on
-# the host alone, lowercased, with any port and credentials stripped.
-BLOCKED_HOSTS = ("localhost", "localhost.localdomain", "ip6-localhost",
-                 "metadata", "metadata.google.internal", "instance-data")
-BLOCKED_HOST_SUFFIXES = (".localhost", ".local", ".internal", ".localdomain")
+# THE TARGET MUST BE A PUBLIC http(s) URL, and the policy that decides that
+# lives in scripts/url_safety.py, beside the socket that opens it, NOT here.
+# Two review rounds on run No.66 are the reason. The first found that the
+# command shape was pinned and the target never was, so the reader turned a
+# bare path into file:// by itself. The second found two ways past a
+# string-only check that lived only in this hook: a legacy numeric host such
+# as http://2852039166/, which ipaddress rejects and the resolver reads as
+# 169.254.169.254, and a public URL that simply answers 302 to a loopback
+# address, which this hook never sees at all.
+#
+# So the hook is a PRE-CHECK and the reader is the guarantee. Both call
+# url_safety.check_url; fetch_pdf_text.py calls it again on every redirect hop.
+# resolve=False here, because a hook runs on every Bash call and a DNS lookup
+# in it would be latency for a decision the reader makes properly anyway.
 
 USAGE = ("the only shell command a scout may run is the PDF reader, e.g. "
          "python3 scripts/fetch_pdf_text.py 'https://host/doc.pdf' --pages 1-6 "
@@ -153,40 +154,8 @@ def is_reader_path(tok):
 
 
 def bad_target(tok):
-    """Why this positional is not a public PDF URL, or None if it is fine.
-
-    Deliberately an allowlist. A denylist of bad schemes would have missed
-    file://, which is the one the reader reaches for on its own when handed a
-    bare path.
-    """
-    low = tok.lower()
-    if not low.startswith(ALLOWED_SCHEMES):
-        return ("%r is not an http or https URL. A scout reads PUBLISHED "
-                "documents, so a local path, a file:// URL or any other scheme "
-                "is refused." % tok)
-    rest = tok.split("://", 1)[1]
-    host = rest.split("/", 1)[0].split("?", 1)[0].split("#", 1)[0]
-    if "@" in host:                      # strip credentials, keep the host
-        host = host.rsplit("@", 1)[1]
-    if host.startswith("["):             # bracketed IPv6 literal
-        host = host[1:].split("]", 1)[0]
-    else:
-        host = host.split(":", 1)[0]
-    host = host.strip().rstrip(".").lower()
-    if not host:
-        return "%r has no host." % tok
-    if host in BLOCKED_HOSTS or host.endswith(BLOCKED_HOST_SUFFIXES):
-        return ("%r points at this machine or its metadata service, not at a "
-                "published document." % tok)
-    try:
-        addr = ipaddress.ip_address(host)
-    except ValueError:
-        return None                      # a name, and not a blocked one
-    if (addr.is_loopback or addr.is_private or addr.is_link_local
-            or addr.is_reserved or addr.is_multicast or addr.is_unspecified):
-        return ("%r is a loopback, private or otherwise non-public address. A "
-                "scout fetches public documents only." % tok)
-    return None
+    """Why this positional is not a public PDF URL, or None if it is fine."""
+    return url_safety.check_url(tok, resolve=False)
 
 
 def bad_flag_value(flag, value):
@@ -332,6 +301,12 @@ def self_test():
         "python3 scripts/fetch_pdf_text.py http://[::1]/d.pdf",
         "python3 scripts/fetch_pdf_text.py http://user:pw@127.0.0.1/d.pdf",
         "python3 scripts/fetch_pdf_text.py http://build.internal/d.pdf",
+        # the legacy numeric spellings the second review round found. every one
+        # of these resolves to loopback or to the metadata endpoint.
+        "python3 scripts/fetch_pdf_text.py http://2852039166/latest/meta-data/",
+        "python3 scripts/fetch_pdf_text.py http://127.1/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://0x7f000001/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://017700000001/d.pdf",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb 100000",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb=99999",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --timeout 86400",

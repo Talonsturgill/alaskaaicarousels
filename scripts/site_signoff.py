@@ -882,9 +882,18 @@ def self_test():
               isinstance(got, dict) and got.get("blocker") == "github")
     check("an incident record has to be earned, and expires by itself",
           all(not incident_allows(i, now) for i in [
-              None, {}, "upstream",
+              None, {}, "upstream", [], 7,
               {**incident, "blocker": "editorial"},
+              {**incident, "blocker": None},
               {**incident, "reason": "   "},
+              {**incident, "reason": 5},
+              {**incident, "reason": None},
+              {**incident, "reason": {"why": "x"}},
+              {**incident, "reason": ["x"]},
+              {**incident, "attempts": "a string is not a list"},
+              {**incident, "evidence_urls": {"u": "https://x/y"}},
+              {**incident, "evidence_urls": [7]},
+              {**incident, "audit_checked_utc": 20260916},
               {**incident, "attempts": []},
               {**incident, "attempts": ["ok", ""]},
               {**incident, "evidence_urls": []},
@@ -980,7 +989,14 @@ def incident_allows(incident, now=None):
         return False
     if incident.get("blocker") not in INCIDENT_BLOCKERS:
         return False
-    if not (incident.get("reason") or "").strip():
+    # isinstance BEFORE strip. A record whose reason is a number, an object or
+    # a list is malformed, and a malformed allowance must be REFUSED, not
+    # raise: this function is called from the --ci path, so an AttributeError
+    # here escaped main() and turned the sign-off into a broken checker with a
+    # traceback instead of the ordinary blocking result. A checker that crashes
+    # on bad input is worse than one that says no.
+    reason = incident.get("reason")
+    if not isinstance(reason, str) or not reason.strip():
         return False
     for key in ("attempts", "evidence_urls"):
         seq = incident.get(key)
@@ -991,10 +1007,16 @@ def incident_allows(incident, now=None):
     if not all(u.startswith(("http://", "https://"))
                for u in incident["evidence_urls"]):
         return False
+    # A STRING, not whatever str() can make of it. The integer 20260916 becomes
+    # "20260916", which fromisoformat happily reads as a date in basic format,
+    # so a record with a numeric stamp was earning the allowance. Found by this
+    # file's own battery while hardening the reason field beside it.
+    stamp_raw = incident.get("audit_checked_utc")
+    if not isinstance(stamp_raw, str):
+        return False
     try:
-        stamp = datetime.fromisoformat(
-            str(incident["audit_checked_utc"]).replace("Z", "+00:00"))
-    except (KeyError, TypeError, ValueError):
+        stamp = datetime.fromisoformat(stamp_raw.replace("Z", "+00:00"))
+    except (TypeError, ValueError):
         return False
     if stamp.tzinfo is None:
         stamp = stamp.replace(tzinfo=timezone.utc)

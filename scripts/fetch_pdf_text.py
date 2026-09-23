@@ -61,6 +61,9 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import url_safety  # noqa: E402  (same directory, after sys.path is set)
+
 # Federal and state document servers routinely 403 a bare urllib UA while
 # serving the same file to a browser. This is the ordinary desktop string; it
 # claims nothing untrue about what is fetching, and every host below is
@@ -71,8 +74,32 @@ DEFAULT_MAX_MB = 48
 CHUNK = 1 << 16
 
 
-def _fetch(url, max_mb, timeout):
-    """Return (bytes, final_url, content_type) or raise RuntimeError."""
+class _GuardedRedirects(urllib.request.HTTPRedirectHandler):
+    """Refuse a redirect whose destination is not a public http(s) document.
+
+    urlopen follows redirects on its own, so before this the only URL anyone
+    inspected was the one typed on the command line. A public host answering
+    302 to http://127.0.0.1/ or to the metadata endpoint was enough to reach
+    inside this container. Every hop now gets the same check as the first URL.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        why = url_safety.check_url(newurl)
+        if why:
+            raise urllib.error.HTTPError(
+                newurl, code,
+                "refused a redirect to a non-public destination. %s" % why,
+                headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _fetch(url, max_mb, timeout, allow_local=False):
+    """Return (bytes, final_url, content_type) or raise RuntimeError.
+
+    allow_local is for THIS FILE'S OWN hermetic self-test, which serves its
+    fixtures from a loopback port. It is a Python argument and deliberately
+    not a command-line flag, so nothing invoked as a command can set it.
+    """
     parsed = urllib.parse.urlparse(url)
     if not parsed.scheme or (len(parsed.scheme) == 1 and os.name == "nt"):
         url = "file://" + os.path.abspath(url)
@@ -80,13 +107,32 @@ def _fetch(url, max_mb, timeout):
     if parsed.scheme not in ("http", "https", "file"):
         raise RuntimeError("scheme %r is not fetchable here; pass an http(s) "
                            "url or a local path" % parsed.scheme)
+    # THE ADDRESS IS CHECKED HERE, not only by whatever called this. Review of
+    # run No.66 found two ways past a caller-side check: a legacy numeric host
+    # such as http://2852039166/ that resolves to the metadata endpoint, and a
+    # public URL that simply answers 302 to http://127.0.0.1/. Both are about
+    # the address a socket opens rather than the string a caller typed, so the
+    # policy lives beside the socket and applies to EVERY hop.
+    #
+    # file:// is still reachable from a trusted caller, deliberately: a
+    # maintainer reading a PDF off disk is the original use. What changed is
+    # that an http(s) fetch can no longer become an internal one.
+    if parsed.scheme in ("http", "https") and not allow_local:
+        why = url_safety.check_url(url)
+        if why:
+            raise RuntimeError(why)
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
         "Accept": "application/pdf,*/*",
     })
     limit = int(max_mb * 1024 * 1024)
+    # The redirect guard is ALWAYS installed. allow_local waives the check on
+    # the first URL so this file's own loopback fixture is reachable; it does
+    # not waive the policy on where that fixture may send us next, which is
+    # the bypass being tested and is never a thing a trusted caller wants.
+    opener = urllib.request.build_opener(_GuardedRedirects)
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with opener.open(req, timeout=timeout) as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()
             buf = io.BytesIO()
             while True:
@@ -178,8 +224,8 @@ def extract(data, pages=None, max_chars=0):
 
 
 def read_pdf_text(url, pages=None, max_chars=0, max_mb=DEFAULT_MAX_MB,
-                  timeout=45):
-    data, final, ctype = _fetch(url, max_mb, timeout)
+                  timeout=45, allow_local=False):
+    data, final, ctype = _fetch(url, max_mb, timeout, allow_local=allow_local)
     rec = extract(data, pages=pages, max_chars=max_chars)
     rec["url"] = final
     rec["content_type"] = ctype
@@ -233,6 +279,18 @@ def _self_test():
         def __init__(self, *a, **kw):
             super().__init__(*a, directory=root, **kw)
 
+        def do_GET(self):
+            # One fixture that redirects somewhere it must not be followed to.
+            # A public host answering 302 to the metadata endpoint is the
+            # bypass review found, and the only way to test it is to serve one.
+            if self.path.startswith("/redirect-to-metadata"):
+                self.send_response(302)
+                self.send_header("Location",
+                                 "http://169.254.169.254/latest/meta-data/")
+                self.end_headers()
+                return
+            return super().do_GET()
+
         def log_message(self, *a):
             pass
 
@@ -245,29 +303,38 @@ def _self_test():
     urllib.request.install_opener(opener)
     fails = []
     try:
-        rec = read_pdf_text(base + "doc.pdf")
+        rec = read_pdf_text(base + "doc.pdf", allow_local=True)
         if needle not in rec["text"]:
             fails.append("fetched PDF did not yield its own text: %r"
                          % rec["text"][:120])
         if rec["pages_total"] != 1:
             fails.append("page count read as %r" % rec["pages_total"])
 
+        # THE REDIRECT GUARD, exercised through the real opener. allow_local
+        # is deliberately NOT passed, so this is the same path a scout takes.
         try:
-            read_pdf_text(base + "login.html")
+            read_pdf_text(base + "redirect-to-metadata", allow_local=True)
+            fails.append("a redirect to the metadata endpoint was followed")
+        except RuntimeError as exc:
+            if "non-public" not in str(exc) and "refused a redirect" not in str(exc):
+                fails.append("redirect refused for the wrong reason: %s" % exc)
+
+        try:
+            read_pdf_text(base + "login.html", allow_local=True)
             fails.append("an HTML page was accepted as a PDF")
         except RuntimeError as exc:
             if "not a PDF" not in str(exc):
                 fails.append("HTML rejected for the wrong reason: %s" % exc)
 
         try:
-            read_pdf_text(base + "doc.pdf", max_mb=0.0001)
+            read_pdf_text(base + "doc.pdf", max_mb=0.0001, allow_local=True)
             fails.append("the size ceiling did not fire")
         except RuntimeError as exc:
             if "ceiling" not in str(exc):
                 fails.append("size ceiling raised the wrong error: %s" % exc)
 
         try:
-            read_pdf_text(base + "missing.pdf")
+            read_pdf_text(base + "missing.pdf", allow_local=True)
             fails.append("a 404 was reported as a document")
         except RuntimeError as exc:
             if "404" not in str(exc):
