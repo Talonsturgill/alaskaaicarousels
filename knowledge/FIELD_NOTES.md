@@ -60,6 +60,42 @@ generative idiom. Four lessons, in the order they were worth.
 
 ---
 
+## 2026-09-23, No.66, Phase 11. EIGHT ROUNDS OF REVIEW, AND ONE RULE OUT OF THEM.
+
+The ship PR took eight Codex rounds and twenty-six findings, far more than any
+run before it, because this run's upgrade handed a leaf worker a shell. Three
+lessons, and the first is the one to keep.
+
+- **WHEN A REVIEW REPLY DESCRIBES A PROPERTY, THE SAME COMMIT ADDS THE CHECK
+  THAT PROVES IT.** Round eight's three findings were all places where the
+  source or a PR reply asserted something that no test held to: "the worker is
+  a daemon" was FALSE and the process parked at exit; "-c is rejected outright"
+  was true by accident rather than by design; "each label is at most 63 bytes"
+  described a check that did not exist. Six of the last nine findings were
+  impossible to reach if the claim had shipped with its assertion. Writing a
+  measurement into a comment verifies it ONCE, by the person least able to see
+  the gap, at the moment they are most convinced. Writing it into a self-test
+  verifies it on every run forever.
+
+- **A BOUND HAS TO LIVE SOMEWHERE IT CAN REACH THE THING IT BOUNDS.** The same
+  mistake three times on one code path: a clock at the top of a loop could not
+  fire while `read()` blocked inside one iteration; a deadline after `open()`
+  could not interrupt `open()`; and a watchdog that returned control to the
+  caller could not stop the interpreter joining the worker at exit. Each fix
+  looked right because the CALLER saw the correct exception at the correct
+  second. Measure what you actually care about, which here was when the PROCESS
+  ended, not when the function returned.
+
+- **REVIEW SEVERITY IS A SIGNAL ABOUT SCOPE, AND IT SAID REVERT.** Rounds one
+  to five kept finding reachable capabilities, each in a different layer of the
+  same new grant. Round six executed the rollback I had claimed three times was
+  clean, and it conflicted on six paths, which proved the claim false and made
+  the decision for me: the grant was withheld, the hardening shipped, and the
+  findings immediately dropped to inert-code quality. A review that keeps
+  finding live exposures in one feature is not asking for another patch.
+
+---
+
 ## 2026-09-23, Phase 12 frontier scan (b): editorial dataviz and cartography. ONE PARKED, one null.
 
 The stalest legal slot (last read September 14th) and distinct from the last
