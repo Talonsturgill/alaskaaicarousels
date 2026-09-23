@@ -65,6 +65,7 @@ import os
 import re
 import sys
 from datetime import date, datetime, timezone
+from urllib.parse import urlparse
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -848,6 +849,76 @@ def self_test():
               ({}, now), ({**source, "state": "unavailable"}, now),
               ({**source, "last_collection_utc": "2026-09-14T00:00:00Z"}, now),
               (source, datetime(2026, 9, 21, 0, tzinfo=timezone.utc))]))
+    incident = {"blocker": "upstream", "reason": "the source stopped publishing",
+                "audit_checked_utc": "2026-09-16T12:00:00Z",
+                "attempts": ["read the failed job log", "fetched the page twice"],
+                "evidence_urls": ["https://example.invalid/dashboard"]}
+    check("CI permits a dated incident record once the announced pause expires",
+          ci_exit_code(pause_rows, {}, now, incident) == 0)
+    check("an incident record never widens past the one Gas Watch warning",
+          all(ci_exit_code(pause_rows + [(s, l, "")], {}, now, incident) == 2
+              for s, l in [("WARN", "power.json is current"),
+                           ("FAIL", "gaswatch.jsonl reaches gas-watch/index.html"),
+                           ("WARN", "watch.json is current")]))
+    # A run that shipped WITHOUT a record must not inherit the one before it.
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        runs = os.path.join(tmp, "runs")
+        os.makedirs(os.path.join(runs, "2026-09-16"))
+        os.makedirs(os.path.join(runs, "2026-09-17"))        # newest, no record
+        with open(os.path.join(runs, "2026-09-16",
+                               "gaswatch_incident.json"), "w") as fh:
+            json.dump({"blocker": "upstream", "reason": "x",
+                       "audit_checked_utc": "2026-09-16T12:00:00Z",
+                       "attempts": ["a"], "evidence_urls": ["https://x/y"]}, fh)
+        check("a run with no record never inherits the run before it",
+              incident_record(tmp) is None)
+        with open(os.path.join(runs, "2026-09-17",
+                               "gaswatch_incident.json"), "w") as fh:
+            json.dump({"blocker": "github", "reason": "its own",
+                       "audit_checked_utc": "2026-09-17T12:00:00Z",
+                       "attempts": ["a"], "evidence_urls": ["https://x/y"]}, fh)
+        got = incident_record(tmp)
+        check("and the newest run's own record is the one that is read",
+              isinstance(got, dict) and got.get("blocker") == "github")
+    check("an incident record has to be earned, and expires by itself",
+          all(not incident_allows(i, now) for i in [
+              None, {}, "upstream", [], 7,
+              {**incident, "blocker": "editorial"},
+              {**incident, "blocker": None},
+              {**incident, "reason": "   "},
+              {**incident, "reason": 5},
+              {**incident, "reason": None},
+              {**incident, "reason": {"why": "x"}},
+              {**incident, "reason": ["x"]},
+              {**incident, "attempts": "a string is not a list"},
+              {**incident, "evidence_urls": {"u": "https://x/y"}},
+              {**incident, "evidence_urls": [7]},
+              {**incident, "evidence_urls": ["https://"]},
+              {**incident, "evidence_urls": ["https://#fragment"]},
+              {**incident, "evidence_urls": ["https://not a url"]},
+              {**incident, "evidence_urls": ["https:///path/only"]},
+              {**incident, "evidence_urls": ["https://x/y", "https://"]},
+              {**incident, "evidence_urls": ["https://.com/x"]},
+              {**incident, "evidence_urls": ["https://example..com/x"]},
+              {**incident, "evidence_urls": ["https://example.com:bad/x"]},
+              {**incident, "evidence_urls": ["https://-bad.com/x"]},
+              {**incident, "evidence_urls": ["https://bad-.com/x"]},
+              {**incident, "evidence_urls": ["https://under_score.com/x"]},
+              {**incident, "evidence_urls": ["https://" + "a" * 64 + ".com/x"]},
+              {**incident, "evidence_urls": ["https://x/y"]},
+              {**incident, "audit_checked_utc": 20260916},
+              {**incident, "audit_checked_utc": "20260916"},
+              {**incident, "audit_checked_utc": "2026-09-16"},
+              {**incident, "audit_checked_utc": "2026-09-16T12:00:00"},
+              {**incident, "attempts": []},
+              {**incident, "attempts": ["ok", ""]},
+              {**incident, "evidence_urls": []},
+              {**incident, "evidence_urls": ["not a url"]},
+              {**incident, "audit_checked_utc": "2026-09-14T12:00:00Z"},
+              {**incident, "audit_checked_utc": "2026-09-18T12:00:00Z"},
+              {**incident, "audit_checked_utc": "whenever"}])
+          and incident_allows(incident, now))
     check("the summary line names what went wrong",
           "SITE SIGN-OFF: WARN" in summary_line(
               [("WARN", "power.json is current", "60 days old")], "WARN", 73)
@@ -874,11 +945,156 @@ def exit_code(verdict):
     return 0 if verdict == "PASS" else 2
 
 
-def ci_exit_code(rows, source, now=None):
-    """Allow only a disclosed, bounded source pause with a recent collection.
+INCIDENT_MAX_AGE_H = 36
+INCIDENT_BLOCKERS = ("upstream", "github", "credentials")
+
+
+def incident_record(repo=None, now=None):
+    """The newest runs/<date>/gaswatch_incident.json, or None.
+
+    Only the newest is read. An older run's incident says nothing about
+    today's source, and letting one stand in would be exactly the standing
+    excuse this check exists to prevent.
+    """
+    repo = repo or REPO
+    runs = os.path.join(repo, "runs")
+    if not os.path.isdir(runs):
+        return None
+    dated = [n for n in os.listdir(runs)
+             if re.fullmatch(r"\d{4}-\d{2}-\d{2}", n)
+             and os.path.isdir(os.path.join(runs, n))]
+    if not dated:
+        return None
+    # THE NEWEST RUN DIRECTORY, FULL STOP, and not the newest one that happens
+    # to carry the file. Walking back until a record turned up meant a run that
+    # shipped WITHOUT an incident, because its own audit never ran or failed
+    # before it could write evidence, silently inherited yesterday's, and the
+    # 36 hour window made that inheritance work. The exception has to be
+    # re-earned by the run that is claiming it, so if today's run has no record
+    # there is no allowance, and the stale warning blocks as it should.
+    newest = max(dated)
+    path = os.path.join(runs, newest, "gaswatch_incident.json")
+    if not os.path.isfile(path):
+        return None
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
+
+
+def incident_allows(incident, now=None):
+    """True when a committed incident record earns the one gaswatch warning.
+
+    CLAUDE.md's scheduled-job procedure says that when an upstream service,
+    GitHub, or credentials actually prevent repair, the run retains its failed
+    audit, writes a dated incident record, names the unresolved cause in the
+    Gmail draft, and ships. Without a path to green that procedure can't
+    finish, because the draft's image URLs point at main and the merge is what
+    puts them there, so an unreachable source would wedge every future run
+    rather than one.
+
+    This is not the announced-pause allowance relaxed. It is a different and
+    harder one. The pause allowance trusts the SOURCE's own published window.
+    This one trusts nothing published upstream and demands a record the run
+    had to commit: a named blocker from a closed set, a reason, what was
+    actually tried, evidence anyone can open, and a timestamp from the last
+    36 hours, so it expires by itself and has to be re-earned every day.
+    """
+    now = now or datetime.now(timezone.utc)
+    if not isinstance(incident, dict):
+        return False
+    if incident.get("blocker") not in INCIDENT_BLOCKERS:
+        return False
+    # isinstance BEFORE strip. A record whose reason is a number, an object or
+    # a list is malformed, and a malformed allowance must be REFUSED, not
+    # raise: this function is called from the --ci path, so an AttributeError
+    # here escaped main() and turned the sign-off into a broken checker with a
+    # traceback instead of the ordinary blocking result. A checker that crashes
+    # on bad input is worse than one that says no.
+    reason = incident.get("reason")
+    if not isinstance(reason, str) or not reason.strip():
+        return False
+    for key in ("attempts", "evidence_urls"):
+        seq = incident.get(key)
+        if not isinstance(seq, list) or not seq:
+            return False
+        if not all(isinstance(v, str) and v.strip() for v in seq):
+            return False
+    # EVIDENCE HAS TO BE OPENABLE, so the URL needs a host and not just a
+    # scheme. A prefix test accepted "https://", "https://#fragment" and
+    # "https://not a url", none of which anyone can open, and the whole point
+    # of this allowance is that a person can go and check what the run tried.
+    for u in incident["evidence_urls"]:
+        try:
+            bits = urlparse(u)
+        except ValueError:
+            return False
+        if bits.scheme not in ("http", "https"):
+            return False
+        # THE WHOLE AUTHORITY HAS TO BE USABLE, not merely non-empty.
+        # urlparse().hostname extracts text and validates nothing, so
+        # "https://.com/x", "https://example..com/x" and
+        # "https://example.com:bad/x" all produced a hostname and passed.
+        # Evidence nobody can open is not evidence.
+        if " " in u.strip():
+            return False
+        try:
+            port = bits.port          # raises ValueError on a bad port
+        except ValueError:
+            return False
+        if port is not None and not (0 < port < 65536):
+            return False
+        host = (bits.hostname or "").strip()
+        if not host or len(host) > 253:
+            return False
+        labels = host.split(".")
+        # A LABEL IS AT MOST 63 BYTES, and the empty one is at least 1. Both
+        # ends of that range were found by review, one round apart: the empty
+        # label let "https://.com/x" through, and a 64 character label let a
+        # name through that no resolver will ever accept, which urllib itself
+        # refuses with "label too long" before it opens a socket.
+        if any(not lb or len(lb) > 63 for lb in labels):
+            return False
+        if not all(re.fullmatch(r"[a-z0-9]([a-z0-9-]*[a-z0-9])?", lb)
+                   for lb in labels):
+            return False
+        if len(labels) < 2:                        # a bare name is not public
+            return False
+    # A STRING, not whatever str() can make of it. The integer 20260916 becomes
+    # "20260916", which fromisoformat happily reads as a date in basic format,
+    # so a record with a numeric stamp was earning the allowance. Found by this
+    # file's own battery while hardening the reason field beside it.
+    # A STRING, with a TIME, and an EXPLICIT OFFSET. Three separate holes, all
+    # of them found one at a time, which is why the requirement is spelled out
+    # rather than left to fromisoformat's generosity:
+    #   the integer 20260916 becomes "20260916" under str(), which parses as a
+    #     basic-format DATE, so a numeric stamp earned the allowance;
+    #   the string "20260923" or "2026-09-23" parses the same way, so a record
+    #     that never wrote a time at all was read as midnight and earned a
+    #     whole day of the 36 hour window it had not lived through;
+    #   a naive "2026-09-23T09:00:00" was being coerced to UTC, so a stamp from
+    #     any timezone counted as UTC.
+    # The field is written by this routine's own audit, which always emits ISO
+    # with a Z, so none of this costs an honest record anything.
+    stamp_raw = incident.get("audit_checked_utc")
+    if not isinstance(stamp_raw, str) or "T" not in stamp_raw:
+        return False
+    try:
+        stamp = datetime.fromisoformat(stamp_raw.replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return False
+    if stamp.tzinfo is None:
+        return False
+    return 0 <= (now - stamp).total_seconds() <= INCIDENT_MAX_AGE_H * 3600
+
+
+def ci_exit_code(rows, source, now=None, incident=None):
+    """Allow the one Gas Watch warning on a disclosed pause or a dated incident.
 
     Keep the WARN in the report. Every other warning/failure still blocks CI,
-    including an expired announcement or a collector that has stopped running.
+    including a collector that has stopped running, and an expired
+    announcement with no incident record behind it.
     """
     now = now or datetime.now(timezone.utc)
     try:
@@ -889,8 +1105,9 @@ def ci_exit_code(rows, source, now=None):
                  and 0 <= (now - stamp).total_seconds() <= 36 * 3600)
     except (KeyError, TypeError, ValueError):
         pause = False
+    allowed = pause or incident_allows(incident, now)
     return 0 if rows and all(
-        status == "PASS" or (pause and status == "WARN"
+        status == "PASS" or (allowed and status == "WARN"
                              and label == "gaswatch.jsonl is current")
         for status, label, _ in rows) else 2
 
@@ -922,10 +1139,18 @@ def main():
     if args.ci:
         import gaswatch_build as gw
         source = gw.source_status(gw.load_series(), date.today())
-        code = ci_exit_code(rows, source)
+        incident = incident_record()
+        code = ci_exit_code(rows, source, incident=incident)
         if not code and verdict == "WARN":
-            print("::warning::Gas Watch source is in announced maintenance; dated rows remain unavailable.",
-                  file=sys.stderr)
+            if incident_allows(incident):
+                print("::warning::Gas Watch is blocked upstream and a dated incident record "
+                      "stands behind it (blocker %s, checked %s). Dated rows remain "
+                      "unavailable and the check resumes on the next run."
+                      % (incident.get("blocker"), incident.get("audit_checked_utc")),
+                      file=sys.stderr)
+            else:
+                print("::warning::Gas Watch source is in announced maintenance; dated rows remain unavailable.",
+                      file=sys.stderr)
         return code
     return exit_code(verdict)
 

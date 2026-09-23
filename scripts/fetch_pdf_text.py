@@ -57,9 +57,14 @@ import json
 import os
 import re
 import sys
+import threading
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import url_safety  # noqa: E402  (same directory, after sys.path is set)
 
 # Federal and state document servers routinely 403 a bare urllib UA while
 # serving the same file to a browser. This is the ordinary desktop string; it
@@ -70,9 +75,39 @@ UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
 DEFAULT_MAX_MB = 48
 CHUNK = 1 << 16
 
+# The whole transfer gets this multiple of --timeout before it is abandoned.
+# Generous, because a large government PDF on a slow host is a real thing and
+# the point is to bound the worst case rather than to be strict about the
+# ordinary one. At the default 45 second timeout that is 4 minutes.
+DEADLINE_FACTOR = 6
 
-def _fetch(url, max_mb, timeout):
-    """Return (bytes, final_url, content_type) or raise RuntimeError."""
+
+class _GuardedRedirects(urllib.request.HTTPRedirectHandler):
+    """Refuse a redirect whose destination is not a public http(s) document.
+
+    urlopen follows redirects on its own, so before this the only URL anyone
+    inspected was the one typed on the command line. A public host answering
+    302 to http://127.0.0.1/ or to the metadata endpoint was enough to reach
+    inside this container. Every hop now gets the same check as the first URL.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        why = url_safety.check_url(newurl)
+        if why:
+            raise urllib.error.HTTPError(
+                newurl, code,
+                "refused a redirect to a non-public destination. %s" % why,
+                headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _fetch(url, max_mb, timeout, allow_local=False):
+    """Return (bytes, final_url, content_type) or raise RuntimeError.
+
+    allow_local is for THIS FILE'S OWN hermetic self-test, which serves its
+    fixtures from a loopback port. It is a Python argument and deliberately
+    not a command-line flag, so nothing invoked as a command can set it.
+    """
     parsed = urllib.parse.urlparse(url)
     if not parsed.scheme or (len(parsed.scheme) == 1 and os.name == "nt"):
         url = "file://" + os.path.abspath(url)
@@ -80,17 +115,125 @@ def _fetch(url, max_mb, timeout):
     if parsed.scheme not in ("http", "https", "file"):
         raise RuntimeError("scheme %r is not fetchable here; pass an http(s) "
                            "url or a local path" % parsed.scheme)
+    # THE ADDRESS IS CHECKED HERE, not only by whatever called this. Review of
+    # run No.66 found two ways past a caller-side check: a legacy numeric host
+    # such as http://2852039166/ that resolves to the metadata endpoint, and a
+    # public URL that simply answers 302 to http://127.0.0.1/. Both are about
+    # the address a socket opens rather than the string a caller typed, so the
+    # policy lives beside the socket and applies to EVERY hop.
+    #
+    # file:// is still reachable from a trusted caller, deliberately: a
+    # maintainer reading a PDF off disk is the original use. What changed is
+    # that an http(s) fetch can no longer become an internal one.
+    if parsed.scheme in ("http", "https") and not allow_local:
+        why = url_safety.check_url(url)
+        if why:
+            raise RuntimeError(why)
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
         "Accept": "application/pdf,*/*",
     })
     limit = int(max_mb * 1024 * 1024)
+    # The redirect guard is ALWAYS installed. allow_local waives the check on
+    # the first URL so this file's own loopback fixture is reachable; it does
+    # not waive the policy on where that fixture may send us next, which is
+    # the bypass being tested and is never a thing a trusted caller wants.
+    # NO PROXY ON THE allow_local PATH. build_opener picks up ProxyHandler from
+    # the environment, so this new opener quietly ignored the proxyless global
+    # opener the self-test installs and sent every loopback fixture request to
+    # the agent proxy. The hermetic tests were then testing the proxy's answer
+    # rather than their own fixtures, which is the failure mode where a green
+    # suite means nothing. The redirect guard is installed either way.
+    handlers = [_GuardedRedirects]
+    if allow_local:
+        handlers.append(urllib.request.ProxyHandler({}))
+    opener = urllib.request.build_opener(*handlers)
+    # THE CLOCK STARTS BEFORE open(), not after it. opener.open() waits for the
+    # response HEADERS, and its socket timeout resets on every byte, so a server
+    # trickling header bytes stalls the reader before the deadline below even
+    # exists. Measured: a 0.2 second timeout against a header-dribbling server
+    # was still blocked when an outer 4 second timeout killed it. The bound has
+    # to cover the connection and header phase as well as the body.
+    budget = max(1.0, float(timeout)) * DEADLINE_FACTOR
+    deadline = time.monotonic() + budget
+
+    def _open():
+        return opener.open(req, timeout=timeout)
+
+    # A WATCHDOG OVER open() ITSELF, because a check AFTER it cannot interrupt
+    # it. open() blocks until the response headers arrive and its socket
+    # timeout resets on every byte, so a server trickling header bytes stalls
+    # here before the body loop's deadline is ever consulted. Measured before
+    # this: a 0.2 second timeout against a header-dribbling server was still
+    # blocked at 14.7 seconds, and was then stopped by CPython's 100-header cap
+    # rather than by anything here, which is luck and not a bound.
+    #
+    # THE WORKER IS A RAW DAEMON THREAD, AND THAT IS THE WHOLE POINT. This was
+    # a ThreadPoolExecutor for one round and review measured what that cost:
+    # the fetch raised on schedule at 6.00 seconds and the PROCESS was still
+    # alive at 20 seconds, because an executor registers an atexit hook that
+    # joins its workers, and `shutdown(wait=False)` cancels only work that has
+    # not started. The stuck open() had started. So the caller got its
+    # exception back and the interpreter then sat waiting for the very socket
+    # the exception said had been abandoned, which is the hang the watchdog
+    # exists to prevent, moved from one place to another.
+    #
+    # A daemon thread is not joined at exit. Abandoning it really does abandon
+    # it: the caller gets control back on schedule and the socket dies with the
+    # process. The cost is that a worker which succeeds after we stopped
+    # waiting leaks its response until exit, which is the right trade for a
+    # read-only CLI that is about to exit anyway.
+    box = {}
+
+    def _open_into_box():
+        try:
+            box["opened"] = _open()
+        except BaseException as exc:          # re-raised on the caller's thread
+            box["error"] = exc
+
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        worker = threading.Thread(target=_open_into_box, name="fetch-open",
+                                  daemon=True)
+        worker.start()
+        worker.join(budget)
+        if worker.is_alive():
+            raise RuntimeError(
+                "the server took longer than %.0f seconds to send its "
+                "response headers and has been abandoned; a server that "
+                "trickles header bytes can outlast a per-read timeout. "
+                "Raise --timeout deliberately if this host really is that "
+                "slow" % budget)
+        if "error" in box:
+            # INSIDE the try, so the redirect guard's HTTPError and urllib's
+            # own errors are still handled by the clauses at the bottom rather
+            # than escaping as a traceback.
+            raise box["error"]
+        opened = box["opened"]
+        with opened as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()
             buf = io.BytesIO()
+            # A WALL-CLOCK DEADLINE ACROSS THE WHOLE TRANSFER, not just per
+            # read. urllib's timeout applies to each blocking operation, so a
+            # server that sends one byte just inside every timeout keeps this
+            # loop running forever: measured at 3.12 seconds of transfer under
+            # a 0.2 second timeout, and that scales to no limit at all. The
+            # size ceiling does not help, because a slow dribble never reaches
+            # it. A scout that never returns is a run that never finishes.
             while True:
-                chunk = resp.read(CHUNK)
+                if time.monotonic() > deadline:
+                    raise RuntimeError(
+                        "the download was still running %.0f seconds after it "
+                        "started and has been abandoned; a server that trickles "
+                        "bytes can outlast a per-read timeout forever. Raise "
+                        "--timeout deliberately if this document really is that "
+                        "slow" % budget)
+                # read1 RATHER THAN read, and this is the half that makes the
+                # deadline above reachable. read(CHUNK) blocks until it has all
+                # 64 KB or the stream ends, so a server dribbling one byte per
+                # tick stays INSIDE a single read for hours and the loop never
+                # gets to look at the clock. read1 returns whatever arrived,
+                # so the loop turns over and the deadline can fire.
+                chunk = resp.read1(CHUNK) if hasattr(resp, "read1") else resp.read(CHUNK)
                 if not chunk:
                     break
                 buf.write(chunk)
@@ -178,8 +321,8 @@ def extract(data, pages=None, max_chars=0):
 
 
 def read_pdf_text(url, pages=None, max_chars=0, max_mb=DEFAULT_MAX_MB,
-                  timeout=45):
-    data, final, ctype = _fetch(url, max_mb, timeout)
+                  timeout=45, allow_local=False):
+    data, final, ctype = _fetch(url, max_mb, timeout, allow_local=allow_local)
     rec = extract(data, pages=pages, max_chars=max_chars)
     rec["url"] = final
     rec["content_type"] = ctype
@@ -233,6 +376,48 @@ def _self_test():
         def __init__(self, *a, **kw):
             super().__init__(*a, directory=root, **kw)
 
+        def do_GET(self):
+            # One fixture that redirects somewhere it must not be followed to.
+            # A public host answering 302 to the metadata endpoint is the
+            # bypass review found, and the only way to test it is to serve one.
+            if self.path.startswith("/drip.pdf"):
+                # One byte every 0.1s, forever, which is the shape that
+                # outlasts a per-read timeout.
+                self.send_response(200)
+                self.send_header("Content-Type", "application/pdf")
+                self.end_headers()
+                try:
+                    for _ in range(3000):
+                        self.wfile.write(b"x")
+                        self.wfile.flush()
+                        time.sleep(0.1)
+                except Exception:
+                    pass
+                return
+            if self.path.startswith("/slowheaders"):
+                # A STATUS LINE AND THEN AN UNFINISHED HEADER, FOREVER. This
+                # stalls inside opener.open(), before a single body byte, and
+                # it is the case the body loop's deadline cannot see. Written
+                # raw rather than through send_header, because the point is a
+                # header that never ends.
+                try:
+                    self.wfile.write(b"HTTP/1.1 200 OK\r\n")
+                    self.wfile.flush()
+                    for _ in range(3000):
+                        self.wfile.write(b"a")
+                        self.wfile.flush()
+                        time.sleep(0.1)
+                except Exception:
+                    pass
+                return
+            if self.path.startswith("/redirect-to-metadata"):
+                self.send_response(302)
+                self.send_header("Location",
+                                 "http://169.254.169.254/latest/meta-data/")
+                self.end_headers()
+                return
+            return super().do_GET()
+
         def log_message(self, *a):
             pass
 
@@ -245,29 +430,81 @@ def _self_test():
     urllib.request.install_opener(opener)
     fails = []
     try:
-        rec = read_pdf_text(base + "doc.pdf")
+        rec = read_pdf_text(base + "doc.pdf", allow_local=True)
         if needle not in rec["text"]:
             fails.append("fetched PDF did not yield its own text: %r"
                          % rec["text"][:120])
         if rec["pages_total"] != 1:
             fails.append("page count read as %r" % rec["pages_total"])
 
+        # THE WHOLE-TRANSFER DEADLINE. A server that trickles one byte just
+        # inside every per-read timeout outlasts that timeout forever, so this
+        # serves exactly that and asserts the fetch is abandoned. Without the
+        # deadline, or with read() in place of read1(), this hangs.
+        t0 = time.monotonic()
         try:
-            read_pdf_text(base + "login.html")
+            read_pdf_text(base + "drip.pdf", timeout=0.2, allow_local=True)
+            fails.append("a trickling server was never abandoned")
+        except RuntimeError as exc:
+            if "abandoned" not in str(exc):
+                fails.append("trickle refused for the wrong reason: %s" % exc)
+        elapsed = time.monotonic() - t0
+        if elapsed > 30:
+            fails.append("the deadline took %.1fs to fire" % elapsed)
+
+        # THE HEADER PHASE, which is a different stall from the one above and
+        # needed its own fixture. This server sends a status line and then one
+        # byte of a header that never ends, so it blocks inside open() where
+        # the body loop's deadline is not yet running.
+        t0 = time.monotonic()
+        try:
+            read_pdf_text(base + "slowheaders", timeout=0.2, allow_local=True)
+            fails.append("a header-dribbling server was never abandoned")
+        except RuntimeError as exc:
+            if "response headers" not in str(exc):
+                fails.append("header stall refused for the wrong reason: %s" % exc)
+        elapsed = time.monotonic() - t0
+        if elapsed > 30:
+            fails.append("the header watchdog took %.1fs to fire" % elapsed)
+        # AND THE ABANDONED WORKER MUST BE A DAEMON. It is still stuck in
+        # open() right now, and if it were an ordinary thread the interpreter
+        # would join it at exit and the process would park for as long as the
+        # server cared to dribble. Review measured exactly that: the fetch
+        # raised at 6.00s and the process was still alive at 20s. A named
+        # daemon thread is the fix, so the property is asserted rather than
+        # described.
+        stuck = [t for t in threading.enumerate() if t.name == "fetch-open"]
+        if not stuck:
+            fails.append("no abandoned worker to check, so this proves nothing")
+        elif not all(t.daemon for t in stuck):
+            fails.append("the abandoned open() worker is not a daemon, so the "
+                         "process will park at exit waiting for it")
+
+        # THE REDIRECT GUARD, exercised through the real opener. allow_local
+        # is deliberately NOT passed, so this is the same path a scout takes.
+        try:
+            read_pdf_text(base + "redirect-to-metadata", allow_local=True)
+            fails.append("a redirect to the metadata endpoint was followed")
+        except RuntimeError as exc:
+            if "non-public" not in str(exc) and "refused a redirect" not in str(exc):
+                fails.append("redirect refused for the wrong reason: %s" % exc)
+
+        try:
+            read_pdf_text(base + "login.html", allow_local=True)
             fails.append("an HTML page was accepted as a PDF")
         except RuntimeError as exc:
             if "not a PDF" not in str(exc):
                 fails.append("HTML rejected for the wrong reason: %s" % exc)
 
         try:
-            read_pdf_text(base + "doc.pdf", max_mb=0.0001)
+            read_pdf_text(base + "doc.pdf", max_mb=0.0001, allow_local=True)
             fails.append("the size ceiling did not fire")
         except RuntimeError as exc:
             if "ceiling" not in str(exc):
                 fails.append("size ceiling raised the wrong error: %s" % exc)
 
         try:
-            read_pdf_text(base + "missing.pdf")
+            read_pdf_text(base + "missing.pdf", allow_local=True)
             fails.append("a 404 was reported as a document")
         except RuntimeError as exc:
             if "404" not in str(exc):
@@ -287,7 +524,7 @@ def _self_test():
     for f in fails:
         print("FAIL  " + f)
     print("fetch_pdf_text self-test: %s (%d checks)"
-          % ("FAIL" if fails else "PASS", 6))
+          % ("FAIL" if fails else "PASS", 8))
     return 1 if fails else 0
 
 

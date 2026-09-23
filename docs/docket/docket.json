@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-07-08",
@@ -240,6 +240,10 @@
         {
           "date": "2026-09-15",
           "note": "Checked and unchanged against the preliminary decision notice, Alaska DNR Online Public Notices id 224224. The notice still offers STAK Energy Corporation a 50 year lease on 715.4 acres, still carries the 4:30 p.m. July 17th comment close, and still shows its June 17th modification and a July 18th archive date. Nothing has been posted since the comment period closed, and DNR has published no date for a final best interest decision."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the DNR preliminary decision notice for ADL 422741 today. It still stands as a preliminary decision to offer a 50-year lease on 715.4 acres near Deadhorse, the comment period still shows as having closed at 4:30 p.m. on July 17th, and no Final Finding and Decision has been posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -1689,7 +1693,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-08-02",
@@ -1750,6 +1754,10 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged. The state notice for request for information 02-101-27, Automatic Compliance and Data Integration CDL, still shows Amendment One as the current posting, with responses due at 2:00 p.m. on August 20th and an archive date of August 21st. No award, cancellation or follow-on solicitation has been posted."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the state's public notice today. The request for information closed to vendors at 2 p.m. on August 20th and the notice carries an archive date of August 21st. Amendment One, issued August 7th, is still the last document attached. No solicitation and no award has followed it. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1946,7 +1954,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-21",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-08-05",
@@ -2011,6 +2019,10 @@
         {
           "date": "2026-09-21",
           "note": "Re-verified today against the grants listing. Opportunity HHS-2026-ACF-ANA-NAI-0035 shows status closed, applications having been due August 27th, with the posting archiving on September 26th. One award is expected, with a ceiling of $3,500,000 and a floor of $2,500,000. No recipient has been announced. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the Grants.gov opportunity today. HHS-2026-ACF-ANA-NAI-0035 closed to applications on August 27th, the award ceiling and total program funding both still read $3,500,000, and the listing carries an archive date of September 26th. No award has been posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2829,7 +2841,7 @@
       "status": "pending-decision",
       "decider": "Anchorage Assembly",
       "public_access": "indirect",
-      "access_note": "There is a way in again. Must Read Alaska reported on September 7th, 2026 that the ordinance is AO-2026-108 and that Anchorage residents can testify on it at the Assembly's regular meeting on September 15th, 2026 or online. That number and that date come from one outlet, because the municipality's own agenda system refuses an automated request and the ordinance text is still not readable anywhere else. Anyone relying on this should confirm the item is on the agenda before showing up, and writing to an Assembly member remains the surer route.",
+      "access_note": "The Assembly took public testimony on September 15th and then held the ordinance without voting, so the next opportunity is the regular meeting on October 20th. Anyone relying on that date should confirm the item is on the published agenda before showing up, because the municipality's agenda system refuses an automated request and the ordinance text is still not readable anywhere this record can reach.",
       "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th, reported as AO-2026-108, that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
       "key_dates": [
         {
@@ -2859,7 +2871,7 @@
         },
         {
           "date": "2026-09-15",
-          "label": "Public testimony on AO-2026-108 at the regular Assembly meeting, in person or online",
+          "label": "Public testimony taken at the regular Assembly meeting, then the ordinance held",
           "kind": "deadline"
         },
         {
@@ -2911,7 +2923,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-08-25",
@@ -2980,6 +2992,10 @@
         {
           "date": "2026-09-19",
           "note": "Re-verified today. The Assembly did not act on AO 2026-108 on September 15th. It voted unanimously to postpone further work on the surveillance rules until its regular meeting on October 20th. Two texts are now in play, the sponsors' original and a substitute drafted by the municipal Department of Law, and the sponsors say they could not reach agreement with the administration on how long data may be held and on what the Assembly must approve before police acquire a technology. Yarrow Silvers urged the body not to rush a policy it does not yet fully understand. Verified against Anchorage Daily News reporting of September 16th, the municipality's own agenda system still refusing an automated read."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Checked today. The Assembly did not vote on AO 2026-108 at its September 15th meeting. Members voted unanimously to delay further discussion to the regular meeting on October 20th, with the sponsors and the administration still apart on the details. Vice Chair Daniel Volland said the sponsors were unable to come into full agreement with the administration and that the measure needs stronger language and stronger protections. Member Yarrow Silvers cautioned against passing a rushed version. Reported by the Anchorage Daily News on September 16th. The item stays pending and the October date is now the live one."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3035,7 +3051,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-20",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-08-31",
@@ -3064,6 +3080,10 @@
         {
           "date": "2026-09-20",
           "note": "Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, and reply comments are due on or before October 30th. Ten days remain to file."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -3462,7 +3482,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-20",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-09-13",
@@ -3475,24 +3495,38 @@
         {
           "date": "2026-09-20",
           "note": "Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Twelve days remain to file."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the Federal Register text today. Written comments are still due October 2nd in docket DOT-OST-2026-3269, and the notice still names data centers among the uses it wants sited beside the corridors. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
     },
     {
       "id": "matsu-alpr-prohibition",
-      "title": "Mat-Su weighs a flat ban on automated license plate readers",
+      "title": "Mat-Su bans automated license plate readers",
       "kind": "legislation",
-      "status": "pending-decision",
+      "status": "decided",
       "decider": "Matanuska-Susitna Borough Assembly",
-      "public_access": "indirect",
-      "access_note": "The public hearing was held on September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer. That testimony window has passed and the Assembly now decides, so the route to it is an Assembly member.",
-      "summary": "Ordinance OR 26-106 would adopt a new borough code chapter, MSB 23.30, whose title states that it would prohibit the acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology. It is a prohibition rather than a set of conditions, which makes it the opposite instrument to the surveillance rules Anchorage is weighing forty miles away. The borough's own public notice lists it for hearing alongside four other ordinances and names no sponsor.",
+      "public_access": "closed",
+      "access_note": "The Assembly adopted the ordinance on September 15th, so there is no comment room left on this measure. The borough code it creates, MSB 23.30, is the public record of what was decided, and an Assembly member is the route to any change to it.",
+      "summary": "Ordinance Serial No. 26-106 adopts a new borough code chapter, MSB 23.30, whose title states that it prohibits the acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology. Assemblymember Bernier moved to introduce it on September 1st and to set the public hearing. A motion to adopt carried on September 15th. The borough's legislative record contradicts itself on who moved adoption, its action text naming one member and its structured mover field another, so this record does not name that mover. It is a prohibition rather than a set of conditions, which makes it the opposite instrument to the surveillance rules the neighbouring Anchorage Assembly is weighing. The borough's legislative record carries no vote tally for either motion, only that each one passed.",
       "key_dates": [
+        {
+          "date": "2026-09-01",
+          "label": "Introduced by Assemblymember Bernier, who also moved to set the public hearing",
+          "kind": "milestone"
+        },
         {
           "date": "2026-09-15",
           "label": "Public hearing at the Assembly meeting, 6 p.m., Assembly Chambers, Palmer",
-          "kind": "deadline"
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "Assembly adopts Ordinance Serial No. 26-106",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -3505,14 +3539,23 @@
           "url": "https://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date",
           "outlet": "Matanuska-Susitna Borough",
           "date": "2026-09-15"
+        },
+        {
+          "url": "https://webapi.legistar.com/v1/matanuska/matters?$filter=MatterFile%20eq%20%27OR%2026-106%27",
+          "outlet": "Matanuska-Susitna Borough legislative record",
+          "date": "2026-09-15"
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-09-15",
           "note": "Added from the borough's own public hearing notice, which prints the full title. The notice sets the hearing for Tuesday September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer, and lists OR 26-106 alongside OR 26-102 through OR 26-105. The notice does not name a sponsor and does not carry the ordinance text, so nothing is recorded here about what the prohibition would cover beyond the words of the title. The outcome of the hearing is not yet published."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Checked against the borough's own legislative record today. Ordinance Serial No. 26-106 passed on September 15th, the same day as its public hearing. The record also shows the introduction on September 1st, moved by Assemblymember Bernier, who set the hearing date at the same time. It CONTRADICTS ITSELF on who moved adoption, its action text naming one member and its structured mover field another, so no mover is named here for that motion. No vote tally is published in the record, so none is printed here."
         }
       ],
       "url": "https://alaskaaihq.com/docket/matsu-alpr-prohibition/"
@@ -3576,7 +3619,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-20",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-09-15",
@@ -3597,6 +3640,10 @@
         {
           "date": "2026-09-20",
           "note": "The companion resolution was adopted on September 15th by a vote of 7 yes, 0 no and 2 absent, recorded on the signed resolution itself. It urges the Legislature and the Governor to prohibit weather modification and geoengineering, or in place of a ban to require notice and permits carrying civil or criminal penalties, and asks Alaska's congressional delegation to review federal law to strengthen notice and reporting before such activities take place. The ordinance is a separate measure and remains introduced rather than enacted."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still in New Business with no final action recorded, and its own title still carries the October 20th hearing date. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"

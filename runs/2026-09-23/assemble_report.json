@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-23/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5635742,
+  "pdf_mb": 5.64,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-23/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-23/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "What Mat-Su's Plate Reader Ban Actually Reaches",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "35c4e7ae2fed26c0b17379cf42a77034378475f3a821859cea861174c1fcc0e2",
+        "bytes": 986781
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "55cf9b0bcf3fe45613613ba3e32107b4bae17dce515420c872abf435a3461492",
+        "bytes": 1336486
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "6ab2ff87944e6202bcc22414f5fda0e7c506ae7a8cfb11300f93e8d43a98b78d",
+        "bytes": 1403860
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "d1d1501f5bdf351e0c296305602cb33ff362a003f23b6db74134354258183c40",
+        "bytes": 1675281
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "01598536cf866e353e2d3cd99241ac861671dac1c15b93473cf8c323ac99de6b",
+        "bytes": 438216
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "0677d9a1d47171f9153f7cac9d2b1b7e211071fb37e0748ca71a5350ab4a08c5",
+        "bytes": 633284
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "099df011ce2f9c581366e3a79b2cb7d9d1d135403b7248db9bdfa3c0e5e4af7e",
+        "bytes": 1341275
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "56fbc236cf0c92ecc89a5a57d946d04ff830f7d05faebc1200d603eb7324e654",
+        "bytes": 1089257
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "bcefbbf01abb63d489078d4b0d684701ccb10e21b4ebee4048c8a750e3ae1562",
+        "bytes": 988048
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "54fd58514a86ca29d02b5d8017790ceddb89b9660411ed844ab7c0c2485b17e5",
+        "bytes": 9280
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "697ea54b0e17da3e9b11937418f386357222a6660d0b5646172c0c35cee6e9bb",
+        "bytes": 9329
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "4cd7d91ba9e5307bffaacd48563f030820ffce6557f73696ebebccb4a56131ab",
+        "bytes": 8827
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "add02a48af94062a63dcc38994099460c5b512078e4924d6be57d357d9ebbd12",
+        "bytes": 8579
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "83db6da61aeebf1f2c346e39bc4227c69b627e7b234b6ddc8244e0bfc67af5f6",
+        "bytes": 7799
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "e04853f25ddb127dd76bd5e2583a92c72ceca4b950429a191cee68cd283ea8ad",
+        "bytes": 11014
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e374531284f3c46d1d3ab33578cfaece3708b9afa794810bb02ea50505576be8",
+        "bytes": 8729
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "40a06753f7155e9e8d01e39ee575f1bd7d159a58f8443063072d8942725b141e",
+        "bytes": 9391
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "80ca4e8e7d4b4405780a7f7bcacf9d94baff77389c74afea396ac76930298a8c",
+        "bytes": 9477
+      }
+    ]
+  }
+}

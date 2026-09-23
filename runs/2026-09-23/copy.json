@@ -1,0 +1,179 @@
+{
+  "run_date": "2026-09-23",
+  "carousel_no": 66,
+  "document_title": "What Mat-Su's Plate Reader Ban Actually Reaches",
+  "post_copy": "Five agencies police the Matanuska-Susitna Borough. The borough is not one of them.\n\nOn September 15th its assembly adopted Ordinance Serial No. 26-106 unanimously, the same night as the public hearing, in force on adoption. The chapter bars borough departments, employees, contractors and money from acquiring or operating automated plate readers. One section bars the borough from even receiving data from an operator. Eight borough officials had signed the routing block in August.\n\nThe ordinance and its information memorandum carry six of the nine frames. The borough's own law enforcement page carries two. The Anchorage Daily News carries one.\n\nThat reach is real and it stops at the borough's own desk. So which sentence of MSB 23.30 still binds anything if the troopers mount a plate reader on a Mat-Su road tomorrow?\n\n#MatSuBorough #AlaskaPolicy #LicensePlateReaders",
+  "deck_summary_line": "The ordinance and its information memorandum carry six of the nine frames. The borough's own law enforcement page carries two. The Anchorage Daily News carries one.",
+  "caption_meta": {
+    "opening_move": "COUNTED AUTHORITY, THEN THE ABSENT BODY",
+    "structure": "INVERTED PYRAMID",
+    "closing_move": "NEW: WHICH CLAUSE SURVIVES THE HYPOTHETICAL",
+    "hook_type": "declarative count then absence"
+  },
+  "first_comment": "Sources for this deck, in the order the slides use them.\n\nOrdinance Serial No. 26-106, adopted September 15th, the full text and the unanimous vote line\nhttps://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf\n\nInformation Memorandum 26-181, the intent, the summary and the August routing block\nhttps://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF\n\nMatanuska-Susitna Borough legislative record for OR 26-106, status, dates and sponsor\nhttps://webapi.legistar.com/v1/matanuska/matters?$filter=MatterFile+eq+'OR+26-106'\n\nThe same record's action history, the September 1st introduction and the September 15th adoption\nhttps://webapi.legistar.com/v1/matanuska/matters/34670/histories\n\nMatanuska-Susitna Borough, law enforcement, the borough's own statement that it has no police powers and the five agencies it lists\nhttps://matsu.gov/police\n\nMatanuska-Susitna Borough Assembly, the roster of seven members\nhttps://matsu.gov/assembly\n\nMatanuska-Susitna Borough, notice of public hearing for the September 15th meeting\nhttps://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date\n\nAlaska Department of Labor and Workforce Development, 2025 population estimates by borough\nhttps://live.laborstats.alaska.gov/pop/index.cfm\n\nAnchorage Daily News, September 16th, on the Anchorage Assembly holding AO 2026-108(S) to October 20th\nhttps://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "ORDINANCE SERIAL NO. 26-106",
+      "headline": "Mat-Su banned plate readers the night it was heard.",
+      "body": "ADOPTED UNANIMOUSLY. IN FORCE ON ADOPTION.",
+      "claim_ids": [
+        "c01",
+        "c03",
+        "c04",
+        "c13",
+        "c18",
+        "c19",
+        "c25"
+      ],
+      "labels": [
+        "SPONSORED BY ASSEMBLYMEMBER BOWLES",
+        "ADOPTED WITHOUT OBJECTION",
+        "ONE TICK PER MEMBER"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "MSB 23.30.010 DEFINITION",
+      "headline": "The borough wrote down what the machine is.",
+      "body": "The chapter defines it as one or more high-speed camera units, alone or combined with algorithms and optical character recognition, turning images of plates, makes, models, colors and unique vehicle identifiers into computer-readable data.",
+      "claim_ids": [
+        "c07",
+        "c15"
+      ],
+      "labels": [
+        "CAMERA UNITS",
+        "ALGORITHM AND OCR",
+        "IDENTIFIER CLASSES",
+        "COMPUTER-READABLE DATA",
+        "The ordinance finds these systems create a permanent tracking record of everyday citizens, without reasonable suspicion or a warrant."
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHO EACH SENTENCE BINDS",
+      "headline": "The subject never changes.",
+      "body": "No Borough department, division, employee, or agent",
+      "claim_ids": [
+        "c05",
+        "c06",
+        "c09",
+        "c10",
+        "c11",
+        "c12"
+      ],
+      "labels": [
+        "may acquire, lease, borrow, install, maintain, or operate",
+        "No Borough funds, personnel, or resources",
+        "may be allocated toward entering into, renewing, or extending any contract",
+        "Any contract or agreement in violation of this chapter",
+        "is void ab initio and unenforceable",
+        "MSB 23.30 ALPR SYSTEMS PROHIBITED",
+        "GENERAL AND PERMANENT. PART OF THE BOROUGH CODE."
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "MSB 23.30.030(A)",
+      "headline": "It can't collect the data. It can't be handed it.",
+      "body": "\"The Borough and its departments are prohibited from accessing, querying, uploading data to, or receiving data from any ALPR operator, network, database, or private surveillance network.\"",
+      "claim_ids": [
+        "c11"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE BOROUGH'S OWN LAW ENFORCEMENT PAGE",
+      "headline": "\"The borough does not have police powers.\"",
+      "body": "That is the borough's own sentence, on its own site. Some of its cities do have them. The state troopers patrol here.",
+      "claim_ids": [
+        "c30"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "WHO CAN POLICE HERE",
+      "headline": "Five agencies police this boundary.",
+      "body": "ABOUT 117,400 PEOPLE LIVE INSIDE THIS LINE, PER STATE LABOR ESTIMATES FOR 2025",
+      "claim_ids": [
+        "c30",
+        "c31",
+        "c34"
+      ],
+      "labels": [
+        "WASILLA POLICE",
+        "PALMER POLICE",
+        "CHICKALOON TRIBAL POLICE",
+        "ALASKA STATE TROOPERS",
+        "STATE WILDLIFE TROOPERS",
+        "MATANUSKA-SUSITNA BOROUGH",
+        "NO POLICE POWERS"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "MSB 23.30.010 WHO IS BOUND",
+      "headline": "The operator it names is the borough itself.",
+      "body": "An ALPR Operator, in the chapter's own words, is any Borough department, division, employee, or third-party contractor acting under contract with the Borough. Eight borough officials signed the routing block between August 19th and August 21st, weeks before it reached the floor. On September 15th, another assembly took up the same question.",
+      "claim_ids": [
+        "c08",
+        "c28",
+        "c29",
+        "c01",
+        "c35"
+      ],
+      "labels": [
+        "SIGNED AUGUST 19TH",
+        "TO AUGUST 21ST",
+        "IN FORCE ON ADOPTION"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "THE SAME DAY, THE NEXT BOROUGH SOUTH",
+      "headline": "One body wrote the limit. The other kept drafting.",
+      "body": "Anchorage Assembly members voted unanimously to postpone their own police surveillance ordinance, AO 2026-108(S), to their regular meeting on October 20th, the Anchorage Daily News reported. The paper quoted one member asking for stronger language and stronger protections.",
+      "claim_ids": [
+        "c35",
+        "c36",
+        "c37"
+      ],
+      "labels": [
+        "MATANUSKA-SUSITNA BOROUGH",
+        "SEPTEMBER 15TH / ADOPTED",
+        "ANCHORAGE DAILY NEWS",
+        "POSTPONED TO OCTOBER 20TH",
+        "DASHED MEANS NOT YET LAW, NOT AN UNCERTAIN BOUNDARY",
+        "ALASKA.AI HAS COVERED THAT ORDINANCE TWICE. THIS FRAME IS NOT ABOUT ANCHORAGE."
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "MSB 23.30, IN FORCE",
+      "headline": "A limit written before the power exists.",
+      "body": "Mat-Su bound its own departments, its own money and its own contracts, unanimously, for a machine it has no police powers to run.",
+      "claim_ids": [
+        "c09",
+        "c10",
+        "c13",
+        "c18",
+        "c30",
+        "c36"
+      ],
+      "labels": [
+        "Foresight, or a line drawn where nobody was standing?",
+        "ANCHORAGE ANSWERS OCTOBER 20TH",
+        "ALASKA.AI"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Paste the first comment within 60 seconds of posting. The sources live there and nowhere else.",
+    "Reply substantively to every comment in the first 60 to 90 minutes. A dead first hour is rarely recovered.",
+    "If a Mat-Su reader disputes the police powers point, the borough's own page is the answer and the link is in the first comment.",
+    "The Anchorage half of slide 08 rests on one newspaper report. If challenged, say so plainly rather than defending it as documented.",
+    "Anchorage takes its ordinance up again on October 20th. That is the live date for any Anchorage reader who asks what they can do.",
+    "Do not claim the ordinance bans plate readers in the Mat-Su. It binds the borough. The troopers and the city departments are not covered."
+  ],
+  "editor_notes_for_email": "READ BEFORE POSTING.\n\n1. The Anchorage Daily News is the deck's only secondary source and it carries THREE sentences across three frames, not one. Slide 08's body is built on its September 16th report and names the paper twice. Slide 07's closing sentence rests on the same report (c35), and slide 09's forward date rests on it too (c36). Anchorage's own Legistar API returned HTTP 500 for AO 2026-108(S), so no primary record was reachable. Everything else in the deck is primary, from two borough PDFs, the borough's Legistar record and the borough's own law enforcement page. If anyone presses on sourcing, that is the answer.\n\n2. The deck deliberately refuses a verdict. It does not say the ordinance is empty and does not say it is a breakthrough. Both readings are available from the record and the deck hands the reader the fork. Do not resolve it in the post or in a reply.\n\n3. Numbers that are easy to get wrong. The ordinance prints NO numeric tally, so it is 'passed unanimously' or 'all seven members' and never '7 to 0'. The population figure is 'about 117,400, per state labor estimates for 2025' and is never given as an exact count. The measure is AO 2026-108(S) with the (S), because it is a substitute. The record contradicts itself on who moved adoption, so do not name that member.\n\n4. The borough's five policing agencies are Wasilla Police, Palmer Police, Chickaloon Tribal Police, the Alaska State Troopers and the Alaska State Wildlife Troopers. None of them is a borough department, which is the whole argument of the deck, and the borough's own law enforcement page is the source for it.\n\n5. The caption's summary line names which sources carry how many frames. It is a primary-carrier attribution and not an exhaustive partition. The Alaska Department of Labor estimate behind slide 06's population figure is in the first comment rather than in that line.\n\n6. First comment carries the source block. Post it as the first comment, not in the body.\n\n7. prompts/NEXT_RUN.md is STILL PARKED and was not used or archived this run. It holds the North Pacific Council brief on the 2027 Annual Deployment Plan and its own first line says DO NOT USE BEFORE OCTOBER 14TH, because the Council does not act until its October 5th to 13th meeting. This run selected its own story and left that file in place. The next run that fires on or after October 14th should pick it up.\n"
+}

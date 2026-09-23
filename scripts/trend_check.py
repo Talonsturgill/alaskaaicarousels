@@ -74,6 +74,90 @@ def remember(name):
 NONE_ISH = re.compile(r"^\s*(none|no hard fail|n/?a|zero)\b", re.I)
 
 
+WEAKEST_NAME_KEYS = ("name", "criterion", "weakest_criterion", "title", "label")
+
+# The instruction a scorer writes beside the criterion, under whichever of
+# these names it used. When weakest_criterion is an OBJECT, the fix usually
+# travels inside it, and reading only the name threw it away.
+WEAKEST_FIX_KEYS = ("one_sentence_fix", "fix", "fix_next_time",
+                    "next_run_fix", "instruction")
+
+
+def weakest_criterion_name(value):
+    """Resolve a score report's weakest-criterion value to a NAME, or complain.
+
+    WHY (2026-09-23). The scorer's schema declares `weakest_criterion` as a
+    string and every shipped report writes one except runs/2026-09-14, which
+    wrote the whole row as an object:
+    {"name": "Artwork craft and genuine detail", "score": 7, "one_sentence_fix":
+    "..."}. This function's callers used to take that value as a name, str() it
+    and slice it, so the repeat-offender table printed a criterion literally
+    called `{'name'` with a dash for its mean, AND the run's real weakest
+    criterion was tallied under that garbage key instead of its own. Artwork
+    craft is the house's standing weakness and it was being UNDER-COUNTED by
+    the one report every run reads in Phase 0 to choose what to attack.
+
+    Returns (name, problem). `name` is a non-empty str or None. `problem` is a
+    str naming a shape this cannot read, or None. A shape we do not understand
+    is REPORTED rather than stringified, because a junk row that reads like
+    data is worse than a missing row: nobody audits a row they believe.
+    """
+    if value is None or value == "" or value == [] or value == {}:
+        return None, None
+    if isinstance(value, str):
+        return (value.strip() or None), None
+    if isinstance(value, bool) or isinstance(value, (int, float)):
+        return None, ("weakest_criterion is a %s (%r), not a criterion name"
+                      % (type(value).__name__, value))
+    if isinstance(value, dict):
+        for k in WEAKEST_NAME_KEYS:
+            v = value.get(k)
+            if isinstance(v, str) and v.strip():
+                return v.strip(), None
+        return None, ("weakest_criterion is an object carrying no name key "
+                      "(has %s; expected one of %s)"
+                      % (", ".join(sorted(map(str, value))) or "nothing",
+                         ", ".join(WEAKEST_NAME_KEYS)))
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            nm, _ = weakest_criterion_name(item)
+            if nm:
+                return nm, None
+        return None, ("weakest_criterion is a %d-item list carrying no usable "
+                      "name" % len(value))
+    return None, ("weakest_criterion has unsupported type %s"
+                  % type(value).__name__)
+
+
+def weakest_criterion_fix(value):
+    """The one-sentence fix carried INSIDE an object-shaped weakest_criterion.
+
+    WHY (2026-09-23, the round after weakest_criterion_name). Normalising the
+    2026-09-14 shape to a name alone threw away the instruction sitting beside
+    it. That shape carries both:
+
+        {"name": "Artwork craft and genuine detail", "score": 7,
+         "one_sentence_fix": "Fill and shade slide 03's mail tote ..."}
+
+    and those reports have no top-level fix, so the maintainer's email printed
+    "Fix next time: not stated by the scorer" about a report that stated it
+    plainly. The fix is the whole point of the field: it is what the next run
+    reads to decide what to work on. Recovering a name and discarding the
+    instruction is a worse failure than the junk row this normalisation was
+    written to remove, because it is silent and it reads as true.
+
+    Returns a non-empty str or None. Callers prefer a top-level fix and fall
+    back to this, so an explicit top-level value always wins.
+    """
+    if not isinstance(value, dict):
+        return None
+    for k in WEAKEST_FIX_KEYS:
+        v = value.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return None
+
+
 def iter_hard_fails(s):
     """Yield hard-fail texts across every container shape the corpus uses.
 
@@ -180,11 +264,13 @@ def load_runs(runs_dir):
             if nm and sc is not None:
                 rec["scores"][remember(nm)] = sc
 
-        w = first(s, "weakest_criterion")
+        w, w_problem = weakest_criterion_name(first(s, "weakest_criterion"))
         if not w:
-            wc = s.get("weakest_criteria")
-            if isinstance(wc, list) and wc:
-                w = wc[0]
+            w2, w2_problem = weakest_criterion_name(s.get("weakest_criteria"))
+            w = w2 or w
+            w_problem = w_problem or w2_problem
+        if w_problem:
+            broken.append((d.name, "score_report.json " + w_problem))
         if w:
             remember(w)
             rec["weakest"] = match_weakest(w, set(rec["scores"]))
@@ -410,6 +496,63 @@ def render(rep, top, stale):
     return "\n".join(L)
 
 
+def self_test():
+    """Exercise the weakest-criterion normaliser over every shape the corpus
+    has produced, plus the shapes it must refuse. Run: --self-test."""
+    ok = True
+    cases = [
+        # (value, expected name, expects a problem)
+        ("Artwork craft and genuine detail", "Artwork craft and genuine detail", False),
+        ("  Legibility and platform fitness  ", "Legibility and platform fitness", False),
+        # the 2026-09-14 shape this was built for
+        ({"name": "Artwork craft and genuine detail", "score": 7,
+          "one_sentence_fix": "give the engraved field a second frequency"},
+         "Artwork craft and genuine detail", False),
+        ({"criterion": "Alaska authenticity"}, "Alaska authenticity", False),
+        (["Artwork craft and genuine detail", "Legibility"],
+         "Artwork craft and genuine detail", False),
+        ([{"name": "Artwork craft and genuine detail"}],
+         "Artwork craft and genuine detail", False),
+        (None, None, False),
+        ("", None, False),
+        ({}, None, False),
+        ([], None, False),
+        # shapes that must be reported, never stringified into a criterion
+        ({"score": 7, "one_sentence_fix": "..."}, None, True),
+        (7, None, True),
+        (True, None, True),
+        ([{"score": 7}], None, True),
+        (object(), None, True),
+    ]
+    for value, want_name, want_problem in cases:
+        got_name, got_problem = weakest_criterion_name(value)
+        label = repr(value)[:60]
+        if got_name != want_name:
+            print("  FAIL  %s -> name %r, expected %r" % (label, got_name, want_name))
+            ok = False
+        if bool(got_problem) != want_problem:
+            print("  FAIL  %s -> problem %r, expected %s"
+                  % (label, got_problem, "one" if want_problem else "none"))
+            ok = False
+
+    # And the thing the defect actually did: canon() of a stringified mapping
+    # produces a key that is not any criterion, which is how the junk row was
+    # born. Prove the normaliser stops it reaching canon().
+    bad = {"name": "Artwork craft and genuine detail", "score": 7}
+    if canon(bad).startswith("name"):
+        pass  # this is exactly the old behaviour, quoted here as the defect
+    else:
+        print("  FAIL  canon() of a mapping no longer reproduces the defect; "
+              "the self-test's premise is stale")
+        ok = False
+    if weakest_criterion_name(bad)[0] != bad["name"]:
+        print("  FAIL  the normaliser did not recover the name from the mapping")
+        ok = False
+
+    print("trend_check self-test: %s (%d cases)" % ("PASS" if ok else "FAIL", len(cases)))
+    return 0 if ok else 1
+
+
 def main():
     ap = argparse.ArgumentParser(description="repeat-offender report across shipped runs")
     ap.add_argument("--runs-dir", default=str(REPO / "runs"))
@@ -422,7 +565,12 @@ def main():
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--require", action="store_true",
                     help="exit 1 if a repeat offender is STALE (advisory by default)")
+    ap.add_argument("--self-test", action="store_true",
+                    help="check the weakest-criterion normaliser and exit")
     args = ap.parse_args()
+
+    if args.self_test:
+        return self_test()
 
     runs_dir = Path(args.runs_dir)
     if not runs_dir.is_dir():

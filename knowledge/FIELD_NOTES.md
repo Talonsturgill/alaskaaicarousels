@@ -7,6 +7,137 @@ into the doctrine/library files and prune here.
 
 ---
 
+## 2026-09-23, No.66. THE HOUSE DEFECT, ATTACKED AT ITS CAUSE FOR ONCE.
+
+Artwork craft has been the weakest criterion in 7 of the last 10 runs, mean 6.9.
+This run went at it with the engraver's bench (technique 93) as the whole tone
+system and finished with `qa.py` at PASS, zero fails and ZERO WARNINGS across
+nine frames, which this studio has not managed before on a deck built from one
+generative idiom. Four lessons, in the order they were worth.
+
+- **READ THE CHECK BEFORE YOU TUNE AGAINST IT.** AKENGRAVE's lay-collapse
+  warning names an alignment figure and suggests two remedies in prose. Round
+  four spent two attempts on the prose: second-axis sine terms everywhere, which
+  moved alignment not at all, then trial `seedDeg` values, which fixed three
+  regions and broke two. Opening `_layCheck` in `assets/js/akengrave.js` took
+  under a minute and turned the fix into arithmetic. Alignment is the mean
+  absolute cosine between the seeding raster and the WALK direction; the walk
+  runs along the isolines at `atan2(gx,-gy) + angOff`; `angOff` is 0 for the main
+  channel and `crossDeg` for the cross channel. **One `eng.surface` call therefore
+  has TWO angles to avoid, 90 degrees off each of those, and the safe `seedDeg`
+  is the midpoint between the two perpendiculars.** Slide 03's terraces went to
+  `[114,122,130,138]` and slide 04's trough to 116, derived not guessed, and nine
+  warnings went to zero on the first try. This belongs in the technique library.
+
+- **A CONTEXT BAND DOES NOT NEED TWO CHANNELS.** Dropping `cross` to 0 on the
+  bands and aprons behind type (slides 02, 04, 05, 07), with the main budget
+  raised to compensate, cut the lay warnings almost in half AND cured the moire
+  the scorer had flagged as a separate finding. One channel behind type, two
+  channels on objects, is the rule that came out of it.
+
+- **PROTOTYPE THE IDIOM BEFORE THE DOSSIERS, NOT AFTER.** Three prototypes, run
+  before any dossier was finalised, found three defects that would otherwise each
+  have cost a Phase 8 repair round: noise inside `form` drives the direction field
+  and the lay prints as TERRAIN; a Gaussian cone is a radial form and prints a
+  bullseye with a void at its centre; and a bounded chip with a LINEAR form inside
+  it is both the fix and the better picture, because a city police department's
+  authority stops at a line rather than falling off with distance. The terrain
+  defect still got past all of that into two frames and was caught by the pixel
+  critics, which says the rule needs to be a machine check and not a memory.
+
+- **SCOUTS HAD NO BASH TOOL, SO THE PDF READER THE BRIEF NAMED WAS UNREACHABLE.**
+  Four of six scouts said so explicitly and several primary PDFs went unread.
+  The showrunner ran `scripts/fetch_pdf_text.py` directly and it worked first time
+  on both Mat-Su documents, which is how this deck got its primary sources at all.
+  Naming a script in a brief is not the same as handing over the tool that runs it.
+  This is the single most actionable finding of the sweep and it went to Phase 12.
+
+- **A KNOWN-BARRED CAPTION SHAPE SHIPPED ANYWAY, FOUR TIMES.** The caption room's
+  own critic recorded the deck-summary VERB-SLOT OPENER family as barred four
+  times and then let it through as a burn-forward note. It was repaired at ship
+  into the 2026-09-03 sources-naming shape. A burn list that only warns the NEXT
+  room is not a burn list.
+
+---
+
+## 2026-09-23, No.66, Phase 11. EIGHT ROUNDS OF REVIEW, AND ONE RULE OUT OF THEM.
+
+The ship PR took eight Codex rounds and twenty-six findings, far more than any
+run before it, because this run's upgrade handed a leaf worker a shell. Three
+lessons, and the first is the one to keep.
+
+- **WHEN A REVIEW REPLY DESCRIBES A PROPERTY, THE SAME COMMIT ADDS THE CHECK
+  THAT PROVES IT.** Round eight's three findings were all places where the
+  source or a PR reply asserted something that no test held to: "the worker is
+  a daemon" was FALSE and the process parked at exit; "-c is rejected outright"
+  was true by accident rather than by design; "each label is at most 63 bytes"
+  described a check that did not exist. Six of the last nine findings were
+  impossible to reach if the claim had shipped with its assertion. Writing a
+  measurement into a comment verifies it ONCE, by the person least able to see
+  the gap, at the moment they are most convinced. Writing it into a self-test
+  verifies it on every run forever.
+
+- **A BOUND HAS TO LIVE SOMEWHERE IT CAN REACH THE THING IT BOUNDS.** The same
+  mistake three times on one code path: a clock at the top of a loop could not
+  fire while `read()` blocked inside one iteration; a deadline after `open()`
+  could not interrupt `open()`; and a watchdog that returned control to the
+  caller could not stop the interpreter joining the worker at exit. Each fix
+  looked right because the CALLER saw the correct exception at the correct
+  second. Measure what you actually care about, which here was when the PROCESS
+  ended, not when the function returned.
+
+- **REVIEW SEVERITY IS A SIGNAL ABOUT SCOPE, AND IT SAID REVERT.** Rounds one
+  to five kept finding reachable capabilities, each in a different layer of the
+  same new grant. Round six executed the rollback I had claimed three times was
+  clean, and it conflicted on six paths, which proved the claim false and made
+  the decision for me: the grant was withheld, the hardening shipped, and the
+  findings immediately dropped to inert-code quality. A review that keeps
+  finding live exposures in one feature is not asking for another patch.
+
+---
+
+## 2026-09-23, Phase 12 frontier scan (b): editorial dataviz and cartography. ONE PARKED, one null.
+
+The stalest legal slot (last read September 14th) and distinct from the last
+three foci, which were (g), (c) and (e). Relevant as well as stale: this run put
+a typed "20 KM" or "50 KM" chip on five frames of real projected geography, with
+no bar and nothing measuring it, on a deck whose own D4 device says the register
+is computed and never typed. Five searches, four fetches, two of them 403.
+
+- **PARKED: the scale bar this run improvised has a shipped reference
+  implementation, and two parameters worth stealing outright.**
+  `HarryStevens/d3-geo-scale-bar` derives the bar from the d3 projection rather
+  than from a typed number. Its two usable constants: pick the smallest of 1, 2,
+  4 or 5 times a power of ten that renders the bar AT LEAST 80 px wide, and
+  convert through a stated Earth radius (6371.0088 km mean) so the printed
+  number is a geodesic rather than a screen measurement. Our geodata is true
+  lon/lat and d3-geo is already in `assets/`, so a house `AK.scaleBar(projection,
+  {atLonLat, minPx})` in about sixty lines needs no new dependency.
+  https://github.com/HarryStevens/d3-geo-scale-bar
+  The caveat is what makes it a design decision and not a utility: on a
+  projected map spanning a range of latitudes a scale bar is correct along ONE
+  LINE only, which is why the bar belongs WHERE it is measured and not parked in
+  a corner chip. Esri and the Ordnance Survey cartography guide both say it
+  plainly.
+  https://www.esri.com/arcgis-blog/products/product/mapping/back-to-the-issue-of-scale-bars
+  , https://docs.os.uk/more-than-maps/geographic-data-visualisation/guide-to-cartography/scale
+  Parked because all three upgrade slots went to reactive fixes, and because the
+  helper and the check that would enforce it are one piece of work that deserves
+  its own run rather than riding on three others.
+
+- **NULL, and worth recording so the slot is not spent on it again: the
+  annotation layer finding is doctrine we already hold.** The current best
+  practice in news graphics is that the annotation carries the CONCLUSION and
+  not the data label ("this is where prices broke", never "June 2022"). Our
+  DESIGN_DOCTRINE and SLIDE_DOSSIER_SPEC already require exactly that of every
+  callout and every kicker. Nothing to add.
+
+- **Two hosts refuse this container and should join `refuses_automated_fetch`
+  next time config/sources.yaml is edited: gijn.org and danielroelfs.com, both
+  403 on WebFetch.**
+
+---
+
 ## 2026-09-21, No.65. FOUR REVISION ROUNDS, AND THE THREE THINGS THAT COST THEM.
 
 Shipped at 7.98 normalised against a relaxed threshold of 7.7, flagged short of
@@ -8301,3 +8432,22 @@ April 2026 DOJ interim final rule. None of it binds a LinkedIn post.
 Note for the scouts, since this is the third 403 logged today: `pdfa.org`
 refuses a plain WebFetch from this container (HTTP 403), same as
 `aws.state.ak.us` and `go.boarddocs.com`.
+
+## 2026-09-23 — craft refresh (Phase 1)
+
+- CONTOUR HATCHING is the shading idiom to reach for when the standing weakness is
+  artwork craft. Two sets of roughly parallel lines make hatching and crosshatching,
+  and varying line weight and spacing is how an engraver carries tone; the variant
+  worth stealing is CONTOUR hatching, where the lines follow the three-dimensional
+  contour of the surface rather than running straight, so the line work itself states
+  the form instead of merely darkening it. That is a drawn mark per unit of tone,
+  which is exactly the quantity `bespoke_check.py` measures as drawn share, so it
+  pushes the craft score and the gate in the same direction. Britannica on hatching,
+  and the academic NPR line of work on procedural pen-and-ink hatching of 2D inputs
+  and 3D models, both describe the same mechanism.
+  https://www.britannica.com/art/hatching-drawing-technique and
+  https://arxiv.org/pdf/2008.05336 (image-based portrait engraving, procedural).
+- The LinkedIn side of the refresh returned nothing this house did not already have.
+  The 2026 write-ups repeat the 6 to 10 slide band, one idea per slide, under 60 words,
+  and a cover that stops a scroll in two seconds, all of which CAROUSEL_CRAFT already
+  states with better sourcing. Dwell remains the ranking currency. Nothing appended.

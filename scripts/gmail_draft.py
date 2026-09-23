@@ -45,6 +45,12 @@ from pathlib import Path
 
 from PIL import Image
 
+# One reader for the scorer's weakest-criterion value, shared with
+# trend_check.py and ship_gate.py (2026-09-23).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from trend_check import (weakest_criterion_fix,  # noqa: E402
+                         weakest_criterion_name)
+
 # Fallback aftercare checklist, synthesized from CAROUSEL_CRAFT "Cadence &
 # aftercare" (Tue-Thu 8-11am AKT; golden hour first 60-90 min; sources comment
 # immediately; saves > comments > shares > likes vs our trailing median;
@@ -334,12 +340,17 @@ def main():
                        "threshold_used", "ship_threshold_used", default="?")
     weighted = _alias("weighted_total", "weighted_score", "weighted_score_as_scored",
                       "raw_weighted_score", default="?")
-    weakest = _alias("weakest_criterion", default=None)
+    # The weakest criterion goes through one shared reader, because
+    # runs/2026-09-14 wrote it as an object where the schema declares a string
+    # and this line would have rendered the whole mapping into the maintainer's
+    # email (2026-09-23).
+    _raw_weakest = _alias("weakest_criterion", default=None)
+    weakest, _ = weakest_criterion_name(_raw_weakest)
     if weakest is None:
         wc = score.get("weakest_criteria")
-        if isinstance(wc, list) and wc:
-            weakest = wc[0]
-        else:
+        if isinstance(wc, (list, tuple, dict)) and wc:
+            weakest, _ = weakest_criterion_name(wc)
+        if weakest is None:
             # last-resort: derive the weakest criterion from the report card
             crits = [c for c in score.get("criteria", []) if isinstance(c, dict) and "score" in c]
             weakest = min(crits, key=lambda c: c["score"])["name"] if crits else "?"
@@ -361,7 +372,7 @@ def main():
         f'Weakest: {esc(str(weakest))}. '
         # a bare "?" in a delivered draft reads as a broken email, so say plainly
         # that the scorer did not state one rather than printing a placeholder
-        f'Fix next time: {esc(str(_alias("one_sentence_fix", "fix_next_time", "next_run_fix", default="not stated by the scorer")))}'
+        f'Fix next time: {esc(str(_alias("one_sentence_fix", "fix_next_time", "next_run_fix", default=None) or weakest_criterion_fix(_raw_weakest) or "not stated by the scorer"))}'
         # 2026-07-29: that run's scorer wrote 'cap_reason_as_scored', to mark a
         # cap reason that a later in-run repair has since cleared. Aliased here
         # for the same reason every other key on this page is: add to the list

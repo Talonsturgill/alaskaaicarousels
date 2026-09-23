@@ -1,0 +1,19 @@
+{
+  "chars": 876,
+  "hook": "Five agencies police the Matanuska-Susitna Borough. The borough is not one of them.",
+  "hook_len": 83,
+  "commas": 4,
+  "comma_per_100": 0.48,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#MatSuBorough",
+    "#AlaskaPolicy",
+    "#LicensePlateReaders"
+  ],
+  "deck_summary": "The ordinance and its information memorandum carry six of the nine frames. The borough's own law enforcement page carries two. The Anchorage Daily News carries one.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 65
+}

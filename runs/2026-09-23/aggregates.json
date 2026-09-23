@@ -1,0 +1,43 @@
+{
+  "run_date": "2026-09-23",
+  "aggregates": [
+    {
+      "kind": "from_claim",
+      "slide": 3,
+      "text": "MSB 23.30 ALPR SYSTEMS PROHIBITED",
+      "member": "c06",
+      "note": "NOT AN AGGREGATE. The detector shreds the chapter number 23.30 into a count of 30 ALPR systems. The string is the chapter heading quoted verbatim from the ordinance and 23.30 is an address in a code book, not a measurement."
+    },
+    {
+      "kind": "from_claim",
+      "slide": 7,
+      "text": "An ALPR Operator, in the chapter's own words, is any Borough department, division, employee, or third-party contractor acting under contract with the Borough. Eight borough officials signed the routing block between August 19th and August 21st, weeks before it reached the floor.",
+      "member": "c29",
+      "note": "Quoted from one claim, not derived. c29 states the count of eight signatures and its notes record that the count is safe while the name-to-title pairing is not, which is why no individual is named on the frame."
+    },
+    {
+      "kind": "design",
+      "slide": 1,
+      "text": "seven ticks on the member rail",
+      "note": "one drawn tick per assembly member, a property of the drawing; the count itself is c18"
+    },
+    {
+      "kind": "design",
+      "slide": 2,
+      "text": "four stations on one axis",
+      "note": "the definition's own stages drawn as four proxy solids; a property of the drawing"
+    },
+    {
+      "kind": "design",
+      "slide": 7,
+      "text": "eight incised rules",
+      "note": "one rule per signature, drawn; the count itself is c29"
+    },
+    {
+      "kind": "design",
+      "slide": 1,
+      "text": "ONE TICK PER MEMBER",
+      "note": "The rail's label names the drawing's own rule, one tick per assembly member. The seven ticks are verified against claim c18 by window.__akAssert, and no numeric tally is printed anywhere because the ordinance prints none."
+    }
+  ]
+}

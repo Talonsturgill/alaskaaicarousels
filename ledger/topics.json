@@ -2603,6 +2603,47 @@
       ],
       "claim_count": 27,
       "score": 7.98
+    },
+    {
+      "run_date": "2026-09-23",
+      "carousel_no": 66,
+      "headline": "What Mat-Su's Plate Reader Ban Actually Reaches",
+      "topic": "On September 15th, 2026 the Matanuska-Susitna Borough Assembly adopted Ordinance Serial No. 26-106, creating borough code chapter MSB 23.30, which prohibits the borough from acquiring, leasing, borrowing, installing, maintaining or operating automated license plate reader systems, from spending borough funds, personnel or resources on them, and from accessing, querying, uploading data to or receiving data from any ALPR operator, network, database or private surveillance network. Violating agreements are void ab initio. It passed unanimously with all seven assembly members named, the same night as its public hearing, and took effect on adoption. Eight borough officials had signed the routing block on Information Memorandum 26-181 between August 19th and August 21st. The borough's own law enforcement page states that it does not have police powers and lists five agencies that police it, Wasilla Police, Palmer Police, Chickaloon Tribal Police, the State Troopers and the State Wildlife Troopers.",
+      "angle": "THE REACH, AND THE DECK REFUSES THE VERDICT. A government wrote down, unanimously and in advance, a limit on a capability it does not have. The prohibition binds borough departments, borough contractors, borough property and borough money, and none of the five agencies that actually police the borough is a borough department. The deck does not say the ordinance is empty and does not say it is a breakthrough, because the record supports neither, and it hands the reader the fork instead. Anchorage is a FOIL on one frame of nine, with this studio's own two prior Anchorage decks acknowledged on that frame.",
+      "entities": [
+        "Matanuska-Susitna Borough Assembly",
+        "MSB 23.30",
+        "Ordinance Serial No. 26-106",
+        "Information Memorandum 26-181",
+        "Michael Bowles",
+        "Ron Bernier",
+        "Edna DeVries",
+        "Palmer",
+        "Wasilla",
+        "Wasilla Police",
+        "Palmer Police",
+        "Chickaloon Tribal Police",
+        "Alaska State Troopers",
+        "Alaska State Wildlife Troopers",
+        "Anchorage Assembly",
+        "AO 2026-108(S)",
+        "Anchorage Daily News"
+      ],
+      "keywords": [
+        "automated license plate reader",
+        "ALPR",
+        "mass surveillance technology",
+        "borough code",
+        "police powers",
+        "void ab initio",
+        "prohibition on data sharing",
+        "routing block",
+        "unanimous adoption",
+        "jurisdiction",
+        "reach"
+      ],
+      "claims": 38,
+      "note": "First Matanuska-Susitna Borough story in the ledger and the first deck built on the engraver's bench (technique 93) as its whole tone system. The dedupe gate returned NO likely duplicate, strongest match No.47 at 0 shared entities and jaccard 0.026. Four stronger-sounding candidates lost on dedupe: Murkowski against data centers on Alaska's bases (LIKELY DUPLICATE of No.47, jaccard 0.128), the AIDEA Houston conveyance (LIKELY DUPLICATE of No.50, jaccard 0.138), the governor's race (already No.51 and recused on conflict of interest), and the UA communications guidelines (LIKELY DUPLICATE of No.61, six days old). Chugach's time-of-use pilot had the cleanest dedupe of any candidate and lost on HONESTY, because the AI link would have had to be supplied by us."
     }
   ]
 }

@@ -1667,6 +1667,13 @@
       "instinct": "WHEN THREE ROUNDS OF CRITICS SAY THE SAME THING ABOUT THE SAME BAND, THE DIAGNOSIS IS WRONG, NOT THE FIX.",
       "evidence": "The water read as turf from round one. Round two blamed the hachure bend and changed it. Round three measured the field's gradient anisotropy, found it real, and fixed it. Both were genuine defects and neither changed what a reader called the band. What worked in round four was giving the job to a DIFFERENT SUBSYSTEM: the mote streaks, which every critic had already said read as lateral current, got longer, curved, tailed and roughly doubled, and the hachure dropped a third in alpha back to being the middle frequency. Two rounds would have been saved by asking, at round two, which element ALREADY does the thing rather than which parameter is wrong.",
       "act_on_it": "On the second identical complaint about one region, stop tuning the element being blamed. List what else is drawn there, find the one a critic has praised for the quality you want, and give it the load."
+    },
+    {
+      "run_date": "2026-09-23",
+      "carousel_no": 66,
+      "instinct": "WHEN A MACHINE WARNING NAMES ITS OWN METRIC, GO READ THE METRIC BEFORE TUNING ANYTHING.",
+      "evidence": "AKENGRAVE's lay-collapse warning names an alignment number and suggests two remedies. Round four spent its first two attempts on those remedies as prose: second-axis sine terms across every warning region, which moved alignment not at all, then trial seedDeg values, which moved three regions and broke two others. Reading _layCheck took under a minute and made the fix arithmetic. Alignment is the mean absolute cosine between the seeding raster and the WALK direction; the walk runs along the isolines at atan2(gx,-gy) + angOff; angOff is 0 for the main channel and crossDeg for the cross channel. One surface call therefore has TWO bad seed angles, 90 degrees off each of those, and the safe value is the midpoint between the two perpendiculars. Nine warnings went to zero on the first try after that, on values that were derived rather than guessed.",
+      "act_on_it": "A warning written by this studio's own engine is a pointer to a function, not a hint. Before the second tuning attempt on any engine warning, open the check that emitted it, work out what it actually measures, and solve for the value. Two guesses cost more than one read."
     }
   ]
 }

@@ -2097,6 +2097,53 @@
         "revision_rounds": 4
       },
       "note": "THE DECK SHIPPED CPU ON ALL NINE FRAMES. No slide loads akthree, so it never climbs the rendered ladder, and that is argued in BUILD RECONCILIATION item 1 rather than waved away: a gorgeous render of 66 pods glowing on the seabed would have made a proposal look like a photograph, which is the worst outcome this story could produce. THE DEFECT TO FIX NEXT IS OLDER THAN THIS DECK. All nine qa warns are one sentence, the lit ground being an additive screen radial rather than a floor, and No.59 and No.60 both recorded it. No.60 wrote the fix that holds: one wash across the whole floor along the light axis as a lay of fine rules at about 1.7px pitch, feathered out before any furniture row, casts unchanged. Round four tried the other repair, shrinking the pool to its declared rect, and MEASURED it worse: the warn stayed and four frames lost contact dL from 11.4-20.6 down to 5.8-7.6 against a comfort band of 8.0."
+    },
+    {
+      "run_date": "2026-09-23",
+      "carousel_no": 66,
+      "hero_structure": "NEW: THE READING FRAME PLATE. A chamfered rectangle holding a frontal engraved surface seen square to the picture plane. NO camera, NO horizon, NO station and NO perspective anywhere in the deck, argued in the dossier as a deliberate choice rather than a fallback, because the subject is a document and nothing in it is seen from anywhere. Diverges from No.64's orthographic jurisdiction section, which had a ground datum and a vertical axis; this has neither and its only axis is reach outward from the borough's own desk.",
+      "atmosphere": "INTERIOR PLATE LIGHT. One raking key at azimuth 118, elevation 24, for all nine frames, chosen low because the engraver's swell is only legible across a wide ndotl range. No weather and no daylight anywhere, which is the divergence from three consecutive weather atmospheres.",
+      "continuity_devices": [
+        "D1 the reading frame, chamfered lower left, whose STATE is what it contains across nine frames",
+        "D2 the engraved ground, where each frame's form IS that frame's reach, printed as SURFACE = in the dossier",
+        "D3 the struck slot, a mono field naming the reach in force, struck on the two frames where the reach fails",
+        "D4 the scale ladder, which prints a computed scale bar or a stated reason there is no extent"
+      ],
+      "hook_archetype": "NEW: THE ENACTED LIMIT (a rule already law when the reader meets it, so the tension is what it covers rather than whether it passes)",
+      "palette_family": "ink and plate, #0A1014 base to #C9DCD2 swell, with #FFC72C meaning only a limit in force and #7D4A45 meaning only a struck reach",
+      "type_pairing": "Fraunces 700 display over Manrope 400 and 600 argument over JetBrains Mono 500 instrument. Neither of the last two pairings used Manrope, and no Archivo or Unbounded anywhere.",
+      "dials": {
+        "design_variance": 5,
+        "visual_density": 4,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "93 AKENGRAVE white-line intaglio, the whole tone system",
+        "24 Alaska hero map, canonical projection, stroke only and never filled",
+        "58 profile-heaviest, the borough outline alone at the 5.5 px hero token",
+        "67 alphabet-of-lines dash kit",
+        "69 round-cap dot rhythm",
+        "70 scotch rule",
+        "71 rule terminals",
+        "79 cased line"
+      ],
+      "note": "The engraver's bench carried all nine frames and it was PROTOTYPED THREE TIMES before any dossier was finalized, which found three defects that would otherwise have been Phase 8 repairs. One, a noise term inside form drives the direction field and the lay prints as terrain. Two, a Gaussian cone is a radial form and prints a bullseye with a void at its centre. Three, a bounded city chip with a LINEAR form inside it is both the fix and the better picture, because a city police department's authority stops at a line rather than falling off with distance. The thickest line in the deck is the borough boundary, and it is the one that binds nothing. MEASURED, and recorded here because No.62's own note records a scorer catching unmeasured numbers in this exact file and entries 63 to 65 all carry a block that 66 was shipping without. The lay collapse is the number that matters: seventeen AKENGRAVE warnings at the top of round four, zero at ship, and the fix was DERIVED rather than guessed. Alignment is the mean absolute cosine between the seeding raster and the walk direction, the walk runs along the isolines at atan2(gx,-gy) plus angOff, and angOff is 0 for the main channel and crossDeg for the cross channel, so ONE eng.surface call has TWO angles to avoid, 90 degrees off each, and the safe seedDeg is the midpoint between the two perpendiculars. Two prose remedies were tried first and neither moved the number. A second lesson for the next deck that uses this bench: a CONTEXT surface behind type wants one channel, not two. Dropping cross to 0 on the bands and aprons halved the lay warnings and cured a moire the scorer had raised as a separate finding.",
+      "measured": {
+        "revision_rounds": 5,
+        "machine_qa": "PASS, 0 fails, 0 warns, 9 of 9 frames",
+        "render": "9 of 9, 0 page errors, 0 overflow warnings",
+        "bespoke_median_pairwise": 0.304,
+        "bespoke_max_pair": 0.678,
+        "bespoke_max_pair_slides": "05 against 09, both the borough polygon on a plate; the number counts shared CODE and the identical scale-bar block now sits on all five geographic frames",
+        "drawn_share_pct": 61,
+        "drawn_vs_blocky": "33 drawn, 21 blocky",
+        "pdf_mode": "vector",
+        "pdf_mb": 5.63,
+        "score": 8.67,
+        "threshold": 7.7,
+        "weakest_criterion": "Deliverable completeness",
+        "artwork_craft_score": 8
+      }
     }
   ]
 }

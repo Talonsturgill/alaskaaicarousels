@@ -51,7 +51,8 @@
  *     tone:  (x, y) => <0..1 darkness target>,
  *     budget:{main: 5.0, cross: 7.0, dots: true},
  *     inkLo: "#6E8378", inkHi: "#BFD0C4", alpha: 1.0,
- *     seedDeg: 0            // OPTIONAL, see LAY_ALIGN_WARN below
+ *     seedDeg: 0,           // OPTIONAL, see LAY_ALIGN_WARN below
+ *     landformIntended: false  // OPTIONAL, see NOISE_IN_FORM below
  *   });
  *
  * PERFORMANCE, THE LESSON THAT WILL BITE OTHERWISE. `cx.filter` applies PER DRAW
@@ -128,6 +129,54 @@
    * shipped slides (the other two measured 1.00 and shipped anyway). */
   var LAY_ALIGN_WARN = 0.90;
   var LAY_PROBE_N = 12;
+
+  /* NOISE INSIDE `form` PRINTS AS TERRAIN (2026-09-23, run No.66).
+   *
+   * `form` is not a texture. It is the surface whose gradient becomes the
+   * DIRECTION FIELD every stroke walks along, so a noise term inside it does
+   * not roughen the lay, it STEERS it: the burin follows the noise iso-lines
+   * and the region reads as a contour-mapped landform whatever it is meant to
+   * be. No.66's prototypes found this before any dossier was written, the rule
+   * went into the dossiers and into the plan in words, and it STILL reached two
+   * finished frames, where pixel critics caught it on the render. A rule that
+   * lives only in prose gets re-learned by eye every time, at the price of a
+   * repair round.
+   *
+   * So the engraver says it itself, at build time, from the callback's own
+   * source text. The prefix is the one qa.py records as a WARN, which is the
+   * right weight: a landform IS the correct read for some decks, and a hard
+   * fail here would block a future deck that is drawing actual ground. Declare
+   * `landformIntended: true` on that call and the warning stands down, which
+   * also puts the intent in the slide source where the next reader can see it.
+   *
+   * NOISE IN `tone` IS THE HOUSE IDIOM AND IS UNTOUCHED. Tone sets how dark a
+   * point wants to be; it never enters the direction field.
+   *
+   * LIMIT, stated plainly: this reads the callback's own text, so a form that
+   * delegates to a helper which calls noise is invisible here. It catches the
+   * shape the defect actually takes, which is a noise term written inline. */
+  var NOISE_IN_FORM = /AK\s*\.\s*(fbm2|fbm3|simplex2|simplex3|warp2|grainTile)\s*\(/;
+
+  function checkFormNoise(form, region, intended) {
+    if (intended || typeof form !== "function") return null;
+    var src;
+    try { src = Function.prototype.toString.call(form); } catch (e) { return null; }
+    var m = NOISE_IN_FORM.exec(src);
+    if (!m) return null;
+    try {
+      console.error(
+        "AK ENGRAVE: the form callback for region [" + region.join(",") +
+        "] calls AK." + m[1] + "(). `form` is the direction field, not a " +
+        "texture, so the strokes will walk the noise iso-lines and this " +
+        "region will read as TERRAIN rather than as the object it draws. " +
+        "Move the noise into `tone`, which is the house idiom and carries " +
+        "grain without steering the lay, or keep a smooth analytic form and " +
+        "add the roughness as a separate finish. If this region really is " +
+        "ground, pass landformIntended: true on this surface call and say so " +
+        "in the dossier.");
+    } catch (e) {}
+    return m[1];
+  }
 
   function Engraver(opts) {
     opts = opts || {};
@@ -228,6 +277,9 @@
      * option renders identically. See LAY_ALIGN_WARN above. */
     var seedAng = o.seedDeg == null ? null : o.seedDeg * Math.PI / 180;
     var self = this;
+
+    /* Named once, before a single stroke is drawn. See NOISE_IN_FORM. */
+    checkFormNoise(form, region, o.landformIntended === true);
 
     var x0 = region[0], y0 = region[1], rw = region[2], rh = region[3];
     var diag = Math.sqrt(rw * rw + rh * rh);
