@@ -142,10 +142,10 @@ def unquoted_metachar(cmd):
     return None
 
 
-# Interpreter options that swallow the NEXT argument. Without this list the
-# value would be read as the script, so `python3 -X importtime guard.py` would
-# look like it runs a file called "importtime".
-PY_VALUE_OPTS = ("-W", "-X", "--check-hash-based-pycs")
+# Long options that swallow the NEXT argument. The short ones that do (-W, -X)
+# are handled inside the cluster scan below, because their value may be
+# attached (-Ximporttime) or separate (-X importtime) and both are valid.
+PY_VALUE_OPTS = ("--check-hash-based-pycs",)
 
 
 def python_script_operand(args):
@@ -165,19 +165,31 @@ def python_script_operand(args):
         a = args[i]
         if not a.startswith("-") or a == "-":
             return None if a == "-" else a          # "-" is stdin, not a file
-        if a in ("-c", "-m"):
-            return None
-        if a in PY_VALUE_OPTS:
-            i += 2                                  # the value is not a script
-            continue
         if a.startswith("--"):
-            i += 1
+            i += 2 if a in PY_VALUE_OPTS else 1     # a value is not a script
             continue
-        # A short cluster like -Es or -EsW. c and m inside one still mean the
-        # interpreter reads a string or a module, whatever else is bundled in.
-        if any(ch in "cm" for ch in a[1:]):
-            return None
-        i += 1
+        # A SHORT OPTION OR A CLUSTER OF THEM, read left to right the way the
+        # interpreter reads it, because two of these letters end the scan and
+        # they end it differently.
+        #
+        #   c and m mean the program is a STRING or a MODULE, so no file of
+        #   ours runs whatever else is bundled in: -c, -m, -cprint(1), -Ec.
+        #
+        #   X and W take a value, and the value may be attached or separate.
+        #   Everything after the letter belongs to the option, so the scan
+        #   stops: -Ximporttime is one token, -X importtime is two. Review
+        #   found this as a FALSE NEGATIVE rather than a hole, which is its own
+        #   kind of failure: scanning the whole token for a c or an m saw the m
+        #   in "importtime" and called honest wiring unwired.
+        rest = a[1:]
+        consume_next = False
+        for j, ch in enumerate(rest):
+            if ch in "cm":
+                return None
+            if ch in "XW":
+                consume_next = (j == len(rest) - 1)  # attached, or the next arg
+                break
+        i += 2 if consume_next else 1
     return None                                     # options only, so a REPL
 
 
@@ -538,6 +550,14 @@ def self_test():
             ("python3 -X importtime scripts/scout_bash_guard.py", True),
             ("python3 -E -s scripts/scout_bash_guard.py", True),
             ("python3 -W ignore scripts/scout_bash_guard.py", True),
+            # ATTACHED option values, which is how -X is usually written and
+            # whose payloads contain letters this scan must not read as flags.
+            ("python3 -Ximporttime scripts/scout_bash_guard.py", True),
+            ("python3 -Wignore::DeprecationWarning scripts/scout_bash_guard.py", True),
+            ("python3 -EXimporttime scripts/scout_bash_guard.py", True),
+            ("python3 --check-hash-based-pycs always scripts/scout_bash_guard.py", True),
+            ("python3 -cprint(1) scripts/scout_bash_guard.py", False),
+            ("python3 -mpdb scripts/scout_bash_guard.py", False),
             # The guard's path as DATA to something else, which is the shape
             # that made "anywhere in the arguments" the wrong question.
             ("python3 /tmp/noop.py scripts/scout_bash_guard.py", False),
