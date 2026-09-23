@@ -672,7 +672,7 @@ height BEFORE render, which is the instinct about DOM overlaps passing machine Q
 rest beat. Plants BUT WHO DOES ALL OF THIS BIND, which slide 05 answers.
 
 **2. COPY, final.**
-- Kicker, mono: `MSB 23.30.030 (A)` (c11)
+- Kicker, mono: `MSB 23.30.030(A)` (c11)
 - Headline, Fraunces, 2 lines, 8 words: `It can't collect the data.` / `It can't be handed it.` (c11)
 - Quote, Manrope, 26 words, straight quotes: `"The Borough and its departments are prohibited from accessing, querying, uploading data to, or receiving data from any ALPR operator, network, database, or private surveillance network."` (c11)
 - Counter `04 / 09` [design], site fixture, scale chip `NO EXTENT` [design]
