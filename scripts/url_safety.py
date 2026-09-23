@@ -72,10 +72,25 @@ def host_of(url):
 
 
 def is_public(addr):
-    """True when this ipaddress object is a routable public address."""
-    return not (addr.is_loopback or addr.is_private or addr.is_link_local
-                or addr.is_reserved or addr.is_multicast
-                or addr.is_unspecified)
+    """True when this ipaddress object is a routable public address.
+
+    is_global IS THE PREDICATE, rather than a hand-written negation of the
+    special-purpose flags. Review found the gap that proves the point:
+    100.64.0.0/10, the shared address space carriers and VPNs use for
+    carrier-grade NAT, is classified by Python as neither private nor
+    reserved, so negating that list called 100.64.0.1 public. On any host
+    behind CGNAT or an overlay that routes it, that is a direct path to a
+    non-public peer. The registry knows which ranges are special and the
+    stdlib tracks the registry; a list maintained here would go stale the
+    next time IANA allocates one.
+
+    The explicit flags stay as a belt-and-braces second condition. They are
+    redundant with is_global today and cost nothing, and if a future stdlib
+    ever loosens is_global the obvious cases still fail closed.
+    """
+    return bool(addr.is_global) and not (
+        addr.is_loopback or addr.is_private or addr.is_link_local
+        or addr.is_reserved or addr.is_multicast or addr.is_unspecified)
 
 
 def literal_address(host):
@@ -189,6 +204,17 @@ def self_test():
               "HTTPS://X.GOV/D.PDF", "https://8.8.8.8/d.pdf"]:
         check("allows %r" % u, check_url(u, resolve=False) is None,
               str(check_url(u, resolve=False) or ""))
+
+    print("and the special-purpose ranges a hand-written list would have missed")
+    for u, means in [("http://100.64.0.1/x", "shared address space, CGNAT"),
+                     ("http://100.127.255.254/x", "shared address space, CGNAT"),
+                     ("http://198.18.0.1/x", "benchmarking"),
+                     ("http://192.0.0.1/x", "IETF protocol assignments"),
+                     ("http://240.0.0.1/x", "reserved"),
+                     ("http://192.0.2.1/x", "documentation"),
+                     ("http://255.255.255.255/x", "broadcast")]:
+        check("refuses %r, %s" % (u, means),
+              check_url(u, resolve=False) is not None)
 
     print("and the address helpers agree with the stdlib")
     check("a public literal is public", is_public(ipaddress.ip_address("8.8.8.8")))

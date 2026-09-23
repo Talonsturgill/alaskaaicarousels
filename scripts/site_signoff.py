@@ -894,6 +894,9 @@ def self_test():
               {**incident, "evidence_urls": {"u": "https://x/y"}},
               {**incident, "evidence_urls": [7]},
               {**incident, "audit_checked_utc": 20260916},
+              {**incident, "audit_checked_utc": "20260916"},
+              {**incident, "audit_checked_utc": "2026-09-16"},
+              {**incident, "audit_checked_utc": "2026-09-16T12:00:00"},
               {**incident, "attempts": []},
               {**incident, "attempts": ["ok", ""]},
               {**incident, "evidence_urls": []},
@@ -1011,15 +1014,27 @@ def incident_allows(incident, now=None):
     # "20260916", which fromisoformat happily reads as a date in basic format,
     # so a record with a numeric stamp was earning the allowance. Found by this
     # file's own battery while hardening the reason field beside it.
+    # A STRING, with a TIME, and an EXPLICIT OFFSET. Three separate holes, all
+    # of them found one at a time, which is why the requirement is spelled out
+    # rather than left to fromisoformat's generosity:
+    #   the integer 20260916 becomes "20260916" under str(), which parses as a
+    #     basic-format DATE, so a numeric stamp earned the allowance;
+    #   the string "20260923" or "2026-09-23" parses the same way, so a record
+    #     that never wrote a time at all was read as midnight and earned a
+    #     whole day of the 36 hour window it had not lived through;
+    #   a naive "2026-09-23T09:00:00" was being coerced to UTC, so a stamp from
+    #     any timezone counted as UTC.
+    # The field is written by this routine's own audit, which always emits ISO
+    # with a Z, so none of this costs an honest record anything.
     stamp_raw = incident.get("audit_checked_utc")
-    if not isinstance(stamp_raw, str):
+    if not isinstance(stamp_raw, str) or "T" not in stamp_raw:
         return False
     try:
         stamp = datetime.fromisoformat(stamp_raw.replace("Z", "+00:00"))
     except (TypeError, ValueError):
         return False
     if stamp.tzinfo is None:
-        stamp = stamp.replace(tzinfo=timezone.utc)
+        return False
     return 0 <= (now - stamp).total_seconds() <= INCIDENT_MAX_AGE_H * 3600
 
 
