@@ -8301,3 +8301,22 @@ April 2026 DOJ interim final rule. None of it binds a LinkedIn post.
 Note for the scouts, since this is the third 403 logged today: `pdfa.org`
 refuses a plain WebFetch from this container (HTTP 403), same as
 `aws.state.ak.us` and `go.boarddocs.com`.
+
+## 2026-09-23 — craft refresh (Phase 1)
+
+- CONTOUR HATCHING is the shading idiom to reach for when the standing weakness is
+  artwork craft. Two sets of roughly parallel lines make hatching and crosshatching,
+  and varying line weight and spacing is how an engraver carries tone; the variant
+  worth stealing is CONTOUR hatching, where the lines follow the three-dimensional
+  contour of the surface rather than running straight, so the line work itself states
+  the form instead of merely darkening it. That is a drawn mark per unit of tone,
+  which is exactly the quantity `bespoke_check.py` measures as drawn share, so it
+  pushes the craft score and the gate in the same direction. Britannica on hatching,
+  and the academic NPR line of work on procedural pen-and-ink hatching of 2D inputs
+  and 3D models, both describe the same mechanism.
+  https://www.britannica.com/art/hatching-drawing-technique and
+  https://arxiv.org/pdf/2008.05336 (image-based portrait engraving, procedural).
+- The LinkedIn side of the refresh returned nothing this house did not already have.
+  The 2026 write-ups repeat the 6 to 10 slide band, one idea per slide, under 60 words,
+  and a cover that stops a scroll in two seconds, all of which CAROUSEL_CRAFT already
+  states with better sourcing. Dwell remains the ranking currency. Nothing appended.
