@@ -142,6 +142,45 @@ def unquoted_metachar(cmd):
     return None
 
 
+# Interpreter options that swallow the NEXT argument. Without this list the
+# value would be read as the script, so `python3 -X importtime guard.py` would
+# look like it runs a file called "importtime".
+PY_VALUE_OPTS = ("-W", "-X", "--check-hash-based-pycs")
+
+
+def python_script_operand(args):
+    """The file this python command actually RUNS, or None when it runs no file.
+
+    Python's own rule: options first, then the first non-option argument is the
+    script and everything after it belongs to the script. So a guard path that
+    appears anywhere else is an ARGUMENT to something else, which is exactly the
+    shape review found: `python3 /tmp/noop.py scripts/scout_bash_guard.py`.
+
+    None is returned for every command that runs no file of ours: `-c` runs a
+    string, `-m` runs whatever the import system resolves, a bare `-` reads the
+    program from stdin, and a command with no operand at all starts a REPL.
+    """
+    i = 0
+    while i < len(args):
+        a = args[i]
+        if not a.startswith("-") or a == "-":
+            return None if a == "-" else a          # "-" is stdin, not a file
+        if a in ("-c", "-m"):
+            return None
+        if a in PY_VALUE_OPTS:
+            i += 2                                  # the value is not a script
+            continue
+        if a.startswith("--"):
+            i += 1
+            continue
+        # A short cluster like -Es or -EsW. c and m inside one still mean the
+        # interpreter reads a string or a module, whatever else is bundled in.
+        if any(ch in "cm" for ch in a[1:]):
+            return None
+        i += 1
+    return None                                     # options only, so a REPL
+
+
 def is_guard_path(tok):
     """True when this argument names THIS guard file and nothing else.
 
@@ -350,15 +389,14 @@ def hook_is_wired(fm_text):
             interp = os.path.basename(parts[0]).lower()
             if interp not in ("python3", "python", "python3.11", "python3.12"):
                 continue
-            # -c and -m never run THIS FILE. `-c` runs the string that follows
-            # and `-m` runs whatever the import system finds, so the name
-            # appearing after either proves nothing about what executes.
-            if any(a in ("-c", "-m") for a in parts[1:]):
-                continue
-            # AND THE PATH IS RESOLVED, not read for its last component.
-            # `python3 /tmp/scout_bash_guard.py` has the right shape and the
-            # right basename and can be anything at all.
-            if any(is_guard_path(a) for a in parts[1:] if not a.startswith("-")):
+            # AND THE SCRIPT OPERAND, which is one particular argument and not
+            # any of them. `python3 /tmp/noop.py scripts/scout_bash_guard.py`
+            # runs /tmp/noop.py and hands it the guard's path as DATA, and an
+            # "is the guard anywhere in the arguments" test called that wired.
+            # Python runs the FIRST non-option argument and nothing else, so
+            # that is the only one worth looking at.
+            operand = python_script_operand(parts[1:])
+            if operand and is_guard_path(operand):
                 return None
         return ("the PreToolUse entry matching Bash has no command hook "
                 "running this repository's scripts/scout_bash_guard.py")
@@ -497,6 +535,16 @@ def self_test():
             ("bash -c 'scout_bash_guard.py'", False),
             ('python3 -c \'print("scout_bash_guard.py")\'', False),
             ("python3 -m scout_bash_guard", False),
+            ("python3 -X importtime scripts/scout_bash_guard.py", True),
+            ("python3 -E -s scripts/scout_bash_guard.py", True),
+            ("python3 -W ignore scripts/scout_bash_guard.py", True),
+            # The guard's path as DATA to something else, which is the shape
+            # that made "anywhere in the arguments" the wrong question.
+            ("python3 /tmp/noop.py scripts/scout_bash_guard.py", False),
+            ("python3 -X importtime /tmp/noop.py scripts/scout_bash_guard.py", False),
+            ("python3 - scripts/scout_bash_guard.py", False),
+            ("python3 -Ec 'x' scripts/scout_bash_guard.py", False),
+            ("python3", False),
             ("python3 /tmp/scout_bash_guard.py", False),
             ("python3 ./fake/scout_bash_guard.py", False),
             ("python3 ../scout_bash_guard.py", False),
