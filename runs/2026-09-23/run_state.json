@@ -43,5 +43,12 @@
   },
   "notes": [
     "PR #394 opened and closed: the site_signoff CI repair could not be validated on an isolated branch because its input is a run artifact, so the same commit was cherry-picked onto the run branch where today's incident record sits."
-  ]
+  ],
+  "phase_3_6": {
+    "site_signoff": "WARN, 120 pages, 18 checks, 17 clean. The one UNFIXED row is 'gaswatch.jsonl is current', 10 days old against a cadence of 3, and it is the same upstream cause as the two rows below. Every other row passed, including 5086 links resolving and all four cron-written ledgers reaching the page that publishes them.",
+    "gaswatch_live": "FAIL, blocker upstream, and re-checked after the site rebuild at 2026-09-23T09:34Z with the same result. Two rows fail, source freshness at 220.6 hours and the collector's own scheduled job; 10 of 12 pass including the published page, the chart, the weather true-ups and the modeled peak. CINGSA has published nothing since 09/13/2026 21:00 Alaska and is two days past its own announced maintenance return date. The collector fetched fine, archived the snapshot, carried NO number forward and failed loudly, which is the designed behaviour. Nothing here can produce a measurement CINGSA has not published. Recorded in gaswatch_incident.json.",
+    "gaswatch_pagecheck": "WARN, the published page read September 13th, 49 days on record with 37 verified and no gaps, the chart is present, every numeral traces to a computation, and the feed and the ledger agree at 49 records with the warning carried.",
+    "cron_health": "FAIL on gaswatch.yml:completion and gaswatch.yml:steps and nothing else. 33 of 35 checks PASS across all 6 scheduled workflows, including enablement, missed runs, Pages, the public bytes, the docket queue and the weather history. The two failures are the one upstream cause, recorded in cron_incidents.json with attempts and evidence.",
+    "site_fixes": "three. (1) The public docket summary for the Mat-Su item asserted the Palmer to Anchorage distance and named the member who moved adoption. The fact-checker had KILLED both, the first for want of a citable source and the second because the legislative record contradicts itself on that exact point. Both are out of ledger/docket.json and off the live page. The claims gate reads the deck and never the docket, which is how they survived. (2) docs/ rebuilt to 120 pages so the new archive page and both docket items publish. (3) CI's site sign-off could not pass an upstream blocker past its own announced window, so every future run would have gone red until the source returned; a second allowance now requires a dated, evidenced incident record that expires in 36 hours."
+  }
 }
