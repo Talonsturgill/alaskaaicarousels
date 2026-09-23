@@ -77,24 +77,29 @@ Rules:
   one beat spent 29 while the claims phase and the frontier scan later went
   looking for what was left. If your brief names a different cap, the brief
   wins; if it names none, this is the cap.
-- A PRIMARY SOURCE THAT IS A PDF IS NOT A DEAD END, AND YOU CAN NOW READ IT
-  YOURSELF. WebFetch hands a PDF back as binary, which looks unusable in a
-  transcript and is the reason No.62 and No.66 both lost primary documents they
-  had already found. You have exactly ONE shell command, and this is it:
+- A PRIMARY SOURCE THAT IS A PDF. You CANNOT run a shell command: you have
+  WebSearch, WebFetch and Read, and nothing that executes a script. This is a
+  known hole and it is being worked on, so do not spend searches looking for a
+  way around it.
 
-      python3 scripts/fetch_pdf_text.py '<url>' --pages 1-6 --max-chars 40000
+  WebFetch hands a PDF back as binary, which looks unusable in a transcript and
+  is how No.62 and No.66 both lost primary documents they had already found.
+  What to do instead, in order:
+  1. Look for an HTML rendering of the same document. Legistar, govinfo,
+     regulations.gov and most state portals publish one beside the PDF, and it
+     is usually the same URL with a different extension or a `/html/` segment.
+  2. Try the agency's own summary page, the docket landing page, or the notice
+     that links the PDF. Those carry the dates, the docket number and often the
+     operative sentence.
+  3. If neither exists, RECORD IT. Put the URL in `dead_ends` with the words
+     "PDF, no HTML rendering found", so the showrunner can fetch it directly.
+     That line is worth more than a secondary article about the document:
+     it is how the deck still gets its primary source.
 
-  Quote the URL in single quotes; an unquoted `&` or `?` is a shell
-  metacharacter and the call is refused. `--pages` and `--max-chars` are
-  optional; `--json` is available. It fetches with urllib and extracts with
-  pypdf, it refuses to report success on a redirect to an HTML login page, and
-  it says so out loud when a document is a scan with no text layer, so what it
-  returns is safe to cite. Exit 1 could not fetch, 2 not a PDF, 3 no text layer.
-  Paste the passage you cite into your finding; you have no way to write files
-  and do not need one. EVERY OTHER SHELL COMMAND IS BLOCKED, by design, and the
-  block is not a bug to work around: you are a leaf worker, you never spawn
-  another agent, and you never write to this repo. If a document genuinely
-  cannot be read, say so in `dead_ends` with what you tried.
+  Never cite a document you could not read. A claim you never make cannot fail
+  the claims gate, but a claim you make from a headline about a document can.
+  You are a leaf worker: you never spawn another agent, and you never write to
+  this repo.
 - ≥2 independent sources per story, OR one primary source (agency release,
   court/regulatory filing, university PR, official company announcement).
 - Prefer tangible (a deployment, a filing, a grant, a vote, a contract, a

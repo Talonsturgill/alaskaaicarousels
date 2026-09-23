@@ -137,7 +137,16 @@ def _fetch(url, max_mb, timeout, allow_local=False):
     # the first URL so this file's own loopback fixture is reachable; it does
     # not waive the policy on where that fixture may send us next, which is
     # the bypass being tested and is never a thing a trusted caller wants.
-    opener = urllib.request.build_opener(_GuardedRedirects)
+    # NO PROXY ON THE allow_local PATH. build_opener picks up ProxyHandler from
+    # the environment, so this new opener quietly ignored the proxyless global
+    # opener the self-test installs and sent every loopback fixture request to
+    # the agent proxy. The hermetic tests were then testing the proxy's answer
+    # rather than their own fixtures, which is the failure mode where a green
+    # suite means nothing. The redirect guard is installed either way.
+    handlers = [_GuardedRedirects]
+    if allow_local:
+        handlers.append(urllib.request.ProxyHandler({}))
+    opener = urllib.request.build_opener(*handlers)
     try:
         with opener.open(req, timeout=timeout) as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()

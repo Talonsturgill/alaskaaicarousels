@@ -253,6 +253,61 @@ FRONTMATTER_MUST_CONTAIN = (
 )
 
 
+def hook_is_wired(fm_text):
+    """Why this frontmatter's Bash hook is not actually wired, or None.
+
+    PARSED, NOT GREPPED. The first version of this check looked for three
+    substrings in the raw frontmatter, and review showed a frontmatter that
+    granted Bash with all three hook lines COMMENTED OUT still passed: the
+    needles were all present in the text, and Claude would have ignored the
+    YAML comments and handed a leaf worker an unguarded shell. A check that a
+    comment satisfies is not a check.
+
+    So the structure is walked: hooks -> PreToolUse -> an entry whose matcher
+    mentions Bash -> a command hook naming this file. If PyYAML is missing the
+    caller is told that, rather than being told everything is fine.
+    """
+    try:
+        import yaml
+    except ImportError:                                  # pragma: no cover
+        return ("PyYAML is not installed, so the hook wiring cannot be parsed "
+                "and this check cannot vouch for it")
+    try:
+        fm = yaml.safe_load(fm_text)
+    except yaml.YAMLError as exc:
+        return "the frontmatter is not valid YAML (%s)" % exc
+    if not isinstance(fm, dict):
+        return "the frontmatter is not a mapping"
+
+    hooks = fm.get("hooks")
+    if not isinstance(hooks, dict):
+        return "there is no `hooks:` mapping"
+    pre = hooks.get("PreToolUse")
+    if not isinstance(pre, list) or not pre:
+        return "`hooks.PreToolUse` is missing or is not a list"
+
+    for entry in pre:
+        if not isinstance(entry, dict):
+            continue
+        matcher = entry.get("matcher")
+        if not isinstance(matcher, str) or "Bash" not in matcher:
+            continue
+        inner = entry.get("hooks")
+        if not isinstance(inner, list):
+            continue
+        for h in inner:
+            if not isinstance(h, dict):
+                continue
+            if h.get("type") != "command":
+                continue
+            cmd = h.get("command")
+            if isinstance(cmd, str) and "scout_bash_guard.py" in cmd:
+                return None
+        return ("the PreToolUse entry matching Bash has no command hook "
+                "running scout_bash_guard.py")
+    return "no PreToolUse entry matches Bash"
+
+
 def _agent_frontmatter(path):
     text = path.read_text(encoding="utf8")
     if not text.startswith("---"):
@@ -387,12 +442,14 @@ def self_test():
             print("  ok    scout.md withholds Bash, so the guard is inert and "
                   "its wiring is not required")
         else:
-            for needle in FRONTMATTER_MUST_CONTAIN:
-                if needle not in fm:
-                    print("  FAIL  scout.md grants Bash but its frontmatter is "
-                          "missing %r; the guard is not attached and that Bash "
-                          "would be unguarded" % needle)
-                    ok = False
+            why = hook_is_wired(fm)
+            if why:
+                print("  FAIL  scout.md grants Bash but %s; that Bash would be "
+                      "unguarded" % why)
+                ok = False
+            else:
+                print("  ok    scout.md grants Bash and the guard is wired to "
+                      "it, verified against the parsed frontmatter")
         for banned in ("Task", "Write", "Edit", "NotebookEdit"):
             line = [l for l in fm.splitlines() if l.strip().startswith("tools:")]
             if line and banned in line[0]:

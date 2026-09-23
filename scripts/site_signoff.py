@@ -65,6 +65,7 @@ import os
 import re
 import sys
 from datetime import date, datetime, timezone
+from urllib.parse import urlparse
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -893,6 +894,11 @@ def self_test():
               {**incident, "attempts": "a string is not a list"},
               {**incident, "evidence_urls": {"u": "https://x/y"}},
               {**incident, "evidence_urls": [7]},
+              {**incident, "evidence_urls": ["https://"]},
+              {**incident, "evidence_urls": ["https://#fragment"]},
+              {**incident, "evidence_urls": ["https://not a url"]},
+              {**incident, "evidence_urls": ["https:///path/only"]},
+              {**incident, "evidence_urls": ["https://x/y", "https://"]},
               {**incident, "audit_checked_utc": 20260916},
               {**incident, "audit_checked_utc": "20260916"},
               {**incident, "audit_checked_utc": "2026-09-16"},
@@ -1007,9 +1013,20 @@ def incident_allows(incident, now=None):
             return False
         if not all(isinstance(v, str) and v.strip() for v in seq):
             return False
-    if not all(u.startswith(("http://", "https://"))
-               for u in incident["evidence_urls"]):
-        return False
+    # EVIDENCE HAS TO BE OPENABLE, so the URL needs a host and not just a
+    # scheme. A prefix test accepted "https://", "https://#fragment" and
+    # "https://not a url", none of which anyone can open, and the whole point
+    # of this allowance is that a person can go and check what the run tried.
+    for u in incident["evidence_urls"]:
+        try:
+            bits = urlparse(u)
+        except ValueError:
+            return False
+        if bits.scheme not in ("http", "https"):
+            return False
+        host = (bits.hostname or "").strip()
+        if not host or " " in u.strip() or "." not in host and host != "localhost":
+            return False
     # A STRING, not whatever str() can make of it. The integer 20260916 becomes
     # "20260916", which fromisoformat happily reads as a date in basic format,
     # so a record with a numeric stamp was earning the allowance. Found by this
