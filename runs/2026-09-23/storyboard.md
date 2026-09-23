@@ -793,8 +793,12 @@ here as a choice so the critic grades it as one.
 the deck. D4 chip reads `20 KM`, the same register as the cover, which is the point.
 
 **7. Technique stack.** Technique 93 AKENGRAVE, one pass clipped to the borough path,
-`form` a 0.06 fbm2 texture floor at 0.0026 so the bench still has a direction field,
-`tone` 0.88, budget main 16.0 cross 0 dots false, wMax 1.25, seedDeg 41, step 6. A second
+`form` a LINEAR plane leaning about six degrees off horizontal, 0.30 falling across it,
+with NO noise term, because noise inside a form drives the direction field and the lay
+prints as TERRAIN, which is this deck's one unbreakable rule. The texture floor lives in
+`tone` instead, 0.88 plus a 0.03 fbm2 at 0.0031 clamped at 0.94, which is the house idiom
+and is where every other frame in this deck puts it. Budget main 16.0 cross 0 dots false,
+wMax 1.25, seedDeg 41, step 6. A second
 pass across the bottom band at seedDeg 73. Technique 58 profile-heaviest, the outline at
 the hero token but here in `#8FA39A` rather than `#C9DCD2`, one step down, because the
 frame has had its material removed. Technique 79 cased line.

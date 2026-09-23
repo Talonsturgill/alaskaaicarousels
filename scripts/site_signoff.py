@@ -859,6 +859,27 @@ def self_test():
               for s, l in [("WARN", "power.json is current"),
                            ("FAIL", "gaswatch.jsonl reaches gas-watch/index.html"),
                            ("WARN", "watch.json is current")]))
+    # A run that shipped WITHOUT a record must not inherit the one before it.
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        runs = os.path.join(tmp, "runs")
+        os.makedirs(os.path.join(runs, "2026-09-16"))
+        os.makedirs(os.path.join(runs, "2026-09-17"))        # newest, no record
+        with open(os.path.join(runs, "2026-09-16",
+                               "gaswatch_incident.json"), "w") as fh:
+            json.dump({"blocker": "upstream", "reason": "x",
+                       "audit_checked_utc": "2026-09-16T12:00:00Z",
+                       "attempts": ["a"], "evidence_urls": ["https://x/y"]}, fh)
+        check("a run with no record never inherits the run before it",
+              incident_record(tmp) is None)
+        with open(os.path.join(runs, "2026-09-17",
+                               "gaswatch_incident.json"), "w") as fh:
+            json.dump({"blocker": "github", "reason": "its own",
+                       "audit_checked_utc": "2026-09-17T12:00:00Z",
+                       "attempts": ["a"], "evidence_urls": ["https://x/y"]}, fh)
+        got = incident_record(tmp)
+        check("and the newest run's own record is the one that is read",
+              isinstance(got, dict) and got.get("blocker") == "github")
     check("an incident record has to be earned, and expires by itself",
           all(not incident_allows(i, now) for i in [
               None, {}, "upstream",
@@ -913,15 +934,27 @@ def incident_record(repo=None, now=None):
     runs = os.path.join(repo, "runs")
     if not os.path.isdir(runs):
         return None
-    for name in sorted(os.listdir(runs), reverse=True):
-        path = os.path.join(runs, name, "gaswatch_incident.json")
-        if os.path.isfile(path):
-            try:
-                with open(path, encoding="utf-8") as fh:
-                    return json.load(fh)
-            except (OSError, ValueError):
-                return None
-    return None
+    dated = [n for n in os.listdir(runs)
+             if re.fullmatch(r"\d{4}-\d{2}-\d{2}", n)
+             and os.path.isdir(os.path.join(runs, n))]
+    if not dated:
+        return None
+    # THE NEWEST RUN DIRECTORY, FULL STOP, and not the newest one that happens
+    # to carry the file. Walking back until a record turned up meant a run that
+    # shipped WITHOUT an incident, because its own audit never ran or failed
+    # before it could write evidence, silently inherited yesterday's, and the
+    # 36 hour window made that inheritance work. The exception has to be
+    # re-earned by the run that is claiming it, so if today's run has no record
+    # there is no allowance, and the stale warning blocks as it should.
+    newest = max(dated)
+    path = os.path.join(runs, newest, "gaswatch_incident.json")
+    if not os.path.isfile(path):
+        return None
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
 
 
 def incident_allows(incident, now=None):

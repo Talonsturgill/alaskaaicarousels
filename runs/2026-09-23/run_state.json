@@ -14,7 +14,7 @@
     "art_build": "done: 9 bespoke slides, qa.py PASS 0 fails 0 warns, bespoke_check PASS drawn share 60%",
     "pixel_review": "done: 3 critics over 03,04,06,07,08; 1 hard fail and 6 majors, all repaired; qa.py PASS 0/0",
     "flow_review": "done: flow-critic 8.2, verdict ship, reorder none; 07->08 junction planted per its major finding",
-    "assemble": "done: out/2026-09-23/final, vector pdf 5.32 MB, contact sheet, 9 thumbs",
+    "assemble": "done: out/2026-09-23/final, vector pdf 5.64 MB (5635742 bytes, 9 pages), contact sheet, 9 thumbs",
     "scoring": "done: 8.67 vs threshold 7.7 at 5 rounds, zero hard fails, ship true; weakest Deliverable completeness and its named fix applied before ship",
     "ship": "done: runs/2026-09-23 shipped, docs/ rebuilt, 5 ledgers + FIELD_NOTES appended, PR #393 open and ready",
     "upgrade": "done: 3 upgrades in one revertible upgrade(2026-09-23) commit 444f6cd0, SHA stamped; scout PDF reader guard UNTESTED in a live scout and recorded as such",

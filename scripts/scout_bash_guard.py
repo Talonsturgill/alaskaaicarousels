@@ -48,6 +48,7 @@ Stdlib only. Reads nothing but stdin and, under --self-test, the agent file.
 """
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
 import shlex
@@ -65,6 +66,29 @@ INTERPRETERS = ("python3", "python")
 FLAGS_WITH_VALUE = ("--pages", "--max-chars", "--max-mb", "--timeout")
 FLAGS_BARE = ("--json", "--self-test")
 FLAGS_DENIED = ("--out",)
+
+# CEILINGS ON THE NUMERIC FLAGS. Without these the one allowed command is a
+# memory and time lever: --max-mb 100000 on a hostile URL is an out-of-memory
+# kill of the whole run, and a long --timeout parks a scout forever. The values
+# are the reader's own documented defaults, roughly doubled, so no honest fetch
+# meets them.
+FLAG_CEILINGS = {"--max-mb": 64, "--max-chars": 400000, "--timeout": 120}
+
+# THE TARGET MUST BE A PUBLIC http(s) URL, and this is the half of the guard
+# that matters most. The command shape was pinned from the first version, but
+# the TARGET was not, so the reader would accept a local path or a file:// URL
+# and print the first bytes of whatever it found; it converts a bare path to
+# file:// itself. That turns a read-only PDF tool into local-file disclosure,
+# and a loopback or private-range host turns it into a request from inside this
+# container. A scout takes its URLs from search results, which is exactly the
+# untrusted-input path this has to survive.
+ALLOWED_SCHEMES = ("http://", "https://")
+
+# Hostnames and literal addresses that never name a public document. Matched on
+# the host alone, lowercased, with any port and credentials stripped.
+BLOCKED_HOSTS = ("localhost", "localhost.localdomain", "ip6-localhost",
+                 "metadata", "metadata.google.internal", "instance-data")
+BLOCKED_HOST_SUFFIXES = (".localhost", ".local", ".internal", ".localdomain")
 
 USAGE = ("the only shell command a scout may run is the PDF reader, e.g. "
          "python3 scripts/fetch_pdf_text.py 'https://host/doc.pdf' --pages 1-6 "
@@ -128,6 +152,61 @@ def is_reader_path(tok):
     return norm == READER_REL
 
 
+def bad_target(tok):
+    """Why this positional is not a public PDF URL, or None if it is fine.
+
+    Deliberately an allowlist. A denylist of bad schemes would have missed
+    file://, which is the one the reader reaches for on its own when handed a
+    bare path.
+    """
+    low = tok.lower()
+    if not low.startswith(ALLOWED_SCHEMES):
+        return ("%r is not an http or https URL. A scout reads PUBLISHED "
+                "documents, so a local path, a file:// URL or any other scheme "
+                "is refused." % tok)
+    rest = tok.split("://", 1)[1]
+    host = rest.split("/", 1)[0].split("?", 1)[0].split("#", 1)[0]
+    if "@" in host:                      # strip credentials, keep the host
+        host = host.rsplit("@", 1)[1]
+    if host.startswith("["):             # bracketed IPv6 literal
+        host = host[1:].split("]", 1)[0]
+    else:
+        host = host.split(":", 1)[0]
+    host = host.strip().rstrip(".").lower()
+    if not host:
+        return "%r has no host." % tok
+    if host in BLOCKED_HOSTS or host.endswith(BLOCKED_HOST_SUFFIXES):
+        return ("%r points at this machine or its metadata service, not at a "
+                "published document." % tok)
+    try:
+        addr = ipaddress.ip_address(host)
+    except ValueError:
+        return None                      # a name, and not a blocked one
+    if (addr.is_loopback or addr.is_private or addr.is_link_local
+            or addr.is_reserved or addr.is_multicast or addr.is_unspecified):
+        return ("%r is a loopback, private or otherwise non-public address. A "
+                "scout fetches public documents only." % tok)
+    return None
+
+
+def bad_flag_value(flag, value):
+    """Why this numeric flag value is out of bounds, or None if it is fine."""
+    ceiling = FLAG_CEILINGS.get(flag)
+    if ceiling is None:
+        return None
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return "%s takes a number, not %r. %s" % (flag, value, USAGE)
+    if n <= 0:
+        return "%s must be positive, not %r." % (flag, value)
+    if n > ceiling:
+        return ("%s is capped at %s for a scout, and %r is above it. The cap "
+                "is there so one fetch can't exhaust the run's memory or "
+                "park the scout." % (flag, ceiling, value))
+    return None
+
+
 def decide(tool_name, tool_input):
     """Return (allow, reason). Reason is the text the agent is shown on a deny."""
     if tool_name != "Bash":
@@ -168,18 +247,31 @@ def decide(tool_name, tool_input):
         if t in FLAGS_WITH_VALUE:
             if i + 1 >= len(toks):
                 return False, "%s was given no value. %s" % (t, USAGE)
+            why = bad_flag_value(t, toks[i + 1])
+            if why:
+                return False, why
             i += 2
             continue
-        if any(t.startswith(f + "=") for f in FLAGS_WITH_VALUE):
+        matched = [f for f in FLAGS_WITH_VALUE if t.startswith(f + "=")]
+        if matched:
+            why = bad_flag_value(matched[0], t.split("=", 1)[1])
+            if why:
+                return False, why
             i += 1
             continue
         if t.startswith("-"):
             return False, "%s is not a flag the PDF reader accepts. %s" % (t, USAGE)
+        why = bad_target(t)
+        if why:
+            return False, why + " " + USAGE
         positional += 1
         if positional > 1:
-            return False, ("the PDF reader takes ONE url or path; %r is a second "
+            return False, ("the PDF reader takes ONE url; %r is a second "
                            "one. Run it once per document." % t)
         i += 1
+    if positional != 1 and "--self-test" not in toks:
+        return False, ("the PDF reader needs exactly one public http or https "
+                       "URL. %s" % USAGE)
     return True, ""
 
 
@@ -213,8 +305,40 @@ def self_test():
         "python3 scripts/fetch_pdf_text.py --self-test",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb 60",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --pages=1-6",
+        "python3 scripts/fetch_pdf_text.py HTTPS://X.GOV/D.PDF",
+        "python3 scripts/fetch_pdf_text.py https://x.gov:8443/d.pdf",
+        "python3 scripts/fetch_pdf_text.py https://8.8.8.8/d.pdf",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb=64",
     ]
     deny = [
+        # THE TARGET, which the first version of this guard never checked. The
+        # reader turns a bare path into file:// by itself, so a command shape
+        # that is exactly right can still read the container's own disk.
+        "python3 scripts/fetch_pdf_text.py /etc/passwd",
+        "python3 scripts/fetch_pdf_text.py file:///etc/passwd",
+        "python3 scripts/fetch_pdf_text.py FILE:///etc/shadow",
+        "python3 scripts/fetch_pdf_text.py ledger/gaswatch.jsonl",
+        "python3 scripts/fetch_pdf_text.py ../../etc/passwd",
+        "python3 scripts/fetch_pdf_text.py ftp://x.gov/d.pdf",
+        "python3 scripts/fetch_pdf_text.py data:application/pdf;base64,AAAA",
+        "python3 scripts/fetch_pdf_text.py http://localhost/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://LOCALHOST:8080/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://127.0.0.1/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://0.0.0.0/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://10.0.0.5/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://192.168.1.1/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://169.254.169.254/latest/meta-data/",
+        "python3 scripts/fetch_pdf_text.py http://metadata.google.internal/x",
+        "python3 scripts/fetch_pdf_text.py http://[::1]/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://user:pw@127.0.0.1/d.pdf",
+        "python3 scripts/fetch_pdf_text.py http://build.internal/d.pdf",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb 100000",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb=99999",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --timeout 86400",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-chars 99999999",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --max-mb -1",
+        "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --timeout abc",
+        "python3 scripts/fetch_pdf_text.py --json",
         # the blast radius this guard exists to remove
         "python3 -c \"open('ledger/topics.json','w').write('[]')\"",
         "python3 scripts/fetch_pdf_text.py https://x.gov/d.pdf --out /tmp/a.txt",
