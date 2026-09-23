@@ -1,0 +1,142 @@
+{
+  "run_date": "2026-09-23",
+  "carousel_no": 66,
+  "rounds": 5,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Transcribed every rendered string on all nine frames. Every dash is a hyphen-minus in a compound or an identifier: 'Mat-Su', 'MATANUSKA-SUSITNA', 'high-speed', 'computer-readable', 'third-party', 'NO. 26-106', 'AO 2026-108(S)', 'MSB 23.30.020(A)'. caption.txt and copy.json first_comment carry the same pattern and no free-standing dash. caption_check PASS over 65 copy fields, copy_sync PASS over 61 authored strings present in the render."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "Zero pictographic glyphs in copy.json, caption.txt, first_comment, aftercare, editor notes, or any of the nine renders. The only non-alphanumeric marks are the slash in progress counters and struck slots, the Polaris four-point glyph (a drawn canvas path, not a character), and the strike rules on 05 and 06."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "All nine slides carry claim_ids in copy.json; claims.json holds 38 claims each with verbatim, source_url and source_outlet, plus 7 explicitly killed claims with reasons. plan_drift PASS, 38 claims indexed, 5 body quotes checked, 0 drifts. Design-only strings are declared in aggregates.json as design, and aggregate_check PASS with 2 detected against 6 declared. The population figure on 06 carries c34 and is rendered with its year label."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass",
+      "evidence": "Transcribed all nine frames at full size and diffed against copy.json. Exact matches including 'void ab initio and unenforceable' (03), 'optical character recognition' (02), 'CHICKALOON TRIBAL POLICE' (06), 'AO 2026-108(S)' with the (S) (08). One style inconsistency, not a typo: slide 04's kicker sets 'MSB 23.30.030 (A)' with a space where slide 03 sets 'MSB 23.30.020(A)' without one."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict PASS, fails 0, warns 0 across all nine frames. Render 9 of 9, 0 errors, 0 overflow. Slide 07's date labels sit right-aligned inside the reading frame and its body clears the struck slot; slide 06's dotted leaders run in the gutter without crossing glyphs."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point",
+      "status": "pass",
+      "evidence": "Display and body are #F2F6F4 on #0A1014, roughly 18:1. Mono secondary #8FA39A on #0A1014 computes to about 7.4:1. Every type box sits in an eng.reserve hole over #10191D. The one sub-threshold string is the site fixture at #46545F, which brand.yaml specifies at exactly that value and defines as a watermark rather than a line of copy, and which is data-decorative on all nine frames."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "Nine slides in copy.json, nine renders, nine thumbs, nine HTML sources in assemble_report, counters read 01/09 through 09/09."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict PASS with 0 fails and 0 warns, down from WARN with 17 warns at the previous score. assemble_report.json pdf_mode is 'vector', 5.63 MB, inside the 2 to 25 MB band."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "The nearest neighbour is No.40, 2026-08-25, 29 days back, which is the ANCHORAGE Assembly surveillance ordinance and Real Time Crime Center. This deck is a different borough, a different document and a different action. Anchorage occupies one frame of nine, is declared a foil, and slide 08 prints its own acknowledgement of the prior coverage. Dedupe returned no likely duplicate, strongest match No.47 at jaccard 0.026."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "The last four hero structures are the returned apron panorama, the season disc, the jurisdiction section and the waterline hold. No.66 is the reading frame plate, frontal, no camera, no horizon, no station, no perspective. The closest prior is No.64, which had a ground datum and a vertical axis; this deck has neither."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "Scanned the 74-entry banned list against caption.txt, post_copy, first_comment and all nine frames. None present. No colon in any on-slide string or in the caption, 'can't' and never 'cannot', no first person, straight quotes on 04 and 05. Dates are month-first ordinal with the year dropped for this year throughout, and the one year that appears, 2025, is doing work as a different calendar year."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly three, #MatSuBorough #AlaskaPolicy #LicensePlateReaders, at the end. No URL anywhere in post_copy; all nine source URLs live in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No placeholder token in any render or artifact. Two documentation staleness items were checked and judged stale prose in the plan rather than unfinished elements in the deck, and both are named in the editor notes."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "'Mat-Su banned plate readers the night it was heard.' is nine words, names a real Alaskan place, and the tension is the speed rather than the topic. Legible in the 432px thumb. Short of 9 on two counts: no number lands on the cover, because the ordinance prints no tally and the dek honestly surrendered 'ALL SEVEN MEMBERS' at the aggregate gate, so the count survives only as seven drawn ticks nobody counts at thumb size; and the map window is the largest mass on the frame while saying nothing specific at 432px."
+    },
+    {
+      "name": "Story arc and swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The open-loop chain is real and every link pays. 03 shows three enacted reaches and leaves the fourth terrace cut and empty, 04 pays it with the receiving clause, 05 is a genuine turn that re-scopes all four preceding frames with one quoted sentence, 06 answers it, 07 answers what is left, 09 asks. The round-5 addition to 07 plants 08 cleanly and names the date so the antecedent can't be the August signatures. Short of 9: 02 and 03 are reorderable without real loss, and 08 has to print a line telling the reader it is not about its own subject."
+    },
+    {
+      "name": "Artwork craft and genuine detail",
+      "score": 8,
+      "weight": 0.16,
+      "notes": "The biggest gain of this run and it was fixed at the cause. Seventeen lay warnings to zero by deriving the safe seedDeg from _layCheck rather than guessing. 03's four terraces carry per-terrace crossDeg and mirrored fall so they stop sharing one moire signature, plus the scotch rule the dossier had declared and the build had never drawn; 04's interior lost its raw flat fill for a bare-mainline pass; every frame carries a dedicated bottom-band surface pass, which designs out the six-run dead-lower-zone defect. Held at 8 by three things: 05's and 09's polygon interiors read close to bare at feed speed; four of nine frames are the same drawing at four tones; and the eight signature rules step in length on 09 while the same motif is uniform on 07."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Art parameters encode story quantities on nearly every frame and each is declared with a claim id. Six riser ticks on 03's first terrace, one per verb in MSB 23.30.020(A), and three on the second, one per resource in (B). 04's milled channel stops 90px short of the borough mass, so the whole argument of the frame is a gap. 06's two bounded city chips carry all three engraving channels against a mainline-only plane. 08 encodes source class in the tag rule itself, solid for the primary document and dashed for the single secondary report, with a printed legend. Held at 8 because 07's main object now carries only its count and 09's length-stepping encodes nothing."
+    },
+    {
+      "name": "Alaska authenticity and local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "True borough geometry from committed geodata on five frames, true projected Wasilla and Palmer coordinates, the shared Mat-Su and Anchorage border drawn real rather than a distance asserted. The borough's own law enforcement sentence quoted character for character on 05. All five real agencies named on 06 including Chickaloon Tribal Police, and three rows read NOT ON THIS SHEET rather than inventing a coordinate the gazetteer doesn't carry. The population is labelled as a 2025 state labor estimate and never given as a count. Short of 10 only because no Alaskan is quoted in the deck's own subject."
+    },
+    {
+      "name": "Insight density and factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content frame adds a new verified specific: the definition reaching past plates to makes, models, colors and unique identifiers; three enacted subsections with a fourth withheld; the receiving clause, which is the deck's best single idea; the police-powers sentence; five agencies and about 117,400 people; the operator definition plus eight August signatures; the Anchorage postponement. The claim record is unusually disciplined, 38 claims with verbatim text and seven killed with stated reasons. Held at 8: 09 restates 01, 03 and 05 rather than adding."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08,
+      "notes": "Fresh hero concept, properly argued, with a new atmosphere, a new hook archetype and a new palette family. But two or more subsystems are reused. AKENGRAVE is not new to the engine: No.60 used it for white-line intaglio relief and No.62 used its punchReserves, so the deck's entire tone system is a bench the ledger has run twice in six decks. Fraunces returns as the display face two decks after No.64. The locator geometry is the same construction No.64 declared as its D4."
+    },
+    {
+      "name": "Legibility and platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Floors met: body 28 to 34px, mono raised to 24px on every label a reader must actually read, zero overflow, qa 0 warns, vector PDF with the document title, progress counters on all nine, cover legible at 432px. Three squeakers keep it off 8. Slide 09's forward date sits at the extreme bottom edge where the platform's own chrome sits, and is marked decorative although it carries c36. Slide 06's two dotted leaders land within a few pixels of each other. The caption at 876 chars is 24 off the ceiling."
+    },
+    {
+      "name": "Copy: voice and hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "Hook is 83 chars, complete well before the fold, and it is the deck's entire argument in two sentences. 876 chars in band, 4 commas against the budget, analytical and position-taking without resolving the fork the deck deliberately refuses. The deck-summary line was rewritten out of the barred VERB-SLOT OPENER family into the 2026-09-03 sources-naming shape, which also puts the deck's one secondary source into the caption where a screen reader meets it. Held at 8 because that line's 6 plus 2 plus 1 partition reads as exhaustive and isn't."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "The package is complete: nine renders, nine thumbs, contact sheet, vector PDF with title, post copy with exactly three hashtags, a first-comment block of nine resolving sources in slide order, a six-item aftercare checklist and editor notes. Docked to 7 for three documentation defects with a history of causing real harm here. The No.66 artwork ledger entry carries no measured block at all while entries 63, 64 and 65 all do. BUILD RECONCILIATION stopped before round 5, so slide 07's dossier still declared three length tiers the shipped frame contradicts. And the editor note asserting that 08 is the only frame not primary-sourced stopped being true when 07 gained its planting sentence."
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(8x0.16)+(8x0.14)+(9x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(7x0.10) = 1.12+1.12+1.28+1.12+1.08+0.80+0.56+0.49+0.40+0.70 = 8.67. Weights sum to 1.00. No hard fail, so no 6.9 cap applied.",
+  "weighted_total": 8.67,
+  "threshold": 7.7,
+  "threshold_source": "config/scoring_rubric.yaml, relaxed band at 4 or more revision rounds",
+  "ship": true,
+  "weakest_criterion": "Deliverable completeness",
+  "one_sentence_fix": "Write the shipped measurements into the No.66 artwork ledger entry (bespoke median 0.305, max pair 0.689, drawn share 61 percent, qa 0 fails 0 warns, pdf vector 5.63 MB, revision_rounds 5) and extend BUILD RECONCILIATION through round 5 so slide 07's dossier stops declaring three length tiers the frame deliberately no longer draws.",
+  "editor_notes_for_email": "1. SHIP. 8.67 against a relaxed threshold of 7.7 at five rounds, and it clears the unrelaxed 8.3 as well. Zero hard fails on all thirteen rules, checked individually. 2. The slide 07 reasoning is correct and on the record. c28 gives the routing block only one 8/19, four 8/20 and one 8/21, which is six dated signatures against eight names, so two are undated. Eight rules stepped into three tiers would have asserted that all eight are dated and that they partition 3 to 4 to 1, and the document supports neither. One length is the honest drawing and it also kills the unlabelled bar chart read. 3. The same motif was still graduated on slide 09 at the time of scoring and has since been made uniform, so the deck's own motif is now drawn one way. 4. A stale editor note was corrected before ship. Slide 08 is no longer the only frame that is not primary-sourced: slide 07's closing sentence rests on c35 and slide 09's forward date rests on c36, both single-sourced to the Anchorage Daily News. The deck is still honest, because 08 names the paper in body copy and the caption names it too, but the right answer under questioning is that the paper carries three sentences across three frames. 5. The deck-summary line's 6 to 2 to 1 count is a primary-carrier attribution and not an exhaustive partition, and the Alaska Department of Labor population source behind slide 06's figure is in the first comment rather than among the three families it names. 6. gas_watch, gas_watch_live and cron_health are all WARN on one upstream cause, CINGSA publishing nothing since 09/13 and now past its own announced maintenance return. The collector behaved correctly, carried nothing forward and failed loudly. Not this deck's defect and no repair exists on this side. 7. On the bespoke max pair of 0.689 for 05 against 09, as PICTURES they are not too alike. The metric is counting shared code, and what it is counting is the identical scale-bar block that now correctly appears on all five geographic frames, which is house furniture in the same sense as a shared projection helper. The real variety cost is that 01, 05, 06 and 09 are four passes at one drawing. 8. The scale-bar change is a genuine honesty upgrade: the bars are derived from d3.geoDistance against the live projection, so the 20 KM and the 50 KM are shown rather than claimed."
+}

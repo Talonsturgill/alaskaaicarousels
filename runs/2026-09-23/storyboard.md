@@ -994,8 +994,13 @@ alphabet-of-lines for the ladder's datum. Technique 71 rule terminals, a 4 px do
 rule's right end. Technique 24 for the inset polygon.
 
 **8. Data-in-art mapping.** Eight incised rules, one per signature on the routing block
-(c29). Their lengths step in three tiers, one tier per signing date, August 19th, August
-20th and August 21st (c28). **NO name appears and NO title is paired with anyone**,
+(c29). **All eight rules are ONE LENGTH.** Length is not a quantity here and a signature
+is not a magnitude, so eight rules of eight lengths off a common datum would draw an
+unlabelled bar chart of nothing. Tiering them by signing date would be worse: c28 gives
+the routing block one 8/19, four 8/20 and one 8/21, which is six dated signatures against
+eight names, so two are UNDATED and any tiering would assert a 3 / 4 / 1 partition the
+document does not support. The date range is carried in type instead, as SIGNED AUGUST
+19TH TO AUGUST 21ST (c28), which is the only date claim the record proves. **NO name appears and NO title is paired with anyone**,
 because the extraction of the routing block's name-to-title pairing was measured as
 unreliable and the claim record says the count is safe and the pairing is not. The inset's
 cluster sits at Palmer's true projected coordinate, which is where the borough's
@@ -1026,7 +1031,7 @@ only.
 
 **14. Acceptance checklist.**
 - [ ] Exactly eight incised rules, countable at full size
-- [ ] The rules step in three tiers, one per signing date
+- [ ] All eight rules are one length, and no rule's length implies a quantity
 - [ ] No personal name and no job title appears anywhere on the frame
 - [ ] The locator inset's polygon is stroked and not filled
 - [ ] Gold appears once, on the effective-date stamp
@@ -1292,6 +1297,40 @@ spawned, so no critic measures the renders against superseded numbers.
     document families and how many frames each carries, which also puts the deck's one
     secondary source in the caption where a screen reader meets it.
 
+17. **Round 5, the pixel review of the repaired frames, and what it cost.** Three critics
+    over slides 03, 04, 06, 07 and 08 returned one HARD FAIL and six majors on frames that
+    had just passed the machine clean, which is the argument for running them after a
+    repair round and not only before one. The hard fail was slide 07's two date labels
+    running 67px past the reading frame and 51px past the deck's own 80px right margin.
+    The majors: slide 03's four terraces sharing one moire signature after the seedDeg
+    compression, repaired with per-terrace `crossDeg` and a mirrored fall; slide 04's frame
+    interior standing as a raw flat fill across about 60 percent of the frame, repaired with
+    a bare-mainline pass, which is what D2 actually asks for; slide 06's strike rule sitting
+    on its row's baseline and reading as an UNDERLINE, which is emphasis and the opposite of
+    negation, moved to mid-cap; slide 06's population line breaking across STATE LABOR,
+    hard-broken at its comma instead; slide 07's six-line body occupying the same 6px as the
+    struck slot; and slide 08's annotation block inverting its own spacing after the 24px
+    bump.
+18. **Two honesty defects the critics found that no gate would have.** First, five frames of
+    real projected geography carried a typed 20 KM or 50 KM chip with nothing measuring it,
+    on a deck whose own D4 device says the register is computed and never typed. Each now
+    draws a bar derived from `d3.geoDistance` against the live projection. Second, slide 07's
+    eight signature rules had eight different lengths off one datum, which reads as an
+    unlabelled bar chart, and any tiering of them would have asserted a per-date distribution
+    the source document does not support. See field 8 of the slide 07 dossier above. The
+    scorer then caught that the same motif was still graduated on slide 09, and 09 was made
+    uniform too, so the deck's own motif is drawn one way.
+19. **The caption's deck-summary line was repaired at ship.** The caption critic recorded the
+    VERB-SLOT OPENER family as barred four times and then logged it as a burn for the next
+    room while shipping it. It now uses the 2026-09-03 sources-naming shape, which also puts
+    the deck's one secondary source into the caption where a screen reader meets it.
+20. **Two killed claims had leaked into the public docket and were removed before the merge.**
+    The Phase 3.5 docket summary for the Mat-Su item asserted the Palmer-to-Anchorage
+    distance, which the fact-checker killed for want of a citable source, and named the
+    member who moved adoption, which the fact-checker killed because the legislative record
+    contradicts itself on that exact point. The claims gate protects the DECK and does not
+    read `ledger/docket.json`, which is how both survived. That gap is worth a check.
+
 **GATE STATUS at the time of this section:** render 9 of 9 OK with zero errors and
 zero page warnings; `qa.py` PASS, 0 fails and 0 warns; `bespoke_check` PASS, median
 pairwise 0.336 against a 0.60 fail, drawn share 60 percent against a 45 percent floor;
@@ -1302,26 +1341,26 @@ pairwise 0.336 against a 0.60 fail, drawn share 60 percent against a 45 percent 
 
 ```
 GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/2026-09-23. Do not hand-write these lines.
-[WARN] render         9/9 slides OK, 0 page errors, 7 overflow warnings
-[WARN] qa.py          WARN, 0 fails, 17 warns
+[PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
+[PASS] qa.py          PASS, 0 fails, 0 warns
 [PASS] dossier_check  PASS, 9 dossiers, 0 fails, 0 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 53 line(s), 3870 chars
-[FAIL] caption_check  FAIL, 862 chars, hook 83, 3 hashtags (3 fail: DATE (copy.json slides[6].labels[0]): 'AUG 19TH' is the abbr)
+[PASS] reconciled     BUILD RECONCILIATION present, 120 line(s), 9201 chars
+[PASS] caption_check  PASS, 876 chars, hook 83, 3 hashtags
 [PASS] copy_sync      copy_sync_check: PASS -- 61 authored slide strings all present in the render; alaskaaihq.com on every slide; no banned slide string
 [PASS] aggregate      aggregate_check: PASS -- 2 aggregate assertion(s) detected, 6 declared -> out/2026-09-23/aggregate_report.json
 [PASS] plan_drift     plan_drift_check: PASS -- 38 claims indexed, 0 declared counts checked, 5 body quote(s) checked, 0 drift(s)
-[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.334 (fail at 0.60), max pair 0.595, drawn share 60% (33 drawn vs 22 blocky
+[PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.305 (fail at 0.60), max pair 0.666, drawn share 61% (33 drawn vs 21 blocky
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] ledger_guard   LEDGER GUARD: PASS, 7 cron-written file(s) untouched
 [PASS] docket_dates   docket dates clean at 2026-09-23: 387 assertions over 6 fixtures and 31 ledger items
 [WARN] gas_watch      49 day(s) on record, 37 verified, no gaps, latest 2026-09-13, EIA through 202606 over 131 months, model misses by 6.82%, which is 10 days old
 [WARN] gas_watch_live UNRESOLVED upstream: CINGSA's public dashboard has not published a new reading since 09/13/2026 21:00 Alaska. Its own operational note announced a semiannual shut-in field balance and maintenance from September 14th until September 21st, and the dashboard is now two days past that announced return date with the same stamp, the same note and no extension. The collector ran on schedule, fetched the page successfully, archived the snapshot, refused to carry any measurement forward, wrote an explicit unverified record and failed its job loudly, which is the designed behavior for a stale source past its announced window. Nothing in this repository can produce a measurement CINGSA has not published, so the failure is upstream and no repair exists here.
 [WARN] cron_health    UNRESOLVED external blockers: gaswatch.yml:completion, gaswatch.yml:steps
-[PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-23 (208 generated files)
-[PASS] assemble       9 slides, pdf vector 5.8 MB, 9 thumbs, sources verified
-[n/a ] score          score_report.json missing
-[FAIL] ship_gate      score_report.json missing. The run cannot ship or stop until it has been scored. ITERATE, do not stop. weakest: ?
+[PASS] site_fresh     OK: docs/ is exactly a fresh build at --date 2026-09-23 (210 generated files)
+[PASS] assemble       9 slides, pdf vector 5.64 MB, 9 thumbs, sources verified
+[PASS] score          8.67 / 10 vs threshold 7.7, scorer says passes=True
+[PASS] ship_gate      scored 8.67 against a threshold of 7.70
 [PASS] artifacts      every named artifact present, JSON parses, 9 slides valid
->> 2 FAIL row(s). Fix the artifact, not the sentence.
+>> 0 FAIL row(s). Paste this block verbatim into the run record.
 ```
 

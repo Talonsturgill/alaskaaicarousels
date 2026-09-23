@@ -2127,7 +2127,23 @@
         "71 rule terminals",
         "79 cased line"
       ],
-      "note": "The engraver's bench carried all nine frames and it was PROTOTYPED THREE TIMES before any dossier was finalized, which found three defects that would otherwise have been Phase 8 repairs. One, a noise term inside form drives the direction field and the lay prints as terrain. Two, a Gaussian cone is a radial form and prints a bullseye with a void at its centre. Three, a bounded city chip with a LINEAR form inside it is both the fix and the better picture, because a city police department's authority stops at a line rather than falling off with distance. The thickest line in the deck is the borough boundary, and it is the one that binds nothing."
+      "note": "The engraver's bench carried all nine frames and it was PROTOTYPED THREE TIMES before any dossier was finalized, which found three defects that would otherwise have been Phase 8 repairs. One, a noise term inside form drives the direction field and the lay prints as terrain. Two, a Gaussian cone is a radial form and prints a bullseye with a void at its centre. Three, a bounded city chip with a LINEAR form inside it is both the fix and the better picture, because a city police department's authority stops at a line rather than falling off with distance. The thickest line in the deck is the borough boundary, and it is the one that binds nothing. MEASURED, and recorded here because No.62's own note records a scorer catching unmeasured numbers in this exact file and entries 63 to 65 all carry a block that 66 was shipping without. The lay collapse is the number that matters: seventeen AKENGRAVE warnings at the top of round four, zero at ship, and the fix was DERIVED rather than guessed. Alignment is the mean absolute cosine between the seeding raster and the walk direction, the walk runs along the isolines at atan2(gx,-gy) plus angOff, and angOff is 0 for the main channel and crossDeg for the cross channel, so ONE eng.surface call has TWO angles to avoid, 90 degrees off each, and the safe seedDeg is the midpoint between the two perpendiculars. Two prose remedies were tried first and neither moved the number. A second lesson for the next deck that uses this bench: a CONTEXT surface behind type wants one channel, not two. Dropping cross to 0 on the bands and aprons halved the lay warnings and cured a moire the scorer had raised as a separate finding.",
+      "measured": {
+        "revision_rounds": 5,
+        "machine_qa": "PASS, 0 fails, 0 warns, 9 of 9 frames",
+        "render": "9 of 9, 0 page errors, 0 overflow warnings",
+        "bespoke_median_pairwise": 0.304,
+        "bespoke_max_pair": 0.678,
+        "bespoke_max_pair_slides": "05 against 09, both the borough polygon on a plate; the number counts shared CODE and the identical scale-bar block now sits on all five geographic frames",
+        "drawn_share_pct": 61,
+        "drawn_vs_blocky": "33 drawn, 21 blocky",
+        "pdf_mode": "vector",
+        "pdf_mb": 5.63,
+        "score": 8.67,
+        "threshold": 7.7,
+        "weakest_criterion": "Deliverable completeness",
+        "artwork_craft_score": 8
+      }
     }
   ]
 }
