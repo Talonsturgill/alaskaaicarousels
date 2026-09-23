@@ -13,13 +13,15 @@
       "Fetched the same URL a second time directly with urllib and regexed the raw HTML, which returned the one timestamp 09/13/2026 21:00 and the same unextended maintenance note, confirming the staleness is in the published bytes and not in our parser or in a cache.",
       "Checked the parsed maintenance window on the standing record. It reads start 2026-09-14 and end 2026-09-21, so the source pause allowance has correctly expired and the collector is right to fail rather than to stay green.",
       "Confirmed the rest of the pipeline is healthy. The forecast leg updated at 2026-09-22T12:27:32Z, Pages deployed, and the live page and JSON match main, so the only missing input is CINGSA's own measurement.",
-      "Did not rerun the production collector, because a rerun re-reads the same unchanged upstream bytes and can only append a second unverified record for the same date. The next scheduled collection retries it on its own."
+      "Did not rerun the production collector, because a rerun re-reads the same unchanged upstream bytes and can only append a second unverified record for the same date. The next scheduled collection retries it on its own.",
+      "Re-ran the live audit after the site rebuild, at 2026-09-23T09:34:12.733009Z. Same two failures, same cause: source freshness 220.6 hours old and the collector's own scheduled run 35843395102 failing at 09:31 UTC with 'Record written UNVERIFIED. A fetch failed or the source is stale.', which is the designed loud failure. Every other row of the live audit passed, including the published page, the chart, the weather true-ups and the modeled peak."
     ],
     "evidence_urls": [
       "https://cingsa.com/operations/PublicDashBoard.html",
       "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35791566615",
       "https://alaskaaihq.com/gas-watch/",
-      "https://alaskaaihq.com/gas-watch.json"
+      "https://alaskaaihq.com/gas-watch.json",
+      "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35843395102"
     ]
   }
 ]

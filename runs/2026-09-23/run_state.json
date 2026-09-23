@@ -16,8 +16,8 @@
     "flow_review": "done: flow-critic 8.2, verdict ship, reorder none; 07->08 junction planted per its major finding",
     "assemble": "done: out/2026-09-23/final, vector pdf 5.32 MB, contact sheet, 9 thumbs",
     "scoring": "done: 8.67 vs threshold 7.7 at 5 rounds, zero hard fails, ship true; weakest Deliverable completeness and its named fix applied before ship",
-    "ship": "in progress: runs/2026-09-23 shipped, docs/ rebuilt 120 pages, 4 ledgers + FIELD_NOTES appended, branch pushed",
-    "upgrade": "in progress: upgrade-engineer running on the scouts-had-no-PDF-reader finding",
+    "ship": "done: runs/2026-09-23 shipped, docs/ rebuilt, 5 ledgers + FIELD_NOTES appended, PR #393 open and ready",
+    "upgrade": "done: 3 upgrades in one revertible upgrade(2026-09-23) commit 444f6cd0, SHA stamped; scout PDF reader guard UNTESTED in a live scout and recorded as such",
     "gmail": "pending",
     "retro": "pending"
   },
@@ -38,6 +38,10 @@
     "aggregates": "out/2026-09-23/aggregates.json",
     "render": "out/2026-09-23/render",
     "final": "out/2026-09-23/final",
-    "score_report": "out/2026-09-23/score_report.json"
-  }
+    "score_report": "out/2026-09-23/score_report.json",
+    "automation_retro": "runs/2026-09-23/automation_retro.md"
+  },
+  "notes": [
+    "PR #394 opened and closed: the site_signoff CI repair could not be validated on an isolated branch because its input is a run artifact, so the same commit was cherry-picked onto the run branch where today's incident record sits."
+  ]
 }
