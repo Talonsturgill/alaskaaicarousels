@@ -2841,7 +2841,7 @@
       "status": "pending-decision",
       "decider": "Anchorage Assembly",
       "public_access": "indirect",
-      "access_note": "There is a way in again. Must Read Alaska reported on September 7th, 2026 that the ordinance is AO-2026-108 and that Anchorage residents can testify on it at the Assembly's regular meeting on September 15th, 2026 or online. That number and that date come from one outlet, because the municipality's own agenda system refuses an automated request and the ordinance text is still not readable anywhere else. Anyone relying on this should confirm the item is on the agenda before showing up, and writing to an Assembly member remains the surer route.",
+      "access_note": "The Assembly took public testimony on September 15th and then held the ordinance without voting, so the next opportunity is the regular meeting on October 20th. Anyone relying on that date should confirm the item is on the published agenda before showing up, because the municipality's agenda system refuses an automated request and the ordinance text is still not readable anywhere this record can reach.",
       "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th, reported as AO-2026-108, that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
       "key_dates": [
         {
@@ -2871,7 +2871,7 @@
         },
         {
           "date": "2026-09-15",
-          "label": "Public testimony on AO-2026-108 at the regular Assembly meeting, in person or online",
+          "label": "Public testimony taken at the regular Assembly meeting, then the ordinance held",
           "kind": "deadline"
         },
         {
@@ -2920,10 +2920,15 @@
           "url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
           "outlet": "Anchorage Daily News",
           "date": "2026-09-16"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-09-16"
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-23",
       "history": [
         {
           "date": "2026-08-25",
@@ -2992,6 +2997,10 @@
         {
           "date": "2026-09-19",
           "note": "Re-verified today. The Assembly did not act on AO 2026-108 on September 15th. It voted unanimously to postpone further work on the surveillance rules until its regular meeting on October 20th. Two texts are now in play, the sponsors' original and a substitute drafted by the municipal Department of Law, and the sponsors say they could not reach agreement with the administration on how long data may be held and on what the Assembly must approve before police acquire a technology. Yarrow Silvers urged the body not to rush a policy it does not yet fully understand. Verified against Anchorage Daily News reporting of September 16th, the municipality's own agenda system still refusing an automated read."
+        },
+        {
+          "date": "2026-09-23",
+          "note": "Checked today. The Assembly did not vote on AO 2026-108 at its September 15th meeting. Members voted unanimously to delay further discussion to the regular meeting on October 20th, with the sponsors and the administration still apart on the details. Vice Chair Daniel Volland said the sponsors were unable to come into full agreement with the administration and that the measure needs stronger language and stronger protections. Member Yarrow Silvers cautioned against passing a rushed version. Reported by the Anchorage Daily News on September 16th. The item stays pending and the October date is now the live one."
         }
       ],
       "cta_label": "TESTIFY",
