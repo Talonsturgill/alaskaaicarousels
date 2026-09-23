@@ -1,0 +1,24 @@
+{
+  "run_date": "2026-09-23",
+  "audit_checked_utc": "2026-09-23T07:18:29.248873Z",
+  "blocker": "upstream",
+  "reason": "CINGSA's public dashboard has not published a new reading since 09/13/2026 21:00 Alaska. Its own operational note announced a semiannual shut-in field balance and maintenance from September 14th until September 21st, and the dashboard is now two days past that announced return date with the same stamp, the same note and no extension. The collector ran on schedule, fetched the page successfully, archived the snapshot, refused to carry any measurement forward, wrote an explicit unverified record and failed its job loudly, which is the designed behavior for a stale source past its announced window. Nothing in this repository can produce a measurement CINGSA has not published, so the failure is upstream and no repair exists here.",
+  "attempts": [
+    "Read the failed job logs for run 35791566615. The collector reached status 3, an unverified record already standing for the date with the retry also failing, which is the workflow's deliberate loud failure and not a crash or a parser error.",
+    "Fetched https://cingsa.com/operations/PublicDashBoard.html live through WebFetch on 2026-09-23 and read back Last Updated 09/13/2026 21:00 with both operational notes unchanged.",
+    "Fetched the same URL a second time directly with urllib and regexed the raw HTML, which returned the one timestamp 09/13/2026 21:00 and the same unextended maintenance note, confirming the staleness is in the published bytes and not in our parser or in a cache.",
+    "Checked the parsed maintenance window on the standing record. It reads start 2026-09-14 and end 2026-09-21, so the source pause allowance has correctly expired and the collector is right to fail rather than to stay green.",
+    "Confirmed the rest of the pipeline is healthy. The forecast leg updated at 2026-09-22T12:27:32Z, Pages deployed, and the live page and JSON match main, so the only missing input is CINGSA's own measurement.",
+    "Did not rerun the production collector, because a rerun re-reads the same unchanged upstream bytes and can only append a second unverified record for the same date. The next scheduled collection retries it on its own."
+  ],
+  "evidence_urls": [
+    "https://cingsa.com/operations/PublicDashBoard.html",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35791566615",
+    "https://alaskaaihq.com/gas-watch/",
+    "https://alaskaaihq.com/gas-watch.json"
+  ],
+  "failed_checks": [
+    "source freshness",
+    "cron completed successfully"
+  ]
+}

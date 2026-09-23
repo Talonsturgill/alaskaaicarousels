@@ -1,0 +1,42 @@
+{
+  "run_date": "2026-09-23",
+  "carousel_no": 66,
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done: knowledge/FIELD_NOTES.md 2026-09-23 entry (contour hatching)",
+    "research": "done: out/2026-09-23/scout_merge.md, six scouts, 142 searches total",
+    "claims": "done: out/2026-09-23/claims.json, 38 claims, 34 primary, claims_check PASS",
+    "docket": "done: ledger/docket.json, Mat-Su ALPR decided, Anchorage held to October 20th, 7 items re-verified",
+    "gas_watch": "done: out/2026-09-23/gaswatch_health.json FAIL upstream + gaswatch_incident.json; cron_health.json FAIL + cron_incidents.json; site_signoff WARN (same cause)",
+    "selection": "done: out/2026-09-23/selection.md",
+    "directors_room": "done: three treatment-directors, synthesis in out/2026-09-23/selection.md; the room caught the showrunner's title defect and the deck was retitled",
+    "copy": "done: out/2026-09-23/copy.json, caption.txt; caption room 2 directors + critic; copywriter carried the winner verbatim",
+    "art_build": "done: 9 bespoke slides, qa.py PASS 0 fails 0 warns, bespoke_check PASS drawn share 60%",
+    "pixel_review": "in progress: re-review of 03,04,06,07,08 after the lay-collapse repair",
+    "flow_review": "done: flow-critic 8.2, verdict ship, reorder none; 07->08 junction planted per its major finding",
+    "assemble": "done: out/2026-09-23/final, vector pdf 5.32 MB, contact sheet, 9 thumbs",
+    "scoring": "pending",
+    "ship": "pending",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "date_note": "run_guard CLEAR for 2026-09-23; runs/2026-09-22 absent (no run fired that day). NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "artifacts": {
+    "plan": "out/2026-09-23/plan.md",
+    "scout_merge": "out/2026-09-23/scout_merge.md",
+    "claims": "out/2026-09-23/claims.json",
+    "selection": "out/2026-09-23/selection.md",
+    "storyboard_header": "out/2026-09-23/storyboard_header.md",
+    "cron_health": "out/2026-09-23/cron_health.json",
+    "cron_incidents": "out/2026-09-23/cron_incidents.json",
+    "gaswatch_health": "out/2026-09-23/gaswatch_health.json",
+    "gaswatch_incident": "out/2026-09-23/gaswatch_incident.json",
+    "storyboard": "out/2026-09-23/storyboard.md",
+    "copy": "out/2026-09-23/copy.json",
+    "caption": "out/2026-09-23/caption.txt",
+    "aggregates": "out/2026-09-23/aggregates.json",
+    "render": "out/2026-09-23/render",
+    "final": "out/2026-09-23/final"
+  }
+}

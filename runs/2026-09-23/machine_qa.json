@@ -1,0 +1,134 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the reading frame, solid and full': canvas 77.9 dE, page 92.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Mat-Su banned plate readersthe night it was ' fits 2/2 lines at 78px"
+      ],
+      "asserts": [
+        "'seven assembly members, one tick each' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven assembly members, one tick each': 7 mark centres probed at r=14px, cohort median 82.3 dE, all present (weakest 82.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the machine runs off the side of what the chapter reaches': dE 9.6, AUC 0.56, visible 73%/58%, seen 11212/2969px at 432w"
+      ],
+      "motifs": [
+        "'the four-station apparatus': canvas 62.5 dE, page 64.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'The borough wrote downwhat the machine is.' fits 2/2 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the fourth terrace, cut and left empty': canvas 60.2 dE, page 109.9 dE, 98% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+      ],
+      "fits": [
+        "hd 'The subject never changes.' fits 1/1 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'something arrives and is refused at the edge': dE 9.7, AUC 0.68, visible 100%/100%, seen 1584/1584px at 432w"
+      ],
+      "motifs": [
+        "'the milled channel that stops short': canvas 73.4 dE, page 86.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'It can't collect the data.It can't be handed' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the shape from the cover with the material taken out': dE 8.5, AUC 0.71, visible 100%/47%, seen 5760/1804px at 432w"
+      ],
+      "motifs": [
+        "'the borough plate, emptied': canvas 39.9 dE, page 45.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd '\"The boroughdoes not havepolice powers.\"' fits 3/3 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'everything that polices it stands on ground the ordinance does not model': dE 5.1, AUC 0.58, visible 100%/100%, seen 1024/5760px at 432w"
+      ],
+      "motifs": [
+        "'the two bounded city chips': canvas 63.7 dE, page 69.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Wasilla chip' lands 0.0px from its target",
+        "leader 'the Palmer chip' lands 0.0px from its target",
+        "leader 'the Wasilla chip' meets its label 3.0px away",
+        "leader 'the Palmer chip' meets its label 7.6px away",
+        "leader 'the Wasilla chip' is drawn 280 px at 29 degrees, inside the pointer band",
+        "leader 'the Palmer chip' is drawn 328 px at 33 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Five agencies policethis boundary.' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the eight incised signature rules': canvas 65.2 dE, page 78.6 dE, 99% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+      ],
+      "fits": [
+        "hd 'The operator it namesis the borough itself.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'eight signatures on the routing block, one rule each' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)",
+        "'eight signatures on the routing block, one rule each': 8 mark centres probed at r=14px, cohort median 42.3 dE, all present (weakest 42.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the two boundaries, one enacted and one dashed': canvas 78.6 dE, page 78.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'One body wrote the limit.The other kept draf' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the eight lit rules, the reach that is real': canvas 78.6 dE, page 78.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'A limit writtenbefore the power exists.' fits 2/2 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

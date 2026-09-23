@@ -1,0 +1,454 @@
+{
+  "run_date": "2026-09-23",
+  "story": "On September 15th the Matanuska-Susitna Borough Assembly adopted Ordinance Serial No. 26-106, creating MSB 23.30, which prohibits the borough from acquiring, installing, operating, funding or receiving data from automated license plate reader systems. It passed unanimously, seven members, the same night as its public hearing, and took effect on adoption. The borough does not have police powers.",
+  "claims": [
+    {
+      "id": "c01",
+      "claim": "The Matanuska-Susitna Borough Assembly adopted Ordinance Serial No. 26-106 on September 15th, creating borough code chapter MSB 23.30.",
+      "value": "Ordinance Serial No. 26-106",
+      "verbatim": "ADOPTED by the Matanuska-Susitna Borough Assembly this 15 day of September, 2026.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Extracted twice with different methods; both passes agreed. Corroborated by the Legistar matter record, MatterPassedDate 2026-09-15."
+    },
+    {
+      "id": "c02",
+      "claim": "The ordinance title states that it adopts MSB 23.30 to prohibit acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology.",
+      "value": "MSB 23.30",
+      "verbatim": "AN ORDINANCE OF THE MATANUSKA-SUSITNA BOROUGH ASSEMBLY ADOPTING MSB 23.30 TO PROHIBIT ACQUISITION, INSTALLATION, AND OPERATION OF AUTOMATED LICENSE PLATE READER (ALPR) SYSTEMS AND ASSOCIATED MASS SURVEILLANCE TECHNOLOGY.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Title printed in full capitals on the ordinance."
+    },
+    {
+      "id": "c03",
+      "claim": "The ordinance was sponsored by Assemblymember Bowles.",
+      "value": "Assemblymember Bowles",
+      "verbatim": "Sponsored by: Assemblymember Bowles",
+      "source_url": "https://webapi.legistar.com/v1/matanuska/matters/34670/sponsors",
+      "source_outlet": "Matanuska-Susitna Borough legislative record",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Legistar sponsors endpoint returns a single sponsor, Michael Bowles. Also printed on the ordinance header."
+    },
+    {
+      "id": "c04",
+      "claim": "The ordinance header records the ordinance as introduced on September 1st with a public hearing set for September 15th and adoption on September 15th.",
+      "value": "introduced September 1st",
+      "verbatim": "Introduced: 09/01/26 Public Hearing: 09/15/26 Adopted: 09/15/26",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Legistar MatterIntroDate is 2026-08-19, which is the administrative origination date on the memorandum, not a floor action. September 1st is the correct introduction date for copy; never print 2026-08-19 as an introduction date."
+    },
+    {
+      "id": "c05",
+      "claim": "Section 1 classifies the ordinance as general and permanent and makes it part of the Borough Code.",
+      "value": "general and permanent",
+      "verbatim": "Section 1. Classification. This ordinance is of a general and permanent nature and shall become a part of the Borough Code.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The header also labels the document CODE ORDINANCE."
+    },
+    {
+      "id": "c06",
+      "claim": "The new chapter is headed MSB 23.30 ALPR SYSTEMS PROHIBITED.",
+      "value": "MSB 23.30 ALPR SYSTEMS PROHIBITED",
+      "verbatim": "MSB 23.30 ALPR SYSTEMS PROHIBITED",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Chapter heading as printed, in capitals in the source."
+    },
+    {
+      "id": "c07",
+      "claim": "MSB 23.30.010 defines an automated license plate reader as a system of one or more high-speed camera units that converts images of license plates and vehicle identifiers into computer-readable data.",
+      "value": "one or more high-speed camera units",
+      "verbatim": "a system of one or more high-speed camera units alone or combined with computer algorithms and optical character recognition to convert images of license plates, vehicle makes, models, colors, and unique vehicle identifiers into computer-readable data",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The definition reaches beyond plates to vehicle makes, models, colors and unique vehicle identifiers, which is the broadest thing in the chapter."
+    },
+    {
+      "id": "c08",
+      "claim": "MSB 23.30.010 defines an ALPR Operator as any Borough department, division, employee, or third-party contractor acting under contract with the Borough.",
+      "value": "third-party contractor acting under contract with the Borough",
+      "verbatim": "any Borough department, division, employee, or third-party contractor acting under contract with the Borough",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Every actor named is the Borough or somebody under Borough contract. No outside police agency is inside the definition."
+    },
+    {
+      "id": "c09",
+      "claim": "MSB 23.30.020(A) bars any Borough department, division, employee or agent from acquiring, leasing, borrowing, installing, maintaining or operating ALPR hardware, software or data-collection systems.",
+      "value": "acquire, lease, borrow, install, maintain, or operate",
+      "verbatim": "No Borough department, division, employee, or agent may acquire, lease, borrow, install, maintain, or operate any ALPR hardware, software, or data-collection system on any Borough owned property or facility or under any Borough contract or agreement.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Six verbs, confirmed across both extraction passes. The locus is Borough owned property or facility."
+    },
+    {
+      "id": "c10",
+      "claim": "MSB 23.30.020(B) bars Borough funds, personnel or resources from being allocated toward entering into, renewing or extending any contract, memorandum of understanding or partnership relating to ALPR data collection.",
+      "value": "funds, personnel, or resources",
+      "verbatim": "No Borough funds, personnel, or resources may be allocated toward entering into, renewing, or extending any contract, memorandum of understanding, or partnership",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The verbatim is truncated deliberately. The adopted text most likely carries a stray word in the tail of this sentence, a drafting artifact. DO NOT quote the tail of this subsection on a slide."
+    },
+    {
+      "id": "c11",
+      "claim": "MSB 23.30.030(A) prohibits the Borough and its departments from accessing, querying, uploading data to, or receiving data from any ALPR operator, network, database or private surveillance network.",
+      "value": "accessing, querying, uploading data to, or receiving data from",
+      "verbatim": "The Borough and its departments are prohibited from accessing, querying, uploading data to, or receiving data from any ALPR operator, network, database, or private surveillance network.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Subsection heading is MSB 23.30.030 PROHIBITION ON DATA SHARING AND STORAGE. The only place the chapter touches data held by someone else, and even here the prohibited party is the Borough."
+    },
+    {
+      "id": "c12",
+      "claim": "MSB 23.30.040(A) declares any contract or agreement in violation of the chapter void ab initio and unenforceable.",
+      "value": "void ab initio and unenforceable",
+      "verbatim": "Any contract or agreement in violation of this chapter is void ab initio and unenforceable.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Subsection heading is MSB 23.30.040 PROHIBITED AGREEMENTS VOID. There is no penalty clause, no private right of action and no reporting requirement anywhere in the adopted text. Phrase that as what the text does not contain, never as a legal conclusion."
+    },
+    {
+      "id": "c13",
+      "claim": "Section 3 of the ordinance states that it takes effect upon adoption.",
+      "value": "effect upon adoption",
+      "verbatim": "Section 3. Effective date. This ordinance shall take effect upon adoption.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "With c01 this means the prohibition has been in force since September 15th."
+    },
+    {
+      "id": "c14",
+      "claim": "A whereas clause states that the right to privacy is a fundamental protection recognized by the Constitution of the United States and the Constitution of the State of Alaska.",
+      "value": "a fundamental protection",
+      "verbatim": "the right to privacy is a fundamental protection recognized by the Constitution of the United States and the Constitution of the State of Alaska",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Reproduced almost word for word in the summary statement of Information Memorandum 26-181."
+    },
+    {
+      "id": "c15",
+      "claim": "The ordinance finds that ALPR systems collect, store and share systemic location data, creating a permanent tracking record of everyday citizens without reasonable suspicion or a warrant.",
+      "value": "a permanent tracking record",
+      "verbatim": "collect, store, and share systemic location data, creating a permanent tracking record of everyday citizens without reasonable suspicion or a warrant",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "ATTRIBUTE ALWAYS. This is the Assembly's stated finding about the technology, not an established fact. Copy must say the ordinance finds or the Assembly wrote. Never in the deck's own voice."
+    },
+    {
+      "id": "c16",
+      "claim": "The ordinance finds that the structural risks to civil liberties outweigh what it calls the purported public safety benefits of the technology.",
+      "value": "outweigh their purported public safety benefits",
+      "verbatim": "structural risks to civil liberties that outweigh their purported public safety benefits",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "ATTRIBUTE ALWAYS. The word purported is the Assembly's and is the sharpest word in the document. The same sentence appears in the memorandum's summary statement."
+    },
+    {
+      "id": "c17",
+      "claim": "The first whereas clause states that the intent and rationale of the ordinance are found in the accompanying Information Memorandum 26-181.",
+      "value": "Information Memorandum 26-181",
+      "verbatim": "the intent and rationale of this ordinance are found in the accompanying Information Memorandum 26-181",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The ordinance outsources its reasoning to the memorandum, so the memorandum is incorporated by reference in the enacted text."
+    },
+    {
+      "id": "c18",
+      "claim": "The ordinance records that it passed unanimously with seven assembly members named.",
+      "value": "7",
+      "verbatim": "PASSED UNANIMOUSLY: Bowles, Nowers, McKee, Sumner, Gamble, Fonov, and Bernier",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Seven surnames, count and spellings confirmed, and corroborated against the borough's own assembly roster. The document prints NO numeric tally, so write passed unanimously or all seven members and never quote a tally such as 7 to 0."
+    },
+    {
+      "id": "c19",
+      "claim": "The Matanuska-Susitna Borough Assembly is made up of seven members elected from districts for staggered four-year terms.",
+      "value": "seven members",
+      "verbatim": "seven members elected from districts for staggered four-year terms",
+      "source_url": "https://matsu.gov/assembly",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-23",
+      "notes": "Roster returned is Michael Bowles District 1, Stephanie Nowers District 2, Dee McKee District 3, Maxwell Sumner District 4, Bill Gamble District 5, Dmitri Fonov District 6, Ron Bernier District 7. All seven surnames match the vote line at c18, so unanimous here means the whole assembly."
+    },
+    {
+      "id": "c20",
+      "claim": "The ordinance names Edna DeVries as Borough Mayor on its signature line.",
+      "value": "EDNA DeVRIES",
+      "verbatim": "EDNA DeVRIES, Borough Mayor",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/39814d12-8e61-4d9e-b5b9-c54ae3406b30.pdf",
+      "source_outlet": "Matanuska-Susitna Borough Assembly",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The attest line beneath carries no typed clerk name, so no claim is made about who attested."
+    },
+    {
+      "id": "c21",
+      "claim": "The Legistar legislative record lists the matter as file OR 26-106 with status Passed before the body Assembly Regular Meeting.",
+      "value": "OR 26-106",
+      "verbatim": "OR 26-106",
+      "source_url": "https://webapi.legistar.com/v1/matanuska/matters?$filter=MatterFile+eq+'OR+26-106'",
+      "source_outlet": "Matanuska-Susitna Borough legislative record",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-19",
+      "notes": "MatterId 34670. MatterStatusName is Passed and MatterBodyName is ASSEMBLY REGULAR MEETING. date_of_source is the record's own MatterLastModifiedUtc."
+    },
+    {
+      "id": "c22",
+      "claim": "The legislative record gives the matter an agenda date and a passed date of September 15th.",
+      "value": "September 15th",
+      "verbatim": "2026-09-15T00:00:00",
+      "source_url": "https://webapi.legistar.com/v1/matanuska/matters?$filter=MatterFile+eq+'OR+26-106'",
+      "source_outlet": "Matanuska-Susitna Borough legislative record",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-19",
+      "notes": "Machine-readable confirmation of the adoption date. MatterEnactmentNumber and MatterEnactmentDate are both null, so there is no separate enactment number to cite."
+    },
+    {
+      "id": "c23",
+      "claim": "The legislative history records that on September 1st Assemblymember Bernier moved to introduce the legislation and set the public hearing for September 15th, and the motion passed.",
+      "value": "September 1st",
+      "verbatim": "Assemblymember Bernier moved to introduce the legislation as read into the record by the Clerk and to set the public hearings for September 15, 2026.",
+      "source_url": "https://webapi.legistar.com/v1/matanuska/matters/34670/histories",
+      "source_outlet": "Matanuska-Susitna Borough legislative record",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-01",
+      "notes": "MatterHistoryPassedFlagName is Pass and the mover field reads Ron Bernier. No vote tally is available from this source."
+    },
+    {
+      "id": "c24",
+      "claim": "The legislative history's action text records that on September 15th Assemblymember Bowles moved to adopt Ordinance Serial No. 26-106 and the motion passed.",
+      "value": "September 15th",
+      "verbatim": "Assemblymember Bowles moved to adopt Ordinance Serial No. 26-106.",
+      "source_url": "https://webapi.legistar.com/v1/matanuska/matters/34670/histories",
+      "source_outlet": "Matanuska-Susitna Borough legislative record",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "DISCREPANCY INSIDE THE SOURCE. The free-text action field says Bowles moved to adopt; the structured mover field on the same record says Ron Bernier, identical to the September 1st entry. The narrative text is the minutes language and is the better authority. Do not print that Bernier moved adoption. Safest is not to name the mover of adoption on a slide at all."
+    },
+    {
+      "id": "c25",
+      "claim": "Information Memorandum 26-181 records the assembly action as adopted without objection on September 15th.",
+      "value": "Adopted without objection",
+      "verbatim": "ASSEMBLY ACTION: Adopted without objection 09/15/26",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The stamp carries clerk initials BJH after the date. The memorandum's own agenda line reads September 1, 2026 and its requested action was to introduce and set for public hearing, so the action stamp is a later annotation on the same sheet."
+    },
+    {
+      "id": "c26",
+      "claim": "The information memorandum summary states the ordinance will prohibit ALPR systems on borough owned land and properties and prohibit any Borough funds from being spent on such systems.",
+      "value": "borough owned land and properties",
+      "verbatim": "This ordinance will prohibit ALPR systems on borough owned land and properties and prohibit any Borough funds from being spent on such systems.",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The scope the borough describes for itself is borough owned land, borough funds and borough employees' time. No third-party or state agency is named anywhere in the memorandum."
+    },
+    {
+      "id": "c27",
+      "claim": "The information memorandum states the ordinance will prohibit employees from spending any time whatsoever entering into, renewing or extending any contract, memorandum of understanding or partnership relating to ALPR data collection.",
+      "value": "any time whatsoever",
+      "verbatim": "this ordinance will also prohibit employees from spending any time whatsoever entering into, renewing, or extending any contract, memorandum of understanding, or partnership",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "Truncated before the same disputed tail flagged at c10. The phrase any time whatsoever is the memorandum's own and is quotable."
+    },
+    {
+      "id": "c28",
+      "claim": "The information memorandum routing block carries administrative signature dates running from August 19th to August 21st, all before the ordinance reached the assembly floor.",
+      "value": "August 19th to August 21st",
+      "verbatim": "Route To Signatures Originator 8/19/2026",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-21",
+      "notes": "The only dates in the block are 8/19/2026, four instances of 8/20/2026 and 8/21/2026. The originator line reads signed by Nicholas Spiropoulos for Assemblymember Bowles. This origination date is what the Legistar MatterIntroDate reflects, resolving the discrepancy at c04."
+    },
+    {
+      "id": "c29",
+      "claim": "Eight borough officials signed the information memorandum routing block before the ordinance reached the assembly floor.",
+      "value": "8",
+      "verbatim": "Signed by: Leah Jones",
+      "source_url": "https://matanuska.legistar1.com/matanuska/attachments/5d1a0895-8ab8-479b-a21f-e1bab793dcc4.PDF",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-08-21",
+      "notes": "THE COUNT IS SAFE, THE NAME TO TITLE PAIRING IS NOT. The PDF linearizes as a two-column grid and two extraction passes produced two different pairings. Nine titles are present for eight signatures, so one title is unsigned. The eight names are Leah Jones, Jillian Morrissey, Tom Adams, Kenneth Barkley, Cheyenne Heindel, Nicholas Spiropoulos, Michael Brown and Lonnie McKechnie. The titles present are IT Director, Land Management Director, Public Works Director, DES Director, Purchasing Director, Finance Director, Borough Attorney, Borough Manager and Borough Clerk. NEVER print an individual's title on a slide. Use the count and the fact that the department head chain signed off before introduction."
+    },
+    {
+      "id": "c30",
+      "claim": "The borough's own law enforcement page states that the borough does not have police powers.",
+      "value": "does not have police powers",
+      "verbatim": "The borough does not have police powers, however some of our incorporated cities do, and the state troopers also patrol in our borough.",
+      "source_url": "https://matsu.gov/police",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-23",
+      "notes": "Verified character for character. The single most important sentence for the deck, and it is the borough saying it about itself on its own domain. The page is undated, so date_of_source is the fetch date."
+    },
+    {
+      "id": "c31",
+      "claim": "The borough's law enforcement page lists five agencies that police the borough, none of which is a borough department.",
+      "value": "5",
+      "verbatim": "Wasilla Police, Palmer Police, Chickaloon Tribal Police, State Troopers, State Wildlife Troopers",
+      "source_url": "https://matsu.gov/police",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-23",
+      "notes": "Two city departments, one tribal department and two state divisions. The verbatim is the five agency names as listed on the page, joined with commas, so treat it as a list rather than a quoted sentence. That none of the five is a borough department follows from c30 and the page's own framing."
+    },
+    {
+      "id": "c32",
+      "claim": "The public hearing on the ordinance was noticed for Tuesday September 15th at 6 p.m. in the Assembly Chambers at 350 East Dahlia Avenue in Palmer.",
+      "value": "6 p.m.",
+      "verbatim": "Tuesday, September 15, 2026, at 6 p.m.",
+      "source_url": "https://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The address is quoted separately on the notice as Assembly Chambers, 350 East Dahlia Avenue, Palmer, Alaska."
+    },
+    {
+      "id": "c33",
+      "claim": "The ALPR ordinance was one of five ordinances noticed for public hearing at the September 15th meeting, the other four being appropriation and project matters.",
+      "value": "5",
+      "verbatim": "OR 26-102",
+      "source_url": "https://matsu.gov/public-notices/notice-of-public-hearing-09-15-26-meeting-date",
+      "source_outlet": "Matanuska-Susitna Borough",
+      "source_is_primary": true,
+      "date_of_source": "2026-09-15",
+      "notes": "The other four concern a vehicle replacement fund reappropriation, a Fish and Wildlife Service grant, fish passage time extensions at Coal Creek and Cottonwood Creek, and a Department of Transportation grant for the Port MacKenzie barge ramp. Four resolutions were noticed alongside them. Texture only, that a surveillance ban rode the same agenda as a barge ramp grant."
+    },
+    {
+      "id": "c34",
+      "claim": "State labor estimates for 2025 put the Matanuska-Susitna Borough population at about 117,400.",
+      "value": "117,412",
+      "verbatim": "117,412",
+      "source_url": "https://live.laborstats.alaska.gov/pop/index.cfm",
+      "source_outlet": "Alaska Department of Labor and Workforce Development, Research and Analysis",
+      "source_is_primary": true,
+      "date_of_source": "2025-07-01",
+      "notes": "LABEL THE YEAR. This is the 2025 estimate, not a current count. Write it as about 117,400 people, per state labor estimates for 2025. Census QuickFacts returned 403 and could not corroborate."
+    },
+    {
+      "id": "c35",
+      "claim": "The Anchorage Assembly did not vote on its police surveillance ordinance, AO 2026-108(S), at its September 15th meeting.",
+      "value": "AO 2026-108(S)",
+      "verbatim": "Assembly members voted unanimously to postpone further discussions on surveillance regulations until its regular meeting Oct. 20.",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-09-16",
+      "notes": "The measure is a SUBSTITUTE, AO 2026-108(S), not plain AO 2026-108. Print the (S). SECONDARY SOURCE, attribute it in copy. The Anchorage Legistar API returned HTTP 500 for this matter file so no primary record was reachable."
+    },
+    {
+      "id": "c36",
+      "claim": "Anchorage Assembly members voted unanimously to postpone the surveillance ordinance to their regular meeting on October 20th.",
+      "value": "October 20th",
+      "verbatim": "voted unanimously to postpone further discussions on surveillance regulations until its regular meeting Oct. 20",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-09-16",
+      "notes": "Single secondary source, attribute it. The contrast the deck wants is real on both sides, unanimity to ban in Mat-Su and unanimity to delay in Anchorage on the same day, but the Mat-Su half is documented and the Anchorage half is reported, and the deck must not present them as equally sourced."
+    },
+    {
+      "id": "c37",
+      "claim": "Anchorage Assembly member Daniel Volland said stronger language and stronger protections are needed in the surveillance ordinance.",
+      "value": "stronger language and stronger protections",
+      "verbatim": "stronger language and stronger protections",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-09-16",
+      "notes": "A partial quote inside the reporter's sentence, not a standalone utterance. Only those six words may sit inside quotation marks, and the attribution must name the outlet."
+    },
+    {
+      "id": "c38",
+      "claim": "Anchorage Assembly member Yarrow Silvers cautioned against passing a rushed version of an ordinance members do not fully understand.",
+      "value": "rushed version",
+      "verbatim": "rushed version",
+      "source_url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
+      "source_outlet": "Anchorage Daily News",
+      "source_is_primary": false,
+      "date_of_source": "2026-09-16",
+      "notes": "A two-word partial quote inside the reporter's own sentence. Silvers is also quoted saying This is something that municipalities are grappling with across the United States, which is available if the deck wants a fuller sentence."
+    }
+  ],
+  "killed": [
+    {
+      "claim": "Matanuska-Susitna Borough land area in square miles",
+      "why": "No primary source reached. The borough's about pages returned 404 and the state commerce division returned 403. Do not print a square mileage or a bigger-than-a-state comparison."
+    },
+    {
+      "claim": "The distance between Palmer and Anchorage",
+      "why": "No citable source located."
+    },
+    {
+      "claim": "Anchorage banned municipal facial recognition in 2023",
+      "why": "The APD Safe Anchorage URL now redirects to a page carrying nothing about facial recognition or any Assembly ordinance. The deck must not assert this, and equally must not imply Anchorage is about to acquire facial recognition."
+    },
+    {
+      "claim": "A numeric vote tally for the Mat-Su adoption, such as 7 to 0",
+      "why": "The ordinance prints PASSED UNANIMOUSLY with seven names and no tally. Write unanimously or all seven members."
+    },
+    {
+      "claim": "Who moved adoption on September 15th",
+      "why": "The legislative record contradicts itself, action text says Bowles and the structured mover field says Bernier. Do not name the mover of adoption."
+    },
+    {
+      "claim": "Any individual borough official's job title from the routing block",
+      "why": "The PDF linearizes as a two-column grid and two extraction passes produced two different name-to-title pairings. Nine titles for eight signatures. The COUNT is safe; the pairing is not."
+    },
+    {
+      "claim": "A primary record for the Anchorage postponement",
+      "why": "The Anchorage Legistar API returned HTTP 500. The four Anchorage claims are single-sourced to the Anchorage Daily News and must be attributed in copy."
+    }
+  ]
+}
