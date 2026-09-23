@@ -899,6 +899,13 @@ def self_test():
               {**incident, "evidence_urls": ["https://not a url"]},
               {**incident, "evidence_urls": ["https:///path/only"]},
               {**incident, "evidence_urls": ["https://x/y", "https://"]},
+              {**incident, "evidence_urls": ["https://.com/x"]},
+              {**incident, "evidence_urls": ["https://example..com/x"]},
+              {**incident, "evidence_urls": ["https://example.com:bad/x"]},
+              {**incident, "evidence_urls": ["https://-bad.com/x"]},
+              {**incident, "evidence_urls": ["https://bad-.com/x"]},
+              {**incident, "evidence_urls": ["https://under_score.com/x"]},
+              {**incident, "evidence_urls": ["https://x/y"]},
               {**incident, "audit_checked_utc": 20260916},
               {**incident, "audit_checked_utc": "20260916"},
               {**incident, "audit_checked_utc": "2026-09-16"},
@@ -1024,8 +1031,29 @@ def incident_allows(incident, now=None):
             return False
         if bits.scheme not in ("http", "https"):
             return False
+        # THE WHOLE AUTHORITY HAS TO BE USABLE, not merely non-empty.
+        # urlparse().hostname extracts text and validates nothing, so
+        # "https://.com/x", "https://example..com/x" and
+        # "https://example.com:bad/x" all produced a hostname and passed.
+        # Evidence nobody can open is not evidence.
+        if " " in u.strip():
+            return False
+        try:
+            port = bits.port          # raises ValueError on a bad port
+        except ValueError:
+            return False
+        if port is not None and not (0 < port < 65536):
+            return False
         host = (bits.hostname or "").strip()
-        if not host or " " in u.strip() or "." not in host and host != "localhost":
+        if not host or len(host) > 253:
+            return False
+        labels = host.split(".")
+        if any(not lb for lb in labels):          # empty label: .com, a..b
+            return False
+        if not all(re.fullmatch(r"[a-z0-9]([a-z0-9-]*[a-z0-9])?", lb)
+                   for lb in labels):
+            return False
+        if len(labels) < 2:                        # a bare name is not public
             return False
     # A STRING, not whatever str() can make of it. The integer 20260916 becomes
     # "20260916", which fromisoformat happily reads as a date in basic format,

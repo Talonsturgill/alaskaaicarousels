@@ -52,6 +52,7 @@ Read-only. Stdlib plus pypdf. It never writes anything unless --out is given.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import io
 import json
 import os
@@ -147,8 +148,45 @@ def _fetch(url, max_mb, timeout, allow_local=False):
     if allow_local:
         handlers.append(urllib.request.ProxyHandler({}))
     opener = urllib.request.build_opener(*handlers)
+    # THE CLOCK STARTS BEFORE open(), not after it. opener.open() waits for the
+    # response HEADERS, and its socket timeout resets on every byte, so a server
+    # trickling header bytes stalls the reader before the deadline below even
+    # exists. Measured: a 0.2 second timeout against a header-dribbling server
+    # was still blocked when an outer 4 second timeout killed it. The bound has
+    # to cover the connection and header phase as well as the body.
+    budget = max(1.0, float(timeout)) * DEADLINE_FACTOR
+    deadline = time.monotonic() + budget
+
+    def _open():
+        return opener.open(req, timeout=timeout)
+
+    # A WATCHDOG OVER open() ITSELF, because a check AFTER it cannot interrupt
+    # it. open() blocks until the response headers arrive and its socket
+    # timeout resets on every byte, so a server trickling header bytes stalls
+    # here before the body loop's deadline is ever consulted. Measured before
+    # this: a 0.2 second timeout against a header-dribbling server was still
+    # blocked at 14.7 seconds, and was then stopped by CPython's 100-header cap
+    # rather than by anything here, which is luck and not a bound.
+    #
+    # The worker is a daemon, so if it is still stuck when this returns the
+    # process can still exit. That is the right trade for a read-only CLI: the
+    # caller gets control back on schedule and the socket dies with the process.
     try:
-        with opener.open(req, timeout=timeout) as resp:
+        pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+        try:
+            future = pool.submit(_open)
+            try:
+                opened = future.result(timeout=budget)
+            except concurrent.futures.TimeoutError:
+                raise RuntimeError(
+                    "the server took longer than %.0f seconds to send its "
+                    "response headers and has been abandoned; a server that "
+                    "trickles header bytes can outlast a per-read timeout. "
+                    "Raise --timeout deliberately if this host really is that "
+                    "slow" % budget)
+        finally:
+            pool.shutdown(wait=False)
+        with opened as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()
             buf = io.BytesIO()
             # A WALL-CLOCK DEADLINE ACROSS THE WHOLE TRANSFER, not just per
@@ -158,7 +196,6 @@ def _fetch(url, max_mb, timeout, allow_local=False):
             # a 0.2 second timeout, and that scales to no limit at all. The
             # size ceiling does not help, because a slow dribble never reaches
             # it. A scout that never returns is a run that never finishes.
-            deadline = time.monotonic() + max(1.0, float(timeout)) * DEADLINE_FACTOR
             while True:
                 if time.monotonic() > deadline:
                     raise RuntimeError(
@@ -166,7 +203,7 @@ def _fetch(url, max_mb, timeout, allow_local=False):
                         "started and has been abandoned; a server that trickles "
                         "bytes can outlast a per-read timeout forever. Raise "
                         "--timeout deliberately if this document really is that "
-                        "slow" % (max(1.0, float(timeout)) * DEADLINE_FACTOR))
+                        "slow" % budget)
                 # read1 RATHER THAN read, and this is the half that makes the
                 # deadline above reachable. read(CHUNK) blocks until it has all
                 # 64 KB or the stream ends, so a server dribbling one byte per

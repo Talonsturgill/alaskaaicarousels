@@ -301,7 +301,24 @@ def hook_is_wired(fm_text):
             if h.get("type") != "command":
                 continue
             cmd = h.get("command")
-            if isinstance(cmd, str) and "scout_bash_guard.py" in cmd:
+            if not isinstance(cmd, str) or not cmd.strip():
+                continue
+            # THE COMMAND IS PARSED, not searched. `echo scout_bash_guard.py`
+            # mentions this file and runs nothing, and a hook that runs nothing
+            # allows every Bash call, so a substring test could certify an
+            # unguarded shell. Require an interpreter with this script as its
+            # argument, which is the only shape that actually executes it.
+            try:
+                parts = shlex.split(cmd)
+            except ValueError:
+                continue
+            if len(parts) < 2:
+                continue
+            interp = os.path.basename(parts[0]).lower()
+            if interp not in ("python3", "python", "python3.11", "python3.12"):
+                continue
+            target = next((a for a in parts[1:] if not a.startswith("-")), "")
+            if os.path.basename(target) == "scout_bash_guard.py":
                 return None
         return ("the PreToolUse entry matching Bash has no command hook "
                 "running scout_bash_guard.py")
