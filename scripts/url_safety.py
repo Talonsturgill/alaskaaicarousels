@@ -216,6 +216,22 @@ def self_test():
         check("refuses %r, %s" % (u, means),
               check_url(u, resolve=False) is not None)
 
+    print("and the IPv6 spellings of the same addresses, mapped forms included")
+    for u, means in [("http://[::1]/x", "loopback"),
+                     ("http://[::ffff:127.0.0.1]/x", "IPv4-mapped loopback"),
+                     ("http://[::ffff:7f00:1]/x", "the same, in hex"),
+                     ("http://[0:0:0:0:0:ffff:127.0.0.1]/x", "uncompressed"),
+                     ("http://[::ffff:169.254.169.254]/x", "mapped metadata"),
+                     ("http://[::ffff:10.0.0.5]/x", "mapped private"),
+                     ("http://[fe80::1]/x", "link-local"),
+                     ("http://[fc00::1]/x", "unique local"),
+                     ("http://[2001:db8::1]/x", "documentation"),
+                     ("http://[::]/x", "unspecified")]:
+        check("refuses %r, %s" % (u, means),
+              check_url(u, resolve=False) is not None)
+    check("but a real public IPv6 document still fetches",
+          check_url("http://[2606:4700:4700::1111]/x", resolve=False) is None)
+
     print("and the address helpers agree with the stdlib")
     check("a public literal is public", is_public(ipaddress.ip_address("8.8.8.8")))
     check("a private literal is not", not is_public(ipaddress.ip_address("10.1.2.3")))
