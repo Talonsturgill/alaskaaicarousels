@@ -509,7 +509,14 @@ def main():
         up_rows = "\n".join(
             f"<tr><td>{esc(u.get('kind','fix'))}<br>"
             f"<span style='color:#98a2b3'>{esc(u.get('area',''))}</span></td>"
-            f"<td>{esc(u.get('change',''))}<br>"
+            # shipped_state FIRST when there is one, because it is the only
+            # field that says whether the change is actually IN EFFECT. Run
+            # No.66 withheld an upgrade after review and the draft still
+            # described it as shipped, which is the one thing this section
+            # must never get wrong: it is the maintainer's map of what the
+            # machine does now.
+            f"<td>{('<b>' + esc(u['shipped_state']) + '</b><br>') if u.get('shipped_state') else ''}"
+            f"{esc(u.get('change',''))}<br>"
             f"<span style='color:#98a2b3'>why: {esc(_clip(u.get('trigger',''), 260))}</span></td>"
             f"<td>{esc(u.get('rollback',''))}<br>"
             f"<span style='color:#98a2b3'>{esc(str(u.get('commit','')))}</span></td></tr>"

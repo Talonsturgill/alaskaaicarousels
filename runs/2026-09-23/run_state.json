@@ -18,8 +18,8 @@
     "scoring": "done: 8.67 vs threshold 7.7 at 5 rounds, zero hard fails, ship true; weakest Deliverable completeness and its named fix applied before ship",
     "ship": "done: runs/2026-09-23 shipped, docs/ rebuilt, 5 ledgers + FIELD_NOTES appended, PR #393 open and ready",
     "upgrade": "done: 3 upgrades in one revertible upgrade(2026-09-23) commit 444f6cd0, SHA stamped; scout PDF reader guard UNTESTED in a live scout and recorded as such",
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": "done: draft r3517139616369986920 in docket@alaskaaihq.com, subject Alaska.Ai No. 66, body read in full before creation and one footer link corrected by update_draft. DRAFT ONLY, never sent.",
+    "retro": "done: PR #393 merged to main as b83049d8 after 8 Codex rounds and 26 findings, all verified before acting; FIELD_NOTES carries the rule that came out of it; runs/2026-09-23 synced by wrap_run.py"
   },
   "date_note": "run_guard CLEAR for 2026-09-23; runs/2026-09-22 absent (no run fired that day). NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
   "artifacts": {
@@ -50,5 +50,14 @@
     "gaswatch_pagecheck": "WARN, the published page read September 13th, 49 days on record with 37 verified and no gaps, the chart is present, every numeral traces to a computation, and the feed and the ledger agree at 49 records with the warning carried.",
     "cron_health": "FAIL on gaswatch.yml:completion and gaswatch.yml:steps and nothing else. 33 of 35 checks PASS across all 6 scheduled workflows, including enablement, missed runs, Pages, the public bytes, the docket queue and the weather history. The two failures are the one upstream cause, recorded in cron_incidents.json with attempts and evidence.",
     "site_fixes": "three. (1) The public docket summary for the Mat-Su item asserted the Palmer to Anchorage distance and named the member who moved adoption. The fact-checker had KILLED both, the first for want of a citable source and the second because the legislative record contradicts itself on that exact point. Both are out of ledger/docket.json and off the live page. The claims gate reads the deck and never the docket, which is how they survived. (2) docs/ rebuilt to 120 pages so the new archive page and both docket items publish. (3) CI's site sign-off could not pass an upstream blocker past its own announced window, so every future run would have gone red until the source returned; a second allowance now requires a dated, evidenced incident record that expires in 36 hours."
+  },
+  "gmail_draft_id": "r3517139616369986920",
+  "status": "complete",
+  "merge": {
+    "pr": 393,
+    "merge_commit": "b83049d870eb2c728f37ee7c2cb1ff3d4fe2783c",
+    "head_merged": "dd631d5e1aec78b19f1772bc8cbb4629cc90d474",
+    "ci": "5 of 5 green",
+    "review_rounds": 8
   }
 }
