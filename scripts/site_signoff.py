@@ -848,6 +848,30 @@ def self_test():
               ({}, now), ({**source, "state": "unavailable"}, now),
               ({**source, "last_collection_utc": "2026-09-14T00:00:00Z"}, now),
               (source, datetime(2026, 9, 21, 0, tzinfo=timezone.utc))]))
+    incident = {"blocker": "upstream", "reason": "the source stopped publishing",
+                "audit_checked_utc": "2026-09-16T12:00:00Z",
+                "attempts": ["read the failed job log", "fetched the page twice"],
+                "evidence_urls": ["https://example.invalid/dashboard"]}
+    check("CI permits a dated incident record once the announced pause expires",
+          ci_exit_code(pause_rows, {}, now, incident) == 0)
+    check("an incident record never widens past the one Gas Watch warning",
+          all(ci_exit_code(pause_rows + [(s, l, "")], {}, now, incident) == 2
+              for s, l in [("WARN", "power.json is current"),
+                           ("FAIL", "gaswatch.jsonl reaches gas-watch/index.html"),
+                           ("WARN", "watch.json is current")]))
+    check("an incident record has to be earned, and expires by itself",
+          all(not incident_allows(i, now) for i in [
+              None, {}, "upstream",
+              {**incident, "blocker": "editorial"},
+              {**incident, "reason": "   "},
+              {**incident, "attempts": []},
+              {**incident, "attempts": ["ok", ""]},
+              {**incident, "evidence_urls": []},
+              {**incident, "evidence_urls": ["not a url"]},
+              {**incident, "audit_checked_utc": "2026-09-14T12:00:00Z"},
+              {**incident, "audit_checked_utc": "2026-09-18T12:00:00Z"},
+              {**incident, "audit_checked_utc": "whenever"}])
+          and incident_allows(incident, now))
     check("the summary line names what went wrong",
           "SITE SIGN-OFF: WARN" in summary_line(
               [("WARN", "power.json is current", "60 days old")], "WARN", 73)
@@ -874,11 +898,82 @@ def exit_code(verdict):
     return 0 if verdict == "PASS" else 2
 
 
-def ci_exit_code(rows, source, now=None):
-    """Allow only a disclosed, bounded source pause with a recent collection.
+INCIDENT_MAX_AGE_H = 36
+INCIDENT_BLOCKERS = ("upstream", "github", "credentials")
+
+
+def incident_record(repo=None, now=None):
+    """The newest runs/<date>/gaswatch_incident.json, or None.
+
+    Only the newest is read. An older run's incident says nothing about
+    today's source, and letting one stand in would be exactly the standing
+    excuse this check exists to prevent.
+    """
+    repo = repo or REPO
+    runs = os.path.join(repo, "runs")
+    if not os.path.isdir(runs):
+        return None
+    for name in sorted(os.listdir(runs), reverse=True):
+        path = os.path.join(runs, name, "gaswatch_incident.json")
+        if os.path.isfile(path):
+            try:
+                with open(path, encoding="utf-8") as fh:
+                    return json.load(fh)
+            except (OSError, ValueError):
+                return None
+    return None
+
+
+def incident_allows(incident, now=None):
+    """True when a committed incident record earns the one gaswatch warning.
+
+    CLAUDE.md's scheduled-job procedure says that when an upstream service,
+    GitHub, or credentials actually prevent repair, the run retains its failed
+    audit, writes a dated incident record, names the unresolved cause in the
+    Gmail draft, and ships. Without a path to green that procedure can't
+    finish, because the draft's image URLs point at main and the merge is what
+    puts them there, so an unreachable source would wedge every future run
+    rather than one.
+
+    This is not the announced-pause allowance relaxed. It is a different and
+    harder one. The pause allowance trusts the SOURCE's own published window.
+    This one trusts nothing published upstream and demands a record the run
+    had to commit: a named blocker from a closed set, a reason, what was
+    actually tried, evidence anyone can open, and a timestamp from the last
+    36 hours, so it expires by itself and has to be re-earned every day.
+    """
+    now = now or datetime.now(timezone.utc)
+    if not isinstance(incident, dict):
+        return False
+    if incident.get("blocker") not in INCIDENT_BLOCKERS:
+        return False
+    if not (incident.get("reason") or "").strip():
+        return False
+    for key in ("attempts", "evidence_urls"):
+        seq = incident.get(key)
+        if not isinstance(seq, list) or not seq:
+            return False
+        if not all(isinstance(v, str) and v.strip() for v in seq):
+            return False
+    if not all(u.startswith(("http://", "https://"))
+               for u in incident["evidence_urls"]):
+        return False
+    try:
+        stamp = datetime.fromisoformat(
+            str(incident["audit_checked_utc"]).replace("Z", "+00:00"))
+    except (KeyError, TypeError, ValueError):
+        return False
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=timezone.utc)
+    return 0 <= (now - stamp).total_seconds() <= INCIDENT_MAX_AGE_H * 3600
+
+
+def ci_exit_code(rows, source, now=None, incident=None):
+    """Allow the one Gas Watch warning on a disclosed pause or a dated incident.
 
     Keep the WARN in the report. Every other warning/failure still blocks CI,
-    including an expired announcement or a collector that has stopped running.
+    including a collector that has stopped running, and an expired
+    announcement with no incident record behind it.
     """
     now = now or datetime.now(timezone.utc)
     try:
@@ -889,8 +984,9 @@ def ci_exit_code(rows, source, now=None):
                  and 0 <= (now - stamp).total_seconds() <= 36 * 3600)
     except (KeyError, TypeError, ValueError):
         pause = False
+    allowed = pause or incident_allows(incident, now)
     return 0 if rows and all(
-        status == "PASS" or (pause and status == "WARN"
+        status == "PASS" or (allowed and status == "WARN"
                              and label == "gaswatch.jsonl is current")
         for status, label, _ in rows) else 2
 
@@ -922,10 +1018,18 @@ def main():
     if args.ci:
         import gaswatch_build as gw
         source = gw.source_status(gw.load_series(), date.today())
-        code = ci_exit_code(rows, source)
+        incident = incident_record()
+        code = ci_exit_code(rows, source, incident=incident)
         if not code and verdict == "WARN":
-            print("::warning::Gas Watch source is in announced maintenance; dated rows remain unavailable.",
-                  file=sys.stderr)
+            if incident_allows(incident):
+                print("::warning::Gas Watch is blocked upstream and a dated incident record "
+                      "stands behind it (blocker %s, checked %s). Dated rows remain "
+                      "unavailable and the check resumes on the next run."
+                      % (incident.get("blocker"), incident.get("audit_checked_utc")),
+                      file=sys.stderr)
+            else:
+                print("::warning::Gas Watch source is in announced maintenance; dated rows remain unavailable.",
+                      file=sys.stderr)
         return code
     return exit_code(verdict)
 
