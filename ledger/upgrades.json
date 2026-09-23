@@ -2611,7 +2611,8 @@
       ],
       "verification": "scout_bash_guard.py --self-test PASS: 9 allowed command shapes, 22 denied (python3 -c, --out in both spellings, ; && | and > chaining, cd prefix, command substitution in $() and backticks, a quoted $HOME path, claude -p, curl, bash as the interpreter, another repo script, two positional urls, an unknown flag, an unterminated quote, echo, empty), plus a wiring check that FAILS if scout.md loses the hook block or its tools line gains Task, Write, Edit or NotebookEdit. Exercised as a real hook over stdin: the scout's own command exits 0, python3 -c exits 2 with the reason, unparseable stdin exits 2 (fail closed). scout.md frontmatter parsed as YAML and checked against the hooks schema Claude Code enforces (PreToolUse -> [{matcher, hooks:[{type: command, command, timeout}]}]); the running claude binary contains the agent-hooks parser. python3 scripts/fetch_pdf_text.py on the Mat-Su ordinance PDF returned the ordinance text at exit 0, which is the acceptance test minus the scout process. NOT tested end to end through a live scout: Phase 12 is itself a subagent and non-negotiable 7 forbids it spawning one. render.py + qa.py unaffected (no engine change in this entry).",
       "rollback": "revert the upgrade(2026-09-23) commit and restore scout.md and the guard from 0d7d044e^, after which scout.md returns to WebSearch, WebFetch, Read and the guard is gone. NOTE, 2026-09-23: the showrunner's ship commit 0d7d044e ran a wide git add while this upgrade was still being written, so part of the set is inside that already-pushed commit instead of the upgrade commit. This set therefore reverts in two moves, not one: `git revert <the upgrade(2026-09-23) sha>` for assets/js/akengrave.js, knowledge/FIELD_NOTES.md and this ledger, and `git checkout 0d7d044e^ -- .claude/agents/scout.md .claude/agents/scorer.md scripts/scout_bash_guard.py scripts/trend_check.py scripts/ship_gate.py scripts/gmail_draft.py` for the rest. Published history is not rewritten.",
-      "commit": "staged for upgrade(2026-09-23)"
+      "commit": "444f6cd091710019dc76ecb5ef891dca80aed92e",
+      "revert": "git revert 444f6cd09171 removes this whole set. The six files the ship commit 0d7d044e swept in were backed out in 0d849e1c first, so this one commit carries all of U1, U2 and U3 and reverting it is sufficient."
     },
     {
       "run_date": "2026-09-23",
@@ -2627,7 +2628,8 @@
       ],
       "verification": "trend_check.py --self-test PASS, 15 cases (three real corpus shapes, four empty shapes, five shapes that must be reported rather than read, plus an assertion that canon() of a mapping still reproduces the original defect so the test's premise can't go stale silently). trend_check.py --window 10 now prints three rows, not four, the {'name' row is gone and artwork craft reads 8/10 where it read 7/10. ship_gate.py run against a copy of runs/2026-09-14 forced below threshold prints 'weakest criterion : Artwork craft and genuine detail' where it would have printed the mapping. gmail_draft.py imports clean. --require was deliberately NOT made to gate on an unreadable shape: runs/2026-09-14 is a shipped artifact this repo does not rewrite, so gating would fail every future run over a file nobody is allowed to fix.",
       "rollback": "revert the upgrade(2026-09-23) commit and restore trend_check.py, ship_gate.py, gmail_draft.py and scorer.md from 0d7d044e^, after which the three readers return to reading the raw field. NOTE, 2026-09-23: the showrunner's ship commit 0d7d044e ran a wide git add while this upgrade was still being written, so part of the set is inside that already-pushed commit instead of the upgrade commit. This set therefore reverts in two moves, not one: `git revert <the upgrade(2026-09-23) sha>` for assets/js/akengrave.js, knowledge/FIELD_NOTES.md and this ledger, and `git checkout 0d7d044e^ -- .claude/agents/scout.md .claude/agents/scorer.md scripts/scout_bash_guard.py scripts/trend_check.py scripts/ship_gate.py scripts/gmail_draft.py` for the rest. Published history is not rewritten.",
-      "commit": "staged for upgrade(2026-09-23)"
+      "commit": "444f6cd091710019dc76ecb5ef891dca80aed92e",
+      "revert": "git revert 444f6cd09171 removes this whole set. The six files the ship commit 0d7d044e swept in were backed out in 0d849e1c first, so this one commit carries all of U1, U2 and U3 and reverting it is sufficient."
     },
     {
       "run_date": "2026-09-23",
@@ -2640,7 +2642,8 @@
       ],
       "verification": "render.py + qa.py on this run's nine slides: PASS, 0 fails, 0 warns, and all nine PNGs byte identical to the shipped render by sha256, so the change costs no pixel. render.py + qa.py on examples/demo-deck: unchanged, its known pre-existing warns and no new ones. DEFECT RECONSTRUCTION from this run's slide 08, three slides: noise injected into form WARNS with the region named ('the form callback for region [108,392,864,436] calls AK.fbm2()'); the identical slide with landformIntended: true is silent; the same noise moved into tone is silent, proving the house idiom still works. Limit stated in the code: the check reads the callback's own text, so a form delegating to a helper that calls noise is invisible to it.",
       "rollback": "revert the upgrade(2026-09-23) commit; checkFormNoise and the landformIntended option disappear and surface() behaves exactly as before. This one file IS in the upgrade commit, so a plain revert is enough for it.",
-      "commit": "staged for upgrade(2026-09-23)"
+      "commit": "444f6cd091710019dc76ecb5ef891dca80aed92e",
+      "revert": "git revert 444f6cd09171 removes this whole set. The six files the ship commit 0d7d044e swept in were backed out in 0d849e1c first, so this one commit carries all of U1, U2 and U3 and reverting it is sufficient."
     }
   ],
   "scan_log": [
