@@ -60,6 +60,8 @@ import url_safety  # noqa: E402  (same directory, after sys.path is set)
 REPO = Path(__file__).resolve().parent.parent
 READER_REL = "scripts/fetch_pdf_text.py"
 READER_ABS = str((REPO / READER_REL).resolve())
+GUARD_REL = "scripts/scout_bash_guard.py"
+GUARD_ABS = str(Path(__file__).resolve())
 
 INTERPRETERS = ("python3", "python")
 
@@ -138,6 +140,37 @@ def unquoted_metachar(cmd):
     if state is not None:
         return "an unterminated %s quote" % ("single" if state == "'" else "double")
     return None
+
+
+def is_guard_path(tok):
+    """True when this argument names THIS guard file and nothing else.
+
+    A basename test is not enough, and review measured why: `python3
+    /tmp/scout_bash_guard.py` would have certified the wiring while running a
+    stale copy or a no-op with the same name. The hook's whole value is that a
+    Bash grant cannot exist without THIS file screening it, so the wiring check
+    has to resolve the path rather than read its last component.
+
+    `$CLAUDE_PROJECT_DIR` is expanded because that is the spelling the agent
+    file documents and the harness substitutes; the guard is asked whether the
+    wiring is right, and the wiring is written in the harness's vocabulary.
+    """
+    tok = tok.strip()
+    for spelling in ("${CLAUDE_PROJECT_DIR}", "$CLAUDE_PROJECT_DIR"):
+        if tok.startswith(spelling):
+            tok = str(REPO) + tok[len(spelling):]
+            break
+    if "$" in tok:                      # any other variable is unresolvable here
+        return False
+    norm = os.path.normpath(tok).replace(os.sep, "/")
+    if os.path.isabs(norm):
+        try:
+            return os.path.realpath(norm) == GUARD_ABS
+        except OSError:
+            return False
+    if norm.startswith("../") or "/../" in norm:
+        return False
+    return norm == GUARD_REL
 
 
 def is_reader_path(tok):
@@ -317,11 +350,18 @@ def hook_is_wired(fm_text):
             interp = os.path.basename(parts[0]).lower()
             if interp not in ("python3", "python", "python3.11", "python3.12"):
                 continue
-            target = next((a for a in parts[1:] if not a.startswith("-")), "")
-            if os.path.basename(target) == "scout_bash_guard.py":
+            # -c and -m never run THIS FILE. `-c` runs the string that follows
+            # and `-m` runs whatever the import system finds, so the name
+            # appearing after either proves nothing about what executes.
+            if any(a in ("-c", "-m") for a in parts[1:]):
+                continue
+            # AND THE PATH IS RESOLVED, not read for its last component.
+            # `python3 /tmp/scout_bash_guard.py` has the right shape and the
+            # right basename and can be anything at all.
+            if any(is_guard_path(a) for a in parts[1:] if not a.startswith("-")):
                 return None
         return ("the PreToolUse entry matching Bash has no command hook "
-                "running scout_bash_guard.py")
+                "running this repository's scripts/scout_bash_guard.py")
     return "no PreToolUse entry matches Bash"
 
 
@@ -436,6 +476,38 @@ def self_test():
     # failure mode of a mis-spelled hooks block is that Claude Code logs it and
     # carries on with an UNGUARDED Bash, so this half matters as much as the
     # battery above.
+    # FIRST, THE WIRING CHECK ITSELF, against synthetic frontmatter. Three
+    # rounds of review landed on this function and each one certified a hook
+    # that ran something other than this file: a commented-out line, then
+    # `echo scout_bash_guard.py`, then `/tmp/scout_bash_guard.py`. A check
+    # that says yes to those is worse than no check, because it reports the
+    # shell is guarded while it is not. So the cases are pinned here.
+    def _fm(cmd):
+        return ("name: probe\ntools: Bash\nhooks:\n  PreToolUse:\n"
+                "    - matcher: Bash\n      hooks:\n        - type: command\n"
+                "          command: %s\n" % json.dumps(cmd))
+
+    for cmd, want_wired in [
+            ("python3 scripts/scout_bash_guard.py", True),
+            ('python3 "$CLAUDE_PROJECT_DIR/scripts/scout_bash_guard.py"', True),
+            ("python3 ${CLAUDE_PROJECT_DIR}/scripts/scout_bash_guard.py", True),
+            ("python3 %s" % GUARD_ABS, True),
+            ("echo scout_bash_guard.py", False),
+            ("cat scripts/scout_bash_guard.py", False),
+            ("bash -c 'scout_bash_guard.py'", False),
+            ('python3 -c \'print("scout_bash_guard.py")\'', False),
+            ("python3 -m scout_bash_guard", False),
+            ("python3 /tmp/scout_bash_guard.py", False),
+            ("python3 ./fake/scout_bash_guard.py", False),
+            ("python3 ../scout_bash_guard.py", False),
+            ("python3 $SOMETHING/scout_bash_guard.py", False),
+            ("python3 scripts/fetch_pdf_text.py", False)]:
+        wired = hook_is_wired(_fm(cmd)) is None
+        if wired != want_wired:
+            print("  FAIL  wiring check called %r %s" %
+                  (cmd, "wired" if wired else "not wired"))
+            ok = False
+
     agent = REPO / ".claude" / "agents" / "scout.md"
     fm = _agent_frontmatter(agent) if agent.exists() else None
     if fm is None:

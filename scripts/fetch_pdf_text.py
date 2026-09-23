@@ -52,12 +52,12 @@ Read-only. Stdlib plus pypdf. It never writes anything unless --out is given.
 from __future__ import annotations
 
 import argparse
-import concurrent.futures
 import io
 import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -168,24 +168,47 @@ def _fetch(url, max_mb, timeout, allow_local=False):
     # blocked at 14.7 seconds, and was then stopped by CPython's 100-header cap
     # rather than by anything here, which is luck and not a bound.
     #
-    # The worker is a daemon, so if it is still stuck when this returns the
-    # process can still exit. That is the right trade for a read-only CLI: the
-    # caller gets control back on schedule and the socket dies with the process.
-    try:
-        pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    # THE WORKER IS A RAW DAEMON THREAD, AND THAT IS THE WHOLE POINT. This was
+    # a ThreadPoolExecutor for one round and review measured what that cost:
+    # the fetch raised on schedule at 6.00 seconds and the PROCESS was still
+    # alive at 20 seconds, because an executor registers an atexit hook that
+    # joins its workers, and `shutdown(wait=False)` cancels only work that has
+    # not started. The stuck open() had started. So the caller got its
+    # exception back and the interpreter then sat waiting for the very socket
+    # the exception said had been abandoned, which is the hang the watchdog
+    # exists to prevent, moved from one place to another.
+    #
+    # A daemon thread is not joined at exit. Abandoning it really does abandon
+    # it: the caller gets control back on schedule and the socket dies with the
+    # process. The cost is that a worker which succeeds after we stopped
+    # waiting leaks its response until exit, which is the right trade for a
+    # read-only CLI that is about to exit anyway.
+    box = {}
+
+    def _open_into_box():
         try:
-            future = pool.submit(_open)
-            try:
-                opened = future.result(timeout=budget)
-            except concurrent.futures.TimeoutError:
-                raise RuntimeError(
-                    "the server took longer than %.0f seconds to send its "
-                    "response headers and has been abandoned; a server that "
-                    "trickles header bytes can outlast a per-read timeout. "
-                    "Raise --timeout deliberately if this host really is that "
-                    "slow" % budget)
-        finally:
-            pool.shutdown(wait=False)
+            box["opened"] = _open()
+        except BaseException as exc:          # re-raised on the caller's thread
+            box["error"] = exc
+
+    try:
+        worker = threading.Thread(target=_open_into_box, name="fetch-open",
+                                  daemon=True)
+        worker.start()
+        worker.join(budget)
+        if worker.is_alive():
+            raise RuntimeError(
+                "the server took longer than %.0f seconds to send its "
+                "response headers and has been abandoned; a server that "
+                "trickles header bytes can outlast a per-read timeout. "
+                "Raise --timeout deliberately if this host really is that "
+                "slow" % budget)
+        if "error" in box:
+            # INSIDE the try, so the redirect guard's HTTPError and urllib's
+            # own errors are still handled by the clauses at the bottom rather
+            # than escaping as a traceback.
+            raise box["error"]
+        opened = box["opened"]
         with opened as resp:
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip()
             buf = io.BytesIO()
@@ -371,6 +394,22 @@ def _self_test():
                 except Exception:
                     pass
                 return
+            if self.path.startswith("/slowheaders"):
+                # A STATUS LINE AND THEN AN UNFINISHED HEADER, FOREVER. This
+                # stalls inside opener.open(), before a single body byte, and
+                # it is the case the body loop's deadline cannot see. Written
+                # raw rather than through send_header, because the point is a
+                # header that never ends.
+                try:
+                    self.wfile.write(b"HTTP/1.1 200 OK\r\n")
+                    self.wfile.flush()
+                    for _ in range(3000):
+                        self.wfile.write(b"a")
+                        self.wfile.flush()
+                        time.sleep(0.1)
+                except Exception:
+                    pass
+                return
             if self.path.startswith("/redirect-to-metadata"):
                 self.send_response(302)
                 self.send_header("Location",
@@ -412,6 +451,34 @@ def _self_test():
         elapsed = time.monotonic() - t0
         if elapsed > 30:
             fails.append("the deadline took %.1fs to fire" % elapsed)
+
+        # THE HEADER PHASE, which is a different stall from the one above and
+        # needed its own fixture. This server sends a status line and then one
+        # byte of a header that never ends, so it blocks inside open() where
+        # the body loop's deadline is not yet running.
+        t0 = time.monotonic()
+        try:
+            read_pdf_text(base + "slowheaders", timeout=0.2, allow_local=True)
+            fails.append("a header-dribbling server was never abandoned")
+        except RuntimeError as exc:
+            if "response headers" not in str(exc):
+                fails.append("header stall refused for the wrong reason: %s" % exc)
+        elapsed = time.monotonic() - t0
+        if elapsed > 30:
+            fails.append("the header watchdog took %.1fs to fire" % elapsed)
+        # AND THE ABANDONED WORKER MUST BE A DAEMON. It is still stuck in
+        # open() right now, and if it were an ordinary thread the interpreter
+        # would join it at exit and the process would park for as long as the
+        # server cared to dribble. Review measured exactly that: the fetch
+        # raised at 6.00s and the process was still alive at 20s. A named
+        # daemon thread is the fix, so the property is asserted rather than
+        # described.
+        stuck = [t for t in threading.enumerate() if t.name == "fetch-open"]
+        if not stuck:
+            fails.append("no abandoned worker to check, so this proves nothing")
+        elif not all(t.daemon for t in stuck):
+            fails.append("the abandoned open() worker is not a daemon, so the "
+                         "process will park at exit waiting for it")
 
         # THE REDIRECT GUARD, exercised through the real opener. allow_local
         # is deliberately NOT passed, so this is the same path a scout takes.
@@ -457,7 +524,7 @@ def _self_test():
     for f in fails:
         print("FAIL  " + f)
     print("fetch_pdf_text self-test: %s (%d checks)"
-          % ("FAIL" if fails else "PASS", 6))
+          % ("FAIL" if fails else "PASS", 8))
     return 1 if fails else 0
 
 

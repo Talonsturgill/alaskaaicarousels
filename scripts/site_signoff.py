@@ -905,6 +905,7 @@ def self_test():
               {**incident, "evidence_urls": ["https://-bad.com/x"]},
               {**incident, "evidence_urls": ["https://bad-.com/x"]},
               {**incident, "evidence_urls": ["https://under_score.com/x"]},
+              {**incident, "evidence_urls": ["https://" + "a" * 64 + ".com/x"]},
               {**incident, "evidence_urls": ["https://x/y"]},
               {**incident, "audit_checked_utc": 20260916},
               {**incident, "audit_checked_utc": "20260916"},
@@ -1048,7 +1049,12 @@ def incident_allows(incident, now=None):
         if not host or len(host) > 253:
             return False
         labels = host.split(".")
-        if any(not lb for lb in labels):          # empty label: .com, a..b
+        # A LABEL IS AT MOST 63 BYTES, and the empty one is at least 1. Both
+        # ends of that range were found by review, one round apart: the empty
+        # label let "https://.com/x" through, and a 64 character label let a
+        # name through that no resolver will ever accept, which urllib itself
+        # refuses with "label too long" before it opens a socket.
+        if any(not lb or len(lb) > 63 for lb in labels):
             return False
         if not all(re.fullmatch(r"[a-z0-9]([a-z0-9-]*[a-z0-9])?", lb)
                    for lb in labels):
