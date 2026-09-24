@@ -89,6 +89,20 @@ pixel critics grade against this document. Companion: TECHNIQUE_LIBRARY.md
 - **AI-slop ban list** (auto-fail): indigo→purple SaaS gradients
   (#6366F1/#8B5CF6 as accents), three evenly-rounded glass cards, thin-line
   icon decoration, Inter-everywhere sameness, unmotivated glassmorphism.
+- **The model's own defaults** (2026-09-23; a design instruction, not an
+  auto-fail). Anthropic's prompting guide for the model the routine now runs
+  on lists the styles it falls back on without direction: a cream or
+  off-white ground, italic accent words in headlines, numbered "01, 02, 03"
+  section labels, monospace labels and pill-shaped buttons. It also says a
+  general "avoid a generic AI look" only swaps one default for another, and
+  naming them is what works. For this brand four are out unless a dossier
+  argues for one: a cream or off-white ground as a fallback (a light deck
+  is a deliberate variance-dial move, once per 8 runs, never a default),
+  italic accent words in a headline, numbered section labels beside the
+  NN / NN counter, and pill-shaped chips or tags. Monospace stays: serif
+  display plus mono metadata is the house signature (section 2). When a deck
+  falls into a default this list does not name, Phase 12 adds it here with
+  the date and the slide.
 - Text contrast ≥4.5:1 at the worst-case point; earn it with the art
   (composition routes quiet zones under text) before reaching for scrims;
   scrim/plate/backdrop-blur are the fallback tools, subtle and motivated.
