@@ -341,6 +341,20 @@
         var wd = o.widthPow ? wF + (wN - wF) * Math.pow(Math.max(0, (1 / d - 1 / dEnd) / (1 / dmin - 1 / dEnd)), o.widthPow)
           : wN + (wF - wN) * Math.min(1, (d - dmin) / (dEnd - dmin));
         var BK = 9;
+        // o.shadeSmooth (k samples each side): average the shade along the
+        // profile before bucketing, so DEM micro-noise can't split a flat
+        // profile into short lit and lee pieces that read as dashes (in this
+        // deck a dash means 'not stated'; slide 08, round 4)
+        if (o.shadeSmooth) {
+          runs.forEach(function (RR) {
+            var sm = RR.map(function (_, i) {
+              var a = 0, n = 0;
+              for (var j = Math.max(0, i - o.shadeSmooth); j <= Math.min(RR.length - 1, i + o.shadeSmooth); j++) { a += RR[j][3]; n++; }
+              return a / n;
+            });
+            RR.forEach(function (P, i) { P[3] = sm[i]; });
+          });
+        }
         for (var r = 0; r < runs.length; r++) {
           var R0 = runs[r];
           for (var bk = 0; bk < BK; bk++) {
