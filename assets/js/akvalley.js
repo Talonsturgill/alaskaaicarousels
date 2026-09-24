@@ -310,8 +310,7 @@
         // high camera pitched down sees the near ground at a depth well past
         // d, and sizing by d left bare wedges at the frame's lower corners
         // (slide 04, round 3)
-        var zc = d * Math.cos(cam.pitch * D2R) - (cam.pos[1] - cam.groundM / 1000 * VE) * Math.sin(cam.pitch * D2R);
-        var half = Math.max(d, zc) * hf, pts = [];
+        var half = V.profileDepth(cam, d) * hf, pts = [];
         var cxw = cam.pos[0] + cam.fwdH[0] * d, czw = cam.pos[2] + cam.fwdH[1] * d;
         for (var si = 0; si <= NS; si++) {
           var s = -half + 2 * half * si / NS;
@@ -472,12 +471,24 @@
     /* cropDepth: the farthest forward distance at which the whole visible
      * width of a profile still lies on the DEM. Past it a profile is cut off
      * mid-frame by the crop, which is the mesa the haze option exists to hide. */
+    /* profileDepth: the camera-space depth a profile at forward distance d
+     * is seen at, which sets its lateral reach. terrain() and cropDepth() both
+     * size a profile with it, so the crop test measures the span that is
+     * actually drawn (Codex review, PR #397). */
+    V.profileDepth = function (cam, d) {
+      var zc = d * Math.cos(cam.pitch * D2R) - (cam.pos[1] - cam.groundM / 1000 * cam.VE) * Math.sin(cam.pitch * D2R);
+      return Math.max(d, zc);
+    };
     V.cropDepth = function (cam, dFrom) {
+      // The in-frame half span (x1.08), not terrain()'s 1.25 overscan: a run
+      // cut by the crop OUTSIDE the frame ends where nobody sees it, and
+      // testing the overscan would pull dmax in for no visible gain.
       var hw = (cam.W / 2) / cam.f * 1.08, last = dFrom || 1;
       for (var d = dFrom || 1; d < 200; d += 0.5) {
         var ok = true, cxw = cam.pos[0] + cam.fwdH[0] * d, czw = cam.pos[2] + cam.fwdH[1] * d;
+        var span = V.profileDepth(cam, d);
         for (var k = 0; k <= 40 && ok; k++) {
-          var s = -d * hw + 2 * d * hw * k / 40;
+          var s = -span * hw + 2 * span * hw * k / 40;
           if (hWorld(cxw + cam.rightH[0] * s, czw + cam.rightH[1] * s) === null) ok = false;
         }
         if (!ok) break;
