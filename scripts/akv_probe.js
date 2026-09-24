@@ -141,6 +141,10 @@ function probe(V, spec) {
       problems.push(`aim could not put the far ground on yFar: it misses by ${solve.errPx.toFixed(0)} px ` +
         "(V.aim returns its best try without saying so); the target row holds, the far row does not");
     }
+    if (cam.targetOffDem) {
+      problems.push("aim target is OFF the DEM, so the target row was solved against invented " +
+        "ground (V.project's 100 m stand-in); pick a target inside the crop");
+    }
     if (cam.farOffDem) {
       problems.push(`aim farKm lands OFF the DEM, so the far row was solved against invented ` +
         "ground (V.aim's 120 m stand-in); shorten farKm to inside cropDepthKm");
@@ -242,6 +246,8 @@ function probe(V, spec) {
 /* screen row of the ground straight ahead at the crop depth: where the haze
  * has to have finished by, the row the "mesa" would sit on */
 function rayCropRow(V, cam, crop) {
+  // no crop-safe depth means no row: null, never the ground under the camera
+  if (crop === null || crop === undefined) return null;
   const x = cam.pos[0] + cam.fwdH[0] * crop, z = cam.pos[2] + cam.fwdH[1] * crop;
   const h = hW(V, x, z);
   if (h === null) return null;
