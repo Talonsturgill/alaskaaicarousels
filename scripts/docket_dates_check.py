@@ -457,9 +457,14 @@ def check_built_site(rep, items, today, out):
                    f"item the resolver reports as open ({sorted(want_dates)})")
             rep.ok(shown == db.mon_day(iso), "questions page",
                    f"chip text {shown} does not match its own date {iso}")
-        rep.ok(len(CHIP_RE.findall(qbody)) == len(want_dates), "questions page",
+        # One chip per open WINDOW, not per distinct date: two items can close
+        # on the same day (2026-09-24, the Eielson site comment and the FCC USF
+        # comment both close September 30th), and counting a set of dates made
+        # six correct chips read as a surplus of one.
+        want_n = sum(1 for r in open_ids.values() if r["headline"])
+        rep.ok(len(CHIP_RE.findall(qbody)) == want_n, "questions page",
                f"renders {len(CHIP_RE.findall(qbody))} date chips for "
-               f"{len(want_dates)} open window(s)")
+               f"{want_n} open window(s)")
 
     nearest = db.nearest_headline(
         [it for it in items

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-23",
+  "updated": "2026-09-24",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 31,
+  "count": 32,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -357,7 +357,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-07-08",
@@ -462,6 +462,10 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged. The enhanced use lease offering still stands as posted, about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station, with no selection and no award announced. The Air Force set no public decision date when it posted the offering, so a decision here arrives without a calendar."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked and unchanged. The solicitation of record, AFCEC-26-R-0006, still shows proposals closed on June 29th after a one month extension, a last update of July 14th, and no award or selected lessee. The Air Force has set no public date for choosing one."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -521,7 +525,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-07-08",
@@ -602,6 +606,10 @@
         {
           "date": "2026-09-15",
           "note": "Updated. On September 8th, Reporting From Alaska published an outside cost challenge to the co-op's figure. Andrew McDonnell, a co-founder of Alaska Renewables LLC, a Railbelt Reliability Council board member, a former University of Alaska Fairbanks professor and a former GVEA consultant, put the full cost of another LM6000 and the work around it at $150 million to $300 million against the co-op's stated ceiling of no more than $80 million. He argued the board should not commit to a long term purchase without further analysis, resource planning and competitive procurement. The board's August 25th motion left a final purchase decision to a later meeting, and no date for that meeting has been published."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked and unchanged. No final purchase vote has been reported since the board's 4 to 3 decision on August 25th to keep studying the $80 million turbine, and the co-op has published no date for one. Its own statement at the time said any contract or financial obligation would return to the board for approval."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -945,7 +953,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-07-11",
@@ -1006,6 +1014,10 @@
         {
           "date": "2026-09-15",
           "note": "Checked and unchanged. Nothing new has been posted since the August rulings. The record still runs from the Regulatory Commission of Alaska's July order denying Enstar an advance determination of decisional prudence for the Kenai Loop Pool project, through Enstar's petition for reconsideration, to the commission's 3 to 2 denial of that petition on August 21st with a written order to follow. That written order has not appeared."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked and unchanged. No written order on the Regulatory Commission of Alaska's August 21st denial of reconsideration has been reported, and nothing newer than the July and August rulings appears in coverage of the Kenai Loop Pool project."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -1517,7 +1529,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-07-26",
@@ -1566,6 +1578,10 @@
         {
           "date": "2026-09-19",
           "note": "Checked the pledge's published signatory list again today. No Alaska utility, cooperative or state office appears on it. The list now counts more than 300 organizations across four groups, 23 governors, 7 AI companies, more than 250 utilities and cooperatives, and 44 data center developers. Alaska's absence is unchanged since this item was opened."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked the published signatory list again today. It still carries no Alaska utility, cooperative or state office. The page now shows 318 signatories in its listing."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -1954,7 +1970,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-23",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-08-05",
@@ -2023,6 +2039,10 @@
         {
           "date": "2026-09-23",
           "note": "Re-read the Grants.gov opportunity today. HHS-2026-ACF-ANA-NAI-0035 closed to applications on August 27th, the award ceiling and total program funding both still read $3,500,000, and the listing carries an archive date of September 26th. No award has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 is closed, one award is expected with a ceiling of $3,500,000, the archive date is still September 26th and no award has been posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2031,16 +2051,26 @@
       "id": "eielson-oklo-microreactor",
       "title": "The Air Force nuclear microreactor at Eielson",
       "kind": "procurement",
-      "status": "pending-decision",
+      "status": "open-for-comment",
       "decider": "Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the license",
-      "public_access": "closed",
-      "access_note": "Contract negotiation is private and the Air Force runs no comment period. The reactor can't be built without a Nuclear Regulatory Commission license, and that review is the room where the public gets a formal say.",
+      "public_access": "open",
+      "access_note": "Until September 30th anyone can comment on the Air Force's preferred site for the reactor, near Spruce Lake east of the south end of the main runway, by email to 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299. The contract itself follows a Nuclear Regulatory Commission license.",
       "summary": "The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission.",
       "key_dates": [
         {
           "date": "2025-06-11",
           "label": "Air Force announces a notice of intent to award to Oklo",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-20",
+          "label": "Air Force asks for public comment on the preferred reactor site near Spruce Lake, which sits near wetlands",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-30",
+          "label": "Comments on the proposed microreactor site due to the Eielson Public Affairs Office",
+          "kind": "deadline"
         }
       ],
       "location": {
@@ -2078,10 +2108,15 @@
           "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents",
           "outlet": "U.S. Nuclear Regulatory Commission",
           "date": "2026-09-18"
+        },
+        {
+          "url": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
+          "outlet": "KUAC",
+          "date": "2026-09-20"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -2126,6 +2161,10 @@
         {
           "date": "2026-09-18",
           "note": "Checked and unchanged, and checked this time against the licensing record rather than the base page, which refused an automated read. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice and not a signed contract, and the contract follows a Nuclear Regulatory Commission license. The commission's own record for the Aurora combined license application shows it was submitted on March 11th, 2020, accepted for review on June 5th, 2020, and denied on January 6th, 2022 for failure to supply information, and that application names Idaho National Laboratory rather than Alaska. No license covering an Eielson unit is on the record."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Updated. The Air Force is now asking for public comment on where the reactor would go. Its preferred site is near Spruce Lake, east of the south end of the main runway, and because that site is near wetlands federal law requires the public be asked first. Comments go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail, and must arrive no later than September 30th. A draft Environmental Assessment is expected later in 2026, and officials expect an assessment rather than a full Environmental Impact Statement. The 5 megawatt Oklo agreement is still a notice of intent, signed only after a Nuclear Regulatory Commission license. Reported by Tim Ellis for KUAC on September 20th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2301,7 +2340,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -2334,6 +2373,10 @@
         {
           "date": "2026-09-15",
           "note": "Checked and unchanged against the order's full text at the Government Publishing Office. Executive Order 14318 of July 23rd, 2025 still names no state, and no Alaska project has been identified as qualifying under its 100 megawatt or $500 million thresholds."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked and unchanged against the Federal Register text. A qualifying project is still one over 100 megawatts of new load or $500 million in capital expenditure, and the order names no state."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
@@ -2604,7 +2647,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-09-18",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-08-09",
@@ -2673,6 +2716,10 @@
         {
           "date": "2026-09-18",
           "note": "Decided, for the academic honesty half of the package. At its regular meeting on September 14th the board approved consent agenda items A through K in one motion, moved by Ash-Lee Waddell and seconded by Sarah Douthit, and it passed 9 yes, 0 no, 0 abstaining. Item 10147 inside that motion was the second reading and action on BP 5131.9 Academic Honesty, and item 10145 was the first reading and action approving AR 5131.9 Academic Honesty as a new administrative regulation, the document the district brought forward in relation to the inclusion of AI. Neither was pulled for separate discussion. The district's other AI-revised documents, AR 5125 Student Records, BP 1114 Communication Using Electronic Media and AR 6161.4 Acceptable Use, have no adoption recorded at this meeting."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked. The district's agenda portal did not answer today, so nothing newer than the September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed. The other AI-revised documents still have no recorded adoption."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -2778,6 +2825,11 @@
           "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt",
           "outlet": "Federal Register",
           "date": "2026-09-04"
+        },
+        {
+          "url": "https://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+          "outlet": "Homer News",
+          "date": "2026-09-14"
         }
       ],
       "history": [
@@ -2828,10 +2880,14 @@
         {
           "date": "2026-09-20",
           "note": "Checked and unchanged. The Federal Register notice accepting the application for filing still governs, and comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd on project number P-15423-000. The notice places the project in the Upper Cook Inlet East Foreland corridor of the Kenai Peninsula Borough, with a subsea cable landing connecting to the Nikiski industrial corridor."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Checked and unchanged. Comments, motions to intervene and competing applications on P-15423-000 are still due November 2nd, a date moved from October 31st because that falls on a Saturday. As of September 11th the City of Kenai had received only a June 24th notification letter from the company, and no comments had yet been filed, per the Homer News."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-20",
+      "last_updated": "2026-09-24",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -3051,7 +3107,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-23",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-08-31",
@@ -3083,6 +3139,10 @@
         },
         {
           "date": "2026-09-23",
+          "note": "Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-24",
           "note": "Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
         }
       ],
@@ -3427,7 +3487,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-20",
+      "last_updated": "2026-09-24",
       "history": [
         {
           "date": "2026-09-13",
@@ -3444,6 +3504,10 @@
         {
           "date": "2026-09-20",
           "note": "Re-read the Federal Register text at the source. Written responses, data and information on the Department of Energy request for information, Docket DOE-HQ-2026-1123, are accepted on or before October 9th. Nineteen days remain to respond."
+        },
+        {
+          "date": "2026-09-24",
+          "note": "Re-read the Federal Register text. Written responses on Docket DOE-HQ-2026-1123 are still accepted on or before October 9th, with no extension posted. Fifteen days remain."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -3724,6 +3788,64 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
+    },
+    {
+      "id": "sb-250-data-center-utility-costs",
+      "title": "SB 250, who pays for a data center's power",
+      "kind": "legislation",
+      "status": "closed",
+      "decider": "Alaska Legislature (House Community and Regional Affairs Committee held it)",
+      "public_access": "indirect",
+      "access_note": "The bill stalled in a House committee before the session ended. Any revival starts over in the next Legislature, where it goes to the legislators you elect on November 3rd.",
+      "summary": "SB 250, introduced by Sen. Loki Tobin on February 18th, would have barred utilities from putting a data center's costs into anyone's rates unless those costs were recovered solely from the data center, and would have required the Regulatory Commission of Alaska to approve each data center contract. The Senate-passed version applied to data centers drawing 15 megawatts of peak demand from an electric utility. The Senate passed it 14 to 5 on May 16th, and the House Community and Regional Affairs Committee heard and held it on May 18th, its last recorded action.",
+      "key_dates": [
+        {
+          "date": "2026-02-18",
+          "label": "Introduced by Sen. Loki Tobin",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-05-16",
+          "label": "Senate passes CSSB 250(CRA) on reconsideration, 14 to 5 with one excused",
+          "kind": "vote"
+        },
+        {
+          "date": "2026-05-18",
+          "label": "House Community and Regional Affairs hears and holds the bill, its last recorded action",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Juneau, Alaska State Capitol",
+        "lon": -134.4103,
+        "lat": 58.3019
+      },
+      "sources": [
+        {
+          "url": "https://r.jina.ai/https://www.akleg.gov/basis/Bill/Detail/34?Root=SB%20250",
+          "outlet": "Alaska State Legislature BASIS",
+          "date": "2026-05-18"
+        },
+        {
+          "url": "https://r.jina.ai/https://www.akleg.gov/PDF/34/Bills/SB0250B.PDF",
+          "outlet": "Alaska State Legislature, CSSB 250(CRA) bill text",
+          "date": "2026-04-21"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers",
+          "outlet": "Alaska Beacon, republished by Alaska Public Media",
+          "date": "2026-09-21"
+        }
+      ],
+      "first_seen": "2026-09-24",
+      "last_updated": "2026-09-24",
+      "history": [
+        {
+          "date": "2026-09-24",
+          "note": "Tracked. Read against the Legislature's own bill record and the Senate-passed text. The Senate passed CSSB 250(CRA) 14 to 5 with one excused on May 16th, and House Community and Regional Affairs heard and held it on May 18th, which is the last action on record. The bill is not law. It returned to the news in September when the four candidates for governor set out where they stand on data centers, as reported by James Brooks of the Alaska Beacon, with Jonathan Kreiss-Tomkins backing a moratorium until the Legislature can pass a comprehensive regulatory framework."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/sb-250-data-center-utility-costs/"
     }
   ]
 }

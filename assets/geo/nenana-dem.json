@@ -1,0 +1,24 @@
+{
+ "what": "Terrain around Nenana, Alaska, heights in metres as little-endian int16, row-major, north up",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, fetched 2026-09-24, averaged 3x3",
+ "projection": "Web Mercator rows and columns; convert with the bounds below",
+ "cols": 558,
+ "rows": 536,
+ "west": -150.20095825195312,
+ "east": -147.90206909179688,
+ "north": 65.00026079026212,
+ "south": 64.0505747986983,
+ "cell_m_at_nenana": 197.0,
+ "z": 10,
+ "tile_x0": 84,
+ "tile_y0": 266,
+ "crop_px": [
+  195,
+  124,
+  1674,
+  1608
+ ],
+ "downsample": 3,
+ "min_m": 78,
+ "max_m": 1259
+}
