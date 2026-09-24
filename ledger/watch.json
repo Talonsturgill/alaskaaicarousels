@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-23T18:27:47Z",
- "for_date": "2026-09-23",
+ "generated": "2026-09-24T18:28:52Z",
+ "for_date": "2026-09-24",
  "session": "34",
  "counted": {
   "basis_bills": 856,
@@ -20,6 +20,15 @@
    "committee": "ENE",
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HB259",
    "docket_id": "hb-259-data-center-utility-standards"
+  },
+  {
+   "bill": "SB250",
+   "title": "DATA CENTERS, UTILITIES",
+   "status": "(H) CRA",
+   "status_date": "2026-05-17",
+   "committee": "CRA",
+   "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SB250",
+   "docket_id": "sb-250-data-center-utility-costs"
   }
  ],
  "hearings": [],
@@ -261,16 +270,6 @@
    "status_date": "2026-01-21",
    "committee": "L&C",
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SB218",
-   "source": "basis",
-   "why": "bill on beat"
-  },
-  {
-   "bill": "SB250",
-   "title": "DATA CENTERS, UTILITIES",
-   "status": "(H) CRA",
-   "status_date": "2026-05-17",
-   "committee": "CRA",
-   "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SB250",
    "source": "basis",
    "why": "bill on beat"
   },
