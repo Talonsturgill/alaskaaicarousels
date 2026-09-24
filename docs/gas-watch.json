@@ -15,7 +15,7 @@
   "source_status": {
     "state": "current",
     "last_verified_date": "2026-09-24",
-    "last_collection_utc": "2026-09-24T17:59:52Z",
+    "last_collection_utc": "2026-09-24T22:30:56Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -8333,21 +8333,21 @@
     },
     {
       "date": "2026-09-24",
-      "collected_utc": "2026-09-24T17:59:52Z",
+      "collected_utc": "2026-09-24T22:30:56Z",
       "collector_version": "1.2",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-09-24T09:00:00",
-        "source_timestamp_utc": "2026-09-24T17:00:00Z",
-        "inventory_mcf": 7717848,
-        "inventory_delta_mcf": -5990,
+        "source_timestamp": "2026-09-24T13:00:00",
+        "source_timestamp_utc": "2026-09-24T21:00:00Z",
+        "inventory_mcf": 7716182,
+        "inventory_delta_mcf": -7656,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 59.4,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 156583,
+        "withdrawal_available_mcfd": 154917,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 206320,
@@ -8357,7 +8357,7 @@
         "injection_restriction_mcfd": 65660,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 1.0
+        "source_age_hours": 1.5
       },
       "forecast": [
         {
@@ -8402,22 +8402,22 @@
         },
         {
           "date": "2026-09-30",
-          "hours": 21,
-          "mean_temp_f": 42.7,
+          "hours": 24,
+          "mean_temp_f": 42.8,
           "min_temp_f": 37,
-          "hdd65": 22.3,
-          "modeled_demand_mmcfd": 158
+          "hdd65": 22.2,
+          "modeled_demand_mmcfd": 157
         }
       ],
-      "forecast_source_updated": "2026-09-24T15:38:09+00:00",
+      "forecast_source_updated": "2026-09-24T21:27:57+00:00",
       "derived": {
         "peak_forecast_date": "2026-09-30",
-        "peak_forecast_hdd": 22.3,
-        "peak_modeled_demand_mmcfd": 158,
+        "peak_forecast_hdd": 22.2,
+        "peak_modeled_demand_mmcfd": 157,
         "forecast_window_demand_bcf": 0.88,
-        "storage_withdrawal_mmcfd": 6.0,
+        "storage_withdrawal_mmcfd": 7.7,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 48.8,
+        "days_cover_at_peak": 49.1,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -8465,7 +8465,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-24T17:59:53Z",
+          "fetched_utc": "2026-09-24T22:30:57Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -8474,7 +8474,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-24T17:59:53Z",
+          "fetched_utc": "2026-09-24T22:30:57Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -8483,7 +8483,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-24T17:59:53Z",
+          "fetched_utc": "2026-09-24T22:30:58Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -8493,7 +8493,7 @@
         "injection_restriction_active",
         "inventory_declined"
       ],
-      "supersedes_unverified": "2026-09-24T12:46:45Z"
+      "supersedes_posting": "2026-09-24T09:00:00"
     }
   ]
 }
