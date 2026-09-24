@@ -127,6 +127,19 @@
      * camera sits in the same exaggerated world it looks at. */
     V.camera = function (c) {
       var VE = c.VE || 3;
+      // OFF THE DEM IS SAID OUT LOUD (upgrade 2026-09-24). Off the crop there
+      // is no ground height, the fallback below invents 100 m, agl becomes
+      // fiction and cropDepth collapses so the haze takes the frame (run
+      // No.67's slide 04, round 1, lost a critic round to it silently). The
+      // console.error is a WARN in qa.py. `silent` is for solvers that try
+      // many stations and report on the one they keep (V.aim, akv_probe.js).
+      var onDem = heightAt(c.lon, c.lat) !== null;
+      if (!onDem && !c.silent) {
+        console.error("AKVALLEY: camera at " + (+c.lon).toFixed(3) + ", " + (+c.lat).toFixed(3) +
+          " is OFF the DEM (" + meta.west.toFixed(2) + " to " + meta.east.toFixed(2) + " E, " +
+          meta.south.toFixed(2) + " to " + meta.north.toFixed(2) + " N); ground assumed 100 m, so agl " +
+          "and the haze are wrong. Move the station onto the DEM (probe it: node scripts/akv_probe.js).");
+      }
       var g = heightAt(c.lon, c.lat) || 100;
       var altM = c.alt !== undefined ? c.alt : g + (c.agl || 1000);
       var w = worldOf(c.lon, c.lat);
@@ -142,7 +155,7 @@
       cam.f = (cam.H / 2) / Math.tan(cam.fov / 2 * D2R);
       cam.cx = c.cx === undefined ? cam.W / 2 : c.cx;
       cam.cy = c.cy === undefined ? cam.H / 2 : c.cy;
-      cam.altM = altM; cam.groundM = g;
+      cam.altM = altM; cam.groundM = g; cam.onDem = onDem;
       return cam;
     };
 
@@ -486,7 +499,7 @@
       var best = null;
       for (var pt = -70; pt <= -2; pt += 0.25) {
         var cam = V.camera({lon: ll[0], lat: ll[1], agl: o.agl, heading: o.heading, pitch: pt,
-                            fov: o.fov, W: o.W, H: o.H, cy: 0, cx: o.cx, VE: o.VE});
+                            fov: o.fov, W: o.W, H: o.H, cy: 0, cx: o.cx, VE: o.VE, silent: true});
         var pT = V.project(cam, o.target[0], o.target[1], 0);
         var fx = cam.pos[0] + cam.fwdH[0] * o.farKm, fz = cam.pos[2] + cam.fwdH[1] * o.farKm;
         var fh = hWorld(fx, fz); if (fh === null) fh = 120;
@@ -497,7 +510,7 @@
         if (!best || err < best.err) best = {err: err, pitch: pt, cy: cy};
       }
       var out = V.camera({lon: ll[0], lat: ll[1], agl: o.agl, heading: o.heading, pitch: best.pitch,
-                          fov: o.fov, W: o.W, H: o.H, cy: best.cy, cx: o.cx, VE: o.VE});
+                          fov: o.fov, W: o.W, H: o.H, cy: best.cy, cx: o.cx, VE: o.VE, silent: o.silent});
       out.solveErr = best.err; out.lon = ll[0]; out.lat = ll[1];
       return out;
     };

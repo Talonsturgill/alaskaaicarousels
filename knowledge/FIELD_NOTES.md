@@ -8484,3 +8484,45 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   after: on 05 a knockout laid over the axis cut a gap that qa read, correctly, as an undeclared
   mark.
 - The review ran five edit rounds, the cap, plus one scoring-cycle repair. Critic ranges went 5.9 to 7.2, 5.6 to 7.6, 6.9 to 8.3, 7.0 to 8.4, and the scorer gave 8.29 then 8.34 as written (the rubric's weights sum to 1.10; normalised 7.58). Slide 08 never cleared: dashes, then a void, then blocks, then a blur. A reverse shot over flats with the relief outside the crop has nothing to draw, and the station choice, not the renderer, was the defect.
+
+## 2026-09-24, No.67, Phase 12: the scratch harness is now a committed probe
+
+- `node scripts/akv_probe.js '<station json>'` is the twenty-line node harness above, committed
+  and self-tested (`--self-test`, three reconstructed defects from this run). It takes the exact
+  `aim` or `camera` options a slide passes and prints onDem, cropDepth, the ground distance under
+  the bottom row, the near field's relief and LOCAL texture in true metres, every named target's
+  screen point and line of sight, and a `problems` list. `V.camera` now console.errors
+  `AKVALLEY:` (a qa WARN) when the camera is off the DEM.
+- WHAT IT FOUND ON THE SHIPPED DECK, which nobody knew. Three of the seven `V.aim` solves never
+  met their `yFar`: 03 by 81 px, 05 by 130 px, 09 by 215 px. `V.aim` returns its best try
+  silently, so the BUILD RECONCILIATION's "cameras are solved, not typed" was true of the target
+  row only. And the number that separates 08 from the cover: `nearTextureM` (ground minus its
+  1.6 km box mean, p10 to p90) reads 1.9 m for 08's flats against 51 m for 01 and 09. Probe the
+  station before spending a critic round on the renderer; under about 5 m the lower frame has
+  nothing real to draw.
+
+### Parked, 2026-09-24 frontier scan, focus (f), self-improving pipelines
+
+- REPEATED-DEFECT ESCALATION. Every No.67 critic round named flat ground, and every round answered
+  with a renderer option (quietFlat, shadeSmooth, tonal, then a blur), while the cause was the
+  station. The literature names the loop: refine-render-judge systems that let repeated failures
+  "permit progressively broader changes, from local field edits to element regrouping and full
+  scene re-planning" (https://arxiv.org/html/2607.29679), and iterative LLM fixing that "frequently
+  reaches a pseudo-bug-fixing cycle where the same changes are added and removed again"
+  (https://arxiv.org/abs/2609.10123). Candidate rule for Phase 8: when two consecutive critic rounds
+  name the same defect class on the same slide, the next round must change the PLAN (station,
+  composition, which slide carries the beat), not a parameter. PARKED, not applied: as prose it is
+  one more sentence the run can ignore, and the machinery version needs the critics' defect classes
+  in a structured field that the Phase 8 reports do not carry yet. First step when picked up: have
+  pixel critics emit a `defect_class` per finding, then a check over the rounds.
+- BEST ROUND, NOT LAST ROUND. "Which round is best remains genuinely open" and an oracle choosing
+  the best round beat every practical stopping policy (https://arxiv.org/abs/2606.27009). No.67's
+  Phase 10 repair of 08 shipped a render no critic had reviewed (its last critic score, 7.2, was
+  taken before the fade). Candidate: keep each slide's best-scored render and ship it unless a
+  later round's score beats it. PARKED: needs per-slide scores written per round in a machine-read
+  form, same prerequisite as above.
+- TOOL-MAKING OVER RETRYING, for the record. A deployed agent that compiled repeated diagnoses into
+  tools reached 94.5 percent pass@1 where retrying without reflection plateaued near 92.5 percent
+  "because additional rounds repeat the same diagnostic errors" (https://arxiv.org/html/2607.08010).
+  That is the case for today's probe: a station question asked by render cost a critic round each
+  time.

@@ -853,10 +853,22 @@ annotation is the strongest pair):
     profiles with shaded tone, fading with distance, for gentle near ground
     that would otherwise read as a void. Each profile's lateral reach is sized
     by CAMERA-SPACE depth, or a high pitched-down camera leaves bare wedges.
-    Probe cameras in node before rendering: a twenty-line harness that loads
-    this file with a file-backed fetch and prints the projected corners of a
-    shape settles a station in one call (`V.aim` will happily return pitch -60
-    with a 2,000 px lens shift). Keep the camera ON the DEM: off it,
-    `cropDepth` collapses and the haze takes the whole ground.
+    PROBE EVERY STATION BEFORE RENDERING IT: `node scripts/akv_probe.js
+    '{"aim": {...}, "targets": {"ENN": [lon, lat]}}'` (or `"camera"`) takes the
+    exact options the slide will pass and prints, in about a tenth of a
+    second, whether the camera is on the DEM, `cropDepth`, the ground distance
+    under the bottom row, the near field's relief and LOCAL texture in true
+    metres, every target's screen point and line of sight, and a `problems`
+    list. `--expr` still evaluates free-form JS with `V` and `AP` in scope.
+    Read two numbers before choosing a station. `solve.errPx`: `V.aim`
+    returns its best try without saying so, and three of No.67's shipped
+    solves missed `yFar` by 81 to 215 px, so that row was never where the
+    dossier said. `nearTextureM`: flats measure about 2 m (No.67's slide 08,
+    the frame that never cleared the critics) and relief worth a foreground
+    about 50 m (slides 01 and 09). Under about 5 m the lower frame will read
+    as ruled paper or a void whatever the renderer does, so move the station
+    before reaching for `quietFlat` or `tonal`. `V.camera` now console.errors
+    `AKVALLEY:` (a qa WARN) when the camera is off the DEM, where the ground
+    height is invented and the haze takes the frame.
     Fog and tone are quantised (eighths, steps of 6), because a continuous
     fog mints an ink per profile and blows qa's 160 ink census. D1
