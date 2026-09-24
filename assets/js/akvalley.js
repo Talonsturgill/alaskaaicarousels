@@ -90,7 +90,7 @@
     // shade is taken from h + k * (h - blur(h)), so the real terraces, slough
     // banks and oxbow rims of the Tanana Flats, a few metres high, print as
     // lit and lee modulation while the geometry keeps its stated x3.
-    var HB = null;
+    var HB = null, HBrad = null;   // blurred DEM, cached for one radius at a time
     function blurDEM(rad) {
       var A = new Float32Array(C * R), B = new Float32Array(C * R), x, y, s, k;
       for (y = 0; y < R; y++) for (x = 0; x < C; x++) {
@@ -238,7 +238,9 @@
       drapes.sort(function (p, q) { return q.d - p.d; });
       var di = 0, drawn = 0, strokes = 0;
       var relK = o.relief || 0;
-      if (relK && !HB) HB = blurDEM(o.reliefRadius || 5);
+      // rebuilt when a pass asks for a different radius, so each pass lights
+      // with the blur it requested
+      if (relK && (!HB || HBrad !== (o.reliefRadius || 5))) { HBrad = o.reliefRadius || 5; HB = blurDEM(HBrad); }
       // HAZE (o.haze): the DEM is a crop, and a profile that runs off its edge
       // ends in a vertical step that reads as a mesa. With haze on, dmax is
       // held inside the crop for the whole visible width, the last quarter of

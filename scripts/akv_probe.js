@@ -114,7 +114,7 @@ function pct(a, p) {
 }
 
 function probe(V, spec) {
-  const W = spec.W || 1080, H = spec.H || 1350;
+  let W = spec.W || 1080, H = spec.H || 1350;
   let cam, solve = null;
   if (spec.aim) {
     cam = V.aim(Object.assign({ W, H }, spec.aim, { silent: true }));
@@ -125,6 +125,9 @@ function probe(V, spec) {
   } else {
     throw new Error("spec needs an 'aim' or a 'camera' object");
   }
+  // measure the frame the camera actually has: W and H may be set inside
+  // `aim` or `camera`, where the renderer's own options live
+  W = cam.W; H = cam.H;
   const onDem = V.heightAt(cam.lon, cam.lat) !== null;
   const problems = [];
   if (!onDem) {
