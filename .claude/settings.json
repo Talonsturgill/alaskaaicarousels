@@ -51,8 +51,23 @@
     "Everything else that matters (a push, a merge, deleting under runs/) is",
     "protected by the rules in CLAUDE.md and by guards written into the scripts,",
     "where they can be tested: see scripts/wrap_run.py, which refuses any path",
-    "under runs/ that is not the two files it owns."
+    "under runs/ that is not the two files it owns.",
+    "",
+    "effortLevel, 2026-09-23. The routine moved to a model whose Claude Code",
+    "default effort is medium, one level below the high the previous model",
+    "defaulted to, and a scheduled run passes no effort of its own (the September",
+    "19th and 20th routine sessions record none). So this key is the level every",
+    "scheduled run reasons at, and every subagent inherits it unless its own",
+    "frontmatter names one. Anthropic's guidance for the new model: its medium",
+    "already matches or beats the previous model's high on coding and knowledge",
+    "work, it thinks more per turn at any given level, and xhigh and max are for",
+    "gains somebody has measured. high is one step above its default, more",
+    "reasoning than any earlier run had, at a lower price per token. Raise it on",
+    "evidence, never on a hunch: every routine on this account shares the same",
+    "usage limits. The routine records $CLAUDE_EFFORT in run_state.json at wake,",
+    "so every run says whether this line took."
   ],
+  "effortLevel": "high",
   "permissions": {
     "allow": [
       "Write(out/**)",

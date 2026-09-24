@@ -202,6 +202,31 @@ Schedule, model, network, and connectors are configured in the routine
 trigger (claude.ai/code/routines), not in this repo. The short trigger
 prompt lives at `prompts/ROUTINE_PROMPT.txt`.
 
+## The routine's model, and what it changed here (2026-09-23)
+
+The routine trigger moved to a new model on 2026-09-23. Four things follow,
+each taken from Anthropic's published guidance for that model and from the
+Claude Code CLI itself rather than from memory.
+
+- **Effort is the only thinking control, and `.claude/settings.json` carries
+  `effortLevel: high`.** The model always thinks. Its Claude Code default is
+  `medium`, where the previous model's was `high`, and a scheduled run passes
+  no level of its own, so without that key every run would have dropped a
+  level. Subagents inherit it unless their frontmatter names one. Anthropic
+  measured the new model's `medium` as matching or beating the old model's
+  `high` on coding and knowledge work, so `high` is more reasoning than any
+  earlier run had. `xhigh` and `max` are for a gain somebody has measured.
+  The routine records `$CLAUDE_EFFORT` in run_state.json at wake.
+- **It can end a turn on a progress report**, which in a scheduled run ends
+  the run. `prompts/routine_instructions.md` says how a turn ends, directly
+  under ROLE, in wording adapted from the guide.
+- **It follows named design instructions and not general ones.** Its
+  fallback styles are named for this brand in `knowledge/DESIGN_DOCTRINE.md`
+  section 3, and Phase 12 extends the list from what a deck reached for.
+- **It reads charts and screenshots much more precisely.** The pixel critics
+  get that for free, and it is no reason to drop the thumb transcription,
+  which checks what a reader receives.
+
 ## Scope guard
 
 If a sibling checkout of `alaska-ai-weekly` exists in the workspace, it is

@@ -12,6 +12,41 @@ the loop during the run. Be decisive, conservative on facts, ruthless on
 quality, and extravagant on craft. The deliverable is a Gmail draft the
 maintainer can post in ninety seconds.
 
+## HOW A TURN ENDS IN THIS RUN (2026-09-23)
+
+A message with no tool call in it ends your turn. In a scheduled run nobody
+is there to answer it, so the work stops where the turn stopped and stays
+stopped. The prompting guide Anthropic publishes for the model this routine
+now runs on names that as the model's own failure in exactly this setting:
+on a long task with several parts it reports progress as it works, and some
+of those reports end the turn instead of carrying on.
+
+The maintainer does not want any of these four, and each one ends a turn
+while work is still owed:
+
+1. A long summary of what was done that closes by announcing the next phase
+   and makes no tool call, so the next phase never starts.
+2. An offer to carry on unless somebody would prefer otherwise, which waits
+   for an answer nobody is going to give.
+3. A list of decisions for the maintainer when, by your own account, none
+   of them blocks the rest of the work.
+4. Deciding that this is a good place to report, because the run has been
+   long or a phase just finished.
+
+Status notes are welcome, and so are your recommendations on open
+decisions. Put them in the same message as your next tool call and carry on
+with whatever does not depend on an answer. If you notice yourself inviting
+somebody to redirect you or offering to wait, delete it and do the next
+thing. If something you started is still running, a subagent or a
+background command, the task is not done until it has returned and you
+have used what it returned (CLAUDE.md, "A ROUTINE RUN NEVER YIELDS").
+
+The run ends in three places only: the Phase 14 summary after the draft
+exists, an ALREADY_SHIPPED re-fire once its outstanding work is finished
+(Phase 0.5), or where nothing can move without a person. A usage limit is
+none of these. It is a wait, and FAILURE PROTOCOL says how to take it. None
+of this overrides the three things CLAUDE.md says stop and ask.
+
 ## NON-NEGOTIABLES (the contract)
 
 1. Every factual claim traces to a verified claim-id in claims.json.
@@ -194,7 +229,7 @@ maintainer can post in ninety seconds.
 
 At wake, create `out/<date>/run_state.json`:
 ```json
-{"run_date": "...", "carousel_no": N,
+{"run_date": "...", "carousel_no": N, "effort": "...",
  "phases": {"wake": "pending", "craft_refresh": "pending",
   "research": "pending", "claims": "pending", "docket": "pending",
   "gas_watch": "pending", "selection": "pending",
@@ -206,6 +241,12 @@ At wake, create `out/<date>/run_state.json`:
 Update each phase to "done" WITH its artifact paths as you complete it.
 The COMPLETION GATE (before merge) requires every phase done and every
 artifact existing. If the session restarts, resume from run_state.
+
+Fill `effort` at wake from `echo $CLAUDE_EFFORT`, the level this session
+reasons at. The repo's settings carry `high`, because the routine's model
+defaults to `medium` and a scheduled run passes no level of its own. Any
+other value means that setting did not take; say so in plan.md and in the
+Gmail draft's editor notes.
 
 ---
 
@@ -969,6 +1010,13 @@ type spec. Craft expectations:
 - Deterministic (seeded), offline (assets via @@ASSETS@@ only), text in
   DOM/SVG never canvas, canvases at 2x backing, renderReady for async art,
   data-decorative on intentional micro-text.
+- None of the model's own design defaults without a reason. Asked for
+  design work without direction, the model this routine runs on falls back
+  on a few default styles, and a general "avoid a generic look" only swaps
+  one for another. DESIGN_DOCTRINE section 3 names them for this brand,
+  under the AI-slop ban list. A slide uses one only where its dossier argues
+  for it, and if the deck reaches for a default that list does not name,
+  Phase 12 adds it there with the date.
 - For 3D scenes: use the composition math (ak3d.js header) IN THE DOSSIER
   — the numbers are already computed; implement them.
 - Panorama spine decks: build the shared field as a function of global
