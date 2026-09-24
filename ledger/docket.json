@@ -3742,6 +3742,63 @@
           "note": "Re-verified today against the university's own AI policy index. The page still names the generative AI standards run by the Office of Information Technology and says that UA System regulations are currently under development, with no dated Board of Regents draft published. Checked and unchanged."
         }
       ]
+    },
+    {
+      "id": "sb-250-data-center-utility-costs",
+      "title": "SB 250, who pays for a data center's power",
+      "kind": "legislation",
+      "status": "closed",
+      "decider": "Alaska Legislature (House Community and Regional Affairs Committee held it)",
+      "public_access": "indirect",
+      "access_note": "The bill stalled in a House committee before the session ended. Any revival starts over in the next Legislature, where it goes to the legislators you elect on November 3rd.",
+      "summary": "SB 250, introduced by Sen. Loki Tobin on February 18th, would have barred utilities from putting a data center's costs into anyone's rates unless those costs were recovered solely from the data center, and would have required the Regulatory Commission of Alaska to approve each data center contract. The Senate-passed version applied to data centers drawing 15 megawatts of peak demand from an electric utility. The Senate passed it 14 to 5 on May 16th, and the House Community and Regional Affairs Committee heard and held it on May 18th, its last recorded action.",
+      "key_dates": [
+        {
+          "date": "2026-02-18",
+          "label": "Introduced by Sen. Loki Tobin",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-05-16",
+          "label": "Senate passes CSSB 250(CRA) on reconsideration, 14 to 5 with one excused",
+          "kind": "vote"
+        },
+        {
+          "date": "2026-05-18",
+          "label": "House Community and Regional Affairs hears and holds the bill, its last recorded action",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Juneau, Alaska State Capitol",
+        "lon": -134.4103,
+        "lat": 58.3019
+      },
+      "sources": [
+        {
+          "url": "https://r.jina.ai/https://www.akleg.gov/basis/Bill/Detail/34?Root=SB%20250",
+          "outlet": "Alaska State Legislature BASIS",
+          "date": "2026-05-18"
+        },
+        {
+          "url": "https://r.jina.ai/https://www.akleg.gov/PDF/34/Bills/SB0250B.PDF",
+          "outlet": "Alaska State Legislature, CSSB 250(CRA) bill text",
+          "date": "2026-04-21"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers",
+          "outlet": "Alaska Beacon, republished by Alaska Public Media",
+          "date": "2026-09-21"
+        }
+      ],
+      "first_seen": "2026-09-24",
+      "last_updated": "2026-09-24",
+      "history": [
+        {
+          "date": "2026-09-24",
+          "note": "Tracked. Read against the Legislature's own bill record and the Senate-passed text. The Senate passed CSSB 250(CRA) 14 to 5 with one excused on May 16th, and House Community and Regional Affairs heard and held it on May 18th, which is the last action on record. The bill is not law. It returned to the news in September when the four candidates for governor set out where they stand on data centers, as reported by James Brooks of the Alaska Beacon, with Jonathan Kreiss-Tomkins backing a moratorium until the Legislature can pass a comprehensive regulatory framework."
+        }
+      ]
     }
   ]
 }
