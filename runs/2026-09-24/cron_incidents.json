@@ -1,0 +1,23 @@
+[
+  {
+    "check_ids": [
+      "gaswatch.yml:completion",
+      "gaswatch.yml:steps"
+    ],
+    "audit_checked_utc": "2026-09-24T07:17:52.882533Z",
+    "blocker": "upstream",
+    "reason": "CINGSA's public dashboard has still not published a new reading since 09/13/2026 21:00 Alaska. Its own operational note announced a semiannual shut-in field balance and maintenance from September 14th until September 21st, and on September 24th the dashboard is three days past that announced return date with the same stamp and no extension. The collector ran on schedule, fetched the page, archived the snapshot, carried no measurement forward, wrote an explicit unverified record and failed its job loudly, which is the designed behavior for a stale source past its announced window. Nothing in this repository can produce a measurement CINGSA has not published, so the failure is upstream and no repair exists here.",
+    "attempts": [
+      "Read the failed job log for run 35927882616 (2026-09-23T22:21Z). The collect job printed 'Page unchanged.' and then status 3, 'An unverified record already stands for this date and the retry also failed.', which is the workflow's deliberate loud failure and not a crash or a parser error.",
+      "Fetched https://cingsa.com/operations/PublicDashBoard.html directly with urllib at about 07:20 UTC on 2026-09-24. HTTP 200, 12,996 bytes, and the only timestamp in the raw HTML is 09/13/2026 21:00, so the staleness is in the published bytes and not in our parser or a cache.",
+      "Confirmed the rest of the pipeline is healthy in the same audits. Pages deployed at 2026-09-23T22:22Z, the live page and JSON match main, the weather forecast is 20 hours old, the modeled peak agrees and no measurement was carried forward. The only missing input is CINGSA's own reading.",
+      "Did not rerun the production collector, because a rerun re-reads the same unchanged upstream bytes and can only restate an unverified record for the same date. The next scheduled collection retries on its own, and tomorrow's run repeats this audit."
+    ],
+    "evidence_urls": [
+      "https://cingsa.com/operations/PublicDashBoard.html",
+      "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/35927882616",
+      "https://alaskaaihq.com/gas-watch/",
+      "https://alaskaaihq.com/gas-watch.json"
+    ]
+  }
+]

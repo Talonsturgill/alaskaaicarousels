@@ -1,0 +1,186 @@
+{
+  "run_date": "2026-09-24",
+  "carousel_no": 67,
+  "document_title": "Tested at Nenana. Awarded in New York. Next stop unnamed.",
+  "post_copy": "In June, controlled fires were set along the Nenana-Totchaket Road, and machines from Nenana's airport had 8 hours to find them alone.\n\nCatherine Cahill's UAF drone center ran the airspace. The task was a fire found and fully out in 10 minutes across 1,000 square kilometers. AURA Foresight met the detection gate. XPRIZE's release is silent on full suppression.\n\nAnduril took first place in the autonomous track as $4.55 million was awarded on September 23rd.\n\nAlaska's 2025 season burned 1.68 million acres by XPRIZE's estimate, nearly seven test areas. Next is a 12 to 15 month Impact Phase. Dryad's 2027 pilot plans name no place.\n\nAerial views over Nenana show the awards, the test area at true size, a scorecard against the clock and a season in test areas.\n\nWhose ground should host the first fire these machines meet that nobody lit?\n\n#XPRIZEWildfire #Nenana #FireDrones",
+  "deck_summary_line": "Aerial views over Nenana show the awards, the test area at true size, a scorecard against the clock and a season in test areas.",
+  "caption_meta": {
+    "opening_move": "SCENE",
+    "structure": "ZOOM (outward, one airport to the test area to the season to the next phase)",
+    "closing_move": "NEW: THE FIRST UNSET FIRE",
+    "hook_type": "a physical scene at a set time, fires set on purpose and machines left alone with them"
+  },
+  "first_comment": "Sources, primary first\nXPRIZE via PR Newswire, \"XPRIZE Wildfire Awards $4.55M to Innovators Advancing Wildfire Detection and Response\" (September 23rd, 2026) https://www.prnewswire.com/news-releases/xprize-wildfire-awards-4-55m-to-innovators-advancing-wildfire-detection-and-response-302887858.html\nXPRIZE, Wildfire awardees page with the Track B places and the Lockheed Martin bonus (September 23rd, 2026) https://www.xprize.org/news/xprize-wildfire-awardees\nXPRIZE, Autonomous Wildfire Response finals testing blog from Nenana, also the source of the 1.68 million acre 2025 estimate (June 11th to July 1st, 2026) https://www.xprize.org/news/finals-testing-autonomous-wildfire-response\nXPRIZE, January finalist announcement for the autonomous track (January 29th, 2026) https://www.xprize.org/news/meet-the-future-of-autonomous-wildfire-response-xprize-wildfire-announces-finalist-teams-advancing-in-11m-competition\nDryad Networks via Business Wire, release on Dryad's $800,000 award and its 2027 pilot plans (September 23rd, 2026, FinancialContent mirror) https://www.financialcontent.com/article/bizwire-2026-9-23-dryad-wins-international-xprize-wildfire-award-for-autonomous-wildfire-detection-and-suppression\n\nOther Interior Alaska decisions, each with its open comment window, are tracked at https://alaskaaihq.com\nWorked the airspace, the test site or the Totchaket corridor near Nenana in June? Add what the releases leave out in the comments.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "XPRIZE WILDFIRE, AUTONOMOUS FINALS",
+      "headline": "Tested at Nenana.",
+      "body": "",
+      "claim_ids": [
+        "S1-C15",
+        "S1-C16",
+        "S1-C01",
+        "S1-C41",
+        "S1-C42",
+        "S1-C13"
+      ],
+      "labels": [
+        "Awarded in New York.",
+        "Next stop unnamed.",
+        "GOLD SQUARE = THE 1,000 KM² TEST AREA AT TRUE SIZE, PLACED FOR SCALE"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "SEPTEMBER 23RD, NEW YORK CITY FIRE MUSEUM",
+      "headline": "Anduril first. Dryad second. AURA third.",
+      "body": "XPRIZE paid $4.55 million across both tracks. The autonomous track was decided in the Alaska finals, and Lockheed Martin's $1 million detection bonus also went to Anduril.",
+      "claim_ids": [
+        "S1-C01",
+        "S1-C02",
+        "S1-C04",
+        "S1-C05",
+        "S1-C08",
+        "S1-C09",
+        "S1-C10",
+        "S1-C11",
+        "S1-C15"
+      ],
+      "labels": [
+        "ANDURIL $1.2 MILLION + LOCKHEED MARTIN BONUS $1 MILLION",
+        "DRYAD $800,000",
+        "AURA FORESIGHT $500,000",
+        "$0",
+        "$1M",
+        "$2M",
+        "TRACK TOTAL $2.5 MILLION, OR $3.5 MILLION WITH THE BONUS"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "NENANA MUNICIPAL AIRPORT, JUNE",
+      "headline": "The exam was flown from Nenana's airport",
+      "body": "For two weeks in June the finalists flew from Nenana Municipal Airport. UAF's drone center, ACUASI, managed the airspace. The test site lay along the Nenana-Totchaket Road corridor.",
+      "claim_ids": [
+        "S1-C16",
+        "S1-C17",
+        "S1-C19"
+      ],
+      "labels": [
+        "NENANA MUNICIPAL AIRPORT",
+        "TANANA RIVER",
+        "NENANA RIVER"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE TASK, AS XPRIZE SET IT",
+      "headline": "One fire. Ten minutes. 1,000 square kilometers.",
+      "body": "Each team's machines watched alone for 8 hours. The goal was to detect and fully suppress a high-risk fire within 10 minutes of ignition.",
+      "claim_ids": [
+        "S1-C12",
+        "S1-C13",
+        "S1-C20"
+      ],
+      "labels": [
+        "31.6 KM",
+        "TRUE SIZE, CENTERED ON THE AIRPORT FOR SCALE. NO SOURCE GIVES THE BOUNDARY."
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE RECORD, AGAINST THE CLOCK",
+      "headline": "One 10 minute gate is on the record, for detection",
+      "body": "XPRIZE says AURA met the 10 minute detection gate. Dryad says it detected and verified the fire in 12 minutes or less. XPRIZE's release doesn't say any team fully suppressed a fire inside 10 minutes.",
+      "claim_ids": [
+        "S1-C12",
+        "S1-C28",
+        "S1-C31",
+        "S1-C34"
+      ],
+      "labels": [
+        "THE GOAL, DETECT AND SUPPRESS, PER XPRIZE",
+        "AURA, DETECTION, PER XPRIZE",
+        "DRYAD, DETECT AND VERIFY, PER DRYAD",
+        "SUPPRESSION IN 10, NOT IN XPRIZE'S RELEASE",
+        "IGNITION",
+        "10 MIN",
+        "12 MIN"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "",
+      "headline": "\"The final prize remains on the horizon\"",
+      "body": "Adam Broecker, Lockheed Martin, September 23rd.",
+      "claim_ids": [
+        "S1-C34",
+        "S1-C01"
+      ],
+      "labels": [
+        "ADAM BROECKER, LOCKHEED MARTIN, SEPTEMBER 23RD"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "THE SCALE XPRIZE CITED",
+      "headline": "Alaska's 2025 fires covered nearly seven test areas",
+      "body": "XPRIZE estimates Alaska's 2025 season burned 1.68 million acres. That is about 6,800 square kilometers, the 1,000 km² test area nearly seven times over. The tiles show area only, not where anything burned.",
+      "claim_ids": [
+        "S1-C13",
+        "S1-C37"
+      ],
+      "labels": [
+        "1 TEST AREA, 1,000 KM²",
+        "2025 BURN, ABOUT 6.8 TEST AREAS",
+        "NENANA",
+        "20 KM",
+        "AREA ONLY, NOT WHERE IT BURNED"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "AFTER NENANA",
+      "headline": "What comes next names no Alaska address",
+      "body": "XPRIZE now moves to a 12 to 15 month Impact Phase to turn these systems into deployable tools. Dryad plans pilots in 2027 and names no location. The only Alaska institutions in the record are UAF and ACUASI.",
+      "claim_ids": [
+        "S1-C01",
+        "S1-C16",
+        "S1-C17",
+        "S1-C39",
+        "S1-C41",
+        "S1-C42"
+      ],
+      "labels": [
+        "IMPACT PHASE, 12 TO 15 MONTHS",
+        "DRYAD PILOTS 2027, NO PLACE NAMED",
+        "SEPTEMBER 23RD",
+        "12 MO",
+        "15 MO"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "NEXT STOP, UNNAMED",
+      "headline": "Alaska hosted the exam. Should it get a seat in the Impact Phase?",
+      "body": "",
+      "claim_ids": [
+        "S1-C16",
+        "S1-C41"
+      ],
+      "labels": [
+        "ANSWER IN THE COMMENTS",
+        "ALASKA.AI"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post today, Thursday September 24th, between 8 and 11am AKT, while the September 23rd awards are a day old. If the draft is read after 11am, hold it for Tuesday September 29th, 8 to 11am AKT. When to post is your call.",
+    "Paste the sources comment within 60 seconds of posting, as plain text, so every raw URL stays a live link.",
+    "Reply to every comment in the first 90 minutes. If someone asks whether any team met the full 10 minute suppression goal, the answer is that XPRIZE's release doesn't say, and Lockheed Martin's Adam Broecker said the final prize remains on the horizon. Never say the prize went unclaimed, because no source says that.",
+    "Story note. XPRIZE and Dryad are the only sources, and no Alaska newsroom had covered the awards when this was drafted, so a correction from someone at Nenana, UAF or state fire staff is worth pinning. If a reader asks about other Interior decisions, the Eielson microreactor site comment window closes September 30th (the docket item, from KUAC's September 20th report).",
+    "After 48 hours, note saves and comments, and whether any Alaska outlet has picked up the awards since."
+  ],
+  "editor_notes_for_email": "SHIPS against the round-4+ threshold of 7.7 (five edit rounds plus one scoring-cycle repair): 8.34 as the rubric is written. The rubric's ten weights sum to 1.10, so on a true 10-point scale the score is 7.58 against a ladder of 7.545 / 7.273 / 7.000; it clears on either basis. The weight sum is a maintainer decision, written up in automation_retro.md with three options. Before posting: (1) Look at slide 08 yourself at full size (runs/2026-09-24/slide-08.webp). The blocky patches are gone, but the lower third is now a soft blur under a sharp river, and no critic has reviewed the faded version (its last critic score was 7.2, taken before the fade). (2) Nenana again: No.62 (September 18th) was also out of the Nenana airport, so regular readers will notice the same place twice in one week. (3) Slide 06's quote is a clause cut from Broecker's longer sentence ('While the final prize remains on the horizon, every milestone...'), with its first letter capitalised. It is accurately attributed. Never say the grand prize went unclaimed. (4) The 1.68 million acres is XPRIZE's estimate; AICC was not checked. (5) The aftercare's Eielson microreactor comment window (September 30th) now cites the docket and KUAC's September 20th report. I did not re-verify that date, so confirm it on the docket page before using it in a reply. (6) The caption's closing question ('Whose ground should host the first fire these machines meet that nobody lit?') is different from slide 09's ask ('Should it get a seat in the Impact Phase?'), so expect answers to both. (7) Gas Watch and cron_health are WARN on an unresolved upstream blocker: CINGSA's dashboard has not published since September 13th, three days past its announced September 21st return. This belongs prominently in the email. (8) No Alaska newsroom had covered the awards when this was drafted; every fact rests on XPRIZE and Dryad releases. (9) The Gmail draft, the main-branch image and PDF URLs and the inline previews could only be checked after the merge."
+}

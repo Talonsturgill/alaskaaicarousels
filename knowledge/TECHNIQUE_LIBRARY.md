@@ -815,3 +815,60 @@ annotation is the strongest pair):
     Never guess either rect. `scripts/contact_probe.py --slide N --base cx,cy`
     measures the render and writes the declaration, and `--verify` re-measures
     every declaration the built deck carries. D1
+
+96. **Real-Terrain Ridgeline Stack (akvalley)** — `assets/js/akvalley.js`
+    (`AKV.load(base)` returns V). Added 2026-09-24 for run No.67 (XPRIZE
+    Wildfire at Nenana). A real DEM (AWS terrain tiles, z10, cropped and
+    downsampled into `assets/geo/nenana-dem.bin`) drawn through a perspective
+    camera as occluding ridgeline profiles cut perpendicular to the heading,
+    each profile stroked lit or lee by one key light, rivers and roads draped
+    from USGS NHD and National Map geometry. It is the only engine here that
+    places a mark at a TRUE lon/lat in a perspective view, so a true-size square
+    or a named airport can be shown where it is and at the size it is.
+    `V.aim({target, heading, distKm, agl, fov, yTarget, farKm, yFar})` SOLVES the
+    camera from what the frame must show (the target on one row, the ground far
+    ahead on another) instead of guessing pitch. `V.overlay` draws bold marks
+    after the terrain with a line-of-sight raymarch, so the profile strokes can't
+    chip them into dashes; `minRun` drops orphan fragments between occlusions and
+    `hidden` draws the occluded runs as a faint dash so a shape still closes.
+    Four lessons from the round 1 critics, all now options on `V.terrain`:
+    - Profiles spaced evenly in 1/d are evenly spaced ON SCREEN over flat ground,
+      which reads as a venetian blind. `spacing: 0.3` to `0.5` opens the gaps
+      toward the camera; `minGap` keeps the far field from packing into moire;
+      `widthPow: 0.6` puts the weight in the near field.
+    - Flats print nothing under a geometric light. `relief: 12, contrast: 2.2`
+      to `3.5` shades from DEM minus a box blur (lighting only, geometry stays
+      at its stated exaggeration), so real sloughs and terraces print as lit and
+      lee patches. Real data, no noise.
+    - A DEM crop ends in a vertical step that reads as a mesa. `haze` holds dmax
+      inside the crop (`V.cropDepth`), fades the last quarter to the fog ink and
+      lays a feathered fog floor behind the stack.
+    - Small type over line art loses to the strokes. `AKV.quietCanvas(cx, sels)`
+      is a feathered destination-out knockout behind the station card, the site
+      fixture and any `.quiet` element, run after the slide draws.
+    Later rounds added three more, all measured on this deck: `quietFlat`
+    draws the shade buckets nearest flat ground's own value faint;
+    `shadeSmooth` averages shade along a profile so DEM noise can't split it
+    into dashes (a dash means "not stated" here); and `tonal` fills near
+    profiles with shaded tone, fading with distance, for gentle near ground
+    that would otherwise read as a void. Each profile's lateral reach is sized
+    by CAMERA-SPACE depth, or a high pitched-down camera leaves bare wedges.
+    PROBE EVERY STATION BEFORE RENDERING IT: `node scripts/akv_probe.js
+    '{"aim": {...}, "targets": {"ENN": [lon, lat]}}'` (or `"camera"`) takes the
+    exact options the slide will pass and prints, in about a tenth of a
+    second, whether the camera is on the DEM, `cropDepth`, the ground distance
+    under the bottom row, the near field's relief and LOCAL texture in true
+    metres, every target's screen point and line of sight, and a `problems`
+    list. `--expr` still evaluates free-form JS with `V` and `AP` in scope.
+    Read two numbers before choosing a station. `solve.errPx`: `V.aim`
+    returns its best try without saying so, and three of No.67's shipped
+    solves missed `yFar` by 81 to 215 px, so that row was never where the
+    dossier said. `nearTextureM`: flats measure about 2 m (No.67's slide 08,
+    the frame that never cleared the critics) and relief worth a foreground
+    about 50 m (slides 01 and 09). Under about 5 m the lower frame will read
+    as ruled paper or a void whatever the renderer does, so move the station
+    before reaching for `quietFlat` or `tonal`. `V.camera` now console.errors
+    `AKVALLEY:` (a qa WARN) when the camera is off the DEM, where the ground
+    height is invented and the haze takes the frame.
+    Fog and tone are quantised (eighths, steps of 6), because a continuous
+    fog mints an ink per profile and blows qa's 160 ink census. D1

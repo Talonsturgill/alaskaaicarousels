@@ -1674,6 +1674,20 @@
       "instinct": "WHEN A MACHINE WARNING NAMES ITS OWN METRIC, GO READ THE METRIC BEFORE TUNING ANYTHING.",
       "evidence": "AKENGRAVE's lay-collapse warning names an alignment number and suggests two remedies. Round four spent its first two attempts on those remedies as prose: second-axis sine terms across every warning region, which moved alignment not at all, then trial seedDeg values, which moved three regions and broke two others. Reading _layCheck took under a minute and made the fix arithmetic. Alignment is the mean absolute cosine between the seeding raster and the WALK direction; the walk runs along the isolines at atan2(gx,-gy) + angOff; angOff is 0 for the main channel and crossDeg for the cross channel. One surface call therefore has TWO bad seed angles, 90 degrees off each of those, and the safe value is the midpoint between the two perpendiculars. Nine warnings went to zero on the first try after that, on values that were derived rather than guessed.",
       "act_on_it": "A warning written by this studio's own engine is a pointer to a function, not a hint. Before the second tuning attempt on any engine warning, open the check that emitted it, work out what it actually measures, and solve for the value. Two guesses cost more than one read."
+    },
+    {
+      "run_date": "2026-09-24",
+      "carousel_no": 67,
+      "instinct": "PROBE A CAMERA WITH ARITHMETIC BEFORE YOU RENDER IT.",
+      "evidence": "Rounds 1 and 2 re-solved stations by editing numbers and rendering, and two of those renders were worse than what they replaced: slide 04's camera went 70 km north, off the DEM, and the haze ate every profile (critic 5.6); slide 06's re-aim put the camera beside a hill that crossed the attribution. A twenty-line node harness that loads akvalley with a file-backed fetch and prints projected corners then settled 01, 04 and 08 in one call each, and answered a critic's 'use the south edge' on 02 with a fact (the camera stood inside the square, so that edge was behind it).",
+      "act_on_it": "When a frame depends on where a projected shape lands, compute the projection first and render second. Keep the probe script with the run and use it for every station change."
+    },
+    {
+      "run_date": "2026-09-24",
+      "carousel_no": 67,
+      "instinct": "FLAT GROUND NEEDS A DIFFERENT DRAWING, NOT A QUIETER VERSION OF THE RIDGE'S.",
+      "evidence": "Five rounds of critics named the Tanana Flats as ruled paper. Muting it (round 4) made a void that scored lower than the stripes. What worked on flats was to change the mark: gaps that open toward the camera, shade from real micro-relief, and, where even that is empty, tone instead of lines. Ticks on flat ground read as a barcode every time. Slide 08, a reverse shot over flats whose relief lay outside the DEM crop, never cleared; the station, not the renderer, was the defect.",
+      "act_on_it": "On any line-art terrain frame, decide in the dossier what the flats are drawn WITH, separately from the relief, and check in the camera probe that the near field of every station holds real relief before the first render."
     }
   ]
 }

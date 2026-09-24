@@ -447,19 +447,9 @@ def check_built_site(rep, items, today, out):
     # item's resolved headline date.
     qp = out / "questions" / "index.html"
     if qp.exists():
-        qbody = qp.read_text(encoding="utf-8")
         open_ids = {i: db.resolve(it, today) for i, it in by_id.items()
                     if db.resolve(it, today)["cta"]}
-        want_dates = {r["headline"]["date"] for r in open_ids.values() if r["headline"]}
-        for iso, prefix, shown in CHIP_RE.findall(qbody):
-            rep.ok(iso in want_dates, "questions page",
-                   f"chip shows {iso}, which is not the resolved headline of any "
-                   f"item the resolver reports as open ({sorted(want_dates)})")
-            rep.ok(shown == db.mon_day(iso), "questions page",
-                   f"chip text {shown} does not match its own date {iso}")
-        rep.ok(len(CHIP_RE.findall(qbody)) == len(want_dates), "questions page",
-               f"renders {len(CHIP_RE.findall(qbody))} date chips for "
-               f"{len(want_dates)} open window(s)")
+        check_questions_page(rep, qp.read_text(encoding="utf-8"), open_ids)
 
     nearest = db.nearest_headline(
         [it for it in items
@@ -516,6 +506,36 @@ def check_built_site(rep, items, today, out):
                        f"headline names {named[0]['id']} but prints "
                        f"{nearest['date']}, which is not that item's date "
                        f"({own['date'] if own else None})")
+
+
+# A chip on the questions page sits beside its own item's docket link.
+QCHIP_RE = re.compile(r'<a class="proselink" href="[^"]*?docket/([^/"]+)/">(?:(?!</a>).)*</a>\s*'
+                      r'<span class="chip days" data-date="(\d{4}-\d{2}-\d{2})">', re.S)
+
+
+def check_questions_page(rep, qbody, open_ids):
+    """Every chip on the questions page must belong to an open window and carry
+    THAT item's resolved headline date, one chip per window. Counting chips or
+    matching them against a set of dates is not enough once two windows close
+    on the same day (2026-09-24, Eielson and the FCC comment both close
+    September 30th): a page that drops one item and repeats the other would
+    keep the count and the dates and still be wrong. So the check reads each
+    chip's owner off the link beside it and compares (item, date) pairs
+    (Codex review on PR #397)."""
+    want_dates = {r["headline"]["date"] for r in open_ids.values() if r["headline"]}
+    chips = CHIP_RE.findall(qbody)
+    for iso, prefix, shown in chips:
+        rep.ok(iso in want_dates, "questions page",
+               f"chip shows {iso}, which is not the resolved headline of any "
+               f"item the resolver reports as open ({sorted(want_dates)})")
+        rep.ok(shown == db.mon_day(iso), "questions page",
+               f"chip text {shown} does not match its own date {iso}")
+    got = sorted(QCHIP_RE.findall(qbody))
+    want = sorted((i, r["headline"]["date"]) for i, r in open_ids.items() if r["headline"])
+    rep.ok(len(got) == len(chips), "questions page",
+           f"{len(chips) - len(got)} chip(s) sit beside no docket item link")
+    rep.ok(got == want, "questions page",
+           f"chips are {got}, the open windows are {want}")
 
 
 def _card_owner(doc, iso):
@@ -622,12 +642,27 @@ def self_test(items, today):
         for b in rep_b.bad[:8]:
             print(f"  would fail: {b}")
 
+    # C. ONE WINDOW DROPPED, ANOTHER REPEATED, SAME COUNT AND SAME DATES. Two
+    # windows closing the same day, the second item's chip rewritten to name
+    # the first: the questions check must still see it.
+    qfx = ('<a class="proselink" href="../docket/item-a/">A</a> <span class="chip days" data-date="2026-09-30">by SEP 30</span>'
+           '<a class="proselink" href="../docket/item-b/">B</a> <span class="chip days" data-date="2026-09-30">by SEP 30</span>')
+    qopen = {"item-a": {"headline": {"date": "2026-09-30"}}, "item-b": {"headline": {"date": "2026-09-30"}}}
+    rep_ok, rep_c = Report(), Report()
+    check_questions_page(rep_ok, qfx, qopen)
+    check_questions_page(rep_c, qfx.replace("docket/item-b/", "docket/item-a/"), qopen)
+    if rep_ok.bad or not rep_c.bad:
+        failures.append("the questions page check cannot tell a repeated window from two")
+    else:
+        print(f"self-test C: a repeated window with the same count and dates fails "
+              f"{len(rep_c.bad)} assertion(s)")
+
     if failures:
         for f in failures:
             print(f"SELF-TEST FAILED: {f}. The gate is not watching what it "
                   f"claims to watch.", file=sys.stderr)
         return 1
-    print("self-test: the gate goes red on both breakages, as designed")
+    print("self-test: the gate goes red on every breakage, as designed")
     return 0
 
 

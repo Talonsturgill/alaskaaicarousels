@@ -8451,3 +8451,78 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   The 2026 write-ups repeat the 6 to 10 slide band, one idea per slide, under 60 words,
   and a cover that stops a scroll in two seconds, all of which CAROUSEL_CRAFT already
   states with better sourcing. Dwell remains the ranking currency. Nothing appended.
+
+## 2026-09-24, No.67, retro: a real DEM under the camera (XPRIZE Wildfire at Nenana)
+
+- THE FIRST DECK ON REAL TERRAIN. `assets/js/akvalley.js` (technique 96) draws AWS terrain
+  tiles at z10 through a perspective camera as lit and lee ridgeline profiles, with USGS NHD rivers
+  and National Map transport draped on it. It is the only engine here that can put a mark at a true
+  lon/lat in a perspective view, so a 1,000 km2 square at true size and a named airport sat where
+  they are. Overpass was unreachable from the container; the USGS NHD and National Map ArcGIS REST
+  services answered and are the route to use.
+- FLAT GROUND IS THE HARD CASE, NOT THE RIDGE. Every critic in every round named the Tanana Flats
+  as ruled paper. Three things fixed it and one did not. Spacing profiles uniformly in 1/d is
+  uniform ON SCREEN over flat ground, which is exactly the venetian blind; spacing in d^-0.6 with a
+  3 px minimum gap opens the gaps toward the camera. Shading from DEM minus a box blur (lighting
+  only, geometry stays x3) prints the real sloughs and terraces as patches. Drawing the shade
+  buckets nearest flat ground's own value at 0.12 to 0.2 alpha lets only that relief print. Short
+  upright ticks on flat samples (`flats`) read as a barcode at every density tried; don't use them.
+- A DEM CROP IS A MESA. Where a profile runs off the crop it ends in a vertical step that reads as a
+  table top. `haze` holds dmax inside the crop (`V.cropDepth`), fades the last stretch wholly into
+  the fog ink and lays a feathered fog floor behind the stack. Round 1's re-solve of 04 put the
+  camera 70 km north, OFF the DEM, and the haze then ate the whole ground (critic score 5.6).
+  Check the camera is on the DEM before trusting the crop depth.
+- PROBE CAMERAS IN NODE, NOT IN RENDERS. `V.aim` solves pitch and principal point from two target
+  rows, and on low targets it happily returns a pitch of -60 with a lens shift of 2,000 px. A
+  twenty-line node harness that loads akvalley with a file-backed fetch and prints the projected
+  square corners settled 01, 04 and 08 in one call each, where re-rendering had cost a round each.
+  It also answered a critic's "use the south edge" on 02 with a fact: the camera stands inside the
+  square, so that edge is behind it.
+- SMALL TYPE OVER LINE ART LOSES. Every terrain frame's station card and site fixture were struck
+  through in round 1. A feathered destination-out knockout (`AKV.quietCanvas`) run by the build
+  shell after each slide draws fixed all nine at once. Cut a knockout BEFORE drawing an axis, never
+  after: on 05 a knockout laid over the axis cut a gap that qa read, correctly, as an undeclared
+  mark.
+- The review ran five edit rounds, the cap, plus one scoring-cycle repair. Critic ranges went 5.9 to 7.2, 5.6 to 7.6, 6.9 to 8.3, 7.0 to 8.4, and the scorer gave 8.29 then 8.34 as written (the rubric's weights sum to 1.10; normalised 7.58). Slide 08 never cleared: dashes, then a void, then blocks, then a blur. A reverse shot over flats with the relief outside the crop has nothing to draw, and the station choice, not the renderer, was the defect.
+
+## 2026-09-24, No.67, Phase 12: the scratch harness is now a committed probe
+
+- `node scripts/akv_probe.js '<station json>'` is the twenty-line node harness above, committed
+  and self-tested (`--self-test`, three reconstructed defects from this run). It takes the exact
+  `aim` or `camera` options a slide passes and prints onDem, cropDepth, the ground distance under
+  the bottom row, the near field's relief and LOCAL texture in true metres, every named target's
+  screen point and line of sight, and a `problems` list. `V.camera` now console.errors
+  `AKVALLEY:` (a qa WARN) when the camera is off the DEM.
+- WHAT IT FOUND ON THE SHIPPED DECK, which nobody knew. Three of the seven `V.aim` solves never
+  met their `yFar`: 03 by 81 px, 05 by 130 px, 09 by 215 px. `V.aim` returns its best try
+  silently, so the BUILD RECONCILIATION's "cameras are solved, not typed" was true of the target
+  row only. And the number that separates 08 from the cover: `nearTextureM` (ground minus its
+  1.6 km box mean, p10 to p90) reads 1.9 m for 08's flats against 51 m for 01 and 09. Probe the
+  station before spending a critic round on the renderer; under about 5 m the lower frame has
+  nothing real to draw.
+
+### Parked, 2026-09-24 frontier scan, focus (f), self-improving pipelines
+
+- REPEATED-DEFECT ESCALATION. Every No.67 critic round named flat ground, and every round answered
+  with a renderer option (quietFlat, shadeSmooth, tonal, then a blur), while the cause was the
+  station. The literature names the loop: refine-render-judge systems that let repeated failures
+  "permit progressively broader changes, from local field edits to element regrouping and full
+  scene re-planning" (https://arxiv.org/html/2607.29679), and iterative LLM fixing that "frequently
+  reaches a pseudo-bug-fixing cycle where the same changes are added and removed again"
+  (https://arxiv.org/abs/2609.10123). Candidate rule for Phase 8: when two consecutive critic rounds
+  name the same defect class on the same slide, the next round must change the PLAN (station,
+  composition, which slide carries the beat), not a parameter. PARKED, not applied: as prose it is
+  one more sentence the run can ignore, and the machinery version needs the critics' defect classes
+  in a structured field that the Phase 8 reports do not carry yet. First step when picked up: have
+  pixel critics emit a `defect_class` per finding, then a check over the rounds.
+- BEST ROUND, NOT LAST ROUND. "Which round is best remains genuinely open" and an oracle choosing
+  the best round beat every practical stopping policy (https://arxiv.org/abs/2606.27009). No.67's
+  Phase 10 repair of 08 shipped a render no critic had reviewed (its last critic score, 7.2, was
+  taken before the fade). Candidate: keep each slide's best-scored render and ship it unless a
+  later round's score beats it. PARKED: needs per-slide scores written per round in a machine-read
+  form, same prerequisite as above.
+- TOOL-MAKING OVER RETRYING, for the record. A deployed agent that compiled repeated diagnoses into
+  tools reached 94.5 percent pass@1 where retrying without reflection plateaued near 92.5 percent
+  "because additional rounds repeat the same diagnostic errors" (https://arxiv.org/html/2607.08010).
+  That is the case for today's probe: a station question asked by render cost a critic round each
+  time.

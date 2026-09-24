@@ -2644,6 +2644,44 @@
       ],
       "claims": 38,
       "note": "First Matanuska-Susitna Borough story in the ledger and the first deck built on the engraver's bench (technique 93) as its whole tone system. The dedupe gate returned NO likely duplicate, strongest match No.47 at 0 shared entities and jaccard 0.026. Four stronger-sounding candidates lost on dedupe: Murkowski against data centers on Alaska's bases (LIKELY DUPLICATE of No.47, jaccard 0.128), the AIDEA Houston conveyance (LIKELY DUPLICATE of No.50, jaccard 0.138), the governor's race (already No.51 and recused on conflict of interest), and the UA communications guidelines (LIKELY DUPLICATE of No.61, six days old). Chugach's time-of-use pilot had the cleanest dedupe of any candidate and lost on HONESTY, because the AI link would have had to be supplied by us."
+    },
+    {
+      "run_date": "2026-09-24",
+      "carousel_no": 67,
+      "headline": "Tested at Nenana. Awarded in New York. Next stop unnamed.",
+      "topic": "XPRIZE Wildfire's autonomous track was examined in June 2026 at Nenana, Alaska, with the finalists flying from Nenana Municipal Airport, UAF's drone center ACUASI managing the airspace and the test site along the Nenana-Totchaket Road corridor, and paid out at the New York City Fire Museum on September 23rd: Anduril first ($1.2 million, plus Lockheed Martin's $1 million detection bonus), Dryad second ($800,000), AURA Foresight third ($500,000), $4.55 million across both tracks. The task was to detect and fully suppress a high-risk fire within 10 minutes of ignition over 1,000 square kilometers. XPRIZE says AURA met the 10 minute detection gate; Dryad says it detected and verified within 12 minutes; XPRIZE's release does not say any team fully suppressed a fire inside 10 minutes. The prize moves to a 12 to 15 month Impact Phase and Dryad plans 2027 pilots, neither naming an Alaska place.",
+      "angle": "HOSTING THE EXAM DIDN'T MAKE ALASKA THE CUSTOMER. The record of the result is thinner than the purse: the one 10 minute gate on the record as met is a detection gate, full suppression is not stated, and what comes next names no Alaska address. The deck shows the 1,000 km2 test area at true size on the real Tanana valley and asks whether the state that hosted the exam should get a seat in the Impact Phase.",
+      "entities": [
+        "XPRIZE Wildfire",
+        "Nenana",
+        "Nenana Municipal Airport",
+        "University of Alaska Fairbanks",
+        "ACUASI",
+        "Catherine Cahill",
+        "Anduril",
+        "Dryad",
+        "AURA Foresight",
+        "Lockheed Martin",
+        "Adam Broecker",
+        "Tanana River",
+        "Nenana River",
+        "Nenana-Totchaket Road",
+        "New York City Fire Museum"
+      ],
+      "keywords": [
+        "autonomous wildfire suppression",
+        "wildfire drones",
+        "XPRIZE",
+        "detection gate",
+        "10 minute goal",
+        "test area",
+        "Impact Phase",
+        "Alaska wildfire season 2025",
+        "Tanana Flats",
+        "prize finals"
+      ],
+      "claims": 43,
+      "note": "First XPRIZE story in the ledger and the first deck drawn on a real digital elevation model. SB 250 (data center utility costs) and the Eielson microreactor comment window were the runners-up; the microreactor window is on the docket instead (closes September 30th). NEXT_RUN.md stays parked until October 14th."
     }
   ]
 }
