@@ -246,7 +246,12 @@ Fill `effort` at wake from `echo $CLAUDE_EFFORT`, the level this session
 reasons at. The repo's settings carry `high`, because the routine's model
 defaults to `medium` and a scheduled run passes no level of its own. Any
 other value means that setting did not take; say so in plan.md and in the
-Gmail draft's editor notes.
+Gmail draft's editor notes. `CLAUDE_EFFORT` is the level IN EFFECT, which
+Claude Code exports to every Bash call and hook whatever set it (the hooks
+reference, `effort` field). It is not `CLAUDE_CODE_EFFORT_LEVEL`, the input
+that would override the setting, which this routine never sets. A review
+that says the first is unset under a settings file has confused the two;
+it was declined on 2026-09-24 against the CLI's own resolver.
 
 ---
 
