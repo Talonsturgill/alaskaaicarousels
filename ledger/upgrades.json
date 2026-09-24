@@ -2657,7 +2657,7 @@
       ],
       "verification": "node scripts/akv_probe.js --self-test: PASS, 7 stations, 3 reconstructed defects (04 round 1 reported OFF the DEM with the problem named while 04 as shipped is on it with ENN on row 860 within 3 px; 08's near texture 1.9 m against 01's 51.0 m; 09's unmet yFar reported at 214.9 px while its target row holds), plus straight-down and sky-pitched sanity cameras. render.py + qa.py on this run's nine slides: 9/9 OK, qa PASS 0 fails 0 warns, and all nine PNGs byte-identical by sha256 to the shipped render. render.py + qa.py on examples/demo-deck: 4/4 OK, 0 fails / 14 warns (3, 5, 5, 1), the known baseline; the demo does not load akvalley. DEFECT RECONSTRUCTION through the real render path: slide 04 with round 1's station (distKm 70, fov 50) now carries 'warn: console error: AKVALLEY: camera at -149.031, 65.181 is OFF the DEM (-150.20 to -147.90 E, 64.05 to 65.00 N)...' beside the two symptom FAILs the existing gates already raised, which before this change had no named cause. Deliberately a WARN and a report, not a gate: slide 05 shipped at critic 8.2 with 1.5 m of near texture because its ground is a chart floor, so a texture threshold would fail a correct frame.",
       "rollback": "Revert the upgrade(2026-09-24) commit. By path if later commits touched the same files: git checkout <upgrade-commit>^ -- assets/js/akvalley.js knowledge/TECHNIQUE_LIBRARY.md knowledge/FIELD_NOTES.md, then git rm scripts/akv_probe.js. No slide depends on cam.onDem or the silent option.",
-      "commit": "pending (showrunner stamps the upgrade(2026-09-24) SHA in its follow-up commit)"
+      "commit": "3d019a1b"
     }
   ],
   "scan_log": [
