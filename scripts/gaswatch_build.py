@@ -893,6 +893,10 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38, pad_l=62, mode="wide"):
         # The endpoint value in INK with a keyed dot beside it, never in the
         # series colour. A light accent is illegible as text on this surface,
         # and identity belongs to the mark rather than to the letters.
+        # It carries a halo in the panel ground (2026-09-24): a series that
+        # climbs into its last reading runs its line through the space above
+        # and left of the dot, and at phone width that struck through "142"
+        # and "128.6". The halo masks the line under the numerals only.
         body += f"""<path d="{area}" fill="url(#{fid})"/>{grid}
 <path d="{d}" fill="none" stroke="{colour}" stroke-width="2"
  stroke-linejoin="round" stroke-linecap="round"/>
@@ -901,6 +905,7 @@ def chart_svg(series, model, w=920, panel_h=110, gap=38, pad_l=62, mode="wide"):
 <text x="{pad_l}" y="{top - 9}" fill="{INK}" {MONO}>{title}</text>
 <text x="{pad_l + iw}" y="{top - 9}" text-anchor="end" fill="{MUTE}" {MONO}>{unit}</text>
 <text x="{x(li) - 10:.1f}" y="{lab_y:.1f}" text-anchor="end" fill="{INK}"
+ stroke="#0a1626" stroke-width="4" stroke-linejoin="round" paint-order="stroke"
  {MONO}>{lv:g}</text>"""
         # The readout's y positions for this panel, taken now while the scale
         # is in scope. Computed after the loop they were all zero.
