@@ -1,0 +1,149 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold 1,000 km2 test square, full drape': canvas 103.1 dE, page 106.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "l1 'Tested at Nenana.' fits 1/1 lines at 144.5px",
+        "l2 'Awarded in New York.' fits 1/1 lines at 91.5px",
+        "l3 'Next stop unnamed.' fits 1/1 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the square, one edge seen toward New York': canvas 106.0 dE, page 106.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the purse axis' runs 0 dollars at 80 to 2,000,000 dollars at 680; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Anduril first. Dryad second. AURA third.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'Anduril place bar, $1.2 million at 300 px per million' holds: 360 vs 360 px (within 1)",
+        "'Dryad bar, $800,000' holds: 240 vs 240 px (within 1)",
+        "'AURA bar, $500,000' holds: 150 vs 150 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold airport ring and the runways': canvas 69.9 dE, page 76.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Nenana Municipal Airport runway' lands 0.0px from its target",
+        "leader 'the Nenana Municipal Airport runway' meets its label 4.0px away",
+        "leader 'the Nenana Municipal Airport runway' is drawn 115 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The exam was flownfrom Nenana's airport' fits 2/2 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold square revealed whole': canvas 108.2 dE, page 108.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'One fire. Ten minutes. 1,000 square kilomete' fits 2/2 lines at 85.5px"
+      ],
+      "asserts": [
+        "'all four corners of the square are in frame (revealed whole)' holds: 1 vs 1 boolean (within 0)",
+        "'the square side printed as 31.6 km is the root of the 1,000 km2 area it draws' holds: 31.6 vs 31.6 km (within 0.05)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the square seen from inside, its far edge on the flats': canvas 73.1 dE, page 75.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the clock' runs 0 minutes after ignition at 120 to 12 minutes after ignition at 840; 13 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'One 10 minute gateis on the record, for dete' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'the gate rule sits at 10 minutes on a 60 px per minute clock' holds: 720 vs 720 px (within 0.5)",
+        "'the Dryad cap sits at 12 minutes' holds: 840 vs 840 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the literal southern skyline under the quote': canvas 4.0 dE, page 3.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"The final prize remainson the horizon\"' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'the quote and its attribution sit wholly above the skyline it names' holds: 1 vs 1 boolean (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold test square in plan at the airport': canvas 68.0 dE, page 102.5 dE, 88% of its rect is clear of opaque DOM (div#nen.abs stands on the rest)",
+        "'the tray of 6.8 fireweed tiles': canvas 98.6 dE, page 79.7 dE, 92% of its rect is clear of opaque DOM (div#ao.abs stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Alaska's 2025 fires covered nearly seven tes' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'the square and every tile are 1,000 km2 at 5 px per km' holds: 158.11 vs 158.114 px (within 0.05)",
+        "'the tray holds 6.8 tiles, the 2025 burn over the test area' holds: 6.8 vs 6.8 tiles (within 0.01)",
+        "'the scale bar is 20 km' holds: 100 vs 100 px (within 0.1)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the phantom square, dashed and grey, no gold': canvas 59.7 dE, page 56.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'months after the September 23rd awards' runs 0 months at 120 to 16 months at 840; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'What comes next namesno Alaska address' fits 2/2 lines at 85.5px"
+      ],
+      "asserts": [
+        "'all four corners of the phantom square are in frame' holds: 1 vs 1 boolean (within 0)",
+        "'Impact Phase short end at 12 months' holds: 660 vs 660 px (within 0.5)",
+        "'Impact Phase long end at 15 months' holds: 795 vs 795 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold Polaris on the airport point': canvas 106.8 dE, page 106.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Alaska hosted the exam.Should it get a seati' fits 3/3 lines at 99.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

@@ -1,0 +1,19 @@
+{"run_date": "2026-09-24", "aggregates": [
+ {"kind": "from_claim", "slide": 3, "text": "two weeks", "fragment": "two weeks", "member": "S1-C16"},
+ {"kind": "from_claim", "slide": 4, "text": "Ten minutes", "fragment": "Ten minutes", "member": "S1-C12"},
+ {"kind": "from_claim", "slide": 4, "text": "1,000 square kilometers", "fragment": "1,000 square kilometers", "member": "S1-C13"},
+ {"kind": "from_claim", "slide": 4, "text": "8 hours", "fragment": "8 hours", "member": "S1-C20"},
+ {"kind": "from_claim", "slide": 4, "text": "three controlled fires", "fragment": "three controlled fires", "member": "S1-C20"},
+ {"kind": "from_claim", "slide": 4, "text": "10 minutes", "fragment": "10 minutes", "member": "S1-C12"},
+ {"kind": "design", "slide": 4, "text": "31.6 KM", "note": "the side of the drawn square, the square root of the 1,000 km2 test area in S1-C13, 31.62 km, printed to one decimal and asserted in the slide's own __akAssert"},
+ {"kind": "from_claim", "slide": 5, "text": "10 minutes", "fragment": "10 minutes", "member": "S1-C12"},
+ {"kind": "design", "slide": 7, "text": "2025 fires", "fragment": "2025 fires", "note": "a calendar year, the 2025 season of S1-C37, not a count of fires"},
+ {"kind": "from_claim", "slide": 7, "text": "1.68 million acres", "fragment": "68 million acres", "member": "S1-C37"},
+ {"kind": "design", "slide": 7, "text": "6,800 square kilometers", "fragment": "6,800 square kilometers", "note": "arithmetic on S1-C37 alone: 1,680,000 acres times 0.0040468564 square kilometers per acre is 6,798.7, printed as about 6,800"},
+ {"kind": "design", "slide": 7, "text": "seven times", "fragment": "seven times", "note": "arithmetic on S1-C37 and S1-C13: 6,798.7 over 1,000 is 6.80, printed as nearly seven"},
+ {"kind": "design", "slide": 7, "text": "seven test areas", "fragment": "seven test areas", "note": "the same ratio as above, 6.80 test areas, printed in the headline as nearly seven"},
+ {"kind": "design", "slide": 7, "text": "2025 BURN, ABOUT 6.8 TEST AREAS", "fragment": "8 TEST AREAS", "note": "the same ratio, 6,798.7 km2 over 1,000 km2 is 6.80; the tray draws exactly 6.8 tiles and the slide asserts it"},
+ {"kind": "from_claim", "slide": 8, "text": "12 to 15 month", "fragment": "15 month", "member": "S1-C41"},
+ {"kind": "design", "slide": 8, "text": "2027 and names", "fragment": "2027 and names", "note": "a calendar year, Dryad's planned 2027 pilots in S1-C42, not a count"},
+ {"kind": "from_claim", "slide": 8, "text": "IMPACT PHASE, 12 TO 15 MONTHS", "fragment": "15 MONTHS", "member": "S1-C41"}
+]}

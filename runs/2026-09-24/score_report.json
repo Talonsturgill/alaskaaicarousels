@@ -1,0 +1,140 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "I read all nine renders at full size and read caption.txt and copy.json first_comment myself. The only joining marks are hyphens inside compound words: 'Nenana-Totchaket' on 03 and in the caption, 'high-risk' on 04, and 'FinancialContent' in the comment. Date ranges are written with 'to', as in 'June 11th to July 1st' and '12 to 15 month'. caption_report.json verdict PASS; copy_sync PASS on 57 slide strings."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "There are none on any render, in the caption or in the first comment. The gold Polaris on 09 is a drawn canvas star, not a glyph."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Every slide in copy.json carries claim_ids that resolve in claims.json with fetched true. Examples: S1-C31 AURA detection gate, S1-C28 Dryad 12 minutes or less, S1-C34 Broecker, S1-C37 1.68M acres (XPRIZE, attributed), S1-C41 12 to 15 months, S1-C42 2027 pilots, S1-C39 Cahill and the UAF/ACUASI-only line. The derived figures (6,800 km2, 6.8 tiles, 31.6 km) are declared, and aggregate_check PASSes on 17 declared. plan_drift found 0 drifts. The caption's 'Catherine Cahill's UAF drone center ran the airspace' resolves through S1-C39 and S1-C17."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "I transcribed every kicker, headline, body, label and axis tick on 01 to 09 myself. All of them match copy.json word for word, including the rebuilt 08 ('What comes next names no Alaska address', body through 'UAF and ACUASI.', and the labels 'IMPACT PHASE, 12 TO 15 MONTHS', 'DRYAD PILOTS 2027, NO PLACE NAMED', 'SEPTEMBER 23RD', '12 MO', '15 MO'). ACUASI, Totchaket, Broecker, Anduril and Foresight are all spelled correctly. One style nit remains and is not a misspelling: '10 minute gate' drops the compound hyphen."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "machine_qa reports every text block fitting its declared lines (for example 08's headline 2/2 at 85.5px and 09's 3/3 at 99.5px), with 0 fails and 0 warns. The only thing leaving the frame is the square's near edges on 01, which is deliberate art, not text. The hung opening quote on 06 stays inside the frame."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Headlines are #F4F8FF and body #B3C1C4 on sky #060D12 to #0B161B, well above 7:1. The dimmest primary line is still the cover's phantom third line, #7E8F95 on about #0A1418, at roughly 5.6:1. 08's body sits on the sky above the rebuilt ground and is unaffected by the blur. The station cards and site fixture are declared decorative."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "assemble_report.json slides: 9."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict PASS with 0 fails and 0 warns; 08's asserts hold (phantom square corners in frame, Impact Phase ends at 660 and 795px). assemble_report.json pdf_mode 'vector', 9.91 MB, title 'Tested at Nenana. Awarded in New York. Next stop unnamed.'"
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "Dedupe flagged No.62 (September 18th, an ACUASI blood-sample flight from the same Nenana airport). That is a different event with different actors. This deck covers the XPRIZE Wildfire awards of September 23rd, which is a new development. It is still the same airport six days apart."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "The last four heroes are No.63 season disc, No.64 orthographic section, No.65 waterline survey camera and No.66 frontal engraved plate. This deck flies a perspective camera over a real DEM drawn as lit and lee profiles. bespoke_check median similarity is 0.284 (fail at 0.60)."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_check loaded 74 brand phrases and found 0 fails. copy_sync reports 'no banned slide string'. 'doesn't' is used and 'cannot' appears nowhere. My own read found no consultant-speak."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "The hashtags are #XPRIZEWildfire #Nenana #FireDrones, exactly 3. The post body has no URL; all five source URLs and alaskaaihq.com are in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "None on the renders, caption or first comment. copy.json editor_notes_for_email is empty only because it is waiting for this report. The storyboard's unchecked '[ ]' boxes are planning scaffolding, not a deliverable."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14,
+      "notes": "Unchanged since cycle 1. It is still a strong structure: three datelines in 9 words, a 144px first line, a phantom third line that opens the loop, and one gold square on real relief. It reads cleanly at the 432px thumb. But the display type never says what was tested. Wildfire, drones and machines appear only in the 24px mono kicker, so a scroller sees 'Tested at Nenana' without the noun that would stop them. The upper third is type on empty sky."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Unchanged. The beats are clear (hook, pay, place, task, turn, breather, data, escalate, close), 02 pays the cover at once, and the square changing state from frame to frame is a real continuity spine that holds on the contact sheet. 03 and 04 can still be swapped without loss, and 07's plan-view detour could sit anywhere after 04."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "The repair removed the visible defect but did not add craft. 08's lower third no longer shows blocky quantised rectangles. It is now a soft blurred field that reads as empty dark ground at thumb size (checked on slide-08-thumb.png), and the crisp, glowing Nenana laid over it breaks the deck's own depth physics: a river on out-of-focus ground should be out of focus too, and no other frame uses defocus. The phantom square's far edge still jogs over a crest at upper right. The critic's last score for 08 was 7.2, taken before the fade, so nobody has reviewed its current state. Elsewhere nothing changed: 01, 03, 04 and 09 are genuinely crafted (real DEM, one key light, cased NHD rivers, weight graded by depth), while the lower halves of 05 and 06 are still near-uniform ruled stripes and 07 keeps a bare band under the map. This is still the 7 descriptor, not an 8."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The art encodes the numbers: the square is sqrt(1,000 km2) at true size with 31.6 km asserted, the bars run at 300px per $1M, the clock at 60px per minute with the gold gate at 10 and Dryad's cap at 12, the tray holds 6.8 tiles at 5px per km, and 08's phantom square is dashed grey because nothing is stated. The literal anchors (the ENN runways and the Tanana and Nenana confluence) are real geometry. What keeps it from a 9: there is still no fire in the art."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Named Alaska specifics run throughout: Nenana Municipal Airport, the Tanana and Nenana rivers, the Totchaket corridor, ACUASI, UAF, Catherine Cahill (caption), the 2025 season and the real Interior DEM. The angle is written from the Alaska side. The imported beats are New York on 02 and a Lockheed executive on 06, and the acreage is XPRIZE's figure, not AICC's."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content slide adds new verified specifics in about 25 to 40 words: the purses and the $2.5M/$3.5M reconciliation, two weeks plus ACUASI plus the corridor, 8 hours plus 10 minutes plus 1,000 km2, detection-only against Dryad's own 12 minutes, 1.68M acres as 6.8 areas, and 12 to 15 months with 2027 pilots and no place named. 08 repeats UAF and ACUASI from 03, and its thesis rests on an absence in the record."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08,
+      "notes": "Every divergence is met and argued: the first real-DEM camera hero, a 'blank sky by rule' atmosphere, a spruce, sphagnum and river-ice palette, Archivo over JetBrains Mono, and a three-datelines hook. But the Nenana airport under a camera repeats No.62 of six days ago."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "notes": "Body is 33px and labels 22 to 24px. Counters are on every frame, the site fixture is present, and the PDF is vector at 9.91 MB with a title that now matches the cover. Headlines and bodies read at the 432px thumb (checked on 01 and 08). The squeakers are 05's lane labels and 07's tile tag. The station card at 18 to 20px is declared decorative."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7,
+      "weight": 0.05,
+      "notes": "Unchanged. The hook is a 134-character scene, the caption is 878 characters, and the comma rate is 0.71 per 100 words. Soft spots: who won is buried in paragraph 3; 'Anduril took first place ... as $4.55 million was awarded' puts Anduril next to the two-track total; the deck-summary line is a flat inventory; and the closing question differs from slide 09's ask."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Both cycle 1 rough edges are fixed. The document title now matches the cover's casing in copy.json and in assemble_report.json. The Eielson aftercare line now cites its docket source (the docket item and KUAC's September 20th report); the date itself I did not re-verify against ledger/docket.json. Staged and complete: post copy, 3 hashtags, a first comment with 5 dated primary sources, 9 thumbs, a contact sheet, the vector PDF and a 5-item aftercare with correct weekdays (Thursday September 24th, Tuesday September 29th). Still not a 9: the Gmail draft, main-branch image URLs and inline previews can't be verified until after the merge."
+    }
+  ],
+  "calculation": "(7x0.14)+(7.5x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7.5x0.08)+(8x0.07)+(7x0.05)+(8x0.10) = 0.98+1.05+1.12+1.12+0.96+0.80+0.60+0.56+0.35+0.80 = 8.34 as written. No hard fails, so no cap. The rubric's weights sum to 1.10, not 1.00, so normalized to a true 10-point scale this is 8.34/1.10 = 7.58. The only change from cycle 1 is Deliverable completeness, 7.5 to 8 (+0.05). Artwork craft is held at 7.",
+  "weighted_total": 8.34,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Replace slide 08's blurred foreground with the deck's own crisp lit and lee profile stack at near-range weights, so the ground and the Nenana share one focus and one light like 01, 03 and 09, then have a pixel critic review 08 in its final state.",
+  "editor_notes_for_email": "SHIPS against the round-4+ threshold of 7.7 (five edit rounds plus one scoring-cycle repair). As the rubric is written it scores 8.34, which also clears the base 8.3. The rubric's ten weights sum to 1.10, though, so on a true 10-point scale this is 7.58, BELOW 7.7. Both figures are reported; the weight sum is logged for a Phase 12 fix in /home/user/alaskaaicarousels/config/scoring_rubric.yaml. Before posting: (1) Look at slide 08 yourself at full size (/home/user/alaskaaicarousels/out/2026-09-24/render/slide-08.png). The blocky patches are gone, but the lower third is now a soft blur under a sharp river, and no critic has reviewed the faded version (its last critic score was 7.2, taken before the fade). (2) Nenana again: No.62 (September 18th) was also out of the Nenana airport, so regular readers will notice the same place twice in one week. (3) Slide 06's quote is a clause cut from Broecker's longer sentence ('While the final prize remains on the horizon, every milestone...'), with its first letter capitalised. It is accurately attributed. Never say the grand prize went unclaimed. (4) The 1.68 million acres is XPRIZE's estimate; AICC was not checked. (5) The aftercare's Eielson microreactor comment window (September 30th) now cites the docket and KUAC's September 20th report. I did not re-verify that date, so confirm it on the docket page before using it in a reply. (6) The caption's closing question ('Whose ground should host the first fire these machines meet that nobody lit?') is different from slide 09's ask ('Should it get a seat in the Impact Phase?'), so expect answers to both. (7) Gas Watch and cron_health are WARN on an unresolved upstream blocker: CINGSA's dashboard has not published since September 13th, three days past its announced September 21st return. This belongs prominently in the email. (8) No Alaska newsroom had covered the awards when this was drafted; every fact rests on XPRIZE and Dryad releases. (9) The Gmail draft, the main-branch image and PDF URLs and the inline previews could only be checked after the merge.",
+  "scoring_cycle": 2,
+  "cycle1_total": 8.29
+}

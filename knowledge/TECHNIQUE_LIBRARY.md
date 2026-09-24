@@ -846,5 +846,17 @@ annotation is the strongest pair):
     - Small type over line art loses to the strokes. `AKV.quietCanvas(cx, sels)`
       is a feathered destination-out knockout behind the station card, the site
       fixture and any `.quiet` element, run after the slide draws.
-    Fog is quantised to eighths, because a continuous fog mints an ink per
-    profile and blows qa's 160 ink census. D1
+    Later rounds added three more, all measured on this deck: `quietFlat`
+    draws the shade buckets nearest flat ground's own value faint;
+    `shadeSmooth` averages shade along a profile so DEM noise can't split it
+    into dashes (a dash means "not stated" here); and `tonal` fills near
+    profiles with shaded tone, fading with distance, for gentle near ground
+    that would otherwise read as a void. Each profile's lateral reach is sized
+    by CAMERA-SPACE depth, or a high pitched-down camera leaves bare wedges.
+    Probe cameras in node before rendering: a twenty-line harness that loads
+    this file with a file-backed fetch and prints the projected corners of a
+    shape settles a station in one call (`V.aim` will happily return pitch -60
+    with a 2,000 px lens shift). Keep the camera ON the DEM: off it,
+    `cropDepth` collapses and the haze takes the whole ground.
+    Fog and tone are quantised (eighths, steps of 6), because a continuous
+    fog mints an ink per profile and blows qa's 160 ink census. D1

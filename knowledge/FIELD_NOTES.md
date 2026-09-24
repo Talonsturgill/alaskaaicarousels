@@ -8451,3 +8451,36 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   The 2026 write-ups repeat the 6 to 10 slide band, one idea per slide, under 60 words,
   and a cover that stops a scroll in two seconds, all of which CAROUSEL_CRAFT already
   states with better sourcing. Dwell remains the ranking currency. Nothing appended.
+
+## 2026-09-24, No.67, retro: a real DEM under the camera (XPRIZE Wildfire at Nenana)
+
+- THE FIRST DECK ON REAL TERRAIN. `assets/js/akvalley.js` (technique 96) draws AWS terrain
+  tiles at z10 through a perspective camera as lit and lee ridgeline profiles, with USGS NHD rivers
+  and National Map transport draped on it. It is the only engine here that can put a mark at a true
+  lon/lat in a perspective view, so a 1,000 km2 square at true size and a named airport sat where
+  they are. Overpass was unreachable from the container; the USGS NHD and National Map ArcGIS REST
+  services answered and are the route to use.
+- FLAT GROUND IS THE HARD CASE, NOT THE RIDGE. Every critic in every round named the Tanana Flats
+  as ruled paper. Three things fixed it and one did not. Spacing profiles uniformly in 1/d is
+  uniform ON SCREEN over flat ground, which is exactly the venetian blind; spacing in d^-0.6 with a
+  3 px minimum gap opens the gaps toward the camera. Shading from DEM minus a box blur (lighting
+  only, geometry stays x3) prints the real sloughs and terraces as patches. Drawing the shade
+  buckets nearest flat ground's own value at 0.12 to 0.2 alpha lets only that relief print. Short
+  upright ticks on flat samples (`flats`) read as a barcode at every density tried; don't use them.
+- A DEM CROP IS A MESA. Where a profile runs off the crop it ends in a vertical step that reads as a
+  table top. `haze` holds dmax inside the crop (`V.cropDepth`), fades the last stretch wholly into
+  the fog ink and lays a feathered fog floor behind the stack. Round 1's re-solve of 04 put the
+  camera 70 km north, OFF the DEM, and the haze then ate the whole ground (critic score 5.6).
+  Check the camera is on the DEM before trusting the crop depth.
+- PROBE CAMERAS IN NODE, NOT IN RENDERS. `V.aim` solves pitch and principal point from two target
+  rows, and on low targets it happily returns a pitch of -60 with a lens shift of 2,000 px. A
+  twenty-line node harness that loads akvalley with a file-backed fetch and prints the projected
+  square corners settled 01, 04 and 08 in one call each, where re-rendering had cost a round each.
+  It also answered a critic's "use the south edge" on 02 with a fact: the camera stands inside the
+  square, so that edge is behind it.
+- SMALL TYPE OVER LINE ART LOSES. Every terrain frame's station card and site fixture were struck
+  through in round 1. A feathered destination-out knockout (`AKV.quietCanvas`) run by the build
+  shell after each slide draws fixed all nine at once. Cut a knockout BEFORE drawing an axis, never
+  after: on 05 a knockout laid over the axis cut a gap that qa read, correctly, as an undeclared
+  mark.
+- The review ran five edit rounds, the cap, plus one scoring-cycle repair. Critic ranges went 5.9 to 7.2, 5.6 to 7.6, 6.9 to 8.3, 7.0 to 8.4, and the scorer gave 8.29 then 8.34 as written (the rubric's weights sum to 1.10; normalised 7.58). Slide 08 never cleared: dashes, then a void, then blocks, then a blur. A reverse shot over flats with the relief outside the crop has nothing to draw, and the station choice, not the renderer, was the defect.

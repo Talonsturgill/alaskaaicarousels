@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-24/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9908372,
+  "pdf_mb": 9.91,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-24/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-24/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Tested at Nenana. Awarded in New York. Next stop unnamed.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "4808ca0c994fc2fb9fac36f2f07114379b6874d174c4ee95365b41cfa3c5d967",
+        "bytes": 2147866
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "13b54392ae0c6a9b6a26ae14a5833560be9418f448a90074c639dd6009b7d04a",
+        "bytes": 2010838
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "e4b76274bbaa8994942bd47de1ce64be233062ac5e700f9fc303af48b97bf881",
+        "bytes": 2344524
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "f05542f4b7cbfa79c5d69a8c10b15a5fe39f60fa28c5bddcbddc0258d2b8dac6",
+        "bytes": 2686110
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "4c0a36d87ee7577bb54164afb8c24ab85ab482c7b4ae86fbc2c668fee6ccd57a",
+        "bytes": 1806958
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "7b0ddbda30d196235e6e4f08a73df2546c3571b181322c95652cf1adcaaf0eea",
+        "bytes": 1463438
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "4d26bbb69ddba41e74a5eb20cd783649b962179a98aa2c75ed96bb3de34e60cd",
+        "bytes": 2717059
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "3de76150ac5b3a138a5ca929a61d46989e415e9eba798625569f2aadb74f0501",
+        "bytes": 2134651
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "1be030529dddf72cf5cda8fd51a29c0a65a0e1e631c59a00e66c5762f6c361c7",
+        "bytes": 2149579
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "4e18d9d92f8e42ec69baf9fb6c1a67a435c4dd315165de9bf60818aa43eb1503",
+        "bytes": 6801
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "9d35606725af7b276c7f77396e908c43b30a668dbedd4b8eb915deea809d1980",
+        "bytes": 8739
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "5ff7b4add33ed27122cd665b347efda089a5d9b47883d2020ebb75b280ec90fe",
+        "bytes": 9630
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "eb58694f829a51537372a4b583a6bf77204905a8a58d4d0881b076ef46d7ba7c",
+        "bytes": 7875
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "81e98592214f49f84e3a200a5e95c11d2c4a12741ba33440a2370d3b9fbb0f13",
+        "bytes": 9857
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "4eda52a06b31b4dcff53fc4ca75198ca2f66e15a91fcce475608a405b292651a",
+        "bytes": 6365
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "a1b088b57312587b11525b048f771456d277d2d7027462631bf8d21fe734abb9",
+        "bytes": 9997
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "21370453c17c12620e92946c6a4743ccb29e3b1c36b0ceeb49390a1d9c584c56",
+        "bytes": 10763
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "ce4d9fdf199c5b87784a74f0661dcd1f02f309c5fa6a463dc3161612ed411d5a",
+        "bytes": 6778
+      }
+    ]
+  }
+}

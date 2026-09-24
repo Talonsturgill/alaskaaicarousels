@@ -2144,6 +2144,44 @@
         "weakest_criterion": "Deliverable completeness",
         "artwork_craft_score": 8
       }
+    },
+    {
+      "run_date": "2026-09-24",
+      "carousel_no": 67,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE AERIAL UNIT OVER REAL GROUND. A perspective camera flown over a real DEM of the Tanana valley at Nenana (AWS terrain tiles z10), drawn as lit and lee ridgeline profiles with USGS NHD rivers and National Map transport draped on it, and a gold 1,000 km2 square at true size on the airport. Puts a camera back into the house after three decks without one.",
+      "atmosphere": "NEW: BLANK SKY BY RULE. No page reports the weather on test days, so the sky carries nothing; the ground is lit by the cartographer's key (azimuth 315, elevation 30) on all nine frames, and the DEM's crop edge dissolves into a fog floor.",
+      "continuity_devices": [
+        "D1 camera stations around one valley, heights x3 printed on every perspective frame",
+        "D2 the gold square's shape state per frame (whole, edge, far edge, horizon edge, unit tile, phantom, Polaris)",
+        "D3 the station card, HEIGHTS X3 / ALT / HDG"
+      ],
+      "hook_archetype": "NEW: THE THREE DATELINES (an itinerary with two stops filled and the third blank, echoed in phantom grey on the close)",
+      "palette_family": "spruce-black, sphagnum and river ice: #0A1712 ground, #9FBF8F lit stroke, #5AC8F0 rivers, #FFC72C only for the exam, #E2568C only for the 2025 burn on 07, #7E8F95 only for not stated",
+      "type_pairing": "Archivo 700 condensed (stretch 75%) display and Archivo 400 body over JetBrains Mono 500 instrument. Two families; no serif.",
+      "dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "96 NEW akvalley real-terrain ridgeline stack",
+        "92 akhachure slope-and-aspect hachure (07 plan view)",
+        "79 cased line",
+        "69 round-cap dot rhythm (partly)",
+        "12 lit and lee ridgeline profiles, on a real DEM"
+      ],
+      "note": "Five pixel-critic edit rounds, the cap. Every round named flat ground as ruled paper; the fixes (spacing in d^-p, relief lighting, quietFlat, shadeSmooth, tonal) are now akvalley options and logged in technique 96. A node camera probe replaced guess-and-render for stations.",
+      "measured": {
+        "revision_rounds": 5,
+        "machine_qa": "PASS, 0 fails, 0 warns, 9 of 9 frames",
+        "bespoke_median_pairwise": 0.284,
+        "bespoke_max_pair": 0.409,
+        "drawn_share_pct": 85,
+        "pdf_mode": "vector",
+        "pdf_mb": 9.91,
+        "score": null
+      }
     }
   ]
 }
