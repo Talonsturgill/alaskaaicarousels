@@ -538,6 +538,10 @@
       // ground there, only the 120 m stand-in, so the solve is fiction
       var ffx = out.pos[0] + out.fwdH[0] * o.farKm, ffz = out.pos[2] + out.fwdH[1] * o.farKm;
       out.farOffDem = hWorld(ffx, ffz) === null;
+      // the target is the other constraint; off the DEM, V.project stands it
+      // on an invented 100 m, and the target row is fiction too
+      out.targetOffDem = heightAt(o.target[0], o.target[1]) === null;
+      if (out.targetOffDem && !o.silent) console.error("AKVALLEY: aim target " + o.target[0] + ", " + o.target[1] + " is OFF the DEM; the target row was solved against invented ground.");
       if (out.farOffDem && !o.silent) console.error("AKVALLEY: aim farKm " + o.farKm + " km lands OFF the DEM; the far row was solved against invented ground. Shorten farKm inside the crop (probe: node scripts/akv_probe.js).");
       return out;
     };
