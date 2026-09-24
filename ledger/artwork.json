@@ -2181,7 +2181,19 @@
         "pdf_mode": "vector",
         "pdf_mb": 9.91,
         "score": null
-      }
+      },
+      "continuity_device": "camera: nine stations over one real valley, plus motif: the gold square's shape state, plus the station card",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 2
+      },
+      "new_techniques_logged": [
+        "96 akvalley real-terrain ridgeline stack"
+      ],
+      "depth_technique": "a perspective camera over a real DEM: occluding ridgeline profiles with fog by distance, weight by nearness, a haze floor at the crop edge, and line-of-sight clipped overlays",
+      "line_voice": "instrument",
+      "narrative_structure": "argument (hook, pay, place, task, turn, breather, data, escalate, one ask)"
     }
   ]
 }

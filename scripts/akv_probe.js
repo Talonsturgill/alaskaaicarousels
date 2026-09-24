@@ -141,6 +141,10 @@ function probe(V, spec) {
       problems.push(`aim could not put the far ground on yFar: it misses by ${solve.errPx.toFixed(0)} px ` +
         "(V.aim returns its best try without saying so); the target row holds, the far row does not");
     }
+    if (cam.farOffDem) {
+      problems.push(`aim farKm lands OFF the DEM, so the far row was solved against invented ` +
+        "ground (V.aim's 120 m stand-in); shorten farKm to inside cropDepthKm");
+    }
     if (cam.pitch <= -69.75 || cam.pitch >= -2.25) {
       problems.push(`aim pitch ${cam.pitch} is at the edge of its search (-70 to -2), so the solve is ` +
         "clamped, not found; change distKm, agl or the rows");
@@ -151,6 +155,7 @@ function probe(V, spec) {
     }
   }
   const crop = V.cropDepth(cam, 1);
+  if (crop === null) problems.push("no profile past 1 km lies wholly on the DEM (cropDepth has no safe depth)");
   const bottom = [0.02, 0.5, 0.98].map((fx) => rayGround(V, cam, W * fx, H - 1));
   bottom.forEach((r, i) => {
     if (r.km === null) {

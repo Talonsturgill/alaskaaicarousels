@@ -141,7 +141,7 @@
           "and the haze are wrong. Move the station onto the DEM (probe it: node scripts/akv_probe.js).");
       }
       var g = heightAt(c.lon, c.lat) || 100;
-      var altM = c.alt !== undefined ? c.alt : g + (c.agl || 1000);
+      var altM = c.alt !== undefined ? c.alt : g + (c.agl !== undefined ? c.agl : 1000);
       var w = worldOf(c.lon, c.lat);
       var th = c.heading * D2R, ph = (c.pitch || 0) * D2R;
       var cam = {
@@ -248,7 +248,14 @@
       // feathered top is laid behind the stack, so the eye meets air.
       var dEnd = dmax;
       if (o.haze) {
-        dEnd = Math.min(dmax, V.cropDepth(cam, dmin));
+        var cd = V.cropDepth(cam, dmin);
+        if (cd === null || cd <= dmin) {
+          // no profile at or past dmin lies wholly on the DEM: haze cannot hold
+          // the range inside the crop, so say so and draw the requested range
+          console.error("AKVALLEY: haze found no crop-safe depth past dmin " + dmin + " km for this camera; the crop edge may show.");
+        } else {
+          dEnd = Math.min(dmax, cd);
+        }
         var yh = null, fh0 = hWorld(cam.pos[0] + cam.fwdH[0] * dEnd, cam.pos[2] + cam.fwdH[1] * dEnd);
         var ph0 = projW(cam, cam.pos[0] + cam.fwdH[0] * dEnd, (fh0 === null ? cam.groundM : fh0) / 1000 * VE, cam.pos[2] + cam.fwdH[1] * dEnd);
         if (ph0) yh = ph0[1];
@@ -485,7 +492,7 @@
       // The in-frame half span (x1.08), not terrain()'s 1.25 overscan: a run
       // cut by the crop OUTSIDE the frame ends where nobody sees it, and
       // testing the overscan would pull dmax in for no visible gain.
-      var hw = (cam.W / 2) / cam.f * 1.08, last = dFrom || 1;
+      var hw = (cam.W / 2) / cam.f * 1.08, last = null;
       for (var d = dFrom || 1; d < 200; d += 0.5) {
         var ok = true, cxw = cam.pos[0] + cam.fwdH[0] * d, czw = cam.pos[2] + cam.fwdH[1] * d;
         var span = V.profileDepth(cam, d);
@@ -496,6 +503,8 @@
         if (!ok) break;
         last = d;
       }
+      // null, not dFrom, when even the first profile leaves the crop: there is
+      // no safe depth, and returning dFrom reported an unsafe one as safe
       return last;
     };
 
@@ -515,7 +524,7 @@
                             fov: o.fov, W: o.W, H: o.H, cy: 0, cx: o.cx, VE: o.VE, silent: true});
         var pT = V.project(cam, o.target[0], o.target[1], 0);
         var fx = cam.pos[0] + cam.fwdH[0] * o.farKm, fz = cam.pos[2] + cam.fwdH[1] * o.farKm;
-        var fh = hWorld(fx, fz); if (fh === null) fh = 120;
+        var fh = hWorld(fx, fz), farOff = fh === null; if (farOff) fh = 120;
         var pF = projW(cam, fx, fh / 1000 * cam.VE, fz);
         if (!pT || !pF) continue;
         var cy = o.yTarget - pT[1];
@@ -525,6 +534,11 @@
       var out = V.camera({lon: ll[0], lat: ll[1], agl: o.agl, heading: o.heading, pitch: best.pitch,
                           fov: o.fov, W: o.W, H: o.H, cy: best.cy, cx: o.cx, VE: o.VE, silent: o.silent});
       out.solveErr = best.err; out.lon = ll[0]; out.lat = ll[1];
+      // the far constraint is ground `farKm` ahead; off the DEM there is no
+      // ground there, only the 120 m stand-in, so the solve is fiction
+      var ffx = out.pos[0] + out.fwdH[0] * o.farKm, ffz = out.pos[2] + out.fwdH[1] * o.farKm;
+      out.farOffDem = hWorld(ffx, ffz) === null;
+      if (out.farOffDem && !o.silent) console.error("AKVALLEY: aim farKm " + o.farKm + " km lands OFF the DEM; the far row was solved against invented ground. Shorten farKm inside the crop (probe: node scripts/akv_probe.js).");
       return out;
     };
 
