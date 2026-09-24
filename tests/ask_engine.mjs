@@ -308,7 +308,9 @@ const Q = [
   ['how many decisions are tracked',
    { lead: new RegExp('\\b' + DATA.index.length + ' decisions\\b') }],
   ['what is the nearest deadline', { kick: /NEAREST DATE|PUBLISHED DATES/ }],
-  ['which agency has the most decisions', { kick: /DNR/ }],
+  // The busiest agency is a fact about the record, not the engine: DNR led
+  // until SB 250 joined the docket on 2026-09-24 and gave the Legislature 4.
+  ['which agency has the most decisions', { kick: /LEGISLATURE/ }],
   ['what was added most recently', { kick: /RECENTLY ADDED/ }],
   ['what has been tracked the longest', { kick: /LONGEST/ }],
   ['what moved most recently', { kick: /LAST MOVEMENT/ }],
