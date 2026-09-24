@@ -92,6 +92,18 @@ NO_CHANGE = re.compile(
     r"|carried forward|no change|still (?:no|pending|open)"
     r"|(?:one|two|three|four|five|six|seven|\d+) days? out)\b", re.I)
 
+# The same marker as a note's CLOSING sentence: many rechecks read the source
+# first and end "Checked and unchanged." Matching only at the start counted
+# those as movement, so "what moved most recently" served non-events (Codex
+# review, PR #398). Only this exact closing marker, never a bare "Re-read":
+# measured, several notes that open "Re-read" record real changes.
+NO_CHANGE_TAIL = re.compile(r"\bchecked and unchanged\.?\s*$", re.I)
+
+
+def is_no_change(note):
+    return bool(NO_CHANGE.match(note) or NO_CHANGE_TAIL.search(note))
+
+
 KIND_LABEL = {
     "state-land-lease": "state land lease",
     "federal-lease": "federal lease",
@@ -541,7 +553,7 @@ def index_row(it, today):
     # asks.
     hist = sorted((h for h in (it.get("history") or []) if h.get("date")),
                   key=lambda h: h["date"])
-    moves = [h for h in hist if not NO_CHANGE.match(h.get("note") or "")]
+    moves = [h for h in hist if not is_no_change(h.get("note") or "")]
     dates = sorted(it.get("key_dates") or [], key=lambda d: d["date"])
     head = r["headline"] or {}
 
