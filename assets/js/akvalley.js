@@ -529,8 +529,13 @@
     /* visible: is a world point seen from the camera, or does terrain block
      * the line of sight? Marches the ray in 48 steps against the DEM. */
     V.visible = function (cam, x, y, z) {
-      for (var i = 1; i < 48; i++) {
-        var t = i / 48;
+      // Steps at half a DEM cell along the ground track (at least 48): a fixed
+      // 48 left 560 m between samples at 27 km, and a ridge could rise through
+      // the sightline between two of them (Codex review, PR #397).
+      var cellKm = (meta.cell_m_at_nenana || 197) / 1000;
+      var n = Math.max(48, Math.ceil(Math.hypot(x - cam.pos[0], z - cam.pos[2]) / (cellKm / 2)));
+      for (var i = 1; i < n; i++) {
+        var t = i / n;
         var px = cam.pos[0] + (x - cam.pos[0]) * t, py = cam.pos[1] + (y - cam.pos[1]) * t;
         var pz = cam.pos[2] + (z - cam.pos[2]) * t;
         var h = hWorld(px, pz);
@@ -559,7 +564,9 @@
             var y0 = (h0 + lift) / 1000 * cam.VE, y1 = (h1 + lift) / 1000 * cam.VE;
             var p0 = projW(cam, x0, y0, z0), p1 = projW(cam, x1, y1, z1);
             if (!p0 || !p1) continue;
-            var vis = V.visible(cam, x0, y0, z0) && V.visible(cam, x1, y1, z1);
+            // st.los === false: a mark that is not a physical thing on the
+            // ground (a phantom outline) is never occluded by it
+            var vis = st.los === false || (V.visible(cam, x0, y0, z0) && V.visible(cam, x1, y1, z1));
             pieces.push([p0, p1, vis]);
           }
         }

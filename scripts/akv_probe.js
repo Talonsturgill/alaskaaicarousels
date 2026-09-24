@@ -183,7 +183,9 @@ function probe(V, spec) {
       const d = d0 * (1 + j / 12);
       const cxw = cam.pos[0] + cam.fwdH[0] * d, czw = cam.pos[2] + cam.fwdH[1] * d;
       for (let i = 0; i <= 24; i++) {
-        const s = -d * hw + 2 * d * hw * i / 24;
+        // camera-space depth sets the width seen, as terrain() sizes it
+        const span = V.profileDepth(cam, d);
+        const s = -span * hw + 2 * span * hw * i / 24;
         const px = cxw + cam.rightH[0] * s, pz = czw + cam.rightH[1] * s;
         const h = hW(V, px, pz);
         if (h === null) continue;
@@ -240,7 +242,15 @@ function rayCropRow(V, cam, crop) {
 }
 
 function round(v) {
-  return JSON.parse(JSON.stringify(v, (k, x) => (typeof x === "number" ? Math.round(x * 10) / 10 : x)));
+  // Metrics to a tenth; geographic coordinates to 1e-5 degrees (about a
+  // metre), because a tenth of a degree at Nenana is kilometres and a station
+  // copied from the report must land where it was measured.
+  const GEO = /^(lon|lat|lon0|lat0|west|east|south|north)$/i;
+  return JSON.parse(JSON.stringify(v, (k, x) => {
+    if (typeof x !== "number") return x;
+    if (GEO.test(k)) return Math.round(x * 1e5) / 1e5;
+    return Math.round(x * 10) / 10;
+  }));
 }
 
 async function selfTest() {
@@ -305,7 +315,8 @@ async function selfTest() {
   if (args[0] === "--expr") {
     // eslint-disable-next-line no-eval
     const r = eval("(()=>{" + args[1] + "})()");
-    console.log(JSON.stringify(round(r)));
+    // arbitrary values (a ring, a station) print at full precision
+    console.log(JSON.stringify(r));
     return;
   }
   const spec = JSON.parse(args[0] === "--file" ? fs.readFileSync(args[1], "utf8") : args[0]);

@@ -2064,7 +2064,7 @@
         },
         {
           "date": "2026-09-20",
-          "label": "Air Force asks for public comment on the preferred reactor site near Spruce Lake, which sits near wetlands",
+          "label": "Public comment opens on the Air Force's preferred reactor site near Spruce Lake, which sits near wetlands",
           "kind": "milestone"
         },
         {
@@ -2079,6 +2079,11 @@
         "lat": 64.6656
       },
       "sources": [
+        {
+          "url": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
+          "outlet": "KUAC",
+          "date": "2026-09-20"
+        },
         {
           "url": "https://www.af.mil/News/Article-Display/Article/4213048/microreactor-pilot-reaches-major-project-milestone/",
           "outlet": "U.S. Air Force",
@@ -2108,11 +2113,6 @@
           "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents",
           "outlet": "U.S. Nuclear Regulatory Commission",
           "date": "2026-09-18"
-        },
-        {
-          "url": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
-          "outlet": "KUAC",
-          "date": "2026-09-20"
         }
       ],
       "first_seen": "2026-08-06",
