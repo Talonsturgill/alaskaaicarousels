@@ -355,6 +355,37 @@
             RR.forEach(function (P, i) { P[3] = sm[i]; });
           });
         }
+        // o.tonal {nearKm, lee, lit}: near profiles fill their own band with
+        // shaded TONE (a column per segment, bucketed like the strokes) instead
+        // of the flat ground ink, so gentle near ground reads as lit and lee
+        // surface rather than a void or a field of dashes (slide 08, round 5)
+        if (o.tonal && d < (o.tonal.nearKm || 20)) {
+          var tLee = hexRGB(o.tonal.lee || "#0A1712"), tLit = hexRGB(o.tonal.lit || "#2A4A33");
+          for (var tr = 0; tr < runs.length; tr++) {
+            var TR = runs[tr];
+            for (var tb = 0; tb < BK; tb++) {
+              cx.beginPath(); var tany = false;
+              for (var tq = 0; tq < TR.length - 1; tq++) {
+                var tl = (TR[tq][3] + TR[tq + 1][3]) / 2;
+                if (o.contrast) tl = Ly + (tl - Ly) * o.contrast;
+                var tbk = Math.max(0, Math.min(BK - 1, Math.floor((tl + 0.15) / 1.15 * BK)));
+                if (tbk !== tb) continue;
+                cx.moveTo(TR[tq][0], TR[tq][1]); cx.lineTo(TR[tq + 1][0], TR[tq + 1][1]);
+                cx.lineTo(TR[tq + 1][0] + 0.5, bottom); cx.lineTo(TR[tq][0] - 0.5, bottom); cx.closePath(); tany = true;
+              }
+              if (!tany) continue;
+              // the tone fades into the plain ground ink with distance, so the
+              // tonal band has no edge where it begins
+              var tw = Math.pow(Math.max(0, 1 - d / (o.tonal.nearKm || 20)), 0.8);
+              var tc = mix(ground, mix(tLee, tLit, tb / (BK - 1)), Math.round(tw * 8) / 8);
+              // quantised to steps of 6 per channel: the tone spans a narrow
+              // dark range, and unquantised it mints enough distinct inks to
+              // blow qa's 160-ink paint census and leave the ink law unproven
+              var tq6 = mix(tc, fog, t * fillMix).map(function (v) { return Math.round(v / 6) * 6; });
+              cx.fillStyle = css(tq6); cx.fill();
+            }
+          }
+        }
         for (var r = 0; r < runs.length; r++) {
           var R0 = runs[r];
           for (var bk = 0; bk < BK; bk++) {
