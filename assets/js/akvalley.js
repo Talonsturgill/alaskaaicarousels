@@ -293,7 +293,12 @@
         var d = depths[pi];
         if (o.skipNear && pi >= depths.length - o.skipNear) break;
         flushTo(d);
-        var half = d * hf, pts = [];
+        // lateral reach from CAMERA-SPACE depth, not horizontal distance: a
+        // high camera pitched down sees the near ground at a depth well past
+        // d, and sizing by d left bare wedges at the frame's lower corners
+        // (slide 04, round 3)
+        var zc = d * Math.cos(cam.pitch * D2R) - (cam.pos[1] - cam.groundM / 1000 * VE) * Math.sin(cam.pitch * D2R);
+        var half = Math.max(d, zc) * hf, pts = [];
         var cxw = cam.pos[0] + cam.fwdH[0] * d, czw = cam.pos[2] + cam.fwdH[1] * d;
         for (var si = 0; si <= NS; si++) {
           var s = -half + 2 * half * si / NS;
