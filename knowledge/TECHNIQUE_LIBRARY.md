@@ -815,3 +815,36 @@ annotation is the strongest pair):
     Never guess either rect. `scripts/contact_probe.py --slide N --base cx,cy`
     measures the render and writes the declaration, and `--verify` re-measures
     every declaration the built deck carries. D1
+
+96. **Real-Terrain Ridgeline Stack (akvalley)** — `assets/js/akvalley.js`
+    (`AKV.load(base)` returns V). Added 2026-09-24 for run No.67 (XPRIZE
+    Wildfire at Nenana). A real DEM (AWS terrain tiles, z10, cropped and
+    downsampled into `assets/geo/nenana-dem.bin`) drawn through a perspective
+    camera as occluding ridgeline profiles cut perpendicular to the heading,
+    each profile stroked lit or lee by one key light, rivers and roads draped
+    from USGS NHD and National Map geometry. It is the only engine here that
+    places a mark at a TRUE lon/lat in a perspective view, so a true-size square
+    or a named airport can be shown where it is and at the size it is.
+    `V.aim({target, heading, distKm, agl, fov, yTarget, farKm, yFar})` SOLVES the
+    camera from what the frame must show (the target on one row, the ground far
+    ahead on another) instead of guessing pitch. `V.overlay` draws bold marks
+    after the terrain with a line-of-sight raymarch, so the profile strokes can't
+    chip them into dashes; `minRun` drops orphan fragments between occlusions and
+    `hidden` draws the occluded runs as a faint dash so a shape still closes.
+    Four lessons from the round 1 critics, all now options on `V.terrain`:
+    - Profiles spaced evenly in 1/d are evenly spaced ON SCREEN over flat ground,
+      which reads as a venetian blind. `spacing: 0.3` to `0.5` opens the gaps
+      toward the camera; `minGap` keeps the far field from packing into moire;
+      `widthPow: 0.6` puts the weight in the near field.
+    - Flats print nothing under a geometric light. `relief: 12, contrast: 2.2`
+      to `3.5` shades from DEM minus a box blur (lighting only, geometry stays
+      at its stated exaggeration), so real sloughs and terraces print as lit and
+      lee patches. Real data, no noise.
+    - A DEM crop ends in a vertical step that reads as a mesa. `haze` holds dmax
+      inside the crop (`V.cropDepth`), fades the last quarter to the fog ink and
+      lays a feathered fog floor behind the stack.
+    - Small type over line art loses to the strokes. `AKV.quietCanvas(cx, sels)`
+      is a feathered destination-out knockout behind the station card, the site
+      fixture and any `.quiet` element, run after the slide draws.
+    Fog is quantised to eighths, because a continuous fog mints an ink per
+    profile and blows qa's 160 ink census. D1

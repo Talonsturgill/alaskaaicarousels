@@ -43,7 +43,7 @@
    * canvas to the sky beneath rather than laying a plate on top. */
   function quietCanvas(cx, sels, st) {
     st = st || {};
-    var pad = st.pad || [14, 8], fe = st.feather || 8;
+    var pad = st.pad || [22, 10], fe = st.feather || 10;
     cx.save();
     cx.globalCompositeOperation = "destination-out";
     cx.filter = "blur(" + fe + "px)";
@@ -247,7 +247,7 @@
       }
       function fogT(d) {
         var t = 1 - Math.exp(-Math.pow(d * fogK, 2));
-        if (o.haze) { var a = Math.max(0, Math.min(1, (d - 0.72 * dEnd) / (0.28 * dEnd))); t = Math.max(t, a * a * (3 - 2 * a)); }
+        if (o.haze) { var ff = o.haze.fadeFrom || 0.72, a = Math.max(0, Math.min(1, (d - ff * dEnd) / ((1 - ff) * dEnd))); t = Math.max(t, a * a * (3 - 2 * a)); }
         return Q(t);
       }
       var fillMix = o.haze ? 1 : 0.9;
@@ -352,7 +352,15 @@
             if (!any) continue;
             var tt = bk / (BK - 1);
             var col = mix(mix(lee, lit, Math.pow(tt, 1.3)), fog, t * 0.92);
-            cx.strokeStyle = css(col, o.litAlpha === undefined ? 1 : o.litAlpha);
+            // o.quietFlat {band, alpha}: the shade buckets nearest flat
+            // ground's own value are drawn faint, so a floodplain stops
+            // reading as ruled paper and only its real relief prints
+            var qf = 1;
+            if (o.quietFlat) {
+              var lvc = (bk + 0.5) / BK * 1.15 - 0.15;
+              if (Math.abs(lvc - Ly) < (o.quietFlat.band || 0.08)) qf = o.quietFlat.alpha === undefined ? 0.3 : o.quietFlat.alpha;
+            }
+            cx.strokeStyle = css(col, (o.litAlpha === undefined ? 1 : o.litAlpha) * qf);
             cx.lineWidth = Math.max(0.3, wd * (0.45 + 0.75 * tt));
             cx.lineJoin = "round"; cx.lineCap = "round";
             cx.stroke(); strokes++;
@@ -490,7 +498,10 @@
       pieces.forEach(function (pc) {
         var joined = cur && Math.abs(cur.last[0] - pc[0][0]) < 0.01 && Math.abs(cur.last[1] - pc[0][1]) < 0.01;
         if (!cur || !joined || cur.vis !== pc[2]) { cur = {vis: pc[2], pts: [pc[0]], len: 0, last: pc[0]}; runs.push(cur); }
-        cur.pts.push(pc[1]); cur.len += Math.hypot(pc[1][0] - pc[0][0], pc[1][1] - pc[0][1]); cur.last = pc[1];
+        cur.pts.push(pc[1]); cur.last = pc[1];
+        // only the on-screen part of a run counts toward minRun
+        var onS = function (q) { return q[0] >= 0 && q[0] <= cam.W && q[1] >= 0 && q[1] <= cam.H; };
+        if (onS(pc[0]) && onS(pc[1])) cur.len += Math.hypot(pc[1][0] - pc[0][0], pc[1][1] - pc[0][1]);
       });
       runs.forEach(function (r) { if (r.vis && st.minRun && r.len < st.minRun) r.vis = false; });
       function strokeRuns(want, layersIn, dash) {
