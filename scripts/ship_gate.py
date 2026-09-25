@@ -108,7 +108,7 @@ def _art_score(score):
     for c in score.get("criteria") or []:
         if isinstance(c, dict) and "artwork" in str(c.get("name", "")).lower():
             v = c.get("score")
-            if isinstance(v, (int, float)):
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
                 return float(v)
     return None
 
@@ -186,12 +186,17 @@ def craft_floor(run, score):
 
 
 def _deck_slides(run):
-    """The slide numbers this run actually built, from slides/slide-NN.html."""
+    """The slide numbers this run actually built: slides/slide-NN.html in the
+    working dir, or the flat slide-NN.webp/png files Phase 11 archives under
+    runs/<date>/ (it does not copy slides/, Codex on PR #401)."""
     out = set()
-    for p in (run / "slides").glob("slide-*.html"):
-        m = re.fullmatch(r"slide-(\d{2})\.html", p.name)
-        if m:
-            out.add(int(m.group(1)))
+    for d in (run / "slides", run / "final", run):
+        if not d.is_dir():
+            continue
+        for p in d.iterdir():
+            m = re.fullmatch(r"slide-(\d{2})\.(?:html|webp|png)", p.name)
+            if m:
+                out.add(int(m.group(1)))
     return out
 
 
@@ -256,6 +261,10 @@ def self_test():
         ("2026-09-26", rep(7.5), {"revision_rounds": 5}, "capped"),
         ("2026-09-26", {"criteria": []}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": "7"}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": True}]},
+         {"revision_rounds": 5}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5},
+                           _no_slides=True, _flat=True), {}, "closed"),
         ("2026-09-25", {"criteria": []}, {}, "n/a"),
         ("2026-09-26", rep(7.5), {"rounds_used": 5}, "capped"),
         ("2026-09-26", rep(7.5, rounds={"revision_rounds_completed": 5}), {}, "capped"),
@@ -266,6 +275,11 @@ def self_test():
         for date, sc, rs, want in cases:
             d = Path(t) / ("case%02d" % len(list(Path(t).iterdir()))) / date
             (d / "slides").mkdir(parents=True)
+            flat = sc.pop("_flat", False)
+            if flat:                     # the runs/<date>/ archive layout
+                for n in range(1, 10):
+                    (d / ("slide-%02d.webp" % n)).write_text("")
+                (d / "slide-01-thumb.webp").write_text("")
             if not sc.pop("_no_slides", False):
                 for n in range(1, 10):   # a nine-slide deck
                     (d / "slides" / ("slide-%02d.html" % n)).write_text("")

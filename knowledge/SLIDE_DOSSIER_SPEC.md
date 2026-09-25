@@ -158,8 +158,9 @@ plus the checklist.
   "hachure field" are both hachure; `TECHNIQUE_FAMILIES` in the checker lists
   them): the text frames (quotes, ledgers, closes) need a mark of their own
   too, because the scorer's "one slide leans on a default" is almost always
-  one of them. The largest object on every frame gets its modelling named
-  (lit face, lee, contact, material), because the scorers keep finding the
+  one of them. The largest object on every frame gets its modelling named,
+  object first and then, after a comma, the treatment (lit face, lee,
+  contact, material); an object named alone fails, because the scorers keep finding the
   biggest thing on a frame drawn with the least care. The masterful depth
   frame is where the rubric's 10 is earned, so plan it and then build it
   first.

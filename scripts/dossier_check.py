@@ -851,6 +851,20 @@ MODELLING_RE = re.compile(
     r"raymarch\w*|sdf|three\.js|3d|aerial perspective|haze|fog)\b", re.I)
 
 
+# The cell reads "object, treatment". The treatment is what follows the object:
+# the text from the first separator on, so an object whose own name happens to
+# be a treatment word ("the key", "the northern lights") is not read as its own
+# modelling (Codex on PR #401). No separator means only an object was named.
+_TREATMENT_SEP_RE = re.compile(
+    r",|;|:|\(|\s(?=(?:with|as|by|under|through|lit|drawn|rendered|model(?:l)?ed|"
+    r"shaded|carved|engraved|scribed|cast|casting|on a|in a|in an)\s)", re.I)
+
+
+def _treatment(obj):
+    m = _TREATMENT_SEP_RE.search(obj)
+    return obj[m.start():].strip(" ,;:(") if m else ""
+
+
 def _norm_technique(t):
     return " ".join(re.findall(r"[a-z0-9]+", t.lower()))
 
@@ -884,16 +898,22 @@ _TECH_GENERIC = {"relief", "linework", "line", "lines", "texture", "field", "fie
                  "mark", "work", "art", "style", "the", "a", "an", "and", "of",
                  "with", "on", "in", "over", "under", "full", "fine", "dense",
                  "light", "heavy", "map", "plate", "frame", "ink", "gold", "navy",
-                 "color", "colour", "tone", "tonal", "soft", "bold", "paper"}
+                 "color", "colour", "tone", "tonal", "soft", "bold", "paper",
+                 "accent", "accents", "detail", "details", "primary", "secondary",
+                 "base", "plus", "hero", "lit", "key", "only", "drawn", "rendered",
+                 "from", "for", "into", "its", "each", "per", "across"}
 
 
 def _technique_keys(t):
+    """Every family the cell names, AND its other meaningful words: a known
+    accent must not hide an unknown primary ("paper collage with hachure
+    accents" is still collage, Codex on PR #401)."""
     low = t.lower()
     keys = {name for name, rx in TECHNIQUE_FAMILIES if re.search(rx, low)}
-    if keys:
-        return keys
-    words = {w for w in re.findall(r"[a-z]{3,}", low) if w not in _TECH_GENERIC}
-    return words or {_norm_technique(t)}
+    keys |= {w for w in re.findall(r"[a-z]{3,}", low)
+             if w not in _TECH_GENERIC
+             and not any(re.search(rx, w) for _, rx in TECHNIQUE_FAMILIES)}
+    return keys or {_norm_technique(t)}
 
 
 def craft_plan_fails(text, slide_nos):
@@ -921,12 +941,13 @@ def craft_plan_fails(text, slide_nos):
         if not obj:
             fails.append("deck: CRAFT PLAN slide %02d names no largest object and "
                          "its modelling" % n)
-        elif not MODELLING_RE.search(obj):
+        elif not _treatment(obj) or not MODELLING_RE.search(_treatment(obj)):
             fails.append(
                 "deck: CRAFT PLAN slide %02d names its largest object ('%s') but no "
-                "modelling for it. Name the treatment (lit face and lee, material, "
-                "contact or cast shadow, depth, texture): the largest object drawn "
-                "with the least care is a named artwork shortfall" % (n, obj[:60]))
+                "modelling for it. Write the object, then after a comma how it is "
+                "modelled (lit face and lee, material, contact or cast shadow, depth, "
+                "texture): the largest object drawn with the least care is a named "
+                "artwork shortfall" % (n, obj[:60]))
     share = {}
     for n, (tech, _) in rows.items():
         if tech:
