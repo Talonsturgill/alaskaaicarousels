@@ -11,7 +11,7 @@ Six sites in play for data centers. Two answer to Juneau.
 
 Two sit on state land. Four are federal calls.
 
-The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appoints. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.
+The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appointed. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.
 
 What they say about data centers.
 

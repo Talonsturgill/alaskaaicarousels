@@ -71,7 +71,7 @@
    * the quantisation, not the land. */
   AKS.smoothDEM = function (dem, r, passes) {
     var m = dem.meta, C = m.cols, R = m.rows, src = new Float32Array(dem.data), tmp = new Float32Array(C * R);
-    r = r || 2; passes = passes || 2;
+    r = r === undefined ? 2 : r; passes = passes === undefined ? 2 : passes;   // 0 is a real request, a no-op
     for (var p = 0; p < passes; p++) {
       for (var j = 0; j < R; j++) for (var i = 0; i < C; i++) {
         var s = 0, n = 0;

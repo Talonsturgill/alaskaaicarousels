@@ -1,7 +1,7 @@
 {
   "pdf": "/home/user/alaskaaicarousels/out/2026-09-25/final/carousel.pdf",
   "pdf_mode": "vector",
-  "pdf_bytes": 6142679,
+  "pdf_bytes": 6142684,
   "pdf_mb": 6.14,
   "slides": 9,
   "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-25/final/contact_sheet.png",
@@ -27,8 +27,8 @@
       },
       {
         "name": "slide-02.png",
-        "sha256": "dafb8ecbe5bbffe29d224a6f8b636fd03f893aeafc87a0e6d621b2014b949388",
-        "bytes": 3750908
+        "sha256": "c04e01059da523a73edd3c9d92f037d68f31d5d5d05375328aae98ce03959370",
+        "bytes": 3751610
       },
       {
         "name": "slide-03.png",
@@ -74,8 +74,8 @@
       },
       {
         "name": "slide-02.html",
-        "sha256": "9dd236094938f063601ab11fb872086a41ca354e4e8c96aec063c7a3a9295874",
-        "bytes": 7513
+        "sha256": "4ccbf2a028f901d3375f053bc7dbad8edf1fa593a391140ba03d6a3268eb9503",
+        "bytes": 7514
       },
       {
         "name": "slide-03.html",
