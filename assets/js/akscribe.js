@@ -49,7 +49,8 @@
     var buf = await (await fetch(base + ".bin")).arrayBuffer();
     var a = new Int16Array(buf);
     if (a.length !== meta.cols * meta.rows) {
-      console.error("AK CONTRACT: DEM " + base + " has " + a.length + " cells, meta says " + meta.cols * meta.rows);
+      // a truncated or mismatched pair would sample undefined past the tail and render incomplete terrain quietly
+      throw new Error("AK CONTRACT: DEM " + base + " has " + a.length + " cells, meta says " + meta.cols * meta.rows);
     }
     var C = meta.cols, R = meta.rows;
     function sample(lon, lat) {
@@ -336,6 +337,8 @@
     }
     g.putImageData(img, 0, 0);
     cx.save();
+    // the raster is whole cells, so it can overrun the requested box by up to res - 1 px; clip to the box
+    cx.beginPath(); cx.rect(X, Y, W, H); cx.clip();
     cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = "high";
     cx.drawImage(cv, X, Y, cols * r, rows * r);
     cx.restore();

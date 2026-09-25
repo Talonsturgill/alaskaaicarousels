@@ -55,6 +55,10 @@ export function init(THREE) {
       canvas.style.left = V[0] + "px"; canvas.style.top = V[1] + "px";
       canvas.style.width = V[2] + "px"; canvas.style.height = V[3] + "px";
       canvas.width = V[2] * 2; canvas.height = V[3] * 2;
+    } else {
+      // full frame: a canvas with no CSS size would display at its 2x backing size and miss the design-px camera
+      if (!canvas.style.width) canvas.style.width = W + "px";
+      if (!canvas.style.height) canvas.style.height = H + "px";
     }
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true,
       preserveDrawingBuffer: true, premultipliedAlpha: false });
@@ -65,7 +69,7 @@ export function init(THREE) {
     // PCFSoft ignores shadow.radius; a slide that asks for a penumbra gets filtered PCF, which honours it
     renderer.shadowMap.type = o.shadowSoft ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = o.exposure || 1.0;
+    renderer.toneMappingExposure = o.exposure === undefined ? 1.0 : o.exposure;
 
     const scene = new THREE.Scene();
     // Orthographic camera looking straight down the -z axis: world px = screen px.
