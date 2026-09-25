@@ -293,7 +293,7 @@
    * ranges FORM (ridge, lit flank, dark lee) that strokes alone read as fuzz.
    *   o: x,y,w,h, pxPerKm, res, keyAz, keyEl, exag, gain, color, mask, sea */
   var ALLOWED_GLOW = ["x", "y", "w", "h", "pxPerKm", "res", "keyAz", "keyEl", "exag",
-    "gain", "color", "mask", "sea", "lee"];
+    "gain", "color", "mask", "sea"];
   AKS.glow = function (cx, proj, dem, o) {
     contract("AKS.glow", o, ALLOWED_GLOW);
     var X = o.x || 0, Y = o.y || 0, W = o.w, H = o.h, r = o.res || 3, ppk = o.pxPerKm;
@@ -301,7 +301,7 @@
     var az = (o.keyAz === undefined ? 330 : o.keyAz) * Math.PI / 180;
     var el = (o.keyEl === undefined ? 40 : o.keyEl) * Math.PI / 180;
     var lx = Math.cos(el) * Math.sin(az), ly = -Math.cos(el) * Math.cos(az), lz = Math.sin(el);
-    var exag = o.exag || 6, gain = o.gain || 1.6, lee = o.lee || 0;
+    var exag = o.exag || 6, gain = o.gain || 1.6;
     var rgb = (o.color || "#BFDDF0").match(/[0-9a-f]{2}/gi).map(function (h) { return parseInt(h, 16); });
     var E = new Float32Array((cols + 2) * (rows + 2)), C2 = cols + 2;
     for (var j = -1; j <= rows; j++) for (var i = -1; i <= cols; i++) {
@@ -321,7 +321,6 @@
       var nl = Math.sqrt(gx * gx + gy * gy + 1);
       var lam = (-gx * lx - gy * ly + lz) / nl;
       var a = Math.max(0, lam - flat) * gain;
-      if (lee) a = Math.max(a, 0);
       var m = 1;
       if (o.mask) { var pp = proj.invert([X + (i + 0.5) * r, Y + (j + 0.5) * r]); m = o.mask(pp[0], pp[1]); }
       D[q] = rgb[0]; D[q + 1] = rgb[1]; D[q + 2] = rgb[2]; D[q + 3] = Math.min(255, a * m * 255);
@@ -424,10 +423,13 @@
    * highlight on the key side and a thin dark ink body at the lee edge. */
   AKS.ink = function (cx, pts, o) {
     o = o || {};
+    var trace = function () {
+      cx.beginPath();
+      if (typeof pts[0] === "number") { cx.arc(pts[0], pts[1], pts[2], 0, Math.PI * 2); }
+      else { pts.forEach(function (p, i) { i ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1]); }); cx.closePath(); }
+    };
     cx.save();
-    cx.beginPath();
-    if (typeof pts[0] === "number") { cx.arc(pts[0], pts[1], pts[2], 0, Math.PI * 2); }
-    else { pts.forEach(function (p, i) { i ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1]); }); cx.closePath(); }
+    trace();
     cx.shadowColor = "rgba(1,3,6,0.85)"; cx.shadowBlur = o.cast || 4;
     cx.shadowOffsetX = o.dx === undefined ? 1.2 : o.dx; cx.shadowOffsetY = o.dy === undefined ? 1.6 : o.dy;
     cx.fillStyle = "#9A7418"; cx.fill();
@@ -438,7 +440,9 @@
       g.addColorStop(0, "#FFDA6E"); g.addColorStop(0.38, "#FFC72C"); g.addColorStop(1, "#C9961E");
       cx.fillStyle = g;
     } else cx.fillStyle = "#FFC72C";
-    cx.save(); cx.clip(); cx.translate(-0.6, -0.8);
+    // canvas stores a path in device space as it is built, so the lit body is
+    // re-traced AFTER the shift; filling the old path would cover the dark lee edge
+    cx.save(); cx.clip(); cx.translate(-0.6, -0.8); trace();
     cx.fill(); cx.restore();
     cx.restore();
   };
