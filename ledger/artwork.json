@@ -2194,6 +2194,56 @@
       "depth_technique": "a perspective camera over a real DEM: occluding ridgeline profiles with fog by distance, weight by nearness, a haze floor at the crop edge, and line-of-sight clipped overlays",
       "line_voice": "instrument",
       "narrative_structure": "argument (hook, pay, place, task, turn, breather, data, escalate, one ask)"
+    },
+    {
+      "run_date": "2026-09-25",
+      "carousel_no": 68,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE LIGHT-TABLE SCRIBE. Plan-view transverse Mercator strips of the 149 W corridor with real DEM relief drawn as transmitted light through a dark scribecoat film (slope-thresholded key-lit hachure plus a lit-face glow and halation), and one three.js-rendered fountain pen whose state carries the argument.",
+      "atmosphere": "NEW: TRANSMITTED KEY. The land lit from below the film, the pen lit by one lamp at azimuth 330, elevation 46, with a lamp pool of fine rules under it where it lies.",
+      "continuity_devices": [
+        "D1 the pen's state (hover over Houston, nib down on the pad and the Houston disc, capped away from the federal ring, capped at rest)",
+        "D2 the ink law (gold only where the state signs, federal sites dashed rings never filled)",
+        "D3 the meridian locator (a latitude rail at the left margin with the frame's own window bracketed, computed from its projection)"
+      ],
+      "hook_archetype": "NEW: THE REACH COUNT (a count of places against the count one office reaches)",
+      "palette_family": "light table: scribecoat navy #04070B to #13212E, halation #5E9DC0, lit face #9CCBE6, scribed core #EEF7FF, gold #FFC72C only for state ink, #7F93A6 only for federal rings",
+      "type_pairing": "Instrument Serif 400 display over Bricolage Grotesque body over JetBrains Mono 500 labels",
+      "dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "97 NEW akscribe light-table scribe (slope-thresholded key-lit hachure, lit-face glow, halation, reserves, lamp pool)",
+        "98 NEW akpen rendered fountain pen with a shadow catcher",
+        "feathered label holes",
+        "ring beds under dashed marks",
+        "computed locator windows"
+      ],
+      "note": "Four pixel rounds and two flow rounds. Slide 04 (metres of relief) drew fur at every stroke threshold and shipped glow-only. JBER's ring vanished on four frames until rings got coat-dark beds and were drawn last. The flow critic moved 07's headline to the deck's one late fact.",
+      "measured": {
+        "revision_rounds": 4,
+        "flow_rounds": 2,
+        "machine_qa": "PASS, 0 fails, 0 warns, 9 of 9 frames",
+        "pdf_mode": "vector",
+        "pdf_mb": 6.14,
+        "score": 8.69,
+        "score_normalized": 7.9
+      },
+      "continuity_device": "motif: the pen's state, plus the ink law, plus the meridian locator",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 4
+      },
+      "new_techniques_logged": [
+        "97 akscribe light-table scribe",
+        "98 akpen rendered fountain pen"
+      ],
+      "depth_technique": "transmitted light through a film plus one rendered object with a measured contact shadow on a lit lamp pool",
+      "line_voice": "scribe",
+      "narrative_structure": "argument (hook, pay, the four, state, turn, breather, state and federal, federal with the late date, ledger, one ask)"
     }
   ]
 }

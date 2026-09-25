@@ -1,0 +1,216 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the North Slope pad, state ink': canvas 107.5 dE, page 109.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston land, state ink': canvas 0.0 dE, page 99.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 50.6 dE, page 89.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the Alaska Range, scribed': canvas 55.6 dE, page 61.3 dE, 63% of its rect is clear of opaque DOM (canvas stands on the rest)"
+      ],
+      "fits": [
+        "hook 'Six sites in play for data centers. Two answ' fits 4/4 lines at 115.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the North Slope pad, state ink': canvas 58.0 dE, page 87.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston land, state ink': canvas 62.8 dE, page 86.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 50.0 dE, page 89.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the lit corridor relief': canvas 55.5 dE, page 59.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'MILEPOST 390, STATE' lands 10.9px from its target",
+        "leader 'EIELSON, AIR FORCE' lands 13.0px from its target",
+        "leader 'CLEAR, AIR FORCE' lands 13.0px from its target",
+        "leader 'HOUSTON, STATE' lands 11.0px from its target",
+        "leader 'JBER, AIR FORCE' lands 13.0px from its target",
+        "leader 'COOK INLET, FERC' lands 13.0px from its target",
+        "leader 'MILEPOST 390, STATE' meets its label 7.5px away",
+        "leader 'EIELSON, AIR FORCE' meets its label 8.6px away",
+        "leader 'CLEAR, AIR FORCE' meets its label 8.2px away",
+        "leader 'HOUSTON, STATE' meets its label 8.1px away",
+        "leader 'JBER, AIR FORCE' meets its label 8.5px away",
+        "leader 'COOK INLET, FERC' meets its label 8.8px away",
+        "leader 'MILEPOST 390, STATE' is drawn 62 px at 53 degrees, inside the pointer band",
+        "leader 'EIELSON, AIR FORCE' is drawn 75 px at 63 degrees, inside the pointer band",
+        "leader 'CLEAR, AIR FORCE' is drawn 100 px at 12 degrees, inside the pointer band",
+        "leader 'HOUSTON, STATE' is drawn 114 px at 16 degrees, inside the pointer band",
+        "leader 'JBER, AIR FORCE' is drawn 120 px at 44 degrees, inside the pointer band",
+        "leader 'COOK INLET, FERC' is drawn 106 px at 70 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Two sit on state land.Four are federal calls' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the Brooks Range at Atigun, scribed': canvas 68.5 dE, page 68.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 64.0 dE, page 72.6 dE, 100% of its rect is clear of opaque DOM",
+        "'Atigun Pass, on the Dalton': canvas 59.4 dE, page 63.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'What they say about data centers.' fits 1/1 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the pad in state ink': canvas 62.1 dE, page 76.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the Sag terraces, in transmitted light': canvas 49.3 dE, page 60.8 dE, 50% of its rect is clear of opaque DOM (canvas#pen.full stands on the rest)",
+        "'the meridian locator': canvas 47.8 dE, page 88.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the pad NE corner' lands 5.8px from its target",
+        "leader 'the pad SW corner' lands 5.8px from its target",
+        "leader 'the pad NE corner' meets its label 0.0px away",
+        "leader 'the pad SW corner' meets its label 6.2px away",
+        "leader 'the pad NE corner' is drawn 68 px at 27 degrees, inside the pointer band",
+        "leader 'the pad SW corner' is drawn 106 px at 73 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Milepost 390.State land, 50 years.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'5 km scale bar against the projection that drew the pad' holds: 5 vs 4.99999 km (within 0.08)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'no line joins the pad to the grid': dE 6.7, AUC 0.64, visible 92%/100%, seen 7065/7680px at 432w"
+      ],
+      "motifs": [
+        "'the pad, state ink': canvas 79.0 dE, page 84.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the Railbelt grid near Fairbanks': canvas 80.7 dE, page 78.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the Brooks Range, scribed': canvas 49.9 dE, page 48.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 48.4 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the pad' lands 13.6px from its target",
+        "leader 'the pad' meets its label 6.2px away",
+        "leader 'the pad' is drawn 37 px at 33 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "pq '\"not interconnectedto the Railbeltor any oth' fits 4/4 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the Houston land, state ink at true area': canvas 64.5 dE, page 67.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the Alaska Range, scribed': canvas 62.9 dE, page 74.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 60.2 dE, page 84.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'HOUSTON, STATE' lands 14.7px from its target",
+        "leader 'JBER' lands 21.1px from its target",
+        "leader 'EIELSON' lands 21.0px from its target",
+        "leader 'CLEAR' lands 21.0px from its target",
+        "leader 'HOUSTON, STATE' meets its label 7.9px away",
+        "leader 'JBER' meets its label 8.6px away",
+        "leader 'EIELSON' meets its label 8.1px away",
+        "leader 'CLEAR' meets its label 8.3px away",
+        "leader 'HOUSTON, STATE' is drawn 109 px at 14 degrees, inside the pointer band",
+        "leader 'JBER' is drawn 88 px at 24 degrees, inside the pointer band",
+        "leader 'EIELSON' is drawn 57 px at 67 degrees, inside the pointer band",
+        "leader 'CLEAR' is drawn 56 px at 39 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'One state decision,three federal ones.' fits 2/2 lines at 85.5px"
+      ],
+      "asserts": [
+        "'Houston disc radius, 19,950 acres at the frame scale' holds: 11.6596 vs 11.6471 px (within 0.6)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the capped pen lying on the map': shadow L* 5.7 vs ground L* 22.8, dL 17.1 at 432w"
+      ],
+      "motifs": [
+        "'the DeepGreen ring, federal, never inked': canvas 59.4 dE, page 63.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 44.9 dE, page 85.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the DeepGreen ring, its edge' lands 0.0px from its target",
+        "leader 'the DeepGreen ring, its edge' meets its label 1.6px away",
+        "leader 'the DeepGreen ring, its edge' is drawn 59 px at 72 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Filings closethe day before the vote.' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the corridor strip, scribed relief': canvas 77.7 dE, page 88.7 dE, 88% of its rect is clear of opaque DOM (div.abs stands on the rest)",
+        "'the Milepost 390 pin, state ink': canvas 106.4 dE, page 109.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston pin, state ink': canvas 106.6 dE, page 109.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 50.6 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'r1 pin' lands 7.0px from its target",
+        "leader 'r2 pin' lands 11.0px from its target",
+        "leader 'r2 pin' lands 11.0px from its target",
+        "leader 'r3 pin' lands 7.0px from its target",
+        "leader 'r4 pin' lands 11.0px from its target",
+        "leader 'r1 pin' meets its label 26.0px away",
+        "leader 'r2 pin' meets its label 26.0px away",
+        "leader 'r2 pin' meets its label 26.0px away",
+        "leader 'r3 pin' meets its label 26.0px away",
+        "leader 'r4 pin' meets its label 26.0px away",
+        "leader 'r1 pin' is drawn 104 px at 3 degrees, inside the pointer band",
+        "leader 'r2 pin' is drawn 206 px at 58 degrees, inside the pointer band",
+        "leader 'r2 pin' is drawn 138 px at 81 degrees, inside the pointer band",
+        "leader 'r3 pin' is drawn 280 px at 60 degrees, inside the pointer band",
+        "leader 'r4 pin' is drawn 259 px at 32 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Who signs each one.' fits 1/1 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the capped pen lying on the map': shadow L* 2.3 vs ground L* 13.8, dL 11.5 at 432w"
+      ],
+      "motifs": [
+        "'Polaris, the north arrow': canvas 107.8 dE, page 107.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the Denali massif, scribed': canvas 53.5 dE, page 53.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the meridian locator': canvas 63.2 dE, page 82.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'Denali summit' lands 6.4px from its target",
+        "leader 'Denali summit' meets its label 6.1px away",
+        "leader 'Denali summit' is drawn 160 px at 30 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Save this.Check it againafter November 3rd.' fits 3/3 lines at 117.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

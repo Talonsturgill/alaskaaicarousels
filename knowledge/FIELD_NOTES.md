@@ -8526,3 +8526,37 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   "because additional rounds repeat the same diagnostic errors" (https://arxiv.org/html/2607.08010).
   That is the case for today's probe: a station question asked by render cost a critic round each
   time.
+
+## 2026-09-25, No.68, retro: the light-table scribe (the governor ballot and six data center sites)
+
+- TRANSMITTED LIGHT AS A MATERIAL. `assets/js/akscribe.js` is a new bench: a scribecoat navy film,
+  real DEM relief drawn as key-lit hachure strokes cut only above a slope threshold in m per km
+  (`AKS.scribeRelief`), a Lambert lit-face glow (`AKS.glow`) and a halation pass. Thresholding in
+  m per km instead of a normalised slope is what kept flat ground as uncut coat; the first
+  normalised version furred every lowland.
+- FUR IS A SLOPE PROBLEM, NOT A STROKE PROBLEM. At metres of relief (slide 04, the Slope at z11)
+  every stroke family printed as fur: s0 3, 9, 14, 22 and a long-stroke variant were all rendered
+  and looked at, and every one drew hair on the bluff margins. Turning the strokes OFF on that one
+  frame and letting the glow carry the terraces fixed it in one render and scored 8.1. Decide in the
+  dossier which frames are too flat to scribe, from the DEM's slope percentiles, before the first
+  render.
+- A FEDERAL RING NEEDS A BED. Dashed #7F93A6 rings on lit relief were uncountable in round 1 on four
+  frames (JBER vanished every time, beside Houston and under the Knik Arm coast). `AKS.ring` now
+  strokes a coat-dark annulus under the dashes, and on 01 the rings sit on their own small canvas
+  above the pen's shadow. Draw every mark that carries a count LAST, on a bed.
+- LABEL HOLES, NOT TEXT STROKES. A mono label with a paint-order stroke still reads struck through
+  when a bright coast crosses it. A feathered destination-out rect under each label, computed from
+  the label's own anchor BEFORE the light layer is composited (02, 06, 07, 08, 04), fixed every
+  collision the critics named.
+- A LOCATOR IS A PROMISE ABOUT POSITION. Round 1 found the meridian bracket beside Bronson's cell
+  on the neutrality frame, where it read as a selection mark (a blocker). Any device in the margin
+  of a candidates frame must be level with no candidate. The windows are now computed from each
+  frame's own projection (`proj.invert` of the top and bottom edge); the typed windows in the plan
+  were wrong on 09 by more than two degrees.
+- THE FLOW CRITIC FOUND WHAT FOUR PIXEL ROUNDS COULD NOT: 07's headline repeated a sentence from 02
+  and buried the deck's one late fact. Promoting "Filings close the day before the vote." to the
+  headline and cutting a 20-word clause lifted the flow score from 7.8 to 8.4.
+- Review ran four pixel rounds (critic ranges 6.8 to 7.4, then 7.2 to 8.5, then 7.2 to 8.4, then
+  8.0 to 8.1 on the last two) and two flow rounds. The pen's contact rects went stale twice when
+  the pen moved; re-sample the L* profile across the barrel after any pen move, since qa measures
+  wherever the rects point.

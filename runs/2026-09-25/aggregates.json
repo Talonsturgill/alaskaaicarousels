@@ -1,0 +1,200 @@
+{
+ "run_date": "2026-09-25",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 1,
+   "text": "Six sites in play for data centers. Two answer to Juneau.",
+   "fragment": "Six sites",
+   "n": 6,
+   "subject": "data center sites in play",
+   "members": [
+    "C23",
+    "C28",
+    "C33",
+    "C41"
+   ],
+   "items": [
+    "STAK Energy",
+    "Alaska Industrial Development",
+    "Joint Base Elmendorf-Richardson",
+    "Eielson",
+    "Clear Space Force Station",
+    "DeepGreen"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 1,
+   "text": "Six sites in play for data centers. Two answer to Juneau.",
+   "fragment": "Two answer",
+   "n": 2,
+   "subject": "state land decisions",
+   "members": [
+    "C23",
+    "C28"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Two sit on state land. Four are federal calls.",
+   "fragment": "Two sit",
+   "n": 2,
+   "subject": "state land decisions",
+   "members": [
+    "C23",
+    "C28"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Two sit on state land. Four are federal calls.",
+   "fragment": "Four are federal calls",
+   "n": 4,
+   "subject": "federal sites",
+   "members": [
+    "C33",
+    "C41"
+   ],
+   "items": [
+    "Joint Base Elmendorf-Richardson",
+    "Eielson",
+    "Clear Space Force Station",
+    "DeepGreen"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "One state decision, three federal ones.",
+   "fragment": "One state decision",
+   "n": 1,
+   "subject": "state decision on the Railbelt frame",
+   "members": [
+    "C28"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "One state decision, three federal ones.",
+   "fragment": "three federal ones",
+   "n": 3,
+   "subject": "Air Force installations",
+   "members": [
+    "C33"
+   ],
+   "items": [
+    "Joint Base Elmendorf-Richardson",
+    "Eielson",
+    "Clear Space Force Station"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "text": "A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.",
+   "fragment": "Two candidates",
+   "n": 2,
+   "subject": "candidates who raised own power",
+   "members": [
+    "C02",
+    "C04"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.",
+   "fragment": "1 to 3",
+   "member": "C54"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "THE PAD, ABOUT 640 ACRES",
+   "fragment": "640 ACRES",
+   "member": "C61"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Milepost 390. State land, 50 years.",
+   "fragment": "50 years",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner.",
+   "fragment": "4 acres",
+   "member": "C24"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner.",
+   "fragment": "26 miles",
+   "member": "C25"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.",
+   "fragment": "19,950 acres two miles",
+   "member": "C28"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.",
+   "fragment": "4,700 acres",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "The Senate passed one 14 to 5. The House didn't act. A veto takes two-thirds to override.",
+   "fragment": "14 to 5",
+   "member": "C13"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "text": "5 KM",
+   "note": "the printed scale bar, 5 km at 19 px per km, asserted against the projection in __akAssert"
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appoints. The Air Force decides three bases. FERC decides Cook Inlet.",
+   "fragment": "three bases",
+   "n": 3,
+   "subject": "Air Force installations",
+   "members": [
+    "C33"
+   ],
+   "items": [
+    "Joint Base Elmendorf-Richardson",
+    "Eielson",
+    "Clear Space Force Station"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 3,
+   "text": "THE FOUR CANDIDATES, IN THEIR OWN WORDS",
+   "fragment": "FOUR CANDIDATES",
+   "n": 4,
+   "subject": "governor candidates",
+   "members": [
+    "C01",
+    "C06",
+    "C03",
+    "C08"
+   ]
+  }
+ ]
+}
