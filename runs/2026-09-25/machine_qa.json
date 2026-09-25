@@ -5,7 +5,7 @@
       "fails": [],
       "warns": [],
       "motifs": [
-        "'the North Slope pad, state ink': canvas 107.5 dE, page 109.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the North Slope pad, state ink': canvas 107.6 dE, page 109.4 dE, 100% of its rect is clear of opaque DOM",
         "'the Houston land, state ink': canvas 0.0 dE, page 99.6 dE, 100% of its rect is clear of opaque DOM",
         "'the meridian locator': canvas 50.6 dE, page 89.6 dE, 100% of its rect is clear of opaque DOM",
         "'the Alaska Range, scribed': canvas 55.6 dE, page 61.3 dE, 63% of its rect is clear of opaque DOM (canvas stands on the rest)"
@@ -19,8 +19,8 @@
       "fails": [],
       "warns": [],
       "motifs": [
-        "'the North Slope pad, state ink': canvas 58.0 dE, page 87.2 dE, 100% of its rect is clear of opaque DOM",
-        "'the Houston land, state ink': canvas 62.8 dE, page 86.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the North Slope pad, state ink': canvas 68.0 dE, page 73.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston land, state ink': canvas 62.0 dE, page 73.6 dE, 100% of its rect is clear of opaque DOM",
         "'the meridian locator': canvas 50.0 dE, page 89.6 dE, 100% of its rect is clear of opaque DOM",
         "'the lit corridor relief': canvas 55.5 dE, page 59.4 dE, 100% of its rect is clear of opaque DOM"
       ],
@@ -93,7 +93,7 @@
         "'no line joins the pad to the grid': dE 6.7, AUC 0.64, visible 92%/100%, seen 7065/7680px at 432w"
       ],
       "motifs": [
-        "'the pad, state ink': canvas 79.0 dE, page 84.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the pad, state ink': canvas 78.8 dE, page 83.9 dE, 100% of its rect is clear of opaque DOM",
         "'the Railbelt grid near Fairbanks': canvas 80.7 dE, page 78.2 dE, 100% of its rect is clear of opaque DOM",
         "'the Brooks Range, scribed': canvas 49.9 dE, page 48.6 dE, 100% of its rect is clear of opaque DOM",
         "'the meridian locator': canvas 48.4 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM"
@@ -112,7 +112,7 @@
       "fails": [],
       "warns": [],
       "motifs": [
-        "'the Houston land, state ink at true area': canvas 64.5 dE, page 67.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston land, state ink at true area': canvas 64.5 dE, page 63.5 dE, 100% of its rect is clear of opaque DOM",
         "'the Alaska Range, scribed': canvas 62.9 dE, page 74.6 dE, 100% of its rect is clear of opaque DOM",
         "'the meridian locator': canvas 60.2 dE, page 84.5 dE, 100% of its rect is clear of opaque DOM"
       ],
@@ -162,9 +162,9 @@
       "fails": [],
       "warns": [],
       "motifs": [
-        "'the corridor strip, scribed relief': canvas 77.7 dE, page 88.7 dE, 88% of its rect is clear of opaque DOM (div.abs stands on the rest)",
-        "'the Milepost 390 pin, state ink': canvas 106.4 dE, page 109.3 dE, 100% of its rect is clear of opaque DOM",
-        "'the Houston pin, state ink': canvas 106.6 dE, page 109.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the corridor strip, scribed relief': canvas 77.7 dE, page 88.5 dE, 88% of its rect is clear of opaque DOM (div.abs stands on the rest)",
+        "'the Milepost 390 pin, state ink': canvas 107.3 dE, page 109.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the Houston pin, state ink': canvas 106.5 dE, page 109.4 dE, 100% of its rect is clear of opaque DOM",
         "'the meridian locator': canvas 50.6 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM"
       ],
       "leaders": [

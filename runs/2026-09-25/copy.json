@@ -26,7 +26,8 @@
         "C45",
         "C46",
         "C60",
-        "C62"
+        "C62",
+        "C64"
       ],
       "labels": [
         "GOLD INK, STATE LAND",
@@ -47,7 +48,8 @@
         "C41",
         "C45",
         "C56",
-        "C60"
+        "C60",
+        "C64"
       ],
       "labels": [
         "MILEPOST 390, STATE",
@@ -137,7 +139,8 @@
         "C31",
         "C33",
         "C35",
-        "C36"
+        "C36",
+        "C64"
       ],
       "labels": [
         "HOUSTON, STATE",
@@ -152,7 +155,7 @@
       "n": 7,
       "kicker": "FERC PROJECT P-15423-000",
       "headline": "Filings close the day before the vote.",
-      "body": "DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.",
+      "body": "DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.",
       "claim_ids": [
         "C41",
         "C42",
