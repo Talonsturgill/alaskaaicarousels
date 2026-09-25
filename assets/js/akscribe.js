@@ -119,7 +119,7 @@
     g.addColorStop(0, lit); g.addColorStop(0.55, base); g.addColorStop(1, deep);
     cx.fillStyle = g; cx.fillRect(0, 0, W, H);
     // film tooth: base striations, seeded, very low contrast
-    var rnd = AK.rng(o.seed || 1);
+    var rnd = AK.rng(o.seed === undefined ? 1 : o.seed);
     cx.save();
     cx.globalAlpha = o.tooth === undefined ? 0.05 : o.tooth;
     cx.strokeStyle = o.toothInk || "#2A4254";
@@ -159,10 +159,10 @@
     var key = o.keyAz === undefined ? 330 : o.keyAz;
     return AK.hachureField(cx, {
       x: X, y: Y, w: W, h: H,
-      seed: o.seed || 1,
+      seed: o.seed === undefined ? 1 : o.seed,
       height: height,
       cell: o.cell || 7,
-      passes: o.passes || 4,
+      passes: o.passes === undefined ? 4 : o.passes,
       sunAz: (key + 180) % 360,        // strokes on the LIT faces
       sunEl: o.keyEl === undefined ? 40 : o.keyEl,
       sunJitter: o.sunJitter === undefined ? 9 : o.sunJitter,
@@ -218,8 +218,8 @@
     var lx = Math.cos(el) * Math.sin(az), ly = -Math.cos(el) * Math.cos(az), lz = Math.sin(el);
     var rgb = (o.color || "#CFE6F5").match(/[0-9a-f]{2}/gi).map(function (h) { return parseInt(h, 16); });
     var a0 = o.alpha === undefined ? 0.5 : o.alpha;
-    var wMin = o.minWidth || 0.4, wMax = o.maxWidth || 2.2, lenS = o.lenScale || 1.6;
-    var passes = o.passes || 2, jit = o.jitter === undefined ? 0.35 : o.jitter;
+    var wMin = o.minWidth === undefined ? 0.4 : o.minWidth, wMax = o.maxWidth || 2.2, lenS = o.lenScale || 1.6;
+    var passes = o.passes === undefined ? 2 : o.passes, jit = o.jitter === undefined ? 0.35 : o.jitter;
     var mask = o.mask || null, probes = o.probes || [];
     var pst = probes.map(function (p) { return { name: p.name, n: 0, s: 0, strokes: 0 }; });
     var e = function (x, y) {
@@ -230,7 +230,7 @@
     var strokes = 0, wLo = Infinity, wHi = 0, d = cell * 0.5, falls = [];
     cx.save(); cx.lineCap = "round";
     for (var pass = 0; pass < passes; pass++) {
-      var rnd = AK.rng((o.seed || 1) + pass * 7919);
+      var rnd = AK.rng((o.seed === undefined ? 1 : o.seed) + pass * 7919);
       var gauss = function () {
         var u = 0, v = 0, m = 0;
         do { u = rnd() * 2 - 1; v = rnd() * 2 - 1; m = u * u + v * v; } while (m >= 1 || m === 0);
@@ -351,7 +351,7 @@
     var W = layer.width, H = layer.height;
     var h = document.createElement("canvas"); h.width = W; h.height = H;
     var hx = h.getContext("2d");
-    hx.filter = "blur(" + (o.blur || 6) * 2 + "px)";
+    hx.filter = "blur(" + (o.blur === undefined ? 6 : o.blur) * 2 + "px)";
     hx.drawImage(layer, 0, 0);
     cx.save();
     cx.setTransform(1, 0, 0, 1, 0, 0);
@@ -394,7 +394,7 @@
    * with the frame's own window bracketed. Furniture, drawn in light.
    * Returns the rail rect for __akMotifs. */
   AKS.locator = function (cx, o) {
-    var x = o.x, y0 = o.y0, y1 = o.y1, n = o.north || 70.6, s = o.south || 60;
+    var x = o.x, y0 = o.y0, y1 = o.y1, n = o.north === undefined ? 70.6 : o.north, s = o.south === undefined ? 60 : o.south;
     var Y = function (lat) { return y0 + (n - lat) / (n - s) * (y1 - y0); };
     cx.save();
     cx.strokeStyle = "rgba(191,221,240,0.30)"; cx.lineWidth = 1;
@@ -422,7 +422,7 @@
     cx.save();
     // a coat-dark bed under the dashes, so a ring stays countable on lit relief or a coast (No.68 critics)
     if (o.halo !== 0) {
-      cx.strokeStyle = "rgba(4,7,11," + (o.haloAlpha || 0.82) + ")"; cx.lineWidth = (o.width || 2.2) + (o.halo || 4);
+      cx.strokeStyle = "rgba(4,7,11," + (o.haloAlpha === undefined ? 0.82 : o.haloAlpha) + ")"; cx.lineWidth = (o.width || 2.2) + (o.halo || 4);
       cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.stroke();
     }
     cx.strokeStyle = o.color || "#7F93A6"; cx.lineWidth = o.width || 2.2;
@@ -442,7 +442,7 @@
     };
     cx.save();
     trace();
-    cx.shadowColor = "rgba(1,3,6,0.85)"; cx.shadowBlur = o.cast || 4;
+    cx.shadowColor = "rgba(1,3,6,0.85)"; cx.shadowBlur = o.cast === undefined ? 4 : o.cast;
     cx.shadowOffsetX = o.dx === undefined ? 1.2 : o.dx; cx.shadowOffsetY = o.dy === undefined ? 1.6 : o.dy;
     cx.fillStyle = "#9A7418"; cx.fill();
     cx.shadowColor = "transparent";
@@ -495,7 +495,7 @@
     cx.save();
     cx.globalCompositeOperation = "destination-out";
     rects.forEach(function (r) {
-      cx.filter = "blur(" + (r[4] || 22) + "px)";
+      cx.filter = "blur(" + (r[4] === undefined ? 22 : r[4]) + "px)";
       cx.fillStyle = "rgba(0,0,0," + (r[5] === undefined ? 0.9 : r[5]) + ")";
       cx.fillRect(r[0], r[1], r[2], r[3]);
     });

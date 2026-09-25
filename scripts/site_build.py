@@ -6166,10 +6166,25 @@ def slide_alts(r):
     return alts
 
 
+def disclosure_text(r):
+    """A conflict disclosure the run opened its first comment with, or "".
+
+    The first comment is the sources block pasted under the LinkedIn post, and
+    the site never prints it (the verified record is the sources section). A
+    deck whose subject touches the studio's own interests opens that comment
+    with a paragraph beginning "A disclosure." (No.51 on 2026-09-05, No.68 on
+    2026-09-25), and a reader of the archive or a feed has to see it as well as
+    a reader of the post (Codex on PR #399), so that one paragraph is carried
+    into the story and the article text. Nothing else in the comment is."""
+    first = (r.get("first_comment") or "").strip().split("\n\n", 1)[0].strip()
+    return house(first) if first.lower().startswith("a disclosure.") else ""
+
+
 def caption_paragraphs(r):
     """The deck's LinkedIn caption rendered as site paragraphs: the real,
     crawlable text of the story. Drops the hook line (the hero already says
-    it), trailing hashtag lines, and anything after the sources label."""
+    it), trailing hashtag lines, and anything after the sources label. A
+    first-comment disclosure, when the run wrote one, leads the story."""
     lines = [l.rstrip() for l in r["caption"].split("\n")]
     if lines and lines[0].strip() == r["hook"]:
         lines = lines[1:]
@@ -6183,6 +6198,9 @@ def caption_paragraphs(r):
         kept.append(l)
     text = "\n".join(kept).strip().replace(": ", ", ")
     paras = [p.strip() for p in text.split("\n\n") if p.strip()]
+    disc = disclosure_text(r)
+    if disc:
+        paras.insert(0, disc)
     return "".join(f"<p>{esc(p)}</p>" for p in paras)
 
 
@@ -6331,6 +6349,9 @@ def article_html(r):
             plain.append(body)
         blocks.append(f'<section class="sl" id="slide-{n:02d}">'
                       f'<span class="sn">{n:02d}</span>{"".join(chunks)}</section>')
+    disc = disclosure_text(r)
+    if disc:
+        plain.insert(0, disc)
     return "".join(blocks), cited, "\n\n".join(plain)
 
 

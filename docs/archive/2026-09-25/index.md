@@ -7,6 +7,8 @@ Canonical: https://alaskaaihq.com/archive/2026-09-25/
 
 ## The story
 
+A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic. The Alaska Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by Anthropic. The deck leaves that report out and quotes all four candidates at equal size, in alphabetical order, so no candidate is framed by it.
+
 Six sites in play for data centers. Two answer to Juneau.
 
 Two sit on state land. Four are federal calls.

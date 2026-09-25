@@ -114,7 +114,7 @@ export function init(THREE) {
 
     // shadow catcher over the whole slide
     const catcher = new THREE.Mesh(new THREE.PlaneGeometry(W * 3, H * 3),
-      new THREE.ShadowMaterial({ color: new THREE.Color(o.shadowColor || 0x02050a), opacity: o.shadowOpacity === undefined ? 0.8 : o.shadowOpacity }));
+      new THREE.ShadowMaterial({ color: new THREE.Color(o.shadowColor === undefined ? 0x02050a : o.shadowColor), opacity: o.shadowOpacity === undefined ? 0.8 : o.shadowOpacity }));
     catcher.position.set(W / 2, -H / 2, 0); catcher.receiveShadow = true; scene.add(catcher);
 
     // --- the pen, built nib at local origin pointing along +X (in root space)
