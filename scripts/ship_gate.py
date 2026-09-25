@@ -47,6 +47,7 @@ whole module is here to prevent. If a deck rendered, it is not a (d).
 
 import argparse
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -108,7 +109,8 @@ def _art_score(score):
     for c in score.get("criteria") or []:
         if isinstance(c, dict) and "artwork" in str(c.get("name", "")).lower():
             v = c.get("score")
-            if isinstance(v, (int, float)) and not isinstance(v, bool):
+            if (isinstance(v, (int, float)) and not isinstance(v, bool)
+                    and math.isfinite(v)):
                 return float(v)
     return None
 
@@ -262,6 +264,9 @@ def self_test():
         ("2026-09-26", {"criteria": []}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": "7"}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": True}]},
+         {"revision_rounds": 5}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("inf")}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("nan")}]},
          {"revision_rounds": 5}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5},
                            _no_slides=True, _flat=True), {}, "closed"),

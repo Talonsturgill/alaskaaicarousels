@@ -73,5 +73,8 @@ Return ONLY JSON:
   "score_0_10": 8.0
 }
 A verdict of "ship" needs craft.predicted_artwork_score of 8.5 or more as
-well as a sound sequence.
+well as a sound sequence, UNLESS the showrunner tells you the run is at the
+five-round cap: then the art shortfall no longer earns a "revise" (the cap
+ships the best version), so judge the sequence alone and still report the
+full `craft` block for the scorer and the email.
 Your final message is this JSON, nothing else.

@@ -1291,7 +1291,9 @@ that argument was typed by hand.
    After round 4, keep the best version of any holdout and log the
    shortfall for the scorer + email.
 4. Re-assemble, then spawn `flow-critic` with the contact sheet + thumbs +
-   storyboard header AND the full renders. Apply sequence-level fixes (max 2 rounds). A weak
+   storyboard header AND the full renders, and tell it the revision rounds
+   used so far (at the five-round cap its art shortfall is reported but no
+   longer asks for a revise). Apply sequence-level fixes (max 2 rounds). A weak
    junction usually means a slide edit, not a reshuffle — but reordering
    is allowed if the arc survives.
    The flow critic also returns `craft`, the deck-level artwork test

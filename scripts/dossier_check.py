@@ -873,8 +873,7 @@ def _norm_technique(t):
 # different modifiers ("scribed hachure relief", "scribed hachure field"). Count
 # FAMILIES, not strings (Codex on PR #401): a frame counts once toward every
 # family its cell names, and a family on more than CRAFT_PLAN_MAX_SHARE frames
-# fails. A cell naming no known family counts toward each of its own words,
-# the generic modifiers removed, so "collage" and "paper collage field" meet.
+# fails. Only the primary clause counts (see _technique_keys).
 TECHNIQUE_FAMILIES = [
     ("hachure", r"hachur"),
     ("scribed", r"scrib"),
@@ -904,16 +903,24 @@ _TECH_GENERIC = {"relief", "linework", "line", "lines", "texture", "field", "fie
                  "from", "for", "into", "its", "each", "per", "across"}
 
 
+# The PRIMARY technique is the cell's first clause; what follows "with", "and",
+# "plus", a comma and so on is an accent and doesn't count toward reuse.
+_ACCENT_SEP_RE = re.compile(r",|;|\+|\(|\s(?:with|and|plus|over|under|on|beside)\s", re.I)
+
+
 def _technique_keys(t):
-    """Every family the cell names, AND its other meaningful words: a known
-    accent must not hide an unknown primary ("paper collage with hachure
-    accents" is still collage, Codex on PR #401)."""
+    """The families the PRIMARY clause names; if it names none, its head noun
+    (last meaningful word). So "paper collage with hachure accents" counts as
+    collage and not hachure, while "digital collage" and "digital stipple" do
+    not meet on the modifier "digital" (Codex on PR #401, two rounds)."""
     low = t.lower()
-    keys = {name for name, rx in TECHNIQUE_FAMILIES if re.search(rx, low)}
-    keys |= {w for w in re.findall(r"[a-z]{3,}", low)
-             if w not in _TECH_GENERIC
-             and not any(re.search(rx, w) for _, rx in TECHNIQUE_FAMILIES)}
-    return keys or {_norm_technique(t)}
+    m = _ACCENT_SEP_RE.search(low)
+    primary = low[:m.start()] if m and m.start() > 0 else low
+    keys = {name for name, rx in TECHNIQUE_FAMILIES if re.search(rx, primary)}
+    if keys:
+        return keys
+    words = [w for w in re.findall(r"[a-z]{3,}", primary) if w not in _TECH_GENERIC]
+    return {words[-1]} if words else {_norm_technique(t)}
 
 
 def craft_plan_fails(text, slide_nos):

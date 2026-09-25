@@ -156,7 +156,8 @@ plus the checklist.
   One row per dossier. No primary mark-making may carry more than THREE
   frames, counted by family rather than wording ("scribed hachure relief" and
   "hachure field" are both hachure; `TECHNIQUE_FAMILIES` in the checker lists
-  them): the text frames (quotes, ledgers, closes) need a mark of their own
+  them). Put the primary mark first: what follows "with", "and", "plus" or a
+  comma is an accent and is not counted. The text frames (quotes, ledgers, closes) need a mark of their own
   too, because the scorer's "one slide leans on a default" is almost always
   one of them. The largest object on every frame gets its modelling named,
   object first and then, after a comma, the treatment (lit face, lee,
