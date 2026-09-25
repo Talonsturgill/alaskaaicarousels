@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-mp390-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 11, 120 tiles, fetched 2026-09-25, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 376,
+ "rows": 501,
+ "west": -149.6,
+ "east": -148.1000000000035,
+ "north": 70.25,
+ "south": 69.54999999999808,
+ "dlon": 0.004,
+ "dlat": 0.0014,
+ "z": 11,
+ "min_m": -10,
+ "max_m": 294
+}
