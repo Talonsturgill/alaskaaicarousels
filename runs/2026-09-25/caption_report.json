@@ -1,0 +1,19 @@
+{
+  "chars": 895,
+  "hook": "From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor could reach two.",
+  "hook_len": 114,
+  "commas": 6,
+  "comma_per_100": 0.71,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaGovernor",
+    "#AlaskaDataCenters",
+    "#AlaskaDNR"
+  ],
+  "deck_summary": "The maps ink the two state sites in gold and ring the four federal ones in dashes. All four candidates are quoted at equal size.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 85
+}

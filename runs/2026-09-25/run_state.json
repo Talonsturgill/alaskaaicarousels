@@ -1,0 +1,68 @@
+{
+  "run_date": "2026-09-25",
+  "carousel_no": 68,
+  "effort": "high",
+  "date_note": "Woke 2026-09-24 23:15 AKDT (07:15 UTC 2026-09-25). runs/2026-09-24/ already holds No.67, shipped and merged by the previous daily firing, so this is a new daily firing and not a re-fire; per the rule the run date is the first date with no runs/<date>/ directory, 2026-09-25. run_guard for 2026-09-25 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done",
+    "claims": "done",
+    "docket": "done",
+    "gas_watch": {
+      "status": "done",
+      "note": "cron_health PASS 09:21Z; gaswatch_health WARN at 08:04Z and 09:44Z (GitHub dispatched the 04:40 and 07:20 UTC collections late, manual dispatch 403), PASS at 10:09Z after the collector ran"
+    },
+    "selection": "done",
+    "directors_room": "done",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": {
+      "status": "done",
+      "note": "4 rounds; r1 all revise, r2 ship 01 02 03 05 09, r3 ship 07 08, r4 ship 04 06"
+    },
+    "flow_review": {
+      "status": "done",
+      "note": "2 rounds; r1 revise 7.8 (07 headline, 06-08 density, 04 plant), r2 ship 8.4"
+    },
+    "assemble": {
+      "status": "done",
+      "note": "vector pdf, 9 slides, thumbs fresh"
+    },
+    "scoring": {
+      "status": "done",
+      "note": "8.69 as written, 7.90 normalised, threshold 7.7; disclosure fix applied to first comment"
+    },
+    "ship": {
+      "status": "done",
+      "note": "runs/ copied, webp and og, pdf shrink declined safely, site built 123 pages, ledgers and notes appended"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "artifacts": {
+    "plan": "out/2026-09-25/plan.md",
+    "scout_merge": "out/2026-09-25/scout_merge.md",
+    "claims": "out/2026-09-25/claims.json",
+    "selection": "out/2026-09-25/selection.md",
+    "storyboard": "out/2026-09-25/storyboard.md",
+    "copy": "out/2026-09-25/copy.json",
+    "caption": "out/2026-09-25/caption.txt",
+    "aggregates": "out/2026-09-25/aggregates.json",
+    "render": "out/2026-09-25/render",
+    "final": "out/2026-09-25/final"
+  },
+  "craft_refresh": "Two searches (LinkedIn document reach September 2026; procedural stippling and hatching). Nothing new: the 7.00 percent document ER is already in CAROUSEL_CRAFT, contour hatching was logged 2026-09-23, stippling is TECHNIQUE_LIBRARY #15. FIELD_NOTES left untouched.",
+  "docket_refresh": "Worklist of 6 plus the 6 deferred (budget effectively 12); all twelve re-verified against a primary or the prior verified source and unchanged; worklist now reads nothing due. watch.json failed=[]; zero hearings (Legislature out of session); HB259 and SB250 statuses agree with BASIS; candidates triaged, none added (BASIS energy and LNG bills with no AI content, HJR18 a gas project resolution, SEAPA and Juneau Hydropower FERC notices).",
+  "research": "Six scouts, 147 searches in total (25, 24, 25, 25, 25, 23). Four beats converged on the Air Force leases and three on the governor candidates' data center positions. Out on dedupe: DeepGreen (No.65), UA regents (No.61), XPRIZE (No.67).",
+  "revision_rounds": 4,
+  "score": 8.69,
+  "phase_3_6": {
+    "site_signoff": "PASS, 122 pages, 18 checks",
+    "gaswatch_pagecheck": "PASS",
+    "gaswatch_live": "PASS at 10:09 UTC. It was WARN earlier in the run because GitHub dispatched the 04:40 and 07:20 UTC collections late and a manual dispatch returned 403; the collection landed on main at about 10:05 UTC and the incident was retired.",
+    "cron_health": "PASS, every scheduled workflow inside its grace (09:21 UTC)",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  }
+}

@@ -2682,6 +2682,50 @@
       ],
       "claims": 43,
       "note": "First XPRIZE story in the ledger and the first deck drawn on a real digital elevation model. SB 250 (data center utility costs) and the Eielson microreactor comment window were the runners-up; the microreactor window is on the docket instead (closes September 30th). NEXT_RUN.md stays parked until October 14th."
+    },
+    {
+      "run_date": "2026-09-25",
+      "carousel_no": 68,
+      "headline": "Six Data Center Sites. Two Answer to Juneau.",
+      "topic": "Six sites are in play for data centers in Alaska, and the November 3rd governor ballot could reach two of them, if their decisions are still pending when the next governor takes office. The state signs the North Slope lease at Milepost 390 (STAK Energy, ADL 422741, a DNR preliminary decision on a 50-year lease of 715.4 acres, final decision by the Division of Oil and Gas under the commissioner's delegation) and the proposed conveyance of about 19,950 acres near Houston to AIDEA; the sitting governor appointed DNR's commissioner. The Air Force signs the enhanced use leases at JBER, Eielson and Clear (proposals closed June 29th, no award) and FERC decides the preliminary permit for DeepGreen's proposed 100 MW subsea project in Cook Inlet, which authorizes no construction (P-15423-000, filings close November 2nd, the day before the vote). The four candidates' stated positions on data centers are quoted verbatim and equally. The turn is DNR's own wording that the STAK plant, 1 to 3 GW, is not interconnected to the Railbelt or any other Alaska utility grid, the condition two candidates put on their support.",
+      "angle": "JURISDICTION, NOT CANDIDATES. The ballot chooses who could hold the state's pen on two sites, if their decisions are still pending in December, and the veto on a likely data center bill; the Air Force and FERC decide the other four, FERC so far only on a preliminary permit, whoever wins. Position taken on jurisdiction, none on the candidates.",
+      "entities": [
+        "STAK Energy",
+        "ADL 422741",
+        "Milepost 390",
+        "Dalton Highway",
+        "Alaska DNR",
+        "Division of Oil and Gas",
+        "AIDEA",
+        "Houston",
+        "JBER",
+        "Eielson AFB",
+        "Clear Space Force Station",
+        "Department of the Air Force",
+        "FERC",
+        "DeepGreen",
+        "P-15423-000",
+        "Kenai Peninsula Borough",
+        "Bernadette Wilson",
+        "Jonathan Kreiss-Tomkins",
+        "Dave Bronson",
+        "Treg Taylor",
+        "Alaska Beacon"
+      ],
+      "keywords": [
+        "governor race",
+        "data centers",
+        "jurisdiction",
+        "state land",
+        "enhanced use lease",
+        "FERC preliminary permit",
+        "behind the meter",
+        "Railbelt",
+        "veto",
+        "November 3rd"
+      ],
+      "claims": 64,
+      "note": "Seventh data center lane deck in 30 days; No.51 (campaign money) read in full and not a repeat. Conflict disclosed in the first comment (studio on an Anthropic model; the Beacon reports Anthropic employees' donations to Kreiss-Tomkins, C52, which the deck leaves out for neutrality). Runner-up: the Air Force lease update."
     }
   ]
 }

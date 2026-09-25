@@ -1,0 +1,147 @@
+{
+  "run_date": "2026-09-25",
+  "carousel_no": 68,
+  "hard_fails": [],
+  "hard_fail_checks": [
+    {
+      "rule": "em dash or en dash anywhere",
+      "status": "pass",
+      "evidence": "All nine renders, post_copy and first_comment read; only in-word hyphens (KREISS-TOMKINS, 50-year, P-15423-000, two-thirds). caption_report PASS; copy_sync PASS on 79 strings."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None. The gold star on 09 is a drawn Polaris, not a glyph."
+    },
+    {
+      "rule": "factual claim without a claim-id",
+      "status": "pass",
+      "evidence": "Every slide's claim_ids resolve in claims.json with fetched true; plan_drift 0 drifts. Soft spots, both sourced: Houston counted as a data center site via C28 plus C32 (needs_softening), and the governor appointing DNR's commissioner via C60 plus C45."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass",
+      "evidence": "Scorer transcribed every string on 01 to 09; all match copy.json."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text",
+      "status": "pass",
+      "evidence": "No text leaves the frame; render_report shows 0 overflow warnings."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1",
+      "status": "pass",
+      "evidence": "Headlines and body well above 7:1; dimmest primary text (08 role line) above 4.5:1; fixture declared decorative."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "9 slides."
+    },
+    {
+      "rule": "machine_qa FAIL or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa PASS 0 fails 0 warns; pdf vector 6.14 MB."
+    },
+    {
+      "rule": "topic repeat within 30 days",
+      "status": "pass",
+      "evidence": "No.51 (September 5th, campaign money) flagged at jaccard 0.096 and read in full; this deck is built on the candidates' data center positions (September 18th to 22nd) and ADN's September 24th intervenor list, none of which existed on September 5th. Lane saturation noted."
+    },
+    {
+      "rule": "hero structure identical to last 4",
+      "status": "pass",
+      "evidence": "Plan-view scribed map in transmitted light with one rendered pen, against No.64 section, No.65 waterline hold, No.66 engraved plate, No.67 perspective camera. bespoke median similarity 0.252."
+    },
+    {
+      "rule": "banned phrase",
+      "status": "pass",
+      "evidence": "caption_check 74 brand phrases, 0 fails; copy_sync no banned slide string."
+    },
+    {
+      "rule": "hashtag count != 3 or link in post body",
+      "status": "pass",
+      "evidence": "#AlaskaGovernor #AlaskaDataCenters #AlaskaDNR; no URL in the post body."
+    },
+    {
+      "rule": "placeholder or unfinished element",
+      "status": "pass",
+      "evidence": "None in renders, caption, first comment or aftercare."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "An 11-word count plus a named tension at about 130 px serif with the election in the kicker; reads at the thumb and the pen gives one object. Not 9: at 432 px the two gold beads and four rings are specks, so the proof sits in the words."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Clear beats from the reach count through the off-grid turn to the new late fact and the keepable ledger. Held back: 08 largely restates 02; 03 is movable; 09 is a bare save ask."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16,
+      "notes": "DEM relief as transmitted light, a GPU-rendered pen with a filtered contact shadow, the pad at true shape with a checking 5 km bar, one key light throughout. Short of 8: the scribed stroke family is one uniform texture across 01, 05, 06 and 09 and reads as fur when zoomed; 04's glow-only relief is soft; the contact sheet has no tonal arc."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14,
+      "notes": "Gold only where the state signs, federal sites as rings never filled, the pen's state encodes jurisdiction, Houston's disc at true acreage, 05 draws the gap as an absence of line. Not 9 because the code is small at thumb size."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 9,
+      "weight": 0.12,
+      "notes": "Named places throughout, geography checks out across frames, and it answers a real voter's question six weeks out."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Each content slide adds verified specifics. Deductions: 08 repeats 02's sort; 05 is a declared breather; the Houston data center link is an inference the fact-checker asked to soften."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 6.5,
+      "weight": 0.08,
+      "notes": "Fresh hero, but real DEM ground repeats No.67, the Polaris close repeats No.64 and No.67, the navy and gold register repeats, and this is the data center lane's seventh deck in 30 days."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "notes": "Body 32 to 34 px, labels 20 to 24 px, counters and fixture on all nine, vector PDF with title. Squeakers: 03's mono name lines, small map labels on 02 and 06 at thumb size."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "110-character geographic hook, 888 characters, 0.83 commas per 100 words, a position on jurisdiction and none on candidates, a debatable closing question. Soft spots: 'reaches two'; the deck-summary line is meta."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "Everything staged. Gaps at scoring time: no conflict-of-interest disclosure for a deck quoting Kreiss-Tomkins while the studio runs on an Anthropic model (house precedent No.51); Gmail draft and main-branch URLs verifiable only after merge. The disclosure was added to the first comment after scoring (see applied_fix)."
+    }
+  ],
+  "calculation": "(8x0.14)+(8x0.14)+(7.5x0.16)+(8.5x0.14)+(9x0.12)+(8x0.10)+(6.5x0.08)+(8x0.07)+(8x0.05)+(7x0.10) = 8.69 as the rubric formula is written. The rubric's weights sum to 1.10, so normalised to a true 10-point scale it is 7.90. Both clear the 7.7 threshold for a round-4-plus deck.",
+  "weighted_total": 8.69,
+  "total": 8.69,
+  "normalized_total": 7.9,
+  "threshold": 7.7,
+  "revision_rounds": 4,
+  "ship": true,
+  "verdict": "ship",
+  "weakest_criterion": "Variety vs ledger",
+  "one_sentence_fix": "Add one plain conflict-of-interest line to the top of the first comment: the studio runs on Claude, an Anthropic model, and the Alaska Beacon reports Anthropic employees gave large donations to Kreiss-Tomkins' campaign, which the deck leaves out to keep all four candidates on equal footing.",
+  "applied_fix": "Applied after scoring: first_comment now opens with a three-sentence disclosure paragraph citing C52 (the Beacon via KTOO); caption_check with --copy PASS and copy_sync PASS after the change. No slide changed, so no re-render.",
+  "editor_notes_for_email": "SHIPS at 8.69 as written (7.90 normalised; the rubric's weights sum to 1.10), threshold 7.7 after 4 pixel rounds and 2 flow rounds. Before posting: (1) the conflict disclosure now opens the first comment; keep it. (2) Houston as a data center site now rests on C64: the Mat-Su Sentinel and Anchorage Press report DNR's 41-page decision document lists AIDEA's 'scalable data centers'. The public notice page itself doesn't say data center. (3) The deck says the governor APPOINTED DNR's commissioner (C60, Dunleavy's October 2025 appointment of the acting commissioner); no fetched page states the general rule for DNR, so the deck doesn't assert it. (4) 04 labels the pad about 640 acres while the body says 715.4 acres; both are DNR's figures (C61, pad against pad plus road and buffers). (5) No STAK comment date printed, on purpose. (6) The Senate's 14 to 5 is single-sourced to the Beacon, and SB 250 is dead; never say it returns. (7) Lane fatigue: seventh data center deck in 30 days; DeepGreen was No.65 four days ago. (8) Gas Watch live was WARN for part of the run (GitHub dispatched the morning collections late) and is PASS at 10:09 UTC after the collector ran; the incident was retired.",
+  "post_score_changes": "After scoring, Codex review on PR #399 led to: C64 added so Houston's place in the six is sourced to DNR's decision document as reported (the scorer's caveat 2); slide 07 names FERC's preliminary permit; C27 and C30 labelled original deadlines; a full re-render with the corrected ink helper (gold ink edge only). No score was re-taken; every change narrows a claim or a pixel the scorer already read."
+}

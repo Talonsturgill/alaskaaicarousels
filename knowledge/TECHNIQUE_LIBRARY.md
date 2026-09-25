@@ -872,3 +872,37 @@ annotation is the strongest pair):
     height is invented and the haze takes the frame.
     Fog and tone are quantised (eighths, steps of 6), because a continuous
     fog mints an ink per profile and blows qa's 160 ink census. D1
+
+97. **The Light-Table Scribe (akscribe)** — `assets/js/akscribe.js` (`AKS`). Added
+    2026-09-25 for No.68. Real DEM relief printed as TRANSMITTED LIGHT through a
+    dark scribecoat film, in plan view. `AKS.strip` is a transverse Mercator strip
+    at a stated px/km, so a scale bar and a true-area disc can be asserted.
+    `AKS.scribeRelief` cuts key-lit hachure strokes only where slope clears `s0`
+    in METRES PER KM (not a normalised slope; that furred every lowland), full
+    weight at `s1`. `AKS.glow` is a Lambert lit-face glow and `AKS.halate` its
+    bloom. `AKS.reserve` punches feathered destination-out rects so no relief or
+    coast runs under type or labels; compute label holes from the label's own
+    anchor BEFORE compositing the light layer. `AKS.ring` strokes a coat-dark bed
+    under its dashes so a counted mark survives lit relief. `AKS.locator` is the
+    meridian rail; pass `proj.invert` of the frame's top and bottom edges as the
+    window, never typed numbers. `AKS.pool` lays a lamp pool of fine rules under a
+    rendered object so its cast shadow has lit ground to subtract from. Where the
+    DEM's relief is metres (the Slope at z11) EVERY stroke family reads as fur:
+    draw that frame with the glow alone. This is MEASURED now: `scribeRelief`
+    returns `drop` {strokes, medianM, p90M}, the metres of fall each stroke
+    claims (slope x length / pxPerKm, Imhof's rule that a hachure spans one
+    contour interval), and console.errors `AKSCRIBE:` (a qa WARN) when the
+    median is under 50 m over 300 or more strokes. No.68 measured 5 to 21 m on
+    every rejected 04 variant and 180 to 489 m on the eight frames that
+    shipped. Read the warn on the FIRST render; raising s0 can't clear it.
+
+98. **Rendered Fountain Pen (akpen)** — `assets/js/akpen.js`, an ES module,
+    `init(THREE)` then `AKPEN.render(canvas, {tip, angle, lift, capped, length,
+    keyAz, keyEl, shadowOpacity, shadowSoft, view})`. Added 2026-09-25 for No.68.
+    A lathe barrel, gold band and extruded nib (or cap and clip) under a PMREM
+    studio environment, on an alpha canvas with a ShadowMaterial catcher so it
+    composites over Canvas-2D art. Always pass `view`, the pen's own box (tip to
+    tail plus 70 and 110 px), or qa reads a full-frame canvas as dead. `shadowSoft`
+    switches to filtered PCF, which honours the radius (PCFSoft ignores it). After
+    ANY move of the pen, re-sample the L* profile across the barrel and re-place
+    `data-contacts`; qa measures wherever the rects point.

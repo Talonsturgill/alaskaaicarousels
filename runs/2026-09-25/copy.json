@@ -1,0 +1,240 @@
+{
+  "run_date": "2026-09-25",
+  "carousel_no": 68,
+  "document_title": "Six Data Center Sites. Two Answer to Juneau.",
+  "post_copy": "From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor could reach two.\n\nAt Milepost 390, DNR's preliminary decision describes a 1 to 3 GW gas plant that feeds its computers and no Alaska grid. Near Houston, DNR proposes conveying about 19,950 acres to AIDEA. Neither notice shows a final decision. The governor appointed DNR's commissioner.\n\nThe rest are federal. Air Force proposals for JBER, Eielson and Clear closed June 29th with no award. FERC takes Cook Inlet permit filings until November 2nd. Alaska votes November 3rd. The winner can veto any data center bill.\n\nThe maps ink the two state sites in gold and ring the four federal ones in dashes. All four candidates are quoted at equal size.\n\nHow much should data centers count in a vote for a governor who could reach two sites and holds a veto?\n\n#AlaskaGovernor #AlaskaDataCenters #AlaskaDNR",
+  "deck_summary_line": "The maps ink the two state sites in gold and ring the four federal ones in dashes. All four candidates are quoted at equal size.",
+  "caption_meta": {
+    "opening_move": "MAP MOVE",
+    "structure": "COUNTDOWN (walks south down the corridor while the dates close in, June 29th, November 2nd, the vote the next day)",
+    "closing_move": "NEW: THE WEIGHT OF THE BALLOT",
+    "hook_type": "a geographic claim, six sites down one corridor and how many the next governor reaches"
+  },
+  "first_comment": "A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic. The Alaska Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by Anthropic. The deck leaves that report out and quotes all four candidates at equal size, in alphabetical order, so no candidate is framed by it.\n\nSources, primary first\nAlaska DNR Division of Oil and Gas, STAK Energy ADL 422741 preliminary decision (Milepost 390, 1 to 3 GW, not interconnected to the Railbelt), 2026-05-12, https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957\nAlaska DNR Division of Oil and Gas, public notice of the proposed 50-year STAK Energy lease on 715.4 acres, 2026-05-12, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817\nAlaska DNR Division of Mining, Land and Water, proposed conveyance of about 19,950 acres near Houston to AIDEA, 2026-07-10, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431\nMat-Su Sentinel and Anchorage Press, State agency plans Houston-area industrial park with data centers, distribution hub (DNR's decision document lists \"scalable data centers\"), 2026-07-15, https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/\nSAM.gov, Air Force solicitation AFCEC-26-R-0006, AI data center development at JBER, Eielson and Clear Space Force Station, https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search\nOffice of the Lieutenant Governor, Constitution of the State of Alaska (Article II Sections 15 and 16, Article III Section 25), https://ltgov.alaska.gov/information/alaskas-constitution/\nAlaska Division of Elections, general election day Tuesday November 3rd, 2026, https://www.elections.alaska.gov/\nOffice of the Governor, John Crowther appointed acting DNR commissioner, 2025-10-24, https://gov.alaska.gov/john-crowther-appointed-acting-dnr-commissioner/\nAlaska Beacon (James Brooks) via KTOO, where Alaska's four governor candidates stand on data centers, 2026-09-22, https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/\nAlaska Beacon (James Brooks) via Alaska Public Media, same story, 2026-09-21, https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers\nKUAC (Shelby Herbert) via Alaska Public Media, data centers could be Alaska military towns' next noisy neighbors, 2026-09-15, https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors\nPeninsula Clarion (Jeffrey Kennett), federal review advances for subsea data center off Nikiski, 2026-09-14, https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/\nAnchorage Daily News (Bella Biondini), fishing and wildlife groups raise alarm over underwater Cook Inlet data center proposal, 2026-09-24, https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/\nThe Alaska AI Docket follows each of these decisions daily, deadlines included, at https://alaskaaihq.com\nSat in one of these forums, filed a comment, or know a date that has moved? Add it below with a link.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "ALASKA ELECTS A GOVERNOR NOVEMBER 3RD",
+      "headline": "Six sites in play for data centers. Two answer to Juneau.",
+      "body": "",
+      "claim_ids": [
+        "C23",
+        "C28",
+        "C32",
+        "C33",
+        "C41",
+        "C45",
+        "C46",
+        "C60",
+        "C62",
+        "C64"
+      ],
+      "labels": [
+        "GOLD INK, STATE LAND",
+        "DASHED, FEDERAL",
+        "BEADS NOT TO SCALE ON THIS MAP"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "THE SIX, AND WHO SIGNS",
+      "headline": "Two sit on state land. Four are federal calls.",
+      "body": "The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appointed. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.",
+      "claim_ids": [
+        "C23",
+        "C28",
+        "C29",
+        "C33",
+        "C41",
+        "C45",
+        "C56",
+        "C60",
+        "C64",
+        "C43"
+      ],
+      "labels": [
+        "MILEPOST 390, STATE",
+        "EIELSON, AIR FORCE",
+        "CLEAR, AIR FORCE",
+        "HOUSTON, STATE",
+        "JBER, AIR FORCE",
+        "COOK INLET, FERC"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "THE FOUR CANDIDATES, IN THEIR OWN WORDS",
+      "headline": "What they say about data centers.",
+      "body": "\"I'm a big believer in data centers.\" He said the groups he is talking to would produce their own power (Bronson, Republican, Commonwealth North forum). \"I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska.\" (Kreiss-Tomkins, Democrat, September 8th forum). \"I think we need to embrace it.\" Any data center, he said, must \"bring their own energy.\" (Taylor, Republican, September 8th forum). \"I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.\" (Wilson, Republican, by text message). Order is alphabetical by surname, not a ranking. Quotes as reported by the Alaska Beacon.",
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C06",
+        "C08",
+        "C09",
+        "C10"
+      ],
+      "labels": [
+        "BRONSON, REPUBLICAN COMMONWEALTH NORTH FORUM",
+        "\"I'm a big believer in data centers.\" He said the groups he is talking to would produce their own power.",
+        "KREISS-TOMKINS, DEMOCRAT SEPTEMBER 8TH FORUM",
+        "\"I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska.\"",
+        "TAYLOR, REPUBLICAN SEPTEMBER 8TH FORUM",
+        "\"I think we need to embrace it.\" Any data center, he said, must \"bring their own energy.\"",
+        "WILSON, REPUBLICAN BY TEXT MESSAGE",
+        "\"I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.\"",
+        "ORDER IS ALPHABETICAL BY SURNAME, NOT A RANKING QUOTES AS REPORTED BY THE ALASKA BEACON",
+        "ATIGUN PASS, BROOKS RANGE"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "STAK ENERGY, ADL 422741",
+      "headline": "Milepost 390. State land, 50 years.",
+      "body": "DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.",
+      "claim_ids": [
+        "C23",
+        "C24",
+        "C25",
+        "C53",
+        "C56",
+        "C57",
+        "C61",
+        "C63",
+        "C55"
+      ],
+      "labels": [
+        "NE CORNER",
+        "69.922571 N",
+        "148.849662 W",
+        "THE PAD, ABOUT 640 ACRES",
+        "5 KM"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "FROM DNR'S PRELIMINARY DECISION ON THE LEASE",
+      "headline": "\"not interconnected to the Railbelt or any other Alaska utility grid\"",
+      "body": "A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.",
+      "claim_ids": [
+        "C02",
+        "C04",
+        "C54",
+        "C55"
+      ],
+      "labels": [
+        "THE PAD",
+        "THE RAILBELT GRID"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "FAIRBANKS TO ANCHORAGE",
+      "headline": "One state decision, three federal ones.",
+      "body": "DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.",
+      "claim_ids": [
+        "C28",
+        "C29",
+        "C31",
+        "C33",
+        "C35",
+        "C36",
+        "C64"
+      ],
+      "labels": [
+        "HOUSTON, STATE",
+        "JBER",
+        "EIELSON",
+        "CLEAR",
+        "INK AREA TRUE TO ACREAGE",
+        "RAILBELT TRANSMISSION"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "FERC PROJECT P-15423-000",
+      "headline": "Filings close the day before the vote.",
+      "body": "DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.",
+      "claim_ids": [
+        "C41",
+        "C42",
+        "C43",
+        "C46",
+        "C58"
+      ],
+      "labels": [
+        "DEEPGREEN,",
+        "APPROXIMATE",
+        "NIKISKI",
+        "ANCHORAGE"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "AS OF SEPTEMBER 25TH",
+      "headline": "Who signs each one.",
+      "body": "Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC, on a preliminary permit. Filings close November 2nd.",
+      "claim_ids": [
+        "C13",
+        "C14",
+        "C23",
+        "C28",
+        "C31",
+        "C33",
+        "C34",
+        "C36",
+        "C41",
+        "C43",
+        "C47",
+        "C48",
+        "C53",
+        "C63",
+        "C21",
+        "C22"
+      ],
+      "labels": [
+        "WHO SIGNS, THEN WHERE IT STANDS",
+        "NORTH SLOPE LEASE, ADL 422741",
+        "DNR, under the commissioner's delegation",
+        "Preliminary decision. No final decision on the notice.",
+        "A DATA CENTER BILL",
+        "The Legislature, then the governor",
+        "Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override.",
+        "JBER, EIELSON, CLEAR",
+        "Department of the Air Force",
+        "Proposals closed June 29th. No award.",
+        "HOUSTON LAND TO AIDEA",
+        "DNR",
+        "No final decision on the notice.",
+        "COOK INLET, P-15423-000",
+        "FERC, on a preliminary permit",
+        "Filings close November 2nd.",
+        "BROOKS RANGE",
+        "ALASKA RANGE"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Save this. Check it again after November 3rd.",
+      "body": "",
+      "claim_ids": [
+        "C46"
+      ],
+      "labels": [
+        "N",
+        "DENALI",
+        "ALASKA.AI"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post this draft Tuesday September 29th between 8 and 11am AKT, the next strongest slot after today (Friday). You own the cadence and a new deck arrives every day, so move it if another deck needs that slot.",
+    "Paste the sources comment within 60 seconds of posting, as its own comment, with every URL left as plain text.",
+    "Reply to every comment in the first 90 minutes, with a source link wherever a fact is disputed.",
+    "This deck quotes four candidates for governor at equal size. Keep replies about jurisdiction and dates, never endorse or rank a candidate, and answer partisan comments with the record and its source. After 48 hours note saves and comments."
+  ],
+  "editor_notes_for_email": "CONFLICT DISCLOSED in the first comment's opening paragraph (the scorer's one-sentence fix, house pattern from No.51): the studio runs on an Anthropic model and the Beacon reports Anthropic employees' donations to Kreiss-Tomkins (C52). Post the first comment with that paragraph intact. The Beacon story's line about Anthropic employees' donations to Kreiss-Tomkins (C52) and Wilson's attack on those donations were left out of the deck and caption on purpose, for neutrality. Wilson's hyperscale quote runs alone, as she gave it by text message. No slide or caption gives a STAK Energy comment close date, because DNR's extension notice (id 224224) refused automated fetches on September 25th and the original June 15th deadline alone would mislead. Only claims.json carries June 15th, and it is marked as the original deadline."
+}

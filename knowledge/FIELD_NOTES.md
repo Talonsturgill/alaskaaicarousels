@@ -8526,3 +8526,91 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   "because additional rounds repeat the same diagnostic errors" (https://arxiv.org/html/2607.08010).
   That is the case for today's probe: a station question asked by render cost a critic round each
   time.
+
+## 2026-09-25, No.68, retro: the light-table scribe (the governor ballot and six data center sites)
+
+- TRANSMITTED LIGHT AS A MATERIAL. `assets/js/akscribe.js` is a new bench: a scribecoat navy film,
+  real DEM relief drawn as key-lit hachure strokes cut only above a slope threshold in m per km
+  (`AKS.scribeRelief`), a Lambert lit-face glow (`AKS.glow`) and a halation pass. Thresholding in
+  m per km instead of a normalised slope is what kept flat ground as uncut coat; the first
+  normalised version furred every lowland.
+- FUR IS A SLOPE PROBLEM, NOT A STROKE PROBLEM. At metres of relief (slide 04, the Slope at z11)
+  every stroke family printed as fur: s0 3, 9, 14, 22 and a long-stroke variant were all rendered
+  and looked at, and every one drew hair on the bluff margins. Turning the strokes OFF on that one
+  frame and letting the glow carry the terraces fixed it in one render and scored 8.1. Decide in the
+  dossier which frames are too flat to scribe, from the DEM's slope percentiles, before the first
+  render.
+- A FEDERAL RING NEEDS A BED. Dashed #7F93A6 rings on lit relief were uncountable in round 1 on four
+  frames (JBER vanished every time, beside Houston and under the Knik Arm coast). `AKS.ring` now
+  strokes a coat-dark annulus under the dashes, and on 01 the rings sit on their own small canvas
+  above the pen's shadow. Draw every mark that carries a count LAST, on a bed.
+- LABEL HOLES, NOT TEXT STROKES. A mono label with a paint-order stroke still reads struck through
+  when a bright coast crosses it. A feathered destination-out rect under each label, computed from
+  the label's own anchor BEFORE the light layer is composited (02, 06, 07, 08, 04), fixed every
+  collision the critics named.
+- A LOCATOR IS A PROMISE ABOUT POSITION. Round 1 found the meridian bracket beside Bronson's cell
+  on the neutrality frame, where it read as a selection mark (a blocker). Any device in the margin
+  of a candidates frame must be level with no candidate. The windows are now computed from each
+  frame's own projection (`proj.invert` of the top and bottom edge); the typed windows in the plan
+  were wrong on 09 by more than two degrees.
+- THE FLOW CRITIC FOUND WHAT FOUR PIXEL ROUNDS COULD NOT: 07's headline repeated a sentence from 02
+  and buried the deck's one late fact. Promoting "Filings close the day before the vote." to the
+  headline and cutting a 20-word clause lifted the flow score from 7.8 to 8.4.
+- Review ran four pixel rounds (critic ranges 6.8 to 7.4, then 7.2 to 8.5, then 7.2 to 8.4, then
+  8.0 to 8.1 on the last two) and two flow rounds. The pen's contact rects went stale twice when
+  the pen moved; re-sample the L* profile across the barrel after any pen move, since qa measures
+  wherever the rects point.
+
+## 2026-09-25, No.68, Phase 12: fur is a number now
+
+- `AKS.scribeRelief` returns `drop` {strokes, medianM, p90M}: the metres of fall each first-pass
+  stroke claims, slope (m/km) x stroke length (px) / pxPerKm. Under a 50 m median over 300 or more
+  strokes it console.errors `AKSCRIBE:` (a qa WARN) naming the two remedies that work (glow alone,
+  or zoom out). Measured on this run: every rejected 04 variant 5.1 to 21.1 m (s0 3, 9, 14, 22 and
+  the long stroke), the eight shipped scribed frames 180 to 489 m. `lowReliefIntended: true`
+  silences it for a frame that means to draw micro-relief. Two other candidates were measured and
+  REJECTED as signals: the share of strokes within 20 percent of s0 (0.78 to 0.84 on the fur, but
+  0.75 on 03's Brooks, which shipped as ridges) and neighbour direction coherence (0.75 to 0.83 on
+  the fur, HIGHER than every shipped frame's 0.13 to 0.46, because smoothing makes a flat's falls
+  agree). Fur here was never random direction; it was strokes too short in metres to mean anything.
+- WHY THE NUMBER IS THE RIGHT ONE, from the cartography. Imhof's five rules for large-scale slope
+  hachures, as quoted by Kennelly: follow the steepest gradient; arrange in horizontal ROWS; LENGTH
+  equals the horizontal distance between assumed contours of a certain interval; width grows with
+  slope; density stays constant. Rule 3 makes every hachure span the same vertical drop, the
+  contour interval. akscribe's strokes are near-constant in PIXELS instead, so on a flat each one
+  claims a few metres, inside the DEM's own quantisation. (Kennelly, "Desktop Hachure Maps from
+  Digital Elevation Models", https://mbmg.mtech.edu/pdf/gis_hachuretxt.pdf , read through pypdf.)
+
+### Parked, 2026-09-25 frontier scan, focus (c), procedural art portable to offline Canvas
+
+- ROWS BETWEEN CONTOURS, THE HACHURE PLACEMENT akscribe AND akhachure BOTH LACK. The scorer's
+  artwork note on No.68 was "the scribed stroke family is one uniform texture across 01, 05, 06
+  and 09 and reads as fur when zoomed". That is Imhof rules 2 and 3 broken on purpose (one stroke
+  per grid cell, length in pixels), which Kennelly says is the SMALL-scale licence (under
+  1:500,000); No.68's frames at 1 to 19 px/km are large-scale work. The build: seed each row along
+  a contour at interval I, drop a stroke down the fall line until it reaches the next contour (so
+  every stroke spans I metres), space seeds by slope, trim a stroke when it converges on a
+  neighbour closer than the slope's spacing, start one when two drift apart, filter the shortest
+  stubs, smooth the DEM first. That algorithm is Daniel Huffman's QGIS hachurer, described in
+  prose with those exact trimming and seeding rules
+  (https://somethingaboutmaps.wordpress.com/2024/07/07/automated-hachuring-in-qgis/), and it is
+  Yoeli 1985's contour-based construction per Kennelly.
+- THE READABLE IMPLEMENTATION THE 2026-08-14 AND 08-15 PARKS ASKED FOR NOW EXISTS. gugray's
+  adaptive-streamlines (MIT, 2023, 633 lines over seven files, no dependencies) is Jobard and Lefer
+  with a DENSITY function: `minStartDist` 8, `maxStartDist` 36, `endRatio` 0.4, `stepLength` 2,
+  `minPointsPerLine` 5, RK4 integration, two occupancy masks (seed distance and stop distance) and
+  a per-line self-grid so a line can't curl onto itself. Seeds go at +-normal x distance from each
+  point of a finished line. https://github.com/gugray/adaptive-streamlines (src/integrator.js and
+  src/masker.js are the parts worth porting).
+- WHY PARKED: it is a new placement algorithm with its own verifier, not a bounded fix, and it would
+  change every future scribed frame's look. It needs a slide that wants it and a round to prove it
+  against the current field. UNBLOCKS WHEN a deck plans scribed or hachured relief at more than
+  about 1 px/km: port the two masks and the seeding into akhachure as a `rows` mode, with stroke
+  length set by a contour interval in metres, and verify it against No.68's 06 and 09 DEM windows,
+  where the scorer's fur note was made.
+- CAUTION ON A SUMMARISER. The WebFetch summary of Buchin et al., "Illustrating Terrains using
+  Direction of Slope and Lighting" (ICA mountain cartography), reported a flat-area threshold that
+  prevents a "hairy" look. The text, extracted with pypdf, has neither word. What the paper does
+  say: seeds by hierarchical subdivision, slope lines traced against a reference image that rejects
+  intersections, and a stroke kept only if its length clears a threshold. Read the PDF, not the
+  summary. https://mountaincartography.icaci.org/publications/papers/papers_nuria_04/buchin.pdf

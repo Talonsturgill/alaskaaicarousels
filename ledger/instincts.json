@@ -1688,6 +1688,22 @@
       "instinct": "FLAT GROUND NEEDS A DIFFERENT DRAWING, NOT A QUIETER VERSION OF THE RIDGE'S.",
       "evidence": "Five rounds of critics named the Tanana Flats as ruled paper. Muting it (round 4) made a void that scored lower than the stripes. What worked on flats was to change the mark: gaps that open toward the camera, shade from real micro-relief, and, where even that is empty, tone instead of lines. Ticks on flat ground read as a barcode every time. Slide 08, a reverse shot over flats whose relief lay outside the DEM crop, never cleared; the station, not the renderer, was the defect.",
       "act_on_it": "On any line-art terrain frame, decide in the dossier what the flats are drawn WITH, separately from the relief, and check in the camera probe that the near field of every station holds real relief before the first render."
+    },
+    {
+      "run_date": "2026-09-25",
+      "carousel_no": 68,
+      "instinct": "A FLAT FRAME IS DRAWN IN LIGHT, NOT IN STROKES.",
+      "evidence": "On the Slope at z11 every scribed stroke family (s0 3, 9, 14, 22, and a long-stroke variant) printed as fur on the bluff margins across three critic rounds; turning strokes off and letting the lit-face glow carry the terraces scored 8.1 in one render. The same bench's strokes read as ranges on the Brooks, the Alaska Range and the Kenai Mountains.",
+      "act_on_it": "Before the first render, measure each frame's DEM slope percentiles in m per km; where the 90th percentile is under about 30 m per km, plan that frame glow-only and say so in the dossier.",
+      "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-25",
+      "carousel_no": 68,
+      "instinct": "A MARK THAT CARRIES A COUNT IS DRAWN LAST, ON A BED.",
+      "evidence": "The deck's argument was a count (two gold, four dashed), and the JBER ring disappeared on four frames under a coast, a grid line or the pen's cast. A coat-dark annulus under the dashes and drawing the rings after every other layer (on 01, on their own canvas above the pen) made all four countable in one round.",
+      "act_on_it": "In any deck whose claim is a count, list the counted marks in the dossier and draw them last with a bed; the pixel critic's first check is to count them at 432 px.",
+      "confidence": 0.75
     }
   ]
 }

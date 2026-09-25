@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-cookinlet-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 169 tiles, fetched 2026-09-25, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 734,
+ "rows": 701,
+ "west": -152.8,
+ "east": -148.40199999999984,
+ "north": 61.9,
+ "south": 59.79999999999992,
+ "dlon": 0.006,
+ "dlat": 0.003,
+ "z": 10,
+ "min_m": -271,
+ "max_m": 3404
+}

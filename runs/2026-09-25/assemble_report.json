@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-25/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 6142684,
+  "pdf_mb": 6.14,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-25/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-25/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Six Data Center Sites. Two Answer to Juneau.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "1efb92dece2492ea63573ff0e95afbe597c2ae4eace0a8031aac0fe88ddd0089",
+        "bytes": 5457333
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "c04e01059da523a73edd3c9d92f037d68f31d5d5d05375328aae98ce03959370",
+        "bytes": 3751610
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "d553d8064dc24264f374f8edaa9b4817c68b0766770693a2ff89ade31ebeeb22",
+        "bytes": 3426918
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "2fbe124f2df7444fae157f9acb64e36d9a2284fc364883f83a43fbbf5a7acc74",
+        "bytes": 4093644
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "64b04711b8ceab295cc8e689b5950cede4ff9b1eed1810d89dd4ddc8b47d15eb",
+        "bytes": 5661836
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "68f55c32d5d2a504bf948b59ec93f84d4a990e6357c15edfa5be99975efd4ab3",
+        "bytes": 6854631
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "efa9d26c14db72c1433d10fae8d3d5b095ea94acc681ae5d60a40cccc1d90559",
+        "bytes": 5210045
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "f9a6af3e974460548582795a5efe0462661dc31f9d58a4b4ed04f29658cd5095",
+        "bytes": 3096672
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "3020a1743ad0338cb0c47ddc9188778f4c9494135891730048d21b89f2561ff8",
+        "bytes": 6931006
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "e662f8c28d2ffcb2cc06104ba35434255d12d1527403ae8e9626f7d0f9bcd102",
+        "bytes": 7047
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "4ccbf2a028f901d3375f053bc7dbad8edf1fa593a391140ba03d6a3268eb9503",
+        "bytes": 7514
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "1baca86ba73496033fb48e3a6892a7a92f010d8e436d1ef1a6f427317cc4fbe4",
+        "bytes": 5887
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "dec01488db862566a2ca5241da709396c211aeb8161e595f325564cd21a9176f",
+        "bytes": 8950
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "69cbf76df38098d832c102c2d8c297c6d69452252483b497f359f1f2ca397d98",
+        "bytes": 6625
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "11698e152d05e1e6fd3eba8ae149fb978c706afa6f6be310de2ce9c413508a18",
+        "bytes": 8785
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "ce8d7f811694d6cbdb612bafc07b5834c426b20142fde246b66577b1d1fbb37d",
+        "bytes": 8112
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "d38918ccf8a5ccc5f5e371370a5277fb563f4c482d636e4667f3aed48d91c591",
+        "bytes": 8649
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "3996459510825502c2f975903768fdabdb0eede702d970333d54aee41a908ee7",
+        "bytes": 6387
+      }
+    ]
+  }
+}

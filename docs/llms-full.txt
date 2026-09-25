@@ -1,7 +1,122 @@
 # Alaska AI, full text corpus
 
-Every article published by Alaska AI, newest first. Latest article 2026-09-24.
+Every article published by Alaska AI, newest first. Latest article 2026-09-25.
 Canonical pages live under https://alaskaaihq.com/archive/.
+# Six Data Center Sites. Two Answer to Juneau.
+
+> From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor could reach two.
+
+Published 2026-09-25 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-09-25/
+
+## The story
+
+A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic. The Alaska Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by Anthropic. The deck leaves that report out and quotes all four candidates at equal size, in alphabetical order, so no candidate is framed by it.
+
+Six sites in play for data centers. Two answer to Juneau.
+
+Two sit on state land. Four are federal calls.
+
+The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appointed. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.
+
+What they say about data centers.
+
+"I'm a big believer in data centers." He said the groups he is talking to would produce their own power (Bronson, Republican, Commonwealth North forum). "I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska." (Kreiss-Tomkins, Democrat, September 8th forum). "I think we need to embrace it." Any data center, he said, must "bring their own energy." (Taylor, Republican, September 8th forum). "I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands." (Wilson, Republican, by text message). Order is alphabetical by surname, not a ranking. Quotes as reported by the Alaska Beacon.
+
+Milepost 390. State land, 50 years.
+
+DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.
+
+"not interconnected to the Railbelt or any other Alaska utility grid"
+
+A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.
+
+One state decision, three federal ones.
+
+DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.
+
+Filings close the day before the vote.
+
+DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.
+
+Who signs each one.
+
+Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC, on a preliminary permit. Filings close November 2nd.
+
+Save this. Check it again after November 3rd.
+
+## What we verified
+
+- The Alaska DNR Division of Oil and Gas issued a preliminary decision to offer STAK Energy Corporation a 50-year lease on the North Slope. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The proposed STAK Energy lease covers a 715.4-acre parcel. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The STAK Energy site is adjacent to the Dalton Highway about 26 miles south of Deadhorse. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The STAK Energy lease is for a natural gas-powered energy facility that includes modular high-performance computing units. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The STAK Energy preliminary notice set June 15th as its original deadline for public comments. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- Alaska DNR proposes to convey approximately 19,950 acres of state land to the Alaska Industrial Development and Export Authority. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The proposed AIDEA parcel is about two miles north of Houston in the Matanuska-Susitna Borough. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The AIDEA Houston conveyance notice set August 19th as its original public comment deadline. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- DNR says the AIDEA preliminary decision will be issued as the Final Finding and Decision without further notice if no significant change is required. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The Air Force solicitation AFCEC-26-R-0006 seeks AI data center development at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station. [SAM.gov (U.S. General Services Administration)](https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search), primary document, 2026-07-15.
+- Responses to the Air Force AI data center solicitation were due June 29th. [SAM.gov (U.S. General Services Administration)](https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search), primary document, 2026-07-15.
+- Under Article III Section 25 of the Alaska Constitution, the head of each principal department is appointed by the governor, subject to confirmation by the Legislature, and serves at the governor's pleasure. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- Alaska's general election day is Tuesday, November 3rd. [Alaska Division of Elections](https://www.elections.alaska.gov/), primary document, 2026-09-25.
+- The Alaska Constitution lets the governor veto bills passed by the Legislature. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- A vetoed bill that is not a revenue or appropriation bill becomes law only with the votes of two-thirds of the Legislature's membership. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- A bill becomes law without the governor's signature if the governor neither signs nor vetoes it within fifteen days, Sundays excepted, while the Legislature is in session. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- DNR's preliminary decision on the STAK Energy lease says the authority to execute the Final Finding and Decision was delegated to the Division of Oil and Gas from the Commissioner of DNR. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- The STAK Energy pad would host a natural gas-fired power plant designed to produce 1 to 3 gigawatts of electricity. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision describes the STAK Energy power and computing systems as behind the meter and not interconnected to the Railbelt or any other Alaska utility grid. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- The STAK Energy site sits about one mile west of the Dalton Highway at Milepost 390, west of the Trans-Alaska Pipeline System. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision gives the STAK Energy parcel's northeast corner as 69.922571 N, 148.849662 W. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- Governor Mike Dunleavy appointed John Crowther acting commissioner of the Alaska Department of Natural Resources in October 2025. [Office of the Governor of Alaska](https://gov.alaska.gov/john-crowther-appointed-acting-dnr-commissioner/), primary document, 2025-10-24.
+- DNR's preliminary decision says the STAK Energy footprint is a principal gravel pad of about 640 acres plus a 1.8-mile gravel access road and maintenance buffers, totaling 715.4 acres. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- STAK Energy applied to DNR for a 50-year state land lease for a commercial natural gas-powered data center facility. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision on the STAK Energy lease is filed under case number ADL 422741. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- Republican governor candidate Dave Bronson said "I'm a big believer in data centers" at a Commonwealth North candidate forum in Anchorage. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Bronson said the data center groups he is talking to would produce their own electricity because they consider Alaska's grid power unreliable. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- At a September 8th forum in Anchorage, Republican candidate Treg Taylor said of data centers "I think we need to embrace it.". [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Taylor said any data center in Alaska must bring its own energy, and that electricity costs are his biggest concern. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Taylor said a data center "doesn't have to drive up costs if you do it correctly" and can produce a net savings for Alaska ratepayers. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Democratic candidate Jonathan Kreiss-Tomkins said he supports a moratorium on data center development in Alaska until the Legislature passes a comprehensive regulatory framework. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Kreiss-Tomkins said any limits on data center development would be decided by negotiations between himself and the Legislature. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Republican candidate Bernadette Wilson said by text message "I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.". [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Alaska Beacon story identifies Dave Bronson, Treg Taylor and Bernadette Wilson as Republicans. [Alaska Beacon (James Brooks), republished by Alaska Public Media](https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers), report, 2026-09-21.
+- The Alaska Beacon story identifies Jonathan Kreiss-Tomkins as the Democratic candidate. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- A photo caption on the Beacon story places Taylor, Bronson and Kreiss-Tomkins at a September 9th forum held by the Last Frontier Republican Club at the Petroleum Club of Anchorage. [Alaska Beacon (photo by Yereth Rosen), republished by Alaska Public Media](https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers), report, 2026-09-21.
+- The Alaska Beacon first published James Brooks's story on the governor candidates and data centers on September 18th. [Copper River Country Journal, reprinting the Alaska Beacon](https://www.countryjournal2020.com/2026/09/data-centers-in-alaska-governor.html), report, 2026-09-18.
+- The Beacon reports that the Alaska Senate voted 14 to 5 this year to pass a data center bill. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Senate-passed data center bill did not pass the Alaska House before the end of the legislative session. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The data center bill's sponsor, Sen. Loki Tobin, D-Anchorage, will return to the Legislature next year. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Beacon reports that the next governor will likely be confronted with legislation similar to the Senate-passed data center bill. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Senate-passed bill would have regulated how data centers use electricity from public utilities and required them to create decommissioning plans. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Beacon reports that one $500 million data center proposal on the North Slope intends to burn local natural gas for power and use Arctic air for cooling. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Gov. Mike Dunleavy is term-limited and can't run again this year. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- BillTrack50 lists Alaska SB 250 as "An Act relating to data centers; and relating to utility service for data centers," sponsored by Sen. Loki Tobin. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- SB 250's last legislative action was a House Community and Regional Affairs hearing on May 18th. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- BillTrack50 lists SB 250 as dead as of May 20th. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- The Beacon reports that AIDEA announced plans for a development that could include data centers in Southcentral Alaska. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Air Force has offered to lease about 4,700 acres of government land in Alaska to private companies for data centers. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- No Air Force data center lease projects in Alaska had been awarded as of September 15th. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- KUAC reports the Pentagon wants to build up to a dozen military data centers near Anchorage, Healy and Fairbanks. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Sen. Lisa Murkowski said she is not a proponent of data centers at JBER or Alaska's Interior installations because of an insecure energy base at this time. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- KUAC reports that the Fairbanks North Star Borough Assembly is calling for a data center moratorium but can't tell the Pentagon what to do on military land. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Fairbanks North Star Borough Mayor Grier Hopkins said it is a different question whether local concerns about data centers trickle up to the Pentagon. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- DeepGreen Cook Inlet has proposed a 100-megawatt subsea data center in Cook Inlet. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- The Center for Biological Diversity, the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough have filed motions to intervene in the DeepGreen FERC proceeding. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+- Comments, motions to intervene and competing applications on the DeepGreen project can be filed with FERC through November 2nd. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- Alaska Energy Authority CEO Curtis Thayer said AEA will file to intervene in and oppose the DeepGreen proposal. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- Sen. Dan Sullivan said AI companies, not communities, need to pay the costs of producing AI. [Alaska's News Source (Wil Courtney)](https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/), report, 2026-09-16.
+- Sen. Lisa Murkowski said she would welcome a serious effort to establish clear guardrails for the AI industry. [Alaska's News Source (Wil Courtney)](https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/), report, 2026-09-16.
+- The Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by the AI company Anthropic. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Kenai Peninsula Borough's motion to intervene in the DeepGreen FERC proceeding is dated September 14th. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+- In a September 21st response filed with FERC, DeepGreen said the requested modeling and studies would occur during a three-year study period. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+- The Mat-Su Sentinel and Anchorage Press report that DNR's 41-page decision document on the Houston conveyance says AIDEA's proposed development would include "scalable data centers". [Mat-Su Sentinel and Anchorage Press (Amy Bushatz, Nathaniel Herz)](https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/), report, 2026-07-15.
+
+Slides and the deck PDF are linked from the canonical page.
+
+
+---
+
 # Tested at Nenana. Awarded in New York. Next stop unnamed.
 
 > In June, controlled fires were set along the Nenana-Totchaket Road, and machines from Nenana's airport had 8 hours to find them alone.
@@ -1286,6 +1401,8 @@ Published 2026-09-05 by Alaska AI. 9 slides.
 Canonical: https://alaskaaihq.com/archive/2026-09-05/
 
 ## The story
+
+A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic, and it reports on donations by six people who list Anthropic as their employer. The company gave nothing and no company statement about the donations is reported. Every figure here is arithmetic over the State of Alaska's own disclosure rows, recomputed twice by separate code, and an adversarial fact-check dropped twelve claims before publication.
 
 It takes 105 Alaska donors to match six people Outside.
 
@@ -4721,7 +4838,9 @@ Canonical: https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center
 - 2026-06-26, Application supplemented (milestone)
 - 2026-08-19, First Alaska reporting on the filing (milestone)
 - 2026-09-04, FERC accepts the application for filing and publishes notice in the Federal Register (milestone)
+- 2026-09-14, Kenai Peninsula Borough files a motion to intervene (milestone)
 - 2026-09-20, Alaska Energy Authority marine survey crews mobilise for the Cook Inlet PowerLink in the same inlet (milestone)
+- 2026-09-21, DeepGreen files a response with the commission (milestone)
 - 2026-10-22, Cook Inlet PowerLink marine survey fieldwork ends (milestone)
 - 2026-11-02, Comments, motions to intervene and competing applications due, 5:00 p.m. Eastern (deadline)
 
@@ -4737,6 +4856,7 @@ Canonical: https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center
 - [Peninsula Clarion](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), 2026-09-14
 - [Federal Register](https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18151.txt), 2026-09-04
 - [Homer News](https://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), 2026-09-14
+- [Anchorage Daily News](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), 2026-09-24
 
 ## How this decision moved
 
@@ -4753,6 +4873,7 @@ Canonical: https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center
 **2026-09-18** Checked and unchanged, with the comment date re-verified today against the Federal Register notice itself. Comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd, on project number P-15423-000. FERC has issued no further notice in the docket since accepting the application on September 4th.
 **2026-09-20** Checked and unchanged. The Federal Register notice accepting the application for filing still governs, and comments, motions to intervene, competing applications and notices of intent to file a competing application are due by 5:00 p.m. Eastern on November 2nd on project number P-15423-000. The notice places the project in the Upper Cook Inlet East Foreland corridor of the Kenai Peninsula Borough, with a subsea cable landing connecting to the Nikiski industrial corridor.
 **2026-09-24** Checked and unchanged. Comments, motions to intervene and competing applications on P-15423-000 are still due November 2nd, a date moved from October 31st because that falls on a Saturday. As of September 11th the City of Kenai had received only a June 24th notification letter from the company, and no comments had yet been filed, per the Homer News.
+**2026-09-25** Opposition is now on the record. FERC accepted the application on September 1st, and motions to intervene have since been filed by the Center for Biological Diversity, the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough, whose motion is dated September 14th, per the Anchorage Daily News. Alaska Energy Authority chief executive Curtis Thayer told the Peninsula Clarion the authority will file to intervene and oppose it. In a September 21st response filed with the commission, DeepGreen said the modeling and studies requested would occur during a three year study period. Comments, motions to intervene and competing applications on P-15423-000 remain due November 2nd.
 
 
 ---
@@ -4813,6 +4934,7 @@ Canonical: https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/
 **2026-09-17** Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Fifteen days remain to file.
 **2026-09-20** Re-read the Federal Register text at the source. Written comments on the America's Great Corridors of Commerce request for information, Docket DOT-OST-2026-3269, are due by October 2nd, and the notice adds that the department will consider comments filed after that date to the extent practicable. Twelve days remain to file.
 **2026-09-23** Re-read the Federal Register text today. Written comments are still due October 2nd in docket DOT-OST-2026-3269, and the notice still names data centers among the uses it wants sited beside the corridors. Checked and unchanged.
+**2026-09-25** Re-read the Federal Register text today. Written comments are still due October 2nd in docket DOT-OST-2026-3269. Checked and unchanged.
 
 
 ---
@@ -4855,6 +4977,7 @@ Canonical: https://alaskaaihq.com/docket/eielson-oklo-microreactor/
 **2026-09-14** Checked and unchanged. The base's own microreactor page refused an automated request today, so the status was re-read against World Nuclear News and the American Nuclear Society. What stands is a notice of intent to award issued by Defense Logistics Agency Energy, not a signed contract. Oklo would own and operate a 5 megawatt reactor at Eielson and the Air Force would buy the power under a 30 year fixed price agreement, conditional on a Nuclear Regulatory Commission license and on the environmental analysis now under way.
 **2026-09-18** Checked and unchanged, and checked this time against the licensing record rather than the base page, which refused an automated read. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice and not a signed contract, and the contract follows a Nuclear Regulatory Commission license. The commission's own record for the Aurora combined license application shows it was submitted on March 11th, 2020, accepted for review on June 5th, 2020, and denied on January 6th, 2022 for failure to supply information, and that application names Idaho National Laboratory rather than Alaska. No license covering an Eielson unit is on the record.
 **2026-09-24** Updated. The Air Force is now asking for public comment on where the reactor would go. Its preferred site is near Spruce Lake, east of the south end of the main runway, and because that site is near wetlands federal law requires the public be asked first. Comments go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail, and must arrive no later than September 30th. A draft Environmental Assessment is expected later in 2026, and officials expect an assessment rather than a full Environmental Impact Statement. The 5 megawatt Oklo agreement is still a notice of intent, signed only after a Nuclear Regulatory Commission license. Reported by Tim Ellis for KUAC on September 20th.
+**2026-09-25** Re-verified today against KUAC's September 20th report. Comments on the preferred site near Spruce Lake, east of the south end of the main runway, are still due to the Eielson Public Affairs Office no later than September 30th. The base's own microreactor page refused an automated request today. Checked and unchanged.
 
 
 ---
@@ -4891,6 +5014,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 **2026-09-20** Checked and unchanged. Re-read the Federal Register text at the source. Comment in WC Docket No. 26-173, FCC 26-52, printed at 91 FR 55826 to 55835, is due on or before September 30th, and reply comments are due on or before October 30th. Ten days remain to file.
 **2026-09-23** Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged.
 **2026-09-24** Checked and unchanged. Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged.
+**2026-09-25** Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged.
 
 
 ---
@@ -5068,6 +5192,7 @@ Canonical: https://alaskaaihq.com/docket/aidea-houston-industrial-park/
 **2026-09-14** Re-verified today against the extension notice, Alaska DNR Online Public Notices id 224879. Written comment on the proposed conveyance of about 19,950 acres to AIDEA closes at 5:00 p.m. today, Monday, September 14th, and the notice archives tomorrow. The notice repeats in its own words that only persons from whom DNR DMLW receives timely, written comment during the identified comment period will be eligible to file an appeal of the Final Finding and Decision or related actions, so today is the last day to preserve that standing. No final finding and decision has been published.
 **2026-09-17** The comment room closed and the argument moved to other rooms. Written comment on ADL 234762 closed September 14th and Alaska DNR received more than 2,100 comments. This entry carried the room as open for three days after it shut, and the state's own notice archived on September 15th. Five members of the Senate Resources Committee, Cathy Giessel, Bill Wielechowski, Forrest Dunbar, Matt Claman and Scott Kawasaki, wrote to the department on September 9th citing a Legislative Affairs Agency attorney's finding that the conveyance may raise legal issues without a DNR review of the proposed projects for the industrial district. The Matanuska-Susitna Borough Assembly voted unanimously on September 15th to oppose the transfer and asked that development of this size go to the Point MacKenzie and West Susitna areas instead. Houston's city council has introduced a two-year moratorium on the construction of new data centers, to be heard October 8th. No final finding and decision has been published.
 **2026-09-21** Re-verified today against the state notice. The Division of Mining, Land and Water's proposed conveyance of about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority remains at the preliminary decision stage, with comments having closed at 5:00 p.m. on August 19th and no final finding and decision published. The notice says that if no significant change is required, the preliminary decision will be issued as the final finding and decision without further notice. Checked and unchanged.
+**2026-09-25** Re-verified today against the state notice. The fetched notice for the proposed conveyance of about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority still presents a preliminary decision and shows no separate final finding and decision. Written comment, first due August 19th, was extended to September 14th and has closed. The notice says a preliminary decision can become final without further notice, so this records what the notice shows and not DNR's internal status. Checked and unchanged.
 
 
 ---
@@ -5088,6 +5213,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 - 2026-07-22, U.S. House passes FY2027 NDAA carrying a data center lease restriction (vote)
 - 2026-07-23, Bill introduced in the U.S. House to ban AI data centers on federal land (milestone)
 - 2026-08-10, Proposals due on a separate Eielson mixed-use lease covering 3,967 acres (milestone)
+- 2026-09-15, Sen. Murkowski says an insecure energy base keeps her from backing data centers at JBER and the Interior installations at this time (milestone)
 
 ## Sources
 
@@ -5103,6 +5229,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 - [Anchorage Daily News](https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/), 2026-05-05
 - [SAM.gov, Department of the Air Force](https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695), 2026-04-10
 - [SAM.gov, U.S. General Services Administration](https://sam.gov/opp/3a9b6ba7ed424dbc96bd43a02e5c6a7a/view), 2026-06-16
+- [KUAC via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), 2026-09-15
 
 ## How this decision moved
 
@@ -5133,6 +5260,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-09-14** Checked and unchanged, re-read on HigherGov, which answers while SAM.gov refuses an automated request. Solicitation AFCEC-26-R-0006 reads past due, posted April 10th at 2:01 p.m. Eastern, with a response deadline of 5:00 p.m. Eastern on June 29th and an archive date of July 14th. Every award field is empty, so no awardee, award number, amount or award date is public two and a half months after proposals closed. The record carries an estimated value range of $1,000,000 to $10,000,000 under NAICS 531190, lessors of other real estate property, a code that covers the ground lease and not what a tenant would build on it.
 **2026-09-18** Checked and unchanged. The enhanced use lease offering still stands as posted, about 4,700 acres across 12 parcels at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station, with no selection and no award announced. The Air Force set no public decision date when it posted the offering, so a decision here arrives without a calendar.
 **2026-09-24** Checked and unchanged. The solicitation of record, AFCEC-26-R-0006, still shows proposals closed on June 29th after a one month extension, a last update of July 14th, and no award or selected lessee. The Air Force has set no public date for choosing one.
+**2026-09-25** Senator Lisa Murkowski has said she is not a proponent of data centers at Joint Base Elmendorf-Richardson and the Interior installations while their energy base is insecure. "I am not a proponent of data centers down at JBER or at our Interior installations because we are not able to support them because of an insecure energy base at this time," she told KUAC, which reported on September 15th that no projects have been awarded yet. No selection or award has been announced.
 
 
 ---
@@ -5171,6 +5299,7 @@ Canonical: https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/
 **2026-09-13** Checked and unchanged. The notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th, which moved the proposal deadline to 3:30 p.m. August 28th. Sixteen days after proposals were due, no award, no intent to award and no cancellation is posted.
 **2026-09-17** Checked and unchanged. The notice for RFP 2026-0200-0064, Statewide Transcription Services, still shows Amendment 1 of August 17th and a proposal deadline of 3:30 p.m. Alaska daylight time on Friday, August 28th. The notice archived on August 31st and no award or intent to award has been posted. Twenty days have passed since proposals were due.
 **2026-09-21** Re-verified today against the state notice. RFP 2026-0200-0064, Statewide Transcription Services, published July 31st and closed for proposals at 3:30 p.m. Alaska Daylight Time on August 28th, extended by Amendment 1 from August 24th. The notice still shows no award and the state has posted no selection. Checked and unchanged.
+**2026-09-25** Re-verified today against the state notice. RFP 2026-0200-0064 closed for proposals at 3:30 p.m. Alaska Daylight Time on August 28th, and the notice still carries only Amendment 1, with no award, notice of intent to award or cancellation posted. Checked and unchanged.
 
 
 ---
@@ -5219,6 +5348,7 @@ Canonical: https://alaskaaihq.com/docket/ana-ai3-action-institute/
 **2026-09-21** Re-verified today against the grants listing. Opportunity HHS-2026-ACF-ANA-NAI-0035 shows status closed, applications having been due August 27th, with the posting archiving on September 26th. One award is expected, with a ceiling of $3,500,000 and a floor of $2,500,000. No recipient has been announced. Checked and unchanged.
 **2026-09-23** Re-read the Grants.gov opportunity today. HHS-2026-ACF-ANA-NAI-0035 closed to applications on August 27th, the award ceiling and total program funding both still read $3,500,000, and the listing carries an archive date of September 26th. No award has been posted. Checked and unchanged.
 **2026-09-24** Checked and unchanged. Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 is closed, one award is expected with a ceiling of $3,500,000, the archive date is still September 26th and no award has been posted. Checked and unchanged.
+**2026-09-25** Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 is closed, one award is expected with a ceiling of $3,500,000, the archive date is still September 26th and no award has been posted. Checked and unchanged.
 
 
 ---
@@ -5306,6 +5436,7 @@ Canonical: https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/
 **2026-09-11** Checked. The commission's own carbon storage page again answered an automated request with a 403, so this was verified against Petroleum News. Alaska's bid to run its own Class VI carbon storage permits went to a public hearing at 10 a.m. on May 14th, 2026 at the commission's Anchorage offices, and written and oral comment closed at the conclusion of that hearing. If the Environmental Protection Agency grants primacy, the Alaska Oil and Gas Conservation Commission would regulate the underground injection control program for every Class VI well in the state. No decision has been published and no decision date has been set, which is now four months after the hearing.
 **2026-09-17** Checked and unchanged. The commission's own carbon storage page again answered an automated request with a 403, so this was verified against Petroleum News, which remains the readable record. The commission held its public hearing on the intention to seek Class VI primacy on May 14th and took written and oral comment through the close of that hearing. Nothing published since names a date for an Environmental Protection Agency decision, and nothing published names the date the application itself went to the agency.
 **2026-09-21** Checked today. The commission's own carbon storage page answered an automated request with a 403, so it was checked instead against the published primacy application and the hearing record. Nothing shows an EPA ruling on Alaska's Class VI primacy application, and no new hearing or comment date has been posted since the May 14th public hearing. Unchanged so far as the public record shows, with the caveat that the commission page could not be read directly today.
+**2026-09-25** Checked today. A Federal Register search for Class VI actions naming Alaska since May 1st returns no EPA ruling on Alaska's primacy application, and no new state hearing or comment date has been announced since the May 14th hearing. Checked and unchanged.
 
 
 ---
@@ -5350,6 +5481,7 @@ Canonical: https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/
 **2026-09-13** Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with FERC on June 30th as its most recent action, and puts estimated construction cost at about $400 million. The FERC comment window closed 5 p.m. Eastern on August 28th, so the matter sits with the Commission and any change arrives unannounced.
 **2026-09-17** Checked and unchanged. The Alaska Energy Authority's Dixon Diversion page still shows the final license amendment application filed with the Federal Energy Regulatory Commission on June 30th as its most recent action, and still puts estimated construction cost near $400 million. Nothing posted there reflects any action after that filing.
 **2026-09-21** Re-verified today against the Alaska Energy Authority project page. The final license amendment application filed with FERC on June 30th stands, along with the roughly $400 million construction estimate and the schedule of about three years of study and permitting followed by about three years of construction. FERC has published no decision date. Checked and unchanged.
+**2026-09-25** Re-verified today against the Alaska Energy Authority project page. The final license amendment application filed with FERC on June 30th stands, with the construction estimate of about $400 million and a schedule of about three years of study and permitting followed by about three years of construction. No FERC ruling or decision date is posted. Checked and unchanged.
 
 
 ---
@@ -5433,6 +5565,7 @@ Canonical: https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-reques
 **2026-09-13** Checked and unchanged. Nothing has been posted by the Fairbanks North Star Borough since the Assembly adopted Resolution 2026-25 on August 27th. The state half of the ask can't be taken up before the 35th Alaska Legislature convenes January 19th, 2027, and the congressional half has no scheduled step at all.
 **2026-09-17** Checked and unchanged. Resolution 2026-25 stands as adopted on August 27th, and the request for a moratorium on new commercial data center development still appears under both the state and the federal halves of the borough's 2027 priorities. Nothing can be acted on by the body it asks until the 35th Alaska Legislature convenes on January 19th, 2027.
 **2026-09-21** Re-verified today. The Fairbanks North Star Borough Assembly adopted its 2027 legislative priorities on August 31st, carrying the data center moratorium request as both a state and a federal priority. The resolution asks for a moratorium on the permitting, leasing or construction of new commercial data centers until local governments and the state have set standards for electrical demand, water consumption, environmental impact and air quality. Nothing has moved since, because the Legislature does not convene until January. Checked and unchanged.
+**2026-09-25** Re-verified today against the borough's agenda packet. Resolution 2026-25 still carries the request for a moratorium on the permitting, leasing or construction of new commercial data centers. Its state half waits on the Legislature, which is out of session until the 35th Legislature convenes on January 19th, 2027. Its federal half is addressed to the Alaska congressional delegation, which is not bound by that calendar. Checked and unchanged.
 
 
 ---
@@ -5516,6 +5649,7 @@ Canonical: https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/
 **2026-09-13** Tracked. The threshold is aggregate peak demand, which is power, so a project describing its output in megawatts of generation is not automatically above or below the line. The Alaska question is the third exemption prong. SB 250 passed the Senate on May 16th per Davis Wright Tremaine, crossed over the same day per BillTrack50, then died in House Community and Regional Affairs after a May 18th hearing. The second prong, a proceeding by the state commission alone, is unknown here because that docket search refuses an automated read.
 **2026-09-17** The House passed it. On September 16th the House agreed to H.R. 9340 on a motion to suspend the rules and pass the bill as amended, by 417 to 3 on Roll No. 312, with 210 Republicans and 206 Democrats voting yes and 3 Democrats voting no. This entry said on September 13th that the bill was eligible for floor action and not scheduled for it, which was true when written and is now overtaken. The bill goes to the Senate. The Alaska consequence is unchanged, a state commission proceeding on large load rates for customers drawing 100 megawatts or more at a single site or campus, which would land at the Regulatory Commission of Alaska.
 **2026-09-21** Re-verified today. The House passed the bill on September 16th by 417 to 3, and the engrossed House text was issued the same day under the official title "An Act To amend the Public Utility Regulatory Policies Act of 1978 to establish a Federal standard relating to the recovery of the full, incremental costs of upgrades that serve large-load customers, and for other purposes." The bill is now before the Senate, which has not acted on it. The standard it would set applies to new large-load customers drawing 100 megawatts or more, which is the class every proposed Alaska data center falls into.
+**2026-09-25** Re-verified today against govinfo. The most recent published text is still the version engrossed in the House on September 16th, after passage 417 to 3. No Senate version or later text has been published. Checked and unchanged.
 
 
 ---
@@ -5604,6 +5738,7 @@ Canonical: https://alaskaaihq.com/docket/terra-energy-center-doe-grant/
 **2026-09-11** Re-verified against the Department of Energy's own selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project is still listed at $89,000,000 with Terra Energy Center Corporation of Anchorage as the selectee and the facility sited in the Matanuska-Susitna Borough. The page is a list of selections and says nothing about the award being finalized. What it does say about timing is that the project aims to complete FEL-3, or Class 3, engineering in 2027, so no construction decision is near.
 **2026-09-17** Checked and unchanged. The Department of Energy's own selection page still lists the Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project at $89,000,000 to Terra Energy Center Corporation of Anchorage, and still describes it as a selection rather than an award. The page puts the aim at completing FEL-3 and Class 3 engineering in 2027.
 **2026-09-21** Re-verified today against the Department of Energy selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project remains selected for $89,000,000, with Terra Energy Center Corporation of Anchorage named as recipient, front end engineering at FEL-3 or Class 3 targeted for 2027 and baseload generation described as possible by 2031. Checked and unchanged.
+**2026-09-25** Re-verified today against the Department of Energy selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project is still listed as selected for $89,000,000, with Terra Energy Center Corporation of Anchorage named as recipient. No award or cancellation is shown. Checked and unchanged.
 
 
 ---
@@ -5635,6 +5770,7 @@ Canonical: https://alaskaaihq.com/docket/ua-regents-ai-policy/
 
 **2026-09-17** Tracked. Two instruments govern artificial intelligence at the University of Alaska and only one of them binds anybody today. The UA Generative AI Security Standard took effect in January 2025, was updated in March 2025, supplements Board of Regents Policy and Regulation R02.07, and sets its own next review for January 2027. It applies to the UA System and all users of UA computing resources. It does not forbid Internal or Restricted data from generative AI, it requires such use to meet published requirements for data storage, computing environments and model deployment. The university's GenAI policies and guidelines page, stamped March 11th, 2025, says UA System regulations are currently under development and leaves classroom and research rules to individual universities and departments. KTOO reported on September 16th that the Board of Regents reviewed a draft AI policy at a meeting at UAS and that leadership plans to submit a finalized draft for approval in November. No date for that meeting is published where it could be read today, so none is recorded here.
 **2026-09-21** Re-verified today against the university's own AI policy index. The page still names the generative AI standards run by the Office of Information Technology and says that UA System regulations are currently under development, with no dated Board of Regents draft published. Checked and unchanged.
+**2026-09-25** Re-verified today against the university's own AI policy index. The page still says UA System regulations are currently under development and carries its March 11th, 2025 update stamp, with no dated Board of Regents policy published. Checked and unchanged.
 
 
 ---

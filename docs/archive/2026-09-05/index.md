@@ -7,6 +7,8 @@ Canonical: https://alaskaaihq.com/archive/2026-09-05/
 
 ## The story
 
+A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic, and it reports on donations by six people who list Anthropic as their employer. The company gave nothing and no company statement about the donations is reported. Every figure here is arithmetic over the State of Alaska's own disclosure rows, recomputed twice by separate code, and an adversarial fact-check dropped twelve claims before publication.
+
 It takes 105 Alaska donors to match six people Outside.
 
 Six gifts. $372,000. Every one from the Bay Area.
