@@ -308,7 +308,7 @@
     for (var j = -1; j <= rows; j++) for (var i = -1; i <= cols; i++) {
       var p = proj.invert([X + (i + 0.5) * r, Y + (j + 0.5) * r]);
       var v = p ? dem.sample(p[0], p[1]) : NaN;
-      E[(j + 1) * C2 + i + 1] = isFinite(v) ? v : 0;
+      E[(j + 1) * C2 + i + 1] = isFinite(v) ? v : NaN;   // missing stays missing, never sea level
     }
     var flat = lz;                                // Lambert of level ground
     var cv = document.createElement("canvas"); cv.width = cols; cv.height = rows;
@@ -317,8 +317,11 @@
     for (j = 0; j < rows; j++) for (i = 0; i < cols; i++) {
       var k = (j + 1) * C2 + i + 1, h0 = E[k], q = (j * cols + i) * 4;
       if (!(h0 > sea)) { D[q + 3] = 0; continue; }
-      var gx = (E[k + 1] - E[k - 1]) / (2 * r) * ppk / 1000 * exag;
-      var gy = (E[k + C2] - E[k - C2]) / (2 * r) * ppk / 1000 * exag;
+      // a neighbour off the DEM takes the centre's height, so a crop edge gives a flat face and not a lit cliff
+      var eE = E[k + 1], eW = E[k - 1], eS = E[k + C2], eN = E[k - C2];
+      if (!isFinite(eE)) eE = h0; if (!isFinite(eW)) eW = h0; if (!isFinite(eS)) eS = h0; if (!isFinite(eN)) eN = h0;
+      var gx = (eE - eW) / (2 * r) * ppk / 1000 * exag;
+      var gy = (eS - eN) / (2 * r) * ppk / 1000 * exag;
       var nl = Math.sqrt(gx * gx + gy * gy + 1);
       var lam = (-gx * lx - gy * ly + lz) / nl;
       var a = Math.max(0, lam - flat) * gain;

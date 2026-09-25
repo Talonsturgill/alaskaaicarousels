@@ -35,7 +35,7 @@ DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides i
 
 Who signs each one.
 
-Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC. Filings close November 2nd.
+Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC, on a preliminary permit. Filings close November 2nd.
 
 Save this. Check it again after November 3rd.
 
