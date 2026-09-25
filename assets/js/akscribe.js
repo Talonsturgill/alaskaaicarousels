@@ -158,7 +158,7 @@
       cell: o.cell || 7,
       passes: o.passes || 4,
       sunAz: (key + 180) % 360,        // strokes on the LIT faces
-      sunEl: o.keyEl || 40,
+      sunEl: o.keyEl === undefined ? 40 : o.keyEl,
       sunJitter: o.sunJitter === undefined ? 9 : o.sunJitter,
       color: o.color || "#BFDDF0",
       alpha: o.alpha === undefined ? 0.2 : o.alpha,
@@ -297,6 +297,7 @@
   AKS.glow = function (cx, proj, dem, o) {
     contract("AKS.glow", o, ALLOWED_GLOW);
     var X = o.x || 0, Y = o.y || 0, W = o.w, H = o.h, r = o.res || 3, ppk = o.pxPerKm;
+    if (!(ppk > 0)) throw new Error("AKS.glow: pxPerKm is required");
     var cols = Math.ceil(W / r), rows = Math.ceil(H / r);
     var az = (o.keyAz === undefined ? 330 : o.keyAz) * Math.PI / 180;
     var el = (o.keyEl === undefined ? 40 : o.keyEl) * Math.PI / 180;
