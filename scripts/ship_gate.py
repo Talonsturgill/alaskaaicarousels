@@ -46,6 +46,7 @@ whole module is here to prevent. If a deck rendered, it is not a (d).
 """
 
 import argparse
+import html
 import json
 import math
 import re
@@ -107,11 +108,14 @@ ROUND_CAP = 5
 
 def _art_score(score):
     for c in score.get("criteria") or []:
-        # The rubric's own criterion, "Artwork craft & genuine detail", and not
-        # any name that merely contains "artwork" (Codex on PR #401).
-        name = " ".join(re.findall(r"[a-z]+", str(c.get("name", "")).lower())) \
-            if isinstance(c, dict) else ""
-        if name.startswith("artwork craft"):
+        # The rubric's own criterion, "Artwork craft & genuine detail", matched
+        # in full after normalizing case and "&"/"and"; not any name that merely
+        # contains or starts like it (Codex on PR #401).
+        # runs/2026-07-31 wrote it HTML-escaped ("&amp;"), so unescape first.
+        name = " ".join(w for w in re.findall(
+            r"[a-z]+", html.unescape(str(c.get("name", ""))).lower())
+            if w != "and") if isinstance(c, dict) else ""
+        if name in ("artwork craft genuine detail", "artwork craft"):
             v = c.get("score")
             if (isinstance(v, (int, float)) and not isinstance(v, bool)
                     and math.isfinite(v) and 0 <= v <= 10):
@@ -185,8 +189,8 @@ def craft_floor(run, score):
     if rounds >= ROUND_CAP:
         return {"status": "capped", "reason": "artwork craft %.1f, but the run is at the %d-round cap"
                 % (art, ROUND_CAP)}
-    frames = [f.get("slide") for f in (score.get("artwork_weakest_frames") or [])
-              if isinstance(f, dict)]
+    wf = score.get("artwork_weakest_frames")
+    frames = [f.get("slide") for f in wf if isinstance(f, dict)] if isinstance(wf, list) else []
     return {"status": "open", "reason": (
         "the total passes but artwork craft is %.1f, under the %.1f craft floor, with %d of %d "
         "rounds used. Run ONE craft cycle on the frames the scorer named (%s), re-render, re-gate, "
@@ -278,6 +282,11 @@ def self_test():
         ("2026-09-26", {"criteria": [{"name": "Artwork accessibility", "score": 9}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Non-artwork criterion", "score": 9}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "ARTWORK CRAFT & GENUINE DETAIL", "score": 9}]}, {}, "met"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft and genuine detail", "score": 9}]}, {}, "met"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft &amp; genuine detail", "score": 9}]}, {}, "met"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craftsmanship", "score": 9}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft accessibility", "score": 9}]}, {}, "open"),
+        ("2026-09-26", rep(7.5, artwork_weakest_frames=4), {}, "open"),
         ("2026-09-26", rep(7.5, round=5), {}, "capped"),
         ("2026-09-26", rep(7.5, revision_rounds=float("inf")), {"revision_rounds": float("nan")}, "open"),
         ("2026-09-26", rep(7.5, revision_rounds=float("inf")), {"revision_rounds": 5}, "capped"),

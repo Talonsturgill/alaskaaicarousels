@@ -150,7 +150,7 @@ plus the checklist.
       | 01 | scribed hachure relief | the pen, three.js PBR with a contact shadow |
       | 02 | engraved line field | the state outline, cased coast with graded interior |
       ...
-      Masterful depth frame: 06, the pen resting on the Houston disc
+      Masterful depth frame: 06, the pen resting on the Houston disc, PBR with a contact shadow
       Tonal arc: dark and quiet 01 to 03, the lit range peaks on 06, calm close
 
   One row per dossier. No primary mark-making may carry more than THREE
@@ -163,5 +163,6 @@ plus the checklist.
   object first and then, after a comma, the treatment (lit face, lee,
   contact, material); an object named alone fails, because the scorers keep finding the
   biggest thing on a frame drawn with the least care. The masterful depth
-  frame is where the rubric's 10 is earned, so plan it and then build it
+  frame (its line, or its row, says what makes the depth) is where the
+  rubric's 10 is earned, so plan it and then build it
   first.

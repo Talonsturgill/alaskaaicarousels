@@ -860,7 +860,25 @@ _TREATMENT_SEP_RE = re.compile(
     r"shaded|carved|engraved|scribed|cast|casting|on a|in a|in an)\s)", re.I)
 
 
-# A Tonal arc line that says there is none is not an arc (Codex on PR #401).
+# What makes depth, for the masterful depth frame. Stricter than MODELLING_RE:
+# texture, grain, glow and hachure model a surface but don't make depth.
+DEPTH_RE = re.compile(
+    r"\b(depth|3d|pbr|three\.js|webgl|gpu|raymarch\w*|sdf|ak3d|extru\w*|cabinet|"
+    r"isometric|axonometric|perspective|parallax|occlu\w*|cast shadow|contact shadow|"
+    r"shadow|aerial|haze|fog|atmospheric|volum\w*|relief|dem|terrain|elevation|"
+    r"foreground|background|layered|z[- ]order|recession|recedes?)\b", re.I)
+
+# A Tonal arc line that declares none is not an arc (Codex on PR #401). An
+# explicit "no arc" always fails; a uniform-tone phrase fails only when the line
+# describes no progression, so "flat tone through 03, then lifts to a peak on
+# 06" is an arc with a flat stretch in it.
+TONAL_ARC_PROGRESSION_RE = re.compile(
+    r"\b(then|lifts?|rises?|climbs?|builds?|peaks?|brightens?|darkens?|brightest|"
+    r"darkest|ramps?|drops?|falls?|opens?|closes?|until|towards?)\b|\bto (?:a |the )?"
+    r"(?:bright|dark|light|peak|high|low)", re.I)
+TONAL_ARC_NONE_RE = re.compile(
+    r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b",
+    re.I)
 TONAL_ARC_DENIED_RE = re.compile(
     r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b|"
     # Each adjective counts only directly on tone, value, key or tonality:
@@ -1010,11 +1028,24 @@ def craft_plan_fails(text, slide_nos):
     elif int(dm.group(1)) not in slide_nos:
         fails.append("deck: CRAFT PLAN's masterful depth frame %s is not a slide "
                      "in this storyboard" % dm.group(1))
+    else:
+        # Naming the frame is not planning its depth (Codex on PR #401): the line
+        # itself, or that frame's row, has to say what makes the depth.
+        dn = int(dm.group(1))
+        line_rest = block[dm.end():].split("\n", 1)[0]
+        row_obj = rows.get(dn, ("", ""))[1]
+        if not (DEPTH_RE.search(line_rest) or DEPTH_RE.search(_treatment(row_obj))):
+            fails.append("deck: CRAFT PLAN names %02d as the masterful depth frame but "
+                         "neither that line nor its row says how the depth is made "
+                         "(rendered 3D, cast or contact shadow, occlusion, perspective, "
+                         "aerial haze, relief)" % dn)
     ta = re.search(r"^\s*[-*]?\s*Tonal arc:\s*(\S.{10,})$", block, re.M | re.I)
     if not ta:
         fails.append("deck: CRAFT PLAN names no 'Tonal arc:' line (a contact sheet "
                      "with one tone throughout is a named artwork shortfall)")
-    elif TONAL_ARC_DENIED_RE.search(ta.group(1)):
+    elif TONAL_ARC_NONE_RE.search(ta.group(1)) or (
+            TONAL_ARC_DENIED_RE.search(ta.group(1))
+            and not TONAL_ARC_PROGRESSION_RE.search(ta.group(1))):
         fails.append("deck: CRAFT PLAN's 'Tonal arc:' declares no arc ('%s'). One "
                      "tone throughout is the defect this line exists to prevent; say "
                      "where the deck is darkest, where it lifts and where it peaks"
