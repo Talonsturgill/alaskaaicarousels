@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-denali-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 221 tiles, fetched 2026-09-25, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 801,
+ "rows": 543,
+ "west": -153.2,
+ "east": -147.599999999996,
+ "north": 64.1,
+ "south": 62.20299999999864,
+ "dlon": 0.007,
+ "dlat": 0.0035,
+ "z": 10,
+ "min_m": -500,
+ "max_m": 6078
+}
