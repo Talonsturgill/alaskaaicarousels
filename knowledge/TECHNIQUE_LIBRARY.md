@@ -888,7 +888,13 @@ annotation is the strongest pair):
     window, never typed numbers. `AKS.pool` lays a lamp pool of fine rules under a
     rendered object so its cast shadow has lit ground to subtract from. Where the
     DEM's relief is metres (the Slope at z11) EVERY stroke family reads as fur:
-    draw that frame with the glow alone.
+    draw that frame with the glow alone. This is MEASURED now: `scribeRelief`
+    returns `drop` {strokes, medianM, p90M}, the metres of fall each stroke
+    claims (slope x length / pxPerKm, Imhof's rule that a hachure spans one
+    contour interval), and console.errors `AKSCRIBE:` (a qa WARN) when the
+    median is under 50 m over 300 or more strokes. No.68 measured 5 to 21 m on
+    every rejected 04 variant and 180 to 489 m on the eight frames that
+    shipped. Read the warn on the FIRST render; raising s0 can't clear it.
 
 98. **Rendered Fountain Pen (akpen)** — `assets/js/akpen.js`, an ES module,
     `init(THREE)` then `AKPEN.render(canvas, {tip, angle, lift, capped, length,

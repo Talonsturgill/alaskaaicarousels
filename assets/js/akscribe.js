@@ -182,10 +182,25 @@
    * honest picture of the Slope and the Tanana flats.
    *   o: x,y,w,h, pxPerKm, cell, s0, s1 (m/km), keyAz, keyEl, color, alpha,
    *      minWidth, maxWidth, lenScale, seed, passes, mask(lon,lat)->0..1, probes
-   * Returns {cells, strokes, widthRatio, probes:[{name, meanSlope, strokes}]} */
+   * Returns {cells, strokes, widthRatio, drop:{strokes, medianM, p90M},
+   *          probes:[{name, meanSlope, strokes}]}
+   *
+   * FUR, MEASURED (upgrade 2026-09-25, run No.68). A stroke is a claim that the
+   * ground falls along it, and the fall it claims is slope x stroke length:
+   * s (m/km) * len (px) / pxPerKm. `drop` is the distribution of that fall over
+   * the first pass's strokes. When the MEDIAN stroke claims under
+   * FUR_MEDIAN_DROP_M metres, the strokes are drawing the DEM's own texture and
+   * quantisation, not form, and the field reads as fur at any s0: No.68's slide
+   * 04 (z11 Slope, 19 px/km) measured 5 to 21 m across all five variants three
+   * critic rounds rejected (s0 3, 9, 14, 22, and a long stroke), while the eight
+   * shipped frames measured 180 to 489 m. s0 can't fix it (it only thins the
+   * same short falls), so this console.errors under AKSCRIBE: (a qa WARN) and
+   * names the two remedies that can. `lowReliefIntended: true` silences it for a
+   * frame that means to draw micro-relief, putting the intent in the source. */
+  var FUR_MEDIAN_DROP_M = 50, FUR_MIN_STROKES = 300;
   var ALLOWED_SCRIBE = ["x", "y", "w", "h", "pxPerKm", "cell", "s0", "s1", "keyAz",
     "keyEl", "color", "alpha", "minWidth", "maxWidth", "lenScale", "seed", "passes",
-    "mask", "probes", "jitter", "sea"];
+    "mask", "probes", "jitter", "sea", "lowReliefIntended"];
   AKS.scribeRelief = function (cx, proj, dem, o) {
     contract("AKS.scribeRelief", o, ALLOWED_SCRIBE);
     var X = o.x || 0, Y = o.y || 0, W = o.w, H = o.h;
@@ -206,7 +221,7 @@
       return dem.sample(p[0], p[1]);
     };
     var cols = Math.floor(W / cell), rows = Math.floor(H / cell);
-    var strokes = 0, wLo = Infinity, wHi = 0, d = cell * 0.5;
+    var strokes = 0, wLo = Infinity, wHi = 0, d = cell * 0.5, falls = [];
     cx.save(); cx.lineCap = "round";
     for (var pass = 0; pass < passes; pass++) {
       var rnd = AK.rng((o.seed || 1) + pass * 7919);
@@ -249,6 +264,7 @@
         cx.quadraticCurveTo(x - dy * b, y + dx * b, x + dx * len / 2, y + dy * len / 2);
         cx.stroke();
         strokes++; if (wpx < wLo) wLo = wpx; if (wpx > wHi) wHi = wpx;
+        if (pass === 0) falls.push(s * len / ppk);      // metres this stroke claims
         for (q = 0; q < probes.length; q++) {
           pr = probes[q];
           if (x >= pr.x && x <= pr.x + pr.w && y >= pr.y && y <= pr.y + pr.h) pst[q].strokes++;
@@ -256,7 +272,17 @@
       }
     }
     cx.restore();
-    return { cells: cols * rows, strokes: strokes, widthRatio: wHi / wLo,
+    falls.sort(function (a, b) { return a - b; });
+    var nf = falls.length;
+    var drop = { strokes: nf, medianM: nf ? falls[nf >> 1] : 0, p90M: nf ? falls[Math.floor(nf * 0.9)] : 0 };
+    if (nf >= FUR_MIN_STROKES && drop.medianM < FUR_MEDIAN_DROP_M && !o.lowReliefIntended) {
+      console.error("AKSCRIBE: scribeRelief region [" + [X, Y, W, H].join(",") + "] will read as FUR: its median " +
+        "stroke claims " + drop.medianM.toFixed(1) + " m of fall (p90 " + drop.p90M.toFixed(1) + " m, " + nf +
+        " strokes), under " + FUR_MEDIAN_DROP_M + " m, so the strokes draw the DEM's texture, not form. Raising s0 " +
+        "only thins the same short falls. Draw this ground with AKS.glow alone, or zoom out (lower pxPerKm) until " +
+        "a stroke spans real relief. Pass lowReliefIntended: true if micro-relief is the subject.");
+    }
+    return { cells: cols * rows, strokes: strokes, widthRatio: wHi / wLo, drop: drop,
              probes: pst.map(function (p) { return { name: p.name, meanSlope: p.n ? p.s / p.n : 0, strokes: p.strokes }; }) };
   };
 
