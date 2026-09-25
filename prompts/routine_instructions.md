@@ -853,6 +853,12 @@ This is where the deck is actually made. Spend real effort here.
    spec, risk flags, and the slide's acceptance checklist.
 4. STORYBOARD GATE (self-review): re-read the spec top to bottom; any
    dossier a stranger couldn't sketch from is incomplete — fix it now.
+   Write the storyboard's `## CRAFT PLAN` first (SLIDE_DOSSIER_SPEC, deck
+   header, from 2026-09-26): a primary mark-making per frame with none on
+   more than three frames, each frame's largest object and its modelling,
+   the masterful depth frame and the tonal arc. It is the deck-level half of
+   artwork craft, which per-slide dossiers can't see and which the scorers
+   charged most often.
    Run `python scripts/dossier_check.py --run-dir out/<date>` and fix every
    FAIL before Phase 8 (2026-07-26). It enforces field 4a, the lower-third
    treatment: each dossier must name what the bottom band CARRIES, and name
@@ -1285,9 +1291,19 @@ that argument was typed by hand.
    After round 4, keep the best version of any holdout and log the
    shortfall for the scorer + email.
 4. Re-assemble, then spawn `flow-critic` with the contact sheet + thumbs +
-   storyboard header. Apply sequence-level fixes (max 2 rounds). A weak
+   storyboard header AND the full renders. Apply sequence-level fixes (max 2 rounds). A weak
    junction usually means a slide edit, not a reshuffle — but reordering
    is allowed if the arc survives.
+   The flow critic also returns `craft`, the deck-level artwork test
+   (2026-09-25). It is the first reader to grade the art the way the scorer
+   does: the WEAKEST frame, a drawing function or texture reused on three or
+   more frames, a largest object left least modelled, a dead lower third, a
+   texture artifact, no tonal arc. Per-slide critics can't see those because
+   each grades one frame against its own dossier. Treat `craft.weakest_frames`
+   and `craft.cross_frame` as that round's work order: fix the cause once,
+   not the instance on each slide. A cross-frame repeat is fixed by giving
+   the repeated frames different mark-making, never by retuning one shared
+   parameter. Persist the critic's JSON to `out/<date>/flow_review.json`.
 5. RECORD-SYNC pre-flight. Hand-edits in this phase land in the slide HTML,
    so copy.json can silently go stale (run 2026-07-17: an S5 kicker edited
    "HOW IT STARTED" -> "BEFORE THE CLASS" in the HTML while copy.json kept
@@ -1357,6 +1373,23 @@ rubric, current revision count).
   one_sentence_fix + weakest-criterion repairs (bounded: one targeted
   revision cycle = fix slides/copy, re-render, re-review touched slides,
   re-score). Max 2 scoring cycles.
+- THE CRAFT FLOOR (2026-09-25, owner: make artwork craft the strongest
+  criterion). A passing total no longer ends Phase 10 while Artwork craft
+  scores under 8.5 and rounds remain under the five-round cap. Art averaged
+  6.7 over the first 68 runs and never passed 8, and in 43 of 63 of them the
+  deck shipped at art 7 or under because the other criteria carried the
+  total, so the repair loop above never ran. Now it runs once for the art:
+  repair the frames the scorer lists in `artwork_weakest_frames`, one
+  concrete change each (re-render, re-run qa and the gates, re-review only
+  the touched frames), re-score, and record in score_report.json
+  `"craft_cycle": {"frames": [...], "art_before": x, "art_after": y}`.
+  Keep the higher-scoring version if the repair did not help. One cycle,
+  never more; it counts as a round; at the round cap it stands down and
+  the deck ships as-is. `scripts/ship_gate.py` enforces it (a FAIL row in
+  gate_status reading CRAFT FLOOR) from runs dated 2026-09-26 on. It reads
+  the rounds used from `revision_rounds` in run_state.json (and the score
+  report), so keep that count current after every editing round; a missing
+  count reads as zero rounds used.
 - Any HARD FAIL: fix it no matter what (hard fails are never shipped
   around). If a hard fail is unfixable this run (e.g., topic collision
   discovered late), fall back to the runner-up story ONLY if before Phase

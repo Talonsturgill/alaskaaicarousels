@@ -818,6 +818,85 @@ def _early_exit(args, fail, human):
     sys.exit(1)
 
 
+# THE CRAFT PLAN (2026-09-25, owner: make artwork craft the strongest area).
+# Over 68 runs the scorer's artwork complaints were mostly DECK-level: the same
+# drawing function carrying three or four frames, a frame whose largest object
+# is its least modelled, no tonal arc across the contact sheet, and no frame
+# where depth is used masterfully (the rubric's 10 asks for one). Every one of
+# those is decided in planning and was never written down, so it was first
+# noticed by the scorer. The storyboard now declares them before the build:
+#
+#   ## CRAFT PLAN
+#   | slide | primary mark-making | largest object, and how it is modelled |
+#   |---|---|---|
+#   | 01 | scribed hachure relief | the pen, three.js PBR with a contact shadow |
+#   ...
+#   Masterful depth frame: 06, the pen resting on the Houston disc
+#   Tonal arc: dark and quiet 01 to 03, the lit range peaks on 06, calm on 09
+#
+# and this check holds it to a row per dossier, no primary mark-making shared by
+# more than CRAFT_PLAN_MAX_SHARE frames, a named depth frame and a tonal arc.
+CRAFT_PLAN_FROM = "2026-09-26"
+CRAFT_PLAN_MAX_SHARE = 3
+CRAFT_PLAN_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
+
+
+def _norm_technique(t):
+    return " ".join(re.findall(r"[a-z0-9]+", t.lower()))
+
+
+def craft_plan_fails(text, slide_nos):
+    m = CRAFT_PLAN_HEAD_RE.search(text)
+    if not m:
+        return ["deck: no '## CRAFT PLAN' section. Declare each frame's primary "
+                "mark-making and its largest object's modelling, the masterful "
+                "depth frame and the tonal arc before the build (SLIDE_DOSSIER_SPEC, "
+                "deck header); the scorer's artwork complaints are decided here"]
+    nxt = re.search(r"^##\s", text[m.end():], re.M)
+    block = text[m.end(): m.end() + nxt.start()] if nxt else text[m.end():]
+    rows = {}
+    for line in block.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 3 and re.fullmatch(r"\d{1,2}", cells[0]):
+            rows[int(cells[0])] = (cells[1], cells[2])
+    fails = []
+    missing = [n for n in slide_nos if n not in rows]
+    if missing:
+        fails.append("deck: CRAFT PLAN has no row for slide(s) %s"
+                     % ", ".join("%02d" % n for n in missing))
+    for n, (tech, obj) in sorted(rows.items()):
+        if not tech:
+            fails.append("deck: CRAFT PLAN slide %02d names no primary mark-making" % n)
+        if not obj:
+            fails.append("deck: CRAFT PLAN slide %02d names no largest object and "
+                         "its modelling" % n)
+    share = {}
+    for n, (tech, _) in rows.items():
+        if tech:
+            share.setdefault(_norm_technique(tech), []).append(n)
+    for tech, ns in sorted(share.items()):
+        if len(ns) > CRAFT_PLAN_MAX_SHARE:
+            fails.append(
+                "deck: CRAFT PLAN gives '%s' as the primary mark-making on %d frames "
+                "(%s), over the %d allowed. 'Four of nine frames are the same "
+                "drawing' is the scorers' most repeated artwork complaint; give "
+                "the extra frames a different mark"
+                % (tech, len(ns), ", ".join("%02d" % n for n in sorted(ns)),
+                   CRAFT_PLAN_MAX_SHARE))
+    dm = re.search(r"^\s*[-*]?\s*Masterful depth frame:\s*(\d{1,2})", block, re.M | re.I)
+    if not dm:
+        fails.append("deck: CRAFT PLAN names no 'Masterful depth frame: NN' (the "
+                     "rubric's 10 asks for one slide that uses real depth masterfully)")
+    elif int(dm.group(1)) not in slide_nos:
+        fails.append("deck: CRAFT PLAN's masterful depth frame %s is not a slide "
+                     "in this storyboard" % dm.group(1))
+    ta = re.search(r"^\s*[-*]?\s*Tonal arc:\s*(\S.{10,})$", block, re.M | re.I)
+    if not ta:
+        fails.append("deck: CRAFT PLAN names no 'Tonal arc:' line (a contact sheet "
+                     "with one tone throughout is a named artwork shortfall)")
+    return fails
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -926,6 +1005,13 @@ def main():
         if parse_fails.get(n):
             out["slides"].append({"slide": n, "fails": parse_fails[n], "warns": []})
             out["fails"] += len(parse_fails[n])
+    # The deck-level craft plan, for runs from CRAFT_PLAN_FROM on. The run date
+    # comes from claims.json, or from the run directory's own name.
+    rd = run_date or (rdir.name if re.fullmatch(r"\d{4}-\d{2}-\d{2}", rdir.name) else "")
+    out["deck_fails"] = []
+    if rd and rd >= CRAFT_PLAN_FROM:
+        out["deck_fails"] = craft_plan_fails(text, sorted(seen))
+        out["fails"] += len(out["deck_fails"])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
 
     if args.json:
@@ -938,6 +1024,8 @@ def main():
                 print(f"    FAIL: {x}")
             for x in s["warns"]:
                 print(f"    warn: {x}")
+        for x in out.get("deck_fails") or []:
+            print(f"[FAIL] {x}")
         print(f"verdict: {out['verdict']}  ({len(sections)} dossiers, "
               f"{out['fails']} fails, {out['warns']} warns)")
     sys.exit(1 if out["fails"] else 0)

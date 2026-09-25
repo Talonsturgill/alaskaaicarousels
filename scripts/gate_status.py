@@ -228,6 +228,8 @@ def dossier_row(rows, run):
                   for f in s.get("fails", [])), None)
     if first:
         detail = "%s -- %s" % (rep.get("verdict", "?"), first)
+    elif rep.get("deck_fails"):
+        detail += " -- " + rep["deck_fails"][0]
     rows.add("dossier_check", rep.get("verdict", "?"), detail)
 
 
@@ -857,6 +859,8 @@ def ship_gate_row(rows, run):
         rows.add("ship_gate", "PASS", rep.get("reason", "may ship"))
     elif p.returncode == 2:
         rows.add("ship_gate", "WARN", rep.get("reason", "declared blocker"))
+    elif (rep.get("craft_floor") or {}).get("status") == "open":
+        rows.add("ship_gate", "FAIL", "CRAFT FLOOR: " + rep.get("reason", ""))
     else:
         rows.add("ship_gate", "FAIL",
                  "%s ITERATE, do not stop. weakest: %s"

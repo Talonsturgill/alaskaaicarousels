@@ -2673,6 +2673,27 @@
       "verification": "CALIBRATION, rendered through the real engine: the eight shipped scribed frames (01, 02, 03, 05, 06, 07, 08, 09) measure a median stroke fall of 180.5 to 488.6 m; the five slide-04 variants the critics rejected (s0 3, 9, 14, 22 at lenScale 1.6 or 1.0, and s0 14 at lenScale 3.2) measure 5.1, 8.7, 6.6, 12.9 and 21.1 m. The 50 m line sits 2.4x above the worst fur and 3.6x below the flattest shipped frame. Two other signals were measured and rejected as non-separating (near-threshold share: 0.78 to 0.84 on fur but 0.75 on 03, which shipped; direction coherence: higher on the fur than on every shipped frame). render.py + qa.py on this run's nine slides: 9/9 OK, qa PASS 0 fails 0 warns, all nine PNGs byte-identical by sha256 to out/2026-09-25/render (the measurement consumes no random draws and draws nothing). DEFECT RECONSTRUCTION: the five rejected slide-04 variants, rebuilt from the BUILD RECONCILIATION's parameters, each carry exactly one qa WARN 'console error: AKSCRIBE: scribeRelief region [0,0,1080,1350] will read as FUR: its median stroke claims 5.1 m of fall ...' (8.7, 6.6, 12.9, 21.1 m on the others); the s0 14 variant with lowReliefIntended: true is silent (0 warns). render.py + qa.py on examples/demo-deck: 4/4 OK, 0 fails / 14 warns (3, 5, 5, 1), the known baseline; the demo does not load akscribe. Deliberately a WARN, not a fail: a deck can mean to draw thermokarst texture, and a hard fail on a heuristic is what 2026-09-17 learned not to ship.",
       "rollback": "Revert the upgrade(2026-09-25) commit, or by path: git checkout <upgrade-commit>^ -- assets/js/akscribe.js knowledge/TECHNIQUE_LIBRARY.md knowledge/FIELD_NOTES.md. No shipped slide reads `drop` or passes lowReliefIntended.",
       "commit": "91149fc7a9b27bb884a59d55d37bc879766ab0cf"
+    },
+    {
+      "run_date": "2026-09-25",
+      "kind": "fix",
+      "area": "routine",
+      "change": "Artwork craft gets a repair loop and a plan. (1) scripts/ship_gate.py CRAFT FLOOR: from runs dated 2026-09-26, a passing total with Artwork craft under 8.5 and rounds left under the five-round cap owes ONE targeted craft cycle on the frames the scorer names, recorded as score_report.craft_cycle {frames, art_before, art_after}; one cycle only, it never blocks a ship after it, and it stands down at the cap. gate_status shows it as a FAIL row reading CRAFT FLOOR until recorded. (2) The scorer returns artwork_weakest_frames, slide by slide with one fix each. (3) The flow critic runs the rubric's deck-level artwork test (weakest frame, a drawing reused on 3+ frames, largest object least modelled, dead lower third, texture artifact, no tonal arc) and returns craft {predicted_artwork_score, weakest_frames, cross_frame, masterful_depth_frame}; no new spawn. (4) The storyboard declares a ## CRAFT PLAN (per-frame primary mark-making, none on more than 3 frames; each frame's largest object and its modelling; the masterful depth frame; the tonal arc), checked by scripts/dossier_check.py from 2026-09-26.",
+      "trigger": "Owner, 2026-09-25: make artwork craft, the weakest area, the strongest. Measured: art averaged 6.73 over 68 scored runs and never passed 8; scripts/craft_corpus.py found no pixel feature that separates scorer-named slides (best AUC 0.618), so no image gate can fix it; 43 of 63 runs shipped with art at 7 or under because the TOTAL cleared the threshold and Phase 10 repaired only a failing total; the scorer's art complaints were deck-level (the same drawing on 4 frames on 08-29, 09-02, 09-23, 09-25; the largest object least modelled; no tonal arc) and no reviewer before the scorer applied the deck-level test.",
+      "files": [
+        "scripts/ship_gate.py",
+        "scripts/gate_status.py",
+        "scripts/dossier_check.py",
+        ".claude/agents/scorer.md",
+        ".claude/agents/flow-critic.md",
+        "prompts/routine_instructions.md",
+        "knowledge/SLIDE_DOSSIER_SPEC.md",
+        "knowledge/FIELD_NOTES.md",
+        "CLAUDE.md"
+      ],
+      "verification": "ship_gate --self-test PASS (7 cases: pre-rule, met, open, closed, fake skip stays open, capped, no score). Reconstruction: No.68's score_report and run_state re-dated 2026-09-26 -> SHIP GATE STOP, CRAFT FLOOR (art 7.5, 4 of 5 rounds). dossier_check reconstruction on No.68's storyboard re-dated: no plan -> FAIL; plan with scribed hachure on 01,05,06,09 (the defect No.68's scorer named) -> FAIL naming those four; distinct marks -> PASS. No.68 itself unchanged (PASS, predates the rule). gate_status --self-test 27/0.",
+      "rollback": "git revert the commit, or set CRAFT_FLOOR_FROM and CRAFT_PLAN_FROM to a future date in scripts/ship_gate.py and scripts/dossier_check.py to switch both rules off without removing them.",
+      "commit": "pending"
     }
   ],
   "scan_log": [
