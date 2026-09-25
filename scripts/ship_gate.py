@@ -110,7 +110,7 @@ def _art_score(score):
         if isinstance(c, dict) and "artwork" in str(c.get("name", "")).lower():
             v = c.get("score")
             if (isinstance(v, (int, float)) and not isinstance(v, bool)
-                    and math.isfinite(v)):
+                    and math.isfinite(v) and 0 <= v <= 10):
                 return float(v)
     return None
 
@@ -121,7 +121,7 @@ def _art_score(score):
 # not ordered past the cap. Codex review rounds (merge.review_rounds,
 # codex_review.rounds) are a different count and are deliberately not read.
 _ROUND_KEYS = ("revision_rounds", "rounds_used", "editing_rounds", "review_rounds",
-               "rounds_of_revision", "rounds")
+               "rounds_of_revision", "rounds", "round", "revision_round")
 _ROUND_NESTED = (("rounds", "revision_rounds_completed"), ("final", "revision_rounds"),
                  ("result", "rounds"), ("outcome", "rounds"))
 
@@ -266,6 +266,9 @@ def self_test():
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": True}]},
          {"revision_rounds": 5}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("inf")}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": 11}]}, {}, "open"),
+        ("2026-09-26", rep(7.5, round=5), {}, "capped"),
+        ("2026-09-26", rep(7.5, revision_round=5), {}, "capped"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("nan")}]},
          {"revision_rounds": 5}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5},

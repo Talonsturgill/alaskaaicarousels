@@ -861,8 +861,12 @@ _TREATMENT_SEP_RE = re.compile(
 
 
 def _treatment(obj):
+    """The modelling text after the object, or "" when either half is missing:
+    ", contact shadow" names a treatment for no object at all."""
     m = _TREATMENT_SEP_RE.search(obj)
-    return obj[m.start():].strip(" ,;:(") if m else ""
+    if not m or not re.search(r"[A-Za-z0-9]", obj[:m.start()]):
+        return ""
+    return obj[m.start():].strip(" ,;:(")
 
 
 def _norm_technique(t):
