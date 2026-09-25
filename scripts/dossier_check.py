@@ -863,7 +863,9 @@ _TREATMENT_SEP_RE = re.compile(
 # A Tonal arc line that says there is none is not an arc (Codex on PR #401).
 TONAL_ARC_DENIED_RE = re.compile(
     r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b|"
-    r"\b(?:same|one|single|uniform|constant|even|flat) (?:tone|value|key|tonality)\b|"
+    r"\b(?:same|one|single|uniform|constant|even|flat|identical|unchanging|unchanged|"
+    r"unvaried|invariant|monotone|monotonous) (?:tone|value|key|tonality)\b|"
+    r"\bmonoton(?:e|ous)\b|\bunchanging\b|\bidentical\b|"
     r"\b(?:tone|value)s? (?:stays?|stay|remains?|is|are) (?:the )?(?:same|constant|uniform|flat)\b|"
     r"\bstays? the same\b", re.I)
 
@@ -932,7 +934,7 @@ def _technique_keys(t):
     if keys:
         return keys
     words = [w for w in re.findall(r"[a-z]{3,}", primary) if w not in _TECH_GENERIC]
-    return {words[-1]} if words else {_norm_technique(t)}
+    return {words[-1]} if words else {_norm_technique(primary) or _norm_technique(t)}
 
 
 def craft_plan_fails(text, slide_nos):
@@ -963,6 +965,13 @@ def craft_plan_fails(text, slide_nos):
     if missing:
         fails.append("deck: CRAFT PLAN has no row for slide(s) %s"
                      % ", ".join("%02d" % n for n in missing))
+    stale = sorted(set(rows) - set(slide_nos))
+    if stale:
+        # A row for a frame the storyboard no longer has is a stale instruction
+        # (Codex on PR #401); it also skews the reuse count below.
+        fails.append("deck: CRAFT PLAN has row(s) for slide(s) %s, which the "
+                     "storyboard doesn't have; remove them"
+                     % ", ".join("%02d" % n for n in stale))
     for n, (tech, obj) in sorted(rows.items()):
         if not tech:
             fails.append("deck: CRAFT PLAN slide %02d names no primary mark-making" % n)

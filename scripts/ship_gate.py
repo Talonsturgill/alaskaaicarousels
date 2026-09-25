@@ -107,7 +107,11 @@ ROUND_CAP = 5
 
 def _art_score(score):
     for c in score.get("criteria") or []:
-        if isinstance(c, dict) and "artwork" in str(c.get("name", "")).lower():
+        # The rubric's own criterion, "Artwork craft & genuine detail", and not
+        # any name that merely contains "artwork" (Codex on PR #401).
+        name = " ".join(re.findall(r"[a-z]+", str(c.get("name", "")).lower())) \
+            if isinstance(c, dict) else ""
+        if name.startswith("artwork craft"):
             v = c.get("score")
             if (isinstance(v, (int, float)) and not isinstance(v, bool)
                     and math.isfinite(v) and 0 <= v <= 10):
@@ -267,6 +271,9 @@ def self_test():
          {"revision_rounds": 5}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("inf")}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": 11}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork accessibility", "score": 9}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Non-artwork criterion", "score": 9}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "ARTWORK CRAFT & GENUINE DETAIL", "score": 9}]}, {}, "met"),
         ("2026-09-26", rep(7.5, round=5), {}, "capped"),
         ("2026-09-26", rep(7.5, revision_round=5), {}, "capped"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("nan")}]},
