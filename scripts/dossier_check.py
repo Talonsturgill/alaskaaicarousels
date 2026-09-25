@@ -855,6 +855,47 @@ def _norm_technique(t):
     return " ".join(re.findall(r"[a-z0-9]+", t.lower()))
 
 
+# The mark-making cell is free text, so the same mark arrives dressed in
+# different modifiers ("scribed hachure relief", "scribed hachure field"). Count
+# FAMILIES, not strings (Codex on PR #401): a frame counts once toward every
+# family its cell names, and a family on more than CRAFT_PLAN_MAX_SHARE frames
+# fails. A cell naming no known family counts toward each of its own words,
+# the generic modifiers removed, so "collage" and "paper collage field" meet.
+TECHNIQUE_FAMILIES = [
+    ("hachure", r"hachur"),
+    ("scribed", r"scrib"),
+    ("engraved", r"engrav|burin|intaglio|etch"),
+    ("stipple", r"stippl|pointill"),
+    ("cross hatch", r"(?<!c)hatch(?!ur)"),
+    ("contour", r"contour|isoline|iso line"),
+    ("halftone", r"halftone|dot screen"),
+    ("relief print", r"woodcut|linocut|wood engrav|relief print"),
+    ("glow", r"glow|transmitted light|halation"),
+    ("gpu render", r"\bpbr\b|three\.?js|webgl|\bgpu\b"),
+    ("raymarch", r"raymarch|\bsdf\b"),
+    ("software 3d", r"ak3d|zdog|software 3d|cabinet|isometric|axonometric"),
+    ("flow field", r"flow field|streamline|particle"),
+    ("isotype", r"isotype|pictogram|unit chart"),
+    ("wash", r"\bwash|watercolou?r|gouache"),
+    ("typographic", r"typograph|letterform|lettering|type only|type as"),
+]
+_TECH_GENERIC = {"relief", "linework", "line", "lines", "texture", "field", "fields",
+                 "pass", "layer", "fill", "fills", "strokes", "stroke", "marks",
+                 "mark", "work", "art", "style", "the", "a", "an", "and", "of",
+                 "with", "on", "in", "over", "under", "full", "fine", "dense",
+                 "light", "heavy", "map", "plate", "frame", "ink", "gold", "navy",
+                 "color", "colour", "tone", "tonal", "soft", "bold", "paper"}
+
+
+def _technique_keys(t):
+    low = t.lower()
+    keys = {name for name, rx in TECHNIQUE_FAMILIES if re.search(rx, low)}
+    if keys:
+        return keys
+    words = {w for w in re.findall(r"[a-z]{3,}", low) if w not in _TECH_GENERIC}
+    return words or {_norm_technique(t)}
+
+
 def craft_plan_fails(text, slide_nos):
     m = CRAFT_PLAN_HEAD_RE.search(text)
     if not m:
@@ -889,9 +930,12 @@ def craft_plan_fails(text, slide_nos):
     share = {}
     for n, (tech, _) in rows.items():
         if tech:
-            share.setdefault(_norm_technique(tech), []).append(n)
+            for key in _technique_keys(tech):
+                share.setdefault(key, []).append(n)
+    reported = set()
     for tech, ns in sorted(share.items()):
-        if len(ns) > CRAFT_PLAN_MAX_SHARE:
+        if len(ns) > CRAFT_PLAN_MAX_SHARE and tuple(sorted(ns)) not in reported:
+            reported.add(tuple(sorted(ns)))
             fails.append(
                 "deck: CRAFT PLAN gives '%s' as the primary mark-making on %d frames "
                 "(%s), over the %d allowed. 'Four of nine frames are the same "

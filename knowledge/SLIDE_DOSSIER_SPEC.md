@@ -154,7 +154,9 @@ plus the checklist.
       Tonal arc: dark and quiet 01 to 03, the lit range peaks on 06, calm close
 
   One row per dossier. No primary mark-making may carry more than THREE
-  frames: the text frames (quotes, ledgers, closes) need a mark of their own
+  frames, counted by family rather than wording ("scribed hachure relief" and
+  "hachure field" are both hachure; `TECHNIQUE_FAMILIES` in the checker lists
+  them): the text frames (quotes, ledgers, closes) need a mark of their own
   too, because the scorer's "one slide leans on a default" is almost always
   one of them. The largest object on every frame gets its modelling named
   (lit face, lee, contact, material), because the scorers keep finding the

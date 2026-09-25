@@ -113,16 +113,39 @@ def _art_score(score):
     return None
 
 
-def _rounds_used(run, score):
-    vals = []
-    v = score.get("revision_rounds")
+# Past runs recorded the editing-round count under several names (a survey of
+# runs/ on 2026-09-25 found these, Codex on PR #401). The routine asks for
+# revision_rounds; the others are read so a run that wrote an older shape is
+# not ordered past the cap. Codex review rounds (merge.review_rounds,
+# codex_review.rounds) are a different count and are deliberately not read.
+_ROUND_KEYS = ("revision_rounds", "rounds_used", "editing_rounds", "review_rounds",
+               "rounds_of_revision", "rounds")
+_ROUND_NESTED = (("rounds", "revision_rounds_completed"), ("final", "revision_rounds"),
+                 ("result", "rounds"), ("outcome", "rounds"))
+
+
+def _as_count(v):
+    if isinstance(v, bool):
+        return None
     if isinstance(v, (int, float)):
-        vals.append(int(v))
+        return int(v)
+    if isinstance(v, str) and re.fullmatch(r"\s*\d{1,2}\s*", v):
+        return int(v)
+    return None
+
+
+def _round_counts(d):
+    if not isinstance(d, dict):
+        return []
+    vals = [_as_count(d.get(k)) for k in _ROUND_KEYS]
+    vals += [_as_count(d[a].get(b)) for a, b in _ROUND_NESTED if isinstance(d.get(a), dict)]
+    return [v for v in vals if v is not None]
+
+
+def _rounds_used(run, score):
+    vals = _round_counts(score)
     try:
-        rs = json.loads((run / "run_state.json").read_text())
-        v = rs.get("revision_rounds")
-        if isinstance(v, (int, float)):
-            vals.append(int(v))
+        vals += _round_counts(json.loads((run / "run_state.json").read_text()))
     except (OSError, ValueError):
         pass
     return max(vals) if vals else 0
@@ -135,7 +158,12 @@ def craft_floor(run, score):
         return {"status": "n/a", "reason": "run predates the craft floor"}
     art = _art_score(score)
     if art is None:
-        return {"status": "n/a", "reason": "no artwork-craft score in the report"}
+        # Fail closed (Codex on PR #401): a report that drops, renames or
+        # mis-types the artwork criterion would otherwise walk past the floor.
+        return {"status": "open", "reason": (
+            "the score report carries no numeric 'Artwork craft & genuine detail' "
+            "criterion, so the craft floor can't be judged. Re-score against "
+            "config/scoring_rubric.yaml with every criterion present.")}
     if art >= CRAFT_FLOOR:
         return {"status": "met", "reason": "artwork craft %.1f" % art}
     cyc = score.get("craft_cycle")
@@ -226,7 +254,13 @@ def self_test():
         ("2026-09-26", rep(7.5, craft_cycle={"frames": ["04"], "art_before": 7, "art_after": 8}), {}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7, "art_after": "8"}), {}, "open"),
         ("2026-09-26", rep(7.5), {"revision_rounds": 5}, "capped"),
-        ("2026-09-26", {"criteria": []}, {}, "n/a"),
+        ("2026-09-26", {"criteria": []}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": "7"}]}, {}, "open"),
+        ("2026-09-25", {"criteria": []}, {}, "n/a"),
+        ("2026-09-26", rep(7.5), {"rounds_used": 5}, "capped"),
+        ("2026-09-26", rep(7.5, rounds={"revision_rounds_completed": 5}), {}, "capped"),
+        ("2026-09-26", rep(7.5, revision_rounds="5"), {}, "capped"),
+        ("2026-09-26", rep(7.5), {"merge": {"review_rounds": 5}}, "open"),
     ]
     with tempfile.TemporaryDirectory() as t:
         for date, sc, rs, want in cases:

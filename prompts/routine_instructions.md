@@ -1296,8 +1296,8 @@ that argument was typed by hand.
    is allowed if the arc survives.
    The flow critic also returns `craft`, the deck-level artwork test
    (2026-09-25). It is the first reader to grade the art the way the scorer
-   does: the WEAKEST frame, a drawing function or texture reused on three or
-   more frames, a largest object left least modelled, a dead lower third, a
+   does: the WEAKEST frame, a drawing function or texture reused on MORE
+   than three frames (the CRAFT PLAN's limit), a largest object left least modelled, a dead lower third, a
    texture artifact, no tonal arc. Per-slide critics can't see those because
    each grades one frame against its own dossier. Treat `craft.weakest_frames`
    and `craft.cross_frame` as that round's work order: fix the cause once,
