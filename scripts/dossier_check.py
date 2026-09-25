@@ -869,17 +869,24 @@ DEPTH_RE = re.compile(
     r"foreground|background|layered|z[- ]order|recession|recedes?)\b", re.I)
 
 _NEGATION_RE = re.compile(r"\b(no|not|without|none|zero|never|lacks?|lacking|avoids?|"
-                          r"avoiding|nor|free of)\b", re.I)
+                          r"avoiding|nor|free of|omit\w*|skip\w*|n't)\b|n't\b|"
+                          r"\w-free\b|\w-less\b|\b(?:shadow|depth|texture|detail|"
+                          r"feature|shape|form|tone)less\b", re.I)
+_CLAUSE_SPLIT_RE = re.compile(r"[,;:().]|\s(?:but|while|whereas|although|though)\s", re.I)
+
+
+def _affirms(rx, text):
+    """True when `rx` names something in a clause that nothing negates. The
+    whole clause is read, before and after the word, so "no shading",
+    "depth is not used", "shadow is never used" and "depth-free" all deny
+    rather than affirm (Codex on PR #401, three rounds). One helper serves
+    the modelling cell and the masterful depth frame alike."""
+    return any(rx.search(c) and not _NEGATION_RE.search(c)
+               for c in _CLAUSE_SPLIT_RE.split(text))
 
 
 def _affirms_depth(text):
-    """A depth word that isn't negated within its own clause: "no depth or
-    shadow is used" names depth only to deny it (Codex on PR #401)."""
-    for m in DEPTH_RE.finditer(text):
-        clause = re.split(r"[,;:(.]", text[:m.start()])[-1]
-        if not _NEGATION_RE.search(clause):
-            return True
-    return False
+    return _affirms(DEPTH_RE, text)
 
 
 # A Tonal arc line that declares none is not an arc (Codex on PR #401). An
@@ -968,7 +975,12 @@ def _technique_keys(t):
     if keys:
         return keys
     words = [w for w in re.findall(r"[a-z]{3,}", primary) if w not in _TECH_GENERIC]
-    return {words[-1]} if words else {_norm_technique(primary) or _norm_technique(t)}
+    if words:
+        return {words[-1]}
+    # All generic ("gold ink", "dense ink"): the head noun is the mark, and its
+    # modifiers are not (Codex on PR #401).
+    head = re.findall(r"[a-z]+", primary)
+    return {head[-1]} if head else {_norm_technique(t)}
 
 
 def craft_plan_fails(text, slide_nos):
@@ -1012,7 +1024,7 @@ def craft_plan_fails(text, slide_nos):
         if not obj:
             fails.append("deck: CRAFT PLAN slide %02d names no largest object and "
                          "its modelling" % n)
-        elif not _treatment(obj) or not MODELLING_RE.search(_treatment(obj)):
+        elif not _treatment(obj) or not _affirms(MODELLING_RE, _treatment(obj)):
             fails.append(
                 "deck: CRAFT PLAN slide %02d names its largest object ('%s') but no "
                 "modelling for it. Write the object, then after a comma how it is "

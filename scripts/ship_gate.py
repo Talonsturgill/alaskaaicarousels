@@ -48,7 +48,6 @@ whole module is here to prevent. If a deck rendered, it is not a (d).
 import argparse
 import html
 import json
-import math
 import re
 import sys
 from pathlib import Path
@@ -120,8 +119,10 @@ def _art_score(score):
             if w != "and") if isinstance(c, dict) else ""
         if name == "artwork craft genuine detail":
             v = c.get("score")
+            # A range check, not math.isfinite, which raises OverflowError on
+            # a huge JSON integer (Codex on PR #401); NaN and Infinity fail it.
             if (isinstance(v, (int, float)) and not isinstance(v, bool)
-                    and math.isfinite(v) and 0 <= v <= 10):
+                    and 0 <= v <= 10):
                 return float(v)
     return None
 
@@ -142,8 +143,10 @@ def _as_count(v):
     raises, which would crash the gate before it reports (Codex on PR #401)."""
     if isinstance(v, bool):
         return None
-    if isinstance(v, (int, float)):
-        if not math.isfinite(v) or v < 0 or v != int(v):
+    if isinstance(v, int):
+        return v if 0 <= v <= 99 else None
+    if isinstance(v, float):
+        if not (0 <= v <= 99) or v != int(v):    # also rejects NaN and Infinity
             return None
         return int(v)
     if isinstance(v, str) and re.fullmatch(r"\s*\d{1,2}\s*", v):
@@ -290,6 +293,9 @@ def self_test():
         ("2026-09-26", {"criteria": [{"name": "Artwork craftsmanship", "score": 9}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": 9}]}, {}, "open"),
         ("2026-09-26", {"criteria": 4}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft & genuine detail", "score": 10 ** 400}]},
+         {}, "open"),
+        ("2026-09-26", rep(7.5, revision_rounds=10 ** 400), {"revision_rounds": 5}, "capped"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft accessibility", "score": 9}]}, {}, "open"),
         ("2026-09-26", rep(7.5, artwork_weakest_frames=4), {}, "open"),
         ("2026-09-26", rep(7.5, round=5), {}, "capped"),
