@@ -843,7 +843,7 @@ CRAFT_PLAN_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
 # ("| 01 | hachure | pen |" is the defect this plan exists to prevent). A word
 # list is crude and deliberately so: it asks for a treatment to be named at all.
 MODELLING_RE = re.compile(
-    r"\b(lit|light|lighting|key|rim|lee|shad(?:e|ed|ing|ow|ows)|cast|contact|"
+    r"\b(lit|light|lighting|key[- ](?:lit|light|lighting)|rim[- ]?(?:lit|light|lighting)|lee|shad(?:e|ed|ing|ow|ows)|cast|contact|"
     r"occlu\w*|specular|gloss\w*|matte|material|pbr|metal\w*|resin|glass|"
     r"depth|relief|dem|hachur\w*|scrib\w*|engrav\w*|stipple\w*|hatch\w*|"
     r"textur\w*|grain|gradient|graded|glow|halat\w*|bevel\w*|emboss\w*|"
@@ -863,11 +863,13 @@ _TREATMENT_SEP_RE = re.compile(
 # A Tonal arc line that says there is none is not an arc (Codex on PR #401).
 TONAL_ARC_DENIED_RE = re.compile(
     r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b|"
+    # Each adjective counts only directly on tone, value, key or tonality:
+    # "unchanging hue" over a real ramp and "flat grey until 05, then a bright
+    # peak" are arcs (Codex on PR #401).
     r"\b(?:same|one|single|uniform|constant|even|flat|identical|unchanging|unchanged|"
-    r"unvaried|invariant|monotone|monotonous) (?:tone|value|key|tonality)\b|"
-    r"\bmonoton(?:e|ous)\b|\bunchanging\b|\bidentical\b|"
-    r"\b(?:tone|value)s? (?:stays?|stay|remains?|is|are) (?:the )?(?:same|constant|uniform|flat)\b|"
-    r"\bstays? the same\b", re.I)
+    r"unvaried|invariant|monotone|monotonous) (?:tones?|values?|key|tonality)\b|"
+    r"\b(?:tones?|values?|tonality) (?:stays?|remains?|is|are) (?:the )?"
+    r"(?:same|constant|uniform|flat|identical|unchanged)\b", re.I)
 
 
 def _treatment(obj):

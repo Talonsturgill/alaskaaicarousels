@@ -131,9 +131,13 @@ _ROUND_NESTED = (("rounds", "revision_rounds_completed"), ("final", "revision_ro
 
 
 def _as_count(v):
+    """A round count, or None. JSON admits Infinity and NaN, and int() of either
+    raises, which would crash the gate before it reports (Codex on PR #401)."""
     if isinstance(v, bool):
         return None
     if isinstance(v, (int, float)):
+        if not math.isfinite(v) or v < 0 or v != int(v):
+            return None
         return int(v)
     if isinstance(v, str) and re.fullmatch(r"\s*\d{1,2}\s*", v):
         return int(v)
@@ -275,6 +279,8 @@ def self_test():
         ("2026-09-26", {"criteria": [{"name": "Non-artwork criterion", "score": 9}]}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "ARTWORK CRAFT & GENUINE DETAIL", "score": 9}]}, {}, "met"),
         ("2026-09-26", rep(7.5, round=5), {}, "capped"),
+        ("2026-09-26", rep(7.5, revision_rounds=float("inf")), {"revision_rounds": float("nan")}, "open"),
+        ("2026-09-26", rep(7.5, revision_rounds=float("inf")), {"revision_rounds": 5}, "capped"),
         ("2026-09-26", rep(7.5, revision_round=5), {}, "capped"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": float("nan")}]},
          {"revision_rounds": 5}, "open"),
