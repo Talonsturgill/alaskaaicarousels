@@ -412,6 +412,49 @@
     cx.restore();
   };
 
+  /* THE LAMP POOL. The pen is lit by one lamp above the table, so where it
+   * lies the coat is lit too, and that lit ground is what its cast shadow
+   * subtracts from (house lesson No.26 and No.41: a shadow on unlit ground
+   * measures nothing). Drawn as a LAY OF FINE RULES along the light axis at
+   * `pitch` px, each rule's alpha following an elliptical falloff, which is the
+   * No.60 recipe and never an additive radial.
+   *   o: x, y (centre), rx, ry, keyAz, pitch, color, alpha */
+  AKS.pool = function (cx, o) {
+    var az = ((o.keyAz === undefined ? 330 : o.keyAz) - 90) * Math.PI / 180;
+    var pitch = o.pitch || 1.7, rx = o.rx, ry = o.ry, a0 = o.alpha === undefined ? 0.2 : o.alpha;
+    var rgb = (o.color || "#D8CBB0").match(/[0-9a-f]{2}/gi).map(function (h) { return parseInt(h, 16); });
+    var col = function (a) { return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a.toFixed(3) + ")"; };
+    cx.save();
+    cx.translate(o.x, o.y); cx.rotate(az);
+    cx.lineWidth = 0.9;
+    for (var v = -ry; v <= ry; v += pitch) {
+      var t = v / ry, half = rx * Math.sqrt(Math.max(0, 1 - t * t));
+      if (half < 2) continue;
+      var peak = a0 * Math.pow(1 - t * t, 1.4);
+      var g = cx.createLinearGradient(-half, 0, half, 0);
+      g.addColorStop(0, col(0)); g.addColorStop(0.3, col(peak * 0.7)); g.addColorStop(0.5, col(peak));
+      g.addColorStop(0.7, col(peak * 0.7)); g.addColorStop(1, col(0));
+      cx.strokeStyle = g;
+      cx.beginPath(); cx.moveTo(-half, v); cx.lineTo(half, v); cx.stroke();
+    }
+    cx.restore();
+  };
+
+  /* TYPE RESERVES. Punch feathered holes in a light layer where type will sit,
+   * so relief never runs under a headline. Each entry is [x, y, w, h, blur,
+   * alpha]; blur defaults 22, alpha 0.9. A blurred RECT, never a radial, so a
+   * long line of type is reserved end to end (SKILL.md, 2026-09-10). */
+  AKS.reserve = function (cx, rects) {
+    cx.save();
+    cx.globalCompositeOperation = "destination-out";
+    rects.forEach(function (r) {
+      cx.filter = "blur(" + (r[4] || 22) + "px)";
+      cx.fillStyle = "rgba(0,0,0," + (r[5] === undefined ? 0.9 : r[5]) + ")";
+      cx.fillRect(r[0], r[1], r[2], r[3]);
+    });
+    cx.restore();
+  };
+
   /* Great-circle distance in km, for scale bars and asserts. */
   AKS.km = function (a, b) { return d3.geoDistance(a, b) * 6371.0088; };
 })(window);
