@@ -2693,7 +2693,7 @@
       ],
       "verification": "ship_gate --self-test PASS (7 cases: pre-rule, met, open, closed, fake skip stays open, capped, no score). Reconstruction: No.68's score_report and run_state re-dated 2026-09-26 -> SHIP GATE STOP, CRAFT FLOOR (art 7.5, 4 of 5 rounds). dossier_check reconstruction on No.68's storyboard re-dated: no plan -> FAIL; plan with scribed hachure on 01,05,06,09 (the defect No.68's scorer named) -> FAIL naming those four; distinct marks -> PASS. No.68 itself unchanged (PASS, predates the rule). gate_status --self-test 27/0.",
       "rollback": "git revert the commit, or set CRAFT_FLOOR_FROM and CRAFT_PLAN_FROM to a future date in scripts/ship_gate.py and scripts/dossier_check.py to switch both rules off without removing them.",
-      "commit": "pending"
+      "commit": "a20e21eaa048188be93c3ea5739e80fcb26190e5"
     }
   ],
   "scan_log": [
