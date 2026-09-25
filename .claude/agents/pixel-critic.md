@@ -1,6 +1,7 @@
 ---
 name: pixel-critic
 description: Forensic reviewer of rendered slides. Reads the full-size PNG AND the 432px thumb of assigned slides, transcribes every visible word, checks the dossier's acceptance checklist plus the global standards pixel by pixel, and returns a strict verdict JSON with concrete fixes. Spawned in parallel across slides after every render pass.
+model: sonnet
 tools: Read
 ---
 

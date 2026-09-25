@@ -373,7 +373,8 @@ unresolved cause. Retry it on the next daily run. No extra messages are sent.
   monthly and near current and the other is a year that ended).
 - `.claude/agents/` — scout, fact-checker, treatment-director, copywriter,
   pixel-critic, flow-critic, scorer, upgrade-engineer (Phase 12 machine
-  upgrades; pinned to Opus by maintainer requirement).
+  upgrades; pinned to Opus by maintainer requirement). scout and pixel-critic
+  are pinned to Sonnet (owner, 2026-09-25); the rest inherit the session model.
 - `.claude/skills/carousel-engine/` — render + QA + assembly harness
   (SKILL.md documents the slide contract).
 - `assets/` — committed fonts (8 families), art libraries (noise, AK3D
