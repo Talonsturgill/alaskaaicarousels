@@ -199,7 +199,10 @@ of this overrides the three things CLAUDE.md says stop and ask.
   under `assets/` (see SKILL.md).
 - Subagents (Task tool): `scout`, `fact-checker`, `treatment-director`,
   `caption-director`, `caption-critic`, `copywriter`, `pixel-critic`, `flow-critic`, `scorer`,
-  `upgrade-engineer` (Phase 12; pinned to Opus).
+  `upgrade-engineer` (Phase 12; pinned to Opus). `scout` and `pixel-critic` are
+  pinned to Sonnet (owner, 2026-09-25): they are the high-count, narrow-scope
+  agents (19 of No.68's 32 launches). Every other agent inherits the session
+  model. Don't pass a model override at launch to undo either pin.
 - Scripts: `scripts/caption_check.py`, `scripts/gmail_draft.py`.
 - Built-in WebSearch/WebFetch for all research (they route through
   Anthropic and work regardless of network policy). Gmail MCP
