@@ -372,7 +372,7 @@
     cx.moveTo(x - 7, a); cx.lineTo(x + 7, a); cx.moveTo(x, a); cx.lineTo(x, b);
     cx.moveTo(x - 7, b); cx.lineTo(x + 7, b); cx.stroke();
     (o.marks || []).forEach(function (m) {
-      cx.fillStyle = m.color || "#FFC72C";
+      cx.fillStyle = m.color || "#EEF7FF";
       cx.beginPath(); cx.arc(x, Y(m.lat), m.r || 2.6, 0, Math.PI * 2); cx.fill();
     });
     cx.restore();
@@ -383,6 +383,11 @@
   AKS.ring = function (cx, x, y, r, o) {
     o = o || {};
     cx.save();
+    // a coat-dark bed under the dashes, so a ring stays countable on lit relief or a coast (No.68 critics)
+    if (o.halo !== 0) {
+      cx.strokeStyle = "rgba(4,7,11," + (o.haloAlpha || 0.82) + ")"; cx.lineWidth = (o.width || 2.2) + (o.halo || 4);
+      cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.stroke();
+    }
     cx.strokeStyle = o.color || "#7F93A6"; cx.lineWidth = o.width || 2.2;
     cx.lineCap = "round"; cx.setLineDash(o.dash || [0.1, 6.2]);
     cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.stroke();

@@ -62,7 +62,8 @@ export function init(THREE) {
     renderer.setSize(V[2], V[3], false);
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    // PCFSoft ignores shadow.radius; a slide that asks for a penumbra gets filtered PCF, which honours it
+    renderer.shadowMap.type = o.shadowSoft ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = o.exposure || 1.0;
 
