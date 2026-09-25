@@ -1,0 +1,104 @@
+# Six Data Center Sites. Two Answer to Juneau.
+
+> From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor reaches two.
+
+Published 2026-09-25 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-09-25/
+
+## The story
+
+Six sites in play for data centers. Two answer to Juneau.
+
+Two sit on state land. Four are federal calls.
+
+The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appoints. The Air Force decides three bases. FERC decides Cook Inlet.
+
+What they say about data centers.
+
+Milepost 390. State land, 50 years.
+
+DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.
+
+"not interconnected to the Railbelt or any other Alaska utility grid"
+
+A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.
+
+One state decision, three federal ones.
+
+DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.
+
+Filings close the day before the vote.
+
+DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.
+
+Who signs each one.
+
+Save this. Check it again after November 3rd.
+
+## What we verified
+
+- The Alaska DNR Division of Oil and Gas issued a preliminary decision to offer STAK Energy Corporation a 50-year lease on the North Slope. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The proposed STAK Energy lease covers a 715.4-acre parcel. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The STAK Energy site is adjacent to the Dalton Highway about 26 miles south of Deadhorse. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- The STAK Energy lease is for a natural gas-powered energy facility that includes modular high-performance computing units. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- Public comments on the STAK Energy preliminary decision were due by June 15th. [Alaska DNR Division of Oil and Gas](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817), primary document, 2026-05-12.
+- Alaska DNR proposes to convey approximately 19,950 acres of state land to the Alaska Industrial Development and Export Authority. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The proposed AIDEA parcel is about two miles north of Houston in the Matanuska-Susitna Borough. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The public comment deadline on the AIDEA Houston conveyance was August 19th. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- DNR says the AIDEA preliminary decision will be issued as the Final Finding and Decision without further notice if no significant change is required. [Alaska DNR Division of Mining, Land and Water](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- The Air Force solicitation AFCEC-26-R-0006 seeks AI data center development at Joint Base Elmendorf-Richardson, Eielson Air Force Base and Clear Space Force Station. [SAM.gov (U.S. General Services Administration)](https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search), primary document, 2026-07-15.
+- Responses to the Air Force AI data center solicitation were due June 29th. [SAM.gov (U.S. General Services Administration)](https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search), primary document, 2026-07-15.
+- Under Article III Section 25 of the Alaska Constitution, the head of each principal department is appointed by the governor, subject to confirmation by the Legislature, and serves at the governor's pleasure. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- Alaska's general election day is Tuesday, November 3rd. [Alaska Division of Elections](https://www.elections.alaska.gov/), primary document, 2026-09-25.
+- The Alaska Constitution lets the governor veto bills passed by the Legislature. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- A vetoed bill that is not a revenue or appropriation bill becomes law only with the votes of two-thirds of the Legislature's membership. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- A bill becomes law without the governor's signature if the governor neither signs nor vetoes it within fifteen days, Sundays excepted, while the Legislature is in session. [Office of the Lieutenant Governor of Alaska](https://ltgov.alaska.gov/information/alaskas-constitution/), primary document, 2026-09-25.
+- DNR's preliminary decision on the STAK Energy lease says the authority to execute the Final Finding and Decision was delegated to the Division of Oil and Gas from the Commissioner of DNR. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- The STAK Energy pad would host a natural gas-fired power plant designed to produce 1 to 3 gigawatts of electricity. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision describes the STAK Energy power and computing systems as behind the meter and not interconnected to the Railbelt or any other Alaska utility grid. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- The STAK Energy site sits about one mile west of the Dalton Highway at Milepost 390, west of the Trans-Alaska Pipeline System. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision gives the STAK Energy parcel's northeast corner as 69.922571 N, 148.849662 W. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- Governor Mike Dunleavy appointed John Crowther acting commissioner of the Alaska Department of Natural Resources in October 2025. [Office of the Governor of Alaska](https://gov.alaska.gov/john-crowther-appointed-acting-dnr-commissioner/), primary document, 2025-10-24.
+- DNR's preliminary decision says the STAK Energy footprint is a principal gravel pad of about 640 acres plus a 1.8-mile gravel access road and maintenance buffers, totaling 715.4 acres. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- STAK Energy applied to DNR for a 50-year state land lease for a commercial natural gas-powered data center facility. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- DNR's preliminary decision on the STAK Energy lease is filed under case number ADL 422741. [Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision](https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957), primary document, 2026-05-12.
+- Republican governor candidate Dave Bronson said "I'm a big believer in data centers" at a Commonwealth North candidate forum in Anchorage. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Bronson said the data center groups he is talking to would produce their own electricity because they consider Alaska's grid power unreliable. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- At a September 8th forum in Anchorage, Republican candidate Treg Taylor said of data centers "I think we need to embrace it.". [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Taylor said any data center in Alaska must bring its own energy, and that electricity costs are his biggest concern. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Taylor said a data center "doesn't have to drive up costs if you do it correctly" and can produce a net savings for Alaska ratepayers. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Democratic candidate Jonathan Kreiss-Tomkins said he supports a moratorium on data center development in Alaska until the Legislature passes a comprehensive regulatory framework. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Kreiss-Tomkins said any limits on data center development would be decided by negotiations between himself and the Legislature. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Republican candidate Bernadette Wilson said by text message "I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.". [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Alaska Beacon story identifies Dave Bronson, Treg Taylor and Bernadette Wilson as Republicans. [Alaska Beacon (James Brooks), republished by Alaska Public Media](https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers), report, 2026-09-21.
+- The Alaska Beacon story identifies Jonathan Kreiss-Tomkins as the Democratic candidate. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- A photo caption on the Beacon story places Taylor, Bronson and Kreiss-Tomkins at a September 9th forum held by the Last Frontier Republican Club at the Petroleum Club of Anchorage. [Alaska Beacon (photo by Yereth Rosen), republished by Alaska Public Media](https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers), report, 2026-09-21.
+- The Alaska Beacon first published James Brooks's story on the governor candidates and data centers on September 18th. [Copper River Country Journal, reprinting the Alaska Beacon](https://www.countryjournal2020.com/2026/09/data-centers-in-alaska-governor.html), report, 2026-09-18.
+- The Beacon reports that the Alaska Senate voted 14 to 5 this year to pass a data center bill. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Alaska House failed to take up the Senate-passed data center bill before the end of the legislative session. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The data center bill's sponsor, Sen. Loki Tobin, D-Anchorage, will return to the Legislature next year. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Beacon reports that the next governor will likely be confronted with legislation similar to the Senate-passed data center bill. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Senate-passed bill would have regulated how data centers use electricity from public utilities and required them to create decommissioning plans. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Beacon reports that one $500 million data center proposal on the North Slope intends to burn local natural gas for power and use Arctic air for cooling. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- Gov. Mike Dunleavy is term-limited and can't run again this year. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- BillTrack50 lists Alaska SB 250 as "An Act relating to data centers; and relating to utility service for data centers," sponsored by Sen. Loki Tobin. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- SB 250's last legislative action was a House Community and Regional Affairs hearing on May 18th. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- BillTrack50 lists SB 250 as dead as of May 20th. [BillTrack50](https://www.billtrack50.com/billdetail/1974439), report, 2026-05-20.
+- The Beacon reports that AIDEA announced plans for a development that could include data centers in Southcentral Alaska. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Air Force has offered to lease about 4,700 acres of government land in Alaska to private companies for data centers. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- No Air Force data center lease projects in Alaska had been awarded as of September 15th. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- KUAC reports the Pentagon wants to build up to a dozen military data centers near Anchorage, Healy and Fairbanks. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Sen. Lisa Murkowski said she is not a proponent of data centers at JBER or Alaska's Interior installations because of an insecure energy base. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- KUAC reports that the Fairbanks North Star Borough Assembly is calling for a data center moratorium but can't tell the Pentagon what to do on military land. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Fairbanks North Star Borough Mayor Grier Hopkins said it is a different question whether local concerns about data centers trickle up to the Pentagon. [KUAC (Shelby Herbert), via Alaska Public Media](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- DeepGreen Cook Inlet has proposed a 100-megawatt subsea data center in Cook Inlet. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- The Center for Biological Diversity, the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough have filed motions to intervene in the DeepGreen FERC proceeding. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+- Comments, motions to intervene and competing applications on the DeepGreen project can be filed with FERC through November 2nd. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- Alaska Energy Authority CEO Curtis Thayer said AEA will file to intervene in and oppose the DeepGreen proposal. [Peninsula Clarion (Jeffrey Kennett)](https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/), report, 2026-09-14.
+- Sen. Dan Sullivan said AI companies, not communities, need to pay the costs of producing AI. [Alaska's News Source (Wil Courtney)](https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/), report, 2026-09-16.
+- Sen. Lisa Murkowski said she would welcome a serious effort to establish clear guardrails for the AI industry. [Alaska's News Source (Wil Courtney)](https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/), report, 2026-09-16.
+- The Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by the AI company Anthropic. [Alaska Beacon (James Brooks), republished by KTOO](https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/), report, 2026-09-22.
+- The Kenai Peninsula Borough's motion to intervene in the DeepGreen FERC proceeding is dated September 14th. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+- In a September 21st response filed with FERC, DeepGreen said the requested modeling and studies would occur during a three-year study period. [Anchorage Daily News (Bella Biondini)](https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/), report, 2026-09-24.
+
+Slides and the deck PDF are linked from the canonical page.
