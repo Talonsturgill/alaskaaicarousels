@@ -1,6 +1,6 @@
 {
-  "checked_utc": "2026-09-25T09:44:16Z",
-  "verdict": "WARN",
+  "checked_utc": "2026-09-25T10:09:09Z",
+  "verdict": "PASS",
   "checks": [
     {
       "name": "live dataset",
@@ -23,20 +23,20 @@
     {
       "name": "source freshness",
       "status": "PASS",
-      "detail": "source 2026-09-24T23:56:00 Alaska, 1.8 hours old",
+      "detail": "source 2026-09-24T23:56:00 Alaska, 2.2 hours old",
       "remedy": ""
     },
     {
       "name": "live headline agrees",
       "status": "PASS",
-      "detail": "last verified 2026-09-24, 59.4 percent",
+      "detail": "last verified 2026-09-24, 59.5 percent",
       "remedy": ""
     },
     {
       "name": "source reading published",
-      "status": "WARN",
+      "status": "PASS",
       "detail": "published 2026-09-24; source 2026-09-24T23:56:00",
-      "remedy": "Inspect collector logs and source snapshots, repair the parser or rerun collection, then deploy."
+      "remedy": ""
     },
     {
       "name": "source gap disclosed",
@@ -53,13 +53,13 @@
     {
       "name": "weather forecast current",
       "status": "PASS",
-      "detail": "forecast age 12.3 hours",
+      "detail": "forecast age 5.1 hours",
       "remedy": ""
     },
     {
       "name": "live modeled peak agrees",
       "status": "PASS",
-      "detail": "page 157, computed 157",
+      "detail": "page 160, computed 160",
       "remedy": ""
     },
     {
@@ -71,13 +71,13 @@
     {
       "name": "cron is running",
       "status": "PASS",
-      "detail": "last run 11.2 hours ago",
+      "detail": "last run 0.4 hours ago",
       "remedy": ""
     },
     {
       "name": "cron completed successfully",
       "status": "PASS",
-      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36067766498",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36120328463",
       "remedy": ""
     }
   ],
