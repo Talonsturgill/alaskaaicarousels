@@ -39,7 +39,7 @@
       "n": 2,
       "kicker": "THE SIX, AND WHO SIGNS",
       "headline": "Two sit on state land. Four are federal calls.",
-      "body": "The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appoints. The Air Force decides three bases. FERC decides Cook Inlet.",
+      "body": "The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appoints. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.",
       "claim_ids": [
         "C23",
         "C28",
@@ -49,7 +49,8 @@
         "C45",
         "C56",
         "C60",
-        "C64"
+        "C64",
+        "C43"
       ],
       "labels": [
         "MILEPOST 390, STATE",

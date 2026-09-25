@@ -9,7 +9,10 @@
     "research": "done",
     "claims": "done",
     "docket": "done",
-    "gas_watch": "in_progress",
+    "gas_watch": {
+      "status": "done",
+      "note": "cron_health PASS 09:21Z; gaswatch_health WARN at 08:04Z and 09:44Z (GitHub dispatched the 04:40 and 07:20 UTC collections late, manual dispatch 403), PASS at 10:09Z after the collector ran"
+    },
     "selection": "done",
     "directors_room": "done",
     "copy": "done",
@@ -54,5 +57,12 @@
   "docket_refresh": "Worklist of 6 plus the 6 deferred (budget effectively 12); all twelve re-verified against a primary or the prior verified source and unchanged; worklist now reads nothing due. watch.json failed=[]; zero hearings (Legislature out of session); HB259 and SB250 statuses agree with BASIS; candidates triaged, none added (BASIS energy and LNG bills with no AI content, HJR18 a gas project resolution, SEAPA and Juneau Hydropower FERC notices).",
   "research": "Six scouts, 147 searches in total (25, 24, 25, 25, 25, 23). Four beats converged on the Air Force leases and three on the governor candidates' data center positions. Out on dedupe: DeepGreen (No.65), UA regents (No.61), XPRIZE (No.67).",
   "revision_rounds": 4,
-  "score": 8.69
+  "score": 8.69,
+  "phase_3_6": {
+    "site_signoff": "PASS, 122 pages, 18 checks",
+    "gaswatch_pagecheck": "PASS",
+    "gaswatch_live": "PASS at 10:09 UTC. It was WARN earlier in the run because GitHub dispatched the 04:40 and 07:20 UTC collections late and a manual dispatch returned 403; the collection landed on main at about 10:05 UTC and the incident was retired.",
+    "cron_health": "PASS, every scheduled workflow inside its grace (09:21 UTC)",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  }
 }

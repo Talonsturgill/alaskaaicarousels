@@ -301,7 +301,7 @@
     var az = (o.keyAz === undefined ? 330 : o.keyAz) * Math.PI / 180;
     var el = (o.keyEl === undefined ? 40 : o.keyEl) * Math.PI / 180;
     var lx = Math.cos(el) * Math.sin(az), ly = -Math.cos(el) * Math.cos(az), lz = Math.sin(el);
-    var exag = o.exag || 6, gain = o.gain || 1.6;
+    var exag = o.exag === undefined ? 6 : o.exag, gain = o.gain === undefined ? 1.6 : o.gain;
     var rgb = (o.color || "#BFDDF0").match(/[0-9a-f]{2}/gi).map(function (h) { return parseInt(h, 16); });
     var E = new Float32Array((cols + 2) * (rows + 2)), C2 = cols + 2;
     for (var j = -1; j <= rows; j++) for (var i = -1; i <= cols; i++) {
