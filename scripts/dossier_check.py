@@ -860,6 +860,14 @@ _TREATMENT_SEP_RE = re.compile(
     r"shaded|carved|engraved|scribed|cast|casting|on a|in a|in an)\s)", re.I)
 
 
+# A Tonal arc line that says there is none is not an arc (Codex on PR #401).
+TONAL_ARC_DENIED_RE = re.compile(
+    r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b|"
+    r"\b(?:same|one|single|uniform|constant|even|flat) (?:tone|value|key|tonality)\b|"
+    r"\b(?:tone|value)s? (?:stays?|stay|remains?|is|are) (?:the )?(?:same|constant|uniform|flat)\b|"
+    r"\bstays? the same\b", re.I)
+
+
 def _treatment(obj):
     """The modelling text after the object, or "" when either half is missing:
     ", contact shadow" names a treatment for no object at all."""
@@ -881,7 +889,7 @@ def _norm_technique(t):
 TECHNIQUE_FAMILIES = [
     ("hachure", r"hachur"),
     ("scribed", r"scrib"),
-    ("engraved", r"engrav|burin|intaglio|etch"),
+    ("engraved", r"engrav|burin|intaglio|\betch(?:ed|ing|ings)?\b"),
     ("stipple", r"stippl|pointill"),
     ("cross hatch", r"(?<!c)hatch(?!ur)"),
     ("contour", r"contour|isoline|iso line"),
@@ -936,12 +944,21 @@ def craft_plan_fails(text, slide_nos):
                 "deck header); the scorer's artwork complaints are decided here"]
     nxt = re.search(r"^##\s", text[m.end():], re.M)
     block = text[m.end(): m.end() + nxt.start()] if nxt else text[m.end():]
-    rows = {}
+    rows, dupes = {}, []
     for line in block.splitlines():
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) >= 3 and re.fullmatch(r"\d{1,2}", cells[0]):
-            rows[int(cells[0])] = (cells[1], cells[2])
+            n = int(cells[0])
+            if n in rows:
+                dupes.append(n)
+            rows[n] = (cells[1], cells[2])
     fails = []
+    if dupes:
+        # Last-write-wins would count only the replacement and hide the row it
+        # contradicts (Codex on PR #401). One row per frame, edited in place.
+        fails.append("deck: CRAFT PLAN has more than one row for slide(s) %s; keep "
+                     "one row per frame and edit it in place"
+                     % ", ".join("%02d" % n for n in sorted(set(dupes))))
     missing = [n for n in slide_nos if n not in rows]
     if missing:
         fails.append("deck: CRAFT PLAN has no row for slide(s) %s"
@@ -986,6 +1003,11 @@ def craft_plan_fails(text, slide_nos):
     if not ta:
         fails.append("deck: CRAFT PLAN names no 'Tonal arc:' line (a contact sheet "
                      "with one tone throughout is a named artwork shortfall)")
+    elif TONAL_ARC_DENIED_RE.search(ta.group(1)):
+        fails.append("deck: CRAFT PLAN's 'Tonal arc:' declares no arc ('%s'). One "
+                     "tone throughout is the defect this line exists to prevent; say "
+                     "where the deck is darkest, where it lifts and where it peaks"
+                     % ta.group(1)[:60])
     return fails
 
 
