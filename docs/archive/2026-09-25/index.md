@@ -1,6 +1,6 @@
 # Six Data Center Sites. Two Answer to Juneau.
 
-> From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor reaches two.
+> From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor could reach two.
 
 Published 2026-09-25 by Alaska AI. 9 slides.
 Canonical: https://alaskaaihq.com/archive/2026-09-25/
