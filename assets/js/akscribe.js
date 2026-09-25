@@ -145,6 +145,11 @@
       var p = proj.invert([X + u * W, Y + v * H]);
       if (!p) return 0;
       var e = dem.sample(p[0], p[1]);
+      if (!isFinite(e) && dem.meta) {
+        // off the DEM: take the nearest edge sample, so a crop edge reads flat and not as a drop to sea level
+        var m = dem.meta, eps = 1e-9;
+        e = dem.sample(Math.min(m.east - eps, Math.max(m.west + eps, p[0])), Math.min(m.north - eps, Math.max(m.south + eps, p[1])));
+      }
       if (!(e > 0)) return 0;
       var t = Math.min(1, e / hRef);
       if (mask) t *= mask(p[0], p[1]);

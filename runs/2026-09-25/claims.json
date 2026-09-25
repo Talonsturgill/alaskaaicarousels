@@ -173,7 +173,7 @@
     },
     {
       "id": "C14",
-      "claim": "The Alaska House failed to take up the Senate-passed data center bill before the end of the legislative session.",
+      "claim": "The Senate-passed data center bill did not pass the Alaska House before the end of the legislative session.",
       "value": "House failed to take it up",
       "verbatim": "but the House failed to take it up before the end of the legislative session.",
       "source_url": "https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/",
@@ -182,7 +182,7 @@
       "date_of_source": "2026-09-22",
       "fetched": true,
       "confidence": 0.9,
-      "notes": "This is corroborated by BillTrack50 (C21, C22). The last action was a House Community and Regional Affairs hearing on May 18th, and the bill was marked Dead on May 20th."
+      "notes": "This is corroborated by BillTrack50 (C21, C22). The last action was a House Community and Regional Affairs hearing on May 18th, and the bill was marked Dead on May 20th. Worded as not passed, not as not taken up, because the House Community and Regional Affairs committee did hold a hearing (C21)."
     },
     {
       "id": "C15",
