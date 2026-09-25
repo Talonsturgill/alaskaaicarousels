@@ -100,6 +100,10 @@ export function init(THREE) {
     key.shadow.mapSize.set(4096, 4096);
     const sz = (o.length || 620) * 1.1;
     Object.assign(key.shadow.camera, { left: -sz, right: sz, top: sz, bottom: -sz, near: 1, far: 4000 });
+    // three's docs require a projection rebuild after changing camera bounds. On r170 the renders are
+    // byte-identical with and without it (measured 2026-09-25, five pen slides), so the call is explicit
+    // rather than corrective; it guards a future three upgrade that stops rebuilding it for us.
+    key.shadow.camera.updateProjectionMatrix();
     key.shadow.bias = -0.0006; key.shadow.radius = o.shadowSoft || 6;
     scene.add(key); scene.add(key.target);
     scene.add(new THREE.HemisphereLight(0x9fc6e0, 0x05080d, 0.35));
