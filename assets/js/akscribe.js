@@ -63,6 +63,36 @@
     return { meta: meta, data: a, sample: sample };
   };
 
+  /* A smoothed copy of a DEM (separable box blur, `passes` times, radius r
+   * cells). Terrain tiles store whole metres, so on flat ground an exaggerated
+   * gradient prints every 1 m step as a stripe (the Milepost 390 prototype,
+   * 2026-09-25). Smoothing before the gradient is the honest fix: it removes
+   * the quantisation, not the land. */
+  AKS.smoothDEM = function (dem, r, passes) {
+    var m = dem.meta, C = m.cols, R = m.rows, src = new Float32Array(dem.data), tmp = new Float32Array(C * R);
+    r = r || 2; passes = passes || 2;
+    for (var p = 0; p < passes; p++) {
+      for (var j = 0; j < R; j++) for (var i = 0; i < C; i++) {
+        var s = 0, n = 0;
+        for (var k = -r; k <= r; k++) { var ii = i + k; if (ii >= 0 && ii < C) { s += src[j * C + ii]; n++; } }
+        tmp[j * C + i] = s / n;
+      }
+      for (j = 0; j < R; j++) for (i = 0; i < C; i++) {
+        s = 0; n = 0;
+        for (k = -r; k <= r; k++) { var jj = j + k; if (jj >= 0 && jj < R) { s += tmp[jj * C + i]; n++; } }
+        src[j * C + i] = s / n;
+      }
+    }
+    function sample(lon, lat) {
+      var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
+      if (!(fi >= 0 && fj >= 0 && fi <= C - 1 && fj <= R - 1)) return NaN;
+      var i0 = Math.min(C - 2, Math.floor(fi)), j0 = Math.min(R - 2, Math.floor(fj));
+      var u = fi - i0, v = fj - j0, q = j0 * C + i0;
+      return src[q] * (1 - u) * (1 - v) + src[q + 1] * u * (1 - v) + src[q + C] * (1 - u) * v + src[q + C + 1] * u * v;
+    }
+    return { meta: m, data: src, sample: sample };
+  };
+
   /* Transverse Mercator on its own central meridian, north up: the projection
    * an Ogilby strip map uses. pxPerKm is exact at the central meridian. */
   AKS.strip = function (o) {
@@ -320,6 +350,66 @@
     cx.lineWidth = o.width || 2; cx.stroke();
     cx.restore();
     path.context(null);
+  };
+
+  /* THE MERIDIAN LOCATOR (No.68 D3). A scribed rail standing for latitude
+   * lat0..lat1 along one meridian, drawn at x from y0 (north) to y1 (south),
+   * with the frame's own window bracketed. Furniture, drawn in light.
+   * Returns the rail rect for __akMotifs. */
+  AKS.locator = function (cx, o) {
+    var x = o.x, y0 = o.y0, y1 = o.y1, n = o.north || 70.6, s = o.south || 60;
+    var Y = function (lat) { return y0 + (n - lat) / (n - s) * (y1 - y0); };
+    cx.save();
+    cx.strokeStyle = "rgba(191,221,240,0.30)"; cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(x, y0); cx.lineTo(x, y1); cx.stroke();
+    for (var lat = Math.ceil(s); lat <= Math.floor(n); lat++) {
+      var w = lat % 5 === 0 ? 7 : 3.5;
+      cx.beginPath(); cx.moveTo(x - w, Y(lat)); cx.lineTo(x + w, Y(lat)); cx.stroke();
+    }
+    var a = Y(Math.min(n, o.top)), b = Y(Math.max(s, o.bottom));
+    cx.strokeStyle = "#EEF7FF"; cx.lineWidth = 2;
+    cx.beginPath();
+    cx.moveTo(x - 7, a); cx.lineTo(x + 7, a); cx.moveTo(x, a); cx.lineTo(x, b);
+    cx.moveTo(x - 7, b); cx.lineTo(x + 7, b); cx.stroke();
+    (o.marks || []).forEach(function (m) {
+      cx.fillStyle = m.color || "#FFC72C";
+      cx.beginPath(); cx.arc(x, Y(m.lat), m.r || 2.6, 0, Math.PI * 2); cx.fill();
+    });
+    cx.restore();
+    return [x - 8, y0 - 2, 16, y1 - y0 + 4];
+  };
+
+  /* A federal site: a dashed ring, never filled (the deck's ink law). */
+  AKS.ring = function (cx, x, y, r, o) {
+    o = o || {};
+    cx.save();
+    cx.strokeStyle = o.color || "#7F93A6"; cx.lineWidth = o.width || 2.2;
+    cx.lineCap = "round"; cx.setLineDash(o.dash || [0.1, 6.2]);
+    cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.stroke();
+    cx.restore();
+  };
+
+  /* State ink: a gold bead or polygon laid on the film, with a meniscus
+   * highlight on the key side and a thin dark ink body at the lee edge. */
+  AKS.ink = function (cx, pts, o) {
+    o = o || {};
+    cx.save();
+    cx.beginPath();
+    if (typeof pts[0] === "number") { cx.arc(pts[0], pts[1], pts[2], 0, Math.PI * 2); }
+    else { pts.forEach(function (p, i) { i ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1]); }); cx.closePath(); }
+    cx.shadowColor = "rgba(1,3,6,0.85)"; cx.shadowBlur = o.cast || 4;
+    cx.shadowOffsetX = o.dx === undefined ? 1.2 : o.dx; cx.shadowOffsetY = o.dy === undefined ? 1.6 : o.dy;
+    cx.fillStyle = "#9A7418"; cx.fill();
+    cx.shadowColor = "transparent";
+    var b = o.box || (typeof pts[0] === "number" ? [pts[0] - pts[2], pts[1] - pts[2], pts[2] * 2, pts[2] * 2] : null);
+    if (b) {
+      var g = cx.createLinearGradient(b[0], b[1], b[0] + b[2], b[1] + b[3]);
+      g.addColorStop(0, "#FFDA6E"); g.addColorStop(0.38, "#FFC72C"); g.addColorStop(1, "#C9961E");
+      cx.fillStyle = g;
+    } else cx.fillStyle = "#FFC72C";
+    cx.save(); cx.clip(); cx.translate(-0.6, -0.8);
+    cx.fill(); cx.restore();
+    cx.restore();
   };
 
   /* Great-circle distance in km, for scale bars and asserts. */

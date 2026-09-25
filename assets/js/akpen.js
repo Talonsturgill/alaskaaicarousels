@@ -47,10 +47,19 @@ export function init(THREE) {
 
   AKPEN.render = async function (canvas, o) {
     const W = o.W || 1080, H = o.H || 1350;
+    // VIEW: render only the pen's own box, so the canvas is not a mostly empty
+    // full-frame layer (qa reads a near-uniform full-frame canvas as dead GL).
+    // The slide positions the canvas at view[0], view[1] with view[2] x view[3] CSS px.
+    const V = o.view || [0, 0, W, H];
+    if (o.view) {
+      canvas.style.left = V[0] + "px"; canvas.style.top = V[1] + "px";
+      canvas.style.width = V[2] + "px"; canvas.style.height = V[3] + "px";
+      canvas.width = V[2] * 2; canvas.height = V[3] * 2;
+    }
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true,
       preserveDrawingBuffer: true, premultipliedAlpha: false });
     renderer.setPixelRatio(2);                  // BEFORE size (akthree rule)
-    renderer.setSize(W, H, false);
+    renderer.setSize(V[2], V[3], false);
     renderer.setClearColor(0x000000, 0);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -59,7 +68,7 @@ export function init(THREE) {
 
     const scene = new THREE.Scene();
     // Orthographic camera looking straight down the -z axis: world px = screen px.
-    const cam = new THREE.OrthographicCamera(0, W, 0, -H, -4000, 4000);
+    const cam = new THREE.OrthographicCamera(V[0], V[0] + V[2], -V[1], -(V[1] + V[3]), -4000, 4000);
     cam.position.set(0, 0, 2000); cam.up.set(0, 1, 0); cam.lookAt(0, 0, 0);
     // world y is DOWN in design px, three's y is up: flip with a root group
     const root = new THREE.Group(); root.scale.set(1, -1, 1); scene.add(root);
