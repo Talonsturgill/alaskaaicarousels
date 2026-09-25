@@ -868,6 +868,20 @@ DEPTH_RE = re.compile(
     r"shadow|aerial|haze|fog|atmospheric|volum\w*|relief|dem|terrain|elevation|"
     r"foreground|background|layered|z[- ]order|recession|recedes?)\b", re.I)
 
+_NEGATION_RE = re.compile(r"\b(no|not|without|none|zero|never|lacks?|lacking|avoids?|"
+                          r"avoiding|nor|free of)\b", re.I)
+
+
+def _affirms_depth(text):
+    """A depth word that isn't negated within its own clause: "no depth or
+    shadow is used" names depth only to deny it (Codex on PR #401)."""
+    for m in DEPTH_RE.finditer(text):
+        clause = re.split(r"[,;:(.]", text[:m.start()])[-1]
+        if not _NEGATION_RE.search(clause):
+            return True
+    return False
+
+
 # A Tonal arc line that declares none is not an arc (Codex on PR #401). An
 # explicit "no arc" always fails; a uniform-tone phrase fails only when the line
 # describes no progression, so "flat tone through 03, then lifts to a peak on
@@ -1034,7 +1048,7 @@ def craft_plan_fails(text, slide_nos):
         dn = int(dm.group(1))
         line_rest = block[dm.end():].split("\n", 1)[0]
         row_obj = rows.get(dn, ("", ""))[1]
-        if not (DEPTH_RE.search(line_rest) or DEPTH_RE.search(_treatment(row_obj))):
+        if not (_affirms_depth(line_rest) or _affirms_depth(_treatment(row_obj))):
             fails.append("deck: CRAFT PLAN names %02d as the masterful depth frame but "
                          "neither that line nor its row says how the depth is made "
                          "(rendered 3D, cast or contact shadow, occlusion, perspective, "

@@ -107,7 +107,10 @@ ROUND_CAP = 5
 
 
 def _art_score(score):
-    for c in score.get("criteria") or []:
+    crit = score.get("criteria")
+    if not isinstance(crit, list):
+        return None      # malformed; craft_floor fails closed on None
+    for c in crit:
         # The rubric's own criterion, "Artwork craft & genuine detail", matched
         # in full after normalizing case and "&"/"and"; not any name that merely
         # contains or starts like it (Codex on PR #401).
@@ -115,7 +118,7 @@ def _art_score(score):
         name = " ".join(w for w in re.findall(
             r"[a-z]+", html.unescape(str(c.get("name", ""))).lower())
             if w != "and") if isinstance(c, dict) else ""
-        if name in ("artwork craft genuine detail", "artwork craft"):
+        if name == "artwork craft genuine detail":
             v = c.get("score")
             if (isinstance(v, (int, float)) and not isinstance(v, bool)
                     and math.isfinite(v) and 0 <= v <= 10):
@@ -285,6 +288,8 @@ def self_test():
         ("2026-09-26", {"criteria": [{"name": "Artwork craft and genuine detail", "score": 9}]}, {}, "met"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft &amp; genuine detail", "score": 9}]}, {}, "met"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craftsmanship", "score": 9}]}, {}, "open"),
+        ("2026-09-26", {"criteria": [{"name": "Artwork craft", "score": 9}]}, {}, "open"),
+        ("2026-09-26", {"criteria": 4}, {}, "open"),
         ("2026-09-26", {"criteria": [{"name": "Artwork craft accessibility", "score": 9}]}, {}, "open"),
         ("2026-09-26", rep(7.5, artwork_weakest_frames=4), {}, "open"),
         ("2026-09-26", rep(7.5, round=5), {}, "capped"),
