@@ -31,6 +31,11 @@ Return ONLY JSON:
   "ship": false,
   "weakest_criterion": "the criterion's NAME, a plain string, never an object",
   "one_sentence_fix": "the highest-leverage single improvement",
+  "artwork_weakest_frames": [{"slide": 8, "problem": "what holds the art score down on this frame", "fix": "the one change that lifts it"}],
   "editor_notes_for_email": "anything the human must know before posting"
 }
+`artwork_weakest_frames` is required whenever Artwork craft scores under 9.
+Name the frames your artwork score actually charges, by slide number, most
+damaging first, with one concrete fix each. The routine's CRAFT FLOOR repairs
+exactly these frames and re-scores, so a vague entry wastes the round.
 Your final message is this JSON, nothing else.

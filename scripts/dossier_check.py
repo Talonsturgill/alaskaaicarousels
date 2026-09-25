@@ -818,6 +818,267 @@ def _early_exit(args, fail, human):
     sys.exit(1)
 
 
+# THE CRAFT PLAN (2026-09-25, owner: make artwork craft the strongest area).
+# Over 68 runs the scorer's artwork complaints were mostly DECK-level: the same
+# drawing function carrying three or four frames, a frame whose largest object
+# is its least modelled, no tonal arc across the contact sheet, and no frame
+# where depth is used masterfully (the rubric's 10 asks for one). Every one of
+# those is decided in planning and was never written down, so it was first
+# noticed by the scorer. The storyboard now declares them before the build:
+#
+#   ## CRAFT PLAN
+#   | slide | primary mark-making | largest object, and how it is modelled |
+#   |---|---|---|
+#   | 01 | scribed hachure relief | the pen, three.js PBR with a contact shadow |
+#   ...
+#   Masterful depth frame: 06, the pen resting on the Houston disc
+#   Tonal arc: dark and quiet 01 to 03, the lit range peaks on 06, calm on 09
+#
+# and this check holds it to a row per dossier, no primary mark-making shared by
+# more than CRAFT_PLAN_MAX_SHARE frames, a named depth frame and a tonal arc.
+CRAFT_PLAN_FROM = "2026-09-26"
+CRAFT_PLAN_MAX_SHARE = 3
+CRAFT_PLAN_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
+# The third cell has to say HOW the largest object is modelled, not only name it
+# ("| 01 | hachure | pen |" is the defect this plan exists to prevent). A word
+# list is crude and deliberately so: it asks for a treatment to be named at all.
+MODELLING_RE = re.compile(
+    r"\b(lit|light|lighting|key[- ](?:lit|light|lighting)|rim[- ]?(?:lit|light|lighting)|lee|shad(?:e|ed|ing|ow|ows)|cast|contact|"
+    r"occlu\w*|specular|gloss\w*|matte|material|pbr|metal\w*|resin|glass|"
+    r"depth|relief|dem|hachur\w*|scrib\w*|engrav\w*|stipple\w*|hatch\w*|"
+    r"textur\w*|grain|gradient|graded|glow|halat\w*|bevel\w*|emboss\w*|"
+    r"deboss\w*|meniscus|model(?:l)?ed|model(?:l)?ing|volume\w*|extru\w*|"
+    r"raymarch\w*|sdf|three\.js|3d|aerial perspective|haze|fog)\b", re.I)
+
+
+# The cell reads "object, treatment". The treatment is what follows the object:
+# the text from the first separator on, so an object whose own name happens to
+# be a treatment word ("the key", "the northern lights") is not read as its own
+# modelling (Codex on PR #401). No separator means only an object was named.
+_TREATMENT_SEP_RE = re.compile(
+    r",|;|:|\(|\s(?=(?:with|as|by|under|through|lit|drawn|rendered|model(?:l)?ed|"
+    r"shaded|carved|engraved|scribed|cast|casting|on a|in a|in an)\s)", re.I)
+
+
+# What makes depth, for the masterful depth frame. Stricter than MODELLING_RE:
+# texture, grain, glow and hachure model a surface but don't make depth.
+DEPTH_RE = re.compile(
+    r"\b(depth|3d|pbr|three\.js|webgl|gpu|raymarch\w*|sdf|ak3d|extru\w*|cabinet|"
+    r"isometric|axonometric|perspective|parallax|occlu\w*|cast shadow|contact shadow|"
+    r"shadow|aerial|haze|fog|atmospheric|volum\w*|relief|dem|terrain|elevation|"
+    r"foreground|background|layered|z[- ]order|recession|recedes?)\b", re.I)
+
+_NEGATION_RE = re.compile(r"\b(no|not|without|none|zero|never|lacks?|lacking|avoids?|"
+                          r"avoiding|nor|free of|omit\w*|skip\w*|n't)\b|n't\b|"
+                          r"\w-free\b|\w-less\b|\b(?:shadow|depth|texture|detail|"
+                          r"feature|shape|form|tone)less\b", re.I)
+_CLAUSE_SPLIT_RE = re.compile(r"[,;:().]|\s(?:but|while|whereas|although|though)\s", re.I)
+
+
+def _affirms(rx, text):
+    """True when `rx` names something in a clause that nothing negates. The
+    whole clause is read, before and after the word, so "no shading",
+    "depth is not used", "shadow is never used" and "depth-free" all deny
+    rather than affirm (Codex on PR #401, three rounds). One helper serves
+    the modelling cell and the masterful depth frame alike."""
+    return any(rx.search(c) and not _NEGATION_RE.search(c)
+               for c in _CLAUSE_SPLIT_RE.split(text))
+
+
+def _affirms_depth(text):
+    return _affirms(DEPTH_RE, text)
+
+
+# A Tonal arc line that declares none is not an arc (Codex on PR #401). An
+# explicit "no arc" always fails; a uniform-tone phrase fails only when the line
+# describes no progression, so "flat tone through 03, then lifts to a peak on
+# 06" is an arc with a flat stretch in it.
+TONAL_ARC_PROGRESSION_RE = re.compile(
+    r"\b(then|lifts?|rises?|climbs?|builds?|peaks?|brightens?|darkens?|brightest|"
+    r"darkest|ramps?|drops?|falls?|opens?|closes?|until|towards?)\b|\bto (?:a |the )?"
+    r"(?:bright|dark|light|peak|high|low)", re.I)
+TONAL_ARC_NONE_RE = re.compile(
+    r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b",
+    re.I)
+TONAL_ARC_DENIED_RE = re.compile(
+    r"^\s*(?:no|none|n/?a|tbd|todo)\b|\bno (?:tonal )?arc\b|\bwithout (?:a |any )?arc\b|"
+    # Each adjective counts only directly on tone, value, key or tonality:
+    # "unchanging hue" over a real ramp and "flat grey until 05, then a bright
+    # peak" are arcs (Codex on PR #401).
+    r"\b(?:same|one|single|uniform|constant|even|flat|identical|unchanging|unchanged|"
+    r"unvaried|invariant|monotone|monotonous) (?:tones?|values?|key|tonality)\b|"
+    r"\b(?:tones?|values?|tonality) (?:stays?|remains?|is|are) (?:the )?"
+    r"(?:same|constant|uniform|flat|identical|unchanged)\b", re.I)
+
+
+def _treatment(obj):
+    """The modelling text after the object, or "" when either half is missing:
+    ", contact shadow" names a treatment for no object at all."""
+    m = _TREATMENT_SEP_RE.search(obj)
+    if not m or not re.search(r"[A-Za-z0-9]", obj[:m.start()]):
+        return ""
+    return obj[m.start():].strip(" ,;:(")
+
+
+def _norm_technique(t):
+    return " ".join(re.findall(r"[a-z0-9]+", t.lower()))
+
+
+# The mark-making cell is free text, so the same mark arrives dressed in
+# different modifiers ("scribed hachure relief", "scribed hachure field"). Count
+# FAMILIES, not strings (Codex on PR #401): a frame counts once toward every
+# family its cell names, and a family on more than CRAFT_PLAN_MAX_SHARE frames
+# fails. Only the primary clause counts (see _technique_keys).
+TECHNIQUE_FAMILIES = [
+    ("hachure", r"hachur"),
+    ("scribed", r"scrib"),
+    ("engraved", r"engrav|burin|intaglio|\betch(?:ed|ing|ings)?\b"),
+    ("stipple", r"stippl|pointill"),
+    ("cross hatch", r"(?<!c)hatch(?!ur)"),
+    ("contour", r"contour|isoline|iso line"),
+    ("halftone", r"halftone|dot screen"),
+    ("relief print", r"woodcut|linocut|wood engrav|relief print"),
+    ("glow", r"glow|transmitted light|halation"),
+    ("gpu render", r"\bpbr\b|three\.?js|webgl|\bgpu\b"),
+    ("raymarch", r"raymarch|\bsdf\b"),
+    ("software 3d", r"ak3d|zdog|software 3d|cabinet|isometric|axonometric"),
+    ("flow field", r"flow field|streamline|particle"),
+    ("isotype", r"isotype|pictogram|unit chart"),
+    ("wash", r"\bwash|watercolou?r|gouache"),
+    ("typographic", r"typograph|letterform|lettering|type only|type as"),
+]
+_TECH_GENERIC = {"relief", "linework", "line", "lines", "texture", "field", "fields",
+                 "pass", "layer", "fill", "fills", "strokes", "stroke", "marks",
+                 "mark", "work", "art", "style", "the", "a", "an", "and", "of",
+                 "with", "on", "in", "over", "under", "full", "fine", "dense",
+                 "light", "heavy", "map", "plate", "frame", "ink", "gold", "navy",
+                 "color", "colour", "tone", "tonal", "soft", "bold", "paper",
+                 "accent", "accents", "detail", "details", "primary", "secondary",
+                 "base", "plus", "hero", "lit", "key", "only", "drawn", "rendered",
+                 "from", "for", "into", "its", "each", "per", "across"}
+
+
+# The PRIMARY technique is the cell's first clause; what follows "with", "and",
+# "plus", a comma and so on is an accent and doesn't count toward reuse.
+_ACCENT_SEP_RE = re.compile(r",|;|\+|\(|\s(?:with|and|plus|over|under|on|beside)\s", re.I)
+
+
+def _technique_keys(t):
+    """The families the PRIMARY clause names; if it names none, its head noun
+    (last meaningful word). So "paper collage with hachure accents" counts as
+    collage and not hachure, while "digital collage" and "digital stipple" do
+    not meet on the modifier "digital" (Codex on PR #401, two rounds)."""
+    low = t.lower()
+    m = _ACCENT_SEP_RE.search(low)
+    primary = low[:m.start()] if m and m.start() > 0 else low
+    keys = {name for name, rx in TECHNIQUE_FAMILIES if re.search(rx, primary)}
+    if keys:
+        return keys
+    words = [w for w in re.findall(r"[a-z]{3,}", primary) if w not in _TECH_GENERIC]
+    if words:
+        return {words[-1]}
+    # All generic ("gold ink", "dense ink"): the head noun is the mark, and its
+    # modifiers are not (Codex on PR #401).
+    head = re.findall(r"[a-z]+", primary)
+    return {head[-1]} if head else {_norm_technique(t)}
+
+
+def craft_plan_fails(text, slide_nos):
+    m = CRAFT_PLAN_HEAD_RE.search(text)
+    if not m:
+        return ["deck: no '## CRAFT PLAN' section. Declare each frame's primary "
+                "mark-making and its largest object's modelling, the masterful "
+                "depth frame and the tonal arc before the build (SLIDE_DOSSIER_SPEC, "
+                "deck header); the scorer's artwork complaints are decided here"]
+    nxt = re.search(r"^##\s", text[m.end():], re.M)
+    block = text[m.end(): m.end() + nxt.start()] if nxt else text[m.end():]
+    rows, dupes = {}, []
+    for line in block.splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 3 and re.fullmatch(r"\d{1,2}", cells[0]):
+            n = int(cells[0])
+            if n in rows:
+                dupes.append(n)
+            rows[n] = (cells[1], cells[2])
+    fails = []
+    if dupes:
+        # Last-write-wins would count only the replacement and hide the row it
+        # contradicts (Codex on PR #401). One row per frame, edited in place.
+        fails.append("deck: CRAFT PLAN has more than one row for slide(s) %s; keep "
+                     "one row per frame and edit it in place"
+                     % ", ".join("%02d" % n for n in sorted(set(dupes))))
+    missing = [n for n in slide_nos if n not in rows]
+    if missing:
+        fails.append("deck: CRAFT PLAN has no row for slide(s) %s"
+                     % ", ".join("%02d" % n for n in missing))
+    stale = sorted(set(rows) - set(slide_nos))
+    if stale:
+        # A row for a frame the storyboard no longer has is a stale instruction
+        # (Codex on PR #401); it also skews the reuse count below.
+        fails.append("deck: CRAFT PLAN has row(s) for slide(s) %s, which the "
+                     "storyboard doesn't have; remove them"
+                     % ", ".join("%02d" % n for n in stale))
+    for n, (tech, obj) in sorted(rows.items()):
+        if not tech:
+            fails.append("deck: CRAFT PLAN slide %02d names no primary mark-making" % n)
+        if not obj:
+            fails.append("deck: CRAFT PLAN slide %02d names no largest object and "
+                         "its modelling" % n)
+        elif not _treatment(obj) or not _affirms(MODELLING_RE, _treatment(obj)):
+            fails.append(
+                "deck: CRAFT PLAN slide %02d names its largest object ('%s') but no "
+                "modelling for it. Write the object, then after a comma how it is "
+                "modelled (lit face and lee, material, contact or cast shadow, depth, "
+                "texture): the largest object drawn with the least care is a named "
+                "artwork shortfall" % (n, obj[:60]))
+    share = {}
+    for n, (tech, _) in rows.items():
+        if tech:
+            for key in _technique_keys(tech):
+                share.setdefault(key, []).append(n)
+    reported = set()
+    for tech, ns in sorted(share.items()):
+        if len(ns) > CRAFT_PLAN_MAX_SHARE and tuple(sorted(ns)) not in reported:
+            reported.add(tuple(sorted(ns)))
+            fails.append(
+                "deck: CRAFT PLAN gives '%s' as the primary mark-making on %d frames "
+                "(%s), over the %d allowed. 'Four of nine frames are the same "
+                "drawing' is the scorers' most repeated artwork complaint; give "
+                "the extra frames a different mark"
+                % (tech, len(ns), ", ".join("%02d" % n for n in sorted(ns)),
+                   CRAFT_PLAN_MAX_SHARE))
+    dm = re.search(r"^\s*[-*]?\s*Masterful depth frame:\s*(\d{1,2})", block, re.M | re.I)
+    if not dm:
+        fails.append("deck: CRAFT PLAN names no 'Masterful depth frame: NN' (the "
+                     "rubric's 10 asks for one slide that uses real depth masterfully)")
+    elif int(dm.group(1)) not in slide_nos:
+        fails.append("deck: CRAFT PLAN's masterful depth frame %s is not a slide "
+                     "in this storyboard" % dm.group(1))
+    else:
+        # Naming the frame is not planning its depth (Codex on PR #401): the line
+        # itself, or that frame's row, has to say what makes the depth.
+        dn = int(dm.group(1))
+        line_rest = block[dm.end():].split("\n", 1)[0]
+        row_obj = rows.get(dn, ("", ""))[1]
+        if not (_affirms_depth(line_rest) or _affirms_depth(_treatment(row_obj))):
+            fails.append("deck: CRAFT PLAN names %02d as the masterful depth frame but "
+                         "neither that line nor its row says how the depth is made "
+                         "(rendered 3D, cast or contact shadow, occlusion, perspective, "
+                         "aerial haze, relief)" % dn)
+    ta = re.search(r"^\s*[-*]?\s*Tonal arc:\s*(\S.{10,})$", block, re.M | re.I)
+    if not ta:
+        fails.append("deck: CRAFT PLAN names no 'Tonal arc:' line (a contact sheet "
+                     "with one tone throughout is a named artwork shortfall)")
+    elif TONAL_ARC_NONE_RE.search(ta.group(1)) or (
+            TONAL_ARC_DENIED_RE.search(ta.group(1))
+            and not TONAL_ARC_PROGRESSION_RE.search(ta.group(1))):
+        fails.append("deck: CRAFT PLAN's 'Tonal arc:' declares no arc ('%s'). One "
+                     "tone throughout is the defect this line exists to prevent; say "
+                     "where the deck is darkest, where it lifts and where it peaks"
+                     % ta.group(1)[:60])
+    return fails
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -926,6 +1187,16 @@ def main():
         if parse_fails.get(n):
             out["slides"].append({"slide": n, "fails": parse_fails[n], "warns": []})
             out["fails"] += len(parse_fails[n])
+    # The deck-level craft plan, for runs from CRAFT_PLAN_FROM on. The run date
+    # comes from claims.json, or from the run directory's own name.
+    # The directory's own date wins: claims.json's run_date is not checked
+    # against the run, so a stale copy must not switch the rule off (Codex on
+    # PR #401). claims metadata is only the fallback for an undated path.
+    rd = (rdir.name if re.fullmatch(r"\d{4}-\d{2}-\d{2}", rdir.name) else "") or run_date
+    out["deck_fails"] = []
+    if rd and rd >= CRAFT_PLAN_FROM:
+        out["deck_fails"] = craft_plan_fails(text, sorted(seen))
+        out["fails"] += len(out["deck_fails"])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
 
     if args.json:
@@ -938,6 +1209,8 @@ def main():
                 print(f"    FAIL: {x}")
             for x in s["warns"]:
                 print(f"    warn: {x}")
+        for x in out.get("deck_fails") or []:
+            print(f"[FAIL] {x}")
         print(f"verdict: {out['verdict']}  ({len(sections)} dossiers, "
               f"{out['fails']} fails, {out['warns']} warns)")
     sys.exit(1 if out["fails"] else 0)

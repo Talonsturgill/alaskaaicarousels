@@ -136,3 +136,33 @@ plus the checklist.
 - **Palette + type system** — the deck's full palette with roles, the 1-2
   families + axes.
 - **Claims index** — claim-id → slide(s) where used.
+- **CRAFT PLAN** (a `## CRAFT PLAN` section, REQUIRED from 2026-09-26 and
+  checked by `scripts/dossier_check.py`). Artwork craft averaged 6.7 over the
+  first 68 runs and never passed 8. The scorer's most repeated reasons were
+  deck-level decisions nobody wrote down: the same drawing on three or four
+  frames, a frame whose largest object was its least modelled, no tonal arc,
+  and no frame that uses depth masterfully. Decide them here, before the
+  build:
+
+      ## CRAFT PLAN
+      | slide | primary mark-making | largest object, and how it is modelled |
+      |---|---|---|
+      | 01 | scribed hachure relief | the pen, three.js PBR with a contact shadow |
+      | 02 | engraved line field | the state outline, cased coast with graded interior |
+      ...
+      Masterful depth frame: 06, the pen resting on the Houston disc, PBR with a contact shadow
+      Tonal arc: dark and quiet 01 to 03, the lit range peaks on 06, calm close
+
+  One row per dossier. No primary mark-making may carry more than THREE
+  frames, counted by family rather than wording ("scribed hachure relief" and
+  "hachure field" are both hachure; `TECHNIQUE_FAMILIES` in the checker lists
+  them). Put the primary mark first: what follows "with", "and", "plus" or a
+  comma is an accent and is not counted. The text frames (quotes, ledgers, closes) need a mark of their own
+  too, because the scorer's "one slide leans on a default" is almost always
+  one of them. The largest object on every frame gets its modelling named,
+  object first and then, after a comma, the treatment (lit face, lee,
+  contact, material); an object named alone fails, because the scorers keep finding the
+  biggest thing on a frame drawn with the least care. The masterful depth
+  frame (its line, or its row, says what makes the depth) is where the
+  rubric's 10 is earned, so plan it and then build it
+  first.

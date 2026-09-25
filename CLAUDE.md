@@ -191,6 +191,16 @@ exits non-zero when a run tries to stop below threshold. The `score` row is a
 FAIL, not a WARN, for the same reason: a warn is something a run may ship past,
 and not shipping at all is not a warn.
 
+**A PASSING TOTAL IS NOT A PASSING DECK WHILE THE ART IS UNDER 8.5** (2026-09-25,
+owner: make artwork craft the strongest criterion). Art averaged 6.7 over the first
+68 runs, and 43 of 63 shipped at 7 or under because the other criteria carried the
+total and the repair loop only ran on a failing total. From 2026-09-26 the run owes
+ONE targeted craft cycle on the frames the scorer names before it ships, unless it is
+at the five-round cap. It is never more than one cycle and never a reason not to
+ship. Enforced by `scripts/ship_gate.py` (the CRAFT FLOOR row), planned for in the
+storyboard's `## CRAFT PLAN` (checked by `scripts/dossier_check.py`), and judged
+first by the flow critic's deck-level artwork pass.
+
 Three things still stop and ask, in any session:
 - work that would rewrite already-published history on `main`
 - anything that SENDS rather than drafts (these routines never send)

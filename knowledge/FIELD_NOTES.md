@@ -8614,3 +8614,25 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   say: seeds by hierarchical subdivision, slope lines traced against a reference image that rejects
   intersections, and a stroke kept only if its length clears a threshold. Read the PDF, not the
   summary. https://mountaincartography.icaci.org/publications/papers/papers_nuria_04/buchin.pdf
+
+## 2026-09-25, development session: why artwork craft is always the weakest criterion
+
+- THE MEASUREMENT. 68 scored runs, artwork craft mean 6.73, max 8, never above 8, named weakest in
+  most runs. `scripts/craft_corpus.py` over 614 slides: no pixel feature separates the slides scorers
+  named from the rest (best, flat_frac, AUC 0.618, deck rho 0.04). A pixel gate can't fix this and
+  none should be built on those features.
+- THE CAUSE WAS THE LOOP, NOT THE ENGINE. In 43 of 63 runs the deck shipped with art at 7 or under
+  because the TOTAL cleared the threshold, and Phase 10 only repaired a failing total. The scorer's
+  artwork note was read, filed here, and shipped past. Nothing ever asked the art for more once the
+  other criteria carried the deck.
+- THE COMPLAINTS WERE DECK-LEVEL, AND NOBODY JUDGED THE DECK-LEVEL ART BEFORE THE SCORER. The same
+  drawing on three or four frames (08-29, 08-31, 09-02, 09-23, 09-25), the largest object least
+  modelled (08-20, 09-05, 09-14, 09-18), no tonal arc (09-25), and the rubric's 7 descriptor firing on
+  ONE weak frame. Pixel critics grade one slide against its own dossier; the flow critic judged the
+  sequence and not the craft. So the scorer was the first reader to apply the test.
+- WHAT CHANGED. A CRAFT FLOOR in ship_gate (art under 8.5 with rounds left owes one targeted cycle on
+  the scorer's `artwork_weakest_frames`), a deck-level artwork pass in the flow critic, and a
+  `## CRAFT PLAN` in the storyboard checked by dossier_check (no primary mark-making on more than three
+  frames, every frame's largest object's modelling named, a masterful depth frame, a tonal arc). Watch
+  `trend_check --window 10`: if art stays at 7 for ten runs with the floor running, the next lever is
+  the build itself (first-build quality per DESIGN_DOCTRINE), not another gate.
