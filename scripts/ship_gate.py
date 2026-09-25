@@ -138,9 +138,10 @@ def craft_floor(run, score):
     if art >= CRAFT_FLOOR:
         return {"status": "met", "reason": "artwork craft %.1f" % art}
     cyc = score.get("craft_cycle")
-    if isinstance(cyc, dict) and cyc.get("frames") and isinstance(cyc.get("art_before"), (int, float)):
+    bad = _craft_cycle_problem(cyc) if cyc is not None else None
+    if cyc is not None and bad is None:
         return {"status": "closed", "reason": "one craft cycle ran on frames %s (art %s -> %s)"
-                % (cyc.get("frames"), cyc.get("art_before"), cyc.get("art_after"))}
+                % (cyc["frames"], cyc["art_before"], cyc["art_after"])}
     rounds = _rounds_used(run, score)
     if rounds >= ROUND_CAP:
         return {"status": "capped", "reason": "artwork craft %.1f, but the run is at the %d-round cap"
@@ -150,8 +151,27 @@ def craft_floor(run, score):
     return {"status": "open", "reason": (
         "the total passes but artwork craft is %.1f, under the %.1f craft floor, with %d of %d "
         "rounds used. Run ONE craft cycle on the frames the scorer named (%s), re-render, re-gate, "
-        "re-score, and record score_report.craft_cycle {frames, art_before, art_after}."
-        % (art, CRAFT_FLOOR, rounds, ROUND_CAP, frames or "see its artwork notes"))}
+        "re-score, and record score_report.craft_cycle {frames, art_before, art_after}.%s"
+        % (art, CRAFT_FLOOR, rounds, ROUND_CAP, frames or "see its artwork notes",
+           (" The craft_cycle on file does not count: %s." % bad) if bad else ""))}
+
+
+def _craft_cycle_problem(cyc):
+    """Why a craft_cycle record can't close the floor, or None. The record is
+    the only evidence the repair AND the re-score happened, so it must carry the
+    frames repaired and both scores; a record without art_after is a repair
+    that was never re-scored (Codex on PR #401)."""
+    if not isinstance(cyc, dict):
+        return "it is not an object"
+    fr = cyc.get("frames")
+    if (not isinstance(fr, list) or not fr
+            or not all(isinstance(n, int) and not isinstance(n, bool) and 1 <= n <= 20 for n in fr)):
+        return "frames must be a nonempty list of slide numbers"
+    for k in ("art_before", "art_after"):
+        v = cyc.get(k)
+        if not isinstance(v, (int, float)) or isinstance(v, bool) or not 0 <= v <= 10:
+            return "%s must be the artwork-craft score, a number from 0 to 10" % k
+    return None
 
 
 def self_test():
@@ -167,6 +187,10 @@ def self_test():
         ("2026-09-26", rep(7.5, artwork_weakest_frames=[{"slide": 4}]), {"revision_rounds": 3}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5}), {}, "closed"),
         ("2026-09-26", rep(7.5, craft_cycle={"skipped": "no time"}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [], "art_before": 7, "art_after": 8}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": ["04"], "art_before": 7, "art_after": 8}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7, "art_after": "8"}), {}, "open"),
         ("2026-09-26", rep(7.5), {"revision_rounds": 5}, "capped"),
         ("2026-09-26", {"criteria": []}, {}, "n/a"),
     ]

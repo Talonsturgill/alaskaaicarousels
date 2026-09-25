@@ -41,8 +41,9 @@ Checks:
    or has dead zones". ONE weak frame caps the deck at 7, so find the
    weakest frame first. Then check the five causes the scorers named most
    across 68 runs, each by slide number:
-   a. the same drawing function or texture carrying three or more frames
-      (the scorers' "four of nine frames are the same drawing");
+   a. the same drawing function or texture carrying MORE than three frames
+      (the scorers' "four of nine frames are the same drawing"; the same
+      limit the storyboard's CRAFT PLAN is held to);
    b. a frame whose largest object is its least modelled one, or ships as
       a flat fallback or bare outline;
    c. a dead or eventless region, above all a flat lower third;

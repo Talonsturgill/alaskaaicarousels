@@ -839,6 +839,16 @@ def _early_exit(args, fail, human):
 CRAFT_PLAN_FROM = "2026-09-26"
 CRAFT_PLAN_MAX_SHARE = 3
 CRAFT_PLAN_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
+# The third cell has to say HOW the largest object is modelled, not only name it
+# ("| 01 | hachure | pen |" is the defect this plan exists to prevent). A word
+# list is crude and deliberately so: it asks for a treatment to be named at all.
+MODELLING_RE = re.compile(
+    r"\b(lit|light|lighting|key|rim|lee|shad(?:e|ed|ing|ow|ows)|cast|contact|"
+    r"occlu\w*|specular|gloss\w*|matte|material|pbr|metal\w*|resin|glass|"
+    r"depth|relief|dem|hachur\w*|scrib\w*|engrav\w*|stipple\w*|hatch\w*|"
+    r"textur\w*|grain|gradient|graded|glow|halat\w*|bevel\w*|emboss\w*|"
+    r"deboss\w*|meniscus|model(?:l)?ed|model(?:l)?ing|volume\w*|extru\w*|"
+    r"raymarch\w*|sdf|three\.js|3d|aerial perspective|haze|fog)\b", re.I)
 
 
 def _norm_technique(t):
@@ -870,6 +880,12 @@ def craft_plan_fails(text, slide_nos):
         if not obj:
             fails.append("deck: CRAFT PLAN slide %02d names no largest object and "
                          "its modelling" % n)
+        elif not MODELLING_RE.search(obj):
+            fails.append(
+                "deck: CRAFT PLAN slide %02d names its largest object ('%s') but no "
+                "modelling for it. Name the treatment (lit face and lee, material, "
+                "contact or cast shadow, depth, texture): the largest object drawn "
+                "with the least care is a named artwork shortfall" % (n, obj[:60]))
     share = {}
     for n, (tech, _) in rows.items():
         if tech:
@@ -1007,7 +1023,10 @@ def main():
             out["fails"] += len(parse_fails[n])
     # The deck-level craft plan, for runs from CRAFT_PLAN_FROM on. The run date
     # comes from claims.json, or from the run directory's own name.
-    rd = run_date or (rdir.name if re.fullmatch(r"\d{4}-\d{2}-\d{2}", rdir.name) else "")
+    # The directory's own date wins: claims.json's run_date is not checked
+    # against the run, so a stale copy must not switch the rule off (Codex on
+    # PR #401). claims metadata is only the fallback for an undated path.
+    rd = (rdir.name if re.fullmatch(r"\d{4}-\d{2}-\d{2}", rdir.name) else "") or run_date
     out["deck_fails"] = []
     if rd and rd >= CRAFT_PLAN_FROM:
         out["deck_fails"] = craft_plan_fails(text, sorted(seen))
