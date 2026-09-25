@@ -35,11 +35,20 @@
     },
     "ship": {
       "status": "done",
-      "note": "runs/ copied, webp and og, pdf shrink declined safely, site built 123 pages, ledgers and notes appended"
+      "note": "PR #399 merged to main as a6614c1; raw slide, PDF, contact sheet and og URLs return 200"
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": {
+      "status": "done",
+      "note": "1 fix: akscribe fur warning (upgrade commits 91149fc7 + SHA follow-up); Codex reviewed 13 rounds, all findings fixed or declined on measurement; merged a6614c1"
+    },
+    "gmail": {
+      "status": "done",
+      "note": "draft r6487504673308487663 in docket@alaskaaihq.com, payload from gmail_draft.py --preview-mode remote, sign-off table shows verdicts"
+    },
+    "retro": {
+      "status": "done",
+      "note": "field notes retro appended; instincts 2; techniques 97 and 98"
+    }
   },
   "artifacts": {
     "plan": "out/2026-09-25/plan.md",
@@ -64,5 +73,6 @@
     "gaswatch_live": "PASS at 10:09 UTC. It was WARN earlier in the run because GitHub dispatched the 04:40 and 07:20 UTC collections late and a manual dispatch returned 403; the collection landed on main at about 10:05 UTC and the incident was retired.",
     "cron_health": "PASS, every scheduled workflow inside its grace (09:21 UTC)",
     "site_fixes": "none. Nothing on the live site needed repair this run."
-  }
+  },
+  "status": "complete"
 }
