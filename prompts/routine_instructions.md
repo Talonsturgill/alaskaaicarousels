@@ -1383,7 +1383,9 @@ rubric, current revision count).
   concrete change each (re-render, re-run qa and the gates, re-review only
   the touched frames), re-score, and record in score_report.json
   `"craft_cycle": {"frames": [...], "art_before": x, "art_after": y}`.
-  Keep the higher-scoring version if the repair did not help. One cycle,
+  Keep the higher-scoring version if the repair did not help. The gate
+  checks the record against the run: every frame must be a slide in
+  slides/, and the report's artwork score must be the better of x and y. One cycle,
   never more; it counts as a round; at the round cap it stands down and
   the deck ships as-is. `scripts/ship_gate.py` enforces it (a FAIL row in
   gate_status reading CRAFT FLOOR) from runs dated 2026-09-26 on. It reads

@@ -47,6 +47,7 @@ whole module is here to prevent. If a deck rendered, it is not a (d).
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -138,7 +139,7 @@ def craft_floor(run, score):
     if art >= CRAFT_FLOOR:
         return {"status": "met", "reason": "artwork craft %.1f" % art}
     cyc = score.get("craft_cycle")
-    bad = _craft_cycle_problem(cyc) if cyc is not None else None
+    bad = _craft_cycle_problem(cyc, _deck_slides(run), art) if cyc is not None else None
     if cyc is not None and bad is None:
         return {"status": "closed", "reason": "one craft cycle ran on frames %s (art %s -> %s)"
                 % (cyc["frames"], cyc["art_before"], cyc["art_after"])}
@@ -156,21 +157,49 @@ def craft_floor(run, score):
            (" The craft_cycle on file does not count: %s." % bad) if bad else ""))}
 
 
-def _craft_cycle_problem(cyc):
+def _deck_slides(run):
+    """The slide numbers this run actually built, from slides/slide-NN.html."""
+    out = set()
+    for p in (run / "slides").glob("slide-*.html"):
+        m = re.fullmatch(r"slide-(\d{2})\.html", p.name)
+        if m:
+            out.add(int(m.group(1)))
+    return out
+
+
+def _craft_cycle_problem(cyc, slides, art):
     """Why a craft_cycle record can't close the floor, or None. The record is
-    the only evidence the repair AND the re-score happened, so it must carry the
-    frames repaired and both scores; a record without art_after is a repair
-    that was never re-scored (Codex on PR #401)."""
+    the only evidence the repair AND the re-score happened (Codex on PR #401),
+    so it has to agree with the run it sits in:
+    - every frame it names is a slide this deck built, so "frames": [20] on a
+      nine-slide deck repairs nothing and closes nothing;
+    - both scores are present and numeric, since a record without art_after is
+      a repair that was never re-scored;
+    - the report it sits in carries the better of the two, because the routine
+      keeps the higher-scoring version, so a record whose scores the report
+      doesn't show was not written from the re-score.
+    It is NOT checked against the report's artwork_weakest_frames: by the time
+    the gate reads it that list is the RE-score's, and a repair that worked has
+    taken its frame off it."""
     if not isinstance(cyc, dict):
         return "it is not an object"
     fr = cyc.get("frames")
     if (not isinstance(fr, list) or not fr
-            or not all(isinstance(n, int) and not isinstance(n, bool) and 1 <= n <= 20 for n in fr)):
+            or not all(isinstance(n, int) and not isinstance(n, bool) for n in fr)):
         return "frames must be a nonempty list of slide numbers"
+    if not slides:
+        return "the run has no slides/slide-NN.html to check its frames against"
+    missing = sorted(set(fr) - slides)
+    if missing:
+        return "frames %s are not slides in this deck (it has %d)" % (missing, len(slides))
     for k in ("art_before", "art_after"):
         v = cyc.get(k)
         if not isinstance(v, (int, float)) or isinstance(v, bool) or not 0 <= v <= 10:
             return "%s must be the artwork-craft score, a number from 0 to 10" % k
+    best = max(cyc["art_before"], cyc["art_after"])
+    if abs(best - art) > 0.05:
+        return ("the report scores artwork craft %.1f, but the better of art_before and "
+                "art_after is %.1f; record the cycle from the re-score in this report" % (art, best))
     return None
 
 
@@ -186,6 +215,11 @@ def self_test():
         ("2026-09-26", rep(9.0), {}, "met"),
         ("2026-09-26", rep(7.5, artwork_weakest_frames=[{"slide": 4}]), {"revision_rounds": 3}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5}), {}, "closed"),
+        ("2026-09-26", rep(8.0, craft_cycle={"frames": [4, 8], "art_before": 7.0, "art_after": 8.0}), {}, "closed"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [20], "art_before": 7.5, "art_after": 7.5}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.0, "art_after": 7.0}), {}, "open"),
+        ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7.5, "art_after": 7.5},
+                           _no_slides=True), {}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"skipped": "no time"}), {}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [4], "art_before": 7}), {}, "open"),
         ("2026-09-26", rep(7.5, craft_cycle={"frames": [], "art_before": 7, "art_after": 8}), {}, "open"),
@@ -196,8 +230,11 @@ def self_test():
     ]
     with tempfile.TemporaryDirectory() as t:
         for date, sc, rs, want in cases:
-            d = Path(t) / date
-            d.mkdir(exist_ok=True)
+            d = Path(t) / ("case%02d" % len(list(Path(t).iterdir()))) / date
+            (d / "slides").mkdir(parents=True)
+            if not sc.pop("_no_slides", False):
+                for n in range(1, 10):   # a nine-slide deck
+                    (d / "slides" / ("slide-%02d.html" % n)).write_text("")
             (d / "run_state.json").write_text(json.dumps(rs))
             got = craft_floor(d, sc)["status"]
             flag = "ok  " if got == want else "FAIL"
