@@ -273,6 +273,11 @@
           "date": "2026-08-10",
           "label": "Proposals due on a separate Eielson mixed-use lease covering 3,967 acres",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-15",
+          "label": "Sen. Murkowski says she opposes data centers at JBER and the Interior installations",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -340,10 +345,15 @@
           "url": "https://sam.gov/opp/3a9b6ba7ed424dbc96bd43a02e5c6a7a/view",
           "outlet": "SAM.gov, U.S. General Services Administration",
           "date": "2026-06-16"
+        },
+        {
+          "url": "https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors",
+          "outlet": "KUAC via Alaska Public Media",
+          "date": "2026-09-15"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-24",
+      "last_updated": "2026-09-25",
       "history": [
         {
           "date": "2026-07-08",
@@ -452,6 +462,10 @@
         {
           "date": "2026-09-24",
           "note": "Checked and unchanged. The solicitation of record, AFCEC-26-R-0006, still shows proposals closed on June 29th after a one month extension, a last update of July 14th, and no award or selected lessee. The Air Force has set no public date for choosing one."
+        },
+        {
+          "date": "2026-09-25",
+          "note": "Senator Lisa Murkowski has said on the record that she opposes data centers at Joint Base Elmendorf-Richardson and the Interior installations. \"I am not a proponent of data centers down at JBER or at our Interior installations because we are not able to support them because of an insecure energy base at this time,\" she told KUAC, which reported on September 15th that no projects have been awarded yet and that the Air Force declined multiple interview requests. No selection or award has been announced."
         }
       ]
     },
@@ -2766,6 +2780,16 @@
           "date": "2026-10-22",
           "label": "Cook Inlet PowerLink marine survey fieldwork ends",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-14",
+          "label": "Kenai Peninsula Borough moves to intervene",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-09-21",
+          "label": "DeepGreen responds to the interventions",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2823,6 +2847,16 @@
           "url": "https://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
           "outlet": "Homer News",
           "date": "2026-09-14"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-09-24"
+        },
+        {
+          "url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
+          "outlet": "Peninsula Clarion",
+          "date": "2026-09-14"
         }
       ],
       "history": [
@@ -2877,10 +2911,14 @@
         {
           "date": "2026-09-24",
           "note": "Checked and unchanged. Comments, motions to intervene and competing applications on P-15423-000 are still due November 2nd, a date moved from October 31st because that falls on a Saturday. As of September 11th the City of Kenai had received only a June 24th notification letter from the company, and no comments had yet been filed, per the Homer News."
+        },
+        {
+          "date": "2026-09-25",
+          "note": "Opposition is now on the record. The Center for Biological Diversity moved to intervene on September 1st, the day FERC accepted the application, and the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough have also moved to intervene, the borough on September 14th, per the Anchorage Daily News. Alaska Energy Authority chief executive Curtis Thayer told the Peninsula Clarion the authority will file to intervene and oppose it. DeepGreen responded on September 21st, saying environmental modeling would happen during its proposed three year study phase. Comments, motions to intervene and competing applications on P-15423-000 remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-09-24"
+      "last_updated": "2026-09-25"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
