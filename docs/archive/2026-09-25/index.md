@@ -15,6 +15,8 @@ The North Slope lease and the Houston land are decided in the Department of Natu
 
 What they say about data centers.
 
+"I'm a big believer in data centers." He said the groups he is talking to would produce their own power (Bronson, Republican, Commonwealth North forum). "I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska." (Kreiss-Tomkins, Democrat, September 8th forum). "I think we need to embrace it." Any data center, he said, must "bring their own energy." (Taylor, Republican, September 8th forum). "I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands." (Wilson, Republican, by text message). Order is alphabetical by surname, not a ranking. Quotes as reported by the Alaska Beacon.
+
 Milepost 390. State land, 50 years.
 
 DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.
@@ -32,6 +34,8 @@ Filings close the day before the vote.
 DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.
 
 Who signs each one.
+
+Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. The Senate passed one 14 to 5. The House didn't pass it. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC. Filings close November 2nd.
 
 Save this. Check it again after November 3rd.
 

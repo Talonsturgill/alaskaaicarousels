@@ -88,10 +88,10 @@ export function init(THREE) {
     panel(0x9fc6e0, 1.2, [0, -6, 2], [10, 2]);     // table glow from below
     panel(0xffd9a0, 0.8, [6, 2, -3], [3, 3]);
     scene.environment = pm.fromScene(env, 0.04).texture;
-    scene.environmentIntensity = o.envI || 0.9;
+    scene.environmentIntensity = o.envI === undefined ? 0.9 : o.envI;
 
     const L = lightDir(o.keyAz == null ? 330 : o.keyAz, o.keyEl == null ? 46 : o.keyEl);
-    const key = new THREE.DirectionalLight(0xfff1dc, o.keyI || 2.6);
+    const key = new THREE.DirectionalLight(0xfff1dc, o.keyI === undefined ? 2.6 : o.keyI);
     // light position in root space (y down): convert
     const tipX = o.tip[0], tipY = o.tip[1];
     key.position.set(tipX + L.x * 1500, -(tipY + L.y * 1500), L.z * 1500);
