@@ -2710,8 +2710,8 @@
         "ledger/upgrades.json"
       ],
       "verification": "tests/lit_edge_verify.py HOLDS on 33 fixtures (28 at first push; 5 added for Codex's three findings on PR #403, each failing on the first push's engine) through the real render.py and qa.py (exit 1 against main's engine). 82 re-rendered slides (runs 2026-09-05 to 2026-09-14 and No.69) are byte-identical to main's renders with 0 records, 0 warnings, 0 gap notices and unchanged qa fail counts; render time 478 s against 493 s. The No.69 reconstruction warns at x 492 (2.5 and 6.2 levels) and y 615 (8.1 levels). An image-only alternative was measured first and rejected: 479 low-contrast straight edges over 86 shipped slides. Engine quickstart (demo deck render, qa, assemble) passes with no lit-edge output; gate_status --self-test 27 checks, 0 failures.",
-      "rollback": "git revert the upgrade(2026-09-26) commit; the hook, the qa verdicts and the test go together.",
-      "commit": "1cc230e8b4f4b8db691c0e51cb5944ca66dea227"
+      "rollback": "git revert the upgrade(2026-09-26) commits of PR #403 (1cc230e8, 1a4c6d01 and any later review round); the hook, the qa verdicts and the test go together.",
+      "commit": "1cc230e8b4f4b8db691c0e51cb5944ca66dea227, 1a4c6d01 (PR #403)"
     }
   ],
   "scan_log": [
