@@ -515,7 +515,9 @@ GRADIENT_CLIP_HOOK_JS = """
 # only when that is exact: object-fit is fill, and the canvas and every
 # ancestor carry no transform, rotate, scale or offset-path beyond a positive
 # axis-aligned scale and translation. A rotated, skewed or mirrored canvas is
-# counted as UNPLACED rather than mapped onto an unrelated line, and so is a
+# counted as UNPLACED rather than mapped onto an unrelated line; so is a seam
+# on a canvas under a CSS filter or box reflection, which can paint it where
+# the line probe does not look (the frame's own edge is exempted first); so is a
 # draw measured before the canvas's final size was known whose run floor that
 # size turns into LIT_SPAN design px or more.
 # Nothing here is a verdict: a later draw, a DOM plate, stacking order or CSS
@@ -679,9 +681,21 @@ LIT_EDGE_HOOK_JS = """
       return { x: r.left + (window.scrollX || 0) + ex * sx,
                y: r.top + (window.scrollY || 0) + ey * sy, w: cw * sx, h: ch * sy };
     };
+    /* a CSS filter or a box reflection on the canvas or an ancestor can paint
+       its seam somewhere the line probe does not look (a displaced
+       drop-shadow): such a seam is counted, not confirmed (Codex, PR #403) */
+    const repainted = (cv) => {
+      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+        const cs = getComputedStyle(el);
+        if ((cs.filter || 'none') !== 'none') return true;
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
+      }
+      return false;
+    };
     window.__akLitCollect = () => {
-      const out = [];
+      const recs = [];
       let unplaced = 0, capped = st.capped, readback = 0;
+      const rp = new Map();
       const fw = document.documentElement.clientWidth || window.innerWidth;
       const fh = document.documentElement.clientHeight || window.innerHeight;
       const ok = new Map();
@@ -698,15 +712,32 @@ LIT_EDGE_HOOK_JS = """
         const page = (v ? ox : oy) + e.line * kC;
         if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
         if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
-        const rec = { side: e.side, axis: e.axis, at: +page.toFixed(1),
-                      from: +((v ? oy : ox) + e.a0 * kA).toFixed(1),
-                      to: +((v ? oy : ox) + e.a1 * kA).toFixed(1),
-                      op: e.op, lit_max: +(e.mx / 255).toFixed(4), n: 1 };
-        const hit = out.find((z) => z.side === rec.side && Math.abs(z.at - rec.at) < 1 &&
-                                    Math.abs(z.from - rec.from) < 1 && Math.abs(z.to - rec.to) < 1);
-        if (hit) { hit.n++; continue; }
-        if (out.length >= LIT_MAX) { capped++; continue; }
-        out.push(rec);
+        if (!rp.has(cv)) rp.set(cv, repainted(cv));
+        if (rp.get(cv)) { unplaced++; continue; }
+        recs.push({ side: e.side, axis: e.axis, at: page,
+                    from: (v ? oy : ox) + e.a0 * kA, to: (v ? oy : ox) + e.a1 * kA,
+                    op: e.op, lit_max: e.mx / 255, n: 1 });
+      }
+      /* one record per stretch of a line: records on the same side of the
+         same line (within 1 design px) whose stretches overlap or touch are
+         merged, so layered draws warn once and do not fill the cap */
+      recs.sort((p, q) => (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.from - q.from);
+      const out = [];
+      for (const r of recs) {
+        const hit = out.find((z) => z.side === r.side && Math.abs(z.at - r.at) <= 1 &&
+                                    r.from <= z.to + 1 && z.from <= r.to + 1);
+        if (hit) {
+          hit.from = Math.min(hit.from, r.from); hit.to = Math.max(hit.to, r.to);
+          hit.lit_max = Math.max(hit.lit_max, r.lit_max); hit.n += r.n;
+          if (hit.op !== r.op) hit.op = hit.op + ', ' + r.op;
+          continue;
+        }
+        out.push(Object.assign({}, r));
+      }
+      if (out.length > LIT_MAX) { capped += out.length - LIT_MAX; out.length = LIT_MAX; }
+      for (const z of out) {
+        z.at = +z.at.toFixed(1); z.from = +z.from.toFixed(1); z.to = +z.to.toFixed(1);
+        z.lit_max = +z.lit_max.toFixed(4);
       }
       /* a draw measured at a floor that the canvas's final scale turns into
          40 design px or more may have dropped a visible run: counted */

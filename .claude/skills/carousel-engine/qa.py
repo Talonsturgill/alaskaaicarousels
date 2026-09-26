@@ -3914,8 +3914,9 @@ def main():
              "once, or check the additive layers by eye at thumb"),
             ("lit_edges_unplaced",
              "lit-edge check can't place %d measurement(s) exactly on the picture: "
-             "the canvas or an ancestor is rotated, skewed, mirrored or on an offset "
-             "path, the canvas uses an object-fit other than fill, or it was painted "
+             "the canvas or an ancestor is rotated, skewed, mirrored, on an offset "
+             "path, filtered or reflected in CSS (which can paint the seam somewhere "
+             "else), the canvas uses an object-fit other than fill, or it was painted "
              "before its final size was known and is shown so large that a seam "
              "shorter than the hook keeps could span 40 design px. Check that "
              "canvas's additive layers by eye at thumb"),
@@ -3924,6 +3925,13 @@ def main():
              "refused the canvas's pixels (a tainted canvas) or the measurement "
              "failed, so those layers were not examined. Check them by eye at thumb"),
         )
+        if "lit_edges_readback" not in rec:
+            # a record kept from a render made before this check existed (a
+            # partial --only re-render keeps the others) never ran it; saying
+            # nothing would read as a clean pass (Codex, PR #403)
+            res["warns"].append("lit-edge check did not run on this slide: its render "
+                                "record predates the check (a partial --only re-render "
+                                "keeps older records). Re-render the slide")
         for key, text in lit_gaps:
             n = rec.get(key) or 0
             if key == "lit_edges_readback" and n < 0:

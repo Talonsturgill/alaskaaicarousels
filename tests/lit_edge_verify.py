@@ -59,8 +59,16 @@ through the REAL render.py and qa.py:
             long enough, are still reported)
   33 GREEN  the RED layer on a page whose collector is gone: qa says no layer
             was examined
+  34 RED    two draws starting at x 492 over y 0 to 700 and y 300 to 1350:
+            ONE record and one warning for the seam, plus each draw's end
+  35 GREEN  the nested glow on a canvas under a CSS drop-shadow, which can
+            paint the seam elsewhere: counted, and qa says it can't place it
+  36 GREEN  the repaired full-frame glow on a canvas under CSS contrast():
+            the frame's edges are not seams, so nothing is counted
 
-Then the report path for what the hook could not read: no route to a tainted
+Then the report paths, by editing the render report: a record written
+before this check existed (qa says the check did not run), and what the
+hook could not read: no route to a tainted
 canvas exists under render.py's flags (--allow-file-access-from-files, and a
 foreignObject SVG image stays readable, measured 2026-09-26), so the fixture
 feeds qa.py a record with lit_edges_readback set and checks it is named.
@@ -387,6 +395,26 @@ GREEN_NO_COLLECTOR = RED + """
 delete window.__akLitCollect;
 """
 
+RED_OVERLAP = """
+// two draws whose light both starts at x 492, over y 0 to 700 and y 300 to
+// 1350: one seam, one stretch, one warning for it (Codex, PR #403). Each
+// draw's own end inside the other's light, y 700 and y 300, is a real step
+const g = glow(0, 0, 1080, 1350, false);
+cx.save(); cx.beginPath(); cx.rect(492, 0, 588, 700); cx.clip();
+cx.globalCompositeOperation = 'screen'; cx.globalAlpha = 0.6; cx.drawImage(g, 0, 0); cx.restore();
+cx.save(); cx.beginPath(); cx.rect(492, 300, 588, 1050); cx.clip();
+cx.globalCompositeOperation = 'screen'; cx.globalAlpha = 0.6; cx.drawImage(g, 0, 0); cx.restore();
+"""
+
+GREEN_CSS_FILTERED = placed_canvas("filter:drop-shadow(40px 0 0 #FFFFFF)")
+
+GREEN_FILTERED_FRAME = """
+// a full-frame canvas under a harmless CSS filter, with the repaired
+// full-frame glow: its only light edges are the frame's own, so nothing is
+// counted and nothing is said
+document.getElementById('c').style.filter = 'contrast(1.1)';
+""" + GREEN_SPAN
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -425,7 +453,14 @@ CASES = [
     ("slide-31", RED_TENFOLD, [("left", 490)], None, None),
     ("slide-32", GREEN_TENFOLD_LATE, [("top", 600), ("bottom", 660)], 2, "can't place"),
     ("slide-33", GREEN_NO_COLLECTOR, [], 0, "could not collect its records"),
+    ("slide-34", RED_OVERLAP, [LEFT, ("bottom", 700), ("top", 300)], 3, None),
+    ("slide-35", GREEN_CSS_FILTERED, [], 0, "can't place"),
+    ("slide-36", GREEN_FILTERED_FRAME, [], 0, None),
 ]
+# the overlapping draws of slide-34 are ONE record, both draws merged into it,
+# over the stretch where the glow carries light at x 492 (y 359 to 1164, as on
+# every other fixture); draw 1 alone stops at y 700
+ONE_STRETCH = {"slide-34": ("left", 492, 359, 1164)}
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -477,6 +512,14 @@ def main():
                                % (name, side, at, json.dumps(edges)))
                 else:
                     edges.remove(got[0])
+            if name in ONE_STRETCH:
+                side, at, lo, hi = ONE_STRETCH[name]
+                on = [e for e in rec.get("lit_edges", [])
+                      if e.get("side") == side and abs(e["at"] - at) <= 1]
+                if (len(on) != 1 or on[0].get("n") != 2
+                        or on[0]["from"] > lo + 2 or on[0]["to"] < hi - 2):
+                    bad.append("%s: expected one %s record at %d over %d to %d: %s"
+                               % (name, side, at, lo, hi, json.dumps(on)))
 
         q = run_qa(rdir)
         if set(n + ".html" for n, _, _, _, _ in CASES) - set(q):
@@ -509,6 +552,10 @@ def main():
                 s["lit_edges_readback"] = 3
             if s["file"] == "slide-05.html":
                 s["lit_edges_readback"] = -1
+            if s["file"] == "slide-03.html":
+                # a record written before the check existed carries none of its keys
+                for k in [k for k in s if k.startswith("lit_edges")]:
+                    del s[k]
         (rdir / "render_report.json").write_text(json.dumps(rep2))
         q2 = run_qa(rdir)
         if not any("could not read back 3" in w for w in q2.get("slide-02.html", {}).get("warns", [])):
@@ -516,6 +563,9 @@ def main():
         if not any("could not collect its records" in w
                    for w in q2.get("slide-05.html", {}).get("warns", [])):
             bad.append("slide-05 (collection failed): qa.py did not say so")
+        if not any("record predates the check" in w
+                   for w in q2.get("slide-03.html", {}).get("warns", [])):
+            bad.append("slide-03 (record from before the check): qa.py did not say so")
 
     if bad:
         print("BROKEN")
