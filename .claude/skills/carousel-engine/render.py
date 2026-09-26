@@ -629,8 +629,13 @@ LIT_EDGE_HOOK_JS = """
           if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H && work + W * H <= LIT_WORK) {
             work += W * H;
             const d = origGet.call(this, 0, 0, W, H).data;
+            /* a cleared bitmap is transparent black, or opaque black on a
+               context made with {alpha: false} (Codex, PR #403) */
+            const ca = this.getContextAttributes ? this.getContextAttributes() : null;
+            const opaque = !!ca && ca.alpha === false;
             let empty = true;
-            for (let i = 3; i < d.length; i += 4) if (d[i]) { empty = false; break; }
+            for (let i = 0; i < d.length; i += 4)
+              if (opaque ? (d[i] || d[i + 1] || d[i + 2]) : d[i + 3]) { empty = false; break; }
             if (empty) gens.set(cv, gen(cv) + 1);
           }
         }

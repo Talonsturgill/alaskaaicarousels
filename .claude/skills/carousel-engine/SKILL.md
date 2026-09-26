@@ -638,7 +638,7 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   attribute call, an Attr or the `attributes` map, all seen by one
   MutationObserver), its context was `reset()`, or a `clearRect` over the
   whole bitmap left it empty (read back to be sure, since a clip can keep part
-  of it) is dropped, because each erases the light it measured. The
+  of it; empty is opaque black on an `{alpha: false}` context) is dropped, because each erases the light it measured. The
   ledger holds canvases weakly and at most 65,536 of them; a draw it can't
   attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
   shadow hosts. Candidates and records are bounded per draw (4096 and 256),

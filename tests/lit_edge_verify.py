@@ -145,6 +145,8 @@ through the REAL render.py and qa.py:
   76 GREEN  fixture 60 with the bitmap emptied by a full clearRect: silent
   77 RED    the RED layer, then a full clearRect through a 100 px clip, which
             leaves the seam's light: still measured and reported
+  78 GREEN  fixture 76 on a context made with {alpha: false}, which clears to
+            opaque black: silent
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -892,6 +894,10 @@ cx.save(); cx.beginPath(); cx.rect(0, 0, 100, 100); cx.clip();
 cx.clearRect(0, 0, 1080, 1350); cx.restore();
 """
 
+GREEN_CLEARRECT_OPAQUE = GREEN_CLEARRECT.replace(
+    "const n2 = nc.getContext('2d'), sp",
+    "const n2 = nc.getContext('2d', { alpha: false }), sp")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -974,6 +980,7 @@ CASES = [
     ("slide-75", GREEN_BLUR_FRAME_OFFSCREEN, [], 0, "does not look inside frames"),
     ("slide-76", GREEN_CLEARRECT, [], 0, None),
     ("slide-77", RED_CLIPPED_CLEAR, [LEFT], 1, None),
+    ("slide-78", GREEN_CLEARRECT_OPAQUE, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
