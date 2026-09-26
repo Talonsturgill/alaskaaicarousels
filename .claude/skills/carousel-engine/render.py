@@ -711,7 +711,10 @@ LIT_EDGE_HOOK_JS = """
         const v = axis === 'v', nLine = v ? W : H, nAlong = v ? H : W, pre = v ? preV : preH;
         const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
         const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
-        const cands = [], shorts = [];
+        /* while the scale is unknown any short run may matter; once it is
+           known, a run under a quarter of the floor needs four or more draws
+           joined exactly to reach it, and is not kept */
+        const cands = [], shorts = [], shortMin = b0 ? Math.max(2, Math.floor(pre / 4)) : 2;
         let over = false;
         for (let c = 0; c <= nLine; c++) {
           for (const [side, inO, outO] of sides) {
@@ -727,10 +730,16 @@ LIT_EDGE_HOOK_JS = """
                    draws can make one 60 px seam); past LIT_SHORTS a draw keeps
                    only its longest, tested alone against the final scale
                    (Codex, PR #403) */
-                if (run > 1 && run < pre) {
+                /* only a run that could matter joined (shortMin), so fine grain
+                   on a placed canvas never fills the list; past LIT_SHORTS such
+                   a run is counted, not lost */
+                if (run >= shortMin && run < pre) {
                   if (shorts.length < LIT_SHORTS) shorts.push([side, c, start, start + run, mx]);
-                  else if (v) { if (run > e.shortV) e.shortV = run; }
-                  else if (run > e.shortH) e.shortH = run;
+                  else {
+                    over = true;
+                    if (v) { if (run > e.shortV) e.shortV = run; }
+                    else if (run > e.shortH) e.shortH = run;
+                  }
                 }
                 if (run >= pre) {
                   /* bounded before the sort: a fragmented mask can make runs by
@@ -763,24 +772,30 @@ LIT_EDGE_HOOK_JS = """
           }
           return line;
         };
-        const keptS = [];
-        for (const k of shorts) {
-          const line = refine(k);
-          if (keptS.some((z) => z[0] === k[0] && z[1] === line && z[2] < k[3] && k[2] < z[3])) continue;
-          keptS.push([k[0], line, k[2], k[3]]);
-          e.shorts.push({ op: b.op, axis: axis, side: k[0], line: line, a0: k[2], a1: k[3], mx: k[4] });
-        }
-        cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
-        const kept = [];
-        for (const k of cands) {
-          const line = refine(k);
-          if (kept.some((z) => z[0] === k[0] && z[1] === line && z[2] < k[3] && k[2] < z[3])) continue;
-          kept.push([k[0], line, k[2], k[3]]);
-          /* LIT_RAW per DRAW, so no canvas can spend another's (at most
-             LIT_ON + LIT_OFF draws are measured, which bounds the total) */
+        /* refine every run to its line, then merge runs on the same side and
+           line that overlap, in one sorted pass: linear after the sort, never
+           a scan of every kept run (Codex, PR #403) */
+        const merge = (list) => {
+          const rs = list.map((k) => [k[0], refine(k), k[2], k[3], k[4]]);
+          rs.sort((p, q) => (p[0] < q[0] ? -1 : p[0] > q[0] ? 1 : 0) || p[1] - q[1] || p[2] - q[2]);
+          const out = [];
+          for (const r of rs) {
+            const z = out[out.length - 1];
+            if (z && z[0] === r[0] && z[1] === r[1] && r[2] < z[3]) {
+              z[3] = Math.max(z[3], r[3]); z[4] = Math.max(z[4], r[4]);
+            } else out.push(r);
+          }
+          return out;
+        };
+        for (const k of merge(shorts))
+          e.shorts.push({ op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] });
+        /* the longest seams take the draw's LIT_RAW places first; LIT_RAW is
+           per DRAW, so no canvas can spend another's (at most LIT_ON + LIT_OFF
+           draws are measured, which bounds the total) */
+        for (const k of merge(cands).sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]))) {
           if (nRaw >= LIT_RAW) { rawOver = true; continue; }
           nRaw++;
-          e.raw.push({ op: b.op, axis: axis, side: k[0], line: line,
+          e.raw.push({ op: b.op, axis: axis, side: k[0], line: k[1],
                        a0: k[2], a1: k[3], mx: k[4] });
         }
       };
@@ -825,6 +840,31 @@ LIT_EDGE_HOOK_JS = """
       }
       return [L, T, R, B];
     };
+    /* the ancestors whose OVERFLOW actually clips an element: an absolutely
+       or fixed positioned box escapes every overflow ancestor between it and
+       its containing block, which is the nearest positioned ancestor (for
+       absolute) or the nearest one with a transform, filter, perspective or
+       containment (for fixed, and for absolute too) (Codex, PR #403) */
+    const fixedCB = (cs) =>
+      (cs.transform || 'none') !== 'none' || (cs.perspective || 'none') !== 'none' ||
+      (cs.filter || 'none') !== 'none' || (cs.backdropFilter || 'none') !== 'none' ||
+      (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
+      (cs.scale || 'none') !== 'none' ||
+      /paint|layout|strict|content/.test(cs.contain || '') ||
+      /transform|perspective|filter/.test(cs.willChange || '');
+    const clippers = (el0) => {
+      const out = [];
+      const p0 = getComputedStyle(el0).position;
+      let esc = p0 === 'absolute' || p0 === 'fixed' ? p0 : null;
+      for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el);
+        const cb = !esc || (esc === 'fixed' ? fixedCB(cs) : (cs.position !== 'static' || fixedCB(cs)));
+        if (cb) { out.push([el, cs]); esc = null; }
+        if (cs.position === 'fixed') esc = 'fixed';
+        else if (cs.position === 'absolute' && esc !== 'fixed') esc = 'absolute';
+      }
+      return out;
+    };
     const frame = () => [document.documentElement.clientWidth || window.innerWidth,
                          document.documentElement.clientHeight || window.innerHeight];
     const shown = (cv) => {
@@ -837,8 +877,8 @@ LIT_EDGE_HOOK_JS = """
          its wrapper's clip is not in the picture (Codex, PR #403) */
       let L = Math.max(r.left, 0), T = Math.max(r.top, 0);
       let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
-      for (let el = up(cv); el && el.nodeType === 1 && R > L && B > T; el = up(el)) {
-        const cs = getComputedStyle(el);
+      for (const [el, cs] of clippers(cv)) {
+        if (!(R > L && B > T)) break;
         const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
         const [cl, ct, cr, cb] = clipRect(el, cs);
@@ -922,7 +962,8 @@ LIT_EDGE_HOOK_JS = """
         if ((cs.clipPath || 'none') !== 'none') return true;
         if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
-        if (el === cv) continue;
+      }
+      for (const [el, cs] of clippers(cv)) {
         const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
         const [vl, vt, vr, vb] = clipRect(el, cs), sx = window.scrollX || 0, sy = window.scrollY || 0;

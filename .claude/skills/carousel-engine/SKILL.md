@@ -606,7 +606,9 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   painting or a nested canvas's own boundary all count. Stretches on one line are joined
   across draws before the 40 design px span is applied, so two short draws that
   make one long edge count, and a run under the floor a draw was measured at is
-  kept by position for that. qa.py **WARNs** when the
+  kept by position for that (on a placed canvas only from a quarter of the
+  floor up, so fine grain is not kept; past 512 per axis per draw such runs
+  are counted). qa.py **WARNs** when the
   shipped render shows a step of 1 level or more along that line for 40 design
   px or more, once per stretch (draws that stop on the same line over
   overlapping stretches are merged first); an edge that something later covers, on a
@@ -631,7 +633,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
-  which honours `overflow-clip-margin`) spends the off-page budget and is never
+  which honours `overflow-clip-margin` and applies only between a positioned
+  canvas and its containing block) spends the off-page budget and is never
   counted, unless a CSS filter (a drop-shadow, an SVG filter, a blur's spread) or a
   reflection can paint it back in, when it is kept in view and counted; a measurement made before
   the canvas's width or height was set again (by any API: the property, an

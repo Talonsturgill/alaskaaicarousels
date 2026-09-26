@@ -147,6 +147,12 @@ through the REAL render.py and qa.py:
             leaves the seam's light: still measured and reported
   78 GREEN  fixture 76 on a context made with {alpha: false}, which clears to
             opaque black: silent
+  79 RED    the nested glow's absolutely positioned canvas inside a small
+            static overflow:hidden wrapper, which is not its containing block
+            and does not clip it: measured and reported
+  80 GREEN  a grid of 20 px additive blocks: more short runs worth keeping than
+            a draw keeps, so qa says the check was capped
+  81 GREEN  a fine 2 px additive grain over the repaired glow: silent
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -898,6 +904,37 @@ GREEN_CLEARRECT_OPAQUE = GREEN_CLEARRECT.replace(
     "const n2 = nc.getContext('2d'), sp",
     "const n2 = nc.getContext('2d', { alpha: false }), sp")
 
+RED_ESCAPED_OVERFLOW = RED_NESTED.replace(
+    "document.body.appendChild(nc);",
+    "const ow = document.createElement('div');\n"
+    "ow.style.cssText = 'width:10px;height:10px;overflow:hidden';   /* static: not its containing block */\n"
+    "document.body.appendChild(ow); ow.appendChild(nc);", 1)
+
+GREEN_SHORTS_OVER = """
+// a grid of 20 px additive blocks on the shown canvas: every block edge is a
+// short run long enough to matter if joined, far more than a draw keeps by
+// position, so qa says the check was capped (Codex, PR #403)
+const bk = document.createElement('canvas'); bk.width = 1080; bk.height = 1350;
+const bg2 = bk.getContext('2d'); bg2.fillStyle = 'rgb(120,100,70)';
+for (let y = 10; y < 1330; y += 40) for (let x = 10; x < 1060; x += 40) bg2.fillRect(x, y, 20, 20);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(bk, 0, 0); cx.restore();
+"""
+
+GREEN_GRAIN = """
+// a fine additive grain of 2 px dots over the repaired glow: runs far under a
+// quarter of the floor are not kept, so nothing fills and nothing is said
+""" + GREEN_SPAN + """
+const gr = document.createElement('canvas'); gr.width = 1080; gr.height = 1350;
+const gg = gr.getContext('2d'); gg.fillStyle = 'rgba(255,255,255,0.08)';
+let seed = 7;
+for (let q = 0; q < 60000; q++) {
+  seed = (seed * 16807) % 2147483647; const x = seed % 1078;
+  seed = (seed * 16807) % 2147483647; const y = seed % 1348;
+  gg.fillRect(x, y, 2, 2);
+}
+cx.save(); cx.globalCompositeOperation = 'lighter'; cx.drawImage(gr, 0, 0); cx.restore();
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -981,6 +1018,9 @@ CASES = [
     ("slide-76", GREEN_CLEARRECT, [], 0, None),
     ("slide-77", RED_CLIPPED_CLEAR, [LEFT], 1, None),
     ("slide-78", GREEN_CLEARRECT_OPAQUE, [], 0, None),
+    ("slide-79", RED_ESCAPED_OVERFLOW, [LEFT], 1, None),
+    ("slide-80", GREEN_SHORTS_OVER, [], 0, "past its budget"),
+    ("slide-81", GREEN_GRAIN, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
