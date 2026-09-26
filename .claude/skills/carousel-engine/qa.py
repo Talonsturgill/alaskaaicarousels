@@ -3909,7 +3909,8 @@ def main():
             ("lit_edges_capped",
              "lit-edge check skipped %d additive drawImage call(s) or seam(s) past its "
              "budget (16 measured draws onto on-page canvases and 24 onto off-page "
-             "ones, a bitmap of at most 17.5 million pixels, 24 seams per slide), so "
+             "ones, a bitmap of at most 17.5 million pixels and eight 2x canvases' worth "
+             "of readback per slide, 24 seams per slide), so "
              "a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that "
              "once, or check the additive layers by eye at thumb"),
             ("lit_edges_unplaced",

@@ -116,6 +116,12 @@ through the REAL render.py and qa.py:
             and no budget warning
   62 GREEN  seventy thousand live 1 px scratch canvases, one additive draw
             each: past the ledger's capacity, counted as skipped
+  63 GREEN  fixture 45's iframe wholly outside a wrapper's overflow clip: not
+            counted
+  64 RED    two strips two backing pixels apart on a canvas shown at 10x: both
+            left edges, x 490 and x 510, are recorded and reported
+  65 GREEN  ten additive draws on ten 2160 x 2700 canvases, past the slide's
+            readback work budget: the shown one's skipped draw is counted
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -743,6 +749,49 @@ for (let q = 0; q < 70000; q++) {
 window.__keep = keep;
 """
 
+GREEN_CLIPPED_IFRAME = """
+// fixture 45's iframe inside a 10 px overflow:hidden wrapper, placed wholly
+// outside that clip: it reaches no pixel, so it is not counted (Codex, PR #403)
+""" + GREEN_IFRAME.replace(
+    "document.body.appendChild(fr);",
+    "const ow = document.createElement('div');\n"
+    "ow.style.cssText = 'position:absolute;left:0;top:0;width:10px;height:10px;overflow:hidden';\n"
+    "document.body.appendChild(ow); ow.appendChild(fr);").replace(
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
+    "position:absolute;left:100px;top:100px;width:900px;height:1200px;border:0")
+
+RED_NEAR_STRIPS = """
+// a 108 x 135 canvas shown at 10x holding two strips two backing pixels
+// apart: one at bitmap x 49, one from x 51. Their left edges are 20 design px
+// apart on the page and both are seams (Codex, PR #403)
+const sc = document.createElement('canvas'); sc.width = 108; sc.height = 135;
+sc.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px';
+document.body.appendChild(sc);
+// (no opaque fill: the page's own ground shows through, so the screenshot
+// carries enough texture to pass render.py's empty-render guard)
+const c2 = sc.getContext('2d');
+const sp = document.createElement('canvas'); sp.width = 108; sp.height = 135;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)';
+s2.fillRect(49, 0, 1, 135); s2.fillRect(51, 0, 10, 135);
+c2.globalCompositeOperation = 'screen'; c2.drawImage(sp, 0, 0);
+"""
+
+GREEN_WORK_BUDGET = """
+// ten additive draws on ten detached 2160 x 2700 canvases: past the slide's
+// readback work budget of eight such bitmaps, so two are counted as
+// skipped... once one of those canvases is shown (Codex, PR #403)
+const big = [];
+const sp = document.createElement('canvas'); sp.width = 10; sp.height = 10;
+sp.getContext('2d').fillRect(0, 0, 10, 10);
+for (let q = 0; q < 10; q++) {
+  const t = document.createElement('canvas'); t.width = 2160; t.height = 2700; big.push(t);
+  const tg = t.getContext('2d'); tg.globalCompositeOperation = 'screen'; tg.drawImage(sp, 0, 0);
+}
+const last = big[9];
+last.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px';
+document.body.appendChild(last);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -810,6 +859,9 @@ CASES = [
     ("slide-60", GREEN_CTX_RESET, [], 0, None),
     ("slide-61", RED_AFTER_CLIPPED_STAGING, [LEFT], 1, None),
     ("slide-62", GREEN_BOOK_FULL, [], 0, "past its budget"),
+    ("slide-63", GREEN_CLIPPED_IFRAME, [], 0, None),
+    ("slide-64", RED_NEAR_STRIPS, [("left", 490), ("left", 510)], None, None),
+    ("slide-65", GREEN_WORK_BUDGET, [], 0, "past its budget"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

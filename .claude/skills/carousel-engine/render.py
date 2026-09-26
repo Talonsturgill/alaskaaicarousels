@@ -554,6 +554,11 @@ LIT_EDGE_HOOK_JS = """
        draw that finds it full after a sweep of collected canvases can't be
        attributed, so it is counted as skipped (Codex, PR #403) */
     const LIT_BOOK = 65536;
+    /* and at most LIT_WORK bitmap pixels read back across the whole slide,
+       eight 2x slide canvases; a draw past it is counted as skipped, so the
+       hook's own cost is bounded whatever the slide does (Codex, PR #403) */
+    const LIT_WORK = 8 * 2160 * 2700;
+    let work = 0;
     const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     let nOn = 0, nOff = 0;
     const origDraw = proto.drawImage, origGet = proto.getImageData;
@@ -652,9 +657,12 @@ LIT_EDGE_HOOK_JS = """
          canvas is shown when the report is taken (Codex, PR #403) */
       const placed = shown(cv), e = entry(cv);
       if (!e) { lost++; return null; }
-      if (cv.width * cv.height > LIT_AREA) { e.skipped++; return null; }
+      if (cv.width * cv.height > LIT_AREA || work + cv.width * cv.height > LIT_WORK) {
+        e.skipped++; return null;
+      }
       if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
       if (placed) nOn++; else nOff++;
+      work += cv.width * cv.height;
       try {
         return { op: ctx.globalCompositeOperation,
                  d: origGet.call(ctx, 0, 0, cv.width, cv.height).data };
@@ -723,20 +731,25 @@ LIT_EDGE_HOOK_JS = """
         /* the tolerant test lights the lines either side of a seam too; keep
            one per stretch, on the line where the added light jumps most */
         if (over) rawOver = true;
+        /* the tolerant test also lights the line either side of a seam. Each
+           candidate is first moved to the line within one pixel where the
+           added light jumps most, and only candidates that land on the SAME
+           line over overlapping stretches are one seam: two real seams two
+           backing pixels apart stay two, because a canvas enlarged by CSS can
+           put them far apart on the page (Codex, PR #403) */
         cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
         const kept = [];
         for (const k of cands) {
-          if (kept.some((z) => z[0] === k[0] && Math.abs(z[1] - k[1]) <= 3 &&
-                               z[2] < k[3] && k[2] < z[3])) continue;
-          kept.push(k);
           const lead = k[0] === 'left' || k[0] === 'top';
           let line = k[1], best = -Infinity;
-          for (let c = Math.max(0, k[1] - 3); c <= Math.min(nLine, k[1] + 3); c++) {
+          for (let c = Math.max(0, k[1] - 1); c <= Math.min(nLine, k[1] + 1); c++) {
             let j = 0;
             for (let s = k[2]; s < k[3]; s += 2)
               j += lead ? val(c, s) - val(c - 1, s) : val(c - 1, s) - val(c, s);
             if (j > best) { best = j; line = c; }
           }
+          if (kept.some((z) => z[0] === k[0] && z[1] === line && z[2] < k[3] && k[2] < z[3])) continue;
+          kept.push([k[0], line, k[2], k[3]]);
           /* LIT_RAW per DRAW, so no canvas can spend another's (at most
              LIT_ON + LIT_OFF draws are measured, which bounds the total) */
           if (nRaw >= LIT_RAW) { rawOver = true; continue; }
@@ -862,6 +875,7 @@ LIT_EDGE_HOOK_JS = """
       }
       return false;
     };
+    window.__akLitShown = shown;
     window.__akLitCollect = () => {
       const recs = [];
       let unplaced = 0, capped = 0, readback = 0;
@@ -882,9 +896,10 @@ LIT_EDGE_HOOK_JS = """
         if (!bx || repainted(cv, true)) { if (hard) unplaced += e.lit; continue; }
         /* CSS cuts its light where the canvas did not stop painting it */
         if (cropped(cv, bx)) { unplaced += e.lit; continue; }
+        let counted = false;
         const kx = bx.w / cv.width, ky = bx.h / cv.height;
         /* a run dropped under the floor that the final scale makes a seam */
-        if (e.shortV * ky >= LIT_SPAN || e.shortH * kx >= LIT_SPAN) unplaced += e.lit;
+        if (e.shortV * ky >= LIT_SPAN || e.shortH * kx >= LIT_SPAN) { unplaced += e.lit; counted = true; }
         const tint = repainted(cv, false);
         let tinted = false;
         for (const r of e.raw) {
@@ -897,7 +912,7 @@ LIT_EDGE_HOOK_JS = """
                       from: (v ? bx.y : bx.x) + r.a0 * kA, to: (v ? bx.y : bx.x) + r.a1 * kA,
                       op: r.op, lit_max: r.mx / 255, n: 1 });
         }
-        if (tinted) unplaced += e.lit;
+        if (tinted && !counted) unplaced += e.lit;       /* each draw once */
       }
       /* one record per stretch of a line: records on the same side of the
          same line (within 1 design px) whose stretches overlap or touch are
@@ -3874,14 +3889,11 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
             if fr.parent_frame != page.main_frame:
                 continue
             try:
+                # the hook's own shown(): visibility, opacity, the frame and
+                # every ancestor's overflow clip (Codex, PR #403); a page whose
+                # hook is gone counts the frame
                 vis = fr.frame_element().evaluate(
-                    "(f) => { if (f.checkVisibility && !f.checkVisibility("
-                    "{ visibilityProperty: true, opacityProperty: true })) return false; "
-                    "const r = f.getBoundingClientRect(); "
-                    "const w = document.documentElement.clientWidth || innerWidth, "
-                    "h = document.documentElement.clientHeight || innerHeight; "
-                    "return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 "
-                    "&& r.left < w && r.top < h; }")
+                    "(f) => window.__akLitShown ? window.__akLitShown(f) : true")
             except Exception:
                 vis = True
             frames += 1 if vis else 0

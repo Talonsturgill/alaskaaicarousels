@@ -633,8 +633,11 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   ledger holds canvases weakly and at most 65,536 of them; a draw it can't
   attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
   shadow hosts. Candidates and records are bounded per draw (4096 and 256),
-  a bitmap larger than 17.5 million pixels is never read back, and a draw
-  past any bound is counted. A recorded seam the picture has no room to be
+  a bitmap larger than 17.5 million pixels is never read back, the slide reads
+  back at most eight 2x slide canvases' worth of pixels in all, and a draw
+  past any bound is counted. A CSS clip, clip-path or mask is not evaluated
+  geometrically: a measured canvas under one is counted as unplaced even when
+  the clip removes it entirely, which is the conservative side. A recorded seam the picture has no room to be
   sampled along is named, not passed. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
