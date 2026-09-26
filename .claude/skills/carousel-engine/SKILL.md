@@ -599,63 +599,52 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   carried a few levels at the cut, and shipped a hard vertical edge at x 492
   that the scorer saw in the thumb. Make the layer span the frame, or feather
   every edge that lands inside the frame to zero (a smoothstep over 150 px or
-  more). render.py reads the target canvas before and after every additive
-  `drawImage` and records where the light the draw actually PAINTED stops
-  within a pixel along a row or column (`lit_edges`), so a clip, a source rect
-  past its bounds, a canvas filter, a negative size, a canvas appended after
-  painting or a nested canvas's own boundary all count. Stretches on one line are joined
-  across draws before the 40 design px span is applied, so two short draws that
-  make one long edge count, and a run under the floor a draw was measured at is
-  kept by position for that (on a placed canvas only from a quarter of the
-  floor up, so fine grain is not kept; past 512 per axis per draw such runs
-  are counted). qa.py **WARNs** when the
-  shipped render shows a step of 1 level or more along that line for 40 design
-  px or more, once per stretch (draws that stop on the same line over
-  overlapping stretches are merged first); an edge that something later covers, on a
-  canvas or in the DOM, says nothing. It also WARNs, by count, about what it
-  did not examine: draws past its budget (16 measured additive draws onto
-  on-page canvases and 24 onto off-page ones per slide), a canvas it can't
-  place because it or an ancestor is rotated, skewed, mirrored, on an offset
-  path, or under a CSS `filter` or box reflection (which can paint the seam
-  somewhere else), or its `object-fit` is not `fill`, a draw whose seam, shorter than the hook
-  kept when it measured it and past its 512 positional short runs, spans 40
-  design px at the size the canvas is finally shown, a readback the browser refused, and a render record older than the check
-  itself (kept by a partial `--only` re-render). A seam is placed through the
-  canvas's content box, so border and padding are allowed. It looks for rows and columns
-  only: a diagonal cut, from a draw through a rotation or a diagonal clip, is
-  not checked. Nor is light that reaches the picture without an additive
-  `drawImage` onto a shown 2D canvas: a glow layer composited with
-  `source-over`, a canvas blended by CSS `mix-blend-mode`, or a canvas painted
-  from a worker or an ImageBitmap. A canvas clipped (clip-path or the
-  legacy `clip: rect()`), masked or cropped by an ancestor's overflow inside
-  the frame is counted, not confirmed; the check does not look inside frames
-  (the hook does not run in them), and every iframe visible in the picture is
-  named as unexamined; a
-  staging canvas that is connected but not shown (display, visibility or
-  opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
-  which honours `overflow-clip-margin`, counts `content-visibility` as paint
-  containment and a containing block, skips the overflow (not the paint
-  containment) of a body whose overflow belongs to the viewport, ignores
-  box effects on `display: contents` ancestors, and applies only between a
-  positioned canvas and its containing block) spends the off-page budget and is never
-  counted, unless a filter that spreads or moves paint (a blur, a drop-shadow, an SVG
-  filter) or a reflection can paint it back in, when it is kept in view and
-  counted; a measurement made before
-  the canvas's width or height was set again (by any API: the property, an
-  attribute call, an Attr or the `attributes` map, all seen by one
-  MutationObserver), its context was `reset()`, or a `clearRect` over the
-  whole bitmap left it empty (and one that can't be read back within the
-  budget retires the records and is counted) (read back to be sure, since a clip can keep part
-  of it; empty is opaque black on an `{alpha: false}` context) is dropped, because each erases the light it measured. The
-  ledger holds canvases weakly and at most 65,536 of them; a draw it can't
-  attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
-  shadow hosts. Candidates and records are bounded per draw (4096 and 256),
-  a bitmap larger than 17.5 million pixels is never read back, the slide reads
-  back at most eight 2x slide canvases' worth of pixels in all, and a draw
-  past any bound is counted. A CSS clip, clip-path or mask is not evaluated
-  geometrically: a measured canvas under one is counted as unplaced even when
-  the clip removes it entirely, which is the conservative side. A recorded seam the picture has no room to be
-  sampled along is named, not passed. Reconstruction: `python tests/lit_edge_verify.py`.
+  more).
+
+  *What it measures.* render.py reads the target canvas before and after every
+  additive `drawImage` and records where the light the draw actually PAINTED
+  stops within a pixel along a row or column (`lit_edges`), so a clip, a
+  source rect past its bounds, a canvas filter, a negative size, or a nested,
+  offset or late-appended canvas's own boundary all count. Stretches on one
+  line are joined across draws (short runs are kept by position for that)
+  before the 40 design px span applies. qa.py **WARNs** when the shipped
+  render shows a step of 1 level or more along that line for 40 design px or
+  more, once per stretch; an edge something later covers says nothing.
+
+  *Where it places a seam.* Through the canvas's content box, only when
+  `object-fit` is `fill` and nothing on the composed-tree path rotates, skews,
+  mirrors or bends it. A canvas under a CSS filter or reflection, cut by a
+  clip-path, mask, legacy `clip` or an overflow or containment clip inside the
+  frame, or shown so large that a dropped short run spans 40 design px, is
+  counted as unplaced (clip geometry is not evaluated, so a canvas clipped away
+  entirely still counts: the conservative side). A canvas is in the picture
+  when it is connected, visible, not transparent, and something of its box is
+  left inside the frame and inside the overflow and containment clips that
+  actually apply to it (containing blocks followed; a body whose overflow
+  belongs to the viewport, a `display: contents` or non-replaced inline box
+  clip nothing; a rotated clipper never rejects), or when a spreading filter
+  can reach the frame. Other canvases are staging canvases and are never
+  counted.
+
+  *What it says it did not see.* Each by count, never in silence: draws past
+  the budget (16 measured additive draws onto shown canvases and 24 onto
+  others, a bitmap over 17.5 million pixels, eight 2x canvases' worth of
+  readback per slide, bounded candidates, records and short runs per draw,
+  a ledger of 65,536 canvases), canvases it can't place, refused readbacks,
+  render records older than the check, a record the picture has no room to be
+  sampled along, and every visible iframe (the hook does not run in frames).
+
+  *Erased light.* Measurements are kept per canvas and bitmap generation. A
+  width or height set again (any API, seen by one MutationObserver) or
+  `reset()` drops them; a `clearRect` or `putImageData` that touches a
+  record's pixels triggers one readback and keeps only records whose step is
+  still in the bitmap (a full put is also how a slide tone-maps its pixels).
+
+  *Not checked, by design.* Diagonal seams (a draw through a rotation or a
+  diagonal clip), and light that reaches the picture without an additive
+  `drawImage` onto a shown 2D canvas: a layer composited with `source-over`,
+  a canvas blended by CSS `mix-blend-mode`, a canvas painted from a worker or
+  an ImageBitmap. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

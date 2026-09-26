@@ -609,42 +609,71 @@ LIT_EDGE_HOOK_JS = """
       return e;
     };
     /* CanvasRenderingContext2D.reset() clears the bitmap as a resize does */
-    /* clearing the whole bitmap erases the light it measured. The rectangle
-       alone can't say so (a clip may keep part of it), so after a clear that
-       spans the bitmap on a canvas holding measured light, the canvas is read
-       back once, within the work budget, and only a truly empty bitmap starts
-       a new generation (Codex, PR #403) */
+    /* a clearRect or a putImageData can erase or rewrite the light a
+       record measured, and neither the rectangle nor the call can say which
+       (a clip can keep part of a clear; a full put is also how a slide tone-
+       maps its own pixels). So when one touches a record's pixels, the
+       canvas is read back once, within the work budget, and a record is kept
+       only if its step is still in the bitmap. Past the budget the records
+       are retired and the call is counted as unexamined (Codex, PR #403) */
+    const touches = (e, x0, y0, x1, y1) => e.raw.concat(e.shorts).some((r) =>
+      r.axis === 'v' ? (r.line + 1 >= x0 && r.line - 2 <= x1 && r.a1 >= y0 && r.a0 <= y1)
+                     : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1));
+    const recheck = (ctx, cv, x0, y0, x1, y1) => {
+      const id = ids.get(cv), e = id !== undefined && book.get(id);
+      if (!e || e.g !== gen(cv) || !touches(e, x0, y0, x1, y1)) return;
+      const W = cv.width, H = cv.height;
+      if (work + W * H > LIT_WORK) {
+        gens.set(cv, gen(cv) + 1);
+        const z = entry(cv);
+        if (z) z.skipped++; else lost++;
+        return;
+      }
+      work += W * H;
+      const d = origGet.call(ctx, 0, 0, W, H).data;
+      const L = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : lum(d, (y * W + x) * 4);
+      const holds = (r) => {
+        const lead = r.side === 'left' || r.side === 'top';
+        const cin = lead ? r.line : r.line - 1, cout = lead ? r.line - 2 : r.line + 1;
+        let sum = 0, n = 0;
+        for (let a = r.a0; a < r.a1; a += (r.a1 - r.a0 > 8 ? 2 : 1)) {
+          sum += r.axis === 'v' ? L(cin, a) - L(cout, a) : L(a, cin) - L(a, cout);
+          n++;
+        }
+        return n > 0 && sum / n >= LIT_STEP;
+      };
+      e.raw = e.raw.filter(holds); e.shorts = e.shorts.filter(holds);
+    };
     const origClear = proto.clearRect;
     if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
       const res = origClear.apply(this, arguments);
       try {
-        const cv = this.canvas, id = cv && ids.get(cv), e = id !== undefined && book.get(id);
-        if (e && e.g === gen(cv) && e.lit) {
-          const t = this.getTransform ? this.getTransform() : null;
-          const flat = !t || (Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9);
+        const cv = this.canvas, t = this.getTransform ? this.getTransform() : null;
+        let x0 = 0, y0 = 0, x1 = cv.width, y1 = cv.height;     /* a bent transform: all of it */
+        if (!t || (Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9)) {
           const ax = t ? t.a : 1, dy = t ? t.d : 1, ex = t ? t.e : 0, fy = t ? t.f : 0;
-          const x0 = Math.min(ax * x + ex, ax * (x + w) + ex), x1 = Math.max(ax * x + ex, ax * (x + w) + ex);
-          const y0 = Math.min(dy * y + fy, dy * (y + h) + fy), y1 = Math.max(dy * y + fy, dy * (y + h) + fy);
-          const W = cv.width, H = cv.height;
-          if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H && work + W * H > LIT_WORK) {
-            /* the readback can't be admitted: the records are retired rather
-               than trusted, and the clear is counted as unexamined */
-            gens.set(cv, gen(cv) + 1);
-            const z = entry(cv);
-            if (z) z.skipped++; else lost++;
-          } else if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H) {
-            work += W * H;
-            const d = origGet.call(this, 0, 0, W, H).data;
-            /* a cleared bitmap is transparent black, or opaque black on a
-               context made with {alpha: false} (Codex, PR #403) */
-            const ca = this.getContextAttributes ? this.getContextAttributes() : null;
-            const opaque = !!ca && ca.alpha === false;
-            let empty = true;
-            for (let i = 0; i < d.length; i += 4)
-              if (opaque ? (d[i] || d[i + 1] || d[i + 2]) : d[i + 3]) { empty = false; break; }
-            if (empty) gens.set(cv, gen(cv) + 1);
-          }
+          x0 = Math.min(ax * x + ex, ax * (x + w) + ex); x1 = Math.max(ax * x + ex, ax * (x + w) + ex);
+          y0 = Math.min(dy * y + fy, dy * (y + h) + fy); y1 = Math.max(dy * y + fy, dy * (y + h) + fy);
         }
+        recheck(this, cv, x0, y0, x1, y1);
+      } catch (err) {}
+      return res;
+    };
+    /* putImageData ignores the transform, the clip and compositing, and
+       writes exactly its dirty rectangle */
+    const origPut = proto.putImageData;
+    if (typeof origPut === 'function') proto.putImageData = function (img, dx, dy) {
+      const res = origPut.apply(this, arguments);
+      try {
+        let x = 0, y = 0, w = img.width, h = img.height;
+        if (arguments.length >= 7) {
+          x = +arguments[3]; y = +arguments[4]; w = +arguments[5]; h = +arguments[6];
+          if (w < 0) { x += w; w = -w; }
+          if (h < 0) { y += h; h = -h; }
+          const xe = Math.min(img.width, x + w), ye = Math.min(img.height, y + h);
+          x = Math.max(0, x); y = Math.max(0, y); w = xe - x; h = ye - y;
+        }
+        if (w > 0 && h > 0) recheck(this, this.canvas, dx + x, dy + y, dx + x + w, dy + y + h);
       } catch (err) {}
       return res;
     };
@@ -818,8 +847,13 @@ LIT_EDGE_HOOK_JS = """
     /* which axes an ancestor clips its descendants on: overflow or paint
        containment, and only on a box that has a clipping box at all, so an
        inline or display:contents ancestor clips nothing (Codex, PR #403) */
-    const clipAxes = (cs, containOnly) => {
-      if (/^(inline|contents|none)$/.test(cs.display || '')) return [false, false];
+    const replaced = (el) => !!el && ((window.SVGSVGElement && el instanceof window.SVGSVGElement) ||
+      /^(IMG|VIDEO|CANVAS|IFRAME|EMBED|OBJECT|INPUT|SELECT|TEXTAREA|BUTTON)$/.test(el.tagName || ''));
+    const clipAxes = (cs, containOnly, el) => {
+      /* no clipping box: display:contents or none, or a NON-REPLACED inline
+         box; an inline <svg> viewport or other replaced box does clip */
+      if (/^(contents|none)$/.test(cs.display || '')) return [false, false];
+      if (cs.display === 'inline' && !replaced(el)) return [false, false];
       const cp = /paint|strict|content/.test(cs.contain || '') ||
                  /^(auto|hidden)$/.test(cs.contentVisibility || '');   /* implies paint containment */
       if (containOnly) return [cp, cp];
@@ -874,6 +908,7 @@ LIT_EDGE_HOOK_JS = """
       const bodyToViewport = rs.overflowX === 'visible' && rs.overflowY === 'visible';
       for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;          /* no box: no containing block, no clip */
         const cb = !esc || (esc === 'fixed' ? fixedCB(cs) : (cs.position !== 'static' || fixedCB(cs)));
         /* a body whose overflow belongs to the viewport still clips by
            paint containment, on both axes, and by nothing else */
@@ -900,7 +935,10 @@ LIT_EDGE_HOOK_JS = """
       let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
       for (const [el, cs, only] of clippers(cv)) {
         if (!(R > L && B > T)) break;
-        const [ox, oy] = clipAxes(cs, only);
+        /* a rotated or skewed clipper's padding box can't be read off its
+           bounding box, so it never rejects here (cropped() counts it) */
+        if (!flatChain(el)) continue;
+        const [ox, oy] = clipAxes(cs, only, el);
         if (!ox && !oy) continue;
         const [cl, ct, cr, cb] = clipRect(el, cs, only);
         if (ox) { L = Math.max(L, cl); R = Math.min(R, cr); }
@@ -912,14 +950,21 @@ LIT_EDGE_HOOK_JS = """
          paint it into the picture: kept, so it is counted rather than
          dropped. A colour-only filter paints nothing outside the box
          (Codex, PR #403) */
-      return (R > L && B > T) || spreads(cv);
+      if (R > L && B > T) return true;
+      /* nothing of the box is left in view: kept only if a filter that
+         spreads or moves paint reaches the frame from where it is */
+      const ext = spreadExt(cv);
+      return ext > 0 && r.right + ext > 0 && r.bottom + ext > 0 && r.left - ext < fw && r.top - ext < fh;
     };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
        fill, the default); anything else is counted, not guessed */
-    const placeable = (cv) => {
-      if ((getComputedStyle(cv).objectFit || 'fill') !== 'fill') return false;
-      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+    const placeable = (cv) =>
+      (getComputedStyle(cv).objectFit || 'fill') === 'fill' && flatChain(cv);
+    /* true when nothing from el up rotates, skews, mirrors or bends it, so
+       its bounding box is its real box on the page */
+    const flatChain = (el0) => {
+      for (let el = el0; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         if (boxless(cs)) continue;
         const tf = cs.transform || 'none';
@@ -969,21 +1014,32 @@ LIT_EDGE_HOOK_JS = """
        reflection, a transform or a clip declared on it does nothing
        (Codex, PR #403) */
     const boxless = (cs) => cs.display === 'contents';
-    const spreads = (cv) => {
+    /* how far a filter can carry paint past the box, in CSS px: three blur
+       radii, a drop-shadow's offset plus three of its blur; an SVG filter or
+       a reflection can reach anywhere (Codex, PR #403) */
+    const spreadExt = (cv) => {
+      let ext = 0;
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
-        const cs = getComputedStyle(el), f = cs.filter || 'none';
+        const cs = getComputedStyle(el);
         if (boxless(cs)) continue;
-        if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
-        if (/blur\(|drop-shadow|url\(/.test(f)) return true;
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return Infinity;
+        const f = cs.filter || 'none';
+        if (f === 'none') continue;
+        if (/url\\(/.test(f)) return Infinity;
+        for (const m of f.matchAll(/(blur|drop-shadow)\\(((?:[^()]|\\([^()]*\\))*)\\)/g)) {
+          const px = (m[2].match(/-?[0-9.]+px/g) || []).map(parseFloat);
+          if (m[1] === 'blur') ext += 3 * (px[0] || 0);
+          else ext += Math.max(Math.abs(px[0] || 0), Math.abs(px[1] || 0)) + 3 * (px[2] || 0);
+        }
       }
-      return false;
+      return ext;
     };
     const repainted = (cv, moves) => {
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el), f = cs.filter || 'none';
         if (boxless(cs)) continue;
         if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
-        if (f !== 'none' && (!moves || /drop-shadow|url\(/.test(f))) return true;
+        if (f !== 'none' && (!moves || /drop-shadow|url\\(/.test(f))) return true;
       }
       return false;
     };
@@ -999,12 +1055,14 @@ LIT_EDGE_HOOK_JS = """
         const cs = getComputedStyle(el);
         if (boxless(cs)) continue;
         if ((cs.clipPath || 'none') !== 'none') return true;
-        if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
+        /* legacy clip: rect() acts only on an absolutely or fixed positioned box */
+        if ((cs.clip || 'auto') !== 'auto' && /^(absolute|fixed)$/.test(cs.position)) return true;
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
       }
       for (const [el, cs, only] of clippers(cv)) {
-        const [ox, oy] = clipAxes(cs, only);
+        const [ox, oy] = clipAxes(cs, only, el);
         if (!ox && !oy) continue;
+        if (!flatChain(el)) return true;     /* a bent clip can't be located: counted */
         const [vl, vt, vr, vb] = clipRect(el, cs, only), sx = window.scrollX || 0, sy = window.scrollY || 0;
         const L = vl + sx, T = vt + sy, R = vr + sx, B = vb + sy;
         /* each axis crops only where it clips (Codex, PR #403) */

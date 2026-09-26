@@ -170,6 +170,21 @@ through the REAL render.py and qa.py:
             content-visibility:auto wrapper that clips it: counted
   89 RED    the RED canvas inside a display:contents wrapper with a
             drop-shadow, which has no box to act on: measured and reported
+  90 RED    the nested glow's absolute canvas under a display:contents
+            "containing block" inside a small static overflow:hidden wrapper:
+            it escapes the wrapper, so it is measured and reported
+  91 GREEN  fixture 60 with the bitmap overwritten by a transparent
+            putImageData: silent
+  92 RED    the RED layer, then a full getImageData/putImageData round trip,
+            as a tone-mapping pass does: the seam is still there, reported
+  93 GREEN  an iframe 5000 px off the frame under blur(1px), which can't reach
+            the picture: not counted
+  94 GREEN  a canvas in a rotated, bordered overflow:hidden wrapper whose
+            bounding box misstates its padding box: counted, not dropped
+  95 GREEN  a full-frame glow canvas cut by an inline <svg> viewport through a
+            foreignObject: counted
+  96 RED    the RED layer on a static canvas with an inert clip: rect():
+            measured and reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1028,6 +1043,71 @@ n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 
 RED_CONTENTS_FILTER = wrapped("div", "display:contents;filter:drop-shadow(40px 0 0 #FFFFFF)")
 
+RED_BOXLESS_CB = RED_NESTED.replace(
+    "document.body.appendChild(nc);",
+    "const ow = document.createElement('div');\n"
+    "ow.style.cssText = 'width:10px;height:10px;overflow:hidden';\n"
+    "const cw = document.createElement('div');   /* no box: not a containing block */\n"
+    "cw.style.cssText = 'display:contents;position:relative;transform:translateX(0)';\n"
+    "document.body.appendChild(ow); ow.appendChild(cw); cw.appendChild(nc);", 1)
+
+GREEN_PUT_ERASE = GREEN_CTX_RESET.replace(
+    "n2.reset();", "n2.putImageData(n2.createImageData(588, 1350), 0, 0);   /* writes transparent */")
+
+RED_PUT_TONEMAP = RED + """
+// a full-frame read and write back, as a tone-mapping pass does: the light and
+// its seam are still in the bitmap, so the record stays (Codex, PR #403)
+const im = cx.getImageData(0, 0, 1080, 1350); cx.putImageData(im, 0, 0);
+"""
+
+GREEN_FAR_BLUR_IFRAME = GREEN_IFRAME.replace(
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
+    "position:absolute;left:5000px;top:0;width:400px;height:1350px;border:0;filter:blur(1px)")
+
+GREEN_ROTATED_CLIPPER = """
+// a 250 x 1000 wrapper with a 50 px left border, rotated 90 degrees, hiding its
+// overflow: its bounding box can't give its padding box, so it never rejects a
+// canvas; the canvas it holds (visible at page x 40 to 190) is counted
+// (Codex, PR #403)
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:415px;top:50px;width:200px;height:1000px;' +
+                     'border-left:50px solid #222;overflow:hidden;transform:rotate(90deg)';
+document.body.appendChild(wrap);
+const nc = document.createElement('canvas'); nc.width = 200; nc.height = 150;
+nc.style.cssText = 'position:absolute;left:0;top:850px;width:200px;height:150px';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 120; sp.height = 150;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(160,130,90)'; s2.fillRect(0, 0, 120, 150);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 40, 0);
+"""
+
+GREEN_SVG_VIEWPORT = """
+// a full-frame glow canvas inside an inline <svg> viewport at x 492 (588 px
+// wide, overflow hidden) through a foreignObject: the svg viewport clips it,
+// so it is counted (Codex, PR #403)
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('width', '588'); svg.setAttribute('height', '1350');
+// in flow, not positioned, so it stays display:inline (positioning would
+// blockify it); the main canvas steps aside so the svg starts at the top
+svg.style.cssText = 'margin-left:492px;vertical-align:top;overflow:hidden';
+document.getElementById('c').style.display = 'none';
+const fo = document.createElementNS(NS, 'foreignObject');
+fo.setAttribute('x', '-492'); fo.setAttribute('y', '0'); fo.setAttribute('width', '1080'); fo.setAttribute('height', '1350');
+fo.style.overflow = 'visible';
+svg.appendChild(fo); document.body.appendChild(svg);
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'display:block;width:1080px;height:1350px';
+fo.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
+RED_STATIC_CLIP = RED + """
+// clip: rect() on a static canvas is inert: measured and reported as usual
+document.getElementById('c').style.clip = 'rect(0px, 100px, 100px, 0px)';
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1122,6 +1202,13 @@ CASES = [
     ("slide-87", RED_ONE_PIXEL, [("left", 486), ("right", 756)], None, None),
     ("slide-88", GREEN_CV_CONTAINING_BLOCK, [], 0, "can't place"),
     ("slide-89", RED_CONTENTS_FILTER, [LEFT], 1, None),
+    ("slide-90", RED_BOXLESS_CB, [LEFT], 1, None),
+    ("slide-91", GREEN_PUT_ERASE, [], 0, None),
+    ("slide-92", RED_PUT_TONEMAP, [LEFT], 1, None),
+    ("slide-93", GREEN_FAR_BLUR_IFRAME, [], 0, None),
+    ("slide-94", GREEN_ROTATED_CLIPPER, [], 0, "can't place"),
+    ("slide-95", GREEN_SVG_VIEWPORT, [], 0, "can't place"),
+    ("slide-96", RED_STATIC_CLIP, [LEFT], 1, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
