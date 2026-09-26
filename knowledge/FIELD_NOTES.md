@@ -8636,3 +8636,8 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   frames, every frame's largest object's modelling named, a masterful depth frame, a tonal arc). Watch
   `trend_check --window 10`: if art stays at 7 for ten runs with the floor running, the next lever is
   the build itself (first-build quality per DESIGN_DOCTRINE), not another gate.
+
+## 2026-09-26 craft refresh (No.69)
+
+- Nothing new on the platform side. Two 2026 roundups repeat what CAROUSEL_CRAFT already carries: document posts lead engagement (Socialinsider 7.00 percent) and generic listicle carousels without specific data are said to lose about 35 percent reach after LinkedIn's Q1 2026 low-substance changes (https://melaniegoodmanlinkedinconsultant.substack.com/p/linkedin-algorithm-2026-reach-topic-authority, a consultant summary, not a LinkedIn source; confidence L).
+- CANDIDATE TECHNIQUE, not in TECHNIQUE_LIBRARY: digital bas-relief from a height field (Weyrich, Deng, Barnes, Rusinkiewicz and Finkelstein, SIGGRAPH 2007, https://dl.acm.org/doi/10.1145/1276377.1276417). The method compresses the GRADIENT of a height field (attenuate large gradients, keep small ones), then re-integrates, so a deep scene flattens into a shallow relief that still reads every edge under a raking light. It is a small numeric pass over a 2D array plus a Lambert shade, portable to offline Canvas, and it is a mark-making family the deck ledger has never used (the bench has hachure, engraving, scribe and PBR but no sculpted relief). Worth trying on a hero object that should read as a medal or a stamped seal rather than a rendered solid.
