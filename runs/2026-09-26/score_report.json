@@ -201,5 +201,5 @@
       "note": "final render after Codex review (slide 02 narrowed, no first person)"
     }
   ],
-  "errata": "After this card, the two no-label rows' unverified co-bylines were set to null in the evidence file, so bylines were captured for 19 of 90 rows, not the 21 the card's notes cite. No slide or score depends on the byline count."
+  "errata": "After this card, the two no-label rows' unverified co-bylines were set to null in the evidence file, so bylines were captured for 19 of 90 rows, not the 21 the card's notes cite. No slide or score depends on the byline count. After this card the document title changed from 'Who Read It? What 90 Alaska News Labels Said' to 'Who Read It? The Labels on 90 Alaska News Articles' (2 of the 90 articles carry no label), and the PDF was re-assembled with it; no slide changed, so no criterion depends on it."
 }
