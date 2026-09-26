@@ -53,10 +53,10 @@ through the REAL render.py and qa.py:
   30 GREEN  the nested glow on a canvas with object-fit: contain (not placed,
             and qa says so)
   31 RED    a 6 px seam on a 108 x 6 canvas shown at 10x: 60 design px, kept
-  32 GREEN  the same canvas painted detached, then appended: its 6 px seam was
-            under the floor used before the size was known, so qa says it
-            can't place that draw exactly (its top and bottom edges, which are
-            long enough, are still reported)
+  32 RED    the same canvas painted detached, then appended: its 6 px seam was
+            under the floor used before the size was known, but it is kept by
+            position, so at 10x it is measured at x 490 and reported with the
+            top and bottom edges
   33 GREEN  the RED layer on a page whose collector is gone: qa says no layer
             was examined
   34 RED    two draws starting at x 492 over y 0 to 700 and y 300 to 1350:
@@ -138,6 +138,10 @@ through the REAL render.py and qa.py:
             counted, not dropped
   73 RED    a 30 px canvas beyond its wrapper's padding box but inside its
             overflow-clip-margin: measured, both edges reported
+  74 RED    two 30 px additive squares stacked at x 492: each draw is under the
+            floor, the joined 60 px edges on both sides are reported
+  75 GREEN  an iframe just off the frame whose blur(20px) spreads it back in:
+            counted as a frame
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -862,6 +866,20 @@ const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)'; s2.fillRect(0, 0
 n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 0, 0);
 """
 
+RED_TWO_SHORT_DRAWS = """
+// two 30 x 30 additive squares at x 492, one above the other (y 600 to 630
+// and 630 to 660): each draw's edges are under the 40 px floor, but the
+// picture has one 60 px edge on each side (Codex, PR #403)
+const sq = document.createElement('canvas'); sq.width = 30; sq.height = 30;
+const q2 = sq.getContext('2d'); q2.fillStyle = 'rgb(160,130,90)'; q2.fillRect(0, 0, 30, 30);
+cx.save(); cx.globalCompositeOperation = 'screen';
+cx.drawImage(sq, 492, 600); cx.drawImage(sq, 492, 630); cx.restore();
+"""
+
+GREEN_BLUR_FRAME_OFFSCREEN = GREEN_IFRAME.replace(
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
+    "position:absolute;left:1086px;top:0;width:400px;height:1350px;border:0;filter:blur(20px)")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -898,7 +916,7 @@ CASES = [
     ("slide-29", RED_BORDERED, [LEFT], 1, None),
     ("slide-30", GREEN_OBJECT_FIT, [], 0, "can't place"),
     ("slide-31", RED_TENFOLD, [("left", 490)], None, None),
-    ("slide-32", GREEN_TENFOLD_LATE, [("top", 600), ("bottom", 660)], 2, "can't place"),
+    ("slide-32", GREEN_TENFOLD_LATE, [("left", 490), ("top", 600), ("bottom", 660)], 3, None),
     ("slide-33", GREEN_NO_COLLECTOR, [], 0, "could not collect its records"),
     ("slide-34", RED_OVERLAP, [LEFT, ("bottom", 700), ("top", 300)], 3, None),
     ("slide-35", GREEN_CSS_FILTERED, [], 0, "can't place"),
@@ -940,13 +958,15 @@ CASES = [
     ("slide-71", RED_CONTENTS_OVERFLOW, [LEFT], 1, None),
     ("slide-72", GREEN_SHADOW_OFFSCREEN, [], 0, "can't place"),
     ("slide-73", RED_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
+    ("slide-74", RED_TWO_SHORT_DRAWS, [LEFT, ("right", 522)], 2, None),
+    ("slide-75", GREEN_BLUR_FRAME_OFFSCREEN, [], 0, "does not look inside frames"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
 ANY_RECORDS = {"slide-48"}
-# the overlapping draws of slide-34 are ONE record, both draws merged into it,
-# over the stretch where the glow carries light at x 492 (y 359 to 1164, as on
-# every other fixture); draw 1 alone stops at y 700
+# the overlapping draws of slide-34 are ONE record, joined within the canvas's
+# ledger, over the stretch where the glow carries light at x 492 (y 359 to
+# 1164, as on every other fixture); draw 1 alone stops at y 700
 ONE_STRETCH = {"slide-34": ("left", 492, 359, 1164)}
 NEEDLE = "a layer of light ends in mid-air"
 
@@ -1003,8 +1023,7 @@ def main():
                 side, at, lo, hi = ONE_STRETCH[name]
                 on = [e for e in rec.get("lit_edges", [])
                       if e.get("side") == side and abs(e["at"] - at) <= 1]
-                if (len(on) != 1 or on[0].get("n") != 2
-                        or on[0]["from"] > lo + 2 or on[0]["to"] < hi - 2):
+                if (len(on) != 1 or on[0]["from"] > lo + 2 or on[0]["to"] < hi - 2):
                     bad.append("%s: expected one %s record at %d over %d to %d: %s"
                                % (name, side, at, lo, hi, json.dumps(on)))
 

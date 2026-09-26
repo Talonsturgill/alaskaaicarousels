@@ -548,7 +548,7 @@ LIT_EDGE_HOOK_JS = """
     let nextId = 0, lost = 0;
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
-    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096;
+    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096, LIT_SHORTS = 512;
     /* the largest bitmap read back, in pixels: three times a 2x slide canvas.
        A larger target is counted, never read (Codex, PR #403) */
     const LIT_AREA = 3 * 2160 * 2700;
@@ -603,7 +603,7 @@ LIT_EDGE_HOOK_JS = """
           if (book.size >= LIT_BOOK) return null;
         }
         e = { ref: new WeakRef(cv), g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
-              shortV: 0, shortH: 0, raw: [] };
+              shortV: 0, shortH: 0, raw: [], shorts: [] };
         book.set(id, e);
       }
       return e;
@@ -678,7 +678,7 @@ LIT_EDGE_HOOK_JS = """
         const v = axis === 'v', nLine = v ? W : H, nAlong = v ? H : W, pre = v ? preV : preH;
         const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
         const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
-        const cands = [];
+        const cands = [], shorts = [];
         let over = false;
         for (let c = 0; c <= nLine; c++) {
           for (const [side, inO, outO] of sides) {
@@ -689,8 +689,14 @@ LIT_EDGE_HOOK_JS = """
                 if (run === 0) { start = s; mx = 0; }
                 run++; if (vin > mx) mx = vin;
               } else {
+                /* a run under the floor is kept by position, so collection can
+                   join it with the next draw's on the same line (two 30 px
+                   draws can make one 60 px seam); past LIT_SHORTS a draw keeps
+                   only its longest, tested alone against the final scale
+                   (Codex, PR #403) */
                 if (run > 1 && run < pre) {
-                  if (v) { if (run > e.shortV) e.shortV = run; }
+                  if (shorts.length < LIT_SHORTS) shorts.push([side, c, start, start + run, mx]);
+                  else if (v) { if (run > e.shortV) e.shortV = run; }
                   else if (run > e.shortH) e.shortH = run;
                 }
                 if (run >= pre) {
@@ -713,17 +719,28 @@ LIT_EDGE_HOOK_JS = """
            line over overlapping stretches are one seam: two real seams two
            backing pixels apart stay two, because a canvas enlarged by CSS can
            put them far apart on the page (Codex, PR #403) */
-        cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
-        const kept = [];
-        for (const k of cands) {
+        const refine = (k) => {
           const lead = k[0] === 'left' || k[0] === 'top';
           let line = k[1], best = -Infinity;
           for (let c = Math.max(0, k[1] - 1); c <= Math.min(nLine, k[1] + 1); c++) {
             let j = 0;
-            for (let s = k[2]; s < k[3]; s += 2)
+            for (let s = k[2]; s < k[3]; s += (k[3] - k[2] > 8 ? 2 : 1))
               j += lead ? val(c, s) - val(c - 1, s) : val(c - 1, s) - val(c, s);
             if (j > best) { best = j; line = c; }
           }
+          return line;
+        };
+        const keptS = [];
+        for (const k of shorts) {
+          const line = refine(k);
+          if (keptS.some((z) => z[0] === k[0] && z[1] === line && z[2] < k[3] && k[2] < z[3])) continue;
+          keptS.push([k[0], line, k[2], k[3]]);
+          e.shorts.push({ op: b.op, axis: axis, side: k[0], line: line, a0: k[2], a1: k[3], mx: k[4] });
+        }
+        cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
+        const kept = [];
+        for (const k of cands) {
+          const line = refine(k);
           if (kept.some((z) => z[0] === k[0] && z[1] === line && z[2] < k[3] && k[2] < z[3])) continue;
           kept.push([k[0], line, k[2], k[3]]);
           /* LIT_RAW per DRAW, so no canvas can spend another's (at most
@@ -796,10 +813,10 @@ LIT_EDGE_HOOK_JS = """
         if (oy) { T = Math.max(T, ct); B = Math.min(B, cb); }
       }
       if (!(r.width > 0 && r.height > 0)) return false;
-      /* nothing of the box is left, but a drop-shadow, an SVG filter or a
-         reflection can still paint it into the picture: kept, so collection
-         counts it as unplaced rather than dropping it (Codex, PR #403) */
-      return (R > L && B > T) || repainted(cv, true);
+      /* nothing of the box is left, but any CSS filter (a drop-shadow, an SVG
+         filter, a blur's spread) or a reflection can still paint it into the
+         picture: kept, so it is counted rather than dropped (Codex, PR #403) */
+      return (R > L && B > T) || repainted(cv, false);
     };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
@@ -896,7 +913,7 @@ LIT_EDGE_HOOK_JS = """
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
-        const hard = e.raw.length > 0 || Math.max(e.shortV, e.shortH) >= 2;
+        const hard = e.raw.length > 0 || e.shorts.length > 0 || Math.max(e.shortV, e.shortH) >= 2;
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even
@@ -906,11 +923,26 @@ LIT_EDGE_HOOK_JS = """
         if (cropped(cv, bx)) { unplaced += e.lit; continue; }
         let counted = false;
         const kx = bx.w / cv.width, ky = bx.h / cv.height;
-        /* a run dropped under the floor that the final scale makes a seam */
+        /* a run past LIT_SHORTS, kept only as a length, that the final scale
+           makes a seam: counted, since its position was not kept */
         if (e.shortV * ky >= LIT_SPAN || e.shortH * kx >= LIT_SPAN) { unplaced += e.lit; counted = true; }
+        /* every draw's stretches on one line, kept and short alike, joined
+           where they touch, then held to LIT_SPAN at the final scale */
+        const segs = e.raw.concat(e.shorts).sort((p, q) =>
+          (p.axis < q.axis ? -1 : p.axis > q.axis ? 1 : 0) ||
+          (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.line - q.line || p.a0 - q.a0);
+        const joined = [];
+        for (const r of segs) {
+          const last = joined[joined.length - 1];
+          if (last && last.axis === r.axis && last.side === r.side && last.line === r.line &&
+              r.a0 <= last.a1 + 1) {
+            last.a1 = Math.max(last.a1, r.a1); last.mx = Math.max(last.mx, r.mx);
+            if (last.op !== r.op && !last.op.split(', ').includes(r.op)) last.op += ', ' + r.op;
+          } else joined.push(Object.assign({}, r));
+        }
         const tint = repainted(cv, false);
         let tinted = false;
-        for (const r of e.raw) {
+        for (const r of joined) {
           const v = r.axis === 'v', kA = v ? ky : kx, kC = v ? kx : ky;
           const page = (v ? bx.x : bx.y) + r.line * kC;
           if ((r.a1 - r.a0) * kA < LIT_SPAN) continue;

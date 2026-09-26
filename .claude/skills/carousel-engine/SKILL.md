@@ -603,7 +603,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   `drawImage` and records where the light the draw actually PAINTED stops
   within a pixel along a row or column (`lit_edges`), so a clip, a source rect
   past its bounds, a canvas filter, a negative size, a canvas appended after
-  painting or a nested canvas's own boundary all count. qa.py **WARNs** when the
+  painting or a nested canvas's own boundary all count. Stretches on one line are joined
+  across draws before the 40 design px span is applied, so two short draws that
+  make one long edge count, and a run under the floor a draw was measured at is
+  kept by position for that. qa.py **WARNs** when the
   shipped render shows a step of 1 level or more along that line for 40 design
   px or more, once per stretch (draws that stop on the same line over
   overlapping stretches are merged first); an edge that something later covers, on a
@@ -613,8 +616,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   place because it or an ancestor is rotated, skewed, mirrored, on an offset
   path, or under a CSS `filter` or box reflection (which can paint the seam
   somewhere else), or its `object-fit` is not `fill`, a draw whose seam, shorter than the hook
-  kept when it measured it, spans 40 design px at the size the canvas is
-  finally shown, a readback the browser refused, and a render record older than the check
+  kept when it measured it and past its 512 positional short runs, spans 40
+  design px at the size the canvas is finally shown, a readback the browser refused, and a render record older than the check
   itself (kept by a partial `--only` re-render). A seam is placed through the
   canvas's content box, so border and padding are allowed. It looks for rows and columns
   only: a diagonal cut, from a draw through a rotation or a diagonal clip, is
@@ -629,8 +632,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
   which honours `overflow-clip-margin`) spends the off-page budget and is never
-  counted, unless a drop-shadow, SVG filter or reflection paints it back in,
-  when it is counted as unplaced; a measurement made before
+  counted, unless a CSS filter (a drop-shadow, an SVG filter, a blur's spread) or a
+  reflection can paint it back in, when it is kept in view and counted; a measurement made before
   the canvas's width or height was set again (by any API: the property, an
   attribute call, an Attr or the `attributes` map, all seen by one
   MutationObserver) or its context was `reset()` is dropped, because each
