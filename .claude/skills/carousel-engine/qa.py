@@ -620,6 +620,22 @@ FLAT_CORE_FRAC = 0.02    # core disc area / frame area before anything is said
 FLAT_CORE_ALPHA = 0.05   # alpha at stop 0 below which the disc is not ink
 ADDITIVE_OPS = {"lighter", "plus-lighter", "plus"}
 
+# A LAYER OF LIGHT MAY NOT END IN MID-AIR (2026-09-26). render.py's
+# LIT_EDGE_HOOK_JS measures, on the canvas, where the light an additive
+# drawImage painted stops within a pixel; lit_edge_runs() confirms each line in
+# the shipped render. The step is the lit side's mean luminance (0..255, a 3
+# design px band past 1 px of anti-aliasing) minus the dark side's, through a
+# 5 design px running mean ALONG the line so film grain can't make or break a
+# run. The mean is normalised by the samples it actually covers, so a run's
+# ends are not pulled toward zero by padding.
+# Fitted on No.69's slide 08: the reconstructed 760 px layer at x 492 measures
+# a 4.6-level step for 153 design px, which the scorer saw in the 432 px thumb.
+# LIT_RUN is what keeps a coincidence quiet: the same reconstruction's bottom
+# edge lands on a row of page tops and holds 12.3 levels for only 32 px.
+LIT_STEP = 1.0     # levels the lit side must stand above the dark side
+LIT_RUN = 40       # design px the step must hold for, consecutively, to WARN
+LIT_SMOOTH = 5     # design px running mean along the line
+
 # TWO STRINGS ON ONE LINE MAY NOT SHARE A COLUMN (2026-09-07). See
 # same_line_overprint() for the run No.53 rounds this exists for and for the
 # corpus it was fitted against.
@@ -2869,6 +2885,66 @@ def ink_law(img_arr, rec, scale):
     return out
 
 
+def lit_edge_runs(img, e, design_w):
+    """Is a line render.py measured as a lit edge VISIBLE in the shipped render?
+
+    render.py knows an additive draw's painted light stopped on this line over
+    this stretch; it can't know whether a later draw, a DOM or SVG plate, a
+    stacking order or CSS opacity covered it. This reads the shipped render
+    along exactly that line and stretch and returns every run of LIT_RUN
+    design px or more as (length, median step, from, to) in design px, [] when
+    nothing qualifies, or None when the record can't be measured. Positive
+    steps only: the lit side is the layer's inside, and light only brightens.
+    """
+    a = np.asarray(img, dtype=np.float32)
+    if a.ndim != 3 or a.shape[2] < 3:
+        return None
+    rgb = a[..., :3]
+    if a.shape[2] == 4:
+        rgb = rgb * (a[..., 3:4] / 255.0)
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    k = lum.shape[1] / float(design_w)
+    side = e.get("side")
+    if side not in ("left", "right", "top", "bottom"):
+        return None
+    if side in ("top", "bottom"):
+        lum = lum.T
+    n_along, n_across = lum.shape
+    c = int(round(float(e["at"]) * k))
+    band = max(2, int(round(3 * k)))
+    gap = max(1, int(round(k)))
+    # the lit side is past the line for left/top, before it for right/bottom;
+    # a band is clipped to the picture, and a line with no room for a band on
+    # either side is the frame's own edge
+    lit = (c + gap, c + gap + band) if side in ("left", "top") else (c - gap - band, c - gap)
+    dark = (c - gap - band, c - gap) if side in ("left", "top") else (c + gap, c + gap + band)
+    lit = (max(0, lit[0]), min(n_across, lit[1]))
+    dark = (max(0, dark[0]), min(n_across, dark[1]))
+    if lit[1] <= lit[0] or dark[1] <= dark[0]:
+        return None
+    r0 = max(0, int(np.floor(float(e["from"]) * k)))
+    r1 = min(n_along, int(np.ceil(float(e["to"]) * k)))
+    if r1 - r0 < 3:
+        return None
+    step = (lum[r0:r1, lit[0]:lit[1]].mean(axis=1)
+            - lum[r0:r1, dark[0]:dark[1]].mean(axis=1))
+    w = max(1, int(round(LIT_SMOOTH * k)))
+    if w > 1 and step.size >= w:
+        ker = np.ones(w)
+        step = (np.convolve(step, ker, mode="same")
+                / np.convolve(np.ones_like(step), ker, mode="same"))
+    runs, start = [], None
+    for i, hit in enumerate(np.append(step >= LIT_STEP, False)):
+        if hit and start is None:
+            start = i
+        elif not hit and start is not None:
+            if (i - start) / k >= LIT_RUN:
+                runs.append(((i - start) / k, float(np.median(step[start:i])),
+                             (r0 + start) / k, (r0 + i) / k))
+            start = None
+    return runs
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -3819,6 +3895,73 @@ def main():
                 res["fails"].append(msg)
             except Exception as e:
                 res["warns"].append("flat-core record unreadable (%s)" % e)
+
+        # A LAYER OF LIGHT MAY NOT END IN MID-AIR (2026-09-26). render.py's
+        # LIT_EDGE_HOOK_JS measured where an additive draw's painted light
+        # stops; the shipped render decides whether anyone can see it. A WARN:
+        # the reading is exact at the brush and confirmed on the pixels, but an
+        # author MAY want a hard edge of light. What it points at cost run No.69
+        # its craft cycle, a lamp glow ending at x 492 in the thumb that every
+        # gate passed. What the hook could not look at is said out loud, one
+        # line each, because a check that goes quiet when it can't see is how a
+        # gap ships.
+        lit_gaps = (
+            ("lit_edges_capped",
+             "lit-edge check skipped %d additive drawImage call(s) or seam(s) past its "
+             "budget (16 measured draws onto on-page canvases and 24 onto off-page "
+             "ones, 24 seams per slide), so a layer's edge may not have been "
+             "examined. Composite sprites onto one offscreen layer and draw that "
+             "once, or check the additive layers by eye at thumb"),
+            ("lit_edges_unplaced",
+             "lit-edge check can't place %d measurement(s) exactly on the picture: "
+             "the canvas or an ancestor is rotated, skewed, mirrored, on an offset "
+             "path, filtered or reflected in CSS (which can paint the seam somewhere "
+             "else), clipped, masked or cropped by an ancestor's overflow inside the "
+             "frame (which can cut its light where the canvas did not stop painting "
+             "it), the canvas uses an object-fit other than fill, or it was painted "
+             "before its final size was known and is shown so large that a seam "
+             "shorter than the hook keeps could span 40 design px. Check that "
+             "canvas's additive layers by eye at thumb"),
+            ("lit_edges_readback",
+             "lit-edge check could not read back %d additive draw(s): the browser "
+             "refused the canvas's pixels (a tainted canvas) or the measurement "
+             "failed, so those layers were not examined. Check them by eye at thumb"),
+        )
+        if "lit_edges_readback" not in rec:
+            # a record kept from a render made before this check existed (a
+            # partial --only re-render keeps the others) never ran it; saying
+            # nothing would read as a clean pass (Codex, PR #403)
+            res["warns"].append("lit-edge check did not run on this slide: its render "
+                                "record predates the check (a partial --only re-render "
+                                "keeps older records). Re-render the slide")
+        for key, text in lit_gaps:
+            n = rec.get(key) or 0
+            if key == "lit_edges_readback" and n < 0:
+                res["warns"].append("lit-edge check could not collect its records "
+                                    "from the page, so no additive layer was examined")
+            elif n > 0:
+                res["warns"].append(text % int(n))
+        for le in rec.get("lit_edges", []):
+            try:
+                runs = lit_edge_runs(arr, le, design_w)
+                if not runs:
+                    continue
+                axis = "y" if le.get("side") in ("top", "bottom") else "x"
+                along = "x" if axis == "y" else "y"
+                where = "; ".join("%.1f-level step for %.0f design px (%s %.0f to %.0f)"
+                                  % (med, n, along, a0, a1) for n, med, a0, a1 in runs)
+                res["warns"].append(
+                    "a layer of light ends in mid-air: the light an additive (%s) "
+                    "drawImage painted stops at %s %.0f (its %s edge) within a pixel "
+                    "(up to %.3f of full just inside, nothing just outside), and the "
+                    "final picture shows a straight %s. Light has no edge of its own. "
+                    "Make the layer span the frame, or feather its border to zero "
+                    "(multiply the ramp by a smoothstep over the last 150 px or more on "
+                    "every side that lands inside the frame), and re-render."
+                    % (le.get("op", "?"), axis, float(le.get("at", 0)), le.get("side", "?"),
+                       float(le.get("lit_max", 0)), where))
+            except Exception as e:  # a malformed record must never stop QA
+                res["warns"].append("lit-edge record unreadable (%s)" % e)
 
         # A FULL-FRAME PATH THROWN AWAY (2026-09-09). render.py's clip hook
         # states the idiom and what it records; this is the verdict. The cost of

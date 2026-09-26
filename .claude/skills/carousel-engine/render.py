@@ -491,6 +491,316 @@ GRADIENT_CLIP_HOOK_JS = """
 })();
 """
 
+# --- A LAYER OF LIGHT MAY NOT END IN MID-AIR (2026-09-26) --------------------
+# Run No.69's CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and
+# composited it in `screen`. The halo still carried a few levels of light at the
+# layer's left edge, so the picture got a hard vertical edge at x 492, visible
+# in the 432 px thumb, and render, qa and every gate passed it. Light has no
+# edge of its own; a layer's bounding box is never where its light stops.
+#
+# MEASURED, NOT MODELLED. The hook reads the target canvas just before and just
+# after every ADDITIVE drawImage and keeps the light the draw actually added,
+# premultiplied (on a translucent canvas an additive draw can raise only the
+# alpha). A seam is where that added light stops within a pixel: a straight
+# row or column with LIT_STEP (1 level) or more one pixel in, past any
+# anti-aliasing, and LIT_ZERO (0.25 level) or less two pixels out. A clip, a
+# source rect past its source, a canvas filter, a negative size, smoothing and
+# the target canvas's own boundary all show up the same way, because they are
+# all the place the paint stopped, and a soft falloff never does. EVERY run on
+# a line is kept, not only the longest.
+#
+# Records stay in the target canvas's own pixels until the report is collected,
+# because a slide may paint a canvas and append it afterwards. They are placed
+# on the page through the canvas's CONTENT box (border and padding removed)
+# only when that is exact: object-fit is fill, and the canvas and every
+# ancestor carry no transform, rotate, scale or offset-path beyond a positive
+# axis-aligned scale and translation. A rotated, skewed or mirrored canvas is
+# counted as UNPLACED rather than mapped onto an unrelated line; so is a seam
+# on a canvas under a CSS filter or box reflection, which can paint it where
+# the line probe does not look (the frame's own edge is exempted first); so is a
+# draw measured before the canvas's final size was known whose run floor that
+# size turns into LIT_SPAN design px or more.
+# Nothing here is a verdict: a later draw, a DOM plate, stacking order or CSS
+# opacity can hide the line, so qa.py confirms the step in the shipped render.
+#
+# BOUNDED ON PURPOSE. Run No.69 built a wider version and withdrew it after
+# eleven review rounds widened it each time (knowledge/FIELD_NOTES.md). This one
+# measures axis-aligned seams only: a diagonal cut, from a draw through a
+# rotation or a diagonal clip, is not looked for and is not claimed. Reading a
+# canvas costs, so LIT_ON measured draws onto on-page canvases and LIT_OFF onto
+# off-page ones per slide; a draw past either budget, a readback the browser
+# refuses (a tainted canvas) and a seam that can't be placed are each COUNTED
+# and reported by qa.py, never dropped in silence. Additive FILLS are not this
+# hook's: a radial ramp clipped by its shape is GRADIENT_CLIP_HOOK_JS's.
+LIT_EDGE_HOOK_JS = """
+(() => {
+  try {
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto || typeof proto.drawImage !== 'function' ||
+        typeof proto.getImageData !== 'function') return;
+    const st = window.__akLit = { raw: [], skipped: [], cappedOn: [], failed: [], pres: [], capped: 0 };
+    const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
+                       'lighten': 1, 'color-dodge': 1 };
+    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24;
+    const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
+    let nOn = 0, nOff = 0;
+    const origDraw = proto.drawImage, origGet = proto.getImageData;
+    const lum = (d, i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
+    const tally = (list, cv) => {
+      const hit = list.find((z) => z.cv === cv);
+      if (hit) hit.n++;
+      else if (list.length < 64) list.push({ cv: cv, n: 1 });
+      else st.capped++;
+    };
+    const before = (ctx) => {
+      if (!ADDITIVE[ctx.globalCompositeOperation]) return null;
+      const cv = ctx.canvas;
+      if (!cv || !(cv.width > 0 && cv.height > 0)) return null;
+      /* a canvas that is connected but not rendered (display:none, hidden,
+         wholly outside the frame) is a staging canvas: it spends the off-page
+         budget, and a draw skipped on any canvas is counted only if that
+         canvas is shown when the report is taken (Codex, PR #403) */
+      const placed = shown(cv);
+      if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) {
+        tally(placed ? st.cappedOn : st.skipped, cv);
+        return null;
+      }
+      if (placed) nOn++; else nOff++;
+      try {
+        return { op: ctx.globalCompositeOperation,
+                 d: origGet.call(ctx, 0, 0, cv.width, cv.height).data };
+      } catch (e) { tally(st.failed, cv); return null; }
+    };
+    const after = (ctx, b) => {
+      const cv = ctx.canvas, W = cv.width, H = cv.height;
+      let a;
+      try { a = origGet.call(ctx, 0, 0, W, H).data; }
+      catch (e) { tally(st.failed, cv); return; }
+      if (a.length !== b.d.length) return;
+      const D = new Float32Array(W * H);
+      let any = false;
+      for (let p = 0, i = 0; p < D.length; p++, i += 4) {
+        const v = lum(a, i) - lum(b.d, i);
+        if (v > 0) { D[p] = v; any = true; }
+      }
+      if (!any) return;
+      /* the shortest run worth keeping, in canvas px: LIT_SPAN design px at
+         the scale the canvas is shown at now, LIT_PRE while that is unknown.
+         Collection checks the scale again and COUNTS a draw whose floor could
+         have dropped a run that now spans LIT_SPAN (Codex, PR #403) */
+      let preV = LIT_PRE, preH = LIT_PRE;
+      const b0 = cv.isConnected && placeable(cv) ? box(cv) : null;
+      if (b0) {
+        preV = Math.max(2, Math.floor(LIT_SPAN * H / b0.h));
+        preH = Math.max(2, Math.floor(LIT_SPAN * W / b0.w));
+      }
+      const pz = st.pres.find((z) => z.cv === cv);
+      if (pz) { pz.n++; pz.v = Math.max(pz.v, preV); pz.h = Math.max(pz.h, preH); }
+      else if (st.pres.length < 64) st.pres.push({ cv: cv, n: 1, v: preV, h: preH });
+      const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
+      /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
+         the light begins at the line; 'right'/'bottom': it ends there */
+      const scan = (axis) => {
+        const v = axis === 'v', nLine = v ? W : H, nAlong = v ? H : W, pre = v ? preV : preH;
+        const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
+        const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
+        const cands = [];
+        for (let c = 0; c <= nLine; c++) {
+          for (const [side, inO, outO] of sides) {
+            let run = 0, start = 0, mx = 0;
+            for (let s = 0; s <= nAlong; s++) {
+              const vin = s < nAlong ? val(c + inO, s) : 0;
+              if (s < nAlong && vin >= LIT_STEP && val(c + outO, s) <= LIT_ZERO) {
+                if (run === 0) { start = s; mx = 0; }
+                run++; if (vin > mx) mx = vin;
+              } else {
+                if (run >= pre) cands.push([side, c, start, start + run, mx]);
+                run = 0;
+              }
+            }
+          }
+        }
+        /* the tolerant test lights the lines either side of a seam too; keep
+           one per stretch, on the line where the added light jumps most */
+        cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
+        const kept = [];
+        for (const k of cands) {
+          if (kept.some((z) => z[0] === k[0] && Math.abs(z[1] - k[1]) <= 3 &&
+                               z[2] < k[3] && k[2] < z[3])) continue;
+          kept.push(k);
+          const lead = k[0] === 'left' || k[0] === 'top';
+          let line = k[1], best = -Infinity;
+          for (let c = Math.max(0, k[1] - 3); c <= Math.min(nLine, k[1] + 3); c++) {
+            let j = 0;
+            for (let s = k[2]; s < k[3]; s += 2)
+              j += lead ? val(c, s) - val(c - 1, s) : val(c - 1, s) - val(c, s);
+            if (j > best) { best = j; line = c; }
+          }
+          if (st.raw.length >= LIT_RAW) { st.capped++; continue; }
+          st.raw.push({ cv: cv, op: b.op, axis: axis, side: k[0], line: line,
+                        a0: k[2], a1: k[3], mx: k[4] });
+        }
+      };
+      scan('v'); scan('h');
+    };
+    const frame = () => [document.documentElement.clientWidth || window.innerWidth,
+                         document.documentElement.clientHeight || window.innerHeight];
+    const shown = (cv) => {
+      if (!cv || !cv.isConnected) return false;
+      if (typeof cv.checkVisibility === 'function' &&
+          !cv.checkVisibility({ visibilityProperty: true })) return false;
+      const r = cv.getBoundingClientRect(), [fw, fh] = frame();
+      return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 && r.left < fw && r.top < fh;
+    };
+    /* placed by its content box only when nothing on the way up rotates,
+       skews, mirrors or bends it and the bitmap fills that box (object-fit
+       fill, the default); anything else is counted, not guessed */
+    const placeable = (cv) => {
+      if ((getComputedStyle(cv).objectFit || 'fill') !== 'fill') return false;
+      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+        const cs = getComputedStyle(el);
+        const tf = cs.transform || 'none';
+        if (tf !== 'none') {
+          const m = tf.match(/^matrix\\(([^)]*)\\)$/);
+          if (!m) return false;
+          const q = m[1].split(',').map(Number);
+          if (!(q[0] > 0 && q[3] > 0 && Math.abs(q[1]) < 1e-6 && Math.abs(q[2]) < 1e-6)) return false;
+        }
+        const rot = cs.rotate || 'none';
+        if (rot !== 'none' && !/^0(deg|rad|turn|grad)?$/.test(rot.trim())) return false;
+        const sc = cs.scale || 'none';
+        if (sc !== 'none' && sc.trim().split(/\\s+/).some((t) => !(parseFloat(t) > 0))) return false;
+        const op = cs.offsetPath || 'none';
+        if (op !== 'none') return false;
+      }
+      return true;
+    };
+    /* the canvas's CONTENT box on the page, where its bitmap is drawn: the
+       bounding box less border and padding, scaled by whatever positive
+       scale sits above it (Codex, PR #403) */
+    const box = (cv) => {
+      const r = cv.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) return null;
+      const cs = getComputedStyle(cv), f = (q) => parseFloat(cs[q]) || 0;
+      const ex = f('borderLeftWidth') + f('paddingLeft'), exR = f('borderRightWidth') + f('paddingRight');
+      const ey = f('borderTopWidth') + f('paddingTop'), eyB = f('borderBottomWidth') + f('paddingBottom');
+      let cw = parseFloat(cs.width), ch = parseFloat(cs.height);
+      if (!(cw > 0 && ch > 0)) { cw = cv.offsetWidth - ex - exR; ch = cv.offsetHeight - ey - eyB; }
+      else if (cs.boxSizing === 'border-box') { cw -= ex + exR; ch -= ey + eyB; }
+      if (!(cw > 0 && ch > 0)) return null;
+      const sx = r.width / (cw + ex + exR), sy = r.height / (ch + ey + eyB);
+      return { x: r.left + (window.scrollX || 0) + ex * sx,
+               y: r.top + (window.scrollY || 0) + ey * sy, w: cw * sx, h: ch * sy };
+    };
+    /* a CSS filter or a box reflection on the canvas or an ancestor can paint
+       its seam somewhere the line probe does not look (a displaced
+       drop-shadow): such a seam is counted, not confirmed (Codex, PR #403) */
+    const repainted = (cv) => {
+      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+        const cs = getComputedStyle(el);
+        if ((cs.filter || 'none') !== 'none') return true;
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
+      }
+      return false;
+    };
+    /* CSS that crops a measured canvas's light where the canvas did not stop
+       painting it: a clip-path, a mask, or an ancestor's overflow or paint
+       containment whose edge falls inside the canvas and inside the frame.
+       Such a canvas's draws are counted, not confirmed (Codex, PR #403). An
+       ancestor clip on the frame's own edge, the usual wrapper, is no crop */
+    const cropped = (cv, bx) => {
+      const [fw, fh] = frame();
+      const cuts = (e, lo, hi, fmax) => e > lo + 0.5 && e < hi - 0.5 && e > 1 && e < fmax - 1;
+      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+        const cs = getComputedStyle(el);
+        if ((cs.clipPath || 'none') !== 'none') return true;
+        if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
+        if (el === cv) continue;
+        const ov = (cs.overflowX || 'visible') !== 'visible' || (cs.overflowY || 'visible') !== 'visible';
+        if (!ov && !/paint|strict|content/.test(cs.contain || '')) continue;
+        const r = el.getBoundingClientRect();
+        const s = el.offsetWidth ? r.width / el.offsetWidth : 1, t = el.offsetHeight ? r.height / el.offsetHeight : 1;
+        const L = r.left + (window.scrollX || 0) + el.clientLeft * s, T = r.top + (window.scrollY || 0) + el.clientTop * t;
+        const R = L + el.clientWidth * s, B = T + el.clientHeight * t;
+        if (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw) ||
+            cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)) return true;
+      }
+      return false;
+    };
+    window.__akLitCollect = () => {
+      const recs = [];
+      let unplaced = 0, capped = st.capped, readback = 0;
+      const rp = new Map();
+      const fw = document.documentElement.clientWidth || window.innerWidth;
+      const fh = document.documentElement.clientHeight || window.innerHeight;
+      const ok = new Map();
+      for (const e of st.raw) {
+        const cv = e.cv;
+        if (!shown(cv)) continue;                   /* never reached the picture */
+        if (!ok.has(cv)) ok.set(cv, placeable(cv) ? box(cv) : false);
+        const bx = ok.get(cv);
+        if (bx === null) continue;                 /* not shown at any size */
+        if (!bx) { unplaced++; continue; }
+        const v = e.axis === 'v', kx = bx.w / cv.width, ky = bx.h / cv.height;
+        const kA = v ? ky : kx, kC = v ? kx : ky;
+        const ox = bx.x, oy = bx.y;
+        const page = (v ? ox : oy) + e.line * kC;
+        if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
+        if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
+        if (!rp.has(cv)) rp.set(cv, repainted(cv));
+        if (rp.get(cv)) { unplaced++; continue; }
+        recs.push({ side: e.side, axis: e.axis, at: page,
+                    from: (v ? oy : ox) + e.a0 * kA, to: (v ? oy : ox) + e.a1 * kA,
+                    op: e.op, lit_max: e.mx / 255, n: 1 });
+      }
+      /* one record per stretch of a line: records on the same side of the
+         same line (within 1 design px) whose stretches overlap or touch are
+         merged, so layered draws warn once and do not fill the cap */
+      recs.sort((p, q) => (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.from - q.from);
+      const out = [];
+      for (const r of recs) {
+        const hit = out.find((z) => z.side === r.side && Math.abs(z.at - r.at) <= 1 &&
+                                    r.from <= z.to + 1 && z.from <= r.to + 1);
+        if (hit) {
+          hit.from = Math.min(hit.from, r.from); hit.to = Math.max(hit.to, r.to);
+          hit.lit_max = Math.max(hit.lit_max, r.lit_max); hit.n += r.n;
+          if (hit.op !== r.op) hit.op = hit.op + ', ' + r.op;
+          continue;
+        }
+        out.push(Object.assign({}, r));
+      }
+      if (out.length > LIT_MAX) { capped += out.length - LIT_MAX; out.length = LIT_MAX; }
+      for (const z of out) {
+        z.at = +z.at.toFixed(1); z.from = +z.from.toFixed(1); z.to = +z.to.toFixed(1);
+        z.lit_max = +z.lit_max.toFixed(4);
+      }
+      /* a draw measured at a floor that the canvas's final scale turns into
+         40 design px or more may have dropped a visible run: counted */
+      for (const z of st.pres) {
+        if (!shown(z.cv)) continue;
+        if (!ok.has(z.cv)) ok.set(z.cv, placeable(z.cv) ? box(z.cv) : false);
+        const bx = ok.get(z.cv);
+        if (!bx) continue;                         /* counted above, or not shown */
+        if (cropped(z.cv, bx)) { unplaced += z.n; continue; }
+        if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
+            (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
+      }
+      for (const z of st.skipped.concat(st.cappedOn)) if (shown(z.cv)) capped += z.n;
+      for (const z of st.failed) if (shown(z.cv)) readback += z.n;
+      return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
+    };
+    proto.drawImage = function () {
+      let b = null;
+      try { b = before(this); } catch (e) { b = null; }
+      const res = origDraw.apply(this, arguments);
+      /* a measurement that throws is counted as unmeasured, not swallowed */
+      if (b) { try { after(this, b); } catch (e) { try { tally(st.failed, this.canvas); } catch (e2) {} } }
+      return res;
+    };
+  } catch (e) {}
+})();
+"""
+
 # --- A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01) ---------------------
 # Run No.47's slide 07 solved nine analytic shadow tips and drew none of them.
 # A clip test asked whether each cast point was left of a surveyed cut and broke
@@ -2510,6 +2820,18 @@ IN_PAGE_QA_JS = """
      that needs no taste, whether one is sitting on a declared contact shadow. */
   out.add_glows = (Array.isArray(window.__akAddGlow)
                    ? window.__akAddGlow : []).slice(0, 24);
+  /* Additive canvas layers whose painted light stops on a straight line, in
+     design px, with what the hook could not measure or place. LIT_EDGE_HOOK_JS
+     holds the measurement; qa.py confirms each line in the shipped render. */
+  out.lit_edges = []; out.lit_edges_capped = 0; out.lit_edges_unplaced = 0;
+  out.lit_edges_readback = 0;
+  try {
+    if (window.__akLitCollect) {
+      const le = window.__akLitCollect();
+      out.lit_edges = le.edges; out.lit_edges_capped = le.capped;
+      out.lit_edges_unplaced = le.unplaced; out.lit_edges_readback = le.readback;
+    } else out.lit_edges_readback = -1;       /* the hook never installed */
+  } catch (e) { out.lit_edges_readback = -1; }
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -3370,6 +3692,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
+           "lit_edges": [], "lit_edges_capped": 0, "lit_edges_unplaced": 0,
+           "lit_edges_readback": 0,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3391,6 +3715,10 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     # cannot confuse anyone's call-site attribution, and installing it last means
     # it sees the brush for every op the page makes.
     page.add_init_script(INK_HOOK_JS)
+    # Also outside the paint hook and stack-free. It wraps only drawImage, which
+    # no other hook here wraps, and reads the canvas with the original
+    # getImageData, so the order among the rest does not matter to it.
+    page.add_init_script(LIT_EDGE_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -3410,7 +3738,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
-                                       "add_glows",
+                                       "add_glows", "lit_edges", "lit_edges_capped",
+                                       "lit_edges_unplaced", "lit_edges_readback",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",
