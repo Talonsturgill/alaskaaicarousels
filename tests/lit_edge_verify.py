@@ -65,6 +65,13 @@ through the REAL render.py and qa.py:
             paint the seam elsewhere: counted, and qa says it can't place it
   36 GREEN  the repaired full-frame glow on a canvas under CSS contrast():
             the frame's edges are not seams, so nothing is counted
+  37 GREEN  the repaired full-frame glow cropped by CSS clip-path from x 492:
+            counted, and qa says it can't place it
+  38 GREEN  a full-frame glow canvas in a 588 px overflow:hidden wrapper at
+            x 492: counted, and qa says so
+  39 GREEN  the repaired glow in a frame-sized overflow:hidden wrapper: silent
+  40 RED    thirty additive draws on a display:none staging canvas, then the
+            RED layer: measured and reported, with no budget warning
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), and what the
@@ -73,9 +80,11 @@ canvas exists under render.py's flags (--allow-file-access-from-files, and a
 foreignObject SVG image stays readable, measured 2026-09-26), so the fixture
 feeds qa.py a record with lit_edges_readback set and checks it is named.
 
-OUT OF SCOPE, deliberately: a seam at any angle other than a row or column
-(a draw through a rotation, a diagonal clip). The hook does not look for one
-and nothing here claims it does.
+OUT OF SCOPE, deliberately, and not claimed by any fixture: a seam at any
+angle other than a row or column (a draw through a rotation, a diagonal
+clip); light that reaches the page without an additive drawImage onto a
+shown 2D canvas (a layer composited with source-over, a canvas blended by
+CSS mix-blend-mode, a canvas painted from a worker or an ImageBitmap).
 
     python3 tests/lit_edge_verify.py
 
@@ -415,6 +424,45 @@ GREEN_FILTERED_FRAME = """
 document.getElementById('c').style.filter = 'contrast(1.1)';
 """ + GREEN_SPAN
 
+GREEN_CLIP_PATH = """
+// the repaired full-frame glow, cropped by CSS clip-path from x 492: the
+// light now stops on a line the canvas never painted (Codex, PR #403)
+document.getElementById('c').style.clipPath = 'inset(0 0 0 492px)';
+""" + GREEN_SPAN
+
+GREEN_OVERFLOW_CROP = """
+// a full-frame glow canvas inside a 588 px wrapper at x 492 that hides its
+// overflow: cropped inside the frame, so its draws are counted
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px;overflow:hidden';
+document.body.appendChild(wrap);
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:-492px;top:0;width:1080px;height:1350px';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
+GREEN_FRAME_WRAPPER = """
+// the usual frame-sized wrapper with overflow hidden: its edges are the
+// frame's, so the repaired glow inside it is silent
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px;overflow:hidden';
+document.body.appendChild(wrap); wrap.appendChild(document.getElementById('c'));
+""" + GREEN_SPAN
+
+RED_AFTER_HIDDEN_STAGING = """
+// thirty additive sprite draws on a connected but display:none staging
+// canvas: they spend the off-page budget, not the visible one, and are never
+// counted, so the RED layer that follows is measured (Codex, PR #403)
+const stc = document.createElement('canvas'); stc.width = 1080; stc.height = 1350;
+stc.style.display = 'none'; document.body.appendChild(stc);
+const st2 = stc.getContext('2d');
+""" + sprites(30, "st2") + """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -456,6 +504,10 @@ CASES = [
     ("slide-34", RED_OVERLAP, [LEFT, ("bottom", 700), ("top", 300)], 3, None),
     ("slide-35", GREEN_CSS_FILTERED, [], 0, "can't place"),
     ("slide-36", GREEN_FILTERED_FRAME, [], 0, None),
+    ("slide-37", GREEN_CLIP_PATH, [], 0, "can't place"),
+    ("slide-38", GREEN_OVERFLOW_CROP, [], 0, "can't place"),
+    ("slide-39", GREEN_FRAME_WRAPPER, [], 0, None),
+    ("slide-40", RED_AFTER_HIDDEN_STAGING, [LEFT], 1, None),
 ]
 # the overlapping draws of slide-34 are ONE record, both draws merged into it,
 # over the stretch where the glow carries light at x 492 (y 359 to 1164, as on

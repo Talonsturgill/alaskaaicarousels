@@ -618,7 +618,13 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   itself (kept by a partial `--only` re-render). A seam is placed through the
   canvas's content box, so border and padding are allowed. It looks for rows and columns
   only: a diagonal cut, from a draw through a rotation or a diagonal clip, is
-  not checked. Reconstruction: `python tests/lit_edge_verify.py`.
+  not checked. Nor is light that reaches the picture without an additive
+  `drawImage` onto a shown 2D canvas: a glow layer composited with
+  `source-over`, a canvas blended by CSS `mix-blend-mode`, or a canvas painted
+  from a worker or an ImageBitmap. A canvas clipped, masked or cropped by an
+  ancestor's overflow inside the frame is counted, not confirmed; a staging
+  canvas that is connected but not shown spends the off-page budget and is
+  never counted. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

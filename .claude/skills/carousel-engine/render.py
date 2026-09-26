@@ -538,7 +538,7 @@ LIT_EDGE_HOOK_JS = """
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto || typeof proto.drawImage !== 'function' ||
         typeof proto.getImageData !== 'function') return;
-    const st = window.__akLit = { raw: [], skipped: [], failed: [], pres: [], capped: 0 };
+    const st = window.__akLit = { raw: [], skipped: [], cappedOn: [], failed: [], pres: [], capped: 0 };
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
     const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24;
@@ -556,11 +556,13 @@ LIT_EDGE_HOOK_JS = """
       if (!ADDITIVE[ctx.globalCompositeOperation]) return null;
       const cv = ctx.canvas;
       if (!cv || !(cv.width > 0 && cv.height > 0)) return null;
-      const placed = !!cv.isConnected;
+      /* a canvas that is connected but not rendered (display:none, hidden,
+         wholly outside the frame) is a staging canvas: it spends the off-page
+         budget, and a draw skipped on any canvas is counted only if that
+         canvas is shown when the report is taken (Codex, PR #403) */
+      const placed = shown(cv);
       if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) {
-        /* an on-page draw past the budget is counted now; an off-page one
-           counts only if its canvas is on the page when the report is taken */
-        if (placed) st.capped++; else tally(st.skipped, cv);
+        tally(placed ? st.cappedOn : st.skipped, cv);
         return null;
       }
       if (placed) nOn++; else nOff++;
@@ -641,6 +643,15 @@ LIT_EDGE_HOOK_JS = """
       };
       scan('v'); scan('h');
     };
+    const frame = () => [document.documentElement.clientWidth || window.innerWidth,
+                         document.documentElement.clientHeight || window.innerHeight];
+    const shown = (cv) => {
+      if (!cv || !cv.isConnected) return false;
+      if (typeof cv.checkVisibility === 'function' &&
+          !cv.checkVisibility({ visibilityProperty: true })) return false;
+      const r = cv.getBoundingClientRect(), [fw, fh] = frame();
+      return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 && r.left < fw && r.top < fh;
+    };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
        fill, the default); anything else is counted, not guessed */
@@ -692,6 +703,30 @@ LIT_EDGE_HOOK_JS = """
       }
       return false;
     };
+    /* CSS that crops a measured canvas's light where the canvas did not stop
+       painting it: a clip-path, a mask, or an ancestor's overflow or paint
+       containment whose edge falls inside the canvas and inside the frame.
+       Such a canvas's draws are counted, not confirmed (Codex, PR #403). An
+       ancestor clip on the frame's own edge, the usual wrapper, is no crop */
+    const cropped = (cv, bx) => {
+      const [fw, fh] = frame();
+      const cuts = (e, lo, hi, fmax) => e > lo + 0.5 && e < hi - 0.5 && e > 1 && e < fmax - 1;
+      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+        const cs = getComputedStyle(el);
+        if ((cs.clipPath || 'none') !== 'none') return true;
+        if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
+        if (el === cv) continue;
+        const ov = (cs.overflowX || 'visible') !== 'visible' || (cs.overflowY || 'visible') !== 'visible';
+        if (!ov && !/paint|strict|content/.test(cs.contain || '')) continue;
+        const r = el.getBoundingClientRect();
+        const s = el.offsetWidth ? r.width / el.offsetWidth : 1, t = el.offsetHeight ? r.height / el.offsetHeight : 1;
+        const L = r.left + (window.scrollX || 0) + el.clientLeft * s, T = r.top + (window.scrollY || 0) + el.clientTop * t;
+        const R = L + el.clientWidth * s, B = T + el.clientHeight * t;
+        if (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw) ||
+            cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)) return true;
+      }
+      return false;
+    };
     window.__akLitCollect = () => {
       const recs = [];
       let unplaced = 0, capped = st.capped, readback = 0;
@@ -701,7 +736,7 @@ LIT_EDGE_HOOK_JS = """
       const ok = new Map();
       for (const e of st.raw) {
         const cv = e.cv;
-        if (!cv || !cv.isConnected) continue;       /* never reached the page */
+        if (!shown(cv)) continue;                   /* never reached the picture */
         if (!ok.has(cv)) ok.set(cv, placeable(cv) ? box(cv) : false);
         const bx = ok.get(cv);
         if (bx === null) continue;                 /* not shown at any size */
@@ -742,15 +777,16 @@ LIT_EDGE_HOOK_JS = """
       /* a draw measured at a floor that the canvas's final scale turns into
          40 design px or more may have dropped a visible run: counted */
       for (const z of st.pres) {
-        if (!z.cv || !z.cv.isConnected) continue;
+        if (!shown(z.cv)) continue;
         if (!ok.has(z.cv)) ok.set(z.cv, placeable(z.cv) ? box(z.cv) : false);
         const bx = ok.get(z.cv);
         if (!bx) continue;                         /* counted above, or not shown */
+        if (cropped(z.cv, bx)) { unplaced += z.n; continue; }
         if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
             (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
       }
-      for (const z of st.skipped) if (z.cv && z.cv.isConnected) capped += z.n;
-      for (const z of st.failed) if (z.cv && z.cv.isConnected) readback += z.n;
+      for (const z of st.skipped.concat(st.cappedOn)) if (shown(z.cv)) capped += z.n;
+      for (const z of st.failed) if (shown(z.cv)) readback += z.n;
       return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
     };
     proto.drawImage = function () {

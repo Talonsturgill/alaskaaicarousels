@@ -8684,8 +8684,11 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   axis-aligned scale and translation (transform, rotate, scale and offset-path are all read),
   and confirmed in the shipped PNG. Everything it can't examine is COUNTED and warned: draws
   past the budget, unplaceable canvases (rotated, skewed, mirrored, filtered or reflected in CSS,
-  object-fit other than fill), refused readbacks, render records older than the check. OUT, on
-  purpose: diagonal seams (the parked detector for them was the largest single piece of the
+  object-fit other than fill, clipped, masked or cropped by an ancestor's overflow inside the frame),
+  refused readbacks, render records older than the check. OUT, on purpose: light that reaches the
+  page without an additive drawImage onto a shown 2D canvas (a source-over layer, CSS
+  mix-blend-mode, a worker or ImageBitmap canvas; measured use in 83 slides: none, all 47
+  mix-blend-modes are overlay), diagonal seams (the parked detector for them was the largest single piece of the
   sprawl), additive fills (the gradient-clip check owns radial fills), FAIL severity.
   MEASURED: an image-only detector was tried first and found 479 low-contrast straight edges
   over 86 shipped slides (rules, baselines, halftone rows), so the brush-side measurement is
@@ -8694,7 +8697,7 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   are BYTE-IDENTICAL to main's renders and qa fail counts are unchanged; render time 478 s
   against 493 s on main, noise. It catches the No.69 reconstruction at x 492 (two visible
   stretches, 2.5 and 6.2 levels, split where the table band covers the line) and its y 615 top
-  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 36 fixtures through the real engine,
+  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 40 fixtures through the real engine,
   exit 0 on the branch and exit 1 on main. A tainted canvas has no route under render.py's
   flags (--allow-file-access-from-files; a foreignObject SVG image stays readable), so the
   readback warning is proved by feeding qa a record, not by a real taint.
