@@ -8636,3 +8636,74 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   frames, every frame's largest object's modelling named, a masterful depth frame, a tonal arc). Watch
   `trend_check --window 10`: if art stays at 7 for ten runs with the floor running, the next lever is
   the build itself (first-build quality per DESIGN_DOCTRINE), not another gate.
+
+## 2026-09-26 craft refresh (No.69)
+
+- Nothing new on the platform side. Two 2026 roundups repeat what CAROUSEL_CRAFT already carries: document posts lead engagement (Socialinsider 7.00 percent) and generic listicle carousels without specific data are said to lose about 35 percent reach after LinkedIn's Q1 2026 low-substance changes (https://melaniegoodmanlinkedinconsultant.substack.com/p/linkedin-algorithm-2026-reach-topic-authority, a consultant summary, not a LinkedIn source; confidence L).
+- CANDIDATE TECHNIQUE, not in TECHNIQUE_LIBRARY: digital bas-relief from a height field (Weyrich, Deng, Barnes, Rusinkiewicz and Finkelstein, SIGGRAPH 2007, https://dl.acm.org/doi/10.1145/1276377.1276417). The method compresses the GRADIENT of a height field (attenuate large gradients, keep small ones), then re-integrates, so a deep scene flattens into a shallow relief that still reads every edge under a raking light. It is a small numeric pass over a 2D array plus a Lambert shade, portable to offline Canvas, and it is a mark-making family the deck ledger has never used (the bench has hachure, engraving, scribe and PBR but no sculpted relief). Worth trying on a hero object that should read as a medal or a stamped seal rather than a rendered solid.
+
+## 2026-09-26 retro (No.69, Alaska News review labels, 8.16, art 7)
+
+- THE STORY WAS A MEASUREMENT, AND THE MEASUREMENT MOVED. The deck counted the review label on all 90 articles in the outlet's 48-hour news sitemap at about 07:35 UTC. A recheck at 09:05 UTC found three of the seven newest unreviewed articles already reading "Reviewed by Cale Green" and one more edited, all four retitled under new URLs (the old URLs 308 to the new ones, so follow redirects), while two others lost their footer label at their original URLs. A label count is a dated snapshot of a live queue. Say the time in the source block, keep the raw rows (runs/2026-09-26/evidence/), and tell the editor to reopen the spot-check links before posting.
+- SHIP MEASUREMENT DATA, NOT THE OUTLET'S PAGES. The evidence folder shipped the label rows, the sitemap and the recheck; the copies of the outlet's about, policy, corrections and masthead pages stayed in out/, because republishing another newsroom's page text is not ours to do.
+- THE FLOW CRITIC WAS THE FIRST CRAFT ORDER, AND IT WAS RIGHT. Four pixel rounds shipped every frame against its own dossier while the deck still carried brass in five materials and walnut in three. The flow critic's craft block named the deck-level causes (03 had no surface under its rings, 09 aliased at 3x upscale, 08's lamp point was grey, 06's discs were flat coins); one round on those moved the predicted art from 7.0 to 7.5. The scorer still gave 7 twice: every frame improved, and each one still had a findable zoom defect. Art at 8 needs the zoom test passed on EVERY frame, not the weakest few repaired.
+- A REPAIR CAN INTRODUCE THE NEXT DEFECT. The craft cycle's dithered lamp glow was drawn on a 760 px layer; its residual halo left a hard vertical edge the scorer saw at thumb. Any glow or pool layer must span the frame (or feather every edge by 200 px or more); check the layer bounds with a column-mean step test before calling it done.
+- AKSDF IS FAST ENOUGH WITH BOUNDS. Bounding-sphere culling (skip the lamp and the stack wherever they can't be nearer than the floor) took the 09 raymarch from 21 s at 720 x 900 to 15 s at 1260 x 1575, under render.py's 30 s renderReady cap. Texture the floor by returning a material id from the scene function only when d < 0.01, or every march step pays for it.
+- QA'S MARK PROBE READS INK SPREAD. A physically correct bokeh disc (smooth centre, hot rim) failed marks_reach_frame on 30 of 88 discs; declaring each disc's point on its own rim fixed it honestly. See instincts.
+- DEFERRED, NAMED: 07's halftone breaks into dashes where the row pitch and the dot size are computed from different y (sy0 against y); 09's walnut still reads as bold converging lines; 03's rings are still stroked targets; the cover has no focal light (the dossier's lamp pool at the lower right never landed).
+
+## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air (WITHDRAWN, PARKED)
+
+- THE DEFECT IS REAL. The CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and left a
+  hard vertical edge at x 492 that every gate passed and the re-scorer saw at thumb. THE HABIT still
+  stands: a glow, pool or haze layer spans the frame, or every edge that lands inside the frame is
+  feathered to zero (a smoothstep over 150 px or more). Its bounding box is never where its light stops.
+- THE CHECK WAS WITHDRAWN BEFORE MERGE. Phase 12 built a render.py hook plus a qa.py WARN for it and
+  Codex reviewed it eleven times on PR #402, finding new coverage gaps every round. The last version
+  on the branch (commit 3adf7a91; PR #402 lands as a MERGE commit, not a squash, so `git show
+  3adf7a91` and `git checkout 3adf7a91 -- tests/lit_edge_verify.py` work from main) had moved from
+  modelling drawImage geometry to MEASURING the paint: the target canvas read before and after each
+  additive drawImage, a seam being where the added light stops within a pixel (1 level in, 0.25 out,
+  40 design px straight), mapped to the page at report collection and confirmed in the shipped render.
+  It passed 22 fixtures and left this run's slides pixel-identical. It was still not bounded, and a
+  run may only ship bounded, verified upgrades, so it came out and zero upgrades shipped.
+- THE SPECIFICATION FOR A DEDICATED MAINTENANCE PR is every finding the review raised; build against
+  all of them at once, not round by round: clip regions; source rects past the source bounds; canvas
+  filters and CSS filters on the canvas or its ancestors; negative drawImage sizes; nested, offset,
+  clipped and late-appended target canvases; z-index and ancestor stacking contexts; CSS opacity;
+  CSS rotation, skew AND reflection (scaleX(-1)); canvases shown larger than their bitmap (no pixel
+  floor); several qualifying runs on one line (keep them all); tainted canvases (surface a readback
+  failure, never skip silently); smoothing that must not zero-pad the run's ends; rows labelled top
+  and bottom; diagonal seams at any angle; a census cap that says so; a test that fails when any
+  fixture is missing. UNBLOCKS WHEN someone opens that PR with time to take Codex's rounds without a
+  day's deck waiting on it.
+- WHAT THE RUN LEARNED ABOUT REVIEW. A new instrument riding a run's PR gets reviewed as hard as the
+  run's claims, and it has far more surface. Keep Phase 12 upgrades small enough to be finished in one
+  review, or ship them in their own PR.
+
+### Parked, 2026-09-26 frontier scan, focus (e), headless Chromium rendering
+
+- MEASURED IN THE ENGINE'S OWN BROWSER (HeadlessChrome 141, 4 cores, through
+  render.launch_chromium), on one SDF scene (three smooth-unioned spheres and a plane, 96 march
+  steps, 32-step soft shadow) at 1260 x 1575, the size No.69's slide 09 needed:
+  main-thread JS 3.9 s; the same kernel on 4 blob-URL Web Workers 1.6 s and BYTE-IDENTICAL
+  (0 of 1,984,500 pixels differ); a WebGL2 fragment shader on ANGLE over SwiftShader (Subzero)
+  0.6 s, a mean of 0.17 levels from the JS result. Blob workers and OffscreenCanvas both work in a
+  file:// page here. SwiftShader's own docs say it gets its speed from JIT-specialised routines,
+  multi-core scheduling and SIMD across pixels
+  (https://swiftshader.googlesource.com/SwiftShader/+/HEAD/docs/Index.md). Worker background:
+  https://web.dev/articles/offscreen-canvas . Flags:
+  https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md (render.py already
+  passes --enable-unsafe-swiftshader).
+- A TRAP WORTH NOT REDISCOVERING: the same JS kernel run through a direct `eval` in the page took
+  53 s, 13 times slower, because direct eval deoptimises the enclosing scope. No committed asset
+  uses eval or new Function today. A helper that ever compiles scene code from strings must use
+  a script element or a blob worker, never eval.
+- NULL: HTML-in-Canvas (drawElementImage) is in origin trial for Chrome 148 to 150 only
+  (https://developer.chrome.com/blog/html-in-canvas-origin-trial). This engine runs 141.
+- WHY PARKED: aksdf scenes are JS closures, which a worker can't receive, and a GLSL path is a
+  second scene language with its own determinism proof. Either is a new render route and not a
+  bounded fix. UNBLOCKS WHEN a deck's raymarch will not fit the 30 s renderReady cap even with
+  bounding-sphere culling: add `AKSDF.renderWorkers(ctx, {sceneSrc, ...})` that takes the scene as
+  SOURCE TEXT, splits rows across navigator.hardwareConcurrency blob workers, and proves
+  byte-identity against the main-thread path on the demo scene before any slide uses it.

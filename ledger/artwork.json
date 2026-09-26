@@ -2244,6 +2244,60 @@
       "depth_technique": "transmitted light through a film plus one rendered object with a measured contact shadow on a lit lamp pool",
       "line_voice": "scribe",
       "narrative_structure": "argument (hook, pay, the four, state, turn, breather, state and federal, federal with the late date, ledger, one ask)"
+    },
+    {
+      "run_date": "2026-09-26",
+      "carousel_no": 69,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE FOCUS-PULL SET. One rendered committee-room table (walnut, a banker's lamp, 90 draft pages in publication order, gooseneck microphones at the dais) re-shot per frame with a moving focal plane from a real depth pass.",
+      "atmosphere": "NEW: PRACTICAL POOL IN BLUE FOG. A tungsten practical inside exp2 haze with a motivated cold fill; warm share of the frame is the palette arc.",
+      "depth_technique": "three.js PBR with a depth-pass thin-lens focus pull (01, 02), orthographic PBR (05), a perspective point cloud on modelled desk rows (03), digital bas-relief (04), optical bokeh (06), an aksdf raymarch (09)",
+      "line_voice": "hand-ink (08's cased tapered ribbons only)",
+      "continuity_device": "camera + motif: the focus pull on one set, the glint field (clip state per article), the warm share",
+      "continuity_devices": [
+        "D1 one set, camera and focus pull",
+        "D2 the glint field (brass, steel, pale flag, nothing)",
+        "D3 warm share (tungsten means a named person, blue fog the machine's reach)"
+      ],
+      "hook_archetype": "NEW: THE MACHINE'S OWN ADMISSION (the AI agent's sentence about its own newsroom is the cover)",
+      "palette_family": "tungsten and blue fog: room #060910, fog #1C2C44, tungsten #F3B36A, brass #C8913F, steel #8C98A6, walnut #6B4A33, recording red #D9483B on the rings only, gold #FFC72C on the Polaris and the bulb core",
+      "type_pairing": "Fraunces variable (opsz 144, SOFT 50) over JetBrains Mono 500",
+      "dials": {
+        "design_variance": 3,
+        "visual_density": 2,
+        "type_temperature": 5
+      },
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 2,
+        "type_temperature": 5
+      },
+      "narrative_structure": "argument (admission, count, scale ending on a planted question, the invention, the ledger, breather, stakes, the machine's own test, one ask)",
+      "techniques": [
+        "99 NEW depth-pass focus pull",
+        "100 NEW digital bas-relief",
+        "101 NEW optical bokeh field",
+        "102 NEW per-point albedo in aksdf",
+        "59 tapered ribbons with 79 casing",
+        "AM halftone",
+        "perspective point cloud"
+      ],
+      "new_techniques_logged": [
+        "99 depth-pass focus pull",
+        "100 digital bas-relief",
+        "101 optical bokeh field",
+        "102 per-point albedo in aksdf"
+      ],
+      "measured": {
+        "revision_rounds": 5,
+        "flow_rounds": 2,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "pdf_mb": 9.58,
+        "score": 8.16,
+        "artwork_craft": 7
+      },
+      "note": "Five rounds: four pixel rounds, a flow round that acted as the deck's first craft order (03 desk rows, 09 supersampled raymarch, 08 warm lamp point, 06 bokeh profile, 05 steel), then the CRAFT FLOOR cycle on the scorer's frames. The cheapest art gains were fixes of one cause across frames: one brass material, one walnut."
     }
   ]
 }

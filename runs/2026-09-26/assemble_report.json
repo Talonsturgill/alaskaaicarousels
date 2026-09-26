@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-26/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9576243,
+  "pdf_mb": 9.58,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-26/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-26/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Who Read It? The Labels on 90 Alaska News Articles",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "cde049f915765dedac78a52ea4843fb72966bbc3c3f40976b18126d3462645cc",
+        "bytes": 5159618
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "5834e299c6388346bea950c5e4891f19ce2542b2ee2b97452485353fe061b5c2",
+        "bytes": 5369174
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "a366771327c2e27822e80f75e988da764744bc25294732a40702a0438e608ac7",
+        "bytes": 5835027
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "4a3494bf4f51b7b6db4dcb1a2ae0e5a3e8aa37c5f19cd0ddbb2b5a4bf4bcd4b3",
+        "bytes": 7460465
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "f14ed23898208bfbf3c9961abaaeebcf05bfbc410cce90dcad02c83aba64cf92",
+        "bytes": 4963308
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "112378ed0b2b0f952df9eeed8c50d031990c26d912a1a7d1473d80b1625d8f06",
+        "bytes": 5741787
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b7cd42d3a5a583d55ad0d10157cb8b715f5813a59dfb70b72719431bc2181c7a",
+        "bytes": 6032353
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "a8596c13e28d5b935807c9269ccb98ea4f8455ea42f0ec9866dff7bd143c32ba",
+        "bytes": 7113910
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "630f9f12b31f7669127faed879150d653228f602c93d709bc575451cd7e4d3f3",
+        "bytes": 5984574
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "b0eff49128e9a39e8af6e8c8a2202df03150cdb8f712ce25586e84943fe781ab",
+        "bytes": 20493
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "989a1435fb19856ab86195a4b96c8353863dd7656f2fd2039bfca88a2b1b1c8d",
+        "bytes": 20219
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "acdf247dc32168f12f43bc42eef823d330cf7a7e880e086c738c5a8c41f70aea",
+        "bytes": 15570
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "2e4fecae9bc89047e7a45c06f49ad7ec83b698a24736ed89108767659db7dd2d",
+        "bytes": 10150
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "4b833139698e3c9040b8cf3ce679c0655a0c34cb02c3613c3154dbaf54ae9e5b",
+        "bytes": 20715
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c46fb2d7a3728ea31c00c019fb8a767af76ab422d0c66aa594e931b81ad8dd18",
+        "bytes": 7674
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e0a43adef7ed1df480068fa6eff04487155d8c7868b78a012adf2c25803e8239",
+        "bytes": 9566
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "472b6a5a756f98ced5967ecae82d19711bbc5632214847d18e347ac5d2578b60",
+        "bytes": 13608
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "92761237daef5e323ff15ae2ca8fe7f83a10c797b51704aca052575db8ec7d67",
+        "bytes": 8980
+      }
+    ]
+  }
+}

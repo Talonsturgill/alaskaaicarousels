@@ -1,0 +1,154 @@
+{
+ "document_title": "Who Read It? The Labels on 90 Alaska News Articles",
+ "post_copy": "Alaska News says its old footer told every reader an article was \"reviewed by editors,\" whether or not it was.\n\nMost of its articles begin as AI drafts. Its label says \"reviewed by\" only when an editor has read the whole piece. When none has, it says so.\n\nIn the 48 hours to September 26th, 90 articles ran. 73 were labeled reviewed by Cale Green. 15 had no full editor review on record. 2 had no AI label. No other human name was on a label.\n\nA counter of 1,258 recorded meetings is set against one Axon police-data story that ran with no editor review on record.\n\nThe outlet's AI agent Walter says the strongest protection is \"whether skeptical readers can audit the source trail.\" A label describes process, not accuracy. It tells a reader when the checking is theirs.\n\nShould Alaska's human-written news carry the same line, naming who read each story?\n\n#AlaskaMedia #AIinNews #NewsStandards\n",
+ "deck_summary_line": "A counter of 1,258 recorded meetings is set against one Axon police-data story that ran with no editor review on record.",
+ "hashtags": [
+  "#AlaskaMedia",
+  "#AIinNews",
+  "#NewsStandards"
+ ],
+ "caption_meta": {
+  "opening_move": "THE ABSURD DETAIL",
+  "structure": "COLD OPEN, WARM CLOSE",
+  "closing_move": "DISCLOSURE STANDARD (third use, mirrored onto human-written news)",
+  "hook_type": "the outlet's own admission about its old footer"
+ },
+ "first_comment": "Sources, primary first\nAlaska News, AI policy (the review label, the old footer, the failure it watches for), https://alaskanews.com/ai-policy\nAlaska News, About (1,258 recorded meetings, 3,092 hours of audio, a team of five), https://alaskanews.com/about\nAlaska News, How it works (the articles counter, read September 26th, 2026), https://alaskanews.com/how-it-works\nAlaska News, Masthead (editorial responsibility and the editor-in-chief), https://alaskanews.com/masthead\nAlaska News, Corrections (the source wins when a summary disagrees), https://alaskanews.com/corrections\nAlaska News, news sitemap as captured at 07:35 UTC (the 90 articles counted), https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/news-sitemap.xml\nAlaska News, live news sitemap (a rolling 48-hour window, not the snapshot above), https://alaskanews.com/news-sitemap.xml\nHow the count was made. Alaska.Ai read the provenance line under each of the 90 articles in the outlet's 48-hour news sitemap on September 26th, 2026, at about 07:35 UTC. Labels can change after a later review.\nThe label results for 90 articles as captured, with the method, https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json\nFour spot-checked articles, one per label type\nAlaska News, Board of Fisheries committee weighs how to let the public weigh in on last-minute rewrites (Reviewed by Cale Green), https://alaskanews.com/c/alaska-news/board-of-fisheries-committee-weighs-how-to-let-the-public-weigh-in-on-last-minute-rewrites\nAlaska News, Juneau kelp farm study suggests minimal influence on fish and invertebrates (edited, no full editor review on record), https://alaskanews.com/c/alaska-news/juneau-kelp-farm-study-suggests-minimal-influence-on-fish-and-invertebrates\nAlaska News, Anchorage Assembly memo says Axon contract leaves vendor in control of police metadata (no editor review on record), https://alaskanews.com/c/alaska-news/anchorage-assembly-memo-says-axon-contract-leaves-vendor-in-control-of-police-metadata\nAlaska News, State boundary commission revisits a rule that could stop Eaglexit before a full review (no AI label), https://alaskanews.com/c/alaska-news/state-boundary-commission-revisits-a-rule-that-could-stop-eaglexit-before-a-full-review\nAnchorage Press (Nathaniel Herz, September 17th, 2026), This AI agent has written thousands of Alaska news articles, https://anchoragepress.com/this-ai-agent-has-written-thousands-of-alaska-news-articles-we-interviewed-it/\nAlaska Public Media (Casey Grove, September 25th, 2026), This Alaska journalist interviewed an AI news reporter, https://alaskapublic.org/2026-09-25/this-alaska-journalist-interviewed-an-ai-news-reporter-and-he-didnt-run-away-screaming\nGeekWire (Kurt Schlosser, September 18th, 2026), Twin tech founders who left Seattle for Alaska bet on an AI agent named Walter, https://www.geekwire.com/2026/twin-tech-founders-who-left-seattle-for-alaska-bet-on-an-ai-agent-named-walter-to-cover-local-news/\nKnow how these labels get written, or seen one change after a later review? Add it below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "AN AI THAT DRAFTS ALASKA NEWS, ON ITS OWN NEWSROOM",
+   "headline": "\"Source access is not the same thing as editorial judgment.\"",
+   "body": "",
+   "labels": [
+    "WALTER, THE ALASKA NEWS AI AGENT, TO THE ANCHORAGE PRESS, SEPTEMBER 17TH"
+   ],
+   "claim_ids": [
+    "C23",
+    "C38",
+    "C35"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "ALASKA NEWS, 48 HOURS TO SEPTEMBER 26TH",
+   "headline": "90 articles in 48 hours. One human name on the review line.",
+   "body": "Alaska News says every article carries a line saying whether a person reviewed it. Every human name on those lines was the editor-in-chief's, Cale Green.",
+   "labels": [
+    "Reviewed by Cale Green."
+   ],
+   "claim_ids": [
+    "C47",
+    "C48",
+    "C56",
+    "C12",
+    "C13"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "",
+   "headline": "The machine already does the reading.",
+   "body": "Alaska News says its tool has sat through 1,258 recorded public meetings and 3,092 hours of audio. A team of five based in Anchorage runs it. How would a reader know who read each draft?",
+   "labels": [
+    "1,258 RINGS, ONE PER RECORDED MEETING"
+   ],
+   "claim_ids": [
+    "C04",
+    "C05",
+    "C03"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "",
+   "headline": "The right invention is the label.",
+   "body": "When an editor has read the whole piece, the article says reviewed by, with a name. When no one has, it says that instead. Its old footer told every reader \"reviewed by editors,\" regardless.",
+   "labels": [],
+   "claim_ids": [
+    "C26",
+    "C25"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "",
+   "headline": "What the labels on 90 articles said.",
+   "body": "Counted from the alaskanews.com news sitemap, September 26th. A label describes process, not accuracy, and can change after a later review.",
+   "labels": [
+    "73",
+    "Reviewed by Cale Green.",
+    "6",
+    "Edited by Cale Green. No full editor review is on record.",
+    "9",
+    "AI-assisted. No editor review is on record for this article.",
+    "2",
+    "No AI label."
+   ],
+   "claim_ids": [
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C51"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "",
+   "headline": "Plenty of reading. One name on the record.",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C04",
+    "C56"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "",
+   "headline": "The risk it names itself.",
+   "body": "Alaska News says some articles publish without a person reading them first. Its story on the Anchorage Assembly's Axon police-data memo ran as \"AI-assisted. No editor review is on record for this article.\" That doesn't make it wrong. It tells you to check.",
+   "labels": [
+    "\"A summary that reads well and misstates what was decided in a room.\""
+   ],
+   "claim_ids": [
+    "C28",
+    "C24",
+    "C53"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "",
+   "headline": "\"The strongest protection is not my assurance. It is whether skeptical readers can audit the source trail and catch us when we bend it.\"",
+   "body": "Alaska News says the source wins when a summary and its record disagree. Readers can only audit what the label tells them.",
+   "labels": [
+    "WALTER, TO THE ANCHORAGE PRESS, SEPTEMBER 17TH"
+   ],
+   "claim_ids": [
+    "C39",
+    "C35",
+    "C34"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Should every AI-drafted story in Alaska say who reviewed it, by name?",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C26"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post in a Tuesday to Thursday window, 8 to 11 a.m. Alaska time. The next one opens Tuesday, September 29th. Cadence is your call.",
+  "Before posting, reopen the four spot-check articles from the first comment in an ordinary browser. Confirm each label still reads as the deck quotes it. If one flipped after a later review, add a line to the first comment and leave the slides as they are, since the deck is a dated snapshot.",
+  "Paste the sources block as the first comment within 60 seconds of posting.",
+  "Reply to every comment in the first 60 to 90 minutes. If Alaska News, Cale Green or Nathaniel Herz responds, answer on the record and take up any correction they can show.",
+  "After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "The label count is a snapshot of the outlet's 48-hour news sitemap, read on September 26th at about 07:35 UTC. At count time the seven newest articles were all unreviewed. A recheck at about 09:05 UTC (1:05 a.m. in Anchorage) found three of them now reading \"Reviewed by Cale Green\" and one reading edited without full review, all four under new URLs because the pages were retitled; two others, at their original URLs, now show no footer label at all, and the Axon story is unchanged. The review queue works after publication and the label is live. The deck is a dated snapshot and says labels can change; re-check the spot-check articles before posting (evidence in runs/2026-09-26/evidence/recheck_0905.json). \"Reviewed by Cale Green.\" is the phrase both reviewed label wordings share (C48). Slide 02's body attributes the every-article claim to Alaska News, because 2 of 90 carried no label. The NPFMC 2027 observer plan brief (prompts/NEXT_RUN.md) stays parked until October 14th. ART, honestly: the deck scored 8.16 against 7.7 but Artwork craft is 7, under the 8.5 craft floor; the one owed craft cycle ran (frames 6, 3, 9, 8, 1, 5) at the five-round cap and art stayed at 7. Findable zoom defects remain on 07 (halftone breaks into dashes at the lower right), 09 (walnut reads as bold lines), 03 (rings read as targets) and 01 (no focal light). CLAIM NARROWED after review: slide 02 says every human name on the review lines was Cale Green's. The capture holds the label for all 90 articles but the visible byline for only 19 (the two no-label rows had an unverified co-byline, now removed), so bylines are not claimed. Slide 05's rows are the phrases the full labels share (row 2's full label also names the revision count). The caption closes on human-written news while slide 09 asks about AI-drafted stories; that extension was the caption room's deliberate mirror, and both critics read it as two different questions, so consider aligning them before posting."
+}

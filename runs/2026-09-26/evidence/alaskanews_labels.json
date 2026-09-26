@@ -1,0 +1,1189 @@
+{
+ "measured_utc": "2026-09-26T07:35Z",
+ "method": "Fetched https://alaskanews.com/news-sitemap.xml (articles published in the last 48 hours), then fetched each article's public HTML page and read the provenance line printed under the article body. Categories: A label contains 'Reviewed by Cale Green'; B label reads 'Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.'; C label reads 'AI-assisted. No editor review is on record for this article.'; D no AI label. The visible byline was recorded for 19 of 90 rows only (null where it was not captured), so this file supports claims about the labels and not about bylines.",
+ "window": [
+  "2026-09-24T07:40:57.715376+00:00",
+  "2026-09-26T07:23:09.819739+00:00"
+ ],
+ "n": 90,
+ "counts": {
+  "A_reviewed_by_Cale_Green": 73,
+  "B_edited_by_Cale_Green_no_full_review": 6,
+  "C_ai_assisted_no_review_no_human_named": 9,
+  "D_no_ai_label": 2
+ },
+ "author_meta_counts": {
+  "Walter AlaskaNews": 54,
+  "Melinda Communities.News": 6,
+  "Maggie AlaskaNews": 9,
+  "Bill AlaskaNews": 9,
+  "Alaska News": 12
+ },
+ "rows": [
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-assembly-memo-says-axon-contract-leaves-vendor-in-control-of-police-metadata",
+   "published": "2026-09-26T07:23:09.819739+00:00",
+   "title": "Anchorage Assembly memo says Axon contract leaves vendor in control of police metadata",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fcc-posts-12-million-in-rural-health-payments-to-gci",
+   "published": "2026-09-26T06:02:33.392123+00:00",
+   "title": "Comments close Sept. 30 on FCC review of rural health care internet subsidy",
+   "author_meta": "Melinda Communities.News",
+   "byline": "by Melinda Communities.News",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/state-department-awards-anchorages-koniag-professional-services-173-million-in-five-days",
+   "published": "2026-09-26T05:55:33.58847+00:00",
+   "title": "State Department adds $1.73 million in orders for Anchorage's Koniag Professional Services",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-offers-42-million-for-rural-teacher-and-health-worker-housing",
+   "published": "2026-09-26T05:53:52.883569+00:00",
+   "title": "$4.2M for rural teacher and clinic housing is due Nov. 6, but registration closed Aug. 14",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": "by Maggie AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fcc-sends-122-million-to-aniak-telecom-bush-tell",
+   "published": "2026-09-26T05:52:01.010145+00:00",
+   "title": "Aniak carrier Bush-Tell has drawn $12.2 million in phone and broadband subsidy since 2019",
+   "author_meta": "Melinda Communities.News",
+   "byline": "by Melinda Communities.News",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "aniak"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-platting-officer-to-decide-three-lot-cases-oct-26-with-no-hearing",
+   "published": "2026-09-26T05:43:20.910273+00:00",
+   "title": "Two Anchorage notices for the same Oct. 26 plat decisions list different cases",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/nine-alaska-tribes-get-smaller-military-cleanup-awards-than-their-last-round",
+   "published": "2026-09-26T05:22:24.211195+00:00",
+   "title": "Eight of nine Alaska tribes get smaller military cleanup awards; the ninth more than doubles",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/board-of-fisheries-committee-weighs-how-to-let-the-public-weigh-in-on-last-minute-rewrites",
+   "published": "2026-09-26T03:38:05.804+00:00",
+   "title": "Board of Fisheries committee weighs how to let the public weigh in on last-minute rewrites",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/summit-on-aging-attendees-can-book-one-on-one-time-with-state-health-leaders",
+   "published": "2026-09-26T03:37:20.024+00:00",
+   "title": "Summit on Aging attendees can book one-on-one time with state health leaders",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/juneau-kelp-farm-study-suggests-minimal-influence-on-fish-and-invertebrates",
+   "published": "2026-09-26T03:36:21.592+00:00",
+   "title": "Juneau kelp farm study suggests minimal influence on fish and invertebrates",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "juneau"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-municipal-league-sets-oct-23-deadline-for-2027-resolutions",
+   "published": "2026-09-26T02:31:40.478276+00:00",
+   "title": "Alaska Municipal League sets Oct. 23 deadline for 2027 resolutions",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/state-extends-unit-9b-resident-moose-season-to-sept-30-after-bad-weather-limited-hunting",
+   "published": "2026-09-26T02:28:34.560397+00:00",
+   "title": "State extends Unit 9B resident moose season to Sept. 30 after bad weather limited hunting",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "matanuska-valley-moose-range"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/typhoon-dujuans-remnants-bring-heavy-rain-swells-and-a-gale-warning-to-southeast-alaska-this-weekend",
+   "published": "2026-09-26T02:27:01.64876+00:00",
+   "title": "Typhoon Dujuan's remnants bring heavy rain, swells and a gale warning to Southeast Alaska this weekend",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "southeast"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kodiak-school-board-meets-in-closed-session-monday-on-a-personnel-matter-for-the-fifth-time-since-august",
+   "published": "2026-09-26T01:48:18.943626+00:00",
+   "title": "Kodiak school board meets in closed session Monday on a personnel matter for the fifth time since August",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kodiak"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/judicial-council-tries-again-to-fill-kotzebue-and-nome-superior-court-seats",
+   "published": "2026-09-26T01:32:37.130394+00:00",
+   "title": "Judicial Council tries again to fill Kotzebue and Nome superior court seats",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kotzebue",
+    "nome"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/warrant-rule-for-sharing-police-camera-data-splits-anchorage-assembly-surveillance-drafts",
+   "published": "2026-09-26T01:02:30.868583+00:00",
+   "title": "Warrant rule for sharing police camera data splits Anchorage Assembly surveillance drafts",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/faa-scales-back-plan-to-expand-controlled-airspace-over-alaska-after-pilot-groups-object",
+   "published": "2026-09-26T00:52:16.547688+00:00",
+   "title": "FAA scales back plan to expand controlled airspace over Alaska after pilot groups object",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/federal-board-gives-subsistence-hunters-10-more-days-to-hunt-moose-in-the-tetlin-refuge-area",
+   "published": "2026-09-26T00:23:13.44962+00:00",
+   "title": "Federal board gives subsistence hunters 10 more days to hunt moose in the Tetlin refuge area",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "arctic"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/10-year-old-boy-reported-missing-in-big-lake-is-found-safe-troopers-say",
+   "published": "2026-09-26T00:05:59.005295+00:00",
+   "title": "10-year-old boy reported missing in Big Lake is found safe, troopers say",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "big-lake"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-lists-57-million-acres-of-land-selections-it-could-give-back-to-federal-ownership",
+   "published": "2026-09-25T23:33:51.173406+00:00",
+   "title": "Alaska lists 5.7 million acres of land selections it could give back to federal ownership",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fish-and-game-proposes-flagging-struggling-salmon-runs-a-year-earlier-so-the-public-can-weigh-in",
+   "published": "2026-09-25T23:16:11.506716+00:00",
+   "title": "Fish and Game proposes flagging struggling salmon runs a year earlier so the public can weigh in",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/board-of-game-proposals-would-cut-western-arctic-caribou-limits-further-as-the-herd-declines",
+   "published": "2026-09-25T23:11:30.217064+00:00",
+   "title": "Board of Game proposals would cut Western Arctic caribou limits further as the herd declines",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "western-alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/noaa-weighs-77-gulf-of-alaska-sites-for-future-kelp-and-shellfish-farms",
+   "published": "2026-09-25T21:19:14.591443+00:00",
+   "title": "NOAA weighs 77 Gulf of Alaska sites for future kelp and shellfish farms",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kachemak-bay"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/mat-su-regional-gets-5-million-in-federal-rural-health-money-for-a-neonatal-intensive-care-unit",
+   "published": "2026-09-25T21:06:20.328722+00:00",
+   "title": "Mat-Su Regional gets $5 million in federal rural health money for a neonatal intensive care unit",
+   "author_meta": "Melinda Communities.News",
+   "byline": "by Melinda Communities.News",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/pilots-will-drop-pumpkins-on-a-target-near-north-pole-on-saturday",
+   "published": "2026-09-25T21:04:00+00:00",
+   "title": "Pilots will drop pumpkins on a target near North Pole on Saturday",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "north-pole"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/none-of-anchorages-district-projects-got-state-money-this-year-city-tells-assembly-committee",
+   "published": "2026-09-25T20:47:22.465446+00:00",
+   "title": "None of Anchorage's district projects got state money this year, city tells Assembly committee",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-police-say-new-use-of-force-rules-are-in-effect-one-recommendation-still-unfilled",
+   "published": "2026-09-25T19:49:52.813158+00:00",
+   "title": "Anchorage police officers now must intervene when a colleague uses improper force",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-assembly-worksession-flags-unresolved-question-of-who-pays-for-casa-roads",
+   "published": "2026-09-25T19:41:48.888819+00:00",
+   "title": "Anchorage work session leaves Chugach park access costs unresolved",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/petersburg-assembly-deadlocks-3-3-rejecting-one-year-data-center-moratorium",
+   "published": "2026-09-25T19:23:12.180191+00:00",
+   "title": "Petersburg assembly deadlocks 3-3, rejecting one-year data center moratorium",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "petersburg"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/petersburg-paid-to-advertise-one-of-its-two-sales-tax-ballot-questions-finance-director-says",
+   "published": "2026-09-25T19:21:24.700558+00:00",
+   "title": "Petersburg paid to advertise one of its two sales tax ballot questions, finance director says",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "petersburg"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-commission-backs-code-change-so-centennial-campground-and-russian-jack-greenhouse-fit-park-zoning",
+   "published": "2026-09-25T19:17:29.227583+00:00",
+   "title": "Anchorage commission backs code change so Centennial campground and Russian Jack greenhouse fit park zoning",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/hopes-second-fox-fest-brings-three-bands-to-creekbend-cafe-on-saturday",
+   "published": "2026-09-25T18:58:00+00:00",
+   "title": "Hope's second Fox Fest brings three bands to Creekbend Cafe on Saturday",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "homer"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/harvest-moon-festival-brings-alaska-grown-food-pie-contest-to-soldotna",
+   "published": "2026-09-25T18:29:00+00:00",
+   "title": "Harvest Moon festival brings Alaska-grown food, pie contest to Soldotna",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "soldotna"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/murkowski-bill-would-modify-and-continue-snettishams-exemption-from-federal-hydropower-licensing",
+   "published": "2026-09-25T18:11:15.341572+00:00",
+   "title": "Murkowski bill would modify and continue Snettisham's exemption from federal hydropower licensing",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "juneau"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fda-to-pay-alaska-540768-for-state-food-safety-inspections",
+   "published": "2026-09-25T17:50:45.944993+00:00",
+   "title": "FDA to pay Alaska $540,768 for state food safety inspections",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/wind-advisories-cover-the-parks-and-richardson-highways-through-early-sunday-with-gusts-up-to-70-mph",
+   "published": "2026-09-25T16:42:25.146+00:00",
+   "title": "Wind advisories cover the Parks and Richardson highways through early Sunday, with gusts up to 70 mph",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "turnagain-pass"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/where-to-celebrate-oktoberfest-in-southcentral-this-weekend-and-next",
+   "published": "2026-09-25T16:39:00+00:00",
+   "title": "Where to celebrate Oktoberfest in Southcentral this weekend and next",
+   "author_meta": "Alaska News",
+   "byline": "by Alaska News",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage",
+    "eagle-river",
+    "girdwood",
+    "palmer",
+    "valdez"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/troopers-arrest-fairbanks-woman-on-felony-dui-charge-after-parks-highway-sign-crash",
+   "published": "2026-09-25T16:10:36.853019+00:00",
+   "title": "Troopers arrest Fairbanks woman on felony DUI charge after Parks Highway sign crash",
+   "author_meta": "Alaska News",
+   "byline": "by Alaska News",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "denali"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kenai-river-marathon-marks-20th-year-with-sunday-races",
+   "published": "2026-09-25T14:23:00+00:00",
+   "title": "Kenai River Marathon marks 20th year with Sunday races",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "kenai"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-household-electricity-prices-rose-56-percent-from-a-year-earlier-in-july-federal-data-show",
+   "published": "2026-09-25T12:43:26.346871+00:00",
+   "title": "Alaska household electricity prices rose 5.6 percent from a year earlier in July, federal data show",
+   "author_meta": "Melinda Communities.News",
+   "byline": "by Melinda Communities.News",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kodiak-island-borough-assembly-cancels-work-session-for-lack-of-a-quorum",
+   "published": "2026-09-25T07:51:49.520176+00:00",
+   "title": "Kodiak Island Borough Assembly cancels work session for lack of a quorum",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kodiak-island"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fairbanks-borough-seeks-26-million-for-two-landfill-compactors-after-transmission-failure",
+   "published": "2026-09-25T07:46:17.063467+00:00",
+   "title": "Fairbanks borough seeks $2.6 million for two landfill compactors after transmission failure",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "fairbanks"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/mat-su-ballot-ties-home-tax-break-to-new-1-sales-tax",
+   "published": "2026-09-25T06:31:00.495+00:00",
+   "title": "Mat-Su Ballot Ties Home Tax Break to New 1% Sales Tax",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "mat-su-valley"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kotzebue-water-system-exceeds-federal-lead-action-level-after-two-of-10-homes-test-high",
+   "published": "2026-09-25T06:14:46.146245+00:00",
+   "title": "Kotzebue water system exceeds federal lead action level after two of 10 homes test high",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kotzebue"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/federal-report-puts-alaskas-maternal-death-rate-above-the-national-rate-but-warns-the-count-is-small",
+   "published": "2026-09-25T04:03:05.856377+00:00",
+   "title": "Federal report puts Alaska's maternal death rate above the national rate but warns the count is small",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/houston-commission-recommends-giving-holding-district-h-landowners-until-march-for-fee-free-zone-changes",
+   "published": "2026-09-25T02:45:45.581+00:00",
+   "title": "Houston commission recommends giving Holding District H landowners until March for fee-free zone changes",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "houston"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/ketchikan-planning-commission-to-consider-censuring-commissioner-over-remarks-about-ketchikan-indian-community",
+   "published": "2026-09-25T02:42:00+00:00",
+   "title": "Ketchikan planning commission to consider censuring commissioner over remarks about Ketchikan Indian Community",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "ketchikan"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/big-lakes-trail-groomers-are-asking-the-state-for-a-snowmachine",
+   "published": "2026-09-25T02:27:29.148506+00:00",
+   "title": "Big Lake's trail groomers are asking the state for a snowmachine",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "big-lake"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/police-are-searching-for-two-missing-teenagers-in-anchorage-and-wasilla",
+   "published": "2026-09-25T02:07:24.100348+00:00",
+   "title": "Police are searching for two missing teenagers in Anchorage and Wasilla",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted. No editor review is on record for this article.",
+   "category": "C_ai_assisted_no_review_no_human_named",
+   "location_tags": [
+    "anchorage",
+    "wasilla"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/federal-audit-finds-eielson-air-force-base-short-hundreds-of-support-workers-with-one-person-left-in-housing",
+   "published": "2026-09-25T02:02:15.269403+00:00",
+   "title": "Federal audit finds Eielson Air Force Base short hundreds of support workers, with one person left in housing",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "outside-alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/tlingit-haida-delegates-reelect-richard-peterson-as-president",
+   "published": "2026-09-25T01:16:12.184343+00:00",
+   "title": "Tlingit & Haida delegates reelect Richard Peterson as president",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (2 revisions). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "juneau"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/state-boundary-commission-revisits-a-rule-that-could-stop-eaglexit-before-a-full-review",
+   "published": "2026-09-25T00:19:56.954+00:00",
+   "title": "State boundary commission revisits a rule that could stop Eaglexit before a full review",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": null,
+   "category": "D_no_ai_label",
+   "location_tags": [
+    "anchorage",
+    "chugach-state-park",
+    "chugiak",
+    "eagle-river",
+    "southcentral"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/comments-due-oct-23-on-alaskas-2027-cook-inlet-and-alaska-peninsula-oil-and-gas-lease-sales",
+   "published": "2026-09-24T20:00:00+00:00",
+   "title": "Comments due Oct. 23 on Alaska's 2027 Cook Inlet and Alaska Peninsula oil and gas lease sales",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska-peninsula",
+    "cook-inlet"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/four-years-after-merbok-alaska-is-hiring-a-contractor-to-start-rebuilding-homes",
+   "published": "2026-09-25T00:02:40.227664+00:00",
+   "title": "Four years after Merbok, Alaska is hiring a contractor to start rebuilding homes",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kokhanok"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/mea-lays-out-how-rolling-outages-would-work-if-southcentral-runs-short-of-gas-this-winter",
+   "published": "2026-09-25T00:00:00+00:00",
+   "title": "MEA lays out how rolling outages would work if Southcentral runs short of gas this winter",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "mat-su-valley"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-asks-court-to-approve-its-share-of-23-million-labcorp-data-breach-settlement",
+   "published": "2026-09-25T00:00:00+00:00",
+   "title": "Alaska asks court to approve its share of $2.3 million Labcorp data breach settlement",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/the-kenais-coho-limit-stays-at-two-through-november",
+   "published": "2026-09-24T23:28:22.946+00:00",
+   "title": "The Kenai's coho limit stays at two through November",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kenai-river"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/global-refinery-disruptions-widened-fuel-margins-in-2026-and-rural-alaskas-barge-fuel-cost-more",
+   "published": "2026-09-24T23:27:29.694+00:00",
+   "title": "Global refinery disruptions widened fuel margins in 2026, and rural Alaska's barge fuel cost more",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": null,
+   "category": "D_no_ai_label",
+   "location_tags": [
+    "alaska",
+    "alaska-peninsula",
+    "aleutians",
+    "arctic",
+    "outside-alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/prince-william-sound-faces-a-winter-without-ferry-service-as-the-aurora-is-overhauled",
+   "published": "2026-09-24T23:26:22.131916+00:00",
+   "title": "Prince William Sound faces a winter without ferry service as the Aurora is overhauled",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "cordova",
+    "prince-william-sound",
+    "valdez",
+    "whittier",
+    "yakutat"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/lawmakers-press-state-on-safer-seward-highway-projects-size-and-funding-as-dot-reopens-comment",
+   "published": "2026-09-24T23:23:07.825774+00:00",
+   "title": "Lawmakers press state on Safer Seward Highway project's size and funding as DOT reopens comment",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "seward"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/bering-river-moose-hunt-closes-after-hunters-reach-15-bull-cap",
+   "published": "2026-09-24T22:31:55.746599+00:00",
+   "title": "Bering River moose hunt closes after hunters reach 15-bull cap",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "copper-river-basin"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/park-service-awards-45-million-contract-to-upgrade-glacier-bays-water-system-for-firefighting",
+   "published": "2026-09-24T22:02:12.826995+00:00",
+   "title": "Park Service awards $4.5 million contract to upgrade Glacier Bay's water system for firefighting",
+   "author_meta": "Melinda Communities.News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "denali"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorages-police-union-endorsed-kreiss-tomkins-and-johnson-for-governor",
+   "published": "2026-09-24T21:04:41.331+00:00",
+   "title": "Anchorage's police union endorsed Kreiss-Tomkins and Johnson for governor",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (3 revisions). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kenai-peninsula-voters-decide-on-school-board-term-limits",
+   "published": "2026-09-24T20:45:35.423+00:00",
+   "title": "Kenai Peninsula voters decide on school board term limits",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kenai-peninsula"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-released-310-acres-near-slana-to-the-university-over-its-own-agencies-objections",
+   "published": "2026-09-24T20:44:47.843+00:00",
+   "title": "Alaska released 310 acres near Slana to the university over its own agencies' objections",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "copper-river-basin"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/new-independent-expenditure-group-registers-for-juneau-and-sitka-municipal-elections",
+   "published": "2026-09-24T20:43:51.343+00:00",
+   "title": "New independent expenditure group registers for Juneau and Sitka municipal elections",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "juneau",
+    "sitka"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/labor-funded-committee-backs-republican-ruby-jones-and-opposes-both-her-rivals-in-eagle-river-house-race",
+   "published": "2026-09-24T20:43:48.029+00:00",
+   "title": "Labor-funded committee backs Republican Ruby Jones and opposes both her rivals in Eagle River House race",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "eagle-river"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kenai-voters-decide-nov-3-whether-to-ratify-a-75000-home-tax-exemption",
+   "published": "2026-09-24T20:39:03.971+00:00",
+   "title": "Kenai voters decide Nov. 3 whether to ratify a $75,000 home tax exemption",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kenai"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-proposes-trading-the-tozier-track-to-the-state-housing-agency-for-downtown-parking-lots-with-housing-required",
+   "published": "2026-09-24T20:38:25.232+00:00",
+   "title": "Anchorage proposes trading the Tozier Track to the state housing agency for downtown parking lots, with housing required",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fishery-managers-will-meet-on-trawl-seafloor-contact-with-no-power-to-recommend",
+   "published": "2026-09-24T20:37:35.423+00:00",
+   "title": "Fishery managers will meet on trawl seafloor contact, with no power to recommend",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorage-will-take-public-comment-on-merrill-fields-next-20-years-oct-15",
+   "published": "2026-09-24T20:30:44.061+00:00",
+   "title": "Anchorage will take public comment on Merrill Field's next 20 years Oct. 15",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaskas-budget-balances-this-year-on-high-oil-and-a-reduced-dividend",
+   "published": "2026-09-24T20:13:24.826+00:00",
+   "title": "Alaska's budget balances this year on high oil and a reduced dividend",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kinross-cuts-gold-forecast-over-chile-and-nevada-mines-its-alaska-operations-output-is-also-down-this-year",
+   "published": "2026-09-24T20:00:00+00:00",
+   "title": "Kinross cuts gold forecast over Chile and Nevada mines; its Alaska operation's output is also down this year",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "fairbanks",
+    "interior"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/park-service-hires-everts-air-fuel-to-keep-avgas-at-two-remote-alaska-park-units-through-2030",
+   "published": "2026-09-24T20:00:00+00:00",
+   "title": "Park Service hires Everts Air Fuel to keep avgas at two remote Alaska park units through 2030",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "interior"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/faa-hires-calista-owned-firm-for-next-round-of-decades-old-cold-bay-fuel-cleanup",
+   "published": "2026-09-24T20:00:00+00:00",
+   "title": "FAA hires Calista-owned firm for next round of decades-old Cold Bay fuel cleanup",
+   "author_meta": "Alaska News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "cold-bay"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/anchorages-board-of-ethics-couldnt-meet-wednesday-leaving-a-march-complaint-pending",
+   "published": "2026-09-24T19:11:02.252147+00:00",
+   "title": "Anchorage's Board of Ethics couldn't meet Wednesday, leaving a March complaint pending",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
+   "category": "B_edited_by_Cale_Green_no_full_review",
+   "location_tags": [
+    "anchorage"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-health-officials-warn-concentrated-kratom-products-can-cause-overdoses-drug-tests-miss",
+   "published": "2026-09-24T18:49:32.86342+00:00",
+   "title": "Alaska health officials warn concentrated kratom products can cause overdoses drug tests miss",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kenais-council-will-award-a-bluff-erosion-contract-the-day-after-bids-close",
+   "published": "2026-09-24T18:42:44.669+00:00",
+   "title": "Kenai's council will award a bluff erosion contract the day after bids close",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kenai"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/the-greenland-defense-deal-cites-golden-dome-the-missile-shield-already-anchored-in-alaska",
+   "published": "2026-09-24T18:36:00+00:00",
+   "title": "The Greenland defense deal cites Golden Dome, the missile shield already anchored in Alaska",
+   "author_meta": "Melinda Communities.News",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "arctic",
+    "washington-dc"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/ten-rural-alaska-communities-can-now-vote-in-person-on-election-day",
+   "published": "2026-09-24T18:30:38.005+00:00",
+   "title": "Ten rural Alaska communities can now vote in person on Election Day",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "selawik"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fda-nominee-overton-commits-to-alaska-food-inspections-and-salmon-labeling-but-not-mifepristone-access",
+   "published": "2026-09-24T18:30:15.378563+00:00",
+   "title": "FDA nominee Overton commits to Alaska food inspections and salmon labeling but not mifepristone access",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "national"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/fairbanks-job-fair-thursday-retail-grocery-restaurant-and-bank-employers",
+   "published": "2026-09-24T18:24:02.212+00:00",
+   "title": "Fairbanks job fair Thursday: retail, grocery, restaurant and bank employers",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "fairbanks"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/national-money-registered-on-both-sides-of-alaskas-governors-race-this-week",
+   "published": "2026-09-24T18:22:54.705+00:00",
+   "title": "National money registered on both sides of Alaska's governor's race this week",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/sitka-tribe-and-metlakatla-may-request-return-of-11-ancestors-and-16-items-in-october",
+   "published": "2026-09-24T18:22:09.846+00:00",
+   "title": "Sitka Tribe and Metlakatla May Request Return of 11 Ancestors and 16 Items in October",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "metlakatla",
+    "sitka"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/murkowski-cosponsors-bill-to-keep-temporary-protected-status-for-ukrainians-in-the-us",
+   "published": "2026-09-24T18:09:58.189393+00:00",
+   "title": "Murkowski cosponsors bill to keep Temporary Protected Status for Ukrainians in the US",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "outside-alaska"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/alaska-closed-its-bering-sea-scallop-grounds-after-the-two-boat-fleet-hit-the-cap",
+   "published": "2026-09-24T17:11:48.991801+00:00",
+   "title": "Alaska closed its Bering Sea scallop grounds after the two-boat fleet hit the cap",
+   "author_meta": "Bill AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "bristol-bay"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/kodiaks-salmon-fishery-opens-for-54-hours-starting-thursday-at-noon",
+   "published": "2026-09-24T17:09:31.913261+00:00",
+   "title": "Kodiak's salmon fishery opens for 54 hours starting Thursday at noon",
+   "author_meta": "Bill AlaskaNews",
+   "byline": "by Bill AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "kodiak"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/a-high-wind-warning-covers-atka-and-adak-with-gusts-up-to-80-mph",
+   "published": "2026-09-24T14:23:47.206647+00:00",
+   "title": "A high wind warning covers Atka and Adak with gusts up to 80 mph",
+   "author_meta": "Maggie AlaskaNews",
+   "byline": "by Maggie AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "aleutians"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/public-comment-is-open-on-cook-inlet-subsea-data-center-plan",
+   "published": "2026-09-24T09:22:13.943+00:00",
+   "title": "Public comment is open on Cook Inlet subsea data-center plan",
+   "author_meta": "Walter AlaskaNews",
+   "byline": "by Walter AlaskaNews",
+   "label": "AI-assisted, reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "cook-inlet",
+    "kenai-peninsula"
+   ]
+  },
+  {
+   "url": "https://alaskanews.com/c/alaska-news/juneau-nearly-doubled-what-it-gives-eaglecrest-this-year",
+   "published": "2026-09-24T07:40:57.715376+00:00",
+   "title": "Juneau nearly doubled what it gives Eaglecrest this year",
+   "author_meta": "Walter AlaskaNews",
+   "byline": null,
+   "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
+   "category": "A_reviewed_by_Cale_Green",
+   "location_tags": [
+    "juneau"
+   ]
+  }
+ ],
+ "location_tag_counts": {
+  "anchorage": 19,
+  "alaska": 15,
+  "juneau": 5,
+  "arctic": 3,
+  "eagle-river": 3,
+  "kenai": 3,
+  "fairbanks": 3,
+  "outside-alaska": 3,
+  "kodiak": 2,
+  "kotzebue": 2,
+  "big-lake": 2,
+  "petersburg": 2,
+  "valdez": 2,
+  "denali": 2,
+  "mat-su-valley": 2,
+  "alaska-peninsula": 2,
+  "cook-inlet": 2,
+  "aleutians": 2,
+  "copper-river-basin": 2,
+  "kenai-peninsula": 2,
+  "sitka": 2,
+  "interior": 2,
+  "aniak": 1,
+  "matanuska-valley-moose-range": 1,
+  "southeast": 1,
+  "nome": 1,
+  "western-alaska": 1,
+  "kachemak-bay": 1,
+  "north-pole": 1,
+  "homer": 1,
+  "soldotna": 1,
+  "turnagain-pass": 1,
+  "girdwood": 1,
+  "palmer": 1,
+  "kodiak-island": 1,
+  "houston": 1,
+  "ketchikan": 1,
+  "wasilla": 1,
+  "chugach-state-park": 1,
+  "chugiak": 1,
+  "southcentral": 1,
+  "kokhanok": 1,
+  "kenai-river": 1,
+  "cordova": 1,
+  "prince-william-sound": 1,
+  "whittier": 1,
+  "yakutat": 1,
+  "seward": 1,
+  "cold-bay": 1,
+  "washington-dc": 1,
+  "selawik": 1,
+  "national": 1,
+  "metlakatla": 1,
+  "bristol-bay": 1
+ },
+ "location_note": "Location tags read from each article's own /locations/<slug> chips. An article can carry several.",
+ "human_names_on_labels": [
+  "Cale Green"
+ ],
+ "bylines_captured": 19
+}

@@ -1,0 +1,105 @@
+{
+  "run_date": "2026-09-26",
+  "carousel_no": 69,
+  "effort": "high",
+  "date_note": "Woke 2026-09-25 23:15 AKDT; runs/2026-09-25 already holds shipped No.68, so the run takes the next free date, 2026-09-26.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-26/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; one technique candidate (digital bas-relief) in FIELD_NOTES"
+    },
+    "research": {
+      "status": "done",
+      "note": "6 scouts, 134 searches; showrunner primary measurement of alaskanews.com labels",
+      "artifacts": [
+        "out/2026-09-26/scout_merge.md",
+        "out/2026-09-26/evidence/alaskanews_labels.json"
+      ]
+    },
+    "claims": {
+      "status": "done",
+      "note": "68 claims (57 lead story), claims_check PASS 48 primary",
+      "artifacts": [
+        "out/2026-09-26/claims.json"
+      ]
+    },
+    "docket": {
+      "status": "done",
+      "note": "worklist of 6 refreshed; watch.json failed=[]; zero hearings (out of session); HJR18 candidate noted on AKLNG item, others not AI decisions"
+    },
+    "gas_watch": {
+      "status": "done",
+      "note": "GAS WATCH LIVE PASS at 09:44Z after the late-dispatched collector ran; cron_health PASS 6 workflows (refreshed 09:45Z)"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-26/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "note": "3 treatments (systems-illustrator, data-journalist, cinematographer); synthesis: cinematographer's focus-pull set + data-journalist's shape-coded label objects + systems-illustrator's lamp as judgment; slide 02 prototyped first",
+      "artifacts": [
+        "out/2026-09-26/storyboard.md"
+      ]
+    },
+    "copy": {
+      "status": "done",
+      "note": "caption room: B (ABSURD DETAIL / COLD OPEN, WARM CLOSE) won with one fix and one accuracy correction; caption_check PASS 889 chars",
+      "artifacts": [
+        "out/2026-09-26/caption.txt",
+        "out/2026-09-26/copy.json",
+        "out/2026-09-26/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "note": "9 slides; slide 02 prototyped first; qa 0 fails; bespoke median 0.094",
+      "artifacts": [
+        "out/2026-09-26/slides",
+        "out/2026-09-26/render"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "r1: ship 02 (8.2) 06 (8.0); revise 01 6.5, 03 6.2, 04 7.0, 05 6.8, 07 6.5, 08 5.5, 09 3.5 (09 rebuilt) | r2: ship 01 8.3, 04 8.7, 05 8.3, 07 8.2; revise 03 7.0 (far ring cluster, mic contact), 08 6.2 (root band form, ribbon shading, edge tease), 09 6.5 (walnut grain, page stack) | r3: ship 03 8.3, 09 8.0; revise 08 7.0 (bottom-right edge tease, warm trail ends, horizon seam) | r4 (flow craft order): 03 desk rows + body cut, 05 steel/brass, 06 bokeh profile, 08 warm lamp + left pages, 09 hi-res raymarch | r5 verify: ship 03 8.0, 05 8.3, 06 8.0, 08 8.5, 09 9.0"
+    },
+    "flow_review": {
+      "status": "done",
+      "note": "flow r1 revise (art 7.0) -> round 4 craft order; flow r2 ship (art 7.5, score 7.9)"
+    },
+    "assemble": {
+      "status": "done",
+      "note": "vector pdf, 9 slides"
+    },
+    "scoring": {
+      "status": "done",
+      "note": "cycle 1 8.16 (art 7); craft cycle round 5 on 6,3,9,8,1,5; cycle 2 8.16 (art 7); 08 glow-edge regression fixed after the card"
+    },
+    "ship": {
+      "status": "in_progress",
+      "note": "artifacts in runs/, webp + og.jpg, pdf shrunk 11%, site rebuilt (124 pages), parsers/scanner/docket_dates/site_fresh PASS, no alerts due, pruned 2026-08-26 | merged main (gas watch reading) f745c6d1; Codex r1 (4 P1 on 2b6a1d8): C56 narrowed to labels, slide 02 first person removed, C48-C51/C56 cite captured evidence; run_state sequencing explained"
+    },
+    "upgrade": {
+      "status": "done",
+      "note": "1 reactive upgrade (lit-edge check) built and reviewed 11 rounds by Codex, WITHDRAWN before merge as unbounded; parked in FIELD_NOTES with every finding; zero upgrades shipped; scan (e) headless rendering parked"
+    },
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 123 pages read against 18 checks (site_signoff.py, morning of September 26th)",
+    "gaswatch_live": "PASS at 09:44 UTC. The live audit read FAIL from the first check until then on 'source reading published': CINGSA posted a reading at 18:54 AKDT on September 25th after the 22:29 UTC collection, and GitHub dispatched the 04:40 and 07:20 UTC scheduled collectors late. A manual dispatch through the GitHub integration returned 403. It cleared when the collector ran; no incident was needed.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited (refreshed 09:45 UTC)",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  }
+}

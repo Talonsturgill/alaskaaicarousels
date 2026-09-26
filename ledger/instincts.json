@@ -635,7 +635,8 @@
       "instinct": "A GENERATED BLOCK PASTED INTO A RUN RECORD GOES STALE THE MOMENT ANOTHER ROUND RUNS. gate_status.py prints 'do not hand-write these lines' and run 2026-08-05 pasted it once, then rendered four more times, and the scorer caught the block contradicting the shipped artifacts on four rows. Regenerate it at the LAST render, not the first. CONFIRMED 2026-08-07: the block was pasted after the critic round, a third revision round then ran, and the scorer found it reporting 29 qa warns and 'score_report.json missing' on a deck that measured 20 and had scored. The pasted-block verifier only runs at the completion gate, which is AFTER the last chance to be wrong about it in a subagent's eyes.",
       "confidence": 0.99,
       "first_seen": "2026-08-05",
-      "runs": 2
+      "runs": 2,
+      "last_confirmed": "2026-09-26"
     },
     {
       "instinct": "A CAPTION BRIEF MUST READ THE LEDGER'S NOTES FIELDS, NOT ONLY ITS MOVE LABELS. Run 2026-08-05's briefs cleared the mechanical windows correctly and still missed three standing instructions written in prose inside prior entries, that PRICE was burned on 07-30, that who-decides was burned for six runs on 08-03, and that a deck summary may not open on the word Inside. Both directors then opened theirs on Inside. The critic caught all three.",
@@ -1576,7 +1577,8 @@
       "run_date": "2026-09-18",
       "confidence": 0.99,
       "area": "engine",
-      "instinct": "AK.grainTile RETURNS A DATA URL, NOT A CANVAS. Passing it to createPattern throws, the page errors, and the slide produces NO PNG AT ALL, which is a hard render failure rather than a warning. It is documented for a repeating CSS background on a DOM div at mix-blend-mode overlay and opacity 0.05 to 0.12, which is also how the demo deck uses it. Grain is a DOM layer over the graded art canvas, never a canvas fill."
+      "instinct": "AK.grainTile RETURNS A DATA URL, NOT A CANVAS. Passing it to createPattern throws, the page errors, and the slide produces NO PNG AT ALL, which is a hard render failure rather than a warning. It is documented for a repeating CSS background on a DOM div at mix-blend-mode overlay and opacity 0.05 to 0.12, which is also how the demo deck uses it. Grain is a DOM layer over the graded art canvas, never a canvas fill.",
+      "last_confirmed": "2026-09-26"
     },
     {
       "run_date": "2026-09-18",
@@ -1704,6 +1706,22 @@
       "evidence": "The deck's argument was a count (two gold, four dashed), and the JBER ring disappeared on four frames under a coast, a grid line or the pen's cast. A coat-dark annulus under the dashes and drawing the rings after every other layer (on 01, on their own canvas above the pen) made all four countable in one round.",
       "act_on_it": "In any deck whose claim is a count, list the counted marks in the dossier and draw them last with a bed; the pixel critic's first check is to count them at 432 px.",
       "confidence": 0.75
+    },
+    {
+      "run_date": "2026-09-26",
+      "carousel_no": 69,
+      "instinct": "ONE MATERIAL PER SUBSTANCE ACROSS THE DECK, FIXED ONCE.",
+      "evidence": "Brass rendered five ways and walnut three ways across nine frames; the flow critic and the scorer both named it, and slides 01 and 02 kept matte brown clips through four rounds because each per-slide critic judged its own frame. Porting slide 05's material to 01 and 02 fixed the D2 glint promise in one edit.",
+      "act_on_it": "When a deck shares a substance across frames (brass, walnut, paper), define its material once in the storyboard (albedo, roughness, self-tone) and have every generator import that one definition; the flow critic's first craft check is to line the substance up across the contact sheet.",
+      "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-26",
+      "carousel_no": 69,
+      "instinct": "A PROBE READS INK, SO DECLARE A MARK WHERE IT DRAWS ITSELF.",
+      "evidence": "Slide 06's bokeh discs failed qa's marks_reach_frame (30 of 88 'missing') the moment they gained a physically correct profile, because a defocused disc's centre is smooth and the probe measures ink spread. Declaring each disc's point on its own hot rim, on the side facing the frame centre, passed with every disc present.",
+      "act_on_it": "For marks whose centre is smooth by design (bokeh, glows, soft dots), declare __akAssert points on the mark's edge or rim, not its centre, and say why in a comment.",
+      "confidence": 0.7
     }
   ]
 }

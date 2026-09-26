@@ -1,0 +1,110 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'a row 2 brass clip on its page': shadow L* 51.0 vs ground L* 82.1, dL 31.1 at 432w"
+      ],
+      "fits": [
+        "head '\"Source accessis not the same thingas editor' fits 3/3 lines at 103px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the row 0 brass clip on its page': shadow L* 69.3 vs ground L* 83.4, dL 14.1 at 432w"
+      ],
+      "leaders": [
+        "leader 'the row 0 brass clip in focus' lands 0.0px from its target",
+        "leader 'the row 0 brass clip in focus' meets its label 10.0px away",
+        "leader 'the row 0 brass clip in focus' is drawn 162 px at 2 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head '90 articles in 48 hours.One human nameon the' fits 3/3 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gooseneck microphone base on the dais': shadow L* 24.6 vs ground L* 46.4, dL 21.7 at 432w"
+      ],
+      "fits": [
+        "head 'The machine alreadydoes the reading.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'1,258 recording rings, one per recorded meeting' holds: 1258 vs 1258 marks, counted over 1258 declared marks (within 0)",
+        "'1,258 recording rings, one per recorded meeting': 210 mark centres probed at r=4px, sampled every 6 marks, cohort median 44.0 dE, all present (weakest 22.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'REVIEWED BY' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'REVIEWED BY EDITORS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG"
+      ],
+      "motifs": [
+        "'the brass plate, REVIEWED BY in relief with the old footer worn below': canvas 61.0 dE, page 63.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The right inventionis the label.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'What the labelson 90 articles said.' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'Plenty of reading.One name on the record.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'88 lit discs, 73 brass, 6 steel, 9 pale; the 2 with no label leave none' holds: 88 vs 88 marks, counted over 88 declared marks (within 0)",
+        "'88 lit discs, 73 brass, 6 steel, 9 pale; the 2 with no label leave none': 88 mark centres probed at r=14px, cohort median 43.8 dE, all present (weakest 24.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the pale corner flag, the page's only mark': canvas 72.2 dE, page 77.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The risk it names itself.' fits 1/1 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "quote '\"The strongest protectionis not my assurance' fits 5/6 lines at 55.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'Should every AI-draftedstory in Alaskasay wh' fits 4/4 lines at 99.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN"
+}
