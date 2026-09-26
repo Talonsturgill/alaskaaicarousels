@@ -906,3 +906,40 @@ annotation is the strongest pair):
     switches to filtered PCF, which honours the radius (PCFSoft ignores it). After
     ANY move of the pen, re-sample the L* profile across the barrel and re-place
     `data-contacts`; qa measures wherever the rects point.
+
+99. **Depth-Pass Focus Pull (akthree, thin lens)** — added 2026-09-26 for No.69.
+    Render the scene once for colour and once with a ShaderMaterial override that
+    writes LINEAR camera distance into two 8-bit channels (16 bits), then gather
+    six pre-blurred levels per pixel by circle of confusion
+    `coc = k * |d - focus| / d`, clamped to a max radius. The near field needs its
+    OWN blurred CoC map so a defocused foreground bleeds over the sharp plane
+    behind it; without it the near edge cuts out like a sticker. Put the focal
+    plane IN the lower third when the frame's lower third would otherwise be
+    blurred foreground (frame_balance fails a blurred bottom band). About 11 s at
+    2160 x 2700 in SwiftShader. After any camera move, re-place `data-contacts`.
+
+100. **Digital Bas-Relief (height field, compressed gradient)** — added
+    2026-09-26 for No.69. Paint letters and bevels as a height field on a
+    full-page canvas at TRUE page coordinates (a mask drawn at the canvas origin
+    overprints as raster text and qa fails it), add a shallow dome term so one
+    raking light grades the whole plate, compress the gradient
+    `g' = g / (1 + A|g|)` so tall letters don't blow out, then shade Lambert plus
+    Blinn with a cavity AO from the blurred height difference. A worn phrase is the
+    same glyphs at about 8 to 11 percent of the crisp relief height.
+
+101. **Optical Bokeh Field** — added 2026-09-26 for No.69. One disc per datum,
+    projected through a pinhole camera with CoC falling off as `12 + 52 / dz`,
+    nine-blade iris polygons, a radial fill brightest at the rim (spherical
+    aberration), cat's-eye clipping by a second circle offset toward the frame
+    centre, composited `lighter` on an offscreen layer blurred 1.6 px and then
+    `screen`ed in. Declare `__akAssert` points per disc; an absent category
+    leaves no disc at all, which is how a zero reads.
+
+102. **Per-Point Albedo in aksdf** — added 2026-09-26 for No.69. aksdf takes a
+    material id, not a colour function, so a texture is a scene function that
+    returns different ids by position AFTER the nearest surface is chosen (walnut
+    boards, figure and heartwood as ids 1, 7, 8, 9, 10). The key light, shadows
+    and fog then act on the texture, which an overlay drawn afterward never does.
+    Keep neighbouring ids within about 20 percent in value or the floor reads as
+    zebra. Straight figure along one axis with a slow warp reads as wood; a
+    strong sine warp reads as dunes.
