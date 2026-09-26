@@ -243,7 +243,7 @@
           const spe = Math.pow(S.clamp(S.dot(n, hv), 0, 1), 34) * (m.spec != null ? m.spec : 0.3) * sh;
           col = S.add(col, S.mul(keyC, spe));
           // rim
-          col = S.add(col, S.mul([0.35, 0.55, 0.75], fre * 0.35 * occ));
+          col = S.add(col, S.mul([0.35, 0.55, 0.75], fre * 0.35 * occ * (m.rim != null ? m.rim : 1)));   // m.rim scales the cool fresnel rim (a grazing table goes lavender at 1)
           if (m.emissive) col = S.add(col, S.mul(m.emissive, 1));
           // fog
           const fga = 1 - Math.exp(-fogK * fogK * t * t);
