@@ -1108,6 +1108,39 @@ RED_STATIC_CLIP = RED + """
 document.getElementById('c').style.clip = 'rect(0px, 100px, 100px, 0px)';
 """
 
+RED_TILED_SHORTS = """
+// five 9 x 9 additive tiles stacked at x 492 (y 600 to 645): each tile's
+// edge is under a quarter of the 40 px floor, yet the picture has one 45 px
+// edge on each side, so every short run is kept by position (Codex, PR #403)
+const sq = document.createElement('canvas'); sq.width = 9; sq.height = 9;
+const q2 = sq.getContext('2d'); q2.fillStyle = 'rgb(160,130,90)'; q2.fillRect(0, 0, 9, 9);
+cx.save(); cx.globalCompositeOperation = 'screen';
+for (let i = 0; i < 5; i++) cx.drawImage(sq, 492, 600 + 9 * i);
+cx.restore();
+"""
+
+RED_PART_CLEARED = RED + """
+// most of the seam is cleared afterwards (y 500 down): the stretch above it
+// (y 359 to 500) is still in the bitmap and is kept (Codex, PR #403)
+cx.clearRect(400, 500, 200, 850);
+"""
+
+GREEN_SCALED_SHADOW = """
+// a wrapper just off the frame (x 1110) shown at 3x with a 20 px drop-shadow
+// to the left: 60 px on the page, so the shadow reaches back to x 1050 and
+// the canvas is in the picture, counted as unplaced (Codex, PR #403)
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:1110px;top:0;transform-origin:0 0;' +
+                     'transform:scale(3);filter:drop-shadow(-20px 0 0 #FFFFFF)';
+document.body.appendChild(wrap);
+const nc = document.createElement('canvas'); nc.width = 100; nc.height = 400;
+nc.style.cssText = 'display:block;width:100px;height:400px';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 60; sp.height = 400;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(160,130,90)'; s2.fillRect(0, 0, 60, 400);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 40, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1209,6 +1242,9 @@ CASES = [
     ("slide-94", GREEN_ROTATED_CLIPPER, [], 0, "can't place"),
     ("slide-95", GREEN_SVG_VIEWPORT, [], 0, "can't place"),
     ("slide-96", RED_STATIC_CLIP, [LEFT], 1, None),
+    ("slide-97", RED_TILED_SHORTS, [LEFT, ("right", 501)], 2, None),
+    ("slide-98", RED_PART_CLEARED, [LEFT], 1, None),
+    ("slide-99", GREEN_SCALED_SHADOW, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

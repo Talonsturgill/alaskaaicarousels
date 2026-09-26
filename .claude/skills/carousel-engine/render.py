@@ -559,9 +559,11 @@ LIT_EDGE_HOOK_JS = """
     const LIT_BOOK = 65536, LIT_SWEEP = 4096;
     let sweepIn = 1;
     /* and at most LIT_WORK bitmap pixels read back across the whole slide,
-       eight 2x slide canvases; a draw past it is counted as skipped, so the
-       hook's own cost is bounded whatever the slide does (Codex, PR #403) */
-    const LIT_WORK = 8 * 2160 * 2700;
+       sixteen 2x slide canvases, which is eight measured draws of that size
+       since each reads its target twice (before and after); a draw past it
+       is counted as skipped, so the hook's own cost is bounded whatever the
+       slide does (Codex, PR #403) */
+    const LIT_WORK = 16 * 2160 * 2700;
     let work = 0;
     const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     let nOn = 0, nOff = 0;
@@ -630,19 +632,46 @@ LIT_EDGE_HOOK_JS = """
         return;
       }
       work += W * H;
-      const d = origGet.call(ctx, 0, 0, W, H).data;
+      let d;
+      try { d = origGet.call(ctx, 0, 0, W, H).data; }
+      catch (err) {
+        /* the bitmap can't be read back (tainted since it was measured): the
+           records are retired and the refusal is counted (Codex, PR #403) */
+        gens.set(cv, gen(cv) + 1);
+        const z = entry(cv);
+        if (z) z.failed++; else lost++;
+        return;
+      }
       const L = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : lum(d, (y * W + x) * 4);
-      const holds = (r) => {
+      /* each record is cut to the stretches where its step (a 5 px running
+         mean along the line) still holds, so a seam rewritten in part keeps
+         the part that survives (Codex, PR #403) */
+      const pieces = (r) => {
         const lead = r.side === 'left' || r.side === 'top';
         const cin = lead ? r.line : r.line - 1, cout = lead ? r.line - 2 : r.line + 1;
-        let sum = 0, n = 0;
-        for (let a = r.a0; a < r.a1; a += (r.a1 - r.a0 > 8 ? 2 : 1)) {
-          sum += r.axis === 'v' ? L(cin, a) - L(cout, a) : L(a, cin) - L(a, cout);
-          n++;
+        const n = r.a1 - r.a0, st = new Float32Array(n);
+        for (let i = 0; i < n; i++) {
+          const a = r.a0 + i;
+          st[i] = r.axis === 'v' ? L(cin, a) - L(cout, a) : L(a, cin) - L(a, cout);
         }
-        return n > 0 && sum / n >= LIT_STEP;
+        const out = [];
+        let start = -1, acc = 0;
+        for (let i = 0; i <= n; i++) {
+          let ok = false;
+          if (i < n) {
+            let sum = 0, cnt = 0;
+            for (let j = Math.max(0, i - 2); j <= Math.min(n - 1, i + 2); j++) { sum += st[j]; cnt++; }
+            ok = sum / cnt >= LIT_STEP;
+          }
+          if (ok && start < 0) start = i;
+          if (!ok && start >= 0) {
+            out.push(Object.assign({}, r, { a0: r.a0 + start, a1: r.a0 + i }));
+            start = -1;
+          }
+        }
+        return out;
       };
-      e.raw = e.raw.filter(holds); e.shorts = e.shorts.filter(holds);
+      e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
     };
     const origClear = proto.clearRect;
     if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
@@ -695,7 +724,7 @@ LIT_EDGE_HOOK_JS = """
       /* a draw that no budget can admit is attributed without a layout query:
          a sprite loop past its budget costs a counter, not a reflow per call
          (Codex, PR #403) */
-      if (cv.width * cv.height > LIT_AREA || work + cv.width * cv.height > LIT_WORK ||
+      if (cv.width * cv.height > LIT_AREA || work + 2 * cv.width * cv.height > LIT_WORK ||
           (nOn >= LIT_ON && nOff >= LIT_OFF)) { e.skipped++; return null; }
       /* past the on-page budget, a connected canvas's placement is looked up
          at most once per 32 of its draws; a detached one needs no lookup */
@@ -706,7 +735,7 @@ LIT_EDGE_HOOK_JS = """
       e.draws = (e.draws || 0) + 1;
       if (pl ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
       if (pl) nOn++; else nOff++;
-      work += cv.width * cv.height;
+      work += 2 * cv.width * cv.height;
       try {
         return { op: ctx.globalCompositeOperation,
                  d: origGet.call(ctx, 0, 0, cv.width, cv.height).data };
@@ -748,10 +777,37 @@ LIT_EDGE_HOOK_JS = """
         const v = axis === 'v', nLine = v ? W : H, nAlong = v ? H : W, pre = v ? preV : preH;
         const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
         const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
-        /* while the scale is unknown any short run may matter; once it is
-           known, a run under a quarter of the floor needs four or more draws
-           joined exactly to reach it, and is not kept */
-        const cands = [], shorts = [], shortMin = b0 ? Math.max(1, Math.floor(pre / 4)) : 2;
+        /* short runs: the LIT_SHORTS longest are kept by position, in a
+           small heap, so a longer run displaces grain and never the reverse,
+           and tiles too small alone can still join into a seam; one dropped
+           is counted when it is a quarter of the floor or more, or 2 px or
+           more while the scale is unknown (Codex, PR #403) */
+        const quarter = b0 ? Math.max(1, Math.floor(pre / 4)) : 2;
+        const heap = [];
+        const hpush = (k) => {
+          const len = k[3] - k[2];
+          if (heap.length < LIT_SHORTS) {
+            heap.push(k);
+            for (let i = heap.length - 1; i > 0;) {
+              const p = (i - 1) >> 1;
+              if (heap[p][3] - heap[p][2] <= len) break;
+              [heap[p], heap[i]] = [heap[i], heap[p]]; i = p;
+            }
+            return null;
+          }
+          if (heap[0][3] - heap[0][2] >= len) return k;
+          const out = heap[0]; heap[0] = k;
+          for (let i = 0;;) {
+            const l = 2 * i + 1, r = l + 1;
+            let m = i;
+            if (l < heap.length && heap[l][3] - heap[l][2] < heap[m][3] - heap[m][2]) m = l;
+            if (r < heap.length && heap[r][3] - heap[r][2] < heap[m][3] - heap[m][2]) m = r;
+            if (m === i) break;
+            [heap[m], heap[i]] = [heap[i], heap[m]]; i = m;
+          }
+          return out;
+        };
+        const cands = [], shorts = heap;
         let over = false;
         for (let c = 0; c <= nLine; c++) {
           for (const [side, inO, outO] of sides) {
@@ -767,15 +823,13 @@ LIT_EDGE_HOOK_JS = """
                    draws can make one 60 px seam); past LIT_SHORTS a draw keeps
                    only its longest, tested alone against the final scale
                    (Codex, PR #403) */
-                /* only a run that could matter joined (shortMin), so fine grain
-                   on a placed canvas never fills the list; past LIT_SHORTS such
-                   a run is counted, not lost */
-                if (run >= shortMin && run < pre) {
-                  if (shorts.length < LIT_SHORTS) shorts.push([side, c, start, start + run, mx]);
-                  else {
+                if (run >= 1 && run < pre) {
+                  const gone = hpush([side, c, start, start + run, mx]);
+                  if (gone && gone[3] - gone[2] >= quarter) {
                     over = true;
-                    if (v) { if (run > e.shortV) e.shortV = run; }
-                    else if (run > e.shortH) e.shortH = run;
+                    const gl = gone[3] - gone[2];
+                    if (v) { if (gl > e.shortV) e.shortV = gl; }
+                    else if (gl > e.shortH) e.shortH = gl;
                   }
                 }
                 if (run >= pre) {
@@ -1026,10 +1080,16 @@ LIT_EDGE_HOOK_JS = """
         const f = cs.filter || 'none';
         if (f === 'none') continue;
         if (/url\\(/.test(f)) return Infinity;
+        /* the extent is in this element's own px: carried into viewport px
+           by the scale its box is shown at, and unbounded if bent */
+        if (!flatChain(el)) return Infinity;
+        const q = el.getBoundingClientRect();
+        const k = Math.max(el.offsetWidth ? q.width / el.offsetWidth : 1,
+                           el.offsetHeight ? q.height / el.offsetHeight : 1);
         for (const m of f.matchAll(/(blur|drop-shadow)\\(((?:[^()]|\\([^()]*\\))*)\\)/g)) {
           const px = (m[2].match(/-?[0-9.]+px/g) || []).map(parseFloat);
-          if (m[1] === 'blur') ext += 3 * (px[0] || 0);
-          else ext += Math.max(Math.abs(px[0] || 0), Math.abs(px[1] || 0)) + 3 * (px[2] || 0);
+          if (m[1] === 'blur') ext += k * 3 * (px[0] || 0);
+          else ext += k * (Math.max(Math.abs(px[0] || 0), Math.abs(px[1] || 0)) + 3 * (px[2] || 0));
         }
       }
       return ext;
@@ -1084,7 +1144,8 @@ LIT_EDGE_HOOK_JS = """
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
-        const hard = e.raw.length > 0 || e.shorts.length > 0 || Math.max(e.shortV, e.shortH) >= 2;
+        const hard = e.raw.length > 0 || e.shorts.some((r) => r.a1 - r.a0 >= 2) ||
+                     Math.max(e.shortV, e.shortH) >= 2;
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even

@@ -623,13 +623,14 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   actually apply to it (containing blocks followed; a body whose overflow
   belongs to the viewport, a `display: contents` or non-replaced inline box
   clip nothing; a rotated clipper never rejects), or when a spreading filter
-  can reach the frame. Other canvases are staging canvases and are never
+  can reach the frame (its reach scaled as the element is shown). Other canvases are staging canvases and are never
   counted.
 
   *What it says it did not see.* Each by count, never in silence: draws past
   the budget (16 measured additive draws onto shown canvases and 24 onto
-  others, a bitmap over 17.5 million pixels, eight 2x canvases' worth of
-  readback per slide, bounded candidates, records and short runs per draw,
+  others, a bitmap over 17.5 million pixels, sixteen 2x canvases' worth of
+  readback per slide (a measured draw reads its canvas twice), bounded
+  candidates and records per draw, the longest short runs per draw,
   a ledger of 65,536 canvases), canvases it can't place, refused readbacks,
   render records older than the check, a record the picture has no room to be
   sampled along, and every visible iframe (the hook does not run in frames).
@@ -637,8 +638,9 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   *Erased light.* Measurements are kept per canvas and bitmap generation. A
   width or height set again (any API, seen by one MutationObserver) or
   `reset()` drops them; a `clearRect` or `putImageData` that touches a
-  record's pixels triggers one readback and keeps only records whose step is
-  still in the bitmap (a full put is also how a slide tone-maps its pixels).
+  record's pixels triggers one readback and keeps the stretches of each record
+  whose step is still in the bitmap (a full put is also how a slide tone-maps
+  its pixels); a readback refused there retires the records and is counted.
 
   *Not checked, by design.* Diagonal seams (a draw through a rotation or a
   diagonal clip), and light that reaches the picture without an additive
