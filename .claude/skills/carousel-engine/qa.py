@@ -3919,10 +3919,10 @@ def main():
              "else), clipped, masked or cropped by an ancestor's overflow inside the "
              "frame (which can cut its light where the canvas did not stop painting "
              "it), inside an iframe, the canvas uses an object-fit other than fill, "
-             "or it was painted "
-             "before its final size was known and is shown so large that a seam "
-             "shorter than the hook keeps could span 40 design px. Check that "
-             "canvas's additive layers by eye at thumb"),
+             "or a seam "
+             "shorter than the hook kept when it measured the draw spans 40 design "
+             "px at the size the canvas is finally shown. Check that canvas's "
+             "additive layers by eye at thumb"),
             ("lit_edges_readback",
              "lit-edge check could not read back %d additive draw(s): the browser "
              "refused the canvas's pixels (a tainted canvas) or the measurement "

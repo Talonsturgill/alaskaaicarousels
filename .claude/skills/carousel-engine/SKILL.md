@@ -612,9 +612,9 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   on-page canvases and 24 onto off-page ones per slide), a canvas it can't
   place because it or an ancestor is rotated, skewed, mirrored, on an offset
   path, or under a CSS `filter` or box reflection (which can paint the seam
-  somewhere else), or its `object-fit` is not `fill`, a draw made before the canvas's final
-  size was known and shown so large that a dropped short run could span 40
-  design px, a readback the browser refused, and a render record older than the check
+  somewhere else), or its `object-fit` is not `fill`, a draw whose seam, shorter than the hook
+  kept when it measured it, spans 40 design px at the size the canvas is
+  finally shown, a readback the browser refused, and a render record older than the check
   itself (kept by a partial `--only` re-render). A seam is placed through the
   canvas's content box, so border and padding are allowed. It looks for rows and columns
   only: a diagonal cut, from a draw through a rotation or a diagonal clip, is

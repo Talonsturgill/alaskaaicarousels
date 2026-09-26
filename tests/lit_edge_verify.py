@@ -91,6 +91,15 @@ through the REAL render.py and qa.py:
   50 GREEN  the nested glow in a shadow root whose host is rotated: counted
   51 GREEN  the repaired glow in a wrapper that clips only horizontally, whose
             bottom edge crosses the canvas: silent
+  52 RED    the RED layer, then attribute calls that change nothing (toggle a
+            present width, remove an absent attribute, re-set the same Attr):
+            still measured and reported
+  53 GREEN  fixture 45 with the framed document's collector deleted: its canvas
+            is still counted
+  54 GREEN  a 6 x 6 additive block on a detached canvas, shown at 50x under
+            object-fit: contain: counted, though no run reached the floor
+  55 GREEN  ninety detached staging canvases past the off-page budget, never
+            shown, then the repaired glow: silent
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), and what the
@@ -608,6 +617,45 @@ wrap.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:700px;o
 document.body.appendChild(wrap); wrap.appendChild(document.getElementById('c'));
 """ + GREEN_SPAN
 
+RED_NOOP_ATTR = RED + """
+// no-ops on the attributes that reset a canvas: the width attribute is already
+// present, and there is no data-width to remove, so the bitmap and its
+// measured seam are untouched (Codex, PR #403)
+const cc = document.getElementById('c');
+cc.toggleAttribute('width', true); cc.removeAttribute('height-x');
+cc.setAttributeNode(cc.getAttributeNode('width'));
+"""
+
+GREEN_CHILD_NO_COLLECTOR = GREEN_IFRAME.replace(
+    "window.renderReady = Promise.resolve(true);", "").replace(
+    "fr.srcdoc = ", "fr.srcdoc = (").replace(
+    ";\ndocument.body.appendChild(fr);",
+    ").replace('<\\/body>', '<script>delete window.__akLitCollect;<\\/script><\\/body>');\ndocument.body.appendChild(fr);")
+
+GREEN_SHORT_UNPLACEABLE = """
+// a 6 x 6 additive block on a detached 12 x 12 canvas (under the 8 px floor
+// used before a canvas is shown), then shown at 50x with object-fit: contain,
+// which can't be placed: its 300 px edges are counted (Codex, PR #403)
+const sc = document.createElement('canvas'); sc.width = 12; sc.height = 12;
+const c2 = sc.getContext('2d'); c2.fillStyle = '#101826'; c2.fillRect(0, 0, 12, 12);
+const sp = document.createElement('canvas'); sp.width = 6; sp.height = 6;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)'; s2.fillRect(0, 0, 6, 6);
+c2.globalCompositeOperation = 'screen'; c2.drawImage(sp, 3, 3);
+sc.style.cssText = 'position:absolute;left:240px;top:400px;width:600px;height:600px;object-fit:contain';
+document.body.appendChild(sc);
+"""
+
+GREEN_MANY_STAGING = """
+// ninety detached staging canvases, one additive draw each: past the
+// off-page budget, none ever shown, so nothing is counted (Codex, PR #403)
+for (let q = 0; q < 90; q++) {
+  const t = document.createElement('canvas'); t.width = 64; t.height = 64;
+  const tg = t.getContext('2d'), sp = document.createElement('canvas'); sp.width = 32; sp.height = 32;
+  sp.getContext('2d').fillRect(0, 0, 32, 32);
+  tg.globalCompositeOperation = 'screen'; tg.drawImage(sp, 16, 16);
+}
+""" + GREEN_SPAN
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -664,6 +712,10 @@ CASES = [
     ("slide-49", GREEN_IFRAME_INTERIOR, [], 0, "can't place"),
     ("slide-50", GREEN_SHADOW_ROTATED, [], 0, "can't place"),
     ("slide-51", GREEN_OVERFLOW_X_ONLY, [], 0, None),
+    ("slide-52", RED_NOOP_ATTR, [LEFT], 1, None),
+    ("slide-53", GREEN_CHILD_NO_COLLECTOR, [], 0, "can't place"),
+    ("slide-54", GREEN_SHORT_UNPLACEABLE, [], 0, "can't place"),
+    ("slide-55", GREEN_MANY_STAGING, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

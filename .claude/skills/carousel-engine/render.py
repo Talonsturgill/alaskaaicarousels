@@ -517,9 +517,9 @@ GRADIENT_CLIP_HOOK_JS = """
 # axis-aligned scale and translation. A rotated, skewed or mirrored canvas is
 # counted as UNPLACED rather than mapped onto an unrelated line; so is a seam
 # on a canvas under a CSS filter or box reflection, which can paint it where
-# the line probe does not look (the frame's own edge is exempted first); so is a
-# draw measured before the canvas's final size was known whose run floor that
-# size turns into LIT_SPAN design px or more.
+# the line probe does not look; so is a draw whose run, shorter than the floor
+# it was measured at, spans LIT_SPAN design px at the canvas's final size. All
+# of it is kept in one ledger per canvas and bitmap generation.
 # Nothing here is a verdict: a later draw, a DOM plate, stacking order or CSS
 # opacity can hide the line, so qa.py confirms the step in the shipped render.
 #
@@ -538,7 +538,10 @@ LIT_EDGE_HOOK_JS = """
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto || typeof proto.drawImage !== 'function' ||
         typeof proto.getImageData !== 'function') return;
-    const st = window.__akLit = { raw: [], skipped: [], cappedOn: [], rawOver: [], failed: [], pres: [], capped: 0 };
+    /* ONE LEDGER per canvas and bitmap generation, with no entry cap, so no
+       count can lose the canvas it belongs to; collection reads each entry
+       against the canvas's final state (Codex, PR #403) */
+    const book = window.__akLit = new Map();
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
     const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096;
@@ -566,19 +569,35 @@ LIT_EDGE_HOOK_JS = """
     };
     const eproto = window.Element && window.Element.prototype;
     if (eproto) {
-      for (const [m, i] of [['setAttribute', 0], ['removeAttribute', 0], ['toggleAttribute', 0],
-                            ['setAttributeNS', 1], ['removeAttributeNS', 1]]) {
+      /* setting always resets, even to the same value; removing or toggling
+         resets only when the attribute actually came or went */
+      for (const [m, i] of [['setAttribute', 0], ['setAttributeNS', 1]]) {
         const f = eproto[m];
         if (typeof f === 'function') eproto[m] = function () {
+          const res = f.apply(this, arguments);
           try { bump(this, arguments[i]); } catch (e) {}
-          return f.apply(this, arguments);
+          return res;
+        };
+      }
+      const has = (el, a, ns) => ns ? el.hasAttributeNS(a[0], a[1]) : el.hasAttribute(a[0]);
+      for (const [m, i, ns] of [['removeAttribute', 0, false], ['toggleAttribute', 0, false],
+                                ['removeAttributeNS', 1, true]]) {
+        const f = eproto[m];
+        if (typeof f === 'function') eproto[m] = function () {
+          let was = null;
+          try { was = has(this, arguments, ns); } catch (e) {}
+          const res = f.apply(this, arguments);
+          try { if (was !== has(this, arguments, ns)) bump(this, arguments[i]); } catch (e) {}
+          return res;
         };
       }
       for (const m of ['setAttributeNode', 'setAttributeNodeNS', 'removeAttributeNode']) {
         const f = eproto[m];
         if (typeof f === 'function') eproto[m] = function (a) {
-          try { bump(this, a && a.name); } catch (e) {}
-          return f.apply(this, arguments);
+          const noop = m !== 'removeAttributeNode' && a && a.ownerElement === this;
+          const res = f.apply(this, arguments);
+          try { if (!noop) bump(this, a && a.name); } catch (e) {}
+          return res;
         };
       }
       const av = window.Attr && Object.getOwnPropertyDescriptor(window.Attr.prototype, 'value');
@@ -587,12 +606,16 @@ LIT_EDGE_HOOK_JS = """
         set: function (v) { try { bump(this.ownerElement, this.name); } catch (e) {} return av.set.call(this, v); } });
     }
     const gen = (cv) => cv.__akGen || 0;
-    const live = (z) => z && z.cv && gen(z.cv) === z.g;
-    const tally = (list, cv) => {
-      const hit = list.find((z) => z.cv === cv && z.g === gen(cv));
-      if (hit) hit.n++;
-      else if (list.length < 64) list.push({ cv: cv, g: gen(cv), n: 1 });
-      else st.capped++;
+    /* the entry for the canvas's CURRENT bitmap; a new generation starts a
+       new entry, because the earlier one's light was erased */
+    const entry = (cv) => {
+      let e = book.get(cv);
+      if (!e || e.g !== gen(cv)) {
+        e = { g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
+              shortV: 0, shortH: 0, raw: [] };
+        book.set(cv, e);
+      }
+      return e;
     };
     const before = (ctx) => {
       if (!ADDITIVE[ctx.globalCompositeOperation]) return null;
@@ -602,22 +625,20 @@ LIT_EDGE_HOOK_JS = """
          wholly outside the frame) is a staging canvas: it spends the off-page
          budget, and a draw skipped on any canvas is counted only if that
          canvas is shown when the report is taken (Codex, PR #403) */
-      const placed = shown(cv);
-      if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) {
-        tally(placed ? st.cappedOn : st.skipped, cv);
-        return null;
-      }
+      const placed = shown(cv), e = entry(cv);
+      if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
       if (placed) nOn++; else nOff++;
       try {
         return { op: ctx.globalCompositeOperation,
                  d: origGet.call(ctx, 0, 0, cv.width, cv.height).data };
-      } catch (e) { tally(st.failed, cv); return null; }
+      } catch (err) { e.failed++; return null; }
     };
     const after = (ctx, b) => {
       const cv = ctx.canvas, W = cv.width, H = cv.height;
+      const e = entry(cv);
       let a;
       try { a = origGet.call(ctx, 0, 0, W, H).data; }
-      catch (e) { tally(st.failed, cv); return; }
+      catch (err) { e.failed++; return; }
       if (a.length !== b.d.length) return;
       const D = new Float32Array(W * H);
       let any = false;
@@ -626,19 +647,18 @@ LIT_EDGE_HOOK_JS = """
         if (v > 0) { D[p] = v; any = true; }
       }
       if (!any) return;
+      e.lit++;
       /* the shortest run worth keeping, in canvas px: LIT_SPAN design px at
          the scale the canvas is shown at now, LIT_PRE while that is unknown.
-         Collection checks the scale again and COUNTS a draw whose floor could
-         have dropped a run that now spans LIT_SPAN (Codex, PR #403) */
+         The longest run dropped under that floor is kept per axis, so
+         collection can tell exactly whether the final scale makes it a seam
+         of LIT_SPAN design px (Codex, PR #403) */
       let preV = LIT_PRE, preH = LIT_PRE;
       const b0 = cv.isConnected && placeable(cv) ? box(cv) : null;
       if (b0) {
         preV = Math.max(2, Math.floor(LIT_SPAN * H / b0.h));
         preH = Math.max(2, Math.floor(LIT_SPAN * W / b0.w));
       }
-      const pz = st.pres.find((z) => z.cv === cv && z.g === gen(cv));
-      if (pz) { pz.n++; pz.v = Math.max(pz.v, preV); pz.h = Math.max(pz.h, preH); }
-      else if (st.pres.length < 64) st.pres.push({ cv: cv, g: gen(cv), n: 1, v: preV, h: preH });
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
       /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
          the light begins at the line; 'right'/'bottom': it ends there */
@@ -657,6 +677,10 @@ LIT_EDGE_HOOK_JS = """
                 if (run === 0) { start = s; mx = 0; }
                 run++; if (vin > mx) mx = vin;
               } else {
+                if (run > 1 && run < pre) {
+                  if (v) { if (run > e.shortV) e.shortV = run; }
+                  else if (run > e.shortH) e.shortH = run;
+                }
                 if (run >= pre) {
                   /* bounded before the sort: a fragmented mask can make runs by
                      the hundred thousand; past the bound the draw is counted */
@@ -670,7 +694,7 @@ LIT_EDGE_HOOK_JS = """
         }
         /* the tolerant test lights the lines either side of a seam too; keep
            one per stretch, on the line where the added light jumps most */
-        if (over) tally(st.rawOver, cv);
+        if (over) rawOver = true;
         cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
         const kept = [];
         for (const k of cands) {
@@ -689,13 +713,13 @@ LIT_EDGE_HOOK_JS = """
              LIT_ON + LIT_OFF draws are measured, which bounds the total) */
           if (nRaw >= LIT_RAW) { rawOver = true; continue; }
           nRaw++;
-          st.raw.push({ cv: cv, g: gen(cv), op: b.op, axis: axis, side: k[0], line: line,
-                        a0: k[2], a1: k[3], mx: k[4] });
+          e.raw.push({ op: b.op, axis: axis, side: k[0], line: line,
+                       a0: k[2], a1: k[3], mx: k[4] });
         }
       };
       let nRaw = 0, rawOver = false;
       scan('v'); scan('h');
-      if (rawOver) tally(st.rawOver, cv);
+      if (rawOver) e.over++;
     };
     /* the COMPOSED tree, the one that renders: a slotted element's parent is
        its slot, and a shadow root's parent is its host (Codex, PR #403) */
@@ -795,36 +819,42 @@ LIT_EDGE_HOOK_JS = """
     };
     window.__akLitCollect = () => {
       const recs = [];
-      let unplaced = 0, capped = st.capped, readback = 0;
-      const rp = new Map(), mv = new Map();
+      let unplaced = 0, capped = 0, readback = 0;
       let isTop = true;
-      try { isTop = window.top === window; } catch (e) { isTop = false; }
-      const fw = document.documentElement.clientWidth || window.innerWidth;
-      const fh = document.documentElement.clientHeight || window.innerHeight;
-      const ok = new Map();
-      for (const e of st.raw) {
-        const cv = e.cv;
-        if (!live(e) || !shown(cv)) continue;      /* erased, or never reached the picture */
-        if (!ok.has(cv)) ok.set(cv, placeable(cv) ? box(cv) : false);
-        const bx = ok.get(cv);
-        if (bx === null) continue;                 /* not shown at any size */
-        if (!bx) { unplaced++; continue; }
-        const v = e.axis === 'v', kx = bx.w / cv.width, ky = bx.h / cv.height;
-        const kA = v ? ky : kx, kC = v ? kx : ky;
-        const ox = bx.x, oy = bx.y;
-        const page = (v ? ox : oy) + e.line * kC;
-        if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
-        if (!mv.has(cv)) mv.set(cv, repainted(cv, true));
-        if (mv.get(cv)) { unplaced++; continue; }
-        /* the picture's own edge; in a framed document the viewport edge is
-           the iframe's, inside the picture, so nothing is exempted there and
-           the top document counts it (Codex, PR #403) */
-        if (isTop && !(page > 1 && page < (v ? fw : fh) - 1)) continue;
-        if (!rp.has(cv)) rp.set(cv, repainted(cv, false));
-        if (rp.get(cv)) { unplaced++; continue; }
-        recs.push({ side: e.side, axis: e.axis, at: page,
-                    from: (v ? oy : ox) + e.a0 * kA, to: (v ? oy : ox) + e.a1 * kA,
-                    op: e.op, lit_max: e.mx / 255, n: 1 });
+      try { isTop = window.top === window; } catch (err) { isTop = false; }
+      const [fw, fh] = frame();
+      for (const [cv, e] of book) {
+        /* erased by a later width or height, or never in the picture */
+        if (e.g !== gen(cv) || !shown(cv)) continue;
+        capped += e.skipped + e.over; readback += e.failed;
+        if (!e.lit) continue;
+        const hard = e.raw.length > 0 || Math.max(e.shortV, e.shortH) >= 4;
+        const bx = placeable(cv) ? box(cv) : false;
+        if (bx === null) continue;                    /* not shown at any size */
+        /* can't be placed, or CSS can paint it elsewhere (which can bring even
+           the frame's edge in): counted when it measured a hard edge */
+        if (!bx || repainted(cv, true)) { if (hard) unplaced += e.lit; continue; }
+        /* CSS cuts its light where the canvas did not stop painting it */
+        if (cropped(cv, bx)) { unplaced += e.lit; continue; }
+        const kx = bx.w / cv.width, ky = bx.h / cv.height;
+        /* a run dropped under the floor that the final scale makes a seam */
+        if (e.shortV * ky >= LIT_SPAN || e.shortH * kx >= LIT_SPAN) unplaced += e.lit;
+        const tint = repainted(cv, false);
+        let tinted = false;
+        for (const r of e.raw) {
+          const v = r.axis === 'v', kA = v ? ky : kx, kC = v ? kx : ky;
+          const page = (v ? bx.x : bx.y) + r.line * kC;
+          if ((r.a1 - r.a0) * kA < LIT_SPAN) continue;
+          /* the picture's own edge; in a framed document the viewport edge is
+             the iframe's, inside the picture, so nothing is exempted there and
+             the top document counts it (Codex, PR #403) */
+          if (isTop && !(page > 1 && page < (v ? fw : fh) - 1)) continue;
+          if (tint) { tinted = true; continue; }
+          recs.push({ side: r.side, axis: r.axis, at: page,
+                      from: (v ? bx.y : bx.x) + r.a0 * kA, to: (v ? bx.y : bx.x) + r.a1 * kA,
+                      op: r.op, lit_max: r.mx / 255, n: 1 });
+        }
+        if (tinted) unplaced += e.lit;
       }
       /* one record per stretch of a line: records on the same side of the
          same line (within 1 design px) whose stretches overlap or touch are
@@ -847,19 +877,6 @@ LIT_EDGE_HOOK_JS = """
         z.at = +z.at.toFixed(1); z.from = +z.from.toFixed(1); z.to = +z.to.toFixed(1);
         z.lit_max = +z.lit_max.toFixed(4);
       }
-      /* a draw measured at a floor that the canvas's final scale turns into
-         40 design px or more may have dropped a visible run: counted */
-      for (const z of st.pres) {
-        if (!live(z) || !shown(z.cv)) continue;
-        if (!ok.has(z.cv)) ok.set(z.cv, placeable(z.cv) ? box(z.cv) : false);
-        const bx = ok.get(z.cv);
-        if (!bx) continue;                         /* counted above, or not shown */
-        if (cropped(z.cv, bx)) { unplaced += z.n; continue; }
-        if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
-            (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
-      }
-      for (const z of st.skipped.concat(st.cappedOn, st.rawOver)) if (live(z) && shown(z.cv)) capped += z.n;
-      for (const z of st.failed) if (live(z) && shown(z.cv)) readback += z.n;
       return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
     };
     proto.drawImage = function () {
@@ -867,7 +884,7 @@ LIT_EDGE_HOOK_JS = """
       try { b = before(this); } catch (e) { b = null; }
       const res = origDraw.apply(this, arguments);
       /* a measurement that throws is counted as unmeasured, not swallowed */
-      if (b) { try { after(this, b); } catch (e) { try { tally(st.failed, this.canvas); } catch (e2) {} } }
+      if (b) { try { after(this, b); } catch (err) { try { entry(this.canvas).failed++; } catch (e2) {} } }
       return res;
     };
   } catch (e) {}
@@ -3813,7 +3830,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
             if fr == page.main_frame:
                 continue
             try:
-                n = fr.evaluate("() => { const c = window.__akLitCollect; if (!c) return 0; "
+                n = fr.evaluate("() => { const c = window.__akLitCollect; "
+                                "if (!c) return document.getElementsByTagName('canvas').length ? 1 : 0; "
                                 "const r = c(); return r.edges.length + r.capped + "
                                 "r.unplaced + r.readback; }")
             except Exception:
