@@ -19,6 +19,8 @@ and qa.py:
   GREEN  the RED layer with an opaque plate drawn over its edge     -> recorded,
          but silent in qa, because nothing visible is left to report
   GREEN  the RED layer drawn in source-over (a panel, not light)    -> silent
+  RED    twelve 30 px additive sprites, then the RED layer          -> must WARN
+         (short edges can't fill the census ahead of the seam; Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -104,6 +106,17 @@ plate.style.cssText = 'position:absolute;left:440px;top:0;width:120px;height:135
 document.body.appendChild(plate);
 """
 
+RED_AFTER_SPRITES = """
+for (let q = 0; q < 12; q++) {
+  const sp = document.createElement('canvas'); sp.width = 30; sp.height = 30;
+  const sg = sp.getContext('2d'); sg.fillStyle = 'rgb(200,160,90)'; sg.fillRect(0, 0, 30, 30);
+  cx.save(); cx.globalCompositeOperation = 'screen'; cx.globalAlpha = 0.3;
+  cx.drawImage(sp, 60 + q * 30, 200 + (q % 3) * 60); cx.restore();
+}
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -115,7 +128,8 @@ CASES = [("slide-01", RED, True, True),
          ("slide-03", GREEN_FEATHER, False, False),
          ("slide-04", GREEN_OCCLUDED, True, False),
          ("slide-05", GREEN_PANEL, False, False),
-         ("slide-06", GREEN_DOM_PLATE, True, False)]
+         ("slide-06", GREEN_DOM_PLATE, True, False),
+         ("slide-07", RED_AFTER_SPRITES, True, True)]
 NEEDLE = "a layer of light ends in mid-air"
 
 

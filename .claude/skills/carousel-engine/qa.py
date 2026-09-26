@@ -3908,6 +3908,13 @@ def main():
         # the corpus has run clean. What it points at cost No.69 its craft
         # cycle: a lamp glow on a 760 px layer, a hard vertical edge at x 492
         # visible in the thumb, passed by every gate and found by the scorer.
+        if rec.get("lit_edges_capped"):
+            res["warns"].append(
+                "lit-edge census capped: render.py stopped recording additive "
+                "canvas layers after 24 in-frame edges or 400 draws, so a later "
+                "layer's seam was not examined. Draw fewer separate additive "
+                "layers (composite sprites onto one layer first), or check the "
+                "last glow layers by eye at thumb.")
         for le in rec.get("lit_edges", []):
             try:
                 # The SHIPPED picture decides: an opaque DOM or SVG plate over
@@ -3922,6 +3929,11 @@ def main():
                 if clayer is not None:
                     mc = lit_edge_step(clayer, le, design_w, design_h)
                     if mc is None or mc[0] < LIT_RUN:
+                        continue
+                    # the SAME stretch of the line in both pictures: a canvas
+                    # seam hidden by a plate plus an unrelated edge elsewhere on
+                    # the line is not a visible seam (Codex, PR #402)
+                    if min(m[3], mc[3]) - max(m[2], mc[2]) < LIT_RUN:
                         continue
                 run, med, a0, a1 = m
                 axis = "x" if le.get("axis") == "v" else "y"

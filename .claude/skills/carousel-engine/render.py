@@ -400,11 +400,14 @@ GRADIENT_CLIP_HOOK_JS = """
        occluded by what is drawn after it, so qa.py confirms the step on the
        final canvas layer before it says anything. Observes and forwards. */
     window.__akLitEdge = [];
-    const LIT_MAX = 24, LIT_MIN = 0.01, LIT_CALLS = 400, LIT_SAMPLES = 512;
+    /* LIT_SPAN: an edge shorter than qa.py's LIT_RUN (40 design px) can never
+       warn, so it is not recorded and can't fill the census ahead of a real
+       seam (Codex, PR #402). A census that does fill says so in lit_edges_capped. */
+    const LIT_MAX = 24, LIT_MIN = 0.01, LIT_CALLS = 400, LIT_SAMPLES = 512, LIT_SPAN = 40;
+    window.__akLitEdgeCapped = false;
     let litCalls = 0;
     const origDraw = proto.drawImage;
     const litEdge = (ctx, a) => {
-      if (window.__akLitEdge.length >= LIT_MAX || litCalls >= LIT_CALLS) return;
       const op = ctx.globalCompositeOperation;
       if (!ADDITIVE[op]) return;
       const img = a[0];
@@ -412,6 +415,10 @@ GRADIENT_CLIP_HOOK_JS = """
         (typeof HTMLCanvasElement !== 'undefined' && img instanceof HTMLCanvasElement) ||
         (typeof OffscreenCanvas !== 'undefined' && img instanceof OffscreenCanvas);
       if (!isCanvas) return;
+      if (window.__akLitEdge.length >= LIT_MAX || litCalls >= LIT_CALLS) {
+        window.__akLitEdgeCapped = true;
+        return;
+      }
       const iw = img.width, ih = img.height;
       if (!(iw >= 2 && ih >= 2)) return;
       let sx = 0, sy = 0, sw = iw, sh = ih, dx, dy, dw, dh;
@@ -465,9 +472,14 @@ GRADIENT_CLIP_HOOK_JS = """
         ['bottom', B, flipY ? [sx, sy, sw, 1] : [sx, sy + sh - 1, sw, 1], 'h']
       ];
       for (const [side, at, src, ax] of edges) {
-        if (window.__akLitEdge.length >= LIT_MAX) break;
+        if (window.__akLitEdge.length >= LIT_MAX) { window.__akLitEdgeCapped = true; break; }
         const lim = ax === 'v' ? cv.width : cv.height;
         if (!(at > 1 && at < lim - 1)) continue;   /* on or past the frame edge */
+        {
+          const s0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
+          const s1 = ax === 'v' ? Math.min(cv.height, B) : Math.min(cv.width, R);
+          if ((s1 - s0) * (ax === 'v' ? ky : kx) < LIT_SPAN) continue;
+        }
         let v;
         try { v = border(src[0], src[1], src[2], src[3]); } catch (e) { continue; }
         if (!v.length) continue;
@@ -2629,6 +2641,7 @@ IN_PAGE_QA_JS = """
      in-frame edge, in design px. Same hook. qa.py confirms each on the pixels. */
   out.lit_edges = (Array.isArray(window.__akLitEdge)
                    ? window.__akLitEdge : []).slice(0, 24);
+  out.lit_edges_capped = !!window.__akLitEdgeCapped;
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -3489,7 +3502,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
-           "lit_edges": [],
+           "lit_edges": [], "lit_edges_capped": False,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3530,7 +3543,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
-                                       "add_glows", "lit_edges",
+                                       "add_glows", "lit_edges", "lit_edges_capped",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",
