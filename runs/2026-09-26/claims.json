@@ -605,14 +605,14 @@
    "claim": "The Alaska News news sitemap listed 90 articles published between September 24th and September 26th.",
    "value": "90 articles",
    "verbatim": "https://alaskanews.com/c/alaska-news/juneau-nearly-doubled-what-it-gives-eaglecrest-this-year",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/news-sitemap.xml",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.9,
-   "notes": "Measured by Alaska.Ai. The verbatim is the 90th and last URL in my numbered list of the sitemap. My listing had exactly 90 URLs. Publication dates run from 2026-09-24T07:40:57Z to 2026-09-26T07:23:09Z, the same range as the showrunner's 07:35 UTC fetch. A first summary said 100, but the full numbered list gave 90. The sitemap rolls, so the count can drift. Say 'in the 48 hours to Saturday morning' or similar.",
-   "archived_copy_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/news-sitemap.xml"
+   "notes": "Measured by Alaska.Ai. The verbatim is the 90th and last URL in my numbered list of the sitemap. My listing had exactly 90 URLs. Publication dates run from 2026-09-24T07:40:57Z to 2026-09-26T07:23:09Z, the same range as the showrunner's 07:35 UTC fetch. A first summary said 100, but the full numbered list gave 90. The sitemap rolls, so the count can drift. Say 'in the 48 hours to Saturday morning' or similar. Source is the sitemap as captured at 07:35 UTC and committed with the run; the live sitemap rolls to a new 48-hour window and is kept as live_source_url.",
+   "live_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C48",
