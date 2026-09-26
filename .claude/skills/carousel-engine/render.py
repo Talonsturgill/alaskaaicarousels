@@ -707,8 +707,10 @@ LIT_EDGE_HOOK_JS = """
       let preV = LIT_PRE, preH = LIT_PRE;
       const b0 = cv.isConnected && placeable(cv) ? box(cv) : null;
       if (b0) {
-        preV = Math.max(2, Math.floor(LIT_SPAN * H / b0.h));
-        preH = Math.max(2, Math.floor(LIT_SPAN * W / b0.w));
+        /* down to one backing pixel: on a canvas enlarged 40x or more a
+           single pixel is already a seam (Codex, PR #403) */
+        preV = Math.max(1, Math.floor(LIT_SPAN * H / b0.h));
+        preH = Math.max(1, Math.floor(LIT_SPAN * W / b0.w));
       }
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
       /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
@@ -720,7 +722,7 @@ LIT_EDGE_HOOK_JS = """
         /* while the scale is unknown any short run may matter; once it is
            known, a run under a quarter of the floor needs four or more draws
            joined exactly to reach it, and is not kept */
-        const cands = [], shorts = [], shortMin = b0 ? Math.max(2, Math.floor(pre / 4)) : 2;
+        const cands = [], shorts = [], shortMin = b0 ? Math.max(1, Math.floor(pre / 4)) : 2;
         let over = false;
         for (let c = 0; c <= nLine; c++) {
           for (const [side, inO, outO] of sides) {
@@ -816,22 +818,23 @@ LIT_EDGE_HOOK_JS = """
     /* which axes an ancestor clips its descendants on: overflow or paint
        containment, and only on a box that has a clipping box at all, so an
        inline or display:contents ancestor clips nothing (Codex, PR #403) */
-    const clipAxes = (cs) => {
+    const clipAxes = (cs, containOnly) => {
       if (/^(inline|contents|none)$/.test(cs.display || '')) return [false, false];
       const cp = /paint|strict|content/.test(cs.contain || '') ||
                  /^(auto|hidden)$/.test(cs.contentVisibility || '');   /* implies paint containment */
+      if (containOnly) return [cp, cp];
       return [cp || (cs.overflowX || 'visible') !== 'visible',
               cp || (cs.overflowY || 'visible') !== 'visible'];
     };
     /* an ancestor's clip rectangle in viewport px: its padding box, pushed
        out by overflow-clip-margin (from the box that property names) on each
        axis whose overflow is `clip` (Codex, PR #403) */
-    const clipRect = (el, cs) => {
+    const clipRect = (el, cs, containOnly) => {
       const q = el.getBoundingClientRect();
       const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
       let L = q.left + el.clientLeft * s, T = q.top + el.clientTop * t;
       let R = L + el.clientWidth * s, B = T + el.clientHeight * t;
-      const cx = cs.overflowX === 'clip', cy = cs.overflowY === 'clip';
+      const cx = !containOnly && cs.overflowX === 'clip', cy = !containOnly && cs.overflowY === 'clip';
       const m = String(cs.overflowClipMargin || '');
       if ((cx || cy) && m) {
         const f = (k) => parseFloat(cs[k]) || 0;
@@ -858,6 +861,7 @@ LIT_EDGE_HOOK_JS = """
       (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
       (cs.scale || 'none') !== 'none' ||
       /paint|layout|strict|content/.test(cs.contain || '') ||
+      /^(auto|hidden)$/.test(cs.contentVisibility || '') ||        /* implies layout containment */
       /transform|perspective|filter/.test(cs.willChange || '');
     const clippers = (el0) => {
       const out = [];
@@ -871,7 +875,11 @@ LIT_EDGE_HOOK_JS = """
       for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         const cb = !esc || (esc === 'fixed' ? fixedCB(cs) : (cs.position !== 'static' || fixedCB(cs)));
+        /* a body whose overflow belongs to the viewport still clips by
+           paint containment, on both axes, and by nothing else */
         if (cb && !(el === document.body && bodyToViewport)) out.push([el, cs]);
+        else if (cb && (/paint|strict|content/.test(cs.contain || '') ||
+                        /^(auto|hidden)$/.test(cs.contentVisibility || ''))) out.push([el, cs, true]);
         if (cb) esc = null;
         if (cs.position === 'fixed') esc = 'fixed';
         else if (cs.position === 'absolute' && esc !== 'fixed') esc = 'absolute';
@@ -890,11 +898,11 @@ LIT_EDGE_HOOK_JS = """
          its wrapper's clip is not in the picture (Codex, PR #403) */
       let L = Math.max(r.left, 0), T = Math.max(r.top, 0);
       let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
-      for (const [el, cs] of clippers(cv)) {
+      for (const [el, cs, only] of clippers(cv)) {
         if (!(R > L && B > T)) break;
-        const [ox, oy] = clipAxes(cs);
+        const [ox, oy] = clipAxes(cs, only);
         if (!ox && !oy) continue;
-        const [cl, ct, cr, cb] = clipRect(el, cs);
+        const [cl, ct, cr, cb] = clipRect(el, cs, only);
         if (ox) { L = Math.max(L, cl); R = Math.min(R, cr); }
         if (oy) { T = Math.max(T, ct); B = Math.min(B, cb); }
       }
@@ -913,6 +921,7 @@ LIT_EDGE_HOOK_JS = """
       if ((getComputedStyle(cv).objectFit || 'fill') !== 'fill') return false;
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;
         const tf = cs.transform || 'none';
         if (tf !== 'none') {
           /* a flat 3D transform (translateZ(0), translate3d, scale3d) is
@@ -956,9 +965,14 @@ LIT_EDGE_HOOK_JS = """
        drop-shadow, an SVG filter by url(), a box reflection), which can bring
        even the frame's own edge into the picture, so it is checked before that
        edge is exempted; any other filter only recolours in place */
+    /* a display:contents element generates no box, so a filter, a
+       reflection, a transform or a clip declared on it does nothing
+       (Codex, PR #403) */
+    const boxless = (cs) => cs.display === 'contents';
     const spreads = (cv) => {
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el), f = cs.filter || 'none';
+        if (boxless(cs)) continue;
         if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
         if (/blur\(|drop-shadow|url\(/.test(f)) return true;
       }
@@ -967,6 +981,7 @@ LIT_EDGE_HOOK_JS = """
     const repainted = (cv, moves) => {
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el), f = cs.filter || 'none';
+        if (boxless(cs)) continue;
         if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
         if (f !== 'none' && (!moves || /drop-shadow|url\(/.test(f))) return true;
       }
@@ -982,14 +997,15 @@ LIT_EDGE_HOOK_JS = """
       const cuts = (e, lo, hi, fmax) => e > lo + 0.5 && e < hi - 0.5 && e > 1 && e < fmax - 1;
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;
         if ((cs.clipPath || 'none') !== 'none') return true;
         if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
       }
-      for (const [el, cs] of clippers(cv)) {
-        const [ox, oy] = clipAxes(cs);
+      for (const [el, cs, only] of clippers(cv)) {
+        const [ox, oy] = clipAxes(cs, only);
         if (!ox && !oy) continue;
-        const [vl, vt, vr, vb] = clipRect(el, cs), sx = window.scrollX || 0, sy = window.scrollY || 0;
+        const [vl, vt, vr, vb] = clipRect(el, cs, only), sx = window.scrollX || 0, sy = window.scrollY || 0;
         const L = vl + sx, T = vt + sy, R = vr + sx, B = vb + sy;
         /* each axis crops only where it clips (Codex, PR #403) */
         if ((ox && (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw))) ||

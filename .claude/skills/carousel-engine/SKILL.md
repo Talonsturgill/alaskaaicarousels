@@ -634,8 +634,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
   which honours `overflow-clip-margin`, counts `content-visibility` as paint
-  containment, skips a body whose overflow belongs to the viewport, and
-  applies only between a positioned canvas and its containing block) spends the off-page budget and is never
+  containment and a containing block, skips the overflow (not the paint
+  containment) of a body whose overflow belongs to the viewport, ignores
+  box effects on `display: contents` ancestors, and applies only between a
+  positioned canvas and its containing block) spends the off-page budget and is never
   counted, unless a filter that spreads or moves paint (a blur, a drop-shadow, an SVG
   filter) or a reflection can paint it back in, when it is kept in view and
   counted; a measurement made before

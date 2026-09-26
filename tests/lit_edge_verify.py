@@ -162,6 +162,14 @@ through the REAL render.py and qa.py:
             overflow, which implies paint containment: counted
   85 RED    body { height: 100px; overflow: hidden } with the root visible: a
             canvas below the body box is still painted, measured and reported
+  86 GREEN  the RED layer under body { height: 700px; overflow: hidden;
+            contain: paint }: the containment still cuts it, so it is counted
+  87 RED    a one-pixel-high strip on a 20 px canvas shown at 54x: its
+            one-pixel side edges are 54 design px, recorded and reported
+  88 GREEN  an absolutely positioned glow canvas whose containing block is a
+            content-visibility:auto wrapper that clips it: counted
+  89 RED    the RED canvas inside a display:contents wrapper with a
+            drop-shadow, which has no box to act on: measured and reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -984,6 +992,42 @@ n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1000);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 """
 
+GREEN_BODY_CONTAIN = """
+// body { height: 700px; overflow: hidden; contain: paint }: the overflow goes
+// to the viewport but the paint containment still cuts the main canvas at
+// y 700, so its draws are counted (Codex, PR #403)
+document.body.style.height = '700px'; document.body.style.overflow = 'hidden';
+document.body.style.contain = 'paint';
+""" + RED
+
+RED_ONE_PIXEL = """
+// a 20 x 20 canvas shown at 1080 x 1080 (54x, pixelated) holding a strip one
+// backing pixel high from x 9 to 13: its left and right edges are one pixel
+// long, 54 design px on the page, and are seams (Codex, PR #403)
+const sc = document.createElement('canvas'); sc.width = 20; sc.height = 20;
+sc.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1080px;image-rendering:pixelated';
+document.body.appendChild(sc);
+const c2 = sc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 20; sp.height = 20;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(9, 10, 5, 1);
+c2.globalCompositeOperation = 'screen'; c2.drawImage(sp, 0, 0);
+"""
+
+GREEN_CV_CONTAINING_BLOCK = """
+// an absolutely positioned full-frame glow canvas inside a static wrapper at
+// x 492 with content-visibility:auto, which is its containing block and
+// clips it: counted (Codex, PR #403)
+const wrap = document.createElement('div');
+wrap.style.cssText = 'margin-left:492px;width:588px;height:1350px;content-visibility:auto';
+document.body.insertBefore(wrap, document.getElementById('c'));
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:-492px;top:0;width:1080px;height:1350px';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
+RED_CONTENTS_FILTER = wrapped("div", "display:contents;filter:drop-shadow(40px 0 0 #FFFFFF)")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1074,6 +1118,10 @@ CASES = [
     ("slide-83", GREEN_COLOR_FILTER_OFFSCREEN_IFRAME, [], 0, None),
     ("slide-84", GREEN_CONTENT_VISIBILITY, [], 0, "can't place"),
     ("slide-85", RED_BODY_PROPAGATION, [LEFT], None, None),
+    ("slide-86", GREEN_BODY_CONTAIN, [], 0, "can't place"),
+    ("slide-87", RED_ONE_PIXEL, [("left", 486), ("right", 756)], None, None),
+    ("slide-88", GREEN_CV_CONTAINING_BLOCK, [], 0, "can't place"),
+    ("slide-89", RED_CONTENTS_FILTER, [LEFT], 1, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
