@@ -626,10 +626,12 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   the frame is counted, not confirmed; the check does not look inside frames,
   and every iframe visible in the picture is named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
-  opacity 0, or outside the frame) spends the off-page budget and is never
-  counted; a measurement made before the canvas's width or height was set
-  again (by property or attribute) is dropped, because setting either clears
-  the bitmap. Ancestors are walked in the composed tree, through slots and
+  opacity 0, outside the frame, or wholly outside an ancestor's overflow clip)
+  spends the off-page budget and is never counted; a measurement made before
+  the canvas's width or height was set again (by property or attribute) or
+  its context was `reset()` is dropped, because each clears the bitmap. The
+  ledger holds canvases weakly and at most 65,536 of them; a draw it can't
+  attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
   shadow hosts. Candidates and records are bounded per draw (4096 and 256),
   a bitmap larger than 17.5 million pixels is never read back, and a draw
   past any bound is counted. A recorded seam the picture has no room to be

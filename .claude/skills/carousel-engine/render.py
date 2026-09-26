@@ -541,13 +541,19 @@ LIT_EDGE_HOOK_JS = """
     /* ONE LEDGER per canvas and bitmap generation, with no entry cap, so no
        count can lose the canvas it belongs to; collection reads each entry
        against the canvas's final state (Codex, PR #403) */
-    const book = window.__akLit = new Map();
+    const book = window.__akLit = new Map(), ids = new WeakMap();
+    let nextId = 0, lost = 0;
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
     const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096;
     /* the largest bitmap read back, in pixels: three times a 2x slide canvas.
        A larger target is counted, never read (Codex, PR #403) */
     const LIT_AREA = 3 * 2160 * 2700;
+    /* the ledger holds each canvas WEAKLY, so a scratch canvas can be
+       collected with its bitmap, and it holds at most LIT_BOOK entries; a
+       draw that finds it full after a sweep of collected canvases can't be
+       attributed, so it is counted as skipped (Codex, PR #403) */
+    const LIT_BOOK = 65536;
     const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     let nOn = 0, nOff = 0;
     const origDraw = proto.drawImage, origGet = proto.getImageData;
@@ -616,13 +622,25 @@ LIT_EDGE_HOOK_JS = """
     /* the entry for the canvas's CURRENT bitmap; a new generation starts a
        new entry, because the earlier one's light was erased */
     const entry = (cv) => {
-      let e = book.get(cv);
+      let id = ids.get(cv);
+      if (id === undefined) { id = nextId++; ids.set(cv, id); }
+      let e = book.get(id);
       if (!e || e.g !== gen(cv)) {
-        e = { g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
+        if (!e && book.size >= LIT_BOOK) {
+          for (const [k, z] of book) if (!z.ref.deref()) book.delete(k);
+          if (book.size >= LIT_BOOK) return null;
+        }
+        e = { ref: new WeakRef(cv), g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
               shortV: 0, shortH: 0, raw: [] };
-        book.set(cv, e);
+        book.set(id, e);
       }
       return e;
+    };
+    /* CanvasRenderingContext2D.reset() clears the bitmap as a resize does */
+    const origReset = proto.reset;
+    if (typeof origReset === 'function') proto.reset = function () {
+      try { if (this.canvas) this.canvas.__akGen = (this.canvas.__akGen || 0) + 1; } catch (e) {}
+      return origReset.apply(this, arguments);
     };
     const before = (ctx) => {
       if (!ADDITIVE[ctx.globalCompositeOperation]) return null;
@@ -633,6 +651,7 @@ LIT_EDGE_HOOK_JS = """
          budget, and a draw skipped on any canvas is counted only if that
          canvas is shown when the report is taken (Codex, PR #403) */
       const placed = shown(cv), e = entry(cv);
+      if (!e) { lost++; return null; }
       if (cv.width * cv.height > LIT_AREA) { e.skipped++; return null; }
       if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
       if (placed) nOn++; else nOff++;
@@ -644,6 +663,7 @@ LIT_EDGE_HOOK_JS = """
     const after = (ctx, b) => {
       const cv = ctx.canvas, W = cv.width, H = cv.height;
       const e = entry(cv);
+      if (!e) { lost++; return; }
       let a;
       try { a = origGet.call(ctx, 0, 0, W, H).data; }
       catch (err) { e.failed++; return; }
@@ -740,7 +760,24 @@ LIT_EDGE_HOOK_JS = """
       if (typeof cv.checkVisibility === 'function' &&
           !cv.checkVisibility({ visibilityProperty: true, opacityProperty: true })) return false;
       const r = cv.getBoundingClientRect(), [fw, fh] = frame();
-      return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 && r.left < fw && r.top < fh;
+      /* what is left of the canvas inside the frame and inside every
+         ancestor's overflow clip, per clipping axis: a canvas wholly outside
+         its wrapper's clip is not in the picture (Codex, PR #403) */
+      let L = Math.max(r.left, 0), T = Math.max(r.top, 0);
+      let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
+      for (let el = up(cv); el && el.nodeType === 1 && R > L && B > T; el = up(el)) {
+        const cs = getComputedStyle(el);
+        const cp = /paint|strict|content/.test(cs.contain || '');
+        const ox = cp || (cs.overflowX || 'visible') !== 'visible';
+        const oy = cp || (cs.overflowY || 'visible') !== 'visible';
+        if (!ox && !oy) continue;
+        const q = el.getBoundingClientRect();
+        const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
+        const cl = q.left + el.clientLeft * s, ct = q.top + el.clientTop * t;
+        if (ox) { L = Math.max(L, cl); R = Math.min(R, cl + el.clientWidth * s); }
+        if (oy) { T = Math.max(T, ct); B = Math.min(B, ct + el.clientHeight * t); }
+      }
+      return r.width > 0 && r.height > 0 && R > L && B > T;
     };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
@@ -829,7 +866,10 @@ LIT_EDGE_HOOK_JS = """
       const recs = [];
       let unplaced = 0, capped = 0, readback = 0;
       const [fw, fh] = frame();
-      for (const [cv, e] of book) {
+      capped += lost;
+      for (const e of book.values()) {
+        const cv = e.ref.deref();
+        if (!cv) continue;                            /* collected: never in the picture */
         /* erased by a later width or height, or never in the picture */
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
@@ -887,7 +927,7 @@ LIT_EDGE_HOOK_JS = """
       try { b = before(this); } catch (e) { b = null; }
       const res = origDraw.apply(this, arguments);
       /* a measurement that throws is counted as unmeasured, not swallowed */
-      if (b) { try { after(this, b); } catch (err) { try { entry(this.canvas).failed++; } catch (e2) {} } }
+      if (b) { try { after(this, b); } catch (err) { try { const z = entry(this.canvas); if (z) z.failed++; else lost++; } catch (e2) {} } }
       return res;
     };
   } catch (e) {}

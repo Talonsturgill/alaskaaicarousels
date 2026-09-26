@@ -109,6 +109,13 @@ through the REAL render.py and qa.py:
             under object-fit: contain: counted
   59 GREEN  an additive draw on a 4000 x 4400 bitmap, past the readback area
             bound: counted as skipped, never read
+  60 GREEN  a seam measured, then ctx.reset() and an ordinary panel edge on
+            the same line: silent
+  61 RED    thirty additive draws on a staging canvas wholly outside its
+            wrapper's overflow clip, then the RED layer: measured, reported,
+            and no budget warning
+  62 GREEN  seventy thousand live 1 px scratch canvases, one additive draw
+            each: past the ledger's capacity, counted as skipped
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -693,6 +700,49 @@ sp.getContext('2d').fillRect(0, 0, 2000, 4400);
 h2.globalCompositeOperation = 'screen'; h2.drawImage(sp, 2000, 0);
 """
 
+GREEN_CTX_RESET = """
+// a seam measured at bitmap x 100 (page x 592), then ctx.reset() clears the
+// bitmap and a source-over panel is drawn whose ordinary edge is exactly on
+// that line: the erased light must say nothing (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 488; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)'; s2.fillRect(0, 0, 488, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 100, 0);
+n2.reset();
+n2.fillStyle = 'rgb(90,70,40)'; n2.fillRect(100, 0, 488, 1350);
+"""
+
+RED_AFTER_CLIPPED_STAGING = """
+// a staging canvas inside a 10 px wrapper that hides its overflow, placed
+// wholly outside that clip though its own box is in the frame: thirty
+// additive draws on it spend the off-page budget, so the RED layer that
+// follows is measured (Codex, PR #403)
+const ow = document.createElement('div');
+ow.style.cssText = 'position:absolute;left:0;top:0;width:10px;height:10px;overflow:hidden';
+document.body.appendChild(ow);
+const stc = document.createElement('canvas'); stc.width = 400; stc.height = 400;
+stc.style.cssText = 'position:absolute;left:500px;top:500px';
+ow.appendChild(stc);
+const st2 = stc.getContext('2d');
+""" + sprites(30, "st2") + """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+"""
+
+GREEN_BOOK_FULL = """
+// seventy thousand 1 px scratch canvases, one additive draw each, all kept
+// alive: past the ledger's capacity, so the draws that can't be attributed
+// are counted as skipped rather than dropped (Codex, PR #403)
+const keep = [], dot = document.createElement('canvas'); dot.width = 1; dot.height = 1;
+for (let q = 0; q < 70000; q++) {
+  const t = document.createElement('canvas'); t.width = 1; t.height = 1; keep.push(t);
+  const tg = t.getContext('2d'); tg.globalCompositeOperation = 'screen'; tg.drawImage(dot, 0, 0);
+}
+window.__keep = keep;
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -757,6 +807,9 @@ CASES = [
     ("slide-57", RED_NS_ATTR, [LEFT], 1, None),
     ("slide-58", GREEN_TINY_UNPLACEABLE, [], 0, "can't place"),
     ("slide-59", GREEN_HUGE, [], 0, "past its budget"),
+    ("slide-60", GREEN_CTX_RESET, [], 0, None),
+    ("slide-61", RED_AFTER_CLIPPED_STAGING, [LEFT], 1, None),
+    ("slide-62", GREEN_BOOK_FULL, [], 0, "past its budget"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
