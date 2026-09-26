@@ -142,6 +142,9 @@ through the REAL render.py and qa.py:
             floor, the joined 60 px edges on both sides are reported
   75 GREEN  an iframe just off the frame whose blur(20px) spreads it back in:
             counted as a frame
+  76 GREEN  fixture 60 with the bitmap emptied by a full clearRect: silent
+  77 RED    the RED layer, then a full clearRect through a 100 px clip, which
+            leaves the seam's light: still measured and reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -880,6 +883,15 @@ GREEN_BLUR_FRAME_OFFSCREEN = GREEN_IFRAME.replace(
     "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
     "position:absolute;left:1086px;top:0;width:400px;height:1350px;border:0;filter:blur(20px)")
 
+GREEN_CLEARRECT = GREEN_CTX_RESET.replace("n2.reset();", "n2.clearRect(0, 0, 588, 1350);")
+
+RED_CLIPPED_CLEAR = RED + """
+// a 'full' clearRect through a 100 px clip: the bitmap is not empty, the
+// seam's light is still there, so it is still measured (Codex, PR #403)
+cx.save(); cx.beginPath(); cx.rect(0, 0, 100, 100); cx.clip();
+cx.clearRect(0, 0, 1080, 1350); cx.restore();
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -960,6 +972,8 @@ CASES = [
     ("slide-73", RED_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
     ("slide-74", RED_TWO_SHORT_DRAWS, [LEFT, ("right", 522)], 2, None),
     ("slide-75", GREEN_BLUR_FRAME_OFFSCREEN, [], 0, "does not look inside frames"),
+    ("slide-76", GREEN_CLEARRECT, [], 0, None),
+    ("slide-77", RED_CLIPPED_CLEAR, [LEFT], 1, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

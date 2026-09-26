@@ -609,6 +609,34 @@ LIT_EDGE_HOOK_JS = """
       return e;
     };
     /* CanvasRenderingContext2D.reset() clears the bitmap as a resize does */
+    /* clearing the whole bitmap erases the light it measured. The rectangle
+       alone can't say so (a clip may keep part of it), so after a clear that
+       spans the bitmap on a canvas holding measured light, the canvas is read
+       back once, within the work budget, and only a truly empty bitmap starts
+       a new generation (Codex, PR #403) */
+    const origClear = proto.clearRect;
+    if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
+      const res = origClear.apply(this, arguments);
+      try {
+        const cv = this.canvas, id = cv && ids.get(cv), e = id !== undefined && book.get(id);
+        if (e && e.g === gen(cv) && e.lit) {
+          const t = this.getTransform ? this.getTransform() : null;
+          const flat = !t || (Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9);
+          const ax = t ? t.a : 1, dy = t ? t.d : 1, ex = t ? t.e : 0, fy = t ? t.f : 0;
+          const x0 = Math.min(ax * x + ex, ax * (x + w) + ex), x1 = Math.max(ax * x + ex, ax * (x + w) + ex);
+          const y0 = Math.min(dy * y + fy, dy * (y + h) + fy), y1 = Math.max(dy * y + fy, dy * (y + h) + fy);
+          const W = cv.width, H = cv.height;
+          if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H && work + W * H <= LIT_WORK) {
+            work += W * H;
+            const d = origGet.call(this, 0, 0, W, H).data;
+            let empty = true;
+            for (let i = 3; i < d.length; i += 4) if (d[i]) { empty = false; break; }
+            if (empty) gens.set(cv, gen(cv) + 1);
+          }
+        }
+      } catch (err) {}
+      return res;
+    };
     const origReset = proto.reset;
     if (typeof origReset === 'function') proto.reset = function () {
       try { if (this.canvas) gens.set(this.canvas, gen(this.canvas) + 1); } catch (e) {}
@@ -958,17 +986,25 @@ LIT_EDGE_HOOK_JS = """
          same line (within 1 design px) whose stretches overlap or touch are
          merged, so layered draws warn once and do not fill the cap */
       recs.sort((p, q) => (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.from - q.from);
-      const out = [];
+      /* in one pass: each record is checked only against the latest group on
+         its own line and the two lines beside it, so the merge is linear in
+         the records and never a scan of everything before (Codex, PR #403) */
+      const out = [], latest = new Map();
       for (const r of recs) {
-        const hit = out.find((z) => z.side === r.side && Math.abs(z.at - r.at) <= 1 &&
-                                    r.from <= z.to + 1 && z.from <= r.to + 1);
+        const a = Math.round(r.at);
+        let hit = null;
+        for (const k of [a - 1, a, a + 1]) {
+          const z = latest.get(r.side + '|' + k);
+          if (z && Math.abs(z.at - r.at) <= 1 && r.from <= z.to + 1 && z.from <= r.to + 1) { hit = z; break; }
+        }
         if (hit) {
           hit.from = Math.min(hit.from, r.from); hit.to = Math.max(hit.to, r.to);
           hit.lit_max = Math.max(hit.lit_max, r.lit_max); hit.n += r.n;
           if (hit.op !== r.op) hit.op = hit.op + ', ' + r.op;
           continue;
         }
-        out.push(Object.assign({}, r));
+        const g = Object.assign({}, r);
+        out.push(g); latest.set(r.side + '|' + a, g);
       }
       if (out.length > LIT_MAX) { capped += out.length - LIT_MAX; out.length = LIT_MAX; }
       for (const z of out) {
