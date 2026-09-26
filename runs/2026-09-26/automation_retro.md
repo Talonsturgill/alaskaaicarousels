@@ -137,3 +137,8 @@ https://developer.chrome.com/blog/html-in-canvas-origin-trial
 - Consider promoting the lit-edge WARN to a FAIL after about ten runs with no false positive.
 - The Gas Watch late dispatch: the routine can't re-dispatch a late collector because the GitHub
   integration lacks permission (403). Granting `actions: write` is a credentials decision.
+
+
+## After review (showrunner, 13:25 UTC)
+
+The lit-edge upgrade was WITHDRAWN before merge. Codex reviewed it eleven times on PR #402 and found new coverage gaps each round (clips, source bounds, filters, stacking, opacity, CSS transforms including reflection, late-appended and upscaled canvases, tainted readbacks, smoothing edge effects). A Phase 12 upgrade has to be bounded and verified; this one proved unbounded, so zero upgrades shipped. The last version (commit 3adf7a91) and the full list of findings are parked in knowledge/FIELD_NOTES.md as the specification for a dedicated maintenance PR. The aksdf `rim` material option (a run fix that slide 09 uses) stays.

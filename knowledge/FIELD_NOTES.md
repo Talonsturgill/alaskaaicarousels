@@ -8652,23 +8652,33 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - QA'S MARK PROBE READS INK SPREAD. A physically correct bokeh disc (smooth centre, hot rim) failed marks_reach_frame on 30 of 88 discs; declaring each disc's point on its own rim fixed it honestly. See instincts.
 - DEFERRED, NAMED: 07's halftone breaks into dashes where the row pitch and the dot size are computed from different y (sy0 against y); 09's walnut still reads as bold converging lines; 03's rings are still stroked targets; the cover has no focal light (the dossier's lamp pool at the lower right never landed).
 
-## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air
+## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air (WITHDRAWN, PARKED)
 
-- render.py's gradient hook now records every ADDITIVE drawImage of a canvas onto an on-page canvas
-  whose destination edge lands inside the frame while the source border still carries light
-  (`lit_edges` in render_report.json), and qa.py confirms each one on the final canvas layer before
-  it WARNs: a step of 1.0 level or more, held for 40 design px or more, on exactly that line. It
-  exists because the CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and left a hard
-  vertical edge at x 492 that four gates passed and the scorer saw at thumb. The reconstruction
-  WARNs at x 492 (4.6 levels over 153 px). The repaired frame records nothing.
-- WHY BOTH HALVES. A pixel-only straight-step detector was tried first. It found the seam, and it
-  also found 25 legitimate horizontal steps across the nine shipped frames: table edges, desk rows
-  and a horizon. A horizontal seam can't be told from a table edge on pixels. The brush knows a
-  layer of light ENDED there, and the pixels know nothing covered it afterwards. Keep that split if
-  this check is ever extended to fillRect gradients.
-- THE HABIT IT ENFORCES: a glow, pool or haze layer spans the frame, or every edge that lands inside
-  the frame is feathered to zero (a smoothstep over 150 px or more). Its bounding box is never the
-  place its light stops.
+- THE DEFECT IS REAL. The CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and left a
+  hard vertical edge at x 492 that every gate passed and the re-scorer saw at thumb. THE HABIT still
+  stands: a glow, pool or haze layer spans the frame, or every edge that lands inside the frame is
+  feathered to zero (a smoothstep over 150 px or more). Its bounding box is never where its light stops.
+- THE CHECK WAS WITHDRAWN BEFORE MERGE. Phase 12 built a render.py hook plus a qa.py WARN for it and
+  Codex reviewed it eleven times on PR #402, finding new coverage gaps every round. The last version
+  on the branch (commit 3adf7a91, reachable from main through the run's merge) had moved from
+  modelling drawImage geometry to MEASURING the paint: the target canvas read before and after each
+  additive drawImage, a seam being where the added light stops within a pixel (1 level in, 0.25 out,
+  40 design px straight), mapped to the page at report collection and confirmed in the shipped render.
+  It passed 22 fixtures and left this run's slides pixel-identical. It was still not bounded, and a
+  run may only ship bounded, verified upgrades, so it came out and zero upgrades shipped.
+- THE SPECIFICATION FOR A DEDICATED MAINTENANCE PR is every finding the review raised; build against
+  all of them at once, not round by round: clip regions; source rects past the source bounds; canvas
+  filters and CSS filters on the canvas or its ancestors; negative drawImage sizes; nested, offset,
+  clipped and late-appended target canvases; z-index and ancestor stacking contexts; CSS opacity;
+  CSS rotation, skew AND reflection (scaleX(-1)); canvases shown larger than their bitmap (no pixel
+  floor); several qualifying runs on one line (keep them all); tainted canvases (surface a readback
+  failure, never skip silently); smoothing that must not zero-pad the run's ends; rows labelled top
+  and bottom; diagonal seams at any angle; a census cap that says so; a test that fails when any
+  fixture is missing. UNBLOCKS WHEN someone opens that PR with time to take Codex's rounds without a
+  day's deck waiting on it.
+- WHAT THE RUN LEARNED ABOUT REVIEW. A new instrument riding a run's PR gets reviewed as hard as the
+  run's claims, and it has far more surface. Keep Phase 12 upgrades small enough to be finished in one
+  review, or ship them in their own PR.
 
 ### Parked, 2026-09-26 frontier scan, focus (e), headless Chromium rendering
 

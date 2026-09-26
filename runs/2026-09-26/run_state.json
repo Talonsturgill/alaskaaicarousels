@@ -90,9 +90,16 @@
     },
     "upgrade": {
       "status": "done",
-      "note": "1 fix (engine): lit-edge WARN for additive layers ending mid-frame; commits 55bc4af2 + SHA follow-up; scan (e) headless rendering parked"
+      "note": "1 reactive upgrade (lit-edge check) built and reviewed 11 rounds by Codex, WITHDRAWN before merge as unbounded; parked in FIELD_NOTES with every finding; zero upgrades shipped; scan (e) headless rendering parked"
     },
     "gmail": "pending",
     "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 123 pages read against 18 checks (site_signoff.py, morning of September 26th)",
+    "gaswatch_live": "PASS at 09:44 UTC. The live audit read FAIL from the first check until then on 'source reading published': CINGSA posted a reading at 18:54 AKDT on September 25th after the 22:29 UTC collection, and GitHub dispatched the 04:40 and 07:20 UTC scheduled collectors late. A manual dispatch through the GitHub integration returned 403. It cleared when the collector ran; no incident was needed.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited (refreshed 09:45 UTC)",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
   }
 }
