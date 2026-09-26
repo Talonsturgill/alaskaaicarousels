@@ -34,7 +34,10 @@
       "status": "done",
       "note": "worklist of 6 refreshed; watch.json failed=[]; zero hearings (out of session); HJR18 candidate noted on AKLNG item, others not AI decisions"
     },
-    "gas_watch": "pending",
+    "gas_watch": {
+      "status": "done",
+      "note": "GAS WATCH LIVE PASS at 09:44Z after the late-dispatched collector ran; cron_health PASS 6 workflows (refreshed 09:45Z)"
+    },
     "selection": {
       "status": "done",
       "artifacts": [
@@ -81,7 +84,10 @@
       "status": "done",
       "note": "cycle 1 8.16 (art 7); craft cycle round 5 on 6,3,9,8,1,5; cycle 2 8.16 (art 7); 08 glow-edge regression fixed after the card"
     },
-    "ship": "pending",
+    "ship": {
+      "status": "in_progress",
+      "note": "artifacts in runs/, webp + og.jpg, pdf shrunk 11%, site rebuilt (124 pages), parsers/scanner/docket_dates/site_fresh PASS, no alerts due, pruned 2026-08-26"
+    },
     "upgrade": "pending",
     "gmail": "pending",
     "retro": "pending"

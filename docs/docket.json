@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-09-25",
+  "updated": "2026-09-26",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -769,10 +769,15 @@
           "url": "https://www.adn.com/business-economy/energy/2026/08/19/alaska-lng-developer-looks-for-alternative-paths-after-effort-to-secure-multibillion-dollar-tax-cut-fails/",
           "outlet": "Anchorage Daily News",
           "date": "2026-08-19"
+        },
+        {
+          "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=HJR18",
+          "outlet": "Alaska Legislature, BASIS",
+          "date": "2026-09-22"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-08-26",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-07-08",
@@ -889,6 +894,10 @@
         {
           "date": "2026-08-26",
           "note": "It ended. The third special session ran out at midnight on Tuesday, August 25th, 2026 and lawmakers never took up HB 4001 in committee. Both chambers cancelled the pro forma sessions scheduled for that morning and the Capitol stayed empty. Governor Dunleavy said legislative leadership, particularly in the state Senate, had one job, to advance a clean Alaska LNG bill or load it down with an S corporation tax that killed it, and that they chose the latter. The three consecutive special sessions cost about $750,000, about $434,000 and about $76,000, more than $1 million together. A tax break for the project now waits on a new governor and a new Legislature after the November election, which puts it in 2027 at the earliest."
+        },
+        {
+          "date": "2026-09-26",
+          "note": "Re-read the Legislature's bill record today. HJR 18, a separate resolution urging the federal government to expedite the state natural gas pipeline project, became Legislative Resolve 56 on September 22nd. It changes no tax. The tax break itself still waits on the governor and Legislature seated after the November election."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aklng-tax-bill-second-special-session/"
@@ -1996,7 +2005,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-08-05",
@@ -2073,6 +2082,10 @@
         {
           "date": "2026-09-25",
           "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 is closed, one award is expected with a ceiling of $3,500,000, the archive date is still September 26th and no award has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-26",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 closed on August 27th with one award expected and a ceiling of $3,500,000. Its archive date is today, September 26th, and the listing shows no award. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2146,7 +2159,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-08-06",
@@ -2199,6 +2212,10 @@
         {
           "date": "2026-09-25",
           "note": "Re-verified today against KUAC's September 20th report. Comments on the preferred site near Spruce Lake, east of the south end of the main runway, are still due to the Eielson Public Affairs Office no later than September 30th. The base's own microreactor page refused an automated request today. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-26",
+          "note": "Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299, and must arrive no later than September 30th. The base's own microreactor page refused an automated read today. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -3168,7 +3185,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-08-31",
@@ -3208,6 +3225,10 @@
         },
         {
           "date": "2026-09-25",
+          "note": "Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-26",
           "note": "Re-read the Federal Register text today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
         }
       ],
@@ -3619,7 +3640,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-09-13",
@@ -3639,6 +3660,10 @@
         },
         {
           "date": "2026-09-25",
+          "note": "Re-read the Federal Register text today. Written comments are still due October 2nd in docket DOT-OST-2026-3269. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-26",
           "note": "Re-read the Federal Register text today. Written comments are still due October 2nd in docket DOT-OST-2026-3269. Checked and unchanged."
         }
       ],
@@ -3760,7 +3785,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-23",
+      "last_updated": "2026-09-26",
       "history": [
         {
           "date": "2026-09-15",
@@ -3785,6 +3810,10 @@
         {
           "date": "2026-09-23",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still in New Business with no final action recorded, and its own title still carries the October 20th hearing date. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-26",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still in New Business before the Policies and Procedures Committee with no final action recorded, and its title still sets the public hearing for October 20th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"

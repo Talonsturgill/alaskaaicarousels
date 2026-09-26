@@ -6,7 +6,55 @@
 <atom:link href="https://alaskaaihq.com/docket/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Every AI infrastructure decision tracked in Alaska, as it moves. Comment windows, deadlines, votes and filings.</description>
 <language>en-us</language>
-<lastBuildDate>Fri, 25 Sep 2026 17:00:00 +0000</lastBuildDate>
+<lastBuildDate>Sat, 26 Sep 2026 17:00:00 +0000</lastBuildDate>
+<item>
+<title>The AKLNG gas line tax bill</title>
+<link>https://alaskaaihq.com/docket/#aklng-tax-bill-second-special-session</link>
+<guid isPermaLink="false">alaska-ai-docket-aklng-tax-bill-second-special-session-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>legislation</category>
+<description>A conference committee compromise unveiled July 2nd would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16th over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27th with no bill from the governor and almost no legislators in the room. Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on. Status, closed.</description>
+</item>
+<item>
+<title>A national AI institute for Native communities, and the Alaska lane that closed with it</title>
+<link>https://alaskaaihq.com/docket/#ana-ai3-action-institute</link>
+<guid isPermaLink="false">alaska-ai-docket-ana-ai3-action-institute-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>grant</category>
+<description>The Administration for Native Americans published its final Fiscal Year 2026 program policies on July 28th, 2026, standing up three funding opportunities and leaving out SEDS-AK, the Alaska-specific economic development program that ran alongside SEDS for decades. Two days later it posted the AI3 Action Institute, a single national award of up to $3,500,000 to build an artificial intelligence resource center for Native communities, with Alaska Native villages under ANCSA and nonprofit village consortia named as eligible applicants. Only eligible applicants reached this one, and applications closed on August 27th, 2026, so no public path remains. An Alaskan reached it through a tribe, an ANCSA village or a Native nonprofit that filed in time. Applications are evaluated privately and no awardee has been named. Status, pending-decision.</description>
+</item>
+<item>
+<title>The Air Force nuclear microreactor at Eielson</title>
+<link>https://alaskaaihq.com/docket/#eielson-oklo-microreactor</link>
+<guid isPermaLink="false">alaska-ai-docket-eielson-oklo-microreactor-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>procurement</category>
+<description>The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission. Until September 30th anyone can comment on the Air Force's preferred site for the reactor, near Spruce Lake east of the south end of the main runway, by email to 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299. The contract itself follows a Nuclear Regulatory Commission license. Status, open-for-comment.</description>
+</item>
+<item>
+<title>The FCC asks whether AI should help run the Universal Service Fund</title>
+<link>https://alaskaaihq.com/docket/#fcc-usf-ai-administration</link>
+<guid isPermaLink="false">alaska-ai-docket-fcc-usf-ai-administration-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>regulatory-docket</category>
+<description>The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read. Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else. Status, open-for-comment.</description>
+</item>
+<item>
+<title>Renting the highway shoulder to power and fiber, with data centers named as the draw</title>
+<link>https://alaskaaihq.com/docket/#dot-great-corridors-rfi-2026</link>
+<guid isPermaLink="false">alaska-ai-docket-dot-great-corridors-rfi-2026-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>regulatory-docket</category>
+<description>A request for information launching America's Great Corridors of Commerce, a voluntary program letting highway and rail right-of-way owners raise revenue by colocating utility infrastructure in their corridors through public-private partnerships. Transmission, fiber, rural broadband and water pipelines are all named. One stated aim is to incentivize data centers, manufacturing facilities and distribution hubs to locate close to the corridors. Alaska has four long corridors and a railroad, and every large compute proposal in the state is shaped around one of them, yet the notice does not mention Alaska and frames the program around multi-state corridors, a shape no Alaskan right-of-way has. Anyone may comment. Written comments are due by October 2nd under docket DOT-OST-2026-3269, filed at regulations.gov or by mail to DOT Docket Operations. Late comments will be considered to the extent practicable. Status, open-for-comment.</description>
+</item>
+<item>
+<title>Kenai Peninsula Borough writes a weather modification code</title>
+<link>https://alaskaaihq.com/docket/#kpb-weather-modification-code</link>
+<guid isPermaLink="false">alaska-ai-docket-kpb-weather-modification-code-2026-09-26</guid>
+<pubDate>Sat, 26 Sep 2026 17:00:00 +0000</pubDate>
+<category>legislation</category>
+<description>Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August. The ordinance would require ten items in a borough lease or land use permit application, prohibit the activity on borough lands open for casual use, and carry a $1,000 per day fine and a five year application ban for a missing closeout summary. Its reach is borough land; the August flight that prompted it was over state land. A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then. Status, open-for-comment.</description>
+</item>
 <item>
 <title>Air Force land leases for AI data centers at JBER, Eielson and Clear</title>
 <link>https://alaskaaihq.com/docket/#air-force-eul-ai-data-centers</link>
@@ -40,22 +88,6 @@
 <description>The Alaska Energy Authority has asked FERC to amend the license for the Bradley Lake Hydroelectric Project, the largest in Alaska, so it can build a new dam diverting meltwater and surface runoff from the Dixon Glacier into Bradley Lake, raise the lake's normal maximum operating pool by about 16 feet, and install a 0.3 megawatt micro-hydro turbine in one of the dam's fishwater release valves. The application projects about 38 percent more average annual generation while installed capacity rises from 119.7 to 120.0 megawatts, because the gain comes from water rather than from turbines. AEA estimates construction at about $400 million and about three years of study and permitting followed by three years of construction. FERC accepting the application for filing is a procedural step and not an approval. The comment window has closed. Anyone could file a comment, a motion to intervene or a protest in docket P-8221-124 until 5:00 p.m. Eastern on August 28th, 2026, which was 1:00 p.m. Alaska time, and that hour has passed. FERC now weighs the application and has published no decision date. The docket itself stays readable through FERC's eLibrary, so an Alaskan can follow what was filed without being able to add to it. Status, pending-decision.</description>
 </item>
 <item>
-<title>A national AI institute for Native communities, and the Alaska lane that closed with it</title>
-<link>https://alaskaaihq.com/docket/#ana-ai3-action-institute</link>
-<guid isPermaLink="false">alaska-ai-docket-ana-ai3-action-institute-2026-09-25</guid>
-<pubDate>Fri, 25 Sep 2026 17:00:00 +0000</pubDate>
-<category>grant</category>
-<description>The Administration for Native Americans published its final Fiscal Year 2026 program policies on July 28th, 2026, standing up three funding opportunities and leaving out SEDS-AK, the Alaska-specific economic development program that ran alongside SEDS for decades. Two days later it posted the AI3 Action Institute, a single national award of up to $3,500,000 to build an artificial intelligence resource center for Native communities, with Alaska Native villages under ANCSA and nonprofit village consortia named as eligible applicants. Only eligible applicants reached this one, and applications closed on August 27th, 2026, so no public path remains. An Alaskan reached it through a tribe, an ANCSA village or a Native nonprofit that filed in time. Applications are evaluated privately and no awardee has been named. Status, pending-decision.</description>
-</item>
-<item>
-<title>The Air Force nuclear microreactor at Eielson</title>
-<link>https://alaskaaihq.com/docket/#eielson-oklo-microreactor</link>
-<guid isPermaLink="false">alaska-ai-docket-eielson-oklo-microreactor-2026-09-25</guid>
-<pubDate>Fri, 25 Sep 2026 17:00:00 +0000</pubDate>
-<category>procurement</category>
-<description>The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission. Until September 30th anyone can comment on the Air Force's preferred site for the reactor, near Spruce Lake east of the south end of the main runway, by email to 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299. The contract itself follows a Nuclear Regulatory Commission license. Status, open-for-comment.</description>
-</item>
-<item>
 <title>An 89 million dollar federal grant for a coal plant in the Susitna watershed</title>
 <link>https://alaskaaihq.com/docket/#terra-energy-center-doe-grant</link>
 <guid isPermaLink="false">alaska-ai-docket-terra-energy-center-doe-grant-2026-09-25</guid>
@@ -80,14 +112,6 @@
 <description>DeepGreen Cook Inlet SPV LLC, a Delaware company whose parent formed in January 2026, applied to FERC in February for a preliminary permit over an initial operational envelope of 1,650 acres of Cook Inlet seabed west of Nikiski, proposing a 100 megawatt data center of 66 hives of AI servers powered and cooled by approximately 330 to 350 tidal turbines in water 45 to 166 feet deep. A preliminary permit authorizes study rather than construction, for up to four years, and FERC's Northwest branch found the application incomplete in a June 18th letter. The comment room is open. FERC accepted DeepGreen Cook Inlet SPV, LLC's preliminary permit application for filing and published notice in the Federal Register on September 4th, 2026, opening the record on Project No. P-15423-000. Comments, motions to intervene, competing applications and notices of intent to file competing applications are due by 5:00 p.m. Eastern Time on November 2nd, 2026, which is 1:00 p.m. Alaska time. Filing runs through FERC's eFiling system and the docket is readable through eLibrary. A preliminary permit grants study and site priority rather than authority to build, so what is open here is the record on whether the applicant gets up to four years of priority to study the site. Status, open-for-comment.</description>
 </item>
 <item>
-<title>The FCC asks whether AI should help run the Universal Service Fund</title>
-<link>https://alaskaaihq.com/docket/#fcc-usf-ai-administration</link>
-<guid isPermaLink="false">alaska-ai-docket-fcc-usf-ai-administration-2026-09-25</guid>
-<pubDate>Fri, 25 Sep 2026 17:00:00 +0000</pubDate>
-<category>regulatory-docket</category>
-<description>The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read. Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else. Status, open-for-comment.</description>
-</item>
-<item>
 <title>Fairbanks asks Juneau and Congress to pause data centers</title>
 <link>https://alaskaaihq.com/docket/#fnsb-2027-data-center-moratorium-request</link>
 <guid isPermaLink="false">alaska-ai-docket-fnsb-2027-data-center-moratorium-request-2026-09-25</guid>
@@ -102,14 +126,6 @@
 <pubDate>Fri, 25 Sep 2026 17:00:00 +0000</pubDate>
 <category>legislation</category>
 <description>H.R. 9340, the Ratepayer Protection Act, would add a standard to the Public Utility Regulatory Policies Act requiring that rates charged a large-load customer recover from that customer the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it, and keep recovering it if the customer walks away. A large-load customer is a non-residential consumer with aggregate peak demand of 100 megawatts or more at one site or campus, running information technology infrastructure for data storage and computation, which is a data center described without the phrase. State regulators would get one year from enactment to begin considering it and two to decide. A state is excused if, before enactment, it implemented a comparable standard, conducted a proceeding on one, or its legislature voted on one. Alaska's Senate passed SB 250, a comparable cost-allocation bill, on May 16th, and the House never voted. Whether one chamber satisfies the words the State legislature has voted is unresolved, and it decides whether Alaska is already excused. There is no comment room on a bill. The route is the congressional delegation, and after enactment it becomes a proceeding at the Regulatory Commission of Alaska, which is a room with a docket and a public record. The House passed the bill on September 16th and it is now before the Senate, so Alaska's two senators are who to write to while it sits there. Status, pending-decision.</description>
-</item>
-<item>
-<title>Renting the highway shoulder to power and fiber, with data centers named as the draw</title>
-<link>https://alaskaaihq.com/docket/#dot-great-corridors-rfi-2026</link>
-<guid isPermaLink="false">alaska-ai-docket-dot-great-corridors-rfi-2026-2026-09-25</guid>
-<pubDate>Fri, 25 Sep 2026 17:00:00 +0000</pubDate>
-<category>regulatory-docket</category>
-<description>A request for information launching America's Great Corridors of Commerce, a voluntary program letting highway and rail right-of-way owners raise revenue by colocating utility infrastructure in their corridors through public-private partnerships. Transmission, fiber, rural broadband and water pipelines are all named. One stated aim is to incentivize data centers, manufacturing facilities and distribution hubs to locate close to the corridors. Alaska has four long corridors and a railroad, and every large compute proposal in the state is shaped around one of them, yet the notice does not mention Alaska and frames the program around multi-state corridors, a shape no Alaskan right-of-way has. Anyone may comment. Written comments are due by October 2nd under docket DOT-OST-2026-3269, filed at regulations.gov or by mail to DOT Docket Operations. Late comments will be considered to the extent practicable. Status, open-for-comment.</description>
 </item>
 <item>
 <title>The University of Alaska's AI policy</title>
@@ -208,14 +224,6 @@
 <description>Ordinance Serial No. 26-106 adopts a new borough code chapter, MSB 23.30, whose title states that it prohibits the acquisition, installation and operation of automated license plate reader systems and associated mass surveillance technology. Assemblymember Bernier moved to introduce it on September 1st and to set the public hearing. A motion to adopt carried on September 15th. The borough's legislative record contradicts itself on who moved adoption, its action text naming one member and its structured mover field another, so this record does not name that mover. It is a prohibition rather than a set of conditions, which makes it the opposite instrument to the surveillance rules the neighbouring Anchorage Assembly is weighing. The borough's legislative record carries no vote tally for either motion, only that each one passed. The Assembly adopted the ordinance on September 15th, so there is no comment room left on this measure. The borough code it creates, MSB 23.30, is the public record of what was decided, and an Assembly member is the route to any change to it. Status, decided.</description>
 </item>
 <item>
-<title>Kenai Peninsula Borough writes a weather modification code</title>
-<link>https://alaskaaihq.com/docket/#kpb-weather-modification-code</link>
-<guid isPermaLink="false">alaska-ai-docket-kpb-weather-modification-code-2026-09-23</guid>
-<pubDate>Wed, 23 Sep 2026 17:00:00 +0000</pubDate>
-<category>legislation</category>
-<description>Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August. The ordinance would require ten items in a borough lease or land use permit application, prohibit the activity on borough lands open for casual use, and carry a $1,000 per day fine and a five year application ban for a missing closeout summary. Its reach is borough land; the August flight that prompted it was over state land. A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then. Status, open-for-comment.</description>
-</item>
-<item>
 <title>The Navy's permit for an under-ice robot navigation grid</title>
 <link>https://alaskaaihq.com/docket/#onr-arctic-iha-year-9</link>
 <guid isPermaLink="false">alaska-ai-docket-onr-arctic-iha-year-9-2026-09-21</guid>
@@ -254,14 +262,6 @@
 <pubDate>Sun, 30 Aug 2026 17:00:00 +0000</pubDate>
 <category>procurement</category>
 <description>Fort Wainwright was one of nine Army posts short listed for a microreactor under the Janus program. On August 26th, 2026 the Army named the first five installations and their vendors, and Fort Wainwright was not among them. Industry submissions were taken through the Defense Innovation Unit and are evaluated privately. No public comment period exists at this stage, and no vendor has been named for Fort Wainwright. Status, decided.</description>
-</item>
-<item>
-<title>The AKLNG gas line tax bill</title>
-<link>https://alaskaaihq.com/docket/#aklng-tax-bill-second-special-session</link>
-<guid isPermaLink="false">alaska-ai-docket-aklng-tax-bill-second-special-session-2026-08-26</guid>
-<pubDate>Wed, 26 Aug 2026 17:00:00 +0000</pubDate>
-<category>legislation</category>
-<description>A conference committee compromise unveiled July 2nd would swap the state property tax on the Glenfarne-led Alaska LNG project for a volumetric tax after five years of operation or 500 MMcf per day, and extend the completion deadline to the end of 2034. The House deadlocked 19 to 19 on July 16th over an expanded S corporation income tax, the governor rejected that provision, and a third special session convened July 27th with no bill from the governor and almost no legislators in the room. Legislators decide; constituents reach them directly. The gas line would feed the grid most Alaska compute would ride on. Status, closed.</description>
 </item>
 </channel>
 </rss>
