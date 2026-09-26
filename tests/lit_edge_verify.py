@@ -134,6 +134,10 @@ through the REAL render.py and qa.py:
   70 RED    the RED layer's canvas inside an inline span with overflow:hidden,
             which has no clipping box: measured and reported
   71 RED    the same inside a display:contents wrapper: measured and reported
+  72 GREEN  a canvas wholly off the frame whose drop-shadow paints it back in:
+            counted, not dropped
+  73 RED    a 30 px canvas beyond its wrapper's padding box but inside its
+            overflow-clip-margin: measured, both edges reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -831,6 +835,33 @@ document.body.insertBefore(w, document.getElementById('c')); w.appendChild(docum
 RED_INLINE_OVERFLOW = wrapped("span", "overflow:hidden")
 RED_CONTENTS_OVERFLOW = wrapped("div", "display:contents;overflow:hidden")
 
+GREEN_SHADOW_OFFSCREEN = """
+// a canvas placed wholly off the frame (x 1200) whose drop-shadow paints it
+// back in 700 px to the left: kept in view, and counted (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 300; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:1200px;top:0;filter:drop-shadow(-700px 0 0 #FFFFFF)';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 200; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(120,100,70)'; s2.fillRect(0, 0, 200, 1350);
+n2.globalCompositeOperation = 'lighter'; n2.drawImage(sp, 50, 0);
+"""
+
+RED_CLIP_MARGIN = """
+// a 30 px canvas at x 520 inside a 100 px wrapper at x 400 with overflow:
+// clip and a 50 px overflow-clip-margin: painted, so measured, and its light
+// stops at 520 and at 550 (Codex, PR #403)
+document.body.style.overflow = 'hidden';
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:400px;top:0;width:100px;height:1350px;overflow:clip;overflow-clip-margin:50px';
+document.body.appendChild(wrap);
+const nc = document.createElement('canvas'); nc.width = 30; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:120px;top:0;width:30px;height:1350px';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 30; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)'; s2.fillRect(0, 0, 30, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 0, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -907,6 +938,8 @@ CASES = [
     ("slide-69", RED_TRANSLATEZ, [LEFT], 1, None),
     ("slide-70", RED_INLINE_OVERFLOW, [LEFT], 1, None),
     ("slide-71", RED_CONTENTS_OVERFLOW, [LEFT], 1, None),
+    ("slide-72", GREEN_SHADOW_OFFSCREEN, [], 0, "can't place"),
+    ("slide-73", RED_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

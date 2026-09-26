@@ -627,8 +627,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   (the hook does not run in them), and every iframe visible in the picture is
   named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
-  opacity 0, outside the frame, or wholly outside an ancestor's overflow clip)
-  spends the off-page budget and is never counted; a measurement made before
+  opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
+  which honours `overflow-clip-margin`) spends the off-page budget and is never
+  counted, unless a drop-shadow, SVG filter or reflection paints it back in,
+  when it is counted as unplaced; a measurement made before
   the canvas's width or height was set again (by any API: the property, an
   attribute call, an Attr or the `attributes` map, all seen by one
   MutationObserver) or its context was `reset()` is dropped, because each

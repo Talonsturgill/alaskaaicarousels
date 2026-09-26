@@ -751,6 +751,30 @@ LIT_EDGE_HOOK_JS = """
       return [cp || (cs.overflowX || 'visible') !== 'visible',
               cp || (cs.overflowY || 'visible') !== 'visible'];
     };
+    /* an ancestor's clip rectangle in viewport px: its padding box, pushed
+       out by overflow-clip-margin (from the box that property names) on each
+       axis whose overflow is `clip` (Codex, PR #403) */
+    const clipRect = (el, cs) => {
+      const q = el.getBoundingClientRect();
+      const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
+      let L = q.left + el.clientLeft * s, T = q.top + el.clientTop * t;
+      let R = L + el.clientWidth * s, B = T + el.clientHeight * t;
+      const cx = cs.overflowX === 'clip', cy = cs.overflowY === 'clip';
+      const m = String(cs.overflowClipMargin || '');
+      if ((cx || cy) && m) {
+        const f = (k) => parseFloat(cs[k]) || 0;
+        const px = parseFloat((m.match(/-?[0-9.]+px/) || ['0'])[0]) || 0;
+        let dl = 0, dt = 0, dr = 0, db = 0;
+        if (/border-box/.test(m)) {
+          dl = f('borderLeftWidth'); dr = f('borderRightWidth'); dt = f('borderTopWidth'); db = f('borderBottomWidth');
+        } else if (/content-box/.test(m)) {
+          dl = -f('paddingLeft'); dr = -f('paddingRight'); dt = -f('paddingTop'); db = -f('paddingBottom');
+        }
+        if (cx) { L -= (dl + px) * s; R += (dr + px) * s; }
+        if (cy) { T -= (dt + px) * t; B += (db + px) * t; }
+      }
+      return [L, T, R, B];
+    };
     const frame = () => [document.documentElement.clientWidth || window.innerWidth,
                          document.documentElement.clientHeight || window.innerHeight];
     const shown = (cv) => {
@@ -767,13 +791,15 @@ LIT_EDGE_HOOK_JS = """
         const cs = getComputedStyle(el);
         const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
-        const q = el.getBoundingClientRect();
-        const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
-        const cl = q.left + el.clientLeft * s, ct = q.top + el.clientTop * t;
-        if (ox) { L = Math.max(L, cl); R = Math.min(R, cl + el.clientWidth * s); }
-        if (oy) { T = Math.max(T, ct); B = Math.min(B, ct + el.clientHeight * t); }
+        const [cl, ct, cr, cb] = clipRect(el, cs);
+        if (ox) { L = Math.max(L, cl); R = Math.min(R, cr); }
+        if (oy) { T = Math.max(T, ct); B = Math.min(B, cb); }
       }
-      return r.width > 0 && r.height > 0 && R > L && B > T;
+      if (!(r.width > 0 && r.height > 0)) return false;
+      /* nothing of the box is left, but a drop-shadow, an SVG filter or a
+         reflection can still paint it into the picture: kept, so collection
+         counts it as unplaced rather than dropping it (Codex, PR #403) */
+      return (R > L && B > T) || repainted(cv, true);
     };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
@@ -849,10 +875,8 @@ LIT_EDGE_HOOK_JS = """
         if (el === cv) continue;
         const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
-        const r = el.getBoundingClientRect();
-        const s = el.offsetWidth ? r.width / el.offsetWidth : 1, t = el.offsetHeight ? r.height / el.offsetHeight : 1;
-        const L = r.left + (window.scrollX || 0) + el.clientLeft * s, T = r.top + (window.scrollY || 0) + el.clientTop * t;
-        const R = L + el.clientWidth * s, B = T + el.clientHeight * t;
+        const [vl, vt, vr, vb] = clipRect(el, cs), sx = window.scrollX || 0, sy = window.scrollY || 0;
+        const L = vl + sx, T = vt + sy, R = vr + sx, B = vb + sy;
         /* each axis crops only where it clips (Codex, PR #403) */
         if ((ox && (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw))) ||
             (oy && (cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)))) return true;
