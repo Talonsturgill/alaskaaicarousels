@@ -623,13 +623,16 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   `source-over`, a canvas blended by CSS `mix-blend-mode`, or a canvas painted
   from a worker or an ImageBitmap. A canvas clipped (clip-path or the
   legacy `clip: rect()`), masked or cropped by an ancestor's overflow inside
-  the frame is counted, not confirmed; the check does not look inside frames,
-  and every iframe visible in the picture is named as unexamined; a
+  the frame is counted, not confirmed; the check does not look inside frames
+  (the hook does not run in them), and every iframe visible in the picture is
+  named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, outside the frame, or wholly outside an ancestor's overflow clip)
   spends the off-page budget and is never counted; a measurement made before
-  the canvas's width or height was set again (by property or attribute) or
-  its context was `reset()` is dropped, because each clears the bitmap. The
+  the canvas's width or height was set again (by any API: the property, an
+  attribute call, an Attr or the `attributes` map, all seen by one
+  MutationObserver) or its context was `reset()` is dropped, because each
+  clears the bitmap. The
   ledger holds canvases weakly and at most 65,536 of them; a draw it can't
   attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
   shadow hosts. Candidates and records are bounded per draw (4096 and 256),

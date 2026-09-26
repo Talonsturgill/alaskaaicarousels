@@ -535,6 +535,9 @@ GRADIENT_CLIP_HOOK_JS = """
 LIT_EDGE_HOOK_JS = """
 (() => {
   try {
+    /* framed documents are out of scope (render.py names each visible frame
+       instead), so the hook costs them nothing (Codex, PR #403) */
+    try { if (window.top !== window) return; } catch (e) { return; }
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto || typeof proto.drawImage !== 'function' ||
         typeof proto.getImageData !== 'function') return;
@@ -553,7 +556,8 @@ LIT_EDGE_HOOK_JS = """
        collected with its bitmap, and it holds at most LIT_BOOK entries; a
        draw that finds it full after a sweep of collected canvases can't be
        attributed, so it is counted as skipped (Codex, PR #403) */
-    const LIT_BOOK = 65536;
+    const LIT_BOOK = 65536, LIT_SWEEP = 4096;
+    let sweepIn = 1;
     /* and at most LIT_WORK bitmap pixels read back across the whole slide,
        eight 2x slide canvases; a draw past it is counted as skipped, so the
        hook's own cost is bounded whatever the slide does (Codex, PR #403) */
@@ -564,75 +568,38 @@ LIT_EDGE_HOOK_JS = """
     const origDraw = proto.drawImage, origGet = proto.getImageData;
     const lum = (d, i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
     /* SETTING a canvas's width or height, even to the same value, clears its
-       bitmap and can change its scale; every measurement keeps the canvas's
-       generation and one from an earlier generation is dropped at collection,
-       because the light it measured no longer exists (Codex, PR #403) */
-    const cproto = window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
-    if (cproto) for (const k of ['width', 'height']) {
-      const d = Object.getOwnPropertyDescriptor(cproto, k);
-      if (d && d.set && d.configurable) Object.defineProperty(cproto, k, {
-        get: d.get, enumerable: d.enumerable, configurable: true,
-        set: function (v) { this.__akGen = (this.__akGen || 0) + 1; return d.set.call(this, v); } });
-    }
-    /* ...and so does setting or removing the width or height ATTRIBUTE,
-       which never passes through those setters (Codex, PR #403) */
-    /* only the canvas's own width and height content attributes, in no
-       namespace; a prefixed or namespaced `x:width` is another attribute and
-       resets nothing (Codex, PR #403) */
-    const bump = (el, name, ns) => {
-      if (el && window.HTMLCanvasElement && el instanceof window.HTMLCanvasElement &&
-          (ns === undefined || ns === null || ns === '') &&
-          /^(width|height)$/i.test(String(name)))
-        el.__akGen = (el.__akGen || 0) + 1;
+       bitmap and can change its scale, so every measurement keeps the canvas's
+       generation and one from an earlier generation is dropped at collection.
+       The generation is counted from ONE MutationObserver on each canvas in the
+       ledger, which sees every change to its own width and height content
+       attributes (in no namespace, exact local name) whatever API made it: the
+       IDL setters, setAttribute, an Attr, a NamedNodeMap. Its queue is flushed
+       synchronously before any generation is read (Codex, PR #403). */
+    const gens = new WeakMap();
+    const flush = (recs) => {
+      for (const m of recs)
+        if (m.attributeNamespace === null && (m.attributeName === 'width' || m.attributeName === 'height'))
+          gens.set(m.target, (gens.get(m.target) || 0) + 1);
     };
-    const eproto = window.Element && window.Element.prototype;
-    if (eproto) {
-      /* setting always resets, even to the same value; removing or toggling
-         resets only when the attribute actually came or went */
-      for (const [m, i] of [['setAttribute', 0], ['setAttributeNS', 1]]) {
-        const f = eproto[m];
-        if (typeof f === 'function') eproto[m] = function () {
-          const res = f.apply(this, arguments);
-          try { bump(this, arguments[i], i ? arguments[0] : undefined); } catch (e) {}
-          return res;
-        };
-      }
-      const has = (el, a, ns) => ns ? el.hasAttributeNS(a[0], a[1]) : el.hasAttribute(a[0]);
-      for (const [m, i, ns] of [['removeAttribute', 0, false], ['toggleAttribute', 0, false],
-                                ['removeAttributeNS', 1, true]]) {
-        const f = eproto[m];
-        if (typeof f === 'function') eproto[m] = function () {
-          let was = null;
-          try { was = has(this, arguments, ns); } catch (e) {}
-          const res = f.apply(this, arguments);
-          try { if (was !== has(this, arguments, ns)) bump(this, arguments[i], ns ? arguments[0] : undefined); } catch (e) {}
-          return res;
-        };
-      }
-      for (const m of ['setAttributeNode', 'setAttributeNodeNS', 'removeAttributeNode']) {
-        const f = eproto[m];
-        if (typeof f === 'function') eproto[m] = function (a) {
-          const noop = m !== 'removeAttributeNode' && a && a.ownerElement === this;
-          const res = f.apply(this, arguments);
-          try { if (!noop) bump(this, a && a.name, a && a.namespaceURI); } catch (e) {}
-          return res;
-        };
-      }
-      const av = window.Attr && Object.getOwnPropertyDescriptor(window.Attr.prototype, 'value');
-      if (av && av.set && av.configurable) Object.defineProperty(window.Attr.prototype, 'value', {
-        get: av.get, enumerable: av.enumerable, configurable: true,
-        set: function (v) { try { bump(this.ownerElement, this.name, this.namespaceURI); } catch (e) {} return av.set.call(this, v); } });
-    }
-    const gen = (cv) => cv.__akGen || 0;
+    const mo = window.MutationObserver ? new window.MutationObserver(flush) : null;
+    const watch = (cv) => {
+      try { if (mo) mo.observe(cv, { attributes: true, attributeFilter: ['width', 'height'] }); } catch (e) {}
+    };
+    const gen = (cv) => { if (mo) flush(mo.takeRecords()); return gens.get(cv) || 0; };
     /* the entry for the canvas's CURRENT bitmap; a new generation starts a
        new entry, because the earlier one's light was erased */
     const entry = (cv) => {
       let id = ids.get(cv);
-      if (id === undefined) { id = nextId++; ids.set(cv, id); }
+      if (id === undefined) { id = nextId++; ids.set(cv, id); watch(cv); }
       let e = book.get(id);
       if (!e || e.g !== gen(cv)) {
         if (!e && book.size >= LIT_BOOK) {
-          for (const [k, z] of book) if (!z.ref.deref()) book.delete(k);
+          /* a full ledger is swept for collected canvases once per
+             LIT_SWEEP draws that find it full, not on every one */
+          if (--sweepIn <= 0) {
+            sweepIn = LIT_SWEEP;
+            for (const [k, z] of book) if (!z.ref.deref()) book.delete(k);
+          }
           if (book.size >= LIT_BOOK) return null;
         }
         e = { ref: new WeakRef(cv), g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
@@ -644,7 +611,7 @@ LIT_EDGE_HOOK_JS = """
     /* CanvasRenderingContext2D.reset() clears the bitmap as a resize does */
     const origReset = proto.reset;
     if (typeof origReset === 'function') proto.reset = function () {
-      try { if (this.canvas) this.canvas.__akGen = (this.canvas.__akGen || 0) + 1; } catch (e) {}
+      try { if (this.canvas) gens.set(this.canvas, gen(this.canvas) + 1); } catch (e) {}
       return origReset.apply(this, arguments);
     };
     const before = (ctx) => {

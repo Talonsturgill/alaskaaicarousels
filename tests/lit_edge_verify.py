@@ -122,6 +122,12 @@ through the REAL render.py and qa.py:
             left edges, x 490 and x 510, are recorded and reported
   65 GREEN  ten additive draws on ten 2160 x 2700 canvases, past the slide's
             readback work budget: the shown one's skipped draw is counted
+  66 GREEN  fixture 44 with the bitmap reset through attributes.setNamedItem:
+            silent
+  67 RED    the RED layer, then setAttributeNS(null, 'WIDTH'), which is another
+            attribute: still measured and reported
+  68 GREEN  fixture 60 with the reset made by setting the same width again:
+            silent
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -792,6 +798,18 @@ last.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px'
 document.body.appendChild(last);
 """
 
+GREEN_NAMEDNODEMAP_RESET = GREEN_RESIZED.replace(
+    "nc.width = 294;",
+    "const wa = document.createAttribute('width'); wa.value = '294'; nc.attributes.setNamedItem(wa);")
+
+RED_NS_UPPER = RED + """
+// setAttributeNS keeps the case it is given: WIDTH is another attribute, and
+// the bitmap and its seam stay (Codex, PR #403)
+document.getElementById('c').setAttributeNS(null, 'WIDTH', '5');
+"""
+
+GREEN_SAME_SIZE_RESET = GREEN_CTX_RESET.replace("n2.reset();", "nc.width = 588;   /* the same size: still a reset */")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -862,6 +880,9 @@ CASES = [
     ("slide-63", GREEN_CLIPPED_IFRAME, [], 0, None),
     ("slide-64", RED_NEAR_STRIPS, [("left", 490), ("left", 510)], None, None),
     ("slide-65", GREEN_WORK_BUDGET, [], 0, "past its budget"),
+    ("slide-66", GREEN_NAMEDNODEMAP_RESET, [], 0, None),
+    ("slide-67", RED_NS_UPPER, [LEFT], 1, None),
+    ("slide-68", GREEN_SAME_SIZE_RESET, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
