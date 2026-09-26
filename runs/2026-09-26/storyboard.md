@@ -229,7 +229,7 @@ Admission (C38, C35). Count (C47, C48, C56, C13). Scale (C04, C05, C03). Inventi
 **2. COPY, final.**
 - Kicker: `ALASKA NEWS, 48 HOURS TO SEPTEMBER 26TH` (C47)
 - Headline: `90 articles in 48 hours.` / `One human name on the review line.` (C47, C48, C56)
-- Body: `Alaska News says every article carries a line saying whether a person reviewed it. By our count, every human name on those lines and bylines was the editor-in-chief's, Cale Green.` (C12, C13, C56)
+- Body: `Alaska News says every article carries a line saying whether a person reviewed it. Every human name on those lines was the editor-in-chief's, Cale Green.` (C12, C13, C56)
 - Clip label: `Reviewed by Cale Green.` (C48)
 
 **3. Reader takeaway.** 90 stories, one human name on the labels.

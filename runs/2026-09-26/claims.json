@@ -618,52 +618,56 @@
    "claim": "By Alaska.Ai's count, 73 of the 90 Alaska News articles published over 48 hours carried a label saying they were reviewed by Cale Green.",
    "value": "73 of 90",
    "verbatim": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.8,
-   "notes": "Method: the showrunner fetched all 90 sitemap URLs at about 07:35 UTC and read the provenance line under each. I didn't re-count all 90. I spot-checked 10 by fetching them. Direct WebFetch gets the site's markdown variant ('This is the markdown variant ... served to AI agents that requested it via Accept: text/markdown'), which drops the provenance label. I read the labels through the r.jina.ai reader, which returns the HTML version. Of my 10: 6 reviewed by Cale Green (Board of Fisheries, MEA rolling outages, Petersburg data center, Tlingit Haida, Cook Inlet subsea data center, Oktoberfest), 1 edited with no full review (Juneau kelp), 2 with no editor review (Axon memo, FCC GCI) and 1 with no label (Eaglexit). The reviewed labels come in two wordings: 'Drafted with AI. Edited by Cale Green (N revisions). Reviewed by Cale Green.' and 'AI-assisted, reviewed by Cale Green.' Labels can change if an editor reviews an article later. Needs softening: write 'by our count on the morning of September 26th'."
+   "notes": "Method: the showrunner fetched all 90 sitemap URLs at about 07:35 UTC and read the provenance line under each. I didn't re-count all 90. I spot-checked 10 by fetching them. Direct WebFetch gets the site's markdown variant ('This is the markdown variant ... served to AI agents that requested it via Accept: text/markdown'), which drops the provenance label. I read the labels through the r.jina.ai reader, which returns the HTML version. Of my 10: 6 reviewed by Cale Green (Board of Fisheries, MEA rolling outages, Petersburg data center, Tlingit Haida, Cook Inlet subsea data center, Oktoberfest), 1 edited with no full review (Juneau kelp), 2 with no editor review (Axon memo, FCC GCI) and 1 with no label (Eaglexit). The reviewed labels come in two wordings: 'Drafted with AI. Edited by Cale Green (N revisions). Reviewed by Cale Green.' and 'AI-assisted, reviewed by Cale Green.' Labels can change if an editor reviews an article later. Needs softening: write 'by our count on the morning of September 26th'. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source.",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C49",
    "claim": "By Alaska.Ai's count, 6 of the 90 articles were edited by Cale Green but carried a note that no full editor review is on record.",
    "value": "6 of 90",
    "verbatim": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.8,
-   "notes": "Showrunner's full count. I confirmed this label wording on the Juneau kelp farm article (C52). See C48 for the method."
+   "notes": "Showrunner's full count. I confirmed this label wording on the Juneau kelp farm article (C52). See C48 for the method. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source.",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C50",
    "claim": "By Alaska.Ai's count, 9 of the 90 articles were labelled AI-assisted with no editor review on record.",
    "value": "9 of 90",
    "verbatim": "AI-assisted. No editor review is on record for this article.",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.8,
-   "notes": "Showrunner's full count. I confirmed this label wording on two articles, the Axon memo (C53) and FCC GCI rural health payments. Adding C49 and C50 gives 15 of 90 articles, about 1 in 6, with no full editor review on record. That sum is our arithmetic, not a count we made separately."
+   "notes": "Showrunner's full count. I confirmed this label wording on two articles, the Axon memo (C53) and FCC GCI rural health payments. Adding C49 and C50 gives 15 of 90 articles, about 1 in 6, with no full editor review on record. That sum is our arithmetic, not a count we made separately. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source.",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C51",
    "claim": "By Alaska.Ai's count, 2 of the 90 articles carried no AI label at all.",
    "value": "2 of 90",
    "verbatim": "By [Alaska News](https://alaskanews.com/u/hello)",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.75,
-   "notes": "Showrunner's full count. I confirmed one of the two, the Eaglexit article (C54). Neither the markdown nor the HTML version showed any AI or review label. The showrunner said both are bylined 'Alaska News and Cale Green'. I saw only 'By Alaska News' in both versions and no 'Cale Green' anywhere on the page, so the Cale Green co-byline is NOT verified. Say only that they carry no AI label."
+   "notes": "Showrunner's full count. I confirmed one of the two, the Eaglexit article (C54). Neither the markdown nor the HTML version showed any AI or review label. The showrunner said both are bylined 'Alaska News and Cale Green'. I saw only 'By Alaska News' in both versions and no 'Cale Green' anywhere on the page, so the Cale Green co-byline is NOT verified. Say only that they carry no AI label. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source.",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C52",
@@ -719,16 +723,17 @@
   },
   {
    "id": "C56",
-   "claim": "Across Alaska.Ai's count of 90 articles, Cale Green was the only human name on any review label or byline.",
+   "claim": "Across Alaska.Ai's count of 90 articles, Cale Green was the only human name on any review label.",
    "value": "one human name",
    "verbatim": "by[Cale Green](https://alaskanews.com/u/cale-green) · from an AI draft by[Walter AlaskaNews](https://alaskanews.com/u/walter)",
-   "source_url": "https://alaskanews.com/news-sitemap.xml",
+   "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.78,
-   "notes": "Showrunner's full count. All 10 of my spot checks agree: every human name on a label or visible byline was Cale Green. The verbatim is the visible byline of the Tlingit Haida article (HTML version, 2 revisions, reviewed by Cale Green). It shows that the visible byline can credit Cale Green while the meta author is Walter. Needs softening: write 'by our count'. This says nothing about who reads articles behind the scenes, only about whose names appear."
+   "notes": "Showrunner's full count. All 10 of my spot checks agree: every human name on a label or visible byline was Cale Green. The verbatim is the visible byline of the Tlingit Haida article (HTML version, 2 revisions, reviewed by Cale Green). It shows that the visible byline can credit Cale Green while the meta author is Walter. Needs softening: write 'by our count'. This says nothing about who reads articles behind the scenes, only about whose names appear. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source. Narrowed to review labels on 2026-09-26: the capture recorded the label on all 90 articles but the visible byline on only 21, so bylines are not claimed.",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
    "id": "C57",

@@ -86,9 +86,12 @@
     },
     "ship": {
       "status": "in_progress",
-      "note": "artifacts in runs/, webp + og.jpg, pdf shrunk 11%, site rebuilt (124 pages), parsers/scanner/docket_dates/site_fresh PASS, no alerts due, pruned 2026-08-26"
+      "note": "artifacts in runs/, webp + og.jpg, pdf shrunk 11%, site rebuilt (124 pages), parsers/scanner/docket_dates/site_fresh PASS, no alerts due, pruned 2026-08-26 | merged main (gas watch reading) f745c6d1; Codex r1 (4 P1 on 2b6a1d8): C56 narrowed to labels, slide 02 first person removed, C48-C51/C56 cite captured evidence; run_state sequencing explained"
     },
-    "upgrade": "pending",
+    "upgrade": {
+      "status": "done",
+      "note": "1 fix (engine): lit-edge WARN for additive layers ending mid-frame; commits 55bc4af2 + SHA follow-up; scan (e) headless rendering parked"
+    },
     "gmail": "pending",
     "retro": "pending"
   }
