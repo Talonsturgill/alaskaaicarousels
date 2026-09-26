@@ -2885,7 +2885,19 @@ def ink_law(img_arr, rec, scale):
     return out
 
 
-def lit_edge_runs(img, e, design_w):
+def lit_luminance(img):
+    """The picture's luminance plane (0..255), premultiplied when it has alpha.
+    Computed once per slide and shared by every lit-edge record (Codex, PR #403)."""
+    a = np.asarray(img, dtype=np.float32)
+    if a.ndim != 3 or a.shape[2] < 3:
+        return None
+    rgb = a[..., :3]
+    if a.shape[2] == 4:
+        rgb = rgb * (a[..., 3:4] / 255.0)
+    return 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+
+
+def lit_edge_runs(img, e, design_w, lum=None):
     """Is a line render.py measured as a lit edge VISIBLE in the shipped render?
 
     render.py knows an additive draw's painted light stopped on this line over
@@ -2896,13 +2908,10 @@ def lit_edge_runs(img, e, design_w):
     nothing qualifies, or None when the record can't be measured. Positive
     steps only: the lit side is the layer's inside, and light only brightens.
     """
-    a = np.asarray(img, dtype=np.float32)
-    if a.ndim != 3 or a.shape[2] < 3:
+    if lum is None:
+        lum = lit_luminance(img)
+    if lum is None:
         return None
-    rgb = a[..., :3]
-    if a.shape[2] == 4:
-        rgb = rgb * (a[..., 3:4] / 255.0)
-    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
     k = lum.shape[1] / float(design_w)
     side = e.get("side")
     if side not in ("left", "right", "top", "bottom"):
@@ -3947,9 +3956,10 @@ def main():
                                     "from the page, so no additive layer was examined")
             elif n > 0:
                 res["warns"].append(text % int(n))
+        lit_lum = lit_luminance(arr) if rec.get("lit_edges") else None
         for le in rec.get("lit_edges", []):
             try:
-                runs = lit_edge_runs(arr, le, design_w)
+                runs = lit_edge_runs(arr, le, design_w, lit_lum)
                 if runs is None:
                     # a record the picture can't be sampled along is a gap, not
                     # a pass (Codex, PR #403)

@@ -128,6 +128,12 @@ through the REAL render.py and qa.py:
             attribute: still measured and reported
   68 GREEN  fixture 60 with the reset made by setting the same width again:
             silent
+  69 RED    the nested glow's canvas under transform: translateZ(0), which
+            this Chromium serializes as matrix(): placed and reported (a guard;
+            matrix3d appears only with a real Z shift or perspective)
+  70 RED    the RED layer's canvas inside an inline span with overflow:hidden,
+            which has no clipping box: measured and reported
+  71 RED    the same inside a display:contents wrapper: measured and reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -810,6 +816,21 @@ document.getElementById('c').setAttributeNS(null, 'WIDTH', '5');
 
 GREEN_SAME_SIZE_RESET = GREEN_CTX_RESET.replace("n2.reset();", "nc.width = 588;   /* the same size: still a reset */")
 
+RED_TRANSLATEZ = RED_NESTED.replace(
+    "height:1350px';\ndocument.body.appendChild(nc);",
+    "height:1350px;transform:translateZ(0)';\ndocument.body.appendChild(nc);", 1)
+
+def wrapped(tag, css):
+    return """
+// the main canvas inside a %s whose style says %s: that box has no clipping
+// box, so it clips nothing and the RED seam is measured (Codex, PR #403)
+const w = document.createElement('%s'); w.style.cssText = '%s';
+document.body.insertBefore(w, document.getElementById('c')); w.appendChild(document.getElementById('c'));
+""" % (tag, css, tag, css) + RED
+
+RED_INLINE_OVERFLOW = wrapped("span", "overflow:hidden")
+RED_CONTENTS_OVERFLOW = wrapped("div", "display:contents;overflow:hidden")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -883,6 +904,9 @@ CASES = [
     ("slide-66", GREEN_NAMEDNODEMAP_RESET, [], 0, None),
     ("slide-67", RED_NS_UPPER, [LEFT], 1, None),
     ("slide-68", GREEN_SAME_SIZE_RESET, [], 0, None),
+    ("slide-69", RED_TRANSLATEZ, [LEFT], 1, None),
+    ("slide-70", RED_INLINE_OVERFLOW, [LEFT], 1, None),
+    ("slide-71", RED_CONTENTS_OVERFLOW, [LEFT], 1, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

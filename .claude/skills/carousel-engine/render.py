@@ -622,13 +622,22 @@ LIT_EDGE_HOOK_JS = """
          wholly outside the frame) is a staging canvas: it spends the off-page
          budget, and a draw skipped on any canvas is counted only if that
          canvas is shown when the report is taken (Codex, PR #403) */
-      const placed = shown(cv), e = entry(cv);
+      const e = entry(cv);
       if (!e) { lost++; return null; }
-      if (cv.width * cv.height > LIT_AREA || work + cv.width * cv.height > LIT_WORK) {
-        e.skipped++; return null;
-      }
-      if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
-      if (placed) nOn++; else nOff++;
+      /* a draw that no budget can admit is attributed without a layout query:
+         a sprite loop past its budget costs a counter, not a reflow per call
+         (Codex, PR #403) */
+      if (cv.width * cv.height > LIT_AREA || work + cv.width * cv.height > LIT_WORK ||
+          (nOn >= LIT_ON && nOff >= LIT_OFF)) { e.skipped++; return null; }
+      /* past the on-page budget, a connected canvas's placement is looked up
+         at most once per 32 of its draws; a detached one needs no lookup */
+      const placed = !cv.isConnected ? false
+                   : (nOn >= LIT_ON ? (e.shownAt > 0 && e.draws - e.shownAt < 32 ? e.placed : null) : null);
+      const pl = placed === null ? shown(cv) : placed;
+      if (placed === null) { e.placed = pl; e.shownAt = e.draws || 1; }
+      e.draws = (e.draws || 0) + 1;
+      if (pl ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
+      if (pl) nOn++; else nOff++;
       work += cv.width * cv.height;
       try {
         return { op: ctx.globalCompositeOperation,
@@ -733,6 +742,15 @@ LIT_EDGE_HOOK_JS = """
        its slot, and a shadow root's parent is its host (Codex, PR #403) */
     const up = (el) => el.assignedSlot || el.parentElement ||
                        (el.parentNode && el.parentNode.host) || null;
+    /* which axes an ancestor clips its descendants on: overflow or paint
+       containment, and only on a box that has a clipping box at all, so an
+       inline or display:contents ancestor clips nothing (Codex, PR #403) */
+    const clipAxes = (cs) => {
+      if (/^(inline|contents|none)$/.test(cs.display || '')) return [false, false];
+      const cp = /paint|strict|content/.test(cs.contain || '');
+      return [cp || (cs.overflowX || 'visible') !== 'visible',
+              cp || (cs.overflowY || 'visible') !== 'visible'];
+    };
     const frame = () => [document.documentElement.clientWidth || window.innerWidth,
                          document.documentElement.clientHeight || window.innerHeight];
     const shown = (cv) => {
@@ -747,9 +765,7 @@ LIT_EDGE_HOOK_JS = """
       let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
       for (let el = up(cv); el && el.nodeType === 1 && R > L && B > T; el = up(el)) {
         const cs = getComputedStyle(el);
-        const cp = /paint|strict|content/.test(cs.contain || '');
-        const ox = cp || (cs.overflowX || 'visible') !== 'visible';
-        const oy = cp || (cs.overflowY || 'visible') !== 'visible';
+        const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
         const q = el.getBoundingClientRect();
         const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
@@ -768,6 +784,9 @@ LIT_EDGE_HOOK_JS = """
         const cs = getComputedStyle(el);
         const tf = cs.transform || 'none';
         if (tf !== 'none') {
+          /* a flat 3D transform (translateZ(0), translate3d, scale3d) is
+             serialized as matrix() here; matrix3d only appears with a real Z
+             shift or perspective, which can't be placed (measured, PR #403) */
           const m = tf.match(/^matrix\\(([^)]*)\\)$/);
           if (!m) return false;
           const q = m[1].split(',').map(Number);
@@ -828,9 +847,7 @@ LIT_EDGE_HOOK_JS = """
         if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
         if (el === cv) continue;
-        const cp = /paint|strict|content/.test(cs.contain || '');
-        const ox = cp || (cs.overflowX || 'visible') !== 'visible';
-        const oy = cp || (cs.overflowY || 'visible') !== 'visible';
+        const [ox, oy] = clipAxes(cs);
         if (!ox && !oy) continue;
         const r = el.getBoundingClientRect();
         const s = el.offsetWidth ? r.width / el.offsetWidth : 1, t = el.offsetHeight ? r.height / el.offsetHeight : 1;
