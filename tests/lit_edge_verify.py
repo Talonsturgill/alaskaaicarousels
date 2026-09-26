@@ -43,6 +43,12 @@ and qa.py:
   RED    the nested-canvas glow, painted before the canvas is appended -> must WARN
   RED    a bright panel drawn additively through a 30 degree rotation -> must WARN
          along its diagonal cut (all three Codex, PR #402)
+  RED    a second translucent white layer on a translucent canvas  -> must WARN
+         (the draw raises only alpha; the delta is premultiplied)
+  RED    a 20 px seam on a canvas shown at 3x                       -> must WARN
+         (the 40 px span is applied in design px, after CSS scale)
+  GREEN  the nested glow on a CSS-rotated canvas                    -> nothing
+         recorded, and qa says it couldn't place the seam (all Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -257,6 +263,40 @@ cx.save(); cx.translate(540, 675); cx.rotate(Math.PI / 6); cx.globalCompositeOpe
 cx.drawImage(wl, -250, -450); cx.restore();
 """
 
+RED_TRANSLUCENT = """
+// a translucent white overlay canvas; a second translucent white layer added
+// with 'lighter' from x 492 raises only the ALPHA (unpremultiplied RGB stays
+// 255), yet the page sees a brighter band from x 492 (Codex, PR #402)
+const oc = document.createElement('canvas'); oc.width = 1080; oc.height = 1350;
+oc.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px';
+document.body.appendChild(oc);
+const o2 = oc.getContext('2d'); o2.fillStyle = 'rgba(255,255,255,0.08)'; o2.fillRect(0, 0, 1080, 1350);
+const sp = document.createElement('canvas'); sp.width = 588; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgba(255,255,255,0.08)'; s2.fillRect(0, 0, 588, 1350);
+o2.globalCompositeOperation = 'lighter'; o2.drawImage(sp, 492, 0);
+"""
+
+RED_CSS_SCALED = """
+// a 20 px tall canvas shown at 3x: its 20 px seam is 60 design px on the page
+const sc = document.createElement('canvas'); sc.width = 200; sc.height = 20;
+sc.style.cssText = 'position:absolute;left:480px;top:600px;width:600px;height:60px';
+document.body.appendChild(sc);
+const c2 = sc.getContext('2d'); c2.fillStyle = '#101826'; c2.fillRect(0, 0, 200, 20);
+const sp = document.createElement('canvas'); sp.width = 196; sp.height = 20;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(60,50,30)'; s2.fillRect(0, 0, 196, 20);
+c2.globalCompositeOperation = 'screen'; c2.drawImage(sp, 4, 0);
+"""
+
+GREEN_CSS_ROTATED = """
+// the seam canvas is CSS-rotated: its bounding box can't place the line, so
+// nothing is recorded and qa says it couldn't place it (Codex, PR #402)
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px;transform:rotate(20deg)';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -281,10 +321,15 @@ CASES = [("slide-01", RED, True, True),
          ("slide-16", RED_FAINT_CANVAS, True, True),
          ("slide-17", RED_HORIZONTAL, True, True),
          ("slide-18", RED_APPENDED_LATE, True, True),
-         ("slide-19", RED_ROTATED, True, True)]
+         ("slide-19", RED_ROTATED, True, True),
+         ("slide-20", RED_TRANSLUCENT, True, True),
+         ("slide-21", RED_CSS_SCALED, True, True),
+         ("slide-22", GREEN_CSS_ROTATED, False, False)]
 EXPECT_X = {"slide-09": 500}
 # what each RED case must record and name: (side, coordinate or None)
 EXPECT = {"slide-17": ("top", 700), "slide-19": ("line", None)}
+# a 20 px band has real top and bottom seams as well as the named left one
+MULTI = {"slide-21"}
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -342,13 +387,15 @@ def main():
                 side, coord = EXPECT.get(name, ("left", EXPECT_X.get(name, 492)))
                 named = ("along a straight line" if side == "line" else
                          "%s %d (its %s edge)" % ("y" if side in ("top", "bottom") else "x", coord, side))
-                if len(hits) < 1 or (side != "line" and len(hits) != 1):
+                if len(hits) < 1 or (side != "line" and name not in MULTI and len(hits) != 1):
                     bad.append("%s: qa.py reported %d lit-edge warnings, expected 1: %s"
                                % (s["file"], len(hits), hits))
                 elif not any(named in h for h in hits):
                     bad.append("%s: the warning names the wrong line: %s" % (s["file"], hits))
             elif hits:
                 bad.append("%s: qa.py warned about honest drawing: %s" % (s["file"], hits))
+            if s["file"] == "slide-22.html" and not any("could not place" in w for w in s.get("warns", [])):
+                bad.append("slide-22.html: qa.py did not say it couldn't place the rotated canvas's seam")
             if any("lit-edge record unreadable" in w for w in s.get("warns", [])):
                 bad.append("%s: qa.py could not read its own record" % s["file"])
 

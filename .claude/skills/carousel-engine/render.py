@@ -424,7 +424,13 @@ GRADIENT_CLIP_HOOK_JS = """
     window.__akLitEdgeCapped = false;
     let litCalls = 0, litCallsOff = 0;
     const origDraw = proto.drawImage;
-    const lum = (d, i) => 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+    /* PREMULTIPLIED: getImageData is unpremultiplied, and on a translucent
+       canvas an additive draw can raise only the alpha; what the page sees is
+       colour x alpha (Codex, PR #402) */
+    const lum = (d, i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
+    /* runs are kept from LIT_PRE canvas px; LIT_SPAN applies in design px at
+       collection, when the canvas's CSS scale is known (Codex, PR #402) */
+    const LIT_PRE = 8;
     const litBefore = (ctx) => {
       const op = ctx.globalCompositeOperation;
       if (!ADDITIVE[op]) return null;
@@ -443,6 +449,18 @@ GRADIENT_CLIP_HOOK_JS = """
     };
     const litAfter = (ctx, st) => {
       const cv = ctx.canvas, W = cv.width, H = cv.height;
+      /* the shortest run worth keeping, in canvas px: LIT_SPAN design px when
+         the canvas is on the page and its scale is known now (collection
+         checks again), LIT_PRE when it is not placed yet */
+      let preV = LIT_PRE, preH = LIT_PRE, preD = LIT_PRE;
+      if (cv.isConnected) {
+        const r0 = cv.getBoundingClientRect();
+        if (r0.width > 0 && r0.height > 0) {
+          preV = Math.max(LIT_PRE, Math.floor(LIT_SPAN * H / r0.height));
+          preH = Math.max(LIT_PRE, Math.floor(LIT_SPAN * W / r0.width));
+          preD = Math.min(preV, preH);
+        }
+      }
       const after = ctx.getImageData(0, 0, W, H).data, b = st.before;
       const D = new Float32Array(W * H);
       let any = false;
@@ -454,7 +472,7 @@ GRADIENT_CLIP_HOOK_JS = """
       /* D at (x, y), the canvas boundary reading as unpainted, which it is */
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
       const push = (e) => {
-        if (window.__akLitRaw.length >= LIT_MAX * 4) { window.__akLitEdgeCapped = true; return; }
+        if (window.__akLitRaw.length >= 256) { window.__akLitEdgeCapped = true; return; }
         e.cv = cv; e.op = st.op; e.filter = st.filter;
         window.__akLitRaw.push(e);
       };
@@ -478,7 +496,7 @@ GRADIENT_CLIP_HOOK_JS = """
               } else run = 0;
             }
             /* canvas px here; the design-px span is applied at collection */
-            if (best >= LIT_SPAN) cands.push([side, c, bestAt, best, bmx]);
+            if (best >= (axis === 'v' ? preV : preH)) cands.push([side, c, bestAt, best, bmx]);
           }
         }
         cands.sort((p, q) => q[3] - p[3]);
@@ -521,7 +539,7 @@ GRADIENT_CLIP_HOOK_JS = """
         let ang = Math.atan2(uy, ux) * 180 / Math.PI; if (ang < 0) ang += 360;
         bin[y * W + x] = Math.floor(ang / 10) % 36; nb++;
       }
-      if (nb >= LIT_SPAN) {
+      if (nb >= preD) {
         const seen = new Uint8Array(W * H), q = new Int32Array(W * H);
         for (let p0 = 0; p0 < W * H; p0++) {
           if (bin[p0] < 0 || seen[p0]) continue;
@@ -543,13 +561,13 @@ GRADIENT_CLIP_HOOK_JS = """
               seen[pp] = 1; q[qt++] = pp;
             }
           }
-          if (n < LIT_SPAN) continue;
+          if (n < preD) continue;
           const mxx = sx / n, myy = sy / n;
           const cxx = sxx / n - mxx * mxx, cyy = syy / n - myy * myy, cxy = sxy / n - mxx * myy;
           const tr = cxx + cyy, det = cxx * cyy - cxy * cxy, disc = Math.sqrt(Math.max(0, tr * tr / 4 - det));
           const l1 = tr / 2 + disc, l2 = Math.max(0, tr / 2 - disc);
           const len = Math.sqrt(12 * l1);
-          if (!(len >= LIT_SPAN && Math.sqrt(l2) <= 1.5)) continue;
+          if (!(len >= preD && Math.sqrt(l2) <= 1.5)) continue;
           /* principal direction */
           let dx = cxy, dy = l1 - cxx;
           if (Math.abs(dx) + Math.abs(dy) < 1e-9) { dx = 1; dy = 0; }
@@ -574,6 +592,17 @@ GRADIENT_CLIP_HOOK_JS = """
         if (!cv || !cv.isConnected) continue;
         const r = cv.getBoundingClientRect();
         if (!(r.width > 0 && r.height > 0)) continue;
+        /* a bounding box maps canvas pixels to the page only when nothing on
+           the way up rotates or skews; otherwise the record can't be placed,
+           and saying so beats measuring an unrelated line (Codex, PR #402) */
+        let bent = false;
+        for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+          const tf = getComputedStyle(el).transform || 'none';
+          if (tf === 'none') continue;
+          const m = tf.match(/^matrix\(([^)]*)\)$/), q = m ? m[1].split(',').map(Number) : null;
+          if (!q || Math.abs(q[1]) > 1e-3 || Math.abs(q[2]) > 1e-3) { bent = true; break; }
+        }
+        if (bent) { window.__akLitUnmapped = (window.__akLitUnmapped || 0) + 1; continue; }
         const kx = r.width / cv.width, ky = r.height / cv.height;
         const ox = r.left + (window.scrollX || 0), oy = r.top + (window.scrollY || 0);
         let rec;
@@ -2742,6 +2771,7 @@ IN_PAGE_QA_JS = """
   out.lit_edges = [];
   try { out.lit_edges = window.__akLitCollect ? window.__akLitCollect() : []; } catch (e) {}
   out.lit_edges_capped = !!window.__akLitEdgeCapped;
+  out.lit_edges_unmapped = window.__akLitUnmapped || 0;
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -3602,7 +3632,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
-           "lit_edges": [], "lit_edges_capped": False,
+           "lit_edges": [], "lit_edges_capped": False, "lit_edges_unmapped": 0,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3644,6 +3674,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
                                        "add_glows", "lit_edges", "lit_edges_capped",
+                                       "lit_edges_unmapped",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",

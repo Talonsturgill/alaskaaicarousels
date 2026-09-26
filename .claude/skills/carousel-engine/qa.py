@@ -2972,17 +2972,24 @@ def lit_line_step(img, e, design_w, design_h):
     px = x0 + (x1 - x0) * ts / L
     py = y0 + (y1 - y0) * ts / L
 
+    # samples that leave the picture are DROPPED, never clamped onto its
+    # border, so a line just off the frame can't borrow the first visible
+    # rows' contrast (Codex, PR #402)
+    ok = np.ones(n, dtype=bool)
+
     def band(sign):
         acc = np.zeros(n, dtype=np.float32)
         for d in (1.5, 2.5, 3.5):
-            qx = np.clip(np.round((px + sign * d * nx) * k).astype(int), 0, lum.shape[1] - 1)
-            qy = np.clip(np.round((py + sign * d * ny) * k).astype(int), 0, lum.shape[0] - 1)
-            acc += lum[qy, qx]
+            qx = np.round((px + sign * d * nx) * k).astype(int)
+            qy = np.round((py + sign * d * ny) * k).astype(int)
+            inside = (qx >= 0) & (qy >= 0) & (qx < lum.shape[1]) & (qy < lum.shape[0])
+            ok[:] &= inside
+            acc += lum[np.clip(qy, 0, lum.shape[0] - 1), np.clip(qx, 0, lum.shape[1] - 1)]
         return acc / 3.0
     step = band(1) - band(-1)
     if step.size >= LIT_SMOOTH:
         step = np.convolve(step, np.ones(LIT_SMOOTH) / LIT_SMOOTH, mode="same")
-    hit = step >= LIT_STEP
+    hit = (step >= LIT_STEP) & ok
     best, best_at, run, start = 0, 0, 0, 0
     for i, h in enumerate(hit):
         if h:
@@ -3960,6 +3967,12 @@ def main():
         # the corpus has run clean. What it points at cost No.69 its craft
         # cycle: a lamp glow on a 760 px layer, a hard vertical edge at x 492
         # visible in the thumb, passed by every gate and found by the scorer.
+        if rec.get("lit_edges_unmapped"):
+            res["warns"].append(
+                "lit-edge check could not place %d measured seam(s): the canvas "
+                "or an ancestor is CSS-rotated or skewed, so its bounding box does "
+                "not map canvas pixels to the picture. Check its additive layers "
+                "by eye at thumb." % int(rec.get("lit_edges_unmapped")))
         if rec.get("lit_edges_capped"):
             res["warns"].append(
                 "lit-edge census capped: render.py measures at most 16 additive "
