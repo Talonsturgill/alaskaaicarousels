@@ -30,8 +30,14 @@ and qa.py:
          (the raw border is under LIT_MIN; the filter makes it a seam)
   RED    the RED layer drawn with a negative destination width      -> must WARN
          (legal Canvas 2D, normalised, no flip; both Codex, PR #402)
-  GREEN  canvases reordered by z-index                              -> recorded,
-         but the verdict abstains: the exported layer is in DOM order
+  RED    canvases reordered by z-index, seam canvas on top            -> must WARN
+         (the shipped render decides; no paint-order model)
+  RED    a source rect that starts past its source canvas           -> must WARN
+  RED    a full-frame glow drawn through ctx.clip() from x 492      -> must WARN
+  RED    ancestor stacking contexts that reverse DOM order          -> must WARN
+  RED    a full-strength additive panel on a 2 percent canvas       -> must WARN
+         (all four Codex, PR #402: the hook reads what was painted and qa reads
+         the shipped render, so none of them needs a model of its own)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -72,7 +78,10 @@ function glow(gx0, gy0, GW, GH, feather) {
   for (let j = 0; j < GH; j++) for (let i = 0; i < GW; i++) {
     const x = gx0 + i - 872, y = gy0 + j - 760, r = Math.hypot(x, y);
     let v = Math.exp(-r / 7) * 0.9 + Math.exp(-r / 60) * 0.34 + Math.exp(-r / 170) * 0.12;
-    if (y > 12) v += Math.exp(-Math.hypot(x / 220, (y - 16) / 44)) * 0.3;
+    // the pool fades in over 40 px below the lamp, so the light itself has no
+    // edge of its own (a hard `y > 12` start is a real seam, and the measured
+    // hook rightly records it)
+    v += Math.exp(-Math.hypot(x / 220, (y - 16) / 44)) * 0.3 * Math.min(1, Math.max(0, (y - 12) / 40));
     if (feather) {
       const e = Math.min(i, GW - 1 - i, j, GH - 1 - j) / 150, f = Math.min(1, e);
       v *= f * f * (3 - 2 * f);
@@ -162,11 +171,11 @@ cx.save(); cx.globalCompositeOperation = 'screen';
 cx.drawImage(g, 0, 0, 760, 1350, 1252, 0, -760, 1350); cx.restore();
 """
 
-GREEN_ZORDER = """
+RED_ZORDER = """
 // the seam-bearing canvas is FIRST in the DOM but painted on top (z-index 2);
-// a later canvas, painted underneath (z-index 1), is opaque over the seam. The
-// exported layer composites in DOM order, so it can't say which is on top:
-// the verdict abstains rather than trust it (Codex, PR #402)
+// a later canvas, painted underneath (z-index 1), is opaque over the seam's
+// line. The shipped render shows the seam, so it must WARN: the verdict reads
+// the shipped render and needs no model of paint order (Codex, PR #402)
 const c = document.getElementById('c'); c.style.cssText = 'position:absolute;left:0;top:0;z-index:2';
 const g = glow(492, 0, 760, 1350, false);
 cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
@@ -174,6 +183,45 @@ const back = document.createElement('canvas'); back.width = 1080; back.height = 
 back.style.cssText = 'position:absolute;left:0;top:0;z-index:1';
 document.body.appendChild(back);
 const bctx = back.getContext('2d'); bctx.fillStyle = '#3A2A1E'; bctx.fillRect(440, 0, 120, 1350);
+"""
+
+RED_SRC_BOUNDS = """
+// the source rect starts 100 px LEFT of the source canvas: that part is
+// transparent, so the light begins at x 492, inside the destination rect
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen';
+cx.drawImage(g, -100, 0, 860, 1350, 392, 0, 860, 1350); cx.restore();
+"""
+
+RED_CTX_CLIP = """
+// a full-frame glow drawn through a clip that starts at x 492
+const g = glow(0, 0, 1080, 1350, false);
+cx.save(); cx.beginPath(); cx.rect(492, 0, 588, 1350); cx.clip();
+cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 0, 0); cx.restore();
+"""
+
+RED_ANCESTOR_Z = """
+// canvases with z-index auto inside positioned parents whose stacking order
+// is the reverse of DOM order: the seam canvas is painted on top
+const c = document.getElementById('c');
+const upper = document.createElement('div'); upper.style.cssText = 'position:absolute;left:0;top:0;z-index:2';
+const lower = document.createElement('div'); lower.style.cssText = 'position:absolute;left:0;top:0;z-index:1';
+document.body.appendChild(upper); upper.appendChild(c); document.body.appendChild(lower);
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+const back = document.createElement('canvas'); back.width = 1080; back.height = 1350; lower.appendChild(back);
+const bctx = back.getContext('2d'); bctx.fillStyle = '#3A2A1E'; bctx.fillRect(440, 0, 120, 1350);
+"""
+
+RED_FAINT_CANVAS = """
+// a full-strength additive panel on a canvas shown at 2 percent opacity: a
+// five-level step in the shipped render
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px;opacity:0.02';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), wl = document.createElement('canvas'); wl.width = 588; wl.height = 1350;
+const wg = wl.getContext('2d'); wg.fillStyle = '#FFFFFF'; wg.fillRect(0, 0, 588, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(wl, 0, 0);
 """
 
 GREEN_PANEL = """
@@ -193,7 +241,11 @@ CASES = [("slide-01", RED, True, True),
          ("slide-09", RED_CLIPPED, True, True),
          ("slide-10", RED_FILTERED, True, True),
          ("slide-11", RED_NEGATIVE, True, True),
-         ("slide-12", GREEN_ZORDER, True, False)]
+         ("slide-12", RED_ZORDER, True, True),
+         ("slide-13", RED_SRC_BOUNDS, True, True),
+         ("slide-14", RED_CTX_CLIP, True, True),
+         ("slide-15", RED_ANCESTOR_Z, True, True),
+         ("slide-16", RED_FAINT_CANVAS, True, True)]
 EXPECT_X = {"slide-09": 500}
 NEEDLE = "a layer of light ends in mid-air"
 
@@ -226,8 +278,7 @@ def main():
                 if not left:
                     bad.append("%s: the lit left edge was NOT recorded: %s"
                                % (name, json.dumps(edges)))
-                elif abs(left[0]["at"] - EXPECT_X.get(name, 492)) > 1 or (left[0]["lit_max"] < 0.03
-                                                      and left[0].get("filter", "none") == "none"):
+                elif abs(left[0]["at"] - EXPECT_X.get(name, 492)) > 1 or left[0]["lit_max"] < 0.004:
                     bad.append("%s: recorded the wrong line or level: %s"
                                % (name, json.dumps(left[0])))
                 if any(e.get("side") in ("right", "bottom") for e in edges):

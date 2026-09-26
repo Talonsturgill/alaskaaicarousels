@@ -385,163 +385,139 @@ GRADIENT_CLIP_HOOK_JS = """
       } catch (err) {}
     };
 
-    /* A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). A glow computed
-       per pixel on an offscreen canvas and composited in `screen` or
-       `lighter` is light, and light has no edge of its own. If the layer is
-       smaller than the frame and its border pixels still carry light, the
-       picture gets a straight step on the layer's bounding line, in mid-air.
-       No.69's craft cycle drew slide 08's lamp glow on a 760 px layer whose
-       halo was still about 3 levels bright at the cut: a hard vertical edge at
-       x 492 visible at thumb, which four gates passed and the scorer found.
-       Recorded here: every additive drawImage of a CANVAS source onto an
-       on-page canvas, one record per destination edge that lies inside the
-       target canvas and whose source border carries light (max over the
-       border of max(r,g,b) x alpha x globalAlpha). No verdict: an edge can be
-       occluded by what is drawn after it, so qa.py confirms the step on the
-       final canvas layer before it says anything. Observes and forwards. */
+    /* A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). Light has no edge
+       of its own, so a layer of light composited in `screen` or `lighter` must
+       not stop in mid-air. No.69's craft cycle drew slide 08's lamp glow on a
+       760 px layer whose halo was still about 3 levels bright at the cut: a
+       hard vertical edge at x 492, visible at thumb, which four gates passed
+       and the scorer found.
+
+       MEASURED, NOT MODELLED. The first version of this hook computed where a
+       draw's edges would land from its arguments, and Codex's review of
+       PR #402 found a new way round that model on every pass: clips, source
+       rects past the source bounds, filters, negative sizes, nested and
+       clipped target canvases. So the hook now reads what the draw actually
+       PAINTED: the target canvas's pixels just before and just after every
+       additive drawImage onto an on-page canvas, and the per-pixel light the
+       draw added. A seam is where that added light stops within a pixel: a
+       straight line with at least LIT_STEP (1 level) of added light on one
+       side (one pixel in, past any anti-aliasing) and at most LIT_ZERO
+       (0.25 level) on the other (two pixels out), for a run of LIT_SPAN
+       design px or more. A clip, a source bound, a filter or a canvas's own
+       boundary (inside the slide frame) all show up the same way, because
+       they are all the place the paint stopped; a soft falloff never does,
+       because it can't fall from a level to nothing inside three pixels.
+       Each run is recorded in page (design) coordinates. No verdict here:
+       later drawing, a DOM plate or a stacking order can hide the line, so
+       qa.py confirms the step in the shipped render over the same stretch.
+       Reading pixels is costly, so LIT_CALLS heavy draws per slide at most;
+       past that, or past LIT_MAX records, lit_edges_capped says so. */
     window.__akLitEdge = [];
-    /* LIT_SPAN: an edge shorter than qa.py's LIT_RUN (40 design px) can never
-       warn, so it is not recorded and can't fill the census ahead of a real
-       seam (Codex, PR #402). A census that does fill says so in lit_edges_capped. */
-    const LIT_MAX = 24, LIT_MIN = 0.01, LIT_CALLS = 400, LIT_SAMPLES = 512, LIT_SPAN = 40;
+    const LIT_MAX = 24, LIT_CALLS = 16, LIT_SPAN = 40, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     window.__akLitEdgeCapped = false;
     let litCalls = 0;
     const origDraw = proto.drawImage;
-    const litEdge = (ctx, a) => {
+    const lum = (d, i) => 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+    const litBefore = (ctx) => {
       const op = ctx.globalCompositeOperation;
-      if (!ADDITIVE[op]) return;
-      const img = a[0];
-      const isCanvas =
-        (typeof HTMLCanvasElement !== 'undefined' && img instanceof HTMLCanvasElement) ||
-        (typeof OffscreenCanvas !== 'undefined' && img instanceof OffscreenCanvas);
-      if (!isCanvas) return;
-      if (window.__akLitEdge.length >= LIT_MAX || litCalls >= LIT_CALLS) {
-        window.__akLitEdgeCapped = true;
-        return;
-      }
-      const iw = img.width, ih = img.height;
-      if (!(iw >= 2 && ih >= 2)) return;
-      let sx = 0, sy = 0, sw = iw, sh = ih, dx, dy, dw, dh;
-      if (a.length >= 9) {
-        sx = +a[1]; sy = +a[2]; sw = +a[3]; sh = +a[4];
-        dx = +a[5]; dy = +a[6]; dw = +a[7]; dh = +a[8];
-      } else if (a.length >= 5) {
-        dx = +a[1]; dy = +a[2]; dw = +a[3]; dh = +a[4];
-      } else {
-        dx = +a[1]; dy = +a[2]; dw = iw; dh = ih;
-      }
-      if (![sx, sy, sw, sh, dx, dy, dw, dh].every(isFinite)) return;
-      /* negative sizes are legal and extend the rect the other way, with no
-         flip (Canvas 2D normalises both rects); normalise before any edge is
-         computed (Codex, PR #402) */
-      if (sw < 0) { sx += sw; sw = -sw; }
-      if (sh < 0) { sy += sh; sh = -sh; }
-      if (dw < 0) { dx += dw; dw = -dw; }
-      if (dh < 0) { dy += dh; dh = -dh; }
-      if (!(sw >= 2 && sh >= 2 && dw > 0 && dh > 0)) return;
-      const t = ctx.getTransform ? ctx.getTransform() : null;
-      /* a rotated layer's edge is not an axis line; say nothing */
-      if (t && (Math.abs(t.b) > 1e-6 || Math.abs(t.c) > 1e-6)) return;
+      if (!ADDITIVE[op]) return null;
       const cv = ctx.canvas;
-      if (!cv || !cv.getBoundingClientRect) return;   /* offscreen target */
+      if (!cv || !cv.getBoundingClientRect || !cv.isConnected) return null;   /* offscreen target */
       const r = cv.getBoundingClientRect();
-      if (!(r.width > 0 && r.height > 0 && cv.width > 0 && cv.height > 0)) return;
-      litCalls++;
-      const kx = r.width / cv.width, ky = r.height / cv.height;
-      const ox = r.left + (window.scrollX || 0), oy = r.top + (window.scrollY || 0);
-      const ta = t ? t.a : 1, td = t ? t.d : 1, te = t ? t.e : 0, tf = t ? t.f : 0;
-      const xa = ta * dx + te, xb = ta * (dx + dw) + te;
-      const ya = td * dy + tf, yb = td * (dy + dh) + tf;
-      const L = Math.min(xa, xb), R = Math.max(xa, xb);
-      const T = Math.min(ya, yb), B = Math.max(ya, yb);
-      const ga = ctx.globalAlpha == null ? 1 : ctx.globalAlpha;
-      /* the outermost row or column of the SOURCE rect, read through a
-         scratch canvas with the unwrapped drawImage (no recursion, no side
-         effect on the source, works for any canvas kind) */
-      const border = (x, y, w, h) => {
-        const c = document.createElement('canvas');
-        c.width = Math.max(1, Math.min(LIT_SAMPLES, Math.round(w)));
-        c.height = Math.max(1, Math.min(LIT_SAMPLES, Math.round(h)));
-        const g = c.getContext('2d', { willReadFrequently: true });
-        origDraw.call(g, img, x, y, w, h, 0, 0, c.width, c.height);
-        const d = g.getImageData(0, 0, c.width, c.height).data, v = [];
-        for (let i = 0; i < d.length; i += 4)
-          v.push(Math.max(d[i], d[i + 1], d[i + 2]) / 255 * (d[i + 3] / 255) * ga);
-        return v;
-      };
-      /* CLAMP TO THE TARGET BITMAP (Codex, PR #402). The canvas clips the draw
-         to its own bitmap, so the edge the picture actually gets is the
-         requested rect clamped to [0, width] x [0, height]. Where a side is
-         clipped, the visible cut is the canvas's own boundary, and the light
-         on it is the SOURCE pixels that land there, not the source rect's
-         border. So each side is inspected at its clamped line, sampling the
-         source column or row that maps onto it (a negative scale maps the
-         other way), over the part of the perpendicular span that survives. */
-      const flipX = ta < 0, flipY = td < 0;
-      const Lc = Math.max(0, L), Rc = Math.min(cv.width, R);
-      const Tc = Math.max(0, T), Bc = Math.min(cv.height, B);
-      if (!(Rc > Lc && Bc > Tc)) return;
-      const srcX = (X) => flipX ? sx + (R - X) / (R - L) * sw : sx + (X - L) / (R - L) * sw;
-      const srcY = (Y) => flipY ? sy + (B - Y) / (B - T) * sh : sy + (Y - T) / (B - T) * sh;
-      const colAt = (X) => Math.min(sx + sw - 1, Math.max(sx, Math.floor(srcX(X))));
-      const rowAt = (Y) => Math.min(sy + sh - 1, Math.max(sy, Math.floor(srcY(Y))));
-      const ys0 = Math.min(srcY(Tc), srcY(Bc)), ys1 = Math.max(srcY(Tc), srcY(Bc));
-      const xs0 = Math.min(srcX(Lc), srcX(Rc)), xs1 = Math.max(srcX(Lc), srcX(Rc));
-      const vh = Math.max(1, ys1 - ys0), vw = Math.max(1, xs1 - xs0);
-      const edges = [
-        ['left', Lc, [colAt(Lc + 0.5), ys0, 1, vh], 'v'],
-        ['right', Rc, [colAt(Rc - 0.5), ys0, 1, vh], 'v'],
-        ['top', Tc, [xs0, rowAt(Tc + 0.5), vw, 1], 'h'],
-        ['bottom', Bc, [xs0, rowAt(Bc - 0.5), vw, 1], 'h']
-      ];
-      for (const [side, at, src, ax] of edges) {
-        if (window.__akLitEdge.length >= LIT_MAX) { window.__akLitEdgeCapped = true; break; }
-        /* judged in PAGE coordinates: a nested or offset canvas ends where its
-           element ends, and a glow that fills it still stops in mid-air there
-           (Codex, PR #402). Only a line on or past the slide's own frame is
-           exempt. */
-        const frameW = document.documentElement.clientWidth || window.innerWidth;
-        const frameH = document.documentElement.clientHeight || window.innerHeight;
-        const pageAt = ax === 'v' ? ox + at * kx : oy + at * ky;
-        const pageLim = ax === 'v' ? frameW : frameH;
-        if (!(pageAt > 1 && pageAt < pageLim - 1)) continue;   /* on or past the frame edge */
-        {
-          const s0 = ax === 'v' ? Tc : Lc, s1 = ax === 'v' ? Bc : Rc;
-          if ((s1 - s0) * (ax === 'v' ? ky : kx) < LIT_SPAN) continue;
-        }
-        let v;
-        try { v = border(src[0], src[1], src[2], src[3]); } catch (e) { continue; }
-        if (!v.length) continue;
-        const s = v.slice().sort((p, q) => p - q);
-        const mx = s[s.length - 1];
-        /* a filter can amplify a border the raw pixels say is dark (a 2/255
-           edge under brightness(200%) is a four-level seam), so a filtered draw
-           keeps any light at all and lets qa.py's pixels decide (Codex, PR #402) */
-        const filtered = String(ctx.filter || 'none') !== 'none';
-        if (!(filtered ? mx > 0 : mx >= LIT_MIN)) continue;
-        const lit = v.filter((z) => z >= LIT_MIN).length / v.length;
-        /* the span the edge runs along, clipped to the target canvas */
-        const a0 = ax === 'v' ? Tc : Lc;
-        const a1 = ax === 'v' ? Bc : Rc;
-        if (!(a1 > a0)) continue;
-        const e = {
-          side: side, axis: ax, op: op, filter: String(ctx.filter || 'none').slice(0, 40),
-          at: +(ax === 'v' ? ox + at * kx : oy + at * ky).toFixed(1),
-          from: +(ax === 'v' ? oy + a0 * ky : ox + a0 * kx).toFixed(1),
-          to: +(ax === 'v' ? oy + a1 * ky : ox + a1 * kx).toFixed(1),
-          lit_max: +mx.toFixed(4), lit_p50: +s[s.length >> 1].toFixed(4),
-          lit_frac: +lit.toFixed(3), src: [iw, ih], n: 1
-        };
-        e.key = [side, Math.round(e.at), Math.round(e.from), Math.round(e.to), op].join('|');
-        const hit = window.__akLitEdge.find((z) => z.key === e.key);
-        if (hit) { hit.n++; continue; }
-        window.__akLitEdge.push(e);
+      if (!(r.width > 0 && r.height > 0 && cv.width > 0 && cv.height > 0)) return null;
+      if (litCalls >= LIT_CALLS || window.__akLitEdge.length >= LIT_MAX) {
+        window.__akLitEdgeCapped = true;
+        return null;
       }
+      litCalls++;
+      return { op: op, filter: String(ctx.filter || 'none').slice(0, 40), r: r,
+               before: ctx.getImageData(0, 0, cv.width, cv.height).data };
+    };
+    const litAfter = (ctx, st) => {
+      const cv = ctx.canvas, W = cv.width, H = cv.height, r = st.r;
+      const after = ctx.getImageData(0, 0, W, H).data, b = st.before;
+      const D = new Float32Array(W * H);
+      let any = false;
+      for (let i = 0, p = 0; p < D.length; p++, i += 4) {
+        const v = lum(after, i) - lum(b, i);
+        if (v > 0) { D[p] = v; any = true; }
+      }
+      if (!any) return;
+      const kx = r.width / W, ky = r.height / H;
+      const ox = r.left + (window.scrollX || 0), oy = r.top + (window.scrollY || 0);
+      const frameW = document.documentElement.clientWidth || window.innerWidth;
+      const frameH = document.documentElement.clientHeight || window.innerHeight;
+      /* D at (x, y) with the canvas boundary read as unpainted, which it is */
+      const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
+      const push = (side, axis, line, a0, a1, mx) => {
+        if (window.__akLitEdge.length >= LIT_MAX) { window.__akLitEdgeCapped = true; return; }
+        const e = {
+          side: side, axis: axis, op: st.op, filter: st.filter,
+          at: +(axis === 'v' ? ox + line * kx : oy + line * ky).toFixed(1),
+          from: +(axis === 'v' ? oy + a0 * ky : ox + a0 * kx).toFixed(1),
+          to: +(axis === 'v' ? oy + a1 * ky : ox + a1 * kx).toFixed(1),
+          lit_max: +(mx / 255).toFixed(4), n: 1
+        };
+        e.key = [side, Math.round(e.at), Math.round(e.from), Math.round(e.to), st.op].join('|');
+        const hit = window.__akLitEdge.find((z) => z.key === e.key);
+        if (hit) { hit.n++; return; }
+        window.__akLitEdge.push(e);
+      };
+      /* one axis: lines between pixel columns (v) or rows (h), both directions */
+      const scan = (axis) => {
+        const nLine = axis === 'v' ? W : H, nAlong = axis === 'v' ? H : W;
+        const kAlong = axis === 'v' ? ky : kx, kAcross = axis === 'v' ? kx : ky;
+        const pageLim = axis === 'v' ? frameW : frameH, org = axis === 'v' ? ox : oy;
+        const minRun = Math.ceil(LIT_SPAN / kAlong);
+        const val = axis === 'v' ? ((c, a) => at(c, a)) : ((c, a) => at(a, c));
+        const cands = [];
+        for (let c = 0; c <= nLine; c++) {
+          const page = org + c * kAcross;
+          if (!(page > 1 && page < pageLim - 1)) continue;   /* the slide's own frame is exempt */
+          for (const [side, inO, outO] of [['left', 1, -2], ['right', -2, 1]]) {
+            /* 'left' = light begins at line c (lit side after it); 'right' = light ends there */
+            let run = 0, start = 0, best = 0, bestAt = 0, mx = 0, bmx = 0;
+            for (let a = 0; a < nAlong; a++) {
+              const vin = val(c + inO, a), vout = val(c + outO, a);
+              if (vin >= LIT_STEP && vout <= LIT_ZERO) {
+                if (run === 0) { start = a; mx = 0; }
+                run++; if (vin > mx) mx = vin;
+                if (run > best) { best = run; bestAt = start; bmx = mx; }
+              } else run = 0;
+            }
+            if (best >= minRun) cands.push([side, c, bestAt, best, bmx]);
+          }
+        }
+        /* one seam lights up the two or three neighbouring lines the 3 px
+           in/out test straddles; keep the longest run per seam */
+        cands.sort((p, q) => q[3] - p[3]);
+        const kept = [];
+        for (const k of cands) {
+          if (kept.some((z) => z[0] === k[0] && Math.abs(z[1] - k[1]) <= 3)) continue;
+          kept.push(k);
+          /* the tolerant in/out test lights up the lines either side of the
+             seam; the seam itself is where the added light JUMPS most, summed
+             along the run (line c lies between pixels c-1 and c, and the
+             canvas boundary reads as unpainted) */
+          let cc = k[1], bestJ = -Infinity;
+          for (let c = Math.max(0, k[1] - 3); c <= Math.min(nLine, k[1] + 3); c++) {
+            let j = 0;
+            for (let a2 = k[2]; a2 < k[2] + k[3]; a2 += 2)
+              j += k[0] === 'left' ? val(c, a2) - val(c - 1, a2) : val(c - 1, a2) - val(c, a2);
+            if (j > bestJ) { bestJ = j; cc = c; }
+          }
+          push(k[0], axis, cc, k[2], k[2] + k[3], k[4]);
+        }
+      };
+      scan('v'); scan('h');
     };
     if (typeof origDraw === 'function') {
       proto.drawImage = function () {
-        try { litEdge(this, arguments); } catch (e) {}
-        return origDraw.apply(this, arguments);
+        let st = null;
+        try { st = litBefore(this); } catch (e) { st = null; }
+        const out = origDraw.apply(this, arguments);
+        if (st) { try { litAfter(this, st); } catch (e) {} }
+        return out;
       };
     }
 
@@ -3486,13 +3462,9 @@ CANVAS_LAYER_JS = r"""
   const t = document.createElement('canvas');
   t.width = W; t.height = H;
   const tc = t.getContext('2d', { willReadFrequently: true });
-  let n = 0, approx = [], zs = [];
+  let n = 0, approx = [];
   for (const cv of document.querySelectorAll('canvas')) {
     const cs = getComputedStyle(cv);
-    // this layer composites in DOM order; a z-index that reorders canvases
-    // makes it an unfaithful witness for paint ORDER, which the lit-edge
-    // verdict depends on (Codex, PR #402)
-    zs.push(cs.position !== 'static' && cs.zIndex !== 'auto' ? cs.zIndex : 'auto');
     if (cs.display === 'none' || cs.visibility === 'hidden') continue;
     const op = parseFloat(cs.opacity);
     if (!(op > 0.02)) continue;
@@ -3523,8 +3495,7 @@ CANVAS_LAYER_JS = r"""
   let data = null;
   try { data = t.toDataURL('image/png'); }
   catch (e) { return { ok: false, canvases: n, error: String(e).slice(0, 140) }; }
-  const zorder = new Set(zs).size > 1;
-  return { ok: true, canvases: n, approx: Array.from(new Set(approx)), zorder: zorder, data: data };
+  return { ok: true, canvases: n, approx: Array.from(new Set(approx)), data: data };
 }
 """
 
@@ -3607,7 +3578,6 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                     rec["canvas_layer"] = {
                         "ok": True, "canvases": cl["canvases"], "file": lay.name,
                         "approx": cl.get("approx") or [],
-                        "zorder": bool(cl.get("zorder")),
                         "w": width, "h": height,
                     }
         except Exception as e:

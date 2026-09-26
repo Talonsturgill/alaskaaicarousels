@@ -2888,13 +2888,13 @@ def ink_law(img_arr, rec, scale):
     return out
 
 
-def lit_edge_step(img, e, design_w, design_h, confirm=None):
+def lit_edge_step(img, e, design_w, design_h):
     """Is the edge render.py recorded for an additive canvas layer VISIBLE?
 
-    render.py knows that a layer of light ended inside the frame with light
-    still on its border; it can't know whether anything drawn afterwards
-    covered the line. This reads the final canvas layer (or the full render
-    when no layer was exported) along exactly that line and returns
+    render.py measured that an additive draw's painted light stopped on this
+    line, over this stretch; it can't know whether anything drawn afterwards,
+    on any canvas or in the DOM, covered it. This reads the SHIPPED render
+    along exactly that line and stretch and returns
     (longest_run_design_px, median_step_on_run, run_from, run_to) in design px,
     or None when the line can't be measured. Positive steps only: the lit side
     is the layer's inside, and light can only have made it brighter.
@@ -2931,21 +2931,6 @@ def lit_edge_step(img, e, design_w, design_h, confirm=None):
     if w > 1 and step.size >= w:
         step = np.convolve(step, np.ones(w) / w, mode="same")
     hit = step >= LIT_STEP
-    if confirm is not None:
-        # The verdict is on the stretch where BOTH pictures show the step, taken
-        # from the two threshold masks point by point, never from each image's
-        # own longest run (Codex, PR #402): an unrelated longer edge elsewhere
-        # on the line in either image must not decide which stretch counts.
-        other = _lit_edge_mask(confirm, e, design_w, design_h)
-        if other is None or other.size == 0 or hit.size == 0:
-            return None
-        if other.size != hit.size:
-            # the canvas layer is exported at 1x and the render at 2x: map the
-            # confirming mask onto this picture's samples along the same line
-            idx = np.minimum(other.size - 1,
-                             (np.arange(hit.size) * other.size) // hit.size)
-            other = other[idx]
-        hit = hit & other
     best, best_at, run, start = 0, 0, 0, 0
     for i, h in enumerate(hit):
         if h:
@@ -2960,43 +2945,6 @@ def lit_edge_step(img, e, design_w, design_h, confirm=None):
         return (0.0, 0.0, None, None)
     med = float(np.median(step[best_at:best_at + best]))
     return (best / k, med, (r0 + best_at) / k, (r0 + best_at + best) / k)
-
-
-def _lit_edge_mask(img, e, design_w, design_h):
-    """The per-sample threshold mask lit_edge_step() computes, for the second
-    picture of a joint verdict. Same geometry, same smoothing, same LIT_STEP."""
-    a = np.asarray(img, dtype=np.float32)
-    if a.ndim != 3 or a.shape[2] < 3:
-        return None
-    rgb = a[..., :3]
-    if a.shape[2] == 4:
-        rgb = rgb * (a[..., 3:4] / 255.0)
-    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
-    k = lum.shape[1] / float(design_w)
-    side = e.get("side")
-    if side in ("top", "bottom"):
-        lum = lum.T
-    if side not in ("left", "right", "top", "bottom"):
-        return None
-    inward = 1 if side in ("left", "top") else -1
-    c = int(round(float(e["at"]) * k))
-    band = max(2, int(round(3 * k)))
-    gap = max(1, int(round(k)))
-    n_along, n_across = lum.shape
-    lo_in, hi_in = (c + gap, c + gap + band) if inward > 0 else (c - gap - band, c - gap)
-    lo_out, hi_out = (c - gap - band, c - gap) if inward > 0 else (c + gap, c + gap + band)
-    if min(lo_in, lo_out) < 0 or max(hi_in, hi_out) > n_across:
-        return None
-    r0 = max(0, int(np.floor(float(e["from"]) * k)))
-    r1 = min(n_along, int(np.ceil(float(e["to"]) * k)))
-    if r1 - r0 < 3:
-        return None
-    step = (lum[r0:r1, lo_in:hi_in].mean(axis=1)
-            - lum[r0:r1, lo_out:hi_out].mean(axis=1))
-    w = max(1, int(round(LIT_SMOOTH * k)))
-    if w > 1 and step.size >= w:
-        step = np.convolve(step, np.ones(w) / w, mode="same")
-    return step >= LIT_STEP
 
 
 def _box_down(a, k):
@@ -3951,10 +3899,10 @@ def main():
                 res["warns"].append("flat-core record unreadable (%s)" % e)
 
         # A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). render.py's
-        # gradient hook records every additive canvas layer whose border still
-        # carries light where it lands inside the frame; this confirms the step
-        # on the final canvas layer, so an edge something later covered says
-        # nothing. A WARN, like the ellipse clip above: the reading is exact at
+        # gradient hook measures, on the canvas, where an additive draw's
+        # painted light stops within a pixel; this confirms the step in the
+        # shipped render over that stretch, so an edge something later covered
+        # says nothing. A WARN, like the ellipse clip above: the reading is exact at
         # the brush and measured on the pixels, but an author MAY want a hard
         # edge of light, and promoting it to a FAIL is a maintainer's call once
         # the corpus has run clean. What it points at cost No.69 its craft
@@ -3962,34 +3910,29 @@ def main():
         # visible in the thumb, passed by every gate and found by the scorer.
         if rec.get("lit_edges_capped"):
             res["warns"].append(
-                "lit-edge census capped: render.py stopped recording additive "
-                "canvas layers after 24 in-frame edges or 400 draws, so a later "
-                "layer's seam was not examined. Draw fewer separate additive "
-                "layers (composite sprites onto one layer first), or check the "
-                "last glow layers by eye at thumb.")
+                "lit-edge census capped: render.py measures at most 16 additive "
+                "drawImage calls onto on-page canvases (and 24 seams) per slide, "
+                "so a later layer's seam was not examined. Composite sprites onto "
+                "one offscreen layer and draw that once, or check the last glow "
+                "layers by eye at thumb.")
         for le in rec.get("lit_edges", []):
             try:
-                # Both pictures must agree on the same stretch: the shipped
-                # render (so a DOM or SVG plate over the line silences it) and
-                # the canvas-only layer (so DOM type or an SVG rule crossing
-                # the line can't manufacture it). Without a canvas layer there
-                # is no second witness, and the check abstains (Codex, PR #402).
-                if clayer is None:
-                    continue
-                # the exported layer composites canvases in DOM order; when a
-                # z-index reorders them it can't witness which one is on top
-                if (rec.get("canvas_layer") or {}).get("zorder"):
-                    continue
-                m = lit_edge_step(arr, le, design_w, design_h, confirm=clayer)
+                # render.py recorded where an additive draw's PAINTED light
+                # stopped within a pixel, measured on the canvas itself; the
+                # shipped render decides whether anyone can see it, over that
+                # same stretch of that line. Later drawing, a DOM or SVG plate,
+                # a stacking order or CSS opacity all act on the shipped render,
+                # so they need no model here (Codex, PR #402).
+                m = lit_edge_step(arr, le, design_w, design_h)
                 if m is None or m[0] < LIT_RUN:
                     continue
                 run, med, a0, a1 = m
                 axis = "x" if le.get("axis") == "v" else "y"
                 along = "y" if axis == "x" else "x"
                 res["warns"].append(
-                    "a layer of light ends in mid-air: an additive (%s) canvas layer "
-                    "drawn with drawImage stops at %s %.0f (its %s edge) while its "
-                    "border still carries light (max %.3f, median %.3f of full), and "
+                    "a layer of light ends in mid-air: the light an additive (%s) "
+                    "drawImage painted stops at %s %.0f (its %s edge) within a pixel "
+                    "(up to %.3f of full just inside, nothing just outside), and "
                     "the final picture shows a straight %.1f-level step along that "
                     "line for %.0f design px (%s %.0f to %.0f)%s. Light has no edge "
                     "of its own. Make the layer span the frame, or feather its "
@@ -3997,7 +3940,7 @@ def main():
                     "150 px or more on every side that lands inside the frame), and "
                     "re-render."
                     % (le.get("op", "?"), axis, le.get("at", 0), le.get("side", "?"),
-                       le.get("lit_max", 0), le.get("lit_p50", 0), med, run,
+                       le.get("lit_max", 0), med, run,
                        along, a0, a1,
                        ""))
             except Exception as e:  # a malformed record must never stop QA
