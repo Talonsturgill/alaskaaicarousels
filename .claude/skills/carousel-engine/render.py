@@ -538,10 +538,10 @@ LIT_EDGE_HOOK_JS = """
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto || typeof proto.drawImage !== 'function' ||
         typeof proto.getImageData !== 'function') return;
-    const st = window.__akLit = { raw: [], skipped: [], cappedOn: [], failed: [], pres: [], capped: 0 };
+    const st = window.__akLit = { raw: [], skipped: [], cappedOn: [], rawOver: [], failed: [], pres: [], capped: 0 };
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
-    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24;
+    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096;
     const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     let nOn = 0, nOff = 0;
     const origDraw = proto.drawImage, origGet = proto.getImageData;
@@ -556,6 +556,35 @@ LIT_EDGE_HOOK_JS = """
       if (d && d.set && d.configurable) Object.defineProperty(cproto, k, {
         get: d.get, enumerable: d.enumerable, configurable: true,
         set: function (v) { this.__akGen = (this.__akGen || 0) + 1; return d.set.call(this, v); } });
+    }
+    /* ...and so does setting or removing the width or height ATTRIBUTE,
+       which never passes through those setters (Codex, PR #403) */
+    const bump = (el, name) => {
+      if (el && window.HTMLCanvasElement && el instanceof window.HTMLCanvasElement &&
+          /^(width|height)$/i.test(String(name).split(':').pop()))
+        el.__akGen = (el.__akGen || 0) + 1;
+    };
+    const eproto = window.Element && window.Element.prototype;
+    if (eproto) {
+      for (const [m, i] of [['setAttribute', 0], ['removeAttribute', 0], ['toggleAttribute', 0],
+                            ['setAttributeNS', 1], ['removeAttributeNS', 1]]) {
+        const f = eproto[m];
+        if (typeof f === 'function') eproto[m] = function () {
+          try { bump(this, arguments[i]); } catch (e) {}
+          return f.apply(this, arguments);
+        };
+      }
+      for (const m of ['setAttributeNode', 'setAttributeNodeNS', 'removeAttributeNode']) {
+        const f = eproto[m];
+        if (typeof f === 'function') eproto[m] = function (a) {
+          try { bump(this, a && a.name); } catch (e) {}
+          return f.apply(this, arguments);
+        };
+      }
+      const av = window.Attr && Object.getOwnPropertyDescriptor(window.Attr.prototype, 'value');
+      if (av && av.set && av.configurable) Object.defineProperty(window.Attr.prototype, 'value', {
+        get: av.get, enumerable: av.enumerable, configurable: true,
+        set: function (v) { try { bump(this.ownerElement, this.name); } catch (e) {} return av.set.call(this, v); } });
     }
     const gen = (cv) => cv.__akGen || 0;
     const live = (z) => z && z.cv && gen(z.cv) === z.g;
@@ -618,6 +647,7 @@ LIT_EDGE_HOOK_JS = """
         const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
         const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
         const cands = [];
+        let over = false;
         for (let c = 0; c <= nLine; c++) {
           for (const [side, inO, outO] of sides) {
             let run = 0, start = 0, mx = 0;
@@ -627,7 +657,12 @@ LIT_EDGE_HOOK_JS = """
                 if (run === 0) { start = s; mx = 0; }
                 run++; if (vin > mx) mx = vin;
               } else {
-                if (run >= pre) cands.push([side, c, start, start + run, mx]);
+                if (run >= pre) {
+                  /* bounded before the sort: a fragmented mask can make runs by
+                     the hundred thousand; past the bound the draw is counted */
+                  if (cands.length < LIT_CANDS) cands.push([side, c, start, start + run, mx]);
+                  else over = true;
+                }
                 run = 0;
               }
             }
@@ -635,6 +670,7 @@ LIT_EDGE_HOOK_JS = """
         }
         /* the tolerant test lights the lines either side of a seam too; keep
            one per stretch, on the line where the added light jumps most */
+        if (over) tally(st.rawOver, cv);
         cands.sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]));
         const kept = [];
         for (const k of cands) {
@@ -649,13 +685,22 @@ LIT_EDGE_HOOK_JS = """
               j += lead ? val(c, s) - val(c - 1, s) : val(c - 1, s) - val(c, s);
             if (j > best) { best = j; line = c; }
           }
-          if (st.raw.length >= LIT_RAW) { st.capped++; continue; }
+          /* LIT_RAW per DRAW, so no canvas can spend another's (at most
+             LIT_ON + LIT_OFF draws are measured, which bounds the total) */
+          if (nRaw >= LIT_RAW) { rawOver = true; continue; }
+          nRaw++;
           st.raw.push({ cv: cv, g: gen(cv), op: b.op, axis: axis, side: k[0], line: line,
                         a0: k[2], a1: k[3], mx: k[4] });
         }
       };
+      let nRaw = 0, rawOver = false;
       scan('v'); scan('h');
+      if (rawOver) tally(st.rawOver, cv);
     };
+    /* the COMPOSED tree, the one that renders: a slotted element's parent is
+       its slot, and a shadow root's parent is its host (Codex, PR #403) */
+    const up = (el) => el.assignedSlot || el.parentElement ||
+                       (el.parentNode && el.parentNode.host) || null;
     const frame = () => [document.documentElement.clientWidth || window.innerWidth,
                          document.documentElement.clientHeight || window.innerHeight];
     const shown = (cv) => {
@@ -670,7 +715,7 @@ LIT_EDGE_HOOK_JS = """
        fill, the default); anything else is counted, not guessed */
     const placeable = (cv) => {
       if ((getComputedStyle(cv).objectFit || 'fill') !== 'fill') return false;
-      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         const tf = cs.transform || 'none';
         if (tf !== 'none') {
@@ -713,7 +758,7 @@ LIT_EDGE_HOOK_JS = """
        even the frame's own edge into the picture, so it is checked before that
        edge is exempted; any other filter only recolours in place */
     const repainted = (cv, moves) => {
-      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el), f = cs.filter || 'none';
         if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
         if (f !== 'none' && (!moves || /drop-shadow|url\(/.test(f))) return true;
@@ -728,20 +773,23 @@ LIT_EDGE_HOOK_JS = """
     const cropped = (cv, bx) => {
       const [fw, fh] = frame();
       const cuts = (e, lo, hi, fmax) => e > lo + 0.5 && e < hi - 0.5 && e > 1 && e < fmax - 1;
-      for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         if ((cs.clipPath || 'none') !== 'none') return true;
         if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
         if (el === cv) continue;
-        const ov = (cs.overflowX || 'visible') !== 'visible' || (cs.overflowY || 'visible') !== 'visible';
-        if (!ov && !/paint|strict|content/.test(cs.contain || '')) continue;
+        const cp = /paint|strict|content/.test(cs.contain || '');
+        const ox = cp || (cs.overflowX || 'visible') !== 'visible';
+        const oy = cp || (cs.overflowY || 'visible') !== 'visible';
+        if (!ox && !oy) continue;
         const r = el.getBoundingClientRect();
         const s = el.offsetWidth ? r.width / el.offsetWidth : 1, t = el.offsetHeight ? r.height / el.offsetHeight : 1;
         const L = r.left + (window.scrollX || 0) + el.clientLeft * s, T = r.top + (window.scrollY || 0) + el.clientTop * t;
         const R = L + el.clientWidth * s, B = T + el.clientHeight * t;
-        if (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw) ||
-            cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)) return true;
+        /* each axis crops only where it clips (Codex, PR #403) */
+        if ((ox && (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw))) ||
+            (oy && (cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)))) return true;
       }
       return false;
     };
@@ -749,6 +797,8 @@ LIT_EDGE_HOOK_JS = """
       const recs = [];
       let unplaced = 0, capped = st.capped, readback = 0;
       const rp = new Map(), mv = new Map();
+      let isTop = true;
+      try { isTop = window.top === window; } catch (e) { isTop = false; }
       const fw = document.documentElement.clientWidth || window.innerWidth;
       const fh = document.documentElement.clientHeight || window.innerHeight;
       const ok = new Map();
@@ -766,7 +816,10 @@ LIT_EDGE_HOOK_JS = """
         if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
         if (!mv.has(cv)) mv.set(cv, repainted(cv, true));
         if (mv.get(cv)) { unplaced++; continue; }
-        if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
+        /* the picture's own edge; in a framed document the viewport edge is
+           the iframe's, inside the picture, so nothing is exempted there and
+           the top document counts it (Codex, PR #403) */
+        if (isTop && !(page > 1 && page < (v ? fw : fh) - 1)) continue;
         if (!rp.has(cv)) rp.set(cv, repainted(cv, false));
         if (rp.get(cv)) { unplaced++; continue; }
         recs.push({ side: e.side, axis: e.axis, at: page,
@@ -805,7 +858,7 @@ LIT_EDGE_HOOK_JS = """
         if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
             (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
       }
-      for (const z of st.skipped.concat(st.cappedOn)) if (live(z) && shown(z.cv)) capped += z.n;
+      for (const z of st.skipped.concat(st.cappedOn, st.rawOver)) if (live(z) && shown(z.cv)) capped += z.n;
       for (const z of st.failed) if (live(z) && shown(z.cv)) readback += z.n;
       return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
     };

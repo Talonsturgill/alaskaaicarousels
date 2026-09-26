@@ -627,7 +627,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, or outside the frame) spends the off-page budget and is never
   counted; a measurement made before the canvas's width or height was set
-  again is dropped, because setting either clears the bitmap. Reconstruction: `python tests/lit_edge_verify.py`.
+  again (by property or attribute) is dropped, because setting either clears
+  the bitmap. Ancestors are walked in the composed tree, through slots and
+  shadow hosts. Candidates and records are bounded per draw (4096 and 256),
+  and a draw past either bound is counted. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

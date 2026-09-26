@@ -81,6 +81,16 @@ through the REAL render.py and qa.py:
   44 GREEN  a seam measured, then the bitmap resized (cleared) and an ordinary
             panel edge drawn where the stale line would map: silent
   45 GREEN  the RED glow inside an iframe: counted, and qa says so
+  46 GREEN  fixture 44 with the bitmap reset by setAttribute('width'): silent
+  47 GREEN  a 16 px additive checkerboard on a display:none staging canvas,
+            far past the candidate and record bounds: nothing counted
+  48 GREEN  a grid of 48 px additive blocks on the shown canvas, 600 and more
+            seams in one draw: past the per-draw bound, and qa says so
+  49 GREEN  a 588 px iframe at x 492 whose glow stops at the iframe's edge:
+            counted, and qa says so
+  50 GREEN  the nested glow in a shadow root whose host is rotated: counted
+  51 GREEN  the repaired glow in a wrapper that clips only horizontally, whose
+            bottom edge crosses the canvas: silent
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), and what the
@@ -530,6 +540,74 @@ Object.defineProperty(window, 'renderReady', { writable: false,
   value: new Promise((ok) => fr.addEventListener('load', () => ok(true))) });
 """ % json.dumps((PAGE % RED).replace("window.renderReady = Promise.resolve(true);", "")).replace("</", "<\\/")
 
+GREEN_ATTR_RESIZED = GREEN_RESIZED.replace("nc.width = 294;", "nc.setAttribute('width', '294');")
+
+def checker(target):
+    return """
+const ck = document.createElement('canvas'); ck.width = 1080; ck.height = 1350;
+const kg = ck.getContext('2d'); kg.fillStyle = 'rgb(120,100,70)';
+for (let y = 0; y < 1350; y += 32) for (let x = (y / 32) %% 2 ? 16 : 0; x < 1080; x += 32) kg.fillRect(x, y, 16, 16);
+%s.save(); %s.globalCompositeOperation = 'screen'; %s.drawImage(ck, 0, 0); %s.restore();
+""" % ((target,) * 4)
+
+GREEN_CHECKER_HIDDEN = """
+// a 16 px additive checkerboard on a display:none staging canvas makes far
+// more candidate runs than either bound; none of it reaches the picture, so
+// nothing is counted (Codex, PR #403)
+const stc = document.createElement('canvas'); stc.width = 1080; stc.height = 1350;
+stc.style.display = 'none'; document.body.appendChild(stc);
+const st2 = stc.getContext('2d');
+""" + checker("st2") + GREEN_SPAN
+
+GREEN_CHECKER_SHOWN = """
+// a grid of 48 px additive blocks on the shown canvas: every block edge is a
+// seam long enough to keep, 600 and more of them in one draw, past the
+// per-draw record bound, so qa says the check was capped
+const bk = document.createElement('canvas'); bk.width = 1080; bk.height = 1350;
+const bg2 = bk.getContext('2d'); bg2.fillStyle = 'rgb(120,100,70)';
+for (let y = 24; y < 1300; y += 96) for (let x = 24; x < 1040; x += 96) bg2.fillRect(x, y, 48, 48);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(bk, 0, 0); cx.restore();
+"""
+
+GREEN_IFRAME_INTERIOR = """
+// a 588 px iframe at x 492 whose own full-viewport additive glow stops at the
+// iframe's edge: inside the picture, so it is counted (Codex, PR #403)
+const fr = document.createElement('iframe');
+fr.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px;border:0';
+fr.srcdoc = %s;
+document.body.appendChild(fr);
+Object.defineProperty(window, 'renderReady', { writable: false,
+  value: new Promise((ok) => fr.addEventListener('load', () => ok(true))) });
+""" % json.dumps(
+    '<!doctype html><html><head><style>html,body{margin:0;background:#000}canvas{display:block}</style></head>'
+    '<body><canvas id="k" width="588" height="1350"></canvas><script>'
+    'const k = document.getElementById("k").getContext("2d"), w = document.createElement("canvas");'
+    'w.width = 588; w.height = 1350; const g = w.getContext("2d"); g.fillStyle = "rgb(90,70,40)";'
+    'g.fillRect(0, 0, 588, 1350); k.globalCompositeOperation = "screen"; k.drawImage(w, 0, 0);'
+    '</script></body></html>').replace("</", "<\\/")
+
+GREEN_SHADOW_ROTATED = """
+// the nested glow's canvas inside a shadow root whose HOST is rotated: the
+// composed-tree walk reaches the host, so it is counted (Codex, PR #403)
+const host = document.createElement('div');
+host.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px;transform:rotate(20deg)';
+document.body.appendChild(host);
+const root = host.attachShadow({ mode: 'open' });
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px';
+root.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
+GREEN_OVERFLOW_X_ONLY = """
+// a wrapper that clips only horizontally, full width, 700 px tall: its bottom
+// edge crosses the canvas but crops nothing, so the repaired glow is silent
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:700px;overflow-x:clip;overflow-y:visible';
+document.body.appendChild(wrap); wrap.appendChild(document.getElementById('c'));
+""" + GREEN_SPAN
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -580,7 +658,16 @@ CASES = [
     ("slide-43", GREEN_SHADOW_FRAME, [], 0, "can't place"),
     ("slide-44", GREEN_RESIZED, [], 0, None),
     ("slide-45", GREEN_IFRAME, [], 0, "can't place"),
+    ("slide-46", GREEN_ATTR_RESIZED, [], 0, None),
+    ("slide-47", GREEN_CHECKER_HIDDEN, [], 0, None),
+    ("slide-48", GREEN_CHECKER_SHOWN, [], None, "past its budget"),
+    ("slide-49", GREEN_IFRAME_INTERIOR, [], 0, "can't place"),
+    ("slide-50", GREEN_SHADOW_ROTATED, [], 0, "can't place"),
+    ("slide-51", GREEN_OVERFLOW_X_ONLY, [], 0, None),
 ]
+# fixtures whose records are too many to list: the check is only that the
+# render finished and qa named the cap
+ANY_RECORDS = {"slide-48"}
 # the overlapping draws of slide-34 are ONE record, both draws merged into it,
 # over the stretch where the glow carries light at x 492 (y 359 to 1164, as on
 # every other fixture); draw 1 alone stops at y 700
@@ -625,7 +712,7 @@ def main():
             if rec.get("page_errors"):
                 bad.append("%s: the hook broke the page: %s" % (name, rec["page_errors"]))
             edges = list(rec.get("lit_edges", []))
-            if not want and edges:
+            if not want and edges and name not in ANY_RECORDS:
                 bad.append("%s: recorded an edge that carries no light: %s"
                            % (name, json.dumps(edges)))
             for side, at in want:
@@ -660,7 +747,7 @@ def main():
                 for side, at in want:
                     if not any(named(side, at) in h for h in hits):
                         bad.append("%s: no warning names %s: %s" % (name, named(side, at), hits))
-            if count is None and not any(named(*want[0]) in h for h in hits):
+            if count is None and want and not any(named(*want[0]) in h for h in hits):
                 bad.append("%s: no warning names %s: %s" % (name, named(*want[0]), hits))
             if other and not any(other in w for w in warns):
                 bad.append("%s: qa.py did not say %r: %s" % (name, other, warns))
