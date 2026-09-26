@@ -1,6 +1,6 @@
 {
  "measured_utc": "2026-09-26T07:35Z",
- "method": "Fetched https://alaskanews.com/news-sitemap.xml (articles published in the last 48 hours), then fetched each article's public HTML page and read the provenance line printed under the article body. Categories: A label contains 'Reviewed by Cale Green'; B label reads 'Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.'; C label reads 'AI-assisted. No editor review is on record for this article.'; D no AI label. The visible byline was recorded for 21 of 90 rows only (null where it was not captured), so this file supports claims about the labels and not about bylines.",
+ "method": "Fetched https://alaskanews.com/news-sitemap.xml (articles published in the last 48 hours), then fetched each article's public HTML page and read the provenance line printed under the article body. Categories: A label contains 'Reviewed by Cale Green'; B label reads 'Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.'; C label reads 'AI-assisted. No editor review is on record for this article.'; D no AI label. The visible byline was recorded for 19 of 90 rows only (null where it was not captured), so this file supports claims about the labels and not about bylines.",
  "window": [
   "2026-09-24T07:40:57.715376+00:00",
   "2026-09-26T07:23:09.819739+00:00"
@@ -1185,5 +1185,5 @@
  "human_names_on_labels": [
   "Cale Green"
  ],
- "bylines_captured": 21
+ "bylines_captured": 19
 }
