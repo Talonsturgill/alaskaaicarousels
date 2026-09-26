@@ -624,7 +624,7 @@
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.8,
-   "notes": "Method: the showrunner fetched all 90 sitemap URLs at about 07:35 UTC and read the provenance line under each. I didn't re-count all 90. I spot-checked 10 by fetching them. Direct WebFetch gets the site's markdown variant ('This is the markdown variant ... served to AI agents that requested it via Accept: text/markdown'), which drops the provenance label. I read the labels through the r.jina.ai reader, which returns the HTML version. Of my 10: 6 reviewed by Cale Green (Board of Fisheries, MEA rolling outages, Petersburg data center, Tlingit Haida, Cook Inlet subsea data center, Oktoberfest), 1 edited with no full review (Juneau kelp), 2 with no editor review (Axon memo, FCC GCI) and 1 with no label (Eaglexit). The reviewed labels come in two wordings: 'Drafted with AI. Edited by Cale Green (N revisions). Reviewed by Cale Green.' and 'AI-assisted, reviewed by Cale Green.' Labels can change if an editor reviews an article later. Needs softening: write 'by our count on the morning of September 26th'. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source.",
+   "notes": "Method: the showrunner fetched all 90 sitemap URLs at about 07:35 UTC and read the provenance line under each. I didn't re-count all 90. I spot-checked 10 by fetching them. Direct WebFetch gets the site's markdown variant ('This is the markdown variant ... served to AI agents that requested it via Accept: text/markdown'), which drops the provenance label. I read the labels through the r.jina.ai reader, which returns the HTML version. Of my 10: 6 reviewed by Cale Green (Board of Fisheries, MEA rolling outages, Petersburg data center, Tlingit Haida, Cook Inlet subsea data center, Oktoberfest), 1 edited with no full review (Juneau kelp), 2 with no editor review (Axon memo, FCC GCI) and 1 with no label (Eaglexit). The reviewed labels come in two wordings: 'Drafted with AI. Edited by Cale Green (N revisions). Reviewed by Cale Green.' and 'AI-assisted, reviewed by Cale Green.' Labels can change if an editor reviews an article later. Needs softening: write 'by our count on the morning of September 26th'. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source. The 'by our count' hedge is carried on the slides by slide 02's dated kicker and slide 05's method line; a slide can't say 'our' (no first person on slides).",
    "population_source_url": "https://alaskanews.com/news-sitemap.xml"
   },
   {
@@ -725,15 +725,16 @@
    "id": "C56",
    "claim": "Across Alaska.Ai's count of 90 articles, Cale Green was the only human name on any review label.",
    "value": "one human name",
-   "verbatim": "by[Cale Green](https://alaskanews.com/u/cale-green) · from an AI draft by[Walter AlaskaNews](https://alaskanews.com/u/walter)",
+   "verbatim": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "source_url": "https://github.com/Talonsturgill/alaskaaicarousels/blob/main/runs/2026-09-26/evidence/alaskanews_labels.json",
    "source_outlet": "Alaska News (Communities News LLC), measured by Alaska.Ai",
    "source_is_primary": true,
    "date_of_source": "2026-09-26",
    "fetched": true,
    "confidence": 0.78,
-   "notes": "Showrunner's full count. All 10 of my spot checks agree: every human name on a label or visible byline was Cale Green. The verbatim is the visible byline of the Tlingit Haida article (HTML version, 2 revisions, reviewed by Cale Green). It shows that the visible byline can credit Cale Green while the meta author is Walter. Needs softening: write 'by our count'. This says nothing about who reads articles behind the scenes, only about whose names appear. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source. Narrowed to review labels on 2026-09-26: the capture recorded the label on all 90 articles but the visible byline on only 21, so bylines are not claimed.",
-   "population_source_url": "https://alaskanews.com/news-sitemap.xml"
+   "notes": "Showrunner's full count. All 10 of my spot checks agree: every human name on a label or visible byline was Cale Green. The verbatim is the visible byline of the Tlingit Haida article (HTML version, 2 revisions, reviewed by Cale Green). It shows that the visible byline can credit Cale Green while the meta author is Walter. Needs softening: write 'by our count'. This says nothing about who reads articles behind the scenes, only about whose names appear. Source is the captured label rows committed with the run (the sitemap rolls and carries no labels); the sitemap stays as the population source. Narrowed to review labels on 2026-09-26: the capture recorded the label on all 90 articles but the visible byline on only 21, so bylines are not claimed. The 'by our count' hedge is carried on the slides by slide 02's dated kicker and slide 05's method line; a slide can't say 'our' (no first person on slides).",
+   "population_source_url": "https://alaskanews.com/news-sitemap.xml",
+   "verbatim_byline_spotcheck": "by[Cale Green](https://alaskanews.com/u/cale-green) · from an AI draft by[Walter AlaskaNews](https://alaskanews.com/u/walter)"
   },
   {
    "id": "C57",

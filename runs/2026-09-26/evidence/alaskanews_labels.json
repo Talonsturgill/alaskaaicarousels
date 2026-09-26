@@ -1,6 +1,6 @@
 {
  "measured_utc": "2026-09-26T07:35Z",
- "method": "Fetched https://alaskanews.com/news-sitemap.xml (articles published in the last 48 hours), then fetched each article's public HTML page and read the provenance line printed under the article body and the byline. Categories: A label contains 'Reviewed by Cale Green'; B label reads 'Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.'; C label reads 'AI-assisted. No editor review is on record for this article.'; D no AI label, byline 'Alaska News and Cale Green'.",
+ "method": "Fetched https://alaskanews.com/news-sitemap.xml (articles published in the last 48 hours), then fetched each article's public HTML page and read the provenance line printed under the article body. Categories: A label contains 'Reviewed by Cale Green'; B label reads 'Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.'; C label reads 'AI-assisted. No editor review is on record for this article.'; D no AI label. The visible byline was recorded for 21 of 90 rows only (null where it was not captured), so this file supports claims about the labels and not about bylines.",
  "window": [
   "2026-09-24T07:40:57.715376+00:00",
   "2026-09-26T07:23:09.819739+00:00"
@@ -10,11 +10,8 @@
   "A_reviewed_by_Cale_Green": 73,
   "B_edited_by_Cale_Green_no_full_review": 6,
   "C_ai_assisted_no_review_no_human_named": 9,
-  "D_no_ai_label_cobyline_Cale_Green": 2
+  "D_no_ai_label": 2
  },
- "human_names_on_labels_and_bylines": [
-  "Cale Green"
- ],
  "author_meta_counts": {
   "Walter AlaskaNews": 54,
   "Melinda Communities.News": 6,
@@ -112,7 +109,7 @@
    "published": "2026-09-26T03:38:05.804+00:00",
    "title": "Board of Fisheries committee weighs how to let the public weigh in on last-minute rewrites",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -124,7 +121,7 @@
    "published": "2026-09-26T03:37:20.024+00:00",
    "title": "Summit on Aging attendees can book one-on-one time with state health leaders",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -136,7 +133,7 @@
    "published": "2026-09-26T03:36:21.592+00:00",
    "title": "Juneau kelp farm study suggests minimal influence on fish and invertebrates",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -148,7 +145,7 @@
    "published": "2026-09-26T02:31:40.478276+00:00",
    "title": "Alaska Municipal League sets Oct. 23 deadline for 2027 resolutions",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -160,7 +157,7 @@
    "published": "2026-09-26T02:28:34.560397+00:00",
    "title": "State extends Unit 9B resident moose season to Sept. 30 after bad weather limited hunting",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -172,7 +169,7 @@
    "published": "2026-09-26T02:27:01.64876+00:00",
    "title": "Typhoon Dujuan's remnants bring heavy rain, swells and a gale warning to Southeast Alaska this weekend",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -184,7 +181,7 @@
    "published": "2026-09-26T01:48:18.943626+00:00",
    "title": "Kodiak school board meets in closed session Monday on a personnel matter for the fifth time since August",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -196,7 +193,7 @@
    "published": "2026-09-26T01:32:37.130394+00:00",
    "title": "Judicial Council tries again to fill Kotzebue and Nome superior court seats",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -221,7 +218,7 @@
    "published": "2026-09-26T00:52:16.547688+00:00",
    "title": "FAA scales back plan to expand controlled airspace over Alaska after pilot groups object",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -233,7 +230,7 @@
    "published": "2026-09-26T00:23:13.44962+00:00",
    "title": "Federal board gives subsistence hunters 10 more days to hunt moose in the Tetlin refuge area",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -245,7 +242,7 @@
    "published": "2026-09-26T00:05:59.005295+00:00",
    "title": "10-year-old boy reported missing in Big Lake is found safe, troopers say",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -257,7 +254,7 @@
    "published": "2026-09-25T23:33:51.173406+00:00",
    "title": "Alaska lists 5.7 million acres of land selections it could give back to federal ownership",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -269,7 +266,7 @@
    "published": "2026-09-25T23:16:11.506716+00:00",
    "title": "Fish and Game proposes flagging struggling salmon runs a year earlier so the public can weigh in",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -281,7 +278,7 @@
    "published": "2026-09-25T23:11:30.217064+00:00",
    "title": "Board of Game proposals would cut Western Arctic caribou limits further as the herd declines",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -293,7 +290,7 @@
    "published": "2026-09-25T21:19:14.591443+00:00",
    "title": "NOAA weighs 77 Gulf of Alaska sites for future kelp and shellfish farms",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -317,7 +314,7 @@
    "published": "2026-09-25T21:04:00+00:00",
    "title": "Pilots will drop pumpkins on a target near North Pole on Saturday",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -329,7 +326,7 @@
    "published": "2026-09-25T20:47:22.465446+00:00",
    "title": "None of Anchorage's district projects got state money this year, city tells Assembly committee",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -341,7 +338,7 @@
    "published": "2026-09-25T19:49:52.813158+00:00",
    "title": "Anchorage police officers now must intervene when a colleague uses improper force",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -353,7 +350,7 @@
    "published": "2026-09-25T19:41:48.888819+00:00",
    "title": "Anchorage work session leaves Chugach park access costs unresolved",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -365,7 +362,7 @@
    "published": "2026-09-25T19:23:12.180191+00:00",
    "title": "Petersburg assembly deadlocks 3-3, rejecting one-year data center moratorium",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -377,7 +374,7 @@
    "published": "2026-09-25T19:21:24.700558+00:00",
    "title": "Petersburg paid to advertise one of its two sales tax ballot questions, finance director says",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -389,7 +386,7 @@
    "published": "2026-09-25T19:17:29.227583+00:00",
    "title": "Anchorage commission backs code change so Centennial campground and Russian Jack greenhouse fit park zoning",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -401,7 +398,7 @@
    "published": "2026-09-25T18:58:00+00:00",
    "title": "Hope's second Fox Fest brings three bands to Creekbend Cafe on Saturday",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -413,7 +410,7 @@
    "published": "2026-09-25T18:29:00+00:00",
    "title": "Harvest Moon festival brings Alaska-grown food, pie contest to Soldotna",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -425,7 +422,7 @@
    "published": "2026-09-25T18:11:15.341572+00:00",
    "title": "Murkowski bill would modify and continue Snettisham's exemption from federal hydropower licensing",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -437,7 +434,7 @@
    "published": "2026-09-25T17:50:45.944993+00:00",
    "title": "FDA to pay Alaska $540,768 for state food safety inspections",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -449,7 +446,7 @@
    "published": "2026-09-25T16:42:25.146+00:00",
    "title": "Wind advisories cover the Parks and Richardson highways through early Sunday, with gusts up to 70 mph",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -489,7 +486,7 @@
    "published": "2026-09-25T14:23:00+00:00",
    "title": "Kenai River Marathon marks 20th year with Sunday races",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -513,7 +510,7 @@
    "published": "2026-09-25T07:51:49.520176+00:00",
    "title": "Kodiak Island Borough Assembly cancels work session for lack of a quorum",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -525,7 +522,7 @@
    "published": "2026-09-25T07:46:17.063467+00:00",
    "title": "Fairbanks borough seeks $2.6 million for two landfill compactors after transmission failure",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -549,7 +546,7 @@
    "published": "2026-09-25T06:14:46.146245+00:00",
    "title": "Kotzebue water system exceeds federal lead action level after two of 10 homes test high",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -561,7 +558,7 @@
    "published": "2026-09-25T04:03:05.856377+00:00",
    "title": "Federal report puts Alaska's maternal death rate above the national rate but warns the count is small",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -573,7 +570,7 @@
    "published": "2026-09-25T02:45:45.581+00:00",
    "title": "Houston commission recommends giving Holding District H landowners until March for fee-free zone changes",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -585,7 +582,7 @@
    "published": "2026-09-25T02:42:00+00:00",
    "title": "Ketchikan planning commission to consider censuring commissioner over remarks about Ketchikan Indian Community",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -597,7 +594,7 @@
    "published": "2026-09-25T02:27:29.148506+00:00",
    "title": "Big Lake's trail groomers are asking the state for a snowmachine",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -634,7 +631,7 @@
    "published": "2026-09-25T01:16:12.184343+00:00",
    "title": "Tlingit & Haida delegates reelect Richard Peterson as president",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (2 revisions). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -662,7 +659,7 @@
    "published": "2026-09-24T20:00:00+00:00",
    "title": "Comments due Oct. 23 on Alaska's 2027 Cook Inlet and Alaska Peninsula oil and gas lease sales",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -675,7 +672,7 @@
    "published": "2026-09-25T00:02:40.227664+00:00",
    "title": "Four years after Merbok, Alaska is hiring a contractor to start rebuilding homes",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -687,7 +684,7 @@
    "published": "2026-09-25T00:00:00+00:00",
    "title": "MEA lays out how rolling outages would work if Southcentral runs short of gas this winter",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -699,7 +696,7 @@
    "published": "2026-09-25T00:00:00+00:00",
    "title": "Alaska asks court to approve its share of $2.3 million Labcorp data breach settlement",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -711,7 +708,7 @@
    "published": "2026-09-24T23:28:22.946+00:00",
    "title": "The Kenai's coho limit stays at two through November",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -755,7 +752,7 @@
    "published": "2026-09-24T23:23:07.825774+00:00",
    "title": "Lawmakers press state on Safer Seward Highway project's size and funding as DOT reopens comment",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -767,7 +764,7 @@
    "published": "2026-09-24T22:31:55.746599+00:00",
    "title": "Bering River moose hunt closes after hunters reach 15-bull cap",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -779,7 +776,7 @@
    "published": "2026-09-24T22:02:12.826995+00:00",
    "title": "Park Service awards $4.5 million contract to upgrade Glacier Bay's water system for firefighting",
    "author_meta": "Melinda Communities.News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -791,7 +788,7 @@
    "published": "2026-09-24T21:04:41.331+00:00",
    "title": "Anchorage's police union endorsed Kreiss-Tomkins and Johnson for governor",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (3 revisions). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -803,7 +800,7 @@
    "published": "2026-09-24T20:45:35.423+00:00",
    "title": "Kenai Peninsula voters decide on school board term limits",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -815,7 +812,7 @@
    "published": "2026-09-24T20:44:47.843+00:00",
    "title": "Alaska released 310 acres near Slana to the university over its own agencies' objections",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -827,7 +824,7 @@
    "published": "2026-09-24T20:43:51.343+00:00",
    "title": "New independent expenditure group registers for Juneau and Sitka municipal elections",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -840,7 +837,7 @@
    "published": "2026-09-24T20:43:48.029+00:00",
    "title": "Labor-funded committee backs Republican Ruby Jones and opposes both her rivals in Eagle River House race",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -852,7 +849,7 @@
    "published": "2026-09-24T20:39:03.971+00:00",
    "title": "Kenai voters decide Nov. 3 whether to ratify a $75,000 home tax exemption",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -864,7 +861,7 @@
    "published": "2026-09-24T20:38:25.232+00:00",
    "title": "Anchorage proposes trading the Tozier Track to the state housing agency for downtown parking lots, with housing required",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -876,7 +873,7 @@
    "published": "2026-09-24T20:37:35.423+00:00",
    "title": "Fishery managers will meet on trawl seafloor contact, with no power to recommend",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -888,7 +885,7 @@
    "published": "2026-09-24T20:30:44.061+00:00",
    "title": "Anchorage will take public comment on Merrill Field's next 20 years Oct. 15",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -900,7 +897,7 @@
    "published": "2026-09-24T20:13:24.826+00:00",
    "title": "Alaska's budget balances this year on high oil and a reduced dividend",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -912,7 +909,7 @@
    "published": "2026-09-24T20:00:00+00:00",
    "title": "Kinross cuts gold forecast over Chile and Nevada mines; its Alaska operation's output is also down this year",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -925,7 +922,7 @@
    "published": "2026-09-24T20:00:00+00:00",
    "title": "Park Service hires Everts Air Fuel to keep avgas at two remote Alaska park units through 2030",
    "author_meta": "Maggie AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -937,7 +934,7 @@
    "published": "2026-09-24T20:00:00+00:00",
    "title": "FAA hires Calista-owned firm for next round of decades-old Cold Bay fuel cleanup",
    "author_meta": "Alaska News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -949,7 +946,7 @@
    "published": "2026-09-24T19:11:02.252147+00:00",
    "title": "Anchorage's Board of Ethics couldn't meet Wednesday, leaving a March complaint pending",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). No full editor review is on record.",
    "category": "B_edited_by_Cale_Green_no_full_review",
    "location_tags": [
@@ -961,7 +958,7 @@
    "published": "2026-09-24T18:49:32.86342+00:00",
    "title": "Alaska health officials warn concentrated kratom products can cause overdoses drug tests miss",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -973,7 +970,7 @@
    "published": "2026-09-24T18:42:44.669+00:00",
    "title": "Kenai's council will award a bluff erosion contract the day after bids close",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -985,7 +982,7 @@
    "published": "2026-09-24T18:36:00+00:00",
    "title": "The Greenland defense deal cites Golden Dome, the missile shield already anchored in Alaska",
    "author_meta": "Melinda Communities.News",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -998,7 +995,7 @@
    "published": "2026-09-24T18:30:38.005+00:00",
    "title": "Ten rural Alaska communities can now vote in person on Election Day",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1010,7 +1007,7 @@
    "published": "2026-09-24T18:30:15.378563+00:00",
    "title": "FDA nominee Overton commits to Alaska food inspections and salmon labeling but not mifepristone access",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1022,7 +1019,7 @@
    "published": "2026-09-24T18:24:02.212+00:00",
    "title": "Fairbanks job fair Thursday: retail, grocery, restaurant and bank employers",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1034,7 +1031,7 @@
    "published": "2026-09-24T18:22:54.705+00:00",
    "title": "National money registered on both sides of Alaska's governor's race this week",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1046,7 +1043,7 @@
    "published": "2026-09-24T18:22:09.846+00:00",
    "title": "Sitka Tribe and Metlakatla May Request Return of 11 Ancestors and 16 Items in October",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1059,7 +1056,7 @@
    "published": "2026-09-24T18:09:58.189393+00:00",
    "title": "Murkowski cosponsors bill to keep Temporary Protected Status for Ukrainians in the US",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1071,7 +1068,7 @@
    "published": "2026-09-24T17:11:48.991801+00:00",
    "title": "Alaska closed its Bering Sea scallop grounds after the two-boat fleet hit the cap",
    "author_meta": "Bill AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1120,7 +1117,7 @@
    "published": "2026-09-24T07:40:57.715376+00:00",
    "title": "Juneau nearly doubled what it gives Eaglecrest this year",
    "author_meta": "Walter AlaskaNews",
-   "byline": "x",
+   "byline": null,
    "label": "Drafted with AI. Edited by Cale Green (1 revision). Reviewed by Cale Green.",
    "category": "A_reviewed_by_Cale_Green",
    "location_tags": [
@@ -1184,5 +1181,9 @@
   "metlakatla": 1,
   "bristol-bay": 1
  },
- "location_note": "Location tags read from each article's own /locations/<slug> chips. An article can carry several."
+ "location_note": "Location tags read from each article's own /locations/<slug> chips. An article can carry several.",
+ "human_names_on_labels": [
+  "Cale Green"
+ ],
+ "bylines_captured": 21
 }
