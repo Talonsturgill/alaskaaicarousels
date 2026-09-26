@@ -8693,7 +8693,7 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   are BYTE-IDENTICAL to main's renders and qa fail counts are unchanged; render time 478 s
   against 493 s on main, noise. It catches the No.69 reconstruction at x 492 (two visible
   stretches, 2.5 and 6.2 levels, split where the table band covers the line) and its y 615 top
-  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 28 fixtures through the real engine,
+  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 33 fixtures through the real engine,
   exit 0 on the branch and exit 1 on main. A tainted canvas has no route under render.py's
   flags (--allow-file-access-from-files; a foreignObject SVG image stays readable), so the
   readback warning is proved by feeding qa a record, not by a real taint.

@@ -48,6 +48,17 @@ through the REAL render.py and qa.py:
             past the on-page budget, and qa says the check was capped
   28 GREEN  thirty additive sprites onto a detached canvas that is then
             appended: past the off-page budget, and qa says so
+  29 RED    a canvas with a border and padding: the seam is placed by the
+            CONTENT box, at x 492, not the border box at x 462
+  30 GREEN  the nested glow on a canvas with object-fit: contain (not placed,
+            and qa says so)
+  31 RED    a 6 px seam on a 108 x 6 canvas shown at 10x: 60 design px, kept
+  32 GREEN  the same canvas painted detached, then appended: its 6 px seam was
+            under the floor used before the size was known, so qa says it
+            can't place that draw exactly (its top and bottom edges, which are
+            long enough, are still reported)
+  33 GREEN  the RED layer on a page whose collector is gone: qa says no layer
+            was examined
 
 Then the report path for what the hook could not read: no route to a tainted
 canvas exists under render.py's flags (--allow-file-access-from-files, and a
@@ -338,6 +349,44 @@ const d2 = dc.getContext('2d');
 document.body.appendChild(dc);
 """
 
+RED_BORDERED = """
+// a canvas with a border and padding: its bitmap starts at its CONTENT box,
+// x 462 + 10 + 20 = 492, not at its border box (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:462px;top:0;width:588px;height:1350px;' +
+                   'border-left:10px solid #000;padding-left:20px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+const nb = n2.createLinearGradient(0, 0, 0, H);
+nb.addColorStop(0, '#0B1422'); nb.addColorStop(1, '#1A2436');
+n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
+GREEN_OBJECT_FIT = placed_canvas("object-fit:contain")
+
+def tenfold(late):
+    return """
+// a 108 x 6 canvas shown at 10x: a 6 px seam at bitmap x 49 is 60 design px
+// tall at page x 490 (Codex, PR #403)
+const sc = document.createElement('canvas'); sc.width = 108; sc.height = 6;
+sc.style.cssText = 'position:absolute;left:0;top:600px;width:1080px;height:60px';
+%s
+const c2 = sc.getContext('2d'); c2.fillStyle = '#101826'; c2.fillRect(0, 0, 108, 6);
+const sp = document.createElement('canvas'); sp.width = 59; sp.height = 6;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(60,50,30)'; s2.fillRect(0, 0, 59, 6);
+c2.globalCompositeOperation = 'screen'; c2.drawImage(sp, 49, 0);
+%s
+""" % (("", "document.body.appendChild(sc);") if late
+       else ("document.body.appendChild(sc);", ""))
+
+RED_TENFOLD = tenfold(False)
+GREEN_TENFOLD_LATE = tenfold(True)
+
+GREEN_NO_COLLECTOR = RED + """
+delete window.__akLitCollect;
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -371,6 +420,11 @@ CASES = [
     ("slide-26", RED_RIGHT, [("right", 588)], 1, None),
     ("slide-27", GREEN_BUDGET_ON, [], 0, "past its budget"),
     ("slide-28", GREEN_BUDGET_OFF, [], 0, "past its budget"),
+    ("slide-29", RED_BORDERED, [LEFT], 1, None),
+    ("slide-30", GREEN_OBJECT_FIT, [], 0, "can't place"),
+    ("slide-31", RED_TENFOLD, [("left", 490)], None, None),
+    ("slide-32", GREEN_TENFOLD_LATE, [("top", 600), ("bottom", 660)], 2, "can't place"),
+    ("slide-33", GREEN_NO_COLLECTOR, [], 0, "could not collect its records"),
 ]
 NEEDLE = "a layer of light ends in mid-air"
 

@@ -3913,10 +3913,12 @@ def main():
              "examined. Composite sprites onto one offscreen layer and draw that "
              "once, or check the additive layers by eye at thumb"),
             ("lit_edges_unplaced",
-             "lit-edge check measured %d seam(s) on a canvas that it can't place on "
-             "the picture, because the canvas or an ancestor is rotated, skewed, "
-             "mirrored or on an offset path. Check that canvas's additive layers by "
-             "eye at thumb"),
+             "lit-edge check can't place %d measurement(s) exactly on the picture: "
+             "the canvas or an ancestor is rotated, skewed, mirrored or on an offset "
+             "path, the canvas uses an object-fit other than fill, or it was painted "
+             "before its final size was known and is shown so large that a seam "
+             "shorter than the hook keeps could span 40 design px. Check that "
+             "canvas's additive layers by eye at thumb"),
             ("lit_edges_readback",
              "lit-edge check could not read back %d additive draw(s): the browser "
              "refused the canvas's pixels (a tainted canvas) or the measurement "

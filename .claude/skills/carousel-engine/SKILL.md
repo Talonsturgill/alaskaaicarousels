@@ -610,7 +610,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   did not examine: draws past its budget (16 measured additive draws onto
   on-page canvases and 24 onto off-page ones per slide), a canvas it can't
   place because it or an ancestor is rotated, skewed, mirrored or on an offset
-  path, and a readback the browser refused. It looks for rows and columns
+  path or its `object-fit` is not `fill`, a draw made before the canvas's final
+  size was known and shown so large that a dropped short run could span 40
+  design px, and a readback the browser refused. A seam is placed through the
+  canvas's content box, so border and padding are allowed. It looks for rows and columns
   only: a diagonal cut, from a draw through a rotation or a diagonal clip, is
   not checked. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).

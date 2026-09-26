@@ -511,10 +511,13 @@ GRADIENT_CLIP_HOOK_JS = """
 #
 # Records stay in the target canvas's own pixels until the report is collected,
 # because a slide may paint a canvas and append it afterwards. They are placed
-# on the page by the canvas's bounding box only when that is exact: the canvas
-# and every ancestor carry no transform, rotate, scale or offset-path beyond a
-# positive axis-aligned scale and translation. A rotated, skewed or mirrored
-# canvas is counted as UNPLACED rather than mapped onto an unrelated line.
+# on the page through the canvas's CONTENT box (border and padding removed)
+# only when that is exact: object-fit is fill, and the canvas and every
+# ancestor carry no transform, rotate, scale or offset-path beyond a positive
+# axis-aligned scale and translation. A rotated, skewed or mirrored canvas is
+# counted as UNPLACED rather than mapped onto an unrelated line, and so is a
+# draw measured before the canvas's final size was known whose run floor that
+# size turns into LIT_SPAN design px or more.
 # Nothing here is a verdict: a later draw, a DOM plate, stacking order or CSS
 # opacity can hide the line, so qa.py confirms the step in the shipped render.
 #
@@ -533,7 +536,7 @@ LIT_EDGE_HOOK_JS = """
     const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
     if (!proto || typeof proto.drawImage !== 'function' ||
         typeof proto.getImageData !== 'function') return;
-    const st = window.__akLit = { raw: [], skipped: [], failed: [], capped: 0 };
+    const st = window.__akLit = { raw: [], skipped: [], failed: [], pres: [], capped: 0 };
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
     const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24;
@@ -577,16 +580,19 @@ LIT_EDGE_HOOK_JS = """
         if (v > 0) { D[p] = v; any = true; }
       }
       if (!any) return;
-      /* the shortest run worth keeping, in canvas px: LIT_SPAN design px once
-         the canvas's CSS scale is known, LIT_PRE while it is off the page */
+      /* the shortest run worth keeping, in canvas px: LIT_SPAN design px at
+         the scale the canvas is shown at now, LIT_PRE while that is unknown.
+         Collection checks the scale again and COUNTS a draw whose floor could
+         have dropped a run that now spans LIT_SPAN (Codex, PR #403) */
       let preV = LIT_PRE, preH = LIT_PRE;
-      if (cv.isConnected) {
-        const r0 = cv.getBoundingClientRect();
-        if (r0.width > 0 && r0.height > 0) {
-          preV = Math.max(LIT_PRE, Math.floor(LIT_SPAN * H / r0.height));
-          preH = Math.max(LIT_PRE, Math.floor(LIT_SPAN * W / r0.width));
-        }
+      const b0 = cv.isConnected && placeable(cv) ? box(cv) : null;
+      if (b0) {
+        preV = Math.max(2, Math.floor(LIT_SPAN * H / b0.h));
+        preH = Math.max(2, Math.floor(LIT_SPAN * W / b0.w));
       }
+      const pz = st.pres.find((z) => z.cv === cv);
+      if (pz) { pz.n++; pz.v = Math.max(pz.v, preV); pz.h = Math.max(pz.h, preH); }
+      else if (st.pres.length < 64) st.pres.push({ cv: cv, n: 1, v: preV, h: preH });
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
       /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
          the light begins at the line; 'right'/'bottom': it ends there */
@@ -633,9 +639,11 @@ LIT_EDGE_HOOK_JS = """
       };
       scan('v'); scan('h');
     };
-    /* placed by its bounding box only when nothing on the way up rotates,
-       skews, mirrors or bends it; anything else is counted, not guessed */
+    /* placed by its content box only when nothing on the way up rotates,
+       skews, mirrors or bends it and the bitmap fills that box (object-fit
+       fill, the default); anything else is counted, not guessed */
     const placeable = (cv) => {
+      if ((getComputedStyle(cv).objectFit || 'fill') !== 'fill') return false;
       for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
         const cs = getComputedStyle(el);
         const tf = cs.transform || 'none';
@@ -654,6 +662,23 @@ LIT_EDGE_HOOK_JS = """
       }
       return true;
     };
+    /* the canvas's CONTENT box on the page, where its bitmap is drawn: the
+       bounding box less border and padding, scaled by whatever positive
+       scale sits above it (Codex, PR #403) */
+    const box = (cv) => {
+      const r = cv.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) return null;
+      const cs = getComputedStyle(cv), f = (q) => parseFloat(cs[q]) || 0;
+      const ex = f('borderLeftWidth') + f('paddingLeft'), exR = f('borderRightWidth') + f('paddingRight');
+      const ey = f('borderTopWidth') + f('paddingTop'), eyB = f('borderBottomWidth') + f('paddingBottom');
+      let cw = parseFloat(cs.width), ch = parseFloat(cs.height);
+      if (!(cw > 0 && ch > 0)) { cw = cv.offsetWidth - ex - exR; ch = cv.offsetHeight - ey - eyB; }
+      else if (cs.boxSizing === 'border-box') { cw -= ex + exR; ch -= ey + eyB; }
+      if (!(cw > 0 && ch > 0)) return null;
+      const sx = r.width / (cw + ex + exR), sy = r.height / (ch + ey + eyB);
+      return { x: r.left + (window.scrollX || 0) + ex * sx,
+               y: r.top + (window.scrollY || 0) + ey * sy, w: cw * sx, h: ch * sy };
+    };
     window.__akLitCollect = () => {
       const out = [];
       let unplaced = 0, capped = st.capped, readback = 0;
@@ -663,13 +688,13 @@ LIT_EDGE_HOOK_JS = """
       for (const e of st.raw) {
         const cv = e.cv;
         if (!cv || !cv.isConnected) continue;       /* never reached the page */
-        const r = cv.getBoundingClientRect();
-        if (!(r.width > 0 && r.height > 0)) continue;
-        if (!ok.has(cv)) ok.set(cv, placeable(cv));
-        if (!ok.get(cv)) { unplaced++; continue; }
-        const v = e.axis === 'v', kx = r.width / cv.width, ky = r.height / cv.height;
+        if (!ok.has(cv)) ok.set(cv, placeable(cv) ? box(cv) : false);
+        const bx = ok.get(cv);
+        if (bx === null) continue;                 /* not shown at any size */
+        if (!bx) { unplaced++; continue; }
+        const v = e.axis === 'v', kx = bx.w / cv.width, ky = bx.h / cv.height;
         const kA = v ? ky : kx, kC = v ? kx : ky;
-        const ox = r.left + (window.scrollX || 0), oy = r.top + (window.scrollY || 0);
+        const ox = bx.x, oy = bx.y;
         const page = (v ? ox : oy) + e.line * kC;
         if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
         if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
@@ -682,6 +707,16 @@ LIT_EDGE_HOOK_JS = """
         if (hit) { hit.n++; continue; }
         if (out.length >= LIT_MAX) { capped++; continue; }
         out.push(rec);
+      }
+      /* a draw measured at a floor that the canvas's final scale turns into
+         40 design px or more may have dropped a visible run: counted */
+      for (const z of st.pres) {
+        if (!z.cv || !z.cv.isConnected) continue;
+        if (!ok.has(z.cv)) ok.set(z.cv, placeable(z.cv) ? box(z.cv) : false);
+        const bx = ok.get(z.cv);
+        if (!bx) continue;                         /* counted above, or not shown */
+        if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
+            (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
       }
       for (const z of st.skipped) if (z.cv && z.cv.isConnected) capped += z.n;
       for (const z of st.failed) if (z.cv && z.cv.isConnected) readback += z.n;
@@ -2728,7 +2763,7 @@ IN_PAGE_QA_JS = """
       const le = window.__akLitCollect();
       out.lit_edges = le.edges; out.lit_edges_capped = le.capped;
       out.lit_edges_unplaced = le.unplaced; out.lit_edges_readback = le.readback;
-    }
+    } else out.lit_edges_readback = -1;       /* the hook never installed */
   } catch (e) { out.lit_edges_readback = -1; }
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
