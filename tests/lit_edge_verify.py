@@ -25,6 +25,10 @@ and qa.py:
          (the layer ends at its canvas's own boundary; Codex, PR #402)
   GREEN  a layer drawn at x -100 on a canvas that starts at x 500   -> nothing
          recorded: its left edge is outside the target bitmap (Codex, PR #402)
+  RED    the RED layer at globalAlpha 0.12 under brightness(300%)   -> must WARN
+         (the raw border is under LIT_MIN; the filter makes it a seam)
+  RED    the RED layer drawn with a negative destination width      -> must WARN
+         (legal Canvas 2D, normalised, no flip; both Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -140,6 +144,18 @@ const n2 = nc.getContext('2d'), gn = glow(400, 0, 760, 1350, false);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, -100, 0);
 """
 
+RED_FILTERED = """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.globalAlpha = 0.12; cx.filter = 'brightness(300%)';
+cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+"""
+
+RED_NEGATIVE = """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen';
+cx.drawImage(g, 0, 0, 760, 1350, 1252, 0, -760, 1350); cx.restore();
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -154,7 +170,9 @@ CASES = [("slide-01", RED, True, True),
          ("slide-06", GREEN_DOM_PLATE, True, False),
          ("slide-07", RED_AFTER_SPRITES, True, True),
          ("slide-08", RED_NESTED, True, True),
-         ("slide-09", GREEN_CLIPPED, False, False)]
+         ("slide-09", GREEN_CLIPPED, False, False),
+         ("slide-10", RED_FILTERED, True, True),
+         ("slide-11", RED_NEGATIVE, True, True)]
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -186,7 +204,8 @@ def main():
                 if not left:
                     bad.append("%s: the lit left edge was NOT recorded: %s"
                                % (name, json.dumps(edges)))
-                elif abs(left[0]["at"] - 492) > 1 or left[0]["lit_max"] < 0.03:
+                elif abs(left[0]["at"] - 492) > 1 or (left[0]["lit_max"] < 0.03
+                                                      and left[0].get("filter", "none") == "none"):
                     bad.append("%s: recorded the wrong line or level: %s"
                                % (name, json.dumps(left[0])))
                 if any(e.get("side") in ("right", "bottom") for e in edges):

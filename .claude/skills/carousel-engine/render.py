@@ -431,6 +431,13 @@ GRADIENT_CLIP_HOOK_JS = """
         dx = +a[1]; dy = +a[2]; dw = iw; dh = ih;
       }
       if (![sx, sy, sw, sh, dx, dy, dw, dh].every(isFinite)) return;
+      /* negative sizes are legal and extend the rect the other way, with no
+         flip (Canvas 2D normalises both rects); normalise before any edge is
+         computed (Codex, PR #402) */
+      if (sw < 0) { sx += sw; sw = -sw; }
+      if (sh < 0) { sy += sh; sh = -sh; }
+      if (dw < 0) { dx += dw; dw = -dw; }
+      if (dh < 0) { dy += dh; dh = -dh; }
       if (!(sw >= 2 && sh >= 2 && dw > 0 && dh > 0)) return;
       const t = ctx.getTransform ? ctx.getTransform() : null;
       /* a rotated layer's edge is not an axis line; say nothing */
@@ -497,7 +504,11 @@ GRADIENT_CLIP_HOOK_JS = """
         if (!v.length) continue;
         const s = v.slice().sort((p, q) => p - q);
         const mx = s[s.length - 1];
-        if (!(mx >= LIT_MIN)) continue;
+        /* a filter can amplify a border the raw pixels say is dark (a 2/255
+           edge under brightness(200%) is a four-level seam), so a filtered draw
+           keeps any light at all and lets qa.py's pixels decide (Codex, PR #402) */
+        const filtered = String(ctx.filter || 'none') !== 'none';
+        if (!(filtered ? mx > 0 : mx >= LIT_MIN)) continue;
         const lit = v.filter((z) => z >= LIT_MIN).length / v.length;
         /* the span the edge runs along, clipped to the target canvas */
         const a0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
