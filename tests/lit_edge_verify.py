@@ -21,6 +21,8 @@ and qa.py:
   GREEN  the RED layer drawn in source-over (a panel, not light)    -> silent
   RED    twelve 30 px additive sprites, then the RED layer          -> must WARN
          (short edges can't fill the census ahead of the seam; Codex, PR #402)
+  RED    the glow filling a 588 px canvas element placed at x 492   -> must WARN
+         (the layer ends at its canvas's own boundary; Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -117,6 +119,17 @@ const g = glow(492, 0, 760, 1350, false);
 cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
 """
 
+RED_NESTED = """
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+const nb = n2.createLinearGradient(0, 0, 0, H);   // the page's own ground, so only the light differs
+nb.addColorStop(0, '#0B1422'); nb.addColorStop(1, '#1A2436');
+n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -129,7 +142,8 @@ CASES = [("slide-01", RED, True, True),
          ("slide-04", GREEN_OCCLUDED, True, False),
          ("slide-05", GREEN_PANEL, False, False),
          ("slide-06", GREEN_DOM_PLATE, True, False),
-         ("slide-07", RED_AFTER_SPRITES, True, True)]
+         ("slide-07", RED_AFTER_SPRITES, True, True),
+         ("slide-08", RED_NESTED, True, True)]
 NEEDLE = "a layer of light ends in mid-air"
 
 

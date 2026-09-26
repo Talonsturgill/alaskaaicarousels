@@ -473,8 +473,15 @@ GRADIENT_CLIP_HOOK_JS = """
       ];
       for (const [side, at, src, ax] of edges) {
         if (window.__akLitEdge.length >= LIT_MAX) { window.__akLitEdgeCapped = true; break; }
-        const lim = ax === 'v' ? cv.width : cv.height;
-        if (!(at > 1 && at < lim - 1)) continue;   /* on or past the frame edge */
+        /* judged in PAGE coordinates: a nested or offset canvas ends where its
+           element ends, and a glow that fills it still stops in mid-air there
+           (Codex, PR #402). Only a line on or past the slide's own frame is
+           exempt. */
+        const frameW = document.documentElement.clientWidth || window.innerWidth;
+        const frameH = document.documentElement.clientHeight || window.innerHeight;
+        const pageAt = ax === 'v' ? ox + at * kx : oy + at * ky;
+        const pageLim = ax === 'v' ? frameW : frameH;
+        if (!(pageAt > 1 && pageAt < pageLim - 1)) continue;   /* on or past the frame edge */
         {
           const s0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
           const s1 = ax === 'v' ? Math.min(cv.height, B) : Math.min(cv.width, R);

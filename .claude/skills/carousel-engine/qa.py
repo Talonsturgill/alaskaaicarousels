@@ -2888,7 +2888,7 @@ def ink_law(img_arr, rec, scale):
     return out
 
 
-def lit_edge_step(img, e, design_w, design_h):
+def lit_edge_step(img, e, design_w, design_h, confirm=None):
     """Is the edge render.py recorded for an additive canvas layer VISIBLE?
 
     render.py knows that a layer of light ended inside the frame with light
@@ -2931,6 +2931,21 @@ def lit_edge_step(img, e, design_w, design_h):
     if w > 1 and step.size >= w:
         step = np.convolve(step, np.ones(w) / w, mode="same")
     hit = step >= LIT_STEP
+    if confirm is not None:
+        # The verdict is on the stretch where BOTH pictures show the step, taken
+        # from the two threshold masks point by point, never from each image's
+        # own longest run (Codex, PR #402): an unrelated longer edge elsewhere
+        # on the line in either image must not decide which stretch counts.
+        other = _lit_edge_mask(confirm, e, design_w, design_h)
+        if other is None or other.size == 0 or hit.size == 0:
+            return None
+        if other.size != hit.size:
+            # the canvas layer is exported at 1x and the render at 2x: map the
+            # confirming mask onto this picture's samples along the same line
+            idx = np.minimum(other.size - 1,
+                             (np.arange(hit.size) * other.size) // hit.size)
+            other = other[idx]
+        hit = hit & other
     best, best_at, run, start = 0, 0, 0, 0
     for i, h in enumerate(hit):
         if h:
@@ -2945,6 +2960,43 @@ def lit_edge_step(img, e, design_w, design_h):
         return (0.0, 0.0, None, None)
     med = float(np.median(step[best_at:best_at + best]))
     return (best / k, med, (r0 + best_at) / k, (r0 + best_at + best) / k)
+
+
+def _lit_edge_mask(img, e, design_w, design_h):
+    """The per-sample threshold mask lit_edge_step() computes, for the second
+    picture of a joint verdict. Same geometry, same smoothing, same LIT_STEP."""
+    a = np.asarray(img, dtype=np.float32)
+    if a.ndim != 3 or a.shape[2] < 3:
+        return None
+    rgb = a[..., :3]
+    if a.shape[2] == 4:
+        rgb = rgb * (a[..., 3:4] / 255.0)
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    k = lum.shape[1] / float(design_w)
+    side = e.get("side")
+    if side in ("top", "bottom"):
+        lum = lum.T
+    if side not in ("left", "right", "top", "bottom"):
+        return None
+    inward = 1 if side in ("left", "top") else -1
+    c = int(round(float(e["at"]) * k))
+    band = max(2, int(round(3 * k)))
+    gap = max(1, int(round(k)))
+    n_along, n_across = lum.shape
+    lo_in, hi_in = (c + gap, c + gap + band) if inward > 0 else (c - gap - band, c - gap)
+    lo_out, hi_out = (c - gap - band, c - gap) if inward > 0 else (c + gap, c + gap + band)
+    if min(lo_in, lo_out) < 0 or max(hi_in, hi_out) > n_across:
+        return None
+    r0 = max(0, int(np.floor(float(e["from"]) * k)))
+    r1 = min(n_along, int(np.ceil(float(e["to"]) * k)))
+    if r1 - r0 < 3:
+        return None
+    step = (lum[r0:r1, lo_in:hi_in].mean(axis=1)
+            - lum[r0:r1, lo_out:hi_out].mean(axis=1))
+    w = max(1, int(round(LIT_SMOOTH * k)))
+    if w > 1 and step.size >= w:
+        step = np.convolve(step, np.ones(w) / w, mode="same")
+    return step >= LIT_STEP
 
 
 def _box_down(a, k):
@@ -3917,24 +3969,16 @@ def main():
                 "last glow layers by eye at thumb.")
         for le in rec.get("lit_edges", []):
             try:
-                # The SHIPPED picture decides: an opaque DOM or SVG plate over
-                # the line leaves no seam in the composited render, and the
-                # canvas layer (canvas elements only) can't see that plate
-                # (Codex, PR #402). The canvas layer is still required to show
-                # the step where it exists, so DOM type crossing the line can't
-                # manufacture one.
-                m = lit_edge_step(arr, le, design_w, design_h)
+                # Both pictures must agree on the same stretch: the shipped
+                # render (so a DOM or SVG plate over the line silences it) and
+                # the canvas-only layer (so DOM type or an SVG rule crossing
+                # the line can't manufacture it). Without a canvas layer there
+                # is no second witness, and the check abstains (Codex, PR #402).
+                if clayer is None:
+                    continue
+                m = lit_edge_step(arr, le, design_w, design_h, confirm=clayer)
                 if m is None or m[0] < LIT_RUN:
                     continue
-                if clayer is not None:
-                    mc = lit_edge_step(clayer, le, design_w, design_h)
-                    if mc is None or mc[0] < LIT_RUN:
-                        continue
-                    # the SAME stretch of the line in both pictures: a canvas
-                    # seam hidden by a plate plus an unrelated edge elsewhere on
-                    # the line is not a visible seam (Codex, PR #402)
-                    if min(m[3], mc[3]) - max(m[2], mc[2]) < LIT_RUN:
-                        continue
                 run, med, a0, a1 = m
                 axis = "x" if le.get("axis") == "v" else "y"
                 along = "y" if axis == "x" else "x"
@@ -3951,8 +3995,7 @@ def main():
                     % (le.get("op", "?"), axis, le.get("at", 0), le.get("side", "?"),
                        le.get("lit_max", 0), le.get("lit_p50", 0), med, run,
                        along, a0, a1,
-                       "" if clayer is not None else
-                       " (measured on the full render only, no canvas layer exported)"))
+                       ""))
             except Exception as e:  # a malformed record must never stop QA
                 res["warns"].append("lit-edge record unreadable (%s)" % e)
 
