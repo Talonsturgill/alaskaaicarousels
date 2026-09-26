@@ -385,6 +385,121 @@ GRADIENT_CLIP_HOOK_JS = """
       } catch (err) {}
     };
 
+    /* A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). A glow computed
+       per pixel on an offscreen canvas and composited in `screen` or
+       `lighter` is light, and light has no edge of its own. If the layer is
+       smaller than the frame and its border pixels still carry light, the
+       picture gets a straight step on the layer's bounding line, in mid-air.
+       No.69's craft cycle drew slide 08's lamp glow on a 760 px layer whose
+       halo was still about 3 levels bright at the cut: a hard vertical edge at
+       x 492 visible at thumb, which four gates passed and the scorer found.
+       Recorded here: every additive drawImage of a CANVAS source onto an
+       on-page canvas, one record per destination edge that lies inside the
+       target canvas and whose source border carries light (max over the
+       border of max(r,g,b) x alpha x globalAlpha). No verdict: an edge can be
+       occluded by what is drawn after it, so qa.py confirms the step on the
+       final canvas layer before it says anything. Observes and forwards. */
+    window.__akLitEdge = [];
+    const LIT_MAX = 24, LIT_MIN = 0.01, LIT_CALLS = 400, LIT_SAMPLES = 512;
+    let litCalls = 0;
+    const origDraw = proto.drawImage;
+    const litEdge = (ctx, a) => {
+      if (window.__akLitEdge.length >= LIT_MAX || litCalls >= LIT_CALLS) return;
+      const op = ctx.globalCompositeOperation;
+      if (!ADDITIVE[op]) return;
+      const img = a[0];
+      const isCanvas =
+        (typeof HTMLCanvasElement !== 'undefined' && img instanceof HTMLCanvasElement) ||
+        (typeof OffscreenCanvas !== 'undefined' && img instanceof OffscreenCanvas);
+      if (!isCanvas) return;
+      const iw = img.width, ih = img.height;
+      if (!(iw >= 2 && ih >= 2)) return;
+      let sx = 0, sy = 0, sw = iw, sh = ih, dx, dy, dw, dh;
+      if (a.length >= 9) {
+        sx = +a[1]; sy = +a[2]; sw = +a[3]; sh = +a[4];
+        dx = +a[5]; dy = +a[6]; dw = +a[7]; dh = +a[8];
+      } else if (a.length >= 5) {
+        dx = +a[1]; dy = +a[2]; dw = +a[3]; dh = +a[4];
+      } else {
+        dx = +a[1]; dy = +a[2]; dw = iw; dh = ih;
+      }
+      if (![sx, sy, sw, sh, dx, dy, dw, dh].every(isFinite)) return;
+      if (!(sw >= 2 && sh >= 2 && dw > 0 && dh > 0)) return;
+      const t = ctx.getTransform ? ctx.getTransform() : null;
+      /* a rotated layer's edge is not an axis line; say nothing */
+      if (t && (Math.abs(t.b) > 1e-6 || Math.abs(t.c) > 1e-6)) return;
+      const cv = ctx.canvas;
+      if (!cv || !cv.getBoundingClientRect) return;   /* offscreen target */
+      const r = cv.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0 && cv.width > 0 && cv.height > 0)) return;
+      litCalls++;
+      const kx = r.width / cv.width, ky = r.height / cv.height;
+      const ox = r.left + (window.scrollX || 0), oy = r.top + (window.scrollY || 0);
+      const ta = t ? t.a : 1, td = t ? t.d : 1, te = t ? t.e : 0, tf = t ? t.f : 0;
+      const xa = ta * dx + te, xb = ta * (dx + dw) + te;
+      const ya = td * dy + tf, yb = td * (dy + dh) + tf;
+      const L = Math.min(xa, xb), R = Math.max(xa, xb);
+      const T = Math.min(ya, yb), B = Math.max(ya, yb);
+      const ga = ctx.globalAlpha == null ? 1 : ctx.globalAlpha;
+      /* the outermost row or column of the SOURCE rect, read through a
+         scratch canvas with the unwrapped drawImage (no recursion, no side
+         effect on the source, works for any canvas kind) */
+      const border = (x, y, w, h) => {
+        const c = document.createElement('canvas');
+        c.width = Math.max(1, Math.min(LIT_SAMPLES, Math.round(w)));
+        c.height = Math.max(1, Math.min(LIT_SAMPLES, Math.round(h)));
+        const g = c.getContext('2d', { willReadFrequently: true });
+        origDraw.call(g, img, x, y, w, h, 0, 0, c.width, c.height);
+        const d = g.getImageData(0, 0, c.width, c.height).data, v = [];
+        for (let i = 0; i < d.length; i += 4)
+          v.push(Math.max(d[i], d[i + 1], d[i + 2]) / 255 * (d[i + 3] / 255) * ga);
+        return v;
+      };
+      /* map the flipped case too: a negative scale swaps which source edge
+         lands on which side */
+      const flipX = ta < 0, flipY = td < 0;
+      const edges = [
+        ['left', L, flipX ? [sx + sw - 1, sy, 1, sh] : [sx, sy, 1, sh], 'v'],
+        ['right', R, flipX ? [sx, sy, 1, sh] : [sx + sw - 1, sy, 1, sh], 'v'],
+        ['top', T, flipY ? [sx, sy + sh - 1, sw, 1] : [sx, sy, sw, 1], 'h'],
+        ['bottom', B, flipY ? [sx, sy, sw, 1] : [sx, sy + sh - 1, sw, 1], 'h']
+      ];
+      for (const [side, at, src, ax] of edges) {
+        if (window.__akLitEdge.length >= LIT_MAX) break;
+        const lim = ax === 'v' ? cv.width : cv.height;
+        if (!(at > 1 && at < lim - 1)) continue;   /* on or past the frame edge */
+        let v;
+        try { v = border(src[0], src[1], src[2], src[3]); } catch (e) { continue; }
+        if (!v.length) continue;
+        const s = v.slice().sort((p, q) => p - q);
+        const mx = s[s.length - 1];
+        if (!(mx >= LIT_MIN)) continue;
+        const lit = v.filter((z) => z >= LIT_MIN).length / v.length;
+        /* the span the edge runs along, clipped to the target canvas */
+        const a0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
+        const a1 = ax === 'v' ? Math.min(cv.height, B) : Math.min(cv.width, R);
+        if (!(a1 > a0)) continue;
+        const e = {
+          side: side, axis: ax, op: op, filter: String(ctx.filter || 'none').slice(0, 40),
+          at: +(ax === 'v' ? ox + at * kx : oy + at * ky).toFixed(1),
+          from: +(ax === 'v' ? oy + a0 * ky : ox + a0 * kx).toFixed(1),
+          to: +(ax === 'v' ? oy + a1 * ky : ox + a1 * kx).toFixed(1),
+          lit_max: +mx.toFixed(4), lit_p50: +s[s.length >> 1].toFixed(4),
+          lit_frac: +lit.toFixed(3), src: [iw, ih], n: 1
+        };
+        e.key = [side, Math.round(e.at), Math.round(e.from), Math.round(e.to), op].join('|');
+        const hit = window.__akLitEdge.find((z) => z.key === e.key);
+        if (hit) { hit.n++; continue; }
+        window.__akLitEdge.push(e);
+      }
+    };
+    if (typeof origDraw === 'function') {
+      proto.drawImage = function () {
+        try { litEdge(this, arguments); } catch (e) {}
+        return origDraw.apply(this, arguments);
+      };
+    }
+
     const path = (ctx) => {
       if (!ctx.__akPath) ctx.__akPath = { ell: [], arcs: [], other: 0 };
       return ctx.__akPath;
@@ -2510,6 +2625,10 @@ IN_PAGE_QA_JS = """
      that needs no taste, whether one is sitting on a declared contact shadow. */
   out.add_glows = (Array.isArray(window.__akAddGlow)
                    ? window.__akAddGlow : []).slice(0, 24);
+  /* Additive canvas layers whose border still carries light, one record per
+     in-frame edge, in design px. Same hook. qa.py confirms each on the pixels. */
+  out.lit_edges = (Array.isArray(window.__akLitEdge)
+                   ? window.__akLitEdge : []).slice(0, 24);
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -3370,6 +3489,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
+           "lit_edges": [],
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3410,7 +3530,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
-                                       "add_glows",
+                                       "add_glows", "lit_edges",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",

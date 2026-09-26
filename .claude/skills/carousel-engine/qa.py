@@ -620,6 +620,25 @@ FLAT_CORE_FRAC = 0.02    # core disc area / frame area before anything is said
 FLAT_CORE_ALPHA = 0.05   # alpha at stop 0 below which the disc is not ink
 ADDITIVE_OPS = {"lighter", "plus-lighter", "plus"}
 
+# A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). See render.py's
+# gradient hook for the brush-side record and lit_edge_step() for the pixel
+# side. The step is the lit side's mean luminance (0..255, the final canvas
+# layer, a 3 design px band each side of the line, 1 px of anti-aliasing
+# skipped) minus the dark side's, run through a 5 design px mean ALONG the
+# edge so per-pixel film grain can't make or break a run.
+# Fitted on No.69's own slide 08. The reconstruction of the round-5 layer (760
+# px wide at x 492, screen) measures a 4.6-level step held for 153 design px,
+# which the scorer saw in the 432 px thumb; the repaired full-frame layer
+# records no lit edge at all. The run-length floor is what keeps a coincidence
+# quiet: the same reconstruction's bottom edge lands on a row of page tops and
+# measures 12.3 levels for only 32 px, which is the pages and not a seam.
+# Silent over 86 real slides: this run's 9, the 4 demo slides and the 73
+# slides of runs 2026-09-05 to 2026-09-14 re-rendered from git, which drew no
+# lit edge at all. tests/lit_edge_verify.py holds the RED and GREEN fixtures.
+LIT_STEP = 1.0     # levels the lit side must stand above the dark side
+LIT_RUN = 40       # design px the step must hold for, consecutively, to WARN
+LIT_SMOOTH = 5     # design px running mean along the edge
+
 # TWO STRINGS ON ONE LINE MAY NOT SHARE A COLUMN (2026-09-07). See
 # same_line_overprint() for the run No.53 rounds this exists for and for the
 # corpus it was fitted against.
@@ -2869,6 +2888,65 @@ def ink_law(img_arr, rec, scale):
     return out
 
 
+def lit_edge_step(img, e, design_w, design_h):
+    """Is the edge render.py recorded for an additive canvas layer VISIBLE?
+
+    render.py knows that a layer of light ended inside the frame with light
+    still on its border; it can't know whether anything drawn afterwards
+    covered the line. This reads the final canvas layer (or the full render
+    when no layer was exported) along exactly that line and returns
+    (longest_run_design_px, median_step_on_run, run_from, run_to) in design px,
+    or None when the line can't be measured. Positive steps only: the lit side
+    is the layer's inside, and light can only have made it brighter.
+    """
+    a = np.asarray(img, dtype=np.float32)
+    if a.ndim != 3 or a.shape[2] < 3:
+        return None
+    rgb = a[..., :3]
+    if a.shape[2] == 4:
+        rgb = rgb * (a[..., 3:4] / 255.0)
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    k = lum.shape[1] / float(design_w)
+    side = e.get("side")
+    if side in ("top", "bottom"):
+        lum = lum.T
+    if side not in ("left", "right", "top", "bottom"):
+        return None
+    inward = 1 if side in ("left", "top") else -1
+    c = int(round(float(e["at"]) * k))
+    band = max(2, int(round(3 * k)))
+    gap = max(1, int(round(k)))
+    n_along, n_across = lum.shape
+    lo_in, hi_in = (c + gap, c + gap + band) if inward > 0 else (c - gap - band, c - gap)
+    lo_out, hi_out = (c - gap - band, c - gap) if inward > 0 else (c + gap, c + gap + band)
+    if min(lo_in, lo_out) < 0 or max(hi_in, hi_out) > n_across:
+        return None
+    r0 = max(0, int(np.floor(float(e["from"]) * k)))
+    r1 = min(n_along, int(np.ceil(float(e["to"]) * k)))
+    if r1 - r0 < 3:
+        return None
+    step = (lum[r0:r1, lo_in:hi_in].mean(axis=1)
+            - lum[r0:r1, lo_out:hi_out].mean(axis=1))
+    w = max(1, int(round(LIT_SMOOTH * k)))
+    if w > 1 and step.size >= w:
+        step = np.convolve(step, np.ones(w) / w, mode="same")
+    hit = step >= LIT_STEP
+    best, best_at, run, start = 0, 0, 0, 0
+    for i, h in enumerate(hit):
+        if h:
+            if run == 0:
+                start = i
+            run += 1
+            if run > best:
+                best, best_at = run, start
+        else:
+            run = 0
+    if best == 0:
+        return (0.0, 0.0, None, None)
+    med = float(np.median(step[best_at:best_at + best]))
+    return (best / k, med, (r0 + best_at) / k, (r0 + best_at + best) / k)
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -3819,6 +3897,43 @@ def main():
                 res["fails"].append(msg)
             except Exception as e:
                 res["warns"].append("flat-core record unreadable (%s)" % e)
+
+        # A LIT LAYER WITH A LIVE EDGE (2026-09-26, run No.69). render.py's
+        # gradient hook records every additive canvas layer whose border still
+        # carries light where it lands inside the frame; this confirms the step
+        # on the final canvas layer, so an edge something later covered says
+        # nothing. A WARN, like the ellipse clip above: the reading is exact at
+        # the brush and measured on the pixels, but an author MAY want a hard
+        # edge of light, and promoting it to a FAIL is a maintainer's call once
+        # the corpus has run clean. What it points at cost No.69 its craft
+        # cycle: a lamp glow on a 760 px layer, a hard vertical edge at x 492
+        # visible in the thumb, passed by every gate and found by the scorer.
+        for le in rec.get("lit_edges", []):
+            try:
+                src = clayer if clayer is not None else arr
+                m = lit_edge_step(src, le, design_w, design_h)
+                if m is None or m[0] < LIT_RUN:
+                    continue
+                run, med, a0, a1 = m
+                axis = "x" if le.get("axis") == "v" else "y"
+                along = "y" if axis == "x" else "x"
+                res["warns"].append(
+                    "a layer of light ends in mid-air: an additive (%s) canvas layer "
+                    "drawn with drawImage stops at %s %.0f (its %s edge) while its "
+                    "border still carries light (max %.3f, median %.3f of full), and "
+                    "the final picture shows a straight %.1f-level step along that "
+                    "line for %.0f design px (%s %.0f to %.0f)%s. Light has no edge "
+                    "of its own. Make the layer span the frame, or feather its "
+                    "border to zero (multiply the ramp by a smoothstep over the last "
+                    "150 px or more on every side that lands inside the frame), and "
+                    "re-render."
+                    % (le.get("op", "?"), axis, le.get("at", 0), le.get("side", "?"),
+                       le.get("lit_max", 0), le.get("lit_p50", 0), med, run,
+                       along, a0, a1,
+                       "" if clayer is not None else
+                       " (measured on the full render, no canvas layer exported)"))
+            except Exception as e:  # a malformed record must never stop QA
+                res["warns"].append("lit-edge record unreadable (%s)" % e)
 
         # A FULL-FRAME PATH THROWN AWAY (2026-09-09). render.py's clip hook
         # states the idiom and what it records; this is the verdict. The cost of

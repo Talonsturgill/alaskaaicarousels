@@ -592,6 +592,18 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   or more of the frame. Nothing is said about a flat core in `source-over` or
   `multiply` at any size, because there a filled disc with a soft edge is an
   ordinary way to draw (this deck's ink-soak halos are exactly that).
+- **A layer of light may not end in mid-air** (2026-09-26). A glow, pool or
+  haze computed on an offscreen canvas and composited in `screen` or `lighter`
+  has no edge of its own, so its bounding box must not become one. Run No.69's
+  craft cycle drew slide 08's lamp glow on a 760 px layer whose halo still
+  carried about three levels at the cut, and shipped a hard vertical edge at
+  x 492 that the scorer saw in the thumb. Make the layer span the frame, or
+  feather every edge that lands inside the frame to zero (a smoothstep over
+  150 px or more). render.py records every additive `drawImage` of a canvas
+  whose in-frame edge still carries light (`lit_edges`), and qa.py **WARNs**
+  when the final canvas layer shows a step of 1 level or more along that exact
+  line for 40 design px or more. An edge that something drawn later covers
+  says nothing. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

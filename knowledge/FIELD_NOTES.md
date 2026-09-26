@@ -8651,3 +8651,48 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AKSDF IS FAST ENOUGH WITH BOUNDS. Bounding-sphere culling (skip the lamp and the stack wherever they can't be nearer than the floor) took the 09 raymarch from 21 s at 720 x 900 to 15 s at 1260 x 1575, under render.py's 30 s renderReady cap. Texture the floor by returning a material id from the scene function only when d < 0.01, or every march step pays for it.
 - QA'S MARK PROBE READS INK SPREAD. A physically correct bokeh disc (smooth centre, hot rim) failed marks_reach_frame on 30 of 88 discs; declaring each disc's point on its own rim fixed it honestly. See instincts.
 - DEFERRED, NAMED: 07's halftone breaks into dashes where the row pitch and the dot size are computed from different y (sy0 against y); 09's walnut still reads as bold converging lines; 03's rings are still stroked targets; the cover has no focal light (the dossier's lamp pool at the lower right never landed).
+
+## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air
+
+- render.py's gradient hook now records every ADDITIVE drawImage of a canvas onto an on-page canvas
+  whose destination edge lands inside the frame while the source border still carries light
+  (`lit_edges` in render_report.json), and qa.py confirms each one on the final canvas layer before
+  it WARNs: a step of 1.0 level or more, held for 40 design px or more, on exactly that line. It
+  exists because the CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and left a hard
+  vertical edge at x 492 that four gates passed and the scorer saw at thumb. The reconstruction
+  WARNs at x 492 (4.6 levels over 153 px). The repaired frame records nothing.
+- WHY BOTH HALVES. A pixel-only straight-step detector was tried first. It found the seam, and it
+  also found 25 legitimate horizontal steps across the nine shipped frames: table edges, desk rows
+  and a horizon. A horizontal seam can't be told from a table edge on pixels. The brush knows a
+  layer of light ENDED there, and the pixels know nothing covered it afterwards. Keep that split if
+  this check is ever extended to fillRect gradients.
+- THE HABIT IT ENFORCES: a glow, pool or haze layer spans the frame, or every edge that lands inside
+  the frame is feathered to zero (a smoothstep over 150 px or more). Its bounding box is never the
+  place its light stops.
+
+### Parked, 2026-09-26 frontier scan, focus (e), headless Chromium rendering
+
+- MEASURED IN THE ENGINE'S OWN BROWSER (HeadlessChrome 141, 4 cores, through
+  render.launch_chromium), on one SDF scene (three smooth-unioned spheres and a plane, 96 march
+  steps, 32-step soft shadow) at 1260 x 1575, the size No.69's slide 09 needed:
+  main-thread JS 3.9 s; the same kernel on 4 blob-URL Web Workers 1.6 s and BYTE-IDENTICAL
+  (0 of 1,984,500 pixels differ); a WebGL2 fragment shader on ANGLE over SwiftShader (Subzero)
+  0.6 s, a mean of 0.17 levels from the JS result. Blob workers and OffscreenCanvas both work in a
+  file:// page here. SwiftShader's own docs say it gets its speed from JIT-specialised routines,
+  multi-core scheduling and SIMD across pixels
+  (https://swiftshader.googlesource.com/SwiftShader/+/HEAD/docs/Index.md). Worker background:
+  https://web.dev/articles/offscreen-canvas . Flags:
+  https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md (render.py already
+  passes --enable-unsafe-swiftshader).
+- A TRAP WORTH NOT REDISCOVERING: the same JS kernel run through a direct `eval` in the page took
+  53 s, 13 times slower, because direct eval deoptimises the enclosing scope. No committed asset
+  uses eval or new Function today. A helper that ever compiles scene code from strings must use
+  a script element or a blob worker, never eval.
+- NULL: HTML-in-Canvas (drawElementImage) is in origin trial for Chrome 148 to 150 only
+  (https://developer.chrome.com/blog/html-in-canvas-origin-trial). This engine runs 141.
+- WHY PARKED: aksdf scenes are JS closures, which a worker can't receive, and a GLSL path is a
+  second scene language with its own determinism proof. Either is a new render route and not a
+  bounded fix. UNBLOCKS WHEN a deck's raymarch will not fit the 30 s renderReady cap even with
+  bounding-sphere culling: add `AKSDF.renderWorkers(ctx, {sceneSrc, ...})` that takes the scene as
+  SOURCE TEXT, splits rows across navigator.hardwareConcurrency blob workers, and proves
+  byte-identity against the main-thread path on the demo scene before any slide uses it.
