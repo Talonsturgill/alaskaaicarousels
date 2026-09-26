@@ -602,7 +602,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   150 px or more). render.py reads the target canvas before and after every
   additive `drawImage` onto an on-page canvas and records where the light the
   draw actually PAINTED stops within a pixel (`lit_edges`), so a clip, a source
-  rect past its bounds, a filter or a nested canvas's boundary all count; qa.py
+  rect past its bounds, a filter, a canvas appended after painting or a nested
+  canvas's boundary all count, at any angle; qa.py
   **WARNs** when the shipped render shows a step of 1 level or more along that
   line and stretch for 40 design px or more. An edge that something later
   covers, on a canvas or in the DOM, says nothing. Reconstruction: `python tests/lit_edge_verify.py`.

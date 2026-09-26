@@ -2947,6 +2947,58 @@ def lit_edge_step(img, e, design_w, design_h):
     return (best / k, med, (r0 + best_at) / k, (r0 + best_at + best) / k)
 
 
+def lit_line_step(img, e, design_w, design_h):
+    """lit_edge_step() for a seam at any angle: render.py's record gives the
+    segment's end points and the unit normal toward its lit side, in design
+    px. Samples the shipped render every design px along the segment, a 3 px
+    band each side of the line past 1 px of anti-aliasing, and returns
+    (longest_run_design_px, median_step_on_run, run_from_t, run_to_t) with t
+    in design px along the segment, or None when it can't be measured."""
+    a = np.asarray(img, dtype=np.float32)
+    if a.ndim != 3 or a.shape[2] < 3:
+        return None
+    rgb = a[..., :3]
+    if a.shape[2] == 4:
+        rgb = rgb * (a[..., 3:4] / 255.0)
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    k = lum.shape[1] / float(design_w)
+    x0, y0, x1, y1 = (float(e[q]) for q in ("x0", "y0", "x1", "y1"))
+    nx, ny = float(e["nx"]), float(e["ny"])
+    L = math.hypot(x1 - x0, y1 - y0)
+    if L < 3:
+        return None
+    n = int(L)
+    ts = np.arange(n, dtype=np.float32)
+    px = x0 + (x1 - x0) * ts / L
+    py = y0 + (y1 - y0) * ts / L
+
+    def band(sign):
+        acc = np.zeros(n, dtype=np.float32)
+        for d in (1.5, 2.5, 3.5):
+            qx = np.clip(np.round((px + sign * d * nx) * k).astype(int), 0, lum.shape[1] - 1)
+            qy = np.clip(np.round((py + sign * d * ny) * k).astype(int), 0, lum.shape[0] - 1)
+            acc += lum[qy, qx]
+        return acc / 3.0
+    step = band(1) - band(-1)
+    if step.size >= LIT_SMOOTH:
+        step = np.convolve(step, np.ones(LIT_SMOOTH) / LIT_SMOOTH, mode="same")
+    hit = step >= LIT_STEP
+    best, best_at, run, start = 0, 0, 0, 0
+    for i, h in enumerate(hit):
+        if h:
+            if run == 0:
+                start = i
+            run += 1
+            if run > best:
+                best, best_at = run, start
+        else:
+            run = 0
+    if best == 0:
+        return (0.0, 0.0, None, None)
+    return (float(best), float(np.median(step[best_at:best_at + best])),
+            float(best_at), float(best_at + best))
+
+
 def _box_down(a, k):
     h, w = a.shape[:2]
     h -= h % k
@@ -3923,6 +3975,23 @@ def main():
                 # same stretch of that line. Later drawing, a DOM or SVG plate,
                 # a stacking order or CSS opacity all act on the shipped render,
                 # so they need no model here (Codex, PR #402).
+                if le.get("axis") == "d":
+                    m = lit_line_step(arr, le, design_w, design_h)
+                    if m is None or m[0] < LIT_RUN:
+                        continue
+                    run, med, t0, t1 = m
+                    res["warns"].append(
+                        "a layer of light ends in mid-air: the light an additive (%s) "
+                        "drawImage painted stops along a straight line from (%.0f, %.0f) "
+                        "to (%.0f, %.0f) within a pixel (up to %.3f of full just inside, "
+                        "nothing just outside), and the final picture shows a %.1f-level "
+                        "step along it for %.0f design px. Light has no edge of its own. "
+                        "Make the layer span the frame, or feather its border to zero "
+                        "over 150 px or more wherever it lands inside the frame, and "
+                        "re-render."
+                        % (le.get("op", "?"), le.get("x0", 0), le.get("y0", 0),
+                           le.get("x1", 0), le.get("y1", 0), le.get("lit_max", 0), med, run))
+                    continue
                 m = lit_edge_step(arr, le, design_w, design_h)
                 if m is None or m[0] < LIT_RUN:
                     continue

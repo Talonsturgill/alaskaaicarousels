@@ -38,6 +38,11 @@ and qa.py:
   RED    a full-strength additive panel on a 2 percent canvas       -> must WARN
          (all four Codex, PR #402: the hook reads what was painted and qa reads
          the shipped render, so none of them needs a model of its own)
+  RED    a full-width layer starting at y 700                        -> must WARN
+         as a TOP edge at y 700 (a horizontal seam is measured as a row)
+  RED    the nested-canvas glow, painted before the canvas is appended -> must WARN
+  RED    a bright panel drawn additively through a 30 degree rotation -> must WARN
+         along its diagonal cut (all three Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -224,6 +229,34 @@ const wg = wl.getContext('2d'); wg.fillStyle = '#FFFFFF'; wg.fillRect(0, 0, 588,
 n2.globalCompositeOperation = 'screen'; n2.drawImage(wl, 0, 0);
 """
 
+RED_HORIZONTAL = """
+// a full-width glow layer that starts at y 700: its top edge is a HORIZONTAL
+// seam, which must be recorded as a top edge and measured as a row
+const g = glow(0, 700, 1080, 650, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 0, 700, 1080, 650); cx.restore();
+"""
+
+RED_APPENDED_LATE = """
+// the visible canvas is painted while detached and appended afterwards
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px';
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+const nb = n2.createLinearGradient(0, 0, 0, H);
+nb.addColorStop(0, '#0B1422'); nb.addColorStop(1, '#1A2436');
+n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+document.body.appendChild(nc);
+"""
+
+RED_ROTATED = """
+// a bright panel drawn additively through a 30 degree rotation: a long
+// diagonal cut that no row or column scan can see
+const wl = document.createElement('canvas'); wl.width = 500; wl.height = 900;
+const wg = wl.getContext('2d'); wg.fillStyle = 'rgb(90,70,40)'; wg.fillRect(0, 0, 500, 900);
+cx.save(); cx.translate(540, 675); cx.rotate(Math.PI / 6); cx.globalCompositeOperation = 'screen';
+cx.drawImage(wl, -250, -450); cx.restore();
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -245,8 +278,13 @@ CASES = [("slide-01", RED, True, True),
          ("slide-13", RED_SRC_BOUNDS, True, True),
          ("slide-14", RED_CTX_CLIP, True, True),
          ("slide-15", RED_ANCESTOR_Z, True, True),
-         ("slide-16", RED_FAINT_CANVAS, True, True)]
+         ("slide-16", RED_FAINT_CANVAS, True, True),
+         ("slide-17", RED_HORIZONTAL, True, True),
+         ("slide-18", RED_APPENDED_LATE, True, True),
+         ("slide-19", RED_ROTATED, True, True)]
 EXPECT_X = {"slide-09": 500}
+# what each RED case must record and name: (side, coordinate or None)
+EXPECT = {"slide-17": ("top", 700), "slide-19": ("line", None)}
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -267,6 +305,10 @@ def main():
             return 1
         rep = json.loads((rdir / "render_report.json").read_text())
         byfile = {s["file"]: s for s in rep["slides"]}
+        # every fixture must be in the report, or a GREEN case passes by absence
+        missing = [n for n, _, _, _ in CASES if n + ".html" not in byfile]
+        if missing:
+            bad.append("render report omits fixtures: %s" % missing)
 
         for name, _, rec_want, _ in CASES:
             rec = byfile.get(name + ".html", {})
@@ -274,16 +316,14 @@ def main():
                 bad.append("%s: the hook broke the page: %s" % (name, rec["page_errors"]))
             edges = rec.get("lit_edges", [])
             if rec_want:
-                left = [e for e in edges if e.get("side") == "left"]
-                if not left:
-                    bad.append("%s: the lit left edge was NOT recorded: %s"
-                               % (name, json.dumps(edges)))
-                elif abs(left[0]["at"] - EXPECT_X.get(name, 492)) > 1 or left[0]["lit_max"] < 0.004:
+                side, coord = EXPECT.get(name, ("left", EXPECT_X.get(name, 492)))
+                got = [e for e in edges if e.get("side") == side]
+                if not got:
+                    bad.append("%s: the lit %s edge was NOT recorded: %s"
+                               % (name, side, json.dumps(edges)))
+                elif coord is not None and (abs(got[0]["at"] - coord) > 1 or got[0]["lit_max"] < 0.004):
                     bad.append("%s: recorded the wrong line or level: %s"
-                               % (name, json.dumps(left[0])))
-                if any(e.get("side") in ("right", "bottom") for e in edges):
-                    bad.append("%s: an edge on or past the frame was recorded: %s"
-                               % (name, json.dumps(edges)))
+                               % (name, json.dumps(got[0])))
             elif edges:
                 bad.append("%s: recorded an edge that carries no light: %s"
                            % (name, json.dumps(edges)))
@@ -292,14 +332,21 @@ def main():
                         "--render-dir", str(rdir)], capture_output=True, text=True)
         qa = json.loads((rdir / "machine_qa.json").read_text())
         want = dict((n + ".html", w) for n, _, _, w in CASES)
+        qfiles = {s["file"] for s in qa["slides"]}
+        if set(want) - qfiles:
+            bad.append("qa report omits fixtures: %s" % sorted(set(want) - qfiles))
         for s in qa["slides"]:
             hits = [w for w in s.get("warns", []) if NEEDLE in w]
-            if want[s["file"]]:
-                if len(hits) != 1:
+            name = s["file"][:-5]
+            if want.get(s["file"]):
+                side, coord = EXPECT.get(name, ("left", EXPECT_X.get(name, 492)))
+                named = ("along a straight line" if side == "line" else
+                         "%s %d (its %s edge)" % ("y" if side in ("top", "bottom") else "x", coord, side))
+                if len(hits) < 1 or (side != "line" and len(hits) != 1):
                     bad.append("%s: qa.py reported %d lit-edge warnings, expected 1: %s"
                                % (s["file"], len(hits), hits))
-                elif "x %d (its left edge)" % EXPECT_X.get(s["file"][:-5], 492) not in hits[0]:
-                    bad.append("%s: the warning names the wrong line: %s" % (s["file"], hits[0]))
+                elif not any(named in h for h in hits):
+                    bad.append("%s: the warning names the wrong line: %s" % (s["file"], hits))
             elif hits:
                 bad.append("%s: qa.py warned about honest drawing: %s" % (s["file"], hits))
             if any("lit-edge record unreadable" in w for w in s.get("warns", [])):
