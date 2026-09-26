@@ -2694,6 +2694,24 @@
       "verification": "ship_gate --self-test PASS (42 cases: pre-rule, met, open, closed, a skip record, missing art_after, empty or string frames, a frame the deck never built, art_after not matching the report, no slides, the runs/<date> archive layout, a missing, string, boolean, infinite, NaN or out-of-range artwork score, a criterion that only resembles the rubric name (the full name must match, HTML-escaped or not), a scalar artwork_weakest_frames or criteria, a score or round count too large for a float, the round cap under revision_rounds, rounds_used, round, revision_round, rounds.revision_rounds_completed and a numeric string, an infinite or NaN round count that must not crash the gate, and a Codex review-round count that must NOT count). dossier_check: a CRAFT PLAN row naming only an object, or only a treatment, fails; so do duplicate or stale rows, a masterful depth frame whose line and row name nothing that makes depth (or name it only to deny it, anywhere in the clause), a modelling cell that denies its own treatment, and a Tonal arc line that declares none; reuse counts the primary clause by technique family, so scribed hachure relief/field on four frames and paper collage with X accents on four frames fail while digital collage/stipple/wash/woodcut passes. Reconstruction: No.68's score_report and run_state re-dated 2026-09-26 -> SHIP GATE STOP, CRAFT FLOOR (art 7.5, 4 of 5 rounds). dossier_check reconstruction on No.68's storyboard re-dated: no plan -> FAIL; plan with scribed hachure on 01,05,06,09 (the defect No.68's scorer named) -> FAIL naming those four; distinct marks -> PASS. No.68 itself unchanged (PASS, predates the rule). gate_status --self-test 27/0.",
       "rollback": "git revert the commit, or set CRAFT_FLOOR_FROM and CRAFT_PLAN_FROM to a future date in scripts/ship_gate.py and scripts/dossier_check.py to switch both rules off without removing them.",
       "commit": "a20e21eaa048188be93c3ea5739e80fcb26190e5"
+    },
+    {
+      "run_date": "2026-09-26",
+      "kind": "fix",
+      "area": "engine, render.py and qa.py",
+      "change": "A layer of light may not end in mid-air, bounded: render.py's new LIT_EDGE_HOOK_JS reads the target canvas before and after every additive drawImage (screen, lighter, plus-lighter, lighten, color-dodge) and records where the light the draw actually painted stops within a pixel along a row or column, keeping every run on a line; it places a record on the page only when the canvas and its ancestors carry nothing but a positive axis-aligned scale and translation, and counts the rest; qa.py WARNs when the shipped render shows a step of 1 level or more along that line for 40 design px or more, once per stretch, and WARNs by count on draws past the budget (16 on-page, 24 off-page), unplaceable canvases and refused readbacks. Diagonal seams, additive fills and FAIL severity are out of scope on purpose.",
+      "trigger": "Run No.69's craft cycle shipped a hard vertical edge at x 492 on slide 08 (a 760 px screen-composited lamp glow) that every gate passed and the scorer saw at thumb. Phase 12 built a check for it and withdrew it after eleven Codex rounds widened it (FIELD_NOTES, 2026-09-26, No.69, Phase 12); the owner asked for it to be revived as a bounded maintenance PR with its scope fixed up front.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/lit_edge_verify.py",
+        "knowledge/FIELD_NOTES.md",
+        "ledger/upgrades.json"
+      ],
+      "verification": "tests/lit_edge_verify.py HOLDS on 28 fixtures through the real render.py and qa.py (exit 1 against main's engine). 82 re-rendered slides (runs 2026-09-05 to 2026-09-14 and No.69) are byte-identical to main's renders with 0 records, 0 warnings, 0 gap notices and unchanged qa fail counts; render time 478 s against 493 s. The No.69 reconstruction warns at x 492 (2.5 and 6.2 levels) and y 615 (8.1 levels). An image-only alternative was measured first and rejected: 479 low-contrast straight edges over 86 shipped slides. Engine quickstart (demo deck render, qa, assemble) passes with no lit-edge output; gate_status --self-test 27 checks, 0 failures.",
+      "rollback": "git revert the upgrade(2026-09-26) commit; the hook, the qa verdicts and the test go together.",
+      "commit": "pending"
     }
   ],
   "scan_log": [
