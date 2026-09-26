@@ -545,6 +545,9 @@ LIT_EDGE_HOOK_JS = """
     const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
                        'lighten': 1, 'color-dodge': 1 };
     const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096;
+    /* the largest bitmap read back, in pixels: three times a 2x slide canvas.
+       A larger target is counted, never read (Codex, PR #403) */
+    const LIT_AREA = 3 * 2160 * 2700;
     const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
     let nOn = 0, nOff = 0;
     const origDraw = proto.drawImage, origGet = proto.getImageData;
@@ -562,9 +565,13 @@ LIT_EDGE_HOOK_JS = """
     }
     /* ...and so does setting or removing the width or height ATTRIBUTE,
        which never passes through those setters (Codex, PR #403) */
-    const bump = (el, name) => {
+    /* only the canvas's own width and height content attributes, in no
+       namespace; a prefixed or namespaced `x:width` is another attribute and
+       resets nothing (Codex, PR #403) */
+    const bump = (el, name, ns) => {
       if (el && window.HTMLCanvasElement && el instanceof window.HTMLCanvasElement &&
-          /^(width|height)$/i.test(String(name).split(':').pop()))
+          (ns === undefined || ns === null || ns === '') &&
+          /^(width|height)$/i.test(String(name)))
         el.__akGen = (el.__akGen || 0) + 1;
     };
     const eproto = window.Element && window.Element.prototype;
@@ -575,7 +582,7 @@ LIT_EDGE_HOOK_JS = """
         const f = eproto[m];
         if (typeof f === 'function') eproto[m] = function () {
           const res = f.apply(this, arguments);
-          try { bump(this, arguments[i]); } catch (e) {}
+          try { bump(this, arguments[i], i ? arguments[0] : undefined); } catch (e) {}
           return res;
         };
       }
@@ -587,7 +594,7 @@ LIT_EDGE_HOOK_JS = """
           let was = null;
           try { was = has(this, arguments, ns); } catch (e) {}
           const res = f.apply(this, arguments);
-          try { if (was !== has(this, arguments, ns)) bump(this, arguments[i]); } catch (e) {}
+          try { if (was !== has(this, arguments, ns)) bump(this, arguments[i], ns ? arguments[0] : undefined); } catch (e) {}
           return res;
         };
       }
@@ -596,14 +603,14 @@ LIT_EDGE_HOOK_JS = """
         if (typeof f === 'function') eproto[m] = function (a) {
           const noop = m !== 'removeAttributeNode' && a && a.ownerElement === this;
           const res = f.apply(this, arguments);
-          try { if (!noop) bump(this, a && a.name); } catch (e) {}
+          try { if (!noop) bump(this, a && a.name, a && a.namespaceURI); } catch (e) {}
           return res;
         };
       }
       const av = window.Attr && Object.getOwnPropertyDescriptor(window.Attr.prototype, 'value');
       if (av && av.set && av.configurable) Object.defineProperty(window.Attr.prototype, 'value', {
         get: av.get, enumerable: av.enumerable, configurable: true,
-        set: function (v) { try { bump(this.ownerElement, this.name); } catch (e) {} return av.set.call(this, v); } });
+        set: function (v) { try { bump(this.ownerElement, this.name, this.namespaceURI); } catch (e) {} return av.set.call(this, v); } });
     }
     const gen = (cv) => cv.__akGen || 0;
     /* the entry for the canvas's CURRENT bitmap; a new generation starts a
@@ -626,6 +633,7 @@ LIT_EDGE_HOOK_JS = """
          budget, and a draw skipped on any canvas is counted only if that
          canvas is shown when the report is taken (Codex, PR #403) */
       const placed = shown(cv), e = entry(cv);
+      if (cv.width * cv.height > LIT_AREA) { e.skipped++; return null; }
       if (placed ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
       if (placed) nOn++; else nOff++;
       try {
@@ -820,15 +828,13 @@ LIT_EDGE_HOOK_JS = """
     window.__akLitCollect = () => {
       const recs = [];
       let unplaced = 0, capped = 0, readback = 0;
-      let isTop = true;
-      try { isTop = window.top === window; } catch (err) { isTop = false; }
       const [fw, fh] = frame();
       for (const [cv, e] of book) {
         /* erased by a later width or height, or never in the picture */
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
-        const hard = e.raw.length > 0 || Math.max(e.shortV, e.shortH) >= 4;
+        const hard = e.raw.length > 0 || Math.max(e.shortV, e.shortH) >= 2;
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even
@@ -845,10 +851,7 @@ LIT_EDGE_HOOK_JS = """
           const v = r.axis === 'v', kA = v ? ky : kx, kC = v ? kx : ky;
           const page = (v ? bx.x : bx.y) + r.line * kC;
           if ((r.a1 - r.a0) * kA < LIT_SPAN) continue;
-          /* the picture's own edge; in a framed document the viewport edge is
-             the iframe's, inside the picture, so nothing is exempted there and
-             the top document counts it (Codex, PR #403) */
-          if (isTop && !(page > 1 && page < (v ? fw : fh) - 1)) continue;
+          if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
           if (tint) { tinted = true; continue; }
           recs.push({ side: r.side, axis: r.axis, at: page,
                       from: (v ? bx.y : bx.x) + r.a0 * kA, to: (v ? bx.y : bx.x) + r.a1 * kA,
@@ -3783,7 +3786,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
            "lit_edges": [], "lit_edges_capped": 0, "lit_edges_unplaced": 0,
-           "lit_edges_readback": 0,
+           "lit_edges_readback": 0, "lit_edges_frames": 0,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3822,21 +3825,27 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         else:
             page.wait_for_timeout(400)
         qa = page.evaluate(IN_PAGE_QA_JS)
-        # LIT EDGES IN FRAMES (Codex, PR #403). IN_PAGE_QA_JS reads the top
-        # document's collector only. A framed document gets its own copy of the
-        # hook; whatever it measured or could not measure can't be placed on
-        # the picture from here, so it is counted as unplaced, never dropped.
+        # LIT EDGES IN FRAMES (Codex, PR #403). The hook does not look inside a
+        # framed document: every frame embedded in the slide that is visible in
+        # the picture is counted, whatever it holds, and qa.py says so. A frame
+        # nested in another is covered by its visible ancestor's count.
+        frames = 0
         for fr in page.frames:
-            if fr == page.main_frame:
+            if fr.parent_frame != page.main_frame:
                 continue
             try:
-                n = fr.evaluate("() => { const c = window.__akLitCollect; "
-                                "if (!c) return document.getElementsByTagName('canvas').length ? 1 : 0; "
-                                "const r = c(); return r.edges.length + r.capped + "
-                                "r.unplaced + r.readback; }")
+                vis = fr.frame_element().evaluate(
+                    "(f) => { if (f.checkVisibility && !f.checkVisibility("
+                    "{ visibilityProperty: true, opacityProperty: true })) return false; "
+                    "const r = f.getBoundingClientRect(); "
+                    "const w = document.documentElement.clientWidth || innerWidth, "
+                    "h = document.documentElement.clientHeight || innerHeight; "
+                    "return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 "
+                    "&& r.left < w && r.top < h; }")
             except Exception:
-                n = 1
-            qa["lit_edges_unplaced"] = int(qa.get("lit_edges_unplaced") or 0) + int(n or 0)
+                vis = True
+            frames += 1 if vis else 0
+        qa["lit_edges_frames"] = frames
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
@@ -3845,6 +3854,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "gradient_clips", "flat_cores",
                                        "add_glows", "lit_edges", "lit_edges_capped",
                                        "lit_edges_unplaced", "lit_edges_readback",
+                                       "lit_edges_frames",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",

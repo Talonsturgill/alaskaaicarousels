@@ -623,14 +623,17 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   `source-over`, a canvas blended by CSS `mix-blend-mode`, or a canvas painted
   from a worker or an ImageBitmap. A canvas clipped (clip-path or the
   legacy `clip: rect()`), masked or cropped by an ancestor's overflow inside
-  the frame is counted, not confirmed, and so is a canvas inside an iframe; a
+  the frame is counted, not confirmed; the check does not look inside frames,
+  and every iframe visible in the picture is named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, or outside the frame) spends the off-page budget and is never
   counted; a measurement made before the canvas's width or height was set
   again (by property or attribute) is dropped, because setting either clears
   the bitmap. Ancestors are walked in the composed tree, through slots and
   shadow hosts. Candidates and records are bounded per draw (4096 and 256),
-  and a draw past either bound is counted. Reconstruction: `python tests/lit_edge_verify.py`.
+  a bitmap larger than 17.5 million pixels is never read back, and a draw
+  past any bound is counted. A recorded seam the picture has no room to be
+  sampled along is named, not passed. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

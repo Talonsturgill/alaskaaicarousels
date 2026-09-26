@@ -80,29 +80,39 @@ through the REAL render.py and qa.py:
             even though the bitmap's only seams are the frame's
   44 GREEN  a seam measured, then the bitmap resized (cleared) and an ordinary
             panel edge drawn where the stale line would map: silent
-  45 GREEN  the RED glow inside an iframe: counted, and qa says so
+  45 GREEN  the RED glow inside an iframe: the hook does not look inside
+            frames, so every visible one is counted and qa says so
   46 GREEN  fixture 44 with the bitmap reset by setAttribute('width'): silent
   47 GREEN  a 16 px additive checkerboard on a display:none staging canvas,
             far past the candidate and record bounds: nothing counted
   48 GREEN  a grid of 48 px additive blocks on the shown canvas, 600 and more
             seams in one draw: past the per-draw bound, and qa says so
   49 GREEN  a 588 px iframe at x 492 whose glow stops at the iframe's edge:
-            counted, and qa says so
+            counted as a frame, and qa says so
   50 GREEN  the nested glow in a shadow root whose host is rotated: counted
   51 GREEN  the repaired glow in a wrapper that clips only horizontally, whose
             bottom edge crosses the canvas: silent
   52 RED    the RED layer, then attribute calls that change nothing (toggle a
             present width, remove an absent attribute, re-set the same Attr):
             still measured and reported
-  53 GREEN  fixture 45 with the framed document's collector deleted: its canvas
-            is still counted
+  53 GREEN  fixture 45 with the framed document's collector deleted: still
+            counted as a frame
   54 GREEN  a 6 x 6 additive block on a detached canvas, shown at 50x under
             object-fit: contain: counted, though no run reached the floor
   55 GREEN  ninety detached staging canvases past the off-page budget, never
             shown, then the repaired glow: silent
+  56 GREEN  fixture 45's iframe under visibility:hidden (which does not reach
+            into the framed document): not counted
+  57 RED    the RED layer, then setAttributeNS of a namespaced x:width: still
+            measured and reported
+  58 GREEN  a 3 x 3 additive block on a detached 6 x 6 canvas shown at 100x
+            under object-fit: contain: counted
+  59 GREEN  an additive draw on a 4000 x 4400 bitmap, past the readback area
+            bound: counted as skipped, never read
 
 Then the report paths, by editing the render report: a record written
-before this check existed (qa says the check did not run), and what the
+before this check existed (qa says the check did not run), a recorded seam
+the picture has no room to be sampled along (qa says so), and what the
 hook could not read: no route to a tainted
 canvas exists under render.py's flags (--allow-file-access-from-files, and a
 foreignObject SVG image stays readable, measured 2026-09-26), so the fixture
@@ -656,6 +666,33 @@ for (let q = 0; q < 90; q++) {
 }
 """ + GREEN_SPAN
 
+GREEN_HIDDEN_IFRAME = GREEN_IFRAME.replace(
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0;visibility:hidden")
+
+RED_NS_ATTR = RED + """
+// a namespaced x:width is another attribute: the bitmap and its seam stay
+document.getElementById('c').setAttributeNS('urn:test', 'x:width', '5');
+"""
+
+GREEN_TINY_UNPLACEABLE = GREEN_SHORT_UNPLACEABLE.replace(
+    "sc.width = 12; sc.height = 12", "sc.width = 6; sc.height = 6").replace(
+    "c2.fillRect(0, 0, 12, 12)", "c2.fillRect(0, 0, 6, 6)").replace(
+    "sp.width = 6; sp.height = 6", "sp.width = 3; sp.height = 3").replace(
+    "s2.fillRect(0, 0, 6, 6)", "s2.fillRect(0, 0, 3, 3)").replace(
+    "c2.drawImage(sp, 3, 3)", "c2.drawImage(sp, 2, 2)")
+
+GREEN_HUGE = """
+// a 4000 x 4400 bitmap, past the readback area bound, shown at frame size:
+// its additive draw is counted, never read (Codex, PR #403)
+const hc = document.createElement('canvas'); hc.width = 4000; hc.height = 4400;
+hc.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px';
+document.body.appendChild(hc);
+const h2 = hc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 2000; sp.height = 4400;
+sp.getContext('2d').fillRect(0, 0, 2000, 4400);
+h2.globalCompositeOperation = 'screen'; h2.drawImage(sp, 2000, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -705,17 +742,21 @@ CASES = [
     ("slide-42", GREEN_LEGACY_CLIP, [], 0, "can't place"),
     ("slide-43", GREEN_SHADOW_FRAME, [], 0, "can't place"),
     ("slide-44", GREEN_RESIZED, [], 0, None),
-    ("slide-45", GREEN_IFRAME, [], 0, "can't place"),
+    ("slide-45", GREEN_IFRAME, [], 0, "does not look inside frames"),
     ("slide-46", GREEN_ATTR_RESIZED, [], 0, None),
     ("slide-47", GREEN_CHECKER_HIDDEN, [], 0, None),
     ("slide-48", GREEN_CHECKER_SHOWN, [], None, "past its budget"),
-    ("slide-49", GREEN_IFRAME_INTERIOR, [], 0, "can't place"),
+    ("slide-49", GREEN_IFRAME_INTERIOR, [], 0, "does not look inside frames"),
     ("slide-50", GREEN_SHADOW_ROTATED, [], 0, "can't place"),
     ("slide-51", GREEN_OVERFLOW_X_ONLY, [], 0, None),
     ("slide-52", RED_NOOP_ATTR, [LEFT], 1, None),
-    ("slide-53", GREEN_CHILD_NO_COLLECTOR, [], 0, "can't place"),
+    ("slide-53", GREEN_CHILD_NO_COLLECTOR, [], 0, "does not look inside frames"),
     ("slide-54", GREEN_SHORT_UNPLACEABLE, [], 0, "can't place"),
     ("slide-55", GREEN_MANY_STAGING, [], 0, None),
+    ("slide-56", GREEN_HIDDEN_IFRAME, [], 0, None),
+    ("slide-57", RED_NS_ATTR, [LEFT], 1, None),
+    ("slide-58", GREEN_TINY_UNPLACEABLE, [], 0, "can't place"),
+    ("slide-59", GREEN_HUGE, [], 0, "past its budget"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
@@ -815,6 +856,10 @@ def main():
                 s["lit_edges_readback"] = 3
             if s["file"] == "slide-05.html":
                 s["lit_edges_readback"] = -1
+            if s["file"] == "slide-02.html":
+                # a line with no room for a sampling band on one side
+                s["lit_edges"] = [{"side": "right", "axis": "v", "at": 1079.8, "from": 0,
+                                   "to": 1350, "op": "screen", "lit_max": 0.05, "n": 1}]
             if s["file"] == "slide-03.html":
                 # a record written before the check existed carries none of its keys
                 for k in [k for k in s if k.startswith("lit_edges")]:
@@ -823,6 +868,9 @@ def main():
         q2 = run_qa(rdir)
         if not any("could not read back 3" in w for w in q2.get("slide-02.html", {}).get("warns", [])):
             bad.append("slide-02 (readback 3): qa.py did not name the unread draws")
+        if not any("could not measure the picture along a seam" in w
+                   for w in q2.get("slide-02.html", {}).get("warns", [])):
+            bad.append("slide-02 (unmeasurable record): qa.py treated it as clean")
         if not any("could not collect its records" in w
                    for w in q2.get("slide-05.html", {}).get("warns", [])):
             bad.append("slide-05 (collection failed): qa.py did not say so")

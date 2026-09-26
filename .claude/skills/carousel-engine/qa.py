@@ -3909,8 +3909,8 @@ def main():
             ("lit_edges_capped",
              "lit-edge check skipped %d additive drawImage call(s) or seam(s) past its "
              "budget (16 measured draws onto on-page canvases and 24 onto off-page "
-             "ones, 24 seams per slide), so a layer's edge may not have been "
-             "examined. Composite sprites onto one offscreen layer and draw that "
+             "ones, a bitmap of at most 17.5 million pixels, 24 seams per slide), so "
+             "a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that "
              "once, or check the additive layers by eye at thumb"),
             ("lit_edges_unplaced",
              "lit-edge check can't place %d measurement(s) exactly on the picture: "
@@ -3918,11 +3918,15 @@ def main():
              "path, filtered or reflected in CSS (which can paint the seam somewhere "
              "else), clipped, masked or cropped by an ancestor's overflow inside the "
              "frame (which can cut its light where the canvas did not stop painting "
-             "it), inside an iframe, the canvas uses an object-fit other than fill, "
+             "it), the canvas uses an object-fit other than fill, "
              "or a seam "
              "shorter than the hook kept when it measured the draw spans 40 design "
              "px at the size the canvas is finally shown. Check that canvas's "
              "additive layers by eye at thumb"),
+            ("lit_edges_frames",
+             "lit-edge check does not look inside frames, and %d visible iframe(s) "
+             "in this slide were not examined. Check any additive layers in them by "
+             "eye at thumb"),
             ("lit_edges_readback",
              "lit-edge check could not read back %d additive draw(s): the browser "
              "refused the canvas's pixels (a tainted canvas) or the measurement "
@@ -3945,6 +3949,16 @@ def main():
         for le in rec.get("lit_edges", []):
             try:
                 runs = lit_edge_runs(arr, le, design_w)
+                if runs is None:
+                    # a record the picture can't be sampled along is a gap, not
+                    # a pass (Codex, PR #403)
+                    res["warns"].append(
+                        "lit-edge check could not measure the picture along a seam the "
+                        "hook recorded at %s %.0f (its %s edge): there is no room for "
+                        "its sampling bands there. Check that edge by eye at thumb"
+                        % ("y" if le.get("side") in ("top", "bottom") else "x",
+                           float(le.get("at", 0)), le.get("side", "?")))
+                    continue
                 if not runs:
                     continue
                 axis = "y" if le.get("side") in ("top", "bottom") else "x"
