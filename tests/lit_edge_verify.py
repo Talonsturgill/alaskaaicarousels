@@ -23,12 +23,15 @@ and qa.py:
          (short edges can't fill the census ahead of the seam; Codex, PR #402)
   RED    the glow filling a 588 px canvas element placed at x 492   -> must WARN
          (the layer ends at its canvas's own boundary; Codex, PR #402)
-  GREEN  a layer drawn at x -100 on a canvas that starts at x 500   -> nothing
-         recorded: its left edge is outside the target bitmap (Codex, PR #402)
+  RED    a layer drawn at x -100 on a canvas that starts at x 500   -> must WARN
+         at x 500: the canvas clips the light at its own boundary, and the lit
+         source there is inspected, not the clipped-away rect edge (Codex, PR #402)
   RED    the RED layer at globalAlpha 0.12 under brightness(300%)   -> must WARN
          (the raw border is under LIT_MIN; the filter makes it a seam)
   RED    the RED layer drawn with a negative destination width      -> must WARN
          (legal Canvas 2D, normalised, no flip; both Codex, PR #402)
+  GREEN  canvases reordered by z-index                              -> recorded,
+         but the verdict abstains: the exported layer is in DOM order
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -136,11 +139,14 @@ n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1350);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 """
 
-GREEN_CLIPPED = """
+RED_CLIPPED = """
 const nc = document.createElement('canvas'); nc.width = 580; nc.height = 1350;
 nc.style.cssText = 'position:absolute;left:500px;top:0;width:580px;height:1350px';
 document.body.appendChild(nc);
 const n2 = nc.getContext('2d'), gn = glow(400, 0, 760, 1350, false);
+const nb = n2.createLinearGradient(0, 0, 0, H);
+nb.addColorStop(0, '#0B1422'); nb.addColorStop(1, '#1A2436');
+n2.fillStyle = nb; n2.fillRect(0, 0, 580, 1350);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, -100, 0);
 """
 
@@ -154,6 +160,20 @@ RED_NEGATIVE = """
 const g = glow(492, 0, 760, 1350, false);
 cx.save(); cx.globalCompositeOperation = 'screen';
 cx.drawImage(g, 0, 0, 760, 1350, 1252, 0, -760, 1350); cx.restore();
+"""
+
+GREEN_ZORDER = """
+// the seam-bearing canvas is FIRST in the DOM but painted on top (z-index 2);
+// a later canvas, painted underneath (z-index 1), is opaque over the seam. The
+// exported layer composites in DOM order, so it can't say which is on top:
+// the verdict abstains rather than trust it (Codex, PR #402)
+const c = document.getElementById('c'); c.style.cssText = 'position:absolute;left:0;top:0;z-index:2';
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+const back = document.createElement('canvas'); back.width = 1080; back.height = 1350;
+back.style.cssText = 'position:absolute;left:0;top:0;z-index:1';
+document.body.appendChild(back);
+const bctx = back.getContext('2d'); bctx.fillStyle = '#3A2A1E'; bctx.fillRect(440, 0, 120, 1350);
 """
 
 GREEN_PANEL = """
@@ -170,9 +190,11 @@ CASES = [("slide-01", RED, True, True),
          ("slide-06", GREEN_DOM_PLATE, True, False),
          ("slide-07", RED_AFTER_SPRITES, True, True),
          ("slide-08", RED_NESTED, True, True),
-         ("slide-09", GREEN_CLIPPED, False, False),
+         ("slide-09", RED_CLIPPED, True, True),
          ("slide-10", RED_FILTERED, True, True),
-         ("slide-11", RED_NEGATIVE, True, True)]
+         ("slide-11", RED_NEGATIVE, True, True),
+         ("slide-12", GREEN_ZORDER, True, False)]
+EXPECT_X = {"slide-09": 500}
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -204,7 +226,7 @@ def main():
                 if not left:
                     bad.append("%s: the lit left edge was NOT recorded: %s"
                                % (name, json.dumps(edges)))
-                elif abs(left[0]["at"] - 492) > 1 or (left[0]["lit_max"] < 0.03
+                elif abs(left[0]["at"] - EXPECT_X.get(name, 492)) > 1 or (left[0]["lit_max"] < 0.03
                                                       and left[0].get("filter", "none") == "none"):
                     bad.append("%s: recorded the wrong line or level: %s"
                                % (name, json.dumps(left[0])))
@@ -225,7 +247,7 @@ def main():
                 if len(hits) != 1:
                     bad.append("%s: qa.py reported %d lit-edge warnings, expected 1: %s"
                                % (s["file"], len(hits), hits))
-                elif "x 492 (its left edge)" not in hits[0]:
+                elif "x %d (its left edge)" % EXPECT_X.get(s["file"][:-5], 492) not in hits[0]:
                     bad.append("%s: the warning names the wrong line: %s" % (s["file"], hits[0]))
             elif hits:
                 bad.append("%s: qa.py warned about honest drawing: %s" % (s["file"], hits))

@@ -469,14 +469,30 @@ GRADIENT_CLIP_HOOK_JS = """
           v.push(Math.max(d[i], d[i + 1], d[i + 2]) / 255 * (d[i + 3] / 255) * ga);
         return v;
       };
-      /* map the flipped case too: a negative scale swaps which source edge
-         lands on which side */
+      /* CLAMP TO THE TARGET BITMAP (Codex, PR #402). The canvas clips the draw
+         to its own bitmap, so the edge the picture actually gets is the
+         requested rect clamped to [0, width] x [0, height]. Where a side is
+         clipped, the visible cut is the canvas's own boundary, and the light
+         on it is the SOURCE pixels that land there, not the source rect's
+         border. So each side is inspected at its clamped line, sampling the
+         source column or row that maps onto it (a negative scale maps the
+         other way), over the part of the perpendicular span that survives. */
       const flipX = ta < 0, flipY = td < 0;
+      const Lc = Math.max(0, L), Rc = Math.min(cv.width, R);
+      const Tc = Math.max(0, T), Bc = Math.min(cv.height, B);
+      if (!(Rc > Lc && Bc > Tc)) return;
+      const srcX = (X) => flipX ? sx + (R - X) / (R - L) * sw : sx + (X - L) / (R - L) * sw;
+      const srcY = (Y) => flipY ? sy + (B - Y) / (B - T) * sh : sy + (Y - T) / (B - T) * sh;
+      const colAt = (X) => Math.min(sx + sw - 1, Math.max(sx, Math.floor(srcX(X))));
+      const rowAt = (Y) => Math.min(sy + sh - 1, Math.max(sy, Math.floor(srcY(Y))));
+      const ys0 = Math.min(srcY(Tc), srcY(Bc)), ys1 = Math.max(srcY(Tc), srcY(Bc));
+      const xs0 = Math.min(srcX(Lc), srcX(Rc)), xs1 = Math.max(srcX(Lc), srcX(Rc));
+      const vh = Math.max(1, ys1 - ys0), vw = Math.max(1, xs1 - xs0);
       const edges = [
-        ['left', L, flipX ? [sx + sw - 1, sy, 1, sh] : [sx, sy, 1, sh], 'v'],
-        ['right', R, flipX ? [sx, sy, 1, sh] : [sx + sw - 1, sy, 1, sh], 'v'],
-        ['top', T, flipY ? [sx, sy + sh - 1, sw, 1] : [sx, sy, sw, 1], 'h'],
-        ['bottom', B, flipY ? [sx, sy, sw, 1] : [sx, sy + sh - 1, sw, 1], 'h']
+        ['left', Lc, [colAt(Lc + 0.5), ys0, 1, vh], 'v'],
+        ['right', Rc, [colAt(Rc - 0.5), ys0, 1, vh], 'v'],
+        ['top', Tc, [xs0, rowAt(Tc + 0.5), vw, 1], 'h'],
+        ['bottom', Bc, [xs0, rowAt(Bc - 0.5), vw, 1], 'h']
       ];
       for (const [side, at, src, ax] of edges) {
         if (window.__akLitEdge.length >= LIT_MAX) { window.__akLitEdgeCapped = true; break; }
@@ -484,19 +500,13 @@ GRADIENT_CLIP_HOOK_JS = """
            element ends, and a glow that fills it still stops in mid-air there
            (Codex, PR #402). Only a line on or past the slide's own frame is
            exempt. */
-        /* an edge strictly outside the target bitmap is clipped away by the
-           canvas itself and draws nothing; the canvas's own boundary (0 or
-           width/height) is kept (Codex, PR #402) */
-        const lim = ax === 'v' ? cv.width : cv.height;
-        if (at < 0 || at > lim) continue;
         const frameW = document.documentElement.clientWidth || window.innerWidth;
         const frameH = document.documentElement.clientHeight || window.innerHeight;
         const pageAt = ax === 'v' ? ox + at * kx : oy + at * ky;
         const pageLim = ax === 'v' ? frameW : frameH;
         if (!(pageAt > 1 && pageAt < pageLim - 1)) continue;   /* on or past the frame edge */
         {
-          const s0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
-          const s1 = ax === 'v' ? Math.min(cv.height, B) : Math.min(cv.width, R);
+          const s0 = ax === 'v' ? Tc : Lc, s1 = ax === 'v' ? Bc : Rc;
           if ((s1 - s0) * (ax === 'v' ? ky : kx) < LIT_SPAN) continue;
         }
         let v;
@@ -511,8 +521,8 @@ GRADIENT_CLIP_HOOK_JS = """
         if (!(filtered ? mx > 0 : mx >= LIT_MIN)) continue;
         const lit = v.filter((z) => z >= LIT_MIN).length / v.length;
         /* the span the edge runs along, clipped to the target canvas */
-        const a0 = ax === 'v' ? Math.max(0, T) : Math.max(0, L);
-        const a1 = ax === 'v' ? Math.min(cv.height, B) : Math.min(cv.width, R);
+        const a0 = ax === 'v' ? Tc : Lc;
+        const a1 = ax === 'v' ? Bc : Rc;
         if (!(a1 > a0)) continue;
         const e = {
           side: side, axis: ax, op: op, filter: String(ctx.filter || 'none').slice(0, 40),
@@ -3476,9 +3486,13 @@ CANVAS_LAYER_JS = r"""
   const t = document.createElement('canvas');
   t.width = W; t.height = H;
   const tc = t.getContext('2d', { willReadFrequently: true });
-  let n = 0, approx = [];
+  let n = 0, approx = [], zs = [];
   for (const cv of document.querySelectorAll('canvas')) {
     const cs = getComputedStyle(cv);
+    // this layer composites in DOM order; a z-index that reorders canvases
+    // makes it an unfaithful witness for paint ORDER, which the lit-edge
+    // verdict depends on (Codex, PR #402)
+    zs.push(cs.position !== 'static' && cs.zIndex !== 'auto' ? cs.zIndex : 'auto');
     if (cs.display === 'none' || cs.visibility === 'hidden') continue;
     const op = parseFloat(cs.opacity);
     if (!(op > 0.02)) continue;
@@ -3509,7 +3523,8 @@ CANVAS_LAYER_JS = r"""
   let data = null;
   try { data = t.toDataURL('image/png'); }
   catch (e) { return { ok: false, canvases: n, error: String(e).slice(0, 140) }; }
-  return { ok: true, canvases: n, approx: Array.from(new Set(approx)), data: data };
+  const zorder = new Set(zs).size > 1;
+  return { ok: true, canvases: n, approx: Array.from(new Set(approx)), zorder: zorder, data: data };
 }
 """
 
@@ -3592,6 +3607,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                     rec["canvas_layer"] = {
                         "ok": True, "canvases": cl["canvases"], "file": lay.name,
                         "approx": cl.get("approx") or [],
+                        "zorder": bool(cl.get("zorder")),
                         "w": width, "h": height,
                     }
         except Exception as e:

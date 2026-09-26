@@ -3976,6 +3976,10 @@ def main():
                 # is no second witness, and the check abstains (Codex, PR #402).
                 if clayer is None:
                     continue
+                # the exported layer composites canvases in DOM order; when a
+                # z-index reorders them it can't witness which one is on top
+                if (rec.get("canvas_layer") or {}).get("zorder"):
+                    continue
                 m = lit_edge_step(arr, le, design_w, design_h, confirm=clayer)
                 if m is None or m[0] < LIT_RUN:
                     continue
