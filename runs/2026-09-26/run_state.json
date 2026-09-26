@@ -85,15 +85,21 @@
       "note": "cycle 1 8.16 (art 7); craft cycle round 5 on 6,3,9,8,1,5; cycle 2 8.16 (art 7); 08 glow-edge regression fixed after the card"
     },
     "ship": {
-      "status": "in_progress",
-      "note": "artifacts in runs/, webp + og.jpg, pdf shrunk 11%, site rebuilt (124 pages), parsers/scanner/docket_dates/site_fresh PASS, no alerts due, pruned 2026-08-26 | merged main (gas watch reading) f745c6d1; Codex r1 (4 P1 on 2b6a1d8): C56 narrowed to labels, slide 02 first person removed, C48-C51/C56 cite captured evidence; run_state sequencing explained"
+      "status": "done",
+      "note": "PR #402 merged to main as 07cae1a8 after 15 Codex rounds (last clean on c81556c3); raw slide, PDF, contact sheet and og URLs return 200; ledger_guard PASS against origin/main; parked lit-edge commit 3adf7a91 reachable from main"
     },
     "upgrade": {
       "status": "done",
       "note": "1 reactive upgrade (lit-edge check) built and reviewed 11 rounds by Codex, WITHDRAWN before merge as unbounded; parked in FIELD_NOTES with every finding; zero upgrades shipped; scan (e) headless rendering parked"
     },
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": {
+      "status": "done",
+      "note": "draft r-3537579022200264423 in docket@alaskaaihq.com, payload from gmail_draft.py --preview-mode remote, passed verbatim; sign-off table shows verdicts"
+    },
+    "retro": {
+      "status": "done",
+      "note": "field notes retro appended (No.69); instincts 2 new; techniques 99 to 102; lit-edge upgrade withdrawn and parked"
+    }
   },
   "phase_3_6": {
     "site_signoff": "PASS, 123 pages read against 18 checks (site_signoff.py, morning of September 26th)",
@@ -101,5 +107,7 @@
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 6 scheduled workflows audited (refreshed 09:45 UTC)",
     "site_fixes": "none. Nothing on the live site needed repair this run."
-  }
+  },
+  "gmail_draft_id": "r-3537579022200264423",
+  "status": "complete"
 }
