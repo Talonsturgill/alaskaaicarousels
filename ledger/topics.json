@@ -2726,6 +2726,36 @@
       ],
       "claims": 64,
       "note": "Seventh data center lane deck in 30 days; No.51 (campaign money) read in full and not a repeat. Conflict disclosed in the first comment (studio on an Anthropic model; the Beacon reports Anthropic employees' donations to Kreiss-Tomkins, C52, which the deck leaves out for neutrality). Runner-up: the Air Force lease update."
+    },
+    {
+      "run_date": "2026-09-26",
+      "carousel_no": 69,
+      "headline": "\"Source access is not the same thing as editorial judgment.\"",
+      "topic": "Alaska News (alaskanews.com, Communities News LLC, a team of five based in Anchorage) drafts most of its articles with AI personas from recorded public meetings and prints a provenance label under each one. This run measured the label on every article in the outlet's 48-hour news sitemap at about 07:35 UTC September 26th: 90 articles, 73 \"Reviewed by Cale Green\", 6 edited with no full editor review on record, 9 AI-assisted with no editor review on record, 2 with no AI label; Cale Green was the only human name on any label or byline. Its old footer told every reader \"reviewed by editors\" regardless. A 09:05 UTC recheck found three of the newest unreviewed articles since marked reviewed, so the queue works after publication.",
+      "angle": "THE LABEL IS THE RIGHT INVENTION. The machine solved reading (1,258 recorded meetings, 3,092 hours) and the label shows where the bottleneck moved, to judgment, carried by one named editor. A label describes process, not accuracy; the deck asks whether every AI-drafted story in Alaska should say who reviewed it, by name.",
+      "entities": [
+        "Alaska News",
+        "alaskanews.com",
+        "Communities News LLC",
+        "Walter",
+        "Cale Green",
+        "Anchorage Press",
+        "Anchorage Assembly",
+        "Axon"
+      ],
+      "keywords": [
+        "AI newsroom",
+        "AI-drafted news",
+        "provenance label",
+        "editor review",
+        "disclosure",
+        "local news",
+        "public meetings",
+        "journalism standards",
+        "news sitemap measurement"
+      ],
+      "claims": 68,
+      "note": "First journalism deck in the ledger (dedupe strongest match No.50 at jaccard 0.007). Original measurement from the outlet's own pages; evidence and the 09:05 UTC recheck ship in runs/2026-09-26/evidence/. Runner-up: Cook Inlet gas testimony (overlaps No.56 and the Gas Watch beat)."
     }
   ]
 }

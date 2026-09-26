@@ -1,0 +1,54 @@
+{
+ "run_date": "2026-09-26",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "ALASKA NEWS, 48 HOURS TO SEPTEMBER 26TH",
+   "fragment": "48 HOURS",
+   "member": "C48"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "90 articles in 48 hours. One human name on the review line.",
+   "fragment": "90 articles",
+   "member": "C48"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "90 articles in 48 hours. One human name on the review line.",
+   "fragment": "48 hours",
+   "member": "C48"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Alaska News says its tool has sat through 1,258 recorded public meetings and 3,092 hours of audio. A team of five based in Anchorage runs it. How would a reader know who read each draft?",
+   "fragment": "1,258 recorded public meetings",
+   "member": "C04"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Alaska News says its tool has sat through 1,258 recorded public meetings and 3,092 hours of audio. A team of five based in Anchorage runs it. How would a reader know who read each draft?",
+   "fragment": "3,092 hours",
+   "member": "C05"
+  },
+  {
+   "kind": "design",
+   "slide": 3,
+   "text": "1,258 RINGS, ONE PER RECORDED MEETING",
+   "fragment": "1,258 RINGS",
+   "note": "the drawing's own mark count, one ring per recorded meeting in C04, asserted in __akAssert with points"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "What the labels on 90 articles said.",
+   "fragment": "90 articles",
+   "member": "C48"
+  }
+ ]
+}

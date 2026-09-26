@@ -1,0 +1,186 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "I re-read caption.txt, copy.json (post_copy, first_comment, all slide strings) and all 9 current renders. Every joiner is an ASCII hyphen: AI-assisted, police-data, editor-in-chief's, AI-drafted, human-written, news-sitemap.xml. There is no U+2013 or U+2014 anywhere."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None in the caption, the first comment, copy.json or the renders. The gold Polaris is a drawn glyph."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Every slide's claim_ids resolve to fetched claims (C03/C04/C05 on 03, C47 to C51 on 05, C39/C35/C34 on 08, and so on). plan_drift PASS with 0 drifts and aggregate PASS with 7 of 7 declared. Both softening misses from cycle 1 are now fixed in the renders. Slide 02 reads 'By our count, every human name on those lines and bylines was the editor-in-chief's, Cale Green.' (C56's hedge). Slide 03 reads 'A team of five based in Anchorage runs it.' (C03's note: 'Hedge it as based in Anchorage')."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "I transcribed the current full renders myself. 01: '\"Source access / is not the same thing / as editorial judgment.\"' plus 'WALTER, THE ALASKA NEWS AI AGENT, / TO THE ANCHORAGE PRESS, SEPTEMBER 17TH'. 02: 'Alaska News says every article carries a / line saying whether a person reviewed it. / By our count, every human name on those / lines and bylines was the editor-in-chief's, / Cale Green.' plus the clip label 'Reviewed by / Cale Green.'. 03: '...A team of five / based in Anchorage runs it. How would / a reader know who read each draft?' plus '1,258 RINGS, ONE PER / RECORDED MEETING'. 05: the rows 73/6/9/2 match copy.json verbatim. The 07 and 08 bodies and 09's ask match. Counters run 01 / 09 to 09 / 09. copy_sync PASS on 26 strings. No misspellings."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "machine_qa reports 0 fails. Every head fits within maxLines (01 at 3/3 and 103px, 09 at 4/4 and 99.5px, the 08 quote at 5/6). render reports 0 overflow warnings. By eye, slide 02's clip label sits on the dark gutter clear of both clips, the 05 note clears the top row of clips, and 09's page stack clears the alaskaaihq.com fixture."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Primary type is #F4F8FF/#D8E0EA on the dark room (#060910 to #1C2C44), about 12:1 or better. The worst point is the slide 02 body's last lines over the defocused row 1 to 3 pages. Those pages are graded dark behind the text, and the body reads cleanly in the 432px contact-sheet cell."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "assemble_report slides: 9."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "render/machine_qa.json: verdict WARN, fails 0, warns 2. Both warns are the by-design canvas relief text on slide 04, and those words are also in the DOM body. Cycle 1's contact warn on 01 is gone (dL now 31.1). final/assemble_report.json: pdf_mode 'vector', 9.58 MB, title 'Who Read It? What 90 Alaska News Labels Said'."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "The topic is unchanged since cycle 1, when I checked it. The last 8 ledger topics (No.61 to 68) include no journalism or AI-newsroom story. selection.md's strongest dedupe match is No.50 at jaccard 0.007 with zero shared entities."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "The last 4 decks are WATERLINE HOLD, READING FRAME PLATE, AERIAL UNIT OVER REAL GROUND and LIGHT-TABLE SCRIBE. This deck is FOCUS-PULL SET, a rendered interior set with a moving focal plane. The bespoke gate row PASSes at a median pairwise similarity of 0.079."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_report: verdict PASS, 74 brand phrases loaded, 0 fails, 30 copy fields checked. copy_sync finds no banned slide string. I read the copy myself and found no 'cannot' and no current-year date outside the first-comment citations, where years are allowed."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "The hashtags are exactly #AlaskaMedia #AIinNews #NewsStandards. The post body has no URL, and every URL sits in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No placeholder strings in copy.json, the caption, the storyboard copy or the renders. site_fresh FAIL is a pending ship step (the site rebuild runs after scoring), not unfinished artifact content. gas_watch_live and cron_health now PASS."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7,
+      "weight": 0.14,
+      "notes": "The hook is a real named tension in 10 words at 103px and reads in full at 432px. The CRAFT FLOOR clip material helps: clips now read orange brass, and the steel clips are visibly pale, so the glint field has some sparkle at thumb. What still holds it at 7: the art is an even grid of cream cards with no single focal light. The dossier's lamp pool at the lower right never arrived, and the lower band has no brighter area than the rest. The mono kicker ('AN AI THAT DRAFTS ALASKA NEWS, ON ITS OWN NEWSROOM') is the only thing that tells a reader the speaker is an AI, and it is clunky. Nothing in the frame reads as Alaska."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "01 to 02 pays at once. 03's planted question is answered by 04, 04 hands to 05 as a clean question and answer, 07 to 08 ('It tells you to check' into 'audit the source trail') is the best handoff, and 08's warm point hands off to 09's lamp. 05 to 06 and 06 to 07 are still weak: the breather plants nothing, and 07 is the heaviest text block straight after the rest. 06 is reorderable without loss."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "The cycle made real gains: 01 and 02 now share 05's brass and carry specular, 05's four clip states separate at thumb, 09 lost the contradicting hard shadow and gained a rim on the end cap, and 08's bloom is one smooth falloff. The hero still climbs the rendered ladder, with three.js PBR and a depth-pass thin-lens focus pull on 01, 02 and 05 and an aksdf raymarch on 09. 02 is a legitimate masterful-depth frame, and 04's bas-relief plate is strong. It is still not 8. 08 gained a new artifact: a hard-edged lighter rectangle in the fog and table band, with a vertical edge at about x 730 display (about 985 full-res) from y about 1160 to 1400 and a horizontal step on the left at about y 1260. It is visible even in the 432px thumb. 06's discs still read as coins: each has a doubled offset rim, the near and bottom-row discs still have hard straight chords, and the edge softening is barely findable. 03's lower half still reads as alternating dark and brown stripes, the rings read as bullseye icons, and dark vertical bars remain under the bottom page band. 09's 'straight grain' renders as wavy, converging zebra lines that still read as raked sand, and the shade is toy-flat. 07's halftone still breaks into dash and x marks in the lower right. Walnut and brass are still several different materials across the deck."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "One page per article (90), clip state by label (73 brass, 6 steel, 9 flags, 2 bare), exactly 1,258 rings on 03 (qa asserts 1258 of 1258) and 88 discs on 06 (qa asserts 88 of 88). The new relief on 04 is crisp and the old footer is worn to 8 percent. This cycle the state code now carries on 01 as well, where steel clips are findable among the brass, and 05's four states separate at thumb. It is held under 9 because a stranger would guess 'reviewed documents' but not necessarily 'AI newsroom', and 03's rings plus microphone could belong to any civic-meetings story."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 7,
+      "weight": 0.12,
+      "notes": "The copy names real Alaska actors throughout: Alaska News, Cale Green, Walter, the Anchorage Press, the Anchorage Assembly's Axon memo, and a team of five based in Anchorage. The count is a primary measurement Alaskans can reproduce, and the deck is fair to its subject. The one imported beat is unchanged: the art is a placeless committee room with no Alaska geography or local visual anchor on any frame."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Each content slide adds a new verified specific: 90 and one name (02), 1,258 meetings, 3,092 hours and a team of five (03), the label mechanism and the old footer (04), 73/6/9/2 verbatim with method (05), the self-named failure mode and the Axon example (07), and the source-wins policy (08). The two hedges are now in place. Most bodies run 25 to 50 words. 08's position line partly restates 04 and 05, and 07's first body sentence repeats 05."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "The hero structure, the atmosphere (practical pool in blue fog), the continuity set, the hook archetype and the palette all diverge from the last 4 decks, and the dossier justifies its dials. Fraunces plus JetBrains Mono on a dark serif-and-mono register at design_variance 3 keeps it a visible sibling of the house decks."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "The vector PDF is 9.58MB with a title, counters and fixtures sit in the safe zone on all 9, and headlines read at 432px. Squeakers remain: 07's body and 08's position line are specced at 30px, under the 32px body floor, and 05's note is 26px. They read, but they are below the floor."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7,
+      "weight": 0.05,
+      "notes": "The hook lands at 110 chars. The caption is 889 chars at 0.71 commas per 100 words, analytical and position-taking ('It tells a reader when the checking is theirs'). The caption is unchanged since cycle 1, so both soft spots stand. The deck-summary line ('A counter of 1,258 recorded meetings is set against one Axon police-data story...') reads as a machine sentence. The caption's closing ask (human-written news) is a different question from slide 09's ask (AI-drafted stories)."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7,
+      "weight": 0.1,
+      "notes": "Every component exists on disk: post copy, 3 hashtags, a first-comment source block with the method and four spot-check URLs, the document title, 5 aftercare items, editor notes, the vector PDF, 9 thumbs and the contact sheet. The Gas Watch and cron audits now PASS. Not yet verifiable at score time: the Gmail draft is unbuilt, the image and PDF URLs can't resolve until the merge, and site_fresh is still FAIL pending the ship-step rebuild."
+    }
+  ],
+  "calculation": "(7x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(7x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(7x0.05)+(7x0.10) = 0.98+1.12+1.12+1.12+0.84+0.80+0.64+0.49+0.35+0.70 = 8.16",
+  "weighted_total": 8.16,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Remove the hard-edged rectangle that round 5 introduced in slide 08's fog and table band (draw the far pool as an unclipped per-pixel falloff across the full width), because it is the only artwork defect visible at 432px thumb.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "Round 5's new lamp glow and far pool left a hard-edged lighter rectangle in the fog and table band: a vertical edge at about x 730 display (about 985 full-res) from y about 1160 to 1400, and a horizontal tone step across the left half at about y 1260. It is visible in the 432px thumb. The near page trapezoids are still flat single-gradient fills.",
+      "fix": "Draw the far pool and the lamp's table falloff as one full-width per-pixel exp or elliptical falloff with no clip rect, or feather any mask by 200px or more. Verify that the horizon band is one continuous gradient in a crop at x 900 to 1100 and y 1500 to 1950 full-res."
+    },
+    {
+      "slide": 6,
+      "problem": "The discs still read as coins, not bokeh. Each carries a doubled offset rim like a coin edge, the near and bottom-row discs keep hard straight cat's-eye chords, and the 0.07R edge blur is barely findable on the largest discs. The top rows still overlap into muddy grey-gold.",
+      "fix": "Drop the inner offset rim entirely and keep one soft rim brightening. Build the cat's-eye as the blurred intersection of two circles rather than a straight clip. Raise the edge blur to 3 to 6 px at full res on the nearest two rows."
+    },
+    {
+      "slide": 3,
+      "problem": "The lower half still reads as alternating dark and brown stripes. The lee lift is too faint, and the near desk tops are still near-flat slabs. The rings read as bullseye icons. Dark vertical bars remain under the warm page band at the very bottom (y about 1880 to 2000 display).",
+      "fix": "Double the warm bounce on the lee faces so no desk band falls below about L* 15. Replace the bottom bars with soft defocused page blobs (round CoC discs, no vertical structure). Give the nearest two ring rows a soft emissive bloom instead of a stroked target."
+    },
+    {
+      "slide": 9,
+      "problem": "The new 'straight grain' renders as bold, wavy, converging zebra lines in high contrast, which still reads as raked sand, not walnut. With the second key gone, the stand and the page stack have almost no grounding beyond a faint AO. The shade is flat toy plastic with no interior bounce.",
+      "fix": "Cut the grain line contrast by about 60 percent and break it with low-frequency figure noise so it reads as fine wood grain. Add a soft stem shadow radiating from the bulb across the pool. Add a warm interior bounce on the shade's underside."
+    },
+    {
+      "slide": 1,
+      "problem": "The clips now glint, but the frame still has no focal light. The dossier's tungsten lamp pool at the lower right is absent, so the art is an evenly lit grid of cards competing with itself at thumb.",
+      "fix": "Composite the lamp's warm pool into the lower right (a tungsten falloff on the walnut and near pages, about 1.4 stops over the grid). The eye then lands there after the quote."
+    },
+    {
+      "slide": 7,
+      "problem": "The AM screen still breaks into dash and x-shaped cells in the lower-right corner (about x 1100 to 1600, y 1700 to 2000 display) as the cells coarsen toward the lens.",
+      "fix": "Clamp the cell shape to round dots with a minimum radius at every cell size."
+    }
+  ],
+  "editor_notes_for_email": "1) Score 8.16 against the 7.7 threshold at 5 of 5 revision rounds, with no hard fails, so it ships. Artwork craft is 7, still under the 8.5 CRAFT FLOOR. The one owed craft cycle has been spent and the run is at the round cap, so ship_gate passes it. Flag the art shortfall honestly in the email. 2) The craft cycle introduced one visible defect. Slide 08 now shows a hard-edged lighter rectangle in the fog and table band, visible even at thumb size. If any repair time remains before assembly, it is the single highest-value fix. 3) Before ship: site_fresh is still FAIL until the ship-step site rebuild runs. gas_watch_live and cron_health now PASS. 4) The labels are live. The 09:05 UTC recheck found three of the seven newest articles already flipped to 'Reviewed by Cale Green'. The deck is a dated 07:35 UTC snapshot and says labels can change. Reopen the four spot-check articles before posting. 5) The C56 and C03 hedges are now in the slides ('By our count' on 02, 'based in Anchorage' on 03). 6) Slide 05's label rows are the shared phrases of the full labels, which are longer (for example, row 2's full label adds '(1 revision)'). 7) The caption still closes on human-written news while slide 09 asks about AI-drafted stories. Consider aligning them. The deck-summary line reads mechanical. 8) Slides 07 and 08 set body copy at 30px, under the 32px floor. It reads, but it is a squeaker. Artifacts: /home/user/alaskaaicarousels/out/2026-09-26/render/ and /home/user/alaskaaicarousels/out/2026-09-26/final/.",
+  "revision_rounds": 5,
+  "scoring_cycle": 2,
+  "craft_cycle": {
+    "frames": [
+      6,
+      3,
+      9,
+      8,
+      1,
+      5
+    ],
+    "art_before": 7,
+    "art_after": 7
+  },
+  "post_score_fix": "Slide 08: the round-5 lamp glow was drawn on a 760 px layer whose residual halo left a hard vertical edge at x 492 css (the scorer's finding, visible at thumb). The glow layer now spans the full frame with a feathered top; the column step at that edge measures 0.17 L levels (was a visible edge). No other change after this card.",
+  "previous_card": 8.16
+}
