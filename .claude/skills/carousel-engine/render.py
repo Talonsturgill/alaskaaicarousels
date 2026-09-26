@@ -626,7 +626,13 @@ LIT_EDGE_HOOK_JS = """
           const x0 = Math.min(ax * x + ex, ax * (x + w) + ex), x1 = Math.max(ax * x + ex, ax * (x + w) + ex);
           const y0 = Math.min(dy * y + fy, dy * (y + h) + fy), y1 = Math.max(dy * y + fy, dy * (y + h) + fy);
           const W = cv.width, H = cv.height;
-          if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H && work + W * H <= LIT_WORK) {
+          if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H && work + W * H > LIT_WORK) {
+            /* the readback can't be admitted: the records are retired rather
+               than trusted, and the clear is counted as unexamined */
+            gens.set(cv, gen(cv) + 1);
+            const z = entry(cv);
+            if (z) z.skipped++; else lost++;
+          } else if (flat && x0 <= 0 && y0 <= 0 && x1 >= W && y1 >= H) {
             work += W * H;
             const d = origGet.call(this, 0, 0, W, H).data;
             /* a cleared bitmap is transparent black, or opaque black on a
@@ -812,7 +818,8 @@ LIT_EDGE_HOOK_JS = """
        inline or display:contents ancestor clips nothing (Codex, PR #403) */
     const clipAxes = (cs) => {
       if (/^(inline|contents|none)$/.test(cs.display || '')) return [false, false];
-      const cp = /paint|strict|content/.test(cs.contain || '');
+      const cp = /paint|strict|content/.test(cs.contain || '') ||
+                 /^(auto|hidden)$/.test(cs.contentVisibility || '');   /* implies paint containment */
       return [cp || (cs.overflowX || 'visible') !== 'visible',
               cp || (cs.overflowY || 'visible') !== 'visible'];
     };
@@ -856,10 +863,16 @@ LIT_EDGE_HOOK_JS = """
       const out = [];
       const p0 = getComputedStyle(el0).position;
       let esc = p0 === 'absolute' || p0 === 'fixed' ? p0 : null;
+      /* when the root leaves overflow visible, a body's overflow belongs to
+         the viewport (which the frame intersection already is) and the body
+         box clips nothing (Codex, PR #403) */
+      const rs = getComputedStyle(document.documentElement);
+      const bodyToViewport = rs.overflowX === 'visible' && rs.overflowY === 'visible';
       for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         const cb = !esc || (esc === 'fixed' ? fixedCB(cs) : (cs.position !== 'static' || fixedCB(cs)));
-        if (cb) { out.push([el, cs]); esc = null; }
+        if (cb && !(el === document.body && bodyToViewport)) out.push([el, cs]);
+        if (cb) esc = null;
         if (cs.position === 'fixed') esc = 'fixed';
         else if (cs.position === 'absolute' && esc !== 'fixed') esc = 'absolute';
       }
@@ -886,10 +899,12 @@ LIT_EDGE_HOOK_JS = """
         if (oy) { T = Math.max(T, ct); B = Math.min(B, cb); }
       }
       if (!(r.width > 0 && r.height > 0)) return false;
-      /* nothing of the box is left, but any CSS filter (a drop-shadow, an SVG
-         filter, a blur's spread) or a reflection can still paint it into the
-         picture: kept, so it is counted rather than dropped (Codex, PR #403) */
-      return (R > L && B > T) || repainted(cv, false);
+      /* nothing of the box is left, but a filter that spreads or moves paint
+         (a blur, a drop-shadow, an SVG filter) or a reflection can still
+         paint it into the picture: kept, so it is counted rather than
+         dropped. A colour-only filter paints nothing outside the box
+         (Codex, PR #403) */
+      return (R > L && B > T) || spreads(cv);
     };
     /* placed by its content box only when nothing on the way up rotates,
        skews, mirrors or bends it and the bitmap fills that box (object-fit
@@ -941,6 +956,14 @@ LIT_EDGE_HOOK_JS = """
        drop-shadow, an SVG filter by url(), a box reflection), which can bring
        even the frame's own edge into the picture, so it is checked before that
        edge is exempted; any other filter only recolours in place */
+    const spreads = (cv) => {
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el), f = cs.filter || 'none';
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
+        if (/blur\(|drop-shadow|url\(/.test(f)) return true;
+      }
+      return false;
+    };
     const repainted = (cv, moves) => {
       for (let el = cv; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el), f = cs.filter || 'none';

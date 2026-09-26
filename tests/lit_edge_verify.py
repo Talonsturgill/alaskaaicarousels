@@ -153,6 +153,15 @@ through the REAL render.py and qa.py:
   80 GREEN  a grid of 20 px additive blocks: more short runs worth keeping than
             a draw keeps, so qa says the check was capped
   81 GREEN  a fine 2 px additive grain over the repaired glow: silent
+  82 GREEN  fixture 76 with the readback work budget already spent, so the
+            full clear can't be verified: its records are retired and qa says
+            the check was capped
+  83 GREEN  an iframe just off the frame under a colour-only contrast(2): not
+            counted
+  84 GREEN  fixture 38 with content-visibility:auto on the wrapper instead of
+            overflow, which implies paint containment: counted
+  85 RED    body { height: 100px; overflow: hidden } with the root visible: a
+            canvas below the body box is still painted, measured and reported
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -935,6 +944,46 @@ for (let q = 0; q < 60000; q++) {
 cx.save(); cx.globalCompositeOperation = 'lighter'; cx.drawImage(gr, 0, 0); cx.restore();
 """
 
+GREEN_CLEAR_PAST_BUDGET = GREEN_CLEARRECT.replace(
+    "n2.clearRect(0, 0, 588, 1350);",
+    """// spend the slide's readback work budget: 24 detached full-size draws and
+// 15 more on the shown canvas, so the clear below can't be read back
+const dot = document.createElement('canvas'); dot.width = 4; dot.height = 4;
+dot.getContext('2d').fillRect(0, 0, 4, 4);
+for (let q = 0; q < 24; q++) {
+  const t = document.createElement('canvas'); t.width = 1080; t.height = 1350;
+  const tg = t.getContext('2d'); tg.globalCompositeOperation = 'screen'; tg.drawImage(dot, 0, 0);
+}
+for (let q = 0; q < 15; q++) { cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(dot, 0, 0); cx.restore(); }
+n2.clearRect(0, 0, 588, 1350);""")
+
+GREEN_COLOR_FILTER_OFFSCREEN_IFRAME = GREEN_IFRAME.replace(
+    "position:absolute;left:0;top:0;width:1080px;height:1350px;border:0",
+    "position:absolute;left:1086px;top:0;width:400px;height:1350px;border:0;filter:contrast(2)")
+
+GREEN_CONTENT_VISIBILITY = GREEN_OVERFLOW_CROP.replace(
+    "position:absolute;left:492px;top:0;width:588px;height:1350px;overflow:hidden",
+    "position:absolute;left:492px;top:0;width:588px;height:1350px;content-visibility:auto")
+
+RED_BODY_PROPAGATION = """
+// body { height: 100px; overflow: hidden } with the root's overflow visible:
+// the body's overflow belongs to the viewport, so a canvas below the body box
+// is still painted, and its seam at x 492 is measured (Codex, PR #403)
+// (the canvas is relatively positioned, so the body is on its clipping path;
+// an absolute one would escape the static body anyway)
+document.body.style.height = '100px'; document.body.style.overflow = 'hidden';
+document.getElementById('c').style.display = 'none';
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1000;
+nc.style.cssText = 'display:block;position:relative;left:492px;top:300px;width:588px;height:1000px';
+document.body.appendChild(nc);
+// the page's own ground and the glow, so the picture has texture
+const n2 = nc.getContext('2d'), gn = glow(492, 300, 588, 1000, false);
+const nb = n2.createLinearGradient(0, 0, 0, 1000);
+nb.addColorStop(0, '#0B1422'); nb.addColorStop(1, '#1A2436');
+n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1000);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1021,6 +1070,10 @@ CASES = [
     ("slide-79", RED_ESCAPED_OVERFLOW, [LEFT], 1, None),
     ("slide-80", GREEN_SHORTS_OVER, [], 0, "past its budget"),
     ("slide-81", GREEN_GRAIN, [], 0, None),
+    ("slide-82", GREEN_CLEAR_PAST_BUDGET, [], 0, "past its budget"),
+    ("slide-83", GREEN_COLOR_FILTER_OFFSCREEN_IFRAME, [], 0, None),
+    ("slide-84", GREEN_CONTENT_VISIBILITY, [], 0, "can't place"),
+    ("slide-85", RED_BODY_PROPAGATION, [LEFT], None, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

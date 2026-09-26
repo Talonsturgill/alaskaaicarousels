@@ -633,14 +633,17 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   named as unexamined; a
   staging canvas that is connected but not shown (display, visibility or
   opacity 0, outside the frame, or wholly outside an ancestor's overflow clip,
-  which honours `overflow-clip-margin` and applies only between a positioned
-  canvas and its containing block) spends the off-page budget and is never
-  counted, unless a CSS filter (a drop-shadow, an SVG filter, a blur's spread) or a
-  reflection can paint it back in, when it is kept in view and counted; a measurement made before
+  which honours `overflow-clip-margin`, counts `content-visibility` as paint
+  containment, skips a body whose overflow belongs to the viewport, and
+  applies only between a positioned canvas and its containing block) spends the off-page budget and is never
+  counted, unless a filter that spreads or moves paint (a blur, a drop-shadow, an SVG
+  filter) or a reflection can paint it back in, when it is kept in view and
+  counted; a measurement made before
   the canvas's width or height was set again (by any API: the property, an
   attribute call, an Attr or the `attributes` map, all seen by one
   MutationObserver), its context was `reset()`, or a `clearRect` over the
-  whole bitmap left it empty (read back to be sure, since a clip can keep part
+  whole bitmap left it empty (and one that can't be read back within the
+  budget retires the records and is counted) (read back to be sure, since a clip can keep part
   of it; empty is opaque black on an `{alpha: false}` context) is dropped, because each erases the light it measured. The
   ledger holds canvases weakly and at most 65,536 of them; a draw it can't
   attribute past that is counted as skipped. Ancestors are walked in the composed tree, through slots and
