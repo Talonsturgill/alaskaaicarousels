@@ -477,6 +477,11 @@ GRADIENT_CLIP_HOOK_JS = """
            element ends, and a glow that fills it still stops in mid-air there
            (Codex, PR #402). Only a line on or past the slide's own frame is
            exempt. */
+        /* an edge strictly outside the target bitmap is clipped away by the
+           canvas itself and draws nothing; the canvas's own boundary (0 or
+           width/height) is kept (Codex, PR #402) */
+        const lim = ax === 'v' ? cv.width : cv.height;
+        if (at < 0 || at > lim) continue;
         const frameW = document.documentElement.clientWidth || window.innerWidth;
         const frameH = document.documentElement.clientHeight || window.innerHeight;
         const pageAt = ax === 'v' ? ox + at * kx : oy + at * ky;

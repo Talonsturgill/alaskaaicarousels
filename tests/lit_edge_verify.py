@@ -23,6 +23,8 @@ and qa.py:
          (short edges can't fill the census ahead of the seam; Codex, PR #402)
   RED    the glow filling a 588 px canvas element placed at x 492   -> must WARN
          (the layer ends at its canvas's own boundary; Codex, PR #402)
+  GREEN  a layer drawn at x -100 on a canvas that starts at x 500   -> nothing
+         recorded: its left edge is outside the target bitmap (Codex, PR #402)
   GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
          but silent in qa: the canvas layer shows the seam and the shipped
          picture does not, and only the shipped picture counts (Codex, PR #402)
@@ -130,6 +132,14 @@ n2.fillStyle = nb; n2.fillRect(0, 0, 588, 1350);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 """
 
+GREEN_CLIPPED = """
+const nc = document.createElement('canvas'); nc.width = 580; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:500px;top:0;width:580px;height:1350px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(400, 0, 760, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, -100, 0);
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -143,7 +153,8 @@ CASES = [("slide-01", RED, True, True),
          ("slide-05", GREEN_PANEL, False, False),
          ("slide-06", GREEN_DOM_PLATE, True, False),
          ("slide-07", RED_AFTER_SPRITES, True, True),
-         ("slide-08", RED_NESTED, True, True)]
+         ("slide-08", RED_NESTED, True, True),
+         ("slide-09", GREEN_CLIPPED, False, False)]
 NEEDLE = "a layer of light ends in mid-air"
 
 
