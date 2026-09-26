@@ -601,9 +601,10 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   feather every edge that lands inside the frame to zero (a smoothstep over
   150 px or more). render.py records every additive `drawImage` of a canvas
   whose in-frame edge still carries light (`lit_edges`), and qa.py **WARNs**
-  when the final canvas layer shows a step of 1 level or more along that exact
-  line for 40 design px or more. An edge that something drawn later covers
-  says nothing. Reconstruction: `python tests/lit_edge_verify.py`.
+  when the shipped render AND the final canvas layer both show a step of 1
+  level or more along that exact line for 40 design px or more. An edge that
+  something drawn later covers, on the canvas or as a DOM or SVG plate, says
+  nothing. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

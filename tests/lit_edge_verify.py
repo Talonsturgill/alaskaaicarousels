@@ -19,6 +19,9 @@ and qa.py:
   GREEN  the RED layer with an opaque plate drawn over its edge     -> recorded,
          but silent in qa, because nothing visible is left to report
   GREEN  the RED layer drawn in source-over (a panel, not light)    -> silent
+  GREEN  the RED layer under an opaque DOM plate over its edge      -> recorded,
+         but silent in qa: the canvas layer shows the seam and the shipped
+         picture does not, and only the shipped picture counts (Codex, PR #402)
 
 The occluded case is the reason the verdict lives on the pixels: the brush
 knows a layer ended, only the final picture knows whether anyone can see it.
@@ -93,6 +96,14 @@ cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 
 cx.fillStyle = '#3A2A1E'; cx.fillRect(440, 0, 120, 1350);
 """
 
+GREEN_DOM_PLATE = """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+const plate = document.createElement('div');
+plate.style.cssText = 'position:absolute;left:440px;top:0;width:120px;height:1350px;background:#3A2A1E';
+document.body.appendChild(plate);
+"""
+
 GREEN_PANEL = """
 const g = glow(492, 0, 760, 1350, false);
 cx.drawImage(g, 492, 0, 760, 1350);
@@ -103,7 +114,8 @@ CASES = [("slide-01", RED, True, True),
          ("slide-02", GREEN_SPAN, False, False),
          ("slide-03", GREEN_FEATHER, False, False),
          ("slide-04", GREEN_OCCLUDED, True, False),
-         ("slide-05", GREEN_PANEL, False, False)]
+         ("slide-05", GREEN_PANEL, False, False),
+         ("slide-06", GREEN_DOM_PLATE, True, False)]
 NEEDLE = "a layer of light ends in mid-air"
 
 
@@ -169,7 +181,7 @@ def main():
         return 1
     print("HOLDS: a 760 px screen-composited glow layer whose edge still carries light "
           "is recorded at x 492 and reported once; the full-frame layer, the feathered "
-          "layer, the occluded edge and the source-over panel are all silent in qa.")
+          "layer, the occluded edges (canvas and DOM) and the source-over panel are all silent in qa.")
     return 0
 
 

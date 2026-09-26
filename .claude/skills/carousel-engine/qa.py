@@ -3910,10 +3910,19 @@ def main():
         # visible in the thumb, passed by every gate and found by the scorer.
         for le in rec.get("lit_edges", []):
             try:
-                src = clayer if clayer is not None else arr
-                m = lit_edge_step(src, le, design_w, design_h)
+                # The SHIPPED picture decides: an opaque DOM or SVG plate over
+                # the line leaves no seam in the composited render, and the
+                # canvas layer (canvas elements only) can't see that plate
+                # (Codex, PR #402). The canvas layer is still required to show
+                # the step where it exists, so DOM type crossing the line can't
+                # manufacture one.
+                m = lit_edge_step(arr, le, design_w, design_h)
                 if m is None or m[0] < LIT_RUN:
                     continue
+                if clayer is not None:
+                    mc = lit_edge_step(clayer, le, design_w, design_h)
+                    if mc is None or mc[0] < LIT_RUN:
+                        continue
                 run, med, a0, a1 = m
                 axis = "x" if le.get("axis") == "v" else "y"
                 along = "y" if axis == "x" else "x"
@@ -3931,7 +3940,7 @@ def main():
                        le.get("lit_max", 0), le.get("lit_p50", 0), med, run,
                        along, a0, a1,
                        "" if clayer is not None else
-                       " (measured on the full render, no canvas layer exported)"))
+                       " (measured on the full render only, no canvas layer exported)"))
             except Exception as e:  # a malformed record must never stop QA
                 res["warns"].append("lit-edge record unreadable (%s)" % e)
 
