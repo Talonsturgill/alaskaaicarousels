@@ -750,7 +750,52 @@
    "confidence": 0.72,
    "notes": "Showrunner's count from the meta author tag: Walter AlaskaNews 54, Maggie AlaskaNews 9, Bill AlaskaNews 9, Melinda Communities.News 6, Alaska News 12. I confirmed individual bylines only: Walter on the Axon memo, Bill on Board of Fisheries and Juneau kelp, Alaska News on Eaglexit. Visible bylines can differ from the meta author (see C56), so say 'listed as author'. Lowest-confidence measurement claim here. Source is the captured rows (each row's author_meta, and author_meta_counts); the sitemap carries no author metadata and stays as the population source.",
    "population_source_url": "https://alaskanews.com/news-sitemap.xml"
+  }
+ ],
+ "stories_surviving": [
+  "Alaska News, an AI-drafted statewide newsroom (57 verified claims, C01 to C57; primary pages verified directly; label measurement spot-checked on 10 of 90 articles)",
+  "Cook Inlet gas crunch testimony (8 claims, C58 to C65; survives ONLY with attribution; Petroleum News and Webcenter Fairbanks each single-source for their own figures; hearing of September 10th is background)",
+  "UA regents draft AI policy (3 claims, C66 to C68; survives ONLY with attribution to KTOO; single syndicated source; no primary document reached)"
+ ],
+ "killed": [
+  {
+   "claim": "Alaska News's AI tool is built on Anthropic's Claude Agent SDK.",
+   "why": "The first summary of /ai-policy said this, citing 'the system prompt at top of page', which isn't article content. A targeted re-fetch confirmed the page body names no model or vendor. The only vendor claim that stands is GeekWire's (C43)."
   },
+  {
+   "claim": "212 US counties have no local news source at all.",
+   "why": "Only a secondary statistic on Alaska News's marketing page. Its original source isn't named or linked, and I didn't fetch a primary source. It also isn't about Alaska."
+  },
+  {
+   "claim": "Two of the 90 articles are bylined Alaska News and Cale Green.",
+   "why": "On the Eaglexit spot check, both the markdown and HTML versions show only 'By Alaska News' and no 'Cale Green' on the page. The no-label half survives as C51 and C54. The co-byline doesn't."
+  },
+  {
+   "claim": "Bradley Lake hydro output rises 40 percent by 2030.",
+   "why": "Misreading. The page says the dam raise increases WATER capacity by 40% and that dam construction is slated to finish in 2030. It gives no percentage increase in megawatts. The correct facts are in C64's notes."
+  },
+  {
+   "claim": "Alaska News has published 5,006 articles.",
+   "why": "Replaced by the live counter I read, 5,007 (C29). Use 'more than 5,000'."
+  },
+  {
+   "claim": "Cook Inlet gas supplies 80 percent of Southcentral electricity.",
+   "why": "The page says 'natural gas', not Cook Inlet gas. Restated as C63 without the added attribution."
+  },
+  {
+   "claim": "The Webcenter Fairbanks gas story was published September 25th.",
+   "why": "The page says 'Published: Sep. 24, 2026 at 9:34 PM AKDT'. The URL's 09/25 is the UTC date. Corrected to 2026-09-24 in C62 to C65."
+  },
+  {
+   "claim": "Alaska News has posted corrections to its articles.",
+   "why": "The corrections page is a policy only and shows no log of corrections, so no count or example can be verified."
+  },
+  {
+   "claim": "Alaska Public Media's UA AI policy story independently corroborates KTOO.",
+   "why": "It's the same Jamie Diep story republished, so it doesn't count as a second independent source."
+  }
+ ],
+ "runner_up_claims": [
   {
    "id": "C58",
    "claim": "Hilcorp Alaska's Luke Saugier told legislators that without another gas source by the winter of 2029, Southcentral utilities won't have enough gas.",
@@ -895,47 +940,5 @@
    "notes": "Story 3. This is a plan, so hedge with 'plans to' or 'expected to'. Single source (syndicated). I couldn't find a primary agenda."
   }
  ],
- "stories_surviving": [
-  "Alaska News, an AI-drafted statewide newsroom (57 verified claims, C01 to C57; primary pages verified directly; label measurement spot-checked on 10 of 90 articles)",
-  "Cook Inlet gas crunch testimony (8 claims, C58 to C65; survives ONLY with attribution; Petroleum News and Webcenter Fairbanks each single-source for their own figures; hearing of September 10th is background)",
-  "UA regents draft AI policy (3 claims, C66 to C68; survives ONLY with attribution to KTOO; single syndicated source; no primary document reached)"
- ],
- "killed": [
-  {
-   "claim": "Alaska News's AI tool is built on Anthropic's Claude Agent SDK.",
-   "why": "The first summary of /ai-policy said this, citing 'the system prompt at top of page', which isn't article content. A targeted re-fetch confirmed the page body names no model or vendor. The only vendor claim that stands is GeekWire's (C43)."
-  },
-  {
-   "claim": "212 US counties have no local news source at all.",
-   "why": "Only a secondary statistic on Alaska News's marketing page. Its original source isn't named or linked, and I didn't fetch a primary source. It also isn't about Alaska."
-  },
-  {
-   "claim": "Two of the 90 articles are bylined Alaska News and Cale Green.",
-   "why": "On the Eaglexit spot check, both the markdown and HTML versions show only 'By Alaska News' and no 'Cale Green' on the page. The no-label half survives as C51 and C54. The co-byline doesn't."
-  },
-  {
-   "claim": "Bradley Lake hydro output rises 40 percent by 2030.",
-   "why": "Misreading. The page says the dam raise increases WATER capacity by 40% and that dam construction is slated to finish in 2030. It gives no percentage increase in megawatts. The correct facts are in C64's notes."
-  },
-  {
-   "claim": "Alaska News has published 5,006 articles.",
-   "why": "Replaced by the live counter I read, 5,007 (C29). Use 'more than 5,000'."
-  },
-  {
-   "claim": "Cook Inlet gas supplies 80 percent of Southcentral electricity.",
-   "why": "The page says 'natural gas', not Cook Inlet gas. Restated as C63 without the added attribution."
-  },
-  {
-   "claim": "The Webcenter Fairbanks gas story was published September 25th.",
-   "why": "The page says 'Published: Sep. 24, 2026 at 9:34 PM AKDT'. The URL's 09/25 is the UTC date. Corrected to 2026-09-24 in C62 to C65."
-  },
-  {
-   "claim": "Alaska News has posted corrections to its articles.",
-   "why": "The corrections page is a policy only and shows no log of corrections, so no count or example can be verified."
-  },
-  {
-   "claim": "Alaska Public Media's UA AI policy story independently corroborates KTOO.",
-   "why": "It's the same Jamie Diep story republished, so it doesn't count as a second independent source."
-  }
- ]
+ "runner_up_note": "C58 to C68 verify the runner-up stories (Cook Inlet gas testimony; UA regents AI policy). They are kept for the record and are not part of this deck's verification record."
 }

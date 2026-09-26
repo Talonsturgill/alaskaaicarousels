@@ -4,7 +4,7 @@
 
 Alaska News's machine has solved the READING of Alaska's public meetings, and its own provenance label shows where the bottleneck moved: to judgment, which over 48 hours carried one human name. The label is the right invention, and "reviewed by, with a name" should be the floor for every AI-drafted story in Alaska.
 
-Document title (PDF, 60 chars max): `Who Read It? What 90 Alaska News Labels Said`
+Document title (PDF, 60 chars max): `Who Read It? The Labels on 90 Alaska News Articles`
 
 ## ARC, nine slides
 
@@ -160,17 +160,17 @@ Admission (C38, C35). Count (C47, C48, C56, C13). Scale (C04, C05, C03). Inventi
 - C55: NOT USED
 - C56: slides 02, 06
 - C57: NOT USED
-- C58: NOT USED
-- C59: NOT USED
-- C60: NOT USED
-- C61: NOT USED
-- C62: NOT USED
-- C63: NOT USED
-- C64: NOT USED
-- C65: NOT USED
-- C66: NOT USED
-- C67: NOT USED
-- C68: NOT USED
+- C58: NOT USED (runner-up story, kept in runner_up_claims)
+- C59: NOT USED (runner-up story, kept in runner_up_claims)
+- C60: NOT USED (runner-up story, kept in runner_up_claims)
+- C61: NOT USED (runner-up story, kept in runner_up_claims)
+- C62: NOT USED (runner-up story, kept in runner_up_claims)
+- C63: NOT USED (runner-up story, kept in runner_up_claims)
+- C64: NOT USED (runner-up story, kept in runner_up_claims)
+- C65: NOT USED (runner-up story, kept in runner_up_claims)
+- C66: NOT USED (runner-up story, kept in runner_up_claims)
+- C67: NOT USED (runner-up story, kept in runner_up_claims)
+- C68: NOT USED (runner-up story, kept in runner_up_claims)
 
 ## HONESTY GUARDS (bind every frame)
 

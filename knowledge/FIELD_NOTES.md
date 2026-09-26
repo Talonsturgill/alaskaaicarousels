@@ -8660,7 +8660,8 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   feathered to zero (a smoothstep over 150 px or more). Its bounding box is never where its light stops.
 - THE CHECK WAS WITHDRAWN BEFORE MERGE. Phase 12 built a render.py hook plus a qa.py WARN for it and
   Codex reviewed it eleven times on PR #402, finding new coverage gaps every round. The last version
-  on the branch (commit 3adf7a91, reachable from main through the run's merge) had moved from
+  on the branch (commit 3adf7a91; PR #402 lands as a MERGE commit, not a squash, so `git show
+  3adf7a91` and `git checkout 3adf7a91 -- tests/lit_edge_verify.py` work from main) had moved from
   modelling drawImage geometry to MEASURING the paint: the target canvas read before and after each
   additive drawImage, a seam being where the added light stops within a pixel (1 level in, 0.25 out,
   40 design px straight), mapped to the page at report collection and confirmed in the shipped render.
