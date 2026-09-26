@@ -3918,7 +3918,8 @@ def main():
              "path, filtered or reflected in CSS (which can paint the seam somewhere "
              "else), clipped, masked or cropped by an ancestor's overflow inside the "
              "frame (which can cut its light where the canvas did not stop painting "
-             "it), the canvas uses an object-fit other than fill, or it was painted "
+             "it), inside an iframe, the canvas uses an object-fit other than fill, "
+             "or it was painted "
              "before its final size was known and is shown so large that a seam "
              "shorter than the hook keeps could span 40 design px. Check that "
              "canvas's additive layers by eye at thumb"),

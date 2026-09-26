@@ -72,6 +72,15 @@ through the REAL render.py and qa.py:
   39 GREEN  the repaired glow in a frame-sized overflow:hidden wrapper: silent
   40 RED    thirty additive draws on a display:none staging canvas, then the
             RED layer: measured and reported, with no budget warning
+  41 RED    the same with the staging canvas under opacity: 0
+  42 GREEN  the repaired glow cropped by the legacy clip: rect() from x 492:
+            counted, and qa says so
+  43 GREEN  a translucent full-frame layer under drop-shadow(-500px ...): the
+            filter paints the frame edge into the picture, so it is counted
+            even though the bitmap's only seams are the frame's
+  44 GREEN  a seam measured, then the bitmap resized (cleared) and an ordinary
+            panel edge drawn where the stale line would map: silent
+  45 GREEN  the RED glow inside an iframe: counted, and qa says so
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), and what the
@@ -463,6 +472,64 @@ const g = glow(492, 0, 760, 1350, false);
 cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
 """
 
+RED_AFTER_OPACITY_STAGING = """
+// the staging canvas is hidden by opacity: 0 on its wrapper this time
+// (inside the frame, so only its opacity can keep it out of the picture)
+const ow = document.createElement('div');
+ow.style.cssText = 'position:absolute;left:0;top:0;opacity:0';
+document.body.appendChild(ow);
+const stc = document.createElement('canvas'); stc.width = 1080; stc.height = 1350;
+ow.appendChild(stc);
+const st2 = stc.getContext('2d');
+""" + sprites(30, "st2") + """
+const g = glow(492, 0, 760, 1350, false);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(g, 492, 0, 760, 1350); cx.restore();
+"""
+
+GREEN_LEGACY_CLIP = """
+// the repaired full-frame glow cropped by the legacy clip: rect() from x 492
+const c = document.getElementById('c');
+c.style.cssText = 'position:absolute;left:0;top:0;clip:rect(0px,1080px,1350px,492px)';
+""" + GREEN_SPAN
+
+GREEN_SHADOW_FRAME = """
+// a translucent full-frame additive layer on a canvas whose drop-shadow is
+// offset 500 px left: the canvas's own frame edge is painted at x 580
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:0;top:0;filter:drop-shadow(-500px 0 0 #FFFFFF)';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), wl = document.createElement('canvas'); wl.width = 1080; wl.height = 1350;
+const wg = wl.getContext('2d'); wg.fillStyle = 'rgba(255,255,255,0.3)'; wg.fillRect(0, 0, 1080, 1350);
+n2.globalCompositeOperation = 'lighter'; n2.drawImage(wl, 0, 0);
+"""
+
+GREEN_RESIZED = """
+// a seam measured at bitmap x 100, then the bitmap is resized (cleared) to
+// half its width at the same CSS size; a source-over panel drawn afterwards
+// has an ordinary edge at page x 692, exactly where the stale measurement
+// would map. The erased light must say nothing (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:492px;top:0;width:588px;height:1350px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 488; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(90,70,40)'; s2.fillRect(0, 0, 488, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 100, 0);
+nc.width = 294;
+const n3 = nc.getContext('2d'); n3.fillStyle = 'rgb(90,70,40)'; n3.fillRect(100, 0, 194, 1350);
+"""
+
+GREEN_IFRAME = """
+// the RED glow inside a framed document: its own collector measured it, and
+// it can't be placed from the top document, so it is counted
+const fr = document.createElement('iframe');
+fr.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px;border:0';
+fr.srcdoc = %s;
+document.body.appendChild(fr);
+// the template sets renderReady after this body, so it is pinned here
+Object.defineProperty(window, 'renderReady', { writable: false,
+  value: new Promise((ok) => fr.addEventListener('load', () => ok(true))) });
+""" % json.dumps((PAGE % RED).replace("window.renderReady = Promise.resolve(true);", "")).replace("</", "<\\/")
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -508,6 +575,11 @@ CASES = [
     ("slide-38", GREEN_OVERFLOW_CROP, [], 0, "can't place"),
     ("slide-39", GREEN_FRAME_WRAPPER, [], 0, None),
     ("slide-40", RED_AFTER_HIDDEN_STAGING, [LEFT], 1, None),
+    ("slide-41", RED_AFTER_OPACITY_STAGING, [LEFT], 1, None),
+    ("slide-42", GREEN_LEGACY_CLIP, [], 0, "can't place"),
+    ("slide-43", GREEN_SHADOW_FRAME, [], 0, "can't place"),
+    ("slide-44", GREEN_RESIZED, [], 0, None),
+    ("slide-45", GREEN_IFRAME, [], 0, "can't place"),
 ]
 # the overlapping draws of slide-34 are ONE record, both draws merged into it,
 # over the stretch where the glow carries light at x 492 (y 359 to 1164, as on

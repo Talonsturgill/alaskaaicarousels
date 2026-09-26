@@ -546,10 +546,23 @@ LIT_EDGE_HOOK_JS = """
     let nOn = 0, nOff = 0;
     const origDraw = proto.drawImage, origGet = proto.getImageData;
     const lum = (d, i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
+    /* SETTING a canvas's width or height, even to the same value, clears its
+       bitmap and can change its scale; every measurement keeps the canvas's
+       generation and one from an earlier generation is dropped at collection,
+       because the light it measured no longer exists (Codex, PR #403) */
+    const cproto = window.HTMLCanvasElement && window.HTMLCanvasElement.prototype;
+    if (cproto) for (const k of ['width', 'height']) {
+      const d = Object.getOwnPropertyDescriptor(cproto, k);
+      if (d && d.set && d.configurable) Object.defineProperty(cproto, k, {
+        get: d.get, enumerable: d.enumerable, configurable: true,
+        set: function (v) { this.__akGen = (this.__akGen || 0) + 1; return d.set.call(this, v); } });
+    }
+    const gen = (cv) => cv.__akGen || 0;
+    const live = (z) => z && z.cv && gen(z.cv) === z.g;
     const tally = (list, cv) => {
-      const hit = list.find((z) => z.cv === cv);
+      const hit = list.find((z) => z.cv === cv && z.g === gen(cv));
       if (hit) hit.n++;
-      else if (list.length < 64) list.push({ cv: cv, n: 1 });
+      else if (list.length < 64) list.push({ cv: cv, g: gen(cv), n: 1 });
       else st.capped++;
     };
     const before = (ctx) => {
@@ -594,9 +607,9 @@ LIT_EDGE_HOOK_JS = """
         preV = Math.max(2, Math.floor(LIT_SPAN * H / b0.h));
         preH = Math.max(2, Math.floor(LIT_SPAN * W / b0.w));
       }
-      const pz = st.pres.find((z) => z.cv === cv);
+      const pz = st.pres.find((z) => z.cv === cv && z.g === gen(cv));
       if (pz) { pz.n++; pz.v = Math.max(pz.v, preV); pz.h = Math.max(pz.h, preH); }
-      else if (st.pres.length < 64) st.pres.push({ cv: cv, n: 1, v: preV, h: preH });
+      else if (st.pres.length < 64) st.pres.push({ cv: cv, g: gen(cv), n: 1, v: preV, h: preH });
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
       /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
          the light begins at the line; 'right'/'bottom': it ends there */
@@ -637,7 +650,7 @@ LIT_EDGE_HOOK_JS = """
             if (j > best) { best = j; line = c; }
           }
           if (st.raw.length >= LIT_RAW) { st.capped++; continue; }
-          st.raw.push({ cv: cv, op: b.op, axis: axis, side: k[0], line: line,
+          st.raw.push({ cv: cv, g: gen(cv), op: b.op, axis: axis, side: k[0], line: line,
                         a0: k[2], a1: k[3], mx: k[4] });
         }
       };
@@ -648,7 +661,7 @@ LIT_EDGE_HOOK_JS = """
     const shown = (cv) => {
       if (!cv || !cv.isConnected) return false;
       if (typeof cv.checkVisibility === 'function' &&
-          !cv.checkVisibility({ visibilityProperty: true })) return false;
+          !cv.checkVisibility({ visibilityProperty: true, opacityProperty: true })) return false;
       const r = cv.getBoundingClientRect(), [fw, fh] = frame();
       return r.width > 0 && r.height > 0 && r.right > 0 && r.bottom > 0 && r.left < fw && r.top < fh;
     };
@@ -695,11 +708,15 @@ LIT_EDGE_HOOK_JS = """
     /* a CSS filter or a box reflection on the canvas or an ancestor can paint
        its seam somewhere the line probe does not look (a displaced
        drop-shadow): such a seam is counted, not confirmed (Codex, PR #403) */
-    const repainted = (cv) => {
+    /* `moves`: an effect that can paint the canvas somewhere else (a
+       drop-shadow, an SVG filter by url(), a box reflection), which can bring
+       even the frame's own edge into the picture, so it is checked before that
+       edge is exempted; any other filter only recolours in place */
+    const repainted = (cv, moves) => {
       for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
-        const cs = getComputedStyle(el);
-        if ((cs.filter || 'none') !== 'none') return true;
+        const cs = getComputedStyle(el), f = cs.filter || 'none';
         if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
+        if (f !== 'none' && (!moves || /drop-shadow|url\(/.test(f))) return true;
       }
       return false;
     };
@@ -714,6 +731,7 @@ LIT_EDGE_HOOK_JS = """
       for (let el = cv; el && el.nodeType === 1; el = el.parentElement) {
         const cs = getComputedStyle(el);
         if ((cs.clipPath || 'none') !== 'none') return true;
+        if ((cs.clip || 'auto') !== 'auto') return true;      /* legacy clip: rect() */
         if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
         if (el === cv) continue;
         const ov = (cs.overflowX || 'visible') !== 'visible' || (cs.overflowY || 'visible') !== 'visible';
@@ -730,13 +748,13 @@ LIT_EDGE_HOOK_JS = """
     window.__akLitCollect = () => {
       const recs = [];
       let unplaced = 0, capped = st.capped, readback = 0;
-      const rp = new Map();
+      const rp = new Map(), mv = new Map();
       const fw = document.documentElement.clientWidth || window.innerWidth;
       const fh = document.documentElement.clientHeight || window.innerHeight;
       const ok = new Map();
       for (const e of st.raw) {
         const cv = e.cv;
-        if (!shown(cv)) continue;                   /* never reached the picture */
+        if (!live(e) || !shown(cv)) continue;      /* erased, or never reached the picture */
         if (!ok.has(cv)) ok.set(cv, placeable(cv) ? box(cv) : false);
         const bx = ok.get(cv);
         if (bx === null) continue;                 /* not shown at any size */
@@ -745,9 +763,11 @@ LIT_EDGE_HOOK_JS = """
         const kA = v ? ky : kx, kC = v ? kx : ky;
         const ox = bx.x, oy = bx.y;
         const page = (v ? ox : oy) + e.line * kC;
-        if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
         if ((e.a1 - e.a0) * kA < LIT_SPAN) continue;
-        if (!rp.has(cv)) rp.set(cv, repainted(cv));
+        if (!mv.has(cv)) mv.set(cv, repainted(cv, true));
+        if (mv.get(cv)) { unplaced++; continue; }
+        if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
+        if (!rp.has(cv)) rp.set(cv, repainted(cv, false));
         if (rp.get(cv)) { unplaced++; continue; }
         recs.push({ side: e.side, axis: e.axis, at: page,
                     from: (v ? oy : ox) + e.a0 * kA, to: (v ? oy : ox) + e.a1 * kA,
@@ -777,7 +797,7 @@ LIT_EDGE_HOOK_JS = """
       /* a draw measured at a floor that the canvas's final scale turns into
          40 design px or more may have dropped a visible run: counted */
       for (const z of st.pres) {
-        if (!shown(z.cv)) continue;
+        if (!live(z) || !shown(z.cv)) continue;
         if (!ok.has(z.cv)) ok.set(z.cv, placeable(z.cv) ? box(z.cv) : false);
         const bx = ok.get(z.cv);
         if (!bx) continue;                         /* counted above, or not shown */
@@ -785,8 +805,8 @@ LIT_EDGE_HOOK_JS = """
         if ((z.v - 1) * bx.h / z.cv.height >= LIT_SPAN ||
             (z.h - 1) * bx.w / z.cv.width >= LIT_SPAN) unplaced += z.n;
       }
-      for (const z of st.skipped.concat(st.cappedOn)) if (shown(z.cv)) capped += z.n;
-      for (const z of st.failed) if (shown(z.cv)) readback += z.n;
+      for (const z of st.skipped.concat(st.cappedOn)) if (live(z) && shown(z.cv)) capped += z.n;
+      for (const z of st.failed) if (live(z) && shown(z.cv)) readback += z.n;
       return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
     };
     proto.drawImage = function () {
@@ -3732,6 +3752,20 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         else:
             page.wait_for_timeout(400)
         qa = page.evaluate(IN_PAGE_QA_JS)
+        # LIT EDGES IN FRAMES (Codex, PR #403). IN_PAGE_QA_JS reads the top
+        # document's collector only. A framed document gets its own copy of the
+        # hook; whatever it measured or could not measure can't be placed on
+        # the picture from here, so it is counted as unplaced, never dropped.
+        for fr in page.frames:
+            if fr == page.main_frame:
+                continue
+            try:
+                n = fr.evaluate("() => { const c = window.__akLitCollect; if (!c) return 0; "
+                                "const r = c(); return r.edges.length + r.capped + "
+                                "r.unplaced + r.readback; }")
+            except Exception:
+                n = 1
+            qa["lit_edges_unplaced"] = int(qa.get("lit_edges_unplaced") or 0) + int(n or 0)
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
