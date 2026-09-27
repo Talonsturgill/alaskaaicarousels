@@ -2725,7 +2725,7 @@
       ],
       "verification": "Live, against the real incident: old script 1 row; new script 11 rows (source reachable FAIL with the 307, then live dataset, recent days, unverified storage, live headline 59.5, history chart, forecast, modeled peak 162 = 162, true-ups, cron running, cron success all PASS), verdict FAIL, exit 2. tests/gaswatch_health.py gains two tests (each endpoint blocked in turn keeps the others' checks, withholds its own and fails the verdict; main() with a 307 on the CINGSA URL writes the per-endpoint report): 6/6 pass on the new script, 6 errors on the old one. gaswatch_collect --self-test clean, tests/gaswatch_recovery.py OK, gaswatch_build --self-test clean. The collector and its User-Agent are untouched.",
       "rollback": "git revert the upgrade(2026-09-27) commit, or restore scripts/gaswatch_health.py and tests/gaswatch_health.py from its parent; the two travel together.",
-      "commit": "pending (upgrade(2026-09-27) commit; SHA recorded in the follow-up commit)"
+      "commit": "24ece5bb"
     },
     {
       "run_date": "2026-09-27",
@@ -2742,7 +2742,7 @@
       ],
       "verification": "node tests/dem_sampler_verify.mjs HOLDS on the real ak-kachemak-dem and slide 02's own geometry: cubic returns the DEM to 8.9e-10 m at 4000 nodes and the akblock and akscribe implementations agree exactly; relative slope jump across a cell edge bilinear 0.825 vs cubic 0.0006; lattice ratio (1.0 = none) bilinear 2.72 (the red case, asserted > 2), bilinear plus the shipped presmooth 1.59, cubic with NO presmooth 1.27 (asserted below both and below 1.5); shade detail cubic 0.00909 vs presmooth 0.00598 (52 percent more real relief). A rendered A/B/C of slide 02's relief (shipped, bilinear only, cubic only) shows the grid in the bilinear render and not in the cubic one. render.py + qa.py on this run's 9 slides with the new assets: 9/9 OK, qa WARN 0 fails 15 warns (same as shipped), every PNG byte-identical to the shipped render; demo deck 4/4 OK, qa WARN 0 fails 14 warns.",
       "rollback": "git revert the upgrade(2026-09-27) commit; no shipped slide calls the cubic path, so reverting changes no render.",
-      "commit": "pending (upgrade(2026-09-27) commit; SHA recorded in the follow-up commit)"
+      "commit": "24ece5bb"
     },
     {
       "run_date": "2026-09-27",
@@ -2756,7 +2756,7 @@
       ],
       "verification": "On this run's renders: slide 03 --base 453,1012 reads h dL 2.7 'floats' with a 46 px detached-hole note (the old output) and auto/v dL 27.8; slide 01 v 18.2 vs h 11.5; --verify recognises both declared pairs as vertical (dL 18.2 and 23.4 on axis v) instead of telling the author to un-stack them; slide 04's side-by-side prisms and slide 07 unchanged. tests/contact_probe_verify.py gains a long-foot fixture (the horizontal read must float, the vertical must clear the comfort band, agree with qa.contact_reads, stay below the foot, win under auto, and --verify must not say 'side by side'): HOLDS on the new probe, fails on the old one (no vertical read). Run No.41's red case (stacked on a compact pool) is still named and still negative.",
       "rollback": "git revert the upgrade(2026-09-27) commit, or restore scripts/contact_probe.py and tests/contact_probe_verify.py from its parent.",
-      "commit": "pending (upgrade(2026-09-27) commit; SHA recorded in the follow-up commit)"
+      "commit": "24ece5bb"
     }
   ],
   "scan_log": [
