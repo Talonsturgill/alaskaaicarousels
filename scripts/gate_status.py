@@ -518,6 +518,33 @@ def scanner_sync_row(rows):
         rows.add("scanner_sync", "FAIL", out[0][:140])
 
 
+def word_ban_row(rows, run):
+    """THE OWNER'S BANNED WORDS (2026-09-27): "gap", "matters" and "pattern",
+    with their plurals, from brand.yaml's banned_words. caption_check already
+    fails the caption and copy.json on them; this row runs word_ban.py over the
+    run AND the docket, whose prose Phase 3.5 writes and no caption lint reads.
+    Only a docket item updated after the rule, and a history note dated after
+    it, is judged, so older published prose never fails a run. Exit 2 means the
+    check could not look, which is a FAIL, as scanner_sync reasons."""
+    script = REPO / "scripts" / "word_ban.py"
+    if not script.exists():
+        rows.absent("word_ban", "scripts/word_ban.py missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script), "--run", str(run)],
+                           capture_output=True, text=True, timeout=120)
+    except Exception as e:
+        rows.add("word_ban", "FAIL", "could not run word_ban (%s)" % type(e).__name__)
+        return
+    out = (p.stdout + p.stderr).strip().splitlines() or [""]
+    if p.returncode == 0:
+        rows.add("word_ban", "PASS", out[-1][:140])
+    elif p.returncode == 2:
+        rows.add("word_ban", "FAIL", "check could not look: %s" % out[0][:120])
+    else:
+        rows.add("word_ban", "FAIL", "%s (%s)" % (out[-1][:60], out[0][:100]))
+
+
 def ledger_guard_row(rows):
     """Did the run modify a file only cron may write?
 
@@ -1267,6 +1294,7 @@ def main():
     dossier_row(rows, run)
     reconciled_row(rows, run)
     caption_row(rows, run)
+    word_ban_row(rows, run)
     copy_sync_row(rows, run, rdir)
     aggregate_row(rows, run, rdir)
     plan_drift_row(rows, run, rdir)

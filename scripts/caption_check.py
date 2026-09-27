@@ -604,6 +604,17 @@ def lint(text, ledger_entries=None, deck_summary=None, brand_phrases=None):
                          "straight-quoted verbatim passage, which is allowed. "
                          "Confirm it really is a quotation." % p)
 
+    # THE OWNER'S BANNED WORDS (2026-09-27). Whole words from brand.yaml's
+    # banned_words, read by word_ban.py, which says why the substring match the
+    # phrase list uses would not do. A quotation and a URL keep their words.
+    try:
+        for h in _word_ban().hits(t):
+            fails.append("WORD: %s. The owner banned it on 2026-09-27 "
+                         "(config/brand.yaml banned_words). Say the specific "
+                         "thing instead" % h)
+    except ValueError as e:
+        fails.append("BRAND: %s, so the banned words could not be checked" % e)
+
     for m in CONTRAST_RE.finditer(t):
         if any(a <= m.start() and m.end() <= b for a, b in spans):
             continue
@@ -888,6 +899,32 @@ def check_copy_phrases(copy, brand_phrases):
                         "not the house's words. Confirm the link is right."
                         % (p, path))
     return fails, warns
+
+
+def _word_ban():
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import word_ban
+    return word_ban
+
+
+def check_copy_banned_words(copy):
+    """The owner's banned words over copy.json's reader-facing prose (2026-09-27).
+
+    The same fields check_copy_phrases walks, slides and first_comment included,
+    and the same exemptions: a straight-quoted passage and a URL. A source's own
+    title that carries one of the words goes in straight quotes."""
+    try:
+        wb = _word_ban()
+        banned = wb.words()
+    except ValueError as e:
+        return ["BRAND: %s, so the banned words could not be checked on copy.json" % e]
+    out = []
+    for path, s in copy_prose(copy):
+        for h in wb.hits(s, (), banned):
+            out.append("WORD: %s in copy.json %s. The owner banned it on 2026-09-27 "
+                       "(config/brand.yaml banned_words). Say the specific thing "
+                       "instead" % (h, path))
+    return out
 
 
 def check_slide_openers(copy):
@@ -1369,6 +1406,7 @@ def main():
             phrase_fails, phrase_warns = check_copy_phrases(copy_obj, brand_phrases)
             hits.extend(phrase_fails)
             rep["warns"].extend(phrase_warns)
+            hits.extend(check_copy_banned_words(copy_obj))
             hits.extend(check_slide_openers(copy_obj))
             hits.extend(check_slide_first_person(copy_obj))
             rep["copy_fields_checked"] = len(copy_prose(copy_obj))

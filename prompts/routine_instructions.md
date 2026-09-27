@@ -949,6 +949,17 @@ The caption is conceived fresh per run, never a filled template. Read
    the default `config/brand.yaml`, and an unreadable brand.yaml is a FAIL,
    not a pass.
 
+   THREE WORDS ARE BANNED, owner, 2026-09-27: "gap", "matters" and "pattern",
+   with "gaps" and "patterns". The list is `banned_words` in config/brand.yaml.
+   The caption lint fails them in the caption and, with `--copy`, in every
+   reader-facing string of copy.json, the first comment and the slides
+   included. gate_status's `word_ban` row fails them there again and in any
+   docket item or history note this run writes (Phase 3.5 prose included). Say
+   the specific thing instead: name the missing document rather than "a gap",
+   state the consequence rather than "why it matters", and count the repeated
+   act rather than calling it "a pattern". A quotation in straight quotes and a
+   URL keep their words, so a source title that carries one goes in quotes.
+
    TWO GATES ADDED 2026-07-30, both because a rule kept lapsing with nothing
    watching it. `--deck-summary` is REQUIRED: brand.yaml has always set
    `deck_summary_line: true` and the room stopped writing one for three

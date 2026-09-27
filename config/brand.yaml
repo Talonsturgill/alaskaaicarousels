@@ -69,6 +69,19 @@ brand:
     why: "A sentence that opens on a conjunction is leaning on the one before it. Join the two, or cut the conjunction and let the sentence stand on its own."
     enforced_by: "scripts/caption_check.py OPENER_RE (hard fail). Matched at the top of the text, after terminal punctuation, and at the head of a line. Same verbatim-quote exemption."
 
+  # BANNED WORDS, OWNER RULE 2026-09-27: "on both automations ban the words gap and matters and
+  # pattern". Whole words in any case, with their plurals, so "Singapore" is not "gap" and "no
+  # matter" is not "matters". scripts/word_ban.py reads this list. caption_check.py fails the
+  # caption and every reader-facing string in copy.json, and gate_status's word_ban row fails the
+  # run and any docket item it updates after September 27th. A straight-quoted verbatim passage
+  # and a URL are the source's words and stay.
+  banned_words:
+    - "gap"
+    - "gaps"
+    - "matters"
+    - "pattern"
+    - "patterns"
+
   banned_phrases:
     - "game-changer"
     - "revolutionize"

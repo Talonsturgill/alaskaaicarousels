@@ -22,6 +22,16 @@ Never write:
 - "These 9 slides..." or any slide-count-does-X sentence used as furniture
 - A closing question bolted on in the same breath every day
 
+Three words, banned by the owner on 2026-09-27 and failed by caption_check on
+the caption, the first comment and every slide string: "gap", "matters" and
+"pattern", with "gaps" and "patterns". Each stands in for a fact the writer did
+not state. "Why it matters" promises a consequence and withholds it, so state
+the consequence. "A gap" gestures at something missing, so name the missing
+document or the unanswered question. "A pattern" asks the reader to trust a
+count, so name the repeated act and give the count. The list lives in
+config/brand.yaml under banned_words, and a quotation in straight quotes keeps
+its own words.
+
 Pointing at the deck is allowed, but earn it fresh each time or skip it: fold
 the pointer into the argument ("Slide 6 is the one the council member will
 bring to the meeting"), make it a dare ("The deed map alone is worth the
