@@ -38,33 +38,46 @@ export function init(THREE) {
   B.loadDEM = async function (base) {
     const meta = await (await fetch(base + '.json')).json();
     const buf = await (await fetch(base + '.bin')).arrayBuffer();
-    return { meta, z: new Int16Array(buf) };
+    const z = new Int16Array(buf);
+    /* a truncated or mismatched pair would sample with the wrong row stride; AKS.loadDEM refuses it too */
+    if (z.length !== meta.cols * meta.rows) {
+      throw new Error('AK CONTRACT: DEM ' + base + ' has ' + z.length + ' cells, meta says ' + meta.cols * meta.rows);
+    }
+    return { meta, z };
   };
 
   /* height in metres at (lon, lat); NaN outside the grid. Bilinear by
-   * default. B.sampler(dem, 'cubic') is Catmull-Rom: interpolating and C1, so
+   * default. B.sampler(dem, 'cubic') is a monotone (Steffen) bicubic:
+   * interpolating, C1 and never outside its cell's posts, so
    * a hillshade taken from sub-cell samples has a continuous gradient and
    * does not print the DEM's cell lattice (see AKS.loadDEM in akscribe.js for
    * the measurement, 2026-09-27). Shade with 'cubic'; mask with bilinear. */
   B.sampler = function (dem, mode) {
     const m = dem.meta, z = dem.z, C = m.cols, Rr = m.rows;
     if (mode === 'cubic') {
-      const cr = (t) => { const t2 = t * t, t3 = t2 * t;
-        return [(-t3 + 2 * t2 - t) / 2, (3 * t3 - 5 * t2 + 2) / 2, (-3 * t3 + 4 * t2 + t) / 2, (t3 - t2) / 2]; };
+      /* Steffen's monotone cubic on unit spacing (Steffen 1990, A&A 239, 443):
+       * the tangent at a node is limited by its two secants, so the curve never
+       * leaves [y1, y2] on its interval, is C1, and each node's tangent depends
+       * only on that node's neighbours, so adjacent cells agree at the edge. */
+      const tan = (a, b, c) => { const s0 = b - a, s1 = c - b;
+        return (Math.sign(s0) + Math.sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), Math.abs(s0 + s1) / 4); };
+      const st = (y0, y1, y2, y3, t) => { const d1 = tan(y0, y1, y2), d2 = tan(y1, y2, y3), t2 = t * t, t3 = t2 * t;
+        return (2 * t3 - 3 * t2 + 1) * y1 + (t3 - 2 * t2 + t) * d1 + (-2 * t3 + 3 * t2) * y2 + (t3 - t2) * d2; };
       return function (lon, lat) {
         const x = (lon - m.west) / m.dlon, y = (m.north - lat) / m.dlat;
         if (!(x >= 0 && y >= 0 && x <= C - 1 && y <= Rr - 1)) return NaN;
         const i = Math.min(C - 2, Math.floor(x)), j = Math.min(Rr - 2, Math.floor(y));
-        const wu = cr(x - i), wv = cr(y - j); let h = 0;
+        /* separable: a monotone cubic along each of four rows, then one down
+         * the column. Catmull-Rom overshot 46 m at a cliff on the Kachemak DEM,
+         * and clamping it to each cell's four posts tore the surface at cell
+         * edges (neighbours clamp to different posts). Steffen does neither. */
+        const fx = x - i, fy = y - j, rv = [0, 0, 0, 0];
+        const c0 = Math.max(0, i - 1), c3 = Math.min(C - 1, i + 2);
         for (let b = 0; b < 4; b++) {
-          const jj = Math.max(0, Math.min(Rr - 1, j - 1 + b)) * C; let row = 0;
-          for (let c = 0; c < 4; c++) row += wu[c] * z[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
-          h += wv[b] * row;
+          const jj = Math.max(0, Math.min(Rr - 1, j - 1 + b)) * C;
+          rv[b] = st(z[jj + c0], z[jj + i], z[jj + i + 1], z[jj + c3], fx);
         }
-        /* Catmull-Rom overshoots at a cliff edge: clamp to the cell's own four
-         * posts, so a shading pass never invents a rim or a below-sea dip */
-        const k = j * C + i, a0 = z[k], a1 = z[k + 1], a2 = z[k + C], a3 = z[k + C + 1];
-        return Math.min(Math.max(a0, a1, a2, a3), Math.max(Math.min(a0, a1, a2, a3), h));
+        return st(rv[0], rv[1], rv[2], rv[3], fy);
       };
     } else if (mode) {
       throw new Error("AK CONTRACT: AKBLOCK.sampler mode must be 'cubic' or omitted, got " + mode);
@@ -245,7 +258,8 @@ export function init(THREE) {
     const seaMat = o.seaMaterial || new THREE.MeshPhysicalMaterial({
       color: 0x0e2a3a, roughness: 0.2, metalness: 0.0, clearcoat: 0.4 });
     /* one surface per lake, each at ITS OWN level (a shared mesh put every lake at lakes[0]'s height) */
-    const lakeMeshes = lakes.map((L, li) => waterMesh(2 + li, Y(L.level) + 0.002, lakeMat)).filter(Boolean);
+    /* lakeMeshes[li] is o.lakes[li], null where that lake has no cells in this block */
+    const lakeMeshes = lakes.map((L, li) => waterMesh(2 + li, Y(L.level) + 0.002, lakeMat));
     const lake = lakeMeshes[0] || null;
     /* the sea sits at the datum that classified it, not at a hardcoded 0 m */
     const sea = waterMesh(1, Y(seaLevel) + 0.002, seaMat);
@@ -303,7 +317,7 @@ export function init(THREE) {
     floor.position.set((u0 + u1) / 2, -base, -(v0 + v1) / 2);
 
     const group = new THREE.Group();
-    group.add(top); lakeMeshes.forEach(m => group.add(m)); if (sea) group.add(sea);
+    group.add(top); lakeMeshes.forEach(m => { if (m) group.add(m); }); if (sea) group.add(sea);
     Object.values(walls).forEach(w => group.add(w)); group.add(floor);
 
     return {

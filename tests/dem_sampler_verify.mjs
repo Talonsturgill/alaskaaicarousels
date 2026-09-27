@@ -6,7 +6,8 @@
  * per DEM cell. With a 3 x 3 presmooth it scored well; the craft cycle dropped
  * the presmooth and the frame REGRESSED to a visible grid, because the gradient
  * of a bilinear surface is constant along each cell edge and jumps across it.
- * The repair in the engine is a C1 sampler (Catmull-Rom): AKS.loadDEM(...)
+ * The repair in the engine is a C1 sampler (a monotone Steffen bicubic, which
+ * replaced Catmull-Rom after Codex's review of PR #404): AKS.loadDEM(...)
  * .sampleCubic and AKBLOCK.sampler(dem, 'cubic').
  *
  * This measures the lattice directly on the real DEM, on slide 02's own
@@ -79,16 +80,17 @@ function edgeJump(S) {
   return jump / (mag / 2);
 }
 const jb = edgeJump(bil), jc = edgeJump(cubB);
-/* The overshoot clamp (Codex on PR #404) gives up C1 exactly where Catmull-Rom
- * would leave the cell's four posts: measured on this DEM, 11 percent of random
- * samples overshoot, by 0.23 m on average and up to 46 m, and 629 in 400,000
- * dip below 0 m between posts that are all at or above it (a fake shoreline).
- * Unclamped the jump here was under 0.02; clamped it is about 0.06, still over ten
- * times smaller than bilinear's, and the lattice checks below still hold. */
-check('C1 at cell edges', jc < 0.1 && jc * 10 < jb,
+/* Why monotone and not Catmull-Rom (Codex on PR #404, measured on this DEM):
+ * Catmull-Rom overshot in 11 percent of random samples, by up to 46 m, and 629
+ * in 400,000 dipped below 0 m between posts all at or above it (a fake
+ * shoreline). Clamping it to each cell's four posts cost C1 (jump 0.06) and
+ * tore the surface at cell edges (246 m against 293 m across row 617).
+ * Clamping each pass to its two central posts was continuous but flattened
+ * every sampled peak (jump 0.18). Steffen keeps all three properties. */
+check('C1 at cell edges', jc < 0.02 && jb > 0.2,
   `relative slope jump across an edge: bilinear ${jb.toFixed(3)}, cubic ${jc.toFixed(4)}`);
 
-/* the clamp: a cubic sample never leaves the range of its own cell's four posts */
+/* monotone: a cubic sample never leaves the range of its own cell's four posts */
 let worst = 0;
 for (let q = 0; q < 20000; q++) {
   const x = 1 + ((q * 0.61803398875) % 1) * (meta.cols - 3), y = 1 + ((q * 0.41421356237) % 1) * (meta.rows - 3);
@@ -160,6 +162,26 @@ check('repair: cubic carries less lattice than the shipped presmooth', L_cub.rat
 check('repair keeps real relief', L_cub.detail > L_pre.detail,
   `detail cubic ${L_cub.detail.toFixed(5)} vs presmooth ${L_pre.detail.toFixed(5)}`);
 check('akscribe cubic matches akblock cubic', Math.abs(L_cubS.ratio - L_cub.ratio) < 1e-9, 'same lattice reading');
+
+/* continuous across every cell edge (Codex round 4 on PR #404): a single clamp to
+ * each cell's own four posts jumped 246 m to 293 m across row 617 at column
+ * 505.6367, within 2e-7 of a cell. Probe that exact spot, then 20000 edges. */
+const eps = 2e-7;
+let seam = 0, seamAt = '';
+const probe = (S, x, y, dx, dy) => {
+  const at = (xx, yy) => S(meta.west + xx * meta.dlon, meta.north - yy * meta.dlat);
+  const d = Math.abs(at(x - dx, y - dy) - at(x + dx, y + dy));
+  if (d > seam) { seam = d; seamAt = `col ${x.toFixed(4)} row ${y.toFixed(4)}`; }
+};
+for (const S of [cubB, cubS]) {
+  probe(S, 505.6367, 617, 0, eps);
+  for (let q = 0; q < 10000; q++) {
+    const e = 2 + (q * 7919) % (meta.rows - 4), f = 2 + ((q * 0.7548776662) % 1) * (meta.cols - 4);
+    probe(S, f, e, 0, eps);                                   // across a row edge
+    probe(S, 2 + (q * 104729) % (meta.cols - 4), 2 + ((q * 0.5698402910) % 1) * (meta.rows - 4), eps, 0);  // across a column edge
+  }
+}
+check('continuous across cell edges', seam < 0.01, `worst jump across an edge ${seam.toExponential(1)} m (${seamAt})`);
 
 /* every committed DEM's bounds are its outermost SAMPLE CENTRES (Codex on PR #404):
  * east = west + (cols - 1) dlon, south = north - (rows - 1) dlat. Bounds one cell

@@ -47,15 +47,20 @@
    * across it, so a per-pixel hillshade over a DEM magnified past about 3
    * device px per cell prints the cell lattice: No.70's slide 02 (8.1 device
    * px per cell) regressed to a visible grid the moment its presmooth was
-   * dropped. Catmull-Rom is interpolating (it passes through every DEM value,
-   * so no heights are invented or flattened) and C1 (the gradient is
-   * continuous), which is exactly what a shading pass differentiates. Use
+   * dropped. A monotone (Steffen) bicubic is interpolating (it passes through
+   * every DEM value), never leaves a cell's posts (Catmull-Rom overshot 46 m
+   * at a cliff here) and C1 (the gradient is continuous), which is exactly
+   * what a shading pass differentiates. Use
    * sampleCubic wherever a slope, normal or hillshade is taken from sub-cell
    * samples; keep sample() for masks and thresholds, where it is cheaper. */
-  function catmull(t) {
-    var t2 = t * t, t3 = t2 * t;
-    return [(-t3 + 2 * t2 - t) / 2, (3 * t3 - 5 * t2 + 2) / 2,
-            (-3 * t3 + 4 * t2 + t) / 2, (t3 - t2) / 2];
+  /* Steffen's monotone cubic on unit spacing (Steffen 1990, A&A 239, 443) */
+  function stTan(a, b, c) {
+    var s0 = b - a, s1 = c - b;
+    return (Math.sign(s0) + Math.sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), Math.abs(s0 + s1) / 4);
+  }
+  function steffen(y0, y1, y2, y3, t) {
+    var d1 = stTan(y0, y1, y2), d2 = stTan(y1, y2, y3), t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * y1 + (t3 - 2 * t2 + t) * d1 + (-2 * t3 + 3 * t2) * y2 + (t3 - t2) * d2;
   }
   function cubicSampler(a, m) {
     var C = m.cols, R = m.rows;
@@ -63,23 +68,22 @@
       var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
       if (!(fi >= 0 && fj >= 0 && fi <= C - 1 && fj <= R - 1)) return NaN;
       var i = Math.min(C - 2, Math.floor(fi)), j = Math.min(R - 2, Math.floor(fj));
-      var wu = catmull(fi - i), wv = catmull(fj - j), z = 0;
+      /* separable monotone cubic, see AKBLOCK.sampler: never leaves the
+       * cell's posts, C1, and continuous across cell edges */
+      var fx = fi - i, fy = fj - j, rv = [0, 0, 0, 0];
+      var c0 = Math.max(0, i - 1), c3 = Math.min(C - 1, i + 2);
       for (var b = 0; b < 4; b++) {
-        var jj = Math.max(0, Math.min(R - 1, j - 1 + b)) * C, row = 0;
-        for (var c = 0; c < 4; c++) row += wu[c] * a[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
-        z += wv[b] * row;
+        var jj = Math.max(0, Math.min(R - 1, j - 1 + b)) * C;
+        rv[b] = steffen(a[jj + c0], a[jj + i], a[jj + i + 1], a[jj + c3], fx);
       }
-      /* Catmull-Rom overshoots at a cliff edge: clamp to the cell's own four
-       * posts, so a shaded rim or a below-sea dip is never invented */
-      var k = j * C + i, a0 = a[k], a1 = a[k + 1], a2 = a[k + C], a3 = a[k + C + 1];
-      return Math.min(Math.max(a0, a1, a2, a3), Math.max(Math.min(a0, a1, a2, a3), z));
+      return steffen(rv[0], rv[1], rv[2], rv[3], fy);
     };
   }
   AKS.cubicSampler = cubicSampler;
 
   /* A committed DEM: <base>.json (meta) + <base>.bin (int16 LE, row-major,
    * north up, plate carree). sample(lon, lat) is bilinear, NaN outside;
-   * sampleCubic(lon, lat) is Catmull-Rom, for anything that is shaded. */
+   * sampleCubic(lon, lat) is the monotone bicubic, for anything that is shaded. */
   AKS.loadDEM = async function (base) {
     var meta = await (await fetch(base + ".json")).json();
     var buf = await (await fetch(base + ".bin")).arrayBuffer();

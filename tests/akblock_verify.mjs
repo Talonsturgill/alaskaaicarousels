@@ -45,4 +45,15 @@ ok(Math.abs(seaY - (0.050 + 0.002)) < 1e-6, 'sea mesh at Y(seaLevel) ' + seaY.to
 const topY = sb.top.geometry.getAttribute('position'); let maxSea = -1e9;
 for (let k = 0; k < topY.count; k++) if (topY.getX(k) < 0.3) maxSea = Math.max(maxSea, topY.getY(k));
 ok(maxSea < seaY, 'sea-classified terrain sits under the sea surface (' + maxSea.toFixed(4) + ' < ' + seaY.toFixed(4) + ')');
+/* Codex round 4: lakes[li] stays aligned with o.lakes[li] when a lake has no cells here */
+const la = B.build(dem, Object.assign({ bearing: 90 }, o, { lakes: [
+  { level: 900, tol: 1, bbox: [0, 0, 1, 1] }, { level: 300, tol: 1, bbox: [0, 0, 1, 1] }] }));
+ok(la.lakes.length === 2 && la.lakes[0] === null && la.lake === null && la.lakes[1] &&
+   Math.abs(la.lakes[1].geometry.getAttribute('position').getY(0) - 0.302) < 1e-3,
+   'an empty lake keeps its slot, so lakes[1] is still the 300 m lake');
+ok(!la.group.children.includes(null), 'no null mesh reaches the group');
+/* AKBLOCK.loadDEM refuses a binary whose length disagrees with the meta, as AKS.loadDEM does */
+globalThis.fetch = async (u) => ({ json: async () => meta, arrayBuffer: async () => new Int16Array(cols * rows - 7).buffer });
+let lthrew = false; try { await B.loadDEM('x'); } catch (e) { lthrew = /AK CONTRACT/.test(e.message); }
+ok(lthrew, 'loadDEM refuses a truncated binary');
 process.exit(fails ? 1 : 0);
