@@ -225,6 +225,10 @@ through the REAL render.py and qa.py:
  119 GREEN  a 1 x 1350 canvas shown as a 100 px strip: counted
  120 GREEN  fixture 118 with the squares one pixel apart: joined, counted
  121 RED    fixture 73's canvas in a contain: paint clip with the 50 px margin
+ 122 GREEN  the RED layer covered by an SVG <image> (three-argument drawImage),
+            then the panel: silent
+ 123 GREEN  a cropped canvas whose hard-edged square is cleared while its
+            feathered glow remains: still counted
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1434,6 +1438,42 @@ RED_PAINT_CLIP_MARGIN = RED_CLIP_MARGIN.replace(
 // (Codex, PR #403)
 """
 
+GREEN_SVG_IMAGE_COVER = RED + """
+// an opaque full-frame SVG <image> drawn source-over with the three-argument
+// drawImage (its width is an SVGAnimatedLength, not a number) covers the
+// seam; then the panel makes an unrelated step on the line (Codex, PR #403)
+const NS = 'http://www.w3.org/2000/svg';
+const hold = document.createElementNS(NS, 'svg');
+hold.setAttribute('width', '0'); hold.setAttribute('height', '0'); hold.style.position = 'absolute';
+const im = document.createElementNS(NS, 'image');
+im.setAttribute('width', '1080'); im.setAttribute('height', '1350');
+hold.appendChild(im); document.body.appendChild(hold);
+Object.defineProperty(window, 'renderReady', { writable: false, value: new Promise((ok) => {
+  im.addEventListener('load', () => {
+    cx.drawImage(im, 0, 0);
+    cx.globalCompositeOperation = 'source-over'; cx.fillStyle = '#6A5A48'; cx.fillRect(492, 0, 108, 1350);
+    ok(true);
+  });
+  im.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350"><defs>' +
+    '<linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1422"/>' +
+    '<stop offset="1" stop-color="#1A2436"/></linearGradient></defs>' +
+    '<rect width="1080" height="1350" fill="url(#g)"/></svg>'));
+}) });
+"""
+
+GREEN_SEAMLESS_SURVIVES = GREEN_OVERFLOW_CROP.replace(
+    "gn = glow(0, 0, 1080, 1350, false)", "gn = glow(0, 0, 1080, 1350, true)") + """
+// the cropped canvas carries a feathered glow (no seam of its own) and, from
+// another draw, a hard-edged square; clearing the square erases every
+// record, but the feathered light the crop cuts at x 492 remains, so the
+// canvas is still counted (Codex, PR #403)
+const sq = document.createElement('canvas'); sq.width = 40; sq.height = 40;
+sq.getContext('2d').fillStyle = 'rgb(160,130,90)'; sq.getContext('2d').fillRect(0, 0, 40, 40);
+n2.drawImage(sq, 800, 200);
+n2.clearRect(790, 190, 60, 60);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1560,6 +1600,8 @@ CASES = [
     ("slide-119", GREEN_THIN_CANVAS, [], 0, "can't place"),
     ("slide-120", GREEN_GAPPED_UNPLACEABLE, [], 0, "can't place"),
     ("slide-121", RED_PAINT_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
+    ("slide-122", GREEN_SVG_IMAGE_COVER, [], 0, None),
+    ("slide-123", GREEN_SEAMLESS_SURVIVES, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

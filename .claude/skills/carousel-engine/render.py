@@ -704,8 +704,10 @@ LIT_EDGE_HOOK_JS = """
       e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
       if (cut) e.over++;
       /* every measured seam is gone: the draws that made them no longer count
-         toward a crop or placement notice (Codex, PR #403) */
-      if (!e.raw.length && !e.shorts.length && !cut) e.lit = 0;
+         toward a crop or placement notice; draws that recorded no seam at
+         all (feathered light) still do, since their light may remain for a
+         crop to cut (Codex, PR #403) */
+      if (!e.raw.length && !e.shorts.length && !cut) e.lit = e.seamless || 0;
     };
     /* a user-space rect in bitmap px, through the current transform; a bent
        transform gives the whole canvas */
@@ -935,8 +937,12 @@ LIT_EDGE_HOOK_JS = """
         }
       };
       let nRaw = 0, rawOver = false;
+      const n0 = e.raw.length + e.shorts.length;
       scan('v'); scan('h');
       if (rawOver) e.over++;
+      /* a lit draw that recorded no seam: kept apart, so erasing another
+         draw's seams can't forget its light (Codex, PR #403) */
+      else if (e.raw.length + e.shorts.length === n0) e.seamless = (e.seamless || 0) + 1;
     };
     /* the COMPOSED tree, the one that renders: a slotted element's parent is
        its slot, and a shadow root's parent is its host (Codex, PR #403) */
@@ -1346,8 +1352,11 @@ LIT_EDGE_HOOK_JS = """
     const COVERING = { 'source-over': 1, 'source-atop': 1 };
     const destRect = (ctx, a) => {
       const n = a.length, img = a[0];
-      const iw = img && (img.naturalWidth || img.videoWidth || img.displayWidth || img.width) || 0;
-      const ih = img && (img.naturalHeight || img.videoHeight || img.displayHeight || img.height) || 0;
+      /* an SVG <image>'s width and height are SVGAnimatedLength, not numbers
+         (Codex, PR #403) */
+      const dim = (v) => typeof v === 'number' ? v : (v && v.baseVal ? v.baseVal.value : 0);
+      const iw = img && (img.naturalWidth || img.videoWidth || img.displayWidth || dim(img.width)) || 0;
+      const ih = img && (img.naturalHeight || img.videoHeight || img.displayHeight || dim(img.height)) || 0;
       const dx = n >= 9 ? +a[5] : +a[1], dy = n >= 9 ? +a[6] : +a[2];
       const dw = n >= 9 ? +a[7] : n >= 5 ? +a[3] : iw, dh = n >= 9 ? +a[8] : n >= 5 ? +a[4] : ih;
       return devRect(ctx, dx, dy, dw, dh);
