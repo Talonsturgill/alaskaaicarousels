@@ -15,7 +15,7 @@
   "source_status": {
     "state": "current",
     "last_verified_date": "2026-09-26",
-    "last_collection_utc": "2026-09-26T17:24:26Z",
+    "last_collection_utc": "2026-09-27T09:19:27Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -8656,91 +8656,91 @@
     },
     {
       "date": "2026-09-26",
-      "collected_utc": "2026-09-26T17:24:26Z",
+      "collected_utc": "2026-09-27T09:19:27Z",
       "collector_version": "1.2",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-09-26T04:51:00",
-        "source_timestamp_utc": "2026-09-26T12:51:00Z",
-        "inventory_mcf": 7740514,
-        "inventory_delta_mcf": 11767,
+        "source_timestamp": "2026-09-26T16:00:00",
+        "source_timestamp_utc": "2026-09-27T00:00:00Z",
+        "inventory_mcf": 7756341,
+        "inventory_delta_mcf": 15827,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 59.5,
+        "inventory_pct_of_design": 59.7,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 164500,
+        "withdrawal_available_mcfd": 165000,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 206320,
         "injection_operating_mcfd": 140660,
-        "injection_available_mcfd": 127392,
-        "injection_in_progress_mcfd": 13268,
+        "injection_available_mcfd": 110566,
+        "injection_in_progress_mcfd": 30094,
         "injection_restriction_mcfd": 65660,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 4.6
+        "source_age_hours": 9.3
       },
       "forecast": [
         {
           "date": "2026-09-27",
           "hours": 24,
-          "mean_temp_f": 47.8,
-          "min_temp_f": 44,
-          "hdd65": 17.2,
-          "modeled_demand_mmcfd": 140
+          "mean_temp_f": 47.2,
+          "min_temp_f": 43,
+          "hdd65": 17.8,
+          "modeled_demand_mmcfd": 142
         },
         {
           "date": "2026-09-28",
           "hours": 24,
-          "mean_temp_f": 44.9,
-          "min_temp_f": 40,
-          "hdd65": 20.1,
-          "modeled_demand_mmcfd": 150
+          "mean_temp_f": 45.8,
+          "min_temp_f": 42,
+          "hdd65": 19.2,
+          "modeled_demand_mmcfd": 147
         },
         {
           "date": "2026-09-29",
           "hours": 24,
-          "mean_temp_f": 44.4,
-          "min_temp_f": 39,
-          "hdd65": 20.6,
-          "modeled_demand_mmcfd": 152
+          "mean_temp_f": 43.7,
+          "min_temp_f": 37,
+          "hdd65": 21.3,
+          "modeled_demand_mmcfd": 154
         },
         {
           "date": "2026-09-30",
           "hours": 24,
-          "mean_temp_f": 42.2,
-          "min_temp_f": 36,
-          "hdd65": 22.8,
-          "modeled_demand_mmcfd": 159
+          "mean_temp_f": 41.9,
+          "min_temp_f": 37,
+          "hdd65": 23.1,
+          "modeled_demand_mmcfd": 160
         },
         {
           "date": "2026-10-01",
           "hours": 24,
-          "mean_temp_f": 41.3,
-          "min_temp_f": 35,
-          "hdd65": 23.7,
-          "modeled_demand_mmcfd": 162
+          "mean_temp_f": 40.7,
+          "min_temp_f": 34,
+          "hdd65": 24.3,
+          "modeled_demand_mmcfd": 164
         },
         {
           "date": "2026-10-02",
-          "hours": 21,
-          "mean_temp_f": 41.4,
-          "min_temp_f": 35,
-          "hdd65": 23.6,
-          "modeled_demand_mmcfd": 162
+          "hours": 24,
+          "mean_temp_f": 40.8,
+          "min_temp_f": 34,
+          "hdd65": 24.2,
+          "modeled_demand_mmcfd": 164
         }
       ],
-      "forecast_source_updated": "2026-09-26T14:48:04+00:00",
+      "forecast_source_updated": "2026-09-27T04:36:12+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-01",
-        "peak_forecast_hdd": 23.7,
-        "peak_modeled_demand_mmcfd": 162,
+        "peak_forecast_hdd": 24.3,
+        "peak_modeled_demand_mmcfd": 164,
         "forecast_window_demand_bcf": 0.93,
-        "storage_withdrawal_mmcfd": -11.8,
+        "storage_withdrawal_mmcfd": -15.8,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 47.8,
+        "days_cover_at_peak": 47.3,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -8786,7 +8786,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-26T17:24:26Z",
+          "fetched_utc": "2026-09-27T09:19:27Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -8795,7 +8795,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-26T17:24:27Z",
+          "fetched_utc": "2026-09-27T09:19:27Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -8804,14 +8804,15 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-26T17:24:27Z",
+          "fetched_utc": "2026-09-27T09:19:28Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
       "flags": [
         "injection_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-09-26T04:51:00"
     }
   ]
 }
