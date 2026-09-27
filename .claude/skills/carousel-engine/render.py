@@ -692,6 +692,9 @@ LIT_EDGE_HOOK_JS = """
       };
       e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
       if (cut) e.over++;
+      /* every measured seam is gone: the draws that made them no longer count
+         toward a crop or placement notice (Codex, PR #403) */
+      if (!e.raw.length && !e.shorts.length && !cut) e.lit = 0;
     };
     /* a user-space rect in bitmap px, through the current transform; a bent
        transform gives the whole canvas */
@@ -1320,6 +1323,20 @@ LIT_EDGE_HOOK_JS = """
       if (b) { try { after(this, b); } catch (err) { try { const z = entry(this.canvas); if (z) z.failed++; else lost++; } catch (e2) {} } }
       return res;
     };
+    /* a fill, stroke or text painted with an op that can take light away
+       rechecks the canvas like an erasing drawImage (Codex, PR #403) */
+    for (const name of ['fillRect', 'strokeRect', 'fill', 'stroke', 'fillText', 'strokeText']) {
+      const orig = proto[name];
+      if (typeof orig !== 'function') continue;
+      proto[name] = function () {
+        const res = orig.apply(this, arguments);
+        try {
+          const cv = this.canvas;
+          if (cv && ERASING[this.globalCompositeOperation]) recheck(this, cv, 0, 0, cv.width, cv.height);
+        } catch (err) {}
+        return res;
+      };
+    }
   } catch (e) {}
 })();
 """

@@ -1301,6 +1301,20 @@ const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 """
 
+GREEN_CROP_ERASED = GREEN_OVERFLOW_CROP + """
+// the cropped canvas is then cleared entirely: its measured light is gone, so
+// the crop has nothing to cut and nothing is said (Codex, PR #403)
+n2.clearRect(0, 0, 1080, 1350);
+"""
+
+GREEN_COPY_FILL = RED + """
+// the whole canvas is repainted by a fillRect in 'copy' (a gradient ground):
+// the light and its seam are gone before the panel (Codex, PR #403)
+const cg = cx.createLinearGradient(0, 0, 0, 1350);
+cg.addColorStop(0, '#0B1422'); cg.addColorStop(1, '#1A2436');
+cx.save(); cx.globalCompositeOperation = 'copy'; cx.fillStyle = cg; cx.fillRect(0, 0, 1080, 1350); cx.restore();
+""" + PANEL_AT_492
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1417,6 +1431,8 @@ CASES = [
     ("slide-109", GREEN_SEAM_ABOVE_FRAME, [], 0, None),
     ("slide-110", SVG_SCALED_CLIP, [("left", 100)], None, None),
     ("slide-111", GREEN_MIRRORED_G, [], 0, "can't place"),
+    ("slide-112", GREEN_CROP_ERASED, [], 0, None),
+    ("slide-113", GREEN_COPY_FILL, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
