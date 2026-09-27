@@ -518,6 +518,13 @@ scripts/caption_check.py, case-insensitively, because the surface that prompted 
 was mono caps on a cover.
 Captions run under 6.2 commas per 100 words, ten percent below this deck's own shipped mean.
 Both are enforced as hard fails in scripts/caption_check.py and spelled out in config/brand.yaml.
+Never "gap", "matters" or "pattern", with "gaps" and "patterns" (owner, 2026-09-27: "on
+both automations ban the words"). The list is `banned_words` in config/brand.yaml and
+scripts/word_ban.py reads it as whole words, so "Singapore" and "no matter" are fine.
+caption_check.py fails the caption and every reader-facing string in copy.json, first
+comment and slides included, and gate_status's `word_ban` row fails the run and any docket
+item or history note it writes after September 27th. A straight-quoted verbatim passage and
+a URL keep their words, and nothing published before the rule is failed or rewritten.
 Write "can't", never "cannot" (owner, 2026-07-30). It was enforced on captions and
 slides from the day it was made and nowhere else, so ten sentences accumulated across the
 site before the owner found one. site_build.contraction_gate now fails the build on
