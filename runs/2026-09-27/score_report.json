@@ -1,0 +1,102 @@
+{
+  "run_date": "2026-09-27",
+  "round": 2,
+  "weighted_total": 8.47,
+  "threshold": 8.0,
+  "passes": true,
+  "ship": true,
+  "hard_fails": [],
+  "artwork_score": 7,
+  "craft_cycle": {
+    "frames": [
+      7,
+      6,
+      3,
+      2,
+      8,
+      9
+    ],
+    "art_before": 7,
+    "art_after": 7
+  },
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Undo 02's regression by sampling the DEM with bilinear interpolation and drawing Kachemak Bay as a smoothed 0 m contour polygon, then make 06's already-coded underlay and inlet ruling bright enough to survive the grade.",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 9,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(8x0.14)+(7x0.14)+(7x0.16)+(8x0.14)+(9x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 8.47",
+  "artwork_weakest_frames": [
+    {
+      "slide": 2,
+      "fix": "regression from the craft cycle; restored to the pre-cycle relief after this score"
+    },
+    {
+      "slide": 6,
+      "fix": "brighten the underlay and inlet ruling"
+    },
+    {
+      "slide": 9,
+      "fix": "lake east shore still clipped straight; specks"
+    },
+    {
+      "slide": 8,
+      "fix": "phantom stipple under visibility"
+    },
+    {
+      "slide": 4,
+      "fix": "prism faces want grain and base AO"
+    }
+  ],
+  "revision_rounds": 3,
+  "post_score_changes": "slide 02 restored to its pre-cycle relief (the regression the scorer named); nothing else changed after the final score",
+  "editor_notes_for_email": "Round 3 (the craft-floor cycle) scores 8.47 against the round-3 threshold of 8.0, zero hard fails. The craft cycle ran; art stayed at 7 (07, 06, 03 and 08 improved; 02 regressed and was restored to its pre-cycle version after the score; the 09 shoreline fix did not land). Honesty notes: the tunnel alignment is schematic and the diversion zone approximate (USGS gage 15238950 and AEA's five miles southwest); the glacier's ice-white is a rendering convention; the blocks on 01 and 03 are at VERTICAL x2 and the 16-foot pool on 03 is not to scale; the depth bands on 03's section are a drafting convention, not measured geology; the 19 MW is our derived average; the deck prints FERC's approximately 38 percent, not AEA's 40. The 2030 and 2031-or-2032 dates rest on one KTUU report. The Air Force facts on 07 are spring background, and No.68 ran the same parcels two days ago; No.25 covered the same FERC notice 54 days ago. 07's relief uses a new statewide DEM asset (assets/geo/ak-state-dem). The BRADLEY LAKE label on 02 dips to about 2.6:1 at the shoreline. The document title uses a period instead of a colon. The caption is exactly 900 characters."
+}

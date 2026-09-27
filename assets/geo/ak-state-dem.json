@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-state-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 6, 72 tiles, fetched 2026-09-27, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 512,
+ "rows": 450,
+ "west": -170.0,
+ "east": -129.12,
+ "north": 72.0,
+ "south": 54.04,
+ "dlon": 0.08,
+ "dlat": 0.04,
+ "z": 6,
+ "min_m": -6171,
+ "max_m": 5563
+}

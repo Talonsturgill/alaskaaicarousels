@@ -1,0 +1,78 @@
+{
+  "checked_utc": "2026-09-27T08:15:56Z",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "name": "source reachable",
+      "status": "FAIL",
+      "detail": "URLError: <urlopen error [Errno 104] Connection reset by peer>",
+      "remedy": "Retry CINGSA; if its firewall refuses this network, read the production collector's job log and archived snapshot instead. Source checks were NOT run. Do not change the collector's User-Agent."
+    },
+    {
+      "name": "live dataset",
+      "status": "PASS",
+      "detail": "53 daily records",
+      "remedy": ""
+    },
+    {
+      "name": "recent calendar days",
+      "status": "PASS",
+      "detail": "last three days accounted for",
+      "remedy": ""
+    },
+    {
+      "name": "unverified storage stays empty",
+      "status": "PASS",
+      "detail": "no carried-forward measurements",
+      "remedy": ""
+    },
+    {
+      "name": "live headline agrees",
+      "status": "PASS",
+      "detail": "last verified 2026-09-26, 59.5 percent",
+      "remedy": ""
+    },
+    {
+      "name": "history chart present",
+      "status": "PASS",
+      "detail": "chart present",
+      "remedy": ""
+    },
+    {
+      "name": "weather forecast current",
+      "status": "PASS",
+      "detail": "forecast age 17.5 hours",
+      "remedy": ""
+    },
+    {
+      "name": "live modeled peak agrees",
+      "status": "PASS",
+      "detail": "page 162, computed 162",
+      "remedy": ""
+    },
+    {
+      "name": "observations and true-ups",
+      "status": "PASS",
+      "detail": "available observations reconciled",
+      "remedy": ""
+    },
+    {
+      "name": "cron is running",
+      "status": "PASS",
+      "detail": "last run 10.3 hours ago",
+      "remedy": ""
+    },
+    {
+      "name": "cron completed successfully",
+      "status": "PASS",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36274788282",
+      "remedy": ""
+    }
+  ],
+  "last_verified_date": "2026-09-26",
+  "maintenance_window": null,
+  "unreachable": [
+    "source"
+  ],
+  "site_url": "https://alaskaaihq.com"
+}

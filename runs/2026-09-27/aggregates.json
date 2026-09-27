@@ -1,0 +1,15 @@
+{"run_date": "2026-09-27", "aggregates": [
+  {"kind": "from_claim", "slide": 3, "text": "4.6 miles of tunnel to carry glacier water.", "fragment": "6 miles", "member": "C44"},
+  {"kind": "from_claim", "slide": 3, "text": "AEA estimates the cost at about $400 million and expects construction to start in 2027 if federal approvals come through. FERC has the application under project P-8221-124.", "fragment": "400 million and expects", "member": "C32"},
+  {"kind": "from_claim", "slide": 3, "text": "AEA estimates the cost at about $400 million and expects construction to start in 2027 if federal approvals come through. FERC has the application under project P-8221-124.", "fragment": "2027 if federal approvals", "member": "C46"},
+  {"kind": "from_claim", "slide": 4, "text": "Enough for up to 30,000 homes, per AEA", "fragment": "30,000 homes", "member": "C43"},
+  {"kind": "from_claim", "slide": 4, "text": "30,000 homes", "fragment": "30,000 homes", "member": "C43"},
+  {"kind": "from_claim", "slide": 6, "text": "Natural gas fuels about 80 percent of Southcentral's power generation, per KTUU. Fairbanks is burning 250,000 gallons of diesel a day, Thayer said. \"They never did that last year.\"", "fragment": "250,000 gallons", "member": "C08"},
+  {"kind": "from_claim", "slide": 7, "text": "The Air Force offered about 4,700 acres in twelve parcels at JBER, Clear and Eielson for AI data centers. Its solicitation said the JBER sites have insufficient power and need a new Chugach connection. Chugach's Hilcorp gas contract ends in 2028.", "fragment": "4,700 acres", "member": "C53"},
+  {"kind": "from_claim", "slide": 7, "text": "The Air Force offered about 4,700 acres in twelve parcels at JBER, Clear and Eielson for AI data centers. Its solicitation said the JBER sites have insufficient power and need a new Chugach connection. Chugach's Hilcorp gas contract ends in 2028.", "fragment": "twelve parcels", "member": "C54"},
+  {"kind": "from_claim", "slide": 7, "text": "TWELVE PARCELS, ABOUT 4,700 ACRES", "fragment": "TWELVE PARCELS", "member": "C54"},
+  {"kind": "from_claim", "slide": 7, "text": "TWELVE PARCELS, ABOUT 4,700 ACRES", "fragment": "4,700 ACRES", "member": "C53"},
+  {"kind": "subset", "slide": 8, "text": "AEA has hosted three of five FERC commissioners", "fragment": "three of five", "member": "C01", "basis": "FERC has five commissioners and AEA has hosted three of them at Bradley Lake, per KTUU (C01)"},
+  {"kind": "design", "slide": 4, "text": "About 19 MW averaged over the year, derived", "note": "DERIVED, not quoted: 167,000 MWh a year (C41) over 8,760 hours = 19.06 MW, printed as about 19 MW with the word derived on the slide"},
+  {"kind": "design", "slide": 4, "text": "0.68 PX PER 1,000 MWH / 2.4 PX PER MW", "note": "prism scales, properties of the drawing (not printed)"}
+]}

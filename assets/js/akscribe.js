@@ -31,7 +31,7 @@
 
   var ALLOWED_RELIEF = ["x", "y", "w", "h", "cell", "passes", "seed", "keyAz",
     "keyEl", "color", "alpha", "minWidth", "maxWidth", "lenScale", "gamma",
-    "hRef", "slopeRef", "relief", "mask", "probes", "jitter", "bend", "sunJitter"];
+    "hRef", "slopeRef", "relief", "mask", "probes", "jitter", "bend", "sunJitter", "sampler"];
 
   function contract(name, opts, allowed) {
     Object.keys(opts || {}).forEach(function (k) {
@@ -42,8 +42,48 @@
     });
   }
 
+  /* C1 sampling for SHADING (2026-09-27, run No.70). Bilinear heights are
+   * continuous but their GRADIENT is constant along each cell edge and jumps
+   * across it, so a per-pixel hillshade over a DEM magnified past about 3
+   * device px per cell prints the cell lattice: No.70's slide 02 (8.1 device
+   * px per cell) regressed to a visible grid the moment its presmooth was
+   * dropped. A monotone (Steffen) bicubic is interpolating (it passes through
+   * every DEM value), never leaves a cell's posts (Catmull-Rom overshot 46 m
+   * at a cliff here) and C1 (the gradient is continuous), which is exactly
+   * what a shading pass differentiates. Use
+   * sampleCubic wherever a slope, normal or hillshade is taken from sub-cell
+   * samples; keep sample() for masks and thresholds, where it is cheaper. */
+  /* Steffen's monotone cubic on unit spacing (Steffen 1990, A&A 239, 443) */
+  function stTan(a, b, c) {
+    var s0 = b - a, s1 = c - b;
+    return (Math.sign(s0) + Math.sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), Math.abs(s0 + s1) / 4);
+  }
+  function steffen(y0, y1, y2, y3, t) {
+    var d1 = stTan(y0, y1, y2), d2 = stTan(y1, y2, y3), t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * y1 + (t3 - 2 * t2 + t) * d1 + (-2 * t3 + 3 * t2) * y2 + (t3 - t2) * d2;
+  }
+  function cubicSampler(a, m) {
+    var C = m.cols, R = m.rows;
+    return function (lon, lat) {
+      var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
+      if (!(fi >= 0 && fj >= 0 && fi <= C - 1 && fj <= R - 1)) return NaN;
+      var i = Math.min(C - 2, Math.floor(fi)), j = Math.min(R - 2, Math.floor(fj));
+      /* separable monotone cubic, see AKBLOCK.sampler: never leaves the
+       * cell's posts, C1, and continuous across cell edges */
+      var fx = fi - i, fy = fj - j, rv = [0, 0, 0, 0];
+      var c0 = Math.max(0, i - 1), c3 = Math.min(C - 1, i + 2);
+      for (var b = 0; b < 4; b++) {
+        var jj = Math.max(0, Math.min(R - 1, j - 1 + b)) * C;
+        rv[b] = steffen(a[jj + c0], a[jj + i], a[jj + i + 1], a[jj + c3], fx);
+      }
+      return steffen(rv[0], rv[1], rv[2], rv[3], fy);
+    };
+  }
+  AKS.cubicSampler = cubicSampler;
+
   /* A committed DEM: <base>.json (meta) + <base>.bin (int16 LE, row-major,
-   * north up, plate carree). sample(lon, lat) is bilinear, NaN outside. */
+   * north up, plate carree). sample(lon, lat) is bilinear, NaN outside;
+   * sampleCubic(lon, lat) is the monotone bicubic, for anything that is shaded. */
   AKS.loadDEM = async function (base) {
     var meta = await (await fetch(base + ".json")).json();
     var buf = await (await fetch(base + ".bin")).arrayBuffer();
@@ -61,7 +101,7 @@
       return a[k] * (1 - u) * (1 - v) + a[k + 1] * u * (1 - v) +
              a[k + C] * (1 - u) * v + a[k + C + 1] * u * v;
     }
-    return { meta: meta, data: a, sample: sample };
+    return { meta: meta, data: a, sample: sample, sampleCubic: cubicSampler(a, meta) };
   };
 
   /* A smoothed copy of a DEM (separable box blur, `passes` times, radius r
@@ -91,7 +131,7 @@
       var u = fi - i0, v = fj - j0, q = j0 * C + i0;
       return src[q] * (1 - u) * (1 - v) + src[q + 1] * u * (1 - v) + src[q + C] * (1 - u) * v + src[q + C + 1] * u * v;
     }
-    return { meta: m, data: src, sample: sample };
+    return { meta: m, data: src, sample: sample, sampleCubic: cubicSampler(src, m) };
   };
 
   /* Transverse Mercator on its own central meridian, north up: the projection
@@ -142,14 +182,24 @@
     var X = o.x || 0, Y = o.y || 0, W = o.w, H = o.h;
     var hRef = o.hRef || 2400;
     var mask = o.mask || null;
+    /* o.sampler 'cubic' takes heights from sampleCubic, whose gradient is
+     * continuous, for a relief drawn over a DEM magnified past a few device px
+     * per cell. Opt in, not default: every shipped deck was tuned on bilinear. */
+    if (o.sampler !== undefined && o.sampler !== "bilinear" && o.sampler !== "cubic") {
+      throw new Error("AKS.relief: sampler must be 'bilinear' or 'cubic', got " + o.sampler);
+    }
+    var pick = o.sampler === "cubic" && dem.sampleCubic ? dem.sampleCubic : dem.sample;
+    if (o.sampler === "cubic" && !dem.sampleCubic) {
+      throw new Error("AKS.relief: sampler 'cubic' needs a DEM from AKS.loadDEM");
+    }
     function height(u, v) {
       var p = proj.invert([X + u * W, Y + v * H]);
       if (!p) return 0;
-      var e = dem.sample(p[0], p[1]);
+      var e = pick(p[0], p[1]);
       if (!isFinite(e) && dem.meta) {
         // off the DEM: take the nearest edge sample, so a crop edge reads flat and not as a drop to sea level
         var m = dem.meta, eps = 1e-9;
-        e = dem.sample(Math.min(m.east - eps, Math.max(m.west + eps, p[0])), Math.min(m.north - eps, Math.max(m.south + eps, p[1])));
+        e = pick(Math.min(m.east - eps, Math.max(m.west + eps, p[0])), Math.min(m.north - eps, Math.max(m.south + eps, p[1])));
       }
       if (!(e > 0)) return 0;
       var t = Math.min(1, e / hRef);

@@ -6070,6 +6070,39 @@ def _prose_lines(strings):
     return out
 
 
+def _desc_clip(text, limit=155, fallback=None):
+    """Shorten a page description so it ends on a complete thought.
+
+    Added 2026-09-27 on a review finding. The deck page took a bare
+    `summary[:155]` for its meta and Open Graph descriptions, and No.70's
+    one-sentence summary published as "...not more megawatts, ending on a
+    1991", which is what a search result and a LinkedIn card then show. Take
+    `_alt_clip`'s sentence-or-word cut; when that is not a whole sentence, back
+    up to the last clause boundary (a comma) inside the limit, provided it keeps
+    most of the text, and close it with a period. A description is prose about
+    the page, so it ends like prose rather than mid-clause.
+
+    When neither cut is a complete thought (Codex, the same review: 2026-08-26
+    ended "...that name none" and 2026-07-22 lost its closing clause), use
+    `fallback`, the deck's hook, if IT reads complete; the word cut is the last
+    resort, not the default.
+    """
+    t = " ".join(str(text or "").split())
+    if len(t) <= limit:
+        return t
+    cut = _alt_clip(t, limit)
+    if cut.endswith((".", "?", "!")):
+        return cut
+    k = cut.rfind(", ")
+    if k >= int(limit * 0.6):
+        return cut[:k].rstrip(" ,;") + "."
+    if fallback:
+        alt = _desc_clip(fallback, limit)
+        if alt.endswith((".", "?", "!")):
+            return alt
+    return cut
+
+
 def _alt_clip(text, limit=160):
     """Shorten alt text without cutting a word in half.
 
@@ -8275,7 +8308,7 @@ def deck_page(today, site_url, r, beats=()):
     if cites:
         ld["citation"] = cites
         ld["isBasedOn"] = [c["url"] for c in cites]
-    return page(f"{r['title']} - Alaska AI", (r.get("summary") or r["hook"])[:155],
+    return page(f"{r['title']} - Alaska AI", _desc_clip(r.get("summary") or r["hook"], 155, fallback=r.get("hook")),
                 body, "../../", "articles", today, site_url, f"archive/{r['date']}/",
                 og_image=f"{RAW}/runs/{r['date']}/og.jpg", og_size=(1080, 1350), ld=ld,
                 crumbs=[("Alaska AI", ""), ("Articles", "archive/"),

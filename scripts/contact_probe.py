@@ -32,6 +32,11 @@ and the profile it came from.
     python3 scripts/contact_probe.py --render-dir out/2026-08-26/render \\
         --slide 4 --base 872,1044
 
+    # a LONG foot (a block's cut wall, a slab edge) casts toward the viewer:
+    # profile DOWN from the base line instead of along it, or let it pick
+    python3 scripts/contact_probe.py --render-dir out/2026-09-27/render \\
+        --slide 3 --base 453,1012 --axis v
+
     # measure every declaration a built deck already carries
     python3 scripts/contact_probe.py --render-dir out/2026-08-26/render \\
         --slides-dir out/2026-08-26/slides --verify
@@ -66,6 +71,14 @@ SPAN = 96
 # A contact shadow is attached. Past this many design px between the object
 # base and the darkest point of its cast, the cast reads as a separate object.
 DETACH_PX = 24
+# The vertical read (2026-09-27, run No.70). For an object whose foot is a LONG
+# line across the frame -- a DEM block's cut wall standing on a table, a slab
+# edge -- the horizontal search reads along the object's own base and finds no
+# pool, because the cast and the lit ground are stacked in FRONT of the foot,
+# down the frame. No.70's slides 01 and 03 read dL 1.6 and 3.7 ("floats") that
+# way; profiled downward they read 17.9 and 16.3, which qa.py confirmed. The
+# cast must start within DETACH_PX below the base; lit ground within VSPAN.
+VSPAN = 64
 
 
 def load_qa():
@@ -114,11 +127,92 @@ class Frame:
         if x1 <= x0:
             return np.zeros(0), np.zeros(0)
         cols = np.median(self.L[y0:y1, x0:x1], axis=0)
-        if cols.size >= 3:  # a 3px mean, so one stray feed pixel is not a trough
-            k = np.ones(3) / 3.0
-            cols = np.convolve(cols, k, mode="same")
+        cols = smooth3(cols)  # a 3px mean, so one stray feed pixel is not a trough
         xs = (np.arange(x0, x1) + 0.5) / self.s
         return xs, cols
+
+
+def smooth3(a):
+    """A 3-sample mean with EDGE padding. np.convolve(mode="same") pads with
+    zeros, which pulls the first and last samples a third of the way to L*=0:
+    on a vertical read the first row IS the base line, so that fake dark end
+    beat the real cast in the argmin and put the shadow rect on the foot."""
+    if a.size < 3:
+        return a
+    return np.convolve(np.pad(a, 1, mode="edge"), np.ones(3) / 3.0, mode="valid")
+
+
+def vprofile(fr, cx, w, y0, span):
+    """Median L* per ROW across a band w design px wide centred on cx, from y0
+    down span design px. Returns (ys, ls), ys in design px row centres."""
+    x0 = max(0, int((cx - w / 2.0) * fr.s))
+    x1 = min(fr.L.shape[1], max(x0 + 1, int((cx + w / 2.0) * fr.s)))
+    r0 = max(0, int(y0 * fr.s))
+    r1 = min(fr.L.shape[0], int((y0 + span) * fr.s))
+    if r1 <= r0:
+        return np.zeros(0), np.zeros(0)
+    rows = smooth3(np.median(fr.L[r0:r1, x0:x1], axis=1))
+    return (np.arange(r0, r1) + 0.5) / fr.s, rows
+
+
+def propose_v(fr, base_x, base_y, span=VSPAN, rect=(RECT_W, RECT_H),
+              cast_span=DETACH_PX):
+    """The vertical read: the cast just below a long foot, lit ground below it."""
+    w, h = rect
+    ys, ls = vprofile(fr, base_x, w, base_y, span + h)
+    if ys.size < 8:
+        return {"error": "the base line falls outside the frame"}
+    near = np.where(ys - base_y <= max(cast_span, h))[0]
+    if not near.size:
+        return {"error": "no ground within the cast window"}
+    i_dark = int(near[int(np.argmin(ls[near]))])
+    idx = np.where(ys - ys[i_dark] >= h)[0]
+    if not idx.size:
+        return {"error": "no ground clear of the cast within the span"}
+    i_lit = int(idx[int(np.argmax(ls[idx]))])
+    sy, gy = float(ys[i_dark]), float(ys[i_lit])
+    x = int(round(base_x - w / 2.0))
+    # the rect never climbs above the foot onto the object's own face
+    shadow = [x, int(round(max(float(base_y), sy - h / 2.0))), w, h]
+    ground = [x, int(round(gy - h / 2.0)), w, h]
+    ls_med, ns = fr.median_L(shadow)
+    lg_med, ng = fr.median_L(ground)
+    out = {
+        "axis": "v", "shadow": [shadow], "ground": [ground],
+        "shadow_L": None if ls_med is None else round(ls_med, 1),
+        "ground_L": None if lg_med is None else round(lg_med, 1),
+        "px": [ns, ng], "trough_x": round(float(base_x), 1),
+        "trough_y": round(sy, 1), "peak_y": round(gy, 1),
+        "detach_px": round(max(0.0, sy - base_y), 1),
+    }
+    if ls_med is not None and lg_med is not None:
+        out["dL"] = round(lg_med - ls_med, 1)
+    return out
+
+
+def best_axis(fr, base_x, base_y, axis="auto", span=None, rect=(RECT_W, RECT_H),
+              cast_span=None):
+    """'h', 'v', or 'auto': both reads, the higher dL wins, the other is kept.
+    span and cast_span left as None take each axis's own default (SPAN and
+    CAST_SPAN along the base, VSPAN and DETACH_PX down from it); a value the
+    caller passed is honoured on whichever axis reads."""
+    hk = {"span": SPAN if span is None else span,
+          "cast_span": CAST_SPAN if cast_span is None else cast_span}
+    vk = {"span": VSPAN if span is None else span,
+          "cast_span": DETACH_PX if cast_span is None else cast_span}
+    if axis == "h":
+        return propose(fr, base_x, base_y, rect=rect, **hk)
+    if axis == "v":
+        return propose_v(fr, base_x, base_y, rect=rect, **vk)
+    h = propose(fr, base_x, base_y, rect=rect, **hk)
+    v = propose_v(fr, base_x, base_y, rect=rect, **vk)
+    dh, dv = h.get("dL"), v.get("dL")
+    win, lose = (v, h) if dv is not None and (dh is None or dv > dh) else (h, v)
+    if "error" not in lose:
+        win = dict(win)
+        win["alternative"] = {"axis": lose.get("axis", "h"), "dL": lose.get("dL"),
+                              "shadow": lose["shadow"], "ground": lose["ground"]}
+    return win
 
 
 def propose(fr, base_x, base_y, span=SPAN, rect=(RECT_W, RECT_H),
@@ -146,7 +240,7 @@ def propose(fr, base_x, base_y, span=SPAN, rect=(RECT_W, RECT_H),
     ls_med, ns = fr.median_L(shadow)
     lg_med, ng = fr.median_L(ground)
     out = {
-        "shadow": [shadow], "ground": [ground],
+        "axis": "h", "shadow": [shadow], "ground": [ground],
         "shadow_L": None if ls_med is None else round(ls_med, 1),
         "ground_L": None if lg_med is None else round(lg_med, 1),
         "px": [ns, ng],
@@ -207,10 +301,16 @@ def main():
     ap.add_argument("--slides-dir", help="slide sources, for --verify")
     ap.add_argument("--slide", type=int, help="slide number, for --base")
     ap.add_argument("--base", help="cx,cy in DESIGN px: where the object meets the ground")
-    ap.add_argument("--span", type=int, default=SPAN,
-                    help="how far to look for the lit ground, design px")
-    ap.add_argument("--cast-span", type=int, default=CAST_SPAN,
-                    help="how far to look for the cast under the object, design px")
+    ap.add_argument("--span", type=int, default=None,
+                    help="how far to look for the lit ground, design px "
+                         "(default %d along the base, %d down from it)" % (SPAN, VSPAN))
+    ap.add_argument("--cast-span", type=int, default=None,
+                    help="how far to look for the cast under the object, design px "
+                         "(default %d along the base, %d down from it)" % (CAST_SPAN, DETACH_PX))
+    ap.add_argument("--axis", choices=("h", "v", "auto"), default="auto",
+                    help="--base only: h reads along the base line (a compact object), "
+                         "v profiles DOWN from it (a long foot), auto reads both and "
+                         "proposes the stronger (default)")
     ap.add_argument("--verify", action="store_true",
                     help="measure every declaration the built deck carries")
     ap.add_argument("--json", action="store_true")
@@ -240,8 +340,8 @@ def main():
             print("FAIL: --base needs --slide", file=sys.stderr)
             sys.exit(1)
         bx, by = (float(v) for v in args.base.split(","))
-        rec = propose(frame(args.slide), bx, by, args.span,
-                      cast_span=args.cast_span)
+        rec = best_axis(frame(args.slide), bx, by, args.axis, args.span,
+                        cast_span=args.cast_span)
         rec.update({"slide": args.slide, "base": [bx, by]})
         rec["notes"] = notes(rec)
         out["slides"].append(rec)
@@ -267,20 +367,35 @@ def main():
                        "px": [ns, ng]}
                 if ls_med is not None and lg_med is not None:
                     rec["dL"] = round(lg_med - ls_med, 1)
-                if rs[1] != rg[1]:
+                stacked = rs[1] != rg[1]
+                # ... and where the pair SHOULD sit, measured off this render.
+                # A stacked pair is also read vertically: for a long foot that
+                # is the right read, and the old advice to move it side by side
+                # sent the author to a pair that floats.
+                base_x = rs[0] + rs[2] / 2.0
+                best = best_axis(fr, base_x, rs[1], "auto" if stacked else "h",
+                                 args.span, (rs[2] or RECT_W, rs[3] or RECT_H),
+                                 cast_span=args.cast_span)
+                rec["measured"] = best
+                reads = rec.get("dL") is not None and rec["dL"] >= QA.CONTACT_WARN_DL
+                if stacked and not reads:
                     rec.setdefault("structure", []).append(
                         "the two rects are at different y (%d vs %d). A pool is "
                         "brightest at its centre, so a ground rect stacked "
                         "under the shadow measures the pool's dark edge and the "
-                        "pair reads as no separation. Put them side by side at "
-                        "the object's own base line." % (rs[1], rg[1]))
-                # ... and where the pair SHOULD sit, measured off this render.
-                base_x = rs[0] + rs[2] / 2.0
-                best = propose(fr, base_x, rs[1], args.span,
-                               (rs[2] or RECT_W, rs[3] or RECT_H),
-                               cast_span=args.cast_span)
-                rec["measured"] = best
-                if "trough_x" in best and abs(best["trough_x"] - base_x) > rs[2]:
+                        "pair reads as no separation. %s" % (rs[1], rg[1],
+                            "Profiled DOWN from the base this foot does read "
+                            "(dL %s): keep them stacked, at the measured rows."
+                            % best.get("dL") if best.get("axis") == "v" else
+                            "Put them side by side at the object's own base line."))
+                elif stacked:
+                    rec.setdefault("structure", []).append(
+                        "a vertical pair (ground %d px below the shadow), the right "
+                        "read for a long foot whose cast falls toward the viewer; "
+                        "it reads, and the measured read below agrees on axis %s"
+                        % (rg[1] - rs[1], best.get("axis")))
+                if (best.get("axis") == "h" and "trough_x" in best
+                        and abs(best["trough_x"] - base_x) > rs[2]):
                     rec.setdefault("structure", []).append(
                         "the darkest point on this line is %.0f px away at x=%.0f, "
                         "not under the declared rect at x=%.0f"
@@ -305,18 +420,27 @@ def main():
                      rec["shadow_L"], rec["ground_L"], rec.get("dL")))
             m = rec.get("measured", {})
             if "shadow" in m:
-                print("  measured  shadow %s  ground %s  ->  shadow L* %s  ground L* %s  dL %s"
+                print("  measured  shadow %s  ground %s  ->  shadow L* %s  ground L* %s  dL %s  (axis %s)"
                       % (m["shadow"], m["ground"], m["shadow_L"], m["ground_L"],
-                         m.get("dL")))
+                         m.get("dL"), m.get("axis")))
         else:
             print("  propose   data-contacts entry:")
             print("    %s" % json.dumps({"what": "<the object standing on the plate>",
                                          "shadow": rec.get("shadow"),
                                          "ground": rec.get("ground")}))
-            print("  measured  shadow L* %s  ground L* %s  dL %s  (cast trough at "
-                  "x=%s, pool peak at x=%s)"
-                  % (rec["shadow_L"], rec["ground_L"], rec.get("dL"),
-                     rec.get("trough_x"), rec.get("peak_x")))
+            if rec.get("axis") == "v":
+                print("  measured  shadow L* %s  ground L* %s  dL %s  (axis v: cast "
+                      "trough at y=%s, lit ground at y=%s)"
+                      % (rec["shadow_L"], rec["ground_L"], rec.get("dL"),
+                         rec.get("trough_y"), rec.get("peak_y")))
+            else:
+                print("  measured  shadow L* %s  ground L* %s  dL %s  (axis h: cast "
+                      "trough at x=%s, pool peak at x=%s)"
+                      % (rec["shadow_L"], rec["ground_L"], rec.get("dL"),
+                         rec.get("trough_x"), rec.get("peak_x")))
+            alt = rec.get("alternative")
+            if alt:
+                print("  other axis (%s) reads dL %s" % (alt["axis"], alt["dL"]))
         for n in rec.get("notes", []):
             print("  - " + n)
     return 0

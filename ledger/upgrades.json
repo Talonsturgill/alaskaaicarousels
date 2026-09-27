@@ -2712,6 +2712,51 @@
       "verification": "tests/lit_edge_verify.py HOLDS on 126 fixtures plus four report-path checks (28 at first push; 98 fixtures and two report checks added for Codex's findings over thirty-three rounds on PR #403, each failing on the engine before its fix, with frame-sized wrapper and filter controls that stay silent) through the real render.py and qa.py (exit 1 against main's engine). 82 re-rendered slides (runs 2026-09-05 to 2026-09-14 and No.69) are byte-identical to main's renders with 0 records, 0 warnings, 0 gap notices and unchanged qa fail counts; render time 478 s against 493 s. The No.69 reconstruction warns at x 492 (2.5 and 6.2 levels) and y 615 (8.1 levels). An image-only alternative was measured first and rejected: 479 low-contrast straight edges over 86 shipped slides. Engine quickstart (demo deck render, qa, assemble) passes with no lit-edge output; gate_status --self-test 27 checks, 0 failures.",
       "rollback": "git revert the upgrade(2026-09-26) commits of PR #403 (1cc230e8, 1a4c6d01 and any later review round); the hook, the qa verdicts and the test go together.",
       "commit": "1cc230e8b4f4b8db691c0e51cb5944ca66dea227, 1a4c6d01, 64da1d4f, 6971df64, e081679f, a116d799, abff3c03, f5f97da8, 6379b8ea, 034beefb, e3baad87, 3e598cc4, c167df1f, 217cb256, 03df5e43, 4f1483f5, 1f5d432d, 04adb52f, b0044779, 7c38e57b, 49456f32, e4b14a0a, 4bb896ea, 0c550613, 2ff82d7a, 3700d73e, 46b8a0ec, 4acbea11, 4fa44148, 793e89c6, b1c1964c, 349972f8, 86ad4fc1 and the round-33 commit (PR #403)"
+    },
+    {
+      "run_date": "2026-09-27",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/gaswatch_health.py reads the live JSON, the live page, CINGSA and the GitHub runs API each on its own, so one refused endpoint no longer collapses the live audit to a single row. A blocked endpoint is a FAIL row named for it (source reachable, live page reachable, live JSON reachable, cron runs reachable), every check that needed it is withheld rather than passed, a blocked source can't be excused as maintenance, and the report lists `unreachable`. The verdict stays FAIL, so the gas_watch_live gate still needs a documented incident to read WARN.",
+      "trigger": "Run No.70: CINGSA's Sucuri proxy answered the collector's bot User-Agent with HTTP 307 from the routine's sandbox, and because all four fetches sat in one try the audit reported only '[FAIL] live audit completed: HTTPError 307', saying nothing about the page, feed and cron that had all answered 200 (out/2026-09-27/gaswatch_health.json, one check; the 06:08Z and 07:09Z audits in WORKLOG.md had completed row by row).",
+      "files": [
+        "scripts/gaswatch_health.py",
+        "tests/gaswatch_health.py"
+      ],
+      "verification": "Live, against the real incident: old script 1 row; new script 11 rows (source reachable FAIL with the 307, then live dataset, recent days, unverified storage, live headline 59.5, history chart, forecast, modeled peak 162 = 162, true-ups, cron running, cron success all PASS), verdict FAIL, exit 2. tests/gaswatch_health.py gains two tests (each endpoint blocked in turn keeps the others' checks, withholds its own and fails the verdict; main() with a 307 on the CINGSA URL writes the per-endpoint report): 6/6 pass on the new script, 6 errors on the old one. gaswatch_collect --self-test clean, tests/gaswatch_recovery.py OK, gaswatch_build --self-test clean. The collector and its User-Agent are untouched.",
+      "rollback": "git revert the upgrade(2026-09-27) commit, or restore scripts/gaswatch_health.py and tests/gaswatch_health.py from its parent; the two travel together.",
+      "commit": "24ece5bb"
+    },
+    {
+      "run_date": "2026-09-27",
+      "kind": "fix",
+      "area": "assets",
+      "change": "For artwork craft, the standing repeat offender, the house DEM samplers gain a C1 monotone bicubic mode for shading (Steffen; it replaced a first Catmull-Rom version in Codex review, which overshot up to 46 m at cliffs), AKS.loadDEM(...).sampleCubic, AKS.smoothDEM(...).sampleCubic and AKBLOCK.sampler(dem, 'cubic') (any other mode throws an AK CONTRACT error). It is interpolating (returns every DEM value at its cell centre, so no relief is invented) and its gradient is continuous, so a per-pixel hillshade no longer prints the DEM's cell lattice when magnified. Additive; bilinear stays the default and the right choice for water and flat masks. Technique 103 names the rule and the numbers; tests/dem_sampler_verify.mjs holds them.",
+      "trigger": "Standing repeat offender: artwork craft, weakest in 8 of the last 10 runs (trend_check --window 10), 7 again today. Run No.70's craft-floor cycle left art at 7 -> 7 and its one regression was slide 02, where dropping the 3x3 presmooth exposed the Kachemak DEM's cell grid (8.1 device px per cell): the gradient of a bilinear surface jumps at every cell edge. The scorer's fix named 'bilinear' as the cure; bilinear was the cause. Supporting practice: https://community.esri.com/t5/arcgis-pro-questions/strange-hillshade-edge-effects-around-pixels/td-p/1076205",
+      "files": [
+        "assets/js/akscribe.js",
+        "assets/js/akblock.js",
+        "tests/dem_sampler_verify.mjs",
+        "knowledge/TECHNIQUE_LIBRARY.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "node tests/dem_sampler_verify.mjs HOLDS on the real ak-kachemak-dem and slide 02's own geometry: cubic returns the DEM to 8.9e-10 m at 4000 nodes and the akblock and akscribe implementations agree exactly; relative slope jump across a cell edge bilinear 0.825 vs cubic 0.0006; lattice ratio (1.0 = none) bilinear 2.72 (the red case, asserted > 2), bilinear plus the shipped presmooth 1.59, cubic with NO presmooth 1.27 (asserted below both and below 1.5); shade detail cubic 0.00909 vs presmooth 0.00598 (52 percent more real relief). A rendered A/B/C of slide 02's relief (shipped, bilinear only, cubic only) shows the grid in the bilinear render and not in the cubic one. render.py + qa.py on this run's 9 slides with the new assets: 9/9 OK, qa WARN 0 fails 15 warns (same as shipped), every PNG byte-identical to the shipped render; demo deck 4/4 OK, qa WARN 0 fails 14 warns.",
+      "rollback": "git revert the upgrade(2026-09-27) commit; no shipped slide calls the cubic path, so reverting changes no render.",
+      "commit": "24ece5bb"
+    },
+    {
+      "run_date": "2026-09-27",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/contact_probe.py reads a LONG foot vertically. New propose_v() profiles DOWN from the base line (cast within 24 design px, lit ground within 64) and best_axis() reads both axes and proposes the stronger; --axis h|v|auto, auto the default for --base. In --verify a stacked declaration is measured on both axes, and the old 'put them side by side' advice now appears only when a stacked pair does not read, naming the vertical read when that one does. The shadow rect never climbs above the foot onto the object.",
+      "trigger": "Run No.70 (showrunner incident 2): for the DEM block's long foot on slides 01 and 03 the horizontal search read along the block's own base and returned dL 1.6 and 3.7 ('floats'), and --verify told the author to un-stack pairs that qa.py measured at 17.9 and 16.3. The showrunner re-measured by hand, the loop the probe was written in 2026-08-26 to retire.",
+      "files": [
+        "scripts/contact_probe.py",
+        "tests/contact_probe_verify.py"
+      ],
+      "verification": "On this run's renders: slide 03 --base 453,1012 reads h dL 2.7 'floats' with a 46 px detached-hole note (the old output) and auto/v dL 27.8; slide 01 v 18.2 vs h 11.5; --verify recognises both declared pairs as vertical (dL 18.2 and 23.4 on axis v) instead of telling the author to un-stack them; slide 04's side-by-side prisms and slide 07 unchanged. tests/contact_probe_verify.py gains a long-foot fixture (the horizontal read must float, the vertical must clear the comfort band, agree with qa.contact_reads, stay below the foot, win under auto, and --verify must not say 'side by side'): HOLDS on the new probe, fails on the old one (no vertical read). Run No.41's red case (stacked on a compact pool) is still named and still negative.",
+      "rollback": "git revert the upgrade(2026-09-27) commit, or restore scripts/contact_probe.py and tests/contact_probe_verify.py from its parent.",
+      "commit": "24ece5bb"
     }
   ],
   "scan_log": [
@@ -3141,6 +3186,13 @@
       "searches": "4 searches, 4 fetches, and one measured probe in the engine's own browser (HeadlessChrome 141, 4 cores) through render.launch_chromium",
       "found": "(1) MEASURED on one SDF scene (three smooth-unioned spheres and a plane, 96 march steps, 32-step soft shadow) at 1260 x 1575: main-thread JS 3.9 s; the same kernel on 4 blob-URL Web Workers 1.6 s and byte-identical (0 of 1,984,500 pixels differ); a WebGL2 fragment shader on ANGLE over SwiftShader (Subzero) 0.6 s, a mean of 0.17 levels from JS. Blob workers and OffscreenCanvas both work in a file:// page here. SwiftShader's speed comes from JIT-specialised routines, multi-core scheduling and SIMD across pixels (https://swiftshader.googlesource.com/SwiftShader/+/HEAD/docs/Index.md); worker background https://web.dev/articles/offscreen-canvas ; flags https://chromium.googlesource.com/chromium/src/+/main/docs/gpu/swiftshader.md (render.py already passes --enable-unsafe-swiftshader). (2) A trap: the same kernel through a direct eval in the page took 53 s, 13 times slower; no committed asset or slide uses eval or new Function today. (3) Null: HTML-in-Canvas (drawElementImage) is in origin trial for Chrome 148 to 150 only (https://developer.chrome.com/blog/html-in-canvas-origin-trial); this engine runs 141.",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 2026-09-26 Phase 12 block, 'Parked, 2026-09-26 frontier scan, focus (e)', with the measurements, the eval trap and the unblocking condition: an AKSDF.renderWorkers path taking scene SOURCE TEXT, proven byte-identical to the main thread on the demo scene, built when a deck's raymarch won't fit the 30 s cap even with culling). Nothing applied from the scan: the single daily slot went to the reactive fix on the standing repeat offender. The run's one reactive upgrade (a lit-edge check in render.py and qa.py) was WITHDRAWN before merge after eleven Codex review rounds kept finding coverage gaps; parked in FIELD_NOTES with every finding as its specification. Zero upgrades shipped."
+    },
+    {
+      "run_date": "2026-09-27",
+      "focus": "(b) editorial dataviz and cartography, narrowed to relief shading. Legal (last read 2026-09-23) and distinct from the last three logged foci: 2026-09-26 (e) headless Chromium, 2026-09-25 (c) procedural art, 2026-09-24 (f) self-improving pipelines. Chosen over the stalest slots, (d) typography (2026-09-17, recorded as well mined) and (a) LinkedIn (2026-09-18), on relevance: artwork craft is the standing repeat offender and this run's only craft regression was a relief-shading defect.",
+      "searches": "6 searches, 4 reads (2 PDFs through scripts/fetch_pdf_text.py; mdpi.com 403s this container; the Esri thread body did not fetch)",
+      "found": "(1) Texture shading, Leland Brown: a fractional Laplacian of the DEM (useful detail 50 to 100 percent), isotropic, scale invariant, strongest on drainage networks, best blended with hillshade per the author (https://mountaincartography.icaci.org/activities/workshops/banff_canada/papers/brown.pdf ; implementation https://github.com/fasiha/texshade-py). (2) Clear-sky / sky-model shading, Kennelly and Stewart 2014: many weighted sky lights with shadowing (250 sources, 600 px shadow search, 5x exaggeration in the reference workflow https://wanderingcartographer.wordpress.com/2020/05/08/shaded-relief-using-skymodels-courtesy-of-raster-chunk-processing/), preferred for many landforms by 151 participants as cited in Jenny et al. https://arxiv.org/abs/2010.01256 . (3) Jenny et al. restate Imhof's rules the house already holds (aerial perspective, local light adjustment, grey flats). (4) GIS practice reports the bilinear-upsample hillshade lattice this run measured (https://community.esri.com/t5/arcgis-pro-questions/strange-hillshade-edge-effects-around-pixels/td-p/1076205).",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-09-27 frontier scan, focus (b)': texture shading unblocks when a frame is about drainage and a vanilla-JS FFT is proven against texshade-py; sky-model unblocks when a 16-azimuth horizon pass is measured inside the 30 s renderReady cap). Finding (4) supports the reactive C1-sampler fix; nothing applied from the scan itself. All three upgrade slots went to reactive fixes, one on the standing offender."
     }
   ]
 }

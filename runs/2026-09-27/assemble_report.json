@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-27/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9310418,
+  "pdf_mb": 9.31,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-27/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-27/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "A Bigger Tank, Not a Bigger Engine. Bradley Lake and 2030",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "4610c63e5dd2230aa54ba5d3b873d1be58737ef5daa7fc35dd83396343c1c03b",
+        "bytes": 5806556
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "3e164b69647b6787e16e7105e77cb0419a137cfcd52828397e94021fa5596948",
+        "bytes": 5586771
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "ae27bd60f62b048569d427da2adf9141cba5c8c41b41a2514353923edf38f2b7",
+        "bytes": 6253151
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "bd3a2904854b91ef25e2a5d6c59e2d41c9c4bdd1ec6e5a41df570fd37c3ad90b",
+        "bytes": 4984524
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "cda2ab1b908bf744cf60380165d20c6e6b1acd327a324ee5959cde1561f123ae",
+        "bytes": 5810009
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "d48739183e66ff1372cbec5468deeb8f6833f27865d80d006beee73f2e62e5ff",
+        "bytes": 5133252
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "ee22e990bdd43c712fdfc9333dc79bee3d09682902d0ecd104981f61c1386f04",
+        "bytes": 6092951
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "687e5bee86b6236d4b96c780d8a51a919b0fef309699f47d182151aa691e7db7",
+        "bytes": 5239583
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "93e7c46459b84cb5b638b35497f670b2c974bbf53db1a7753d76fe9a20c6e0a1",
+        "bytes": 6778339
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "c7f9e597796e2e1985967a0e4f75777a4f7ca2ec35d672adec04571e7dedf0d1",
+        "bytes": 16616
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "73b7f193bfa6c3904cc609ff53d7f90eaee27840460598b48b3a5d67e9a68c1b",
+        "bytes": 15005
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "448af1f48a98442dc48b50fee479c631564e0367e4feb74e23d6ac0fd182741d",
+        "bytes": 22694
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "bb897ecdce1fa6750328e82e7b717b26a26de025a7267388a3cae6b8c65c0972",
+        "bytes": 12080
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "f14bed4fc81e0f1bd5bffb03dc4def5130f498216f9a23b33bedc84aa06b54fc",
+        "bytes": 16748
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c899b396d062371923ae6f1565905a1a7770dde5c2a95bb44f06445f49c5a489",
+        "bytes": 12488
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "897cdc3c07dc52b2bc29a8aa0440a4f9ea21a266f6c6a4140c61e20dba97ebb6",
+        "bytes": 16310
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "1458c4aa331d72ef55a34b47316cfb7940aeb30adca251abb333ce3910cd8689",
+        "bytes": 11207
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "6b0294e9410e26eb74bf6174d08f3e6b63bd441ffce1615b0aa01549b1a76064",
+        "bytes": 10633
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+ "what": "Terrain ak-kachemak-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 12, 285 tiles, fetched 2026-09-27, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 1000,
+ "rows": 750,
+ "west": -151.9,
+ "east": -150.3016,
+ "north": 60.0,
+ "south": 59.4008,
+ "dlon": 0.0016,
+ "dlat": 0.0008,
+ "z": 12,
+ "min_m": -254,
+ "max_m": 1986,
+ "repair": "44 cells of a terrarium nodata spike (rows 150 to 156, cols 144 to 148, values at the int16 limits) filled with the mean of their valid neighbours in a 5x5 window"
+}

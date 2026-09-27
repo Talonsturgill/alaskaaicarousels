@@ -1722,6 +1722,22 @@
       "evidence": "Slide 06's bokeh discs failed qa's marks_reach_frame (30 of 88 'missing') the moment they gained a physically correct profile, because a defocused disc's centre is smooth and the probe measures ink spread. Declaring each disc's point on its own hot rim, on the side facing the frame centre, passed with every disc present.",
       "act_on_it": "For marks whose centre is smooth by design (bokeh, glows, soft dots), declare __akAssert points on the mark's edge or rim, not its centre, and say why in a comment.",
       "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-27",
+      "carousel_no": 70,
+      "instinct": "A GOLD WORD IS NOT A GOLD LINE.",
+      "evidence": "Round 1's pixel critics failed five frames for one idiom: labels styled in the deck's reserved gold. The deck's own palette law said gold meant the drawn Dixon line, the NOW collar and the Polaris, and every label class that copied .gold broke it.",
+      "act_on_it": "When a deck reserves an accent colour for a drawn motif, never give any text class that colour; name the thing in white or slate and let the mark carry the gold.",
+      "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-27",
+      "carousel_no": 70,
+      "instinct": "A PLAN-VIEW DEM IS SOFT OR STAIRSTEPPED; THERE IS NO THIRD OPTION WITHOUT RESAMPLING.",
+      "evidence": "Slide 02's craft-cycle change dropped a 3x3 presmooth and added an unsharp mask; the scorer found the DEM's cell grid as a pixel staircase along Kachemak Bay and marked it a regression, so the frame was restored.",
+      "act_on_it": "For a relief at more than about 20 device px per DEM cell, keep a presmooth and draw water as a smoothed contour polygon; do not sharpen a bilinear DEM.",
+      "confidence": 0.7
     }
   ]
 }
