@@ -634,7 +634,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   others, a bitmap over 17.5 million pixels, sixteen 2x canvases' worth of
   readback per slide (a measured draw reads its canvas twice), bounded
   candidates and records per draw, the longest short runs per draw,
-  a ledger of 65,536 canvases), canvases it can't place, refused readbacks,
+  a ledger of 65,536 canvases), canvases it can't place (a bitmap under 3 px
+  across among them: it can't be scanned), refused readbacks,
   render records older than the check, a record the picture has no room to be
   sampled along, and every visible iframe (the hook does not run in frames).
 

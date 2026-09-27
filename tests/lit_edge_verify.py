@@ -185,6 +185,44 @@ through the REAL render.py and qa.py:
             foreignObject: counted
   96 RED    the RED layer on a static canvas with an inert clip: rect():
             measured and reported
+  97 RED    five 9 x 9 additive tiles stacked at x 492: each under a
+            quarter of the floor, 45 px together, so both sides are reported
+  98 RED    the RED layer cleared from y 500 down: the stretch above is kept
+  99 GREEN  a wrapper just off the frame, scaled 3x under a drop-shadow that
+            reaches back in: counted
+ 100 RED    the nested glow inside an inline <span> with an inert rotate
+ 101 GREEN  the RED layer replaced by a 'copy' draw, then a plain panel on
+            the same line: silent
+ 102 GREEN  the RED layer under clearRect with string arguments, then the
+            panel: silent
+ 103 GREEN  one additive pixel on a 20 x 10 canvas shown at 40x, contain:
+            counted
+ 104 GREEN  an <svg> off the frame, scaled 10x under a drop-shadow that
+            reaches back in: counted
+ 105 RED    an absolute canvas escaping a 10 px wrapper past an inline span
+            whose transform is inert: measured and reported
+ 106 GREEN  a static size query container cropping an absolute glow canvas:
+            counted
+ 107 GREEN  the nested seam canvas under filter: opacity(0): silent
+ 108 GREEN  the RED layer covered by an opaque full-frame source-over layer,
+            then the panel: silent
+ 109 GREEN  a tall canvas whose only seam lies above the frame: silent
+ 110 RED    a canvas in an overflow:hidden <svg> shown at 10x: the scaled
+            clip keeps it, and its x 100 edge is reported
+ 111 GREEN  the glow canvas under an SVG <g> mirrored by scaleX(-1): counted
+ 112 GREEN  the cropped glow canvas cleared entirely: silent
+ 113 GREEN  the RED layer replaced by a 'copy' fillRect, then the panel:
+            silent
+ 114 GREEN  a 400 px canvas shown at 40 px under a drop-shadow: its seams are
+            20 px on the page, so nothing is counted
+ 115 GREEN  the RED layer covered by an opaque full-canvas source-over
+            fillRect, then the panel: silent
+ 116 GREEN  a 4 px square on a contain canvas under scale(10, 1): its 40 px
+            wide edges are counted
+ 117 GREEN  a feathered glow on a contain canvas cut by clip-path: counted
+ 118 GREEN  two 30 px squares joined into a 60 px edge on a contain canvas:
+            counted
+ 119 GREEN  a 1 x 1350 canvas shown as a 100 px strip: counted
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1357,6 +1395,30 @@ GREEN_CONTAIN_CLIPPED = placed_canvas("object-fit:contain;clip-path:inset(0 50% 
 // seam, so it is counted (Codex, PR #403)
 """
 
+GREEN_JOINED_UNPLACEABLE = """
+// two 30 x 30 additive squares stacked at x 492 on a canvas that can't be
+// placed (object-fit: contain): each draw's edge is 30 px, the picture's is
+// 60 px, so the joined stretch is what counts (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1350px;object-fit:contain';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sq = document.createElement('canvas'); sq.width = 30; sq.height = 30;
+const q2 = sq.getContext('2d'); q2.fillStyle = 'rgb(160,130,90)'; q2.fillRect(0, 0, 30, 30);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sq, 492, 600); n2.drawImage(sq, 492, 630);
+"""
+
+GREEN_THIN_CANVAS = """
+// a 1 x 1350 canvas shown as a 100 px strip, lit full height: a bitmap one
+// pixel across can't be scanned for its side edges, so it is counted
+// (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 1; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:400px;top:0;width:100px;height:1350px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 1; sp.height = 1350;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(160,130,90)'; s2.fillRect(0, 0, 1, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 0, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1479,6 +1541,8 @@ CASES = [
     ("slide-115", GREEN_COVER_FILL, [], 0, None),
     ("slide-116", GREEN_CONTAIN_STRETCHED, [], 0, "can't place"),
     ("slide-117", GREEN_CONTAIN_CLIPPED, [], 0, "can't place"),
+    ("slide-118", GREEN_JOINED_UNPLACEABLE, [], 0, "can't place"),
+    ("slide-119", GREEN_THIN_CANVAS, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

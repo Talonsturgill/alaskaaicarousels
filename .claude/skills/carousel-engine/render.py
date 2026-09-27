@@ -1230,10 +1230,24 @@ LIT_EDGE_HOOK_JS = """
         const fit = ccs.objectFit || 'fill';
         const u = fit === 'contain' ? Math.min(lx, ly) : fit === 'cover' ? Math.max(lx, ly)
                 : fit === 'scale-down' ? Math.min(lx, ly, 1) : 1;
-        const sH = (fit === 'fill' ? lx : u) * ax, sV = (fit === 'fill' ? ly : u) * ay;
-        const spans = (r) => (r.a1 - r.a0) * (r.axis === 'v' ? sV : sH) >= LIT_SPAN;
-        const hard = e.raw.some(spans) || e.shorts.some(spans) ||
-                     e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN;
+        /* a bent canvas can swap its axes on the page: there both take the
+           larger scale, erring high (Codex, PR #403) */
+        const bent = !flatChain(cv), am = Math.max(ax, ay);
+        const sH = (fit === 'fill' ? lx : u) * (bent ? am : ax), sV = (fit === 'fill' ? ly : u) * (bent ? am : ay);
+        /* judged on JOINED stretches, as the placed path joins them: runs on
+           the same side and line that touch across draws are one seam
+           (Codex, PR #403) */
+        const runs = e.raw.concat(e.shorts).sort((p, q2) =>
+          (p.side < q2.side ? -1 : p.side > q2.side ? 1 : 0) || p.line - q2.line || p.a0 - q2.a0);
+        let hard = e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN, jz = null;
+        for (const r of runs) {
+          if (jz && jz.side === r.side && jz.line === r.line && r.a0 <= jz.a1) jz.a1 = Math.max(jz.a1, r.a1);
+          else jz = { side: r.side, axis: r.axis, line: r.line, a0: r.a0, a1: r.a1 };
+          if ((jz.a1 - jz.a0) * (jz.axis === 'v' ? sV : sH) >= LIT_SPAN) { hard = true; break; }
+        }
+        /* a bitmap under 3 px across can't be scanned for a seam across that
+           side at all: counted, not passed (Codex, PR #403) */
+        if (cv.width < 3 || cv.height < 3) { unplaced += e.lit; continue; }
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even

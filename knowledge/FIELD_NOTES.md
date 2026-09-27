@@ -8697,14 +8697,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   are BYTE-IDENTICAL to main's renders and qa fail counts are unchanged; render time 478 s
   against 493 s on main, noise. It catches the No.69 reconstruction at x 492 (two visible
   stretches, 2.5 and 6.2 levels, split where the table band covers the line) and its y 615 top
-  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 117 fixtures through the real engine,
+  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 119 fixtures through the real engine,
   exit 0 on the branch and exit 1 on main. A tainted canvas has no route under render.py's
   flags (--allow-file-access-from-files; a foreignObject SVG image stays readable), so the
   readback warning is proved by feeding qa a record, not by a real taint.
 - WHAT THE RUN LEARNED ABOUT REVIEW. A new instrument riding a run's PR gets reviewed as hard as the
   run's claims, and it has far more surface. Keep Phase 12 upgrades small enough to be finished in one
   review, or ship them in their own PR.
-- AND WHAT THE MAINTENANCE PR LEARNED. Its own PR took twenty-eight Codex rounds, most of them CSS
+- AND WHAT THE MAINTENANCE PR LEARNED. Its own PR took twenty-nine Codex rounds, most of them CSS
   placement cases no deck here has ever used. From round 21 a finding was fixed only if it was a false
   warning risk on a real deck, a silent miss of an in-scope seam, or a cost bound, and was otherwise
   DECLINED on measurement. Declined in round 21: counting every short run a draw drops (the grain
@@ -8724,6 +8724,9 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   PAGINATION TRAP (round 28): the PR passed 100 review threads and get_review_comments returns the
   first 100, all resolved, so a completed review looked clean. Always follow pageInfo.hasNextPage
   before calling a Codex round clean.
+  Declined in round 29: retiring the draw count of seamless (fully feathered) light after a full
+  rewrite. It would need painted bounds for draws that record nothing; the only effect is an extra
+  "check by eye" notice on a cropped or unplaceable canvas, and the 82-slide corpus raises none.
 
 ### Parked, 2026-09-26 frontier scan, focus (e), headless Chromium rendering
 
