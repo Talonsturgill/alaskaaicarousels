@@ -883,7 +883,12 @@ def catalogue(rows, fac, today, places=()):
         add(f"Where can I read the sources for {t}?", f"src:{i}", t)
         add(f"What happens next with {t}?", f"next:{i}", t)
         if r["on"]:
-            add(f"When is the deadline for {t}?", f"when:{i}", t)
+            # A milestone is not a deadline. The answer says NEXT DATE for
+            # one, so the question can't promise an action is due.
+            if r["role"] == "deadline":
+                add(f"When is the deadline for {t}?", f"when:{i}", t)
+            else:
+                add(f"What is the next date for {t}?", f"when:{i}", t)
             add(f"When is {t} decided?", f"when:{i}", t)
         if r["where"]:
             add(f"Where is {t}?", f"where:{i}", t)
