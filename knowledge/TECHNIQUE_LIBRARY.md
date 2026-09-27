@@ -943,3 +943,24 @@ annotation is the strongest pair):
     Keep neighbouring ids within about 20 percent in value or the floor reads as
     zebra. Straight figure along one axis with a slow warp reads as wood; a
     strong sine warp reads as dunes.
+
+103. **C1 DEM Sampling For Shading (Catmull-Rom)**, added 2026-09-27 for
+    No.70. A per-pixel hillshade differentiates the height it samples, and the
+    gradient of a BILINEAR surface is constant along each cell edge and jumps
+    across it, so once the DEM is magnified past about 3 device px per cell the
+    shade prints the cell lattice. No.70's slide 02 (Kachemak z12 DEM, 8.1
+    device px per cell) regressed to a visible grid the moment its 3 x 3
+    presmooth was dropped. Shade from `AKS.loadDEM(...).sampleCubic` (also on
+    `AKS.smoothDEM`'s result) or `AKBLOCK.sampler(dem, 'cubic')`: Catmull-Rom,
+    interpolating (every DEM value returned exactly at its cell centre, so no
+    height is invented) and C1. Measured on slide 02's own geometry by
+    `node tests/dem_sampler_verify.mjs`: lattice ratio (1.0 is none) bilinear
+    2.72, bilinear plus the shipped presmooth 1.59, cubic with NO presmooth 1.27,
+    and cubic keeps 52 percent more shade detail than the presmooth (mean
+    per-pixel shade change 0.00909 vs 0.00598), because a presmooth removes real
+    relief to hide the lattice and cubic removes only the lattice. Classify
+    WATER and flat masks with the bilinear `sample` / default sampler: cubic
+    overshoot at a flat lake's edge flips a few shore pixels in and out of a
+    tight `|e - level| < 1.2 m` test and prints specks. The residual 1.27 is
+    Catmull-Rom's curvature step, visible only at shading exaggeration well
+    above 1; a presmooth on top is then a choice, not a repair.

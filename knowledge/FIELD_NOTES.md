@@ -8758,3 +8758,61 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   bounding-sphere culling: add `AKSDF.renderWorkers(ctx, {sceneSrc, ...})` that takes the scene as
   SOURCE TEXT, splits rows across navigator.hardwareConcurrency blob workers, and proves
   byte-identity against the main-thread path on the demo scene before any slide uses it.
+
+## 2026-09-27, No.70, Phase 12: the lattice was the sampler, not the presmooth
+
+- The craft cycle's one regression (slide 02 lost its 3 x 3 presmooth and printed the DEM's cell
+  grid) was an ENGINE property, not a slide choice: both house DEM samplers were bilinear only, and a
+  bilinear surface's gradient jumps at every cell edge. The presmooth was hiding that at the cost of
+  a third of the relief's detail. Technique 103 and `tests/dem_sampler_verify.mjs` hold the numbers.
+  Rule: shade with a C1 sampler, mask with bilinear.
+- A long object foot (a block's cut wall, a slab edge) casts TOWARD the viewer, so its contact
+  pair is stacked vertically. `scripts/contact_probe.py` read only along the base line, called both
+  of No.70's blocks floating (dL 1.6 and 3.7) and told the author to un-stack a pair that measured
+  17.9 and 16.3 in qa.py. It now reads both axes (`--axis auto`, the default for `--base`) and
+  measures a stacked declaration down the frame.
+- scripts/gaswatch_health.py read four endpoints inside one try, so a single refusal (CINGSA's
+  Sucuri proxy, HTTP 307 to the collector's bot UA from this sandbox) collapsed the whole live
+  audit to one row and reported nothing about the page, feed or cron that had answered 200. Each
+  endpoint is now read on its own; a blocked one is a FAIL row named for the endpoint and its
+  checks are withheld, never passed.
+- FOUND, NOT FIXED (next run's Phase 12 candidate): scripts/trend_check.py upgrade_touches() runs
+  upgrade prose through canon(), the CRITERION-NAME normaliser, which cuts at the first "(" and ":",
+  so an entry's words count only up to its first parenthesis or colon. That is why the "worked"
+  column under-reports. Give it its own prose normaliser, with a fixture proving an early
+  parenthesis no longer hides the entry.
+
+### Parked, 2026-09-27 frontier scan, focus (b), editorial cartography: relief shading beyond one sun
+
+- TEXTURE SHADING (Leland Brown). A fractional Laplacian of the DEM, detail parameter useful at
+  about 50 to 100 percent (200 is the ordinary Laplacian), is isotropic (no light direction, so no
+  relief inversion), scale invariant (smaller features get proportionally less contrast, a built-in
+  visual hierarchy) and "especially useful for bringing out the drainage network". Brown's own
+  caveat: alone it can lose the three-dimensional read (volcanic cones), and he recommends BLENDING
+  it with conventional hillshade (after Patterson 2013). Source:
+  https://mountaincartography.icaci.org/activities/workshops/banff_canada/papers/brown.pdf ;
+  a low-memory implementation to diff against: https://github.com/fasiha/texshade-py .
+  WHY PARKED: it is computed in the frequency domain (an FFT over a padded DEM window, with a
+  careful discretisation of the singular kernel), so the house would need a vanilla-JS 2D FFT of
+  about 100 lines plus a proof against texshade-py's output on one committed DEM. That is a
+  bounded helper but not a same-day one. UNBLOCKS WHEN a deck's frame is ABOUT drainage (No.70's
+  slide 05 drew a D8 network by hand for exactly this): build `AKS.textureShade(dem, {alpha})`,
+  verify against texshade-py on ak-kachemak-dem, and blend it under the multidirectional hillshade.
+- CLEAR-SKY / SKY-MODEL SHADING (Kennelly and Stewart 2014). Light from many sky directions
+  (250 weighted sources in the reference workflow, shadows searched out to 600 px, the DEM
+  exaggerated 5x) instead of one sun; valleys darken because they see less sky. In the 151-person
+  landform study it was the preferred method for many landforms (as cited by Jenny et al.,
+  https://arxiv.org/abs/2010.01256 , section 2.2; the study itself, https://doi.org/10.3390/ijgi9040253 ,
+  403s this container). Workflow and parameters:
+  https://wanderingcartographer.wordpress.com/2020/05/08/shaded-relief-using-skymodels-courtesy-of-raster-chunk-processing/ .
+  WHY PARKED: a per-pixel horizon search over many azimuths at 2160 px is a render-time question
+  first (the 30 s renderReady cap). UNBLOCKS WHEN someone measures a 16-azimuth horizon-angle pass
+  at half resolution inside the cap, the same way the 2026-09-26 park measured workers.
+- CONFIRMED, NOT NEW: Jenny et al. restate Imhof's rules the house already holds (aerial
+  perspective keyed to elevation, local light-direction adjustment, flat areas in a grey tone, no
+  cast shadows in plan relief). Nothing to add.
+- SUPPORTING THE C1 FIX: GIS practitioners report the same symptom this run measured, pixel groups
+  visible in a hillshade of a bilinear-upsampled DEM, with cubic smoother but not perfect
+  (https://community.esri.com/t5/arcgis-pro-questions/strange-hillshade-edge-effects-around-pixels/td-p/1076205 ,
+  the thread body did not fetch here; the search summary is the evidence). That matches the
+  residual 1.27 lattice ratio in technique 103.

@@ -68,6 +68,68 @@ class HealthTests(unittest.TestCase):
         report = self.audit()
         self.assertEqual(next(c for c in report["checks"] if c["name"] == "source freshness")["status"], "FAIL")
 
+    def test_one_blocked_endpoint_does_not_hide_the_others(self):
+        """2026-09-27: CINGSA's firewall answered the source fetch with a 307
+        and the audit reported one row. Every endpoint that answered must still
+        be checked, and the blocked one must FAIL, never read as healthy."""
+        names = lambda r: {c["name"]: c["status"] for c in r["checks"]}
+        for key, label in (("source", "source reachable"), ("feed", "live JSON reachable"),
+                           ("page", "live page reachable"), ("runs", "cron runs reachable")):
+            with self.subTest(blocked=key):
+                parts = {"feed": self.feed, "page": self.page, "source": self.source, "runs": self.runs}
+                parts[key] = None
+                report = health.assess(parts["feed"], parts["page"], parts["source"], parts["runs"],
+                                       self.now, {key: "HTTPError: HTTP Error 307: Temporary Redirect"})
+                got = names(report)
+                self.assertEqual(report["verdict"], "FAIL")
+                self.assertEqual(got[label], "FAIL")
+                self.assertEqual(report["unreachable"], [key])
+                if key not in ("page", "feed"):
+                    self.assertIn("live headline agrees", got)
+                if key != "runs":
+                    self.assertIn("cron completed successfully", got)
+                if key != "source":
+                    self.assertIn("source freshness", got)
+                else:
+                    self.assertNotIn("source freshness", got)
+                    self.assertNotIn("source reading published", got)
+                    self.assertIsNone(report["maintenance_window"])
+
+        # a page defect is still caught while the source is blocked
+        report = health.assess(self.feed, self.page.replace("49.4", "50.0"), None, self.runs, self.now,
+                               {"source": "HTTPError: HTTP Error 307: Temporary Redirect"})
+        self.assertEqual(names(report)["live headline agrees"], "FAIL")
+        # and a blocked source can't be excused as maintenance
+        self.assertEqual(health.assess(self.feed, self.page, None, self.runs, self.now)["verdict"], "FAIL")
+
+    def test_main_reads_each_endpoint_separately(self):
+        from urllib.error import HTTPError
+        served = {"/gas-watch.json": json.dumps(self.feed, default=str), "/gas-watch/": self.page,
+                  "actions/workflows": json.dumps(self.runs)}
+
+        def fake_fetch(url):
+            if url == gc.CINGSA_URL:
+                raise HTTPError(url, 307, "Temporary Redirect", {}, None)
+            return next(v for k, v in served.items() if k in url)
+
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "gw.json"
+            real, argv = health.fetch, sys.argv
+            health.fetch, sys.argv = fake_fetch, ["gaswatch_health.py", "--output", str(out)]
+            try:
+                self.assertEqual(health.main(), 2)
+            finally:
+                health.fetch, sys.argv = real, argv
+            report = json.loads(out.read_text())
+        got = {c["name"]: c["status"] for c in report["checks"]}
+        self.assertEqual(got["source reachable"], "FAIL")
+        self.assertIn("HTTP Error 307", next(c["detail"] for c in report["checks"]
+                                             if c["name"] == "source reachable"))
+        for name in ("live dataset", "live headline agrees", "history chart present",
+                     "cron is running", "cron completed successfully"):
+            self.assertIn(name, got)
+        self.assertNotIn("live audit completed", got)
+
     def test_daily_gate_requires_live_evidence_and_diagnosis(self):
         with tempfile.TemporaryDirectory() as td:
             run = Path(td) / "2026-09-16"

@@ -145,14 +145,69 @@ def main():
             if min(rec["px"]) < 12:
                 bad.append("proposed rects are too small for the gate: %s" % rec["px"])
 
+    # 4. THE LONG FOOT (2026-09-27, run No.70). A block standing on a table
+    # across the whole frame: the wall above the base line, a cast band just
+    # below it, lit table below that, and NOTHING lit along the base line
+    # itself. The horizontal read must float (it did, on No.70's slides 01
+    # and 03), the vertical read must land on the cast and clear the gate,
+    # auto must pick it, and --verify must not tell the author to un-stack it.
+    with tempfile.TemporaryDirectory() as d:
+        rdir = Path(d)
+        (rdir / "render_report.json").write_text(json.dumps(
+            {"canvas": {"width": DW, "height": DH, "scale": SCALE}, "slides": []}))
+        h, w = DH * SCALE, DW * SCALE
+        yy = np.mgrid[0:h, 0:w][0].astype(np.float64) / SCALE
+        foot = 1012.0
+        v = np.where(yy < foot, 70.0, 150.0)                  # wall above, lit table below
+        v -= 110.0 * np.clip(1.0 - (yy - foot) / 18.0, 0, 1) * (yy >= foot)  # attached cast
+        v = np.clip(v, 0, 255).astype(np.uint8)
+        arr = np.stack([v, v, v], -1)
+        Image.fromarray(arr).save(rdir / "slide-01.png")
+        fr = cp.Frame(rdir / "slide-01.png", DW, DH)
+        hz = cp.propose(fr, 540.0, foot)
+        vt = cp.propose_v(fr, 540.0, foot)
+        auto = cp.best_axis(fr, 540.0, foot)
+        if hz.get("dL", 99) >= cp.QA.CONTACT_FAIL_DL:
+            bad.append("long foot: the horizontal read was expected to float, got dL %s" % hz.get("dL"))
+        if vt.get("dL", 0) < cp.QA.CONTACT_WARN_DL:
+            bad.append("long foot: the vertical read measures dL %s, under the comfort band" % vt.get("dL"))
+        elif vt["shadow"][0][1] < foot:
+            bad.append("long foot: the shadow rect climbs onto the wall: %s" % vt["shadow"])
+        else:
+            nums, verdict, detail = qa_numbers(arr, vt["shadow"][0], vt["ground"][0])
+            if nums is None or abs(nums[2] - vt["dL"]) > 0.1 or verdict == "fail":
+                bad.append("long foot: the gate disagrees with the vertical proposal: %s %s" % (nums, verdict))
+        if auto.get("axis") != "v":
+            bad.append("long foot: auto chose axis %s" % auto.get("axis"))
+        sdir = rdir / "slides"
+        sdir.mkdir()
+        (sdir / "slide-01.html").write_text(
+            "<html><body data-contacts='%s'></body></html>"
+            % json.dumps([{"what": "the block foot", "shadow": vt["shadow"],
+                           "ground": vt["ground"]}]))
+        out = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "contact_probe.py"),
+             "--render-dir", str(rdir), "--slides-dir", str(sdir),
+             "--verify", "--json"], capture_output=True, text=True)
+        if out.returncode != 0:
+            bad.append("long foot --verify exited %d: %s" % (out.returncode, out.stderr[:300]))
+        else:
+            rec = json.loads(out.stdout)["slides"][0]
+            joined = " ".join(rec.get("notes", []))
+            if "side by side" in joined:
+                bad.append("long foot: --verify told the author to un-stack a pair that reads: %r" % joined)
+            if rec.get("measured", {}).get("axis") != "v":
+                bad.append("long foot: --verify measured on axis %s" % rec.get("measured", {}).get("axis"))
+
     if bad:
         print("BROKEN")
         for b in bad:
             print(" - " + b)
         return 1
     print("HOLDS: the probe's numbers are the gate's numbers, the stacked-rect "
-          "defect measures negative and is named, and a pair proposed from the "
-          "object's base alone lands on the drawn cast and clears the gate.")
+          "defect measures negative and is named, a pair proposed from the "
+          "object's base alone lands on the drawn cast and clears the gate, and "
+          "a long foot is read DOWN from its base instead of floating.")
     return 0
 
 

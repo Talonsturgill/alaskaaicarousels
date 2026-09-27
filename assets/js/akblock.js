@@ -41,9 +41,31 @@ export function init(THREE) {
     return { meta, z: new Int16Array(buf) };
   };
 
-  /* bilinear height in metres at (lon, lat); NaN outside the grid */
-  B.sampler = function (dem) {
+  /* height in metres at (lon, lat); NaN outside the grid. Bilinear by
+   * default. B.sampler(dem, 'cubic') is Catmull-Rom: interpolating and C1, so
+   * a hillshade taken from sub-cell samples has a continuous gradient and
+   * does not print the DEM's cell lattice (see AKS.loadDEM in akscribe.js for
+   * the measurement, 2026-09-27). Shade with 'cubic'; mask with bilinear. */
+  B.sampler = function (dem, mode) {
     const m = dem.meta, z = dem.z, C = m.cols, Rr = m.rows;
+    if (mode === 'cubic') {
+      const cr = (t) => { const t2 = t * t, t3 = t2 * t;
+        return [(-t3 + 2 * t2 - t) / 2, (3 * t3 - 5 * t2 + 2) / 2, (-3 * t3 + 4 * t2 + t) / 2, (t3 - t2) / 2]; };
+      return function (lon, lat) {
+        const x = (lon - m.west) / m.dlon, y = (m.north - lat) / m.dlat;
+        if (!(x >= 0 && y >= 0 && x <= C - 1 && y <= Rr - 1)) return NaN;
+        const i = Math.min(C - 2, Math.floor(x)), j = Math.min(Rr - 2, Math.floor(y));
+        const wu = cr(x - i), wv = cr(y - j); let h = 0;
+        for (let b = 0; b < 4; b++) {
+          const jj = Math.max(0, Math.min(Rr - 1, j - 1 + b)) * C; let row = 0;
+          for (let c = 0; c < 4; c++) row += wu[c] * z[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
+          h += wv[b] * row;
+        }
+        return h;
+      };
+    } else if (mode) {
+      throw new Error("AK CONTRACT: AKBLOCK.sampler mode must be 'cubic' or omitted, got " + mode);
+    }
     return function (lon, lat) {
       const x = (lon - m.west) / m.dlon, y = (m.north - lat) / m.dlat;
       const i = Math.floor(x), j = Math.floor(y);

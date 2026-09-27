@@ -42,8 +42,41 @@
     });
   }
 
+  /* C1 sampling for SHADING (2026-09-27, run No.70). Bilinear heights are
+   * continuous but their GRADIENT is constant along each cell edge and jumps
+   * across it, so a per-pixel hillshade over a DEM magnified past about 3
+   * device px per cell prints the cell lattice: No.70's slide 02 (8.1 device
+   * px per cell) regressed to a visible grid the moment its presmooth was
+   * dropped. Catmull-Rom is interpolating (it passes through every DEM value,
+   * so no heights are invented or flattened) and C1 (the gradient is
+   * continuous), which is exactly what a shading pass differentiates. Use
+   * sampleCubic wherever a slope, normal or hillshade is taken from sub-cell
+   * samples; keep sample() for masks and thresholds, where it is cheaper. */
+  function catmull(t) {
+    var t2 = t * t, t3 = t2 * t;
+    return [(-t3 + 2 * t2 - t) / 2, (3 * t3 - 5 * t2 + 2) / 2,
+            (-3 * t3 + 4 * t2 + t) / 2, (t3 - t2) / 2];
+  }
+  function cubicSampler(a, m) {
+    var C = m.cols, R = m.rows;
+    return function (lon, lat) {
+      var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
+      if (!(fi >= 0 && fj >= 0 && fi <= C - 1 && fj <= R - 1)) return NaN;
+      var i = Math.min(C - 2, Math.floor(fi)), j = Math.min(R - 2, Math.floor(fj));
+      var wu = catmull(fi - i), wv = catmull(fj - j), z = 0;
+      for (var b = 0; b < 4; b++) {
+        var jj = Math.max(0, Math.min(R - 1, j - 1 + b)) * C, row = 0;
+        for (var c = 0; c < 4; c++) row += wu[c] * a[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
+        z += wv[b] * row;
+      }
+      return z;
+    };
+  }
+  AKS.cubicSampler = cubicSampler;
+
   /* A committed DEM: <base>.json (meta) + <base>.bin (int16 LE, row-major,
-   * north up, plate carree). sample(lon, lat) is bilinear, NaN outside. */
+   * north up, plate carree). sample(lon, lat) is bilinear, NaN outside;
+   * sampleCubic(lon, lat) is Catmull-Rom, for anything that is shaded. */
   AKS.loadDEM = async function (base) {
     var meta = await (await fetch(base + ".json")).json();
     var buf = await (await fetch(base + ".bin")).arrayBuffer();
@@ -61,7 +94,7 @@
       return a[k] * (1 - u) * (1 - v) + a[k + 1] * u * (1 - v) +
              a[k + C] * (1 - u) * v + a[k + C + 1] * u * v;
     }
-    return { meta: meta, data: a, sample: sample };
+    return { meta: meta, data: a, sample: sample, sampleCubic: cubicSampler(a, meta) };
   };
 
   /* A smoothed copy of a DEM (separable box blur, `passes` times, radius r
@@ -91,7 +124,7 @@
       var u = fi - i0, v = fj - j0, q = j0 * C + i0;
       return src[q] * (1 - u) * (1 - v) + src[q + 1] * u * (1 - v) + src[q + C] * (1 - u) * v + src[q + C + 1] * u * v;
     }
-    return { meta: m, data: src, sample: sample };
+    return { meta: m, data: src, sample: sample, sampleCubic: cubicSampler(src, m) };
   };
 
   /* Transverse Mercator on its own central meridian, north up: the projection
