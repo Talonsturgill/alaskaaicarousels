@@ -223,6 +223,8 @@ through the REAL render.py and qa.py:
  118 GREEN  two 30 px squares joined into a 60 px edge on a contain canvas:
             counted
  119 GREEN  a 1 x 1350 canvas shown as a 100 px strip: counted
+ 120 GREEN  fixture 118 with the squares one pixel apart: joined, counted
+ 121 RED    fixture 73's canvas in a contain: paint clip with the 50 px margin
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1419,6 +1421,19 @@ const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(160,130,90)'; s2.fillRect(0,
 n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 0, 0);
 """
 
+GREEN_GAPPED_UNPLACEABLE = GREEN_JOINED_UNPLACEABLE.replace(
+    "n2.drawImage(sq, 492, 630);", "n2.drawImage(sq, 492, 631);   /* one pixel apart */") + """
+// the same two squares one pixel apart: joined across the pixel, as the
+// placed path joins them (Codex, PR #403)
+"""
+
+RED_PAINT_CLIP_MARGIN = RED_CLIP_MARGIN.replace(
+    "overflow:clip;overflow-clip-margin:50px", "contain:paint;overflow-clip-margin:50px") + """
+// the same canvas inside a paint-containment clip with the 50 px margin,
+// which Chromium honors there too (measured): painted, measured, reported
+// (Codex, PR #403)
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1543,6 +1558,8 @@ CASES = [
     ("slide-117", GREEN_CONTAIN_CLIPPED, [], 0, "can't place"),
     ("slide-118", GREEN_JOINED_UNPLACEABLE, [], 0, "can't place"),
     ("slide-119", GREEN_THIN_CANVAS, [], 0, "can't place"),
+    ("slide-120", GREEN_GAPPED_UNPLACEABLE, [], 0, "can't place"),
+    ("slide-121", RED_PAINT_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

@@ -973,7 +973,13 @@ LIT_EDGE_HOOK_JS = """
       const s = bw ? q.width / bw : 1, t = bh ? q.height / bh : 1;
       let L = q.left + el.clientLeft * s, T = q.top + el.clientTop * t;
       let R = L + el.clientWidth * s, B = T + el.clientHeight * t;
-      const cx = !containOnly && cs.overflowX === 'clip', cy = !containOnly && cs.overflowY === 'clip';
+      /* the margin applies to an overflow: clip axis and to a paint
+         containment clip (measured in Chromium: contain: paint and
+         content-visibility honor it), unless a tighter overflow: hidden,
+         scroll or auto clips that axis at the padding box (Codex, PR #403) */
+      const pc = /paint|strict|content/.test(cs.contain || '') || /^(auto|hidden)$/.test(cs.contentVisibility || '');
+      const mx = (o) => o === 'clip' || (pc && o === 'visible');
+      const cx = containOnly ? pc : mx(cs.overflowX), cy = containOnly ? pc : mx(cs.overflowY);
       const m = String(cs.overflowClipMargin || '');
       if ((cx || cy) && m) {
         const f = (k) => parseFloat(cs[k]) || 0;
@@ -1241,7 +1247,7 @@ LIT_EDGE_HOOK_JS = """
           (p.side < q2.side ? -1 : p.side > q2.side ? 1 : 0) || p.line - q2.line || p.a0 - q2.a0);
         let hard = e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN, jz = null;
         for (const r of runs) {
-          if (jz && jz.side === r.side && jz.line === r.line && r.a0 <= jz.a1) jz.a1 = Math.max(jz.a1, r.a1);
+          if (jz && jz.side === r.side && jz.line === r.line && r.a0 <= jz.a1 + 1) jz.a1 = Math.max(jz.a1, r.a1);
           else jz = { side: r.side, axis: r.axis, line: r.line, a0: r.a0, a1: r.a1 };
           if ((jz.a1 - jz.a0) * (jz.axis === 'v' ? sV : sH) >= LIT_SPAN) { hard = true; break; }
         }
