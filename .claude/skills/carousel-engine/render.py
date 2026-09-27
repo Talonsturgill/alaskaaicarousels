@@ -693,20 +693,22 @@ LIT_EDGE_HOOK_JS = """
       e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
       if (cut) e.over++;
     };
+    /* a user-space rect in bitmap px, through the current transform; a bent
+       transform gives the whole canvas */
+    const devRect = (ctx, x, y, w, h) => {
+      const cv = ctx.canvas, t = ctx.getTransform ? ctx.getTransform() : null;
+      if (t && !(Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9)) return [0, 0, cv.width, cv.height];
+      const ax = t ? t.a : 1, dy = t ? t.d : 1, ex = t ? t.e : 0, fy = t ? t.f : 0;
+      return [Math.min(ax * x + ex, ax * (x + w) + ex), Math.min(dy * y + fy, dy * (y + h) + fy),
+              Math.max(ax * x + ex, ax * (x + w) + ex), Math.max(dy * y + fy, dy * (y + h) + fy)];
+    };
     const origClear = proto.clearRect;
     if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
       const res = origClear.apply(this, arguments);
       try {
         /* the native call coerced its arguments (Web IDL doubles): so do we */
-        x = Number(x); y = Number(y); w = Number(w); h = Number(h);
-        const cv = this.canvas, t = this.getTransform ? this.getTransform() : null;
-        let x0 = 0, y0 = 0, x1 = cv.width, y1 = cv.height;     /* a bent transform: all of it */
-        if (!t || (Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9)) {
-          const ax = t ? t.a : 1, dy = t ? t.d : 1, ex = t ? t.e : 0, fy = t ? t.f : 0;
-          x0 = Math.min(ax * x + ex, ax * (x + w) + ex); x1 = Math.max(ax * x + ex, ax * (x + w) + ex);
-          y0 = Math.min(dy * y + fy, dy * (y + h) + fy); y1 = Math.max(dy * y + fy, dy * (y + h) + fy);
-        }
-        recheck(this, cv, x0, y0, x1, y1);
+        const [x0, y0, x1, y1] = devRect(this, Number(x), Number(y), Number(w), Number(h));
+        recheck(this, this.canvas, x0, y0, x1, y1);
       } catch (err) {}
       return res;
     };
@@ -1014,6 +1016,14 @@ LIT_EDGE_HOOK_JS = """
       if (!cv || !cv.isConnected) return false;
       if (typeof cv.checkVisibility === 'function' &&
           !cv.checkVisibility({ visibilityProperty: true, opacityProperty: true })) return false;
+      /* a filter opacity(0) on the canvas or an ancestor makes it as
+         transparent as CSS opacity does: a staging canvas (Codex, PR #403) */
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const f = getComputedStyle(el).filter || 'none';
+        if (f === 'none') continue;
+        for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g))
+          if (parseFloat(m[1]) === 0) return false;
+      }
       const r = cv.getBoundingClientRect(), [fw, fh] = frame();
       /* what is left of the canvas inside the frame and inside every
          ancestor's overflow clip, per clipping axis: a canvas wholly outside
@@ -1265,14 +1275,33 @@ LIT_EDGE_HOOK_JS = """
        the source too (Codex, PR #403) */
     const ERASING = { 'copy': 1, 'source-in': 1, 'source-out': 1, 'destination-in': 1,
                       'destination-out': 1, 'destination-atop': 1, 'xor': 1 };
+    /* a source-over or source-atop draw can cover light too when its image is
+       opaque; one that covers a quarter of the canvas or more is rechecked
+       over where it lands. Measured over 73 corpus slides: 44 make such a
+       draw, none more than 5, which the readback budget holds; smaller
+       sprites can't take a long seam away and are not rechecked, so a
+       particle field can't spend the budget (Codex, PR #403) */
+    const COVERING = { 'source-over': 1, 'source-atop': 1 };
+    const destRect = (ctx, a) => {
+      const n = a.length, img = a[0];
+      const iw = img && (img.naturalWidth || img.videoWidth || img.displayWidth || img.width) || 0;
+      const ih = img && (img.naturalHeight || img.videoHeight || img.displayHeight || img.height) || 0;
+      const dx = n >= 9 ? +a[5] : +a[1], dy = n >= 9 ? +a[6] : +a[2];
+      const dw = n >= 9 ? +a[7] : n >= 5 ? +a[3] : iw, dh = n >= 9 ? +a[8] : n >= 5 ? +a[4] : ih;
+      return devRect(ctx, dx, dy, dw, dh);
+    };
     proto.drawImage = function () {
       let b = null;
       try { b = before(this); } catch (e) { b = null; }
       const res = origDraw.apply(this, arguments);
       if (!b) {
         try {
-          if (ERASING[this.globalCompositeOperation] && this.canvas)
-            recheck(this, this.canvas, 0, 0, this.canvas.width, this.canvas.height);
+          const cv = this.canvas, op = this.globalCompositeOperation;
+          if (cv && ERASING[op]) recheck(this, cv, 0, 0, cv.width, cv.height);
+          else if (cv && COVERING[op] && ids.get(cv) !== undefined) {
+            const [x0, y0, x1, y1] = destRect(this, arguments);
+            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1);
+          }
         } catch (err) {}
       }
       /* a measurement that throws is counted as unmeasured, not swallowed */

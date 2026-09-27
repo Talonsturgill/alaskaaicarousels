@@ -618,7 +618,7 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   frame, or shown so large that a dropped short run spans 40 design px, is
   counted as unplaced (clip geometry is not evaluated, so a canvas clipped away
   entirely still counts: the conservative side). A canvas is in the picture
-  when it is connected, visible, not transparent, and something of its box is
+  when it is connected, visible, not transparent (CSS or filter opacity), and something of its box is
   left inside the frame and inside the overflow and containment clips that
   actually apply to it (containing blocks followed; a body whose overflow
   belongs to the viewport, a `display: contents` or non-replaced inline box
@@ -638,7 +638,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   *Erased light.* Measurements are kept per canvas and bitmap generation. A
   width or height set again (any API, seen by one MutationObserver) or
   `reset()` drops them; a `clearRect`, a `putImageData`, or a `drawImage`
-  that can take light away (`copy`, the in, out and atop family, `xor`) that touches a
+  that can take light away (`copy`, the in, out and atop family, `xor`, or a
+  `source-over` or `source-atop` draw over a quarter of the canvas) that touches a
   record's pixels triggers one readback and keeps the stretches of each record
   whose step is still in the bitmap (a full put is also how a slide tone-maps
   its pixels); a readback refused there retires the records and is counted.

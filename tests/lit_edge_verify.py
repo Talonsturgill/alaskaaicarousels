@@ -1230,6 +1230,21 @@ const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, false);
 n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
 """
 
+GREEN_FILTER_TRANSPARENT = placed_canvas("filter:opacity(0)") + """
+// the same seam on a canvas made fully transparent by filter: opacity(0): it
+// paints nothing into the picture, so it is a staging canvas and nothing is
+// said (Codex, PR #403)
+"""
+
+GREEN_OPAQUE_COVER = RED + """
+// an opaque full-frame layer drawn source-over covers the seam; then a plain
+// panel from x 492 makes an unrelated step on the same line (Codex, PR #403)
+const fl = document.createElement('canvas'); fl.width = 1080; fl.height = 1350;
+const f2 = fl.getContext('2d'), fg = f2.createLinearGradient(0, 0, 0, 1350);
+fg.addColorStop(0, '#0B1422'); fg.addColorStop(1, '#1A2436'); f2.fillStyle = fg; f2.fillRect(0, 0, 1080, 1350);
+cx.drawImage(fl, 0, 0);
+""" + PANEL_AT_492
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1341,6 +1356,8 @@ CASES = [
     ("slide-104", GREEN_SVG_SCALED_BLUR, [], 0, "can't place"),
     ("slide-105", RED_INERT_INLINE_CB, [LEFT], 1, None),
     ("slide-106", GREEN_QUERY_CONTAINER, [], 0, "can't place"),
+    ("slide-107", GREEN_FILTER_TRANSPARENT, [], 0, None),
+    ("slide-108", GREEN_OPAQUE_COVER, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
