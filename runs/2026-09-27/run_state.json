@@ -1,0 +1,96 @@
+{
+  "run_date": "2026-09-27",
+  "carousel_no": 70,
+  "effort": "high",
+  "date_note": "Woke 21:42 AKDT on September 26th; runs/2026-09-26 already holds No.69, so per the date rule the run takes 2026-09-27 (run_guard CLEAR for 2026-09-27).",
+  "revision_rounds": 3,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/plan.md",
+        "out/2026-09-27/trend.txt"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "2 searches; both findings (slide-two resurfacing, weighted Voronoi stippling) already in FIELD_NOTES and TECHNIQUE_LIBRARY 15, nothing appended"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/scout_merge.md"
+      ],
+      "searches_used_scouts": 150
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/claims.json"
+      ],
+      "verified": 72,
+      "gate": "claims_check PASS 72/72, 40 primary"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "7 worklist items refreshed (budget raised to 7 to clear the deferred one), bradley-lake-dixon-diversion updated from this run's claims, watch.json triaged (no candidate in scope, no failed sources)"
+    },
+    "gas_watch": {
+      "status": "documented",
+      "note": "live audit FAIL; gaswatch_incident.json blocker=github (scheduler gap since 21:59Z, dispatch 403, Sucuri 307 from sandbox)"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/storyboard.md"
+      ],
+      "note": "3 directors; storyboard synthesised; dossier_check PASS"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/caption.txt",
+        "out/2026-09-27/copy.json"
+      ],
+      "note": "caption_check --copy PASS; style_lint clean"
+    },
+    "art_build": {
+      "status": "done",
+      "note": "9 slides rendered; qa WARN 0 fails; bespoke WARN 0.117; new assets/js/akblock.js"
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "01,02,03,05,06,07,08 revised; 04,09 ship; fixes: gold off labels, knockouts on 03, lake plane on 05, slab bleed on 07, 08 strings restored"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-27/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done"
+    },
+    "scoring": {
+      "status": "done",
+      "note": "round 1 8.47 art 7; craft cycle (round 3) re-scored 8.47 art 7; 02 restored after score"
+    },
+    "ship": {
+      "status": "done",
+      "note": "runs/2026-09-27 (webp, og.jpg, pdf), ledgers, site rebuilt, parsers/scanner/docket_dates/site_fresh PASS, prune applied, no alerts due"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  }
+}

@@ -2756,6 +2756,42 @@
       ],
       "claims": 68,
       "note": "First journalism deck in the ledger (dedupe strongest match No.50 at jaccard 0.007). Original measurement from the outlet's own pages; evidence and the 09:05 UTC recheck ship in runs/2026-09-26/evidence/. Runner-up: Cook Inlet gas testimony (overlaps No.56 and the Gas Watch beat)."
+    },
+    {
+      "run_date": "2026-09-27",
+      "carousel_no": 70,
+      "topic": "Bradley Lake's Dixon Glacier diversion (FERC P-8221-124) would add about 38 percent more electricity a year (FERC) and only 0.3 MW of capacity, but KTUU reported on September 24th that its dam is slated for 2030 and its transmission for 2031 or 2032, while AEA's Curtis Thayer said there is 'nothing for tomorrow' and Fairbanks burns 250,000 gallons of diesel a day; the Air Force's AI data center parcels (spring background) need a new Chugach connection.",
+      "angle": "THE CALENDAR, NOT THE UNITS. The fix is the right kind (energy, not megawatts) and it lands around 2030, so every AI data center pitched onto the Railbelt before then is pitched into the winters in between. Distinct from No.25 (the units asymmetry on the same FERC notice) and No.68 (STAK and jurisdiction); STAK is not used.",
+      "entities": [
+        "Bradley Lake",
+        "Dixon Glacier",
+        "Alaska Energy Authority",
+        "Curtis Thayer",
+        "FERC",
+        "KTUU",
+        "Chugach Electric",
+        "Hilcorp",
+        "JBER",
+        "Clear Space Force Station",
+        "Eielson Air Force Base",
+        "Railbelt",
+        "USGS gage 15238950",
+        "Martin River",
+        "Kachemak Bay"
+      ],
+      "keywords": [
+        "Bradley Lake expansion",
+        "Dixon diversion",
+        "energy not capacity",
+        "2030",
+        "Railbelt winter",
+        "AI data centers",
+        "Air Force parcels"
+      ],
+      "headline": "A Bigger Tank, Not a Bigger Engine",
+      "sources_lead": "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
+      "claims": 30,
+      "note": "Shipped 8.47 vs 8.0 (round 3 threshold), zero hard fails; art 7 after the craft-floor cycle (07, 06, 03, 08 improved; 02 regressed and was restored). Gas Watch live audit documented as a github blocker (scheduler gap, dispatch 403)."
     }
   ]
 }

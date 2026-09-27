@@ -1,0 +1,20 @@
+{
+  "blocker": "github",
+  "reason": "The published Gas Watch still shows the 2026-09-26 04:51 reading while CINGSA has posted 2026-09-26T16:00 Alaska. The collector itself is healthy (last scheduled run 36274788282 at 21:59Z succeeded), but GitHub has not dispatched ANY scheduled workflow in this repository since 21:59Z (the 04:40Z and 07:20Z gas watch crons are missing, as are every other schedule), and this session's GitHub integration is refused workflow_dispatch (403 Resource not accessible by integration). Separately, from this sandbox the live audit's source read is challenged by CINGSA's Sucuri firewall (HTTP 307 to the collector's bot user agent), so the audit cannot complete here; the collector runs from GitHub's network, where it reads normally. Nothing in the collector or the page is broken; the next scheduled run will publish the reading.",
+  "attempts": [
+    "06:08Z gaswatch_health: FAIL on 'source reading published' only; cron success 8.1 h earlier",
+    "06:10Z workflow_dispatch of gaswatch.yml on main via the GitHub connector: 403 Resource not accessible by integration",
+    "07:09Z gaswatch_health: same single FAIL; no run since 21:59Z",
+    "07:38Z and 07:52Z listed scheduled runs repo-wide: none since 21:59Z (04:40Z and 07:20Z gas watch schedules not dispatched)",
+    "07:48Z gaswatch_health: live audit could not complete, HTTP 307 from cingsa.com (x-sucuri-id, server Sucuri/Cloudproxy) to the collector UA; alaskaaihq.com and the GitHub runs API returned 200",
+    "07:50Z re-run: same 307 from the Sucuri proxy; not bypassed by impersonating a browser"
+  ],
+  "evidence_urls": [
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36274788282",
+    "https://cingsa.com/operations/PublicDashBoard.html",
+    "https://alaskaaihq.com/gas-watch/"
+  ],
+  "checked_utc": "2026-09-27T07:52:00Z",
+  "retry": "Resume the check on the next daily run (and any rerun of this one)."
+}

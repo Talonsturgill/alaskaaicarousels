@@ -1,0 +1,13 @@
+{
+  "checked_utc": "2026-09-27T07:49:20Z",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "name": "live audit completed",
+      "status": "FAIL",
+      "detail": "HTTPError: HTTP Error 307: Temporary Redirect",
+      "remedy": "Retry the unavailable endpoint. Use authenticated GitHub tools and --runs-json if API-limited. Do not claim the live page was checked."
+    }
+  ],
+  "site_url": "https://alaskaaihq.com"
+}

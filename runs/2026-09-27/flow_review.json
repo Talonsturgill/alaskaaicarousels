@@ -1,0 +1,93 @@
+{
+  "round": 1,
+  "verdict": "revise",
+  "score_0_10": 7.0,
+  "craft": {
+    "art_score_estimate": 6.5,
+    "masterful_depth_frame": 1,
+    "weakest_frames": [
+      {
+        "slide": 9,
+        "score": 6.0,
+        "cause": "d",
+        "fix": "zoom to the basin, Dixon line as focal point with a 2030 tick, ramp the reserve edge"
+      },
+      {
+        "slide": 7,
+        "score": 6.0,
+        "cause": "b",
+        "fix": "model the slab top (hillshade or stipple), draw the gold feed"
+      },
+      {
+        "slide": 8,
+        "score": 6.0,
+        "cause": "c",
+        "fix": "full-width strata stipple below NOW, NOW word out of gold"
+      },
+      {
+        "slide": 3,
+        "score": 6.5,
+        "cause": "c",
+        "fix": "textured table so DOF reads, grade the section hatch"
+      },
+      {
+        "slide": 5,
+        "score": 6.5,
+        "cause": "d",
+        "fix": "Chaikin-smooth channels, smooth lake, tone the bay"
+      },
+      {
+        "slide": 6,
+        "score": 7.0,
+        "cause": "d",
+        "fix": "drop steep minor contours, tone the inlet"
+      },
+      {
+        "slide": 1,
+        "score": 7.5,
+        "cause": "b",
+        "fix": "far table edge, shared strata"
+      },
+      {
+        "slide": 4,
+        "score": 7.0,
+        "cause": "b",
+        "fix": "face grain (low priority)"
+      },
+      {
+        "slide": 2,
+        "score": 7.5,
+        "cause": "d",
+        "fix": "sharper relief (low priority)"
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "e",
+        "slides": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "problem": "tonal plateau",
+        "fix": "lift 08, darken 06"
+      },
+      {
+        "cause": "b",
+        "slides": [
+          3,
+          7,
+          8
+        ],
+        "problem": "largest surface least modelled"
+      }
+    ]
+  },
+  "predicted_bail_point": {
+    "slide": 5,
+    "fix": "plant the AI stake on the cover kicker"
+  },
+  "applied_in_round": 2
+}

@@ -1873,10 +1873,20 @@
           "url": "https://www.petroleumnews.com/story/2026/08/02/news/aea-final-amendment-application-for-bradley-lake-filed-with-ferc/50288.html",
           "outlet": "Petroleum News",
           "date": "2026-08-02"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/09/25/theres-nothing-tomorrow-cook-inlet-gas-crunch-global-markets-squeeze-alaska-railbelt-grid/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-09-24"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/Who-We-Are/Newsroom/Press-Releases",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-07-23"
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-27",
       "history": [
         {
           "date": "2026-08-04",
@@ -1945,6 +1955,10 @@
         {
           "date": "2026-09-25",
           "note": "Re-verified today against the Alaska Energy Authority project page. The final license amendment application filed with FERC on June 30th stands, with the construction estimate of about $400 million and a schedule of about three years of study and permitting followed by about three years of construction. No FERC ruling or decision date is posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-27",
+          "note": "Alaska's News Source reported on September 24th that the Alaska Energy Authority has hosted three of FERC's five commissioners at Bradley Lake, visits prompted by the Alaska senators' requirement that nominees see the state before confirmation. The report says dam construction is slated to finish in 2030 and the tied transmission upgrades in 2031 or 2032. AEA's own July 23rd release anticipates construction beginning in 2027, pending federal approvals. FERC has still published no decision on the amendment in docket P-8221-124."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"

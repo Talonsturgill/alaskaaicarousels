@@ -94,7 +94,7 @@ export function init(THREE) {
     const g = c.getContext('2d');
     const rng = mulberry(o.seed || 7071);
     let y = 0;
-    const tones = o.tones || ['#6B7780', '#5E6A73', '#77838C', '#56626B', '#65717A'];
+    const tones = o.tones || ['#4A5864', '#3A4852', '#56646F', '#34424C', '#44525D'];
     while (y < 1024) {
       const h = 10 + rng() * 46;
       g.fillStyle = tones[Math.floor(rng() * tones.length)];
@@ -102,6 +102,9 @@ export function init(THREE) {
       g.fillStyle = 'rgba(20,28,36,0.45)'; g.fillRect(0, y, 64, 1.6);
       y += h;
     }
+    /* a light drafting crosshatch over the bands, so a cut wall reads as rock in section */
+    g.strokeStyle = 'rgba(20,30,40,0.35)'; g.lineWidth = 1.2;
+    for (let k = -1024; k < 1088; k += 9) { g.beginPath(); g.moveTo(k, 1024); g.lineTo(k + 1024, 0); g.stroke(); }
     const t = new THREE.CanvasTexture(c);
     t.wrapS = t.wrapT = THREE.RepeatWrapping;
     t.colorSpace = THREE.SRGBColorSpace;

@@ -1,0 +1,169 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the south foot of the block on the lit slate table': shadow L* 8.0 vs ground L* 25.9, dL 17.9 at 432w"
+      ],
+      "leaders": [
+        "leader 'lLake' lands 0.0px from its target",
+        "leader 'lGla' lands 0.0px from its target",
+        "leader 'lTun' lands 0.0px from its target",
+        "leader 'lDiv' lands 0.0px from its target",
+        "leader 'lLake' meets its label 6.0px away",
+        "leader 'lGla' meets its label 6.0px away",
+        "leader 'lTun' meets its label 6.0px away",
+        "leader 'lDiv' meets its label 6.0px away",
+        "leader 'lLake' is drawn 78 px at 29 degrees, inside the pointer band",
+        "leader 'lGla' is drawn 229 px at 49 degrees, inside the pointer band",
+        "leader 'lTun' is drawn 224 px at 90 degrees, inside the pointer band",
+        "leader 'lDiv' is drawn 49 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'About 38 percentmore electricity.Its dam is ' fits 3/3 lines at 100.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 2.6 on 'BRADLEY LAKE' (box mean 10.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "art touching glyphs (4% of the ring around 'BRADLEY LAKE', spanning 33%) -- pixel critic verify the label is not crossed"
+      ],
+      "leaders": [
+        "leader 'lGla' lands 0.0px from its target",
+        "leader 'lDiv' lands 0.0px from its target",
+        "leader 'lTun' lands 0.0px from its target",
+        "leader 'lPow' lands 0.0px from its target",
+        "leader 'lGla' meets its label 4.0px away",
+        "leader 'lDiv' meets its label 4.0px away",
+        "leader 'lTun' meets its label 4.0px away",
+        "leader 'lPow' meets its label 4.0px away",
+        "leader 'lGla' is drawn 152 px at 10 degrees, inside the pointer band",
+        "leader 'lDiv' is drawn 30 px at 90 degrees, inside the pointer band",
+        "leader 'lTun' is drawn 59 px at 20 degrees, inside the pointer band",
+        "leader 'lPow' is drawn 34 px at 27 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'A bigger tank,not a bigger engine.' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the section foot of the block on the lit slate table': shadow L* 17.5 vs ground L* 33.8, dL 16.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'lPool' lands 0.0px from its target",
+        "leader 'lTun' lands 0.0px from its target",
+        "leader 'lDiv' lands 0.0px from its target",
+        "leader 'lPool' meets its label 8.0px away",
+        "leader 'lTun' meets its label 8.0px away",
+        "leader 'lDiv' meets its label 8.0px away",
+        "leader 'lPool' is drawn 142 px at 90 degrees, inside the pointer band",
+        "leader 'lTun' is drawn 246 px at 90 degrees, inside the pointer band",
+        "leader 'lDiv' is drawn 183 px at 75 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head '4.6 miles of tunnelto carry glacier water.' fits 2/2 lines at 109.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the 436,000 MWh prism': shadow L* 3.3 vs ground L* 17.4, dL 14.2 at 432w",
+        "'the 603,000 MWh prism': shadow L* 4.1 vs ground L* 16.6, dL 12.5 at 432w",
+        "'the 119.7 MW prism': shadow L* 4.1 vs ground L* 17.3, dL 13.2 at 432w",
+        "'the 120.0 MW prism': shadow L* 3.4 vs ground L* 17.5, dL 14.2 at 432w"
+      ],
+      "fits": [
+        "head 'It buys energy,not megawatts.' fits 2/2 lines at 107.5px"
+      ],
+      "asserts": [
+        "'the gold cap equals the 167,000 MWh added' holds: 113.56 vs 113.56 px (within 0.01)",
+        "'the two MW prisms differ by 0.3 MW at 2.4 px per MW' holds: 0.72 vs 0.72 px (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'micro' lands 0.0px from its target",
+        "leader 'micro' meets its label 6.0px away",
+        "leader 'micro' is drawn 232 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'Today, Dixon's meltwaterruns down the Martin' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (710,710) 370x19 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (719,729) 64x23 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (783,752) 4x5 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (787,758) 20x14 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (939,750) 4x9 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (943,759) 12x7 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (955,767) 11x14 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (435,711) 30x39 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (0,710) 435x641 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (902,710) 70x23 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (739,710) 231x13 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath().",
+        "a path was built and thrown away unpainted: ? built 1 subpath(s), largest (744,723) 158x11 design px, and slide-06.html:135:12 called beginPath() before any fill, stroke or clip. Nothing was drawn from it. Either paint it or stop building it -- and if a helper is doing the discarding, see the full-frame case: a helper contributes a subpath and never calls beginPath()."
+      ],
+      "fits": [
+        "head '\"There's nothingfor tomorrow.There's nothing' fits 4/4 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'JBER' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the first parcel tile on the lit band': shadow L* 3.4 vs ground L* 24.1, dL 20.7 at 432w"
+      ],
+      "leaders": [
+        "leader 'pS' lands 0.0px from its target",
+        "leader 'pS' meets its label 6.0px away",
+        "leader 'pS' is drawn 97 px at 34 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The AI pitch runson the same calendar.' fits 2/2 lines at 99.5px"
+      ],
+      "asserts": [
+        "'twelve parcel tiles, one per parcel' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'twelve parcel tiles, one per parcel': 12 mark centres probed at r=14px, cohort median 51.0 dE, all present (weakest 47.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'What exists,and what is only filed.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'Until the glacierwater arrives,should Railbe' fits 4/4 lines at 83px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 15,
+  "verdict": "WARN"
+}
