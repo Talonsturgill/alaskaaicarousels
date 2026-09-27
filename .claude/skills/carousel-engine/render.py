@@ -622,6 +622,11 @@ LIT_EDGE_HOOK_JS = """
        past LIT_PROBE records the scan is not made and the call is taken as
        touching, so its cost is the readback budget's (Codex, PR #403) */
     const LIT_PROBE = 4096;
+    /* and at most LIT_SCANS record comparisons per slide across every probe:
+       past it a probe is taken as touching, so a loop of clears between
+       sparse seams spends the readback budget (and is counted) instead of
+       scanning forever (Codex, PR #403) */
+    const LIT_SCANS = 4000000;  let scans = 0;
     const grow = (e, r) => {
       const bx = r.axis === 'v' ? [r.line - 2, r.a0, r.line + 1, r.a1] : [r.a0, r.line - 2, r.a1, r.line + 1];
       if (!e.bb) e.bb = bx;
@@ -630,7 +635,9 @@ LIT_EDGE_HOOK_JS = """
     const touches = (e, x0, y0, x1, y1) => {
       const b = e.bb;
       if (!b || b[0] > x1 || b[2] < x0 || b[1] > y1 || b[3] < y0) return false;
-      if (e.raw.length + e.shorts.length > LIT_PROBE) return true;
+      const n = e.raw.length + e.shorts.length;
+      if (n > LIT_PROBE || scans + n > LIT_SCANS) return true;
+      scans += n;
       const hit = (r) =>
         r.axis === 'v' ? (r.line + 1 >= x0 && r.line - 2 <= x1 && r.a1 >= y0 && r.a0 <= y1)
                        : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1);

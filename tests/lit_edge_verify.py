@@ -229,6 +229,8 @@ through the REAL render.py and qa.py:
             then the panel: silent
  123 GREEN  a cropped canvas whose hard-edged square is cleared while its
             feathered glow remains: still counted
+ 124 GREEN  40,000 clears between sparse seams: the per-slide scan bound is
+            reached, the readback budget runs out, and qa says so
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1474,6 +1476,18 @@ n2.drawImage(sq, 800, 200);
 n2.clearRect(790, 190, 60, 60);
 """
 
+GREEN_CLEAR_LOOP = """
+// one additive draw of 36 separate 20 px squares (sparse short records over a
+// wide box), then 40,000 one-pixel clears in the gaps between them, which
+// touch no record: past the per-slide scan bound each probe is taken as
+// touching, the readback budget runs out, and qa says so (Codex, PR #403)
+const sh = document.createElement('canvas'); sh.width = 1080; sh.height = 1350;
+const g2 = sh.getContext('2d'); g2.fillStyle = 'rgb(160,130,90)';
+for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) g2.fillRect(100 + 40 * i, 100 + 40 * j, 20, 20);
+cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(sh, 0, 0); cx.restore();
+for (let k = 0; k < 40000; k++) cx.clearRect(130, 130, 1, 1);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1602,6 +1616,7 @@ CASES = [
     ("slide-121", RED_PAINT_CLIP_MARGIN, [("left", 520), ("right", 550)], 2, None),
     ("slide-122", GREEN_SVG_IMAGE_COVER, [], 0, None),
     ("slide-123", GREEN_SEAMLESS_SURVIVES, [], 0, "can't place"),
+    ("slide-124", GREEN_CLEAR_LOOP, [], 0, "past its budget"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
