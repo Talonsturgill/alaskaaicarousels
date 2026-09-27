@@ -3500,6 +3500,11 @@
           "date": "2026-09-16",
           "label": "Engrossed House text issued and the bill goes to the Senate",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-30",
+          "label": "The Senate is scheduled to leave Washington, per Alaska's News Source",
+          "kind": "milestone"
         }
       ],
       "sources": [
@@ -3542,10 +3547,20 @@
           "url": "https://energycommerce.house.gov/posts/ratepayer-protection-act-passes-house-with-strong-bipartisan-support",
           "outlet": "House Committee on Energy and Commerce",
           "date": "2026-09-16"
+        },
+        {
+          "url": "https://clerk.house.gov/evs/2026/roll312.xml",
+          "outlet": "Office of the Clerk, U.S. House of Representatives",
+          "date": "2026-09-16"
+        },
+        {
+          "url": "https://rollcall.com/2026/09/24/who-would-this-independent-caucus-with-everybody/",
+          "outlet": "Roll Call",
+          "date": "2026-09-24"
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-25",
+      "last_updated": "2026-09-27",
       "history": [
         {
           "date": "2026-09-13",
@@ -3562,6 +3577,10 @@
         {
           "date": "2026-09-25",
           "note": "Re-verified today against govinfo. The most recent published text is still the version engrossed in the House on September 16th, after passage 417 to 3. No Senate version or later text has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-27",
+          "note": "Re-read the House Clerk's record of Roll No. 312 today. H.R. 9340 passed on September 16th by 417 to 3, with 12 members not voting, and Alaska's Representative Nick Begich voted yes. Roll Call reported on September 24th that the Senate is expected to vote on the bill the following week, with Senator Jon Husted of Ohio sponsoring it there. Alaska's News Source reported that the Senate is scheduled to work in Washington until September 30th. No Senate text has been published."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
