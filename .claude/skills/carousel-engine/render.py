@@ -491,6 +491,931 @@ GRADIENT_CLIP_HOOK_JS = """
 })();
 """
 
+# --- A LAYER OF LIGHT MAY NOT END IN MID-AIR (2026-09-26) --------------------
+# Run No.69's CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and
+# composited it in `screen`. The halo still carried a few levels of light at the
+# layer's left edge, so the picture got a hard vertical edge at x 492, visible
+# in the 432 px thumb, and render, qa and every gate passed it. Light has no
+# edge of its own; a layer's bounding box is never where its light stops.
+#
+# MEASURED, NOT MODELLED. The hook reads the target canvas just before and just
+# after every ADDITIVE drawImage and keeps the light the draw actually added,
+# premultiplied (on a translucent canvas an additive draw can raise only the
+# alpha). A seam is where that added light stops within a pixel: a straight
+# row or column with LIT_STEP (1 level) or more one pixel in, past any
+# anti-aliasing, and LIT_ZERO (0.25 level) or less two pixels out. A clip, a
+# source rect past its source, a canvas filter, a negative size, smoothing and
+# the target canvas's own boundary all show up the same way, because they are
+# all the place the paint stopped, and a soft falloff never does. EVERY run on
+# a line is kept, not only the longest.
+#
+# Records stay in the target canvas's own pixels until the report is collected,
+# because a slide may paint a canvas and append it afterwards. They are placed
+# on the page through the canvas's CONTENT box (border and padding removed)
+# only when that is exact: object-fit is fill, and the canvas and every
+# ancestor carry no transform, rotate, scale or offset-path beyond a positive
+# axis-aligned scale and translation. A rotated, skewed or mirrored canvas is
+# counted as UNPLACED rather than mapped onto an unrelated line; so is a seam
+# on a canvas under a CSS filter or box reflection, which can paint it where
+# the line probe does not look; so is a draw whose run, shorter than the floor
+# it was measured at, spans LIT_SPAN design px at the canvas's final size. All
+# of it is kept in one ledger per canvas and bitmap generation.
+# Nothing here is a verdict: a later draw, a DOM plate, stacking order or CSS
+# opacity can hide the line, so qa.py confirms the step in the shipped render.
+#
+# BOUNDED ON PURPOSE. Run No.69 built a wider version and withdrew it after
+# eleven review rounds widened it each time (knowledge/FIELD_NOTES.md). This one
+# measures axis-aligned seams only: a diagonal cut, from a draw through a
+# rotation or a diagonal clip, is not looked for and is not claimed. Reading a
+# canvas costs, so LIT_ON measured draws onto on-page canvases and LIT_OFF onto
+# off-page ones per slide; a draw past either budget, a readback the browser
+# refuses (a tainted canvas) and a seam that can't be placed are each COUNTED
+# and reported by qa.py, never dropped in silence. Additive FILLS are not this
+# hook's: a radial ramp clipped by its shape is GRADIENT_CLIP_HOOK_JS's.
+LIT_EDGE_HOOK_JS = """
+(() => {
+  try {
+    /* framed documents are out of scope (render.py names each visible frame
+       instead), so the hook costs them nothing (Codex, PR #403) */
+    try { if (window.top !== window) return; } catch (e) { return; }
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto || typeof proto.drawImage !== 'function' ||
+        typeof proto.getImageData !== 'function') return;
+    /* ONE LEDGER per canvas and bitmap generation, with no entry cap, so no
+       count can lose the canvas it belongs to; collection reads each entry
+       against the canvas's final state (Codex, PR #403) */
+    const book = window.__akLit = new Map(), ids = new WeakMap();
+    let nextId = 0, lost = 0;
+    const ADDITIVE = { 'screen': 1, 'lighter': 1, 'plus-lighter': 1,
+                       'lighten': 1, 'color-dodge': 1 };
+    const LIT_ON = 16, LIT_OFF = 24, LIT_RAW = 256, LIT_MAX = 24, LIT_CANDS = 4096, LIT_SHORTS = 512;
+    /* the largest bitmap read back, in pixels: three times a 2x slide canvas.
+       A larger target is counted, never read (Codex, PR #403) */
+    const LIT_AREA = 3 * 2160 * 2700;
+    /* the ledger holds each canvas WEAKLY, so a scratch canvas can be
+       collected with its bitmap, and it holds at most LIT_BOOK entries; a
+       draw that finds it full after a sweep of collected canvases can't be
+       attributed, so it is counted as skipped (Codex, PR #403) */
+    const LIT_BOOK = 65536, LIT_SWEEP = 4096;
+    let sweepIn = 1;
+    /* and at most LIT_WORK bitmap pixels read back across the whole slide,
+       sixteen 2x slide canvases, which is eight measured draws of that size
+       since each reads its target twice (before and after); a draw past it
+       is counted as skipped, so the hook's own cost is bounded whatever the
+       slide does (Codex, PR #403) */
+    const LIT_WORK = 16 * 2160 * 2700;
+    let work = 0;
+    const LIT_SPAN = 40, LIT_PRE = 8, LIT_STEP = 1.0, LIT_ZERO = 0.25;
+    let nOn = 0, nOff = 0;
+    const origDraw = proto.drawImage, origGet = proto.getImageData;
+    const lum = (d, i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
+    /* SETTING a canvas's width or height, even to the same value, clears its
+       bitmap and can change its scale, so every measurement keeps the canvas's
+       generation and one from an earlier generation is dropped at collection.
+       The generation is counted from ONE MutationObserver on each canvas in the
+       ledger, which sees every change to its own width and height content
+       attributes (in no namespace, exact local name) whatever API made it: the
+       IDL setters, setAttribute, an Attr, a NamedNodeMap. Its queue is flushed
+       synchronously before any generation is read (Codex, PR #403). */
+    const gens = new WeakMap();
+    const flush = (recs) => {
+      for (const m of recs)
+        if (m.attributeNamespace === null && (m.attributeName === 'width' || m.attributeName === 'height'))
+          gens.set(m.target, (gens.get(m.target) || 0) + 1);
+    };
+    const mo = window.MutationObserver ? new window.MutationObserver(flush) : null;
+    const watch = (cv) => {
+      try { if (mo) mo.observe(cv, { attributes: true, attributeFilter: ['width', 'height'] }); } catch (e) {}
+    };
+    const gen = (cv) => { if (mo) flush(mo.takeRecords()); return gens.get(cv) || 0; };
+    /* the entry for the canvas's CURRENT bitmap; a new generation starts a
+       new entry, because the earlier one's light was erased */
+    const entry = (cv) => {
+      let id = ids.get(cv);
+      if (id === undefined) { id = nextId++; ids.set(cv, id); watch(cv); }
+      let e = book.get(id);
+      if (!e || e.g !== gen(cv)) {
+        if (!e && book.size >= LIT_BOOK) {
+          /* a full ledger is swept for collected canvases once per
+             LIT_SWEEP draws that find it full, not on every one */
+          if (--sweepIn <= 0) {
+            sweepIn = LIT_SWEEP;
+            for (const [k, z] of book) if (!z.ref.deref()) book.delete(k);
+          }
+          if (book.size >= LIT_BOOK) return null;
+        }
+        e = { ref: new WeakRef(cv), g: gen(cv), lit: 0, skipped: 0, over: 0, failed: 0,
+              shortV: 0, shortH: 0, raw: [], shorts: [] };
+        book.set(id, e);
+      }
+      return e;
+    };
+    /* CanvasRenderingContext2D.reset() clears the bitmap as a resize does */
+    /* a clearRect or a putImageData can erase or rewrite the light a
+       record measured, and neither the rectangle nor the call can say which
+       (a clip can keep part of a clear; a full put is also how a slide tone-
+       maps its own pixels). So when one touches a record's pixels, the
+       canvas is read back once, within the work budget, and a record is kept
+       only if its step is still in the bitmap. Past the budget the records
+       are retired and the call is counted as unexamined (Codex, PR #403) */
+    /* a call that misses the records' bounding box costs four comparisons;
+       past LIT_PROBE records the scan is not made and the call is taken as
+       touching, so its cost is the readback budget's (Codex, PR #403) */
+    const LIT_PROBE = 4096;
+    /* and at most LIT_SCANS record comparisons per slide across every probe:
+       past it a probe is taken as touching, so a loop of clears between
+       sparse seams spends the readback budget (and is counted) instead of
+       scanning forever (Codex, PR #403) */
+    const LIT_SCANS = 4000000;  let scans = 0;
+    const grow = (e, r) => {
+      const bx = r.axis === 'v' ? [r.line - 2, r.a0, r.line + 1, r.a1] : [r.a0, r.line - 2, r.a1, r.line + 1];
+      if (!e.bb) e.bb = bx;
+      else e.bb = [Math.min(e.bb[0], bx[0]), Math.min(e.bb[1], bx[1]), Math.max(e.bb[2], bx[2]), Math.max(e.bb[3], bx[3])];
+    };
+    const touches = (e, x0, y0, x1, y1) => {
+      const b = e.bb;
+      if (!b || b[0] > x1 || b[2] < x0 || b[1] > y1 || b[3] < y0) return false;
+      const n = e.raw.length + e.shorts.length;
+      if (n > LIT_PROBE || scans + n > LIT_SCANS) return true;
+      scans += n;
+      const hit = (r) =>
+        r.axis === 'v' ? (r.line + 1 >= x0 && r.line - 2 <= x1 && r.a1 >= y0 && r.a0 <= y1)
+                       : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1);
+      return e.raw.some(hit) || e.shorts.some(hit);
+    };
+    /* a SOFT recheck is for paint that may or may not have covered the light
+       (a source-over draw or fill): at most LIT_COVER per slide, and never
+       past the budget, where it is simply not made rather than retiring the
+       records, so covering paint can't turn a real seam into a gap
+       (Codex, PR #403) */
+    const LIT_COVER = 4;  let covers = 0;
+    const LIT_RECHECKS = 256;  let rechecks = 0;
+    const recheck = (ctx, cv, x0, y0, x1, y1, soft) => {
+      const id = ids.get(cv), e = id !== undefined && book.get(id);
+      if (!e || e.g !== gen(cv)) return;
+      const W = cv.width, H = cv.height;
+      /* the soft cap is checked before the records are scanned, so a paint
+         loop past it costs nothing (Codex, PR #403) */
+      if (soft && (covers >= LIT_COVER || work + W * H > LIT_WORK)) return;
+      if (!touches(e, x0, y0, x1, y1)) return;
+      if (soft) covers++;
+      /* and at most LIT_RECHECKS readbacks per slide, whatever their size: a
+         loop rewriting a tiny canvas can't make one per call (Codex, PR #403) */
+      if (work + W * H > LIT_WORK || ++rechecks > LIT_RECHECKS) {
+        gens.set(cv, gen(cv) + 1);
+        const z = entry(cv);
+        if (z) z.skipped++; else lost++;
+        return;
+      }
+      work += W * H;
+      let d;
+      try { d = origGet.call(ctx, 0, 0, W, H).data; }
+      catch (err) {
+        /* the bitmap can't be read back (tainted since it was measured): the
+           records are retired and the refusal is counted (Codex, PR #403) */
+        gens.set(cv, gen(cv) + 1);
+        const z = entry(cv);
+        if (z) z.failed++; else lost++;
+        return;
+      }
+      const L = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : lum(d, (y * W + x) * 4);
+      /* each record is cut to the stretches where its step (a 5 px running
+         mean along the line) still holds, so a seam rewritten in part keeps
+         the part that survives (Codex, PR #403) */
+      /* the pieces are bounded: never more than the records held before, or
+         4096, whichever is more; past that the call is counted (Codex, PR #403) */
+      let room = Math.max(e.raw.length + e.shorts.length, 4096), cut = false;
+      const pieces = (r) => {
+        const lead = r.side === 'left' || r.side === 'top';
+        const cin = lead ? r.line : r.line - 1, cout = lead ? r.line - 2 : r.line + 1;
+        const n = r.a1 - r.a0, st = new Float32Array(n);
+        for (let i = 0; i < n; i++) {
+          const a = r.a0 + i;
+          st[i] = r.axis === 'v' ? L(cin, a) - L(cout, a) : L(a, cin) - L(a, cout);
+        }
+        const out = [];
+        let start = -1;
+        for (let i = 0; i <= n; i++) {
+          let ok = false;
+          if (i < n) {
+            let sum = 0, cnt = 0;
+            for (let j = Math.max(0, i - 2); j <= Math.min(n - 1, i + 2); j++) { sum += st[j]; cnt++; }
+            ok = sum / cnt >= LIT_STEP;
+          }
+          if (ok && start < 0) start = i;
+          if (!ok && start >= 0) {
+            if (room > 0) { out.push(Object.assign({}, r, { a0: r.a0 + start, a1: r.a0 + i })); room--; }
+            else cut = true;
+            start = -1;
+          }
+        }
+        return out;
+      };
+      e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
+      if (cut) e.over++;
+      /* every measured seam is gone: the draws that made them no longer count
+         toward a crop or placement notice; draws that recorded no seam at
+         all (feathered light) still do, since their light may remain for a
+         crop to cut (Codex, PR #403) */
+      if (!e.raw.length && !e.shorts.length && !cut) e.lit = e.seamless || 0;
+    };
+    /* a user-space rect in bitmap px, through the current transform; a bent
+       transform gives the whole canvas */
+    const devRect = (ctx, x, y, w, h) => {
+      const cv = ctx.canvas, t = ctx.getTransform ? ctx.getTransform() : null;
+      if (t && !(Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9)) return [0, 0, cv.width, cv.height];
+      const ax = t ? t.a : 1, dy = t ? t.d : 1, ex = t ? t.e : 0, fy = t ? t.f : 0;
+      return [Math.min(ax * x + ex, ax * (x + w) + ex), Math.min(dy * y + fy, dy * (y + h) + fy),
+              Math.max(ax * x + ex, ax * (x + w) + ex), Math.max(dy * y + fy, dy * (y + h) + fy)];
+    };
+    const origClear = proto.clearRect;
+    if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
+      const res = origClear.apply(this, arguments);
+      try {
+        /* the native call coerced its arguments (Web IDL doubles): so do we */
+        const [x0, y0, x1, y1] = devRect(this, Number(x), Number(y), Number(w), Number(h));
+        recheck(this, this.canvas, x0, y0, x1, y1);
+      } catch (err) {}
+      return res;
+    };
+    /* putImageData ignores the transform, the clip and compositing, and
+       writes exactly its dirty rectangle */
+    const origPut = proto.putImageData;
+    if (typeof origPut === 'function') proto.putImageData = function (img, dx, dy) {
+      const res = origPut.apply(this, arguments);
+      try {
+        /* dx and dy are Web IDL longs, coerced as the native call did */
+        dx = Number(dx) | 0; dy = Number(dy) | 0;
+        let x = 0, y = 0, w = img.width, h = img.height;
+        if (arguments.length >= 7) {
+          x = +arguments[3] | 0; y = +arguments[4] | 0; w = +arguments[5] | 0; h = +arguments[6] | 0;
+          if (w < 0) { x += w; w = -w; }
+          if (h < 0) { y += h; h = -h; }
+          const xe = Math.min(img.width, x + w), ye = Math.min(img.height, y + h);
+          x = Math.max(0, x); y = Math.max(0, y); w = xe - x; h = ye - y;
+        }
+        if (w > 0 && h > 0) recheck(this, this.canvas, dx + x, dy + y, dx + x + w, dy + y + h);
+      } catch (err) {}
+      return res;
+    };
+    const origReset = proto.reset;
+    if (typeof origReset === 'function') proto.reset = function () {
+      try { if (this.canvas) gens.set(this.canvas, gen(this.canvas) + 1); } catch (e) {}
+      return origReset.apply(this, arguments);
+    };
+    const before = (ctx) => {
+      if (!ADDITIVE[ctx.globalCompositeOperation]) return null;
+      const cv = ctx.canvas;
+      if (!cv || !(cv.width > 0 && cv.height > 0)) return null;
+      /* a canvas that is connected but not rendered (display:none, hidden,
+         wholly outside the frame) is a staging canvas: it spends the off-page
+         budget, and a draw skipped on any canvas is counted only if that
+         canvas is shown when the report is taken (Codex, PR #403) */
+      const e = entry(cv);
+      if (!e) { lost++; return null; }
+      /* a draw that no budget can admit is attributed without a layout query:
+         a sprite loop past its budget costs a counter, not a reflow per call
+         (Codex, PR #403) */
+      if (cv.width * cv.height > LIT_AREA || work + 2 * cv.width * cv.height > LIT_WORK ||
+          (nOn >= LIT_ON && nOff >= LIT_OFF)) { e.skipped++; return null; }
+      /* once EITHER budget is full, a connected canvas's placement is looked
+         up at most once per 32 of its draws; a detached one needs no lookup
+         (Codex, PR #403) */
+      const placed = !cv.isConnected ? false
+                   : (nOn >= LIT_ON || nOff >= LIT_OFF
+                      ? (e.shownAt > 0 && e.draws - e.shownAt < 32 ? e.placed : null) : null);
+      const pl = placed === null ? shown(cv) : placed;
+      if (placed === null) { e.placed = pl; e.shownAt = e.draws || 1; }
+      e.draws = (e.draws || 0) + 1;
+      if (pl ? nOn >= LIT_ON : nOff >= LIT_OFF) { e.skipped++; return null; }
+      if (pl) nOn++; else nOff++;
+      work += 2 * cv.width * cv.height;
+      try {
+        return { op: ctx.globalCompositeOperation,
+                 d: origGet.call(ctx, 0, 0, cv.width, cv.height).data };
+      } catch (err) { e.failed++; return null; }
+    };
+    const after = (ctx, b) => {
+      const cv = ctx.canvas, W = cv.width, H = cv.height;
+      const e = entry(cv);
+      if (!e) { lost++; return; }
+      let a;
+      try { a = origGet.call(ctx, 0, 0, W, H).data; }
+      catch (err) { e.failed++; return; }
+      if (a.length !== b.d.length) return;
+      const D = new Float32Array(W * H);
+      let any = false;
+      for (let p = 0, i = 0; p < D.length; p++, i += 4) {
+        const v = lum(a, i) - lum(b.d, i);
+        if (v > 0) { D[p] = v; any = true; }
+      }
+      if (!any) return;
+      e.lit++;
+      /* the shortest run worth keeping, in canvas px: LIT_SPAN design px at
+         the scale the canvas is shown at now, LIT_PRE while that is unknown.
+         The longest run dropped under that floor is kept per axis, so
+         collection can tell exactly whether the final scale makes it a seam
+         of LIT_SPAN design px (Codex, PR #403) */
+      let preV = LIT_PRE, preH = LIT_PRE;
+      const b0 = cv.isConnected && placeable(cv) ? box(cv) : null;
+      if (b0) {
+        /* down to one backing pixel: on a canvas enlarged 40x or more a
+           single pixel is already a seam (Codex, PR #403) */
+        preV = Math.max(1, Math.floor(LIT_SPAN * H / b0.h));
+        preH = Math.max(1, Math.floor(LIT_SPAN * W / b0.w));
+      }
+      const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : D[y * W + x];
+      /* line c is the boundary between pixel c-1 and pixel c. 'left'/'top':
+         the light begins at the line; 'right'/'bottom': it ends there */
+      const scan = (axis) => {
+        const v = axis === 'v', nLine = v ? W : H, nAlong = v ? H : W, pre = v ? preV : preH;
+        const val = v ? ((c, s) => at(c, s)) : ((c, s) => at(s, c));
+        const sides = v ? [['left', 1, -2], ['right', -2, 1]] : [['top', 1, -2], ['bottom', -2, 1]];
+        /* short runs: the LIT_SHORTS longest are kept by position, in a
+           small heap, so a longer run displaces grain and never the reverse,
+           and tiles too small alone can still join into a seam; one dropped
+           is counted when it is a quarter of the floor or more, or 2 px or
+           more while the scale is unknown (Codex, PR #403) */
+        const quarter = b0 ? Math.max(1, Math.floor(pre / 4)) : 2;
+        const heap = [];
+        const hpush = (k) => {
+          const len = k[3] - k[2];
+          if (heap.length < LIT_SHORTS) {
+            heap.push(k);
+            for (let i = heap.length - 1; i > 0;) {
+              const p = (i - 1) >> 1;
+              if (heap[p][3] - heap[p][2] <= len) break;
+              [heap[p], heap[i]] = [heap[i], heap[p]]; i = p;
+            }
+            return null;
+          }
+          if (heap[0][3] - heap[0][2] >= len) return k;
+          const out = heap[0]; heap[0] = k;
+          for (let i = 0;;) {
+            const l = 2 * i + 1, r = l + 1;
+            let m = i;
+            if (l < heap.length && heap[l][3] - heap[l][2] < heap[m][3] - heap[m][2]) m = l;
+            if (r < heap.length && heap[r][3] - heap[r][2] < heap[m][3] - heap[m][2]) m = r;
+            if (m === i) break;
+            [heap[m], heap[i]] = [heap[i], heap[m]]; i = m;
+          }
+          return out;
+        };
+        const cands = [], shorts = heap;
+        let over = false;
+        for (let c = 0; c <= nLine; c++) {
+          for (const [side, inO, outO] of sides) {
+            let run = 0, start = 0, mx = 0;
+            for (let s = 0; s <= nAlong; s++) {
+              const vin = s < nAlong ? val(c + inO, s) : 0;
+              if (s < nAlong && vin >= LIT_STEP && val(c + outO, s) <= LIT_ZERO) {
+                if (run === 0) { start = s; mx = 0; }
+                run++; if (vin > mx) mx = vin;
+              } else {
+                /* a run under the floor is kept by position, so collection can
+                   join it with the next draw's on the same line (two 30 px
+                   draws can make one 60 px seam); past LIT_SHORTS a draw keeps
+                   only its longest, tested alone against the final scale
+                   (Codex, PR #403) */
+                if (run >= 1 && run < pre) {
+                  const gone = hpush([side, c, start, start + run, mx]);
+                  if (gone && gone[3] - gone[2] >= quarter) {
+                    over = true;
+                    const gl = gone[3] - gone[2];
+                    if (v) { if (gl > e.shortV) e.shortV = gl; }
+                    else if (gl > e.shortH) e.shortH = gl;
+                  }
+                }
+                if (run >= pre) {
+                  /* bounded before the sort: a fragmented mask can make runs by
+                     the hundred thousand; past the bound the draw is counted */
+                  if (cands.length < LIT_CANDS) cands.push([side, c, start, start + run, mx]);
+                  else over = true;
+                }
+                run = 0;
+              }
+            }
+          }
+        }
+        /* the tolerant test lights the lines either side of a seam too; keep
+           one per stretch, on the line where the added light jumps most */
+        if (over) rawOver = true;
+        /* the tolerant test also lights the line either side of a seam. Each
+           candidate is first moved to the line within one pixel where the
+           added light jumps most, and only candidates that land on the SAME
+           line over overlapping stretches are one seam: two real seams two
+           backing pixels apart stay two, because a canvas enlarged by CSS can
+           put them far apart on the page (Codex, PR #403) */
+        const refine = (k) => {
+          const lead = k[0] === 'left' || k[0] === 'top';
+          let line = k[1], best = -Infinity;
+          for (let c = Math.max(0, k[1] - 1); c <= Math.min(nLine, k[1] + 1); c++) {
+            let j = 0;
+            for (let s = k[2]; s < k[3]; s += (k[3] - k[2] > 8 ? 2 : 1))
+              j += lead ? val(c, s) - val(c - 1, s) : val(c - 1, s) - val(c, s);
+            if (j > best) { best = j; line = c; }
+          }
+          return line;
+        };
+        /* refine every run to its line, then merge runs on the same side and
+           line that overlap, in one sorted pass: linear after the sort, never
+           a scan of every kept run (Codex, PR #403) */
+        const merge = (list) => {
+          const rs = list.map((k) => [k[0], refine(k), k[2], k[3], k[4]]);
+          rs.sort((p, q) => (p[0] < q[0] ? -1 : p[0] > q[0] ? 1 : 0) || p[1] - q[1] || p[2] - q[2]);
+          const out = [];
+          for (const r of rs) {
+            const z = out[out.length - 1];
+            if (z && z[0] === r[0] && z[1] === r[1] && r[2] < z[3]) {
+              z[3] = Math.max(z[3], r[3]); z[4] = Math.max(z[4], r[4]);
+            } else out.push(r);
+          }
+          return out;
+        };
+        for (const k of merge(shorts)) {
+          const r = { op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] };
+          e.shorts.push(r); grow(e, r);
+        }
+        /* the longest seams take the draw's LIT_RAW places first; LIT_RAW is
+           per DRAW, so no canvas can spend another's (at most LIT_ON + LIT_OFF
+           draws are measured, which bounds the total) */
+        for (const k of merge(cands).sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]))) {
+          if (nRaw >= LIT_RAW) { rawOver = true; continue; }
+          nRaw++;
+          const r = { op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] };
+          e.raw.push(r); grow(e, r);
+        }
+      };
+      let nRaw = 0, rawOver = false;
+      const n0 = e.raw.length + e.shorts.length;
+      scan('v'); scan('h');
+      if (rawOver) e.over++;
+      /* a lit draw that recorded no seam: kept apart, so erasing another
+         draw's seams can't forget its light (Codex, PR #403) */
+      else if (e.raw.length + e.shorts.length === n0) e.seamless = (e.seamless || 0) + 1;
+    };
+    /* the COMPOSED tree, the one that renders: a slotted element's parent is
+       its slot, and a shadow root's parent is its host (Codex, PR #403) */
+    const up = (el) => el.assignedSlot || el.parentElement ||
+                       (el.parentNode && el.parentNode.host) || null;
+    /* which axes an ancestor clips its descendants on: overflow or paint
+       containment, and only on a box that has a clipping box at all, so an
+       inline or display:contents ancestor clips nothing (Codex, PR #403) */
+    const replaced = (el) => !!el && ((window.SVGSVGElement && el instanceof window.SVGSVGElement) ||
+      /^(IMG|VIDEO|CANVAS|IFRAME|EMBED|OBJECT|INPUT|SELECT|TEXTAREA|BUTTON)$/.test(el.tagName || ''));
+    const clipAxes = (cs, containOnly, el) => {
+      /* no clipping box: display:contents or none, or a NON-REPLACED inline
+         box; an inline <svg> viewport or other replaced box does clip */
+      if (/^(contents|none)$/.test(cs.display || '')) return [false, false];
+      if (cs.display === 'inline' && !replaced(el)) return [false, false];
+      const cp = /paint|strict|content/.test(cs.contain || '') ||
+                 /^(auto|hidden)$/.test(cs.contentVisibility || '');   /* implies paint containment */
+      if (containOnly) return [cp, cp];
+      return [cp || (cs.overflowX || 'visible') !== 'visible',
+              cp || (cs.overflowY || 'visible') !== 'visible'];
+    };
+    /* an ancestor's clip rectangle in viewport px: its padding box, pushed
+       out by overflow-clip-margin (from the box that property names) on each
+       axis whose overflow is `clip` (Codex, PR #403) */
+    const clipRect = (el, cs, containOnly) => {
+      const q = el.getBoundingClientRect();
+      /* the scale the box is shown at; an SVG viewport has no offset size, so
+         its border-box size is rebuilt from client size and borders (Codex,
+         PR #403) */
+      const bw = el instanceof HTMLElement ? el.offsetWidth
+               : el.clientWidth + el.clientLeft + (parseFloat(cs.borderRightWidth) || 0);
+      const bh = el instanceof HTMLElement ? el.offsetHeight
+               : el.clientHeight + el.clientTop + (parseFloat(cs.borderBottomWidth) || 0);
+      const s = bw ? q.width / bw : 1, t = bh ? q.height / bh : 1;
+      let L = q.left + el.clientLeft * s, T = q.top + el.clientTop * t;
+      let R = L + el.clientWidth * s, B = T + el.clientHeight * t;
+      /* the margin applies to an overflow: clip axis and to a paint
+         containment clip (measured in Chromium: contain: paint and
+         content-visibility honor it), unless a tighter overflow: hidden,
+         scroll or auto clips that axis at the padding box (Codex, PR #403) */
+      const pc = /paint|strict|content/.test(cs.contain || '') || /^(auto|hidden)$/.test(cs.contentVisibility || '');
+      const mx = (o) => o === 'clip' || (pc && o === 'visible');
+      const cx = containOnly ? pc : mx(cs.overflowX), cy = containOnly ? pc : mx(cs.overflowY);
+      const m = String(cs.overflowClipMargin || '');
+      if ((cx || cy) && m) {
+        const f = (k) => parseFloat(cs[k]) || 0;
+        const px = parseFloat((m.match(/-?[0-9.]+px/) || ['0'])[0]) || 0;
+        let dl = 0, dt = 0, dr = 0, db = 0;
+        if (/border-box/.test(m)) {
+          dl = f('borderLeftWidth'); dr = f('borderRightWidth'); dt = f('borderTopWidth'); db = f('borderBottomWidth');
+        } else if (/content-box/.test(m)) {
+          dl = -f('paddingLeft'); dr = -f('paddingRight'); dt = -f('paddingTop'); db = -f('paddingBottom');
+        }
+        if (cx) { L -= (dl + px) * s; R += (dr + px) * s; }
+        if (cy) { T -= (dt + px) * t; B += (db + px) * t; }
+      }
+      return [L, T, R, B];
+    };
+    /* the ancestors whose OVERFLOW actually clips an element: an absolutely
+       or fixed positioned box escapes every overflow ancestor between it and
+       its containing block, which is the nearest positioned ancestor (for
+       absolute) or the nearest one with a transform, filter, perspective or
+       containment (for fixed, and for absolute too) (Codex, PR #403).
+       Transforms and containment don't apply to a non-replaced inline box, so
+       there they make no containing block; a size query container is one
+       (it implies layout containment) (Codex, PR #403) */
+    const fixedCB = (cs, el) => {
+      if ((cs.filter || 'none') !== 'none' || (cs.backdropFilter || 'none') !== 'none' ||
+          /filter/.test(cs.willChange || '')) return true;
+      if (el instanceof HTMLElement && cs.display === 'inline' && !replaced(el)) return false;
+      return (cs.transform || 'none') !== 'none' || (cs.perspective || 'none') !== 'none' ||
+        (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
+        (cs.scale || 'none') !== 'none' ||
+        /paint|layout|strict|content/.test(cs.contain || '') ||
+        /^(auto|hidden)$/.test(cs.contentVisibility || '') ||      /* implies layout containment */
+        /size/.test(cs.containerType || '') ||
+        /transform|perspective/.test(cs.willChange || '');
+    };
+    const clippers = (el0) => {
+      const out = [];
+      const p0 = getComputedStyle(el0).position;
+      let esc = p0 === 'absolute' || p0 === 'fixed' ? p0 : null;
+      /* when the root leaves overflow visible, a body's overflow belongs to
+         the viewport (which the frame intersection already is) and the body
+         box clips nothing (Codex, PR #403) */
+      const rs = getComputedStyle(document.documentElement);
+      const bodyToViewport = rs.overflowX === 'visible' && rs.overflowY === 'visible';
+      for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;          /* no box: no containing block, no clip */
+        const cb = !esc || (esc === 'fixed' ? fixedCB(cs, el) : (cs.position !== 'static' || fixedCB(cs, el)));
+        /* a body whose overflow belongs to the viewport still clips by
+           paint containment, on both axes, and by nothing else */
+        if (cb && !(el === document.body && bodyToViewport)) out.push([el, cs]);
+        else if (cb && (/paint|strict|content/.test(cs.contain || '') ||
+                        /^(auto|hidden)$/.test(cs.contentVisibility || ''))) out.push([el, cs, true]);
+        if (cb) esc = null;
+        if (cs.position === 'fixed') esc = 'fixed';
+        else if (cs.position === 'absolute' && esc !== 'fixed') esc = 'absolute';
+      }
+      return out;
+    };
+    const frame = () => [document.documentElement.clientWidth || window.innerWidth,
+                         document.documentElement.clientHeight || window.innerHeight];
+    const shown = (cv) => {
+      if (!cv || !cv.isConnected) return false;
+      if (typeof cv.checkVisibility === 'function' &&
+          !cv.checkVisibility({ visibilityProperty: true, opacityProperty: true })) return false;
+      /* a filter opacity(0) on the canvas or an ancestor makes it as
+         transparent as CSS opacity does: a staging canvas (Codex, PR #403) */
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const f = getComputedStyle(el).filter || 'none';
+        if (f === 'none') continue;
+        for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g))
+          if (parseFloat(m[1]) === 0) return false;
+      }
+      const r = cv.getBoundingClientRect(), [fw, fh] = frame();
+      /* what is left of the canvas inside the frame and inside every
+         ancestor's overflow clip, per clipping axis: a canvas wholly outside
+         its wrapper's clip is not in the picture (Codex, PR #403) */
+      let L = Math.max(r.left, 0), T = Math.max(r.top, 0);
+      let R = Math.min(r.right, fw), B = Math.min(r.bottom, fh);
+      for (const [el, cs, only] of clippers(cv)) {
+        if (!(R > L && B > T)) break;
+        /* a rotated or skewed clipper's padding box can't be read off its
+           bounding box, so it never rejects here (cropped() counts it) */
+        if (!flatChain(el)) continue;
+        const [ox, oy] = clipAxes(cs, only, el);
+        if (!ox && !oy) continue;
+        const [cl, ct, cr, cb] = clipRect(el, cs, only);
+        if (ox) { L = Math.max(L, cl); R = Math.min(R, cr); }
+        if (oy) { T = Math.max(T, ct); B = Math.min(B, cb); }
+      }
+      if (!(r.width > 0 && r.height > 0)) return false;
+      /* nothing of the box is left, but a filter that spreads or moves paint
+         (a blur, a drop-shadow, an SVG filter) or a reflection can still
+         paint it into the picture: kept, so it is counted rather than
+         dropped. A colour-only filter paints nothing outside the box
+         (Codex, PR #403) */
+      if (R > L && B > T) return true;
+      /* nothing of the box is left in view: kept only if a filter that
+         spreads or moves paint reaches the frame from where it is */
+      const ext = spreadExt(cv);
+      return ext > 0 && r.right + ext > 0 && r.bottom + ext > 0 && r.left - ext < fw && r.top - ext < fh;
+    };
+    /* placed by its content box only when nothing on the way up rotates,
+       skews, mirrors or bends it and the bitmap fills that box (object-fit
+       fill, the default); anything else is counted, not guessed */
+    const placeable = (cv) =>
+      (getComputedStyle(cv).objectFit || 'fill') === 'fill' && flatChain(cv);
+    /* true when nothing from el up rotates, skews, mirrors or bends it, so
+       its bounding box is its real box on the page */
+    const flatChain = (el0) => {
+      for (let el = el0; el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;
+        /* transforms don't apply to a non-replaced HTML inline box: inert
+           there. An SVG <g> is display inline too, and its transform is live
+           (Codex, PR #403) */
+        if (el instanceof HTMLElement && cs.display === 'inline' && !replaced(el)) continue;
+        const tf = cs.transform || 'none';
+        if (tf !== 'none') {
+          /* a flat 3D transform (translateZ(0), translate3d, scale3d) is
+             serialized as matrix() here; matrix3d only appears with a real Z
+             shift or perspective, which can't be placed (measured, PR #403) */
+          const m = tf.match(/^matrix\\(([^)]*)\\)$/);
+          if (!m) return false;
+          const q = m[1].split(',').map(Number);
+          if (!(q[0] > 0 && q[3] > 0 && Math.abs(q[1]) < 1e-6 && Math.abs(q[2]) < 1e-6)) return false;
+        }
+        const rot = cs.rotate || 'none';
+        if (rot !== 'none' && !/^0(deg|rad|turn|grad)?$/.test(rot.trim())) return false;
+        const sc = cs.scale || 'none';
+        if (sc !== 'none' && sc.trim().split(/\\s+/).some((t) => !(parseFloat(t) > 0))) return false;
+        const op = cs.offsetPath || 'none';
+        if (op !== 'none') return false;
+      }
+      return true;
+    };
+    /* the canvas's CONTENT box on the page, where its bitmap is drawn: the
+       bounding box less border and padding, scaled by whatever positive
+       scale sits above it (Codex, PR #403) */
+    const box = (cv) => {
+      const r = cv.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) return null;
+      const cs = getComputedStyle(cv), f = (q) => parseFloat(cs[q]) || 0;
+      const ex = f('borderLeftWidth') + f('paddingLeft'), exR = f('borderRightWidth') + f('paddingRight');
+      const ey = f('borderTopWidth') + f('paddingTop'), eyB = f('borderBottomWidth') + f('paddingBottom');
+      let cw = parseFloat(cs.width), ch = parseFloat(cs.height);
+      if (!(cw > 0 && ch > 0)) { cw = cv.offsetWidth - ex - exR; ch = cv.offsetHeight - ey - eyB; }
+      else if (cs.boxSizing === 'border-box') { cw -= ex + exR; ch -= ey + eyB; }
+      if (!(cw > 0 && ch > 0)) return null;
+      const sx = r.width / (cw + ex + exR), sy = r.height / (ch + ey + eyB);
+      return { x: r.left + (window.scrollX || 0) + ex * sx,
+               y: r.top + (window.scrollY || 0) + ey * sy, w: cw * sx, h: ch * sy };
+    };
+    /* a CSS filter or a box reflection on the canvas or an ancestor can paint
+       its seam somewhere the line probe does not look (a displaced
+       drop-shadow): such a seam is counted, not confirmed (Codex, PR #403) */
+    /* `moves`: an effect that can paint the canvas somewhere else (a
+       drop-shadow, an SVG filter by url(), a box reflection), which can bring
+       even the frame's own edge into the picture, so it is checked before that
+       edge is exempted; any other filter only recolours in place */
+    /* a display:contents element generates no box, so a filter, a
+       reflection, a transform or a clip declared on it does nothing
+       (Codex, PR #403) */
+    const boxless = (cs) => cs.display === 'contents';
+    /* how far a filter can carry paint past the box, in CSS px: three blur
+       radii, a drop-shadow's offset plus three of its blur; an SVG filter or
+       a reflection can reach anywhere (Codex, PR #403) */
+    const spreadExt = (cv) => {
+      let ext = 0;
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return Infinity;
+        const f = cs.filter || 'none';
+        if (f === 'none') continue;
+        if (/url\\(/.test(f)) return Infinity;
+        /* the extent is in this element's own px: carried into viewport px
+           by the scale its box is shown at, and unbounded if bent */
+        if (!flatChain(el)) return Infinity;
+        /* an SVG element has no offset size to measure its scale by */
+        if (!(el instanceof HTMLElement)) return Infinity;
+        const q = el.getBoundingClientRect();
+        const k = Math.max(el.offsetWidth ? q.width / el.offsetWidth : 1,
+                           el.offsetHeight ? q.height / el.offsetHeight : 1);
+        for (const m of f.matchAll(/(blur|drop-shadow)\\(((?:[^()]|\\([^()]*\\))*)\\)/g)) {
+          const px = (m[2].match(/-?[0-9.]+px/g) || []).map(parseFloat);
+          if (m[1] === 'blur') ext += k * 3 * (px[0] || 0);
+          else ext += k * (Math.max(Math.abs(px[0] || 0), Math.abs(px[1] || 0)) + 3 * (px[2] || 0));
+        }
+      }
+      return ext;
+    };
+    const repainted = (cv, moves) => {
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el), f = cs.filter || 'none';
+        if (boxless(cs)) continue;
+        if ((cs.webkitBoxReflect || 'none') !== 'none') return true;
+        if (f !== 'none' && (!moves || /drop-shadow|url\\(/.test(f))) return true;
+      }
+      return false;
+    };
+    /* CSS that crops a measured canvas's light where the canvas did not stop
+       painting it: a clip-path, a mask, or an ancestor's overflow or paint
+       containment whose edge falls inside the canvas and inside the frame.
+       Such a canvas's draws are counted, not confirmed (Codex, PR #403). An
+       ancestor clip on the frame's own edge, the usual wrapper, is no crop */
+    const cropped = (cv, bx) => {
+      const [fw, fh] = frame();
+      const cuts = (e, lo, hi, fmax) => e > lo + 0.5 && e < hi - 0.5 && e > 1 && e < fmax - 1;
+      for (let el = cv; el && el.nodeType === 1; el = up(el)) {
+        const cs = getComputedStyle(el);
+        if (boxless(cs)) continue;
+        if ((cs.clipPath || 'none') !== 'none') return true;
+        /* legacy clip: rect() acts only on an absolutely or fixed positioned box */
+        if ((cs.clip || 'auto') !== 'auto' && /^(absolute|fixed)$/.test(cs.position)) return true;
+        if ((cs.maskImage || cs.webkitMaskImage || 'none') !== 'none') return true;
+      }
+      for (const [el, cs, only] of clippers(cv)) {
+        const [ox, oy] = clipAxes(cs, only, el);
+        if (!ox && !oy) continue;
+        if (!flatChain(el)) return true;     /* a bent clip can't be located: counted */
+        const [vl, vt, vr, vb] = clipRect(el, cs, only), sx = window.scrollX || 0, sy = window.scrollY || 0;
+        const L = vl + sx, T = vt + sy, R = vr + sx, B = vb + sy;
+        /* each axis crops only where it clips (Codex, PR #403) */
+        if ((ox && (cuts(L, bx.x, bx.x + bx.w, fw) || cuts(R, bx.x, bx.x + bx.w, fw))) ||
+            (oy && (cuts(T, bx.y, bx.y + bx.h, fh) || cuts(B, bx.y, bx.y + bx.h, fh)))) return true;
+      }
+      return false;
+    };
+    window.__akLitShown = shown;
+    window.__akLitCollect = () => {
+      const recs = [];
+      let unplaced = 0, capped = 0, readback = 0;
+      const [fw, fh] = frame();
+      capped += lost;
+      for (const e of book.values()) {
+        const cv = e.ref.deref();
+        if (!cv) continue;                            /* collected: never in the picture */
+        /* erased by a later width or height, or never in the picture */
+        if (e.g !== gen(cv) || !shown(cv)) continue;
+        capped += e.skipped + e.over; readback += e.failed;
+        if (!e.lit) continue;
+        /* a run is hard when it spans the floor at the scale it is shown at,
+           along its OWN axis (a vertical run by the height scale). object-fit
+           scales the bitmap into the content box first (fill per axis;
+           contain by the smaller, cover by the larger, none at natural size,
+           scale-down the smaller of contain and none); the transforms above
+           then scale each axis, read off the bounding box, which is over,
+           never under, for a bent canvas (Codex, PR #403) */
+        const q = cv.getBoundingClientRect(), ccs = getComputedStyle(cv);
+        const ax = cv.offsetWidth ? q.width / cv.offsetWidth : 1, ay = cv.offsetHeight ? q.height / cv.offsetHeight : 1;
+        const lx = cv.width ? (cv.clientWidth - (parseFloat(ccs.paddingLeft) || 0) - (parseFloat(ccs.paddingRight) || 0)) / cv.width : 0;
+        const ly = cv.height ? (cv.clientHeight - (parseFloat(ccs.paddingTop) || 0) - (parseFloat(ccs.paddingBottom) || 0)) / cv.height : 0;
+        const fit = ccs.objectFit || 'fill';
+        const u = fit === 'contain' ? Math.min(lx, ly) : fit === 'cover' ? Math.max(lx, ly)
+                : fit === 'scale-down' ? Math.min(lx, ly, 1) : 1;
+        /* a bent canvas can swap its axes on the page: there both take the
+           larger scale, erring high (Codex, PR #403) */
+        const bent = !flatChain(cv), am = Math.max(ax, ay);
+        const sH = (fit === 'fill' ? lx : u) * (bent ? am : ax), sV = (fit === 'fill' ? ly : u) * (bent ? am : ay);
+        /* judged on JOINED stretches, as the placed path joins them: runs on
+           the same side and line that touch across draws are one seam
+           (Codex, PR #403) */
+        const runs = e.raw.concat(e.shorts).sort((p, q2) =>
+          (p.side < q2.side ? -1 : p.side > q2.side ? 1 : 0) || p.line - q2.line || p.a0 - q2.a0);
+        let hard = e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN, jz = null;
+        for (const r of runs) {
+          if (jz && jz.side === r.side && jz.line === r.line && r.a0 <= jz.a1 + 1) jz.a1 = Math.max(jz.a1, r.a1);
+          else jz = { side: r.side, axis: r.axis, line: r.line, a0: r.a0, a1: r.a1 };
+          if ((jz.a1 - jz.a0) * (jz.axis === 'v' ? sV : sH) >= LIT_SPAN) { hard = true; break; }
+        }
+        /* a bitmap under 3 px across can't be scanned for a seam across that
+           side at all: counted, not passed (Codex, PR #403) */
+        if (cv.width < 3 || cv.height < 3) { unplaced += e.lit; continue; }
+        const bx = placeable(cv) ? box(cv) : false;
+        if (bx === null) continue;                    /* not shown at any size */
+        /* can't be placed, or CSS can paint it elsewhere (which can bring even
+           the frame's edge in): counted when it measured a hard edge */
+        /* a CSS crop can cut a seam into light that had none, so it counts
+           here too, measured against the canvas's box (Codex, PR #403) */
+        if (!bx || repainted(cv, true)) {
+          const cb = bx || box(cv);
+          /* object-fit cover crops a bitmap whose proportions differ from its
+             box, and none crops one larger than it: a CSS-made edge, like a
+             clip-path (Codex, PR #403) */
+          const fitCrop = (fit === 'cover' && Math.abs(lx - ly) > 1e-6 * Math.max(lx, ly)) ||
+                          (fit === 'none' && (lx < 1 || ly < 1));
+          if (hard || fitCrop || (cb && cropped(cv, cb))) unplaced += e.lit;
+          continue;
+        }
+        /* CSS cuts its light where the canvas did not stop painting it */
+        if (cropped(cv, bx)) { unplaced += e.lit; continue; }
+        let counted = false;
+        const kx = bx.w / cv.width, ky = bx.h / cv.height;
+        /* a run past LIT_SHORTS, kept only as a length, that the final scale
+           makes a seam: counted, since its position was not kept */
+        if (e.shortV * ky >= LIT_SPAN || e.shortH * kx >= LIT_SPAN) { unplaced += e.lit; counted = true; }
+        /* every draw's stretches on one line, kept and short alike, joined
+           where they touch, then held to LIT_SPAN at the final scale */
+        const segs = e.raw.concat(e.shorts).sort((p, q) =>
+          (p.axis < q.axis ? -1 : p.axis > q.axis ? 1 : 0) ||
+          (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.line - q.line || p.a0 - q.a0);
+        const joined = [];
+        for (const r of segs) {
+          const last = joined[joined.length - 1];
+          if (last && last.axis === r.axis && last.side === r.side && last.line === r.line &&
+              r.a0 <= last.a1 + 1) {
+            last.a1 = Math.max(last.a1, r.a1); last.mx = Math.max(last.mx, r.mx);
+            if (last.op !== r.op && !last.op.split(', ').includes(r.op)) last.op += ', ' + r.op;
+          } else joined.push(Object.assign({}, r));
+        }
+        const tint = repainted(cv, false);
+        let tinted = false;
+        for (const r of joined) {
+          const v = r.axis === 'v', kA = v ? ky : kx, kC = v ? kx : ky;
+          const page = (v ? bx.x : bx.y) + r.line * kC;
+          /* only the part of the stretch inside the frame (Codex, PR #403) */
+          const from = Math.max(0, (v ? bx.y : bx.x) + r.a0 * kA);
+          const to = Math.min(v ? fh : fw, (v ? bx.y : bx.x) + r.a1 * kA);
+          if (to - from < LIT_SPAN) continue;
+          if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
+          if (tint) { tinted = true; continue; }
+          recs.push({ side: r.side, axis: r.axis, at: page, from: from, to: to,
+                      op: r.op, lit_max: r.mx / 255, n: 1 });
+        }
+        if (tinted && !counted) unplaced += e.lit;       /* each draw once */
+      }
+      /* one record per stretch of a line: records on the same side of the
+         same line (within 1 design px) whose stretches overlap or touch are
+         merged, so layered draws warn once and do not fill the cap */
+      recs.sort((p, q) => (p.side < q.side ? -1 : p.side > q.side ? 1 : 0) || p.from - q.from);
+      /* in one pass: each record is checked only against the latest group on
+         its own line and the two lines beside it, so the merge is linear in
+         the records and never a scan of everything before (Codex, PR #403) */
+      const out = [], latest = new Map();
+      for (const r of recs) {
+        const a = Math.round(r.at);
+        let hit = null;
+        for (const k of [a - 1, a, a + 1]) {
+          const z = latest.get(r.side + '|' + k);
+          if (z && Math.abs(z.at - r.at) <= 1 && r.from <= z.to + 1 && z.from <= r.to + 1) { hit = z; break; }
+        }
+        if (hit) {
+          hit.from = Math.min(hit.from, r.from); hit.to = Math.max(hit.to, r.to);
+          hit.lit_max = Math.max(hit.lit_max, r.lit_max); hit.n += r.n;
+          if (hit.op !== r.op) hit.op = hit.op + ', ' + r.op;
+          continue;
+        }
+        const g = Object.assign({}, r);
+        out.push(g); latest.set(r.side + '|' + a, g);
+      }
+      if (out.length > LIT_MAX) { capped += out.length - LIT_MAX; out.length = LIT_MAX; }
+      for (const z of out) {
+        z.at = +z.at.toFixed(1); z.from = +z.from.toFixed(1); z.to = +z.to.toFixed(1);
+        z.lit_max = +z.lit_max.toFixed(4);
+      }
+      return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
+    };
+    /* a draw that can take light away (copy, the in/out/atop family, xor)
+       is treated as a clear of the whole canvas: some of these clear outside
+       the source too (Codex, PR #403) */
+    const ERASING = { 'copy': 1, 'source-in': 1, 'source-out': 1, 'destination-in': 1,
+                      'destination-out': 1, 'destination-atop': 1, 'xor': 1 };
+    /* a source-over or source-atop draw or fillRect can cover light too when
+       it is opaque; one that covers a quarter of the canvas or more gets a
+       soft recheck over where it lands. Measured over 73 corpus slides: 44
+       make such a drawImage, none more than 5; smaller sprites can't take a
+       long seam away and are not rechecked (Codex, PR #403) */
+    const COVERING = { 'source-over': 1, 'source-atop': 1 };
+    const destRect = (ctx, a) => {
+      const n = a.length, img = a[0];
+      /* an SVG <image>'s width and height are SVGAnimatedLength, not numbers
+         (Codex, PR #403) */
+      const dim = (v) => typeof v === 'number' ? v : (v && v.baseVal ? v.baseVal.value : 0);
+      const iw = img && (img.naturalWidth || img.videoWidth || img.displayWidth || dim(img.width)) || 0;
+      const ih = img && (img.naturalHeight || img.videoHeight || img.displayHeight || dim(img.height)) || 0;
+      const dx = n >= 9 ? +a[5] : +a[1], dy = n >= 9 ? +a[6] : +a[2];
+      const dw = n >= 9 ? +a[7] : n >= 5 ? +a[3] : iw, dh = n >= 9 ? +a[8] : n >= 5 ? +a[4] : ih;
+      return devRect(ctx, dx, dy, dw, dh);
+    };
+    proto.drawImage = function () {
+      let b = null;
+      try { b = before(this); } catch (e) { b = null; }
+      const res = origDraw.apply(this, arguments);
+      if (!b) {
+        try {
+          const cv = this.canvas, op = this.globalCompositeOperation;
+          if (cv && ERASING[op]) recheck(this, cv, 0, 0, cv.width, cv.height);
+          else if (cv && COVERING[op] && ids.get(cv) !== undefined) {
+            const [x0, y0, x1, y1] = destRect(this, arguments);
+            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1, true);
+          }
+        } catch (err) {}
+      }
+      /* a measurement that throws is counted as unmeasured, not swallowed */
+      if (b) { try { after(this, b); } catch (err) { try { const z = entry(this.canvas); if (z) z.failed++; else lost++; } catch (e2) {} } }
+      return res;
+    };
+    /* a fill, stroke or text painted with an op that can take light away
+       rechecks the canvas like an erasing drawImage (Codex, PR #403) */
+    for (const name of ['fillRect', 'strokeRect', 'fill', 'stroke', 'fillText', 'strokeText']) {
+      const orig = proto[name];
+      if (typeof orig !== 'function') continue;
+      proto[name] = function () {
+        const res = orig.apply(this, arguments);
+        try {
+          const cv = this.canvas, op = this.globalCompositeOperation;
+          if (cv && ERASING[op]) recheck(this, cv, 0, 0, cv.width, cv.height);
+          else if (cv && name === 'fillRect' && COVERING[op] && ids.get(cv) !== undefined) {
+            const [x0, y0, x1, y1] = devRect(this, +arguments[0], +arguments[1], +arguments[2], +arguments[3]);
+            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1, true);
+          }
+        } catch (err) {}
+        return res;
+      };
+    }
+  } catch (e) {}
+})();
+"""
+
 # --- A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01) ---------------------
 # Run No.47's slide 07 solved nine analytic shadow tips and drew none of them.
 # A clip test asked whether each cast point was left of a surveyed cut and broke
@@ -2510,6 +3435,18 @@ IN_PAGE_QA_JS = """
      that needs no taste, whether one is sitting on a declared contact shadow. */
   out.add_glows = (Array.isArray(window.__akAddGlow)
                    ? window.__akAddGlow : []).slice(0, 24);
+  /* Additive canvas layers whose painted light stops on a straight line, in
+     design px, with what the hook could not measure or place. LIT_EDGE_HOOK_JS
+     holds the measurement; qa.py confirms each line in the shipped render. */
+  out.lit_edges = []; out.lit_edges_capped = 0; out.lit_edges_unplaced = 0;
+  out.lit_edges_readback = 0;
+  try {
+    if (window.__akLitCollect) {
+      const le = window.__akLitCollect();
+      out.lit_edges = le.edges; out.lit_edges_capped = le.capped;
+      out.lit_edges_unplaced = le.unplaced; out.lit_edges_readback = le.readback;
+    } else out.lit_edges_readback = -1;       /* the hook never installed */
+  } catch (e) { out.lit_edges_readback = -1; }
   /* Full-frame paths thrown away unpainted, and every even-odd clip/fill with
      its subpath census, from CLIP_RULE_HOOK_JS. qa.py holds the verdicts. */
   out.path_discards = (Array.isArray(window.__akPathDiscard)
@@ -3370,6 +4307,8 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "paint": {"fills": 0, "sites": 0, "empty": []},
            "fits": [], "asserts": [], "motifs": [], "css_unreadable": 0,
            "gradient_clips": [], "flat_cores": [], "add_glows": [],
+           "lit_edges": [], "lit_edges_capped": 0, "lit_edges_unplaced": 0,
+           "lit_edges_readback": 0, "lit_edges_frames": 0,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
@@ -3391,6 +4330,10 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     # cannot confuse anyone's call-site attribution, and installing it last means
     # it sees the brush for every op the page makes.
     page.add_init_script(INK_HOOK_JS)
+    # Also outside the paint hook and stack-free. It wraps only drawImage, which
+    # no other hook here wraps, and reads the canvas with the original
+    # getImageData, so the order among the rest does not matter to it.
+    page.add_init_script(LIT_EDGE_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -3404,13 +4347,33 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
         else:
             page.wait_for_timeout(400)
         qa = page.evaluate(IN_PAGE_QA_JS)
+        # LIT EDGES IN FRAMES (Codex, PR #403). The hook does not look inside a
+        # framed document: every frame embedded in the slide that is visible in
+        # the picture is counted, whatever it holds, and qa.py says so. A frame
+        # nested in another is covered by its visible ancestor's count.
+        frames = 0
+        for fr in page.frames:
+            if fr.parent_frame != page.main_frame:
+                continue
+            try:
+                # the hook's own shown(): visibility, opacity, the frame and
+                # every ancestor's overflow clip (Codex, PR #403); a page whose
+                # hook is gone counts the frame
+                vis = fr.frame_element().evaluate(
+                    "(f) => window.__akLitShown ? window.__akLitShown(f) : true")
+            except Exception:
+                vis = True
+            frames += 1 if vis else 0
+        qa["lit_edges_frames"] = frames
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
                                        "encodings", "contacts", "scales", "leaders",
                                        "fits", "asserts", "motifs", "css_unreadable",
                                        "gradient_clips", "flat_cores",
-                                       "add_glows",
+                                       "add_glows", "lit_edges", "lit_edges_capped",
+                                       "lit_edges_unplaced", "lit_edges_readback",
+                                       "lit_edges_frames",
                                        "path_discards", "discard_count",
                                        "evenodd_ops",
                                        "declaration_misses",

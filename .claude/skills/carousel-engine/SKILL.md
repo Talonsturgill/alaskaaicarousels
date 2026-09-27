@@ -592,6 +592,71 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   or more of the frame. Nothing is said about a flat core in `source-over` or
   `multiply` at any size, because there a filled disc with a soft edge is an
   ordinary way to draw (this deck's ink-soak halos are exactly that).
+- **A layer of light may not end in mid-air** (2026-09-26). A glow, pool or
+  haze computed on an offscreen canvas and composited in `screen` or `lighter`
+  has no edge of its own, so its bounding box must not become one. Run No.69's
+  craft cycle drew slide 08's lamp glow on a 760 px layer whose halo still
+  carried a few levels at the cut, and shipped a hard vertical edge at x 492
+  that the scorer saw in the thumb. Make the layer span the frame, or feather
+  every edge that lands inside the frame to zero (a smoothstep over 150 px or
+  more).
+
+  *What it measures.* render.py reads the target canvas before and after every
+  additive `drawImage` and records where the light the draw actually PAINTED
+  stops within a pixel along a row or column (`lit_edges`), so a clip, a
+  source rect past its bounds, a canvas filter, a negative size, or a nested,
+  offset or late-appended canvas's own boundary all count. Stretches on one
+  line are joined across draws (short runs are kept by position for that)
+  before the 40 design px span applies. qa.py **WARNs** when the shipped
+  render shows a step of 1 level or more along that line for 40 design px or
+  more, once per stretch; an edge something later covers says nothing.
+
+  *Where it places a seam.* Through the canvas's content box, only when
+  `object-fit` is `fill` and nothing on the composed-tree path rotates, skews,
+  mirrors or bends it (a transform on a non-replaced inline box is inert). A canvas under a CSS filter or reflection, cut by a
+  clip-path, mask, legacy `clip` or an overflow or containment clip inside the
+  frame, or shown so large that a dropped short run spans 40 design px, is
+  counted as unplaced when it measured a seam that spans 40 design px along
+  its own axis at the scale it is shown at (a crop is counted regardless,
+  placeable or not, and so is an object-fit cover or none that crops the
+  bitmap;
+  clip geometry is not evaluated, so a canvas clipped away
+  entirely still counts: the conservative side). A canvas is in the picture
+  when it is connected, visible, not transparent (CSS or filter opacity), and something of its box is
+  left inside the frame and inside the overflow and containment clips that
+  actually apply to it (containing blocks followed; a body whose overflow
+  belongs to the viewport, a `display: contents` or non-replaced inline box
+  clip nothing; a rotated clipper never rejects), or when a spreading filter
+  can reach the frame (its reach scaled as the element is shown). Other canvases are staging canvases and are never
+  counted.
+
+  *What it says it did not see.* Each by count, never in silence: draws past
+  the budget (16 measured additive draws onto shown canvases and 24 onto
+  others, a bitmap over 17.5 million pixels, sixteen 2x canvases' worth of
+  readback per slide (a measured draw reads its canvas twice), bounded
+  candidates and records per draw, the longest short runs per draw,
+  a ledger of 65,536 canvases, four million record comparisons and 256
+  readbacks for the clears and puts it rechecks), canvases it can't place (a bitmap under 3 px
+  across among them: it can't be scanned), refused readbacks,
+  render records older than the check, a record the picture has no room to be
+  sampled along, and every visible iframe (the hook does not run in frames).
+
+  *Erased light.* Measurements are kept per canvas and bitmap generation. A
+  width or height set again (any API, seen by one MutationObserver) or
+  `reset()` drops them; a `clearRect`, a `putImageData`, or a `drawImage`
+  or fill, stroke or text that can take light away (`copy`, the in, out and
+  atop family, `xor`; for `drawImage` and `fillRect` also a `source-over` or
+  `source-atop` paint over a quarter of the canvas, at most four per slide and
+  within the budget) that touches a
+  record's pixels triggers one readback and keeps the stretches of each record
+  whose step is still in the bitmap (a full put is also how a slide tone-maps
+  its pixels); a readback refused there retires the records and is counted.
+
+  *Not checked, by design.* Diagonal seams (a draw through a rotation or a
+  diagonal clip), and light that reaches the picture without an additive
+  `drawImage` onto a shown 2D canvas: a layer composited with `source-over`,
+  a canvas blended by CSS `mix-blend-mode`, a canvas painted from a worker or
+  an ImageBitmap. Reconstruction: `python tests/lit_edge_verify.py`.
 - **A text block may not set more lines than it declared** (2026-08-12).
   `AK.fitText(el, {min, max, maxLines})` records every call, and qa.py **FAILS**
   a block that ran past its own `maxLines` or bottomed out at `min` without

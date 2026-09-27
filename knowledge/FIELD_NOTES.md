@@ -8652,7 +8652,7 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - QA'S MARK PROBE READS INK SPREAD. A physically correct bokeh disc (smooth centre, hot rim) failed marks_reach_frame on 30 of 88 discs; declaring each disc's point on its own rim fixed it honestly. See instincts.
 - DEFERRED, NAMED: 07's halftone breaks into dashes where the row pitch and the dot size are computed from different y (sy0 against y); 09's walnut still reads as bold converging lines; 03's rings are still stroked targets; the cover has no focal light (the dossier's lamp pool at the lower right never landed).
 
-## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air (WITHDRAWN, PARKED)
+## 2026-09-26, No.69, Phase 12: a layer of light may not end in mid-air (WITHDRAWN, PARKED, then SHIPPED BOUNDED the same day)
 
 - THE DEFECT IS REAL. The CRAFT FLOOR cycle drew slide 08's lamp glow on a 760 px layer and left a
   hard vertical edge at x 492 that every gate passed and the re-scorer saw at thumb. THE HABIT still
@@ -8677,9 +8677,60 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   and bottom; diagonal seams at any angle; a census cap that says so; a test that fails when any
   fixture is missing. UNBLOCKS WHEN someone opens that PR with time to take Codex's rounds without a
   day's deck waiting on it.
+- SHIPPED BOUNDED, 2026-09-26, in its own maintenance PR (owner's request). The scope was
+  written down before any code: MEASURED PAINT (the target canvas read before and after each
+  additive drawImage) along ROWS AND COLUMNS ONLY, every run on a line kept, placed on the page
+  by bounding box only when the canvas and every ancestor carry nothing but a positive
+  axis-aligned scale and translation (transform, rotate, scale and offset-path are all read),
+  and confirmed in the shipped PNG. Everything it can't examine is COUNTED and warned: draws
+  past the budget, unplaceable canvases (rotated, skewed, mirrored, filtered or reflected in CSS,
+  object-fit other than fill, clipped, masked or cropped by an ancestor's overflow inside the frame),
+  refused readbacks, render records older than the check. OUT, on purpose: light that reaches the
+  page without an additive drawImage onto a shown 2D canvas (a source-over layer, CSS
+  mix-blend-mode, a worker or ImageBitmap canvas; measured use in 83 slides: none, all 47
+  mix-blend-modes are overlay), diagonal seams (the parked detector for them was the largest single piece of the
+  sprawl), additive fills (the gradient-clip check owns radial fills), FAIL severity.
+  MEASURED: an image-only detector was tried first and found 479 low-contrast straight edges
+  over 86 shipped slides (rules, baselines, halftone rows), so the brush-side measurement is
+  what makes the check quiet. The bounded hook records nothing and warns nothing over 82
+  re-rendered slides (runs 2026-09-05 to 2026-09-14 and No.69) plus the 4 demo slides; all 82
+  are BYTE-IDENTICAL to main's renders and qa fail counts are unchanged; render time 478 s
+  against 493 s on main, noise. It catches the No.69 reconstruction at x 492 (two visible
+  stretches, 2.5 and 6.2 levels, split where the table band covers the line) and its y 615 top
+  edge (8.1 levels over 348 px). tests/lit_edge_verify.py: 126 fixtures through the real engine,
+  exit 0 on the branch and exit 1 on main. A tainted canvas has no route under render.py's
+  flags (--allow-file-access-from-files; a foreignObject SVG image stays readable), so the
+  readback warning is proved by feeding qa a record, not by a real taint.
 - WHAT THE RUN LEARNED ABOUT REVIEW. A new instrument riding a run's PR gets reviewed as hard as the
   run's claims, and it has far more surface. Keep Phase 12 upgrades small enough to be finished in one
   review, or ship them in their own PR.
+- AND WHAT THE MAINTENANCE PR LEARNED. Its own PR took thirty-three Codex rounds, most of them CSS
+  placement cases no deck here has ever used. From round 21 a finding was fixed only if it was a false
+  warning risk on a real deck, a silent miss of an in-scope seam, or a cost bound, and was otherwise
+  DECLINED on measurement. Declined in round 21: counting every short run a draw drops (the grain
+  fixture, ordinary 2 px additive grain, would then report a gap on every render), and applying
+  ancestor clips to a spreading filter's reach (the worst case spends budget, which is counted; the
+  82-slide corpus spends none). A later round should not "fix" either without a deck that needs it.
+  Measured in round 24, through the engine: 44 of 73 corpus slides draw source-over over a quarter
+  of a canvas or more, none more than 5 times, so those draws are rechecked and smaller ones are not.
+  Declined in round 25: rechecking a narrow opaque strip whose own edge lands on the recorded line.
+  Measured with the recheck gated on overlap instead of area, the false warning stays, because the
+  strip's edge is a real step in the bitmap; no readback can tell it from the light it covered.
+  Declined in round 26: scroll offsets in placement. No slide scrolls: 0 of 83 corpus slides plus the
+  demo deck call a scroll API, and the render viewport is the page (1080 x 1350).
+  Declined in round 27: recording new edges a clearRect or putImageData cuts into smooth light. That is
+  the occlusion rule (fixtures 4 and 6): an edge later paint cuts into the light is not where an
+  additive draw stopped, and the check reports only the latter, as its scope says.
+  PAGINATION TRAP (round 28): the PR passed 100 review threads and get_review_comments returns the
+  first 100, all resolved, so a completed review looked clean. Always follow pageInfo.hasNextPage
+  before calling a Codex round clean.
+  Declined in round 29: retiring the draw count of seamless (fully feathered) light after a full
+  rewrite. It would need painted bounds for draws that record nothing; the only effect is an extra
+  "check by eye" notice on a cropped or unplaceable canvas, and the 82-slide corpus raises none.
+  Declined in round 31: rebuilding a clip box whose untransformed size rounds to 0 px under a large
+  scale. No corpus slide sets any sub-pixel width or height (0 of 83 plus the demo deck).
+  Declined in round 33: instrumenting canvases adopted from a child frame's realm. No corpus slide
+  uses a frame or adopts a node (0 of 83 plus the demo deck), and frames are out of scope by design.
 
 ### Parked, 2026-09-26 frontier scan, focus (e), headless Chromium rendering
 
