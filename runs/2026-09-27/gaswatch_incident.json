@@ -7,7 +7,8 @@
     "07:09Z gaswatch_health: same single FAIL; no run since 21:59Z",
     "07:38Z and 07:52Z listed scheduled runs repo-wide: none since 21:59Z (04:40Z and 07:20Z gas watch schedules not dispatched)",
     "07:48Z gaswatch_health: live audit could not complete, HTTP 307 from cingsa.com (x-sucuri-id, server Sucuri/Cloudproxy) to the collector UA; alaskaaihq.com and the GitHub runs API returned 200",
-    "07:50Z re-run: same 307 from the Sucuri proxy; not bypassed by impersonating a browser"
+    "07:50Z re-run: same 307 from the Sucuri proxy; not bypassed by impersonating a browser",
+    "08:2xZ re-audit with the upgraded per-endpoint checker (this run's Phase 12): 10 page, feed and cron checks PASS; 'source reachable' FAIL (connection reset by the CINGSA proxy from this sandbox); the source-dependent reading check is withheld, not passed"
   ],
   "evidence_urls": [
     "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml",

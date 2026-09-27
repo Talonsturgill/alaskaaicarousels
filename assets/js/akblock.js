@@ -152,7 +152,7 @@ export function init(THREE) {
    * names the wall that gets o.sectionMaterial instead of strata.
    */
   B.build = function (dem, o) {
-    const S = B.sampler(dem), F = B.frame(o.origin, o.bearing || 90);
+    const S = B.sampler(dem), F = B.frame(o.origin, o.bearing != null ? o.bearing : 90);   /* 0 is north, a real bearing */
     const u0 = o.u[0], u1 = o.u[1], v0 = o.v[0], v1 = o.v[1];
     const step = o.step || 0.04, ve = o.ve || 2, base = o.base != null ? o.base : 0.6;
     const seaLevel = o.seaLevel != null ? o.seaLevel : 0.5;
@@ -166,13 +166,16 @@ export function init(THREE) {
         const u = u0 + (u1 - u0) * i / (NU - 1);
         const ll = F.toLL(u, v);
         let e = S(ll[0], ll[1]);
-        if (!isFinite(e)) e = 0;
+        /* outside the DEM: refuse, never fabricate. Zero here used to read as flat sea. */
+        if (!isFinite(e)) throw new RangeError('AKBLOCK.build: the block extent reaches outside the DEM at ' +
+          ll[0].toFixed(4) + ', ' + ll[1].toFixed(4) + '; crop the u/v range to the grid');
         const k = j * NU + i;
         if (e <= seaLevel) { kind[k] = 1; e = Math.max(e, -30); }
-        for (const L of lakes) {
+        for (let li = 0; li < lakes.length; li++) {
+          const L = lakes[li];
           const b = L.bbox;
           if (ll[0] >= b[0] && ll[0] <= b[2] && ll[1] >= b[1] && ll[1] <= b[3] &&
-              Math.abs(e - L.level) <= (L.tol || 1.5)) { kind[k] = 2; e = L.level; }
+              Math.abs(e - L.level) <= (L.tol || 1.5)) { kind[k] = 2 + li; e = L.level; }   /* 2, 3, ... one code per lake */
         }
         hm[k] = e;
       }
@@ -236,7 +239,9 @@ export function init(THREE) {
       color: 0x8ccfc4, roughness: 0.14, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.2 });
     const seaMat = o.seaMaterial || new THREE.MeshPhysicalMaterial({
       color: 0x0e2a3a, roughness: 0.2, metalness: 0.0, clearcoat: 0.4 });
-    const lake = lakes.length ? waterMesh(2, Y(lakes[0].level) + 0.002, lakeMat) : null;
+    /* one surface per lake, each at ITS OWN level (a shared mesh put every lake at lakes[0]'s height) */
+    const lakeMeshes = lakes.map((L, li) => waterMesh(2 + li, Y(L.level) + 0.002, lakeMat)).filter(Boolean);
+    const lake = lakeMeshes[0] || null;
     const sea = waterMesh(1, Y(0) + 0.002, seaMat);
 
     /* ---- the cut walls ---- */
@@ -292,11 +297,11 @@ export function init(THREE) {
     floor.position.set((u0 + u1) / 2, -base, -(v0 + v1) / 2);
 
     const group = new THREE.Group();
-    group.add(top); if (lake) group.add(lake); if (sea) group.add(sea);
+    group.add(top); lakeMeshes.forEach(m => group.add(m)); if (sea) group.add(sea);
     Object.values(walls).forEach(w => group.add(w)); group.add(floor);
 
     return {
-      group, top, lake, sea, walls, floor, frame: F, ve, base, NU, NV, hm, kind,
+      group, top, lake, lakes: lakeMeshes, sea, walls, section: sec ? walls[sec] : null, floor, frame: F, ve, base, NU, NV, hm, kind,
       dims: { u0, u1, v0, v1, step },
       height: (u, v) => { const ll = F.toLL(u, v); return S(ll[0], ll[1]); },
       world: (u, v, m) => new THREE.Vector3(u, Y(m), -v),
@@ -306,7 +311,7 @@ export function init(THREE) {
         const out = []; n = n || 400;
         for (let q = 0; q <= n; q++) {
           const u = u0 + (u1 - u0) * q / n, ll = F.toLL(u, vEdge);
-          let e = S(ll[0], ll[1]); if (!isFinite(e)) e = 0;
+          const e = S(ll[0], ll[1]);   /* NaN outside the grid, left as NaN for the caller to see */
           out.push([u, e]);
         }
         return out;
