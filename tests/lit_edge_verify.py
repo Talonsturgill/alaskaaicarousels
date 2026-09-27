@@ -1315,6 +1315,26 @@ cg.addColorStop(0, '#0B1422'); cg.addColorStop(1, '#1A2436');
 cx.save(); cx.globalCompositeOperation = 'copy'; cx.fillStyle = cg; cx.fillRect(0, 0, 1080, 1350); cx.restore();
 """ + PANEL_AT_492
 
+GREEN_SMALL_SHOWN = """
+// a 400 x 400 canvas shown at 40 x 40 under a drop-shadow (can't be placed):
+// its 200 px seams are 20 px on the page, under the 40 px floor at the scale
+// they are shown at, so there is nothing to count (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 400; nc.height = 400;
+nc.style.cssText = 'position:absolute;left:500px;top:600px;width:40px;height:40px;filter:drop-shadow(2px 2px 0 #000)';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 200; sp.height = 200;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0, 0, 200, 200);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 100, 100);
+"""
+
+GREEN_COVER_FILL = RED + """
+// an opaque full-canvas source-over fillRect covers the seam, then a plain
+// panel makes an unrelated step on the same line (Codex, PR #403)
+const cf = cx.createLinearGradient(0, 0, 0, 1350);
+cf.addColorStop(0, '#0B1422'); cf.addColorStop(1, '#1A2436');
+cx.fillStyle = cf; cx.fillRect(0, 0, 1080, 1350);
+""" + PANEL_AT_492
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1433,6 +1453,8 @@ CASES = [
     ("slide-111", GREEN_MIRRORED_G, [], 0, "can't place"),
     ("slide-112", GREEN_CROP_ERASED, [], 0, None),
     ("slide-113", GREEN_COPY_FILL, [], 0, None),
+    ("slide-114", GREEN_SMALL_SHOWN, [], 0, None),
+    ("slide-115", GREEN_COVER_FILL, [], 0, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

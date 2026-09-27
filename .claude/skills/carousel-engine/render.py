@@ -636,10 +636,20 @@ LIT_EDGE_HOOK_JS = """
                        : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1);
       return e.raw.some(hit) || e.shorts.some(hit);
     };
-    const recheck = (ctx, cv, x0, y0, x1, y1) => {
+    /* a SOFT recheck is for paint that may or may not have covered the light
+       (a source-over draw or fill): at most LIT_COVER per slide, and never
+       past the budget, where it is simply not made rather than retiring the
+       records, so covering paint can't turn a real seam into a gap
+       (Codex, PR #403) */
+    const LIT_COVER = 4;  let covers = 0;
+    const recheck = (ctx, cv, x0, y0, x1, y1, soft) => {
       const id = ids.get(cv), e = id !== undefined && book.get(id);
       if (!e || e.g !== gen(cv) || !touches(e, x0, y0, x1, y1)) return;
       const W = cv.width, H = cv.height;
+      if (soft) {
+        if (covers >= LIT_COVER || work + W * H > LIT_WORK) return;
+        covers++;
+      }
       if (work + W * H > LIT_WORK) {
         gens.set(cv, gen(cv) + 1);
         const z = entry(cv);
@@ -1205,13 +1215,21 @@ LIT_EDGE_HOOK_JS = """
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
-        /* a 1 px run counts too when the canvas is shown large enough for it
-           to span the floor (its bounding box: over, never under, for a bent
-           canvas) (Codex, PR #403) */
+        /* a run is hard when it spans the floor at the scale it is shown at,
+           along its OWN axis (a vertical run by the height scale). The scale
+           comes from the bounding box, which is over, never under, for a bent
+           canvas; object-fit other than fill scales both axes alike: contain
+           by the smaller, cover by the larger, none at natural size (over:
+           the larger of that and the box's) (Codex, PR #403) */
         const q = cv.getBoundingClientRect();
-        const k = Math.max(cv.width ? q.width / cv.width : 0, cv.height ? q.height / cv.height : 0);
-        const hard = e.raw.length > 0 || e.shorts.some((r) => r.a1 - r.a0 >= 2 || (r.a1 - r.a0) * k >= LIT_SPAN) ||
-                     Math.max(e.shortV, e.shortH) >= 2 || Math.max(e.shortV, e.shortH) * k >= LIT_SPAN;
+        const gx = cv.width ? q.width / cv.width : 0, gy = cv.height ? q.height / cv.height : 0;
+        const fit = getComputedStyle(cv).objectFit || 'fill';
+        const u = fit === 'contain' ? Math.min(gx, gy) : fit === 'scale-down' ? Math.min(gx, gy, 1)
+                : fit === 'cover' ? Math.max(gx, gy) : Math.max(gx, gy, 1);
+        const sV = fit === 'fill' ? gy : u, sH = fit === 'fill' ? gx : u;
+        const spans = (r) => (r.a1 - r.a0) * (r.axis === 'v' ? sV : sH) >= LIT_SPAN;
+        const hard = e.raw.some(spans) || e.shorts.some(spans) ||
+                     e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN;
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even
@@ -1290,12 +1308,11 @@ LIT_EDGE_HOOK_JS = """
        the source too (Codex, PR #403) */
     const ERASING = { 'copy': 1, 'source-in': 1, 'source-out': 1, 'destination-in': 1,
                       'destination-out': 1, 'destination-atop': 1, 'xor': 1 };
-    /* a source-over or source-atop draw can cover light too when its image is
-       opaque; one that covers a quarter of the canvas or more is rechecked
-       over where it lands. Measured over 73 corpus slides: 44 make such a
-       draw, none more than 5, which the readback budget holds; smaller
-       sprites can't take a long seam away and are not rechecked, so a
-       particle field can't spend the budget (Codex, PR #403) */
+    /* a source-over or source-atop draw or fillRect can cover light too when
+       it is opaque; one that covers a quarter of the canvas or more gets a
+       soft recheck over where it lands. Measured over 73 corpus slides: 44
+       make such a drawImage, none more than 5; smaller sprites can't take a
+       long seam away and are not rechecked (Codex, PR #403) */
     const COVERING = { 'source-over': 1, 'source-atop': 1 };
     const destRect = (ctx, a) => {
       const n = a.length, img = a[0];
@@ -1315,7 +1332,7 @@ LIT_EDGE_HOOK_JS = """
           if (cv && ERASING[op]) recheck(this, cv, 0, 0, cv.width, cv.height);
           else if (cv && COVERING[op] && ids.get(cv) !== undefined) {
             const [x0, y0, x1, y1] = destRect(this, arguments);
-            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1);
+            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1, true);
           }
         } catch (err) {}
       }
@@ -1331,8 +1348,12 @@ LIT_EDGE_HOOK_JS = """
       proto[name] = function () {
         const res = orig.apply(this, arguments);
         try {
-          const cv = this.canvas;
-          if (cv && ERASING[this.globalCompositeOperation]) recheck(this, cv, 0, 0, cv.width, cv.height);
+          const cv = this.canvas, op = this.globalCompositeOperation;
+          if (cv && ERASING[op]) recheck(this, cv, 0, 0, cv.width, cv.height);
+          else if (cv && name === 'fillRect' && COVERING[op] && ids.get(cv) !== undefined) {
+            const [x0, y0, x1, y1] = devRect(this, +arguments[0], +arguments[1], +arguments[2], +arguments[3]);
+            if ((x1 - x0) * (y1 - y0) >= 0.25 * cv.width * cv.height) recheck(this, cv, x0, y0, x1, y1, true);
+          }
         } catch (err) {}
         return res;
       };

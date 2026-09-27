@@ -616,7 +616,9 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   mirrors or bends it (a transform on a non-replaced inline box is inert). A canvas under a CSS filter or reflection, cut by a
   clip-path, mask, legacy `clip` or an overflow or containment clip inside the
   frame, or shown so large that a dropped short run spans 40 design px, is
-  counted as unplaced (clip geometry is not evaluated, so a canvas clipped away
+  counted as unplaced when it measured a seam that spans 40 design px along
+  its own axis at the scale it is shown at (a crop is counted regardless;
+  clip geometry is not evaluated, so a canvas clipped away
   entirely still counts: the conservative side). A canvas is in the picture
   when it is connected, visible, not transparent (CSS or filter opacity), and something of its box is
   left inside the frame and inside the overflow and containment clips that
@@ -639,8 +641,9 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   width or height set again (any API, seen by one MutationObserver) or
   `reset()` drops them; a `clearRect`, a `putImageData`, or a `drawImage`
   or fill, stroke or text that can take light away (`copy`, the in, out and
-  atop family, `xor`; for `drawImage` also a
-  `source-over` or `source-atop` draw over a quarter of the canvas) that touches a
+  atop family, `xor`; for `drawImage` and `fillRect` also a `source-over` or
+  `source-atop` paint over a quarter of the canvas, at most four per slide and
+  within the budget) that touches a
   record's pixels triggers one readback and keeps the stretches of each record
   whose step is still in the bitmap (a full put is also how a slide tone-maps
   its pixels); a readback refused there retires the records and is counted.
