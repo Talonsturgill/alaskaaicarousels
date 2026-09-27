@@ -617,7 +617,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   clip-path, mask, legacy `clip` or an overflow or containment clip inside the
   frame, or shown so large that a dropped short run spans 40 design px, is
   counted as unplaced when it measured a seam that spans 40 design px along
-  its own axis at the scale it is shown at (a crop is counted regardless;
+  its own axis at the scale it is shown at (a crop is counted regardless,
+  placeable or not;
   clip geometry is not evaluated, so a canvas clipped away
   entirely still counts: the conservative side). A canvas is in the picture
   when it is connected, visible, not transparent (CSS or filter opacity), and something of its box is

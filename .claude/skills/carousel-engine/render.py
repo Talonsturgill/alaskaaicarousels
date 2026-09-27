@@ -644,12 +644,13 @@ LIT_EDGE_HOOK_JS = """
     const LIT_COVER = 4;  let covers = 0;
     const recheck = (ctx, cv, x0, y0, x1, y1, soft) => {
       const id = ids.get(cv), e = id !== undefined && book.get(id);
-      if (!e || e.g !== gen(cv) || !touches(e, x0, y0, x1, y1)) return;
+      if (!e || e.g !== gen(cv)) return;
       const W = cv.width, H = cv.height;
-      if (soft) {
-        if (covers >= LIT_COVER || work + W * H > LIT_WORK) return;
-        covers++;
-      }
+      /* the soft cap is checked before the records are scanned, so a paint
+         loop past it costs nothing (Codex, PR #403) */
+      if (soft && (covers >= LIT_COVER || work + W * H > LIT_WORK)) return;
+      if (!touches(e, x0, y0, x1, y1)) return;
+      if (soft) covers++;
       if (work + W * H > LIT_WORK) {
         gens.set(cv, gen(cv) + 1);
         const z = entry(cv);
@@ -1216,17 +1217,20 @@ LIT_EDGE_HOOK_JS = """
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
         /* a run is hard when it spans the floor at the scale it is shown at,
-           along its OWN axis (a vertical run by the height scale). The scale
-           comes from the bounding box, which is over, never under, for a bent
-           canvas; object-fit other than fill scales both axes alike: contain
-           by the smaller, cover by the larger, none at natural size (over:
-           the larger of that and the box's) (Codex, PR #403) */
-        const q = cv.getBoundingClientRect();
-        const gx = cv.width ? q.width / cv.width : 0, gy = cv.height ? q.height / cv.height : 0;
-        const fit = getComputedStyle(cv).objectFit || 'fill';
-        const u = fit === 'contain' ? Math.min(gx, gy) : fit === 'scale-down' ? Math.min(gx, gy, 1)
-                : fit === 'cover' ? Math.max(gx, gy) : Math.max(gx, gy, 1);
-        const sV = fit === 'fill' ? gy : u, sH = fit === 'fill' ? gx : u;
+           along its OWN axis (a vertical run by the height scale). object-fit
+           scales the bitmap into the content box first (fill per axis;
+           contain by the smaller, cover by the larger, none at natural size,
+           scale-down the smaller of contain and none); the transforms above
+           then scale each axis, read off the bounding box, which is over,
+           never under, for a bent canvas (Codex, PR #403) */
+        const q = cv.getBoundingClientRect(), ccs = getComputedStyle(cv);
+        const ax = cv.offsetWidth ? q.width / cv.offsetWidth : 1, ay = cv.offsetHeight ? q.height / cv.offsetHeight : 1;
+        const lx = cv.width ? (cv.clientWidth - (parseFloat(ccs.paddingLeft) || 0) - (parseFloat(ccs.paddingRight) || 0)) / cv.width : 0;
+        const ly = cv.height ? (cv.clientHeight - (parseFloat(ccs.paddingTop) || 0) - (parseFloat(ccs.paddingBottom) || 0)) / cv.height : 0;
+        const fit = ccs.objectFit || 'fill';
+        const u = fit === 'contain' ? Math.min(lx, ly) : fit === 'cover' ? Math.max(lx, ly)
+                : fit === 'scale-down' ? Math.min(lx, ly, 1) : 1;
+        const sH = (fit === 'fill' ? lx : u) * ax, sV = (fit === 'fill' ? ly : u) * ay;
         const spans = (r) => (r.a1 - r.a0) * (r.axis === 'v' ? sV : sH) >= LIT_SPAN;
         const hard = e.raw.some(spans) || e.shorts.some(spans) ||
                      e.shortV * sV >= LIT_SPAN || e.shortH * sH >= LIT_SPAN;
@@ -1234,7 +1238,13 @@ LIT_EDGE_HOOK_JS = """
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even
            the frame's edge in): counted when it measured a hard edge */
-        if (!bx || repainted(cv, true)) { if (hard) unplaced += e.lit; continue; }
+        /* a CSS crop can cut a seam into light that had none, so it counts
+           here too, measured against the canvas's box (Codex, PR #403) */
+        if (!bx || repainted(cv, true)) {
+          const cb = bx || box(cv);
+          if (hard || (cb && cropped(cv, cb))) unplaced += e.lit;
+          continue;
+        }
         /* CSS cuts its light where the canvas did not stop painting it */
         if (cropped(cv, bx)) { unplaced += e.lit; continue; }
         let counted = false;

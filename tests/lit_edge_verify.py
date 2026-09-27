@@ -1335,6 +1335,28 @@ cf.addColorStop(0, '#0B1422'); cf.addColorStop(1, '#1A2436');
 cx.fillStyle = cf; cx.fillRect(0, 0, 1080, 1350);
 """ + PANEL_AT_492
 
+GREEN_CONTAIN_STRETCHED = """
+// a 100 x 100 canvas with object-fit: contain under a wrapper scaled 10x in
+// X only: a 4 px wide additive square's top and bottom edges are 40 px wide
+// on the page, so it is counted (Codex, PR #403)
+const wrap = document.createElement('div');
+wrap.style.cssText = 'position:absolute;left:100px;top:600px;transform-origin:0 0;transform:scale(10,1)';
+document.body.appendChild(wrap);
+const nc = document.createElement('canvas'); nc.width = 100; nc.height = 100;
+nc.style.cssText = 'display:block;width:100px;height:100px;object-fit:contain';
+wrap.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 4; sp.height = 4;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0, 0, 4, 4);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 50, 50);
+"""
+
+GREEN_CONTAIN_CLIPPED = placed_canvas("object-fit:contain;clip-path:inset(0 50% 0 0)").replace(
+    "glow(492, 0, 588, 1350, false)", "glow(492, 0, 588, 1350, true)") + """
+// a fully feathered glow (no seam of its own) on a canvas that can't be
+// placed (object-fit: contain), cut in half by a clip-path: the crop makes a
+// seam, so it is counted (Codex, PR #403)
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1455,6 +1477,8 @@ CASES = [
     ("slide-113", GREEN_COPY_FILL, [], 0, None),
     ("slide-114", GREEN_SMALL_SHOWN, [], 0, None),
     ("slide-115", GREEN_COVER_FILL, [], 0, None),
+    ("slide-116", GREEN_CONTAIN_STRETCHED, [], 0, "can't place"),
+    ("slide-117", GREEN_CONTAIN_CLIPPED, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
