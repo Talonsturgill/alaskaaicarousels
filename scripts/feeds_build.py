@@ -429,7 +429,13 @@ def docket_rss(site_url: str, items: list) -> str:
         # the first meant an item with no status published its decider under
         # the word "Status", which is a wrong statement about a live decision.
         status = (d.get("status") or "").strip()
-        desc = " ".join(x for x in [d.get("summary") or "", d.get("access_note") or ""] if x)
+        # Lead with what moved. The guid is new on every update, so a reader
+        # resurfaces the item; with only the summary it arrives byte for byte
+        # the same as last time and never says what changed.
+        moved = [h.get("note") or "" for h in (d.get("history") or [])
+                 if (h.get("date") or "")[:10] == when]
+        desc = " ".join(x for x in [moved[-1] if moved else "", d.get("summary") or "",
+                                    d.get("access_note") or ""] if x)
         if status:
             desc = f"{desc} Status, {status}.".strip()
         rows.append(f"""<item>
