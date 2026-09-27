@@ -953,8 +953,10 @@ cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(bk, 0, 0); cx.re
 """
 
 GREEN_GRAIN = """
-// a fine additive grain of 2 px dots over the repaired glow: runs far under a
-// quarter of the floor are not kept, so nothing fills and nothing is said
+// a fine additive grain of 2 px dots over the repaired glow: the draw keeps
+// its longest short runs, and grain it drops, far under a quarter of the
+// floor, is not counted, so nothing is said. Counting every dropped run would
+// turn ordinary grain into a gap (measured on this fixture, PR #403)
 """ + GREEN_SPAN + """
 const gr = document.createElement('canvas'); gr.width = 1080; gr.height = 1350;
 const gg = gr.getContext('2d'); gg.fillStyle = 'rgba(255,255,255,0.08)';
@@ -1141,6 +1143,13 @@ const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(160,130,90)'; s2.fillRect(0,
 n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 40, 0);
 """
 
+RED_INERT_INLINE_TRANSFORM = RED_NESTED.replace(
+    "document.body.appendChild(nc);",
+    "// a rotate on a NON-REPLACED inline ancestor is inert: the canvas is\n"
+    "// painted axis-aligned and measured as usual (Codex, PR #403)\n"
+    "const sp = document.createElement('span'); sp.style.transform = 'rotate(20deg)';\n"
+    "document.body.appendChild(sp); sp.appendChild(nc);", 1)
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1245,6 +1254,7 @@ CASES = [
     ("slide-97", RED_TILED_SHORTS, [LEFT, ("right", 501)], 2, None),
     ("slide-98", RED_PART_CLEARED, [LEFT], 1, None),
     ("slide-99", GREEN_SCALED_SHADOW, [], 0, "can't place"),
+    ("slide-100", RED_INERT_INLINE_TRANSFORM, [LEFT], 1, None),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

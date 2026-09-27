@@ -618,9 +618,24 @@ LIT_EDGE_HOOK_JS = """
        canvas is read back once, within the work budget, and a record is kept
        only if its step is still in the bitmap. Past the budget the records
        are retired and the call is counted as unexamined (Codex, PR #403) */
-    const touches = (e, x0, y0, x1, y1) => e.raw.concat(e.shorts).some((r) =>
-      r.axis === 'v' ? (r.line + 1 >= x0 && r.line - 2 <= x1 && r.a1 >= y0 && r.a0 <= y1)
-                     : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1));
+    /* a call that misses the records' bounding box costs four comparisons;
+       past LIT_PROBE records the scan is not made and the call is taken as
+       touching, so its cost is the readback budget's (Codex, PR #403) */
+    const LIT_PROBE = 4096;
+    const grow = (e, r) => {
+      const bx = r.axis === 'v' ? [r.line - 2, r.a0, r.line + 1, r.a1] : [r.a0, r.line - 2, r.a1, r.line + 1];
+      if (!e.bb) e.bb = bx;
+      else e.bb = [Math.min(e.bb[0], bx[0]), Math.min(e.bb[1], bx[1]), Math.max(e.bb[2], bx[2]), Math.max(e.bb[3], bx[3])];
+    };
+    const touches = (e, x0, y0, x1, y1) => {
+      const b = e.bb;
+      if (!b || b[0] > x1 || b[2] < x0 || b[1] > y1 || b[3] < y0) return false;
+      if (e.raw.length + e.shorts.length > LIT_PROBE) return true;
+      const hit = (r) =>
+        r.axis === 'v' ? (r.line + 1 >= x0 && r.line - 2 <= x1 && r.a1 >= y0 && r.a0 <= y1)
+                       : (r.line + 1 >= y0 && r.line - 2 <= y1 && r.a1 >= x0 && r.a0 <= x1);
+      return e.raw.some(hit) || e.shorts.some(hit);
+    };
     const recheck = (ctx, cv, x0, y0, x1, y1) => {
       const id = ids.get(cv), e = id !== undefined && book.get(id);
       if (!e || e.g !== gen(cv) || !touches(e, x0, y0, x1, y1)) return;
@@ -878,16 +893,18 @@ LIT_EDGE_HOOK_JS = """
           }
           return out;
         };
-        for (const k of merge(shorts))
-          e.shorts.push({ op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] });
+        for (const k of merge(shorts)) {
+          const r = { op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] };
+          e.shorts.push(r); grow(e, r);
+        }
         /* the longest seams take the draw's LIT_RAW places first; LIT_RAW is
            per DRAW, so no canvas can spend another's (at most LIT_ON + LIT_OFF
            draws are measured, which bounds the total) */
         for (const k of merge(cands).sort((p, q) => (q[3] - q[2]) - (p[3] - p[2]))) {
           if (nRaw >= LIT_RAW) { rawOver = true; continue; }
           nRaw++;
-          e.raw.push({ op: b.op, axis: axis, side: k[0], line: k[1],
-                       a0: k[2], a1: k[3], mx: k[4] });
+          const r = { op: b.op, axis: axis, side: k[0], line: k[1], a0: k[2], a1: k[3], mx: k[4] };
+          e.raw.push(r); grow(e, r);
         }
       };
       let nRaw = 0, rawOver = false;
@@ -1021,6 +1038,9 @@ LIT_EDGE_HOOK_JS = """
       for (let el = el0; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         if (boxless(cs)) continue;
+        /* transforms don't apply to a non-replaced inline box: inert there
+           (Codex, PR #403) */
+        if (cs.display === 'inline' && !replaced(el)) continue;
         const tf = cs.transform || 'none';
         if (tf !== 'none') {
           /* a flat 3D transform (translateZ(0), translate3d, scale3d) is

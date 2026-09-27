@@ -613,7 +613,7 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
 
   *Where it places a seam.* Through the canvas's content box, only when
   `object-fit` is `fill` and nothing on the composed-tree path rotates, skews,
-  mirrors or bends it. A canvas under a CSS filter or reflection, cut by a
+  mirrors or bends it (a transform on a non-replaced inline box is inert). A canvas under a CSS filter or reflection, cut by a
   clip-path, mask, legacy `clip` or an overflow or containment clip inside the
   frame, or shown so large that a dropped short run spans 40 design px, is
   counted as unplaced (clip geometry is not evaluated, so a canvas clipped away
