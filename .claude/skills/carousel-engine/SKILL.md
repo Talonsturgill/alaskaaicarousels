@@ -618,7 +618,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   frame, or shown so large that a dropped short run spans 40 design px, is
   counted as unplaced when it measured a seam that spans 40 design px along
   its own axis at the scale it is shown at (a crop is counted regardless,
-  placeable or not;
+  placeable or not, and so is an object-fit cover or none that crops the
+  bitmap;
   clip geometry is not evaluated, so a canvas clipped away
   entirely still counts: the conservative side). A canvas is in the picture
   when it is connected, visible, not transparent (CSS or filter opacity), and something of its box is
@@ -634,8 +635,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
   others, a bitmap over 17.5 million pixels, sixteen 2x canvases' worth of
   readback per slide (a measured draw reads its canvas twice), bounded
   candidates and records per draw, the longest short runs per draw,
-  a ledger of 65,536 canvases, four million record comparisons for the clears
-  and puts it rechecks), canvases it can't place (a bitmap under 3 px
+  a ledger of 65,536 canvases, four million record comparisons and 256
+  readbacks for the clears and puts it rechecks), canvases it can't place (a bitmap under 3 px
   across among them: it can't be scanned), refused readbacks,
   render records older than the check, a record the picture has no room to be
   sampled along, and every visible iframe (the hook does not run in frames).

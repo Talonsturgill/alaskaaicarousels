@@ -649,6 +649,7 @@ LIT_EDGE_HOOK_JS = """
        records, so covering paint can't turn a real seam into a gap
        (Codex, PR #403) */
     const LIT_COVER = 4;  let covers = 0;
+    const LIT_RECHECKS = 256;  let rechecks = 0;
     const recheck = (ctx, cv, x0, y0, x1, y1, soft) => {
       const id = ids.get(cv), e = id !== undefined && book.get(id);
       if (!e || e.g !== gen(cv)) return;
@@ -658,7 +659,9 @@ LIT_EDGE_HOOK_JS = """
       if (soft && (covers >= LIT_COVER || work + W * H > LIT_WORK)) return;
       if (!touches(e, x0, y0, x1, y1)) return;
       if (soft) covers++;
-      if (work + W * H > LIT_WORK) {
+      /* and at most LIT_RECHECKS readbacks per slide, whatever their size: a
+         loop rewriting a tiny canvas can't make one per call (Codex, PR #403) */
+      if (work + W * H > LIT_WORK || ++rechecks > LIT_RECHECKS) {
         gens.set(cv, gen(cv) + 1);
         const z = entry(cv);
         if (z) z.skipped++; else lost++;
@@ -1275,7 +1278,12 @@ LIT_EDGE_HOOK_JS = """
            here too, measured against the canvas's box (Codex, PR #403) */
         if (!bx || repainted(cv, true)) {
           const cb = bx || box(cv);
-          if (hard || (cb && cropped(cv, cb))) unplaced += e.lit;
+          /* object-fit cover crops a bitmap whose proportions differ from its
+             box, and none crops one larger than it: a CSS-made edge, like a
+             clip-path (Codex, PR #403) */
+          const fitCrop = (fit === 'cover' && Math.abs(lx - ly) > 1e-6 * Math.max(lx, ly)) ||
+                          (fit === 'none' && (lx < 1 || ly < 1));
+          if (hard || fitCrop || (cb && cropped(cv, cb))) unplaced += e.lit;
           continue;
         }
         /* CSS cuts its light where the canvas did not stop painting it */

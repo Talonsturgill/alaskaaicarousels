@@ -231,6 +231,9 @@ through the REAL render.py and qa.py:
             feathered glow remains: still counted
  124 GREEN  40,000 clears between sparse seams: the per-slide scan bound is
             reached, the readback budget runs out, and qa says so
+ 125 GREEN  100,000 same-pixel puts on a tiny seam canvas: the per-slide
+            recheck count runs out, and qa says so
+ 126 GREEN  a feathered glow cropped by object-fit: cover: counted
 
 Then the report paths, by editing the render report: a record written
 before this check existed (qa says the check did not run), a recorded seam
@@ -1488,6 +1491,31 @@ cx.save(); cx.globalCompositeOperation = 'screen'; cx.drawImage(sh, 0, 0); cx.re
 for (let k = 0; k < 40000; k++) cx.clearRect(130, 130, 1, 1);
 """
 
+GREEN_PUT_LOOP = """
+// a 3 x 40 canvas with a 40 px seam, then 100,000 same-pixel putImageData
+// calls that each touch the record: past the per-slide recheck count the
+// records are retired and the draw is counted (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 3; nc.height = 40;
+nc.style.cssText = 'position:absolute;left:100px;top:100px;width:3px;height:40px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 2; sp.height = 40;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0, 0, 2, 40);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 1, 0);
+const px = n2.getImageData(0, 0, 1, 1);
+for (let k = 0; k < 100000; k++) n2.putImageData(px, 0, 0);
+"""
+
+GREEN_COVER_CROP = """
+// a fully feathered full-frame glow on a 1080 x 1350 canvas shown 1080 x 600
+// with object-fit: cover: the browser crops its top and bottom, cutting the
+// light at the box's edges, so it is counted (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:0;top:300px;width:1080px;height:600px;object-fit:cover';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, true);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1617,6 +1645,8 @@ CASES = [
     ("slide-122", GREEN_SVG_IMAGE_COVER, [], 0, None),
     ("slide-123", GREEN_SEAMLESS_SURVIVES, [], 0, "can't place"),
     ("slide-124", GREEN_CLEAR_LOOP, [], 0, "past its budget"),
+    ("slide-125", GREEN_PUT_LOOP, [], 0, "past its budget"),
+    ("slide-126", GREEN_COVER_CROP, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
