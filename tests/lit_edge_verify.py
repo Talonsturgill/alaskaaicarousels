@@ -1203,6 +1203,33 @@ const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0,
 n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 5, 0);
 """
 
+RED_INERT_INLINE_CB = RED_NESTED.replace(
+    "document.body.appendChild(nc);",
+    "// an absolute canvas inside a transformed NON-REPLACED inline span inside a\n"
+    "// 10 px overflow:hidden wrapper: the inert transform makes no containing\n"
+    "// block, so the canvas escapes the wrapper and is in the picture\n"
+    "// (Codex, PR #403)\n"
+    "const ow = document.createElement('div');\n"
+    "ow.style.cssText = 'width:10px;height:10px;overflow:hidden';\n"
+    "const sp = document.createElement('span'); sp.style.transform = 'rotate(20deg)';\n"
+    "document.body.appendChild(ow); ow.appendChild(sp); sp.appendChild(nc);", 1)
+
+GREEN_QUERY_CONTAINER = """
+// a static size query container at x 492 hiding its overflow holds an
+// absolute full-frame glow canvas at x 0: the container is its containing
+// block, so it crops the light at x 492 where no draw stopped, and the canvas
+// is counted as unplaced (Codex, PR #403)
+document.getElementById('c').style.display = 'none';
+const qc = document.createElement('div');
+qc.style.cssText = 'margin-left:492px;width:588px;height:1350px;overflow:hidden;container-type:size';
+document.body.appendChild(qc);
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1350;
+nc.style.cssText = 'position:absolute;left:-492px;top:0;width:1080px;height:1350px';
+qc.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(0, 0, 1080, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1312,6 +1339,8 @@ CASES = [
     ("slide-102", GREEN_STRING_CLEAR, [], 0, None),
     ("slide-103", GREEN_ENLARGED_PIXEL, [], 0, "can't place"),
     ("slide-104", GREEN_SVG_SCALED_BLUR, [], 0, "can't place"),
+    ("slide-105", RED_INERT_INLINE_CB, [LEFT], 1, None),
+    ("slide-106", GREEN_QUERY_CONTAINER, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

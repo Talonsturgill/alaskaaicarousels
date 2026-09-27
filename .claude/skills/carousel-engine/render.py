@@ -968,15 +968,22 @@ LIT_EDGE_HOOK_JS = """
        or fixed positioned box escapes every overflow ancestor between it and
        its containing block, which is the nearest positioned ancestor (for
        absolute) or the nearest one with a transform, filter, perspective or
-       containment (for fixed, and for absolute too) (Codex, PR #403) */
-    const fixedCB = (cs) =>
-      (cs.transform || 'none') !== 'none' || (cs.perspective || 'none') !== 'none' ||
-      (cs.filter || 'none') !== 'none' || (cs.backdropFilter || 'none') !== 'none' ||
-      (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
-      (cs.scale || 'none') !== 'none' ||
-      /paint|layout|strict|content/.test(cs.contain || '') ||
-      /^(auto|hidden)$/.test(cs.contentVisibility || '') ||        /* implies layout containment */
-      /transform|perspective|filter/.test(cs.willChange || '');
+       containment (for fixed, and for absolute too) (Codex, PR #403).
+       Transforms and containment don't apply to a non-replaced inline box, so
+       there they make no containing block; a size query container is one
+       (it implies layout containment) (Codex, PR #403) */
+    const fixedCB = (cs, el) => {
+      if ((cs.filter || 'none') !== 'none' || (cs.backdropFilter || 'none') !== 'none' ||
+          /filter/.test(cs.willChange || '')) return true;
+      if (cs.display === 'inline' && !replaced(el)) return false;
+      return (cs.transform || 'none') !== 'none' || (cs.perspective || 'none') !== 'none' ||
+        (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
+        (cs.scale || 'none') !== 'none' ||
+        /paint|layout|strict|content/.test(cs.contain || '') ||
+        /^(auto|hidden)$/.test(cs.contentVisibility || '') ||      /* implies layout containment */
+        /size/.test(cs.containerType || '') ||
+        /transform|perspective/.test(cs.willChange || '');
+    };
     const clippers = (el0) => {
       const out = [];
       const p0 = getComputedStyle(el0).position;
@@ -989,7 +996,7 @@ LIT_EDGE_HOOK_JS = """
       for (let el = up(el0); el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         if (boxless(cs)) continue;          /* no box: no containing block, no clip */
-        const cb = !esc || (esc === 'fixed' ? fixedCB(cs) : (cs.position !== 'static' || fixedCB(cs)));
+        const cb = !esc || (esc === 'fixed' ? fixedCB(cs, el) : (cs.position !== 'static' || fixedCB(cs, el)));
         /* a body whose overflow belongs to the viewport still clips by
            paint containment, on both axes, and by nothing else */
         if (cb && !(el === document.body && bodyToViewport)) out.push([el, cs]);
