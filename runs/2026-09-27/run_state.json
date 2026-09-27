@@ -87,11 +87,20 @@
     },
     "ship": {
       "status": "done",
-      "note": "runs/2026-09-27 (webp, og.jpg, pdf), ledgers, site rebuilt, parsers/scanner/docket_dates/site_fresh PASS, prune applied, no alerts due"
+      "note": "PR #404 merged to main as c7f1c4c2 after 6 Codex rounds (last clean on 30720099; 19 findings fixed, one resolved by correcting the akblock base contract); CI green; raw slide, PDF and contact sheet URLs return 200; ledger_guard PASS against origin/main"
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": {
+      "status": "done",
+      "note": "3 upgrades shipped (24ece5bb): gaswatch_health per-endpoint audit, C1 DEM sampler for shading (reworked in review to a Steffen monotone bicubic), contact_probe vertical read; review also fixed akblock (sea datum, lake slots, tol 0, edge rows, NU/NV, loadDEM length), DEM bounds metadata and the site description clip"
+    },
+    "gmail": {
+      "status": "done",
+      "note": "draft r1927608606919106339 in docket@alaskaaihq.com, payload from gmail_draft.py --preview-mode remote, passed verbatim; sign-off table shows verdicts; gas watch github blocker named"
+    },
+    "retro": {
+      "status": "done",
+      "note": "field notes (No.70 Phase 12 entry and parked scan); instincts 2 new; technique 103; next run: resume the gas watch live audit and confirm scheduled workflows are dispatching again"
+    }
   },
   "phase_3_6": {
     "site_signoff": "SITE SIGN-OFF: PASS, 125 pages, 18 of 18 checks clean (Phase 3.6, and again after the ship rebuild)",
@@ -99,5 +108,7 @@
     "gaswatch_pagecheck": "GAS WATCH: PASS (local once-over of the published page)",
     "cron_health": "CRON HEALTH: PASS, 6 scheduled workflows audited at 07:48Z (within the 8-hour dispatch grace; see the gas watch note for the scheduler gap)",
     "site_fixes": "none"
-  }
+  },
+  "gmail_draft_id": "r1927608606919106339",
+  "status": "complete"
 }
