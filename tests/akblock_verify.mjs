@@ -23,4 +23,26 @@ ok(blk.lakes.length === 2 && Math.abs(ys[0] - 0.102) < 1e-3 && Math.abs(ys[1] - 
 ok(blk.section === blk.walls.v1, 'section is the named wall');
 let threw = false; try { B.build(dem, Object.assign({ bearing: 90 }, o, { u: [0, 10] })); } catch (e) { threw = e instanceof RangeError; }
 ok(threw, 'an extent outside the DEM throws instead of fabricating sea');
+/* the Codex round-2 findings on PR #404 */
+const bil = B.sampler(dem);
+ok(bil(meta.west + (cols - 1) * meta.dlon, meta.north - (rows - 1) * meta.dlat) === 500 &&
+   bil(meta.west + (cols - 1) * meta.dlon, meta.north - 7 * meta.dlat) === 500, 'bilinear accepts the last row and column');
+ok(Number.isNaN(bil(meta.west + cols * meta.dlon, meta.north)), 'bilinear still refuses past the grid');
+const tiny = B.build(dem, Object.assign({ bearing: 90 }, o, { u: [0, 0.001], v: [0, 0.001], lakes: [] }));
+const tp = tiny.top.geometry.getAttribute('position');
+ok(tp.count >= 4 && [...tp.array].every(Number.isFinite), 'an extent under one step still gets two posts per axis');
+/* tol 0 is a real request: only cells at EXACTLY the level. A 100.4 m cell must stay land. */
+const z2 = Int16Array.from(z); for (let j = 5; j < 12; j++) z2[j * cols + 5] = 101;
+const L0 = B.build({ meta, z: z2 }, Object.assign({ bearing: 90 }, o, { lakes: [{ level: 100, tol: 0, bbox: [0, 0, 1, 1] }] }));
+const L15 = B.build({ meta, z: z2 }, Object.assign({ bearing: 90 }, o, { lakes: [{ level: 100, bbox: [0, 0, 1, 1] }] }));
+const idxN = (b) => b.lakes[0].geometry.index.count;
+ok(idxN(L0) < idxN(L15), 'tol 0 is honoured, not replaced by the 1.5 m default (' + idxN(L0) + ' < ' + idxN(L15) + ')');
+/* the sea sits at the seaLevel that classified it */
+const zs = new Int16Array(cols * rows).fill(500); for (let j = 0; j < rows; j++) for (let i = 0; i < 20; i++) zs[j * cols + i] = 40;
+const sb = B.build({ meta, z: zs }, Object.assign({ bearing: 90 }, o, { lakes: [], seaLevel: 50 }));
+const seaY = sb.sea.geometry.getAttribute('position').getY(0);
+ok(Math.abs(seaY - (0.050 + 0.002)) < 1e-6, 'sea mesh at Y(seaLevel) ' + seaY.toFixed(4));
+const topY = sb.top.geometry.getAttribute('position'); let maxSea = -1e9;
+for (let k = 0; k < topY.count; k++) if (topY.getX(k) < 0.3) maxSea = Math.max(maxSea, topY.getY(k));
+ok(maxSea < seaY, 'sea-classified terrain sits under the sea surface (' + maxSea.toFixed(4) + ' < ' + seaY.toFixed(4) + ')');
 process.exit(fails ? 1 : 0);

@@ -127,11 +127,19 @@ class Frame:
         if x1 <= x0:
             return np.zeros(0), np.zeros(0)
         cols = np.median(self.L[y0:y1, x0:x1], axis=0)
-        if cols.size >= 3:  # a 3px mean, so one stray feed pixel is not a trough
-            k = np.ones(3) / 3.0
-            cols = np.convolve(cols, k, mode="same")
+        cols = smooth3(cols)  # a 3px mean, so one stray feed pixel is not a trough
         xs = (np.arange(x0, x1) + 0.5) / self.s
         return xs, cols
+
+
+def smooth3(a):
+    """A 3-sample mean with EDGE padding. np.convolve(mode="same") pads with
+    zeros, which pulls the first and last samples a third of the way to L*=0:
+    on a vertical read the first row IS the base line, so that fake dark end
+    beat the real cast in the argmin and put the shadow rect on the foot."""
+    if a.size < 3:
+        return a
+    return np.convolve(np.pad(a, 1, mode="edge"), np.ones(3) / 3.0, mode="valid")
 
 
 def vprofile(fr, cx, w, y0, span):
@@ -143,9 +151,7 @@ def vprofile(fr, cx, w, y0, span):
     r1 = min(fr.L.shape[0], int((y0 + span) * fr.s))
     if r1 <= r0:
         return np.zeros(0), np.zeros(0)
-    rows = np.median(fr.L[r0:r1, x0:x1], axis=1)
-    if rows.size >= 3:
-        rows = np.convolve(rows, np.ones(3) / 3.0, mode="same")
+    rows = smooth3(np.median(fr.L[r0:r1, x0:x1], axis=1))
     return (np.arange(r0, r1) + 0.5) / fr.s, rows
 
 
@@ -184,15 +190,22 @@ def propose_v(fr, base_x, base_y, span=VSPAN, rect=(RECT_W, RECT_H),
     return out
 
 
-def best_axis(fr, base_x, base_y, axis="auto", span=SPAN, rect=(RECT_W, RECT_H),
-              cast_span=CAST_SPAN):
-    """'h', 'v', or 'auto': both reads, the higher dL wins, the other is kept."""
+def best_axis(fr, base_x, base_y, axis="auto", span=None, rect=(RECT_W, RECT_H),
+              cast_span=None):
+    """'h', 'v', or 'auto': both reads, the higher dL wins, the other is kept.
+    span and cast_span left as None take each axis's own default (SPAN and
+    CAST_SPAN along the base, VSPAN and DETACH_PX down from it); a value the
+    caller passed is honoured on whichever axis reads."""
+    hk = {"span": SPAN if span is None else span,
+          "cast_span": CAST_SPAN if cast_span is None else cast_span}
+    vk = {"span": VSPAN if span is None else span,
+          "cast_span": DETACH_PX if cast_span is None else cast_span}
     if axis == "h":
-        return propose(fr, base_x, base_y, span, rect, cast_span)
+        return propose(fr, base_x, base_y, rect=rect, **hk)
     if axis == "v":
-        return propose_v(fr, base_x, base_y, rect=rect)
-    h = propose(fr, base_x, base_y, span, rect, cast_span)
-    v = propose_v(fr, base_x, base_y, rect=rect)
+        return propose_v(fr, base_x, base_y, rect=rect, **vk)
+    h = propose(fr, base_x, base_y, rect=rect, **hk)
+    v = propose_v(fr, base_x, base_y, rect=rect, **vk)
     dh, dv = h.get("dL"), v.get("dL")
     win, lose = (v, h) if dv is not None and (dh is None or dv > dh) else (h, v)
     if "error" not in lose:
@@ -288,10 +301,12 @@ def main():
     ap.add_argument("--slides-dir", help="slide sources, for --verify")
     ap.add_argument("--slide", type=int, help="slide number, for --base")
     ap.add_argument("--base", help="cx,cy in DESIGN px: where the object meets the ground")
-    ap.add_argument("--span", type=int, default=SPAN,
-                    help="how far to look for the lit ground, design px")
-    ap.add_argument("--cast-span", type=int, default=CAST_SPAN,
-                    help="how far to look for the cast under the object, design px")
+    ap.add_argument("--span", type=int, default=None,
+                    help="how far to look for the lit ground, design px "
+                         "(default %d along the base, %d down from it)" % (SPAN, VSPAN))
+    ap.add_argument("--cast-span", type=int, default=None,
+                    help="how far to look for the cast under the object, design px "
+                         "(default %d along the base, %d down from it)" % (CAST_SPAN, DETACH_PX))
     ap.add_argument("--axis", choices=("h", "v", "auto"), default="auto",
                     help="--base only: h reads along the base line (a compact object), "
                          "v profiles DOWN from it (a long foot), auto reads both and "

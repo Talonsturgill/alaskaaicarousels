@@ -31,7 +31,7 @@
 
   var ALLOWED_RELIEF = ["x", "y", "w", "h", "cell", "passes", "seed", "keyAz",
     "keyEl", "color", "alpha", "minWidth", "maxWidth", "lenScale", "gamma",
-    "hRef", "slopeRef", "relief", "mask", "probes", "jitter", "bend", "sunJitter"];
+    "hRef", "slopeRef", "relief", "mask", "probes", "jitter", "bend", "sunJitter", "sampler"];
 
   function contract(name, opts, allowed) {
     Object.keys(opts || {}).forEach(function (k) {
@@ -69,7 +69,10 @@
         for (var c = 0; c < 4; c++) row += wu[c] * a[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
         z += wv[b] * row;
       }
-      return z;
+      /* Catmull-Rom overshoots at a cliff edge: clamp to the cell's own four
+       * posts, so a shaded rim or a below-sea dip is never invented */
+      var k = j * C + i, a0 = a[k], a1 = a[k + 1], a2 = a[k + C], a3 = a[k + C + 1];
+      return Math.min(Math.max(a0, a1, a2, a3), Math.max(Math.min(a0, a1, a2, a3), z));
     };
   }
   AKS.cubicSampler = cubicSampler;
@@ -175,14 +178,24 @@
     var X = o.x || 0, Y = o.y || 0, W = o.w, H = o.h;
     var hRef = o.hRef || 2400;
     var mask = o.mask || null;
+    /* o.sampler 'cubic' takes heights from sampleCubic, whose gradient is
+     * continuous, for a relief drawn over a DEM magnified past a few device px
+     * per cell. Opt in, not default: every shipped deck was tuned on bilinear. */
+    if (o.sampler !== undefined && o.sampler !== "bilinear" && o.sampler !== "cubic") {
+      throw new Error("AKS.relief: sampler must be 'bilinear' or 'cubic', got " + o.sampler);
+    }
+    var pick = o.sampler === "cubic" && dem.sampleCubic ? dem.sampleCubic : dem.sample;
+    if (o.sampler === "cubic" && !dem.sampleCubic) {
+      throw new Error("AKS.relief: sampler 'cubic' needs a DEM from AKS.loadDEM");
+    }
     function height(u, v) {
       var p = proj.invert([X + u * W, Y + v * H]);
       if (!p) return 0;
-      var e = dem.sample(p[0], p[1]);
+      var e = pick(p[0], p[1]);
       if (!isFinite(e) && dem.meta) {
         // off the DEM: take the nearest edge sample, so a crop edge reads flat and not as a drop to sea level
         var m = dem.meta, eps = 1e-9;
-        e = dem.sample(Math.min(m.east - eps, Math.max(m.west + eps, p[0])), Math.min(m.north - eps, Math.max(m.south + eps, p[1])));
+        e = pick(Math.min(m.east - eps, Math.max(m.west + eps, p[0])), Math.min(m.north - eps, Math.max(m.south + eps, p[1])));
       }
       if (!(e > 0)) return 0;
       var t = Math.min(1, e / hRef);

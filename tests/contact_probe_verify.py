@@ -199,6 +199,29 @@ def main():
             if rec.get("measured", {}).get("axis") != "v":
                 bad.append("long foot: --verify measured on axis %s" % rec.get("measured", {}).get("axis"))
 
+    # Codex round 2 on PR #404. The 3px mean pads with the EDGE value: zero
+    # padding pulled the first row of a vertical read (the base line itself)
+    # a third of the way to black, a fake trough ahead of the real cast.
+    flat = cp.smooth3(np.full(9, 150.0))
+    if not np.allclose(flat, 150.0):
+        bad.append("smooth3 darkens the ends of a flat profile: %s" % flat.tolist())
+    # an explicit --span / --cast-span reaches the vertical read too
+    seen = {}
+    real_v = cp.propose_v
+    cp.propose_v = lambda fr_, bx, by, span=None, rect=None, cast_span=None: seen.update(
+        span=span, cast_span=cast_span) or {"axis": "v", "error": "stub"}
+    try:
+        cp.best_axis(None, 0.0, 0.0, "v", 40, cast_span=12)
+        forwarded = (seen.get("span"), seen.get("cast_span")) == (40, 12)
+        cp.best_axis(None, 0.0, 0.0, "v")
+        defaults = (seen.get("span"), seen.get("cast_span")) == (cp.VSPAN, cp.DETACH_PX)
+    finally:
+        cp.propose_v = real_v
+    if not forwarded:
+        bad.append("best_axis dropped an explicit span/cast_span on the vertical read")
+    if not defaults:
+        bad.append("best_axis gave the vertical read the horizontal defaults")
+
     if bad:
         print("BROKEN")
         for b in bad:

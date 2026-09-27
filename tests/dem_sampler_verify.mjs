@@ -79,8 +79,25 @@ function edgeJump(S) {
   return jump / (mag / 2);
 }
 const jb = edgeJump(bil), jc = edgeJump(cubB);
-check('C1 at cell edges', jc < 0.02 && jb > 0.2,
+/* The overshoot clamp (Codex on PR #404) gives up C1 exactly where Catmull-Rom
+ * would leave the cell's four posts: measured on this DEM, 11 percent of random
+ * samples overshoot, by 0.23 m on average and up to 46 m, and 629 in 400,000
+ * dip below 0 m between posts that are all at or above it (a fake shoreline).
+ * Unclamped the jump here was under 0.02; clamped it is about 0.06, still over ten
+ * times smaller than bilinear's, and the lattice checks below still hold. */
+check('C1 at cell edges', jc < 0.1 && jc * 10 < jb,
   `relative slope jump across an edge: bilinear ${jb.toFixed(3)}, cubic ${jc.toFixed(4)}`);
+
+/* the clamp: a cubic sample never leaves the range of its own cell's four posts */
+let worst = 0;
+for (let q = 0; q < 20000; q++) {
+  const x = 1 + ((q * 0.61803398875) % 1) * (meta.cols - 3), y = 1 + ((q * 0.41421356237) % 1) * (meta.rows - 3);
+  const i = Math.floor(x), j = Math.floor(y), k = j * meta.cols + i;
+  const posts = [z[k], z[k + 1], z[k + meta.cols], z[k + meta.cols + 1]];
+  const lon = meta.west + x * meta.dlon, lat = meta.north - y * meta.dlat;
+  for (const v of [cubB(lon, lat), cubS(lon, lat)]) worst = Math.max(worst, Math.min(...posts) - v, v - Math.max(...posts));
+}
+check('no overshoot', worst < 1e-6, `worst excursion outside the cell's posts ${worst.toExponential(1)} m over 20000 samples`);
 
 /* 3 and 4. slide 02's own geometry and shading, on a 1200 x 360 device-px strip over the relief */
 const W = 1080, H = 1350, MAPY = 560, KM = 45, LAT0 = 59.725;

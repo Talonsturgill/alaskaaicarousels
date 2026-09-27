@@ -92,5 +92,12 @@
     "upgrade": "pending",
     "gmail": "pending",
     "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 125 pages, 18 of 18 checks clean (Phase 3.6, and again after the ship rebuild)",
+    "gaswatch_live": "GAS WATCH LIVE: FAIL, UNFIXED, documented github blocker (runs/2026-09-27/gaswatch_incident.json). The published page still shows the September 26th 04:51 reading because GitHub dispatched no scheduled workflow in this repo after 21:59Z and refused workflow_dispatch to this session (403); CINGSA's Sucuri proxy also refuses the audit's source read from the sandbox. The page, feed and cron checks all PASS (10 rows) and the collector's last run succeeded. Resume on the next run.",
+    "gaswatch_pagecheck": "GAS WATCH: PASS (local once-over of the published page)",
+    "cron_health": "CRON HEALTH: PASS, 6 scheduled workflows audited at 07:48Z (within the 8-hour dispatch grace; see the gas watch note for the scheduler gap)",
+    "site_fixes": "none"
   }
 }

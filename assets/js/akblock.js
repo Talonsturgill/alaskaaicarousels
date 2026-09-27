@@ -61,15 +61,19 @@ export function init(THREE) {
           for (let c = 0; c < 4; c++) row += wu[c] * z[jj + Math.max(0, Math.min(C - 1, i - 1 + c))];
           h += wv[b] * row;
         }
-        return h;
+        /* Catmull-Rom overshoots at a cliff edge: clamp to the cell's own four
+         * posts, so a shading pass never invents a rim or a below-sea dip */
+        const k = j * C + i, a0 = z[k], a1 = z[k + 1], a2 = z[k + C], a3 = z[k + C + 1];
+        return Math.min(Math.max(a0, a1, a2, a3), Math.max(Math.min(a0, a1, a2, a3), h));
       };
     } else if (mode) {
       throw new Error("AK CONTRACT: AKBLOCK.sampler mode must be 'cubic' or omitted, got " + mode);
     }
     return function (lon, lat) {
       const x = (lon - m.west) / m.dlon, y = (m.north - lat) / m.dlat;
-      const i = Math.floor(x), j = Math.floor(y);
-      if (i < 0 || j < 0 || i >= C - 1 || j >= Rr - 1) return NaN;
+      /* the last row and column are real samples: clamp the cell, don't refuse it */
+      if (!(x >= 0 && y >= 0 && x <= C - 1 && y <= Rr - 1)) return NaN;
+      const i = Math.min(C - 2, Math.floor(x)), j = Math.min(Rr - 2, Math.floor(y));
       const fx = x - i, fy = y - j, k = j * C + i;
       return z[k] * (1 - fx) * (1 - fy) + z[k + 1] * fx * (1 - fy) +
              z[k + C] * (1 - fx) * fy + z[k + C + 1] * fx * fy;
@@ -156,7 +160,8 @@ export function init(THREE) {
     const u0 = o.u[0], u1 = o.u[1], v0 = o.v[0], v1 = o.v[1];
     const step = o.step || 0.04, ve = o.ve || 2, base = o.base != null ? o.base : 0.6;
     const seaLevel = o.seaLevel != null ? o.seaLevel : 0.5;
-    const NU = Math.round((u1 - u0) / step) + 1, NV = Math.round((v1 - v0) / step) + 1;
+    /* at least two posts per axis: one post divides the grid position by NU - 1 = 0 */
+    const NU = Math.max(2, Math.round((u1 - u0) / step) + 1), NV = Math.max(2, Math.round((v1 - v0) / step) + 1);
     const hm = new Float32Array(NU * NV);           // metres
     const kind = new Uint8Array(NU * NV);           // 0 land, 1 sea, 2 lake
     const lakes = o.lakes || [];
@@ -175,7 +180,7 @@ export function init(THREE) {
           const L = lakes[li];
           const b = L.bbox;
           if (ll[0] >= b[0] && ll[0] <= b[2] && ll[1] >= b[1] && ll[1] <= b[3] &&
-              Math.abs(e - L.level) <= (L.tol || 1.5)) { kind[k] = 2 + li; e = L.level; }   /* 2, 3, ... one code per lake */
+              Math.abs(e - L.level) <= (L.tol != null ? L.tol : 1.5)) { kind[k] = 2 + li; e = L.level; }   /* 2, 3, ... one code per lake */
         }
         hm[k] = e;
       }
@@ -188,7 +193,7 @@ export function init(THREE) {
     const pos = new Float32Array(NU * NV * 3), col = new Float32Array(NU * NV * 3);
     for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) {
       const k = j * NU + i;
-      pos[k * 3] = X(i); pos[k * 3 + 1] = Y(kind[k] === 1 ? Math.min(hm[k], 0) - 25 : hm[k]);
+      pos[k * 3] = X(i); pos[k * 3 + 1] = Y(kind[k] === 1 ? Math.min(hm[k], seaLevel) - 25 : hm[k]);
       pos[k * 3 + 2] = Zc(j);
       const c = (o.ramp || ramp)(hm[k]);
       col[k * 3] = c[0]; col[k * 3 + 1] = c[1]; col[k * 3 + 2] = c[2];
@@ -242,7 +247,8 @@ export function init(THREE) {
     /* one surface per lake, each at ITS OWN level (a shared mesh put every lake at lakes[0]'s height) */
     const lakeMeshes = lakes.map((L, li) => waterMesh(2 + li, Y(L.level) + 0.002, lakeMat)).filter(Boolean);
     const lake = lakeMeshes[0] || null;
-    const sea = waterMesh(1, Y(0) + 0.002, seaMat);
+    /* the sea sits at the datum that classified it, not at a hardcoded 0 m */
+    const sea = waterMesh(1, Y(seaLevel) + 0.002, seaMat);
 
     /* ---- the cut walls ---- */
     const H0 = o.wallSpan || 4.0;              // world units of height the strata texture spans
@@ -268,7 +274,7 @@ export function init(THREE) {
       g.setIndex(wi); g.computeVertexNormals();
       return new THREE.Mesh(g, mat);
     }
-    const edgeTop = (k) => Math.max(pos[k * 3 + 1], Y(0));
+    const edgeTop = (k) => Math.max(pos[k * 3 + 1], Y(seaLevel));
     const e_v0 = [], e_v1 = [], e_u0 = [], e_u1 = [];
     for (let i = 0; i < NU; i++) {
       const k0 = i, k1 = (NV - 1) * NU + i, s = i / (NU - 1);
