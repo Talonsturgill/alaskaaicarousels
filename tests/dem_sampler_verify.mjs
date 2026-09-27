@@ -161,5 +161,18 @@ check('repair keeps real relief', L_cub.detail > L_pre.detail,
   `detail cubic ${L_cub.detail.toFixed(5)} vs presmooth ${L_pre.detail.toFixed(5)}`);
 check('akscribe cubic matches akblock cubic', Math.abs(L_cubS.ratio - L_cub.ratio) < 1e-9, 'same lattice reading');
 
+/* every committed DEM's bounds are its outermost SAMPLE CENTRES (Codex on PR #404):
+ * east = west + (cols - 1) dlon, south = north - (rows - 1) dlat. Bounds one cell
+ * out sent AKS.relief's edge clamp to a NaN, which it drew as sea level. */
+const geo = path.join(ROOT, 'assets/geo');
+const badBounds = [];
+for (const f of fs.readdirSync(geo).filter(f => /dem\.json$/.test(f))) {
+  const mm = JSON.parse(fs.readFileSync(path.join(geo, f), 'utf8'));
+  if (mm.dlon == null || mm.east == null) continue;
+  const eE = mm.west + (mm.cols - 1) * mm.dlon, eS = mm.north - (mm.rows - 1) * mm.dlat;
+  if (Math.abs(mm.east - eE) > mm.dlon / 100 || Math.abs(mm.south - eS) > mm.dlat / 100) badBounds.push(`${f} east ${mm.east} vs ${eE.toFixed(6)}, south ${mm.south} vs ${eS.toFixed(6)}`);
+}
+check('DEM bounds are sample centres', !badBounds.length, badBounds.length ? badBounds.join('; ') : 'every assets/geo/*dem.json');
+
 console.log(fails ? `DEM SAMPLER: BROKEN (${fails})` : 'DEM SAMPLER: HOLDS');
 process.exit(fails ? 1 : 0);
