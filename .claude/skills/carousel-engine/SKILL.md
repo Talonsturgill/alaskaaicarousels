@@ -637,7 +637,8 @@ broken. The remedy is always the same, re-render the slide and re-run qa.
 
   *Erased light.* Measurements are kept per canvas and bitmap generation. A
   width or height set again (any API, seen by one MutationObserver) or
-  `reset()` drops them; a `clearRect` or `putImageData` that touches a
+  `reset()` drops them; a `clearRect`, a `putImageData`, or a `drawImage`
+  that can take light away (`copy`, the in, out and atop family, `xor`) that touches a
   record's pixels triggers one readback and keeps the stretches of each record
   whose step is still in the bitmap (a full put is also how a slide tone-maps
   its pixels); a readback refused there retires the records and is counted.

@@ -1150,6 +1150,59 @@ RED_INERT_INLINE_TRANSFORM = RED_NESTED.replace(
     "const sp = document.createElement('span'); sp.style.transform = 'rotate(20deg)';\n"
     "document.body.appendChild(sp); sp.appendChild(nc);", 1)
 
+PANEL_AT_492 = """
+// a plain source-over panel from x 492: a step on the recorded line that is
+// not additive light, so it must say nothing
+cx.globalCompositeOperation = 'source-over'; cx.fillStyle = '#6A5A48'; cx.fillRect(492, 0, 108, 1350);
+"""
+
+GREEN_COPY_ERASED = RED + """
+// the whole canvas is replaced by a 'copy' draw of a flat ground: the light
+// and its seam are gone (Codex, PR #403)
+const fl = document.createElement('canvas'); fl.width = 1080; fl.height = 1350;
+const f2 = fl.getContext('2d'), fg = f2.createLinearGradient(0, 0, 0, 1350);   /* a gradient, so the
+   render is not flat enough to trip the empty-render guard */
+fg.addColorStop(0, '#0B1422'); fg.addColorStop(1, '#1A2436'); f2.fillStyle = fg; f2.fillRect(0, 0, 1080, 1350);
+cx.save(); cx.globalCompositeOperation = 'copy'; cx.drawImage(fl, 0, 0); cx.restore();
+""" + PANEL_AT_492
+
+GREEN_STRING_CLEAR = RED + """
+// clearRect with string arguments, coerced natively: x 0 to 600 is cleared
+// (Codex, PR #403)
+cx.clearRect("600", 0, "-600", 1350);
+""" + PANEL_AT_492
+
+GREEN_ENLARGED_PIXEL = """
+// a 20 x 10 canvas shown at 40x with object-fit: contain (can't be placed);
+// one additive pixel, whose 1 px edges span 40 design px (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 20; nc.height = 10;
+nc.style.cssText = 'position:absolute;left:100px;top:100px;width:800px;height:400px;object-fit:contain';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 1; sp.height = 1;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0, 0, 1, 1);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 10, 5);
+"""
+
+GREEN_SVG_SCALED_BLUR = """
+// an <svg> just off the frame (x 1120) scaled 10x with blur(10px): its blur
+// reaches some 300 px back into the frame, and an SVG element has no offset
+// size to scale by, so the reach is unbounded and the canvas counted
+// (Codex, PR #403)
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('width', '20'); svg.setAttribute('height', '20');
+svg.style.cssText = 'position:absolute;left:1120px;top:400px;transform-origin:0 0;transform:scale(10);filter:blur(10px)';
+const fo = document.createElementNS(NS, 'foreignObject');
+fo.setAttribute('width', '20'); fo.setAttribute('height', '20');
+svg.appendChild(fo); document.body.appendChild(svg);
+const nc = document.createElement('canvas'); nc.width = 20; nc.height = 20;
+nc.style.cssText = 'display:block;width:20px;height:20px';
+fo.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 15; sp.height = 20;
+const s2 = sp.getContext('2d'); s2.fillStyle = 'rgb(200,160,90)'; s2.fillRect(0, 0, 15, 20);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 5, 0);
+"""
+
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
 #  and a phrase another warning must carry)
@@ -1255,6 +1308,10 @@ CASES = [
     ("slide-98", RED_PART_CLEARED, [LEFT], 1, None),
     ("slide-99", GREEN_SCALED_SHADOW, [], 0, "can't place"),
     ("slide-100", RED_INERT_INLINE_TRANSFORM, [LEFT], 1, None),
+    ("slide-101", GREEN_COPY_ERASED, [], 0, None),
+    ("slide-102", GREEN_STRING_CLEAR, [], 0, None),
+    ("slide-103", GREEN_ENLARGED_PIXEL, [], 0, "can't place"),
+    ("slide-104", GREEN_SVG_SCALED_BLUR, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap

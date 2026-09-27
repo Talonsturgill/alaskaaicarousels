@@ -661,6 +661,9 @@ LIT_EDGE_HOOK_JS = """
       /* each record is cut to the stretches where its step (a 5 px running
          mean along the line) still holds, so a seam rewritten in part keeps
          the part that survives (Codex, PR #403) */
+      /* the pieces are bounded: never more than the records held before, or
+         4096, whichever is more; past that the call is counted (Codex, PR #403) */
+      let room = Math.max(e.raw.length + e.shorts.length, 4096), cut = false;
       const pieces = (r) => {
         const lead = r.side === 'left' || r.side === 'top';
         const cin = lead ? r.line : r.line - 1, cout = lead ? r.line - 2 : r.line + 1;
@@ -670,7 +673,7 @@ LIT_EDGE_HOOK_JS = """
           st[i] = r.axis === 'v' ? L(cin, a) - L(cout, a) : L(a, cin) - L(a, cout);
         }
         const out = [];
-        let start = -1, acc = 0;
+        let start = -1;
         for (let i = 0; i <= n; i++) {
           let ok = false;
           if (i < n) {
@@ -680,18 +683,22 @@ LIT_EDGE_HOOK_JS = """
           }
           if (ok && start < 0) start = i;
           if (!ok && start >= 0) {
-            out.push(Object.assign({}, r, { a0: r.a0 + start, a1: r.a0 + i }));
+            if (room > 0) { out.push(Object.assign({}, r, { a0: r.a0 + start, a1: r.a0 + i })); room--; }
+            else cut = true;
             start = -1;
           }
         }
         return out;
       };
       e.raw = e.raw.flatMap(pieces); e.shorts = e.shorts.flatMap(pieces);
+      if (cut) e.over++;
     };
     const origClear = proto.clearRect;
     if (typeof origClear === 'function') proto.clearRect = function (x, y, w, h) {
       const res = origClear.apply(this, arguments);
       try {
+        /* the native call coerced its arguments (Web IDL doubles): so do we */
+        x = Number(x); y = Number(y); w = Number(w); h = Number(h);
         const cv = this.canvas, t = this.getTransform ? this.getTransform() : null;
         let x0 = 0, y0 = 0, x1 = cv.width, y1 = cv.height;     /* a bent transform: all of it */
         if (!t || (Math.abs(t.b) < 1e-9 && Math.abs(t.c) < 1e-9)) {
@@ -709,9 +716,11 @@ LIT_EDGE_HOOK_JS = """
     if (typeof origPut === 'function') proto.putImageData = function (img, dx, dy) {
       const res = origPut.apply(this, arguments);
       try {
+        /* dx and dy are Web IDL longs, coerced as the native call did */
+        dx = Number(dx) | 0; dy = Number(dy) | 0;
         let x = 0, y = 0, w = img.width, h = img.height;
         if (arguments.length >= 7) {
-          x = +arguments[3]; y = +arguments[4]; w = +arguments[5]; h = +arguments[6];
+          x = +arguments[3] | 0; y = +arguments[4] | 0; w = +arguments[5] | 0; h = +arguments[6] | 0;
           if (w < 0) { x += w; w = -w; }
           if (h < 0) { y += h; h = -h; }
           const xe = Math.min(img.width, x + w), ye = Math.min(img.height, y + h);
@@ -1103,6 +1112,8 @@ LIT_EDGE_HOOK_JS = """
         /* the extent is in this element's own px: carried into viewport px
            by the scale its box is shown at, and unbounded if bent */
         if (!flatChain(el)) return Infinity;
+        /* an SVG element has no offset size to measure its scale by */
+        if (!(el instanceof HTMLElement)) return Infinity;
         const q = el.getBoundingClientRect();
         const k = Math.max(el.offsetWidth ? q.width / el.offsetWidth : 1,
                            el.offsetHeight ? q.height / el.offsetHeight : 1);
@@ -1164,8 +1175,13 @@ LIT_EDGE_HOOK_JS = """
         if (e.g !== gen(cv) || !shown(cv)) continue;
         capped += e.skipped + e.over; readback += e.failed;
         if (!e.lit) continue;
-        const hard = e.raw.length > 0 || e.shorts.some((r) => r.a1 - r.a0 >= 2) ||
-                     Math.max(e.shortV, e.shortH) >= 2;
+        /* a 1 px run counts too when the canvas is shown large enough for it
+           to span the floor (its bounding box: over, never under, for a bent
+           canvas) (Codex, PR #403) */
+        const q = cv.getBoundingClientRect();
+        const k = Math.max(cv.width ? q.width / cv.width : 0, cv.height ? q.height / cv.height : 0);
+        const hard = e.raw.length > 0 || e.shorts.some((r) => r.a1 - r.a0 >= 2 || (r.a1 - r.a0) * k >= LIT_SPAN) ||
+                     Math.max(e.shortV, e.shortH) >= 2 || Math.max(e.shortV, e.shortH) * k >= LIT_SPAN;
         const bx = placeable(cv) ? box(cv) : false;
         if (bx === null) continue;                    /* not shown at any size */
         /* can't be placed, or CSS can paint it elsewhere (which can bring even
@@ -1237,10 +1253,21 @@ LIT_EDGE_HOOK_JS = """
       }
       return { edges: out, capped: capped, unplaced: unplaced, readback: readback };
     };
+    /* a draw that can take light away (copy, the in/out/atop family, xor)
+       is treated as a clear of the whole canvas: some of these clear outside
+       the source too (Codex, PR #403) */
+    const ERASING = { 'copy': 1, 'source-in': 1, 'source-out': 1, 'destination-in': 1,
+                      'destination-out': 1, 'destination-atop': 1, 'xor': 1 };
     proto.drawImage = function () {
       let b = null;
       try { b = before(this); } catch (e) { b = null; }
       const res = origDraw.apply(this, arguments);
+      if (!b) {
+        try {
+          if (ERASING[this.globalCompositeOperation] && this.canvas)
+            recheck(this, this.canvas, 0, 0, this.canvas.width, this.canvas.height);
+        } catch (err) {}
+      }
       /* a measurement that throws is counted as unmeasured, not swallowed */
       if (b) { try { after(this, b); } catch (err) { try { const z = entry(this.canvas); if (z) z.failed++; else lost++; } catch (e2) {} } }
       return res;
