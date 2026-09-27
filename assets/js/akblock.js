@@ -163,8 +163,12 @@ export function init(THREE) {
    *                    world(u, v, metres), worldLL(lon, lat, metres), dims }
    *
    * o.origin [lon,lat], o.bearing deg, o.u [u0,u1] km, o.v [v0,v1] km,
-   * o.step km (grid pitch), o.ve vertical exaggeration, o.base km below sea
-   * level for the block's floor (positive number), o.seaLevel metres,
+   * o.step km (grid pitch), o.ve vertical exaggeration, o.base the depth of
+   * the block's floor below world Y 0 in WORLD units (positive number). It is
+   * a plinth, not a measurement, so ve does NOT scale it: the walls, the floor
+   * and the returned `base` all sit at Y = -base, and a caller places its
+   * table at -base. world(u, v, metres) is exaggerated; a depth drawn with it
+   * below -base * 1000 / ve metres falls under the floor. o.seaLevel metres,
    * o.lakes [{level, tol, bbox:[w,s,e,n]}], o.sectionEdge 'v0'|'v1'|'u0'|'u1'
    * names the wall that gets o.sectionMaterial instead of strata.
    */

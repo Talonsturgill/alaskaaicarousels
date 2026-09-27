@@ -56,4 +56,9 @@ ok(!la.group.children.includes(null), 'no null mesh reaches the group');
 globalThis.fetch = async (u) => ({ json: async () => meta, arrayBuffer: async () => new Int16Array(cols * rows - 7).buffer });
 let lthrew = false; try { await B.loadDEM('x'); } catch (e) { lthrew = /AK CONTRACT/.test(e.message); }
 ok(lthrew, 'loadDEM refuses a truncated binary');
+/* o.base is world units and ve does not scale it (Codex round 5): the slides put their table at -base */
+const bb = B.build(dem, Object.assign({ bearing: 90 }, o, { ve: 3, base: 0.12, lakes: [] }));
+const wy = bb.walls.v0.geometry.getAttribute('position').getY(1);
+ok(Math.abs(wy + 0.12) < 1e-6 && Math.abs(bb.floor.position.y + 0.12) < 1e-6 && bb.base === 0.12,
+   'walls and floor sit at -base whatever ve is (' + wy.toFixed(3) + ')');
 process.exit(fails ? 1 : 0);
