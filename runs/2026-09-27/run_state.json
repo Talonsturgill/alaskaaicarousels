@@ -87,17 +87,29 @@
     },
     "ship": {
       "status": "done",
-      "note": "runs/2026-09-27 (webp, og.jpg, pdf), ledgers, site rebuilt, parsers/scanner/docket_dates/site_fresh PASS, prune applied, no alerts due"
+      "note": "PR #404 merged to main as c7f1c4c2 after 6 Codex rounds (last clean on 30720099; 19 findings fixed, one resolved by correcting the akblock base contract); CI green; raw slide, PDF and contact sheet URLs return 200; ledger_guard PASS against origin/main"
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": {
+      "status": "done",
+      "note": "3 upgrades shipped (24ece5bb): gaswatch_health per-endpoint audit, C1 DEM sampler for shading (reworked in review to a Steffen monotone bicubic), contact_probe vertical read; review also fixed akblock (sea datum, lake slots, tol 0, edge rows, NU/NV, loadDEM length), DEM bounds metadata and the site description clip"
+    },
+    "gmail": {
+      "status": "done",
+      "note": "draft r1927608606919106339 in docket@alaskaaihq.com, payload from gmail_draft.py --preview-mode remote, passed verbatim; sign-off table shows verdicts; gas watch github blocker named"
+    },
+    "retro": {
+      "status": "done",
+      "note": "field notes (No.70 Phase 12 entry and parked scan); instincts 2 new; technique 103; next run: resume the gas watch live audit and confirm scheduled workflows are dispatching again"
+    }
   },
   "phase_3_6": {
     "site_signoff": "SITE SIGN-OFF: PASS, 125 pages, 18 of 18 checks clean (Phase 3.6, and again after the ship rebuild)",
     "gaswatch_live": "GAS WATCH LIVE: FAIL, UNFIXED, documented github blocker (runs/2026-09-27/gaswatch_incident.json). The published page still shows the September 26th 04:51 reading because GitHub dispatched no scheduled workflow in this repo after 21:59Z and refused workflow_dispatch to this session (403); CINGSA's Sucuri proxy also refuses the audit's source read from the sandbox. The page, feed and cron checks all PASS (10 rows) and the collector's last run succeeded. Resume on the next run.",
     "gaswatch_pagecheck": "GAS WATCH: PASS (local once-over of the published page)",
     "cron_health": "CRON HEALTH: PASS, 6 scheduled workflows audited at 07:48Z (within the 8-hour dispatch grace; see the gas watch note for the scheduler gap)",
-    "site_fixes": "none"
-  }
+    "site_fixes": "none",
+    "post_merge_recheck": "09:21Z, after the draft was created: GAS WATCH LIVE PASS (13 of 13) and CRON HEALTH PASS. The merge push of PR #404 ran the gas watch collector (run 36308944565), which published the September 26th 16:00 reading (7.76 Bcf, 59.7 percent of design), and Pages deployed it at 09:20Z; the source read also succeeded from the sandbox this time. The github incident recorded in gaswatch_incident.json is resolved. The Gmail draft, built earlier, still says FAIL."
+  },
+  "gmail_draft_id": "r1927608606919106339",
+  "status": "complete"
 }
