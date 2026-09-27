@@ -752,10 +752,12 @@ LIT_EDGE_HOOK_JS = """
          (Codex, PR #403) */
       if (cv.width * cv.height > LIT_AREA || work + 2 * cv.width * cv.height > LIT_WORK ||
           (nOn >= LIT_ON && nOff >= LIT_OFF)) { e.skipped++; return null; }
-      /* past the on-page budget, a connected canvas's placement is looked up
-         at most once per 32 of its draws; a detached one needs no lookup */
+      /* once EITHER budget is full, a connected canvas's placement is looked
+         up at most once per 32 of its draws; a detached one needs no lookup
+         (Codex, PR #403) */
       const placed = !cv.isConnected ? false
-                   : (nOn >= LIT_ON ? (e.shownAt > 0 && e.draws - e.shownAt < 32 ? e.placed : null) : null);
+                   : (nOn >= LIT_ON || nOff >= LIT_OFF
+                      ? (e.shownAt > 0 && e.draws - e.shownAt < 32 ? e.placed : null) : null);
       const pl = placed === null ? shown(cv) : placed;
       if (placed === null) { e.placed = pl; e.shownAt = e.draws || 1; }
       e.draws = (e.draws || 0) + 1;
@@ -947,7 +949,14 @@ LIT_EDGE_HOOK_JS = """
        axis whose overflow is `clip` (Codex, PR #403) */
     const clipRect = (el, cs, containOnly) => {
       const q = el.getBoundingClientRect();
-      const s = el.offsetWidth ? q.width / el.offsetWidth : 1, t = el.offsetHeight ? q.height / el.offsetHeight : 1;
+      /* the scale the box is shown at; an SVG viewport has no offset size, so
+         its border-box size is rebuilt from client size and borders (Codex,
+         PR #403) */
+      const bw = el instanceof HTMLElement ? el.offsetWidth
+               : el.clientWidth + el.clientLeft + (parseFloat(cs.borderRightWidth) || 0);
+      const bh = el instanceof HTMLElement ? el.offsetHeight
+               : el.clientHeight + el.clientTop + (parseFloat(cs.borderBottomWidth) || 0);
+      const s = bw ? q.width / bw : 1, t = bh ? q.height / bh : 1;
       let L = q.left + el.clientLeft * s, T = q.top + el.clientTop * t;
       let R = L + el.clientWidth * s, B = T + el.clientHeight * t;
       const cx = !containOnly && cs.overflowX === 'clip', cy = !containOnly && cs.overflowY === 'clip';
@@ -977,7 +986,7 @@ LIT_EDGE_HOOK_JS = """
     const fixedCB = (cs, el) => {
       if ((cs.filter || 'none') !== 'none' || (cs.backdropFilter || 'none') !== 'none' ||
           /filter/.test(cs.willChange || '')) return true;
-      if (cs.display === 'inline' && !replaced(el)) return false;
+      if (el instanceof HTMLElement && cs.display === 'inline' && !replaced(el)) return false;
       return (cs.transform || 'none') !== 'none' || (cs.perspective || 'none') !== 'none' ||
         (cs.translate || 'none') !== 'none' || (cs.rotate || 'none') !== 'none' ||
         (cs.scale || 'none') !== 'none' ||
@@ -1064,9 +1073,10 @@ LIT_EDGE_HOOK_JS = """
       for (let el = el0; el && el.nodeType === 1; el = up(el)) {
         const cs = getComputedStyle(el);
         if (boxless(cs)) continue;
-        /* transforms don't apply to a non-replaced inline box: inert there
+        /* transforms don't apply to a non-replaced HTML inline box: inert
+           there. An SVG <g> is display inline too, and its transform is live
            (Codex, PR #403) */
-        if (cs.display === 'inline' && !replaced(el)) continue;
+        if (el instanceof HTMLElement && cs.display === 'inline' && !replaced(el)) continue;
         const tf = cs.transform || 'none';
         if (tf !== 'none') {
           /* a flat 3D transform (translateZ(0), translate3d, scale3d) is
@@ -1230,11 +1240,13 @@ LIT_EDGE_HOOK_JS = """
         for (const r of joined) {
           const v = r.axis === 'v', kA = v ? ky : kx, kC = v ? kx : ky;
           const page = (v ? bx.x : bx.y) + r.line * kC;
-          if ((r.a1 - r.a0) * kA < LIT_SPAN) continue;
+          /* only the part of the stretch inside the frame (Codex, PR #403) */
+          const from = Math.max(0, (v ? bx.y : bx.x) + r.a0 * kA);
+          const to = Math.min(v ? fh : fw, (v ? bx.y : bx.x) + r.a1 * kA);
+          if (to - from < LIT_SPAN) continue;
           if (!(page > 1 && page < (v ? fw : fh) - 1)) continue;   /* the frame's own edge */
           if (tint) { tinted = true; continue; }
-          recs.push({ side: r.side, axis: r.axis, at: page,
-                      from: (v ? bx.y : bx.x) + r.a0 * kA, to: (v ? bx.y : bx.x) + r.a1 * kA,
+          recs.push({ side: r.side, axis: r.axis, at: page, from: from, to: to,
                       op: r.op, lit_max: r.mx / 255, n: 1 });
         }
         if (tinted && !counted) unplaced += e.lit;       /* each draw once */

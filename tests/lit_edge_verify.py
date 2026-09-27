@@ -1184,14 +1184,15 @@ n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 10, 5);
 """
 
 GREEN_SVG_SCALED_BLUR = """
-// an <svg> just off the frame (x 1120) scaled 10x with blur(10px): its blur
-// reaches some 300 px back into the frame, and an SVG element has no offset
-// size to scale by, so the reach is unbounded and the canvas counted
-// (Codex, PR #403)
+// an <svg> just off the frame (x 1120) scaled 10x with a 30 px drop-shadow
+// to the left: 300 px on the page, back into the frame, and an SVG element
+// has no offset size to scale its filter by, so the reach is unbounded and
+// the canvas counted (Codex, PR #403). (A blur alone would be right to stay
+// silent here: its seam is off the frame and a blur brings no hard edge in.)
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.createElementNS(NS, 'svg');
 svg.setAttribute('width', '20'); svg.setAttribute('height', '20');
-svg.style.cssText = 'position:absolute;left:1120px;top:400px;transform-origin:0 0;transform:scale(10);filter:blur(10px)';
+svg.style.cssText = 'position:absolute;left:1120px;top:400px;transform-origin:0 0;transform:scale(10);filter:drop-shadow(-30px 0 0 #FFFFFF)';
 const fo = document.createElementNS(NS, 'foreignObject');
 fo.setAttribute('width', '20'); fo.setAttribute('height', '20');
 svg.appendChild(fo); document.body.appendChild(svg);
@@ -1244,6 +1245,61 @@ const f2 = fl.getContext('2d'), fg = f2.createLinearGradient(0, 0, 0, 1350);
 fg.addColorStop(0, '#0B1422'); fg.addColorStop(1, '#1A2436'); f2.fillStyle = fg; f2.fillRect(0, 0, 1080, 1350);
 cx.drawImage(fl, 0, 0);
 """ + PANEL_AT_492
+
+GREEN_SEAM_ABOVE_FRAME = """
+// a 1600 px tall canvas placed 800 px above the frame: its only seam (x 492)
+// lies in the part above the frame, so it is dropped, not sent to qa as a
+// line it can't measure (Codex, PR #403)
+const nc = document.createElement('canvas'); nc.width = 1080; nc.height = 1600;
+nc.style.cssText = 'position:absolute;left:0;top:-800px;width:1080px;height:1600px';
+document.body.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 60, 588, 700, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 492, 0);
+"""
+
+SVG_SCALED_CLIP = """
+// an inline <svg> 20 x 135 with overflow hidden, shown at 10x (200 x 1350 on
+// the page); a canvas in its foreignObject fills x 5 to 20 of it, which is
+// page x 50 to 200, inside the clip once the clip is scaled; its light starts
+// at page x 100 (Codex, PR #403)
+document.getElementById('c').style.display = 'none';
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('width', '20'); svg.setAttribute('height', '135');
+svg.style.cssText = 'display:block;overflow:hidden;transform-origin:0 0;transform:scale(10)';
+const fo = document.createElementNS(NS, 'foreignObject');
+fo.setAttribute('x', '5'); fo.setAttribute('width', '15'); fo.setAttribute('height', '135');
+svg.appendChild(fo); document.body.appendChild(svg);
+const nc = document.createElement('canvas'); nc.width = 150; nc.height = 1350;
+nc.style.cssText = 'display:block;width:15px;height:135px';
+fo.appendChild(nc);
+const n2 = nc.getContext('2d'), sp = document.createElement('canvas'); sp.width = 100; sp.height = 1350;
+const s2 = sp.getContext('2d'), sg = s2.createLinearGradient(0, 0, 0, 1350);
+sg.addColorStop(0, 'rgb(200,160,90)'); sg.addColorStop(1, 'rgb(120,90,60)'); s2.fillStyle = sg; s2.fillRect(0, 0, 100, 1350);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(sp, 50, 0);
+"""
+
+GREEN_MIRRORED_G = """
+// a glow canvas in a foreignObject under an SVG <g> mirrored by scaleX(-1):
+// the <g> is display inline, but its transform is live, so the canvas can't
+// be placed and is counted. A mirror keeps the box's size, so only the
+// transform itself gives it away (Codex, PR #403)
+document.getElementById('c').style.display = 'none';
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('width', '1080'); svg.setAttribute('height', '1350');
+svg.style.cssText = 'display:block;overflow:visible;background:#0B1422';   /* nothing crops it */
+const g = document.createElementNS(NS, 'g');
+g.style.cssText = 'transform-origin:540px 675px;transform:scaleX(-1)';
+const fo = document.createElementNS(NS, 'foreignObject');
+fo.setAttribute('x', '492'); fo.setAttribute('width', '588'); fo.setAttribute('height', '1350');
+g.appendChild(fo); svg.appendChild(g); document.body.appendChild(svg);
+const nc = document.createElement('canvas'); nc.width = 588; nc.height = 1350;
+nc.style.cssText = 'display:block;width:588px;height:1350px';
+fo.appendChild(nc);
+const n2 = nc.getContext('2d'), gn = glow(492, 0, 588, 1350, false);
+n2.globalCompositeOperation = 'screen'; n2.drawImage(gn, 0, 0);
+"""
 
 # (name, body, records that must exist as (side, at), qa warnings that must
 #  name each line as "x 492 (its left edge)", the exact lit-edge warn count,
@@ -1358,6 +1414,9 @@ CASES = [
     ("slide-106", GREEN_QUERY_CONTAINER, [], 0, "can't place"),
     ("slide-107", GREEN_FILTER_TRANSPARENT, [], 0, None),
     ("slide-108", GREEN_OPAQUE_COVER, [], 0, None),
+    ("slide-109", GREEN_SEAM_ABOVE_FRAME, [], 0, None),
+    ("slide-110", SVG_SCALED_CLIP, [("left", 100)], None, None),
+    ("slide-111", GREEN_MIRRORED_G, [], 0, "can't place"),
 ]
 # fixtures whose records are too many to list: the check is only that the
 # render finished and qa named the cap
