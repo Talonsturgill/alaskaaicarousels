@@ -103,15 +103,25 @@
     o = o || {};
     var W = o.w || 1080, H = o.h || 1350;
     var rnd = mulberry((o.seed || 20260928) * 31 + (o.slide || 1) * 7919);
-    var n = o.count || 900;
+    var n = o.count == null ? 900 : o.count;            // 0 is a real request: an empty layer
     var layer = o.layer || "all";
     var focusZ = o.focusZ || 0.45;                      // 0 near .. 1 far
     var sx = o.strobe ? o.strobe[0] : 180, sy = o.strobe ? o.strobe[1] : 120;
     var reach = o.reach || 1500;
-    var tint = o.tint || [238, 242, 236];
+    var tint = o.tint || null;                          // null: the atlas's own white, the strobe's colour
     var gain = o.gain != null ? o.gain : 1;
     var windRad = (o.windDeg != null ? o.windDeg : 12) * Math.PI / 180;
     var at = sprites(), out = [];
+    if (tint) {
+      // an explicit tint recolours each atlas level once: the sprite's alpha kept, its colour replaced
+      at = at.map(function (c) {
+        var t = document.createElement("canvas"); t.width = c.width; t.height = c.height;
+        var g = t.getContext("2d"); g.drawImage(c, 0, 0);
+        g.globalCompositeOperation = "source-in";
+        g.fillStyle = "rgb(" + tint[0] + "," + tint[1] + "," + tint[2] + ")"; g.fillRect(0, 0, t.width, t.height);
+        return t;
+      });
+    }
     cx.save();
     cx.globalCompositeOperation = o.blend || "screen";
     for (var i = 0; i < n; i++) {
@@ -134,11 +144,6 @@
       if (o.fade) a *= o.fade(x, y);
       if (a < 0.02) continue;
       cx.globalAlpha = Math.min(1, a);
-      if (tint) {
-        // sprites are white; a warm or cool tint is applied through a filter-free
-        // multiply by drawing at the flake's alpha, tint carried by the caller's
-        // blend. White is the strobe's own colour, so the default is untinted.
-      }
       cx.drawImage(at[lvl], x - r, y - r, r * 2, r * 2);
       out.push({ x: x, y: y, r: r, a: a });
     }

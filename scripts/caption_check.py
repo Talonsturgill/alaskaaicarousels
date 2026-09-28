@@ -1008,7 +1008,13 @@ SLIDE_FIRST_PERSON = re.compile(
 # "www.example.org/report;our analysis" exempted "our". A URL here may carry
 # only the characters an address in slide type actually uses; prose delimiters
 # (dashes other than the hyphen, semicolons, commas, quotes, brackets) end it.
-SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9._~:/?#@!$&*+=%-]+")
+#
+# NARROWED AGAIN TO THE HOST (Codex, PR #407, second round). A character class
+# for the whole URL kept admitting some delimiter ("report!We", "report:we"),
+# because a path legitimately carries most of them. The exemption now covers
+# only what can't be reworded: an email address, and a URL's scheme plus host.
+# A path is words, and words on a slide are read like any other words.
+SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*")
 
 
 def _quotation_spans(s):
@@ -1323,7 +1329,10 @@ def slide_address_self_test():
     """Run No.71's closing ask, and the defect the address carve-out must not hide."""
     cases = [
         ("the shipped address: us.af.mil", "354fw.pa.publicaffairs@us.af.mil", False),
-        ("a URL carrying 'our' in its path", "https://example.org/our-plan", False),
+        ("a URL whose host carries 'our'", "https://our.example.org/plan", False),
+        ("a URL's path is read like words", "https://example.org/our-plan", True),
+        ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),
+        ("prose after a URL and a colon is not the URL", "See https://example.org/report:we found it", True),
         ("first person beside an address still fails", "Write to us at 354fw.pa.publicaffairs@us.af.mil", True),
         ("the studio narrating itself still fails", "Our arithmetic, not AEA's.", True),
         ("prose after a URL and a dash is not the URL", "See https://example.org/report\u2014we found the result", True),

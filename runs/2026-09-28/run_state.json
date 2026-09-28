@@ -137,7 +137,21 @@
    ],
    "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
   },
-  "upgrade": "pending",
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/automation_retro.md",
+    "ledger/upgrades.json",
+    "assets/js/aksnow.js",
+    "tests/aksnow_recede_verify.py"
+   ],
+   "commits": [
+    "7d91b51f",
+    "023b33b5",
+    "29c7dd1a"
+   ],
+   "note": "two upgrades logged (caption_check address exemption, AKSNOW nearEdge); frontier scan (f) parked in FIELD_NOTES; Codex review fixes d39fa591 and the follow-up"
+  },
   "gmail": "pending",
   "retro": "pending"
  }
