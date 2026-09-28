@@ -42,7 +42,15 @@
    ],
    "note": "10 items refreshed (budget raised from 6 to 10 to clear the 4 deferred), hr-9340 updated to Senate Calendar No. 684 (Sept 24), 9 checked and unchanged; watch.json triaged, no candidate in scope, bills closed at session end, failed=[]"
   },
-  "gas_watch": "pending",
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/cron_health.json",
+    "out/2026-09-28/gaswatch_health.json",
+    "out/2026-09-28/gaswatch_incident.json"
+   ],
+   "note": "cron_health PASS 09:52Z (two earlier audits failed on inconsistent API reads, see FIELD_NOTES); gaswatch live FAIL documented as a github blocker (no scheduled dispatch after 22:25Z, dispatch 403); site_signoff WARN and pagecheck WARN on the same cause; the site rebuild cleared the stale page"
+  },
   "selection": {
    "status": "done",
    "artifacts": [
@@ -74,9 +82,30 @@
    "note": "round 1 pixel critics (5 + 3 re-reviews, all ship); round 2 from the flow critic's craft work order (08 terrain, 07 blocks and floor, 06 own ground and darker key, 01 dusting, 09 warm slot spill, 04/05 stroke contrast and fixtures)"
   },
   "flow_review": "pending",
-  "assemble": "pending",
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/final/carousel.pdf",
+    "out/2026-09-28/final/contact_sheet.png"
+   ],
+   "pdf_mode": "vector"
+  },
   "scoring": "pending",
-  "ship": "pending",
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-09-28/",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "ledger/alerts.json",
+    "knowledge/FIELD_NOTES.md",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
+  },
   "upgrade": "pending",
   "gmail": "pending",
   "retro": "pending",
@@ -87,6 +116,25 @@
     "out/2026-09-28/render/"
    ],
    "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
+  },
+  "score": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/score_report.json"
+   ],
+   "score": 8.23,
+   "threshold": 8.0,
+   "artwork": 7,
+   "craft_cycle": {
+    "frames": [
+     4,
+     8,
+     6,
+     2
+    ],
+    "art_before": 7,
+    "art_after": 7
+   }
   }
  }
 }
