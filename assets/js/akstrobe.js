@@ -128,8 +128,11 @@
     cx.save();
     cx.globalCompositeOperation = o.blend || "screen";
     for (var i = 0; i < n; i++) {
+      // every candidate draws ALL its random numbers before any filter (Codex, PR #407), so changing
+      // layer, avoid or fade only removes flakes from one shared field and never reshuffles it
       var z = Math.pow(rnd(), 0.8);                     // more far flakes than near
       var x = rnd() * (W + 200) - 100, y = rnd() * (H + 200) - 100;
+      var ra = rnd();
       x += (y / H) * Math.tan(windRad) * -80;           // the wind slants the field
       if (layer === "front" && z > focusZ * 0.6) continue;
       if (layer === "far" && z < focusZ) continue;
@@ -142,7 +145,7 @@
       // backscatter: brighter nearer the strobe axis, falling off with distance
       var dl = Math.hypot(x - sx, y - sy);
       var lit = Math.max(0.08, 1 - dl / reach);
-      var a = (near ? 0.30 + 0.25 * rnd() : 0.45 + 0.4 * rnd()) * lit * gain;
+      var a = (near ? 0.30 + 0.25 * ra : 0.45 + 0.4 * ra) * lit * gain;
       if (near) a *= Math.max(0.35, 1 - (focusZ - z) * 1.2);
       if (o.fade) a *= o.fade(x, y);
       if (a < 0.02) continue;
@@ -180,7 +183,11 @@
     var oldTone = renderer.toneMapping;
     renderer.setRenderTarget(rt);
     renderer.clear(true, true, true);                    // whatever the caller's autoClear policy: far everywhere first
+    // a colour frame drawn to the canvas through a custom viewport or scissor gets its depth through the
+    // same rectangle, so the two align (Codex, PR #407); the full-canvas default is a no-op
+    if (!oldTarget) { renderer.setViewport(oldVp); renderer.setScissor(oldSc); renderer.setScissorTest(oldScT); }
     renderer.render(scene, camera);
+    renderer.setScissorTest(false);
     hidden.forEach(function (m) { m.visible = true; });
     var q = new THREE.ShaderMaterial({
       uniforms: { tD: { value: dt }, uNear: { value: near }, uFar: { value: far },

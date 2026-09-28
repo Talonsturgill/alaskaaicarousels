@@ -225,7 +225,7 @@ def main():
     e = r["edgeBand"]
     row("8 curved far edge keeps the far treatment", abs(e["low"] - e["peak"]) < 0.06 and e["lowN"] > 500 and e["peakN"] > 500,
         "L under the edge: low columns %.3f, peak columns %.3f" % (e["low"], e["peak"]))
-    row("9 a steep contour keeps the far treatment", r["steepBand"] - e["peak"] < 0.06,
+    row("9 a steep contour keeps the far treatment", abs(r["steepBand"] - e["peak"]) < 0.06,
         "L under the steep edge %.3f vs %.3f under the gentle peaks" % (r["steepBand"], e["peak"]))
     hz = r["hidden"]
     row("10 a curve between step probes is still warped", hz["warped"] and hz["paintedAbove"] == 0,

@@ -31,7 +31,7 @@
         "'the nearest edge fixture on the lit pavement': shadow L* 26.2 vs ground L* 36.3, dL 10.1 at 432w"
       ],
       "motifs": [
-        "'the described site ring': canvas 108.1 dE, page 110.1 dE, 100% of its rect is clear of opaque DOM"
+        "'the described site ring': canvas 108.4 dE, page 110.3 dE, 100% of its rect is clear of opaque DOM"
       ],
       "leaders": [
         "leader 'the described site zone, east of the south end of the main runway' lands 19.0px from its target",
@@ -54,8 +54,8 @@
         "outside safe zone: 'N' at 977,646 34x40 (margin 80px)"
       ],
       "motifs": [
-        "'the described site zone, dashed gold': canvas 115.0 dE, page 115.7 dE, 100% of its rect is clear of opaque DOM",
-        "'the runway south end': canvas 84.1 dE, page 85.0 dE, 100% of its rect is clear of opaque DOM"
+        "'the described site zone, dashed gold': canvas 114.9 dE, page 115.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the runway south end': canvas 83.9 dE, page 84.8 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "hl 'Clear it, dig it,fill it, level it.' fits 2/2 lines at 103.5px"
@@ -74,7 +74,7 @@
         "'the gold T mark on the carved snow': shadow L* 28.3 vs ground L* 83.0, dL 54.7 at 432w"
       ],
       "motifs": [
-        "'the gold SITE COMMENTS mark': canvas 71.2 dE, page 78.4 dE, 100% of its rect is clear of opaque DOM"
+        "'the gold SITE COMMENTS mark': canvas 71.5 dE, page 78.5 dE, 100% of its rect is clear of opaque DOM"
       ],
       "leaders": [
         "leader 'the SELECTED, JUNE 2025 mark' lands 3.0px from its target",
@@ -110,7 +110,7 @@
         "outside safe zone: 'ALASKA.AI' at 899,59 101x34 (margin 80px)"
       ],
       "motifs": [
-        "'the near chain-link panel with lodged snow': canvas 60.4 dE, page 62.9 dE, 100% of its rect is clear of opaque DOM"
+        "'the near chain-link panel with lodged snow': canvas 60.0 dE, page 62.9 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "hl 'Same base.A second process.' fits 2/2 lines at 115.5px"
@@ -150,7 +150,7 @@
       ],
       "asserts": [
         "'five posts, the five described spots' holds: 5 vs 5 marks, counted over 5 declared marks (within 0)",
-        "'five posts, the five described spots': 5 mark centres probed at r=14px, cohort median 74.2 dE, all present (weakest 27.8 dE)"
+        "'five posts, the five described spots': 5 mark centres probed at r=14px, cohort median 74.2 dE, all present (weakest 28.2 dE)"
       ]
     },
     {
@@ -204,7 +204,7 @@
         "'the front leg of the collection box on lit snow': shadow L* 1.4 vs ground L* 75.6, dL 74.2 at 432w"
       ],
       "motifs": [
-        "'the collection box, its slot lit gold': canvas 88.1 dE, page 87.9 dE, 100% of its rect is clear of opaque DOM"
+        "'the collection box, its slot lit gold': canvas 88.2 dE, page 88.0 dE, 100% of its rect is clear of opaque DOM"
       ],
       "fits": [
         "hl 'Commentby September 30th.' fits 2/2 lines at 127.5px"

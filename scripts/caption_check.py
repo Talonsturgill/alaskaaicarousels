@@ -1014,7 +1014,7 @@ SLIDE_FIRST_PERSON = re.compile(
 # because a path legitimately carries most of them. The exemption now covers
 # only what can't be reworded: an email address, and a URL's scheme plus host.
 # A path is words, and words on a slide are read like any other words.
-SLIDE_ADDRESS = re.compile(r"[A-Za-z0-9!#$%&'*+/=?^_`{|}~.-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
+SLIDE_ADDRESS = re.compile(r"(?<![A-Za-z0-9!#$%&'*+/=?^_`{|}~.-])[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
 
 
 def _quotation_spans(s):
@@ -1363,6 +1363,9 @@ def slide_address_self_test():
         ("a real .me address stays whole", "https://about.me", False),
         ("an apostrophe in an email local part", "Write we're@example.com or let's@example.com", False),
         ("the other dot-atom characters in a local part", "we=alerts@example.com, our%team@example.com, me&you@example.com", False),
+        ("a malformed dot-atom is not an address", "our.@example.com", True),
+        ("a leading dot is not an address", "see .our@example.com", True),
+        ("a doubled dot is not an address", "our..team@example.com", True),
         ("a caps path is still read like words", "HTTPS://EXAMPLE.ORG/OUR-PLAN", True),
         ("a URL's path is read like words", "https://example.org/our-plan", True),
         ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),
