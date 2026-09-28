@@ -15,7 +15,7 @@
   "source_status": {
     "state": "current",
     "last_verified_date": "2026-09-28",
-    "last_collection_utc": "2026-09-28T15:37:41Z",
+    "last_collection_utc": "2026-09-28T20:15:58Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -8976,21 +8976,21 @@
     },
     {
       "date": "2026-09-28",
-      "collected_utc": "2026-09-28T15:37:41Z",
+      "collected_utc": "2026-09-28T20:15:58Z",
       "collector_version": "1.2",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-09-28T04:18:00",
-        "source_timestamp_utc": "2026-09-28T12:18:00Z",
-        "inventory_mcf": 7759689,
-        "inventory_delta_mcf": 3348,
+        "source_timestamp": "2026-09-28T09:00:00",
+        "source_timestamp_utc": "2026-09-28T17:00:00Z",
+        "inventory_mcf": 7757189,
+        "inventory_delta_mcf": 848,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 59.7,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 163000,
+        "withdrawal_available_mcfd": 160500,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 206320,
@@ -9042,15 +9042,23 @@
           "min_temp_f": 32,
           "hdd65": 26.5,
           "modeled_demand_mmcfd": 172
+        },
+        {
+          "date": "2026-10-04",
+          "hours": 23,
+          "mean_temp_f": 38.6,
+          "min_temp_f": 32,
+          "hdd65": 26.4,
+          "modeled_demand_mmcfd": 172
         }
       ],
-      "forecast_source_updated": "2026-09-28T10:21:27+00:00",
+      "forecast_source_updated": "2026-09-28T15:38:22+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-02",
         "peak_forecast_hdd": 27.2,
         "peak_modeled_demand_mmcfd": 174,
-        "forecast_window_demand_bcf": 0.82,
-        "storage_withdrawal_mmcfd": -3.3,
+        "forecast_window_demand_bcf": 0.99,
+        "storage_withdrawal_mmcfd": -0.8,
         "non_cingsa_supply_mmcfd": null,
         "days_cover_at_peak": 44.6,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
@@ -9098,7 +9106,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-28T15:37:41Z",
+          "fetched_utc": "2026-09-28T20:15:58Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -9107,7 +9115,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-28T15:37:41Z",
+          "fetched_utc": "2026-09-28T20:15:59Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -9116,14 +9124,15 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-09-28T15:37:42Z",
+          "fetched_utc": "2026-09-28T20:15:59Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
       "flags": [
         "injection_restriction_active"
-      ]
+      ],
+      "supersedes_posting": "2026-09-28T04:18:00"
     }
   ]
 }
