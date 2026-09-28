@@ -252,6 +252,10 @@
     nbq.filter = "blur(" + Math.max(1, maxR / 8).toFixed(1) + "px)";
     nbq.drawImage(nearC, 0, 0);
     var nd = nbq.getImageData(0, 0, nb.width, nb.height).data;
+    // an opaque source stays opaque: the blur's own falloff at the frame edge is not the layer's alpha.
+    // A source that really carries transparency keeps it, blurred with the colour (Codex, PR #407).
+    var src0 = imgs[0], opaque = true;
+    for (var ai = 3; ai < src0.length; ai += 4) if (src0[ai] < 255) { opaque = false; break; }
     var out = dst.createImageData(W, H), od = out.data;
     for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
       var idx = y * W + x;
@@ -263,7 +267,7 @@
       od[p] = A[p] + (B[p] - A[p]) * fr;
       od[p + 1] = A[p + 1] + (B[p + 1] - A[p + 1]) * fr;
       od[p + 2] = A[p + 2] + (B[p + 2] - A[p + 2]) * fr;
-      od[p + 3] = 255;
+      od[p + 3] = opaque ? 255 : A[p + 3] + (B[p + 3] - A[p + 3]) * fr;
     }
     dst.putImageData(out, 0, 0);
     return { focus: f, maxR: maxR / sc };

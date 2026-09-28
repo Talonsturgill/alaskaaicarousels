@@ -1036,28 +1036,28 @@ def _quotation_spans(s):
     return []
 
 
-def _address_span(m):
-    """The span of an address match, less any trailing label that is really the next sentence.
+# First-person words that are also delegated top-level domains (IANA root zone): .us, .me, .my.
+# No other first-person token (we, our, ours, ourselves, i'm, let's ...) is a TLD.
+_FIRST_PERSON_TLDS = {"us", "me", "my"}
 
-    SENTENCE PROSE AFTER A DOT (Codex, PR #407). "https://example.org.Our analysis" and
-    "x@example.com.We found it" match a dotted host that runs on into the sentence, because
-    nothing in the syntax separates a final label from a word. The casing does: a host's labels
-    share one case (all lower, or all caps in mono slide type), and a sentence's first word is
-    Capitalised. A trailing label Capitalised after a label that is not is trimmed off, so its
-    word is read like any other; "state.ak.us" and "EXAMPLE.ORG" keep their whole span.
+
+def _address_span(m):
+    """The span of an address match, less a final label that can only be the next sentence.
+
+    SENTENCE PROSE AFTER A DOT (Codex, PR #407, two rounds). "https://example.org.Our analysis"
+    and "x@example.com.We found it" match a dotted host that runs on into the sentence. Casing
+    can't settle it (hosts are case-insensitive), but the root zone can: a host's FINAL label is
+    a top-level domain, and no TLD is "our" or "we". So a final label that is a first-person word
+    and not one of the three that really are TLDs (.us, .me, .my) is trimmed off the exempt span
+    and read as a word. "https://legis.state.ak.us" and "354fw.pa.publicaffairs@us.af.mil" keep
+    their whole span; "https://example.Our", which no resolver can reach, is read as prose.
     """
     a, b = m.span()
     text = m.group(0)
-    def cap(w):
-        return len(w) > 1 and w[0].isupper() and w[1:].islower()
-    while "." in text:
+    if "." in text:
         head, last = text.rsplit(".", 1)
-        prev = re.split(r"[.@/]", head)[-1]
-        if cap(last) and not cap(prev):
+        if SLIDE_FIRST_PERSON.fullmatch(last) and last.lower() not in _FIRST_PERSON_TLDS:
             b -= len(last) + 1
-            text = head
-        else:
-            break
     return (a, b)
 
 
@@ -1359,6 +1359,8 @@ def slide_address_self_test():
         ("a sentence after a URL's final dot", "See https://example.org.Our analysis found it", True),
         ("a sentence after an email's final dot", "Write x@example.com.We found it", True),
         ("a state address ending in .us", "Filed at https://legis.state.ak.us", False),
+        ("a first-person word is not a TLD", "https://example.Our", True),
+        ("a real .me address stays whole", "https://about.me", False),
         ("a caps path is still read like words", "HTTPS://EXAMPLE.ORG/OUR-PLAN", True),
         ("a URL's path is read like words", "https://example.org/our-plan", True),
         ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),
