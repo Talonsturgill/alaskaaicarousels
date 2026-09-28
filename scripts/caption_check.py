@@ -1014,7 +1014,7 @@ SLIDE_FIRST_PERSON = re.compile(
 # because a path legitimately carries most of them. The exemption now covers
 # only what can't be reworded: an email address, and a URL's scheme plus host.
 # A path is words, and words on a slide are read like any other words.
-SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*")
+SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
 
 
 def _quotation_spans(s):
@@ -1330,6 +1330,8 @@ def slide_address_self_test():
     cases = [
         ("the shipped address: us.af.mil", "354fw.pa.publicaffairs@us.af.mil", False),
         ("a URL whose host carries 'our'", "https://our.example.org/plan", False),
+        ("the same address set in caps", "HTTPS://OUR.EXAMPLE.ORG/PLAN", False),
+        ("a caps path is still read like words", "HTTPS://EXAMPLE.ORG/OUR-PLAN", True),
         ("a URL's path is read like words", "https://example.org/our-plan", True),
         ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),
         ("prose after a URL and a colon is not the URL", "See https://example.org/report:we found it", True),

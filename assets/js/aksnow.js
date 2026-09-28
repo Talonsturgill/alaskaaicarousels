@@ -279,7 +279,9 @@
     var x1 = o.x1 == null ? (cx.canvas ? cx.canvas.width : 1080) : o.x1;
     var bottom = o.bottom == null ? (cx.canvas ? cx.canvas.height : 1350) : o.bottom;
     var step = o.step == null ? 4 : o.step;
-    var far = Math.min.apply(null, sampleTop(top, x0, x1, 24));
+    // the far edge at the SAME resolution as the clip path below, so no peak between samples is left unpainted
+    var far = top(x1);
+    for (var fx = x0; fx < x1; fx += step) far = Math.min(far, top(fx));
     var m = {}, k;
     for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) m[k] = o[k];
     m.nearEdge = "top";
