@@ -2792,6 +2792,49 @@
       "sources_lead": "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
       "claims": 30,
       "note": "Shipped 8.47 vs 8.0 (round 3 threshold), zero hard fails; art 7 after the craft-floor cycle (07, 06, 03, 08 improved; 02 regressed and was restored). Gas Watch live audit documented as a github blocker (scheduler gap, dispatch 403)."
+    },
+    {
+      "run_date": "2026-09-28",
+      "carousel_no": 71,
+      "topic": "The Air Force asks for public comment by September 30th on site preparation work (clearing, excavation, fill, grading) near wetlands for a 5 megawatt Oklo microreactor at Eielson Air Force Base, near Spruce Lake east of the main runway's south end (KUAC, September 20th); Oklo would own it and the Air Force would buy its electricity and heat under a 30-year contract after an NRC license. The same base separately offered land for AI data centers (AFCEC-26-R-0006, about 4,700 acres across JBER, Eielson and Clear, proposals due June 29th, no award as of mid-September), a load class a federal order starts at more than 100 MW.",
+      "angle": "THE SIZED DOOR. One open comment window, and how small it is next to the second process on the same base. Distinct from No.47 (September 1st, the borough moratorium sentence and the lease parcels), No.68 and No.70 (the leases as background): here the leases are the second process and a scale reference only, and the subject is the September 20th comment window.",
+      "entities": [
+        "Eielson Air Force Base",
+        "Oklo",
+        "Spruce Lake",
+        "354th Fighter Wing Public Affairs",
+        "KUAC",
+        "Defense Logistics Agency Energy",
+        "AFCEC-26-R-0006",
+        "JBER",
+        "Clear Space Force Station",
+        "Lisa Murkowski",
+        "Sarah Hollister",
+        "Salcha",
+        "Chugach Electric",
+        "Golden Valley Electric",
+        "Cook Inlet gas",
+        "Executive Order 14318",
+        "USFWS National Wetlands Inventory",
+        "Richardson Highway",
+        "North Pole"
+      ],
+      "keywords": [
+        "microreactor",
+        "public comment",
+        "September 30th",
+        "wetlands",
+        "preconstruction",
+        "Oklo",
+        "AI data center leases",
+        "5 megawatts",
+        "100 megawatts",
+        "Interior grid"
+      ],
+      "headline": "A Say on 5 Megawatts at Eielson, Until September 30th",
+      "sources_lead": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
+      "claims": 29,
+      "note": "Shipped 8.23 vs 8.0 (round 3 threshold) after 8.23 vs 8.3 at round 2, zero hard fails; art 7 before and after the one craft-floor cycle (04, 08, 06, 02). Fourth deck in 30 days touching the Air Force lease lane, not acknowledged on the slides. GitHub dispatched no scheduled workflow from 22:25Z to 11:12Z (second night running, dispatch 403); the Gas Watch live audit failed until the 11:12Z run caught up and ended the run at WARN on normal lag."
     }
   ]
 }

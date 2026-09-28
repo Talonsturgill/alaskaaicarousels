@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-28/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9440533,
+  "pdf_mb": 9.44,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-28/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-28/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "A Say on 5 Megawatts at Eielson, Until September 30th",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "bceb5b3ee92358307b8af824a2f24f6678cf5f3b3f09628fadda0ea6a8529139",
+        "bytes": 4997879
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "592fc4938b058f25af8440a7d7b5f56c4945239a969c3f4035827d3844a1c127",
+        "bytes": 4932592
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "59ae96f6cddb7c8e37fa71235a214c7d7d6d7a66b28851646048c42cb7001a38",
+        "bytes": 3348526
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "9e11197b1262821f008dcb94bee9c83038ab898dbbb8603f76f8b559f5016803",
+        "bytes": 5251724
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "24ea13e68a4ff2cf553e9e73257dc2621f58bee0c4a51c97c2f7f9da36cc0a52",
+        "bytes": 6859881
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "b56a4ec0ddf9677a6ce154cd500e84e0c7b7a030a900f3b52403305c7fdabd91",
+        "bytes": 4966177
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "1e7a8d36d1e38057aa95f12461494af70879c012e8d8462b39768dbf03d55a1e",
+        "bytes": 4779139
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "d688a2b8172a09ab209fab7877b303d03af72a0042606ca6aba77f72b5fb221c",
+        "bytes": 4535946
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "7a10b41643d853e9780cb95c40648bc4f9c25acd8c8d0145c56242e489930a1e",
+        "bytes": 4327443
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "67c6857572840419523bcf05c7604873c633de642e4d1018226dd5e58234905d",
+        "bytes": 16737
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "de0af2ffc4703504466276d2159bdb1142f0cf0fc136f52162edcf66a908bec3",
+        "bytes": 16782
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "01f32f53eeaebd1b146e4da5f4246173a0f24cb28f6e04b03c6fcc8bf1f56fcb",
+        "bytes": 17436
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "dc5b9cc2ec2c1956fbb823a0dbb0fa95b170c54b5cf4862801ac5be0ac90c101",
+        "bytes": 14705
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "99b36c5918d2cb1360b81d3890c0d1bc5364f04820c5efb3907315e12f99da28",
+        "bytes": 10952
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c6c5586ab6fd976adb5dabe3ceb06fe06f6e080387b446014012ec7b11a33a1e",
+        "bytes": 14342
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "23dfa6256a6622cbc63a14af99ec9d7af0394658a9020e87c10fe357657974e2",
+        "bytes": 15605
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "bb043c6c92599401975478095efec0eb9d78a326dfb4278b5c801a971a906cc7",
+        "bytes": 12847
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "24c369b14e85636c3a333b042a25e34379ece9fdc125a1fbb71adc9b1a64df13",
+        "bytes": 14202
+      }
+    ]
+  }
+}

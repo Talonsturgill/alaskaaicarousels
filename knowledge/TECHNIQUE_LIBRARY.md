@@ -968,3 +968,47 @@ annotation is the strongest pair):
     thresholds were tuned on. The residual 1.29 is the cubic's curvature step,
     visible only at shading exaggeration well above 1; a presmooth on top is
     then a choice, not a repair.
+
+104. **Strobe Snowfall And Thin-Lens Focus (akstrobe)**, added 2026-09-28 for
+    No.71. `assets/js/akstrobe.js`. `AKSTROBE.snow(cx, {seed, slide, count,
+    layer, focusZ, nearR, strobe, reach, avoid, gain})` draws one deck-wide
+    snowfall from a pre-blurred sprite atlas with circle-of-confusion levels,
+    lit by distance from a declared strobe point and kept out of `avoid` rects
+    (every text block). `AKSTROBE.depthPass(THREE, R)` renders linear depth
+    packed into RG 16-bit, and `AKSTROBE.focus(dst, glCanvas, depth, {focus, k,
+    maxR, scale: 2})` gathers six blur levels by per-pixel CoC with a dilated
+    near field, so an akthree frame gets a real focal plane without a
+    post-processing stack. Used on 01, 02 and 09 of No.71. Two lessons from
+    the build: set `setTransform(2, 0, 0, 2, 0, 0)` before `AKPOST.grade` on
+    the canvas focus wrote to, or the grade covers a quarter of the frame; and
+    a lens flare drawn over a declared contact shadow fails qa's glow check,
+    so cap flare radii near a declared foot.
+
+105. **DEM Horizon Skyline Engraving**, added 2026-09-28 for No.71 (slide 08).
+    From a viewpoint on the flats, march rays across the DEM for each screen
+    azimuth and keep the steepest elevation angle inside cumulative distance
+    bands (4, 8, 12, 16 km); each band is a ridge silhouette, far ones fogged
+    lighter. Smooth each profile (two passes of a +-7 sample mean) so the
+    exaggeration does not print DEM steps as spikes, lay TONE first (slopes
+    facing the key opened toward snow, lees near black) and then
+    contour-parallel hatching whose spacing opens where the key reaches.
+    Line-only ridges read as an audio waveform; the tone is what makes hills.
+    `akengrave` in plan view read as contour noise at this scale.
+
+106. **Flipped Snow Surface For A Receding Floor**, added 2026-09-28 for No.71.
+    `AKSNOW.surface` puts its bright crest and heaviest ridges at the region's
+    TOP edge, which is right for a drift seen from above and backwards for a
+    floor receding up the frame. Draw it into an offscreen canvas and paint
+    that canvas flipped (`translate(0, top + H); scale(1, -1)`), so near is
+    brightest and heaviest; then any multiply falloff reinforces it instead of
+    cancelling it. Found when 04 and 05 read flat; the flip fixed both.
+    NATIVE FROM 2026-09-28 (Phase 12): pass `nearEdge: 'bottom'` instead of
+    the offscreen canvas, with `top` as the FAR edge (the horizon) and
+    `bottom` as the near edge: `AKSNOW.surface(cx, {nearEdge: 'bottom',
+    top: x => HORIZ - 8, bottom: 1354, ...})`. It draws the same marks in a
+    frame mirrored about the region and clips to between top(x) and bottom,
+    so a curved far edge is safe. Re-rendering 04 and 05 that way matches the
+    shipped flip to mean |dL| 0.0004 and 0.0007 on the floor (row-profile
+    correlation 1.00000); the unflipped call measures near-minus-far +0.035
+    on 04 against +0.474 flipped. `tests/aksnow_recede_verify.py` holds it.
+    Default is `'top'`, so a drift seen from above is unchanged.

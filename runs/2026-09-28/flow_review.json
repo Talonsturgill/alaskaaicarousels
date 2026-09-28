@@ -1,0 +1,55 @@
+{
+  "round": 1,
+  "revision_rounds_at_review": 1,
+  "verdict": "revise",
+  "arc_assessment": "The sequence tells the story it promises. The 01 hook (a say on 5 megawatts, by September 30th) is paid immediately by 02 (where the site is), and 09 lands on the one ask that 01 set up. The middle sags: 03 to 04 and 06 to 07 close their loops on administrative facts rather than open new ones, and 06 to 08 is three dense frames about a process the reader can't act on, so the argument escalates on paper more than it does in the thumbs.",
+  "junction_pulls": [
+    {"from": 1, "to": 2, "strength": "strong", "pull": "'a say on 5 megawatts' plus the runway light row: which reactor, where on the base?"},
+    {"from": 2, "to": 3, "strength": "strong", "pull": "the dashed gold ring THE SITE, AS DESCRIBED and 'near wetlands': show me the ground"},
+    {"from": 3, "to": 4, "strength": "weak", "pull": "'Clear it, dig it, fill it, level it' asks for whom, but the body ends on the draft date and plants nothing"},
+    {"from": 4, "to": 5, "strength": "weak", "pull": "nothing on 04 hints at a second process; 05 works as a surprise"},
+    {"from": 5, "to": 6, "strength": "strong", "pull": "LAND FOR AI DATA CENTERS. raises which land, and 06 answers it"},
+    {"from": 6, "to": 7, "strength": "weak", "pull": "06 closes on no award and a solicitation number; only the forget-me-not collars carry forward"},
+    {"from": 7, "to": 8, "strength": "weak", "pull": "the open chevron suggests bigger than this, but the guard line closes the frame"},
+    {"from": 8, "to": 9, "strength": "strong", "pull": "the counter at 08 / 09 and 'we have completely lost our way' leave the reader wanting an action"}
+  ],
+  "continuity_findings": [
+    {"severity": "major", "where": "D1 weather clock, 01 to 09", "problem": "the snow clock runs backwards: 01's tussocks carry the heaviest caps in the deck", "fix": "cut 01's caps to a noise-thresholded dusting; the heaviest accumulation belongs to 09"},
+    {"severity": "major", "where": "09 tonal landing", "problem": "the plan promises one warm gold peak on 09; the render is the coldest ground in the deck and the gold is a hairline", "fix": "make the slot a gold emitter spilling warm light on the cap underside and a small pool on the snow in front"},
+    {"severity": "polish", "where": "04 to 06", "problem": "three frames share one scratch-stroke snow floor", "fix": "give 06 its own modelled berm"},
+    {"severity": "polish", "where": "02 D1 state", "problem": "caps on the fixtures are not readable", "fix": "a lit cap on the near fixture head"}
+  ],
+  "rhythm_findings": [
+    {"severity": "major", "where": "06, 07, 08", "problem": "three dense frames in a row, none about the reader's own door", "fix": "lighten 08 and let the engraved terrain take the space"},
+    {"severity": "polish", "where": "02, 03, 04", "problem": "three dense frames before the breather, eased because 02 is mostly image", "fix": "trim 04's body to two sentences"},
+    {"severity": "polish", "where": "05", "problem": "the breather lands where planned and works", "fix": "none"}
+  ],
+  "consistency_findings": [
+    {"severity": "polish", "where": "all nine", "problem": "counters and slugs transcribed, all increment correctly; Polaris, wordmark and fixtures in the same places", "fix": "none"},
+    {"severity": "polish", "where": "05 bottom left", "problem": "mesh runs through the alaskaaihq.com fixture", "fix": "knock the mesh out behind the fixture"},
+    {"severity": "polish", "where": "04 bottom right", "problem": "the #46545F coordinates fixture nearly disappears into lit snow", "fix": "night ink fixtures on lit-ground frames"},
+    {"severity": "polish", "where": "01 light direction", "problem": "some tussock shadow shapes read as a key from the right", "fix": "check the strobe position"},
+    {"severity": "major", "where": "contact sheet", "problem": "assemble reported stale at the time of review; the critic judged from the full renders", "fix": "re-run assemble before scoring"},
+    {"severity": "polish", "where": "palette and ink law", "problem": "palette holds; red only on runway end lights; gold and forget-me-not only on their declared meanings", "fix": "none"}
+  ],
+  "predicted_bail_point": {"slide": 6, "why": "after the breather 06 pivots to a process the reader has no door into and plants nothing forward", "fix": "end 06 on a forward line or lighten 08 so the run to the ask is plant, pay, short, ask"},
+  "craft": {
+    "predicted_artwork_score": 6.5,
+    "weakest_frames": [
+      {"slide": 8, "score": 5.5, "cause": "c", "problem": "the engraved hills are a thin skyline band, a black strip below, the lower third flat", "fix": "run the engraved terrain full-bleed from about y 1000 to the bottom, near ridge two to three times taller, dense hatching"},
+      {"slide": 7, "score": 6.0, "cause": "b", "problem": "the 20-block row, the largest object, is the least modelled; a flat lower band with a hard seam", "fix": "model row C as a material with steel grain, raised caps with a lit rim and lee, visible casts, carry the shelf falloff down"},
+      {"slide": 6, "score": 6.5, "cause": "c", "problem": "ruler-straight horizon seam, uniform berm band, dark scratch texture with no event, plain posts", "fix": "model the ploughed berm as ridges with lit windward faces and lees, fog the seam into a treeline"},
+      {"slide": 1, "score": 6.5, "cause": "b", "problem": "tussocks read as smooth white domes; the near foreground is an eventless defocus", "fix": "break the caps to a dusting; give the near band its own events"},
+      {"slide": 4, "score": 6.5, "cause": "d", "problem": "the flipped floor reads as horizontal scratch stripes; tapes are flat fills", "fix": "carved-ridge shading instead of scratches; half-bury the near tapes"},
+      {"slide": 2, "score": 7.0, "cause": "c", "problem": "the snowbank is a flat gradient polygon; the lower-left pavement is uniform noise", "fix": "more fixtures stepping into the fog with capped heads"}
+    ],
+    "cross_frame": [
+      {"cause": "a", "slides": [4, 5, 6], "problem": "one AKSNOW floor with the same scratch strokes on three adjacent frames", "fix": "take 06 off the helper"},
+      {"cause": "d", "slides": [4, 5, 6], "problem": "the helper's scratch strokes read as cracks or stripes; 05 has a free-standing dark line and the mesh ends abruptly", "fix": "lower stroke contrast; fix 05's rail shadow and far mesh"},
+      {"cause": "e", "slides": [6, 8, 9], "problem": "06 was to be the darkest frame and is mid-key; 09 was to be the warm peak and is the coldest", "fix": "09 slot spill; drop 06's ground key about 30 percent"},
+      {"cause": "e", "slides": [2], "problem": "the masterful depth frame is claimed more than earned", "fix": "the 02 fixture fix"}
+    ],
+    "masterful_depth_frame": 2
+  },
+  "score_0_10": 7.1
+}

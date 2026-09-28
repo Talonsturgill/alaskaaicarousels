@@ -1,0 +1,128 @@
+{
+ "run_date": "2026-09-28",
+ "carousel_no": 71,
+ "cycle": 2,
+ "revision_rounds": 3,
+ "hard_fails": [
+  {
+   "rule": "all 13 rubric hard fails",
+   "status": "pass",
+   "evidence": "checked one by one by the scorer in both cycles; no em or en dash, no emoji, every fact carries a verified claim id, no typo, no clipped text, contrast clear, 9 slides, qa WARN 0 fails and a vector PDF, no topic repeat inside 30 days, a new hero structure, no banned phrase, 3 hashtags and no link, no placeholder"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(7x0.14)+(7x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(7x0.05)+(8x0.10) = 0.98+0.98+1.12+1.12+0.96+0.80+0.56+0.56+0.35+0.80 = 8.23",
+ "weighted_total": 8.23,
+ "threshold": 8.0,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Lift the four frames that still carry dead zones: on 06, dissolve the ruler-straight band seam into a continuous haze with legible spruce spires and a lit, carved near berm in the lower left; on 04, scale the stakes two to three times in true perspective over a drifted, modelled snow floor.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "a ruler-straight seam where the scene band starts, spruce spires not legible, an eventless dark lower left, capped posts with halos reading as streetlamps",
+   "fix": "carry the haze continuously through the seam, silhouette spruce against a lifted haze strip, shrink the post bloom to a glint, light and carve the near berm"
+  },
+  {
+   "slide": 4,
+   "problem": "still reads as a flowchart on a gradient; the new stakes are small; the NRC pennant touches its plate",
+   "fix": "scale the stakes two to three times with lit and lee faces and casts, move the pennant, model drifted ridges toward the gold T"
+  },
+  {
+   "slide": 8,
+   "problem": "the hills still read as a waveform; the pole is a flat hairline",
+   "fix": "toned silhouettes with the hatching subordinate, a spruce-textured lower slope and snow floor, a modelled pole with a cast"
+  },
+  {
+   "slide": 2,
+   "problem": "the twelve threshold keys resolve as two wedges and a bar; the lower 45 percent is eventless",
+   "fix": "distinct bars converging on the vanishing point, the transverse bar stopped at the edge, one lit near fixture in the lower left"
+  },
+  {
+   "slide": 1,
+   "problem": "tussocks read as snow-capped boulders; the bottom band is a grey defocus",
+   "fix": "denser sedge fringes and matted skirts at the waterline, a lit rim with reflection in the near band"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   4,
+   8,
+   6,
+   2
+  ],
+  "art_before": 7,
+  "art_after": 7,
+  "note": "one targeted craft cycle, the frames the first score named, one change each: 04 flagged survey stakes for the future steps, 08 tone under the hatching and a pole carrying the line, 06 mounded caps, hard casts and a spruce line, 02 the runway threshold keys. The scorer saw modest gains that did not move the criterion; the repaired version is kept because it is not worse and every gate is green."
+ },
+ "cycles": [
+  {
+   "cycle": 1,
+   "revision_rounds": 2,
+   "weighted_total": 8.23,
+   "threshold": 8.3,
+   "artwork": 7,
+   "ship": false
+  },
+  {
+   "cycle": 2,
+   "revision_rounds": 3,
+   "weighted_total": 8.23,
+   "threshold": 8.0,
+   "artwork": 7,
+   "ship": true
+  }
+ ],
+ "editor_notes_for_email": "Post Tuesday, September 29th, or Wednesday morning at the latest: comments close Wednesday, September 30th. Every comment-window detail (deadline, email, mail address, the wetlands reason) rests on KUAC's September 20th report, because the Air Force's own notice page returned 403. The deck never says the data center leases have no public comment path; the fact check killed that claim. The coal plant is shown as both 20 MW (KUAC) and 23 MW at most (Air and Space Forces), and the reactor is never shown serving a data center. The cover says 'a say on 5 megawatts'; strictly the comment is on site preparation work near wetlands for that reactor, which slide 02 and the caption say exactly. Lane: this is the fourth deck in 30 days touching the Air Force AI data center leases (No.47, No.68, No.70), and slide 06 restates lease facts No.68 published."
+}

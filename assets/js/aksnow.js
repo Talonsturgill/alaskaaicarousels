@@ -59,6 +59,14 @@
  *   });
  *   AKSNOW.contactShadow(cx, {x: 540, y: 1010, w: 90, color: "#101F33"});
  *
+ *   // a floor that recedes UP the frame to a horizon: near edge at the bottom
+ *   AKSNOW.surface(cx, {top: x => HORIZ, bottom: 1350, nearEdge: "bottom", ...});
+ *
+ * nearEdge ('top' default | 'bottom') says which edge of the region is nearest
+ * the viewer. 'top' is a drift seen from above, the crest nearest. 'bottom' is
+ * a receding floor: lit ladder, heavy ridges and glints at the bottom, fine and
+ * dark at top(x), the far edge. See receding() below and TECHNIQUE_LIBRARY 106.
+ *
  * surface() returns {bands, ridges, weightMin, weightMax, weightVar, speculars}
  * so a caller or a test can assert the marks are not uniform. A test that only
  * asserts "something was drawn" would have passed the defect this file exists
@@ -118,6 +126,13 @@
    */
   S.surface = function (cx, o) {
     o = o || {};
+    if (o.nearEdge != null && o.nearEdge !== "top") {
+      if (o.nearEdge !== "bottom") {
+        throw new TypeError("AKSNOW: 'nearEdge' must be 'top' or 'bottom', got " +
+                            String(o.nearEdge));
+      }
+      return receding(cx, o);
+    }
     var top = need(o.top, "top");
     if (typeof top !== "function") throw new TypeError("AKSNOW: 'top' must be a function of x");
     var x0 = o.x0 == null ? 0 : o.x0;
@@ -238,6 +253,109 @@
     return {bands: bands, ridges: ridgeCount, weightMin: mn, weightMax: mx,
             weightVar: varr, speculars: spec, depth: depth};
   };
+
+  /* ------------------------------------------------------- receding floor
+   * nearEdge: 'bottom'. The default surface is a drift seen from above: its
+   * crest (the `top` contour) is the NEAR edge, so the lit end of the value
+   * ladder, the heaviest ridges and the speculars all sit at the TOP of the
+   * region. On a floor that recedes UP the frame toward a horizon that is the
+   * FAR edge, so the floor lights backwards, and a multiply falloff that is
+   * brightest near the camera cancels it to flat grey (No.71, slides 04 and
+   * 05, which fixed it by drawing offscreen and painting the canvas flipped,
+   * TECHNIQUE_LIBRARY 106).
+   *
+   * This is that flip, done natively: the same surface is drawn in a frame
+   * mirrored about the region, so the near edge is `bottom` (lit, heavy,
+   * glinting) and `top(x)` becomes the FAR edge (dark, fine). The result is
+   * clipped to the region between top(x) and bottom over [x0, x1], because a
+   * mirrored ladder would otherwise spill above a curved far edge into the
+   * sky. With a constant `top` it reproduces the offscreen flip pixel for
+   * pixel up to resampling; tests/aksnow_recede_verify.py holds the numbers.
+   * Default off; with nearEdge absent or 'top' nothing here runs. */
+  function receding(cx, o) {
+    var top = need(o.top, "top");
+    if (typeof top !== "function") throw new TypeError("AKSNOW: 'top' must be a function of x");
+    var x0 = o.x0 == null ? 0 : o.x0;
+    var x1 = o.x1 == null ? (cx.canvas ? cx.canvas.width : 1080) : o.x1;
+    var bottom = o.bottom == null ? (cx.canvas ? cx.canvas.height : 1350) : o.bottom;
+    var step = o.step == null ? 4 : o.step;
+    // the far edge at the SAME resolution as the clip path below, so no peak between samples is left unpainted
+    // extrema at DEVICE resolution, the resolution the warp draws at (Codex, PR #407): a contour that
+    // varies only between `step` probes must still be seen as curved, and its peak still covered
+    var T0 = cx.getTransform ? cx.getTransform() : { a: 1, b: 0 };
+    var probe = Math.min(step, 1 / Math.max(1, Math.hypot(T0.a, T0.b) || 1));
+    var far = top(x1), farMax = top(x1);
+    for (var fx = x0; fx < x1; fx += probe) { var tv = top(fx); far = Math.min(far, tv); farMax = Math.max(farMax, tv); }
+    var m = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) m[k] = o[k];
+    m.nearEdge = "top";
+    m.top = function () { return far; };
+    m.x0 = x0; m.x1 = x1; m.bottom = bottom;
+
+    if (farMax - far > 1e-6) return warped(cx, m, top, x0, x1, far, bottom, step);
+
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(x0, bottom);
+    for (var x = x0; x < x1; x += step) cx.lineTo(x, top(x));
+    cx.lineTo(x1, top(x1));
+    cx.lineTo(x1, bottom);
+    cx.closePath();
+    cx.clip();
+    /* y' = (far + bottom) - y: the mirrored crest `far` lands on `bottom` */
+    cx.translate(0, far + bottom);
+    cx.scale(1, -1);
+    var stats = S.surface(cx, m);
+    cx.restore();
+    stats.nearEdge = "bottom";
+    return stats;
+  }
+
+  /* A CURVED FAR EDGE (Codex, PR #407). With top(x) varying, mirroring against
+   * its minimum and clipping would give only the highest point the far end of
+   * the ladder; every lower column would start partway toward the near
+   * treatment. So the mirrored surface is drawn once, offscreen at the
+   * context's own scale, and each `step`-wide column is stretched from its own
+   * top(x) to bottom: the whole curved edge keeps the dark, fine far end and
+   * the bottom keeps the lit, heavy near end. A constant top never comes here. */
+  function warped(cx, m, top, x0, x1, far, bottom, step) {
+    // the x and y axes scaled separately (Codex, PR #407): a non-uniform transform keeps device
+    // resolution on both axes instead of stretching one
+    var T = cx.getTransform ? cx.getTransform() : { a: 1, b: 0, c: 0, d: 1 };
+    var sc = Math.max(1, Math.hypot(T.a, T.b) || 1), scy = Math.max(1, Math.hypot(T.c, T.d) || 1);
+    var H = bottom - far;
+    var off = document.createElement("canvas");
+    off.width = Math.max(1, Math.ceil((x1 - x0) * sc)); off.height = Math.max(1, Math.ceil(H * scy));
+    var ox = off.getContext("2d");
+    ox.scale(sc, scy);
+    ox.translate(-x0, -far);
+    /* y' = (far + bottom) - y, as in the flat path: the crest lands on bottom */
+    ox.translate(0, far + bottom);
+    ox.scale(1, -1);
+    var stats = S.surface(ox, m);
+    // the clip traces top(x) at the same device-pixel column width as the draw loop below (Codex,
+    // PR #407), so a contour that moves inside a `step` interval keeps its real boundary
+    var colW = 1 / sc;
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(x0, bottom);
+    for (var cxp = x0; cxp < x1; cxp += colW) cx.lineTo(cxp, top(cxp));
+    cx.lineTo(x1, top(x1));
+    cx.lineTo(x1, bottom);
+    cx.closePath();
+    cx.clip();
+    // one DEVICE-pixel column at a time (Codex, PR #407): within a column top(x) barely moves, so the
+    // far end of the ladder lands on the contour itself rather than partway down a wide strip
+    for (var x = x0; x < x1; x += colW) {
+      var w = Math.min(colW, x1 - x), t = top(x + w / 2);
+      if (bottom - t <= 0) continue;
+      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * scy, x, t, w + 0.5 / sc, bottom - t);
+    }
+    cx.restore();
+    stats.nearEdge = "bottom";
+    stats.warped = true;
+    return stats;
+  }
 
   function sampleTop(top, x0, x1, n) {
     var out = [], i;

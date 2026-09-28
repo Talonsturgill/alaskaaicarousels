@@ -996,6 +996,55 @@ def check_slide_openers(copy):
 SLIDE_FIRST_PERSON = re.compile(
     r"(?<![A-Za-z'])(I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
     r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+# AN ADDRESS IS NOT A PRONOUN (2026-09-28, run No.71). The closing ask printed
+# Eielson Public Affairs' own mailbox, 354fw.pa.publicaffairs@us.af.mil, and
+# this gate failed the slide for the "us" in the military's domain. A reader can
+# only act on an address that is printed exactly, so the fix is never to edit
+# it: an email address or a URL is a token copied from the record, the same
+# carve-out word_ban.py already gives a URL, and a match inside one is skipped.
+#
+# BOUNDED TO THE ADDRESS (Codex, PR #407). `\S+` ran on past punctuation that is
+# not whitespace, so "https://example.org/report\u2014we found" exempted "we" and
+# "www.example.org/report;our analysis" exempted "our". A URL here may carry
+# only the characters an address in slide type actually uses; prose delimiters
+# (dashes other than the hyphen, semicolons, commas, quotes, brackets) end it.
+#
+# NARROWED AGAIN TO THE HOST (Codex, PR #407, second round). A character class
+# for the whole URL kept admitting some delimiter ("report!We", "report:we"),
+# because a path legitimately carries most of them. The exemption now covers
+# only what can't be reworded: an email address, and a URL's scheme plus host.
+# A path is words, and words on a slide are read like any other words.
+#
+# A HOST IS DNS LABELS, TO ITS END (Codex, PR #407, thirteenth round). `[\w-]+` took
+# "our@-example.com", "our@example-.com" and "https://-our.example.com" for hosts, so a
+# typo no reader could use still exempted the pronoun. A label now opens and closes on a
+# letter or digit, and the host must end there: no label character and no further dotted
+# label may follow, so "https://our-" and "us@example.com.-we" are prose, not a host cut
+# short. A sentence's own full stop after a host is still a boundary.
+# Fourteenth round: the boundary is any word character, underscore included
+# ("our@example.com_foo", "https://our_example.com"), and a URL host needs two
+# labels like an email's, so a lone label ("https://our") is no host at all and
+# its word is read as prose, where before it slipped past the final-label rule.
+#
+# AN ADDRESS IS A WHOLE TOKEN (Codex, PR #407, fifteenth round). Every round so far
+# found one more way for prose to ride inside a match that had no edge of its own:
+# "xhttps://our.example.org", "awww.our.example.org", "https://example.org.Let's
+# decide". So the carve-out stops guessing at what may follow a host and asks the one
+# question a reader's eye does: is this a whole token? An address now opens after
+# whitespace, an opening bracket or quote, or the start of the string, and its host
+# closes before a path, port, query or fragment, or before closing punctuation that
+# runs to whitespace or the end. Anything glued on either side is prose.
+_HOST_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
+# The house sets straight quotes, but a pasted source may not, so the typographic
+# quotes, guillemets and the ellipsis are delimiters too (Codex, PR #407, sixteenth round).
+_TOKEN_START = r"(?<![^\s(\[\"'<\u201c\u2018\u00ab])"
+_TOKEN_END = r"[.,;:!?)\]\"'>\u201d\u2019\u00bb\u2026]*(?:\s|$)"
+SLIDE_ADDRESS = re.compile(
+    _TOKEN_START +
+    r"(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+    r"@" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+(?=" + _TOKEN_END + r")"
+    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+(?=[/:?#]|" + _TOKEN_END + r"))",
+    re.I)
 
 
 def _quotation_spans(s):
@@ -1017,6 +1066,31 @@ def _quotation_spans(s):
     return []
 
 
+# First-person words that are also delegated top-level domains (IANA root zone): .us, .me, .my.
+# No other first-person token (we, our, ours, ourselves, i'm, let's ...) is a TLD.
+_FIRST_PERSON_TLDS = {"us", "me", "my"}
+
+
+def _address_span(m):
+    """The span of an address match, less a final label that can only be the next sentence.
+
+    SENTENCE PROSE AFTER A DOT (Codex, PR #407, two rounds). "https://example.org.Our analysis"
+    and "x@example.com.We found it" match a dotted host that runs on into the sentence. Casing
+    can't settle it (hosts are case-insensitive), but the root zone can: a host's FINAL label is
+    a top-level domain, and no TLD is "our" or "we". So a final label that is a first-person word
+    and not one of the three that really are TLDs (.us, .me, .my) is trimmed off the exempt span
+    and read as a word. "https://legis.state.ak.us" and "354fw.pa.publicaffairs@us.af.mil" keep
+    their whole span; "https://example.Our", which no resolver can reach, is read as prose.
+    """
+    a, b = m.span()
+    text = m.group(0)
+    if "." in text:
+        head, last = text.rsplit(".", 1)
+        if SLIDE_FIRST_PERSON.fullmatch(last) and last.lower() not in _FIRST_PERSON_TLDS:
+            b -= len(last) + 1
+    return (a, b)
+
+
 def check_slide_first_person(copy):
     """brand.yaml's on-slide first-person rule, run on on-slide text.
 
@@ -1032,7 +1106,7 @@ def check_slide_first_person(copy):
             continue          # caption-side prose; the caption body gate owns it
         if re.search(r"(?i)quote", path):
             continue          # a pull quote is a source speaking, not the studio
-        spans = _quotation_spans(s)
+        spans = _quotation_spans(s) + [_address_span(a) for a in SLIDE_ADDRESS.finditer(s)]
         for m in SLIDE_FIRST_PERSON.finditer(s):
             if any(a <= m.start() < b for a, b in spans):
                 continue
@@ -1306,10 +1380,68 @@ def mono_caps_date_self_test():
     return 1 if bad_count else 0
 
 
+def slide_address_self_test():
+    """Run No.71's closing ask, and the defect the address carve-out must not hide."""
+    cases = [
+        ("the shipped address: us.af.mil", "354fw.pa.publicaffairs@us.af.mil", False),
+        ("a URL whose host carries 'our'", "https://our.example.org/plan", False),
+        ("the same address set in caps", "HTTPS://OUR.EXAMPLE.ORG/PLAN", False),
+        ("a sentence after a URL's final dot", "See https://example.org.Our analysis found it", True),
+        ("a sentence after an email's final dot", "Write x@example.com.We found it", True),
+        ("a state address ending in .us", "Filed at https://legis.state.ak.us", False),
+        ("a first-person word is not a TLD", "https://example.Our", True),
+        ("a real .me address stays whole", "https://about.me", False),
+        ("an apostrophe in an email local part", "Write we're@example.com or let's@example.com", False),
+        ("the other dot-atom characters in a local part", "we=alerts@example.com, our%team@example.com, me&you@example.com", False),
+        ("a malformed dot-atom is not an address", "our.@example.com", True),
+        ("a leading dot is not an address", "see .our@example.com", True),
+        ("a doubled dot is not an address", "our..team@example.com", True),
+        ("a caps path is still read like words", "HTTPS://EXAMPLE.ORG/OUR-PLAN", True),
+        ("a URL's path is read like words", "https://example.org/our-plan", True),
+        ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),
+        ("prose after a URL and a colon is not the URL", "See https://example.org/report:we found it", True),
+        ("first person beside an address still fails", "Write to us at 354fw.pa.publicaffairs@us.af.mil", True),
+        ("the studio narrating itself still fails", "Our arithmetic, not AEA's.", True),
+        ("prose after a URL and a dash is not the URL", "See https://example.org/report\u2014we found the result", True),
+        ("prose after a URL and a semicolon is not the URL", "www.example.org/report;our analysis", True),
+        ("a host label can't open on a hyphen", "our@-example.com", True),
+        ("a host label can't close on a hyphen", "our@example-.com", True),
+        ("a URL host can't open on a hyphen", "https://-our.example.com", True),
+        ("a host runs to its boundary or is no host", "https://our-", True),
+        ("an email host runs to its boundary", "us@example.com.-we", True),
+        ("a hyphen inside a label is still a host", "https://our-plan.example.org", False),
+        ("a single-label host is no host", "https://our", True),
+        ("a single-label host in caps is no host", "HTTPS://WE", True),
+        ("www and one label is no host", "www.our", True),
+        ("an underscore can't continue an email host", "our@example.com_foo", True),
+        ("an underscore can't continue a URL host", "https://our_example.com", True),
+        ("a scheme inside a word is no address", "xhttps://our.example.org", True),
+        ("a www inside a word is no address", "awww.our.example.org", True),
+        ("let's after a URL's final dot is prose", "https://example.org.Let's decide", True),
+        ("I'm after an email's final dot is prose", "x@example.com.I'm asking", True),
+        ("an address in parentheses is still whole", "(354fw.pa.publicaffairs@us.af.mil)", False),
+        ("an address before a full stop is still whole", "Write to 354fw.pa.publicaffairs@us.af.mil.", False),
+        ("an address in typographic double quotes is whole", "\u201chttps://our.example.org\u201d", False),
+        ("an address in typographic single quotes is whole", "\u2018our@example.com\u2019", False),
+        ("an address before an ellipsis is whole", "Write to our@example.com\u2026", False),
+    ]
+    bad_count = 0
+    for name, s, must_fail in cases:
+        hits = check_slide_first_person({"slides": [{"labels": [s]}]})
+        got = bool(hits)
+        if got != must_fail:
+            bad_count += 1
+        print("%s %-62s expected %s, got %d fail(s)"
+              % ("ok " if got == must_fail else "BAD", name[:62],
+                 "FAIL" if must_fail else "clean", len(hits)))
+    print("slide address self-test: %s" % ("PASS" if not bad_count else "FAIL"))
+    return 1 if bad_count else 0
+
+
 def main():
     args = [a for a in sys.argv[1:]]
     if "--self-test" in args:
-        sys.exit(brand_date_self_test() | mono_caps_date_self_test())
+        sys.exit(brand_date_self_test() | mono_caps_date_self_test() | slide_address_self_test())
     if "--burns" in args:
         i = args.index("--burns")
         lp = Path(args[i + 1]) if len(args) > i + 1 else Path("ledger/captions.json")

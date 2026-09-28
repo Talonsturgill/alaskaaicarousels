@@ -1,0 +1,14 @@
+{
+ "what": "Terrain around Eielson Air Force Base, heights in metres as little-endian int16, row-major, north up",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 12, fetched 2026-09-28, not resampled; then 2x2 mean downsampled",
+ "projection": "Web Mercator rows and columns; convert with the bounds below",
+ "cols": 582,
+ "rows": 544,
+ "west": -147.30022430419922,
+ "east": -146.90059661865234,
+ "north": 64.74001121799024,
+ "south": 64.58014327647008,
+ "z": 12,
+ "min_m": 150,
+ "max_m": 446
+}
