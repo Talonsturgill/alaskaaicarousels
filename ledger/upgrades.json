@@ -2762,7 +2762,7 @@
       "run_date": "2026-09-28",
       "kind": "fix",
       "area": "scripts",
-      "change": "scripts/caption_check.py's slide first-person gate skips a match that sits inside an email address or a URL, the same carve-out word_ban.py gives a URL; first person anywhere else on the slide, including beside an address, still fails.",
+      "change": "scripts/caption_check.py's slide first-person gate skips a match that sits inside an email address or a URL's scheme and host (case-insensitive); a URL's path is read as words, and first person anywhere else on the slide, including beside an address, still fails. Narrowed from 'the whole URL' across three Codex rounds on PR #407 (d39fa591, e00e7f75, 5c3d3261).",
       "trigger": "Run No.71: the closing slide prints the Air Force comment address 354fw.pa.publicaffairs@us.af.mil, copied from the record and not editable, and the gate hard-failed slide 09 on the 'us' in the military's domain (FIRST PERSON copy.json slides[8].labels[4]).",
       "files": [
         "scripts/caption_check.py"

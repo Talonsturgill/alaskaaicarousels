@@ -154,5 +154,12 @@
   },
   "gmail": "pending",
   "retro": "pending"
+ },
+ "phase_3_6": {
+  "site_signoff": "WARN, 126 pages, 18 checks, 17 clean. UNFIXED: gaswatch.jsonl is current (2 days old against a cadence of 3), because the collector's evening runs were never dispatched by GitHub (see GAS WATCH). The run's site rebuild cleared the stale page the morning pagecheck had found.",
+  "gaswatch_live": "FAIL, documented as a github blocker in runs/2026-09-28/gaswatch_incident.json. The collector is healthy (last scheduled run 36354880281 succeeded at 22:19Z on September 27th), but no scheduled workflow in the repository was dispatched after 22:25Z, and this session's integration is refused workflow_dispatch (403). No 2026-09-27 record exists yet; the 13:50Z schedule should write it. Second night running.",
+  "gaswatch_pagecheck": "WARN on the same stale reading",
+  "cron_health": "PASS at 09:52Z, 6 scheduled workflows. Two audits a few minutes earlier failed on inconsistent API reads (a September 10th 'latest' for docket-watch, an old Pages deployment id) that a direct listing contradicted; the next two passed clean.",
+  "site_fixes": "The site rebuild cleared the stale Gas Watch page (the morning pagecheck FAIL on 'unavailable readings explained')."
  }
 }
