@@ -1014,7 +1014,7 @@ SLIDE_FIRST_PERSON = re.compile(
 # because a path legitimately carries most of them. The exemption now covers
 # only what can't be reworded: an email address, and a URL's scheme plus host.
 # A path is words, and words on a slide are read like any other words.
-SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
+SLIDE_ADDRESS = re.compile(r"[\w.+'-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
 
 
 def _quotation_spans(s):
@@ -1361,6 +1361,7 @@ def slide_address_self_test():
         ("a state address ending in .us", "Filed at https://legis.state.ak.us", False),
         ("a first-person word is not a TLD", "https://example.Our", True),
         ("a real .me address stays whole", "https://about.me", False),
+        ("an apostrophe in an email local part", "Write we're@example.com or let's@example.com", False),
         ("a caps path is still read like words", "HTTPS://EXAMPLE.ORG/OUR-PLAN", True),
         ("a URL's path is read like words", "https://example.org/our-plan", True),
         ("prose after a URL and a bang is not the URL", "See https://example.org/report!We found it", True),

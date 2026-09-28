@@ -101,13 +101,13 @@
 
   S.snow = function (cx, o) {
     o = o || {};
-    var W = o.w || 1080, H = o.h || 1350;
+    var W = o.w == null ? 1080 : o.w, H = o.h == null ? 1350 : o.h;
     var rnd = mulberry((o.seed == null ? 20260928 : o.seed) * 31 + (o.slide == null ? 1 : o.slide) * 7919);
     var n = o.count == null ? 900 : o.count;            // 0 is a real request: an empty layer
     var layer = o.layer || "all";
     var focusZ = o.focusZ == null ? 0.45 : o.focusZ;    // 0 near .. 1 far; 0 is a real request
     var sx = o.strobe ? o.strobe[0] : 180, sy = o.strobe ? o.strobe[1] : 120;
-    var reach = o.reach || 1500;
+    var reach = Math.max(1, o.reach == null ? 1500 : o.reach);   // a reach of 0 would divide by zero
     var tint = o.tint || null;                          // null: the atlas's own white, the strobe's colour
     var gain = o.gain != null ? o.gain : 1;
     var windRad = (o.windDeg != null ? o.windDeg : 12) * Math.PI / 180;
@@ -169,7 +169,8 @@
     var rt = new THREE.WebGLRenderTarget(W, H, { depthTexture: dt, depthBuffer: true });
     var hidden = [];
     scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
-    var oldTarget = renderer.getRenderTarget();          // restored below, whatever the caller had bound
+    // restored below exactly as the caller had it bound: target, cube face and mip level (Codex, PR #407)
+    var oldTarget = renderer.getRenderTarget(), oldFace = renderer.getActiveCubeFace(), oldMip = renderer.getActiveMipmapLevel();
     var oldTone = renderer.toneMapping;
     renderer.setRenderTarget(rt);
     renderer.render(scene, camera);
@@ -197,7 +198,7 @@
     renderer.render(qs, oc);
     var buf = new Uint8Array(W * H * 4);
     renderer.readRenderTargetPixels(rt2, 0, 0, W, H, buf);
-    renderer.setRenderTarget(oldTarget);
+    renderer.setRenderTarget(oldTarget, oldFace, oldMip);
     renderer.toneMapping = oldTone;
     rt.dispose(); rt2.dispose(); dt.dispose(); q.dispose(); quad.geometry.dispose();
     var d = new Float32Array(W * H);
@@ -214,7 +215,7 @@
 
   S.focus = function (dst, src, depth, o) {
     o = o || {};
-    var W = depth.w, H = depth.h, sc = o.scale || 2;
+    var W = depth.w, H = depth.h, sc = o.scale == null ? 2 : o.scale;
     var maxR = (o.maxR == null ? 9 : o.maxR) * sc, k = (o.k == null ? 12 : o.k) * sc, f = o.focus;   // 0 is a real request
     var levels = 6, radii = [];
     for (var i = 0; i < levels; i++) radii.push(maxR * i / (levels - 1));
