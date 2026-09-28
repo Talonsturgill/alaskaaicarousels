@@ -133,7 +133,7 @@
       var dz = Math.abs(z - focusZ);
       var near = z < focusZ;
       // size: far flakes are points, near flakes are big soft discs
-      var r = near ? 2.2 + (focusZ - z) / focusZ * (o.nearR || 26) : 0.7 + (1 - z) * 2.2;
+      var r = near ? 2.2 + (focusZ - z) / focusZ * (o.nearR == null ? 26 : o.nearR) : 0.7 + (1 - z) * 2.2;
       if (inRects(x, y, r + 2, o.avoid)) continue;
       var lvl = Math.min(4, Math.floor(dz / Math.max(0.05, focusZ) * 5 * (near ? 1 : 0.35)));
       // backscatter: brighter nearer the strobe axis, falling off with distance
@@ -157,57 +157,49 @@
     renderer.getDrawingBufferSize(size);
     var W = size.x, H = size.y;
     var near = camera.near, far = camera.far;
-    var mat = new THREE.ShaderMaterial({
-      uniforms: { uNear: { value: near }, uFar: { value: far } },
-      vertexShader:
-        "varying float vDist;\n" +
-        // an InstancedMesh draws every instance through instanceMatrix; without it each instance
-        // would write its depth at the base transform (Codex, PR #407). three defines USE_INSTANCING
-        // and declares instanceMatrix for a ShaderMaterial used as an override on an InstancedMesh.
-        "void main(){\n" +
-        "#ifdef USE_INSTANCING\n" +
-        " vec4 mv = modelViewMatrix * instanceMatrix * vec4(position,1.0);\n" +
-        "#else\n" +
-        " vec4 mv = modelViewMatrix * vec4(position,1.0);\n" +
-        "#endif\n" +
-        " vDist = -mv.z; gl_Position = projectionMatrix * mv; }",
-      fragmentShader:
-        "uniform float uNear; uniform float uFar; varying float vDist;\n" +
-        "void main(){ float t = clamp((vDist - uNear)/(uFar - uNear), 0.0, 1.0);\n" +
-        " float v = t * 65535.0; float hi = floor(v / 256.0); float lo = v - hi * 256.0;\n" +
-        " gl_FragColor = vec4(hi/255.0, lo/255.0, 0.0, 1.0); }"
-    });
-    var rt = new THREE.WebGLRenderTarget(W, H, { type: THREE.UnsignedByteType });
-    var oldBg = scene.background, oldFog = scene.fog, oldOverride = scene.overrideMaterial;
-    var oldTone = renderer.toneMapping;
-    scene.background = new THREE.Color(1, 1, 0); scene.fog = null;
-    renderer.toneMapping = THREE.NoToneMapping; scene.overrideMaterial = null;
-    // one depth material per face side, swapped onto each mesh in place of a single override (Codex,
-    // PR #407): a DoubleSide or BackSide surface the colour pass shows must write depth too, and a
-    // FrontSide one must not start writing its hidden back faces
-    var bySide = {};
-    bySide[THREE.FrontSide] = mat;
-    bySide[THREE.BackSide] = mat.clone(); bySide[THREE.BackSide].side = THREE.BackSide;
-    bySide[THREE.DoubleSide] = mat.clone(); bySide[THREE.DoubleSide].side = THREE.DoubleSide;
-    var swapped = [], hidden = [];
-    scene.traverse(function (m) {
-      if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); return; }
-      if (!m.isMesh && !m.isInstancedMesh) return;
-      var om = m.material, side = (Array.isArray(om) ? om[0] : om || {}).side;
-      swapped.push([m, om]);
-      m.material = bySide[side] || mat;
-    });
+    /* THE COLOUR PASS'S OWN DEPTH (Codex, PR #407, seven rounds). Every earlier version swapped the
+     * scene's materials for a depth shader, and each round found one more thing a swap can't know:
+     * instancing, face side, lines, points and sprites, skinning and morph targets, a material
+     * hidden by its own `visible`. So nothing is swapped. The scene renders exactly as the colour
+     * pass does, into a target carrying a depth texture, and a second full-screen pass turns that
+     * depth buffer into linear distance. Whatever the colour pass drew, and nothing it did not, is
+     * what the focus map sees. Objects flagged userData.noDepth are still left out. */
+    var dt = new THREE.DepthTexture(W, H);
+    dt.type = THREE.UnsignedIntType;
+    var rt = new THREE.WebGLRenderTarget(W, H, { depthTexture: dt, depthBuffer: true });
+    var hidden = [];
+    scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
     var oldTarget = renderer.getRenderTarget();          // restored below, whatever the caller had bound
+    var oldTone = renderer.toneMapping;
     renderer.setRenderTarget(rt);
     renderer.render(scene, camera);
-    var buf = new Uint8Array(W * H * 4);
-    renderer.readRenderTargetPixels(rt, 0, 0, W, H, buf);
-    renderer.setRenderTarget(oldTarget);
     hidden.forEach(function (m) { m.visible = true; });
-    swapped.forEach(function (p) { p[0].material = p[1]; });
-    scene.background = oldBg; scene.fog = oldFog; scene.overrideMaterial = oldOverride;
+    var q = new THREE.ShaderMaterial({
+      uniforms: { tD: { value: dt }, uNear: { value: near }, uFar: { value: far },
+                  uPersp: { value: camera.isPerspectiveCamera ? 1 : 0 } },
+      vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }",
+      fragmentShader:
+        "uniform sampler2D tD; uniform float uNear; uniform float uFar; uniform float uPersp; varying vec2 vUv;\n" +
+        "void main(){ float d = texture2D(tD, vUv).x;\n" +
+        " float z = uPersp > 0.5 ? (uNear * uFar) / (uFar - d * (uFar - uNear)) : uNear + d * (uFar - uNear);\n" +
+        " float t = d >= 1.0 ? 1.0 : clamp((z - uNear) / (uFar - uNear), 0.0, 1.0);\n" +
+        " float v = t * 65535.0; float hi = floor(v / 256.0); float lo = v - hi * 256.0;\n" +
+        " gl_FragColor = vec4(hi / 255.0, lo / 255.0, 0.0, 1.0); }",
+      depthTest: false, depthWrite: false
+    });
+    q.toneMapped = false;
+    var qs = new THREE.Scene(), oc = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    var quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), q);
+    quad.frustumCulled = false; qs.add(quad);
+    var rt2 = new THREE.WebGLRenderTarget(W, H, { type: THREE.UnsignedByteType, depthBuffer: false });
+    renderer.toneMapping = THREE.NoToneMapping;
+    renderer.setRenderTarget(rt2);
+    renderer.render(qs, oc);
+    var buf = new Uint8Array(W * H * 4);
+    renderer.readRenderTargetPixels(rt2, 0, 0, W, H, buf);
+    renderer.setRenderTarget(oldTarget);
     renderer.toneMapping = oldTone;
-    rt.dispose(); mat.dispose(); bySide[THREE.BackSide].dispose(); bySide[THREE.DoubleSide].dispose();
+    rt.dispose(); rt2.dispose(); dt.dispose(); q.dispose(); quad.geometry.dispose();
     var d = new Float32Array(W * H);
     for (var y = 0; y < H; y++) {
       var row = (H - 1 - y) * W;                        // GL rows are bottom-up
