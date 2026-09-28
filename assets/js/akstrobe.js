@@ -156,7 +156,16 @@
       uniforms: { uNear: { value: near }, uFar: { value: far } },
       vertexShader:
         "varying float vDist;\n" +
-        "void main(){ vec4 mv = modelViewMatrix * vec4(position,1.0); vDist = -mv.z; gl_Position = projectionMatrix * mv; }",
+        // an InstancedMesh draws every instance through instanceMatrix; without it each instance
+        // would write its depth at the base transform (Codex, PR #407). three defines USE_INSTANCING
+        // and declares instanceMatrix for a ShaderMaterial used as an override on an InstancedMesh.
+        "void main(){\n" +
+        "#ifdef USE_INSTANCING\n" +
+        " vec4 mv = modelViewMatrix * instanceMatrix * vec4(position,1.0);\n" +
+        "#else\n" +
+        " vec4 mv = modelViewMatrix * vec4(position,1.0);\n" +
+        "#endif\n" +
+        " vDist = -mv.z; gl_Position = projectionMatrix * mv; }",
       fragmentShader:
         "uniform float uNear; uniform float uFar; varying float vDist;\n" +
         "void main(){ float t = clamp((vDist - uNear)/(uFar - uNear), 0.0, 1.0);\n" +
@@ -170,11 +179,12 @@
     scene.overrideMaterial = mat; renderer.toneMapping = THREE.NoToneMapping;
     var hidden = [];
     scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
+    var oldTarget = renderer.getRenderTarget();          // restored below, whatever the caller had bound
     renderer.setRenderTarget(rt);
     renderer.render(scene, camera);
     var buf = new Uint8Array(W * H * 4);
     renderer.readRenderTargetPixels(rt, 0, 0, W, H, buf);
-    renderer.setRenderTarget(null);
+    renderer.setRenderTarget(oldTarget);
     hidden.forEach(function (m) { m.visible = true; });
     scene.background = oldBg; scene.fog = oldFog; scene.overrideMaterial = oldOverride;
     renderer.toneMapping = oldTone;

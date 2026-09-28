@@ -73,7 +73,14 @@
     "out/2026-09-28/caption_report.json"
    ]
   },
-  "art_build": "pending",
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/slides/",
+    "out/2026-09-28/render/"
+   ],
+   "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
+  },
   "pixel_review": {
    "status": "done",
    "artifacts": [
@@ -81,7 +88,13 @@
    ],
    "note": "round 1 pixel critics (5 + 3 re-reviews, all ship); round 2 from the flow critic's craft work order (08 terrain, 07 blocks and floor, 06 own ground and darker key, 01 dusting, 09 warm slot spill, 04/05 stroke contrast and fixtures)"
   },
-  "flow_review": "pending",
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/flow_review.json"
+   ],
+   "note": "one flow-critic pass (predicted art 6.5); its craft order became round 2"
+  },
   "assemble": {
    "status": "done",
    "artifacts": [
@@ -90,34 +103,7 @@
    ],
    "pdf_mode": "vector"
   },
-  "scoring": "pending",
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-09-28/",
-    "docs/",
-    "ledger/topics.json",
-    "ledger/artwork.json",
-    "ledger/captions.json",
-    "ledger/instincts.json",
-    "ledger/alerts.json",
-    "knowledge/FIELD_NOTES.md",
-    "knowledge/TECHNIQUE_LIBRARY.md"
-   ],
-   "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
-  },
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending",
-  "art": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/slides/",
-    "out/2026-09-28/render/"
-   ],
-   "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
-  },
-  "score": {
+  "scoring": {
    "status": "done",
    "artifacts": [
     "out/2026-09-28/score_report.json"
@@ -135,6 +121,24 @@
     "art_before": 7,
     "art_after": 7
    }
-  }
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-09-28/",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "ledger/alerts.json",
+    "knowledge/FIELD_NOTES.md",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
+  },
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
  }
 }

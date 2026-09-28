@@ -1002,7 +1002,13 @@ SLIDE_FIRST_PERSON = re.compile(
 # only act on an address that is printed exactly, so the fix is never to edit
 # it: an email address or a URL is a token copied from the record, the same
 # carve-out word_ban.py already gives a URL, and a match inside one is skipped.
-SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|https?://\S+|www\.\S+")
+#
+# BOUNDED TO THE ADDRESS (Codex, PR #407). `\S+` ran on past punctuation that is
+# not whitespace, so "https://example.org/report\u2014we found" exempted "we" and
+# "www.example.org/report;our analysis" exempted "our". A URL here may carry
+# only the characters an address in slide type actually uses; prose delimiters
+# (dashes other than the hyphen, semicolons, commas, quotes, brackets) end it.
+SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9._~:/?#@!$&*+=%-]+")
 
 
 def _quotation_spans(s):
@@ -1320,6 +1326,8 @@ def slide_address_self_test():
         ("a URL carrying 'our' in its path", "https://example.org/our-plan", False),
         ("first person beside an address still fails", "Write to us at 354fw.pa.publicaffairs@us.af.mil", True),
         ("the studio narrating itself still fails", "Our arithmetic, not AEA's.", True),
+        ("prose after a URL and a dash is not the URL", "See https://example.org/report\u2014we found the result", True),
+        ("prose after a URL and a semicolon is not the URL", "www.example.org/report;our analysis", True),
     ]
     bad_count = 0
     for name, s, must_fail in cases:
