@@ -996,6 +996,13 @@ def check_slide_openers(copy):
 SLIDE_FIRST_PERSON = re.compile(
     r"(?<![A-Za-z'])(I'm|I've|I'd|I'll|we|we're|we've|we'd|we'll|us|our|ours|"
     r"ourselves|my|me|let's)(?![A-Za-z'])", re.I)
+# AN ADDRESS IS NOT A PRONOUN (2026-09-28, run No.71). The closing ask printed
+# Eielson Public Affairs' own mailbox, 354fw.pa.publicaffairs@us.af.mil, and
+# this gate failed the slide for the "us" in the military's domain. A reader can
+# only act on an address that is printed exactly, so the fix is never to edit
+# it: an email address or a URL is a token copied from the record, the same
+# carve-out word_ban.py already gives a URL, and a match inside one is skipped.
+SLIDE_ADDRESS = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+|https?://\S+|www\.\S+")
 
 
 def _quotation_spans(s):
@@ -1032,7 +1039,7 @@ def check_slide_first_person(copy):
             continue          # caption-side prose; the caption body gate owns it
         if re.search(r"(?i)quote", path):
             continue          # a pull quote is a source speaking, not the studio
-        spans = _quotation_spans(s)
+        spans = _quotation_spans(s) + [a.span() for a in SLIDE_ADDRESS.finditer(s)]
         for m in SLIDE_FIRST_PERSON.finditer(s):
             if any(a <= m.start() < b for a, b in spans):
                 continue
@@ -1306,10 +1313,31 @@ def mono_caps_date_self_test():
     return 1 if bad_count else 0
 
 
+def slide_address_self_test():
+    """Run No.71's closing ask, and the defect the address carve-out must not hide."""
+    cases = [
+        ("the shipped address: us.af.mil", "354fw.pa.publicaffairs@us.af.mil", False),
+        ("a URL carrying 'our' in its path", "https://example.org/our-plan", False),
+        ("first person beside an address still fails", "Write to us at 354fw.pa.publicaffairs@us.af.mil", True),
+        ("the studio narrating itself still fails", "Our arithmetic, not AEA's.", True),
+    ]
+    bad_count = 0
+    for name, s, must_fail in cases:
+        hits = check_slide_first_person({"slides": [{"labels": [s]}]})
+        got = bool(hits)
+        if got != must_fail:
+            bad_count += 1
+        print("%s %-62s expected %s, got %d fail(s)"
+              % ("ok " if got == must_fail else "BAD", name[:62],
+                 "FAIL" if must_fail else "clean", len(hits)))
+    print("slide address self-test: %s" % ("PASS" if not bad_count else "FAIL"))
+    return 1 if bad_count else 0
+
+
 def main():
     args = [a for a in sys.argv[1:]]
     if "--self-test" in args:
-        sys.exit(brand_date_self_test() | mono_caps_date_self_test())
+        sys.exit(brand_date_self_test() | mono_caps_date_self_test() | slide_address_self_test())
     if "--burns" in args:
         i = args.index("--burns")
         lp = Path(args[i + 1]) if len(args) > i + 1 else Path("ledger/captions.json")
