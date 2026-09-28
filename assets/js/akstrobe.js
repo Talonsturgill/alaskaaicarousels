@@ -27,14 +27,17 @@
  *   AKSTROBE.depthPass(THREE, R)
  *     Renders the scene's LINEAR camera distance, packed into two 8-bit
  *     channels (16 bits over [near, far]), reads it back and returns
- *     {w, h, d: Float32Array} in metres at the renderer's backing resolution.
+ *     {w, h, d: Float32Array} in the CAMERA's units (whatever near and far are
+ *     in: metres for this deck's scenes, kilometres for an AKBLOCK frame) at the
+ *     renderer's backing resolution. `focus`'s o.focus is in the same units.
  *     The colour frame must already be on R.renderer's canvas; this does not
  *     disturb it (it renders into a target and restores state).
  *
  *   AKSTROBE.focus(dst, src, depth, o)
  *     A thin-lens focus pull. Six pre-blurred copies of `src` (radii 0 to
  *     o.maxR design px) are gathered per pixel by circle of confusion
- *     coc = o.k * |d - o.focus| / d. The near field gets its OWN coc map,
+ *     coc = o.k * |d - o.focus| / d, with d and o.focus both in the camera's units
+ *     (the ratio makes o.k unit-free). The near field gets its OWN coc map,
  *     max-dilated and blurred, so a defocused foreground bleeds over the sharp
  *     plane behind it instead of cutting out like a sticker (technique 99).
  *     `dst` is a 2D context at backing resolution with identity transform.
@@ -171,8 +174,12 @@
     scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
     // restored below exactly as the caller had it bound: target, cube face and mip level (Codex, PR #407)
     var oldTarget = renderer.getRenderTarget(), oldFace = renderer.getActiveCubeFace(), oldMip = renderer.getActiveMipmapLevel();
+    // and the ACTIVE viewport and scissor, which setRenderTarget would reload from the target itself
+    var oldVp = new THREE.Vector4(), oldSc = new THREE.Vector4(), oldScT = renderer.getScissorTest();
+    renderer.getViewport(oldVp); renderer.getScissor(oldSc);
     var oldTone = renderer.toneMapping;
     renderer.setRenderTarget(rt);
+    renderer.clear(true, true, true);                    // whatever the caller's autoClear policy: far everywhere first
     renderer.render(scene, camera);
     hidden.forEach(function (m) { m.visible = true; });
     var q = new THREE.ShaderMaterial({
@@ -199,6 +206,7 @@
     var buf = new Uint8Array(W * H * 4);
     renderer.readRenderTargetPixels(rt2, 0, 0, W, H, buf);
     renderer.setRenderTarget(oldTarget, oldFace, oldMip);
+    renderer.setViewport(oldVp); renderer.setScissor(oldSc); renderer.setScissorTest(oldScT);
     renderer.toneMapping = oldTone;
     rt.dispose(); rt2.dispose(); dt.dispose(); q.dispose(); quad.geometry.dispose();
     var d = new Float32Array(W * H);

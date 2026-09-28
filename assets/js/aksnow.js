@@ -319,13 +319,15 @@
    * top(x) to bottom: the whole curved edge keeps the dark, fine far end and
    * the bottom keeps the lit, heavy near end. A constant top never comes here. */
   function warped(cx, m, top, x0, x1, far, bottom, step) {
-    var T = cx.getTransform ? cx.getTransform() : { a: 1, b: 0 };
-    var sc = Math.max(1, Math.hypot(T.a, T.b) || 1);
+    // the x and y axes scaled separately (Codex, PR #407): a non-uniform transform keeps device
+    // resolution on both axes instead of stretching one
+    var T = cx.getTransform ? cx.getTransform() : { a: 1, b: 0, c: 0, d: 1 };
+    var sc = Math.max(1, Math.hypot(T.a, T.b) || 1), scy = Math.max(1, Math.hypot(T.c, T.d) || 1);
     var H = bottom - far;
     var off = document.createElement("canvas");
-    off.width = Math.max(1, Math.ceil((x1 - x0) * sc)); off.height = Math.max(1, Math.ceil(H * sc));
+    off.width = Math.max(1, Math.ceil((x1 - x0) * sc)); off.height = Math.max(1, Math.ceil(H * scy));
     var ox = off.getContext("2d");
-    ox.scale(sc, sc);
+    ox.scale(sc, scy);
     ox.translate(-x0, -far);
     /* y' = (far + bottom) - y, as in the flat path: the crest lands on bottom */
     ox.translate(0, far + bottom);
@@ -347,7 +349,7 @@
     for (var x = x0; x < x1; x += colW) {
       var w = Math.min(colW, x1 - x), t = top(x + w / 2);
       if (bottom - t <= 0) continue;
-      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * sc, x, t, w + 0.5 / sc, bottom - t);
+      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * scy, x, t, w + 0.5 / sc, bottom - t);
     }
     cx.restore();
     stats.nearEdge = "bottom";
