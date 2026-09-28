@@ -1025,12 +1025,24 @@ SLIDE_FIRST_PERSON = re.compile(
 # ("our@example.com_foo", "https://our_example.com"), and a URL host needs two
 # labels like an email's, so a lone label ("https://our") is no host at all and
 # its word is read as prose, where before it slipped past the final-label rule.
+#
+# AN ADDRESS IS A WHOLE TOKEN (Codex, PR #407, fifteenth round). Every round so far
+# found one more way for prose to ride inside a match that had no edge of its own:
+# "xhttps://our.example.org", "awww.our.example.org", "https://example.org.Let's
+# decide". So the carve-out stops guessing at what may follow a host and asks the one
+# question a reader's eye does: is this a whole token? An address now opens after
+# whitespace, an opening bracket or quote, or the start of the string, and its host
+# closes before a path, port, query or fragment, or before closing punctuation that
+# runs to whitespace or the end. Anything glued on either side is prose.
 _HOST_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
-_HOST_END = r"(?![\w-]|\.[\w-])"
+_TOKEN_START = r"(?<![^\s(\[\"'<])"
+_TOKEN_END = r"[.,;:!?)\]\"'>]*(?:\s|$)"
 SLIDE_ADDRESS = re.compile(
-    r"(?<![A-Za-z0-9!#$%&'*+/=?^_`{|}~.-])[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
-    r"@" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+" + _HOST_END +
-    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+" + _HOST_END, re.I)
+    _TOKEN_START +
+    r"(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+    r"@" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+(?=" + _TOKEN_END + r")"
+    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+(?=[/:?#]|" + _TOKEN_END + r"))",
+    re.I)
 
 
 def _quotation_spans(s):
@@ -1401,6 +1413,12 @@ def slide_address_self_test():
         ("www and one label is no host", "www.our", True),
         ("an underscore can't continue an email host", "our@example.com_foo", True),
         ("an underscore can't continue a URL host", "https://our_example.com", True),
+        ("a scheme inside a word is no address", "xhttps://our.example.org", True),
+        ("a www inside a word is no address", "awww.our.example.org", True),
+        ("let's after a URL's final dot is prose", "https://example.org.Let's decide", True),
+        ("I'm after an email's final dot is prose", "x@example.com.I'm asking", True),
+        ("an address in parentheses is still whole", "(354fw.pa.publicaffairs@us.af.mil)", False),
+        ("an address before a full stop is still whole", "Write to 354fw.pa.publicaffairs@us.af.mil.", False),
     ]
     bad_count = 0
     for name, s, must_fail in cases:

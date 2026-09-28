@@ -175,6 +175,18 @@
     var rt = new THREE.WebGLRenderTarget(W, H, { depthTexture: dt, depthBuffer: true });
     var hidden = [];
     scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
+    /* A VISIBLE SURFACE IS IN THE FOCUS MAP EVEN IF IT SKIPS DEPTH WRITES (Codex, PR #407). Glass,
+     * a contact decal or a sprite drawn with depthWrite false paints colour and leaves the depth
+     * behind it, so its pixels would take the focus of whatever it covers. For this one render such
+     * materials write depth, as a depth-material override always did; userData.noDepth is still
+     * the way to leave a surface out. */
+    var unwritten = [];
+    scene.traverse(function (m) {
+      if (!m.visible || !m.material) return;
+      (Array.isArray(m.material) ? m.material : [m.material]).forEach(function (mt) {
+        if (mt && mt.depthWrite === false && unwritten.indexOf(mt) < 0) { mt.depthWrite = true; unwritten.push(mt); }
+      });
+    });
     // restored below exactly as the caller had it bound: target, cube face and mip level (Codex, PR #407)
     var oldTarget = renderer.getRenderTarget(), oldFace = renderer.getActiveCubeFace(), oldMip = renderer.getActiveMipmapLevel();
     // and the ACTIVE viewport and scissor, which setRenderTarget would reload from the target itself
@@ -189,6 +201,7 @@
     renderer.render(scene, camera);
     renderer.setScissorTest(false);
     hidden.forEach(function (m) { m.visible = true; });
+    unwritten.forEach(function (mt) { mt.depthWrite = false; });
     var q = new THREE.ShaderMaterial({
       uniforms: { tD: { value: dt }, uNear: { value: near }, uFar: { value: far },
                   uPersp: { value: camera.isPerspectiveCamera ? 1 : 0 } },
