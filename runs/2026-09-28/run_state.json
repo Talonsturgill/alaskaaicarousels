@@ -1,0 +1,92 @@
+{
+ "run_date": "2026-09-28",
+ "carousel_no": 71,
+ "effort": "high",
+ "date_note": "Woke 23:17 AKDT on September 27th; runs/2026-09-27 already holds No.70, so per the date rule the run takes 2026-09-28 (run_guard CLEAR for 2026-09-28).",
+ "revision_rounds": 3,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/plan.md",
+    "out/2026-09-28/trend.txt"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "1 search (LinkedIn document reach 2026); findings already in CAROUSEL_CRAFT, nothing appended"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/scout_merge.md",
+    "out/2026-09-28/scouts/"
+   ],
+   "searches_used_scouts": 154,
+   "note": "Beat E spent 34 searches, over its cap of 25 (disclosed in its dead_ends)"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/claims.json"
+   ],
+   "verified": 62,
+   "gate": "claims_check PASS 62/62, 18 primary"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json",
+    "out/2026-09-28/docket_patch.py"
+   ],
+   "note": "10 items refreshed (budget raised from 6 to 10 to clear the 4 deferred), hr-9340 updated to Senate Calendar No. 684 (Sept 24), 9 checked and unchanged; watch.json triaged, no candidate in scope, bills closed at session end, failed=[]"
+  },
+  "gas_watch": "pending",
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/storyboard.md",
+    "out/2026-09-28/selection.md"
+   ],
+   "note": "3 directors (data-journalist, systems-illustrator, cinematographer); cinematographer wins with organs from both; dossier_check PASS"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/caption.txt",
+    "out/2026-09-28/copy.json",
+    "out/2026-09-28/caption_report.json"
+   ]
+  },
+  "art_build": "pending",
+  "pixel_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/flow_review.json"
+   ],
+   "note": "round 1 pixel critics (5 + 3 re-reviews, all ship); round 2 from the flow critic's craft work order (08 terrain, 07 blocks and floor, 06 own ground and darker key, 01 dusting, 09 warm slot spill, 04/05 stroke contrast and fixtures)"
+  },
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending",
+  "art": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-28/slides/",
+    "out/2026-09-28/render/"
+   ],
+   "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
+  }
+ }
+}

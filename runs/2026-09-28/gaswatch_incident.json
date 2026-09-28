@@ -1,0 +1,20 @@
+{
+  "blocker": "github",
+  "reason": "The published Gas Watch still ends at the 2026-09-26 reading while CINGSA posted a 2026-09-27T19:49 Alaska reading. The collector is healthy (its last scheduled run, 36354880281 at 22:19Z on September 27th, succeeded, and correctly appended nothing because the source was then under 36 hours stale). GitHub has not dispatched ANY scheduled workflow in this repository since 22:25Z (the 04:40Z and 07:20Z gas watch crons are missing, as is every other schedule), and this session's GitHub integration is refused workflow_dispatch (403 Resource not accessible by integration). This is the second night running: runs/2026-09-27/gaswatch_incident.json records the same stall after 21:59Z. Nothing in the collector or the page is broken; the next scheduled run (13:50Z) will publish the reading and write the 2026-09-27 calendar-day record.",
+  "attempts": [
+    "07:4xZ gaswatch_health: FAIL; source unreachable from the sandbox (connection reset); no 2026-09-27 calendar-day record; cron success 9.4 h earlier",
+    "07:5xZ workflow_dispatch of gaswatch.yml on main via the GitHub connector: 403 Resource not accessible by integration",
+    "08:58Z gaswatch_health: source now reachable (reading 2026-09-27T19:49 Alaska, 5.1 h old); FAIL on 'recent calendar days', 'source reading published' and 'observations and true-ups'; cron success 10.6 h earlier",
+    "08:59Z workflow_dispatch again: 403 Resource not accessible by integration",
+    "08:59Z and 09:3xZ listed runs repo-wide: none of any workflow since 22:25Z (the 04:40Z and 07:20Z gas watch schedules not dispatched)",
+    "09:50Z gaswatch_health: same three FAIL rows; cron success 11.5 h earlier; cron_health at 09:52Z PASS with every workflow enabled"
+  ],
+  "evidence_urls": [
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36354880281",
+    "https://cingsa.com/operations/PublicDashBoard.html",
+    "https://alaskaaihq.com/gas-watch/"
+  ],
+  "checked_utc": "2026-09-28T09:50:43Z",
+  "retry": "Resume the check on the next daily run (and any rerun of this one)."
+}

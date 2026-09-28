@@ -8816,3 +8816,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   (https://community.esri.com/t5/arcgis-pro-questions/strange-hillshade-edge-effects-around-pixels/td-p/1076205 ,
   the thread body did not fetch here; the search summary is the evidence). That matches the
   residual 1.27 lattice ratio in technique 103.
+
+## 2026-09-28 retro (No.71, Eielson microreactor comment window, 8.23, art 7)
+
+- THE SLATE HELD NINE LOCATIONS TOGETHER. A screenplay slate (SHOT NN / 09 and a slug) let nine different pictures read as one deck, and the per-slide critics never called any frame off-brand. Drawing nine subjects cost more build time than a re-shot object, and it is why the bespoke median fell to 0.099.
+- A HELPER'S ORIENTATION IS PART OF ITS CONTRACT. AKSNOW.surface lights its top edge; on a receding floor that is the far edge, and a multiply falloff then cancels it into a flat grey. One flip fixed 04 and 05. Technique 106.
+- THE CRITICS AGREED WITH EACH OTHER AND NOT WITH THE SCORER. Per-slide critics passed all nine at 8.0 to 8.8 after one round; the flow critic predicted art 6.5; the scorer gave 7 twice. The per-slide checklist grades against the dossier, and the dossier's own ambition for 04, 06 and 08 was low. Art at 8 needs every frame to survive the zoom test, and 04 (labels on a gradient) never did.
+- LINE-ONLY TERRAIN READS AS A WAVEFORM. Slide 08's DEM skyline read as an audio plot until tone went down before the hatching. Technique 105.
+- THE INK LAW HAD TO SAY WHAT THE PIXELS DID. Forget-me-not was declared as "the land lease process" and then used on the data center load row and a quote about data centers at the leased bases; the critics were right that the words were narrower than the art. The declaration now names the leases and the load they would bring.
+- A CRON AUDIT CAN FAIL ON ITS OWN READ. Two consecutive cron_health runs failed different rows (a September 10th "latest" for a job that ran yesterday, an old Pages deployment id), and the next two passed clean. Confirm a failing row with a direct listing before treating a job as broken.
+- THE SCHEDULER STALLED TWO NIGHTS RUNNING. No scheduled workflow in the repository dispatched after about 22:00Z on September 26th or 27th, and this session's integration is refused workflow_dispatch (403). The Gas Watch is documented as a github blocker again; if it happens a third night, the maintainer should look at the repository's Actions schedule and the integration's permissions.
+- DEFERRED, NAMED: 04 still reads partly as labels over a gradient; 06 keeps a straight seam where the scene band starts and its casts fall on unlit ground; 08's pole is a flat hairline; 02's threshold keys resolve as wedges at thumb; 01's tussocks read as boulders more than sedge.

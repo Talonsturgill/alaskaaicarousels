@@ -2350,6 +2350,62 @@
         "bespoke_median": 0.106
       },
       "note": "Three rounds: one pixel round, one flow-critic craft round, one craft-floor cycle. The block frames earned the most; 02's craft change regressed and was restored."
+    },
+    {
+      "run_date": "2026-09-28",
+      "carousel_no": 71,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE NIGHT STROBE SHOT LIST. Nine distinct night locations at and near Eielson, each its own subject and its own drawing (PBR wetland, PBR runway end, NWI stipple map, tape marks and survey stakes on snow, chain-link fence, delineator posts, isotype steel blocks, DEM skyline engraving, PBR collection box), held together by a screenplay slate and one strobe.",
+      "atmosphere": "NEW: OFF-CAMERA STROBE IN FALLING SNOW. One cold point source, upper left, inverse-square falloff, exp2 fog in the night hue, one snowfall with a pre-blurred flake atlas (AKSTROBE), no sun and no lamp pool.",
+      "depth_technique": "akthree PBR with a depth-pass thin-lens focus (01, 02, 09); hand-projected perspective scenes (04, 05, 06); a DEM horizon-angle skyline in four distance bands (08); plan-view stipple (03); cabinet oblique (07)",
+      "line_voice": "instrument (mono slate and labels on plates, declared leaders), dashed for steps that have not happened",
+      "continuity_device": "motif:the weather clock (one snowfall accumulating frame to frame) plus a screenplay slate as the progress counter",
+      "continuity_devices": [
+        "D1 the weather clock",
+        "D2 the slate, SHOT NN / 09 with a location slug",
+        "D3 the ink law: gold where the public can act, forget-me-not for the base data center leases and the load they would bring"
+      ],
+      "hook_archetype": "NEW: THE SIZED DOOR (who gets a say, and on how much)",
+      "palette_family": "strobe on black spruce and tamarack: night #040A10, fog #0B1620, strobe white #EEF2EC, snow #F4F8FF, sedge ochre desaturated, runway red on 01 and 02 only, forget-me-not #6EA5FF, gold #FFC72C",
+      "type_pairing": "Instrument Serif display over Manrope body, JetBrains Mono slate and labels",
+      "dials": {
+        "design_variance": 5,
+        "visual_density": 3,
+        "type_temperature": 3
+      },
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 3,
+        "type_temperature": 3
+      },
+      "narrative_structure": "sized door, the site, the ground, who owns it, breather, the second process, the order of load, the voices, one ask",
+      "techniques": [
+        "NEW akstrobe.js: sprite-atlas snowfall with circle-of-confusion levels, a linear depth pass packed into RG, and a CoC-gathered thin-lens focus",
+        "PBR dielectric water with a PMREM gradient sky for sheen",
+        "runway threshold keys and edge fixtures with lens flares attenuated by haze",
+        "NWI wetland stipple with a planar path (d3 winding filled the globe)",
+        "survey stakes with flagging for steps not yet taken",
+        "AKSNOW.surface drawn flipped for a floor receding up the frame",
+        "wind streaks in true perspective as a ground of their own",
+        "DEM horizon-angle skyline in four cumulative distance bands with tone-before-line hatching",
+        "isotype cabinet blocks with brushed-steel grain and raised caps",
+        "PBR collection box with a warm slot spot aimed clear of its face"
+      ],
+      "new_techniques_logged": [
+        "akstrobe.js snowfall, depth pass and thin-lens focus",
+        "DEM horizon-angle skyline engraving",
+        "AKSNOW.surface flip for receding floors"
+      ],
+      "measured": {
+        "revision_rounds": 3,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.23,
+        "artwork": 7,
+        "bespoke_median": 0.099
+      },
+      "note": "Three rounds: one pixel round (five critics, then three re-reviews, all ship), one flow-critic craft round, one craft-floor cycle. The helper orientation bug (AKSNOW's crest at the region's top edge) flattened two floors until it was found."
     }
   ]
 }

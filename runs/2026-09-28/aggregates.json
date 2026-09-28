@@ -1,0 +1,46 @@
+{
+ "run_date": "2026-09-28",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "The public gets a say on 5 megawatts at Eielson.",
+   "fragment": "5 megawatts",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "5 megawatts, against a 100 megawatt bar.",
+   "fragment": "5 megawatts",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "CONTRACT, COULD RUN 30 YEARS",
+   "fragment": "30 YEARS",
+   "member": "C19"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "Five spots near Eielson, offered to developers.",
+   "fragment": "Five spots",
+   "member": "C39"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "The Air Force solicitation covered land at JBER, Eielson and Clear, about 4,700 acres in all. Proposals were due June 29th. KUAC reported no project awarded as of mid-September.",
+   "fragment": "4,700 acres",
+   "member": "C28"
+  },
+  {
+   "kind": "design",
+   "slide": 7,
+   "text": "ONE BLOCK = 5 MW",
+   "note": "the isotype's printed unit, a property of the artwork: row A draws 1 block (5 MW, C12), row B 4 blocks plus a 0.6 ghost for 20 to 23 MW (C15, C16), row C 20 blocks plus an open chevron for more than 100 MW (C49), counted by __akAssert"
+  }
+ ]
+}

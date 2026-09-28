@@ -1738,6 +1738,30 @@
       "evidence": "Slide 02's craft-cycle change dropped a 3x3 presmooth and added an unsharp mask; the scorer found the DEM's cell grid as a pixel staircase along Kachemak Bay and marked it a regression, so the frame was restored.",
       "act_on_it": "For a relief at more than about 20 device px per DEM cell, keep a presmooth and draw water as a smoothed contour polygon; do not sharpen a bilinear DEM.",
       "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-28",
+      "carousel_no": 71,
+      "instinct": "A SURFACE HELPER HAS AN ORIENTATION; READ IT BEFORE LAYING IT ON A RECEDING FLOOR.",
+      "evidence": "AKSNOW.surface puts its bright crest and heaviest marks at the region's TOP edge. On 04 and 05 the floor recedes up the frame, so the helper lit the far ground and the multiply falloff cancelled it; a critic called 04 flat. Drawing it offscreen and flipping it fixed both frames at once.",
+      "act_on_it": "For a floor that recedes up the frame, draw AKSNOW.surface flipped (or give the helper a direction option) and check that near is brightest before rendering.",
+      "confidence": 0.8
+    },
+    {
+      "run_date": "2026-09-28",
+      "carousel_no": 71,
+      "instinct": "A WEATHER CLOCK HAS TO START THIN.",
+      "evidence": "The deck's snow was meant to accumulate from 01 to 09, but 01's tussock caps were normal-thresholded solid white and read as the heaviest snow in the deck; the flow critic caught the clock running backwards.",
+      "act_on_it": "When a motif accumulates, author the first frame's state with a noise-thresholded mask so it is visibly the least, and check it against the last frame side by side.",
+      "confidence": 0.65
+    },
+    {
+      "run_date": "2026-09-28",
+      "carousel_no": 71,
+      "instinct": "A CRON AUDIT FAIL CAN BE A BAD READ; CONFIRM THE ROW BEFORE REPAIRING THE JOB.",
+      "evidence": "cron_health failed docket-watch at 09:50Z on a latest scheduled run of September 10th while the Actions API listed a scheduled success at 18:30Z on September 27th; the next audit failed pages on an old deployment id, and the two after that passed clean.",
+      "act_on_it": "Before treating a cron_health FAIL as a broken workflow, re-run the audit and list the workflow's runs directly; a row that flips between reads is the API, not the job.",
+      "confidence": 0.6
     }
   ]
 }
