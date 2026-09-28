@@ -1,164 +1,167 @@
 {
- "run_date": "2026-09-28",
- "carousel_no": 71,
- "effort": "high",
- "date_note": "Woke 23:17 AKDT on September 27th; runs/2026-09-27 already holds No.70, so per the date rule the run takes 2026-09-28 (run_guard CLEAR for 2026-09-28).",
- "revision_rounds": 3,
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/plan.md",
-    "out/2026-09-28/trend.txt"
-   ]
+  "run_date": "2026-09-28",
+  "carousel_no": 71,
+  "effort": "high",
+  "date_note": "Woke 23:17 AKDT on September 27th; runs/2026-09-27 already holds No.70, so per the date rule the run takes 2026-09-28 (run_guard CLEAR for 2026-09-28).",
+  "revision_rounds": 3,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/plan.md",
+        "out/2026-09-28/trend.txt"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "1 search (LinkedIn document reach 2026); findings already in CAROUSEL_CRAFT, nothing appended"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/scout_merge.md",
+        "out/2026-09-28/scouts/"
+      ],
+      "searches_used_scouts": 154,
+      "note": "Beat E spent 34 searches, over its cap of 25 (disclosed in its dead_ends)"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/claims.json"
+      ],
+      "verified": 62,
+      "gate": "claims_check PASS 62/62, 18 primary"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json",
+        "out/2026-09-28/docket_patch.py"
+      ],
+      "note": "10 items refreshed (budget raised from 6 to 10 to clear the 4 deferred), hr-9340 updated to Senate Calendar No. 684 (Sept 24), 9 checked and unchanged; watch.json triaged, no candidate in scope, bills closed at session end, failed=[]"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/cron_health.json",
+        "out/2026-09-28/gaswatch_health.json"
+      ],
+      "note": "cron_health PASS 09:52Z; gaswatch live FAIL until the 11:12Z scheduled run (GitHub dispatched nothing 22:25Z to 11:12Z; dispatch 403), WARN on normal lag at 13:52Z; incident record retired; site_signoff PASS after merging main's gas watch commits"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/storyboard.md",
+        "out/2026-09-28/selection.md"
+      ],
+      "note": "3 directors (data-journalist, systems-illustrator, cinematographer); cinematographer wins with organs from both; dossier_check PASS"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/caption.txt",
+        "out/2026-09-28/copy.json",
+        "out/2026-09-28/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/slides/",
+        "out/2026-09-28/render/"
+      ],
+      "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/flow_review.json"
+      ],
+      "note": "round 1 pixel critics (5 + 3 re-reviews, all ship); round 2 from the flow critic's craft work order (08 terrain, 07 blocks and floor, 06 own ground and darker key, 01 dusting, 09 warm slot spill, 04/05 stroke contrast and fixtures)"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/flow_review.json"
+      ],
+      "note": "one flow-critic pass (predicted art 6.5); its craft order became round 2"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/final/carousel.pdf",
+        "out/2026-09-28/final/contact_sheet.png"
+      ],
+      "pdf_mode": "vector"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/score_report.json"
+      ],
+      "score": 8.23,
+      "threshold": 8.0,
+      "artwork": 7,
+      "craft_cycle": {
+        "frames": [
+          4,
+          8,
+          6,
+          2
+        ],
+        "art_before": 7,
+        "art_after": 7
+      }
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-09-28/",
+        "docs/",
+        "ledger/topics.json",
+        "ledger/artwork.json",
+        "ledger/captions.json",
+        "ledger/instincts.json",
+        "ledger/alerts.json",
+        "knowledge/FIELD_NOTES.md",
+        "knowledge/TECHNIQUE_LIBRARY.md"
+      ],
+      "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-28/automation_retro.md",
+        "ledger/upgrades.json",
+        "assets/js/aksnow.js",
+        "tests/aksnow_recede_verify.py"
+      ],
+      "commits": [
+        "7d91b51f",
+        "023b33b5",
+        "29c7dd1a"
+      ],
+      "note": "two upgrades logged (caption_check address exemption, AKSNOW nearEdge); frontier scan (f) parked in FIELD_NOTES; Codex review fixes d39fa591 and the follow-up"
+    },
+    "gmail": "done",
+    "retro": "done"
   },
-  "craft_refresh": {
-   "status": "done",
-   "artifacts": [],
-   "note": "1 search (LinkedIn document reach 2026); findings already in CAROUSEL_CRAFT, nothing appended"
+  "phase_3_6": {
+    "site_signoff": "PASS at 13:55Z, 126 pages, 18 checks. Earlier today WARN (gaswatch.jsonl stale) while the collector's evening runs were undispatched; cleared once the 11:12Z scheduled run published.",
+    "gaswatch_live": "WARN at 13:52Z: the page shows the 2026-09-27 reading while CINGSA has posted 2026-09-28 04:18 Alaska, the normal lag before the next collection. Earlier today FAIL: no scheduled workflow was dispatched from 22:25Z to 11:12Z (second night running) and workflow_dispatch returned 403 to this integration; a github incident record was written, then retired when the 11:12Z run wrote the 2026-09-27 record and the audit cleared.",
+    "gaswatch_pagecheck": "clean after the rebuild",
+    "cron_health": "PASS at 09:52Z, 6 scheduled workflows. Two audits a few minutes earlier failed on inconsistent API reads (a September 10th 'latest' for docket-watch, an old Pages deployment id) that a direct listing contradicted; the next two passed clean.",
+    "site_fixes": "The site rebuild cleared the stale Gas Watch page (the morning pagecheck FAIL on 'unavailable readings explained')."
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/scout_merge.md",
-    "out/2026-09-28/scouts/"
-   ],
-   "searches_used_scouts": 154,
-   "note": "Beat E spent 34 searches, over its cap of 25 (disclosed in its dead_ends)"
-  },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/claims.json"
-   ],
-   "verified": 62,
-   "gate": "claims_check PASS 62/62, 18 primary"
-  },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json",
-    "out/2026-09-28/docket_patch.py"
-   ],
-   "note": "10 items refreshed (budget raised from 6 to 10 to clear the 4 deferred), hr-9340 updated to Senate Calendar No. 684 (Sept 24), 9 checked and unchanged; watch.json triaged, no candidate in scope, bills closed at session end, failed=[]"
-  },
-  "gas_watch": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/cron_health.json",
-    "out/2026-09-28/gaswatch_health.json"
-   ],
-   "note": "cron_health PASS 09:52Z; gaswatch live FAIL until the 11:12Z scheduled run (GitHub dispatched nothing 22:25Z to 11:12Z; dispatch 403), WARN on normal lag at 13:52Z; incident record retired; site_signoff PASS after merging main's gas watch commits"
-  },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/selection.md"
-   ]
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/storyboard.md",
-    "out/2026-09-28/selection.md"
-   ],
-   "note": "3 directors (data-journalist, systems-illustrator, cinematographer); cinematographer wins with organs from both; dossier_check PASS"
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/caption.txt",
-    "out/2026-09-28/copy.json",
-    "out/2026-09-28/caption_report.json"
-   ]
-  },
-  "art_build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/slides/",
-    "out/2026-09-28/render/"
-   ],
-   "note": "9 slides, qa WARN 0 fails, bespoke PASS, 5 contacts declared and probe verified"
-  },
-  "pixel_review": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/flow_review.json"
-   ],
-   "note": "round 1 pixel critics (5 + 3 re-reviews, all ship); round 2 from the flow critic's craft work order (08 terrain, 07 blocks and floor, 06 own ground and darker key, 01 dusting, 09 warm slot spill, 04/05 stroke contrast and fixtures)"
-  },
-  "flow_review": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/flow_review.json"
-   ],
-   "note": "one flow-critic pass (predicted art 6.5); its craft order became round 2"
-  },
-  "assemble": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/final/carousel.pdf",
-    "out/2026-09-28/final/contact_sheet.png"
-   ],
-   "pdf_mode": "vector"
-  },
-  "scoring": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/score_report.json"
-   ],
-   "score": 8.23,
-   "threshold": 8.0,
-   "artwork": 7,
-   "craft_cycle": {
-    "frames": [
-     4,
-     8,
-     6,
-     2
-    ],
-    "art_before": 7,
-    "art_after": 7
-   }
-  },
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-09-28/",
-    "docs/",
-    "ledger/topics.json",
-    "ledger/artwork.json",
-    "ledger/captions.json",
-    "ledger/instincts.json",
-    "ledger/alerts.json",
-    "knowledge/FIELD_NOTES.md",
-    "knowledge/TECHNIQUE_LIBRARY.md"
-   ],
-   "note": "site_build 126 pages; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts sent 1 email (2 alerts); prune freed 0.37M"
-  },
-  "upgrade": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-28/automation_retro.md",
-    "ledger/upgrades.json",
-    "assets/js/aksnow.js",
-    "tests/aksnow_recede_verify.py"
-   ],
-   "commits": [
-    "7d91b51f",
-    "023b33b5",
-    "29c7dd1a"
-   ],
-   "note": "two upgrades logged (caption_check address exemption, AKSNOW nearEdge); frontier scan (f) parked in FIELD_NOTES; Codex review fixes d39fa591 and the follow-up"
-  },
-  "gmail": "pending",
-  "retro": "pending"
- },
- "phase_3_6": {
-  "site_signoff": "PASS at 13:55Z, 126 pages, 18 checks. Earlier today WARN (gaswatch.jsonl stale) while the collector's evening runs were undispatched; cleared once the 11:12Z scheduled run published.",
-  "gaswatch_live": "WARN at 13:52Z: the page shows the 2026-09-27 reading while CINGSA has posted 2026-09-28 04:18 Alaska, the normal lag before the next collection. Earlier today FAIL: no scheduled workflow was dispatched from 22:25Z to 11:12Z (second night running) and workflow_dispatch returned 403 to this integration; a github incident record was written, then retired when the 11:12Z run wrote the 2026-09-27 record and the audit cleared.",
-  "gaswatch_pagecheck": "clean after the rebuild",
-  "cron_health": "PASS at 09:52Z, 6 scheduled workflows. Two audits a few minutes earlier failed on inconsistent API reads (a September 10th 'latest' for docket-watch, an old Pages deployment id) that a direct listing contradicted; the next two passed clean.",
-  "site_fixes": "The site rebuild cleared the stale Gas Watch page (the morning pagecheck FAIL on 'unavailable readings explained')."
- }
+  "status": "complete",
+  "gmail_draft_id": "r-5814732474287445191",
+  "merged_sha": "fb99b8ca71543b5c3fa86fb40cae24476d953a3e"
 }
