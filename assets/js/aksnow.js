@@ -337,10 +337,13 @@
     cx.lineTo(x1, bottom);
     cx.closePath();
     cx.clip();
-    for (var x = x0; x < x1; x += step) {
-      var w = Math.min(step, x1 - x), t = Math.min(top(x), top(x + w));
+    // one DEVICE-pixel column at a time (Codex, PR #407): within a column top(x) barely moves, so the
+    // far end of the ladder lands on the contour itself rather than partway down a wide strip
+    var colW = 1 / sc;
+    for (var x = x0; x < x1; x += colW) {
+      var w = Math.min(colW, x1 - x), t = top(x + w / 2);
       if (bottom - t <= 0) continue;
-      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * sc, x, t, w + 0.5, bottom - t);
+      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * sc, x, t, w + 0.5 / sc, bottom - t);
     }
     cx.restore();
     stats.nearEdge = "bottom";

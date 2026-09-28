@@ -224,6 +224,9 @@
     var coc = new Float32Array(W * H), nearC = document.createElement("canvas");
     nearC.width = (W + 3) >> 2; nearC.height = (H + 3) >> 2;   // ceil: x >> 2 and y >> 2 index the last rows too
     var nq = nearC.getContext("2d"), nimg = nq.createImageData(nearC.width, nearC.height);
+    // every cell opaque before the blur (Codex, PR #407): a transparent neighbour would leave the blurred
+    // red channel near full strength with only its alpha attenuated, a hard halo instead of a falloff
+    for (var ai = 3; ai < nimg.data.length; ai += 4) nimg.data[ai] = 255;
     for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
       var dd = depth.d[y * W + x];
       var cc = Math.min(maxR, k * Math.abs(dd - f) / Math.max(0.1, dd));

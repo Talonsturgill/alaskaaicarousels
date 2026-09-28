@@ -118,6 +118,20 @@ PAGE_JS = r"""
     }
   }
   out.edgeBand = {low: lowS / Math.max(1, lowN), peak: peakS / Math.max(1, peakN), lowN: lowN, peakN: peakN};
+  /* a STEEP contour, a large change inside one 4 px strip (Codex, PR #407): the band under the edge must
+     still read as far, not start partway down the ladder where the contour climbs within a strip */
+  const steep = x => 400 + 200 * Math.sin(x * 0.8);
+  [c, cx] = canvas();
+  AKSNOW.surface(cx, opts({top: steep, bottom: H, nearEdge: 'bottom'}));
+  const sd2 = cx.getImageData(0, 0, W, H).data;
+  let stS = 0, stN = 0;
+  for (let x = 0; x < W; x++) {
+    const t = Math.ceil(steep(x)) + 3;
+    for (let y = t; y < t + 14 && y < H; y++) {
+      const i = 4 * (y * W + x); stS += (0.2126 * sd2[i] + 0.7152 * sd2[i + 1] + 0.0722 * sd2[i + 2]) / 255; stN++;
+    }
+  }
+  out.steepBand = stS / Math.max(1, stN);
   /* a bad value throws */
   try { AKSNOW.surface(cx, opts({top: x => 0, bottom: H, nearEdge: 'left'})); out.badThrows = false; }
   catch (e) { out.badThrows = e instanceof TypeError; }
@@ -200,6 +214,8 @@ def main():
     e = r["edgeBand"]
     row("8 curved far edge keeps the far treatment", abs(e["low"] - e["peak"]) < 0.06 and e["lowN"] > 500 and e["peakN"] > 500,
         "L under the edge: low columns %.3f, peak columns %.3f" % (e["low"], e["peak"]))
+    row("9 a steep contour keeps the far treatment", r["steepBand"] - e["peak"] < 0.06,
+        "L under the steep edge %.3f vs %.3f under the gentle peaks" % (r["steepBand"], e["peak"]))
     row("6 an unknown nearEdge throws", r["badThrows"] is True, str(r["badThrows"]))
     sn, sd = r["nativeStats"], r["defaultStats"]
     same = all(sn.get(k) == sd.get(k) for k in ("ridges", "weightMin", "weightMax", "weightVar"))
