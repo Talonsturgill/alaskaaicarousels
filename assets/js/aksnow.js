@@ -280,8 +280,12 @@
     var bottom = o.bottom == null ? (cx.canvas ? cx.canvas.height : 1350) : o.bottom;
     var step = o.step == null ? 4 : o.step;
     // the far edge at the SAME resolution as the clip path below, so no peak between samples is left unpainted
+    // extrema at DEVICE resolution, the resolution the warp draws at (Codex, PR #407): a contour that
+    // varies only between `step` probes must still be seen as curved, and its peak still covered
+    var T0 = cx.getTransform ? cx.getTransform() : { a: 1, b: 0 };
+    var probe = Math.min(step, 1 / Math.max(1, Math.hypot(T0.a, T0.b) || 1));
     var far = top(x1), farMax = top(x1);
-    for (var fx = x0; fx < x1; fx += step) { var tv = top(fx); far = Math.min(far, tv); farMax = Math.max(farMax, tv); }
+    for (var fx = x0; fx < x1; fx += probe) { var tv = top(fx); far = Math.min(far, tv); farMax = Math.max(farMax, tv); }
     var m = {}, k;
     for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) m[k] = o[k];
     m.nearEdge = "top";
@@ -327,19 +331,19 @@
     ox.translate(0, far + bottom);
     ox.scale(1, -1);
     var stats = S.surface(ox, m);
-    // the same clip path as the flat case, so nothing lands above top(x); each column starts at
-    // the higher of its two edge values so the clip, not a gap, decides the edge
+    // the clip traces top(x) at the same device-pixel column width as the draw loop below (Codex,
+    // PR #407), so a contour that moves inside a `step` interval keeps its real boundary
+    var colW = 1 / sc;
     cx.save();
     cx.beginPath();
     cx.moveTo(x0, bottom);
-    for (var cxp = x0; cxp < x1; cxp += step) cx.lineTo(cxp, top(cxp));
+    for (var cxp = x0; cxp < x1; cxp += colW) cx.lineTo(cxp, top(cxp));
     cx.lineTo(x1, top(x1));
     cx.lineTo(x1, bottom);
     cx.closePath();
     cx.clip();
     // one DEVICE-pixel column at a time (Codex, PR #407): within a column top(x) barely moves, so the
     // far end of the ladder lands on the contour itself rather than partway down a wide strip
-    var colW = 1 / sc;
     for (var x = x0; x < x1; x += colW) {
       var w = Math.min(colW, x1 - x), t = top(x + w / 2);
       if (bottom - t <= 0) continue;

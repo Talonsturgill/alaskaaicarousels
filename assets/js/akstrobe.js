@@ -102,7 +102,7 @@
   S.snow = function (cx, o) {
     o = o || {};
     var W = o.w || 1080, H = o.h || 1350;
-    var rnd = mulberry((o.seed || 20260928) * 31 + (o.slide || 1) * 7919);
+    var rnd = mulberry((o.seed == null ? 20260928 : o.seed) * 31 + (o.slide == null ? 1 : o.slide) * 7919);
     var n = o.count == null ? 900 : o.count;            // 0 is a real request: an empty layer
     var layer = o.layer || "all";
     var focusZ = o.focusZ == null ? 0.45 : o.focusZ;    // 0 near .. 1 far; 0 is a real request
@@ -181,9 +181,22 @@
     var oldBg = scene.background, oldFog = scene.fog, oldOverride = scene.overrideMaterial;
     var oldTone = renderer.toneMapping;
     scene.background = new THREE.Color(1, 1, 0); scene.fog = null;
-    scene.overrideMaterial = mat; renderer.toneMapping = THREE.NoToneMapping;
-    var hidden = [];
-    scene.traverse(function (m) { if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); } });
+    renderer.toneMapping = THREE.NoToneMapping; scene.overrideMaterial = null;
+    // one depth material per face side, swapped onto each mesh in place of a single override (Codex,
+    // PR #407): a DoubleSide or BackSide surface the colour pass shows must write depth too, and a
+    // FrontSide one must not start writing its hidden back faces
+    var bySide = {};
+    bySide[THREE.FrontSide] = mat;
+    bySide[THREE.BackSide] = mat.clone(); bySide[THREE.BackSide].side = THREE.BackSide;
+    bySide[THREE.DoubleSide] = mat.clone(); bySide[THREE.DoubleSide].side = THREE.DoubleSide;
+    var swapped = [], hidden = [];
+    scene.traverse(function (m) {
+      if (m.userData && m.userData.noDepth && m.visible) { m.visible = false; hidden.push(m); return; }
+      if (!m.isMesh && !m.isInstancedMesh) return;
+      var om = m.material, side = (Array.isArray(om) ? om[0] : om || {}).side;
+      swapped.push([m, om]);
+      m.material = bySide[side] || mat;
+    });
     var oldTarget = renderer.getRenderTarget();          // restored below, whatever the caller had bound
     renderer.setRenderTarget(rt);
     renderer.render(scene, camera);
@@ -191,9 +204,10 @@
     renderer.readRenderTargetPixels(rt, 0, 0, W, H, buf);
     renderer.setRenderTarget(oldTarget);
     hidden.forEach(function (m) { m.visible = true; });
+    swapped.forEach(function (p) { p[0].material = p[1]; });
     scene.background = oldBg; scene.fog = oldFog; scene.overrideMaterial = oldOverride;
     renderer.toneMapping = oldTone;
-    rt.dispose(); mat.dispose();
+    rt.dispose(); mat.dispose(); bySide[THREE.BackSide].dispose(); bySide[THREE.DoubleSide].dispose();
     var d = new Float32Array(W * H);
     for (var y = 0; y < H; y++) {
       var row = (H - 1 - y) * W;                        // GL rows are bottom-up

@@ -132,6 +132,17 @@ PAGE_JS = r"""
     }
   }
   out.steepBand = stS / Math.max(1, stN);
+  /* a contour that returns the SAME value at every `step` probe (Codex, PR #407) must still be warped */
+  const hidden = x => 400 + 100 * Math.sin(2 * Math.PI * x / 4);
+  [c, cx] = canvas();
+  const hs = AKSNOW.surface(cx, opts({top: hidden, bottom: H, nearEdge: 'bottom'}));
+  const hd = cx.getImageData(0, 0, W, H).data;
+  let hAbove = 0;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++)
+    /* the pixel grid is the finest a canvas clip can trace: judge against the contour's pixel-resolution
+       polyline (its value midway between the two integer columns), not between them */
+    if (y + 0.5 < Math.min(hidden(x), hidden(x + 1)) - 2 && hd[4 * (y * W + x) + 3] > 0) hAbove++;
+  out.hidden = {warped: !!hs.warped, paintedAbove: hAbove};
   /* a bad value throws */
   try { AKSNOW.surface(cx, opts({top: x => 0, bottom: H, nearEdge: 'left'})); out.badThrows = false; }
   catch (e) { out.badThrows = e instanceof TypeError; }
@@ -216,6 +227,9 @@ def main():
         "L under the edge: low columns %.3f, peak columns %.3f" % (e["low"], e["peak"]))
     row("9 a steep contour keeps the far treatment", r["steepBand"] - e["peak"] < 0.06,
         "L under the steep edge %.3f vs %.3f under the gentle peaks" % (r["steepBand"], e["peak"]))
+    hz = r["hidden"]
+    row("10 a curve between step probes is still warped", hz["warped"] and hz["paintedAbove"] == 0,
+        "warped %s, painted above top(x) %d px" % (hz["warped"], hz["paintedAbove"]))
     row("6 an unknown nearEdge throws", r["badThrows"] is True, str(r["badThrows"]))
     sn, sd = r["nativeStats"], r["defaultStats"]
     same = all(sn.get(k) == sd.get(k) for k in ("ridges", "weightMin", "weightMax", "weightVar"))
