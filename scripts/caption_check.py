@@ -1035,8 +1035,10 @@ SLIDE_FIRST_PERSON = re.compile(
 # closes before a path, port, query or fragment, or before closing punctuation that
 # runs to whitespace or the end. Anything glued on either side is prose.
 _HOST_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
-_TOKEN_START = r"(?<![^\s(\[\"'<])"
-_TOKEN_END = r"[.,;:!?)\]\"'>]*(?:\s|$)"
+# The house sets straight quotes, but a pasted source may not, so the typographic
+# quotes, guillemets and the ellipsis are delimiters too (Codex, PR #407, sixteenth round).
+_TOKEN_START = r"(?<![^\s(\[\"'<\u201c\u2018\u00ab])"
+_TOKEN_END = r"[.,;:!?)\]\"'>\u201d\u2019\u00bb\u2026]*(?:\s|$)"
 SLIDE_ADDRESS = re.compile(
     _TOKEN_START +
     r"(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
@@ -1419,6 +1421,9 @@ def slide_address_self_test():
         ("I'm after an email's final dot is prose", "x@example.com.I'm asking", True),
         ("an address in parentheses is still whole", "(354fw.pa.publicaffairs@us.af.mil)", False),
         ("an address before a full stop is still whole", "Write to 354fw.pa.publicaffairs@us.af.mil.", False),
+        ("an address in typographic double quotes is whole", "\u201chttps://our.example.org\u201d", False),
+        ("an address in typographic single quotes is whole", "\u2018our@example.com\u2019", False),
+        ("an address before an ellipsis is whole", "Write to our@example.com\u2026", False),
     ]
     bad_count = 0
     for name, s, must_fail in cases:

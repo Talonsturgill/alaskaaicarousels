@@ -178,14 +178,22 @@
     /* A VISIBLE SURFACE IS IN THE FOCUS MAP EVEN IF IT SKIPS DEPTH WRITES (Codex, PR #407). Glass,
      * a contact decal or a sprite drawn with depthWrite false paints colour and leaves the depth
      * behind it, so its pixels would take the focus of whatever it covers. For this one render such
-     * materials write depth, as a depth-material override always did; userData.noDepth is still
-     * the way to leave a surface out. */
-    var unwritten = [];
-    scene.traverse(function (m) {
+     * materials write depth, scene.overrideMaterial included when the colour pass used one.
+     * ONLY WHERE THEY PAINTED (Codex, PR #407, next round): a blended sprite's clear texels or an
+     * opacity-zero mesh must not become a blur occluder, so each one also gets an alpha test for
+     * the render (kept if its own is stricter) and a fragment with nothing to show writes nothing.
+     * A custom ShaderMaterial has no alpha test to borrow; userData.noDepth leaves any surface out. */
+    var unwritten = [], VISIBLE_ALPHA = 1 / 255;
+    function writeDepth(mt) {
+      if (!mt || mt.depthWrite !== false || unwritten.some(function (u) { return u.mt === mt; })) return;
+      unwritten.push({ mt: mt, alphaTest: mt.alphaTest });
+      mt.depthWrite = true;
+      if (!(mt.alphaTest >= VISIBLE_ALPHA)) mt.alphaTest = VISIBLE_ALPHA;
+    }
+    if (scene.overrideMaterial) writeDepth(scene.overrideMaterial);
+    else scene.traverse(function (m) {
       if (!m.visible || !m.material) return;
-      (Array.isArray(m.material) ? m.material : [m.material]).forEach(function (mt) {
-        if (mt && mt.depthWrite === false && unwritten.indexOf(mt) < 0) { mt.depthWrite = true; unwritten.push(mt); }
-      });
+      (Array.isArray(m.material) ? m.material : [m.material]).forEach(writeDepth);
     });
     // restored below exactly as the caller had it bound: target, cube face and mip level (Codex, PR #407)
     var oldTarget = renderer.getRenderTarget(), oldFace = renderer.getActiveCubeFace(), oldMip = renderer.getActiveMipmapLevel();
@@ -201,7 +209,7 @@
     renderer.render(scene, camera);
     renderer.setScissorTest(false);
     hidden.forEach(function (m) { m.visible = true; });
-    unwritten.forEach(function (mt) { mt.depthWrite = false; });
+    unwritten.forEach(function (u) { u.mt.depthWrite = false; u.mt.alphaTest = u.alphaTest; });
     var q = new THREE.ShaderMaterial({
       uniforms: { tD: { value: dt }, uNear: { value: near }, uFar: { value: far },
                   uPersp: { value: camera.isPerspectiveCamera ? 1 : 0 } },
