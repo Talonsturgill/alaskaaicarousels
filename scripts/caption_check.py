@@ -1021,12 +1021,16 @@ SLIDE_FIRST_PERSON = re.compile(
 # letter or digit, and the host must end there: no label character and no further dotted
 # label may follow, so "https://our-" and "us@example.com.-we" are prose, not a host cut
 # short. A sentence's own full stop after a host is still a boundary.
+# Fourteenth round: the boundary is any word character, underscore included
+# ("our@example.com_foo", "https://our_example.com"), and a URL host needs two
+# labels like an email's, so a lone label ("https://our") is no host at all and
+# its word is read as prose, where before it slipped past the final-label rule.
 _HOST_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
-_HOST_END = r"(?![A-Za-z0-9-]|\.[A-Za-z0-9-])"
+_HOST_END = r"(?![\w-]|\.[\w-])"
 SLIDE_ADDRESS = re.compile(
     r"(?<![A-Za-z0-9!#$%&'*+/=?^_`{|}~.-])[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
     r"@" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+" + _HOST_END +
-    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")*" + _HOST_END, re.I)
+    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+" + _HOST_END, re.I)
 
 
 def _quotation_spans(s):
@@ -1392,6 +1396,11 @@ def slide_address_self_test():
         ("a host runs to its boundary or is no host", "https://our-", True),
         ("an email host runs to its boundary", "us@example.com.-we", True),
         ("a hyphen inside a label is still a host", "https://our-plan.example.org", False),
+        ("a single-label host is no host", "https://our", True),
+        ("a single-label host in caps is no host", "HTTPS://WE", True),
+        ("www and one label is no host", "www.our", True),
+        ("an underscore can't continue an email host", "our@example.com_foo", True),
+        ("an underscore can't continue a URL host", "https://our_example.com", True),
     ]
     bad_count = 0
     for name, s, must_fail in cases:
