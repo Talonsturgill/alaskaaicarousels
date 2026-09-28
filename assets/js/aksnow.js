@@ -280,13 +280,15 @@
     var bottom = o.bottom == null ? (cx.canvas ? cx.canvas.height : 1350) : o.bottom;
     var step = o.step == null ? 4 : o.step;
     // the far edge at the SAME resolution as the clip path below, so no peak between samples is left unpainted
-    var far = top(x1);
-    for (var fx = x0; fx < x1; fx += step) far = Math.min(far, top(fx));
+    var far = top(x1), farMax = top(x1);
+    for (var fx = x0; fx < x1; fx += step) { var tv = top(fx); far = Math.min(far, tv); farMax = Math.max(farMax, tv); }
     var m = {}, k;
     for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) m[k] = o[k];
     m.nearEdge = "top";
     m.top = function () { return far; };
     m.x0 = x0; m.x1 = x1; m.bottom = bottom;
+
+    if (farMax - far > 1e-6) return warped(cx, m, top, x0, x1, far, bottom, step);
 
     cx.save();
     cx.beginPath();
@@ -302,6 +304,47 @@
     var stats = S.surface(cx, m);
     cx.restore();
     stats.nearEdge = "bottom";
+    return stats;
+  }
+
+  /* A CURVED FAR EDGE (Codex, PR #407). With top(x) varying, mirroring against
+   * its minimum and clipping would give only the highest point the far end of
+   * the ladder; every lower column would start partway toward the near
+   * treatment. So the mirrored surface is drawn once, offscreen at the
+   * context's own scale, and each `step`-wide column is stretched from its own
+   * top(x) to bottom: the whole curved edge keeps the dark, fine far end and
+   * the bottom keeps the lit, heavy near end. A constant top never comes here. */
+  function warped(cx, m, top, x0, x1, far, bottom, step) {
+    var T = cx.getTransform ? cx.getTransform() : { a: 1, b: 0 };
+    var sc = Math.max(1, Math.hypot(T.a, T.b) || 1);
+    var H = bottom - far;
+    var off = document.createElement("canvas");
+    off.width = Math.max(1, Math.ceil((x1 - x0) * sc)); off.height = Math.max(1, Math.ceil(H * sc));
+    var ox = off.getContext("2d");
+    ox.scale(sc, sc);
+    ox.translate(-x0, -far);
+    /* y' = (far + bottom) - y, as in the flat path: the crest lands on bottom */
+    ox.translate(0, far + bottom);
+    ox.scale(1, -1);
+    var stats = S.surface(ox, m);
+    // the same clip path as the flat case, so nothing lands above top(x); each column starts at
+    // the higher of its two edge values so the clip, not a gap, decides the edge
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(x0, bottom);
+    for (var cxp = x0; cxp < x1; cxp += step) cx.lineTo(cxp, top(cxp));
+    cx.lineTo(x1, top(x1));
+    cx.lineTo(x1, bottom);
+    cx.closePath();
+    cx.clip();
+    for (var x = x0; x < x1; x += step) {
+      var w = Math.min(step, x1 - x), t = Math.min(top(x), top(x + w));
+      if (bottom - t <= 0) continue;
+      cx.drawImage(off, (x - x0) * sc, 0, w * sc, H * sc, x, t, w + 0.5, bottom - t);
+    }
+    cx.restore();
+    stats.nearEdge = "bottom";
+    stats.warped = true;
     return stats;
   }
 

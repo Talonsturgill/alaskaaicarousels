@@ -107,6 +107,17 @@ PAGE_JS = r"""
     else if (y + 0.5 > t + 2 && y < H - 2) { belowN++; if (al === 255) below++; }
   }
   out.clip = {paintedAbove: above, aboveN: aboveN, coveredBelow: below / Math.max(1, belowN)};
+  /* curved far edge keeps the FAR treatment along its whole length (Codex, PR #407): the band just
+     under the edge at the low columns must read like the band under the peaks, not partway to near */
+  let lowS = 0, lowN = 0, peakS = 0, peakN = 0;
+  for (let x = 0; x < W; x++) {
+    const t = Math.ceil(crest(x)) + 3;
+    for (let y = t; y < t + 14 && y < H; y++) {
+      const i = 4 * (y * W + x), l = (0.2126 * cd[i] + 0.7152 * cd[i + 1] + 0.0722 * cd[i + 2]) / 255;
+      if (crest(x) > 370) { lowS += l; lowN++; } else if (crest(x) < 230) { peakS += l; peakN++; }
+    }
+  }
+  out.edgeBand = {low: lowS / Math.max(1, lowN), peak: peakS / Math.max(1, peakN), lowN: lowN, peakN: peakN};
   /* a bad value throws */
   try { AKSNOW.surface(cx, opts({top: x => 0, bottom: H, nearEdge: 'left'})); out.badThrows = false; }
   catch (e) { out.badThrows = e instanceof TypeError; }
@@ -186,6 +197,9 @@ def main():
         c["paintedAbove"] == 0 and c["coveredBelow"] > 0.99 and c["aboveN"] > 1000,
         "painted above top(x) %d of %d px; covered below %.4f"
         % (c["paintedAbove"], c["aboveN"], c["coveredBelow"]))
+    e = r["edgeBand"]
+    row("8 curved far edge keeps the far treatment", abs(e["low"] - e["peak"]) < 0.06 and e["lowN"] > 500 and e["peakN"] > 500,
+        "L under the edge: low columns %.3f, peak columns %.3f" % (e["low"], e["peak"]))
     row("6 an unknown nearEdge throws", r["badThrows"] is True, str(r["badThrows"]))
     sn, sd = r["nativeStats"], r["defaultStats"]
     same = all(sn.get(k) == sd.get(k) for k in ("ridges", "weightMin", "weightMax", "weightVar"))

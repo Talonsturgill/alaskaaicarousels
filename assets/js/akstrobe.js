@@ -209,7 +209,7 @@
   S.focus = function (dst, src, depth, o) {
     o = o || {};
     var W = depth.w, H = depth.h, sc = o.scale || 2;
-    var maxR = (o.maxR || 9) * sc, k = (o.k || 12) * sc, f = o.focus;
+    var maxR = (o.maxR == null ? 9 : o.maxR) * sc, k = (o.k == null ? 12 : o.k) * sc, f = o.focus;   // 0 is a real request
     var levels = 6, radii = [];
     for (var i = 0; i < levels; i++) radii.push(maxR * i / (levels - 1));
     var imgs = [];
@@ -228,10 +228,13 @@
       var dd = depth.d[y * W + x];
       var cc = Math.min(maxR, k * Math.abs(dd - f) / Math.max(0.1, dd));
       coc[y * W + x] = cc;
-      if (dd < f && (x & 3) === 0 && (y & 3) === 0) {
+      if (dd < f) {
+        // max-pool the foreground CoC over each 4 x 4 cell (Codex, PR #407): a near feature thinner
+        // than a cell must still bleed its blur over the in-focus background around it
         var q = ((y >> 2) * nearC.width + (x >> 2)) * 4;
-        var v = Math.round(255 * cc / maxR);
-        nimg.data[q] = v; nimg.data[q + 3] = 255;
+        var v = maxR > 0 ? Math.round(255 * cc / maxR) : 0;
+        if (v > nimg.data[q]) nimg.data[q] = v;
+        nimg.data[q + 3] = 255;
       }
     }
     nq.putImageData(nimg, 0, 0);
@@ -245,7 +248,7 @@
       var idx = y * W + x;
       var nn = nd[(((y >> 2) * nb.width) + (x >> 2)) * 4] / 255 * maxR;
       var r = Math.max(coc[idx], nn * 1.6);
-      var t = Math.min(levels - 1, r / maxR * (levels - 1));
+      var t = maxR > 0 ? Math.min(levels - 1, r / maxR * (levels - 1)) : 0;   // maxR 0: the sharp level everywhere
       var l0 = Math.floor(t), l1 = Math.min(levels - 1, l0 + 1), fr = t - l0;
       var p = idx * 4, A = imgs[l0], B = imgs[l1];
       od[p] = A[p] + (B[p] - A[p]) * fr;
