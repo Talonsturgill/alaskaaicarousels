@@ -1002,3 +1002,13 @@ annotation is the strongest pair):
     that canvas flipped (`translate(0, top + H); scale(1, -1)`), so near is
     brightest and heaviest; then any multiply falloff reinforces it instead of
     cancelling it. Found when 04 and 05 read flat; the flip fixed both.
+    NATIVE FROM 2026-09-28 (Phase 12): pass `nearEdge: 'bottom'` instead of
+    the offscreen canvas, with `top` as the FAR edge (the horizon) and
+    `bottom` as the near edge: `AKSNOW.surface(cx, {nearEdge: 'bottom',
+    top: x => HORIZ - 8, bottom: 1354, ...})`. It draws the same marks in a
+    frame mirrored about the region and clips to between top(x) and bottom,
+    so a curved far edge is safe. Re-rendering 04 and 05 that way matches the
+    shipped flip to mean |dL| 0.0004 and 0.0007 on the floor (row-profile
+    correlation 1.00000); the unflipped call measures near-minus-far +0.035
+    on 04 against +0.474 flipped. `tests/aksnow_recede_verify.py` holds it.
+    Default is `'top'`, so a drift seen from above is unchanged.

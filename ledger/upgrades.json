@@ -2757,6 +2757,35 @@
       "verification": "On this run's renders: slide 03 --base 453,1012 reads h dL 2.7 'floats' with a 46 px detached-hole note (the old output) and auto/v dL 27.8; slide 01 v 18.2 vs h 11.5; --verify recognises both declared pairs as vertical (dL 18.2 and 23.4 on axis v) instead of telling the author to un-stack them; slide 04's side-by-side prisms and slide 07 unchanged. tests/contact_probe_verify.py gains a long-foot fixture (the horizontal read must float, the vertical must clear the comfort band, agree with qa.contact_reads, stay below the foot, win under auto, and --verify must not say 'side by side'): HOLDS on the new probe, fails on the old one (no vertical read). Run No.41's red case (stacked on a compact pool) is still named and still negative.",
       "rollback": "git revert the upgrade(2026-09-27) commit, or restore scripts/contact_probe.py and tests/contact_probe_verify.py from its parent.",
       "commit": "24ece5bb"
+    },
+    {
+      "run_date": "2026-09-28",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/caption_check.py's slide first-person gate skips a match that sits inside an email address or a URL, the same carve-out word_ban.py gives a URL; first person anywhere else on the slide, including beside an address, still fails.",
+      "trigger": "Run No.71: the closing slide prints the Air Force comment address 354fw.pa.publicaffairs@us.af.mil, copied from the record and not editable, and the gate hard-failed slide 09 on the 'us' in the military's domain (FIRST PERSON copy.json slides[8].labels[4]).",
+      "files": [
+        "scripts/caption_check.py"
+      ],
+      "verification": "python3 scripts/caption_check.py --self-test: 6/6 slide-address cases hold (the shipped address and a URL with 'our' in its path are clean; first person beside an address, the studio narrating itself, and prose after a URL followed by a dash or a semicolon all still FAIL). On this run's caption and copy.json with its deck summary: the pre-fix script reproduces the FIRST PERSON fail on slides[8].labels[4], the fixed script PASSes (878 chars, hook 124). Not an engine change, so no render is involved.",
+      "rollback": "git revert 7d91b51f; the self-test cases travel with it.",
+      "commit": "7d91b51f"
+    },
+    {
+      "run_date": "2026-09-28",
+      "kind": "fix",
+      "area": "assets",
+      "change": "For artwork craft, the standing repeat offender, AKSNOW.surface takes nearEdge: 'top' | 'bottom' (default 'top', unchanged). 'bottom' is a floor receding up the frame: the same marks are drawn in a frame mirrored about the region, so the lit end of the ladder, the heavy ridges and the glints sit at `bottom` (near) and top(x) is the far edge, clipped between the two so a curved horizon can't be overpainted. Any other value throws. It retires the offscreen-and-flip workaround in Technique 106.",
+      "trigger": "Standing repeat offender: artwork craft, weakest in 8 of the last 10 runs (trend_check --window 10), 7 today with the craft cycle at 7 -> 7. Run No.71 slides 04 and 05 laid AKSNOW.surface on receding floors, where the helper's bright, heavy top edge is the FAR edge; the strobe's multiply falloff cancelled it to flat grey, a round-1 pixel critic found 04 flat, and both slides shipped a slide-side offscreen flip (storyboard BUILD RECONCILIATION, rows '04, 05').",
+      "files": [
+        "assets/js/aksnow.js",
+        "tests/aksnow_recede_verify.py",
+        "knowledge/TECHNIQUE_LIBRARY.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "render.py + qa.py on this run's 9 slides with the new helper, in a scratch dir: 9/9 OK, qa WARN 0 fails 38 warns (identical to the shipped machine_qa), and all 18 PNGs (slide and canvas) byte-identical to out/2026-09-28/render. Demo deck 4/4 OK, qa WARN 0 fails 14 warns. Slides 04 and 05 rebuilt with nearEdge 'bottom' in place of the workaround: floor mean |dL| against the shipped frames 0.00041 and 0.00074, row-profile correlation 1.00000, qa WARN 0 fails; the same call WITHOUT the option (the defect) measures near-minus-far L +0.035 and range 0.165 on 04 against +0.474 and 0.651 shipped, and -0.107 on 05 against +0.482. tests/aksnow_recede_verify.py (new, in the engine's own browser): PASS 7/7 (reproduces the flip to mean |dL| 0.00003; near-lit; the defect fails the near-lit check; 'top' byte-identical to absent, 0 bytes differ; curved far edge 0 px painted above top(x) with 100 percent cover below; an unknown value throws; same ridge stats as the default); against the pre-upgrade aksnow.js it FAILS 5 of 7. tests/aksnow_verify.py still PASS.",
+      "rollback": "git revert the upgrade(2026-09-28) commit; no shipped slide calls nearEdge, so reverting changes no render.",
+      "commit": "upgrade(2026-09-28) commit, SHA recorded by the follow-up"
     }
   ],
   "scan_log": [
@@ -3193,6 +3222,13 @@
       "searches": "6 searches, 4 reads (2 PDFs through scripts/fetch_pdf_text.py; mdpi.com 403s this container; the Esri thread body did not fetch)",
       "found": "(1) Texture shading, Leland Brown: a fractional Laplacian of the DEM (useful detail 50 to 100 percent), isotropic, scale invariant, strongest on drainage networks, best blended with hillshade per the author (https://mountaincartography.icaci.org/activities/workshops/banff_canada/papers/brown.pdf ; implementation https://github.com/fasiha/texshade-py). (2) Clear-sky / sky-model shading, Kennelly and Stewart 2014: many weighted sky lights with shadowing (250 sources, 600 px shadow search, 5x exaggeration in the reference workflow https://wanderingcartographer.wordpress.com/2020/05/08/shaded-relief-using-skymodels-courtesy-of-raster-chunk-processing/), preferred for many landforms by 151 participants as cited in Jenny et al. https://arxiv.org/abs/2010.01256 . (3) Jenny et al. restate Imhof's rules the house already holds (aerial perspective, local light adjustment, grey flats). (4) GIS practice reports the bilinear-upsample hillshade lattice this run measured (https://community.esri.com/t5/arcgis-pro-questions/strange-hillshade-edge-effects-around-pixels/td-p/1076205).",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-09-27 frontier scan, focus (b)': texture shading unblocks when a frame is about drainage and a vanilla-JS FFT is proven against texshade-py; sky-model unblocks when a 16-azimuth horizon pass is measured inside the 30 s renderReady cap). Finding (4) supports the reactive C1-sampler fix; nothing applied from the scan itself. All three upgrade slots went to reactive fixes, one on the standing offender."
+    },
+    {
+      "run_date": "2026-09-28",
+      "focus": "(f) self-improving pipelines, narrowed to judging whether a repair helped. Legal (last read 2026-09-24) and distinct from the last three logged foci: 2026-09-27 (b) editorial cartography, 2026-09-26 (e) headless Chromium, 2026-09-25 (c) procedural art. Chosen over the stalest slot, (d) typography (2026-09-17, which recorded itself as well mined), on relevance: the craft floor's one cycle has read art 7 -> 7 on all three runs since it arrived, each with a note that the scorer saw modest gains that did not move the criterion.",
+      "searches": "4 searches, 5 fetches, 4 substantive reads",
+      "found": "(1) Pairwise verdicts are more stable and closer to human judgment than direct scores on subjective criteria ('Aligning with Human Judgement', arXiv 2403.16950, summarised at https://eugeneyan.com/writing/llm-evaluators/); a 4.1 vs 4.0 rubric pair is inside the judge's own variance (https://futureagi.com/blog/llm-arena-judge-comparison-evals-2026/). (2) Position bias is the price: flip rates of 3.5 to 38 percent under order swap on MT-Bench, and test-retest above 0.95 can coexist with position bias above 0.10, so run AB and BA and treat order-dependent verdicts as ties (https://arxiv.org/html/2606.19544v1). (3) A critic-in-the-loop refinement pipeline with steady gains over three cycles retains the best-scoring version across iterations, not the last (https://arxiv.org/html/2604.05839); the house already does.",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-09-28 frontier scan, focus (f)': a per-frame pre/post pairwise judgment in both orders for the craft cycle, reported beside the unchanged integer; unblocks after the scorer's own AB/BA flip rate is measured on three known pre_craft pairs and one degraded frame). Nothing applied from the scan; the run's one new upgrade went to the standing offender (aksnow nearEdge)."
     }
   ]
 }

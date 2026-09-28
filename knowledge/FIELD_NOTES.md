@@ -8827,3 +8827,43 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A CRON AUDIT CAN FAIL ON ITS OWN READ. Two consecutive cron_health runs failed different rows (a September 10th "latest" for a job that ran yesterday, an old Pages deployment id), and the next two passed clean. Confirm a failing row with a direct listing before treating a job as broken.
 - THE SCHEDULER STALLED TWO NIGHTS RUNNING. No scheduled workflow in the repository dispatched after about 22:00Z on September 26th or 27th, and this session's integration is refused workflow_dispatch (403). The Gas Watch is documented as a github blocker again; if it happens a third night, the maintainer should look at the repository's Actions schedule and the integration's permissions.
 - DEFERRED, NAMED: 04 still reads partly as labels over a gradient; 06 keeps a straight seam where the scene band starts and its casts fall on unlit ground; 08's pole is a flat hairline; 02's threshold keys resolve as wedges at thumb; 01's tussocks read as boulders more than sedge.
+
+## 2026-09-28, No.71, Phase 12: a helper's near edge is an option, not a workaround
+
+- AKSNOW.surface gains `nearEdge: 'top' | 'bottom'` (default 'top', unchanged). 'bottom' draws the
+  same marks in a frame mirrored about the region, near edge at `bottom` and `top(x)` as the far
+  edge, clipped between them. It retires the offscreen-and-flip workaround 04 and 05 needed
+  (Technique 106) and reproduces it to mean |dL| 0.0004 and 0.0007. `tests/aksnow_recede_verify.py`
+  fails the pre-upgrade helper on five of its seven checks.
+- DO NOT RUN qa.py ON A SHIPPED RENDER DIR TO "CHECK" IT. qa.py writes `<render-dir>/machine_qa.json`,
+  and when a shared asset has been edited since the PNGs were made (here, a Codex fix to
+  akstrobe.js landing mid-phase) it writes a stale-render FAIL over the gate's own evidence. This
+  phase did exactly that and restored the file from a copy taken first (md5 identical). Verify in a
+  scratch render dir, always.
+
+### Parked, 2026-09-28 frontier scan, focus (f), self-improving pipelines: judging a repair by comparison
+
+- THE CRAFT CYCLE HAS READ 7 -> 7 ON ALL THREE RUNS SINCE THE FLOOR ARRIVED (2026-09-26 frames
+  [6,3,9,8,1,5], 2026-09-27 [7,6,3,2,8,9], 2026-09-28 [4,8,6,2]), each time with a note that the
+  scorer "saw modest gains that did not move the criterion". An integer rubric cannot register a
+  modest gain, and the rule "keep the higher-scoring version" then has no signal to act on. The
+  judging literature says the right primitive for "is B better than A" is a PAIRWISE verdict, not
+  two absolute scores: pairwise comparisons are more stable and closer to human judgment than direct
+  scoring on subjective criteria ("Aligning with Human Judgement", arXiv 2403.16950, as summarised at
+  https://eugeneyan.com/writing/llm-evaluators/ ), and "a rubric grading A at 4.1 and B at 4.0 is inside the judge's own variance"
+  (https://futureagi.com/blog/llm-arena-judge-comparison-evals-2026/). The price is position bias:
+  flip rates of 3.5 to 38 percent under order swap on MT-Bench, and test-retest above 0.95 can
+  coexist with a position bias above 0.10 (https://arxiv.org/html/2606.19544v1), so a verdict only
+  counts when it survives BOTH orders (AB and BA), and an order-dependent verdict is a tie.
+  The critic-in-the-loop refinement work that reports steady gains keeps the best-scoring version
+  across cycles rather than the last one (https://arxiv.org/html/2604.05839), which the house
+  already does.
+- PROPOSAL: in the craft cycle, for each repaired frame show the scorer pre_craft and post side by
+  side twice (A|B and B|A, labels neutral), ask "which frame has more genuine craft, or equal",
+  count a win only when both orders agree, keep the winner per frame, and report the win/tie/loss
+  tally in `craft_cycle` beside the unchanged integer. The integer stays the gate.
+- WHY PARKED: it changes the scorer's protocol, which feeds the ship gate, and it needs a
+  calibration first: run the pairing on three known pairs from the pre_craft folders of 2026-09-26
+  to 2026-09-28 plus one deliberately degraded frame, and measure the scorer's own AB/BA flip rate.
+  If the flip rate is under about 0.15 and the degraded frame loses in both orders, it is safe to
+  build (a helper that composes the two orders plus a few lines in the scorer's brief).

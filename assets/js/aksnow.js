@@ -59,6 +59,14 @@
  *   });
  *   AKSNOW.contactShadow(cx, {x: 540, y: 1010, w: 90, color: "#101F33"});
  *
+ *   // a floor that recedes UP the frame to a horizon: near edge at the bottom
+ *   AKSNOW.surface(cx, {top: x => HORIZ, bottom: 1350, nearEdge: "bottom", ...});
+ *
+ * nearEdge ('top' default | 'bottom') says which edge of the region is nearest
+ * the viewer. 'top' is a drift seen from above, the crest nearest. 'bottom' is
+ * a receding floor: lit ladder, heavy ridges and glints at the bottom, fine and
+ * dark at top(x), the far edge. See receding() below and TECHNIQUE_LIBRARY 106.
+ *
  * surface() returns {bands, ridges, weightMin, weightMax, weightVar, speculars}
  * so a caller or a test can assert the marks are not uniform. A test that only
  * asserts "something was drawn" would have passed the defect this file exists
@@ -118,6 +126,13 @@
    */
   S.surface = function (cx, o) {
     o = o || {};
+    if (o.nearEdge != null && o.nearEdge !== "top") {
+      if (o.nearEdge !== "bottom") {
+        throw new TypeError("AKSNOW: 'nearEdge' must be 'top' or 'bottom', got " +
+                            String(o.nearEdge));
+      }
+      return receding(cx, o);
+    }
     var top = need(o.top, "top");
     if (typeof top !== "function") throw new TypeError("AKSNOW: 'top' must be a function of x");
     var x0 = o.x0 == null ? 0 : o.x0;
@@ -238,6 +253,55 @@
     return {bands: bands, ridges: ridgeCount, weightMin: mn, weightMax: mx,
             weightVar: varr, speculars: spec, depth: depth};
   };
+
+  /* ------------------------------------------------------- receding floor
+   * nearEdge: 'bottom'. The default surface is a drift seen from above: its
+   * crest (the `top` contour) is the NEAR edge, so the lit end of the value
+   * ladder, the heaviest ridges and the speculars all sit at the TOP of the
+   * region. On a floor that recedes UP the frame toward a horizon that is the
+   * FAR edge, so the floor lights backwards, and a multiply falloff that is
+   * brightest near the camera cancels it to flat grey (No.71, slides 04 and
+   * 05, which fixed it by drawing offscreen and painting the canvas flipped,
+   * TECHNIQUE_LIBRARY 106).
+   *
+   * This is that flip, done natively: the same surface is drawn in a frame
+   * mirrored about the region, so the near edge is `bottom` (lit, heavy,
+   * glinting) and `top(x)` becomes the FAR edge (dark, fine). The result is
+   * clipped to the region between top(x) and bottom over [x0, x1], because a
+   * mirrored ladder would otherwise spill above a curved far edge into the
+   * sky. With a constant `top` it reproduces the offscreen flip pixel for
+   * pixel up to resampling; tests/aksnow_recede_verify.py holds the numbers.
+   * Default off; with nearEdge absent or 'top' nothing here runs. */
+  function receding(cx, o) {
+    var top = need(o.top, "top");
+    if (typeof top !== "function") throw new TypeError("AKSNOW: 'top' must be a function of x");
+    var x0 = o.x0 == null ? 0 : o.x0;
+    var x1 = o.x1 == null ? (cx.canvas ? cx.canvas.width : 1080) : o.x1;
+    var bottom = o.bottom == null ? (cx.canvas ? cx.canvas.height : 1350) : o.bottom;
+    var step = o.step == null ? 4 : o.step;
+    var far = Math.min.apply(null, sampleTop(top, x0, x1, 24));
+    var m = {}, k;
+    for (k in o) if (Object.prototype.hasOwnProperty.call(o, k)) m[k] = o[k];
+    m.nearEdge = "top";
+    m.top = function () { return far; };
+    m.x0 = x0; m.x1 = x1; m.bottom = bottom;
+
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(x0, bottom);
+    for (var x = x0; x < x1; x += step) cx.lineTo(x, top(x));
+    cx.lineTo(x1, top(x1));
+    cx.lineTo(x1, bottom);
+    cx.closePath();
+    cx.clip();
+    /* y' = (far + bottom) - y: the mirrored crest `far` lands on `bottom` */
+    cx.translate(0, far + bottom);
+    cx.scale(1, -1);
+    var stats = S.surface(cx, m);
+    cx.restore();
+    stats.nearEdge = "bottom";
+    return stats;
+  }
 
   function sampleTop(top, x0, x1, n) {
     var out = [], i;
