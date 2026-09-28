@@ -10,12 +10,12 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Southcentral Alaska, United States",
-  "temporal_coverage": "2026-08-05/2026-09-27",
-  "count": 54,
+  "temporal_coverage": "2026-08-05/2026-09-28",
+  "count": 55,
   "source_status": {
     "state": "current",
-    "last_verified_date": "2026-09-27",
-    "last_collection_utc": "2026-09-28T11:13:53Z",
+    "last_verified_date": "2026-09-28",
+    "last_collection_utc": "2026-09-28T15:37:41Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -8973,6 +8973,157 @@
         "injection_restriction_active"
       ],
       "supersedes_unverified": null
+    },
+    {
+      "date": "2026-09-28",
+      "collected_utc": "2026-09-28T15:37:41Z",
+      "collector_version": "1.2",
+      "verified": true,
+      "cingsa": {
+        "fetch_status": "ok",
+        "source_timestamp": "2026-09-28T04:18:00",
+        "source_timestamp_utc": "2026-09-28T12:18:00Z",
+        "inventory_mcf": 7759689,
+        "inventory_delta_mcf": 3348,
+        "storage_design_mcf": 13000000,
+        "inventory_pct_of_design": 59.7,
+        "withdrawal_design_mcfd": 215000,
+        "withdrawal_facility_mcfd": 166000,
+        "withdrawal_operating_mcfd": 166000,
+        "withdrawal_available_mcfd": 163000,
+        "withdrawal_restriction_mcfd": 0,
+        "injection_design_mcfd": 225000,
+        "injection_facility_mcfd": 206320,
+        "injection_operating_mcfd": 140660,
+        "injection_available_mcfd": 134312,
+        "injection_in_progress_mcfd": 6348,
+        "injection_restriction_mcfd": 65660,
+        "capacity_identity_mismatches": [],
+        "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
+        "source_age_hours": 3.3
+      },
+      "forecast": [
+        {
+          "date": "2026-09-29",
+          "hours": 24,
+          "mean_temp_f": 45.0,
+          "min_temp_f": 38,
+          "hdd65": 20.0,
+          "modeled_demand_mmcfd": 150
+        },
+        {
+          "date": "2026-09-30",
+          "hours": 24,
+          "mean_temp_f": 41.9,
+          "min_temp_f": 37,
+          "hdd65": 23.1,
+          "modeled_demand_mmcfd": 160
+        },
+        {
+          "date": "2026-10-01",
+          "hours": 24,
+          "mean_temp_f": 40.1,
+          "min_temp_f": 36,
+          "hdd65": 24.9,
+          "modeled_demand_mmcfd": 166
+        },
+        {
+          "date": "2026-10-02",
+          "hours": 24,
+          "mean_temp_f": 37.8,
+          "min_temp_f": 32,
+          "hdd65": 27.2,
+          "modeled_demand_mmcfd": 174
+        },
+        {
+          "date": "2026-10-03",
+          "hours": 24,
+          "mean_temp_f": 38.5,
+          "min_temp_f": 32,
+          "hdd65": 26.5,
+          "modeled_demand_mmcfd": 172
+        }
+      ],
+      "forecast_source_updated": "2026-09-28T10:21:27+00:00",
+      "derived": {
+        "peak_forecast_date": "2026-10-02",
+        "peak_forecast_hdd": 27.2,
+        "peak_modeled_demand_mmcfd": 174,
+        "forecast_window_demand_bcf": 0.82,
+        "storage_withdrawal_mmcfd": -3.3,
+        "non_cingsa_supply_mmcfd": null,
+        "days_cover_at_peak": 44.6,
+        "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
+      },
+      "reconciliation": {
+        "date": "2026-09-27",
+        "forecast_hdd65": 17.8,
+        "actual_hdd65": 19.0,
+        "error": -1.2,
+        "modeled_demand_mmcfd": 146,
+        "storage_withdrawal_mmcfd": -5.5,
+        "non_cingsa_supply_mmcfd": 151.5,
+        "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
+      },
+      "model": {
+        "version": "2.0",
+        "formula": "MMcf/d = 80.868 + 3.439 * HDD65",
+        "base_mmcfd": 80.868,
+        "slope_mmcfd_per_hdd": 3.439,
+        "hdd_base_f": 65,
+        "calibration": "fitted to observed EIA Alaska deliveries; the published design day and average day are kept as external reference points, not as fit targets",
+        "fit_source": "least squares against 131 months of observed EIA Alaska deliveries to residential, commercial and electric power consumers",
+        "measured": [
+          "cingsa_inventory",
+          "cingsa_capacity",
+          "observed_hdd"
+        ],
+        "modeled": [
+          "demand",
+          "non_cingsa_supply"
+        ],
+        "not_public": [
+          "hilcorp_storage_inventory",
+          "daily_field_deliverability",
+          "enstar_realtime_sendout"
+        ],
+        "mass_balance": {
+          "identity": "D = P + W, therefore P = D - W",
+          "note": "D is modeled demand, W is the measured CINGSA inventory draw. What falls out of P is field production plus any Hilcorp storage draw combined, which is why the field is named non_cingsa_supply_mmcfd and is never called production."
+        }
+      },
+      "sources": [
+        {
+          "name": "cingsa_dashboard",
+          "url": "https://cingsa.com/operations/PublicDashBoard.html",
+          "method": "GET",
+          "fetch_status": "ok",
+          "fetched_utc": "2026-09-28T15:37:41Z",
+          "http_status": 200,
+          "attempts": 1
+        },
+        {
+          "name": "nws_hourly_forecast",
+          "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
+          "method": "GET",
+          "fetch_status": "ok",
+          "fetched_utc": "2026-09-28T15:37:41Z",
+          "http_status": 200,
+          "attempts": 1
+        },
+        {
+          "name": "acis_panc_hdd",
+          "url": "https://data.rcc-acis.org/StnData",
+          "method": "POST",
+          "fetch_status": "ok",
+          "fetched_utc": "2026-09-28T15:37:42Z",
+          "http_status": 200,
+          "attempts": 1
+        }
+      ],
+      "flags": [
+        "injection_restriction_active"
+      ]
     }
   ]
 }
