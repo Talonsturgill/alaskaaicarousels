@@ -1,18 +1,18 @@
 {
-  "checked_utc": "2026-09-28T09:50:43Z",
-  "verdict": "FAIL",
+  "checked_utc": "2026-09-28T13:52:58Z",
+  "verdict": "WARN",
   "checks": [
     {
       "name": "live dataset",
       "status": "PASS",
-      "detail": "53 daily records",
+      "detail": "54 daily records",
       "remedy": ""
     },
     {
       "name": "recent calendar days",
-      "status": "FAIL",
-      "detail": "2026-09-27",
-      "remedy": "Run the repaired collector to append explicit missing-day records. Never invent storage."
+      "status": "PASS",
+      "detail": "last three days accounted for",
+      "remedy": ""
     },
     {
       "name": "unverified storage stays empty",
@@ -23,19 +23,19 @@
     {
       "name": "source freshness",
       "status": "PASS",
-      "detail": "source 2026-09-27T19:49:00 Alaska, 6.0 hours old",
+      "detail": "source 2026-09-28T04:18:00 Alaska, 1.6 hours old",
       "remedy": ""
     },
     {
       "name": "live headline agrees",
       "status": "PASS",
-      "detail": "last verified 2026-09-26, 59.7 percent",
+      "detail": "last verified 2026-09-27, 59.7 percent",
       "remedy": ""
     },
     {
       "name": "source reading published",
-      "status": "FAIL",
-      "detail": "published 2026-09-26; source 2026-09-27T19:49:00",
+      "status": "WARN",
+      "detail": "published 2026-09-27; source 2026-09-28T04:18:00",
       "remedy": "Inspect collector logs and source snapshots, repair the parser or rerun collection, then deploy."
     },
     {
@@ -53,35 +53,35 @@
     {
       "name": "weather forecast current",
       "status": "PASS",
-      "detail": "forecast age 29.2 hours",
+      "detail": "forecast age 3.5 hours",
       "remedy": ""
     },
     {
       "name": "live modeled peak agrees",
       "status": "PASS",
-      "detail": "page 164, computed 164",
+      "detail": "page 174, computed 174",
       "remedy": ""
     },
     {
       "name": "observations and true-ups",
-      "status": "FAIL",
-      "detail": "2026-09-26",
-      "remedy": "Retry ACIS observations. Compute supply only where verified same-day storage exists."
+      "status": "PASS",
+      "detail": "available observations reconciled",
+      "remedy": ""
     },
     {
       "name": "cron is running",
       "status": "PASS",
-      "detail": "last run 11.5 hours ago",
+      "detail": "last run 2.7 hours ago",
       "remedy": ""
     },
     {
       "name": "cron completed successfully",
       "status": "PASS",
-      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36354880281",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36414289569",
       "remedy": ""
     }
   ],
-  "last_verified_date": "2026-09-26",
+  "last_verified_date": "2026-09-27",
   "maintenance_window": null,
   "site_url": "https://alaskaaihq.com"
 }

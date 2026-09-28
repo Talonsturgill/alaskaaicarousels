@@ -46,10 +46,9 @@
    "status": "done",
    "artifacts": [
     "out/2026-09-28/cron_health.json",
-    "out/2026-09-28/gaswatch_health.json",
-    "out/2026-09-28/gaswatch_incident.json"
+    "out/2026-09-28/gaswatch_health.json"
    ],
-   "note": "cron_health PASS 09:52Z (two earlier audits failed on inconsistent API reads, see FIELD_NOTES); gaswatch live FAIL documented as a github blocker (no scheduled dispatch after 22:25Z, dispatch 403); site_signoff WARN and pagecheck WARN on the same cause; the site rebuild cleared the stale page"
+   "note": "cron_health PASS 09:52Z; gaswatch live FAIL until the 11:12Z scheduled run (GitHub dispatched nothing 22:25Z to 11:12Z; dispatch 403), WARN on normal lag at 13:52Z; incident record retired; site_signoff PASS after merging main's gas watch commits"
   },
   "selection": {
    "status": "done",
@@ -156,9 +155,9 @@
   "retro": "pending"
  },
  "phase_3_6": {
-  "site_signoff": "WARN, 126 pages, 18 checks, 17 clean. UNFIXED: gaswatch.jsonl is current (2 days old against a cadence of 3), because the collector's evening runs were never dispatched by GitHub (see GAS WATCH). The run's site rebuild cleared the stale page the morning pagecheck had found.",
-  "gaswatch_live": "FAIL, documented as a github blocker in runs/2026-09-28/gaswatch_incident.json. The collector is healthy (last scheduled run 36354880281 succeeded at 22:19Z on September 27th), but no scheduled workflow in the repository was dispatched after 22:25Z, and this session's integration is refused workflow_dispatch (403). No 2026-09-27 record exists yet; the 13:50Z schedule should write it. Second night running.",
-  "gaswatch_pagecheck": "WARN on the same stale reading",
+  "site_signoff": "PASS at 13:55Z, 126 pages, 18 checks. Earlier today WARN (gaswatch.jsonl stale) while the collector's evening runs were undispatched; cleared once the 11:12Z scheduled run published.",
+  "gaswatch_live": "WARN at 13:52Z: the page shows the 2026-09-27 reading while CINGSA has posted 2026-09-28 04:18 Alaska, the normal lag before the next collection. Earlier today FAIL: no scheduled workflow was dispatched from 22:25Z to 11:12Z (second night running) and workflow_dispatch returned 403 to this integration; a github incident record was written, then retired when the 11:12Z run wrote the 2026-09-27 record and the audit cleared.",
+  "gaswatch_pagecheck": "clean after the rebuild",
   "cron_health": "PASS at 09:52Z, 6 scheduled workflows. Two audits a few minutes earlier failed on inconsistent API reads (a September 10th 'latest' for docket-watch, an old Pages deployment id) that a direct listing contradicted; the next two passed clean.",
   "site_fixes": "The site rebuild cleared the stale Gas Watch page (the morning pagecheck FAIL on 'unavailable readings explained')."
  }

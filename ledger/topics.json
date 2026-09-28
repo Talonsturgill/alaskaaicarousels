@@ -2834,7 +2834,7 @@
       "headline": "A Say on 5 Megawatts at Eielson, Until September 30th",
       "sources_lead": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
       "claims": 29,
-      "note": "Shipped 8.23 vs 8.0 (round 3 threshold) after 8.23 vs 8.3 at round 2, zero hard fails; art 7 before and after the one craft-floor cycle (04, 08, 06, 02). Fourth deck in 30 days touching the Air Force lease lane, not acknowledged on the slides. Gas Watch live audit documented as a github blocker (no scheduled dispatch repo-wide after 22:25Z, dispatch 403), the second night running."
+      "note": "Shipped 8.23 vs 8.0 (round 3 threshold) after 8.23 vs 8.3 at round 2, zero hard fails; art 7 before and after the one craft-floor cycle (04, 08, 06, 02). Fourth deck in 30 days touching the Air Force lease lane, not acknowledged on the slides. GitHub dispatched no scheduled workflow from 22:25Z to 11:12Z (second night running, dispatch 403); the Gas Watch live audit failed until the 11:12Z run caught up and ended the run at WARN on normal lag."
     }
   ]
 }
