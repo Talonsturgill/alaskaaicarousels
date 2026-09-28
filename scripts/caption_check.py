@@ -1014,7 +1014,19 @@ SLIDE_FIRST_PERSON = re.compile(
 # because a path legitimately carries most of them. The exemption now covers
 # only what can't be reworded: an email address, and a URL's scheme plus host.
 # A path is words, and words on a slide are read like any other words.
-SLIDE_ADDRESS = re.compile(r"(?<![A-Za-z0-9!#$%&'*+/=?^_`{|}~.-])[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\w-]+(?:\.[\w-]+)+|(?:https?://|www\.)[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*", re.I)
+#
+# A HOST IS DNS LABELS, TO ITS END (Codex, PR #407, thirteenth round). `[\w-]+` took
+# "our@-example.com", "our@example-.com" and "https://-our.example.com" for hosts, so a
+# typo no reader could use still exempted the pronoun. A label now opens and closes on a
+# letter or digit, and the host must end there: no label character and no further dotted
+# label may follow, so "https://our-" and "us@example.com.-we" are prose, not a host cut
+# short. A sentence's own full stop after a host is still a boundary.
+_HOST_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
+_HOST_END = r"(?![A-Za-z0-9-]|\.[A-Za-z0-9-])"
+SLIDE_ADDRESS = re.compile(
+    r"(?<![A-Za-z0-9!#$%&'*+/=?^_`{|}~.-])[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+    r"@" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")+" + _HOST_END +
+    r"|(?:https?://|www\.)" + _HOST_LABEL + r"(?:\." + _HOST_LABEL + r")*" + _HOST_END, re.I)
 
 
 def _quotation_spans(s):
@@ -1374,6 +1386,12 @@ def slide_address_self_test():
         ("the studio narrating itself still fails", "Our arithmetic, not AEA's.", True),
         ("prose after a URL and a dash is not the URL", "See https://example.org/report\u2014we found the result", True),
         ("prose after a URL and a semicolon is not the URL", "www.example.org/report;our analysis", True),
+        ("a host label can't open on a hyphen", "our@-example.com", True),
+        ("a host label can't close on a hyphen", "our@example-.com", True),
+        ("a URL host can't open on a hyphen", "https://-our.example.com", True),
+        ("a host runs to its boundary or is no host", "https://our-", True),
+        ("an email host runs to its boundary", "us@example.com.-we", True),
+        ("a hyphen inside a label is still a host", "https://our-plan.example.org", False),
     ]
     bad_count = 0
     for name, s, must_fail in cases:
