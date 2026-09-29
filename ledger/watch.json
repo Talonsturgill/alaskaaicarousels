@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-28T20:37:24Z",
- "for_date": "2026-09-28",
+ "generated": "2026-09-29T19:30:11Z",
+ "for_date": "2026-09-29",
  "session": "34",
  "counted": {
   "basis_bills": 856,
@@ -292,6 +292,20 @@
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SJR11",
    "source": "basis",
    "why": "bill on beat"
+  },
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-19818",
+   "title": "Copper Valley Electric Association, Inc.; Notice of Application Accepted for Filing; and Soliciting Motions To Intervene and Protests; and Scoping Period Requesting Comments on Environmental Issues for the Proposed Solomon Gulch Hydroelectric Project",
+   "type": "Notice",
+   "published": "2026-09-29",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/09/29/2026-19818/copper-valley-electric-association-inc-notice-of-application-accepted-for-filing-and-soliciting",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
   },
   {
    "source": "federal-register",
