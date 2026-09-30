@@ -159,6 +159,26 @@
     }
   };
 
+  // A blurred, offset copy of a drawn shape laid on the ground: the cast of a
+  // raised cut-out numeral or map. ctx is in design px (scaled by 2 already);
+  // draw(c) paints the shape in design px. o: {dx,dy,blur,color,alpha}.
+  AKS.dropShadow = function (ctx, region, draw, o) {
+    o = o || {};
+    var S = 2, W = Math.round(region[2] * S), H = Math.round(region[3] * S);
+    var cv = (typeof OffscreenCanvas !== "undefined") ? new OffscreenCanvas(W, H) : document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    var c = cv.getContext("2d");
+    c.save(); c.scale(S, S); c.translate(-region[0], -region[1]);
+    c.fillStyle = o.color || "#02060A"; c.strokeStyle = c.fillStyle;
+    draw(c);
+    c.restore();
+    ctx.save();
+    ctx.globalAlpha = o.alpha === undefined ? 0.6 : o.alpha;
+    ctx.filter = "blur(" + (o.blur === undefined ? 7 : o.blur) + "px)";
+    ctx.drawImage(cv, region[0] + (o.dx || 10), region[1] + (o.dy || 8), region[2], region[3]);
+    ctx.restore();
+  };
+
   /* ---------------- the terraced aperture ----------------
    * opts: { region:[x,y,w,h], mask:(from AKS.mask), steps:4, stepW:5 (design px),
    *   wall:1.7, t:4.2 (sheet thickness, design px), paper:[r,g,b], pit:[r,g,b],
