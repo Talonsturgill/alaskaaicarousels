@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-29/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11416389,
+  "pdf_mb": 11.42,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-29/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-29/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Limited or Sunset? What Alaska Adds to the E-Rate Record",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "a5f689605aa21ba04187d29c12c3bcd2b9734cc3f0a74237898a73ba426ef19f",
+        "bytes": 8287151
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d2561b78d0738f7842502cbe72282bb6340c1ff76ac1c882116421473e929d63",
+        "bytes": 5660031
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "8738a0eeca5c32e9e718e976313feac83c7efe4e7dd39cca5b1f8ab79a3b6a1f",
+        "bytes": 7910135
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "5db49cf0c022493bcc3ee3fa8bbe052b369d70e89bcb9801e45d7e22a22b38cd",
+        "bytes": 5656477
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "f40ed3692babddb4f2976e33c72b1d6b10cdd3169e0d514fc5a9fe4d5e3b327a",
+        "bytes": 7567441
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "40d22ab1d8e51b2718f7a833dcbe360a4ed7a174591ec987f9ba41f20962809a",
+        "bytes": 8565871
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "e0e8dc157895ba672ae0bca15af8a85094db2f82fd01b5d90c424b4fdb787ee6",
+        "bytes": 5964521
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "083c18258132f9049892f6108b926ada2f436863fd04b6bc187fbdef66989413",
+        "bytes": 8193917
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b2883c482b7fcd3275f401ad484892b0ee98e1baa352a1708c7640a7bf1fb41a",
+        "bytes": 4940647
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "3f7e570286c0deee402b9737be80b24a00a70719bf85ee2943abf81d38175605",
+        "bytes": 4497
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "6411701971d3eb715c43d92118b0b11778ddf4d2496b5a42d7c76691512b335c",
+        "bytes": 6364
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "11c8818cf90b5c7d2ae3a5e78c223631ab8e0bfcfe97f5212354ff4ba525afdd",
+        "bytes": 7165
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "e7c56fbd077721ca909e3ef2c9045055c7ad6c02112777dfd6ce2af8018486ab",
+        "bytes": 8819
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c63664d9f813ab1ce2b01c5fc72b4707e05cce2e3e52c831141a56db3152a86d",
+        "bytes": 6448
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "13178487dbc317bbff7568b22e8269ee662656eaef74f5541c6c124d79d7324e",
+        "bytes": 6189
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1b7c9a34386ed31124c90d349b5a57116c08135da066d58107f73c27ffc68c49",
+        "bytes": 6888
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "945230b77d83f0c7ff739daa1dd67fcaf17b59990ad20804641d73b410958d36",
+        "bytes": 6012
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "8b6f1d146e5e483f16592c7eb1d4eb4e624a5e846fa52c384ab9127c799b89c8",
+        "bytes": 6657
+      }
+    ]
+  }
+}

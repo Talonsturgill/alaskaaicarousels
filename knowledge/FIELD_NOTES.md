@@ -8867,3 +8867,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   to 2026-09-28 plus one deliberately degraded frame, and measure the scorer's own AB/BA flip rate.
   If the flip rate is under about 0.15 and the degraded frame loses in both orders, it is safe to
   build (a helper that composes the two orders plus a few lines in the scorer's brief).
+
+## 2026-09-29 (No.72, E-Rate, THE CUT-AND-PASTE NOTICE): retro
+
+- A FIRST BUILD OF A NEW CHASSIS SPENT ITS ROUNDS ON THE SAME THREE THINGS. Contact shadows on ink measured 1 to 4 L* until the lamp pool was brightened; a cut headline's mask was one row short of its descender (the y of "connectivity" read as a v); and a record-stack caption ran 31 px past the right margin on all nine frames because it was written once at 18 px. Check the descender room of any cut mask, the caption's right edge against x 1000, and the pool's L* before the first critic round.
+- The flow critic and the scorer disagreed about frame 05 in a useful way. Both said the declared breather was the wordiest frame. Cutting it to one statement per side and setting the type at 58 and 62 px made it a rest; the scorer still charged the lower 40 percent as quiet tone, so a breather also needs one modelled thing (a fold, a pool) below the copy.
+- Two same-value numerals (FY2022 and FY2023, $9,229,248) read as a duplicated paste until the label said SAME AMOUNT; the unit had to be on the numeral ($) and not in a legend 300 px away.
+- A slide that quotes two different lines of one story must end on the same figure as the slide that first showed it (slide 07 ended at $313,070 and slide 08 first said $373,345); the flow critic caught it, no gate did.
+- Space Grotesk draws its straight quote and apostrophe tapered, so three critics and the scorer read them as curly. The strings are straight (copy_sync and caption_check PASS); say so in the critic prompt up front.
+- The Gas Watch audit failed once on a CINGSA 307 and then read WARN on the next two reads; the real state was a newer source reading than the last collection. Re-read before repairing.

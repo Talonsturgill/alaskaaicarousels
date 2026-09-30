@@ -1,0 +1,113 @@
+{
+ "run_date": "2026-09-29",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "WC DOCKET 26-133 AND THREE OTHERS",
+   "fragment": "133 AND THREE OTHERS",
+   "member": "C36"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "WC DOCKET 26-133 AND THREE OTHERS",
+   "fragment": "133 AND THREE OTHERS",
+   "member": "C36"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "WC DOCKET 26-133 AND THREE OTHERS",
+   "fragment": "133 AND THREE OTHERS",
+   "member": "C36"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "WC DOCKET 26-133 AND THREE OTHERS",
+   "fragment": "133 AND THREE OTHERS",
+   "member": "C36"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "DOCKET 26-133 AND THREE OTHERS",
+   "fragment": "133 AND THREE OTHERS",
+   "member": "C36"
+  },
+  {
+   "kind": "design",
+   "slide": 2,
+   "text": "E-RATE DOLLARS 100 SHEETS = $2.69 billion",
+   "fragment": "100 SHEETS",
+   "note": "the printed scale of the artwork, one sheet is one percent of the national total"
+  },
+  {
+   "kind": "design",
+   "slide": 2,
+   "text": "U.S. RESIDENTS 100 SHEETS = 341,784,857",
+   "fragment": "100 SHEETS",
+   "note": "the printed scale of the artwork, one sheet is one percent of the national total"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "The other 129 applicants share $104.2 million.",
+   "fragment": "129 applicants",
+   "member": "C57"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "Three districts hold 65.7 percent.",
+   "fragment": "Three districts",
+   "subject": "districts",
+   "members": [
+    "C26"
+   ],
+   "items": [
+    "Lower Kuskokwim",
+    "Bering Strait",
+    "Northwest Arctic Borough"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "45 school districts hold 98.6 percent.",
+   "fragment": "45 school districts",
+   "member": "C27"
+  },
+  {
+   "kind": "count",
+   "slide": 8,
+   "text": "three districts hold 65.7 percent",
+   "fragment": "three districts",
+   "subject": "districts",
+   "members": [
+    "C26"
+   ],
+   "items": [
+    "Lower Kuskokwim",
+    "Bering Strait",
+    "Northwest Arctic Borough"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "GOLD PINS MARK THE TOP THREE DISTRICTS. PINS AT DISTRICT OFFICE TOWNS, NOT BOUNDARIES",
+   "fragment": "THREE DISTRICTS",
+   "subject": "districts",
+   "members": [
+    "C26"
+   ],
+   "items": [
+    "Lower Kuskokwim",
+    "Bering Strait",
+    "Northwest Arctic Borough"
+   ]
+  }
+ ]
+}

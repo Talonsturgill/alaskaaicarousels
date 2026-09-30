@@ -1,0 +1,19 @@
+{
+  "chars": 838,
+  "hook": "Alaska has about 0.2 percent of the country's people and about 7.3 percent of its funded E-Rate commitments.",
+  "hook_len": 108,
+  "commas": 3,
+  "comma_per_100": 0.38,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#ERate",
+    "#AlaskaSchools",
+    "#RuralBroadband"
+  ],
+  "deck_summary": "The population share against the money share, ten districts ranked by dollars, one district's internet line over four years and a worksheet of FCC questions with one Alaska answer blank.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 81
+}
