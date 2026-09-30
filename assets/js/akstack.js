@@ -600,8 +600,16 @@
       var F = gold ? G.front : front, Sd = gold ? G.side : side, T = gold ? G.top : top;
       var jx = (rnd() - 0.5) * 1.6;
       if (part) {
-        cx.save(); cx.setLineDash([9, 6]); cx.lineWidth = 1.4; cx.strokeStyle = css(ink ? [198, 208, 211] : [63, 80, 91], 0.9);
-        cx.strokeRect(o.x + jx, yt, o.w, h); cx.setLineDash([]);
+        cx.save();
+        // an unfinished slab is still a solid one: a lifted film over the ground and a dashed depth face, so it never reads as a hole
+        cx.fillStyle = css(ink ? [198, 208, 211] : [63, 80, 91], ink ? 0.16 : 0.12); cx.fillRect(o.x + jx, yt, o.w, h);
+        cx.setLineDash([9, 6]); cx.lineWidth = 1.4; cx.strokeStyle = css(ink ? [198, 208, 211] : [63, 80, 91], 0.9);
+        cx.strokeRect(o.x + jx, yt, o.w, h);
+        if (dx) {
+          cx.fillStyle = css(ink ? [127, 142, 150] : [63, 80, 91], 0.2);
+          cx.beginPath(); cx.moveTo(o.x + jx + o.w, yt); cx.lineTo(o.x + jx + o.w + dx, yt - dy); cx.lineTo(o.x + jx + o.w + dx, yb - dy); cx.lineTo(o.x + jx + o.w, yb); cx.closePath(); cx.fill(); cx.stroke();
+        }
+        cx.setLineDash([]);
         cx.strokeStyle = css(ink ? [198, 208, 211] : [63, 80, 91], 0.35); cx.lineWidth = 0.7;
         for (var hx = 0; hx < o.w; hx += 8) { cx.beginPath(); cx.moveTo(o.x + jx + hx, yt + h); cx.lineTo(o.x + jx + Math.min(o.w, hx + h), yt); cx.stroke(); }
         cx.restore();
