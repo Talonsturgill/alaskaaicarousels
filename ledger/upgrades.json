@@ -2811,8 +2811,8 @@
         ".claude/skills/carousel-engine/SKILL.md"
       ],
       "verification": "Scratch copy of this run's 9 slides, full render + qa: 9/9 OK, qa WARN 0 fails 30 warns (identical to shipped), all 9 PNGs byte-identical to out/2026-09-29/render. Reconstruction: a comment appended to assets/js/akstack.js (restored, sha1 2fec565a before and after, git clean). --only 2 --only-exact (the old path): 1 rendered, STALE for 8, qa.py exit 1 with 8 stale-render FAILs. --only 2 (new): widened to 8, 9 rendered, qa.py exit 0, 0 stale fails. An HTML-only edit to slide 05 with --only 3 widened to slide 05 alone, qa exit 0. examples/demo-deck: 4/4 OK, qa WARN 0 fails 14 warns; --only 2 with nothing stale renders 1 slide and prints no widening.",
-      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout <sha>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md); --only then renders the literal list again and qa.py's stale FAIL is unchanged either way.",
-      "commit": ""
+      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout 4a7e598b^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md); --only then renders the literal list again and qa.py's stale FAIL is unchanged either way.",
+      "commit": "4a7e598b"
     },
     {
       "run_date": "2026-09-29",
@@ -2829,8 +2829,8 @@
         "knowledge/FIELD_NOTES.md"
       ],
       "verification": "On this run: PASS, 86 strings, census flags Space Grotesk on slides 02, 03, 05 and 09, and slide 05's two U+0022 in Space Grotesk are the marks the scorer read as curly; gate_status copy_sync row PASS with the verdict line; gate_status --self-test 27/27. Reconstruction: scratch slide 05 re-rendered with a curly apostrophe and an em dash in its decorative coordinate line and an en dash drawn by canvas fillText: the new script FAILS all three (U+2019, U+2014, U+2013), the pre-upgrade script PASSES the same render. tests/copy_sync_punct_verify.py (new, hermetic): 6/6 HOLD, 4 BROKEN against the pre-upgrade script. tests/copy_sync_shred_verify.py still HOLDS. Not an engine change; render + qa on this run and the demo deck were run for upgrade 2 and are unaffected.",
-      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout <sha>^ -- scripts/copy_sync_check.py .claude/agents/pixel-critic.md .claude/agents/scorer.md prompts/routine_instructions.md and delete tests/copy_sync_punct_verify.py).",
-      "commit": ""
+      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout 4a7e598b^ -- scripts/copy_sync_check.py .claude/agents/pixel-critic.md .claude/agents/scorer.md prompts/routine_instructions.md and delete tests/copy_sync_punct_verify.py).",
+      "commit": "4a7e598b"
     }
   ],
   "scan_log": [
