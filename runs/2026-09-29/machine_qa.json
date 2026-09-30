@@ -1,0 +1,176 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'Limited' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (12% of the ring around 'Limited' is ink of the glyphs' own value, spanning 68% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "busy art under text (bg edge density 0.04) beneath 'or' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (11% of the ring around 'or' is ink of the glyphs' own value, spanning 72% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "busy art under text (bg edge density 0.04) beneath 'sunset?' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (11% of the ring around 'sunset?' is ink of the glyphs' own value, spanning 69% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]"
+      ],
+      "contacts": [
+        "'the pasted slip on the paper': shadow L* 67.0 vs ground L* 81.9, dL 15.0 at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'Alaska 0.2', spanning 57%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the dollar ream on its lit pool': shadow L* 22.5 vs ground L* 35.1, dL 12.7 at 432w",
+        "'the people ream on its lit pool': shadow L* 22.0 vs ground L* 38.4, dL 16.3 at 432w"
+      ],
+      "motifs": [
+        "'the gold top 7.3 sheets of the dollar ream': canvas 71.6 dE, page 79.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the top 7.3 sheets of the dollar ream' lands 5.7px from its target",
+        "leader 'the top 0.2 sheet of the people ream' lands 3.0px from its target",
+        "leader 'the top 7.3 sheets of the dollar ream' meets its label 0.0px away",
+        "leader 'the top 0.2 sheet of the people ream' meets its label 6.0px away",
+        "leader 'the top 7.3 sheets of the dollar ream' is drawn 45 px at 48 degrees, inside the pointer band",
+        "leader 'the top 0.2 sheet of the people ream' is drawn 107 px at 70 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 '$195.2 million' fits 1/1 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the pasted slip on the paper': shadow L* 65.5 vs ground L* 84.1, dL 18.6 at 432w"
+      ],
+      "motifs": [
+        "'the hundred apertures with 46.6 gold': canvas 81.7 dE, page 78.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the insertion point at the end of the quoted question' lands 14.4px from its target",
+        "leader 'the insertion point at the end of the quoted question' meets its label 6.5px away",
+        "leader 'the insertion point at the end of the quoted question' is drawn 34 px at 34 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "q 'The FCC asks whether\"a disproportionate shar' fits 5/5 lines at 49.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Northwest Arctic row of sheets': shadow L* 29.1 vs ground L* 41.4, dL 12.4 at 432w",
+        "'the North Slope row of sheets': shadow L* 29.2 vs ground L* 44.2, dL 15.0 at 432w",
+        "'the Southwest Region row of sheets': shadow L* 31.8 vs ground L* 45.4, dL 13.6 at 432w"
+      ],
+      "motifs": [
+        "'the paper-cut Alaska': canvas 69.8 dE, page 66.3 dE, 87% of its rect is clear of opaque DOM (div.pin stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the top-three bracket on the right of the bars' lands 10.0px from its target",
+        "leader 'the top-three bracket on the right of the bars' meets its label 0.0px away",
+        "leader 'the top-three bracket on the right of the bars' is drawn 14 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 'Three districtshold 65.7 percent.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 5 of 10 in 'FCC Chairman Brendan Carr said the agency sh' ends 'the' -- an article, conjunction or preposition left hanging at the line end. It reads at 58px, so the break is the first thing a feed sees. Author the break with <br> before 'program's' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 7 of 10 in 'FCC Chairman Brendan Carr said the agency sh' ends 'the' -- an article, conjunction or preposition left hanging at the line end. It reads at 58px, so the break is the first thing a feed sees. Author the break with <br> before 'Anchorage' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 2 of 6 in '\"The E-Rate program is a lifeline to opportu' ends 'is' -- an article, conjunction or preposition left hanging at the line end. It reads at 62px, so the break is the first thing a feed sees. Author the break with <br> before 'a' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 3 of 6 in '\"The E-Rate program is a lifeline to opportu' ends 'to' -- an article, conjunction or preposition left hanging at the line end. It reads at 62px, so the break is the first thing a feed sees. Author the break with <br> before 'opportunity' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: '\"The E-Rate program is a lifeline to opp' at 600,212 410x417 (margin 80px)"
+      ],
+      "contacts": [
+        "'the paper half torn over the ink': shadow L* 13.4 vs ground L* 23.8, dL 10.4 at 432w"
+      ],
+      "motifs": [
+        "'the torn seam between paper and ink': canvas 68.5 dE, page 73.0 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 3 in 'The notice cites an executive order that wan' ends 'that' -- an article, conjunction or preposition left hanging at the line end. It reads at 40px, so the break is the first thing a feed sees. Author the break with <br> before 'wants' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 2 of 3 in 'The notice cites an executive order that wan' ends 'their' -- an article, conjunction or preposition left hanging at the line end. It reads at 40px, so the break is the first thing a feed sees. Author the break with <br> before 'classrooms.' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "busy art under text (bg edge density 0.05) beneath 'What level' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (11% of the ring around 'What level' is ink of the glyphs' own value, spanning 63% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "busy art under text (bg edge density 0.06) beneath 'of connectivity' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (12% of the ring around 'of connectivity' is ink of the glyphs' own value, spanning 70% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "canvas mark near reserved text: line 3 of 4 at (80,698) of 'do schools and libraries need to utilize' carries 136 px^2 of hard-edged canvas ink (densest 40px window 4.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "leaders": [
+        "leader 'the pencil ring on AI-enabled' lands 0.0px from its target",
+        "leader 'the pencil ring on AI-enabled' meets its label 9.7px away",
+        "leader 'the pencil ring on AI-enabled' is drawn 43 px at 4 degrees, inside the pointer band"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "label crossed by art (27% of the ring around '$9,229,248' is ink of the glyphs' own value, spanning 83% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "label crossed by art (22% of the ring around '$9,229,248' is ink of the glyphs' own value, spanning 80% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "busy art under text (bg edge density 0.03) beneath '$373,345' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (6% of the ring around '$373,345', spanning 62%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.04) beneath '$313,070' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "label crossed by art (7% of the ring around '$313,070' is ink of the glyphs' own value, spanning 63% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]"
+      ],
+      "contacts": [
+        "'the first large numeral raised on the ink': shadow L* 10.9 vs ground L* 30.9, dL 20.0 at 432w",
+        "'the second large numeral raised on the ink': shadow L* 11.3 vs ground L* 31.9, dL 20.6 at 432w"
+      ],
+      "asserts": [
+        "'FY2024 numeral size = large size x sqrt(dollar ratio 373,345 to 9,229,248)' holds: 32.1804 vs 32.1805 px (within 0.5)",
+        "'FY2025 numeral size = large size x sqrt(dollar ratio 313,070 to 9,229,248)' holds: 29.4685 vs 29.4685 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in 'what level of connectivity?' ends 'of' -- an article, conjunction or preposition left hanging at the line end. It reads at 40px, so the break is the first thing a feed sees. Author the break with <br> before 'connectivity?' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "contacts": [
+        "'the slip on row 1': shadow L* 69.1 vs ground L* 79.5, dL 10.3 at 432w",
+        "'the slip on row 2': shadow L* 70.5 vs ground L* 80.0, dL 9.5 at 432w",
+        "'the slip on row 3': shadow L* 67.0 vs ground L* 78.6, dL 11.6 at 432w"
+      ],
+      "fits": [
+        "h1 'The FCC's questions, Alaska's numbers.' fits 2/2 lines at 61.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.11) beneath 'FY2017 $93.0 million' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.13) beneath 'FY2024 $221.4 million' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.09) beneath 'FY2025 $195.2 million' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.12) beneath 'FY2026 PART YEAR' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the stack of ten slabs on its lit pool': shadow L* 22.5 vs ground L* 35.5, dL 13.1 at 432w"
+      ],
+      "motifs": [
+        "'the gold eleventh sheet': canvas 93.7 dE, page 94.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 'File one commentby October 13th.' fits 2/3 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 30,
+  "verdict": "WARN"
+}

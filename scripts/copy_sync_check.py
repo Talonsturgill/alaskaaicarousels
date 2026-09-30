@@ -61,7 +61,9 @@ MATCHING
 
 EXIT CODES
     0  every authored slide string is present in the render (in sync)
-    1  one or more authored slide strings are missing from the render (stale)
+    1  one or more authored slide strings are missing from the render (stale),
+       or the rendered text carries a curly quote or an em or en dash
+       (2026-09-29; see PUNCTUATION AS RENDERED)
     2  usage / missing-file error
 
 This script reads only; it never edits copy.json or any slide. It is a
@@ -231,6 +233,101 @@ def fixture_check(render_report):
     return missing, banned
 
 
+# --- PUNCTUATION AS RENDERED (2026-09-29, run No.72) --------------------------
+# "No em/en dashes anywhere" and "straight quotes" are house rules that never
+# bend, and until this block they were enforced on copy.json only: caption_check
+# reads the copy record, and the presence check above compares letters and digits
+# and ignores punctuation by design. A mark typed straight into slide HTML, or
+# into a label, coordinate or fixture the copy record never holds, reached the
+# PNG with every gate green.
+#
+# The same run showed the other half. Space Grotesk draws the NEUTRAL marks
+# U+0022 and U+0027 slanted and tapered, so its straight opening quote looks like
+# a closing curly one, and three pixel critics and the scorer reported curly
+# quotes that were not in the source. Unicode means both marks to be neutral and
+# vertical (https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html); these faces depart
+# from that. Measured in the engine's own Chromium over the eight committed
+# families on 2026-09-29: Space Grotesk slants both, Manrope slants U+0027, and
+# no stylistic set, salt or calt setting changes either. So this also prints what
+# each slide actually carries, and in which face, as a fact a critic can be
+# handed instead of a judgement it has to make off a glyph shape.
+#
+# Reads what render.py recorded: every DOM text node (its whole string, its
+# direct text children and its laid-out lines) and every canvas fillText and
+# strokeText, which render.py keeps to its first 80 characters. CSS generated
+# content (::before, ::after) is not in either record and is not covered.
+RENDERED_BANNED = {"\u2014": "em dash", "\u2013": "en dash",
+                   "\u201c": "curly quote", "\u201d": "curly quote",
+                   "\u2018": "curly apostrophe", "\u2019": "curly apostrophe"}
+NEUTRAL_MARKS = {'"': "U+0022", "'": "U+0027"}
+SLANTED_NEUTRAL = {
+    "space grotesk": {'"', "'"},
+    "manrope": {"'"},
+}
+
+
+def _canvas_family(font):
+    """The first family named in a canvas `font` shorthand, lower-cased."""
+    m = re.search(r"\d(?:\.\d+)?px(?:/\S+)?\s+(.+)$", font or "")
+    fam = (m.group(1) if m else "").split(",")[0]
+    return fam.strip().strip("'\"").lower()
+
+
+def punct_check(render_report):
+    """(banned, census). banned: [(Skey, mark name, U+XXXX, excerpt)], a FAIL.
+    census: {Skey: {(mark, family): count}} of the neutral quote marks, from
+    each text node's DIRECT text only, so a span is never counted twice."""
+    banned, census = [], {}
+    for s in render_report.get("slides", []):
+        idx = slide_index(s.get("file", ""))
+        if idx is None:
+            continue
+        key = "S%d" % idx
+        seen = set()
+        strings = []
+        for n in s.get("text_nodes", []):
+            fam = (n.get("family") or "").strip().lower()
+            strings.extend(node_strings(n) + list(n.get("line_text") or []))
+            for t in n.get("texts") or [n.get("text") or ""]:
+                for ch in t:
+                    if ch in NEUTRAL_MARKS:
+                        c = census.setdefault(key, {})
+                        c[(ch, fam)] = c.get((ch, fam), 0) + 1
+        for e in s.get("canvas_text", []) or []:
+            t = e.get("text") or ""
+            strings.append(t)
+            fam = _canvas_family(e.get("font"))
+            for ch in t:
+                if ch in NEUTRAL_MARKS:
+                    c = census.setdefault(key, {})
+                    c[(ch, fam)] = c.get((ch, fam), 0) + 1
+        for t in strings:
+            for i, ch in enumerate(t):
+                if ch not in RENDERED_BANNED:
+                    continue
+                # the same mark reaches here through `full`, `text`, `texts`
+                # and `line_text`; report it once, by the words around it
+                ctx = " ".join(t[max(0, i - 24):i + 24].split())
+                tag = (ch, " ".join(t[max(0, i - 8):i + 8].split()))
+                if tag in seen:
+                    continue
+                seen.add(tag)
+                banned.append((key, RENDERED_BANNED[ch], "U+%04X" % ord(ch), ctx))
+    return banned, census
+
+
+def census_lines(census):
+    """The quote-mark census as printable lines, slanted faces flagged."""
+    out = []
+    for key in sorted(census, key=lambda k: int(k[1:])):
+        parts = []
+        for (ch, fam), n in sorted(census[key].items()):
+            flag = " (drawn slanted)" if ch in SLANTED_NEUTRAL.get(fam, ()) else ""
+            parts.append("%s x%d in %s%s" % (NEUTRAL_MARKS[ch], n, fam or "unknown face", flag))
+        out.append("  %s  %s" % (key, "; ".join(parts)))
+    return out
+
+
 def check(copy, render_report, window=WINDOW):
     per_slide, deck = build_nodes(render_report)
     misses = []
@@ -306,11 +403,27 @@ def main():
         print("copy_sync_check: WARN slide %s in copy.json has no rendered slide" % o, file=sys.stderr)
 
     missing_wm, banned = fixture_check(rr)
+    punct, census = punct_check(rr)
 
-    if not misses and not truncated and not missing_wm and not banned:
+    def print_census():
+        if not census:
+            print("quote marks as rendered: none on any slide")
+            return
+        print("quote marks as rendered (codepoints, not glyph shapes; every one is "
+              "the neutral mark the house requires):")
+        for ln in census_lines(census):
+            print(ln)
+        if any(ch in SLANTED_NEUTRAL.get(fam, ()) for c in census.values() for ch, fam in c):
+            print("  (drawn slanted) = this face draws the neutral mark slanted, so it "
+                  "LOOKS curly and is not. Hand critics this list rather than "
+                  "letting them judge the glyph.")
+
+    if not misses and not truncated and not missing_wm and not banned and not punct:
         print("copy_sync_check: PASS -- %d authored slide strings all present in "
-              "the render; %s on every slide; no banned slide string"
+              "the render; %s on every slide; no banned slide string; no curly "
+              "quote or em or en dash in the rendered text"
               % (checked, WATERMARK))
+        print_census()
         return 0
 
     if misses:
@@ -341,6 +454,16 @@ def main():
               % len(banned))
         for skey, phrase, why in banned:
             print("  %s prints %r -- %s" % (skey, phrase, why))
+    if punct:
+        print("copy_sync_check: FAIL -- %d banned mark(s) in the RENDERED text, "
+              "which caption_check never reads (it reads copy.json) and the "
+              "presence check above ignores (it compares letters and digits):"
+              % len(punct))
+        for skey, name, cp, ctx in punct:
+            print("  %s  %s %s in %r" % (skey, name, cp, ctx))
+        print("Type the straight mark (U+0022 or U+0027) or rewrite the dash, in "
+              "the slide HTML or the canvas string that printed it.")
+    print_census()
     print("Reconcile copy.json to the shipped render (or fix the render) before ship.")
     return 1
 

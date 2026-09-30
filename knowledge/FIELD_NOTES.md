@@ -8867,3 +8867,50 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   to 2026-09-28 plus one deliberately degraded frame, and measure the scorer's own AB/BA flip rate.
   If the flip rate is under about 0.15 and the degraded frame loses in both orders, it is safe to
   build (a helper that composes the two orders plus a few lines in the scorer's brief).
+
+## 2026-09-29 (No.72, E-Rate, THE CUT-AND-PASTE NOTICE): retro
+
+- A FIRST BUILD OF A NEW CHASSIS SPENT ITS ROUNDS ON THE SAME THREE THINGS. Contact shadows on ink measured 1 to 4 L* until the lamp pool was brightened; a cut headline's mask was one row short of its descender (the y of "connectivity" read as a v); and a record-stack caption ran 31 px past the right margin on all nine frames because it was written once at 18 px. Check the descender room of any cut mask, the caption's right edge against x 1000, and the pool's L* before the first critic round.
+- The flow critic and the scorer disagreed about frame 05 in a useful way. Both said the declared breather was the wordiest frame. Cutting it to one statement per side and setting the type at 58 and 62 px made it a rest; the scorer still charged the lower 40 percent as quiet tone, so a breather also needs one modelled thing (a fold, a pool) below the copy.
+- Two same-value numerals (FY2022 and FY2023, $9,229,248) read as a duplicated paste until the label said SAME AMOUNT; the unit had to be on the numeral ($) and not in a legend 300 px away.
+- A slide that quotes two different lines of one story must end on the same figure as the slide that first showed it (slide 07 ended at $313,070 and slide 08 first said $373,345); the flow critic caught it, no gate did.
+- Space Grotesk draws its straight quote and apostrophe tapered, so three critics and the scorer read them as curly. The strings are straight (copy_sync and caption_check PASS); say so in the critic prompt up front.
+- The Gas Watch audit failed once on a CINGSA 307 and then read WARN on the next two reads; the real state was a newer source reading than the last collection. Re-read before repairing.
+
+## 2026-09-29, No.72, Phase 12: a subset render finishes the job, and punctuation is read where it rendered
+
+- `render.py --only N` now also renders every slide whose existing PNG is already STALE (its HTML or
+  a committed asset it loads changed since, by the same hash arithmetic the STALE notice and qa.py's
+  stale-render FAIL use) and prints which it added and why. After an edit to a shared helper in
+  `assets/js/`, `--only 3` renders every frame that loads it. `--only-exact` keeps the literal list.
+  No.72 edited akstack.js and came within one command of gating on seven stale frames.
+- CORRECTION to the retro line above: "copy_sync and caption_check PASS" was NOT evidence that the
+  rendered quotes were straight. caption_check reads copy.json only, and copy_sync compared letters
+  and digits only, so a curly mark or a dash typed into slide HTML, or into a label or fixture the
+  copy record never holds, passed both. `scripts/copy_sync_check.py` now FAILS on U+201C, U+201D,
+  U+2018, U+2019, U+2014 or U+2013 in any rendered DOM text or canvas string, and prints each
+  slide's quote marks by codepoint and face (`tests/copy_sync_punct_verify.py`).
+- MEASURED in the engine's Chromium over all eight committed families: Space Grotesk draws the
+  neutral U+0022 and U+0027 slanted and tapered, so its straight OPENING quote looks like a closing
+  curly one; Manrope draws U+0027 comma-shaped. Fraunces, Archivo, Instrument Serif, JetBrains
+  Mono, Bricolage Grotesque and Unbounded draw both marks upright. No `salt`, `ss01` to `ss07`,
+  `calt` off or `case` setting changes either face's marks (screenshots hash identical). Unicode
+  means both marks to be neutral and vertical (https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html).
+
+### Parked, 2026-09-29 frontier scan, focus (d), typography: quote marks in the two slanted faces
+
+- CANDIDATE (design): when a display or pull quote is set in Space Grotesk or Manrope, set the
+  quote marks themselves in the deck's other face (a `<span>` in Fraunces or JetBrains Mono), or
+  quote without marks and let the attribution carry it. No.72's slide 05 opened a quote with a mark
+  that reads as a closing curly quote at 62 px, which the scorer noted. WHY PARKED: it is a
+  styling instruction for the editorial brain, not a machine change, and a mixed-face quote mark
+  needs one deck to show it reads as intended at 432 px. Unblocks on the next deck that quotes in
+  either face: build it both ways on that slide and let the pixel critic choose.
+- CANDIDATE (accessibility, g): Chromium's PDF text layer records Manrope's apostrophe glyph as
+  U+2019 for some occurrences ("Alaska's" extracted as U+2019, "it's" as U+0027 in the same PDF,
+  measured with pypdf 6.19). 15 of 72 shipped carousel.pdf files carry U+2019 in extracted text,
+  and the four of those whose copy.json was spot-checked (07-13, 09-11, 09-17, 09-23) hold only
+  U+0027, so the copyable text of a vector PDF can disagree with its source. WHY PARKED: which faces cause it beyond Manrope is unmeasured, and a LinkedIn
+  document's text layer is not what a reader sees. Unblocks if a screen-reader or search surface
+  is shown to read the PDF text layer: then measure each face and decide whether assemble.py
+  should report it.

@@ -1,0 +1,248 @@
+{
+ "document_title": "Limited or Sunset? What Alaska Adds to the E-Rate Record",
+ "post_copy": "Alaska has about 0.2 percent of the country's people and about 7.3 percent of its funded E-Rate commitments.\n\nThat is $195.2 million in USAC funded commitments for funding year 2025. Only California and Texas drew more. Lower Kuskokwim School District alone holds $91.0 million of it, 46.6 percent of Alaska's total.\n\nThe FCC asks whether E-Rate should be limited or sunset. It also asks what connectivity schools need to use AI-enabled tools. The full notice never uses the word Alaska. Comments are due October 13th.\n\nThe population share against the money share, ten districts ranked by dollars, one district's internet line over four years and a worksheet of FCC questions with one Alaska answer blank.\n\nHow should the FCC weigh a state where one district holds 46.6 percent of its E-Rate money?\n\n#ERate #AlaskaSchools #RuralBroadband\n",
+ "hook_chars": 108,
+ "total_chars": 840,
+ "deck_summary_line": "The population share against the money share, ten districts ranked by dollars, one district's internet line over four years and a worksheet of FCC questions with one Alaska answer blank.",
+ "hashtags": [
+  "#ERate",
+  "#AlaskaSchools",
+  "#RuralBroadband"
+ ],
+ "caption_meta": {
+  "opening_move": "CONTRADICTION",
+  "structure": "ZOOM",
+  "closing_move": "NEW: WHOSE ANSWER GETS WEIGHED",
+  "first_8_words": "Alaska has about 0.2 percent of the country's",
+  "hook_type": "two true shares in one sentence, people against money"
+ },
+ "first_comment": "Sources, primary first\nFederal Register, FCC E-Rate notice, FR Doc 2026-16590 (91 FR 52626), published 2026-08-14 (comment and reply dates, the limited or sunset, disproportionate share and AI connectivity questions, the executive order), https://www.federalregister.gov/documents/full_text/text/2026/08/14/2026-16590.txt\nFederal Register via GovInfo, same notice, Volume 91 Issue 156 (the docket numbers, the ECFS filing route, and the notice's full text, which never uses the word Alaska), https://www.govinfo.gov/content/pkg/FR-2026-08-14/html/2026-16590.htm\nFederal Communications Commission, FCC 26-41, adopted June 25th, 2026 (the rural areas or single provider question and the screen time limits question), https://docs.fcc.gov/public/attachments/FCC-26-41A1.txt\nFederal Communications Commission, Public Notice DA 26-865, released 2026-08-17 (comments due October 13th, replies November 12th), https://docs.fcc.gov/public/attachments/DA-26-865A1.txt\nUSAC Open Data, E-Rate request dataset srbr-2d59, Alaska funded commitments by funding year (FY2017 to FY2026, including $195.2 million for FY2025), https://opendata.usac.org/resource/srbr-2d59.json?%24select=funding_year%2Csum%28funding_commitment_request%29%20as%20req%2Ccount%28%2A%29%20as%20n&%24where=state%3D%27AK%27%20AND%20form_471_frn_status_name%3D%27Funded%27&%24limit=50&%24group=funding_year&%24order=funding_year\nUSAC Open Data, srbr-2d59, funded commitments by state for FY2025 (Alaska third, behind California and Texas), https://opendata.usac.org/resource/srbr-2d59.json?%24select=state%2Csum%28funding_commitment_request%29%20as%20req&%24where=funding_year%3D%272025%27%20AND%20form_471_frn_status_name%3D%27Funded%27&%24limit=8&%24group=state&%24order=req%20DESC\nUSAC Open Data, srbr-2d59, national funded commitments for FY2025 ($2.69 billion, the base for the 7.3 percent), https://opendata.usac.org/resource/srbr-2d59.json?%24select=sum%28funding_commitment_request%29%20as%20req%2Ccount%28%2A%29%20as%20n&%24where=funding_year%3D%272025%27%20AND%20form_471_frn_status_name%3D%27Funded%27&%24limit=200\nUSAC Open Data, srbr-2d59, Alaska applicants ranked by FY2025 funded commitments (Lower Kuskokwim $91.0 million and the districts on slide 4), https://opendata.usac.org/resource/srbr-2d59.json?%24select=organization_name%2Corganization_entity_type_name%2Csum%28funding_commitment_request%29%20as%20req%2Ccount%28%2A%29%20as%20n&%24where=state%3D%27AK%27%20AND%20funding_year%3D%272025%27%20AND%20form_471_frn_status_name%3D%27Funded%27&%24limit=200&%24group=organization_name%2Corganization_entity_type_name&%24order=req%20DESC\nUSAC Open Data, srbr-2d59, Lower Yukon School District internet lines, FY2022 to FY2025 (slide 7), https://opendata.usac.org/resource/srbr-2d59.json?%24select=funding_year%2Cspin_name%2Cform_471_service_type_name%2Cfunding_commitment_request&%24where=state%3D%27AK%27%20AND%20organization_name%20like%20%27Lower%20Yukon%25%27%20AND%20form_471_frn_status_name%3D%27Funded%27%20AND%20funding_year%20in%28%272022%27%2C%272023%27%2C%272024%27%2C%272025%27%29&%24limit=200&%24order=funding_year%2Cfunding_commitment_request%20DESC\nU.S. Census Bureau, QuickFacts, population estimates for July 1st, 2025 (Alaska 737,270 and the U.S. 341,784,857, the source of the 0.2 percent), https://www.census.gov/quickfacts/fact/table/AK,US/PST045225\nAnchorage Daily News (Alaska Journal of Commerce), Mari Kanagy, 2026-08-10, the FCC spends hundreds of millions subsidizing internet for Alaska schools and libraries, now it might cut the program (Chairman Carr, Tiffany Jackson's quote, and the Starlink switch at Lower Yukon), https://www.adn.com/alaska-journal/news/2026/08/10/the-fcc-spends-hundreds-of-millions-subsidizing-internet-for-alaska-schools-and-libraries-now-it-might-cut-the-program/\nAlaska Beacon (Chalkbeat), Erica Meltzer, 2026-09-28, feds target school internet subsidies in ed tech backlash even as Trump touts AI (Superintendent Patrick Mayer on Alaska Gateway), https://alaskabeacon.com/2026/09/28/feds-target-school-internet-subsidies-in-ed-tech-backlash-even-as-trump-touts-ai/\nDistrict office towns for the pins on slide 4, from each district's own website, https://www.lksd.org https://www.bssd.org https://www.nwarctic.org/o/nwarctic/page/districtwide-contact-information https://www.nsbsd.org https://www.asdk12.org\nUSAC figures are funded commitments, not need, and USAC data is live and can change. The FCC notice asks questions for comment and takes no position.\nAlaska's open AI comment windows and their deadlines are tracked at https://alaskaaihq.com\nKnow how E-Rate money reaches your district, or see a number this misses? Add it below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "THE FCC ASKS",
+   "headline": "Limited or sunset?",
+   "body": "Alaska holds 7.3 percent of E-Rate.",
+   "labels": [],
+   "claim_ids": [
+    "C03",
+    "C20",
+    "C36"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "ALASKA, FUNDING YEAR 2025",
+   "headline": "$195.2 million",
+   "body": "third in the nation, behind California and Texas. Funded E-Rate commitments to Alaska schools and libraries are 7.3 percent of the $2.69 billion nationwide. About 0.2 percent of the country's people live here.",
+   "labels": [
+    "E-RATE DOLLARS 100 SHEETS = $2.69 billion",
+    "U.S. RESIDENTS 100 SHEETS = 341,784,857",
+    "Alaska 7.3",
+    "Alaska 0.2"
+   ],
+   "claim_ids": [
+    "C16",
+    "C18",
+    "C19",
+    "C20",
+    "C22",
+    "C23"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "THE NOTICE ASKS",
+   "headline": "46.6 percent",
+   "body": "Lower Kuskokwim School District holds $91.0 million of Alaska's $195.2 million. The other 129 applicants share $104.2 million.",
+   "labels": [
+    "The FCC asks whether",
+    "\"a disproportionate share of",
+    "funding flow to large, well-resourced",
+    "school districts with substantial",
+    "local tax bases.\"",
+    "insert Alaska"
+   ],
+   "claim_ids": [
+    "C07",
+    "C24",
+    "C16",
+    "C25",
+    "C57",
+    "C35"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "ALASKA E-RATE, FUNDING YEAR 2025",
+   "headline": "Three districts hold 65.7 percent.",
+   "body": "45 school districts hold 98.6 percent.",
+   "labels": [
+    "Lower Kuskokwim",
+    "$91.0 million",
+    "Bering Strait",
+    "$25.6 million",
+    "Northwest Arctic Borough",
+    "$11.7 million",
+    "North Slope Borough",
+    "$10.1 million",
+    "Yukon-Koyukuk",
+    "$7.3 million",
+    "Southwest Region",
+    "$6.2 million",
+    "Yupiit",
+    "$6.1 million",
+    "Kuspuk",
+    "$6.0 million",
+    "Anchorage",
+    "$840,044",
+    "Alaska Gateway",
+    "$755,167",
+    "65.7 percent"
+   ],
+   "claim_ids": [
+    "C24",
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C51",
+    "C52",
+    "C53",
+    "C54",
+    "C55",
+    "C26",
+    "C27",
+    "C58",
+    "C59",
+    "C60",
+    "C61",
+    "C62"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "THE AGENCY SIDE",
+   "headline": "\"The E-Rate program is a lifeline to opportunity for Alaska's students.\"",
+   "body": "FCC Chairman Brendan Carr said the agency should consider reducing the program's scope, the Anchorage Daily News reported.",
+   "labels": [
+    "THE ALASKA SIDE",
+    "Tiffany Jackson, Association of Alaska School Boards"
+   ],
+   "claim_ids": [
+    "C31",
+    "C32"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "THE NOTICE ALSO ASKS",
+   "headline": "What level of connectivity",
+   "body": "do schools and libraries need to utilize AI-enabled educational tools or other emerging technologies effectively? The notice cites an executive order that wants educators equipped to use AI in their classrooms.",
+   "labels": [
+    "AI-enabled",
+    "priced how?"
+   ],
+   "claim_ids": [
+    "C05",
+    "C04"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "LOWER YUKON SCHOOL DISTRICT, LARGEST INTERNET LINE",
+   "headline": "",
+   "body": "The ledger holds the price, not the reason. The Anchorage Daily News ties the switch to Starlink.",
+   "labels": [
+    "FY2022 GCI COMMUNICATION CORP",
+    "$9,229,248",
+    "FY2023 GCI COMMUNICATION CORP, SAME AMOUNT",
+    "$9,229,248",
+    "FY2024 SATEO INC DBA MICROCOM",
+    "$373,345",
+    "FY2025 SATEO INC DBA MICROCOM",
+    "$313,070",
+    "TYPE AREA EQUALS DOLLARS"
+   ],
+   "claim_ids": [
+    "C65",
+    "C28",
+    "C29",
+    "C64",
+    "C30"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "WHAT ALASKA CAN PASTE INTO THE RECORD",
+   "headline": "The FCC's questions, Alaska's numbers.",
+   "body": "Comments are due October 13th.",
+   "labels": [
+    "limited or sunset?",
+    "$195.2 million, third in the nation",
+    "rural areas or a single provider?",
+    "three districts hold 65.7 percent",
+    "a higher rural discount?",
+    "Alaska Gateway, about 7 percent of its budget",
+    "a disproportionate share?",
+    "one district holds 46.6 percent",
+    "what level of connectivity?",
+    "one line, $9,229,248 to $313,070",
+    "screen time limits?",
+    "Alaska figure needed"
+   ],
+   "claim_ids": [
+    "C03",
+    "C12",
+    "C06",
+    "C07",
+    "C05",
+    "C13",
+    "C16",
+    "C18",
+    "C26",
+    "C33",
+    "C25",
+    "C28",
+    "C64",
+    "C01"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "DOCKET 26-133 AND THREE OTHERS",
+   "headline": "File one comment by October 13th.",
+   "body": "Replies close November 12th. Filing goes through the FCC's ECFS. Name the place your answer is about.",
+   "labels": [
+    "FY2017 $93.0 million",
+    "FY2024 $221.4 million",
+    "FY2025 $195.2 million",
+    "FY2026 PART YEAR",
+    "FY2018",
+    "FY2019",
+    "FY2020",
+    "FY2021",
+    "FY2022",
+    "FY2023"
+   ],
+   "claim_ids": [
+    "C36",
+    "C01",
+    "C02",
+    "C37",
+    "C15",
+    "C17",
+    "C45",
+    "C16",
+    "C46"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post Thursday, October 1st, or Tuesday, October 6th, between 8 and 11 a.m. Alaska time. Cadence is your call. The window is long, but earlier in it leaves more days for a reader to file.",
+  "Paste the sources block as the first comment within 60 seconds of posting.",
+  "Reply to every comment in the first 90 minutes. If a reader asks how to file, point to slide 9 (docket 26-133, ECFS). If a reader asks whether the FCC has decided to cut E-Rate, say no: the notice asks questions and the deck takes no side.",
+  "Docket deadlines to keep in view: comments are due October 13th and replies November 12th. After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "This deck says Alaska draws $195.2 million in USAC funded E-Rate commitments for funding year 2025 (third in the nation, 7.3 percent of $2.69 billion, against about 0.2 percent of U.S. residents), that one district (Lower Kuskokwim, $91.0 million) holds 46.6 percent of it, and that the FCC notice asks whether E-Rate should be limited or sunset and what connectivity schools need for AI tools, with comments due October 13th and replies November 12th. It deliberately does not claim that funded commitments are need, that the FCC has decided anything (the notice asks questions and takes no position), or that Alaska is the notice's target. The notice never uses the word Alaska (a full-text search by the showrunner), and the deck says only that. Slide 08 keeps one blank Alaska answer for screen time limits on purpose. The Starlink reason on slide 07 is the Anchorage Daily News's, and only USAC's numbers are printed. The ADN's $96.5 million for Lower Kuskokwim and its $6.25 million and $600,000 for Lower Yukon are not printed because they differ from USAC's. Please verify before posting: (1) USAC data is live, so re-run the C16 and C24 links and confirm $195.2 million and $91.0 million still hold; (2) the Census figures were read through a reader rendering because census.gov returned 403 (confidence 0.85), so confirm 737,270 and 341,784,857 at the QuickFacts link; (3) the six pins on slide 4 mark district office towns, not boundaries, and three of those town claims rest on a reader rendering of the district sites; (4) FY2026 is a part year and is never shown as a decline."
+}

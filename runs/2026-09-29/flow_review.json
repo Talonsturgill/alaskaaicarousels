@@ -1,0 +1,218 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The paper/ink call-and-response is a real spine, and 1 to 4 escalate cleanly (7.3 percent, then $195.2M, then 46.6 percent in one district, then the ten-row roll). Slide 2 pays the cover and 6 to 7 to 8 to 9 has the deck's best plant-and-pay chain (\"priced how?\", then the empty slip, then the deadline). The middle sags: 5 is a word wall that plants nothing, and the landing on 9 is calm and correct but has no tonal climax. The craft prediction of 7.0 is below the 8.5 ship bar, and this is round 1 of 5, so the art shortfall earns a revise.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "The gold slip 'Alaska holds 7.3 percent of E-Rate.' is a claim with no denominator, and the slip's cut edge points right. Slide 2 answers with the two reams and the 0.2 percent of people.",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "Nothing on 2 teases 'one district'. The pull rests on the cover-to-2 momentum and a ground flip from ink to paper. The 'nearly half in one district' plant is not visible anywhere on the frame.",
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "'The other 129 applicants share $104.2 million' plus the 100-cell grid with 46 gold cells asks 'who is next?'. Slide 4's ten rows pay it at once.",
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "4 ends on '45 school districts hold 98.6 percent.' plus a map. There is no tease of 'two camps argue this'. The torn seam on 5 is the only pull, and it is a visual surprise, not an open loop.",
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "5 never plants the AI turn. The pull is only the seam tear and a return to paper. The tear does not continue onto 6's left edge.",
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "The blue-pencil 'priced how?' circled on AI-enabled, with the body line 'The notice cites an executive order'. Slide 7 answers with 9,229,248 in huge numerals.",
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "The line 'The ledger holds the price, not the reason' leaves a question. 'Type area equals dollars' is a cute promise. The pull to 8 is moderate, not sharp.",
+   "strength": "weak"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "The dashed empty slip 'Alaska figure needed' with the blue-pencil arrow, plus 'Comments are due October 13th.'. Slide 9 answers with the eleventh gold sheet and the ask.",
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "polish",
+   "where": "slide 5 seam vs record stack",
+   "problem": "The fixture stack's right cap (x about 800 to 850) sits on top of the torn fibre fringe, so it reads as pasted over the tear instead of lying under or beside it. The seam is also a one-frame event. It is not echoed on 4's right edge or 6's left edge, so it does not read as a camera move.",
+   "fix": "Clip the stack to the paper side of the seam, or let the tear cast its lee onto the stack. Carry a sliver of tear along 6's left edge so 5 to 6 continues the seam."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 1, 3, 6, 8 vs 2, 4, 7 (stack fixture)",
+   "problem": "The record stack changes value between grounds (dark slate on paper, light on ink). It works, but it means the fixture is drawn two ways. On paper frames it is a dark slab, and its gold reads as a smaller event than the ink frames' bright stack.",
+   "fix": "Keep the two versions but check that the gold FY2025 layer has the same pixel thickness and lit top edge on both. It should, since thickness is proportional to $ million."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 7 and 8 (line figures)",
+   "problem": "Slide 8's slip says '$9,229,248 to $373,345', but slide 7 ends at the FY2025 figure 313,070. A reader who reconciles 7 with 8 sees the range ending at a different line than the latest one on 7.",
+   "fix": "Align them. Either the slip says '$9,229,248 to $313,070' if that is the latest funded line, or slide 7 explains why FY2024 is the comparison. Confirm against the claim ids before changing it."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 1 slip",
+   "problem": "The storyboard says the slip is 'cut off by the right edge', but it runs off the left and shows a folded corner at the right. The frame still works.",
+   "fix": "None needed unless the dossier check is strict."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 3, 4, 5",
+   "problem": "Three text-heavy frames run in a row. 3 has a five-line quote, a slip and a 100-cell grid. 4 has ten labelled rows, a map and a headline. 5 is about 65 words of large body type in two columns. The declared breather is the wordiest frame in the middle of the deck. The actual quiet frame is 6, and it lands after the fatigue.",
+   "fix": "Make 5 a real rest. Cut each column to one statement (Carr's reduce-scope line, and Jackson's 'lifeline' quote) and drop the screen-time sentence and Mayer's 7 percent, which slide 8 already carries. Give the freed lower half to the tear as an object."
+  },
+  {
+   "severity": "polish",
+   "where": "whole deck",
+   "problem": "Alternation P I P I split P I P I holds and reads clearly, but it is binary. Every paper frame sits at the same pale grey-blue key and every ink frame at the same navy, so the tonal arc is flat. The storyboard promised 'highest key on 03, darkest on 04', and the contact sheet doesn't show it.",
+   "fix": "Push 3 lighter and warmer and let 4 sink to near-black with a narrower lamp pool, so the 3 to 4 flip is the deck's biggest luminance swing. Let the tear on 5 be the only mid-tone frame."
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "major",
+   "where": "slide 5, right column",
+   "problem": "The pull quote opens with a closing glyph, \u201dThe E-Rate program is..., the wrong direction. The deck also mixes curly apostrophes (2 'country\u2019s', 3 'Alaska\u2019s', 5 right, 9 'FCC\u2019s') with straight ones (5 left \"program's\", 8 \"FCC's\" and \"Alaska's\"). The house rule is straight quotes.",
+   "fix": "Convert all to straight quotes, and use a straight opening quote on 5."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 7",
+   "problem": "The numerals 9,229,248 carry no dollar sign or unit. The only tell is 'TYPE AREA EQUALS DOLLARS' at the bottom. A swiper cold-reading the biggest number in the deck can't tell it is dollars.",
+   "fix": "Add '$' to the numerals or the eyebrow."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 3 vs 8 (paper tooth)",
+   "problem": "Paper tooth on 8 reads coarser and blotchier (larger cloudlike mottle) than on 1, 3 and 6. It looks like a different sheet.",
+   "fix": "Use the same tooth seed and scale on every paper frame."
+  },
+  {
+   "severity": "polish",
+   "where": "counters and fixtures",
+   "problem": "Counters transcribe correctly: 01/09 through 09/09, same position. The Bethel coordinate and site URL are at the same positions on all nine. The docket label and record stack are on 1 to 8, and 9 turns the stack into the hero. No drift found.",
+   "fix": "None."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 5,
+  "why": "An Alaskan who swiped 1 to 3 gets a strong hook, a fast pay-off and a district they know (Lower Kuskokwim, 46.6 percent). Slide 4 is data-dense but rewards them with named districts and a map. Slide 5 hands over a wall of quoted text with no new number and no plant for what comes next. It is the first frame with nothing to look at, and it is where a 3-slide reader who is only a maybe drops. The ones who reach 6 will probably finish, because 6 to 9 is a clean chain.",
+  "fix": "Halve the copy on 5, and put the AI question's first three words ('What level of...') as a torn strip on the right edge of 5's ink side so 5 plants 6. Make the tear itself the frame's picture."
+ },
+ "craft": {
+  "predicted_artwork_score": 7.0,
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 6.0,
+    "cause": "c",
+    "problem": "The lower third is dead on both sides. The left column stops at about y 1280 and the right at y 1470, leaving about 300px of flat paper and flat gradient down to the stack. The torn seam is the only modelled thing, and it is a thin strip. The ink half is a radial gradient glow plus text. The frame is text over two flat fields.",
+    "fix": "Give the tear real volume across the whole height: a peeled paper flap with a lit underside, a fibre fringe and a cast shadow on the ink. Let that carry the lower half, and cut the copy to one quote per side."
+   },
+   {
+    "slide": 6,
+    "score": 6.7,
+    "cause": "c",
+    "problem": "The lower third is bare. There is a flat gap of about 250px between the executive-order paragraph and the stack fixture. The cut display is the same terraced-emboss function as slide 1, so this frame reads as slide 1's helper with different words. The halos between letters in 'of connectivity' fuse into dirty double outlines.",
+    "fix": "Scale the cut display so it fills the middle third, move the executive-order paragraph down, and change the cut shape (a punched aperture with a visible pit floor and under-sheet strip) so it is not slide 1's letters again."
+   },
+   {
+    "slide": 4,
+    "score": 6.8,
+    "cause": "b",
+    "problem": "The paper-cut Alaska is the least modelled object on the frame. It is small, silvery, blurry, with dark label boxes overlapping the coast (Bethel and Anchorage on the shoreline). Beside it, a big blue radial glow fills the right half as a default light pool. The headline-to-chart gap (y 560 to 700) is empty. The bars themselves are strong, but the six mid rows repeat the same grey stack.",
+    "fix": "Rebuild the map at about 1.5x with three visibly stepped sheet layers, a lit rim and a cast shadow, and move the labels off the coast as leader slips. That gives the right half a real object instead of a glow."
+   },
+   {
+    "slide": 7,
+    "score": 7.0,
+    "cause": "d",
+    "problem": "The blue lamp pool behind the numerals is smeared into horizontal wavy bands that look like banding or a smudge. The numerals read as a chrome bevel filter with stacked outlines, not cut paper, so the physics is a step off the rest of the deck. The bottom of the frame is a gap and a label above the stack.",
+    "fix": "Replace the smeared glow with one clean, grain-dithered lamp pool cast by the raised numerals (a hard, lit-side shadow on ink), and drop the metallic bevel to a plain stepped-paper wall."
+   },
+   {
+    "slide": 3,
+    "score": 7.0,
+    "cause": "b",
+    "problem": "The 100-cell grid is flat squares with a hairline bevel, and its gold is a gradient chip. It is not the cut apertures with pit floor that the craft plan promised. A band of about 200px sits blank between 'The other 129 applicants' and the stack.",
+    "fix": "Cut the 100 cells as real terraced apertures (pit floor, lit walls, cast shadow) with the gold as pasted chips, and fill the empty band by moving the grid and slip down or scaling them up."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     2,
+     4,
+     5,
+     7,
+     9
+    ],
+    "problem": "Every ink frame relies on the same radial blue 'lit ink pool' as its light. It is a soft gradient blob, and the storyboard named 'largest object modelled by a gradient' as the standing failure. On 2 and 9 it sits under the objects and reads fine. On 4, 5 and 7 it is the main non-text region of the frame, and on 7 it smears.",
+    "fix": "Keep the pool only where an object casts into it (2, 9). Remove it from 4, 5 and 7, or replace it with a hard-edged cast shadow and ink grain."
+   },
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     6,
+     7
+    ],
+    "problem": "One embossed-halo text function serves three frames (1 and 6 letters, 7 numerals). This is at the limit, and 1 and 6 are visibly the same drawing. Add the sheet-edge helper (2, 4, 9, plus the stack fixture on eight frames) and the gold slip (1, 3, 8), and the deck is really three drawing functions plus a torn seam and a waffle.",
+    "fix": "Change 6's method (see the 6 fix) so no helper carries more than two hero frames. Treat the stack fixture as constant, but do not let it be the only modelled object on 5 and 6."
+   },
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "problem": "No tonal or density arc on the sheet. It is a binary paper/ink flip with almost identical key on every paper frame. Density runs high in 3 to 5, low in 6, mid in 7 and 9, high in 8. The eye finds no build and no climax frame except the gold sheet on 9.",
+    "fix": "Make 3 the high-key, warm frame and 4 the near-black frame. Give 9 a rim-lit gold with a strong cast on the ink so the last frame is the deck's tonal peak."
+   },
+   {
+    "cause": "c",
+    "slides": [
+     3,
+     5,
+     6,
+     9
+    ],
+    "problem": "Four frames have a flat, event-free band above the fixture (3: about y 1600 to 1750; 5 and 6: y 1300 to 1750; 9: y 860 to 1050 on the ink). The fixture stack alone does not carry a lower third when the content above it stops early.",
+    "fix": "Scale content to the band, or let the stack fixture step up to a bigger height on those frames."
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "score_0_10": 7.4
+}

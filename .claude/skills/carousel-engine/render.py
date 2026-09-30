@@ -4420,7 +4420,11 @@ def main():
     ap.add_argument("--scale", type=float, default=2.0)
     ap.add_argument("--width", type=int, default=1080)
     ap.add_argument("--height", type=int, default=1350)
-    ap.add_argument("--only", default="", help="comma-separated slide numbers to re-render, e.g. 2,5")
+    ap.add_argument("--only", default="", help="comma-separated slide numbers to re-render, e.g. 2,5; "
+                    "any slide whose existing PNG is already STALE is added to it (see --only-exact)")
+    ap.add_argument("--only-exact", action="store_true",
+                    help="render exactly the --only list, even when other PNGs are stale "
+                         "(qa.py still FAILs a stale PNG, so this only defers the re-render)")
     ap.add_argument("--timeout", type=int, default=45000)
     args = ap.parse_args()
 
@@ -4434,11 +4438,6 @@ def main():
     if not slides:
         print(f"FAIL: no slide-*.html in {slides_dir}", file=sys.stderr)
         sys.exit(1)
-    if args.only:
-        keep = {int(x) for x in args.only.split(",")}
-        slides = [s for s in slides
-                  if int(re.search(r"slide-(\d+)", s.name).group(1)) in keep]
-
     report_path = out_dir / "render_report.json"
     prior = {}
     if report_path.exists():
@@ -4446,6 +4445,36 @@ def main():
             prior = {r["file"]: r for r in json.loads(report_path.read_text())["slides"]}
         except Exception:
             prior = {}
+
+    if args.only:
+        keep = {int(x) for x in args.only.split(",")}
+        # `--only` WIDENS TO WHAT IS ALREADY STALE (2026-09-29, run No.72). The
+        # STALE notice below and qa.py's stale-render FAIL both exist because a
+        # subset re-render after a SHARED-helper edit leaves every other frame
+        # showing the old helper. No.72 edited assets/js/akstack.js, re-rendered
+        # `--only` the slides it was working on, and came within one command of
+        # gating on seven stale PNGs; the only correct next step was always the
+        # re-render those two checks demand. So the subset now includes every
+        # slide whose existing record is stale by the same hash arithmetic, and
+        # says which it added and why. It can only render MORE than asked, so no
+        # check reads less; `--only-exact` restores the literal subset, and qa.py
+        # still FAILs any PNG that is stale afterwards.
+        if not args.only_exact:
+            added = []
+            for s in slides:
+                n = int(re.search(r"slide-(\d+)", s.name).group(1))
+                r = prior.get(s.name)
+                if n in keep or not r or not (out_dir / (s.stem + ".png")).exists():
+                    continue
+                why = stale_reasons(r.get("source") or {})
+                if why:
+                    keep.add(n)
+                    added.append("%s (%s)" % (s.name, ", ".join(why)))
+            if added:
+                print("--only widened to %d stale slide(s): %s. Pass --only-exact "
+                      "to render just the list you gave." % (len(added), "; ".join(added)))
+        slides = [s for s in slides
+                  if int(re.search(r"slide-(\d+)", s.name).group(1)) in keep]
 
     results = []
     with sync_playwright() as p:

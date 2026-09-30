@@ -1,0 +1,170 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass",
+   "evidence": "Re-scanned copy.json (post_copy, first_comment, 9 slides, aftercare, editor notes). Only ASCII hyphens (E-Rate, Yukon-Koyukuk, AI-enabled, well-resourced, docket 26-133, ISO dates). caption_report verdict PASS over 81 fields. None visible in the re-rendered slides 02, 04, 05, 07, 08."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in copy.json or any render. The gold Polaris on slide 09 is a drawn path."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "copy.json slide claim_ids are unchanged by the craft cycle (65 claims in claims.json). Earlier recomputation still holds: 195.2/2687.7 = 7.3 percent, 91.0/195.2 = 46.6, 128.3/195.2 = 65.7, 195.2 minus 91.0 = 104.2. Slide 08's 'about 7 percent of its budget' rests on C33 (Alaska Beacon) with no on-slide attribution, and the Census figures are 0.85 confidence. Both are flagged for the editor, not failures."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass",
+   "evidence": "Transcribed 02, 04, 05, 07 and 08 after the cycle against copy.json: '$195.2 million', 'Three districts hold 65.7 percent.', all ten district names and values, '$9,229,248' x2, '$373,345', '$313,070', 'Tiffany Jackson, Association of Alaska School Boards'. All match. Advisory only: slide 05's opening quote draws as a closing-style curly mark (Space Grotesk's tapered U+0022) and slide 08's headline shows straight apostrophes next to curly ones elsewhere. These are font and house-rule effects, not misspellings."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "Slide 04 pin plates (UTQIAGVIK, KOTZEBUE, UNALAKLEET, BETHEL, ANCHORAGE) now sit clear of each other and every text is whole. The Anchorage plate touches the land mass but covers no text. Slide 02's dollar sign is spaced from the 1, and the Alaska 7.3 and Alaska 0.2 labels are off ream B and fully legible. Slide 05 and slide 07 text is whole. machine_qa has 0 fails."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "The prior 4.3 flag on slide 07's '$9,229,248' is gone. machine_qa now lists only art-crossing and edge-density warns for slide 07, and you report the worst point clearing 4.5. The pale chrome numerals on the darkened blue pool read clearly in the render. Ink frames use #F4F8FF and paper frames use #0E1A24 at well above 4.5. Slide 04's value text was brightened."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides: 9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa verdict WARN, fails 0, warns 30. assemble_report.json shows pdf_mode 'vector', 11.42 MB, title 'Limited or Sunset? What Alaska Adds to the E-Rate Record' from copy.json."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without material new development",
+   "status": "pass",
+   "evidence": "Unchanged from the earlier score. No E-Rate, FCC school-internet or USAC entry among Nos. 64 to 71 (Sept 20 to 28). First-time topic."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "No.72 is THE CUT-AND-PASTE NOTICE (COPY-DESK RAKE, bleached newsprint, record stack). Nos. 68 to 71 are Light-Table Scribe, Focus-Pull Set, Lobeck Block and Night Strobe Shot List. The craft cycle changed lighting and layout only, not the hero structure. This run's ledger rows are appended at ship."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_report: 74 brand phrases loaded, 0 fails. I read the caption and first comment fresh and found no gap, matters, pattern or cannot. Slide strings are clean."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "#ERate #AlaskaSchools #RuralBroadband (3). No URL in post_copy. All links are in first_comment. Caption is 838 chars, 3 commas (0.38 per 100 words, under the 1.05 budget)."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "The dashed 'Alaska figure needed' slip on slide 08 is a designed, labelled ask (no Alaska figure exists for screen time limits), not unfinished work. It is confirmed in the render and named as intentional in the editor notes. plan_drift is now PASS per the caller."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Unchanged. 'Limited or sunset?' in huge terraced cut letters, one focal point, and it holds at 432px in the contact sheet. The 7.3 percent claim sits in the sub-slip rather than the headline, and the pale cover has less feed pop than a dark one."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Unchanged. Paper and ink call-and-response from 01 to 09, and each slide plants the next question. The contact sheet reads as one sequence. Slide 08 partly recaps and slide 05 is a declared rest."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 8,
+   "weight": 0.16,
+   "notes": "The cycle lifted the frames I named. Slide 07: the small numerals are now crisp embossed cut paper with a hard cast instead of a smear, and the darkened pool clears contrast. Slide 04: the dead band is closed, the headline sits lower, the pin plates are cleanly separated, and the map's terraced walls read. Slide 05: a lit paper fold now crosses the paper half and a second lamp pool sits on the ink, so the lower half is modelled and the torn seam with fibres is a strong feature. Slide 02: the reams have lamp falloff darkening toward the base, and the pool and the 100 jittered sheet edges show. Held at 8, not higher. Slide 05's lower ~40 percent is still mostly quiet tone and the fold is subtle. Slide 02's ream mass is still a long repetitive field, and the right ream shows less falloff than the left. Slide 04's ink to the right of the short bars is still open. Slide 08 is competent but a standard ruled list on paper. The hero stays flat by argued dossier choice. Strongest frames are 01, 03, 06, 09 and now 07."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "Unchanged. Sheets encode dollars (100-sheet reams with 7.3 and 0.2 gold sheets, one sheet per $ million, 100 cells with 46.6 gold, type area proportional to dollars with asserted 32.18 and 29.47 px). The paper register is somewhat interchangeable with any FCC comment story."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "Unchanged. Named districts, towns, people and the ADN and Alaska Beacon, with a true-projection map on slide 04. It is a national FCC notice with Alaska's numbers pasted in, and Alaska appears visually only on slide 04."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "Unchanged. New verified specifics on most slides (rank, 7.3 against 0.2, 46.6 and $104.2M, ten district values, the $9,229,248 to $313,070 line). Slide 05 adds no new number, slide 08 mostly recaps, and slide 01 is thin as a cover should be."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8.5,
+   "weight": 0.08,
+   "notes": "Unchanged. Diverges from Nos. 68 to 71 on hero, atmosphere, palette, type pairing, hook and continuity device. The house constants (gold, mono, Polaris) and the echo of the older No.45 and No.41 keep it under 9."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07,
+   "notes": "The slide 07 worst-point contrast squeaker is fixed and the small numerals are crisper. Still charged: the record-stack caption is 17 design px on every frame, slide 04's key line and slide 09's FY ticks sit at about 19 to 20px, all under the 24px floor, and slide 05 and slide 06 have ragged breaks ('the', 'to', 'of'). Everything reads at feed size. Vector PDF 11.42 MB with title and progress counters."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "Unchanged. The hook is 108 chars and contrasts two shares. 838 chars, 3 commas, a position-taking voice, the deck-summary line present and a debatable closing question. The summary line is a long run-on."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Post copy, 3 hashtags, a full first-comment source block, document title, 4 aftercare items with deadlines and editor notes are all present. plan_drift is now PASS and the editor notes no longer carry the stale slide 05 items. Not 9, since I can't verify the Gmail draft and image URLs pre-ship, the ledger rows are appended only at ship, and site_fresh needs the docs/ rebuild if not yet done."
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(8x0.16)+(8.5x0.14)+(8x0.12)+(7.5x0.10)+(8.5x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 1.12+1.12+1.28+1.19+0.96+0.75+0.68+0.49+0.40+0.80 = 8.79. No hard fail, so no cap. Rubric weights sum to 1.10, so 8.79 is the raw sum (the ledger convention). Normalized by 1.10 it is 7.99.",
+ "weighted_total": 8.79,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Legibility & platform fitness",
+ "one_sentence_fix": "Raise the 17 to 20px mono labels (record-stack caption on every frame, slide 04 key line, slide 09 FY ticks) to the 24px floor and author the ragged breaks on slides 05, 06 and 08.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The lit fold is subtle. The lower ~40 percent of both halves is still quiet tone with only the seam carrying strong relief, and the ink half's lamp pool is a soft blob without surface texture.",
+   "fix": "Deepen the fold into a visible paper curl with a cast shadow and raking fibre tooth on the left, and put orange-peel film relief and a tighter hot spot in the ink pool on the right."
+  },
+  {
+   "slide": 2,
+   "problem": "Both reams remain a long uniform field of near-identical sheet edges. The lamp falloff shows on the left ream, but the right ream reads mostly flat and the dollar sign still sits tight against the 1.",
+   "fix": "Match the falloff on the right ream, add a stronger tone jitter on every tenth sheet and a base occlusion band, and add another 4 to 6 px of spacing after the dollar sign."
+  },
+  {
+   "slide": 8,
+   "problem": "It is a competent but standard ruled list. The paper ground is uniform and only the gold slips carry depth.",
+   "fix": "Add a lamp falloff across the paper and a cast shadow and lifted-corner variation on the remaining slips, so the frame joins the lit-material system of the others."
+  },
+  {
+   "slide": 4,
+   "problem": "The ink to the right of the short bars is open, and the map stays small relative to its space.",
+   "fix": "Enlarge the map about 15 percent with a stronger lit wall and contact shadow, and extend the lamp-pool falloff so it fills the right-hand area."
+  }
+ ],
+ "editor_notes_for_email": "Score 8.79 raw (7.99 normalized by the rubric's 1.10 weight sum) after the one CRAFT-FLOOR cycle, with no hard fails. It clears the round-4 threshold of 7.7, and it clears 8.3 and 8.0 on the raw-sum convention the ledger uses. On the normalized sum it is 7.99, so it sits right at 8.0 and does not clear 8.3. Artwork craft is 8.0, up from 7.5, which is under the 8.5 floor, and the one owed craft cycle has now been spent, so ship it and do not loop. Residual squeakers: the record-stack caption and a few mono labels sit at 17 to 20px, below the 24px floor, though they read; some display lines have ragged breaks. Before the draft goes out: rebuild docs/ (site_fresh) if it is not already green, and append the 2026-09-29 rows to topics.json, artwork.json and captions.json. Please verify before posting: USAC data is live, so re-run the C16 and C24 links and confirm $195.2 million and $91.0 million; the Census figures (737,270 and 341,784,857, behind '0.2 percent') were read via a reader rendering because census.gov returned 403 (confidence 0.85); three district-office town claims (Unalakleet, Kotzebue, Tok) rest on reader renderings of the district sites; and slide 08's 'Alaska Gateway, about 7 percent of its budget' is Superintendent Mayer via the Alaska Beacon, with no attribution printed on the slide (it is credited in the first comment). Intentional items to keep: the dashed 'Alaska figure needed' slip on slide 08 is a designed ask, not a placeholder; the slide 07 Starlink reason is the ADN's and only USAC's dollar figures are printed; slide 05's opening quote mark is Space Grotesk's tapered straight quote and looks curly at a glance; FY2026 is a part year and never shown as a decline; the deck takes no side on cutting or keeping E-Rate. Post Thursday October 1st or Tuesday October 6th so readers have days to file before the October 13th deadline. gas_watch_live was WARN in the gate block earlier, so carry the Gas Watch status line in the draft as the routine requires.",
+ "craft_cycle": {
+  "frames": [
+   5,
+   7,
+   4,
+   2
+  ],
+  "art_before": 7.5,
+  "art_after": 8
+ }
+}

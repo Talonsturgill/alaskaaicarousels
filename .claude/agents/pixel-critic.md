@@ -71,6 +71,15 @@ Protocol per slide — LOOK at both images (Read them), then:
 11. **Brand police** — no em/en dashes in any rendered string, no emojis,
    straight quotes, progress counter correct (NN / NN), constellation marks
    present per dossier.
+   Quotes are judged by CODEPOINT, not by glyph shape. Space Grotesk draws
+   the straight marks U+0022 and U+0027 slanted and tapered (its straight
+   opening quote looks like a closing curly one) and Manrope draws U+0027 as
+   a comma-shaped apostrophe; no other house face does (measured 2026-09-29).
+   `scripts/copy_sync_check.py` prints each slide's quote marks by codepoint
+   and face and FAILS the run on any curly quote or em or en dash in the
+   rendered text. If you were handed that census, trust it over the pixels;
+   if a mark still looks curly in a face not flagged "drawn slanted", report
+   it as a hard-fail with the text quoted.
 
 Return ONLY JSON:
 {

@@ -13,7 +13,11 @@ Method:
 1. Check EVERY hard fail from the rubric explicitly, one by one, citing
    evidence for each pass/fail (transcribe suspect strings yourself; check
    the PDF mode in assemble_report; check ledger divergence; scan copy for
-   banned punctuation with fresh eyes).
+   banned punctuation with fresh eyes). Quote marks are judged by codepoint:
+   Space Grotesk draws straight U+0022 and U+0027 slanted and Manrope draws
+   U+0027 comma-shaped, so both LOOK curly. The copy_sync census (quote
+   marks per slide, by codepoint and face) is the evidence; a curly-looking
+   mark in a face it flags "drawn slanted" is not a finding.
 2. Score each criterion 1-10 against its descriptors. Be harsh: 9-10 means
    best-in-class on LinkedIn that week; most good work is 7-8.
 3. Compute weighted = Σ(score × weight). Show the arithmetic. If ANY hard

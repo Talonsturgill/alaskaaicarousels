@@ -2406,6 +2406,52 @@
         "bespoke_median": 0.099
       },
       "note": "Three rounds: one pixel round (five critics, then three re-reviews, all ship), one flow-critic craft round, one craft-floor cycle. The helper orientation bug (AKSNOW's crest at the region's top edge) flattened two floors until it was found."
+    },
+    {
+      "run_date": "2026-09-29",
+      "carousel_no": 72,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE CUT-AND-PASTE NOTICE. Paper frames speak the FCC and ink frames speak Alaska's record: terraced paper-cut apertures (signed-distance stepped sheets with a heightfield shadow march) for the cover question and the AI question, edge-on reams and rows of sheets whose count is the data, gold paste-up slips, a torn seam, bas-relief numerals.",
+      "atmosphere": "NEW: COPY-DESK RAKE. One lamp, upper left (az 305, el 26), raking across cut paper and lit ink film, with a lamp pool on the ink frames.",
+      "depth_technique": "AKSTACK terraced aperture (SDF stepped sheets, inverted for raised plateaus), edge-on reams with jittered sheets (02, 04, 09), gold slips with deckle and lifted corner (01, 03, 08), a torn seam with cast (05), a dropShadow for raised numerals (07)",
+      "line_voice": "blue pencil (tapered ribbon marks and margin notes), hair-weight drafting leaders, dashed for the slip that has no figure",
+      "continuity_device": "motif:the record stack (ten funding years as slabs whose thickness is dollars, FY2026 dashed as a part year), set at the foot of every frame and turned into the hero on 09",
+      "continuity_devices": [
+        "D1 the record stack at y 1214 to 1268, paper theme on paper frames and ink theme on ink frames",
+        "D2 paper and ink alternation (FCC speaks on paper, Alaska's record on ink) with 05 as the split",
+        "D3 the ink law: gold only where Alaska's dollars or the reader's ask sit"
+      ],
+      "hook_archetype": "NEW: THE QUOTED QUESTION (the regulator's own question as the cover)",
+      "palette_family": "bleached newsprint and press black: paper #D2D9DB, ink #0A131B, snow #F4F8FF, lamp-pool blues, gold #FFC72C, blue pencil #23479A",
+      "type_pairing": "Fraunces display over Space Grotesk body, JetBrains Mono labels",
+      "dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 3
+      },
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 3
+      },
+      "narrative_structure": "the question, the number, the concentration, the roll of districts, two voices, the AI question, the line collapse, the worksheet, the ask",
+      "techniques": [
+        "NEW akstack.js: signed-distance terraced apertures (cut and raised), edge-on reams and record stacks, gold slips, torn seam, tapered blue-pencil ribbon, dropShadow",
+        "Contact-shadow declarations measured with contact_probe on every frame that stands an object on a plate"
+      ],
+      "new_techniques_logged": [
+        "107 Terraced Paper-Cut Aperture (akstack.js)"
+      ],
+      "measured": {
+        "revision_rounds": 4,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.79,
+        "artwork": 8,
+        "bespoke_median": 0.257
+      },
+      "note": "Four editing rounds: five critics (all revise), five re-reviews (four ship), one flow critic (revise, art predicted 7.0), three round-3 re-reviews (ship), then the one craft-floor cycle on 05, 07, 04 and 02 (art 7.5 to 8.0). Brightening the lamp pool before declaring contacts was the repair that made casts measurable on ink; bespoke_check now counts akstack constructors as drawn marks."
     }
   ]
 }

@@ -1762,6 +1762,30 @@
       "evidence": "cron_health failed docket-watch at 09:50Z on a latest scheduled run of September 10th while the Actions API listed a scheduled success at 18:30Z on September 27th; the next audit failed pages on an old deployment id, and the two after that passed clean.",
       "act_on_it": "Before treating a cron_health FAIL as a broken workflow, re-run the audit and list the workflow's runs directly; a row that flips between reads is the API, not the job.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-09-29",
+      "carousel_no": 72,
+      "instinct": "LIGHT THE GROUND BEFORE DECLARING A CONTACT SHADOW ON INK.",
+      "evidence": "Every ink frame's first cast measured 1 to 4 L* under its ground because the lamp pool was dim (L* 17 to 20); brightening the pool to L* 30 to 40 gave 10 to 25 L* casts with no change to the cast itself, and the pixel critics stopped calling the objects floaty.",
+      "act_on_it": "On an ink frame, set the lamp pool to about L* 35 to 45, then run contact_probe with rects that sit on the pool and not inside the object, then declare. A raised numeral also needs an offset blurred copy (AKSTACK.dropShadow) because the terraced cast alone is a 4 px sliver.",
+      "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-29",
+      "carousel_no": 72,
+      "instinct": "SHORTEN A LEADER BY MOVING ITS LABEL, NEVER BY ROUTING THE LINE.",
+      "evidence": "Slide 06's pencil note first sat under the paragraph and the arrow crossed a line of type; routing it through the line gap made a 572 px leader that qa.py hard-failed at 540. Authoring the line breaks so the marked word ended a line put the note in free paper 50 px away.",
+      "act_on_it": "When a margin note has to point at a word inside a paragraph, author the breaks so the word ends a line and put the note beside it. Do not route around text.",
+      "confidence": 0.65
+    },
+    {
+      "run_date": "2026-09-29",
+      "carousel_no": 72,
+      "instinct": "A DECK OF CHASSIS CALLS READS AS BLOCKY TO bespoke_check UNLESS THE CALLS ARE COUNTED.",
+      "evidence": "The first bespoke_check read 24 blocky against 16 drawn (40 percent, FAIL) because akstack.js does its drawing inside the module; counting the chassis constructors at the call site gave 70 percent drawn, with the demo deck unchanged at 82.",
+      "act_on_it": "When a new shared helper module carries the art, register its constructors in bespoke_check's CHASSIS_RE in the same commit that adds the module.",
+      "confidence": 0.6
     }
   ]
 }

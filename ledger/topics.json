@@ -2835,6 +2835,53 @@
       "sources_lead": "https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site",
       "claims": 29,
       "note": "Shipped 8.23 vs 8.0 (round 3 threshold) after 8.23 vs 8.3 at round 2, zero hard fails; art 7 before and after the one craft-floor cycle (04, 08, 06, 02). Fourth deck in 30 days touching the Air Force lease lane, not acknowledged on the slides. GitHub dispatched no scheduled workflow from 22:25Z to 11:12Z (second night running, dispatch 403); the Gas Watch live audit failed until the 11:12Z run caught up and ended the run at WARN on normal lag."
+    },
+    {
+      "run_date": "2026-09-29",
+      "carousel_no": 72,
+      "topic": "The FCC's E-Rate notice (FCC 26-41, WC Docket 26-133 and three others) asks whether the program should be limited or sunset and what connectivity schools need for AI tools, with comments due October 13th and replies November 12th. Alaska drew $195.2 million in USAC funded commitments for funding year 2025 (third in the nation, 7.3 percent of $2.69 billion, against about 0.2 percent of U.S. residents), and Lower Kuskokwim School District alone holds $91.0 million (46.6 percent). The notice never uses the word Alaska.",
+      "angle": "THE QUOTED QUESTION. The FCC's own questions are quoted as cut paper, and Alaska's USAC numbers are pasted in as answers, with one blank left where no Alaska figure exists (screen time limits). Takes no side on cutting or keeping the program.",
+      "entities": [
+        "FCC",
+        "USAC",
+        "E-Rate",
+        "WC Docket 26-133",
+        "FCC 26-41",
+        "Brendan Carr",
+        "Lower Kuskokwim School District",
+        "Bering Strait School District",
+        "Northwest Arctic Borough School District",
+        "North Slope Borough School District",
+        "Lower Yukon School District",
+        "Alaska Gateway School District",
+        "Tiffany Jackson",
+        "Association of Alaska School Boards",
+        "Patrick Mayer",
+        "Anchorage Daily News",
+        "Alaska Beacon",
+        "GCI",
+        "Sateo Inc dba Microcom",
+        "Starlink",
+        "ECFS"
+      ],
+      "keywords": [
+        "E-Rate",
+        "universal service",
+        "school internet",
+        "limited or sunset",
+        "disproportionate share",
+        "funded commitments",
+        "Lower Kuskokwim",
+        "46.6 percent",
+        "65.7 percent",
+        "October 13th",
+        "AI-enabled tools",
+        "screen time"
+      ],
+      "headline": "Limited or Sunset? What Alaska Adds to the E-Rate Record",
+      "sources_lead": "https://www.govinfo.gov/content/pkg/FR-2026-08-14/html/2026-16590.htm",
+      "claims": 65,
+      "note": "Shipped 8.79 raw (normalized 7.99) at revision round 4 (threshold 7.7), zero hard fails; art 7.5 before and 8.0 after the one craft-floor cycle (05, 07, 04, 02). First E-Rate deck. USAC open data (srbr-2d59) was the keyless primary source for every dollar figure; census.gov returned 403 so the population figures rest on a reader rendering (confidence 0.85). Gas Watch live audit ended WARN on normal source lag after one CINGSA 307."
     }
   ]
 }
