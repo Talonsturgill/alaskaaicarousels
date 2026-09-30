@@ -1012,3 +1012,24 @@ annotation is the strongest pair):
     correlation 1.00000); the unflipped call measures near-minus-far +0.035
     on 04 against +0.474 flipped. `tests/aksnow_recede_verify.py` holds it.
     Default is `'top'`, so a drift seen from above is unchanged.
+
+107. **Terraced Paper-Cut Aperture (akstack.js)**, added 2026-09-29 for No.72.
+    A signed-distance field of any mask (glyphs, a state outline, a grid of
+    squares) is turned into N stepped sheets: each step is a band of the
+    field, shaded by a heightfield shadow march from one lamp (az 305, el 26),
+    with a pit floor darkened by ambient occlusion and a paper-tooth term. The
+    same call cuts a HOLE (letters cut through paper) or, with `invert`, a
+    RAISED plateau (a paper-cut Alaska, bas-relief numerals). Use the exact
+    distance transform (Felzenszwalb) rather than a blur so walls stay crisp
+    at 2x. Around it the module carries edge-on reams and record stacks (upright
+    sheets whose thickness or count is the data), gold paste-up slips with
+    deckle, lifted corner and a two-part cast, a torn seam, and a tapered
+    blue-pencil ribbon. What broke and what fixed it: a cast shadow on a dark
+    ink ground measured 1 to 4 L* under its ground because the ground was dim,
+    so contact probing found nothing to declare; brighten the lamp pool
+    (about L* 35 to 45) BEFORE declaring contacts, and add `AKSTACK.dropShadow`
+    (blurred, offset copy of the shape) under raised numerals, where the
+    terraced cast alone is a 4 px sliver. An unfinished slab (a part year) must
+    still be a solid film with a dashed depth face or it reads as a hole.
+    Mask geometry is drawn to an OffscreenCanvas so render.py's canvas-text
+    hook does not mistake it for a label.
