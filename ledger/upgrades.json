@@ -2786,6 +2786,51 @@
       "verification": "render.py + qa.py on this run's 9 slides with the new helper, in a scratch dir: 9/9 OK, qa WARN 0 fails 38 warns (identical to the shipped machine_qa), and all 18 PNGs (slide and canvas) byte-identical to out/2026-09-28/render. Demo deck 4/4 OK, qa WARN 0 fails 14 warns. Slides 04 and 05 rebuilt with nearEdge 'bottom' in place of the workaround: floor mean |dL| against the shipped frames 0.00041 and 0.00074, row-profile correlation 1.00000, qa WARN 0 fails; the same call WITHOUT the option (the defect) measures near-minus-far L +0.035 and range 0.165 on 04 against +0.474 and 0.651 shipped, and -0.107 on 05 against +0.482. tests/aksnow_recede_verify.py (new, in the engine's own browser): PASS 10/10 after five Codex rounds on PR #407 (reproduces the flip to mean |dL| 0.00003; near-lit; the defect fails the near-lit check; 'top' byte-identical to absent, 0 bytes differ; curved far edge 0 px painted above top(x) with 100 percent cover below; an unknown value throws; same ridge stats as the default; 8, a curved far edge keeps the far treatment, L under the edge 0.162 at low columns vs 0.158 at peaks; 9, a contour moving up to 320 px inside one 4 px strip keeps it, 0.200 vs 0.158; 10, a curve that varies only between step probes is still warped with 0 px above the pixel-grid contour). Against the pre-upgrade aksnow.js it FAILS 5 of the first 7, and each of checks 8, 9 and 10 FAILS on the version before its own fix. tests/aksnow_verify.py still PASS.",
       "rollback": "git checkout 023b33b5^ -- assets/js/aksnow.js tests/aksnow_recede_verify.py (later PR #407 review commits touch the same code, so a lone revert conflicts); no shipped slide calls nearEdge, so reverting changes no render.",
       "commit": "023b33b5"
+    },
+    {
+      "run_date": "2026-09-29",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/bespoke_check.py counts calls to the akstack chassis constructors (AKSTACK. or A. followed by terrace, ream, record, slip, sheetRow, tearPath, tearEdge, ribbon, dropShadow, paperGround, inkGround, polaris or cast) as drawn marks at the call site, the way AKSDF and AKT. already count, because the new module does its drawing inside itself.",
+      "trigger": "Run No.72 Phase 7: bespoke_check FAILED the akstack deck as a BLOCKY DECK at 18 drawn vs 27 blocky (40 percent, line 45) although its frames are signed-distance apertures, procedural reams and torn edges drawn inside assets/js/akstack.js. Made mid-run by the showrunner and logged in Phase 12.",
+      "files": [
+        "scripts/bespoke_check.py"
+      ],
+      "verification": "On out/2026-09-29/slides: the pre-upgrade script (f591b784^) FAILS at 18 drawn vs 27 blocky, 40 percent; the upgraded one PASSES at 62 drawn vs 27 blocky, 70 percent, median similarity 0.257 unchanged. For the maintainer: the change can only raise the drawn share; 12 of the 44 counted calls are grounds (paperGround, inkGround) and dropShadow, and without them the share is 65 percent, still over the line, so this deck's verdict does not rest on them. Whether grounds and shadows should count, and the bare `A.` alias, are flagged in out/2026-09-29/automation_retro.md deviation 1.",
+      "rollback": "git revert f591b784",
+      "commit": "f591b784"
+    },
+    {
+      "run_date": "2026-09-29",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py --only adds every slide whose existing PNG is already STALE (its HTML or a committed asset it loads changed since, by the same hash arithmetic the STALE notice and qa.py's stale-render FAIL use) and prints which it added and why; --only-exact keeps the literal list, and qa.py still FAILs anything left stale. It can only render more than asked.",
+      "trigger": "Run No.72 incident 2: after editing the shared helper assets/js/akstack.js, a render with --only printed STALE for the other frames and the run came within one command of reviewing or gating on stale PNGs; the only correct next step was always the full re-render the two checks demand.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/SKILL.md"
+      ],
+      "verification": "Scratch copy of this run's 9 slides, full render + qa: 9/9 OK, qa WARN 0 fails 30 warns (identical to shipped), all 9 PNGs byte-identical to out/2026-09-29/render. Reconstruction: a comment appended to assets/js/akstack.js (restored, sha1 2fec565a before and after, git clean). --only 2 --only-exact (the old path): 1 rendered, STALE for 8, qa.py exit 1 with 8 stale-render FAILs. --only 2 (new): widened to 8, 9 rendered, qa.py exit 0, 0 stale fails. An HTML-only edit to slide 05 with --only 3 widened to slide 05 alone, qa exit 0. examples/demo-deck: 4/4 OK, qa WARN 0 fails 14 warns; --only 2 with nothing stale renders 1 slide and prints no widening.",
+      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout <sha>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md); --only then renders the literal list again and qa.py's stale FAIL is unchanged either way.",
+      "commit": ""
+    },
+    {
+      "run_date": "2026-09-29",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/copy_sync_check.py FAILS on a curly quote (U+201C, U+201D, U+2018, U+2019) or an em or en dash (U+2014, U+2013) in any RENDERED DOM text or canvas string, and prints each slide's quote marks by codepoint and face, flagging Space Grotesk and Manrope as faces that draw the neutral marks slanted. The pixel-critic and scorer briefs judge quotes by codepoint and trust that census, and Phase 8 step 2 pastes each critic its line.",
+      "trigger": "Run No.72 incident 4: three pixel critics and the scorer reported curly quotes the source never held, and the defence offered (copy_sync and caption_check PASS) was not evidence: caption_check reads copy.json only and copy_sync compared letters and digits only, so no gate read the punctuation that rendered, and a curly mark or dash typed into slide HTML or a fixture copy.json never holds would have shipped green. Principle for the census: Unicode means U+0022 and U+0027 to be neutral and vertical, https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html ; measured in the engine's Chromium, Space Grotesk slants both and Manrope slants U+0027, and no OpenType setting changes either.",
+      "files": [
+        "scripts/copy_sync_check.py",
+        "tests/copy_sync_punct_verify.py",
+        ".claude/agents/pixel-critic.md",
+        ".claude/agents/scorer.md",
+        "prompts/routine_instructions.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "On this run: PASS, 86 strings, census flags Space Grotesk on slides 02, 03, 05 and 09, and slide 05's two U+0022 in Space Grotesk are the marks the scorer read as curly; gate_status copy_sync row PASS with the verdict line; gate_status --self-test 27/27. Reconstruction: scratch slide 05 re-rendered with a curly apostrophe and an em dash in its decorative coordinate line and an en dash drawn by canvas fillText: the new script FAILS all three (U+2019, U+2014, U+2013), the pre-upgrade script PASSES the same render. tests/copy_sync_punct_verify.py (new, hermetic): 6/6 HOLD, 4 BROKEN against the pre-upgrade script. tests/copy_sync_shred_verify.py still HOLDS. Not an engine change; render + qa on this run and the demo deck were run for upgrade 2 and are unaffected.",
+      "rollback": "git revert the upgrade(2026-09-29) commit (or git checkout <sha>^ -- scripts/copy_sync_check.py .claude/agents/pixel-critic.md .claude/agents/scorer.md prompts/routine_instructions.md and delete tests/copy_sync_punct_verify.py).",
+      "commit": ""
     }
   ],
   "scan_log": [
@@ -3229,6 +3274,13 @@
       "searches": "4 searches, 5 fetches, 4 substantive reads",
       "found": "(1) Pairwise verdicts are more stable and closer to human judgment than direct scores on subjective criteria ('Aligning with Human Judgement', arXiv 2403.16950, summarised at https://eugeneyan.com/writing/llm-evaluators/); a 4.1 vs 4.0 rubric pair is inside the judge's own variance (https://futureagi.com/blog/llm-arena-judge-comparison-evals-2026/). (2) Position bias is the price: flip rates of 3.5 to 38 percent under order swap on MT-Bench, and test-retest above 0.95 can coexist with position bias above 0.10, so run AB and BA and treat order-dependent verdicts as ties (https://arxiv.org/html/2606.19544v1). (3) A critic-in-the-loop refinement pipeline with steady gains over three cycles retains the best-scoring version across iterations, not the last (https://arxiv.org/html/2604.05839); the house already does.",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-09-28 frontier scan, focus (f)': a per-frame pre/post pairwise judgment in both orders for the craft cycle, reported beside the unchanged integer; unblocks after the scorer's own AB/BA flip rate is measured on three known pre_craft pairs and one degraded frame). Nothing applied from the scan; the run's one new upgrade went to the standing offender (aksnow nearEdge)."
+    },
+    {
+      "run_date": "2026-09-29",
+      "focus": "(d) typography, narrowed to quote-mark glyphs. Legal (last read 2026-09-17) and distinct from the last three logged foci: 2026-09-28 (f) self-improving pipelines, 2026-09-27 (b) editorial cartography, 2026-09-26 (e) headless Chromium. Chosen because this run's incident 4 was a typography fact (critics reading Space Grotesk's straight quotes as curly), and narrowed because line breaking in (d) is recorded as well mined.",
+      "searches": "4 searches, 2 fetches, 3 measurements in the engine's own Chromium (all eight committed families at 72 px; eleven OpenType settings on Space Grotesk and Manrope; a pypdf read of a Chromium PDF and of all 72 shipped carousel.pdf files)",
+      "found": "(1) Unicode means U+0022 and U+0027 to be neutral, vertical glyphs, never directional (https://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html). (2) MEASURED: Space Grotesk slants and tapers both marks, so its straight opening quote looks like a closing curly one; Manrope slants U+0027; Fraunces, Archivo, Instrument Serif, JetBrains Mono, Bricolage Grotesque and Unbounded draw both upright; no salt, ss01 to ss07, calt off or case setting changes either face (screenshot hashes identical). (3) MEASURED: Chromium's PDF text layer records Manrope's apostrophe as U+2019 for some occurrences; 15 of 72 shipped PDFs carry U+2019 in extracted text. (4) Space Grotesk's alternates (https://fontsource.org/fonts/space-grotesk/about) do not touch the quote marks. Nothing new on line breaking.",
+      "outcome": "(1)+(2) supply the principle and the slanted-face flag inside this run's reactive copy_sync fix (logged as a fix, not an improvement). PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-09-29 frontier scan, focus (d)'): setting quote marks in the deck's other face when quoting in Space Grotesk or Manrope (unblocks on the next deck that quotes in either face), and the PDF text layer's U+2019 (unblocks if a reader-facing surface is shown to read the text layer)."
     }
   ]
 }

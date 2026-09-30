@@ -1283,7 +1283,10 @@ that argument was typed by hand.
 2. Spawn `pixel-critic` agents IN PARALLEL — one per 1-2 slides — each
    with the render PNG path, the thumb path, the slide's dossier, and the
    deck's doctrine excerpts. They transcribe, verify checklists, and
-   return fix lists.
+   return fix lists. Paste each critic its slide's line of the quote-mark
+   census `scripts/copy_sync_check.py` prints (2026-09-29): Space Grotesk and
+   Manrope draw straight marks slanted, and on No.72 three critics and the
+   scorer reported curly quotes the source never held.
 
    If a dossier states field 11a, the WORDLESS CLAIM, pass it in the prompt
    and require the critic to answer `encoding_reads`. That judgement cannot be

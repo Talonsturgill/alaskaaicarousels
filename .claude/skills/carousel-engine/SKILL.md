@@ -49,6 +49,13 @@ and then re-rendered a different subset, so both were silent no-ops and the flow
 critic reviewed the pre-repair contact sheet and reported both repairs as still
 broken. The remedy is always the same, re-render the slide and re-run qa.
 
+Since 2026-09-29 `--only` applies that remedy itself: any slide whose existing
+PNG is already stale (its HTML or a committed asset it loads has changed, by the
+same hash arithmetic) is added to the list, and render.py prints which slides it
+added and why. After editing a shared helper in `assets/js/`, `--only 3` renders
+every frame that loads it. `--only-exact` renders the literal list; qa.py still
+FAILs whatever it left stale.
+
 ## Slide HTML contract
 
 - One file per slide: `slide-01.html`, `slide-02.html`, ... Design for the
