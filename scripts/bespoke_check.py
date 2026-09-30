@@ -87,6 +87,15 @@ DRAWN = ("bezierCurveTo", "quadraticCurveTo", "arc(", "arcTo",
          "fbm2", "simplex2", "simplex3", "warp2", "reliefShade",
          "AKSDF", "AKT.", "d3.contours", "d3.geoPath", "hachure",
          "stipple", "contour", "setTransform", "clip(")
+# The akstack chassis (assets/js/akstack.js, 2026-09-29) does its drawing inside
+# the module, so a slide that calls `AKSTACK.terrace` or `A.ream` shows the gate
+# one call and no arcs, and a deck of signed-distance apertures, procedural
+# reams and torn edges scored 40 percent drawn. Its constructors are generated
+# marks by construction (heightfield shading, jittered edges, sampled fibres),
+# so the calls are counted where they appear in the slide script.
+CHASSIS_RE = re.compile(
+    r"\b(?:AKSTACK|A)\.(?:terrace|ream|record|slip|sheetRow|tearPath|tearEdge|"
+    r"ribbon|dropShadow|paperGround|inkGround|polaris|cast)\(")
 FAIL_DRAWN_SHARE = 0.45   # demo-deck 0.82, run 2026-08-05 0.23
 WARN_DRAWN_SHARE = 0.60
 
@@ -161,6 +170,7 @@ def check(slides_dir: Path):
                                  f.read_text(), re.S))
         blocky += sum(s.count(k) for k in BLOCKY)
         drawn += sum(s.count(k) for k in DRAWN)
+        drawn += len(CHASSIS_RE.findall(s))
     total = blocky + drawn
     share = (drawn / total) if total else 0.0
     res["blocky_calls"] = blocky
