@@ -1,39 +1,49 @@
 {
- "run_date": "2026-09-29",
- "carousel_no": 72,
- "effort": "high",
- "date_note": "Anchorage wall clock was Sept 29th 22:10 AKDT (Sept 30th UTC); runs/2026-09-29 was free, so the Anchorage date is the run date.",
- "revision_rounds": 4,
- "phases": {
-  "wake": "done: out/2026-09-29/plan.md",
-  "craft_refresh": "done: nothing new verified, no FIELD_NOTES entry",
-  "research": "done: out/2026-09-29/scout_merge.md (6 scouts)",
-  "claims": "done: out/2026-09-29/claims.json (34 claims, 29 primary, claims_check PASS)",
-  "docket": "done: ledger/docket.json refreshed (12 items), commit 42fdcfe6",
-  "gas_watch": "done: cron_health PASS, gaswatch_health WARN (source reading newer than last collected, transient; one 307 from CINGSA on first read), site_signoff and pagecheck run again at ship",
-  "selection": "done: out/2026-09-29/selection.md (E-Rate)",
-  "directors_room": "done: out/2026-09-29/storyboard.md (dossier_check PASS)",
-  "copy": "done: copy.json (copywriter agent), caption_check PASS",
-  "art_build": "done: 9 slides, akstack chassis, machine QA 0 fails",
-  "pixel_review": "done: 3 review rounds, all ship",
-  "flow_review": "done: 1 round (flow_review.json)",
-  "assemble": "done: vector PDF",
-  "scoring": "done: 8.79 raw, art 8.0 after one craft cycle (7.5 before)",
-  "ship": "in_progress",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- },
- "gas_watch": "in_progress: cron_health PASS; gaswatch_health FAIL (source reading 16:00 AKDT newer than last collected 13:00, scheduler late, workflow_dispatch 403); site_signoff PASS; pagecheck PASS",
- "flow_rounds": 1,
- "craft_cycle": {
-  "frames": [
-   5,
-   7,
-   4,
-   2
-  ],
-  "art_before": 7.5,
-  "art_after": 8.0
- }
+  "run_date": "2026-09-29",
+  "carousel_no": 72,
+  "effort": "high",
+  "date_note": "Anchorage wall clock was Sept 29th 22:10 AKDT (Sept 30th UTC); runs/2026-09-29 was free, so the Anchorage date is the run date.",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": "done: out/2026-09-29/plan.md",
+    "craft_refresh": "done: nothing new verified, no FIELD_NOTES entry",
+    "research": "done: out/2026-09-29/scout_merge.md (6 scouts)",
+    "claims": "done: out/2026-09-29/claims.json (34 claims, 29 primary, claims_check PASS)",
+    "docket": "done: ledger/docket.json refreshed (12 items), commit 42fdcfe6",
+    "gas_watch": "done: cron_health PASS, gaswatch_health WARN (source reading newer than last collected, transient; one 307 from CINGSA on first read), site_signoff and pagecheck run again at ship",
+    "selection": "done: out/2026-09-29/selection.md (E-Rate)",
+    "directors_room": "done: out/2026-09-29/storyboard.md (dossier_check PASS)",
+    "copy": "done: copy.json (copywriter agent), caption_check PASS",
+    "art_build": "done: 9 slides, akstack chassis, machine QA 0 fails",
+    "pixel_review": "done: 3 review rounds, all ship",
+    "flow_review": "done: 1 round (flow_review.json)",
+    "assemble": "done: vector PDF",
+    "scoring": "done: 8.79 raw, art 8.0 after one craft cycle (7.5 before)",
+    "ship": "done: PR 408 merged (578880d0), CI green, Codex out of usage credits so no review posted",
+    "upgrade": "done: three fixes (f591b784, 4a7e598b x2), retro at out/2026-09-29/automation_retro.md",
+    "gmail": "done",
+    "retro": "done"
+  },
+  "gas_watch": "in_progress: cron_health PASS; gaswatch_health FAIL (source reading 16:00 AKDT newer than last collected 13:00, scheduler late, workflow_dispatch 403); site_signoff PASS; pagecheck PASS",
+  "flow_rounds": 1,
+  "craft_cycle": {
+    "frames": [
+      5,
+      7,
+      4,
+      2
+    ],
+    "art_before": 7.5,
+    "art_after": 8.0
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS after the merge and Pages deploy, 127 pages, 18 checks (also PASS before ship at 126 pages).",
+    "gaswatch_live": "WARN: the CINGSA reading of 2026-09-29 23:19 AKDT is newer than the last collected reading; the scheduled collector had not yet published it. Storage, model, calendar, weather and cron rows all PASS. One earlier read failed on a CINGSA 307 redirect and cleared on the next read. Not an incident file case; the next scheduled collection closes it.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited (one interim FAIL while the Pages deployment for this merge was still running; PASS after it finished).",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  },
+  "status": "complete",
+  "gmail_draft_id": "r7687104534752578329",
+  "merged_sha": "578880d0ab56e031d8b92485670af9f606a7d27b"
 }
