@@ -22,7 +22,7 @@
 (function (global) {
   "use strict";
   const S = global.AKSDF;
-  const MAT = {slab: 1, ivory: 2, ebony: 3, gold: 4, nickel: 5, table: 6, cup: 7};
+  const MAT = {slab: 1, ivory: 2, ebony: 3, gold: 4, nickel: 5, table: 6, cup: 7, table2: 8};
   function build(o) {
     const cols = o.cols, rows = o.rows, P = o.pitch || 1;
     const br = (o.ballR != null ? o.ballR : 0.4) * P, cr = br * 1.06;
@@ -42,17 +42,20 @@
       return [S.len(q) - br, matOf(st)];
     }
     function scene(p) {
-      // table
+      // table, its grain running along x in two tones of mahogany
       let d = p[1] - tableY, m = MAT.table;
+      if (Math.sin(p[2] * 9.0 / P + 3.0 * S.noise3(p[0] * 0.2 / P, 0.5, p[2] * 1.2 / P)) > 0.55) m = MAT.table2;
       // slab with a small round, minus the cup of the nearest cell
       const c = Math.max(0, Math.min(cols - 1, Math.round((p[0] - x0) / P))), r = Math.max(0, Math.min(rows - 1, Math.round((p[2] - z0) / P)));
       let slab = S.sdRoundBox([p[0], p[1] + slabH, p[2]], [hx - 0.06 * P, slabH - 0.06 * P, hz - 0.06 * P], 0.06 * P);
       const cup = S.len([p[0] - (x0 + c * P), p[1] - cupY, p[2] - (z0 + r * P)]) - cr;
       slab = Math.max(slab, -cup);
       let sm = MAT.slab;
-      if (cup > -0.02 * P && cup < 0.03 * P && slab < 0.02 * P) sm = MAT.cup;     // the drilled lip reads darker
-      if (inlayZ != null && Math.abs(p[2] - inlayZ) < 0.06 * P && p[1] > -0.03 * P && Math.abs(p[0]) < hx - 0.15 * P) sm = MAT.nickel;
+      if (cup > -0.02 * P && cup < 0.03 * P && slab < 0.02 * P) sm = MAT.cup;     // the drilled lip, and every cup's well, read dark
+      if (cup > -0.03 * P && p[1] < -0.005 * P && slab < 0.02 * P) sm = MAT.cup;
       if (slab < d) { d = slab; m = sm; }
+      // the inlay: a nickel bar standing proud of the slab between two rows, run past both tray edges
+      if (inlayZ != null) { const bar = S.sdRoundBox([p[0], p[1] - 0.035 * P, p[2] - inlayZ], [hx + 0.35 * P, 0.03 * P, 0.07 * P], 0.012 * P); if (bar < d) { d = bar; m = MAT.nickel; } }
       // balls: own cell, or the 3x3 neighbourhood when this cell is empty
       let b = ballAt(p, c, r);
       if (grid[r * cols + c] === 'empty') for (let dc = -1; dc <= 1; dc++) for (let dr = -1; dr <= 1; dr++) { const t = ballAt(p, c + dc, r + dr); if (t[0] < b[0]) b = t; }
@@ -65,10 +68,11 @@
       [MAT.slab]: {color: [0.30, 0.10, 0.055], spec: 0.55, rim: 0.25},
       [MAT.cup]: {color: [0.10, 0.035, 0.02], spec: 0.1, rim: 0.1},
       [MAT.ivory]: {color: [0.86, 0.82, 0.72], spec: 0.7, rim: 0.4},
-      [MAT.ebony]: {color: [0.055, 0.06, 0.07], spec: 0.9, rim: 0.5},
+      [MAT.ebony]: {color: [0.075, 0.08, 0.095], spec: 0.95, rim: 0.95},
       [MAT.gold]: {color: [1.0, 0.60, 0.04], spec: 0.8, rim: 0.15},
-      [MAT.nickel]: {color: [0.70, 0.73, 0.76], spec: 1.2, rim: 0.3},
-      [MAT.table]: {color: [0.19, 0.065, 0.035], spec: 0.35, rim: 0.12},
+      [MAT.nickel]: {color: [0.78, 0.81, 0.84], spec: 1.4, rim: 0.4},
+      [MAT.table]: {color: [0.24, 0.085, 0.045], spec: 0.3, rim: 0.0},
+      [MAT.table2]: {color: [0.19, 0.066, 0.036], spec: 0.25, rim: 0.0},
     };
     return {scene, mats, cellCenter, cellTop, inlayZ, hx, hz, tableY, P, br, x0, z0, cellOf};
   }
