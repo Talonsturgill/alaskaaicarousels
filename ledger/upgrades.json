@@ -2847,6 +2847,55 @@
       "verification": "Reconstruction from this run's slide 06 with its gold rule as border-bottom: pre-upgrade engine FAIL 'promised ink #FFC72C ... no brush on this frame ever carried it (25 colours)', upgraded engine no ink-law finding (census gains css-border rgb(255, 199, 44)). Same slide with gold declared ABSENT and painted by a 3 px CSS background: pre-upgrade PASS (blind), upgraded FAIL 'forbidden ink #FFC72C ... painted by 1 op(s): css-bg'. tests/ink_census_css_verify.py (new, hermetic, 6 fixtures incl. border-style none, 0 px outline, display none, visibility hidden, opacity 0 parent, 0x0 box): 6/6 HOLD upgraded, BROKEN on 4 against the pre-upgrade render.py. tests/ink_census_evict_verify.py and tests/empty_paint_verify.py still HOLD. out/2026-09-30/slides re-rendered: 9/9 OK, 0 page errors, qa WARN 0 fails with every slide's warn set identical to the shipped machine_qa.json (census +0 to +3 entries a slide). examples/demo-deck: 4/4 OK, qa output identical to the pre-upgrade engine (0 fails; warns 3, 5, 5, 1). Shipped slide sources under runs/ with an absent ink: none paints it in CSS, so no shipped frame would newly fail.",
       "rollback": "git revert the upgrade(2026-09-30) commit (or git checkout <commit>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md and delete tests/ink_census_css_verify.py).",
       "commit": "f12d36d1"
+    },
+    {
+      "run_date": "2026-10-01",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/akengrave.js gains Engraver.lathe(cx, {axis, y0, y1, r, ...}), the ring engraver for turned forms (weights, vases, hourglasses, balls): one swelled ring per step of height, each the front half of an ellipse, width and ink set per sample by Lambert of the lathe normal, plus an optional silhouette underlay, optional lee crosslines (meridians drawn only where Lambert falls under a gate) and reservations honoured through the context transform. Technique 112 and SKILL.md name it, and SKILL.md now says why shared slide code must be a classic script under assets/js (render.py resolves slides into .resolved, so a sibling file is unreachable).",
+      "trigger": "Run No.74 incident 2 on the standing repeat offender (artwork craft weakest in 7 of the last 10 runs; this run 6.5 then 7.0): akengrave.surface() seeds one raster through the region's centre, so on slide 04's turned weight the fillet rings were never reached and printed as black holes; the run wrote an inline ringEngrave twice (out/2026-10-01/slides/slide-04.html:132, slide-09.html:78). Round-1 critics read the small gold ballots as olive (underlay) and the scorer read slide 09's glasses as wire coils (lee crosslines). Incident 4 (no shared sibling module) is folded in.",
+      "files": [
+        "assets/js/akengrave.js",
+        "tests/akengrave_lathe_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/TECHNIQUE_LIBRARY.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/akengrave_lathe_verify.py (new, node only, the real akengrave.js and noise.js into a recording stub context plus a scanline coverage fill): 10/10 HOLD. Reconstruction on slide 04's weight profile: surface() leaves 139 of 505 interior 12 px cells with no ink (28 percent), lathe() 0. Parity: lathe() with slide 04's options reproduces the inline ringEngrave op for op (8,253 fills on the weight, 456 on a gold ballot, same fill colours and vertices within 1e-9). Lee crosslines all on a cylinder's shadow side and absent unless asked; a reserved box takes 0 px of ink on a 1x offscreen canvas, on the 2x slide canvas and under a translated 2x transform (806 px without the reservation). Visual fixture rendered in the engine's Chromium (out/2026-10-01/upgrade_verify/lathe_compare.png): surface() draws a knotted ribbon with holes, lathe() a turned weight with gold underlaid ballots. out/2026-10-01/slides 9/9 OK and pixel-identical to a pre-upgrade render, qa WARN 0 fails with every warn set identical to the shipped machine_qa.json; examples/demo-deck 4/4 OK, pixel-identical, qa 0 fails (warns 3, 5, 5, 1). tests/reserve_punch_verify.py and tests/technique_stack_verify.py still HOLD.",
+      "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- assets/js/akengrave.js .claude/skills/carousel-engine/SKILL.md knowledge/TECHNIQUE_LIBRARY.md and delete tests/akengrave_lathe_verify.py. No shipped slide calls lathe().",
+      "commit": ""
+    },
+    {
+      "run_date": "2026-10-01",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/aksdf.js says in its header that cam.fov is HORIZONTAL (on 4:5 the vertical field is 1.25x wider in tan of the half angle than the number), accepts cam.vfov for frames planned by height (vfov wins when both are given), and exposes AKSDF.focal(cam, W, H), which both AKSDF.render and AKTRAY.project now use, so a label projector can never disagree with the renderer about the camera.",
+      "trigger": "Run No.74 incident 3: the ballot tray's camera was planned by vertical arithmetic and misframed twice before anyone read the camera code (TECHNIQUE_LIBRARY 110, 'What broke'); the header documented fov with no axis.",
+      "files": [
+        "assets/js/aksdf.js",
+        "assets/js/aktray.js",
+        "tests/aksdf_vfov_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/TECHNIQUE_LIBRARY.md"
+      ],
+      "verification": "tests/aksdf_vfov_verify.py (new, node only, the real aksdf.js and aktray.js): 6/6 HOLD. focal({fov}) is bit-identical to the old 1/tan(fov*pi/180/2) for all 9 fov values tried (every value shipped decks use plus the default); with fov 40 a point 20 degrees off axis horizontally projects onto the right edge (x 1080.0000) while the same angle vertically lands at y 135, inside the frame (the reconstruction); with vfov 40 it lands on the top edge (y 0.000000); vfov equals its horizontal equivalent to 4.4e-16. Slides 02 and 03 (aktray) and the rest of out/2026-10-01/slides re-rendered pixel-identical, qa unchanged; examples/demo-deck pixel-identical.",
+      "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- assets/js/aksdf.js assets/js/aktray.js and delete tests/aksdf_vfov_verify.py.",
+      "commit": ""
+    },
+    {
+      "run_date": "2026-10-01",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/gaswatch_health.py (the read-only live checker, not the collector) re-reads an endpoint after a TRANSIENT failure, a 3xx urllib could not follow, 408, 425, 429, any 5xx, a timeout or a dropped connection, twice more after 10 s and 20 s; a 403, 404 or other 4xx is never retried, a failure that survives all three reads is reported exactly as before, and every retried failure is written into the audit JSON as transient_retries and printed as [RETRIED], so a pass after a retry is disclosed.",
+      "trigger": "Run No.74 Phase 3.6: the first live read FAILED on a CINGSA HTTP 307 with no Location header and a manual re-read 20 s later passed (run_state.phase_3_6.gaswatch_live). The same transient hit 2026-09-27 and 2026-09-29, so 3 of the last 5 runs re-diagnosed it by hand.",
+      "files": [
+        "scripts/gaswatch_health.py",
+        "tests/gaswatch_health.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/gaswatch_health.py: 9 tests OK (3 new: a 307 then 200 is read on the second attempt after one 10 s wait and recorded; a 403 is tried once; a persistent 307 is tried exactly 3 times then raises; main() writes transient_retries). Reconstruction: the pre-upgrade fetch (HEAD) raises HTTPError 307 on the same 307-then-200 sequence after 1 call; the upgraded one returns the page after 2. LIVE on its first run: CINGSA answered 307 again, the re-read answered, the audit printed [RETRIED] and completed every check (out/2026-10-01/upgrade_verify/gaswatch_health_live.json; verdict WARN only for a source reading newer than the last collection, the known intraday state). No collector, model, ledger or gate threshold touched; gate_status's gas_watch_live row reads the same verdict field.",
+      "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- scripts/gaswatch_health.py tests/gaswatch_health.py.",
+      "commit": ""
     }
   ],
   "scan_log": [
@@ -3304,6 +3353,13 @@
       "searches": "6 searches, 4 fetches (inconvergent.net 403), and one local measurement over every shipped frame 2026-09-12 to 2026-09-30 (171 frames)",
       "found": "(1) MEASURED: a windowed autocorrelation repetition probe does not separate the six scorer-named repetitive frames (0.31 to 0.83) from the 165 unnamed ones (median 0.42, p90 0.61; 158 of 165 at or above the lowest named), because an ACF measures period and a varied field at a regular pitch is as periodic as a stamped one. (2) TexTile, CVPR 2024 (https://arxiv.org/html/2403.12961v1): SSIM, LPIPS, DISTS and FID-type metrics show no correlation with judgments of repetition; the working metric is a fine-tuned ConvNeXt-Base, a neural runtime dependency. (3) Hobbs, Probability Distributions for Algorithmic Artists (https://www.tylerxhobbs.com/words/probability-distributions-for-algorithmic-artists): Gaussian jitter, Pareto sizes, shared draws across correlated parameters; already house practice in spirit. (4) Unity procedural stochastic texturing (https://unity.com/blog/engine-platform/procedural-stochastic-texturing-in-unity): a cure for tiled bitmaps, which the house does not use.",
       "outcome": "nothing applied from the scan; PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-09-30 frontier scan, focus (c)'): a repetition measure, with the failed probe's numbers and the bar a future one must clear (5 of 6 named frames above the unnamed p90, then a critic census line, never a gate), and an anatomy proportion contract (unblocks on a third anatomy defect inside 20 runs). The run's one upgrade slot went to the reactive census fix."
+    },
+    {
+      "run_date": "2026-10-01",
+      "focus": "(a) LinkedIn platform and algorithm changes. The stalest legal slot (last read 2026-09-18) and distinct from the last three logged foci: 2026-09-30 (c) procedural art, 2026-09-29 (d) typography, 2026-09-28 (f) self-improving pipelines. Went to primary sources first, as the 2026-09-01 entry asked.",
+      "searches": "7 searches, 4 fetches, 1 local measurement over 31 shipped PDFs",
+      "found": "(1) LinkedIn's engineering feed index has nothing on ranking since March 12th; its November 2025 'Putting members first' post is fairness testing and names no format signals (https://www.linkedin.com/blog/engineering/feed/putting-members-first-testing-and-measuring-how-content-appears-in-your-feed). (2) 'Depth Score' in 2026 writeups is an industry label, not a LinkedIn term. (3) LinkedIn's official document requirements (https://www.linkedin.com/help/linkedin/answer/97459): 100 MB, 300 pages, flatten layers, one page size, secure links; MEASURED compliant on 31 of 31 recent shipped PDFs (one page size, no /OCProperties, no link annotations), so a gate would never fire. The page is 810 x 1013.04 pt, not 1012.5, and the extra 0.54 pt is root background. (4) UNSOURCED: a mid-2026 trade report says document posts now render as 'more compact carousels' (https://www.techjuice.pk/linkedin-post-performance-insights-out-of-network-reach-analytics), which would move the 432 px feed-width review if true.",
+      "outcome": "nothing applied from the scan; PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-01 frontier scan, focus (a)'): the compact-carousel claim with its unblocking condition (a primary source or a measured live screenshot, then re-derive the review width and type floor), and the compliance measurement so no future run builds a gate that can't fire. All three upgrade slots went to reactive fixes, one on the standing repeat offender."
     }
   ]
 }

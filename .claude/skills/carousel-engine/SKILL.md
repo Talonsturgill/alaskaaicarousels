@@ -75,6 +75,12 @@ FAILs whatever it left stale.
   Geodata via `fetch("@@ASSETS@@/geo/alaska-state.geo.json")` (boroughs,
   us-states, world-land, alaska-places also available). **NO external URLs,
   no CDNs, no Google Fonts** — render.py rejects any `http(s)://` reference.
+- **A slide can't share code with a sibling file.** render.py copies each
+  resolved slide into `<out>/.resolved/`, so a relative `<script src>` or
+  `import` of a file next to the slide reaches nothing. Code two frames need
+  is a classic script under `assets/js/`, loaded via `@@ASSETS@@` (No.74 wrote
+  one ring engraver inline twice for this reason; it is now
+  `AKENGRAVE.create().lathe()`).
 - **Async art must gate the screenshot**: set
   `window.renderReady = new Promise(resolve => { ...draw, then resolve() })`.
   The engine awaits it (30s cap). Without it you get a 400ms grace only.
@@ -941,7 +947,18 @@ them or every archive page goes blank.
   is the single-point form for a leader terminus.
 - `assets/js/aksdf.js` — CPU SDF raymarcher (`AKSDF.*`): organic sculpted
   heroes, soft shadows + 5-tap AO + smin blends; render 480x720 internal into
-  a box, ~5-15s; `deadlineMs` degrades gracefully.
+  a box, ~5-15s; `deadlineMs` degrades gracefully. **`cam.fov` is
+  HORIZONTAL**: on 4:5 the vertical field is 1.25x wider in tan(half angle)
+  than the number. Plan by height with `cam.vfov`; project labels with
+  `AKSDF.focal(cam, W, H)` (AKTRAY.project already does).
+- `assets/js/akengrave.js`: white-line intaglio (`AKENGRAVE.create()`):
+  `surface()` for height fields, `guilloche()`, and `lathe()` for TURNED forms
+  (weights, vases, hourglasses, balls). `surface()` seeds one raster through
+  the region's centre, so a lathe form's fillet rings are never reached and
+  print as black holes (28 percent of cells on No.74's weight); `lathe()` cuts
+  one Lambert-swelled ring per `gap`, with optional `lee` crosslines and an
+  `underlay`, and honours reservations under any transform. Technique 112;
+  `tests/akengrave_lathe_verify.py`.
 - `assets/js/akpost.js` — film grade (`AKPOST.grade`): bloom -> exposure ->
   saturation -> log-contrast -> ACES -> gamma -> split-tone -> masked grain ->
   IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before

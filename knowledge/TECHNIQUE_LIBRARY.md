@@ -1062,7 +1062,8 @@ annotation is the strongest pair):
     and cup occlusion. Equal spheres on a full grid are exact under nearest-cell repetition; an EMPTY
     cell breaks that, so the ball term checks the 3x3 neighbourhood. `AKTRAY.project` uses the same
     camera basis as `AKSDF.render`, so every leader lands on the ball it names. What broke: aksdf's fov
-    is HORIZONTAL, so a camera framed by vertical arithmetic overflowed the frame; maxDist 60 renders a
+    is HORIZONTAL, so a camera framed by vertical arithmetic was misframed (plan by height with
+    `cam.vfov`, added 2026-10-01; both use `AKSDF.focal`); maxDist 60 renders a
     far camera as pure sky; cup interiors must be their own dark material or empty cups read as studs.
     A nickel bar standing proud between two rows, run past both tray edges, carries a threshold.
 
@@ -1083,3 +1084,10 @@ annotation is the strongest pair):
     under the declared key; a flat top is its own face of concentric ellipses. Rotate the canvas to
     engrave a horizontal axis and express the light in the rotated frame. Spheres are the same call
     with r(y) a circle; small gold spheres need a gold underlay or the dark ring ends read olive.
+    COMMITTED 2026-10-01 (Phase 12) as `AKENGRAVE.create({light}).lathe(cx, {axis, y0, y1, r, gap,
+    ell, wMax, ramp, L, underlay, lee})`, op-for-op identical to No.74's inline version
+    (`tests/akengrave_lathe_verify.py`). Parameters that worked: weight `gap` 4.2, `ell` 0.10, `wMax` 2.9;
+    glass (transparent, ground between rings) `gap` 7, `wMax` 2.2; sand or a ball `gap` 2.5 to 2.8, `wMax` 2.4
+    to 2.6. A sparse ring lay over a dark ground reads as WIRE COIL (the scorer's word for No.74's
+    slide 09): pass `lee: {gate: 0.32, gap: 7 to 9, wMax: 1.4 to 1.6, ink: <ground>}` so the shadow
+    side is crossed meridians, not open rings.

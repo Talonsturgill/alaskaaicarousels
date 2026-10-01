@@ -7,8 +7,10 @@ required. No ledger writes, inferred readings, account changes or messages.
 import argparse
 import json
 import re
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 import gaswatch_collect as gc
@@ -178,10 +180,40 @@ def assess(feed, page, source, runs, now, unreachable=None):
     return report
 
 
-def fetch(url):
+# A BOUNDED RE-READ FOR A TRANSIENT REFUSAL (2026-10-01, run No.74). CINGSA's
+# proxy has answered this audit's first read with an HTTP 307 and no Location
+# header on three of the last five runs (2026-09-27, 09-29, 10-01), and each
+# time a manual re-read seconds later answered 200 with a real page. The audit
+# then reported FAIL, the showrunner re-ran it by hand, and the incident was
+# re-diagnosed from scratch. So the checker re-reads a TRANSIENT failure (a 3xx
+# urllib could not follow, 408, 425, 429, any 5xx, a timeout or a dropped
+# connection) twice more, after 10 s and 20 s. A PERSISTENT refusal (403, 404 or
+# any other 4xx) is never retried, a failure that survives all three reads is
+# reported exactly as before, and every retried failure is written into the
+# audit under `transient_retries` with the endpoint, so a pass after a retry is
+# disclosed and never painted green silently.
+RETRY_WAITS = (10, 20)
+TRANSIENT_HTTP = {408, 425, 429}
+RETRIED = {}
+
+
+def transient(exc):
+    if isinstance(exc, HTTPError):
+        return 300 <= exc.code < 400 or exc.code in TRANSIENT_HTTP or exc.code >= 500
+    return isinstance(exc, (URLError, TimeoutError, ConnectionError))
+
+
+def fetch(url, waits=RETRY_WAITS, sleep=time.sleep):
     req = Request(url, headers={"User-Agent": gc.UA, "Cache-Control": "no-cache"})
-    with urlopen(req, timeout=45) as response:
-        return response.read().decode("utf-8")
+    for attempt in range(len(waits) + 1):
+        try:
+            with urlopen(req, timeout=45) as response:
+                return response.read().decode("utf-8")
+        except Exception as exc:
+            if attempt >= len(waits) or not transient(exc):
+                raise
+            RETRIED.setdefault(url, []).append(f"{type(exc).__name__}: {exc}")
+            sleep(waits[attempt])
 
 
 def main():
@@ -213,6 +245,8 @@ def main():
             "name": "live audit completed", "status": "FAIL", "detail": f"{type(exc).__name__}: {exc}",
             "remedy": "Retry the unavailable endpoint. Use authenticated GitHub tools and --runs-json if API-limited. Do not claim the live page was checked."}]}
     report["site_url"] = base
+    if RETRIED:
+        report["transient_retries"] = {url: list(errs) for url, errs in RETRIED.items()}
     if args.output:
         target = Path(args.output)
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -221,6 +255,9 @@ def main():
         print(f"[{check['status']}] {check['name']}: {check['detail']}")
         if check["remedy"]:
             print(f"  Next: {check['remedy']}")
+    for url, errs in report.get("transient_retries", {}).items():
+        print(f"[RETRIED] {url}: {len(errs)} transient failure(s) before the read that counted: "
+              + "; ".join(errs))
     print(f"GAS WATCH LIVE: {report['verdict']}")
     return 2 if report["verdict"] == "FAIL" else 0
 

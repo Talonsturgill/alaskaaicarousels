@@ -77,10 +77,10 @@
     return {scene, mats, cellCenter, cellTop, inlayZ, hx, hz, tableY, P, br, x0, z0, cellOf};
   }
   function project(cam, box, internal, P) {
-    const ro = cam.pos, look = cam.look, fov = cam.fov * Math.PI / 180;
-    const fw = S.norm(S.sub(look, ro)), fr = S.norm(S.cross(fw, [0, 1, 0])), fu = S.cross(fr, fw), fl = 1 / Math.tan(fov / 2);
+    const ro = cam.pos, look = cam.look, W = internal[0], H = internal[1];
+    /* the SAME focal length AKSDF.render uses, fov or vfov (aksdf.js header) */
+    const fw = S.norm(S.sub(look, ro)), fr = S.norm(S.cross(fw, [0, 1, 0])), fu = S.cross(fr, fw), fl = S.focal(cam, W, H);
     const v = S.sub(P, ro), z = S.dot(v, fw), sx = S.dot(v, fr) / z * fl, sy = S.dot(v, fu) / z * fl;
-    const W = internal[0], H = internal[1];
     const px = (sx + 1) / 2 * W, py = (1 - sy * W / H) * H / 2;
     return [box[0] + px / W * box[2], box[1] + py / H * box[3]];
   }

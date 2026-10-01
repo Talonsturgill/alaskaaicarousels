@@ -8965,3 +8965,43 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - GOLD INK ON A SMALL ENGRAVED SPHERE READS OLIVE unless a gold underlay sits under the rings; every round-1 critic on 04 and 09 called the ballots green.
 - DECLARED CONTACT RECTS GO STALE WITH EVERY CAMERA MOVE. Slide 05 failed qa twice on rects measured before a restage. Re-probe after any move, in the same step as the move.
 - The caption room needed the reassigned director again (third run running): two first candidates on spent pairs (LEDGER TALLY with PUNCH THEN PROOF, DEFINITION SUBVERSION with INVERTED PYRAMID). SCENE with BRAID won after the critic's binding constraints.
+
+## 2026-10-01, No.74, Phase 12: the ring engraver is committed, the camera says which way its fov runs, and the gas audit re-reads a 307
+
+- `AKENGRAVE.create({light}).lathe(cx, {axis, y0, y1, r, ...})` is No.74's inline ring engraver,
+  op for op (8,253 fills on slide 04's weight, 456 on a gold ballot, identical). Reconstruction on
+  the same weight profile: `surface()` leaves 139 of 505 interior 12 px cells with no ink at all
+  (28 percent, the black holes), `lathe()` leaves 0. New in the helper: `underlay` (the gold-ballot
+  olive fix), `lee` crosslines (meridians in the shadow side only, for the wire-coil read on 09),
+  and reservations honoured through the context transform. `tests/akengrave_lathe_verify.py`.
+- `AKSDF` `cam.fov` is HORIZONTAL; on 4:5 the vertical field is 1.25x wider in tan(half angle)
+  than the number. `cam.vfov` plans by height and `AKSDF.focal(cam, W, H)` is the one focal length
+  the renderer and `AKTRAY.project` share. Legacy `fov` is bit-identical (all 13 frames re-rendered
+  pixel-identical). `tests/aksdf_vfov_verify.py`.
+- `scripts/gaswatch_health.py` re-reads a TRANSIENT refusal (3xx urllib could not follow, 408,
+  425, 429, 5xx, timeout, dropped connection) twice, after 10 s and 20 s, and writes every retried
+  failure into the audit as `transient_retries`. A 403/404 is never retried. Live on its first
+  run: CINGSA answered 307, the re-read answered, the audit printed `[RETRIED]` and read on.
+- WATCH, not changed: `scripts/bespoke_check.py` counts `AKSDF` and the akstack constructors as
+  drawn marks at the call site but not `.surface(`, `.lathe(` or `.guilloche(`, so a deck built
+  mostly on the engraver bench could read as BLOCKY the way the akstack deck did on 2026-09-29.
+  Widening the drawn list makes the gate easier to pass, which is the maintainer's call.
+
+### Parked, 2026-10-01 frontier scan, focus (a), LinkedIn platform
+
+- UNSOURCED, NOT ACTED ON: a mid-2026 trade report says document posts "now appear as more
+  compact carousels in the feed rather than the older, wider display format"
+  (https://www.techjuice.pk/linkedin-post-performance-insights-out-of-network-reach-analytics),
+  with no LinkedIn statement, no dimensions and no date beyond "4 months ago". If true it is the
+  first change in years to how a document renders in the feed, and it would move the 432 px
+  feed-width review that the legibility criterion stands on. UNBLOCKS on a primary source or a
+  measured screenshot of a live document post at today's feed width; then re-derive the review
+  width and the 24 px type floor from it.
+- MEASURED, ALL COMPLIANT: LinkedIn's own document requirements (https://www.linkedin.com/help/linkedin/answer/97459:
+  100 MB, 300 pages, "PDFs with multiple layers must be flattened", "multiple sized pages must be
+  fit to the same page size", secure hyperlinks) hold on 31 of 31 recent shipped PDFs: one page
+  size each, no /OCProperties, no link annotations. A gate on them would never fire, so none was
+  built. One curiosity: the page is 810 x 1013.04 pt, not 1012.5 (Chromium rounds the page height),
+  and pdftoppm shows the extra 0.54 pt painted by the root background except a 0.04 pt sliver.
+- CORROBORATION ONLY: "Depth Score" in 2026 algorithm writeups is an industry label, not a
+  LinkedIn term; LinkedIn's engineering feed index has nothing on ranking since March 12th.

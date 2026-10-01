@@ -130,6 +130,96 @@ class HealthTests(unittest.TestCase):
             self.assertIn(name, got)
         self.assertNotIn("live audit completed", got)
 
+    def _fake_urlopen(self, plan):
+        """urlopen that answers from `plan`, a list of exceptions or bodies."""
+        calls = []
+
+        class Resp:
+            def __init__(self, body):
+                self.body = body
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+            def read(self):
+                return self.body.encode("utf-8")
+
+        def fake(req, timeout=None):
+            step = plan[min(len(calls), len(plan) - 1)]
+            calls.append(req.full_url)
+            if isinstance(step, Exception):
+                raise step
+            return Resp(step)
+        return fake, calls
+
+    def test_transient_307_is_reread_and_disclosed(self):
+        """2026-10-01: CINGSA answered the first read with a 307 and no
+        Location on three of five runs; a re-read seconds later answered 200.
+        The checker re-reads, and the retry is written down, not hidden."""
+        from urllib.error import HTTPError
+        url = gc.CINGSA_URL
+        fake, calls = self._fake_urlopen([HTTPError(url, 307, "Temporary Redirect", {}, None), "<html>ok</html>"])
+        real = health.urlopen
+        health.urlopen, waited = fake, []
+        health.RETRIED.clear()
+        try:
+            self.assertEqual(health.fetch(url, sleep=waited.append), "<html>ok</html>")
+        finally:
+            health.urlopen = real
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(waited, [10])
+        self.assertIn("307", health.RETRIED[url][0])
+        health.RETRIED.clear()
+
+    def test_persistent_refusal_is_not_retried_and_retries_are_bounded(self):
+        from urllib.error import HTTPError
+        url = gc.CINGSA_URL
+        real = health.urlopen
+        try:
+            fake, calls = self._fake_urlopen([HTTPError(url, 403, "Forbidden", {}, None)])
+            health.urlopen = fake
+            with self.assertRaises(HTTPError):
+                health.fetch(url, sleep=lambda s: None)
+            self.assertEqual(len(calls), 1, "a 403 is persistent and is never retried")
+            fake, calls = self._fake_urlopen([HTTPError(url, 307, "Temporary Redirect", {}, None)])
+            health.urlopen = fake
+            with self.assertRaises(HTTPError):
+                health.fetch(url, sleep=lambda s: None)
+            self.assertEqual(len(calls), 3, "a transient failure gets two re-reads, no more")
+        finally:
+            health.urlopen = real
+            health.RETRIED.clear()
+
+    def test_main_reports_a_retried_read(self):
+        from urllib.error import HTTPError
+        served = {"/gas-watch.json": json.dumps(self.feed, default=str), "/gas-watch/": self.page,
+                  "actions/workflows": json.dumps(self.runs)}
+        state = {"cingsa": 0}
+
+        def fake_fetch(url):
+            if url == gc.CINGSA_URL:
+                state["cingsa"] += 1
+                health.RETRIED.setdefault(url, []).append("HTTPError: HTTP Error 307: Temporary Redirect")
+                return gc.FIXTURE
+            return next(v for k, v in served.items() if k in url)
+
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "gw.json"
+            real, argv = health.fetch, sys.argv
+            health.fetch, sys.argv = fake_fetch, ["gaswatch_health.py", "--output", str(out)]
+            health.RETRIED.clear()
+            try:
+                health.main()
+            finally:
+                health.fetch, sys.argv = real, argv
+            report = json.loads(out.read_text())
+        health.RETRIED.clear()
+        self.assertIn(gc.CINGSA_URL, report["transient_retries"])
+        self.assertNotIn("source reachable", {c["name"] for c in report["checks"]})
+
     def test_daily_gate_requires_live_evidence_and_diagnosis(self):
         with tempfile.TemporaryDirectory() as td:
             run = Path(td) / "2026-09-16"
