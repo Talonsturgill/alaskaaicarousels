@@ -2863,7 +2863,7 @@
       ],
       "verification": "tests/akengrave_lathe_verify.py (new, node only, the real akengrave.js and noise.js into a recording stub context plus a scanline coverage fill): 10/10 HOLD. Reconstruction on slide 04's weight profile: surface() leaves 139 of 505 interior 12 px cells with no ink (28 percent), lathe() 0. Parity: lathe() with slide 04's options reproduces the inline ringEngrave op for op (8,253 fills on the weight, 456 on a gold ballot, same fill colours and vertices within 1e-9). Lee crosslines all on a cylinder's shadow side and absent unless asked; a reserved box takes 0 px of ink on a 1x offscreen canvas, on the 2x slide canvas and under a translated 2x transform (806 px without the reservation). Visual fixture rendered in the engine's Chromium (out/2026-10-01/upgrade_verify/lathe_compare.png): surface() draws a knotted ribbon with holes, lathe() a turned weight with gold underlaid ballots. out/2026-10-01/slides 9/9 OK and pixel-identical to a pre-upgrade render, qa WARN 0 fails with every warn set identical to the shipped machine_qa.json; examples/demo-deck 4/4 OK, pixel-identical, qa 0 fails (warns 3, 5, 5, 1). tests/reserve_punch_verify.py and tests/technique_stack_verify.py still HOLD.",
       "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- assets/js/akengrave.js .claude/skills/carousel-engine/SKILL.md knowledge/TECHNIQUE_LIBRARY.md and delete tests/akengrave_lathe_verify.py. No shipped slide calls lathe().",
-      "commit": ""
+      "commit": "f7447f68d0d2491745cf5fca934ff4d316e73c9d"
     },
     {
       "run_date": "2026-10-01",
@@ -2880,7 +2880,7 @@
       ],
       "verification": "tests/aksdf_vfov_verify.py (new, node only, the real aksdf.js and aktray.js): 6/6 HOLD. focal({fov}) is bit-identical to the old 1/tan(fov*pi/180/2) for all 9 fov values tried (every value shipped decks use plus the default); with fov 40 a point 20 degrees off axis horizontally projects onto the right edge (x 1080.0000) while the same angle vertically lands at y 135, inside the frame (the reconstruction); with vfov 40 it lands on the top edge (y 0.000000); vfov equals its horizontal equivalent to 4.4e-16. Slides 02 and 03 (aktray) and the rest of out/2026-10-01/slides re-rendered pixel-identical, qa unchanged; examples/demo-deck pixel-identical.",
       "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- assets/js/aksdf.js assets/js/aktray.js and delete tests/aksdf_vfov_verify.py.",
-      "commit": ""
+      "commit": "f7447f68d0d2491745cf5fca934ff4d316e73c9d"
     },
     {
       "run_date": "2026-10-01",
@@ -2895,7 +2895,7 @@
       ],
       "verification": "tests/gaswatch_health.py: 9 tests OK (3 new: a 307 then 200 is read on the second attempt after one 10 s wait and recorded; a 403 is tried once; a persistent 307 is tried exactly 3 times then raises; main() writes transient_retries). Reconstruction: the pre-upgrade fetch (HEAD) raises HTTPError 307 on the same 307-then-200 sequence after 1 call; the upgraded one returns the page after 2. LIVE on its first run: CINGSA answered 307 again, the re-read answered, the audit printed [RETRIED] and completed every check (out/2026-10-01/upgrade_verify/gaswatch_health_live.json; verdict WARN only for a source reading newer than the last collection, the known intraday state). No collector, model, ledger or gate threshold touched; gate_status's gas_watch_live row reads the same verdict field.",
       "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- scripts/gaswatch_health.py tests/gaswatch_health.py.",
-      "commit": ""
+      "commit": "f7447f68d0d2491745cf5fca934ff4d316e73c9d"
     }
   ],
   "scan_log": [
