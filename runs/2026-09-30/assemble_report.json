@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-09-30/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11469675,
+  "pdf_mb": 11.47,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-09-30/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-09-30/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Right for Most of Alaska. Wrong for Kodiak.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "beef9f6a8dc12e8744eeb6f8c5dce3b354b0e56850a12962522e98f99f819789",
+        "bytes": 6031603
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "4c188ebe7a83bd096fdf1f5d3c52abba7a4ea00383e47bfcf990dfde6225fec1",
+        "bytes": 4280911
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "ab9b70d3ac8ed8515323bd52036e1c9cb5343361cd1ef003ff1cf5bfee399a2a",
+        "bytes": 3660420
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "7fe785caa743d515266800650eee67abbcf3c41040c5cf26983975fb295d3ced",
+        "bytes": 1711369
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d24ca85c00da938796b9cbe479563cb226d3578c77660d41b964c62e46f928f4",
+        "bytes": 4520232
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e9b931b7d2aa9d662cf345ff25760e51f768d3c0efd82869ab1bd288a39b5ddd",
+        "bytes": 2672587
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "17da768117472e4042b020fbceadf6ea8e0befc2dda8885b678d116258931646",
+        "bytes": 5706352
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "1dc4d10a8df813895a888ff9d6dad4828d80d78f69dad71b52e7894746f7ac7d",
+        "bytes": 2014417
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b6aef80ecc3b41df061212afc4c44ed0a6053f2c22da09407d0caf9b6254dc47",
+        "bytes": 6807310
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "75939ea9f215ea57deae70af5b827433c37043582302746085f9ebd4e5c3c83f",
+        "bytes": 14653
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "474d9ea8079f7b3abbd47bb545180d14999a3ef20af7beaebeb491dbe9921f75",
+        "bytes": 11873
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a8b16fc60b7791fe17a9ba97af56053fc4f780483c618135b1d94a0cc6807a22",
+        "bytes": 9067
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "1f6dd7b0dea4cc0c5633f3151a6b84631c6bcfe3e2adece1e3943e866b944bd4",
+        "bytes": 13022
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c6cc8efa6870a43f5467fed03f29787769aa89b6b2a4e46981ba6941fa091de7",
+        "bytes": 16789
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "d69541bdff3c8e557f8279fa51c11ff2c7c59af05f9c8645d4bdd8ddb4b77832",
+        "bytes": 9679
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "5b808dde1b241bca2636369898279b7cbfcfb0a8a386d8dbebb1b586dec1fe31",
+        "bytes": 10453
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ab4c65cc71632aeb2b65a9d16bb21d1bfb29f458fe82f6d4d5c370af00fb6252",
+        "bytes": 14968
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "2ae3bdb80316a6230b21ff26f0b5f97249d5e34a0f82f6105686cfffebf6eaf5",
+        "bytes": 12032
+      }
+    ]
+  }
+}

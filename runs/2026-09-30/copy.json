@@ -1,0 +1,241 @@
+{
+ "document_title": "Right for Most of Alaska. Wrong for Kodiak.",
+ "post_copy": "A Kodiak court file holds an AI answer's September 1st, the law's October 8th and a September 5th snipe hunt.\n\nThe hunter was 33 days early. She told Trooper Alex Wick that Google said September 1st. His own search got an AI Overview hedged with \"depending on the specific zone\".\n\nKodiak's Unit 8, every island southeast of Shelikof Strait's center line, opens October 8th. The Alaska Peninsula across the strait opens September 1st. Google itself says AI Overviews \"can and will make mistakes.\"\n\nFrom Shelikof Strait the camera drops to Bull Lake and the trooper's AI search, pulls back to five bird zones, then sinks to the mud where the $150 lands.\n\nThe hunter turned herself in the same afternoon. She pleaded no contest and was fined $150, the Alaska Beacon reported.\n\nIs reading the zone before the date a fair duty for every hunter with a phone?\n\n#MigratoryBirds #GameLaw #AISearch\n",
+ "hook_chars": 109,
+ "total_chars": 890,
+ "deck_summary_line": "From Shelikof Strait the camera drops to Bull Lake and the trooper's AI search, pulls back to five bird zones, then sinks to the mud where the $150 lands.",
+ "hashtags": [
+  "#MigratoryBirds",
+  "#GameLaw",
+  "#AISearch"
+ ],
+ "caption_meta": {
+  "opening_move": "TIMELINE COLLAPSE",
+  "structure": "COLD OPEN, WARM CLOSE",
+  "closing_move": "NEW: THE FAIR DUTY",
+  "first_8_words": "A Kodiak court file holds an AI answer's",
+  "hook_type": "three dates in one public record"
+ },
+ "first_comment": "Sources, primary first\nKodiak District Court, case 3KO-26-00162CR, initial charging document with Trooper Alex Wick's affidavit, signed 2026-09-18 (the September 5th hunt at Bull Lake in Pasagshak, the September 1st she was given \"according to Google\", his own search and the AI Overview text he quoted), via DocumentCloud, https://www.documentcloud.org/documents/28686379-260918-3ko-26-00162cr-icdf-initial-charging-document/\nAlaska Department of Fish and Game, 2026-2027 Migratory Game Bird Hunting Regulations (the five zone seasons, with Kodiak and the Pribilof and Aleutian zone opening October 8th and Southeast, Gulf Coast and Northern opening September 1st, plus the snipe bag limit), https://www.adfg.alaska.gov/static/regulations/wildliferegulations/pdfs/waterfowl.pdf\nAlaska Department of Fish and Game, Game Management Unit 8 definition (all islands southeast of the center line of Shelikof Strait), https://www.adfg.alaska.gov/index.cfm?adfg=huntingmaps.gmuinfo&gmu=8\nAlaska Department of Fish and Game, Game Management Unit 9 definition (the Alaska Peninsula and adjacent islands), https://www.adfg.alaska.gov/index.cfm?adfg=huntingmaps.gmuinfo&gmu=9\nAlaska Department of Fish and Game, hunting regulations page (emergency orders may take precedence over the printed booklets), https://www.adfg.alaska.gov/index.cfm?adfg=wildliferegulations.hunting\nGoogle Search Help, Find information in faster and easier ways with AI Overviews (\"AI Overviews can and will make mistakes\"), https://support.google.com/websearch/answer/14901683\nAlaska Beacon (James Brooks), republished by Alaska Public Media, 2026-09-28, misleading Google AI instructions cause Kodiak woman to be cited for illegal snipe hunt (the no contest plea, the $150 fine, and Austin McDaniel of the Department of Public Safety), https://alaskapublic.org/news/public-safety/2026-09-28/misleading-google-ai-instructions-cause-kodiak-woman-to-be-cited-for-illegal-snipe-hunt\nOpenStreetMap Nominatim, Bull Lake, Kodiak Island Borough (the Bull Lake mark on slides 2 and 6), https://nominatim.openstreetmap.org/search?q=Bull%20Lake%20Kodiak%20Alaska&format=json\nAWS Open Data, Terrain Tiles, Mapzen terrarium encoding at zoom 10 (the Kodiak relief on slides 1, 2 and 6, drawn for form only), https://registry.opendata.aws/terrain-tiles/\nThe AI Overview text on slide 3 comes from the trooper's own later search, which used different words. The record shows only that the hunter was told September 1st \"according to Google.\"\nAlaska's AI decisions, each with its live dates, are tracked at https://alaskaaihq.com\nDo you hunt near a zone line, or know another place where a statewide answer misses the local rule? Add it below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "SNIPE SEASON, ACCORDING TO GOOGLE",
+   "headline": "Right for most of Alaska. Wrong for Kodiak.",
+   "body": "",
+   "labels": [
+    "ALASKA PENINSULA, OPENS SEPTEMBER 1ST",
+    "KODIAK, OPENS OCTOBER 8TH",
+    "shelikof strait"
+   ],
+   "claim_ids": [
+    "C07",
+    "C27",
+    "C29",
+    "C30",
+    "C31",
+    "C45",
+    "C46"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "BULL LAKE, PASAGSHAK, KODIAK ISLAND",
+   "headline": "On September 5th, a Kodiak hunter took three snipe.",
+   "body": "She had searched \"Snipe season\" on her phone. She told a trooper that, according to Google, the season began September 1st. Kodiak's zone opens October 8th.",
+   "labels": [
+    "BULL LAKE",
+    "5 KM"
+   ],
+   "claim_ids": [
+    "C02",
+    "C03",
+    "C04",
+    "C07",
+    "C27",
+    "C43"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "TROOPER ALEX WICK'S OWN SEARCH, \"SNIPE SEASON ALASKA\"",
+   "headline": "The zone was in the parentheses.",
+   "body": "\"ADF&G sets the Wilson's Snipe hunting season in Alaska generally from September 1st through December 16th (or matching general migratory bird/waterfowl windows depending on the specific zone...)\"",
+   "labels": [
+    "AS QUOTED IN HIS AFFIDAVIT. HER OWN SEARCH IS RECORDED ONLY AS SEPTEMBER 1ST."
+   ],
+   "claim_ids": [
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "ADF&G MIGRATORY BIRD HUNTING ZONES",
+   "headline": "Five zones. Two opening days.",
+   "body": "Southeast, Gulf Coast and Northern open September 1st. Kodiak and the Pribilof and Aleutian zone open October 8th. Unimak Island goes with the Gulf Coast.",
+   "labels": [
+    "SEPTEMBER 1ST",
+    "KODIAK, OCTOBER 8TH",
+    "PRIBILOF AND ALEUTIAN, OCTOBER 8TH",
+    "UNIMAK, SEPTEMBER 1ST",
+    "MAINLAND ZONE BORDERS NOT DRAWN"
+   ],
+   "claim_ids": [
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31",
+    "C34"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "SNIPE SEASON BY ZONE",
+   "headline": "Same length. Only the start moves.",
+   "body": "",
+   "labels": [
+    "SOUTHEAST, UNITS 1 TO 4",
+    "GULF COAST, UNITS 5 TO 7, 9, 14 TO 16",
+    "NORTHERN, UNITS 11 TO 13, 17 TO 26",
+    "KODIAK, UNIT 8",
+    "PRIBILOF AND ALEUTIAN, UNIT 10",
+    "SEPTEMBER 1ST",
+    "OCTOBER 8TH",
+    "DECEMBER 16TH",
+    "DECEMBER 31ST",
+    "JANUARY 22ND",
+    "CLOSED DECEMBER 1ST TO 15TH",
+    "AI OVERVIEW'S RANGE, SEPTEMBER 1ST THROUGH DECEMBER 16TH",
+    "SEPTEMBER 5TH, THE HUNT",
+    "37 DAYS",
+    "33 DAYS EARLY",
+    "SNIPE LIMIT 8 A DAY, 24 IN POSSESSION, EVERY ZONE"
+   ],
+   "claim_ids": [
+    "C02",
+    "C09",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31",
+    "C32",
+    "C33",
+    "C47",
+    "C48"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "",
+   "headline": "She called troopers on herself the same afternoon.",
+   "body": "",
+   "labels": [
+    "THE KODIAK INTERIOR, NORTHWEST OF PASAGSHAK"
+   ],
+   "claim_ids": [
+    "C05",
+    "C06",
+    "C43"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "KODIAK DISTRICT COURT",
+   "headline": "No contest. A $150 fine.",
+   "body": "The charge was a Class A misdemeanor. She pleaded no contest and was fined $150, the Alaska Beacon reported.",
+   "labels": [
+    "\"The potential consequences for self-turning in versus being caught can be pretty dramatic.\"",
+    "AUSTIN MCDANIEL, ALASKA DEPARTMENT OF PUBLIC SAFETY"
+   ],
+   "claim_ids": [
+    "C01",
+    "C13",
+    "C20",
+    "C21",
+    "C26"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "DEPARTMENT OF PUBLIC SAFETY",
+   "headline": "\"I expect we'll see more of this type of thing in the future.\"",
+   "body": "Spokesman Austin McDaniel says it's the first time he thinks the department has seen AI cited, and it doesn't track these cases. Google's own help page says AI Overviews \"can and will make mistakes.\"",
+   "labels": [
+    "WILSON'S SNIPE"
+   ],
+   "claim_ids": [
+    "C09",
+    "C22",
+    "C23",
+    "C24",
+    "C35"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Read the zone before the date.",
+   "body": "DPS says the one source of truth for hunts is ADF&G's regulations and emergency orders.",
+   "labels": [
+    "Save this before your next search.",
+    "KODIAK OPENS OCTOBER 8TH"
+   ],
+   "claim_ids": [
+    "C25",
+    "C27"
+   ]
+  }
+ ],
+ "slide_copy_corrections": [],
+ "aftercare": [
+  "Post Thursday, October 1st, or Tuesday, October 6th, or Wednesday, October 7th, between 8 and 11 a.m. Alaska time. The posting schedule is your decision. Kodiak and the Pribilof and Aleutian zone open October 8th, so posting before then keeps the save ask timely, and Wednesday the 7th is the last strong slot before the opener.",
+  "Paste the sources block as the first comment within 60 seconds of posting.",
+  "Reply to every comment in the first 60 to 90 minutes. If someone says Google flatly told her Kodiak opened September 1st, point to slide 3. The hedged Overview came from the trooper's own later search, and the record shows her only as told September 1st \"according to Google.\"",
+  "The hunter is deliberately unnamed in the deck, caption and sources. Keep her unnamed in replies even if a commenter names her, because the Beacon and the court file both print it.",
+  "After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "This deck says Google's September 1st snipe opener is right for three of Alaska's five migratory bird zones and wrong for Kodiak's Unit 8, which opens October 8th, so a Kodiak hunter at Bull Lake on September 5th was 33 days early. The hunter is deliberately unnamed and never pictured anywhere in the deck, caption or first comment, even though the Beacon and the court file both print her name. The hedged AI Overview on slide 3 (\"depending on the specific zone\") comes from Trooper Alex Wick's own later search, which used different words. The deck never claims she saw that sentence, only that she said Google told her September 1st. Google's own help page is quoted (\"can and will make mistakes\") so the deck stays fair to Google rather than dunking on it, the no contest plea and $150 fine are attributed to the Alaska Beacon because no court disposition record was reachable, and you should check that the DocumentCloud link opens for you before posting, because it returned 403 to the fact checker and the court claims rest on the showrunner's saved copy.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C13",
+  "C20",
+  "C21",
+  "C22",
+  "C23",
+  "C24",
+  "C25",
+  "C26",
+  "C27",
+  "C28",
+  "C29",
+  "C30",
+  "C31",
+  "C32",
+  "C33",
+  "C34",
+  "C35",
+  "C37",
+  "C43",
+  "C44",
+  "C45",
+  "C46",
+  "C47",
+  "C48"
+ ],
+ "notes_for_showrunner": "post_copy is copied byte for byte from /home/user/alaskaaicarousels/out/2026-09-30/caption.txt with its single trailing newline and the hashtag line. I found no factual error in the caption. Its 'AI answer's September 1st' is the Overview recorded from the trooper's search (C09), which the caption itself makes clear. hook_chars counts line 1 (109). total_chars counts the full string including 13 newlines (890). Every storyboard COPY string is kept verbatim. All of them pass the house rules for colons, dashes, straight quotes, banned words, 'can't' and date style, so slide_copy_corrections is empty. One optional nit, left unchanged. On slide 05 the Gulf Coast row label leaves out Unit 10 (Unimak only), and the Pribilof and Aleutian row leaves out 'except Unimak'. Slide 04 covers this ('Unimak Island goes with the Gulf Coast'), so nothing on the slide is false. Slides 01, 06 and 09 are under the 25-word floor by design (cover, breather, close). In the first comment, C37 (emergency orders) and C44 (DEM provenance) appear only there. The slide 07 quote and attribution, and the slide 09 ask and flag text, are carried in labels because the copy.json shape has no quote or ask field."
+}

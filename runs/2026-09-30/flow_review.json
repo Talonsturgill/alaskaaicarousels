@@ -1,0 +1,189 @@
+{
+ "verdict": "revise",
+ "round": 2,
+ "arc_assessment": "The story holds up as a sequence: claim, case, the words, the map, the rule, a rest, the cost, the forecast, the ask. Slide 02 pays off the cover immediately, and the honesty guards hold on every frame. The informational peak arrives at 03 to 05; after that the stakes fall to a $150 fine on 07 and the forward pull only returns on 08, so the landing is calm but there's no felt escalation through 06 and 07.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "strong"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "weak",
+   "pull": "04 already prints both dates; 05's 37 and 33 days are not planted on 04"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "weak",
+   "pull": "only the SEPTEMBER 5TH, THE HUNT plate; the chart reads as an ending"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "weak",
+   "pull": "two McDaniel quotes back to back"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "D2 edge-tease",
+   "problem": "no edge element completes on the next slide; bleed, not tease",
+   "fix": "make some junctions true carries"
+  },
+  {
+   "severity": "major",
+   "where": "D3 palette arc",
+   "problem": "01 and 02 sit under near-black skies; 06 is the lightest cool frame; 07 is a warm mid-brown brighter than neighbours; 05 not the brightest",
+   "fix": "lift 01/02 skies to mid-key overcast, keep 05 brightest, darken 07"
+  },
+  {
+   "severity": "polish",
+   "where": "D1 readout",
+   "problem": "readouts correct but tiny and dim at thumb",
+   "fix": "raise readout to #93A3AB"
+  },
+  {
+   "severity": "polish",
+   "where": "gold motif",
+   "problem": "05's gold bars outweigh 09's flag",
+   "fix": "enlarge the 09 flag about 1.4x"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "03-04-05",
+   "problem": "three dense slides in a row",
+   "fix": "thin 04's body"
+  },
+  {
+   "severity": "polish",
+   "where": "07-08",
+   "problem": "back-to-back McDaniel quotes",
+   "fix": "move the 07 quote"
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "06, 07 footers",
+   "problem": "brightened footers jump on the contact sheet"
+  },
+  {
+   "severity": "polish",
+   "where": "07 ink law",
+   "problem": "$150 gold dilutes gold = October 8th"
+  },
+  {
+   "severity": "polish",
+   "where": "09 ampersand",
+   "problem": "Archivo ampersand reads ADFEG at thumb"
+  },
+  {
+   "severity": "polish",
+   "where": "05 kicker",
+   "problem": "kicker baseline 36 px lower than other frames"
+  },
+  {
+   "severity": "polish",
+   "where": "09 flag lighting",
+   "problem": "lightest region is the free east end, not the west-facing panel"
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 5,
+  "why": "05 holds the whole answer on the densest frame after two dense frames, and plants nothing forward"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 8,
+    "score": 6.0,
+    "cause": "d",
+    "fix": "re-cut the engraving so every line follows the body's cross-section contour"
+   },
+   {
+    "slide": 5,
+    "score": 6.5,
+    "cause": "b",
+    "fix": "give the stock real material and graded slot occlusion"
+   },
+   {
+    "slide": 3,
+    "score": 6.5,
+    "cause": "b",
+    "fix": "paint the reflected west-bright ceiling into the water as a tonal band the rings displace"
+   },
+   {
+    "slide": 6,
+    "score": 7.0,
+    "cause": "c",
+    "fix": "lit west-face tone on the near ridges and double the nearest band's stroke weight"
+   },
+   {
+    "slide": 9,
+    "score": 7.0,
+    "cause": "d",
+    "fix": "vary blade curvature and colour; make the flag stand in the sedge"
+   },
+   {
+    "slide": 2,
+    "score": 7.5,
+    "cause": "d",
+    "fix": "lengthen hachures along the fall line"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     3,
+     4,
+     6,
+     8
+    ],
+    "fix": "take 06 and 08 off hairline-only"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     2,
+     5,
+     6,
+     7,
+     8
+    ],
+    "fix": "lift 01/02, make 05 brightest, darken and cool 07"
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "score_0_10": 7.2,
+ "note": "Persisted by the showrunner from the flow critic's hand-back (findings condensed to their fields; problem text abbreviated where long)."
+}

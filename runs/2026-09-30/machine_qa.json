@@ -1,0 +1,220 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '01 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ALASKA PENINSULA, OPENS SEPTEMBER 1ST' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KODIAK, OPENS OCTOBER 8TH' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '01 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the lit strait between the two shores': canvas 17.8 dE, page 53.7 dE, 55% of its rect is clear of opaque DOM (div#water.water stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the Alaska Peninsula shore across Shelikof Strait' lands 0.0px from its target",
+        "leader 'the Kodiak ridges' lands 0.0px from its target",
+        "leader 'the Alaska Peninsula shore across Shelikof Strait' meets its label 0.2px away",
+        "leader 'the Kodiak ridges' meets its label 0.0px away",
+        "leader 'the Alaska Peninsula shore across Shelikof Strait' is drawn 162 px at 34 degrees, inside the pointer band",
+        "leader 'the Kodiak ridges' is drawn 91 px at 76 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Right for most of Alaska.Wrong for Kodiak.' fits 2/2 lines at 101px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '02 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BULL LAKE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '5 KM' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '02 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'Bull Lake gold ring': canvas 92.5 dE, page 92.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'Bull Lake at Pasagshak' lands 18.4px from its target",
+        "leader 'Bull Lake at Pasagshak' meets its label 0.5px away",
+        "leader 'Bull Lake at Pasagshak' is drawn 92 px at 34 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'On September 5th, a Kodiakhunter took three ' fits 2/2 lines at 77.5px"
+      ],
+      "asserts": [
+        "'the 5 km scale bar against the projection' holds: 100 vs 100.172 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '03 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TROOPER ALEX WICK'S OWN SEARCH, \"SNIPE SEASON ALAS' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AS QUOTED IN HIS AFFIDAVIT. HER OWN SEARCH IS RECO' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 2 in 'The zone was in the parentheses.' ends 'was' -- an article, conjunction or preposition left hanging at the line end. It reads at 91.5px, so the break is the first thing a feed sees. Author the break with <br> before 'in' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '03 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the drizzle ring field on the near water': canvas 33.9 dE, page 36.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The zone wasin the parentheses.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '04 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SOUTHEAST, GULF COAST, NORTHERN' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KODIAK, OCTOBER 8TH' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PRIBILOF AND ALEUTIAN, OCTOBER 8TH' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'UNIMAK, SEPTEMBER 1ST' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MAINLAND ZONE BORDERS NOT DRAWN' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '04 / 09' at 898,68 102x29 (margin 80px)",
+        "outside safe zone: 'KODIAK, OCTOBER 8TH' at 720,1007 294x37 (margin 80px)"
+      ],
+      "motifs": [
+        "'the gold verge of the Kodiak archipelago': canvas 99.1 dE, page 113.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'KODIAK, OCTOBER 8TH' lands 0.0px from its target",
+        "leader 'PRIBILOF AND ALEUTIAN, OCTOBER 8TH' lands 0.0px from its target",
+        "leader 'UNIMAK, SEPTEMBER 1ST' lands 0.0px from its target",
+        "leader 'KODIAK, OCTOBER 8TH' meets its label 0.2px away",
+        "leader 'PRIBILOF AND ALEUTIAN, OCTOBER 8TH' meets its label 0.0px away",
+        "leader 'UNIMAK, SEPTEMBER 1ST' meets its label 0.3px away",
+        "leader 'KODIAK, OCTOBER 8TH' is drawn 105 px at 31 degrees, inside the pointer band",
+        "leader 'PRIBILOF AND ALEUTIAN, OCTOBER 8TH' is drawn 270 px at 20 degrees, inside the pointer band",
+        "leader 'UNIMAK, SEPTEMBER 1ST' is drawn 89 px at 56 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Five zones. Two opening days.' fits 1/1 lines at 82.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '05 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AI OVERVIEW'S RANGE, SEPTEMBER 1ST THROUGH DECEMBE' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SOUTHEAST, UNITS 1 TO 4SEPTEMBER 1ST TO DECEMBER 3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 1ST TO DECEMBER 31ST' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'GULF COAST, UNITS 5 TO 7, 9, 14 TO 16SEPTEMBER 1ST' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 1ST TO DECEMBER 16TH' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NORTHERN, UNITS 11 TO 13, 17 TO 26SEPTEMBER 1ST TO' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 1ST TO DECEMBER 16TH' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KODIAK, UNIT 8OCTOBER 8TH TO JANUARY 22ND' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'OCTOBER 8TH TO JANUARY 22ND' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PRIBILOF AND ALEUTIAN, UNIT 10OCTOBER 8TH TO JANUA' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'OCTOBER 8TH TO JANUARY 22ND' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CLOSED DECEMBER 1ST TO 15TH' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '37 DAYS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 5TH, THE HUNT' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '33 DAYS EARLY' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SNIPE LIMIT 8 A DAY, 24 IN POSSESSION, EVERY ZONE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '05 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the two gold October 8th slides': canvas 2.2 dE, page 2.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the month rail' runs 0 days after September 1st at 96 to 144 days after September 1st at 960; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Same length. Only the start moves.' fits 1/1 lines at 71px"
+      ],
+      "asserts": [
+        "'day 0 lands at the declared x' holds: 96 vs 96 px (within 2)",
+        "'107 days spans 642 px' holds: 642 vs 642 px (within 2)",
+        "'Kodiak starts 37 days after September 1st' holds: 318 vs 318 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '06 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE KODIAK INTERIOR, NORTHWEST OF PASAGSHAK' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '06 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the nearest engraved ridge band': canvas 36.6 dE, page 41.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'She called troopers on herselfthe same after' fits 2/2 lines at 81.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '07 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AUSTIN MCDANIEL, ALASKA DEPARTMENT OF PUBLIC SAFET' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '07 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the walking line of snipe prints': canvas 22.1 dE, page 21.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'No contest. A $150 fine.' fits 1/1 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '08 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WILSON'S SNIPE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '08 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "contacts": [
+        "'the snipe feet on lit sedge': shadow L* 6.8 vs ground L* 17.3, dL 10.5 at 432w"
+      ],
+      "motifs": [
+        "'the engraved snipe': canvas 84.0 dE, page 84.9 dE, 97% of its rect is clear of opaque DOM (span.lt stands on the rest)"
+      ],
+      "leaders": [
+        "leader \"the snipe's flank\" lands 0.0px from its target",
+        "leader \"the snipe's flank\" meets its label 10.0px away",
+        "leader \"the snipe's flank\" is drawn 167 px at 69 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '\"I expect we'll see more of this type of thi' fits 2/3 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '09 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,64 154x32 (margin 80px)",
+        "outside safe zone: '09 / 09' at 898,68 102x29 (margin 80px)"
+      ],
+      "contacts": [
+        "'the pin flag stem in the sedge': shadow L* 12.9 vs ground L* 23.8, dL 10.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold October 8th pin flag': canvas 88.4 dE, page 104.8 dE, 63% of its rect is clear of opaque DOM (div#ft.flagt stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Read the zonebefore the date.' fits 2/2 lines at 117.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 59,
+  "verdict": "WARN"
+}

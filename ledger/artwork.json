@@ -2452,6 +2452,52 @@
         "bespoke_median": 0.257
       },
       "note": "Four editing rounds: five critics (all revise), five re-reviews (four ship), one flow critic (revise, art predicted 7.0), three round-3 re-reviews (ship), then the one craft-floor cycle on 05, 07, 04 and 02 (art 7.5 to 8.0). Brightening the lamp pool before declaring contacts was the repair that made casts measurable on ink; bespoke_check now counts akstack constructors as drawn marks."
+    },
+    {
+      "run_date": "2026-09-30",
+      "carousel_no": 73,
+      "slide_count": 9,
+      "hero_structure": "NEW: ONE STRAIT, FIVE SCALES. One place drawn at nine camera scales, each scale in its own mark-making: a PBR terrain render of a real Kodiak DEM across Shelikof Strait (01), plan hachure on the same DEM (02), a drizzle ring field on Bull Lake (03), a waterlined state map (04), an orthographic PBR season instrument (05), a DEM horizon-skyline engraving (06), a bas-relief mud heightfield with snipe prints (07), a white-line engraved snipe (08), a tapered-blade sedge field with a gold pin flag (09).",
+      "atmosphere": "NEW: MARINE CEILING, WEST-BRIGHT OVERCAST. No sun disc, no lamp, no pool; a diffuse sky dome brightest in the west-northwest, falling to dusk by 08 and 09.",
+      "depth_technique": "real-DEM PBR terrain with exp2 fog to a curved horizon and a distance-graded near sea (01); DEM horizon march in six bands with haze (06); orthographic three.js instrument with bevelled slides inset by their bevel (05); per-pixel heightfield with cavity and sheens (07); cross-section contour engraving (08); three sedge planes with an attached cast (09)",
+      "line_voice": "hachure down the fall line, offset waterlines from a distance field, horizon-parallel engraving, white-line intaglio cuts that divide each column of the bird's silhouette",
+      "continuity_device": "camera:a camera-scale readout in the footer of every frame (VIEW 140 KM to VIEW 1 M, SCALE 6 PX A DAY on the instrument)",
+      "continuity_devices": [
+        "D1 camera-scale readout in the coordinates footer",
+        "D2 edge-tease (the flow critic found it reads as bleed, not tease)",
+        "D3 palette arc from overcast day to dusk"
+      ],
+      "hook_archetype": "NEW: THE MAJORITY ANSWER (true for most of the map, false at the named place)",
+      "palette_family": "Pasagshak sedge under a marine ceiling: ceiling navy #0B1620 to west glow #6F8288, sedge and tawny land ramp, mud, forget-me-not #6EA5FF for September 1st, gold #FFC72C for October 8th",
+      "type_pairing": "Fraunces display over Archivo body, JetBrains Mono for the machine's words, instruments and readouts",
+      "dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 4
+      },
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 4
+      },
+      "narrative_structure": "the majority answer, the case, the trooper's own search, five zones, the season rule, the same afternoon, the cost, the forecast, the ask",
+      "techniques": [
+        "Real-DEM PBR terrain render with a distance-graded sea and a 2D west-glow sky texture (assets/geo/ak-kodiak-dem, widened this run)",
+        "Bevel-inset extrusion so a bevelled bar's outer silhouette spans exactly its data",
+        "Cross-section contour engraving: per-column silhouette extents divided into N cuts, profiles box-smoothed across joins",
+        "Chamfer distance-from-coast sea grading with offset waterlines and a cased coast"
+      ],
+      "new_techniques_logged": [],
+      "measured": {
+        "revision_rounds": 4,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.76,
+        "artwork": 7.5,
+        "bespoke_median": 0.087
+      },
+      "note": "Five critics (all revise), five re-reviews (02 and 03 ship), one flow critic (revise, art predicted 6.5), a round on its craft work order, the first score (8.68, art 7.0), then the one craft-floor cycle (art 7.5). Two CSS-border gold rules were invisible to the ink census until redrawn as SVG rects; two painted pools on declared contact shadows failed qa and were removed."
     }
   ]
 }

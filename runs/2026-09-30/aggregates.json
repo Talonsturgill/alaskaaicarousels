@@ -1,0 +1,85 @@
+{
+ "run_date": "2026-09-30",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "Five zones. Two opening days.",
+   "fragment": "Five zones",
+   "subject": "migratory bird zones",
+   "members": [
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31"
+   ],
+   "items": [
+    "Kodiak",
+    "Pribilof",
+    "Gulf Coast",
+    "Northern",
+    "Southeast"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "Five zones. Two opening days.",
+   "fragment": "Two opening days",
+   "subject": "opening days",
+   "members": [
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31"
+   ],
+   "items": [
+    "September 1st",
+    "October 8th"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "GULF COAST, UNITS 5 TO 7, 9, 14 TO 16SEPTEMBER 1ST TO DECEMBER 16TH",
+   "fragment": "5 TO 7",
+   "member": "C29"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "NORTHERN, UNITS 11 TO 13, 17 TO 26SEPTEMBER 1ST TO DECEMBER 16TH",
+   "fragment": "11 TO 13",
+   "member": "C30"
+  },
+  {
+   "kind": "duration",
+   "slide": 5,
+   "text": "37 DAYS",
+   "from": {
+    "claim": "C29",
+    "date": "2026-09-01"
+   },
+   "to": {
+    "claim": "C27",
+    "date": "2026-10-08"
+   }
+  },
+  {
+   "kind": "duration",
+   "slide": 5,
+   "text": "33 DAYS EARLY",
+   "fragment": "33 DAYS",
+   "from": {
+    "claim": "C02",
+    "date": "2026-09-05"
+   },
+   "to": {
+    "claim": "C27",
+    "date": "2026-10-08"
+   }
+  }
+ ]
+}

@@ -8914,3 +8914,13 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   document's text layer is not what a reader sees. Unblocks if a screen-reader or search surface
   is shown to read the PDF text layer: then measure each face and decide whether assemble.py
   should report it.
+
+## 2026-09-30 (No.73, Kodiak snipe and a Google AI Overview, ONE STRAIT, FIVE SCALES): retro
+
+- A promised accent drawn as a CSS border is invisible to the ink census, which reads canvas ops, SVG fill and stroke, and DOM text colour. Slides 06 and 08 FAILED the ink law with a gold rule plainly on screen; redrawing the rule as an SVG rect cleared it.
+- An extruded data bar with a bevel is longer than its data by the bevel at each end. The AI's bracket on 05 missed the Gulf Coast and Northern ends by about 9 px until the bars were built bevel-short (technique 109). The projectPoint asserts passed throughout because they read the mesh origin.
+- Engraving that reads as venetian blinds is cut by screen rows. Dividing each column of the silhouette into the same number of cuts (technique 108) took 08 from "striped lozenge" toward a form, but the art score stayed at 7.5: the critics' next ask is snipe proportion (short legs, the body seated in the sedge), which is drawing, not mark-making.
+- The contact declaration on 09 had to be re-measured five times, once after every change to the blades around the stem foot. contact_probe with --base at the stem and a 50 px span gives the declaration in one call; run it after any change near a declared contact, before qa.
+- A label line that was ragged by qa's word list ('The zone was / in the parentheses.') is still the right break when the hanging word is the verb; say so in the reconciliation and the critics accept it.
+- The Gas Watch audit failed all run on 'source reading published': CINGSA posted its 16:00 reading after the 23:04Z collection, and GitHub had not dispatched the 04:40Z or 07:20Z runs five hours later, while workflow_dispatch returns 403 to this integration. That is a github blocker, recorded as an incident, not a code defect.
+
