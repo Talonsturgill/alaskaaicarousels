@@ -8955,3 +8955,5 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   snipe 1.2x about its feet, which kept the legs the scorer then called twice a snipe's. WHY
   PARKED: anatomy is the named art defect in 2 of 73 scored runs (2026-08-08 salmon fins,
   2026-09-30 snipe legs). UNBLOCKS on a third inside 20 runs.
+- A SYMLINK OUT OF THE REPO IS A PERMISSION PROMPT (owner, 2026-10-01). To run the browser suites the showrunner linked node_modules to a scratch directory under /tmp; every later command that touched the path resolved outside the allowed working directories and the harness stopped the run twice to ask. Never create a link, file or directory inside the repo that points outside it. If a test needs the global playwright package, use NODE_PATH="$(npm root -g)" on the command instead of a link.
+

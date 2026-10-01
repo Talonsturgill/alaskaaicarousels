@@ -2846,7 +2846,7 @@
       ],
       "verification": "Reconstruction from this run's slide 06 with its gold rule as border-bottom: pre-upgrade engine FAIL 'promised ink #FFC72C ... no brush on this frame ever carried it (25 colours)', upgraded engine no ink-law finding (census gains css-border rgb(255, 199, 44)). Same slide with gold declared ABSENT and painted by a 3 px CSS background: pre-upgrade PASS (blind), upgraded FAIL 'forbidden ink #FFC72C ... painted by 1 op(s): css-bg'. tests/ink_census_css_verify.py (new, hermetic, 6 fixtures incl. border-style none, 0 px outline, display none, visibility hidden, opacity 0 parent, 0x0 box): 6/6 HOLD upgraded, BROKEN on 4 against the pre-upgrade render.py. tests/ink_census_evict_verify.py and tests/empty_paint_verify.py still HOLD. out/2026-09-30/slides re-rendered: 9/9 OK, 0 page errors, qa WARN 0 fails with every slide's warn set identical to the shipped machine_qa.json (census +0 to +3 entries a slide). examples/demo-deck: 4/4 OK, qa output identical to the pre-upgrade engine (0 fails; warns 3, 5, 5, 1). Shipped slide sources under runs/ with an absent ink: none paints it in CSS, so no shipped frame would newly fail.",
       "rollback": "git revert the upgrade(2026-09-30) commit (or git checkout <commit>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md and delete tests/ink_census_css_verify.py).",
-      "commit": "pending (stamped by the showrunner's follow-up commit)"
+      "commit": "f12d36d1"
     }
   ],
   "scan_log": [
