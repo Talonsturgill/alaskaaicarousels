@@ -1,0 +1,139 @@
+{
+  "round": 2,
+  "verdict": "revise",
+  "score_0_10": 7.4,
+  "arc_assessment": "The sequence keeps the cover's promise; 02 pays three short at once. The middle sags because round 1 removed the edge-teases on 02, 03 and 04, and 06 ends on a stray RCA fact instead of the question that pulls into 07.",
+  "junction_pulls": [
+    {
+      "from": 1,
+      "to": 2,
+      "strength": "strong"
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "strength": "weak"
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "strength": "weak"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "strength": "weak"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "strength": "weak"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "strength": "weak"
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "strength": "strong"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "strength": "strong"
+    }
+  ],
+  "continuity_findings": [
+    "D2 warm-to-cool grade arc does not read; give 06-08 a cool split-tone and pull 05 saturation to about 0.8",
+    "junctions 2-3, 3-4, 4-5 lost their pull; restore one readable tease on 04 (a sand-glass end disc) and a verbal plant on 02 (The House had passed it two weeks before, C19)",
+    "06 ends on the RCA sentence; end on 'Has Alaska done any of the three?'",
+    "06's SB 250 tray corner reads as debris",
+    "07-08 plan view: lay one long soft window band across the grain"
+  ],
+  "rhythm_findings": [
+    "06-07-08 three text-heavy frames; cut 06 body, move C64 into 07's kicker",
+    "02-03 back-to-back tray frames; optional shorter 03 body"
+  ],
+  "consistency_findings": [
+    "counters, fixtures and the D1 gold state table all correct",
+    "the table changes physics across frames; draw one lit nosing at the same y on the tray and relief frames",
+    "04 lit flank reads front-left",
+    "05 sand reads as ivory resin; 09 glass reads as wire coil"
+  ],
+  "predicted_bail_point": {
+    "slide": 6,
+    "fix": "end 06 on a question, cut the body, make the tease read"
+  },
+  "craft": {
+    "predicted_artwork_score": 7.0,
+    "weakest_frames": [
+      {
+        "slide": 7,
+        "score": 6.5,
+        "cause": "b",
+        "problem": "the hasped box, the largest object, is the least modelled"
+      },
+      {
+        "slide": 8,
+        "score": 6.5,
+        "cause": "c",
+        "problem": "the rule is a flat bar and the lower third is dead"
+      },
+      {
+        "slide": 6,
+        "score": 6.5,
+        "cause": "d",
+        "problem": "one horizontal lay on every face; solid blob for the cast"
+      },
+      {
+        "slide": 1,
+        "score": 7.0,
+        "cause": "d",
+        "problem": "PBR grain smears to streaks without anisotropic filtering"
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "a",
+        "slides": [
+          2,
+          3,
+          7,
+          8
+        ],
+        "problem": "one wavy two-tone table texture on four frames"
+      },
+      {
+        "cause": "a",
+        "slides": [
+          4,
+          6,
+          9
+        ],
+        "problem": "hairline-on-black table with all-horizontal lay on three frames"
+      },
+      {
+        "cause": "e",
+        "slides": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "problem": "tonal arc does not read"
+      },
+      {
+        "cause": "c",
+        "slides": [
+          4,
+          6,
+          9
+        ],
+        "problem": "black apron under the nosing"
+      }
+    ],
+    "masterful_depth_frame": 5
+  }
+}

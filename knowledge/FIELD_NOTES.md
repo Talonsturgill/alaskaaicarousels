@@ -8957,3 +8957,11 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   2026-09-30 snipe legs). UNBLOCKS on a third inside 20 runs.
 - A SYMLINK OUT OF THE REPO IS A PERMISSION PROMPT (owner, 2026-10-01). To run the browser suites the showrunner linked node_modules to a scratch directory under /tmp; every later command that touched the path resolved outside the allowed working directories and the harness stopped the run twice to ask. Never create a link, file or directory inside the repo that points outside it. If a test needs the global playwright package, use NODE_PATH="$(npm root -g)" on the command instead of a link.
 
+
+### 2026-10-01, No.74, H.R. 9340 (an UPDATE of No.58), retro
+
+- FIVE HANDS ON ONE TABLE HOLD TOGETHER ONLY IF THE TABLE IS ONE OBJECT. The flow critic found the table changing physics across frames (hairlines on three, PBR streaks on two, two-tone bands on four) and the cool Act II not reading at all. One lit nosing at the same y on every frame, and a real split-tone grade on the cool act, fixed both in one round; plan both into the storyboard next time, not into round 2.
+- A TEXTURE IS A DRAWING. Four frames carried one wavy two-tone wood band through two different engines, and the critic counted it as one drawing on four frames. The CRAFT PLAN limits mark-making families; the ground texture needs the same limit.
+- GOLD INK ON A SMALL ENGRAVED SPHERE READS OLIVE unless a gold underlay sits under the rings; every round-1 critic on 04 and 09 called the ballots green.
+- DECLARED CONTACT RECTS GO STALE WITH EVERY CAMERA MOVE. Slide 05 failed qa twice on rects measured before a restage. Re-probe after any move, in the same step as the move.
+- The caption room needed the reassigned director again (third run running): two first candidates on spent pairs (LEDGER TALLY with PUNCH THEN PROOF, DEFINITION SUBVERSION with INVERTED PYRAMID). SCENE with BRAID won after the critic's binding constraints.

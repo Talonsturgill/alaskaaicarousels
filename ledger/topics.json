@@ -2926,6 +2926,44 @@
       "sources_lead": "https://www.documentcloud.org/documents/28686379-260918-3ko-26-00162cr-icdf-initial-charging-document/",
       "claims": 48,
       "note": "Shipped 8.76 at revision round 4 (threshold 7.7), zero hard fails; first score 8.68 at round 3, then the one craft-floor cycle on 08, 05, 03, 09, 07 lifted art 7.0 to 7.5, still under the 8.5 floor. First hunting-regulation and first AI-search deck. Primary record: the Kodiak District Court charging document and trooper affidavit on DocumentCloud (403 to WebFetch; the showrunner's saved OCR and page-4 crop are the verification copy). Gas Watch live audit ended WARN with a github incident: the 16:00 CINGSA reading arrived after the last collection and the next two scheduled runs had not been dispatched."
+    },
+    {
+      "run_date": "2026-10-01",
+      "carousel_no": 74,
+      "topic": "H.R. 9340, the Ratepayer Protection Act (a large-load cost standard for computing sites of 100 MW or more), passed the U.S. House 417 to 3 on September 16th (roll 312, Begich yea) and failed Senate cloture 57 to 43 on September 30th with 60 needed (roll 254, Murkowski and Sullivan yea); the motion to proceed was withdrawn and the Senate is due back November 9th per States Newsroom. Both of the bill's clocks for state regulators (1 year to begin, 2 to decide) run from a date of enactment that does not exist, and its exemption counts only what a state did before it. Alaska's SB 250 passed the Alaska Senate 14 to 5 on May 16th and was heard and held in House CRA on May 18th.",
+      "angle": "UPDATE of No.58. THE MATCHED COUNT: Alaska's three were yes and the Senate fell three short, so for Alaska the bill is two clocks with no start date and an exemption that counts backward. No prediction of the lame duck, no exemption verdict, no party framing, Schumer left out.",
+      "entities": [
+        "H.R. 9340",
+        "Ratepayer Protection Act",
+        "U.S. Senate",
+        "U.S. House",
+        "Lisa Murkowski",
+        "Dan Sullivan",
+        "Nick Begich",
+        "Gabe Evans",
+        "SB 250",
+        "Alaska Senate",
+        "House Community and Regional Affairs",
+        "Regulatory Commission of Alaska",
+        "States Newsroom",
+        "Alaska Beacon"
+      ],
+      "keywords": [
+        "cloture",
+        "57 to 43",
+        "417 to 3",
+        "large-load customer",
+        "100 MW",
+        "date of enactment",
+        "prior state action exemption",
+        "data center cost allocation",
+        "lame duck",
+        "SB 250"
+      ],
+      "headline": "Three Yeas, Three Short, No Start Date",
+      "sources_lead": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00254.xml",
+      "claims": 69,
+      "note": "Shipped 8.505 at revision round 3 (threshold 8.0), zero hard fails; first score 8.425 at round 2 (threshold 8.3) with art 6.5, then the one craft-floor cycle on 05, 08, 07, 06, 04 lifted art to 7.0, still under 8.5. Declared UPDATE of No.58 (dedupe flagged LIKELY DUPLICATE, read in full). Primary record: both roll call XMLs, the engrossed bill text and the bill status XML."
     }
   ]
 }

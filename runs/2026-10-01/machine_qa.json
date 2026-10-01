@@ -1,0 +1,150 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '01 / 09' at 886,68 114x31 (margin 80px)",
+        "outside safe zone: 'Alaska's three votes were yes. The Senat' at 76,190 940x374 (margin 80px)"
+      ],
+      "contacts": [
+        "'the three-cup tray standing on the table': shadow L* 7.9 vs ground L* 20.0, dL 12.0 at 432w"
+      ],
+      "fits": [
+        "hl 'Alaska's three voteswere yes. The Senatefell' fits 3/3 lines at 130px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '02 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the three dark balls before the 60 line' lands 11.1px from its target",
+        "leader 'the nickel bar after cup 60' lands 11.0px from its target",
+        "leader 'Murkowski, the 41st yea' lands 11.0px from its target",
+        "leader 'Sullivan, the 51st yea' lands 11.0px from its target",
+        "leader 'the three dark balls before the 60 line' meets its label 1.6px away",
+        "leader 'the nickel bar after cup 60' meets its label 1.7px away",
+        "leader 'Murkowski, the 41st yea' meets its label 2.0px away",
+        "leader 'Sullivan, the 51st yea' meets its label 2.0px away",
+        "leader 'the three dark balls before the 60 line' is drawn 139 px at 20 degrees, inside the pointer band",
+        "leader 'the nickel bar after cup 60' is drawn 39 px at 7 degrees, inside the pointer band",
+        "leader 'Murkowski, the 41st yea' is drawn 34 px at 41 degrees, inside the pointer band",
+        "leader 'Sullivan, the 51st yea' is drawn 42 px at 27 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Cloture needed 60.It got 57.' fits 2/2 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 2 of 3 in 'Two weeks earlier, the House passed it 417 t' ends 'it' -- an article, conjunction or preposition left hanging at the line end. It reads at 99.5px, so the break is the first thing a feed sees. Author the break with <br> before '417' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '03 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'Begich, the 22nd yea' lands 11.0px from its target",
+        "leader 'the three nay balls' lands 11.0px from its target",
+        "leader 'Begich, the 22nd yea' meets its label 0.0px away",
+        "leader 'the three nay balls' meets its label 0.0px away",
+        "leader 'Begich, the 22nd yea' is drawn 59 px at 90 degrees, inside the pointer band",
+        "leader 'the three nay balls' is drawn 99 px at 69 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Two weeks earlier,the House passed it417 to ' fits 3/3 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 2 of 3 in 'A standard for computing sites of 100 MW and' ends 'MW' -- a two or three letter word left at the line end. It reads at 99.5px, so the break is the first thing a feed sees. Author the break with <br> before 'and' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '04 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "fits": [
+        "hl 'A standard for computingsites of 100 MWand u' fits 3/3 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '05 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the 1-year sand-glass end disc on the table': shadow L* 3.7 vs ground L* 19.6, dL 15.9 at 432w",
+        "'the 2-year sand-glass end disc on the table': shadow L* 6.4 vs ground L* 21.3, dL 14.9 at 432w"
+      ],
+      "leaders": [
+        "leader 'the 1-year glass' lands 6.0px from its target",
+        "leader 'the 2-year glass' lands 6.0px from its target",
+        "leader 'the 1-year glass' meets its label 0.0px away",
+        "leader 'the 2-year glass' meets its label 0.1px away",
+        "leader 'the 1-year glass' is drawn 28 px at 90 degrees, inside the pointer band",
+        "leader 'the 2-year glass' is drawn 28 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Both clocks starton a day that hasn'thappene' fits 3/3 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '06 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "fits": [
+        "hl 'It alsocounts backward.' fits 2/2 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '07 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "fits": [
+        "hl 'Alaska's Senate passedSB 250, 14 to 5.A Hous' fits 3/3 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '08 / 09' at 886,68 114x31 (margin 80px)"
+      ],
+      "scales": [
+        "'the steel rule, days after May 16th' runs 0 days at 80 to 248 days at 838.9; 8 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Every date on the record,and the one not set' fits 2/2 lines at 85.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,64 115x31 (margin 80px)",
+        "outside safe zone: '09 / 09' at 886,68 114x31 (margin 80px)",
+        "outside safe zone: 'Three yeas. Three short. No start date.' at 76,170 940x419 (margin 80px)"
+      ],
+      "fits": [
+        "hl 'Three yeas.Three short.No start date.' fits 3/3 lines at 145.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 22,
+  "verdict": "WARN"
+}
