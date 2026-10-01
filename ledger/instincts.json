@@ -1786,6 +1786,30 @@
       "evidence": "The first bespoke_check read 24 blocky against 16 drawn (40 percent, FAIL) because akstack.js does its drawing inside the module; counting the chassis constructors at the call site gave 70 percent drawn, with the demo deck unchanged at 82.",
       "act_on_it": "When a new shared helper module carries the art, register its constructors in bespoke_check's CHASSIS_RE in the same commit that adds the module.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-09-30",
+      "carousel_no": 73,
+      "instinct": "A BEVELLED BAR IS LONGER THAN ITS DATA.",
+      "evidence": "Slide 05's extruded slides overshot their day spans by the bevel (1.4 days each end), so the AI's bracket visibly missed the Gulf Coast and Northern ends; the projectPoint asserts passed because they measured the mesh origin.",
+      "act_on_it": "Build any bevelled data bar bevel-short and shift it by the bevel, so its outer silhouette spans exactly its data; assert the silhouette edge, not the origin.",
+      "confidence": 0.65
+    },
+    {
+      "run_date": "2026-09-30",
+      "carousel_no": 73,
+      "instinct": "A CSS BORDER IS INVISIBLE TO THE INK CENSUS.",
+      "evidence": "Slides 06 and 08 declared gold via a label's border-bottom and qa.py FAILED the ink law on both, because the census reads canvas ops, SVG fill/stroke and DOM text colour only.",
+      "act_on_it": "Draw a promised accent rule as an SVG rect (or canvas stroke), never a CSS border.",
+      "confidence": 0.7
+    },
+    {
+      "run_date": "2026-09-30",
+      "carousel_no": 73,
+      "instinct": "ENGRAVING ACROSS A FORM WRAPS ONLY WHEN THE CUTS DIVIDE THE SILHOUETTE.",
+      "evidence": "Horizontal cuts displaced by a height field read as venetian blinds to the flow critic (08 at 6.0); dividing each column's silhouette into the same number of cuts made them curve over the back and converge into head and tail.",
+      "act_on_it": "For an engraved object, parametrise cuts by the silhouette's per-column extent (smoothed across joins), not by screen rows.",
+      "confidence": 0.6
     }
   ]
 }

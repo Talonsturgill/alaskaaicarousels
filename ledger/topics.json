@@ -2882,6 +2882,50 @@
       "sources_lead": "https://www.govinfo.gov/content/pkg/FR-2026-08-14/html/2026-16590.htm",
       "claims": 65,
       "note": "Shipped 8.79 raw (normalized 7.99) at revision round 4 (threshold 7.7), zero hard fails; art 7.5 before and 8.0 after the one craft-floor cycle (05, 07, 04, 02). First E-Rate deck. USAC open data (srbr-2d59) was the keyless primary source for every dollar figure; census.gov returned 403 so the population figures rest on a reader rendering (confidence 0.85). Gas Watch live audit ended WARN on normal source lag after one CINGSA 307."
+    },
+    {
+      "run_date": "2026-09-30",
+      "carousel_no": 73,
+      "topic": "A Kodiak hunter took three Wilson's snipe at Bull Lake, Pasagshak, on September 5th after Google told her snipe season opened September 1st. Kodiak's Unit 8 and the Pribilof and Aleutian zone open October 8th; three other zones open September 1st. Trooper Alex Wick's affidavit (Kodiak District Court 3KO-26-00162CR) quotes the AI Overview his own search returned, hedged 'depending on the specific zone'. She self-reported the same afternoon, pleaded no contest and was fined $150 (Alaska Beacon). DPS spokesman Austin McDaniel: the first time he thinks DPS has seen AI cited, and he expects more.",
+      "angle": "THE MAJORITY ANSWER. A summary written by majority meets a law written by place: the AI's date is right for most of Alaska and wrong for Kodiak, and the zone it hedged in parentheses is where the regulation book starts. Not a dunk on Google; the hedge is shown in full.",
+      "entities": [
+        "Google",
+        "AI Overviews",
+        "Alaska Department of Public Safety",
+        "Alaska Wildlife Troopers",
+        "Alex Wick",
+        "Austin McDaniel",
+        "Alaska Department of Fish and Game",
+        "Kodiak District Court",
+        "Alaska Beacon",
+        "Alaska Public Media",
+        "James Brooks",
+        "Bull Lake",
+        "Pasagshak",
+        "Kodiak Island",
+        "Shelikof Strait",
+        "Unit 8",
+        "Unit 10",
+        "Unimak Island"
+      ],
+      "keywords": [
+        "snipe season",
+        "Wilson's snipe",
+        "AI Overview",
+        "migratory bird zones",
+        "Kodiak",
+        "October 8th",
+        "September 1st",
+        "no contest",
+        "$150",
+        "self-report",
+        "depending on the specific zone",
+        "hunting regulations"
+      ],
+      "headline": "Right for Most of Alaska. Wrong for Kodiak.",
+      "sources_lead": "https://www.documentcloud.org/documents/28686379-260918-3ko-26-00162cr-icdf-initial-charging-document/",
+      "claims": 48,
+      "note": "Shipped 8.76 at revision round 4 (threshold 7.7), zero hard fails; first score 8.68 at round 3, then the one craft-floor cycle on 08, 05, 03, 09, 07 lifted art 7.0 to 7.5, still under the 8.5 floor. First hunting-regulation and first AI-search deck. Primary record: the Kodiak District Court charging document and trooper affidavit on DocumentCloud (403 to WebFetch; the showrunner's saved OCR and page-4 crop are the verification copy). Gas Watch live audit ended WARN with a github incident: the 16:00 CINGSA reading arrived after the last collection and the next two scheduled runs had not been dispatched."
     }
   ]
 }

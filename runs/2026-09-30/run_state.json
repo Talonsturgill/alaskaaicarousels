@@ -1,0 +1,125 @@
+{
+ "run_date": "2026-09-30",
+ "carousel_no": 73,
+ "effort": "high",
+ "date_note": "Anchorage date 2026-09-30 at wake (22:15 AKDT); run_guard defaults to UTC (2026-10-01) but the routine's run date is the Anchorage date and runs/2026-09-30 does not exist.",
+ "branch": "tsturg/clever-mayer-0l0l4w",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/plan.md",
+    "out/2026-09-30/WORKLOG.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "2 searches; nothing new beyond FIELD_NOTES (saves weighting and document reach already recorded); nothing appended"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/scout_merge.md"
+   ],
+   "searches": {
+    "A": 24,
+    "B": 23,
+    "C": 25,
+    "D": 25,
+    "E": 25,
+    "F": 26
+   }
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/claims.json"
+   ],
+   "note": "48 claims, claims_check PASS (28 primary)"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "8 items refreshed (budget raised to 8 to cover the deferred two); H.R. 9340 updated with Senate cloture motion; watch.json failed=[] and 0 hearings (out of session); candidates triaged, none AI-infrastructure"
+  },
+  "gas_watch": {
+   "status": "done",
+   "note": "cron_health PASS; site_signoff PASS; gaswatch_pagecheck PASS; live audit FAIL on a delayed scheduled collection, recorded as gaswatch_incident.json (blocker github), gate WARN"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/storyboard.md",
+    "out/2026-09-30/treatment_field_documentarian.md",
+    "out/2026-09-30/treatment_data_journalist.md",
+    "out/2026-09-30/treatment_cartographer.md"
+   ],
+   "note": "dossier_check PASS 9 of 9"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/caption.txt",
+    "out/2026-09-30/copy.json",
+    "out/2026-09-30/caption_report.json"
+   ],
+   "note": "round one rejected by critic (both); one reassigned director, TIMELINE COLLAPSE / COLD OPEN WARM CLOSE, PASS"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-09-30/slides",
+    "out/2026-09-30/render",
+    "out/2026-09-30/aggregates.json"
+   ],
+   "note": "qa WARN 0 fails after fixing 5 FAILs (2 CSS-border gold rules invisible to the ink census, 2 painted pools on declared contact shadows, 1 contact on near-black ground)"
+  },
+  "pixel_review": {
+   "status": "done",
+   "rounds": 3,
+   "note": "two per-slide critic passes (round 1 all revise; re-review 02 and 03 ship), flow critic revise at predicted art 6.5, round 3 applied its craft work order"
+  },
+  "flow_review": "pending",
+  "assemble": {
+   "status": "done"
+  },
+  "scoring": {
+   "status": "done",
+   "score": 8.76,
+   "art": 7.5,
+   "craft_cycle": {
+    "frames": [
+     8,
+     5,
+     3,
+     9,
+     7
+    ],
+    "art_before": 7.0,
+    "art_after": 7.5
+   }
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-09-30",
+    "docs/"
+   ],
+   "note": "site 129 pages; docket_alerts sent 1 email (DOT corridors RFI, deadline in 2 days); prune freed 1.96M"
+  },
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "score": 8.76
+}

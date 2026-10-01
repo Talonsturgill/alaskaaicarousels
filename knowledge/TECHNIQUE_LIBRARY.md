@@ -1033,3 +1033,25 @@ annotation is the strongest pair):
     still be a solid film with a dashed depth face or it reads as a hole.
     Mask geometry is drawn to an OffscreenCanvas so render.py's canvas-text
     hook does not mistake it for a label.
+
+108. **Cross-Section Contour Engraving**, added 2026-09-30 for No.73 (slide 08).
+    White-line intaglio whose cuts follow an object's cross-section instead of
+    screen rows. For each 2 px column, scan the height form for its silhouette
+    top and bottom, box-smooth those two profiles (3 passes, 12 columns each
+    side) so the cuts pass a neck or tail join without a seam, then divide every
+    column into the same N cuts (60 for a 400 px bird) and stroke cut k through
+    the k/N point of each column, width from the lit normal times plumage, and
+    scaled by the local cut gap so converging cuts do not fill solid. A thin
+    appendage (a bill) takes its analytic edges and every tenth cut. What broke:
+    horizontal cuts displaced by the height field read as venetian blinds to the
+    flow critic (6.0); the divided cuts curve over the back and converge into
+    the head and tail.
+
+109. **Bevel-Inset Data Bars**, added 2026-09-30 for No.73 (slide 05).
+    An ExtrudeGeometry bevel grows the shape OUTWARD by bevelSize, so a bar
+    built to its data length overshoots both ends by the bevel and a bracket
+    drawn to the data visibly misses it. Build the shape bevel-short (length
+    minus twice bevelSize) and translate it by bevelSize before rotating, so the
+    outer silhouette spans exactly the data. Assert on the silhouette edge, not
+    the mesh origin, which is what passed while the bars were wrong.
+

@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 32,
+  "count": 33,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -2051,7 +2051,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-26",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-08-05",
@@ -2132,6 +2132,10 @@
         {
           "date": "2026-09-26",
           "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035 closed on August 27th with one award expected and a ceiling of $3,500,000. Its archive date is today, September 26th, and the listing shows no award. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, now reads archived as of September 26th, with one award expected and a ceiling of $3,500,000. No recipient is listed. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2205,7 +2209,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -2274,6 +2278,10 @@
         {
           "date": "2026-09-29",
           "note": "Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office and must arrive no later than September 30th. No extension is mentioned. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Re-read the KUAC report today. Comments on the proposed site near Spruce Lake go to the Eielson Public Affairs Office and must be submitted no later than September 30th, which is today. No extension is mentioned. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2332,7 +2340,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-08-30",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-08-06",
@@ -2349,6 +2357,10 @@
         {
           "date": "2026-08-30",
           "note": "Decided, and Fort Wainwright is not in it. The Army named its first five Janus installations on August 26th, 2026, Fort Bragg with Antares Nuclear, Fort Campbell with BWXT Advanced Technologies, Fort Hood with General Atomics Electromagnetic Systems, Fort Benning with Radiant Industries and Fort Drum with Westinghouse Government Services, against roughly $2.2 billion running across fiscal years 2027 through 2031 on milestone based payments. Fort Wainwright was short listed and not chosen, alongside Holston Army Ammunition Plant, Joint Base Lewis-McChord and Redstone Arsenal. The program itself continues, so a later round could still reach Alaska, and nothing published says it will."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Re-read the DefenseScoop report today. The five Janus installations named on August 26th are Fort Bragg, Fort Campbell, Fort Hood, Fort Benning and Fort Drum, and Fort Wainwright is listed among the short-listed sites that were not chosen. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/army-janus-fort-wainwright/"
@@ -3267,7 +3279,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-08-31",
@@ -3324,6 +3336,10 @@
         {
           "date": "2026-09-29",
           "note": "Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are due on or before September 30th and reply comments on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are due on or before September 30th, which is today, and reply comments on or before October 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -3574,6 +3590,11 @@
           "date": "2026-09-24",
           "label": "Placed on the Senate legislative calendar as Calendar No. 684",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-09-28",
+          "label": "Motion to proceed made in the Senate and a cloture motion on it presented",
+          "kind": "milestone"
         }
       ],
       "sources": [
@@ -3636,10 +3657,15 @@
           "url": "https://www.govinfo.gov/content/pkg/BILLS-119hr9340pcs/html/BILLS-119hr9340pcs.htm",
           "outlet": "U.S. Government Publishing Office, govinfo, Senate calendar print",
           "date": "2026-09-24"
+        },
+        {
+          "url": "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr9340.xml",
+          "outlet": "Library of Congress bill status on govinfo",
+          "date": "2026-09-29"
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-09-13",
@@ -3668,6 +3694,10 @@
         {
           "date": "2026-09-29",
           "note": "Checked govinfo today. The Senate print placed on the calendar as Calendar No. 684 is the latest published version and no Senate passage is recorded. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Updated. The Library of Congress bill status record on govinfo shows the Senate taking the bill up. A motion to proceed was made on September 28th and a cloture motion on that motion was presented the same day (Congressional Record S5065), and a motion to proceed was made again on September 29th (S5186). No Senate passage vote is recorded."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -3721,7 +3751,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-27",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-09-13",
@@ -3746,6 +3776,10 @@
         {
           "date": "2026-09-27",
           "note": "Re-read the Federal Register text today. Written responses on Docket DOE-HQ-2026-1123 are still accepted on or before October 9th, and no extension has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is the latest and no extension or correction has been published. Responses are accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -3784,7 +3818,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-09-13",
@@ -3821,6 +3855,10 @@
         {
           "date": "2026-09-29",
           "note": "Re-read the Federal Register text today. Written comments on the Department of Transportation request for information are due October 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Searched the Federal Register today for any later notice on America's Great Corridors of Commerce. The September 11th request for information is the latest, and no extension has been published. Written comments are due October 2nd. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
@@ -3946,7 +3984,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-09-30",
       "history": [
         {
           "date": "2026-09-15",
@@ -3979,6 +4017,10 @@
         {
           "date": "2026-09-29",
           "note": "Updated. The borough's legislative record, modified September 29th, now shows Ordinance 2026-35 as Pending in the Policies and Procedures Committee with an agenda date of October 6th. The public hearing stays set for October 20th, and no passage or enactment date is recorded."
+        },
+        {
+          "date": "2026-09-30",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
@@ -4125,6 +4167,44 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/sb-250-data-center-utility-costs/"
+    },
+    {
+      "id": "petersburg-data-center-moratorium",
+      "title": "Petersburg ties on whether to pause data centers",
+      "kind": "other",
+      "status": "decided",
+      "decider": "Petersburg Borough Assembly",
+      "public_access": "indirect",
+      "access_note": "The Assembly has voted and the motion failed on a tie, so nothing is pending. The question can come back only if a member brings it to a future Assembly meeting, where residents can speak during public comment.",
+      "summary": "On September 21st the Petersburg Borough Assembly considered starting a temporary moratorium on data centers, after the borough Planning Commission asked for a year-long freeze on data center applications and permits while local standards are written. The vote tied 3 to 3, so the moratorium process did not start. Assembly Member Scott Newman supported it for protections and local control. Utility Director Steve Harbour said selling that much power to one customer could significantly blunt how much electric rates will increase, and KFSK reports the borough utility has endorsed a small data center proposed by Mazzella Alaska LLC. KFSK gives no megawatt figure for it.",
+      "key_dates": [
+        {
+          "date": "2026-09-21",
+          "label": "Assembly ties 3 to 3 and the moratorium process does not start",
+          "kind": "vote"
+        }
+      ],
+      "location": {
+        "name": "Petersburg",
+        "lon": -132.9556,
+        "lat": 56.8125
+      },
+      "sources": [
+        {
+          "url": "https://www.kfsk.org/2026/09/28/data-center-moratorium-proposal-fails-in-petersburg-assembly-stalemate/",
+          "outlet": "KFSK",
+          "date": "2026-09-28"
+        }
+      ],
+      "first_seen": "2026-09-30",
+      "last_updated": "2026-09-30",
+      "history": [
+        {
+          "date": "2026-09-30",
+          "note": "Added. KFSK reported on September 28th that the Assembly tied 3 to 3 on September 21st after 30 minutes of discussion, so the Planning Commission's requested year-long freeze did not move forward. Read today against the KFSK report."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/petersburg-data-center-moratorium/"
     }
   ]
 }

@@ -1,0 +1,159 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat within 30 days",
+   "status": "pass"
+  },
+  {
+   "rule": "hero structure identical to last 4",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3 or link in body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder or unfinished element",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 9,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8.5x0.14)+(9x0.12)+(8.5x0.10)+(7.5x0.08)+(7x0.07)+(7.5x0.05)+(8x0.10) = 8.755",
+ "weighted_total": 8.76,
+ "threshold": 7.7,
+ "ship": true,
+ "revision_rounds": 4,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Redraw slide 08's snipe standing low in the sedge on short legs, with the body and tail mass anchored at the sedge line and the composition raised to close the dead band under the body copy.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "stilt legs about twice a snipe's proportion; body hoisted above the sedge; dead band under the body copy",
+   "fix": "shorter darker legs, belly just above the sedge, raise the bird about 150 px"
+  },
+  {
+   "slide": 5,
+   "problem": "slides still read as bevelled UI pills at thumb",
+   "fix": "drop the top-lip highlight and coloured under-rim; anisotropic sheen; hairline cursor sheet"
+  },
+  {
+   "slide": 6,
+   "problem": "hairline-only engraving, flat lower third; nearest ridge stroke crosses the footer",
+   "fix": "west-face tone under the near bands; fade the nearest ridge before the footer"
+  },
+  {
+   "slide": 9,
+   "problem": "dark seam near the hoist; uniform lower sedge",
+   "fix": "soft shading ramp across a wave; out-of-focus foreground blades"
+  },
+  {
+   "slide": 3,
+   "problem": "one concentric template stamped repeatedly",
+   "fix": "vary ring count, age and spacing; interference where rings cross"
+  }
+ ],
+ "editor_notes_for_email": "Re-score after the one craft-floor cycle (round 4 of 5): 8.76 against a 7.7 threshold. Artwork craft rose from 7.0 to 7.5, still under the 8.5 floor; the owed cycle is spent. Slide 08's snipe (stilt legs, hoisted body) is the frame to look at before posting. Check the DocumentCloud court-record link opens (403 to automated fetches; court claims rest on the showrunner's saved OCR and page-4 crop). Keep the hunter unnamed in replies. Slide 3's hedged Overview is Trooper Wick's own later search. No contest and $150 are the Alaska Beacon's report. Post on or before October 7th (Kodiak opens October 8th).",
+ "note": "Persisted by the showrunner from the scorer's two hand-backs (first score 8.68 at round 3, re-score 8.76 at round 4 after the craft cycle); hard-fail evidence and notes condensed.",
+ "craft_cycle": {
+  "frames": [
+   8,
+   5,
+   3,
+   9,
+   7
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ },
+ "first_score": {
+  "weighted_total": 8.68,
+  "artwork": 7.0
+ }
+}

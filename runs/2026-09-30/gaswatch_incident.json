@@ -1,0 +1,17 @@
+{
+ "blocker": "github",
+ "reason": "CINGSA published its 2026-09-30T16:00 Alaska reading after the last scheduled Gas Watch collection (run 374, 2026-09-30T23:04Z, success), so the live record for September 30th carries the earlier reading. The two later scheduled collections (cron 40 4 and 20 7 UTC) had not been dispatched by GitHub as of 2026-10-01T08:36Z, and this session's integration cannot dispatch the workflow (workflow_dispatch returns 403 Resource not accessible by integration). The collector and its last run are healthy; nothing in the repository is broken. Separately, the CINGSA dashboard intermittently answers 307 with no Location header and then 200 on retry.",
+ "attempts": [
+  "2026-10-01T04:4xZ and 07:5xZ: re-ran scripts/gaswatch_health.py (FAIL on 'source reading published' and once on a transient CINGSA 307)",
+  "2026-10-01T07:33Z: workflow_dispatch of gaswatch.yml via the GitHub API, HTTP 403 Resource not accessible by integration (also tried earlier in the run)",
+  "2026-10-01T08:15Z: listed gaswatch.yml runs; newest is run 374 at 2026-09-30T23:04Z, no run for the 04:40Z or 07:20Z slots yet",
+  "2026-10-01T08:20Z: curl of the CINGSA dashboard three times, 307 (no Location) then 200, 200",
+  "2026-10-01T08:36Z: re-ran scripts/gaswatch_health.py, still FAIL on 'source reading published' only"
+ ],
+ "evidence_urls": [
+  "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/36789114800",
+  "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml",
+  "https://cingsa.com/operations/PublicDashBoard.html",
+  "https://alaskaaihq.com/gas-watch/"
+ ]
+}

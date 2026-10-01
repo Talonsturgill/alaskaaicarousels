@@ -186,6 +186,13 @@ AGENCY_RULES = [
      ("matsu assembly", "mat su borough assembly", "matanuska susitna borough assembly")),
     (r"Kenai Peninsula Borough Assembly", "the Kenai Peninsula Borough Assembly",
      ("kenai assembly", "kpb assembly", "kenai peninsula borough assembly")),
+    # Added 2026-09-30 with the first Petersburg item, the borough assembly's
+    # 3-3 tie on starting a data center moratorium, and the self-test caught it
+    # in branch CI the same way it caught the FCC, NMFS, DOT and UA ones: an item
+    # with no recognised agency, which is a reader asking who decided this and
+    # being handed nothing.
+    (r"Petersburg Borough Assembly", "the Petersburg Borough Assembly",
+     ("petersburg assembly", "petersburg borough assembly", "petersburg borough")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",
