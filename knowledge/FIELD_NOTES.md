@@ -8924,3 +8924,34 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A label line that was ragged by qa's word list ('The zone was / in the parentheses.') is still the right break when the hanging word is the verb; say so in the reconciliation and the critics accept it.
 - The Gas Watch audit failed all run on 'source reading published': CINGSA posted its 16:00 reading after the 23:04Z collection, and GitHub had not dispatched the 04:40Z or 07:20Z runs five hours later, while workflow_dispatch returns 403 to this integration. That is a github blocker, recorded as an incident, not a code defect.
 
+
+## 2026-09-30, No.73, Phase 12: the paint census reads CSS box paint
+
+- AMENDS the first line of the retro above. From this upgrade the ink census reads a drawn CSS
+  border side, an outline and a background colour as `css-border`, `css-outline` and `css-bg`, so
+  a gold rule drawn as `border-bottom` counts as a brush and a FORBIDDEN ink painted in CSS now
+  FAILS where it used to pass unseen. Still NOT read: colours inside a background-image gradient
+  and box-shadow colours. A law-bearing mark never lives in either. Reconstruction:
+  `tests/ink_census_css_verify.py` (6/6 HOLD; 4 BROKEN against the pre-upgrade engine).
+
+### Parked, 2026-09-30 frontier scan, focus (c), procedural art: measuring mechanical repetition
+
+- MEASURED, NOT APPLIED: the art defect that recurs in the scorer's named frames is mechanical
+  repetition ("one concentric template stamped repeatedly" 09-30 S03, "uniform lower sedge"
+  09-30 S09, "near-identical sheet edges" 09-29 S02, "hills read as a waveform" 09-28 S08,
+  "stacked coins" and "zebra lines" 09-26 S06 and S09). A windowed autocorrelation probe
+  (high-passed luminance, 128 px windows at half resolution, strongest off-centre peak, 75th
+  percentile a frame) does NOT see it: the six named frames scored 0.31 to 0.83 against an
+  unnamed median of 0.42 (90th percentile 0.61, n 165), and 158 of 165 unnamed frames scored at
+  or above the lowest named one. An ACF measures PERIOD, and a hand-varied field at a regular
+  pitch is as periodic as a stamped one. TexTile (CVPR 2024, https://arxiv.org/html/2403.12961v1)
+  reports the same of SSIM, LPIPS, DISTS and FID-type metrics; the measure that tracks human
+  judgment there is a fine-tuned ConvNeXt, a runtime dependency this engine refuses.
+  UNBLOCKS when some measure puts at least 5 of those 6 named frames above the 90th percentile of
+  the unnamed ones; then it is a census line for the pixel critics, never a gate.
+- CANDIDATE CONTRACT (anatomy): when a frame draws an animal, the dossier names a reference image
+  and two proportions measured from it (for a snipe, tarsus to body length and bill to head), and
+  the slide asserts both against its own geometry in `__akAssert`. No.73's round 4 scaled the
+  snipe 1.2x about its feet, which kept the legs the scorer then called twice a snipe's. WHY
+  PARKED: anatomy is the named art defect in 2 of 73 scored runs (2026-08-08 salmon fins,
+  2026-09-30 snipe legs). UNBLOCKS on a third inside 20 runs.

@@ -3005,9 +3005,59 @@ IN_PAGE_QA_JS = """
       }
       if (ir.cap) out.ink_cap = true;
     }
+    /* CSS BOX INK: borders, outlines and background colours (2026-09-30, run
+       No.73). A gold rule drawn as `border-bottom: 3px solid #FFC72C` under a
+       label is a brush like any other, and the census was blind to it, so the
+       ink law FAILED slides 06 and 08 for "no brush ever carried #FFC72C" with
+       the rule plainly on screen, and the same blindness let a FORBIDDEN ink
+       painted as a CSS background through unseen. Only paint a reader can get
+       counts: a visible element whose box meets the frame, a border side whose
+       style draws and whose width is at least half a pixel, a background
+       colour with alpha, and the alpha multiplied down the ancestor opacity
+       chain (CSS opacity does not inherit in computed style, but it does
+       composite). STATED LIMIT: a colour inside a background-IMAGE gradient
+       and a box-shadow colour are not read; draw a law-bearing mark as a
+       border, a background colour, SVG or canvas. */
+    const VW = window.innerWidth || 1080, VH = window.innerHeight || 1350;
+    const opMemo = new Map();
+    const effOp = (n) => {
+      if (!n || n.nodeType !== 1) return 1;
+      if (opMemo.has(n)) return opMemo.get(n);
+      const o = parseFloat(getComputedStyle(n).opacity);
+      const v = (isFinite(o) ? o : 1) * effOp(n.parentElement);
+      opMemo.set(n, v);
+      return v;
+    };
+    const DRAWS = (s) => s && s !== "none" && s !== "hidden";
+    const boxInk = (el, cs) => {
+      if (cs.visibility === "hidden" || cs.visibility === "collapse") return;
+      const r = el.getBoundingClientRect();
+      if (r.right <= 0 || r.bottom <= 0 || r.left >= VW || r.top >= VH) return;
+      const o = effOp(el);
+      if (!(o > 0)) return;
+      const put = (col, kind) => {
+        const v = norm(String(col || "").trim().toLowerCase());
+        if (v && v[3] > 0) add(col, kind, o);
+      };
+      if (r.width >= 1 && r.height >= 1) put(cs.backgroundColor, "css-bg");
+      const seen = new Set();
+      for (const [side, len] of [["Top", r.width], ["Right", r.height],
+                                 ["Bottom", r.width], ["Left", r.height]]) {
+        if (len < 1 || !DRAWS(cs["border" + side + "Style"])) continue;
+        if (!(parseFloat(cs["border" + side + "Width"]) >= 0.5)) continue;
+        const c = cs["border" + side + "Color"];
+        if (seen.has(c)) continue;
+        seen.add(c);
+        put(c, "css-border");
+      }
+      if (DRAWS(cs.outlineStyle) && parseFloat(cs.outlineWidth) >= 0.5 &&
+          (r.width >= 1 || r.height >= 1)) put(cs.outlineColor, "css-outline");
+    };
     for (const el of document.querySelectorAll("body *")) {
       const cs = getComputedStyle(el);
       const tag = el.tagName.toLowerCase();
+      /* the <svg> root is a CSS box too; its children are SVG geometry */
+      if (!el.ownerSVGElement) boxInk(el, cs);
       if (tag === "svg" || el.ownerSVGElement) {
         /* Only tags that put ink down. A <g> or a <defs> child inherits a black
            fill it never paints with, and counting it would have every slide in

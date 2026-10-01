@@ -331,8 +331,12 @@ FAILs whatever it left stale.
   the thin-mark floor in native px^2 (default 120). qa.py then judges each
   half where that half can actually answer:
   - an `absent` ink is judged AT THE BRUSH, by a census of every colour any
-    canvas fill, stroke, canvas-text op, gradient stop, DOM text node or SVG
-    shape actually carried. A FAIL names the kind, the literal and the op count.
+    canvas fill, stroke, canvas-text op, gradient stop, DOM text node, SVG
+    shape, or visible CSS box paint (`css-border`, `css-outline`, `css-bg`:
+    a drawn border side, an outline, a background colour, since 2026-09-30)
+    actually carried. A FAIL names the kind, the literal and the op count. NOT
+    read: colours inside a background-image gradient and box-shadow colours, so
+    a law-bearing mark never lives there.
   - a `present` ink is judged AT THE FRAME: FAIL if no brush ever carried it,
     FAIL if brushes carried it and the render holds ZERO pixels of its hue
     family, WARN under the floor with the arithmetic at feed and thumb size.
