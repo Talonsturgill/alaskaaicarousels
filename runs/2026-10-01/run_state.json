@@ -56,18 +56,18 @@
         "out/2026-10-01/selection.md"
       ]
     },
-    "directors_room": "pending",
+    "directors_room": "done",
     "copy": "done",
     "art_build": "done",
     "pixel_review": "done",
-    "flow_review": "pending",
-    "assemble": "pending",
+    "flow_review": "done",
+    "assemble": "done",
     "scoring": "done",
-    "ship": "in_progress",
-    "upgrade": "pending",
-    "merge": "pending",
-    "gmail": "pending",
-    "retro": "pending",
+    "ship": "done",
+    "upgrade": "done",
+    "merge": "done",
+    "gmail": "done",
+    "retro": "done",
     "directors": "done"
   },
   "phase_3_6": {
@@ -77,5 +77,9 @@
     "cron_health": "PASS, every scheduled workflow audited at wake"
   },
   "flow_rounds": 1,
-  "score": 8.505
+  "score": 8.505,
+  "status": "complete",
+  "gmail_draft_id": "r5462057694083076620",
+  "merged_pr": 410,
+  "merge_sha": "0fdcede2ac7665b50cf51b5fa8bd959c13d00881"
 }
