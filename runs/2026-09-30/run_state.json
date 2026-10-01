@@ -1,125 +1,145 @@
 {
- "run_date": "2026-09-30",
- "carousel_no": 73,
- "effort": "high",
- "date_note": "Anchorage date 2026-09-30 at wake (22:15 AKDT); run_guard defaults to UTC (2026-10-01) but the routine's run date is the Anchorage date and runs/2026-09-30 does not exist.",
- "branch": "tsturg/clever-mayer-0l0l4w",
- "revision_rounds": 4,
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/plan.md",
-    "out/2026-09-30/WORKLOG.md"
-   ]
+  "run_date": "2026-09-30",
+  "carousel_no": 73,
+  "effort": "high",
+  "date_note": "Anchorage date 2026-09-30 at wake (22:15 AKDT); run_guard defaults to UTC (2026-10-01) but the routine's run date is the Anchorage date and runs/2026-09-30 does not exist.",
+  "branch": "tsturg/clever-mayer-0l0l4w",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/plan.md",
+        "out/2026-09-30/WORKLOG.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "2 searches; nothing new beyond FIELD_NOTES (saves weighting and document reach already recorded); nothing appended"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/scout_merge.md"
+      ],
+      "searches": {
+        "A": 24,
+        "B": 23,
+        "C": 25,
+        "D": 25,
+        "E": 25,
+        "F": 26
+      }
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/claims.json"
+      ],
+      "note": "48 claims, claims_check PASS (28 primary)"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "8 items refreshed (budget raised to 8 to cover the deferred two); H.R. 9340 updated with Senate cloture motion; watch.json failed=[] and 0 hearings (out of session); candidates triaged, none AI-infrastructure"
+    },
+    "gas_watch": {
+      "status": "done",
+      "note": "cron_health PASS; site_signoff PASS; gaswatch_pagecheck PASS; live audit FAIL on a delayed scheduled collection, recorded as gaswatch_incident.json (blocker github), gate WARN"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/storyboard.md",
+        "out/2026-09-30/treatment_field_documentarian.md",
+        "out/2026-09-30/treatment_data_journalist.md",
+        "out/2026-09-30/treatment_cartographer.md"
+      ],
+      "note": "dossier_check PASS 9 of 9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/caption.txt",
+        "out/2026-09-30/copy.json",
+        "out/2026-09-30/caption_report.json"
+      ],
+      "note": "round one rejected by critic (both); one reassigned director, TIMELINE COLLAPSE / COLD OPEN WARM CLOSE, PASS"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-09-30/slides",
+        "out/2026-09-30/render",
+        "out/2026-09-30/aggregates.json"
+      ],
+      "note": "qa WARN 0 fails after fixing 5 FAILs (2 CSS-border gold rules invisible to the ink census, 2 painted pools on declared contact shadows, 1 contact on near-black ground)"
+    },
+    "pixel_review": {
+      "status": "done",
+      "rounds": 3,
+      "note": "two per-slide critic passes (round 1 all revise; re-review 02 and 03 ship), flow critic revise at predicted art 6.5, round 3 applied its craft work order"
+    },
+    "flow_review": "pending",
+    "assemble": {
+      "status": "done"
+    },
+    "scoring": {
+      "status": "done",
+      "score": 8.76,
+      "art": 7.5,
+      "craft_cycle": {
+        "frames": [
+          8,
+          5,
+          3,
+          9,
+          7
+        ],
+        "art_before": 7.0,
+        "art_after": 7.5
+      }
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-09-30",
+        "docs/"
+      ],
+      "note": "site 129 pages; docket_alerts sent 1 email (DOT corridors RFI, deadline in 2 days); prune freed 1.96M"
+    },
+    "upgrade": "pending",
+    "gmail": {
+      "status": "done",
+      "draft_id": "r470315662653378188"
+    },
+    "retro": {
+      "status": "done"
+    },
+    "merge": {
+      "status": "done",
+      "pr": 409,
+      "merge_sha": "e188b41e",
+      "note": "Codex had no review quota (its comment says usage limits reached), so no Codex review ran; merged on green CI per the stalled-bot rule."
+    }
   },
-  "craft_refresh": {
-   "status": "done",
-   "artifacts": [],
-   "note": "2 searches; nothing new beyond FIELD_NOTES (saves weighting and document reach already recorded); nothing appended"
+  "score": 8.76,
+  "phase_3_6": {
+    "site_signoff": "PASS, 129 pages, 18 of 18 checks clean (re-run on docs/ after the merge rebuild at 2026-10-01)",
+    "gaswatch_live": "PASS at 2026-10-01T20:50Z. It read FAIL from wake until about 08:40Z on 'source reading published': CINGSA posted its September 30th 16:00 reading after the 23:04Z collection and GitHub had not dispatched the next two scheduled runs (workflow_dispatch is 403 for this integration). The later scheduled collections ran on their own and the live audit now passes; no repair was needed in the repository.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited at 2026-10-01T06:18Z",
+    "site_fixes": "none needed on the live site. Branch CI caught one defect this run: the ask engine had no agency rule for the new Petersburg Borough Assembly docket item; fixed in scripts/ask_answers.py before merge."
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/scout_merge.md"
-   ],
-   "searches": {
-    "A": 24,
-    "B": 23,
-    "C": 25,
-    "D": 25,
-    "E": 25,
-    "F": 26
-   }
-  },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/claims.json"
-   ],
-   "note": "48 claims, claims_check PASS (28 primary)"
-  },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json"
-   ],
-   "note": "8 items refreshed (budget raised to 8 to cover the deferred two); H.R. 9340 updated with Senate cloture motion; watch.json failed=[] and 0 hearings (out of session); candidates triaged, none AI-infrastructure"
-  },
-  "gas_watch": {
-   "status": "done",
-   "note": "cron_health PASS; site_signoff PASS; gaswatch_pagecheck PASS; live audit FAIL on a delayed scheduled collection, recorded as gaswatch_incident.json (blocker github), gate WARN"
-  },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/selection.md"
-   ]
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/storyboard.md",
-    "out/2026-09-30/treatment_field_documentarian.md",
-    "out/2026-09-30/treatment_data_journalist.md",
-    "out/2026-09-30/treatment_cartographer.md"
-   ],
-   "note": "dossier_check PASS 9 of 9"
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/caption.txt",
-    "out/2026-09-30/copy.json",
-    "out/2026-09-30/caption_report.json"
-   ],
-   "note": "round one rejected by critic (both); one reassigned director, TIMELINE COLLAPSE / COLD OPEN WARM CLOSE, PASS"
-  },
-  "art_build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-09-30/slides",
-    "out/2026-09-30/render",
-    "out/2026-09-30/aggregates.json"
-   ],
-   "note": "qa WARN 0 fails after fixing 5 FAILs (2 CSS-border gold rules invisible to the ink census, 2 painted pools on declared contact shadows, 1 contact on near-black ground)"
-  },
-  "pixel_review": {
-   "status": "done",
-   "rounds": 3,
-   "note": "two per-slide critic passes (round 1 all revise; re-review 02 and 03 ship), flow critic revise at predicted art 6.5, round 3 applied its craft work order"
-  },
-  "flow_review": "pending",
-  "assemble": {
-   "status": "done"
-  },
-  "scoring": {
-   "status": "done",
-   "score": 8.76,
-   "art": 7.5,
-   "craft_cycle": {
-    "frames": [
-     8,
-     5,
-     3,
-     9,
-     7
-    ],
-    "art_before": 7.0,
-    "art_after": 7.5
-   }
-  },
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-09-30",
-    "docs/"
-   ],
-   "note": "site 129 pages; docket_alerts sent 1 email (DOT corridors RFI, deadline in 2 days); prune freed 1.96M"
-  },
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- },
- "score": 8.76
+  "complete": true,
+  "status": "complete"
 }
