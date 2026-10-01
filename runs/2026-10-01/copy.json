@@ -1,0 +1,287 @@
+{
+  "document_title": "Three Yeas, Three Short, No Start Date",
+  "post_copy": "On the Alaska Senate floor in Juneau on May 16th, data center bill SB 250 passed 14 to 5.\n\nThe U.S. House passed H.R. 9340, a grid cost standard for big computing sites, 417 to 3 on September 16th. Begich voted yea.\n\nAlaska's House held SB 250 in committee on May 18th. It went no further.\n\nThe U.S. Senate stopped at 57 on September 30th, with 60 needed for cloture. Murkowski and Sullivan voted yea.\n\nGold marks Alaska's three yeas in a 100-cup Senate tray at 57 and a 432-cup House tray at 417, beside two unturned sand-glasses, a three-bay exemption cabinet, SB 250's 14 and 5 and a steel rule with no enactment tick.\n\nEach bill cleared one chamber. H.R. 9340 would waive its review deadlines for a state whose legislature voted on a comparable standard before an enactment that hasn't happened.\n\nDoes \"the State legislature has voted\" mean both chambers?\n\n#SB250 #AKLeg #RatepayerProtectionAct",
+  "hook_chars": 89,
+  "total_chars": 898,
+  "deck_summary_line": "Gold marks Alaska's three yeas in a 100-cup Senate tray at 57 and a 432-cup House tray at 417, beside two unturned sand-glasses, a three-bay exemption cabinet, SB 250's 14 and 5 and a steel rule with no enactment tick.",
+  "hashtags": [
+    "#SB250",
+    "#AKLeg",
+    "#RatepayerProtectionAct"
+  ],
+  "caption_meta": {
+    "opening_move": "SCENE",
+    "structure": "BRAID",
+    "closing_move": "NEW: THE PLAIN READING",
+    "first_8_words": "On the Alaska Senate floor in Juneau on",
+    "hook_type": "scene, the Alaska Senate floor on May 16th"
+  },
+  "first_comment": "Sources, primary first\nU.S. Senate roll call vote 254, 119th Congress, second session, 2026-09-30, On Cloture on the Motion to Proceed H.R. 9340 (rejected 57 to 43 with three-fifths required, so 60 were needed. Murkowski and Sullivan voted yea with all 53 Republicans and four Democrats, Hassan, Klobuchar, Ossoff and Warnock. The nays were 41 Democrats and both independents, King and Sanders), https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00254.xml\nOffice of the Clerk, U.S. House of Representatives, roll call 312, 2026-09-16, On Motion to Suspend the Rules and Pass, as Amended, H.R. 9340 (passed 417 to 3 with 12 not voting and two-thirds required. Begich voted yea. Republicans went 210 to 0, Democrats 206 to 3 and the one independent voted yea), https://clerk.house.gov/evs/2026/roll312.xml\nLibrary of Congress bill status for H.R. 9340, the Ratepayer Protection Act, via GPO govinfo bulk data, read 2026-10-01 (record vote 254, the motion to proceed withdrawn on September 30th, introduced June 18th, ordered reported 52 to 0 by Energy and Commerce on July 21st), https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr9340.xml\nU.S. Government Publishing Office, H.R. 9340 as engrossed in the House, 2026-09-16 (the large-load definition at 100 megawatts or more at a single site or campus, rates designed to recover \"the full, incremental cost\" of upgrades even when a customer ends its contract, 1 year after enactment for each State regulatory authority to begin and 2 years to decide, and the exemption for a state that acted before enactment, including where \"the State legislature has voted\"), https://www.govinfo.gov/content/pkg/BILLS-119hr9340eh/html/BILLS-119hr9340eh.htm\nAlaska State Legislature, BASIS bill history for SB 250 (CSSB 250(CRA) passed the Senate on reconsideration 14 to 5 with one excused on May 16th, then was heard and held in House Community and Regional Affairs on May 18th, its last recorded action), https://www.akleg.gov/basis/Bill/Detail/34?Root=SB%20250\nAlaska Statutes, AS 42.05.141, General powers and duties of the commission (the Regulatory Commission of Alaska regulates every public utility in the state and makes or requires just, fair and reasonable rates), 2025 edition read 2026-10-01, https://www.akleg.gov/basis/statutes.asp?media=print&secStart=42.05.141&secEnd=42.05.141\nAlaska Statutes, AS 24.05.090 (the Legislature convenes each year on the third Tuesday in January, which falls on January 19th, 2027), https://www.akleg.gov/basis/statutes.asp?media=print&secStart=24.05.090&secEnd=24.05.090\nBillTrack50, SB 250, secondary, read 2026-10-01 (the bill's title, An Act relating to data centers and relating to utility service for data centers), https://www.billtrack50.com/billdetail/1974439\nStates Newsroom (Jennifer Shutt), republished by the Alaska Beacon, 2026-10-01, US Senate leaves nation's capital in advance of midterms with much still undone (the Senate won't return until November 9th), https://alaskabeacon.com/2026/10/01/repub/us-senate-leaves-nations-capital-in-advance-of-midterms-with-much-still-undone/\nThe ballot trays in the deck are a counting device drawn to the exact roll call totals, not a picture of how either chamber votes.\nSB 250 sits on the Alaska AI Docket beside every other state AI decision and its live dates, at https://alaskaaihq.com\nIf you followed SB 250 in Juneau or know how a one-chamber vote reads under an exemption like this one, add it below.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "UPDATE ON H.R. 9340",
+      "headline": "Alaska's three votes were yes. The Senate fell three short.",
+      "body": "",
+      "labels": [
+        "MURKOWSKI YEA   SULLIVAN YEA   BEGICH YEA"
+      ],
+      "claim_ids": [
+        "C01",
+        "C06",
+        "C08",
+        "C09",
+        "C30"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "SENATE ROLL CALL 254, SEPTEMBER 30TH",
+      "headline": "Cloture needed 60. It got 57.",
+      "body": "Three-fifths of the Senate had to agree just to take it up. The motion was then withdrawn. Lisa Murkowski and Dan Sullivan both voted yea. The House had passed it two weeks before.",
+      "labels": [
+        "\"Cloture on the Motion to Proceed Rejected (57-43, 3/5 majority required)\"",
+        "57 YEA",
+        "53 R AND 4 D",
+        "3 SHORT",
+        "60 NEEDED",
+        "43 NAY",
+        "41 D AND 2 I",
+        "MURKOWSKI",
+        "SULLIVAN"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C08",
+        "C09",
+        "C10",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "HOUSE ROLL CALL 312, SEPTEMBER 16TH",
+      "headline": "Two weeks earlier, the House passed it 417 to 3.",
+      "body": "Nick Begich voted yea. Republicans went 210 to 0, Democrats 206 to 3 and the one independent voted yea. Suspending the rules took two-thirds.",
+      "labels": [
+        "\"On Motion to Suspend the Rules and Pass, as Amended\"",
+        "417 YEA",
+        "3 NAY",
+        "12 NOT VOTING",
+        "BEGICH"
+      ],
+      "claim_ids": [
+        "C01",
+        "C19",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C30",
+        "C31",
+        "C32",
+        "C33"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "WHAT H.R. 9340 WOULD DO",
+      "headline": "A standard for computing sites of 100 MW and up.",
+      "body": "Rates would be designed to recover that cost from the customer, even if it ends its contract. Each state regulator would have to consider the standard and decide.",
+      "labels": [
+        "\"the full, incremental cost of any generation, transmission, or distribution upgrade necessary\"",
+        "100 MW OR MORE AT ONE SITE OR CAMPUS"
+      ],
+      "claim_ids": [
+        "C41",
+        "C42",
+        "C44",
+        "C45",
+        "C47",
+        "C48"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "AFTER THE DATE OF ENACTMENT",
+      "headline": "Both clocks start on a day that hasn't happened.",
+      "body": "",
+      "labels": [
+        "\"Not later than 1 year after the date of enactment of this paragraph\"",
+        "1 YEAR TO BEGIN",
+        "2 YEARS TO DECIDE"
+      ],
+      "claim_ids": [
+        "C18",
+        "C47",
+        "C48"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "THE EXEMPTION",
+      "headline": "It also counts backward.",
+      "body": "A state skips both clocks if, before enactment, it had put a comparable standard in place, held a proceeding on one, or its legislature had voted on one. Has Alaska done any of the three?",
+      "labels": [
+        "IMPLEMENTED",
+        "PROCEEDING HELD",
+        "LEGISLATURE VOTED"
+      ],
+      "claim_ids": [
+        "C49",
+        "C50",
+        "C51"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "SB 250, DATA CENTER UTILITY BILL",
+      "headline": "Alaska's Senate passed SB 250, 14 to 5. A House panel held it.",
+      "body": "It passed May 16th and was heard and held in House Community and Regional Affairs two days later. Does one chamber's vote count as \"the State legislature has voted\"?",
+      "labels": [
+        "\"(H) Heard & Held\"",
+        "14 YEA",
+        "5 NAY",
+        "1 EXCUSED",
+        "HEARD AND HELD, MAY 18TH"
+      ],
+      "claim_ids": [
+        "C51",
+        "C59",
+        "C60",
+        "C62",
+        "C64"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "THE RECORD, DATED",
+      "headline": "Every date on the record, and the one not set.",
+      "body": "",
+      "labels": [
+        "MAY 16TH",
+        "Alaska Senate passes SB 250, 14 to 5",
+        "MAY 18TH",
+        "SB 250 heard and held in House CRA",
+        "JUNE 18TH",
+        "H.R. 9340 introduced",
+        "JULY 21ST",
+        "Energy and Commerce, 52 to 0",
+        "SEPTEMBER 16TH",
+        "House passes it, 417 to 3",
+        "SEPTEMBER 30TH",
+        "Senate cloture fails, 57 to 43",
+        "NOVEMBER 9TH",
+        "Senate due back, per States Newsroom",
+        "JANUARY 19TH, 2027",
+        "Alaska Legislature convenes",
+        "NOT SET",
+        "Date of enactment. Both clocks run from it."
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C19",
+        "C24",
+        "C25",
+        "C35",
+        "C36",
+        "C47",
+        "C48",
+        "C53",
+        "C59",
+        "C60",
+        "C62",
+        "C68"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Three yeas. Three short. No start date.",
+      "body": "Save this. If the date is ever set, both clocks run from it.",
+      "labels": [
+        "\"Motion to proceed to consideration of measure withdrawn in Senate.\""
+      ],
+      "claim_ids": [
+        "C06",
+        "C08",
+        "C09",
+        "C18",
+        "C30",
+        "C47",
+        "C48"
+      ]
+    }
+  ],
+  "slide_copy_corrections": [],
+  "aftercare": [
+    "Post today, Thursday, October 1st, if this reaches you before 11 a.m. Alaska time. Otherwise post Tuesday, October 6th, or Wednesday, October 7th, between 8 and 11 a.m. Alaska time. The Senate is out until November 9th per States Newsroom, so the facts won't move under the post this week.",
+    "Paste the sources block as the first comment within 60 seconds of posting.",
+    "Reply to every comment in the first 90 minutes. If someone calls the bill dead, point to the record, which says the motion to proceed was withdrawn after cloture failed. If someone asks whether Alaska is exempt, leave it open as slide 07 does.",
+    "After 48 hours, note saves, comments and reposts for the ledger."
+  ],
+  "editor_notes_for_email": "This update of No.58 says all three of Alaska's members of Congress voted yea on H.R. 9340. Begich voted yea in the House's 417 to 3 on September 16th, and Murkowski and Sullivan voted yea in the Senate's 57 to 43 cloture vote on September 30th, three short of the 60 needed, after which the motion to proceed was withdrawn. The deck never calls the bill dead, never predicts the lame duck, never says whether Alaska is or isn't exempt, and leaves Schumer's \"toothless\" line out on purpose. The SB 250 tally and the RCA statute were read through a proxy because akleg.gov refuses automated reads, and the Alaska Beacon page returned 403 to the fact checker, so open the BASIS and Beacon links yourself before you post.",
+  "claims_used": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C30",
+    "C31",
+    "C32",
+    "C33",
+    "C35",
+    "C36",
+    "C41",
+    "C42",
+    "C44",
+    "C45",
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C51",
+    "C53",
+    "C59",
+    "C60",
+    "C62",
+    "C64",
+    "C65",
+    "C66",
+    "C67",
+    "C68"
+  ],
+  "notes_for_showrunner": "Caption room: two directors rejected by the critic as burned shapes, one reassigned director (SCENE plus BRAID) produced the winner; the showrunner applied two clarity fixes (named SB 250 in the held sentence, and made 'hasn't happened' attach to enactment). Copywriter carried the caption verbatim and wrote the rest."
+}

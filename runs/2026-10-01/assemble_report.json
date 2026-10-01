@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-01/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7821912,
+  "pdf_mb": 7.82,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-01/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-01/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Three Yeas, Three Short, No Start Date",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "3b5c954ed2dcf046e207383c4a101c61d883364a61ddf6b2ef0dadd2ac1449a1",
+        "bytes": 4359585
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "477550b1cde4f12fd98262150d444cd2dca4ce78bbdd3a2ae5b70045005956c6",
+        "bytes": 4549038
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "311100e5cbe07e59d888d7117e9eead87afff763e0e0cb6eb3e5b7a6ab138364",
+        "bytes": 4464429
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "053db29ca3fad4b9df2a63b806928c205741b8ff111bea1319be206cd54a83f2",
+        "bytes": 3753978
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "714fb78f16715091228e12ae16cde15637e8efea01331a157f098a80c1f97f6b",
+        "bytes": 4444977
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "4b00afbdb3d2d84cd6a10524bf4e472b9032bbfc6bd79f5b4b50a88725a8abb5",
+        "bytes": 3962589
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "669f3ccdca1cbaf42749ad7b92124f927aca29b93d1d480b1a6129eb23b7228f",
+        "bytes": 4503826
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "fd68eaad69cdc5a149dd0db61d430c8728dffe03475dbf30ed77af4bd4c03ac5",
+        "bytes": 3725472
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "726d4f000d768fe784364b9a3586da6059cdcfd955bf3ea494b8d919a6c2c2e7",
+        "bytes": 3611979
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "f5aba5e8ae6b1db392182824e81c541d7c761067c2037af1a025981b6cb645b7",
+        "bytes": 11839
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "d158f84e24097f45f26de75842446b6342e1821a1727f06fa05a64b784c43be8",
+        "bytes": 9749
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "379656bcfb70cb6aad464b6427c62bb5dde3d2cd1d58fa8a87556c6c4cde6b3c",
+        "bytes": 8920
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "3facabed8437b1d552590ac708fdc5baeec60c3119c466ad192e0335b8cd71be",
+        "bytes": 16912
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "92da897ed70db87c3d07b4b54a4066f3737426c09a74fa1f7c16591731187be1",
+        "bytes": 15791
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "de0c863ed3a444178a043f124c56ddef89844e8b88eac3aa9a69ddd5d5d59749",
+        "bytes": 13176
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "0b048eaac5834a08b85c6eadceeb12aefe43d402511d9d09f4065726b92a1531",
+        "bytes": 11664
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "459d5728a0528b62434862cbfe80c994a02e9ffdf3966292edeae7b7afa99977",
+        "bytes": 12328
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "71a26fffc3a0e2a19402eee6c84b850c14e949c859071f8708d8e27a8b1750e1",
+        "bytes": 12466
+      }
+    ]
+  }
+}

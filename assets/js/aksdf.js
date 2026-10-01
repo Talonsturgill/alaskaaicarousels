@@ -30,13 +30,28 @@
  *   AKSDF.render(canvas2dCtx, {
  *     scene, width: 540, height: 675,         // internal res; drawn to fit canvas box
  *     box: [0,0,1080,1350],                   // destination rect on the slide canvas
- *     cam: { pos:[3.5,2.5,5], look:[0,0.8,0], fov: 50 },
+ *     cam: { pos:[3.5,2.5,5], look:[0,0.8,0], fov: 50 },   // HORIZONTAL fov, see below
  *     light: [0.5,0.8,0.3],
  *     mats: { 1: { color:[1.0,0.78,0.17], spec: 0.4 } },
  *     sky: [0.02,0.04,0.08], fog: 0.06,
  *     keyColor: [1.0,0.93,0.8], shadowColor: [0.16,0.22,0.34],  // two-tone ramp
  *     seed: 20260711
  *   });
+ *
+ * THE FOV IS HORIZONTAL (2026-10-01, run No.74). `cam.fov` spans the image's
+ * WIDTH: screen x in [-1, 1] maps to the focal length, and screen y is scaled by
+ * H / W to keep square pixels. On this house's portrait 4:5 frame that makes the
+ * vertical field WIDER than the number written, by 1.25x in tan(half angle), so
+ * a camera planned by vertical arithmetic ("the slab is 6 units tall, fit it in
+ * 50 degrees") is misframed: the subject renders smaller than planned, and
+ * anything the planner placed with its own vertical-fov projection (a leader, a
+ * crop, a type block) lands somewhere else. No.74 lost two renders of its
+ * ballot tray to that before anyone read this file. Pass `cam.vfov` when the frame is
+ * planned by its HEIGHT; it is converted with the same aspect, so for a given
+ * scene `vfov: v` renders identically to `fov: 2*atan(tan(v/2) * W/H)`.
+ * `vfov` wins when both are given. `AKSDF.focal(cam, W, H)` returns the focal
+ * length either way, and any projector that has to land a label on a rendered
+ * point (AKTRAY.project) must use it, so the two can never disagree.
  *
  * Deterministic. Text never goes here (DOM/SVG only). Mark the region busy if
  * type must sit on it (plate rules apply as with any art).
@@ -121,6 +136,17 @@
     return sum;
   };
 
+  /* ---------- the camera's focal length ----------
+   * fov is HORIZONTAL (header note); vfov, when given, is the vertical field and
+   * wins. Screen y runs over [-H/W, H/W], so a vertical half angle v needs
+   * fl = (H / W) / tan(v). Shared with every projector so labels and pixels
+   * use one camera. */
+  S.focal = function (cam, W, H) {
+    cam = cam || {};
+    if (cam.vfov != null) return (H / W) / Math.tan(cam.vfov * Math.PI / 360);
+    return 1 / Math.tan((cam.fov || 50) * Math.PI / 360);
+  };
+
   /* ---------- the renderer ---------- */
   S.render = function (ctx, opts) {
     const W = opts.width || 540, H = opts.height || 675;
@@ -143,11 +169,10 @@
     const cam = opts.cam || {};
     const ro = cam.pos || [3.5, 2.5, 5];
     const look = cam.look || [0, 0.8, 0];
-    const fov = (cam.fov || 50) * Math.PI / 180;
     const fw = S.norm(S.sub(look, ro));
     const fr = S.norm(S.cross(fw, [0, 1, 0]));
     const fu = S.cross(fr, fw);
-    const fl = 1 / Math.tan(fov / 2);
+    const fl = S.focal(cam, W, H);
 
     const L = S.norm(opts.light || [0.5, 0.8, 0.3]);
     const sky = opts.sky || [0.02, 0.04, 0.08];

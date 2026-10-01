@@ -1055,3 +1055,39 @@ annotation is the strongest pair):
     outer silhouette spans exactly the data. Assert on the silhouette edge, not
     the mesh origin, which is what passed while the bars were wrong.
 
+
+110. **Drilled Ballot Tray (aksdf)**, added 2026-10-01 for No.74 (slides 02, 03), `assets/js/aktray.js`.
+    A counted roll call as a mahogany slab of drilled cups, each holding one sphere whose material
+    comes from a cell-state table (ivory, ebony, gold, empty), raymarched on the CPU with soft shadow
+    and cup occlusion. Equal spheres on a full grid are exact under nearest-cell repetition; an EMPTY
+    cell breaks that, so the ball term checks the 3x3 neighbourhood. `AKTRAY.project` uses the same
+    camera basis as `AKSDF.render`, so every leader lands on the ball it names. What broke: aksdf's fov
+    is HORIZONTAL, so a camera framed by vertical arithmetic was misframed (plan by height with
+    `cam.vfov`, added 2026-10-01; both use `AKSDF.focal`); maxDist 60 renders a
+    far camera as pure sky; cup interiors must be their own dark material or empty cups read as studs.
+    A nickel bar standing proud between two rows, run past both tray edges, carries a threshold.
+
+111. **Multi-Material Plan Relief (akbench)**, added 2026-10-01 for No.74 (slides 07, 08),
+    `assets/js/akbench.js`. akrelief shades one ramp with no specular and no cast; a still life of
+    wood, ivory, ebony and nickel needs per-material albedo and sheen and a cast onto the bench. Height
+    and material are evaluated once per device pixel, normals by Sobel, Lambert plus Blinn per material,
+    cavity occlusion from a box-blurred height, and a cast marched toward the key with a penumbra. What
+    broke: a sine-band grain reads as corrugated card at deck scale (use a domain-warped fine figure);
+    a recess lit from one side reads as a dome unless its floor albedo is near black; a raking key at el
+    26 throws a box's cast as a ruled rectangle unless softness is about 16 to 18.
+
+112. **Lathe Ring Engraving**, added 2026-10-01 for No.74 (slides 04, 09). akengrave's field walk
+    seeds one raster through a region's centre, so on a turned form the fillets' arched iso-lines are
+    never reached and the engraving prints black holes. For a lathe profile r(y), cut one swelled ring
+    per 4 px of height, the front half of an ellipse (sag about 0.10 r for a slightly raised eye), with
+    width and ink set per sample by Lambert of the lathe normal (radial tilted by the profile slope)
+    under the declared key; a flat top is its own face of concentric ellipses. Rotate the canvas to
+    engrave a horizontal axis and express the light in the rotated frame. Spheres are the same call
+    with r(y) a circle; small gold spheres need a gold underlay or the dark ring ends read olive.
+    COMMITTED 2026-10-01 (Phase 12) as `AKENGRAVE.create({light}).lathe(cx, {axis, y0, y1, r, gap,
+    ell, wMax, ramp, L, underlay, lee})`, op-for-op identical to No.74's inline version
+    (`tests/akengrave_lathe_verify.py`). Parameters that worked: weight `gap` 4.2, `ell` 0.10, `wMax` 2.9;
+    glass (transparent, ground between rings) `gap` 7, `wMax` 2.2; sand or a ball `gap` 2.5 to 2.8, `wMax` 2.4
+    to 2.6. A sparse ring lay over a dark ground reads as WIRE COIL (the scorer's word for No.74's
+    slide 09): pass `lee: {gate: 0.32, gap: 7 to 9, wMax: 1.4 to 1.6, ink: <ground>}` so the shadow
+    side is crossed meridians, not open rings.

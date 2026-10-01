@@ -1810,6 +1810,14 @@
       "evidence": "Horizontal cuts displaced by a height field read as venetian blinds to the flow critic (08 at 6.0); dividing each column's silhouette into the same number of cuts made them curve over the back and converge into head and tail.",
       "act_on_it": "For an engraved object, parametrise cuts by the silhouette's per-column extent (smoothed across joins), not by screen rows.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-01",
+      "carousel_no": 74,
+      "instinct": "A DECK'S GROUND IS A DRAWING TOO: one table must be one object.",
+      "evidence": "The flow critic counted one wavy two-tone wood texture on four frames (two different engines) and the table changing physics between hairline, PBR and relief frames; one lit nosing at the same y on every frame and per-engine textures fixed it in one round.",
+      "act_on_it": "Plan the shared ground (its front edge, its texture per engine, the act grade) in the storyboard's CRAFT PLAN, and count textures against the same three-frame limit as mark-making.",
+      "confidence": 0.6
     }
   ]
 }

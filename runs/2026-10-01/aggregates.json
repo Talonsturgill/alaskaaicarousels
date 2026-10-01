@@ -1,0 +1,207 @@
+{
+ "run_date": "2026-10-01",
+ "aggregates": [
+  {
+   "kind": "duration",
+   "slide": 3,
+   "text": "Two weeks earlier, the House passed it 417 to 3.",
+   "fragment": "Two weeks",
+   "from": {
+    "claim": "C19",
+    "date": "2026-09-16"
+   },
+   "to": {
+    "claim": "C01",
+    "date": "2026-09-30"
+   }
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "\"Not later than 1 year after the date of enactment of this paragraph\"",
+   "fragment": "1 year",
+   "member": "C47"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "1 YEAR TO BEGIN",
+   "fragment": "1 YEAR",
+   "member": "C47"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "2 YEARS TO DECIDE",
+   "fragment": "2 YEARS",
+   "member": "C48"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Alaska's Senate passed SB 250, 14 to 5. A House panel held it.",
+   "fragment": "14 to 5",
+   "member": "C60"
+  },
+  {
+   "kind": "duration",
+   "slide": 7,
+   "text": "It passed May 16th and was heard and held in House Community and Regional Affairs two days later. Does one chamber's vote count as \"the State legislature has voted\"?",
+   "fragment": "two days",
+   "from": {
+    "claim": "C59",
+    "date": "2026-05-16"
+   },
+   "to": {
+    "claim": "C62",
+    "date": "2026-05-18"
+   }
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Alaska Senate passes SB 250, 14 to 5",
+   "fragment": "14 to 5",
+   "member": "C60"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Energy and Commerce, 52 to 0",
+   "fragment": "52 to 0",
+   "member": "C36"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Senate cloture fails, 57 to 43",
+   "fragment": "57 to 43",
+   "member": "C03"
+  },
+  {
+   "kind": "count",
+   "slide": 9,
+   "text": "Three yeas. Three short. No start date.",
+   "fragment": "Three yeas",
+   "subject": "yeas",
+   "members": [
+    "C08",
+    "C09",
+    "C30"
+   ],
+   "items": [
+    "Murkowski",
+    "Sullivan",
+    "Begich"
+   ]
+  },
+  {
+   "kind": "duration",
+   "slide": 2,
+   "text": "Three-fifths of the Senate had to agree just to take it up. The motion was then withdrawn. Lisa Murkowski and Dan Sullivan both voted yea. The House had passed it two weeks before.",
+   "fragment": "two weeks",
+   "from": {
+    "claim": "C19",
+    "date": "2026-09-16"
+   },
+   "to": {
+    "claim": "C01",
+    "date": "2026-09-30"
+   }
+  }
+ ],
+ "design_counts": [
+  {
+   "slide": 2,
+   "what": "Senate tray",
+   "cups": 100,
+   "ivory": 55,
+   "gold": 2,
+   "ebony": 43,
+   "inlay_after_cell": 60,
+   "gold_ranks": [
+    41,
+    51
+   ],
+   "source": "senate_rc254.xml alphabetical yea rank",
+   "claims": [
+    "C03",
+    "C05",
+    "C08",
+    "C09"
+   ]
+  },
+  {
+   "slide": 3,
+   "what": "House tray",
+   "cups": 432,
+   "ivory": 416,
+   "gold": 1,
+   "ebony": 3,
+   "empty": 12,
+   "gold_ranks": [
+    22
+   ],
+   "source": "house_roll312.xml alphabetical yea rank",
+   "claims": [
+    "C24",
+    "C25",
+    "C26",
+    "C30"
+   ]
+  },
+  {
+   "slide": 7,
+   "what": "SB 250 tray",
+   "cups": 20,
+   "ivory": 14,
+   "ebony": 5,
+   "empty": 1,
+   "claims": [
+    "C60"
+   ]
+  },
+  {
+   "slide": 8,
+   "what": "steel rule",
+   "px_per_day": 3.55,
+   "day0": "2026-05-16",
+   "events_days": [
+    0,
+    2,
+    33,
+    66,
+    123,
+    137,
+    177,
+    248
+   ],
+   "weekly_ticks": 36,
+   "enactment_tick": null,
+   "gold": {
+    "123": 1,
+    "137": 2
+   }
+  },
+  {
+   "slide": 5,
+   "what": "sand-glasses",
+   "scale_ratio": "2^(1/3)",
+   "sand_volume_ratio": 2,
+   "claims": [
+    "C47",
+    "C48"
+   ]
+  },
+  {
+   "slide": 1,
+   "what": "gold ballots",
+   "count": 3,
+   "claims": [
+    "C08",
+    "C09",
+    "C30"
+   ]
+  }
+ ]
+}

@@ -2498,6 +2498,59 @@
         "bespoke_median": 0.087
       },
       "note": "Five critics (all revise), five re-reviews (02 and 03 ship), one flow critic (revise, art predicted 6.5), a round on its craft work order, the first score (8.68, art 7.0), then the one craft-floor cycle (art 7.5). Two CSS-border gold rules were invisible to the ink census until redrawn as SVG rects; two painted pools on declared contact shadows failed qa and were removed."
+    },
+    {
+      "run_date": "2026-10-01",
+      "carousel_no": 74,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE LONG TABLE OF THE RECORD. Counted physical exhibits on one mahogany table under one long window, each in its own hand: a PBR three-cup tray of gold ballots (01), aksdf raymarched drilled ballot trays of the Senate's 100 and the House's 432 (02, 03), a ring-engraved calibration weight (04), PBR sand-glasses on their sides (05), a hatched three-bay cabinet in cabinet oblique (06), a bas-relief tray and hasped box (07), a bas-relief steel rule with no enactment tick (08), the glasses ring-engraved for the close (09).",
+      "atmosphere": "NEW: THE LONG WINDOW. One linear source front right (az 35 right of the camera, el 26), directional, no pool; a warm Act I and a cool split-tone Act II (06 to 08).",
+      "depth_technique": "PBR with exp2 fog to a receding table and attached contacts (01, 05); CPU raymarch with soft shadow and cup occlusion (02, 03); multi-material plan relief with marched casts (07, 08); cabinet oblique with hatch-density recesses (06)",
+      "line_voice": "lathe ring engraving with Lambert-swelled rings, density-ramp hatching per face, open-ring leader terminators",
+      "continuity_device": "motif:Alaska's three gold ballots, never multiplied, on every frame but 06 and 07",
+      "continuity_devices": [
+        "D1 the three gold ballots",
+        "D2 warm-to-cool split-tone arc",
+        "D3 edge-tease (kept on 01, 04, 08; cut where it read as a sliver)",
+        "one lit nosing at y 1236 through every frame"
+      ],
+      "hook_archetype": "NEW: THE MATCHED COUNT (three yeas, three short)",
+      "palette_family": "Senate mahogany and ballot ivory under a long window: wall #070B12, mahogany #1E0B07 to #9A4A2A, ivory #E6DFCC, ebony #14171C, nickel #B9C0C6, sand #CDB78C, gold #FFC72C for Alaska's three only",
+      "type_pairing": "Archivo condensed display (wdth 66) over Archivo body, Instrument Serif for the record's verbatim words, JetBrains Mono for instruments",
+      "dials": {
+        "design_variance": 3,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "narrative_structure": "matched count, Senate tray, House tray, the standard, the clocks, the exemption, Alaska's own bill, the dated record, the ask",
+      "techniques": [
+        "Drilled ballot tray raymarched on the CPU (assets/js/aktray.js, NEW)",
+        "Multi-material plan relief bench (assets/js/akbench.js, NEW)",
+        "Lathe ring engraving for turned forms",
+        "PBR sand-glass with clipped sand and transparent physical glass",
+        "Density-ramp hatching in cabinet oblique",
+        "Soft far-tray pass composited with a feathered blur"
+      ],
+      "new_techniques_logged": [
+        "110 Drilled Ballot Tray (aksdf)",
+        "111 Multi-Material Plan Relief (akbench)",
+        "112 Lathe Ring Engraving"
+      ],
+      "measured": {
+        "revision_rounds": 3,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.505,
+        "artwork": 7.0,
+        "bespoke_median": 0.145
+      },
+      "note": "Five critics (all revise), round 1; three re-reviewers and the flow critic (7.4, art predicted 7.0), round 2 on its work order (copy plants, cool Act II, one nosing, textures off four frames); first score 8.425 art 6.5; the craft cycle on 05, 08, 07, 06, 04; re-score 8.505 art 7.0. 06 stayed at revise for hatched wedges at the plinth."
     }
   ]
 }

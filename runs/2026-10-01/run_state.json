@@ -1,0 +1,81 @@
+{
+  "run_date": "2026-10-01",
+  "carousel_no": 74,
+  "effort": "high",
+  "branch": "tsturg/clever-mayer-0l0l4w",
+  "revision_rounds": 3,
+  "date_note": "Anchorage date 2026-10-01 at wake (13:02 AKDT); runs/2026-10-01 does not exist; run_guard CLEAR.",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-01/plan.md",
+        "out/2026-10-01/WORKLOG.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; nothing new beyond FIELD_NOTES; nothing appended"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-01/scout_merge.md"
+      ],
+      "searches": {
+        "A": 23,
+        "B": 18,
+        "C": 26,
+        "D": 25,
+        "E": 25,
+        "F": 24,
+        "docket": 2
+      }
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-01/claims.json"
+      ],
+      "note": "69 claims, claims_check PASS (62 primary); Schumer Al Jazeera wording killed"
+    },
+    "docket": {
+      "status": "done",
+      "note": "8 items re-verified unchanged; hr-9340 updated with the Senate cloture vote; committed 24994b99"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-01/cron_health.json",
+        "out/2026-10-01/gaswatch_health.json"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-01/selection.md"
+      ]
+    },
+    "directors_room": "pending",
+    "copy": "done",
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "pending",
+    "assemble": "pending",
+    "scoring": "done",
+    "ship": "in_progress",
+    "upgrade": "pending",
+    "merge": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "directors": "done"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 129 pages, 18 of 18 checks clean",
+    "gaswatch_live": "PASS (first read FAILED on a transient CINGSA HTTP 307 with no Location header; the re-read 20 s later passed)",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, every scheduled workflow audited at wake"
+  },
+  "flow_rounds": 1,
+  "score": 8.505
+}

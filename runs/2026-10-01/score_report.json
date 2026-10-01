@@ -1,0 +1,122 @@
+{
+  "run_date": "2026-10-01",
+  "carousel_no": 74,
+  "scoring_cycle": 2,
+  "revision_rounds": 3,
+  "hard_fails": [],
+  "hard_fail_checks": "all twelve rubric hard fails checked and passed",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The 10-word matched count reads at 432 px with one gold focal point; below 9 because nothing is visibly Alaskan, the lower grain streaks, and the blurred far tray reads as ghosted doubles."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Clear beats with plants at 02-03, 04-05 and 06-07; 02 and 03 trays sit back to back; 08 retells dates."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.0,
+      "weight": 0.16,
+      "notes": "The craft cycle landed all five fixes. Still held at 7 by 05's dead band of streaked grain and flat nosing face, 01's 2D-blurred far tray, 08's murky band above a flat rule, 06's UI-like bay labels, and 09's glasses reading as wire coils. 02 and 03 remain the craft peak."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14,
+      "notes": "Counts encode the story exactly; gold marks only Alaska's three at their roll ranks; the 04 weight is a pun its label explains."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 7,
+      "weight": 0.12,
+      "notes": "Delegation named and placed, SB 250 14-5-1, CRA May 18th, January 19th, 2027, Juneau coordinates; 04 and 05 are federal mechanics; the RCA lives in the first comment; Washington imagery."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Verified specifics on every content slide; 05 thin by design; 08 restates four dates at about 60 words."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08,
+      "notes": "New hero, atmosphere, hook and palette; engraving, bas-relief, edge-tease and Archivo body carry over from 09-30."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "notes": "34 px body, 24 px labels, vector PDF 7.82 MB; 05's fixtures now on a dark apron."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "89-char hook, 898 total, a real closing question; the September 30th news arrives in the fourth paragraph; the deck-summary line reads as an inventory."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.5,
+      "weight": 0.1,
+      "notes": "All deliverables present and honest; URLs verifiable only after the merge."
+    }
+  ],
+  "calculation": "(8x0.14)+(7.5x0.14)+(7.0x0.16)+(8.5x0.14)+(7x0.12)+(8x0.10)+(7.5x0.08)+(8x0.07)+(7.5x0.05)+(8.5x0.10) = 8.505",
+  "weighted_total": 8.505,
+  "threshold": 8.0,
+  "ship": true,
+  "passes": true,
+  "artwork": 7.0,
+  "first_score": {
+    "weighted_total": 8.425,
+    "threshold": 8.3,
+    "artwork": 6.5,
+    "revision_rounds": 2
+  },
+  "craft_cycle": {
+    "frames": [
+      5,
+      8,
+      7,
+      6,
+      4
+    ],
+    "art_before": 6.5,
+    "art_after": 7.0
+  },
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "On slide 05, pull the nosing up and bring the three ballots in just in front of the glasses so the empty band of streaked grain disappears and the glasses carry the lower third.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 5,
+      "fix": "raise the nosing and move the ballots up in front of the glasses"
+    },
+    {
+      "slide": 1,
+      "fix": "a depth-pass thin-lens focus for the far tray instead of a 2D blur"
+    },
+    {
+      "slide": 8,
+      "fix": "lit relief grain and a marched cast under the rule"
+    },
+    {
+      "slide": 6,
+      "fix": "hatch the bay labels as cards in slotted holders"
+    },
+    {
+      "slide": 9,
+      "fix": "swell ring weight by Lambert with crosslines in the lee"
+    }
+  ],
+  "known_shortfalls": [
+    "Artwork craft 7.0 stays under the 8.5 craft floor after the one owed cycle",
+    "the round-3 re-review kept 06 at revise for hatched wedges at its plinth"
+  ],
+  "editor_notes_for_email": "Shipped 8.505 against the round-3 threshold of 8.0 after the one CRAFT FLOOR cycle (art 6.5 to 7.0 on 05, 08, 07, 06 and 04), no hard fails; art remains under the 8.5 floor and is disclosed. The caption opens on SB 250 in May and the September 30th Senate failure arrives in the fourth paragraph. akleg.gov (the SB 250 tally and both statutes) was read only through a proxy and the Alaska Beacon page returned 403 to the fact checker, so open the BASIS and Beacon links before posting. The deck never calls the bill dead, never predicts the lame duck, never says whether Alaska is exempt, and leaves Schumer out."
+}

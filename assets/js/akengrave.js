@@ -482,6 +482,194 @@
     cx.fill();
   };
 
+  /* ------------------------------------------------------------------ lathe
+   * RING ENGRAVING FOR A TURNED FORM (2026-10-01, run No.74, technique 112).
+   *
+   * WHY surface() CAN'T DO THIS. surface() seeds every stroke on ONE raster
+   * through the region's centre and walks the direction field from there. On a
+   * lathe form (a standard weight, a vase, an hourglass, a ball) the iso-lines
+   * are rings, and the rings of a FILLET or a flare arch away from the centre
+   * raster, so no seed ever lands on them: those bands print as black holes in
+   * the engraving while the plain cylinder above them engraves well. No.74 hit
+   * it on two frames and wrote this inline twice; it lives here now because a
+   * slide is resolved into render/.resolved and can't import a sibling file,
+   * so shared code has to be a classic script under assets/js.
+   *
+   * WHAT IT CUTS. One swelled ring per `gap` px of height for a profile r(y),
+   * each the FRONT HALF of an ellipse (sag `ell` x r, about 0.10 for an eye a
+   * little above the object, 0 for a sphere seen level). Each sample's width
+   * and ink are set by Lambert of the lathe normal (the radial normal tilted by
+   * the profile's slope) under the light: WHITE LINE, so a lit band carries
+   * MORE light ink and the lee carries hairlines (rules 2 and 4). A cap
+   * (gap x `cap`) keeps neighbouring rings from fusing into a flat sheet.
+   *
+   *   eng.lathe(cx, {
+   *     axis: 770, y0: 710, y1: 1150,     // axis x and the height span, in the
+   *     r: y => radius(y),                // current user space of cx
+   *     gap: 4.2, ell: 0.10, wMax: 2.9,
+   *     ramp: [8 colours, dark to light]  // or inkLo / inkHi (mixed in OKLab)
+   *     L: [lx, ly, lz],                  // OPTIONAL light override, see below
+   *     underlay: "#B88716",              // OPTIONAL silhouette fill first
+   *     lee: {gate: 0.32, gap: 9, wMax: 1.4, ink: "#1A2026"}  // OPTIONAL
+   *   });
+   *
+   * LIGHT. Defaults to the engraver's own light (`create({light})`), which is
+   * in SCREEN axes: x right, y DOWN, z toward the viewer. For a horizontal axis
+   * the caller rotates the canvas, and must then pass `L` expressed in the
+   * ROTATED frame, because the helper can't know which way its y now points.
+   *
+   * LEE CROSSLINES (optional). Dark meridians cut across the rings only where
+   * Lambert falls under `lee.gate`, widening as the light falls. Without them
+   * a sparse lay over a dark ground reads as a coil of wire rather than as a
+   * surface (No.74's slide 09 critique); with them the shadow side is a
+   * cross-hatched tone, which is rule 3 applied to a ring lay.
+   *
+   * RESERVATIONS apply: a point is mapped through the context's current
+   * transform to device px and divided by the canvas's backing ratio, so the
+   * mask is asked about the right place even under translate and rotate.
+   * Flat tops and end discs are separate faces; cut them as their own call.
+   */
+  Engraver.prototype.lathe = function (cx, o) {
+    o = o || {};
+    var axis = need(o.axis, "axis"), y0 = need(o.y0, "y0"), y1 = need(o.y1, "y1");
+    var rFn = need(o.r, "r");
+    var gap = o.gap == null ? 4.2 : o.gap;
+    var ell = o.ell == null ? 0.10 : o.ell;
+    var wMax = o.wMax == null ? 2.9 : o.wMax;
+    var wMin = o.wMin == null ? 0.25 : o.wMin;
+    var cap = o.cap == null ? 1.02 : o.cap;
+    var jitter = o.jitter == null ? 0.2 : o.jitter;
+    var spec = o.spec !== false;
+    var Lv = o.L || this.L;          /* used as given: pass a unit vector */
+    var inks = o.ramp;
+    if (!inks) {
+      inks = [];
+      for (var s = 0; s < 8; s++) inks.push(AKC.mixOklab(o.inkLo || "#6E8378", o.inkHi || "#BFD0C4", s / 7));
+    }
+    var noise = (typeof AK !== "undefined" && AK.simplex2) ? AK.simplex2 : null;
+    var useMask = o.reserve !== false && this.reserved.length > 0;
+    var self = this, rings = 0, lee = 0;
+
+    /* user space -> design px, for the reservation mask */
+    var toDesign = null;
+    if (useMask) {
+      var m = cx.getTransform ? cx.getTransform() : null;
+      var cw = cx.canvas && cx.canvas.width, css = cx.canvas && (cx.canvas.clientWidth || 0);
+      var k = (cw && css) ? cw / css : 1;
+      toDesign = function (x, y) {
+        if (!m) return [x, y];
+        return [(m.a * x + m.c * y + m.e) / k, (m.b * x + m.d * y + m.f) / k];
+      };
+    }
+    function maskAt(x, y) {
+      if (!useMask) return 1;
+      var p = toDesign(x, y);
+      return self.mask(p[0], p[1], o.feather == null ? 18 : o.feather);
+    }
+    function lamAt(th, phi) {
+      var nx = Math.cos(phi) * Math.sin(th), ny = Math.sin(phi), nz = Math.cos(phi) * Math.cos(th);
+      return Math.max(0, nx * Lv[0] + ny * Lv[1] + nz * Lv[2]);
+    }
+    function slopeAt(y) {
+      return Math.atan((rFn(Math.min(y1, y + 1.5)) - rFn(Math.max(y0, y - 1.5))) / 3);
+    }
+
+    if (o.underlay) {
+      cx.save();
+      cx.fillStyle = o.underlay;
+      cx.beginPath();
+      var first = true;
+      for (var ya = y0; ya <= y1; ya += 1) {
+        var ra = Math.max(0, rFn(ya));
+        if (first) { cx.moveTo(axis + ra, ya); first = false; } else cx.lineTo(axis + ra, ya);
+      }
+      /* the front of the last ring sags below y1 by ell x r, so the underlay
+       * follows it round rather than stopping on a flat chord */
+      var rb = Math.max(0, rFn(y1));
+      for (var a = 0; a <= 24; a++) {
+        var tb = Math.PI / 2 - Math.PI * a / 24;
+        cx.lineTo(axis + rb * Math.sin(tb), y1 + ell * rb * Math.cos(tb));
+      }
+      for (var yb = y1; yb >= y0; yb -= 1) cx.lineTo(axis - Math.max(0, rFn(yb)), yb);
+      cx.closePath();
+      cx.fill();
+      cx.restore();
+    }
+
+    /* the MAINLINE: one ring per gap, cut as a strip of quads so the ink can
+     * step with the light around the form */
+    for (var y = y0 + gap / 2; y < y1; y += gap) {
+      var r = rFn(y);
+      if (r < 1.2) continue;
+      var phi = slopeAt(y);
+      var n = Math.max(8, Math.round(2 * r / 2.5)), up = [], dn = [], cols = [];
+      for (var i = 0; i <= n; i++) {
+        var t = i / n, x = -r + 2 * r * t;
+        var th = Math.asin(clamp(x / r, -1, 1));
+        var lam = lamAt(th, phi);
+        var sp = spec ? Math.max(0, (lam - 0.9) / 0.1) : 0;
+        var jit = noise ? (1 - jitter / 2) + jitter * noise(y * 0.05, t * 3) : 1;
+        var w = Math.min(gap * cap, (wMin + (wMax - wMin) * Math.pow(lam, 1.35)) *
+                Math.pow(Math.sin(Math.PI * t), 0.35) * jit + gap * sp);
+        var yy = y + ell * r * Math.cos(th);
+        w *= maskAt(axis + x, yy);
+        up.push([axis + x, yy - w / 2]); dn.push([axis + x, yy + w / 2]);
+        cols.push(inks[clamp(Math.round(lam * 7), 0, 7)]);
+      }
+      for (var q = 0; q < n; q++) {
+        cx.fillStyle = cols[q];
+        cx.beginPath();
+        cx.moveTo(up[q][0], up[q][1]); cx.lineTo(up[q + 1][0], up[q + 1][1]);
+        cx.lineTo(dn[q + 1][0], dn[q + 1][1]); cx.lineTo(dn[q][0], dn[q][1]);
+        cx.closePath(); cx.fill();
+      }
+      rings++;
+    }
+
+    /* the CROSSLINE, in the lee only: meridians at even angular steps (so they
+     * crowd toward the limb, which is the foreshortening a burin draws) */
+    if (o.lee) {
+      var gate = o.lee.gate == null ? 0.32 : o.lee.gate;
+      var lgap = o.lee.gap == null ? 9 : o.lee.gap;
+      var lw = o.lee.wMax == null ? 1.4 : o.lee.wMax;
+      var rMax = 0;
+      for (var ys = y0; ys <= y1; ys += 2) rMax = Math.max(rMax, rFn(ys));
+      if (rMax > 2) {
+        cx.fillStyle = o.lee.ink || inks[0];
+        var dth = lgap / rMax;
+        for (var tk = -Math.PI / 2 + dth / 2; tk < Math.PI / 2; tk += dth) {
+          var L1 = [], L2 = [];
+          var flush = function () {
+            if (L1.length > 1) {
+              cx.beginPath();
+              cx.moveTo(L1[0][0], L1[0][1]);
+              for (var a1 = 1; a1 < L1.length; a1++) cx.lineTo(L1[a1][0], L1[a1][1]);
+              for (var a2 = L2.length - 1; a2 >= 0; a2--) cx.lineTo(L2[a2][0], L2[a2][1]);
+              cx.closePath(); cx.fill(); lee++;
+            }
+            L1 = []; L2 = [];
+          };
+          for (var ym = y0; ym <= y1; ym += 2) {
+            var rm = rFn(ym);
+            if (rm < 1.2) { flush(); continue; }
+            var lm = lamAt(tk, slopeAt(ym));
+            var dk = (gate - lm) / gate;
+            var wl = dk > 0 ? lw * Math.pow(dk, 0.8) * Math.cos(tk) : 0;
+            var xm = axis + rm * Math.sin(tk), ymm = ym + ell * rm * Math.cos(tk);
+            wl *= maskAt(xm, ymm);
+            if (wl < 0.12) { flush(); continue; }
+            L1.push([xm - wl / 2, ymm]); L2.push([xm + wl / 2, ymm]);
+          }
+          flush();
+        }
+      }
+    }
+
+    this.stats.lathe = (this.stats.lathe || 0) + rings;
+    this.stats.lee = (this.stats.lee || 0) + lee;
+    return {rings: rings, lee: lee};
+  };
+
   /* -------------------------------------------------------------- guilloche
    * An epitrochoid family, the curve every engine-turned security document is
    * built from. Drawn as ARCS, each with its own light-derived width, so the
