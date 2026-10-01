@@ -4120,6 +4120,43 @@
           "note": "Tracked. Read against the Legislature's own bill record and the Senate-passed text. The Senate passed CSSB 250(CRA) 14 to 5 with one excused on May 16th, and House Community and Regional Affairs heard and held it on May 18th, which is the last action on record. The bill is not law. It returned to the news in September when the four candidates for governor set out where they stand on data centers, as reported by James Brooks of the Alaska Beacon, with Jonathan Kreiss-Tomkins backing a moratorium until the Legislature can pass a comprehensive regulatory framework."
         }
       ]
+    },
+    {
+      "id": "petersburg-data-center-moratorium",
+      "title": "Petersburg ties on whether to pause data centers",
+      "kind": "other",
+      "status": "decided",
+      "decider": "Petersburg Borough Assembly",
+      "public_access": "indirect",
+      "access_note": "The Assembly has voted and the motion failed on a tie, so nothing is pending. The question can come back only if a member brings it to a future Assembly meeting, where residents can speak during public comment.",
+      "summary": "On September 21st the Petersburg Borough Assembly considered starting a temporary moratorium on data centers, after the borough Planning Commission asked for a year-long freeze on data center applications and permits while local standards are written. The vote tied 3 to 3, so the moratorium process did not start. Assembly Member Scott Newman supported it for protections and local control. Utility Director Steve Harbour said selling that much power to one customer could significantly blunt how much electric rates will increase, and KFSK reports the borough utility has endorsed a small data center proposed by Mazzella Alaska LLC. KFSK gives no megawatt figure for it.",
+      "key_dates": [
+        {
+          "date": "2026-09-21",
+          "label": "Assembly ties 3 to 3 and the moratorium process does not start",
+          "kind": "vote"
+        }
+      ],
+      "location": {
+        "name": "Petersburg",
+        "lon": -132.9556,
+        "lat": 56.8125
+      },
+      "sources": [
+        {
+          "url": "https://www.kfsk.org/2026/09/28/data-center-moratorium-proposal-fails-in-petersburg-assembly-stalemate/",
+          "outlet": "KFSK",
+          "date": "2026-09-28"
+        }
+      ],
+      "first_seen": "2026-09-30",
+      "last_updated": "2026-09-30",
+      "history": [
+        {
+          "date": "2026-09-30",
+          "note": "Added. KFSK reported on September 28th that the Assembly tied 3 to 3 on September 21st after 30 minutes of discussion, so the Planning Commission's requested year-long freeze did not move forward. Read today against the KFSK report."
+        }
+      ]
     }
   ]
 }
