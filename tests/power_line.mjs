@@ -13,9 +13,10 @@
 // still reads on hover with no button held, because fixing touch by requiring
 // a press everywhere would have been the easy wrong answer.
 //
-// Needs a built site:  SITE=/tmp/site node tests/power_line.mjs
+// Needs a built site:  python3 scripts/browser_suites.py --suite power_line
+// (CI: SITE=<built site> node tests/power_line.mjs)
 
-import { chromium } from 'playwright';
+import { chromium } from './playwright_resolve.mjs';
 const URL = 'file://' + process.env.SITE + '/gas-watch/index.html';
 // The pre-installed browser when there is one, whatever playwright resolves
 // otherwise, so this runs the same on a runner as on a workstation. Pinning

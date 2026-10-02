@@ -947,7 +947,12 @@ them or every archive page goes blank.
   is the single-point form for a leader terminus.
 - `assets/js/aksdf.js` — CPU SDF raymarcher (`AKSDF.*`): organic sculpted
   heroes, soft shadows + 5-tap AO + smin blends; render 480x720 internal into
-  a box, ~5-15s; `deadlineMs` degrades gracefully. **`cam.fov` is
+  a box, ~5-15s. `deadlineMs` (default 15000) drops shadows, then AO, from the
+  row where it passes, which is a SEAM, so it console.errors `AK DEGRADED:` and
+  qa.py FAILs (2026-10-02). Native 1080-wide renders take 25-40 s: set
+  `deadlineMs` to cover it (the render is synchronous, so render.py's 30 s
+  renderReady race does not cut it off). Native beats a 2x upscale, which the
+  No.75 critics read as stair-stepping. **`cam.fov` is
   HORIZONTAL**: on 4:5 the vertical field is 1.25x wider in tan(half angle)
   than the number. Plan by height with `cam.vfov`; project labels with
   `AKSDF.focal(cam, W, H)` (AKTRAY.project already does).

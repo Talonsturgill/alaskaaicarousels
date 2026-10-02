@@ -29,6 +29,7 @@ on:
       - "scripts/power_utility.py"
       - "scripts/power_panel.py"
       - "tests/power_line.mjs"
+      - "tests/playwright_resolve.mjs"
       - ".github/workflows/power-utility.yml"
   push:
     branches: [main]

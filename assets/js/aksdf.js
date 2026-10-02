@@ -18,6 +18,12 @@
  * 3-5 primitive scene with shadows+AO. Keep internal res <= 600x750 and scene
  * SDFs cheap (< ~12 primitives). Budget guard: opts.deadlineMs (default 15000)
  * degrades by skipping shadow rays first, then AO, never returns unfinished rows.
+ * A degrade starts MID-FRAME, so it prints a seam: it console.errors with the
+ * prefix `AK DEGRADED:` (a qa.py FAIL) and returns `degraded: {shadowsFrom,
+ * aoFrom}`. Native 1080-wide renders run 25-40 s here; set deadlineMs to match.
+ * The render is synchronous, so render.py's 30 s renderReady race can't cut it
+ * off (measured 2026-10-02: 50 s of synchronous work rendered OK; only work
+ * that yields to the event loop loses that race, and it loses it loudly).
  *
  * USAGE (inside renderReady):
  *   <script src="@@ASSETS@@/js/aksdf.js"></script>
@@ -215,10 +221,11 @@
 
     const img = ctx.createImageData(W, H);
     const data = img.data;
+    let degraded = null;                           // rows where a pass was dropped
     for (let y = 0; y < H; y++) {
       if (performance.now() > deadline) {          // degrade, never abort a frame
-        if (doShadow) { doShadow = false; }
-        else if (doAO) { doAO = false; }
+        if (doShadow) { doShadow = false; (degraded = degraded || {}).shadowsFrom = y; }
+        else if (doAO) { doAO = false; (degraded = degraded || {}).aoFrom = y; }
       }
       const sy = (1 - 2 * (y + 0.5) / H) * (H / W); // keep square pixels
       for (let x = 0; x < W; x++) {
@@ -293,7 +300,22 @@
     ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(tmp, box[0], box[1], box[2], box[3]);
     ctx.restore();
-    return { internal: [W, H], shadows: doShadow, ao: doAO };
+    // A DEGRADE IS A SEAM, SO IT IS LOUD (2026-10-02, run No.75). The rows above
+    // the deadline keep their shadows and the rows below lose them, which prints
+    // a hard horizontal line across the art. No.75 measured it: its slide 08 at
+    // native 1080x620 with the default 15000 ms dropped shadows from row 276 and
+    // every gate passed. qa.py FAILs this prefix like AK CONTRACT:.
+    if (degraded) {
+      const parts = [];
+      if (degraded.shadowsFrom != null) parts.push('soft shadows from row ' + degraded.shadowsFrom);
+      if (degraded.aoFrom != null) parts.push('ambient occlusion from row ' + degraded.aoFrom);
+      if (typeof console !== 'undefined') console.error('AK DEGRADED: AKSDF.render ran past deadlineMs ' +
+        (opts.deadlineMs || 15000) + ' at ' + W + 'x' + H + ' internal and dropped ' + parts.join(' and ') +
+        ' of ' + H + ', a hard horizontal seam across the art. Raise opts.deadlineMs (the render is ' +
+        'synchronous, so render.py\'s 30 s renderReady race never cuts it off), lower width/height, ' +
+        'or pass shadows:false / ao:false so the whole frame matches.');
+    }
+    return { internal: [W, H], shadows: doShadow, ao: doAO, degraded };
   };
 
   global.AKSDF = S;

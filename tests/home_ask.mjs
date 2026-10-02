@@ -17,10 +17,10 @@
  *   only text that survived the guard goes back to the model
  *
  * Needs a built site.
- *   python3 scripts/site_build.py --date $(date +%F) --out /tmp/site
- *   SITE=/tmp/site node tests/home_ask.mjs
+ *   python3 scripts/browser_suites.py --suite home_ask      (builds under out/)
+ *   SITE=<built site> node tests/home_ask.mjs                  (CI)
  */
-import { chromium } from 'playwright';
+import { chromium } from './playwright_resolve.mjs';
 const SITE = process.env.SITE;
 if (!SITE) { console.error('set SITE to a built site directory'); process.exit(2); }
 // The pre-installed browser when there is one, whatever playwright resolves

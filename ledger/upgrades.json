@@ -2896,6 +2896,45 @@
       "verification": "tests/gaswatch_health.py: 9 tests OK (3 new: a 307 then 200 is read on the second attempt after one 10 s wait and recorded; a 403 is tried once; a persistent 307 is tried exactly 3 times then raises; main() writes transient_retries). Reconstruction: the pre-upgrade fetch (HEAD) raises HTTPError 307 on the same 307-then-200 sequence after 1 call; the upgraded one returns the page after 2. LIVE on its first run: CINGSA answered 307 again, the re-read answered, the audit printed [RETRIED] and completed every check (out/2026-10-01/upgrade_verify/gaswatch_health_live.json; verdict WARN only for a source reading newer than the last collection, the known intraday state). No collector, model, ledger or gate threshold touched; gate_status's gas_watch_live row reads the same verdict field.",
       "rollback": "git revert the upgrade(2026-10-01) commit, or git checkout <commit>^ -- scripts/gaswatch_health.py tests/gaswatch_health.py.",
       "commit": "f7447f68d0d2491745cf5fca934ff4d316e73c9d"
+    },
+    {
+      "run_date": "2026-10-02",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "The four ESM browser suites (ask_engine, home_ask, docket_ask, power_line) import playwright through tests/playwright_resolve.mjs, which uses createRequire so a repo node_modules (CI, unchanged), NODE_PATH, or the running node's global root all work with nothing linked; scripts/browser_suites.py is the one command that builds the site into out/<date>/site and runs them, refusing a site outside out/ and any node_modules link, and Phase 3.6 step 3 names it as the only way.",
+      "trigger": "Run No.75 incident 1: to run the ask-engine suite the run linked node_modules to a scratch directory under /tmp, the link and its rm both raised permission prompts, and the run sat about nine hours waiting for a human. Second consecutive run (2026-10-01 hit it twice). Root cause measured: an ESM bare import ignores NODE_PATH and the global root, so the 2026-10-01 FIELD_NOTES remedy (NODE_PATH) could not work and the documented SITE=/tmp/site recipe needed a link.",
+      "files": [
+        "tests/playwright_resolve.mjs",
+        "scripts/browser_suites.py",
+        "tests/ask_engine.mjs",
+        "tests/home_ask.mjs",
+        "tests/docket_ask.mjs",
+        "tests/power_line.mjs",
+        ".github/workflows/ask.yml",
+        ".github/workflows/power-utility.yml",
+        "prompts/routine_instructions.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "Reconstruction: HEAD tests/home_ask.mjs run with NODE_PATH=$(npm root -g) dies ERR_MODULE_NOT_FOUND (Cannot find package 'playwright'). After: the resolver loads chromium with NODE_PATH unset; with a dereferenced repo-local playwright copy (out/, 0 links) it resolves the LOCAL one, which is CI's path. python3 scripts/browser_suites.py --date 2026-10-02 built out/2026-10-02/site and passed all four suites in 1m45s (ask_engine 254 checks, home_ask 29, docket_ask 55, power_line clean), exit 0; a rerun with --no-build passed home_ask and power_line. --site /tmp/site is REFUSED, exit 2. --self-test HOLDS (a node_modules link refused, a clean tree accepted, /tmp and out/../.. refused). node --check clean on all four suites; no symlink anywhere in the tree afterwards. Render/qa untouched by this change (see the aksdf entry for the deck and demo-deck runs).",
+      "rollback": "git revert the upgrade(2026-10-02) commit, or git checkout <commit>^ -- tests/ask_engine.mjs tests/home_ask.mjs tests/docket_ask.mjs tests/power_line.mjs .github/workflows/ask.yml .github/workflows/power-utility.yml prompts/routine_instructions.md and delete tests/playwright_resolve.mjs scripts/browser_suites.py.",
+      "commit": ""
+    },
+    {
+      "run_date": "2026-10-02",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/aksdf.js records the rows where its deadlineMs degrade dropped soft shadows and AO, console.errors 'AK DEGRADED:' naming them and the remedy, and returns degraded {shadowsFrom, aoFrom}; qa.py FAILs that prefix like AK CONTRACT:, so a mid-frame seam can no longer ship silently. SKILL.md says native 1080-wide renders take 25-40 s and need deadlineMs set to cover them, and that render.py's 30 s renderReady race does not cut off a synchronous render.",
+      "trigger": "Run No.75 incident 4 (on the repeat offender, artwork craft weakest 7 of 10): slide 08 was rendered at 540x310 into a 1080x620 box to stay clear of the 30 s race and critics named the stair-stepping. Measured: the race never touches synchronous work (34 s and 50.5 s rendered OK) and fails yielding work LOUDLY (31.2 s, render exit 1). The silent loss was aksdf's own deadline: slide 08 at native size with the default 15000 ms dropped shadows from row 276 of 620, a visible seam through the tags, and render + qa passed it with 0 fails 0 warns.",
+      "files": [
+        "assets/js/aksdf.js",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/aksdf_deadline_verify.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/aksdf_deadline_verify.py (new, node, real aksdf.js): 7/7 HOLD (generous deadline quiet, a past deadline errors once with the prefix and names shadows row 0 and AO row 1, a shadows:false caller is told AO only, qa.py carries the rule and FAILs it while still WARNing an ordinary console error). Reconstruction, out/2026-10-02/slides/slide-08.html without deadlineMs: pre-upgrade render OK, qa PASS 0 fails 0 warns, pixel-identical to the shipped render above CSS y 1046.5 and up to 180 levels off below; post-upgrade qa FAIL 'art degraded mid-frame: AK DEGRADED: AKSDF.render ran past deadlineMs 15000 at 1080x620 internal and dropped soft shadows from row 283 and ambient occlusion from row 284 of 620'. This run's 9 slides re-rendered: qa WARN with the shipped per-slide counts (0 fails; warns on 03, 05, 07, 09), slide 08 pixel-identical, no AK DEGRADED. examples/demo-deck 4/4 OK, 0 fails, warns 3/5/5/1 as in the ledger baseline. examples/proof-3d (the other aksdf caller) render 3/3 OK with no console errors; its aksdf slide 02 passes, and slides 01 and 03 FAIL on the dead-lower-zone and reserved-text gates, which this change does not touch. tests/aksdf_vfov_verify.py still HOLDS.",
+      "rollback": "git revert the upgrade(2026-10-02) commit, or git checkout <commit>^ -- assets/js/aksdf.js .claude/skills/carousel-engine/qa.py .claude/skills/carousel-engine/SKILL.md and delete tests/aksdf_deadline_verify.py.",
+      "commit": ""
     }
   ],
   "scan_log": [
@@ -3360,6 +3399,13 @@
       "searches": "7 searches, 4 fetches, 1 local measurement over 31 shipped PDFs",
       "found": "(1) LinkedIn's engineering feed index has nothing on ranking since March 12th; its November 2025 'Putting members first' post is fairness testing and names no format signals (https://www.linkedin.com/blog/engineering/feed/putting-members-first-testing-and-measuring-how-content-appears-in-your-feed). (2) 'Depth Score' in 2026 writeups is an industry label, not a LinkedIn term. (3) LinkedIn's official document requirements (https://www.linkedin.com/help/linkedin/answer/97459): 100 MB, 300 pages, flatten layers, one page size, secure links; MEASURED compliant on 31 of 31 recent shipped PDFs (one page size, no /OCProperties, no link annotations), so a gate would never fire. The page is 810 x 1013.04 pt, not 1012.5, and the extra 0.54 pt is root background. (4) UNSOURCED: a mid-2026 trade report says document posts now render as 'more compact carousels' (https://www.techjuice.pk/linkedin-post-performance-insights-out-of-network-reach-analytics), which would move the 432 px feed-width review if true.",
       "outcome": "nothing applied from the scan; PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-01 frontier scan, focus (a)'): the compact-carousel claim with its unblocking condition (a primary source or a measured live screenshot, then re-derive the review width and type floor), and the compliance measurement so no future run builds a gate that can't fire. All three upgrade slots went to reactive fixes, one on the standing repeat offender."
+    },
+    {
+      "run_date": "2026-10-02",
+      "focus": "(e) headless Chromium, narrowed to parallel CPU rendering from file:// slides (Web Workers, OffscreenCanvas). Legal (last read 2026-09-26) and distinct from the last three logged foci: 2026-10-01 (a) LinkedIn, 2026-09-30 (c) procedural art, 2026-09-29 (d) typography. Chosen over the stalest slot, (g) accessibility/PDF (2026-09-21), on relevance: this run halved aksdf's resolution for time and the critics named the upscale, on the repeat-offender criterion.",
+      "searches": "4 searches, 2 fetches (MDN Worker() and OffscreenCanvas), 1 measurement in the engine's own Chromium via render.launch_chromium",
+      "found": "(1) A blob: URL Worker runs from a file:// slide in the engine's Chromium, although WebKit documents blob workers failing on file:// (https://bugs.webkit.org/show_bug.cgi?id=192749); MDN says a blob: URL inherits its creator's origin (https://developer.mozilla.org/en-US/docs/Web/API/Worker/Worker). (2) An aksdf-shaped kernel at 1080x620: 1862 ms main thread, 1267 ms on 2 workers, 787 ms on 4 (2.4x), 718 ms on 8 with 4 cores; band output identical. (3) MDN OffscreenCanvas: transferToImageBitmap or transferable buffers return pixels to the main thread (https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas). (4) Measured on render.py itself: the 30 s renderReady race passes 50.5 s of synchronous work and fails yielding work at 31.2 s, so a worker renderer would make that race bind.",
+      "outcome": "parked (FIELD_NOTES, 2026-10-02 Phase 12): scene closures must become self-contained source (an API change to every caller), the work turns async under the 30 s race, reseed state must replay per worker, and pixels must land on the main thread for the paint census. UNBLOCKS when a deck needs aksdf above ~600x750 internal twice in ten runs."
     }
   ]
 }

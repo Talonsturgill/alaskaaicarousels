@@ -3768,6 +3768,12 @@ def main():
             # this is what makes it un-ignorable.
             if str(e).startswith("AK CONTRACT:"):
                 res["fails"].append(f"library contract: {e}")
+            # A DEADLINE DEGRADE IS A FAIL TOO (2026-10-02, run No.75). AKSDF
+            # drops shadows and then AO from the row where its deadline passed,
+            # so the picture carries a hard seam; No.75 reconstructed it on its
+            # slide 08 and every gate passed. The message names the remedy.
+            elif str(e).startswith("AK DEGRADED:"):
+                res["fails"].append(f"art degraded mid-frame: {e}")
             else:
                 res["warns"].append(f"console error: {e}")
         for f in rec.get("fonts_missing", []):
