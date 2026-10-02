@@ -361,7 +361,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-07-08",
@@ -478,6 +478,10 @@
         {
           "date": "2026-09-29",
           "note": "Searched for newer reporting today. Nothing later than the record above surfaced, and the Air Force's own page did not load. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Searched for newer reporting today. Nothing later than the record above surfaced, no award has been reported, and the Air Force's own announcement page refused an automated read. Checked and unchanged."
         }
       ]
     },
@@ -1189,7 +1193,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-07-17",
@@ -1370,6 +1374,10 @@
         {
           "date": "2026-10-02",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, the notice was last modified August 19th, and no final finding and decision has been posted. Checked and unchanged."
         }
       ]
     },
@@ -1666,7 +1674,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-08-02",
@@ -1735,6 +1743,10 @@
         {
           "date": "2026-09-29",
           "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It shows Amendment 1, which moved the proposal deadline from August 24th to August 28th, and announces no award or intent to award. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still shows Amendment 1 and a proposal deadline of August 28th, was last modified August 17th, and announces no award or intent to award. Checked and unchanged."
         }
       ]
     },
@@ -2148,10 +2160,10 @@
       "id": "eielson-oklo-microreactor",
       "title": "The Air Force nuclear microreactor at Eielson",
       "kind": "procurement",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the license",
-      "public_access": "open",
-      "access_note": "Until September 30th anyone can comment on the Air Force's preferred site for the reactor, near Spruce Lake east of the south end of the main runway, by email to 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299. The contract itself follows a Nuclear Regulatory Commission license.",
+      "public_access": "closed",
+      "access_note": "The comment window on the Air Force's preferred site near Spruce Lake closed on September 30th, and no extension was announced. The Air Force now weighs what it received and has published no date for a decision. The contract itself follows a Nuclear Regulatory Commission license.",
       "summary": "The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission.",
       "key_dates": [
         {
@@ -2213,7 +2225,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-30",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-08-06",
@@ -2286,6 +2298,10 @@
         {
           "date": "2026-09-30",
           "note": "Re-read the KUAC report today. Comments on the proposed site near Spruce Lake go to the Eielson Public Affairs Office and must be submitted no later than September 30th, which is today. No extension is mentioned. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "The comment window on the proposed reactor site near Spruce Lake closed on September 30th. Re-read the KUAC report today, and it names no extension. The base's own microreactor page refused an automated read. The Air Force has published no date for a decision on the site."
         }
       ]
     },
@@ -2549,7 +2565,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-08-06",
@@ -2602,6 +2618,10 @@
         {
           "date": "2026-09-29",
           "note": "Searched for newer reporting today. Nothing later than the June 4th award announcement surfaced. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Re-read the Department of Energy's project selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding, $190,375,155 in total, with Class 3 engineering targeted for 2027. No award agreement or later notice was found. Checked and unchanged."
         }
       ]
     },
@@ -2644,7 +2664,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-08-06",
@@ -2693,6 +2713,10 @@
         {
           "date": "2026-09-29",
           "note": "Searched for newer reporting today. Nothing after the May 14th hearing surfaced, and no federal proposal on the application was found. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application and found none. The commission's own carbon storage page refused an automated read. Checked and unchanged."
         }
       ]
     },
@@ -3248,7 +3272,7 @@
       "status": "open-for-comment",
       "decider": "Federal Communications Commission",
       "public_access": "open",
-      "access_note": "Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.",
+      "access_note": "Anyone may file. Initial comments closed on September 30th, and reply comments are due on or before October 30th in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.",
       "summary": "The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read.",
       "key_dates": [
         {
@@ -3273,8 +3297,8 @@
         },
         {
           "date": "2026-10-30",
-          "label": "Reply comments due",
-          "kind": "milestone"
+          "label": "Reply comments due, WC Docket No. 26-173",
+          "kind": "deadline"
         }
       ],
       "sources": [
@@ -3290,7 +3314,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-09-30",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-08-31",
@@ -3351,6 +3375,10 @@
         {
           "date": "2026-09-30",
           "note": "Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are due on or before September 30th, which is today, and reply comments on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Initial comments closed on September 30th. Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th."
         }
       ]
     },
@@ -3378,6 +3406,11 @@
           "date": "2026-08-27",
           "label": "Assembly adopts Resolution 2026-25",
           "kind": "vote"
+        },
+        {
+          "date": "2026-10-06",
+          "label": "Borough election for three Assembly seats whose candidates split on the moratorium request",
+          "kind": "milestone"
         },
         {
           "date": "2027-01-19",
@@ -3420,10 +3453,15 @@
           "url": "https://www.fnsb.gov/172/Assemblymembers",
           "outlet": "Fairbanks North Star Borough",
           "date": "2026-09-02"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-09-29"
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-09-01",
@@ -3456,6 +3494,10 @@
         {
           "date": "2026-09-29",
           "note": "Checked the borough's public meeting calendar today. The next regular Assembly meeting is October 8th, and the calendar lists no meeting on the moratorium request itself. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Alaska's News Source reported on September 29th that the six candidates for three Assembly seats on the October 6th ballot divide on the moratorium. Alexis Howell and Scott Crass support it, Joshua Leaders backs a temporary one while impact data is gathered, Nick LaJiness opposes data centers outright, Shelly Shupe is cautiously open and Miguel Ramirez wants more study first. The borough calendar lists regular Assembly meetings on October 8th and October 22nd."
         }
       ]
     },
@@ -3777,7 +3819,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-09-13",
@@ -3809,6 +3851,10 @@
         },
         {
           "date": "2026-10-02",
+          "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
           "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged."
         }
       ]
@@ -4019,7 +4065,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-09-15",
@@ -4063,6 +4109,10 @@
         },
         {
           "date": "2026-10-02",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ]
@@ -4131,7 +4181,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-09-29",
+      "last_updated": "2026-10-03",
       "history": [
         {
           "date": "2026-09-17",
@@ -4148,6 +4198,10 @@
         {
           "date": "2026-09-29",
           "note": "Re-read the University of Alaska generative AI policies page today. It still says UA System regulations are under development, was last updated March 11th, 2025, and names no Board of Regents action. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-03",
+          "note": "Re-read the University of Alaska generative AI policies page and the Board of Regents policy index today. The first still says UA System regulations are under development and was last updated March 11th, 2025, and the index lists no artificial intelligence policy. Checked and unchanged."
         }
       ]
     },
