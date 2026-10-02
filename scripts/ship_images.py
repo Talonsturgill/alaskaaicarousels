@@ -22,13 +22,17 @@ Usage:
     python scripts/ship_images.py --run 2026-07-28      # one run
     python scripts/ship_images.py --all                 # backfill every run
     python scripts/ship_images.py --all --dry-run       # report, change nothing
+    python scripts/ship_images.py --run 2026-10-03 --drop-canvas-layers
 
-Exit 0 on success, 1 if any run failed to convert.
+Exit 0 on success, 1 if any run failed to convert or holds a file that is not
+a frame (see STRAYS below).
 """
 from __future__ import annotations
 
 import argparse
 import math
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -57,6 +61,22 @@ PSNR_FLOOR = 40.0            # visually lossless
 # Only these get converted. Everything else in a run is text or already small.
 SLIDE_GLOB = "slide-*.png"
 EXTRAS = ("contact_sheet.png",)
+
+# STRAYS: A FRAME IS slide-NN AND NOTHING ELSE (2026-10-03, No.76).
+# render.py writes slide-NN.canvas.png beside every render (the art layer alone,
+# for qa.py's canvas checks, since 2026-08-30). It is a diagnostic, not a frame.
+# No.76 copied render/slide-*.png into runs/<date>/, SLIDE_GLOB matched the nine
+# canvas layers too, this script converted them to slide-NN.canvas.webp, and
+# nothing complained about eighteen slide files in a shipped run; run_guard's
+# slide-*.webp census would have counted them. assemble.py and gmail_draft.py
+# had each been taught the difference separately. This is the place they all
+# pass through on the way to main, so it refuses here: any slide-* image whose
+# name is not slide-NN.png / slide-NN.webp is never converted and fails the run
+# with its remedy. --drop-canvas-layers removes exactly the canvas layers,
+# untracked only, so no run has to improvise a delete under runs/.
+FRAME_RE = re.compile(r"^slide-\d{2}\.(png|webp)$")
+CANVAS_LAYER_RE = re.compile(r"^slide-\d{2}\.canvas\.(png|webp)$")
+RUN_DIR_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
 def psnr(a: Image.Image, b: Image.Image) -> float:
@@ -101,13 +121,16 @@ def encode(src: Path, dst: Path, verify: bool) -> tuple[int, int, float, str]:
 def convert_run(run: Path, dry: bool, keep_png: bool, verify: bool) -> dict:
     """Convert one runs/<date>/ in place. Idempotent: a run whose PNGs are
     already gone reports zero work rather than failing."""
-    slides = sorted(run.glob(SLIDE_GLOB))
+    slides = sorted(p for p in run.glob(SLIDE_GLOB) if FRAME_RE.match(p.name))
     thumbs = sorted((run / "thumbs").glob("*.png")) if (run / "thumbs").is_dir() else []
     extras = [run / name for name in EXTRAS if (run / name).exists()]
     todo = slides + thumbs + extras
 
     result = {"run": run.name, "files": 0, "before": 0, "after": 0,
               "worst_psnr": float("inf"), "og": False, "errors": [], "escalated": 0}
+    found = strays(run)
+    if found:
+        result["errors"].append(stray_message(run, found))
     # Nothing to convert AND the og.jpg already exists means genuinely no work.
     # But an already-converted run whose og.jpg is missing still has the one
     # repair below to do, and returning here skipped it, so the "repairs a
@@ -157,6 +180,66 @@ def convert_run(run: Path, dry: bool, keep_png: bool, verify: bool) -> dict:
         result["og"] = True
 
     return result
+
+
+def strays(run: Path) -> list[Path]:
+    """slide-* images in a run that are not frames. Never converted, never
+    shipped: a canvas layer, a stray copy, anything with an extra suffix."""
+    return sorted(p for p in run.glob("slide-*")
+                  if p.is_file() and p.suffix.lower() in (".png", ".webp")
+                  and not FRAME_RE.match(p.name))
+
+
+def stray_message(run: Path, found: list[Path]) -> str:
+    canvas = [p for p in found if CANVAS_LAYER_RE.match(p.name)]
+    msg = (f"{len(found)} non-frame slide file(s) in runs/{run.name}: "
+           f"{', '.join(p.name for p in found[:6])}{' ...' if len(found) > 6 else ''}. "
+           "A frame is slide-NN.png; copy render/slide-NN.png only, never the "
+           "slide-NN.canvas.png layers render.py writes beside them.")
+    if canvas:
+        msg += (f" Remove the canvas layers with: python scripts/ship_images.py "
+                f"--run {run.name} --drop-canvas-layers")
+    return msg
+
+
+def git_tracked(run: Path) -> set[str] | None:
+    """Names git tracks directly in this run directory, or None if git can't
+    say, in which case the caller refuses rather than guesses."""
+    try:
+        p = subprocess.run(["git", "ls-files", "-z", "--", "."], cwd=run,
+                           capture_output=True, text=True, timeout=30)
+    except Exception:                                   # noqa: BLE001
+        return None
+    if p.returncode != 0:
+        return None
+    return {n for n in p.stdout.split("\0") if n and "/" not in n}
+
+
+def drop_canvas_layers(run: Path, dry: bool) -> tuple[int, list[str]]:
+    """Delete runs/<date>/slide-NN.canvas.{png,webp} and nothing else.
+
+    Guards, each a refusal and never a skip-and-continue: the directory must be
+    a dated run, git must be able to list what it tracks there, and NO canvas
+    layer may already be tracked (a committed file under runs/ is a shipped
+    artifact and is not this script's to delete). Other non-frame names are
+    reported and left alone. Returns (removed, problems)."""
+    if not RUN_DIR_RE.match(run.name):
+        return 0, [f"refusing: {run} is not a dated run directory"]
+    layers = sorted(p for p in run.iterdir()
+                    if p.is_file() and CANVAS_LAYER_RE.match(p.name))
+    if not layers:
+        return 0, []
+    tracked = git_tracked(run)
+    if tracked is None:
+        return 0, [f"refusing: git can't list tracked files in {run}"]
+    shipped = [p.name for p in layers if p.name in tracked]
+    if shipped:
+        return 0, [f"refusing: tracked (shipped) canvas layer(s) {', '.join(shipped)}; "
+                   "removing a committed run artifact is a decision for the owner"]
+    if not dry:
+        for p in layers:
+            p.unlink()
+    return len(layers), []
 
 
 def mb(n: float) -> str:
@@ -212,7 +295,12 @@ def main() -> int:
     ap.add_argument("--drop-png", action="store_true",
                     help="reclaim PNG originals that already have a verified WebP sibling, "
                          "instead of encoding")
+    ap.add_argument("--drop-canvas-layers", action="store_true",
+                    help="delete untracked slide-NN.canvas.{png,webp} from ONE run "
+                         "(--run only), instead of encoding")
     args = ap.parse_args()
+    if args.drop_canvas_layers and (args.all or args.drop_png):
+        ap.error("--drop-canvas-layers takes --run <date> alone")
 
     if args.all:
         runs = sorted(d for d in RUNS.iterdir() if d.is_dir())
@@ -223,13 +311,29 @@ def main() -> int:
             return 1
         runs = [one]
 
+    if args.drop_canvas_layers:
+        run = runs[0]
+        n, problems = drop_canvas_layers(run, args.dry_run)
+        for p in problems:
+            print(f"FAIL {p}", file=sys.stderr)
+        left = strays(run) if not args.dry_run else []
+        for p in left:
+            print(f"  still not a frame, left alone: {p.name}", file=sys.stderr)
+        print(f"ship_images --drop-canvas-layers runs/{run.name}: "
+              f"{'would remove' if args.dry_run else 'removed'} {n}")
+        return 1 if (problems or left) else 0
+
     if args.drop_png:
         print(f"ship_images --drop-png: {len(runs)} run(s)"
               f"{', DRY RUN' if args.dry_run else ''}\n")
         print(f"{'run':14s} {'reclaimed':>10s} {'kept':>10s}")
         freed = kept = 0
         problems = []
+        stray_runs = []
         for run in runs:
+            found = strays(run)
+            if found:
+                stray_runs.append(stray_message(run, found))
             d = drop_pngs(run, args.dry_run)
             freed += d["freed"]
             kept += d["kept"]
@@ -239,6 +343,12 @@ def main() -> int:
         print(f"\n{'TOTAL':14s} {mb(freed):>10s} {mb(kept):>10s}")
         for p in problems:
             print(f"  kept, unverified: {p}", file=sys.stderr)
+        if stray_runs:
+            for m in stray_runs:
+                print(f"  ! {m}", file=sys.stderr)
+            print(f"\nFAIL {len(stray_runs)} run(s) hold files that are not frames",
+                  file=sys.stderr)
+            return 1
         print("\nOK")
         return 0
 
@@ -254,6 +364,11 @@ def main() -> int:
         r = convert_run(run, args.dry_run, args.keep_png, args.verify)
         if not r["files"]:
             print(f"{r['run']:14s} {'-':>5s} {'already converted':>27s}")
+            # A stray is an error even when there is nothing left to encode,
+            # or an already-converted run carrying canvas layers would print OK.
+            for e in r["errors"]:
+                print(f"  ! {e}", file=sys.stderr)
+                failed.append(f"{r['run']}/{e}")
             continue
         tb += r["before"]
         ta += r["after"]
