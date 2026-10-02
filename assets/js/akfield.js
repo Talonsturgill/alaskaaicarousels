@@ -212,6 +212,35 @@
     g.restore();
   };
 
+  /* Calm the ground under the footer fixtures (site and coordinates). Painted
+   * LAST on the art canvas: each fixture's line box is measured, the art under
+   * it is averaged, and a feathered patch of THAT average tone is laid down, so
+   * the texture stops but the ground keeps its own value (no dark slab on a
+   * light plain). The fixture ink then takes the house watermark on a dark
+   * ground and a deeper slate on a light one, so it always reads quietly. */
+  F.calmFixtures = function (cx, o) {
+    o = o || {};
+    var pad = o.pad == null ? 22 : o.pad, blur = o.blur == null ? 16 : o.blur;
+    var els = document.querySelectorAll(o.selector || ".site, .coord");
+    els.forEach(function (el) {
+      var b = el.getBoundingClientRect();
+      var x0 = Math.max(0, Math.floor((b.left - pad) * 2)), y0 = Math.max(0, Math.floor((b.top - pad * 0.5) * 2));
+      var w = Math.min(cx.canvas.width - x0, Math.ceil((b.width + 2 * pad) * 2)), h = Math.min(cx.canvas.height - y0, Math.ceil((b.height + pad) * 2));
+      if (w <= 0 || h <= 0) return;
+      var d = cx.getImageData(x0, y0, w, h).data, r = 0, g = 0, bl = 0, n = 0;
+      for (var i = 0; i < d.length; i += 16) { r += d[i]; g += d[i + 1]; bl += d[i + 2]; n++; }
+      r /= n; g /= n; bl /= n;
+      cx.save();
+      cx.filter = "blur(" + blur + "px)";
+      cx.fillStyle = "rgba(" + Math.round(r) + "," + Math.round(g) + "," + Math.round(bl) + ",.9)";
+      cx.fillRect(b.left - pad, b.top - pad * 0.4, b.width + 2 * pad, b.height + pad * 0.8);
+      cx.restore();
+      var L = (0.2126 * r + 0.7152 * g + 0.0722 * bl) / 255;
+      el.style.color = L > 0.42 ? "#24303A" : (L > 0.16 ? "#16202A" : "#5E6E7B");
+      if (L > 0.16 && L <= 0.42) el.style.color = "#C9D4DE";
+    });
+  };
+
   /* ---- fixtures -----------------------------------------------------------
    * The sun clock: horizon, the day's elevation curve between the poll hours,
    * and this frame's sun, a gold disc above the horizon or a gold ring below.
