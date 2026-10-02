@@ -35,6 +35,7 @@ on:
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
       - "tests/docket_ask.mjs"
+      - "tests/playwright_resolve.mjs"
       - ".github/workflows/ask.yml"
   push:
     branches: [main]
@@ -51,6 +52,7 @@ on:
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
       - "tests/docket_ask.mjs"
+      - "tests/playwright_resolve.mjs"
       - ".github/workflows/ask.yml"
   workflow_dispatch:
 

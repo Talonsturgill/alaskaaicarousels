@@ -1,0 +1,184 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I re-read post_copy, first_comment, the aftercare, editor_notes_for_email and all nine renders. The only joiners are ASCII hyphens: 'Public Law 119-21', 'RFP-IES-Milestone2', 'RFP-IEP-Milestone2.5', and the ISO dates in the source block. The dashed strokes on 01 (lozenge), 02 (2029 hairline, 2026 field), 05 (15.3 line, 2026 footprint), 08 (FY26 bracket) and 09 (uncut field) are drawn graphics, not glyphs. caption_report PASS, 0 fails."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "There are no emoji codepoints in copy.json or caption.txt. The four-point star by the wordmark on 01 and on the runner head on 09 is the drawn Polaris brand mark."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide object in copy.json carries claim_ids, and each one resolves to a fetched entry in claims.json (C01-C41). Hedged claims stay hedged on the render. 04 reads 'AT THE TOP STEP, ALASKA COULD OWE / MORE THAN $42 MILLION A YEAR, / ADN REPORTED' (C28). 08 reads 'EST. $20 MILLION' and 'EST. $5 MILLION' with no sum. 03 attributes C23 and C24 separately. 13.3 and 13.34 are never printed. aggregate_report PASS (6 detected, 6 declared). plan_drift PASS."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed the renders and diffed them against copy.json. 01 'SNAP, PUBLIC LAW 119-21' / 'Alaska's SNAP bill reads a year that opened Thursday.' / 2029 2030 2026 2027 2028. 02 'THE LAW READS THREE YEARS BACK', 'ARITHMETIC ON / THE STATUTE'S TEXT', 'NOT / PUBLISHED', 'FIX / SCHEDULED'. 03 'THROUGH FISCAL 2026, 50' / 'FROM FISCAL 2027, 75' / 'STATE SHARE, / PERCENT'. 04 'PAYMENT ERROR RATE, PERCENT', 0 6 8 10, 5 10 15. 05 '57' '60.4' '24.7' '23', 'A RATE HERE, / TIMES 1.5, / REACHES 20', '15.3, THE AVERAGE / OF 2014 TO 2024', '10, THE TOP STEP', 'LEGISLATIVE FINANCE FOR 2022 TO 2024, ADN FOR 2025'. 06 plate 'EIS' / 'COBOL ON A MAINFRAME'. 07 'ONE SLOT PER POSITION, CARDS IN READING ORDER'. 08 the three tags and the two brackets. 09 '2026'. Counters 01/09 through 09/09 are correct. No misspellings."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "No text is clipped or occluded. Borderline items, none of which makes text unreadable: (a) 05: qa warns that art touches 4% of the ring around the y-axis '0' label (the granite datum's top edge runs at the label's baseline). The 0 still reads. (b) 03: alaskaaihq.com sits over the lower-right bezel engraving; legible but fighting the rings. (c) 03: 'STATE SHARE, PERCENT' sits on its knockout pad over engraving (qa warn); reads clean. (d) 05: the gold label stack and the 15.3 label sit close to the gold elbow leader (about 25 display px) but do not touch."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Headlines are snow and bodies are #C9D3DE on near-black, about 12:1 or better. The round-2 near miss (05's '60.4' at a 4.5 worst point) no longer appears in machine_qa. White on the mid steel-blue block computes to about 5.8:1."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "assemble_report shows slides: 9."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict is WARN with 0 fails and 4 warns (03 canvas near reserved text, 05 art touching '0', 07 ragged 'of', 09 ragged 'day'). assemble_report pdf_mode is 'vector', 8.15 MB, and the title is set from copy.json."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "The topics ledger from 2026-09-01 to 2026-10-01 holds no SNAP, Public Law 119-21 cost-share, or eligibility-system entry (data centers, Gas Watch, H.R. 9340, RHTP, E-Rate, Kodiak snipe, Eielson, etc.)."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last four ledger heroes are No.71 NIGHT STROBE SHOT LIST, No.72 CUT-AND-PASTE NOTICE, No.73 ONE STRAIT FIVE SCALES and No.74 LONG TABLE OF THE RECORD. THE INSPECTION BENCH (metrology instruments under one softbox) differs structurally from all four. Reused sub-techniques are charged under Variety."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS (74 phrases, 56 fields, 0 fails) and word_ban PASS. My fresh scan found no 'gap(s)', 'matters', 'pattern(s)' or 'cannot'. Dates are ordinal ('October 1st') with no current year; 'October 2025' is a different year doing work. Quote marks: per the census the source holds only straight U+0022 and U+0027, and the slanted marks on 06's headline, 07's quote and every apostrophe are Fraunces drawing straight marks, so they are not a finding."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly 3 hashtags (#AlaskaSNAP #SNAPErrorRate #AKBudget) and no URL in post_copy. All 9 URLs are in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholder, lorem or TODO in copy.json, caption.txt or the renders. The pipeline item site_fresh FAIL is rebuilt at Phase 11 by design and is not an artifact placeholder."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "The headline is 9 words of huge Fraunces and reads cleanly at 432 px. The gold hairline over 2030/2027 is a single focal accent. But the cover carries no number and no named tension. 'Reads a year' is statute-insider phrasing, 'SNAP bill' is ambiguous between the law and the invoice, and 'Thursday' goes stale by Tuesday. Nothing in the image says Alaska; only the word does. The band between the headline and the rule (display y about 840 to 1060) is still eventless dark granite. Unchanged from round 2."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "Strong junctions: 01 to 02 (which year, answered by 'Fiscal 2027 is read either way'), 03 to 04 (first share, then second share), 08 to 09 (the dashed FISCAL 2026 bracket, then the uncut field and 'save this'). Weak junctions: Alaska's first number still arrives only on 05, and 04 has no Alaska mark, so the flow critic's predicted bail at 04 stands. 05 to 06 and 06 to 07 are carried by pacing rather than a planted question. 'Thursday' is restated on 01 and 03, and the 2029/2030 delay on 01, 02 and 05."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16,
+   "notes": "Round 3 moved the needle only slightly. Strong frames: 06 (a convincing bas-relief nameplate with brushed grain, domed rivets, a rivet row and a cast onto hammertone), 03 (a white-line engraved dial with knockout numerals and a gold tip), 07 (an exact 332-slot T-card board with lips, throats and manila cards). Improved: 02's 2024/2025 fields now read as milled steel pockets instead of barcodes, and 08's tags are now manila with soft shadows. Still short: 04, the declared masterful depth frame, remains a 2.5D step chart. Zero yaw means no riser side faces, and there is no visible contact shadow or defocus. The pale tread tops still read as lids as deep as half a riser, so the zero tier looks raised. The plate is a plain grey gradient rather than 01's granite. 05's gauge blocks still render as steel-blue bar-chart slabs with a thin grey cap, despite the 0xA7ADB4 change, and the upper right is an empty dark field. 09 is still 02's flat 2D blue band at a closer crop, more than half the frame flat lacquer. Its new 'cut neighbour' is an unexplained grey gradient rectangle cropped at the left edge, and below the chamfer is near-black. 08's rod is still a flat white bar over a hard dark band, with a dead felt region between the tag groups. 01 is a clean PBR render but materially plain (flat blue faces, plain granite). No frame delivers masterful real depth."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The art encodes the record exactly. On 01 the slide is three graduations back with 2030 over 2027 (C09). On 03 the needle sits at 75 against a witness at 50. On 04 the tread edges sit at 6/8/10 on a linear axis (I measured 631, 800 and 969 display px against 0 at 125), with equal risers of about 124 px. On 05 I checked the lines on a 14.5 px-per-point scale: the gold line at 20/1.5 (y 1510), 15.3 at 1481, 10 at 1558, and the blocks at 57, 60.4, 24.7 and 23. 07 holds 332 slots and 218 cards. 08 hangs Milestone 2 at October 2025 with the FY26 and FY27 brackets running October to September. 'Not published' is consistently an absence. Blemishes: 04's zero-tier top face reads as a raised step at thumb size; 08's 2028 tag body starts about Sept 2027, under the end of the FY2027 bracket, though its strings are right of it. The metrology metaphor is generic: a stranger would guess 'a statute measuring error rates', not Alaska or SNAP."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.5,
+   "weight": 0.12,
+   "notes": "Named Alaska institutions and numbers run throughout: Legislative Finance, the Department of Health, EIS/ARIES, ADN, Alaska's four rates, 218 of 332 technicians, $6.6M against nearly $11M, and the state's own 'COBOL on a mainframe'. 02 to 04 are national statute mechanics that fit any state. No Alaska place, person or geography appears on any slide beyond the Juneau coordinates fixture."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Each content slide adds new verified specifics: 02 the third-preceding-year rule; 03 50 to 25 with two attributed dollar figures; 04 the tiers plus C28; 05 the four rates, 15.3 and the 1.5 x 20 rule; 06 EIS and ARIES/MAGI; 07 218/332, 34.3 and the backlog quote; 08 the two milestone estimates, October 2025 and 2028. Bodies run about 18 to 35 words. There is some repetition ('Thursday', the 2029/2030 delay), and 04's body restates what the treads show."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08,
+   "notes": "The hero, the softbox atmosphere, the surface-plate/layout-blue palette, the year-already-open hook and Fraunces-over-Fraunces all diverge as required. Subsystems are reused from the immediately preceding decks: lathe-ring engraving and akbench plan relief (No.74), aksdf raymarch (No.74), bas-relief (No.73/74), akthree PBR with a depth-pass focus (No.70/71/73). Fraunces is the display face again, as on No.72 and No.73. The close is again a save/ask beat."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Body 34 px, mono labels 22 to 24 px, and the counters are present and correct. Vector PDF 8.15 MB with its title. Everything reads in the 432 px thumbs (I checked 04 and 09). Squeakers: the 05 datum edge touching the '0' axis label; the 03 URL over the bezel; ragged line ends 'of' (07) and 'day' (09); 18 px footer fixtures (house policy); on 04 'STATE SHARE, PERCENT' floats over the zero tier with no share-axis ticks."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "The hook is 85 chars and leads with Alaska's four rates. The caption is 894 chars at 0.82 commas per 100 words, in an analytical voice, with a deck-summary line and a real, open closing question. Soft spots: 'Fiscal 2030's share reads fiscal 2027 either way' is opaque to a general reader, and the summary line describes the art ('Steel instruments read...') rather than the argument."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Present: post copy, 3 hashtags, a dated first-comment source block (8 sources, an arithmetic disclosure, the archive link), the document title, aftercare (posting window, upload steps, reply guidance, 48 h check), editor notes, the vector PDF, 9 thumbs and the contact sheet. Not verifiable at score time: the Gmail draft and its main-branch URLs (they resolve only after the merge) and site_fresh (rebuilt at Phase 11)."
+  }
+ ],
+ "calculation": "(7x0.14)+(7x0.14)+(6.5x0.16)+(8x0.14)+(7.5x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(8x0.05)+(8x0.10) = 0.98+0.98+1.04+1.12+0.90+0.80+0.56+0.56+0.40+0.80 = 8.14",
+ "weighted_total": 8.14,
+ "threshold": 8.0,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Make 04 the depth frame it was planned to be: restage the step gauge in akthree with yaw -14 so the riser sides and their casts show, put it on 01's exact lit granite carried to the frame bottom with a measurable two-part contact shadow and a visible thin-lens softening of the near plate edge, and drop the tread tops to true slivers so the zero tier reads flat.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "This is the declared masterful depth frame, and after round 3 it still reads as a 2.5D extruded step chart. Zero yaw means no riser side faces. The tread tops are pale lids about half a riser deep (display about 60 px against 124 px), so the zero tier reads as a raised step. There is no legible contact shadow, no visible focus pull, and the 'plate' is a plain grey gradient band rather than 01's granite. Exposure is not the deck's peak on the contact sheet.",
+   "fix": "Restore yaw -14 under the orthographic camera (x stays linear on the front plane; reproject the labels), and drop pitch until each tread top is under 15 display px so the zero tier sits flush on the plate. Render on akmetrology granite to the frame bottom with the softbox sheen mirrored under the gauge, a measured two-part contact shadow, and an AKSTROBE focus pull that visibly softens the near plate edge."
+  },
+  {
+   "slide": 9,
+   "problem": "The close is still 02's flat 2D lacquer drawing at a closer crop: more than half the frame is flat blue with plain white ticks, the dashed field, and a dark glass strip that casts nothing visible. The new 'cut neighbour' is a grey gradient rectangle cropped at the left edge (display x 0 to 250, y 1320 to 1710) that reads as an unexplained box. Below the chamfer is near-black.",
+   "fix": "Render the rule's end in akthree with 01's materials and softbox, camera pushed in on 2026. Make the runner real transmissive glass with a Fresnel edge and a soft cast on the lacquer, show the uncut field as untouched lacquer beside a cut-to-steel neighbour shown whole (not cropped), and put lit granite below the chamfer."
+  },
+  {
+   "slide": 5,
+   "problem": "The gauge blocks still render as steel-blue bar-chart slabs with a thin grey cap; the 0xA7ADB4 material change did not survive the grade. Nothing reads as lapped ground steel, and the blocks match no other steel in the room. The upper right (display x 600 to 1600, y 820 to 1230) is an empty dark field. The datum edge touches the '0' axis label.",
+   "fix": "Give the blocks 01's exact satin ground-steel material (grey, not blue) with lapping arcs on the tops catching the softbox and a few degrees of yaw so one side face shows. Raise the granite backdrop sheen so the upper right carries modelled tone, and stop the datum edge short of the '0' label."
+  },
+  {
+   "slide": 8,
+   "problem": "The rod is a flat white bar with no cylinder shading, sitting over a hard dark band. A dead felt region sits between the tag groups (display x 690 to 1020, y 1330 to 1880). The 2028 tag's left edge sits under the FY2027 bracket's end.",
+   "fix": "Shade the rod as a steel cylinder with a specular line and a soft cast on the felt in place of the black band. Let the 2028 tag's cast and string shadows carry tone into the middle, or add visible felt nap and softbox falloff there. Shift the 2028 tag right so its body starts at January 2028."
+  },
+  {
+   "slide": 2,
+   "problem": "The steel pockets improved, but the face is still a flat printed band. The graduations are plain white lines with no lit floor or lee lip at viewing size, the orange peel reads as paper texture, and below the chamfer (display y about 1680 to 2000) is near-black.",
+   "fix": "Draw each graduation groove at visible scale as a lit floor plus a 2 px dark lee lip, and carry the chamfer's cast onto lit granite to the frame bottom so the lower third is modelled tone."
+  }
+ ],
+ "editor_notes_for_email": "Score 8.14 against the round-3 threshold of 8.0 with zero hard fails, so it SHIPS. Artwork craft is 6.5, under the 8.5 craft floor. The run's one craft-floor cycle was spent in round 3 (frames 04, 09, 02, 08, 05). It improved 02's steel pockets and 08's manila but did not lift the art score: 04 (the planned depth frame), 05 and 09 remain chart-like or flat. Record that honestly in the ledger and the email. Before posting, the human should know: (1) This deck has NO AI angle; the only AI lead (Nava's tool) had no fetched Alaska link and was killed. Decide whether that fits the Alaska.Ai feed. (2) 'Opened Thursday' is in the title and on 01 and 03, so post Friday, October 2nd; from October 6th 'Thursday' points at the previous week. (3) The 2025 rate of 23 percent and 'nation's highest' rest on ADN and AP only (USDA returned 403), so open both links first. (4) $6.6 million (Legislative Finance) and nearly $11 million (ADN) are deliberately left unreconciled and attributed. (5) Slide 07's backlog quote is credited to 'the Department of Health'; the writer is spokesperson Mirna Estrada, named in the first comment. (6) The 2029/2030 pairing is labelled on 02 and in the comment as arithmetic on the statute, not an agency statement. (7) Pipeline: site_fresh FAIL must be cleared by the Phase 11 rebuild before the merge, and the Gmail image/PDF URLs resolve only after the merge to main.",
+ "revision_rounds": 3,
+ "scoring_cycles": 2,
+ "craft_cycle": {
+  "frames": [
+   4,
+   9,
+   2,
+   8,
+   5
+  ],
+  "art_before": 6.5,
+  "art_after": 6.5
+ },
+ "previous_score": {
+  "weighted_total": 8.14,
+  "threshold": 8.3,
+  "round": 2,
+  "artwork": 6.5
+ }
+}

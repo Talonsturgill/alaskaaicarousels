@@ -755,6 +755,18 @@ why. The default is repair, and the report is what survived the repair.
        python scripts/site_signoff.py --out docs
        python scripts/gaswatch_pagecheck.py --out docs
 
+   When the edit touched the docket, either ask box, `site_build.py` or the
+   power panel, also run the browser suites CI runs, and run them ONE way:
+
+       python3 scripts/browser_suites.py --date <date>
+
+   It builds into `out/<date>/site` and finds playwright on its own. NEVER
+   build into /tmp, and never link, copy or install node_modules to make a
+   suite import: on 2026-10-01 and 2026-10-02 a node_modules link under /tmp
+   raised permission prompts, and No.75 sat about nine hours waiting on one.
+   The script refuses a site outside `out/` and refuses to run past such a
+   link, so if it says REFUSED, read what it names; do not work around it.
+
    Do not stop at the first pass of fixes. Re-run the checkers after each
    round, because a fix can surface the next problem behind it and because a
    fix you did not verify is a claim rather than a repair.

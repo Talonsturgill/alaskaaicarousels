@@ -1,0 +1,269 @@
+{
+ "document_title": "Alaska's SNAP Bill Reads a Year That Opened Thursday",
+ "post_copy": "Alaska's SNAP payment error rate ran 57, 60.4, 24.7 and 23 percent from 2022 to 2025.\n\nAll four clear 10 percent, where Public Law 119-21 has a state pay 15 percent of benefit costs. The 2025 rate was the nation's highest and pushed Alaska's share to fiscal 2029. Fiscal 2026's unpublished rate decides whether that becomes fiscal 2030.\n\nFrom fiscal 2029 that share reads the rate from three fiscal years earlier. Fiscal 2030's share reads fiscal 2027 either way. The state's fix for what it calls \"COBOL on a mainframe\" is scheduled for 2028. Fiscal 2027 opened October 1st, the day Alaska's share of running SNAP went from 50 to 75 percent.\n\nSteel instruments read the law's shares and Alaska's record, then the state's system, staffing and 2028 fix.\n\nWith fiscal 2027 already counting, what should Alaska change in how it decides SNAP cases before 2028?\n\n#AlaskaSNAP #SNAPErrorRate #AKBudget",
+ "hook_chars": 85,
+ "total_chars": 894,
+ "deck_summary_line": "Steel instruments read the law's shares and Alaska's record, then the state's system, staffing and 2028 fix.",
+ "hashtags": [
+  "#AlaskaSNAP",
+  "#SNAPErrorRate",
+  "#AKBudget"
+ ],
+ "caption_meta": {
+  "opening_move": "LEDGER TALLY",
+  "structure": "COUNTDOWN",
+  "closing_move": "NEW: THE CHANGE BEFORE THE FIX",
+  "deck_summary_line": "Steel instruments read the law's shares and Alaska's record, then the state's system, staffing and 2028 fix.",
+  "critic": "B won; one fix applied (eligibility -> how it decides SNAP cases). A failed on retired QUESTION FIRST plus Q AND A (No.64 repeat), a PHYSICAL TOUR summary and a SUFFICIENCY-family close. Burn for next room: QUESTION FIRST by name; question-answered-in-breath plus Q AND A.",
+  "first_8_words": "Alaska's SNAP payment error rate ran 57, 60.4",
+  "hook_type": "ledger tally, Alaska's four published SNAP error rates in one line"
+ },
+ "first_comment": "Sources, primary first\nU.S. Congress, Public Law 119-21, sections 10105 and 10106, enacted 2025-07-04 (the benefit cost share of 0, 5, 10 and 15 percent by payment error rate from fiscal 2028, the third preceding fiscal year rule from fiscal 2029, the delays to fiscal 2029 and fiscal 2030 when a state's rate times 1.5 reaches 20 percent, and the federal share of administrative costs falling from 50 to 25 percent in fiscal 2027), https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.htm\nAlaska Legislative Finance Division, Informational Paper 25-1 on eligibility technician history, undated, read 2026-10-02 (federal fiscal 2027 begins October 1st, 2026 with a 75 percent state share of administrative costs, an estimated $6.6 million more for Alaska in state fiscal 2027, error rates of 57, 60.4 and 24.7 percent for federal fiscal 2022 to 2024, a 15.3 percent average from 2014 to 2024, and 218 of 332 eligibility technician positions filled in state fiscal 2025, 34.3 percent vacant), https://www.legfin.akleg.gov/InformationalPapers/25-1DPAEligibilityTechnicianHistory.pdf\nAlaska Department of Health, EIS-Modernization project repository, undated README (EIS is built in \"COBOL on a mainframe\" and ARIES \"only contains MAGI Medicaid\"), https://github.com/akhealth/EIS-Modernization\nAlaska Department of Health, RFP-IES-Milestone2 repository, issued 2025-03-24 (a Milestone 2 budget estimate of $20 million, a proposal ceiling and not an award), https://github.com/akhealth/RFP-IES-Milestone2\nAlaska Department of Health, RFP-IEP-Milestone2.5 repository, issued 2026-01-22 (Milestone 2 began in October 2025, and a separate Milestone 2.5 budget estimate of $5 million to move SNAP and non-MAGI Medicaid data and reports off the mainframe), https://github.com/akhealth/RFP-IEP-Milestone2.5\nAnchorage Daily News (Iris Samuels), 2026-06-29, Alaska leads nation in food stamp payment errors for fourth straight year (the 23 percent rate for 2025, nearly $11 million a year from the administrative cost shift, Alaska could owe more than $42 million a year at the 15 percent tier per state Health Department data, and spokesperson Mirna Estrada on backlogs and modernization scheduled for 2028), https://www.adn.com/alaska-news/2026/06/29/alaska-leads-nation-in-food-stamp-payment-errors-for-fourth-straight-year/\nAssociated Press (David A. Lieb), via Alaska's News Source, 2026-06-24, on dozens of states facing new SNAP costs over high error rates (Alaska had the highest rate, over 23 percent, and benefits from the delay), https://www.alaskasnewssource.com/2026/06/25/dozens-states-could-face-new-costs-because-high-error-rates-snap-food-aid/\nNPR (Juliana Kim), republished by Alaska Public Media, 2026-10-01, SNAP's funding model is starting to change (states now cover 75 percent of operating costs), https://alaskapublic.org/news/health/2026-10-01/snaps-funding-model-is-starting-to-change-heres-what-that-means-for-the-program\nPairing fiscal 2029 with fiscal 2026 and fiscal 2030 with fiscal 2027 is arithmetic on the statute's text, not an agency statement, and Alaska's fiscal 2026 rate is not yet published.\nThis deck and every earlier one, with their sources, are archived at https://alaskaaihq.com\nIf you work in Alaska's SNAP system or have followed the eligibility modernization, add what the record above leaves out.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "SNAP, PUBLIC LAW 119-21",
+   "headline": "Alaska's SNAP bill reads a year that opened Thursday.",
+   "body": "",
+   "labels": [
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C18",
+    "C40"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "THE LAW READS THREE YEARS BACK",
+   "headline": "Fiscal 2027 is read either way.",
+   "body": "From fiscal 2029, a state's share uses its error rate from three fiscal years before. Fiscal 2030 reads fiscal 2027, opened October 1st, whichever start applies.",
+   "labels": [
+    "SHARE YEAR",
+    "RATE YEAR",
+    "2029",
+    "2030",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "NOT PUBLISHED",
+    "FIX SCHEDULED",
+    "ARITHMETIC ON THE STATUTE'S TEXT"
+   ],
+   "claim_ids": [
+    "C02",
+    "C09",
+    "C10",
+    "C11",
+    "C40"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "IN EFFECT OCTOBER 1ST",
+   "headline": "The first share moved on Thursday.",
+   "body": "Washington's share of SNAP administration fell from 50 to 25 percent, so Alaska now pays 75. Legislative Finance estimates about $6.6 million more a year. The Anchorage Daily News reported nearly $11 million.",
+   "labels": [
+    "STATE SHARE, PERCENT",
+    "THROUGH FISCAL 2026, 50",
+    "FROM FISCAL 2027, 75"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C23",
+    "C24"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "THE BENEFIT SHARE, FROM FISCAL 2028",
+   "headline": "The second share is a staircase.",
+   "body": "Under 6 percent, a state pays none of the benefit cost. At 10 or more, it pays 15 percent.",
+   "labels": [
+    "PAYMENT ERROR RATE, PERCENT",
+    "0",
+    "6",
+    "8",
+    "10",
+    "STATE SHARE, PERCENT",
+    "5",
+    "10",
+    "15",
+    "AT THE TOP STEP, ALASKA COULD OWE MORE THAN $42 MILLION A YEAR, ADN REPORTED"
+   ],
+   "claim_ids": [
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C28"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "ALASKA'S SNAP PAYMENT ERROR RATE, BY FEDERAL FISCAL YEAR",
+   "headline": "The record, against the statute's lines.",
+   "body": "Alaska's 2025 rate, times 1.5, cleared 20 percent, which moved its start to fiscal 2029. Clear it again in 2026 and the start moves to 2030.",
+   "labels": [
+    "2022",
+    "57",
+    "2023",
+    "60.4",
+    "2024",
+    "24.7",
+    "2025",
+    "23",
+    "2026",
+    "NOT PUBLISHED",
+    "10, THE TOP STEP",
+    "A RATE HERE, TIMES 1.5, REACHES 20",
+    "15.3, THE AVERAGE OF 2014 TO 2024",
+    "LEGISLATIVE FINANCE FOR 2022 TO 2024, ADN FOR 2025",
+    "0",
+    "20",
+    "40",
+    "60"
+   ],
+   "claim_ids": [
+    "C08",
+    "C10",
+    "C11",
+    "C12",
+    "C16",
+    "C17",
+    "C18",
+    "C19"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "THE DEPARTMENT OF HEALTH, IN ITS OWN WORDS",
+   "headline": "\"COBOL on a mainframe.\"",
+   "body": "How the state describes EIS, its legacy eligibility system. ARIES, the newer one, holds only MAGI Medicaid.",
+   "labels": [
+    "EIS",
+    "COBOL ON A MAINFRAME"
+   ],
+   "claim_ids": [
+    "C31",
+    "C32"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "ELIGIBILITY TECHNICIANS, STATE FISCAL 2025",
+   "headline": "218 of 332 positions filled.",
+   "body": "The yearly average left 34.3 percent vacant. \"During periods when Alaska had significant workload backlogs, that had a larger impact on the state's error rate,\" the Department of Health wrote.",
+   "labels": [
+    "ONE SLOT PER POSITION, CARDS IN READING ORDER"
+   ],
+   "claim_ids": [
+    "C20",
+    "C21",
+    "C41"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "ELIGIBILITY MODERNIZATION, AS BUDGETED",
+   "headline": "The fix is scheduled for 2028.",
+   "body": "Milestone 2, estimated at $20 million, began in October 2025. Milestone 2.5, estimated at $5 million, would move SNAP data off the mainframe. The Department says the biggest gains wait for full modernization.",
+   "labels": [
+    "MILESTONE 2",
+    "EST. $20 MILLION",
+    "BEGAN OCTOBER 2025",
+    "MILESTONE 2.5",
+    "EST. $5 MILLION",
+    "FULL MODERNIZATION",
+    "SCHEDULED 2028",
+    "FISCAL 2026, NOT PUBLISHED",
+    "FISCAL 2027"
+   ],
+   "claim_ids": [
+    "C02",
+    "C11",
+    "C34",
+    "C35",
+    "C36",
+    "C37",
+    "C40"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Save this for the day fiscal 2026's rate is published.",
+   "body": "",
+   "labels": [
+    "2026"
+   ],
+   "claim_ids": [
+    "C11"
+   ]
+  }
+ ],
+ "slide_copy_corrections": [
+  {
+   "slide": 4,
+   "field": "labels (top-step note)",
+   "was": "AT THE TOP STEP, MORE THAN $42 MILLION A YEAR, ADN REPORTED",
+   "now": "AT THE TOP STEP, ALASKA COULD OWE MORE THAN $42 MILLION A YEAR, ADN REPORTED",
+   "why": "C28 is a projection flagged needs_softening (ADN, citing state Health Department data, says Alaska 'could be liable'). Without 'could' and a subject, the label reads as a fixed cost the statute sets for every state. 22 characters longer, so recheck that the note fits its leader on the render."
+  }
+ ],
+ "aftercare": [
+  "Post Friday, October 2nd, between 8 and 11 a.m. Alaska time, so 'opened Thursday' in the document title and on slides 01 and 03 still means yesterday. Tuesday through Thursday mornings are the strongest slots, but from Tuesday, October 6th on, 'Thursday' means the week before. If it waits that long, decide whether the title still works. Posting cadence is your call. Before posting, open the ADN and AP links yourself, because the 23 percent rate for 2025 rests on those two outlets (USDA's own page returned 403 to the fact checker).",
+  "On LinkedIn, start a post, choose Add a document, upload the deck PDF, and set the document title to Alaska's SNAP Bill Reads a Year That Opened Thursday. Then paste post_copy exactly as written, three hashtags included, and post.",
+  "Paste the sources block as the first comment within 60 seconds of posting.",
+  "Reply to every comment in the first 90 minutes. If someone asks for fiscal 2026's rate or whether Alaska's start moves to 2030, say it isn't published yet (USDA normally releases a year's rates the following June). If someone blames caseworkers, point to the 218 of 332 positions filled and the Department's own statement about backlogs. If someone asks which administrative cost figure is right, name both sources and don't reconcile them.",
+  "After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "Public Law 119-21 sets each state's SNAP benefit share from its error rate three fiscal years earlier. The deck reads that to mean fiscal 2030's share rests on fiscal 2027, which opened October 1st, the same day Alaska's share of administrative costs went from 50 to 75 percent. It sets Alaska's published rates (57, 60.4, 24.7 and 23 percent) against the statute's tiers, then shows the state's own \"COBOL on a mainframe\" description, 218 of 332 eligibility technician positions filled in state fiscal 2025, and modernization scheduled for 2028. It never states or implies fiscal 2026's unpublished rate or whether Alaska's start moves to 2030, never adds the $20 million and $5 million budget estimates together, and never blames workers. The added administrative cost appears as two attributed figures, about $6.6 million a year from Legislative Finance and nearly $11 million from the Anchorage Daily News, left unreconciled because neither source explains the other. This story has no AI angle and none was added, because the only AI lead (a Nava tool) had no fetched link to Alaska.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C11",
+  "C12",
+  "C13",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C20",
+  "C21",
+  "C23",
+  "C24",
+  "C28",
+  "C31",
+  "C32",
+  "C34",
+  "C35",
+  "C36",
+  "C37",
+  "C40",
+  "C41"
+ ],
+ "notes_for_showrunner": "post_copy is copied byte for byte from /home/user/alaskaaicarousels/out/2026-10-02/caption.txt with the file's trailing newline dropped, matching how the 2026-10-01 copy.json stored it. I checked the caption against claims.json and found no factual errors. The 2025 'nation's highest' rests on C13, the push to fiscal 2029 on C10 with 23 x 1.5, and 'either way' on C09. I counted hook_chars (85) and total_chars (894, no trailing newline, hashtag line included) by hand, so confirm both with caption_check.py. Slides match the storyboard's COPY, final fields word for word, with headline line breaks joined by single spaces. There is one correction, the C28 hedge on slide 04's top-step label, so re-render 04 or carry the corrected string into the slide source. Not changed but flagged: (1) Slide 03 says 'about $6.6 million more a year', and C23 says the annual share rises about $6.6 million 'in state fiscal year 2027'. I kept 'a year' because the source frames it as an annual share, and pinning it to state fiscal 2027 next to ADN's 'annually' would hint at the unverified three-quarter-year explanation the claims file forbids. (2) 'Thursday' appears in the document title and on slides 01 and 03, so the deck is freshest if posted Friday, October 2nd. Aftercare says so. (3) Slide 07 credits the backlog quote to 'the Department of Health'. The writer is its spokesperson, Mirna Estrada (named in the first comment). The first comment leaves out C38 (Nava) on purpose, so nothing ties Nava to Milestone 2. I left the October 6th Fairbanks borough election and the November 3rd general election out of aftercare as not relevant to a SNAP cost-share deck. The site line points at the deck archive and not the docket, because SNAP isn't a docket item."
+}

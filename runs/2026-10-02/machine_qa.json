@@ -1,0 +1,144 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the year rule stock on the granite plate': shadow L* 17.2 vs ground L* 30.4, dL 13.1 at 432w"
+      ],
+      "fits": [
+        "hl 'Alaska's SNAP billreads a yearthat opened Th' fits 3/3 lines at 116px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl 'Fiscal 2027 is readeither way.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 2 at (545,1130) of 'STATE SHARE, PERCENT' carries 85 px^2 of hard-edged canvas ink (densest 40px window 3.4%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "leaders": [
+        "leader 'the witness pointer at 50' lands 6.0px from its target",
+        "leader 'the needle tip at 75' lands 6.0px from its target",
+        "leader 'the witness pointer at 50' meets its label 10.0px away",
+        "leader 'the needle tip at 75' meets its label 6.0px away",
+        "leader 'the witness pointer at 50' is drawn 222 px at 33 degrees, inside the pointer band",
+        "leader 'the needle tip at 75' is drawn 235 px at 89 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The first share movedon Thursday.' fits 2/2 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the step gauge base on the granite plate': shadow L* 28.7 vs ground L* 46.9, dL 18.2 at 432w"
+      ],
+      "scales": [
+        "'payment error rate on the gauge base' runs 0 percent at 85 to 16 percent at 995; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the top tread, the 15 percent share' lands 4.0px from its target",
+        "leader 'the top tread, the 15 percent share' meets its label 6.3px away",
+        "leader 'the top tread, the 15 percent share' is drawn 49 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The second shareis a staircase.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around '0', spanning 28%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the 2022 gauge block on the granite datum': shadow L* 6.7 vs ground L* 40.9, dL 34.3 at 432w",
+        "'the 2025 gauge block on the granite datum': shadow L* 15.4 vs ground L* 40.3, dL 24.9 at 432w"
+      ],
+      "scales": [
+        "'payment error rate on the record axis' runs 0 percent at 1150 to 60 percent at 563; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the delay line, where the rate times 1.5 reaches 20' lands 0.0px from its target",
+        "leader 'the delay line, where the rate times 1.5 reaches 20' meets its label 8.0px away",
+        "leader 'the delay line, where the rate times 1.5 reaches 20' is drawn 189 px at 64 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The record,against the statute's lines.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'published fiscal years on the record' holds: 4 vs 4, counted over 4 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the EIS maker plate, raised aluminium on the cabinet': canvas 27.8 dE, page 40.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl '\"COBOLon a mainframe.\"' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in '218 of 332 positions filled.' ends 'of' -- an article, conjunction or preposition left hanging at the line end. It reads at 119.5px, so the break is the first thing a feed sees. Author the break with <br> before 'positions' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "fits": [
+        "hl '218 of 332positions filled.' fits 2/2 lines at 119.5px"
+      ],
+      "asserts": [
+        "'eligibility technician positions, one slot each' holds: 332 vs 332, counted over 332 declared marks (within 0)",
+        "'eligibility technician positions, one slot each': 166 mark centres probed at r=14px, sampled every 2 marks, cohort median 71.5 dE, all present (weakest 38.3 dE)",
+        "'positions filled on average, one card each' holds: 218 vs 218, counted over 218 declared marks (within 0)",
+        "'positions filled on average, one card each': 218 mark centres probed at r=14px, cohort median 72.4 dE, all present (weakest 69.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the t1 tag': canvas 80.0 dE, page 79.0 dE, 53% of its rect is clear of opaque DOM (div#t1.tag stands on the rest)",
+        "'the t2 tag': canvas 75.0 dE, page 73.3 dE, 77% of its rect is clear of opaque DOM (div#t2.tag stands on the rest)",
+        "'the t3 tag': canvas 62.5 dE, page 68.9 dE, 62% of its rect is clear of opaque DOM (div#t3.tag stands on the rest)"
+      ],
+      "scales": [
+        "'time along the tag rail, January 2025 to the end of 2028' runs 2,025 year at 93.8 to 2,029 year at 986.2; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The fix is scheduledfor 2028.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 3 in 'Save this for the day fiscal 2026's rate is ' ends 'day' -- a two or three letter word left at the line end. It reads at 123.5px, so the break is the first thing a feed sees. Author the break with <br> before 'fiscal' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'the uncut 2026 rate field': canvas 44.1 dE, page 117.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Save this for the dayfiscal 2026's rateis pu' fits 3/3 lines at 123.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 4,
+  "verdict": "WARN"
+}

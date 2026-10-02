@@ -1,0 +1,219 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The spine holds: 01 promises a year already open, 02 pays it with 'Fiscal 2027 is read either way', 03 to 05 build the two shares and Alaska's record, 06 to 08 give the cause and the fix, and 09 lands on the one unpublished number. But Alaska's own number doesn't appear until slide 5, after three abstract mechanics frames. Slide 2's body also ends on 'The fix is scheduled for 2028.', which spends slide 8's headline six slides early, so the late act has less to land.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "'reads a year that opened Thursday' leaves the reader asking which year, and the gold hairline from 2030 to 2027 points at the answer",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "Only 'opened October 1st' in the body carries over. Nothing on 02 sets up a 'first share', and 02's last sentence points to 08 instead",
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "'The first share moved' implies a second share, and 04's headline answers it",
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "The reader wants to know where Alaska sits on the staircase, but 04 has no Alaska mark, so the question stays implicit",
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "Bars at 57 and 60.4 raise the question of what produces a rate like that, but neither the body nor the art on 05 asks it",
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "From the machine to the people who run it, carried only by the breather's change of pace",
+   "strength": "weak"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "The Department's backlog quote leads into the fix, but 02 already gave away the 2028 date",
+   "strength": "weak"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "The dashed gold 'FISCAL 2026, NOT PUBLISHED' bracket is answered by 09's empty 2026 field and its 'save this' ask",
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slides 01, 04, 05 (the bench, per D3)",
+   "problem": "The camera move promises one granite bench, but it is rendered three ways. 01 has a textured granite plate. 04 has a grey gradient band ending in a hard black slab at about y 2210 (render px). 05 has a glowing grey band ending hard at the zero line, then flat black. The blue also changes: mid layout blue on 01, a saturated navy with a cloudy mottle on 04, a grey steel-blue on 05. 04 and 05 don't read as the room in 01.",
+   "fix": "Render 04 and 05 on 01's exact granite plate material and softbox (akmetrology granite plus the same exposure falloff), carried to the bottom edge. Give 05's blocks 01's ground-steel material, not blue."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 05, D2 uncut field",
+   "problem": "The dashed empty 2026 footprint is grey on a grey sheen and almost disappears in the thumb, so the 'not published' absence only reads through its label.",
+   "fix": "Draw the footprint in the phantom #6E8296 at 2 px on the granite, with a faint inner shadow so it reads as a missing block's footprint."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 02 and 09, D2",
+   "problem": "The fields for 2024 and 2025, cut through to steel, render as vertical barcode stripes, so the published-against-unpublished contrast reads as barcode against box, not steel against lacquer.",
+   "fix": "Fill the cut fields with lapped bright steel (a smooth specular gradient plus lapping arcs from akmetrology), with a dark lee lip on the lacquer edge."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 08 to 09",
+   "problem": "The storyboard has 07 and 08 as the warm manila pair. On 08 the tags render cream-white on cool slate felt, so the warm passage ends a slide early.",
+   "fix": "Shade the tags in manila #B9A57A with a #7C6C4C shadow ramp, and warm the felt key slightly."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 02 to 05",
+   "problem": "Four dense slides in a row: 02 has a 5-line body plus a two-scale diagram, 03 a 4-line body plus a dial, 04 a 3-line body plus an axis chart and a 3-line note, 05 a 3-line body plus a chart with 7 labels. That breaks the no-three-dense-in-a-row rule, and the breather doesn't come until 06. 07 and 08 are dense again (4-line bodies each).",
+   "fix": "Cut 02's body to two sentences: 'From fiscal 2029, a state's share uses its error rate from three fiscal years before. Fiscal 2030 reads fiscal 2027, opened October 1st, whichever start applies.' That drops the spoiler 'The fix is scheduled for 2028.' Cut 04's body to one line (the treads already state the tiers), so 04 becomes the image-led lit peak it was planned to be."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 06",
+   "problem": "The breather works (one idea, a strong object), but at position 6 of 9 it comes after four dense frames, not between them.",
+   "fix": "Once 02 and 04 are lightened as above, keep 06 where it is."
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "slides 05 and 07, footer fixtures",
+   "problem": "The coordinates and alaskaaihq.com sit about 35 render px lower on 05 (about 2615 against 2580) and about 19 px lower on 07 than on the other seven slides. In the filmstrip the footer visibly jumps.",
+   "fix": "Pin both footer fixtures to the shared top 1278 (CSS) on 05 and 07. The chart's source line on 05 and the board's bottom rail on 07 must clear it instead of pushing it down."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 03, footer",
+   "problem": "alaskaaihq.com sits on top of the engraved bezel rings at lower right, so the fixture fights the engraving.",
+   "fix": "Give the URL a small dark reserve plate matching the wall field, or shift the dial centre about 40 px left so the bezel clears x 1660 (render px) at the footer line."
+  },
+  {
+   "severity": "polish",
+   "where": "counters, all slides",
+   "problem": "Transcribed 01/09, 02/09, 03/09, 04/09, 05/09, 06/09, 07/09, 08/09, 09/09. All correct, gold numerals, top right in the same place. The wordmark sits at the same spot on all nine. Polaris appears by the wordmark on 01 and on the runner head on 09, as planned. No finding, recorded for the scorer.",
+   "fix": "None."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 05, line labels",
+   "problem": "The gold label 'A RATE HERE, TIMES 1.5, REACHES 20' sits above the '15.3, THE AVERAGE' label, and its elbow leader drops past it, so at thumb size the gold words seem to belong to the dashed average line. The gold, dashed and 10 lines also sit within about 70 px of each other.",
+   "fix": "Put the gold label directly on its own line at the right margin, below the dashed line and above the 10 line, with no elbow. Move the 15.3 label above the dashed line."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "A reader who has swiped 01 to 03 has absorbed a three-year lag rule and an administrative share, and still hasn't seen one Alaska number. 04 asks them to learn a third abstract mechanism (tiers at 6/8/10) from a flat chart that looks like the weakest art in the deck. The payoff they're waiting for (57, 60.4, 24.7, 23) is one slide further on.",
+  "fix": "Put an Alaska mark on 04: a gold-free break-cut arrow off the right end of the top tread, labelled 'ALASKA, 2022 TO 2025: EVERY YEAR PAST 10' (C16 C17 C18 C12 C08). Each tier then becomes Alaska's stake, and 04 points straight at 05's record."
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 4,
+    "score": 6.0,
+    "cause": "b",
+    "problem": "This is the planned masterful depth frame, and it reads as a flat 2D step chart. The treads are pale grey rectangles and the front face is navy with a cloudy fbm mottle. There is no visible contact shadow, mirrored sheen or defocused near plate edge. The lower third is a flat grey band (about y 2210 to 2460, render px) over a hard black slab, so the largest object is the least modelled one and the plan's depth cues didn't survive the zero-yaw reconciliation.",
+    "fix": "Re-stage the gauge on 01's lit granite plate, carried to the frame bottom, with the planned yaw -14 restored. Under an orthographic camera, x stays linear on the front face (a uniform cos factor), and the axis labels are projected. The riser sides, the two-part contact shadow and the softbox sheen then become visible, and the gauge earns the lit peak."
+   },
+   {
+    "slide": 5,
+    "score": 6.0,
+    "cause": "d",
+    "problem": "There is a findable reserve edge: a dark vertical strip about 80 px wide (render x about 200 to 280) runs from the plate's top down to the frame bottom, left of the bars. The grey ground ends hard at the zero line, then flat black, which makes a dead lower third under the labels. The upper right (render x 840 to 2160, y 1080 to 1650) is empty dark field. The blocks are flat steel-blue slabs with a thin cap and don't read as lapped gauge blocks.",
+    "fix": "Extend 01's granite datum full width to the bottom edge. That removes the reserve strip and the grey-to-black step together, and puts the contact shadows and the empty 2026 footprint on modelled tone."
+   },
+   {
+    "slide": 8,
+    "score": 6.5,
+    "cause": "d",
+    "problem": "The aksdf render was upscaled 2x from 540x310. The tag edges show stair-step aliasing at full size, most visibly on the left and lower edges of both Milestone tags, and the strings break into dashes. The rod is a flat white bar with a black band beneath it. A large dead felt region sits between the tag groups, and the tags render cream, not manila.",
+    "fix": "Render aksdf at native 1080x620 (or 2160x1240) with 2x2 supersampling, so the edges and strings resolve under the crisp mono type."
+   },
+   {
+    "slide": 2,
+    "score": 6.5,
+    "cause": "d",
+    "problem": "This is a flat 2D band. The lacquer orange peel reads as crumpled paper, the grooves are plain white lines with no visible lee lip at viewing size, the cut fields for 2024 and 2025 are barcode stripes, and below the steel chamfer the frame is flat black (render y about 2430 to 2700).",
+    "fix": "Replace the barcode cut fields with lapped bright-steel panels and give each groove a 2 px dark lee lip and a lit floor at visible scale, so the face reads as cut metal, not printed paper."
+   },
+   {
+    "slide": 9,
+    "score": 6.5,
+    "cause": "a",
+    "problem": "This is 02 at a closer crop: the same edge-to-edge blue band, ticks, dashed field, glass runner, barcode stripe field and flat black band below the chamfer. The close adds no new mark-making and has no depth.",
+    "fix": "Make 09 the akthree rule from 01 with the camera pushed in on the rule's end, the runner parked on 2026 with a real Fresnel glass cast on the lacquer, so the deck closes in the cover's 3D world."
+   },
+   {
+    "slide": 1,
+    "score": 7.0,
+    "cause": "c",
+    "problem": "The rule and runner have real perspective and a cast, but the runner's two jaws are unmodelled pure-black boxes. The steel slide is flat brushed grey, and the band between the headline and the rule (render y about 1150 to 1520) is eventless dark granite.",
+    "fix": "Give the runner jaws the satin steel material with a lit top bevel, and raise the rule about 150 px so it fills the dead band."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     4,
+     9
+    ],
+    "problem": "The layout-blue lacquer texture with its cloudy fbm mottle carries four frames. The CRAFT PLAN census claimed lacquer on 2 (02, 09), but 01's rule faces and 04's gauge face use it too. The scorer will see the same blue skin on four of nine.",
+    "fix": "Take lacquer off 04: make the gauge face ground steel with a single scribed layout-blue band along the front, which also separates 04 from 02 and 09."
+   },
+   {
+    "cause": "a",
+    "slides": [
+     2,
+     9
+    ],
+    "problem": "02 and 09 come from the same 2D drawing function at two crops. The scorer's 'same drawing' complaint lands here.",
+    "fix": "Rebuild 09 in akthree, as named under slide 9 above."
+   },
+   {
+    "cause": "e",
+    "slides": [
+     3,
+     4,
+     6,
+     7
+    ],
+    "problem": "The planned tonal arc (lit peak on 04, warmest on 07 and 08) doesn't show on the contact sheet. 04 is mid-dark and no brighter than 03. The brightest frames are 03, 06 and 07. The strong blue bands on 02, 04, 05 and 09 set the rhythm, not exposure.",
+    "fix": "Raise 04's exposure to the planned +0.2 on lit granite, with a visible softbox sheen, so it's the brightest frame on the sheet. Warm the 08 tags to manila so 07 and 08 read as the warm pair."
+   },
+   {
+    "cause": "c",
+    "slides": [
+     2,
+     4,
+     5,
+     9
+    ],
+    "problem": "Four frames end in a flat black or flat grey band in the lower third (below the chamfer on 02 and 09, below the plate on 04 and 05). The deck-wide lower-third policy said every lower third would be carried by a modelled object.",
+    "fix": "Carry the modelled ground (granite on 04 and 05, the chamfer's cast plus the steel stock underside on 02 and 09) to the frame bottom."
+   }
+  ],
+  "masterful_depth_frame": null
+ },
+ "score_0_10": 6.8,
+ "round": 2
+}

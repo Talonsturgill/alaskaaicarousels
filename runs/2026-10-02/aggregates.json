@@ -1,0 +1,47 @@
+{
+ "run_date": "2026-10-02",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "THE LAW READS THREE YEARS BACK",
+   "fragment": "THREE YEARS",
+   "member": "C09"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "From fiscal 2029, a state's share uses its error rate from three fiscal years before. Fiscal 2030 reads fiscal 2027, opened October 1st, whichever start applies.",
+   "fragment": "three fiscal years",
+   "member": "C09"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "From fiscal 2029, a state's share uses its error rate from three fiscal years before. Fiscal 2030 reads fiscal 2027, opened October 1st, whichever start applies.",
+   "fragment": "2030 reads",
+   "member": "C11"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "Washington's share of SNAP administration fell from 50 to 25 percent, so Alaska now pays 75. Legislative Finance estimates about $6.6 million more a year. The Anchorage Daily News reported nearly $11 million.",
+   "fragment": "50 to 25",
+   "member": "C01"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "A RATE HERE, TIMES 1.5, REACHES 20",
+   "fragment": "5, REACHES",
+   "member": "C10"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "218 of 332 positions filled.",
+   "fragment": "218 of 332",
+   "member": "C21"
+  }
+ ]
+}

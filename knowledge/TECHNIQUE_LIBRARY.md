@@ -1091,3 +1091,18 @@ annotation is the strongest pair):
     to 2.6. A sparse ring lay over a dark ground reads as WIRE COIL (the scorer's word for No.74's
     slide 09): pass `lee: {gate: 0.32, gap: 7 to 9, wMax: 1.4 to 1.6, ink: <ground>}` so the shadow
     side is crossed meridians, not open rings.
+113. **Inspection Softbox Room (akmetrology)**, added 2026-10-02 for No.75 (every slide), `assets/js/akmetrology.js`.
+    One shared room for a metrology deck: `AKMET.softboxEnv(THREE, R, {key, softbox, intensity, shadowBox,
+    shadowRadius, fill, backdrop, front, dist})` builds a PMREM environment with an overhead softbox, an
+    optional front panel and a gradient backdrop wall, a shadow-casting key and a cool hemisphere fill;
+    `AKMET.mats` returns granite, steel, lapped steel (lapping-arc map and roughness), glass and a lacquer
+    material for a canvas texture; `AKMET.lacquer` and `AKMET.groove` are the 2D side (orange-peel
+    heightfield lit by the declared key, a crisp worn chamfer, a groove with a lit floor, a dark lee lip and a
+    burr). Lessons: an ortho camera with only an overhead key renders vertical faces black, so pass `front`
+    and `fill`; a granite top lit at grazing angle reads as fog unless its clearcoat is 0 and
+    `envMapIntensity` about 0.35; a plate that ends in view leaves a hard edge, so run it past the frame.
+114. **Milled Pocket Through Lacquer**, added 2026-10-02 for No.75 (slides 02, 09). A field cut
+    "through to steel" drawn as parallel grooves read as a barcode to every critic. Draw it once as a
+    pocket: a vertical lapped-steel gradient floor, 20 to 30 faint lapping arcs clipped to it, the
+    lacquer wall's shade along the top (9 to 12 px, dark to clear), a 2 px dark wall on the shadow side
+    and a 1.5 px lit lip on the bottom and lit side.

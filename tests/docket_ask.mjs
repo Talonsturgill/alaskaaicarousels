@@ -6,9 +6,10 @@
  * page. The worker is stubbed with canned ndjson and canned failures, so
  * everything below the fetch is the client that ships.
  *
- * Needs a built site: SITE=/tmp/site node tests/docket_ask.mjs
+ * Needs a built site: python3 scripts/browser_suites.py --suite docket_ask
+ * (CI: SITE=<built site> node tests/docket_ask.mjs)
  */
-import { chromium } from 'playwright';
+import { chromium } from './playwright_resolve.mjs';
 const SITE = process.env.SITE;
 const exe = process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const b = await chromium.launch(

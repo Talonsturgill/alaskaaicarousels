@@ -9005,3 +9005,63 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   and pdftoppm shows the extra 0.54 pt painted by the root background except a 0.04 pt sliver.
 - CORROBORATION ONLY: "Depth Score" in 2026 algorithm writeups is an industry label, not a
   LinkedIn term; LinkedIn's engineering feed index has nothing on ranking since March 12th.
+
+## 2026-10-02 (No.75, Public Law 119-21's SNAP cost shift, THE INSPECTION BENCH): retro
+
+- Four frames ended in a flat black band below a chamfer or datum, and the flow critic counted it as one cross-frame defect. A fleck-granite face painted from the datum to the frame bottom fixed 02, 05 and 09 in one idiom; on 04 the ortho plate was made deep enough to run off-frame. Plan the lower third as a surface in the CRAFT PLAN.
+- Parallel grooves for a cut-through field read as a barcode to two critics and the scorer. One milled pocket (technique 114) read as metal at thumb size.
+- On an orthographic data frame, a lit plate behind the axis's tick band is measured by the axis census as a mark. On 05 it failed qa twice (1134.5 and 1136.5 px); a plate-end mask made it worse, and a darker, matte granite with clearcoat 0 fixed it.
+- The craft cycle (04 pitch 22 to 12, steel pockets, manila tags, matte granite) moved the art score 6.5 to 6.5. The scorer's ask on 04 was yaw, which zero-yaw x-scale exactness forbade. A depth frame that must also be an exact chart needs projected labels from the first build, or it can't take the yaw the depth needs.
+- The total went 8.14 to 8.14 across the two scoring cycles and shipped on the round-3 ladder. Thumb-stop and arc held at 7 both times: the cover has no number, and Alaska's first figure arrives on slide 05. Put the state's own number on the cover or slide 02 next time a deck is mechanism-first.
+- No AI angle in this deck. The one AI lead had no fetched Alaska link and was killed at the claims gate, and the email says so.
+
+
+## 2026-10-02, No.75, Phase 12: the browser suites run from one command inside the repo, and an aksdf deadline degrade is a FAIL
+
+- CORRECTION to the 2026-10-01 note "A SYMLINK OUT OF THE REPO IS A PERMISSION PROMPT": its remedy,
+  NODE_PATH="$(npm root -g)", is right for the CommonJS suites (beacon_fires.js,
+  mobile_docket_map.js) and does NOTHING for the four ESM ones (ask_engine, home_ask, docket_ask,
+  power_line). An ESM bare `import 'playwright'` resolves only by walking up node_modules from the
+  file; it ignores NODE_PATH and the global root. Measured: with NODE_PATH set, the HEAD home_ask.mjs
+  dies ERR_MODULE_NOT_FOUND. That is why No.75 built the same /tmp link again a day after the note
+  and sat about nine hours on its prompt. The four suites now import `./playwright_resolve.mjs`, and
+  the one way to run them is `python3 scripts/browser_suites.py --date <date>` (builds into
+  out/<date>/site; refuses a site outside out/ and a node_modules link). Phase 3.6 step 3 says so.
+- THE GLOBAL PLAYWRIGHT IS ITSELF A LINK: /opt/node22/lib/node_modules/playwright points at
+  /opt/node-tools/node_modules/playwright, so `cp -r` of it copies the LINK. Phase 12 did exactly
+  that while proving the resolver and removed it at once. Copy with `cp -rL`, or better, copy nothing.
+- AN AKSDF DEADLINE DEGRADE IS A SEAM, AND IT WAS SILENT. Past `deadlineMs` (default 15000) aksdf
+  drops soft shadows, then AO, from that ROW down. No.75's slide 08 at native 1080x620 with the
+  default deadline dropped shadows from row 283: the tags' cast shadows stop on a straight line and
+  the eyelets go flat grey, and render.py and qa.py passed it with zero warnings. It now
+  console.errors `AK DEGRADED:` and qa.py FAILs it. Native 1080-wide aksdf takes 25-40 s here; set
+  deadlineMs to cover it rather than rendering at half size (the 540x310 upscale is what the
+  critics called stair-stepping).
+- THE 30 S renderReady RACE IN render.py, MEASURED: 34 s and 50 s of SYNCHRONOUS work after
+  `await document.fonts.ready` both rendered OK (the race's timer can't fire while the main thread
+  is busy, and by the time it can, renderReady has resolved). 34 s of work that YIELDS every 200 ms
+  FAILED at 31 s, loudly ("render exception: Page.evaluate: renderReady timeout", render exit 1).
+  So the race can't lose a render silently; it binds only on async work, which is what a worker-
+  parallel renderer would be (see the parked entry below).
+- AN ORTHOGRAPHIC YAW KEEPS A LINEAR SCALE. No.75 held 04 at zero yaw for two cycles because
+  "exact x-scale forbids yaw", and the scorer asked for yaw both times. Measured with 04's pitch 12
+  and yaw -14: screen x stays linear to 4.4e-16 at a uniform cos(yaw) = 0.9703; the only cost is a
+  baseline tilt of sin(yaw)sin(pitch) = 0.05 per unit, and none at pitch 0. A yawed ortho chart
+  needs its data-scale endpoints and tick band PROJECTED, not a different design.
+
+### Parked, 2026-10-02 frontier scan, focus (e), headless Chromium: parallel CPU rendering
+
+- MEASURED, NOT APPLIED: a blob: URL Worker runs from a file:// slide in the engine's own Chromium
+  (launched by render.launch_chromium, same flags), although WebKit documents that blob workers fail
+  on file:// (https://bugs.webkit.org/show_bug.cgi?id=192749). MDN: a blob: URL "inherits the origin
+  of the document that created it" (https://developer.mozilla.org/en-US/docs/Web/API/Worker/Worker).
+  An aksdf-shaped kernel (sphere trace, 40-step soft shadow) at 1080x620: 1862 ms on the main thread,
+  1267 ms on 2 workers, 787 ms on 4 (2.4x), 718 ms on 8 (4 cores here); band outputs identical.
+  So native-resolution aksdf could cost about what a half-size one does now.
+  WHY PARKED: (1) a slide's `scene` is a closure over slide locals and AKSDF helpers, and a worker
+  needs it as self-contained source, which is an API change to every caller, not a patch; (2) the
+  work becomes async, so render.py's 30 s renderReady race starts binding (measured above);
+  (3) S.reseed state must be replayed per worker for fbm grounds to stay deterministic; (4) only
+  the final putImageData/drawImage may stay on the main thread, or the paint and ink census (main-
+  thread prototype hooks) goes blind. UNBLOCKS when a deck needs aksdf above ~600x750 internal twice
+  in ten runs; then build `AKSDF.renderParallel({sceneSrc, ...})` as an opt-in beside render().

@@ -1,0 +1,93 @@
+{
+ "run_date": "2026-10-02",
+ "carousel_no": 75,
+ "status": "in_progress",
+ "effort": "high",
+ "started_utc": "2026-10-02T00:01:19.412506Z",
+ "revision_rounds": 3,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-02/plan.md",
+    "out/2026-10-02/WORKLOG.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "4 searches; nothing new beyond FIELD_NOTES (documents still top format, 360Brew dwell signal, slide 1 earns the swipe and slide 2 confirms it), so no entry written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-02/research/beat_A.json",
+    "beat_B",
+    "beat_C",
+    "beat_D",
+    "beat_E",
+    "beat_F"
+   ],
+   "note": "all six beats returned; window thin; every scout hit or neared the 25-search cap"
+  },
+  "claims": {
+   "status": "done",
+   "note": "57 claims, 37 primary, 3 stories surviving; claims_check PASS"
+  },
+  "docket": {
+   "status": "done",
+   "note": "9 items refreshed (budget raised to 9 to cover the 3 deferred); watch.json bills agree, 0 hearings (interim), failed [] ; candidates triaged, none added"
+  },
+  "gas_watch": {
+   "status": "done"
+  },
+  "selection": {
+   "status": "done",
+   "pick": "SNAP cost shift under Public Law 119-21 and the FY2026 error rate"
+  },
+  "directors_room": {
+   "status": "done",
+   "lenses": [
+    "historian-of-the-future",
+    "data-journalist",
+    "systems-illustrator"
+   ],
+   "artifacts": [
+    "storyboard.md",
+    "selection.md"
+   ]
+  },
+  "copy": {
+   "status": "done",
+   "winner": "B LEDGER TALLY / COUNTDOWN, critic fix applied"
+  },
+  "art_build": {
+   "status": "done",
+   "note": "9 slides, qa WARN 0 fails, bespoke median 0.137"
+  },
+  "pixel_review": {
+   "status": "in_progress",
+   "round": 1
+  },
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "merge": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "next_run_brief": "parked until October 14th",
+ "phase_3_6": {
+  "site_signoff": "PASS, 130 pages, 18 of 18 checks clean (pre-build read of the published docs/)",
+  "gaswatch_live": "PASS, first read",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "PASS, every scheduled workflow audited at wake, 0 failures",
+  "site_fixes": "none needed"
+ },
+ "pixel_review": "done, 2 rounds",
+ "flow_review": "done, round 2",
+ "scoring": "done, 8.14 at round 3 (threshold 8.0), ship",
+ "assemble": "done",
+ "ship": "staged"
+}

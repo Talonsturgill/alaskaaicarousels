@@ -19,9 +19,10 @@
  *   a catalogued question that turns out to answer nothing
  *
  * Run it against a built site.
- *   python3 scripts/site_build.py --out /tmp/site && SITE=/tmp/site node tests/ask_engine.mjs
+ *   python3 scripts/browser_suites.py --suite ask_engine     (a routine run: builds under out/)
+ *   SITE=<built site> node tests/ask_engine.mjs                  (CI, after npm install playwright)
  */
-import { chromium } from 'playwright';
+import { chromium } from './playwright_resolve.mjs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
