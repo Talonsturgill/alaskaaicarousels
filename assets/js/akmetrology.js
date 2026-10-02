@@ -124,15 +124,16 @@
     const f = (i, j) => (global.AK && AK.fbm2) ? AK.fbm2((X0 + i) * 0.03 / sc, (Y0 + j) * 0.03 / sc, {octaves: 4}) : 0;
     for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
       const k = (j * W + i) * 4;
-      const gx = (f(i + 1, j) - f(i - 1, j)) * (o.peel || 9), gy = (f(i, j + 1) - f(i, j - 1)) * (o.peel || 9);
+      const gx = (f(i + 1, j) - f(i - 1, j)) * (o.peel || 5.5), gy = (f(i, j + 1) - f(i, j - 1)) * (o.peel || 5.5);
       let nx = -gx, ny = -gy, nz = 1; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
       const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
       const v = (o.ambient || 0.55) + 0.5 * lam + (o.falloff ? o.falloff((X0 + i) / sc, (Y0 + j) / sc) : 0);
       let c = [0, 1, 2].map(q => deep[q] + (base[q] - deep[q]) * Math.min(1, Math.max(0, v)));
       // worn chamfer: the lacquer thins to steel over the last `cham` device px of the chosen edge
       const dist = side === 'bottom' ? H - 1 - j : side === 'top' ? j : side === 'left' ? i : W - 1 - i;
-      if (cham > 0 && dist < cham) { const t = 1 - dist / cham, wear = Math.min(1, Math.max(0, Math.pow(t, 1.6) * 1.15 + f(i * 0.6, j * 0.6) * 0.18));
-        const lit = side === 'bottom' ? 0.62 : 1.0; c = c.map((cv, q) => cv + (steel[q] * lit - cv) * wear); }
+      if (cham > 0 && dist < cham) {   // a crisp worn bevel: bright steel line at the lacquer's edge, falling darker toward the arris
+        const s = dist / cham, edge = cham - dist < 2 * sc ? 1.18 : 1, lit = (side === 'bottom' ? 0.42 + 0.4 * s : 0.7 + 0.3 * s) * edge;
+        c = steel.map(sv => Math.min(255, sv * lit)); }
       d[k] = c[0]; d[k + 1] = c[1]; d[k + 2] = c[2]; d[k + 3] = 255;
     }
     cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.putImageData(img, X0, Y0); cx.restore();
