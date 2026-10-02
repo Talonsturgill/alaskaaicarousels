@@ -74,6 +74,15 @@
         var yc = -d * sp + Y * cp;
         if (zc <= 0.05) return null;
         return [cx + f * u / zc, cy - f * yc / zc, zc];
+      },
+      /* screen (sx, sy) to the ground plane y = 0: [u, d], or null above
+       * the horizon */
+      unproject: function (sx, sy) {
+        var xc = (sx - cx) / f, ycp = -(sy - cy) / f;
+        var den = sp + ycp * cp;
+        if (den >= -1e-6) return null;
+        var t = -camH / den;
+        return [t * xc, t * (cp - ycp * sp)];
       }
     };
   };
