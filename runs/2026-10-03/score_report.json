@@ -1,0 +1,161 @@
+{
+  "run_date": "2026-10-03",
+  "carousel_no": 76,
+  "scoring_cycle": 2,
+  "revision_rounds": 3,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "factual claim without a claim-id",
+      "status": "pass"
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass"
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text",
+      "status": "pass"
+    },
+    {
+      "rule": "primary text contrast below 4.5:1",
+      "status": "pass"
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass"
+    },
+    {
+      "rule": "machine_qa FAIL or pdf_mode != vector",
+      "status": "pass"
+    },
+    {
+      "rule": "topic repeat within 30 days",
+      "status": "pass"
+    },
+    {
+      "rule": "hero visual structure identical to last 4",
+      "status": "pass"
+    },
+    {
+      "rule": "banned phrase",
+      "status": "pass"
+    },
+    {
+      "rule": "hashtag count != 3 or link in post body",
+      "status": "pass"
+    },
+    {
+      "rule": "placeholder or unfinished element",
+      "status": "pass"
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.0,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8.0,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8.0,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.5x0.14)+(7.5x0.16)+(8.0x0.14)+(8.5x0.12)+(8.0x0.10)+(7.5x0.08)+(8.0x0.07)+(8.0x0.05)+(8.0x0.10) = 8.60",
+  "weighted_total": 8.6,
+  "threshold": 8.3,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Art is still the weakest criterion at 7.5, and the biggest single lift is redrawing 05's drifts as true carved masses with a lit windward slope, a terminator into a blue lee, a soft base melt and a short solid cast.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 5,
+      "problem": "drifts still read as flat white lenses with hairline tails",
+      "fix": "shade each as a mound with a terminator and a short lee cast; vary silhouettes"
+    },
+    {
+      "slide": 4,
+      "problem": "stipple plain reads as moonlit sea; glare washes the sun-clock arc",
+      "fix": "tie dot density to sun-facing drift faces; knock the glare out behind the glyph"
+    },
+    {
+      "slide": 9,
+      "problem": "diffuse curtain body ends in a stepped silhouette; lower half dark",
+      "fix": "feather the body top; carry the green into larger near sastrugi"
+    },
+    {
+      "slide": 3,
+      "problem": "hachure still reads as tufted grass",
+      "fix": "crisp crest lines with fall-line hachure; leave lit ground unhatched"
+    },
+    {
+      "slide": 8,
+      "problem": "seams where the three hatch pitches meet; posts thinly modelled",
+      "fix": "cross-fade the pitch with depth; lit and lee faces and contact cores"
+    }
+  ],
+  "editor_notes_for_email": "Post Monday, October 5th, or Tuesday, October 6th, before polls close at 8 p.m.; after the vote don't post as is. All six stances, the quotes and the 6-1 come from one KTUU story dated September 29th; the deck credits the 6-1 to the station. 26 miles is true of Eielson only; JBER and Clear are much farther. Fifth deck in about 30 days to touch the Air Force lease lane. Art rose 7.0 to 7.5 on the one craft-floor cycle and stays under the 8.5 floor. The gold star on 09 is a design star, no slide names Polaris. Gas Watch live audit carries a github-blocker WARN unrelated to the deck. Run filed under 2026-10-03 though it ran October 2nd UTC.",
+  "first_cycle": {
+    "weighted_total": 8.52,
+    "artwork": 7.0
+  },
+  "craft_cycle": {
+    "frames": [
+      9,
+      8,
+      5,
+      4,
+      3
+    ],
+    "art_before": 7.0,
+    "art_after": 7.5
+  }
+}

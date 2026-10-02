@@ -1106,3 +1106,23 @@ annotation is the strongest pair):
     pocket: a vertical lapped-steel gradient floor, 20 to 30 faint lapping arcs clipped to it, the
     lacquer wall's shade along the top (9 to 12 px, dark to clear), a 2 px dark wall on the shadow side
     and a 1.5 px lit lip on the bottom and lit side.
+115. **Sundial Field Furniture (akfield)**, added 2026-10-03 for No.76 (every slide), `assets/js/akfield.js`.
+    - **The sun.** `F.sunAt(localHour)` solves the NOAA position for Fairbanks on the deck's date. `F.sunLocal(sun, heading)` turns it into camera space, and `F.castOffset(sun, heading, h)` gives the ground cast of a point at height h.
+    - **The camera.** `F.camera({camH, pitch, vfov, heading})` is a pinhole with `project(u, y, d)` and `unproject(sx, sy)` to the ground plane. Positive pitch looks DOWN and LOWERS the horizon: horizonY = cy + tan(pitch) * f.
+    - **The drifts.** `F.drifts(keys, region, opts)` lays one barchan per word of each quote, sized by letter count. `F.height` sums them, so the frame's own mark-making (hachure, stipple, halftone, hatch) reads Lambert off one world height field.
+    - **The fixtures.** `F.calmFixtures(cx, {selector, fill, ink, pad, blur})` averages the art under each footer fixture and lays a feathered patch of that tone (or none on a dark ground). It then picks the ink by WCAG contrast against the measured ground.
+    - **Lesson.** Choose each camera heading from the cast you want the reader to see. A near-lateral low sun throws hairline casts from standing height, and turning toward the sun makes them stream toward the lens.
+116. **Hand-cut Lifted Engraving**, added 2026-10-03 for No.76 (slide 02). The method:
+    - Lay one swelled stroke every 6 px across a plan view.
+    - Lift each sample by the height field (about 210 px per metre), so a drift bulges the lay the way a burin follows a form.
+    - Set each stroke's width by Lambert under the declared sun.
+    - Add crosslines only in lee.
+    - Subtract casts with destination-out, and start the lay below the type with a 200 px fade-in.
+
+    It replaced akengrave.surface for a snow plain, which read as braided rivers.
+117. **Penumbra Ground Band**, added 2026-10-03 for No.76 (slide 08). A post's cast at a 2 degree sun is about 57 m long and only its section wide, so from standing height it projects as a hairline. Model the band honestly instead:
+    - Start it at the post's footprint section.
+    - Widen it toward the tip by the sun's 0.53 degree disc, about 0.0045 m per metre plus a soft term.
+    - Clip it where it leaves the frame.
+
+    With the camera turned into the sun, the nine bands fan toward the lens from the sun's vanishing point.

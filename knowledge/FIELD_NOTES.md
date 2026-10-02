@@ -9065,3 +9065,15 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   the final putImageData/drawImage may stay on the main thread, or the paint and ink census (main-
   thread prototype hooks) goes blind. UNBLOCKS when a deck needs aksdf above ~600x750 internal twice
   in ten runs; then build `AKSDF.renderParallel({sceneSrc, ...})` as an opt-in beside render().
+
+## 2026-10-03 (No.76, Fairbanks votes Tuesday, THE SUNDIAL FIELD): retro
+
+- A cast seen from standing height at a near-lateral sun is a hairline, however correct. Round 1 found it on four frames (01, 05, 07, 08). Turning each camera toward the sun, so the casts stream toward the lens, fixed all four without inventing light. On 08 the camera looks straight into the 6:30 p.m. sun, which put the solved disc on the horizon and made the frame. Choose the heading from the cast you want the reader to see, then solve the sun, not the other way round.
+- A soft-light "calm" plate behind the footer fixtures read as a dark slab on light snow. One helper fixed it (F.calmFixtures): it averages the art under each fixture, lays a feathered patch of that tone, and picks the fixture ink from the measured ground.
+- A shadow fill on a composited canvas with source-atop repaints every pixel already drawn: 08's first cast layer erased its own hatch. Draw any masked overlay on its own offscreen and composite it once.
+- The slide 06 DEM of the Tanana floodplain is mostly canopy speckle at z12. Four box passes printed camouflage; twenty printed nothing; nine at an exaggeration of 3.4 kept the bluffs and dropped the trees.
+- Candidate names in gold broke the deck's own ink law on three frames, and every critic caught it. Name colours belong in the PALETTE section before the build.
+- The craft cycle (09 folded curtain, 08 lighter plain, 05 rounded drifts, 04 contre-jour source, 03 relief) moved art 7.0 to 7.5 and the total 8.52 to 8.60. 08 and 09 moved most; 05 and 04 barely did. Both scorers named 05's drifts as flat lenses. A word-drift field drawn as 40 identical glyphs reads as stickers however it is shaded, so give each drift its own silhouette from the word data.
+- The Space Grotesk straight double quote is drawn slanted, and at thumb size the hung opening mark reads as a closing quote. A unicode-range face (JetBrains Mono for U+0022 only) fixes the glyph without touching the codepoint or the copy gates.
+- The flow critic predicted a bail at 04 in a three-frame run of equal seat cards. One factual forward line per seat frame ("NEXT · SEAT E · ...") turned three weak junctions into pulls.
+

@@ -2995,6 +2995,40 @@
       "sources_lead": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf",
       "claims": 57,
       "note": "Shipped 8.14 at revision round 3 (threshold 8.0), zero hard fails. No AI angle in this deck: the one AI lead had no fetched Alaska link and was killed; flagged in the email."
+    },
+    {
+      "run_date": "2026-10-03",
+      "carousel_no": 76,
+      "topic": "The Fairbanks North Star Borough votes on three Assembly seats (D, E, H) on October 6th. All six candidates told Alaska's News Source (KTUU, September 29th) where they stand on data centers, and none said they support them. The borough's 2027 priority list (25 items, adopted 6-1 per Alaska's News Source) carries a moratorium request on data centers on state-owned or municipal lands as the only item on both its state and federal halves, while the land actually on offer is the Air Force's: about 4,700 acres in twelve parcels at JBER, Eielson and Clear (AFCEC-26-R-0006), with Eielson inside the borough, 26 miles southeast of Fairbanks, and no award as of mid-September.",
+      "angle": "THE DISTANCE: a city that votes Tuesday, land offered for AI 26 miles out that the borough's own request does not reach. Tuesday picks voices; the land and the law sit elsewhere. All six candidates get equal room, in ballot order; no side taken.",
+      "entities": [
+        "Fairbanks North Star Borough Assembly",
+        "Miguel Ramirez",
+        "Alexis Howell",
+        "Nick LaJiness",
+        "Shelly Shupe",
+        "Scott Crass",
+        "Joshua Leaders",
+        "Resolution 2026-25",
+        "Eielson Air Force Base",
+        "AFCEC-26-R-0006",
+        "Alaska's News Source"
+      ],
+      "keywords": [
+        "Assembly election",
+        "Seats D E H",
+        "data center moratorium",
+        "priority list",
+        "Air Force lease",
+        "Eielson",
+        "4,700 acres",
+        "twelve parcels",
+        "October 6th"
+      ],
+      "headline": "Fairbanks Votes Tuesday. Six Voices on AI Data Centers",
+      "sources_lead": "https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/",
+      "claims": 57,
+      "note": "Shipped 8.60 at revision round 3 (threshold 8.3), zero hard fails; artwork 7.5. Fifth deck in about 30 days touching the Air Force lease lane (68, 70, 71, 76); this one's subject is the election and the six positions."
     }
   ]
 }

@@ -230,14 +230,20 @@
       var d = cx.getImageData(x0, y0, w, h).data, r = 0, g = 0, bl = 0, n = 0;
       for (var i = 0; i < d.length; i += 16) { r += d[i]; g += d[i + 1]; bl += d[i + 2]; n++; }
       r /= n; g /= n; bl /= n;
-      cx.save();
-      cx.filter = "blur(" + blur + "px)";
-      cx.fillStyle = "rgba(" + Math.round(r) + "," + Math.round(g) + "," + Math.round(bl) + ",.9)";
-      cx.fillRect(b.left - pad, b.top - pad * 0.4, b.width + 2 * pad, b.height + pad * 0.8);
-      cx.restore();
       var L = (0.2126 * r + 0.7152 * g + 0.0722 * bl) / 255;
-      el.style.color = L > 0.42 ? "#24303A" : (L > 0.16 ? "#16202A" : "#5E6E7B");
-      if (L > 0.16 && L <= 0.42) el.style.color = "#C9D4DE";
+      if (o.fill || L > 0.16) {
+        cx.save();
+        cx.filter = "blur(" + blur + "px)";
+        cx.fillStyle = o.fill || ("rgba(" + Math.round(r) + "," + Math.round(g) + "," + Math.round(bl) + ",.9)");
+        cx.fillRect(b.left - pad, b.top - pad * 0.4, b.width + 2 * pad, b.height + pad * 0.8);
+        cx.restore();
+      }
+      if (o.ink) { el.style.color = o.ink; return; }
+      /* pick the ink by measured contrast (WCAG relative luminance), not a threshold */
+      function lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+      var Y = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(bl);
+      var cDark = (Y + 0.05) / (0.0130 + 0.05), cLight = (0.840 + 0.05) / (Y + 0.05);
+      el.style.color = L <= 0.16 ? "#7F90A0" : (cDark >= cLight ? "#16202A" : "#E6EDF3");
     });
   };
 

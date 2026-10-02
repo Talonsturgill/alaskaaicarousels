@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-03/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 12615070,
+  "pdf_mb": 12.62,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-03/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-03/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Fairbanks Votes Tuesday. Six Voices on AI Data Centers",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "1065afbd512a4e949f66cf7ab62db4866664561d7b2cbf7fdd42ca2d6ffc8407",
+        "bytes": 5921952
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "3bf04fc99353eb5ee691b0bdf7d337c83fbb1907821193f9af6ab8a5b609d9ee",
+        "bytes": 5217861
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "00db61920778a8e679455182a9d63317772f3bd02bed2dd99ddcaec0bfa6736e",
+        "bytes": 4645576
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "2c6e478f68d7b4fd1ec035e3119f19989cd6192e108749373586442e12284dad",
+        "bytes": 7003142
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "91a8f59c445ab193f7a1d606ef4cc5472087cfc3021e45de5688487579a4aafd",
+        "bytes": 6040097
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "93be374f3abb173621819edb39e2e49fdcadff7f59b0f08cde000bdd9f7b26aa",
+        "bytes": 3048838
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "fb4c55eb37f740c2354bb880d4369fdc65a4778da10ac5e8b72a1450995d58be",
+        "bytes": 6840733
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "cd4f29afc7db369999446fdae534e3ee1dc6154ab613ce676bec15fcadc74178",
+        "bytes": 6950739
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "187e6abc8d465d3d4bbb146435822b65cb18f4e08717ed9e8af60483d11d3bac",
+        "bytes": 3936417
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "b107608e7599232e24259458b8d41af570a26fa5e78bc4982e034546ded5ae26",
+        "bytes": 15509
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "7eb6ac8d7734bea3c2ece66ed0936a4eb983b3d1a1bda907e377c91a19d44a6a",
+        "bytes": 13084
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "2881c0084cbaea51c59863f635b51e5d2e8f3ddee4e896fbed45e5ee2a4e4a67",
+        "bytes": 15081
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "83e8053348be512edf1f2d0845a80d3f653d8236337b1fb42d747e61cefb4281",
+        "bytes": 14335
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "e2209499fde75100cac78c8d195d6e2fc8820241110f8c4df6cf893e096972bd",
+        "bytes": 14727
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "b7ff2ac2d6a2d928ffb618a47e834d9ef3e3e58a0354341c7e66efcfaa60b9b4",
+        "bytes": 20464
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "c3ac592d85618b5f2e5224e63cc79dfbb50a72cc01b6fc666e6ac1fd581e909e",
+        "bytes": 11895
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "117adedd1ed97a5fd56ae228e54604268d9daf9292ca27c752a1a868d94e2ea9",
+        "bytes": 15795
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "c7c0a21deae69ab029e9d1b706edfd2ef2277cbc37bcf2b43e735c10c339c21c",
+        "bytes": 17340
+      }
+    ]
+  }
+}

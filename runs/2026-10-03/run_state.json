@@ -1,0 +1,136 @@
+{
+  "run_date": "2026-10-03",
+  "carousel_no": 76,
+  "effort": "high",
+  "status": "in_progress",
+  "started_utc": "2026-10-02T06:18:08.949541Z",
+  "revision_rounds": 3,
+  "date_note": "Woke 22:14 AKDT on October 1st (06:14 UTC October 2nd), the regular daily slot. runs/2026-10-01 holds No.74 and runs/2026-10-02 holds No.75, both from off-schedule firings earlier on Anchorage October 1st (13:02 and 16:01 AKDT), and No.75 completed and merged cleanly at 03:16 UTC, so this is a new daily firing and not a re-fire of an interrupted run (the 2026-09-25 precedent). Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-03. run_guard for 2026-10-02 (its UTC default) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-03 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/plan.md",
+        "out/2026-10-03/WORKLOG.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; nothing new beyond FIELD_NOTES (documents still the top-engagement format), so no entry written"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/scout_merge.md",
+        "out/2026-10-03/research/beat_F.md"
+      ],
+      "note": "all six beats returned; window thin on AI; scouts used 149 searches (Beat D 26, one over cap)"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/claims.json"
+      ],
+      "note": "56 claims (31 primary after two showrunner additions), 2 stories surviving; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "11 items refreshed (budget raised from 6 to 11 to cover the 5 deferred); Eielson microreactor window closed, status pending-decision; FCC WC 26-173 reply deadline promoted to the item's deadline; FNSB moratorium item gains the October 6th election and KTUU candidate positions. watch.json bills agree with the docket (HB 259, SB 250), 0 hearings (interim), failed []; 30 candidates triaged, none added (no AI-infrastructure decision among them). No new items from this run's claims."
+    },
+    "gas_watch": {
+      "status": "done",
+      "verdict": "WARN (incident)",
+      "artifacts": [
+        "out/2026-10-03/cron_health.json",
+        "out/2026-10-03/gaswatch_health.json",
+        "out/2026-10-03/gaswatch_incident.json"
+      ],
+      "note": "cron_health PASS; site_signoff PASS 131 pages; pagecheck PASS; live audit FAIL on 'source reading published' only, CINGSA posted 19:51 Alaska after the last scheduled collection; 04:40Z and 07:20Z slots not dispatched; workflow_dispatch 403 twice; incident blocker github"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/selection.md"
+      ],
+      "pick": "Fairbanks October 6th Assembly election, six candidates on data centers"
+    },
+    "directors_room": {
+      "status": "done",
+      "lenses": [
+        "cartographer",
+        "editorial-essayist",
+        "field-documentarian"
+      ],
+      "artifacts": [
+        "out/2026-10-03/storyboard.md",
+        "out/2026-10-03/selection.md"
+      ],
+      "note": "dossier_check PASS 9 of 9 pre-build"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/caption.txt",
+        "out/2026-10-03/copy.json"
+      ],
+      "note": "caption room: critic returned neither, one director reassigned, winner tightened; caption_check PASS"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/slides/",
+        "out/2026-10-03/render/"
+      ],
+      "note": "9 slides in 9 hands (PBR, engraving, hachure, stipple, carved, relief wash, halftone, crosshatch, glow); qa.py 0 fails, 1 justified ragged warn on 01; bespoke_check WARN median 0.107, drawn share 58%"
+    },
+    "pixel_review": {
+      "status": "done",
+      "rounds": 3,
+      "artifacts": [
+        "out/2026-10-03/pixel_review_r1.json"
+      ]
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-03/final/"
+      ]
+    },
+    "scoring": {
+      "status": "done",
+      "score": 8.6,
+      "artwork": 7.5,
+      "craft_cycle": {
+        "frames": [
+          9,
+          8,
+          5,
+          4,
+          3
+        ],
+        "art_before": 7.0,
+        "art_after": 7.5
+      }
+    },
+    "ship": {
+      "status": "in_progress",
+      "artifacts": [
+        "runs/2026-10-03/",
+        "docs/"
+      ],
+      "note": "site 132 pages; site_fresh OK; docket_alerts sent 1 alert; prune nothing old enough; ledgers appended"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  }
+}

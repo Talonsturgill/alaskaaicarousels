@@ -1,0 +1,107 @@
+{
+ "run_date": "2026-10-03",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "Land offered for AI sits 26 miles out.",
+   "fragment": "26 miles",
+   "member": "C42"
+  },
+  {
+   "kind": "subset",
+   "slide": 2,
+   "text": "OCTOBER 6TH · THREE OF NINE ASSEMBLY SEATS",
+   "fragment": "THREE OF NINE",
+   "member": "C10",
+   "basis": "three seats on the ballot (C04: Seats D, E and H) out of the nine at-large Assembly members (C10)",
+   "members": [
+    "C04",
+    "C10"
+   ]
+  },
+  {
+   "kind": "subset",
+   "slide": 2,
+   "text": "None of the six told Alaska's News Source they support data centers.",
+   "fragment": "None of the six",
+   "member": "C27",
+   "basis": "the six candidates for Seats D, E and H (C05, C07, C08); C27 says none of the six quoted expressed support",
+   "members": [
+    "C27",
+    "C05",
+    "C07",
+    "C08"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "About 4,700 acres, twelve parcels, three installations.",
+   "fragment": "4,700 acres",
+   "member": "C29"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "About 4,700 acres, twelve parcels, three installations.",
+   "fragment": "twelve parcels",
+   "member": "C31"
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "About 4,700 acres, twelve parcels, three installations.",
+   "fragment": "three installations",
+   "subject": "installations",
+   "members": [
+    "C28"
+   ],
+   "items": [
+    "Joint Base Elmendorf Richardson",
+    "Eielson Air Force Base",
+    "Clear Space Force Station"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "INSIDE THE BOROUGH, 26 MILES SOUTHEAST OF FAIRBANKS",
+   "fragment": "26 MILES",
+   "member": "C42"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "TWELVE PARCELS · SIZES AND SPLIT BY BASE NOT STATED",
+   "fragment": "TWELVE PARCELS",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Nine Assembly members, every one elected at large.",
+   "fragment": "Nine Assembly members",
+   "member": "C10"
+  },
+  {
+   "kind": "subset",
+   "slide": 8,
+   "text": "Tuesday picks three of nine voices.",
+   "fragment": "three of nine",
+   "member": "C10",
+   "basis": "three seats on the ballot (C04) of nine Assembly members (C10)",
+   "members": [
+    "C04",
+    "C10"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Carry the moratorium request, the only item on both, one of 25 priorities.",
+   "fragment": "25 priorities",
+   "member": "C16"
+  }
+ ]
+}

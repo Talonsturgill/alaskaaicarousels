@@ -2602,6 +2602,57 @@
         "bespoke_median": 0.121
       },
       "note": "Round 1 pixel critics (mean about 6.4), round 2 three critics plus the flow critic (6.8, art predicted 6.5): the lower thirds went flat black on four frames and lacquer sat on four. First score 8.14, art 6.5; round 3 was its work order and the one craft cycle on 04, 09, 02, 08, 05 (art 6.5 to 6.5)."
+    },
+    {
+      "run_date": "2026-10-03",
+      "carousel_no": 76,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE SUNDIAL FIELD. Six timber straight-quote posts in three pairs on a frozen Interior plain, one per candidate, their casts a sundial for election day; every frame printed in a different hand: PBR (01), hand-cut lifted engraving (02), slope-and-aspect hachure (03), blue-noise stipple (04), carved snow (05), relief wash of the real Eielson DEM (06), halftone (07), cross-hatch drafting into the sun (08), glow and halation (09).",
+      "atmosphere": "NEW: THE COMPUTED OCTOBER SUN. One hard low sun solved per frame for Fairbanks on October 6th from 9:30 a.m. to 8 p.m., never above 20 degrees, each camera heading chosen so the casts read; twilight and night bookends.",
+      "depth_technique": "akthree PBR with soft shadow map, fog and frost glints (01); pinhole akfield camera with unproject driving every 2D hand off one world drift field (03-05, 07-09); Imhof wash with marched casts on the committed DEM (06)",
+      "line_voice": "hand-cut swelled engraving lifted by the drift height; slope hachure; drafting cross-hatch with void cast bands",
+      "continuity_device": "motif:the six straight-quote posts and the sun clock, a gold disc that sweeps the day to a hollow ring at polls closing",
+      "continuity_devices": [
+        "D1 the sun clock (gold disc, hollow ring at 8 p.m.)",
+        "D2 the six straight-quote posts (pairs by seat)",
+        "D3 the day arc (dawn rose to night)"
+      ],
+      "hook_archetype": "NEW: THE DISTANCE",
+      "palette_family": "Interior freeze-up under a low sun: spruce night #070D12, frost #EEF3F8, straw-lit snow #E3C391, timber #9B7A55, rose dawn #B87C62, aurora green on 09, forget-me-not #6EA5FF for the Air Force only, gold #FFC72C for the vote only",
+      "type_pairing": "Space Grotesk alone (700 display, 300 quotes, 400 body) with JetBrains Mono; the straight double quote set in JetBrains Mono via a unicode-range face",
+      "dials": {
+        "design_variance": 5,
+        "visual_density": 4,
+        "type_temperature": 1
+      },
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 4,
+        "type_temperature": 1
+      },
+      "narrative_structure": "the distance, every stance, three seats in ballot order, the land, the borough's number, who holds what, the one ask",
+      "techniques": [
+        "Sundial field furniture (assets/js/akfield.js, NEW)",
+        "Hand-cut lifted engraving",
+        "Penumbra ground band",
+        "Calm fixtures by measured contrast",
+        "QuoteMark unicode-range face"
+      ],
+      "new_techniques_logged": [
+        "115 Sundial Field Furniture (akfield)",
+        "116 Hand-cut Lifted Engraving",
+        "117 Penumbra Ground Band"
+      ],
+      "measured": {
+        "revision_rounds": 3,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.6,
+        "artwork": 7.5,
+        "bespoke_median": 0.084
+      },
+      "note": "Round 1 critics 5.6 to 6.5: casts edge-on hairlines on four frames, gold names, footer lost. Round 2 critics 7.0 to 7.8 plus flow 7.0 after turning cameras toward the sun. First score 8.52 with art 7.0; craft cycle on 09, 08, 05, 04, 03."
     }
   ]
 }

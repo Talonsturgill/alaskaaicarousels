@@ -1,0 +1,9 @@
+{"round": 2, "verdict": "revise", "score_0_10": 7.0,
+ "predicted_bail_point": {"slide": 4, "fix": "NEXT forward lines on 03, 04, 05"},
+ "craft": {"predicted_artwork_score": 6.5,
+  "weakest_frames": [{"slide": 6, "score": 6.0, "cause": "b"}, {"slide": 3, "score": 6.5, "cause": "d"}, {"slide": 9, "score": 6.5, "cause": "d"}, {"slide": 5, "score": 7.0, "cause": "b"}, {"slide": 4, "score": 7.0, "cause": "d"}],
+  "cross_frame": [{"cause": "a", "slides": [1, 3, 5, 7, 8, 9], "problem": "one spruce comb on six frames"}, {"cause": "d", "slides": [4, 6, 7, 8], "problem": "calm-fixture patch visible"}, {"cause": "e", "slides": [1, 5, 7, 8, 9], "problem": "tonal arc: 05 not the noon peak"}],
+  "masterful_depth_frame": 1},
+ "continuity": ["03 face shading inverted for a sun behind the camera", "06 and 08 both say no award as of mid-September", "09 sun-clock ring nearly touches the counter"],
+ "consistency": ["Space Grotesk draws U+0022 slanted, so hung opening marks read as closing quotes on 02 to 05"],
+ "rhythm": ["02 to 06 are five text-led frames; trim 06 body to one sentence"]}
