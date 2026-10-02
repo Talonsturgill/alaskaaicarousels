@@ -2,7 +2,7 @@
   "run_date": "2026-10-03",
   "carousel_no": 76,
   "effort": "high",
-  "status": "in_progress",
+  "status": "complete",
   "started_utc": "2026-10-02T06:18:08.949541Z",
   "revision_rounds": 3,
   "date_note": "Woke 22:14 AKDT on October 1st (06:14 UTC October 2nd), the regular daily slot. runs/2026-10-01 holds No.74 and runs/2026-10-02 holds No.75, both from off-schedule firings earlier on Anchorage October 1st (13:02 and 16:01 AKDT), and No.75 completed and merged cleanly at 03:16 UTC, so this is a new daily firing and not a re-fire of an interrupted run (the 2026-09-25 precedent). Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-03. run_guard for 2026-10-02 (its UTC default) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-03 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
@@ -122,15 +122,44 @@
       }
     },
     "ship": {
-      "status": "in_progress",
+      "status": "done",
       "artifacts": [
         "runs/2026-10-03/",
         "docs/"
       ],
-      "note": "site 132 pages; site_fresh OK; docket_alerts sent 1 alert; prune nothing old enough; ledgers appended"
+      "note": "site 132 pages; site_fresh OK; docket_alerts sent 1 alert; prune nothing old enough; ledgers appended",
+      "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/414",
+      "commit": "3004dfe6"
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
-  }
+    "upgrade": {
+      "status": "done",
+      "commits": [
+        "ac74b975",
+        "f497bd2e"
+      ],
+      "merge": "a1896f24",
+      "note": "2 fixes: ship_images stray guard, spec gate paragraph; Codex usage-limited (no review possible); CI green; raw URLs verified 200"
+    },
+    "gmail": {
+      "status": "done",
+      "draft_id": "r-7455992702634646604",
+      "to": "docket@alaskaaihq.com",
+      "preview_mode": "remote",
+      "artifacts": [
+        "out/2026-10-03/gmail_payload.json"
+      ]
+    },
+    "retro": {
+      "status": "done",
+      "note": "FIELD_NOTES retro appended in the run commit; automation_retro.md in out/; story, score and lessons in the completion summary"
+    }
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS. 131 pages, 18 checks, nothing rendered empty, no dead links, current cron values on their pages (checked 2026-10-02 06:2xZ; desktop and phone screenshots clean).",
+    "gaswatch_live": "FAIL, documented as an UNRESOLVED github blocker. Only 'source reading published' fails: CINGSA posted its October 1st 19:51 Alaska reading after the last scheduled collection (run 379, 23:14Z, success), the 04:40Z and 07:20Z cron slots were never dispatched, and workflow_dispatch returns 403 to this session. The collector is healthy; nothing in the repo is broken. Incident file runs/2026-10-03/gaswatch_incident.json. Same shape as September 30th.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS. 6 scheduled workflows audited at 2026-10-02T06:20Z.",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  },
+  "gmail_draft_id": "r-7455992702634646604"
 }
