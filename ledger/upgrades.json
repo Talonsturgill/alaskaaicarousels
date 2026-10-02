@@ -2949,7 +2949,7 @@
       ],
       "verification": "tests/ship_strays_verify.py --base HEAD (new; throwaway git repos carrying a copy of the script and out/2026-10-03/render's real frames and canvas layers, nothing under runs/ touched): 15/15 HOLD. Reconstruction against the pre-upgrade script: exit 0 with 9 slide-NN.canvas.webp written (the defect). Upgraded: exit 1 naming slide-01.canvas.png... and '--drop-canvas-layers', no canvas webp written, the 9 frames still converted; an already-converted run with layers exits 1; --drop-png exits 1 while strays remain; --drop-canvas-layers removes 9 then the normal pass is OK with frames only; a TRACKED layer is refused with both files left in place; 'slide-03 copy.png' fails the pass, is not converted and is never deleted; --all with --drop-canvas-layers is rejected (rc 2); a clean run exits 0 with og.jpg and 9 webps. Regression: ship_images --all --dry-run and --all --drop-png --dry-run over all 76 shipped runs: OK, no strays anywhere; --run 2026-10-03: already converted, OK. Engine (unchanged files, rule run anyway): out/2026-10-03/slides render 9/9 OK, qa 0 fails, 1 warn on 01 (the shipped machine_qa: 0 fails 1 warn); examples/demo-deck render 4/4 OK, qa 0 fails, warns 3/5/5/1 as in the ledger baseline.",
       "rollback": "git revert the upgrade(2026-10-03) commit, or git checkout <commit>^ -- scripts/ship_images.py prompts/routine_instructions.md and delete tests/ship_strays_verify.py.",
-      "commit": "pending: the upgrade(2026-10-03) commit"
+      "commit": "ac74b975d97714b07cb081d41cd52ee0909211f0"
     },
     {
       "run_date": "2026-10-03",
@@ -2962,7 +2962,7 @@
       ],
       "verification": "Prose only, aligned to code read this run: gate_status.score_row adds FAIL when the scorer's passes flag is false regardless of --require, and ship_gate_row adds FAIL with 'ITERATE, do not stop'. No other sentence in the spec says a low score is a WARN (grep for 'WARN row' and 'below-threshold' across prompts/routine_instructions.md). No gate, threshold or script changed.",
       "rollback": "git revert the upgrade(2026-10-03) commit, or git checkout <commit>^ -- prompts/routine_instructions.md.",
-      "commit": "pending: the upgrade(2026-10-03) commit"
+      "commit": "ac74b975d97714b07cb081d41cd52ee0909211f0"
     }
   ],
   "scan_log": [
