@@ -19,6 +19,10 @@ on:
       - "scripts/site_build.py"
       - "scripts/parsers_check.py"
       - "scripts/claims_check.py"
+      - "scripts/week_digest.py"
+      - "scripts/machine_due.py"
+      - "scripts/trend_check.py"
+      - "knowledge/MACHINE_QUEUE.md"
       - ".github/workflows/run-record-parsers.yml"
   push:
     branches: [main]
@@ -26,6 +30,10 @@ on:
       - "scripts/site_build.py"
       - "scripts/parsers_check.py"
       - "scripts/claims_check.py"
+      - "scripts/week_digest.py"
+      - "scripts/machine_due.py"
+      - "scripts/trend_check.py"
+      - "knowledge/MACHINE_QUEUE.md"
       - ".github/workflows/run-record-parsers.yml"
   workflow_dispatch:
 
@@ -49,6 +57,14 @@ jobs:
 
       - name: Every run-record shape still parses
         run: python scripts/parsers_check.py
+
+      # The weekly machine pass (owner, 2026-10-02) reads the week's run records
+      # through week_digest.py and runs when machine_due.py says so. Both read
+      # the same shipped artifacts this job pins, so their self-tests run here.
+      - name: The weekly machine pass reads the week (due check and digest self-tests)
+        run: |
+          python scripts/machine_due.py --self-test
+          python scripts/week_digest.py --self-test
 
       # The fixtures are shapes taken from real runs, but the runs themselves
       # are the ground truth. This catches a reader that passes its fixtures

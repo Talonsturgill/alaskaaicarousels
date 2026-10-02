@@ -1790,7 +1790,7 @@ JSON in its final message, which YOU persist to
    merges to main in the same run, ready and not draft, with no human
    review gate. Only the phase it merges in changed.
 
-## PHASE 12 — AUTOMATION RETRO + UPGRADE (the machine gets better every run)
+## PHASE 12 — AUTOMATION RETRO + UPGRADE (every run queues, the machine upgrades weekly)
 
 GAS WATCH GUARDRAIL, read before proposing any upgrade that touches it. The
 collectors, the model config and the two gas ledgers are off limits to this
@@ -1813,23 +1813,50 @@ same branch CI, appears in that dated email, and reverts as one commit.
 The merge itself is the last two steps of this phase, 5 and 6, because
 nothing else in the run produces a commit after them.
 
-Division of labor: mid-run breakage is fixed by the showrunner in the
-moment (FAILURE PROTOCOL); this phase turns those scars into PERMANENT
-fixes and also makes the machine proactively better. Spawn the
-`upgrade-engineer` subagent (pinned to Opus by maintainer requirement: it
-edits the automation itself) with the run date, the run_state path, and
-your incident notes; it executes steps 1-3 below and returns its report.
-If subagents are unavailable, the showrunner executes the same steps
-under the same hard rules. Either way, step 4 (the separate commit) is
-the showrunner's.
+THE MACHINE IS UPGRADED ONCE A WEEK, FROM THE WEEK'S OUTPUT (owner,
+2026-10-02). In their words, the daily automation should "only fix like
+the things that were broken during the run", and once a week a run should
+spend time "addressing the things that really need to be fixed based on
+the recurring themes that it saw during the week ... based on actual
+output". Until that day this phase upgraded the machine on every run from
+what ONE run saw. The week said otherwise: from September 27th to October
+3rd the flow critic named the largest object as the least modelled on all
+seven decks and a texture artifact on all seven, and Artwork craft was the
+weakest criterion on six.
+
+EVERY RUN: mid-run breakage is fixed by the showrunner in the moment
+(FAILURE PROTOCOL). The showrunner then does step 1's deviation walk and
+trend_check reading itself, WITHOUT the frontier scan, writes
+automation_retro.md, and QUEUES every other machine change the run found in
+`knowledge/MACHINE_QUEUE.md` in its one-line format with the evidence,
+raising the `repeat` count of an open item instead of adding it twice.
+Then:
+
+    python3 scripts/machine_due.py --date <date>
+
+Exit 1: steps 2 to 4 don't run today. automation_retro.md says how many
+items are queued and that the pass is weekly, and the phase goes on to
+step 5. Exit 0: the weekly pass runs here, before the merge, so it rides
+this PR:
+
+    python3 scripts/week_digest.py --date <date> --out out/<date>/week_digest.md
+
+Spawn the `upgrade-engineer` subagent (pinned to Opus by maintainer
+requirement: it edits the automation itself) with `prompts/machine_weekly.md`
+as its brief, the digest, the run_state path and your incident notes. It
+runs the frontier scan and steps 2 and 3 for the WEEK, the recurring
+themes first, and returns its report. If subagents are unavailable, the
+showrunner executes the same steps under the same hard rules. Either way,
+step 4 (the separate commit) is the showrunner's.
 
 1. **Diff what happened against what this document says should happen,
-   then scan the frontier.** START by re-running
+   then, on a weekly pass day, scan the frontier.** START by re-running
    `python scripts/trend_check.py --window 10`, because this phase's
    besetting failure is fixing today's incident while a pattern walks past
    untouched. Whatever that report names as the top repeat offender, this
    phase must do ONE of exactly two things with it, and say which in
-   automation_retro.md: work on it, or state plainly why it is being
+   automation_retro.md (on a day the weekly pass doesn't run, it is queued
+   for that pass, and saying so is the answer): work on it, or state plainly why it is being
    deferred again and what would have to be true to tackle it. A deferral
    is a legitimate answer. A silent deferral is not, and it is how artwork
    craft stayed the weakest criterion in 16 of the first 19 runs while
@@ -1841,7 +1868,7 @@ the showrunner's.
    intervention or degraded fallbacks; environment breakage (installs,
    403s, API limits); retries and their causes; anything the subagents
    flagged that the process invited. Write the analysis to
-   `out/<date>/automation_retro.md`. THEN run the FRONTIER SCAN
+   `out/<date>/automation_retro.md`. On a weekly pass day only, THEN run the FRONTIER SCAN
    (timeboxed ~8 searches): pick a focus area different from the last 3
    runs' `scan_log` entries in ledger/upgrades.json (rotation: LinkedIn
    platform shifts, editorial dataviz/cartography technique, procedural
@@ -1851,9 +1878,10 @@ the showrunner's.
    `scan_log` entry whether or not anything gets applied. Promising but
    not-safely-boundable findings are PARKED as dated FIELD_NOTES
    candidates with source URLs, never forced in.
-2. **Implement 0-3 bounded upgrades TOTAL, reactive fixes first** (at
-   daily cadence hold the usual day to 0-1; spend 2-3 only when a defect
-   demands it, so machine churn stays reviewable in the daily emails) —
+2. **On a weekly pass day only, implement at most five bounded changes,
+   the week's recurring themes first** (the digest's counts decide the
+   order, and a theme the week shows on most decks outranks anything one
+   run saw) —
    frontier improvements fill the remaining slots only when they clear
    the exact same verification bar (ledger `kind` distinguishes "fix"
    from "improvement" so the email shows which is which). Work on the

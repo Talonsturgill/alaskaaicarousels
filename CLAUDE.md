@@ -212,6 +212,20 @@ Schedule, model, network, and connectors are configured in the routine
 trigger (claude.ai/code/routines), not in this repo. The short trigger
 prompt lives at `prompts/ROUTINE_PROMPT.txt`.
 
+## The machine is upgraded weekly, from the week's output (2026-10-02, owner)
+
+"Only fix like the things that were broken during the run", and once a week spend time
+"addressing the things that really need to be fixed based on the recurring themes that it saw
+during the week ... based on actual output". So Phase 12 no longer upgrades the machine on every
+run. Every run fixes what broke in it, writes automation_retro.md and queues the rest in
+`knowledge/MACHINE_QUEUE.md`. `scripts/machine_due.py` runs the weekly pass seven days after the
+last, or the next day when a queued defect has bitten two more runs. The pass reads
+`scripts/week_digest.py`, which counts the week's trend_check report, the flow critic's craft
+causes by its own labels and the scorer's art themes, and the upgrade engineer works the recurring
+themes under `prompts/machine_weekly.md`, inside that day's run and before its merge. The first
+week counted, September 27th to October 3rd, had the largest object named least modelled on all
+seven decks and a texture artifact on all seven.
+
 ## The routine's model, and what it changed here (2026-09-23)
 
 The routine trigger moved to a new model on 2026-09-23. Four things follow,
