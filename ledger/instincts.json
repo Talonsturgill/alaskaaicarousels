@@ -1842,6 +1842,14 @@
       "evidence": "08's aksdf tags at 540 by 310 into 1080 by 620 showed stair-stepped strings and tag edges to two critics; rendering at 1080 by 620 native cost 37 s against the 30 s budget mark and cleared it.",
       "act_on_it": "Set aksdf width and height to the box size in design px from the first build, and raise deadlineMs to match.",
       "confidence": 0.5
+    },
+    {
+      "run_date": "2026-10-03",
+      "carousel_no": 76,
+      "instinct": "PICK THE CAMERA HEADING FROM THE CAST YOU NEED THE READER TO SEE; a near-lateral low sun throws hairline casts from standing height.",
+      "evidence": "Round 1 found invisible casts on 01, 05, 07 and 08, all physically correct. Turning each camera toward the sun (01 160 to 140, 05 270 to 252, 07 320 to 270, 08 345 to 260) made the casts stream toward the lens on all four, and on 08 put the solved disc on the horizon.",
+      "act_on_it": "In the dossier, write the heading AFTER solving where the cast must run on screen; reject any heading that puts the sun within 30 degrees of perpendicular unless the cast is meant to vanish.",
+      "confidence": 0.6
     }
   ]
 }

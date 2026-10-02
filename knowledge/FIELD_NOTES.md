@@ -9065,3 +9065,50 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   the final putImageData/drawImage may stay on the main thread, or the paint and ink census (main-
   thread prototype hooks) goes blind. UNBLOCKS when a deck needs aksdf above ~600x750 internal twice
   in ten runs; then build `AKSDF.renderParallel({sceneSrc, ...})` as an opt-in beside render().
+
+## 2026-10-03 (No.76, Fairbanks votes Tuesday, THE SUNDIAL FIELD): retro
+
+- A cast seen from standing height at a near-lateral sun is a hairline, however correct. Round 1 found it on four frames (01, 05, 07, 08). Turning each camera toward the sun, so the casts stream toward the lens, fixed all four without inventing light. On 08 the camera looks straight into the 6:30 p.m. sun, which put the solved disc on the horizon and made the frame. Choose the heading from the cast you want the reader to see, then solve the sun, not the other way round.
+- A soft-light "calm" plate behind the footer fixtures read as a dark slab on light snow. One helper fixed it (F.calmFixtures): it averages the art under each fixture, lays a feathered patch of that tone, and picks the fixture ink from the measured ground.
+- A shadow fill on a composited canvas with source-atop repaints every pixel already drawn: 08's first cast layer erased its own hatch. Draw any masked overlay on its own offscreen and composite it once.
+- The slide 06 DEM of the Tanana floodplain is mostly canopy speckle at z12. Four box passes printed camouflage; twenty printed nothing; nine at an exaggeration of 3.4 kept the bluffs and dropped the trees.
+- Candidate names in gold broke the deck's own ink law on three frames, and every critic caught it. Name colours belong in the PALETTE section before the build.
+- The craft cycle (09 folded curtain, 08 lighter plain, 05 rounded drifts, 04 contre-jour source, 03 relief) moved art 7.0 to 7.5 and the total 8.52 to 8.60. 08 and 09 moved most; 05 and 04 barely did. Both scorers named 05's drifts as flat lenses. A word-drift field drawn as 40 identical glyphs reads as stickers however it is shaded, so give each drift its own silhouette from the word data.
+- The Space Grotesk straight double quote is drawn slanted, and at thumb size the hung opening mark reads as a closing quote. A unicode-range face (JetBrains Mono for U+0022 only) fixes the glyph without touching the codepoint or the copy gates.
+- The flow critic predicted a bail at 04 in a three-frame run of equal seat cards. One factual forward line per seat frame ("NEXT · SEAT E · ...") turned three weak junctions into pulls.
+
+
+### Parked, 2026-10-03 frontier scan, focus (b), editorial cartography: which way the light may fall
+
+- RELIEF INVERSION HAS A MEASURED WORST AZIMUTH, AND A SKY MODEL MITIGATES IT. A 352-person
+  between-subject study (Golebiowska, Kennelly, Karsznia, Coltekin, Trantham, Borczon, ICC 2025)
+  compared single-light Lambert against the SkyLum sky model (250 sources over the dome) at
+  azimuths 225 and 337.5 on north-up shaded relief. Accuracy was significantly worse only for
+  Lambert at 225 (light from the lower left), and landform orientation moved accuracy only at 225;
+  SkyLum with a dominant 225 light "significantly" improved landform and elevation-change
+  recognition over Lambert 225. Response time and confidence did not move, so readers who
+  inverted the relief did not know they had. NNW 337.5 beats NW 315 (Biland and Coltekin 2017).
+  https://ica-abs.copernicus.org/articles/10/92/2025/ica-abs-10-92-2025.pdf
+- LIGHT PARALLEL TO THE TERRAIN GRAIN FLATTENS IT. Stefanakis (EuroCarto 2026, Banff) argues the
+  NW prior should yield where ridges and valleys align with the light: there a southern-sector
+  key gives more cross-slope contrast and a more natural look for a northern-hemisphere range.
+  https://ica-abs.copernicus.org/articles/12/135/2026/ica-abs-12-135-2026.pdf
+- WHY THIS STUDIO CARES. Our decks increasingly SOLVE a real sun (No.76 lit every frame at its
+  election-day hour). An October sun over Alaska stands in the southern sky, so a solar-true key
+  on a north-up DEM lands at about 180 to 225, the inversion band. No.76's slide 06 got it right
+  by rotating the view so the 201.3 sun falls from the upper left; that was the showrunner's
+  knowledge, not the machine's.
+- CAST SHADOWS READ BEST BELOW THE OBJECT. Koizumi et al. 2017 (shadow-correspondence task) found a
+  robust light-from-above bias, Cohen's d 0.74 to 1.39, and no significant left/right bias.
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC5298568/ . In a ground-plane frame that is incident 2
+  of No.76 in numbers: a cast that streams toward the lens points DOWN the frame, where the eye
+  expects it; a near-lateral cast runs sideways and thins to a hairline.
+- WHY PARKED: (1) akrelief.js already has `multidirectional: true` (the MDOW set, 225/270/315/360),
+  so a warning on a single light in 160-250 is a ~15-line console.warn, but it needs the
+  AK-prefix decision (warn vs AK CONTRACT fail) and a fixture, and no deck shipped the defect, so
+  it is not today's slot. (2) A planning-time "cast readability" check needs the dossier to carry
+  sun azimuth and camera heading as fields, which SLIDE_DOSSIER_SPEC does not have, so it is a
+  spec change, not a patch. UNBLOCKS WHEN a second deck solves a real sun: add `sun_az` and
+  `heading` to the dossier ART block, have dossier_check WARN when |sun_az - heading| mod 180 is
+  within 30 degrees of 90 and the frame's art promises casts, and have akrelief warn on a single
+  key between 160 and 250 unless the view is rotated.

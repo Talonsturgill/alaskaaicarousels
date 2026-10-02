@@ -1,0 +1,118 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in 'Land offered for AI sits 26 miles out.' ends 'AI' -- a two or three letter word left at the line end. It reads at 108px, so the break is the first thing a feed sees. Author the break with <br> before 'sits' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "contacts": [
+        "'the sixth post foot in the snow': shadow L* 45.1 vs ground L* 76.8, dL 31.8 at 432w",
+        "'the fifth post foot in the snow': shadow L* 51.5 vs ground L* 73.8, dL 22.3 at 432w"
+      ],
+      "motifs": [
+        "'the six straight-quote posts in three pairs': canvas 36.8 dE, page 37.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'Land offered for AIsits 26 miles out.' fits 2/2 lines at 108px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the six post footprints in three pairs': canvas 64.5 dE, page 65.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "div 'None of the six toldAlaska's News Source the' fits 3/3 lines at 59.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'Ramirez post foot in the snow': shadow L* 37.5 vs ground L* 51.0, dL 13.5 at 432w",
+        "'Howell post foot in the snow': shadow L* 36.6 vs ground L* 64.6, dL 28.0 at 432w"
+      ],
+      "motifs": [
+        "'the D pair, pulled apart': canvas 35.3 dE, page 43.9 dE, 93% of its rect is clear of opaque DOM (div.next stands on the rest)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the E pair, rim-lit': canvas 80.5 dE, page 78.1 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'Crass post foot in the snow': shadow L* 19.7 vs ground L* 50.5, dL 30.8 at 432w",
+        "'Leaders post foot in the snow': shadow L* 28.3 vs ground L* 59.4, dL 31.1 at 432w"
+      ],
+      "motifs": [
+        "'the H pair, pulled apart': canvas 47.1 dE, page 49.2 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'first parcel tile on the shelf': shadow L* 7.3 vs ground L* 20.0, dL 12.6 at 432w"
+      ],
+      "leaders": [
+        "leader 'runway 14/32 at Eielson, its midpoint' lands 0.0px from its target",
+        "leader 'runway 14/32 at Eielson, its midpoint' meets its label 9.0px away",
+        "leader 'runway 14/32 at Eielson, its midpoint' is drawn 82 px at 69 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "div 'About 4,700 acres, twelve parcels, three ins' fits 2/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'seat D pair feet': shadow L* 25.1 vs ground L* 40.4, dL 15.2 at 432w",
+        "'seat E pair feet': shadow L* 23.8 vs ground L* 39.8, dL 16.0 at 432w",
+        "'seat H pair feet': shadow L* 22.1 vs ground L* 39.5, dL 17.4 at 432w"
+      ],
+      "motifs": [
+        "'six far posts in pairs': canvas 46.3 dE, page 52.4 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'nine posts, three gold-rimmed': canvas 100.6 dE, page 106.3 dE, 99% of its rect is clear of opaque DOM (div#lE.lt stands on the rest)"
+      ],
+      "fits": [
+        "div 'Tuesday picks threeof nine voices.' fits 2/2 lines at 63.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'Polaris over six silhouettes': canvas 41.1 dE, page 88.6 dE, 75% of its rect is clear of opaque DOM (div.ask stands on the rest)"
+      ],
+      "fits": [
+        "div 'Power, water, noise, air.Which should the bo' fits 3/3 lines at 74.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN"
+}

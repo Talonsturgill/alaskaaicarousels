@@ -1,7 +1,101 @@
 # Alaska AI, full text corpus
 
-Every article published by Alaska AI, newest first. Latest article 2026-10-02.
+Every article published by Alaska AI, newest first. Latest article 2026-10-03.
 Canonical pages live under https://alaskaaihq.com/archive/.
+# Fairbanks Votes Tuesday. Six Voices on AI Data Centers
+
+> The only item on both halves of Fairbanks' priority list is a data center moratorium. The land offered for AI is the Air Force's.
+
+Published 2026-10-03 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-10-03/
+
+## The story
+
+Land offered for AI sits 26 miles out.
+
+Fairbanks votes Tuesday.
+
+None of the six told Alaska's News Source they support data centers.
+
+About 4,700 acres, twelve parcels, three installations.
+
+The Air Force wants private AI data centers at JBER, Eielson and Clear.
+
+97,083
+
+people in the borough, 2025 estimate.
+
+Tuesday picks three of nine voices.
+
+Power, water, noise, air. Which should the borough press first?
+
+Polls close at 8 p.m. Tuesday.
+
+## What we verified
+
+- The Fairbanks North Star Borough regular election is on Tuesday, October 6th. [Fairbanks North Star Borough Clerk's Office](https://www.fnsb.gov/269/Election-Information), primary document, 2026-10-02.
+- Polls are open from 7 a.m. to 8 p.m. on election day. [Fairbanks North Star Borough Clerk's Office](https://www.fnsb.gov/269/Election-Information), primary document, 2026-10-02.
+- The October 6th ballot includes Proposition 3, a citizens' initiative to require hand counting of all ballots and prohibit electronic tabulation. [Fairbanks North Star Borough (official sample ballot)](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-02.
+- Three Borough Assembly seats are on the ballot, Seats D, E and H, each for a 3-year term. [Fairbanks North Star Borough (official sample ballot)](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-02.
+- Miguel Ramirez and Alexis Howell are the two candidates for Assembly Seat D. [Fairbanks North Star Borough (official sample ballot)](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-02.
+- Scott Crass is the Assembly's Presiding Officer. [Fairbanks North Star Borough](https://www.fnsb.gov/172/Assemblymembers), primary document, 2026-10-02.
+- The Fairbanks North Star Borough Assembly has nine members elected at large. [Fairbanks North Star Borough](https://www.fnsb.gov/172/Assemblymembers), primary document, 2026-10-02.
+- The Assembly adopted Resolution 2026-25, identifying its legislative priorities, at its August 27th regular meeting. [Fairbanks North Star Borough Clerk's Office (action memorandum)](https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13145,plainText=false)), primary document, 2026-08-31.
+- Resolution 2026-25 supports a moratorium on permitting, leasing or building new commercial data centers on state-owned or municipal lands in Alaska. [Fairbanks North Star Borough (Resolution No. 2026-25 text)](https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)), primary document, 2026-08-27.
+- The moratorium would last until the state and local governments adopt standards on six named impacts, from electrical demand and water to noise and air quality. [Fairbanks North Star Borough (Resolution No. 2026-25 text)](https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)), primary document, 2026-08-27.
+- The Air Force solicitation AFCEC-26-R-0006 seeks lease proposals for AI data centers at JBER, Eielson Air Force Base and Clear Space Force Station. [SAM.gov (Department of the Air Force)](https://sam.gov/api/prod/opps/v2/opportunities/e1f00a73b56e493eaa84ba281e9db695), primary document, 2026-04-10.
+- The Assembly's next regular meeting after the election is on October 8th. [Fairbanks North Star Borough (calendar)](https://www.fnsb.gov/Calendar.aspx), primary document, 2026-10-02.
+- A second regular Assembly meeting is scheduled for October 22nd. [Fairbanks North Star Borough (calendar)](https://www.fnsb.gov/Calendar.aspx), primary document, 2026-10-02.
+- The Fairbanks North Star Borough had an estimated 97,083 residents in 2025. [Alaska Department of Labor and Workforce Development](https://live.laborstats.alaska.gov/pop/index.cfm), primary document, 2026-10-02.
+- Begich's DATA Act of 2026 would let manufacturers run fully self-contained grid-of-one power systems. [Office of Rep. Nick Begich](https://begich.house.gov/media/press-releases/congressman-begich-leads-legislation-lower-energy-costs-introduces-house), primary document, 2026-04-21.
+- The Fairbanks North Star Borough includes Eielson Air Force Base and Fort Wainwright among its communities. [Military OneSource, U.S. Department of Defense](https://installations.militaryonesource.mil/in-depth-overview/eielson-afb), primary document, 2026-10-02.
+- Eielson Air Force Base is 26 miles southeast of Fairbanks. [Military OneSource, U.S. Department of Defense](https://installations.militaryonesource.mil/in-depth-overview/eielson-afb), primary document, 2026-10-02.
+- NSF obligated $3,824,575 to the University of Alaska Anchorage for an AI-driven critical mineral recovery project. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2614749.json?printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText), primary document, 2026-08-05.
+- The UAA-led project will combine microbiology and AI to recover rare earth elements from coal mining waste, with UAF, Montana Tech and the University of Wyoming. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2614751.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2026-08-05.
+- NSF obligated $913,037 to the University of Alaska Fairbanks as the companion award on the critical mineral project. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2614751.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2026-08-05.
+- NSF obligated $1,772,170 to the University of Alaska Fairbanks for GAIA, an AI-driven geophysics framework led there by Carl Tape. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2608510.json?printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText), primary document, 2026-07-10.
+- The GAIA team will test its system on landslides in Alaska and the Pacific Northwest. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2608510.json?printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText), primary document, 2026-07-10.
+- NSF obligated $1,588,147 to the University of Alaska Fairbanks for a fire weather toolkit to advance controlled burning in Alaska. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2536745.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2026-07-31.
+- The fire weather team will use machine learning on historical weather data to map hazardous fire weather and safe prescribed burn windows across Alaska. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2536745.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2026-07-31.
+- NSF awarded $50,000 to the University of Alaska Fairbanks for an I-Corps project on explainable AI that maps underwater depth from satellite imagery. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2630206.json?printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText), primary document, 2026-08-19.
+- NSF's RAISE award gave the University of Alaska Anchorage $380,000 in 2024 to build rural AI partnerships. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2433241.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2024-07-29.
+- RAISE created an Alaska AI Solutions Consortium that funds research through a mini-grant program. [National Science Foundation award API](https://api.nsf.gov/services/v1/awards/2433241.json?printFields=id,fundsObligatedAmt,estimatedTotalAmt,startDate,expDate,date), primary document, 2024-07-29.
+- Full proposals for the 2026-27 RAISE mini-grants are due October 7th. [University of Alaska Anchorage College of Engineering (AI @ UAA)](https://coeng.uaa.alaska.edu/AI/?p=611), primary document, 2026-10-02.
+- RAISE will announce its 2026-27 mini-grant awards on November 2nd. [University of Alaska Anchorage College of Engineering (AI @ UAA)](https://coeng.uaa.alaska.edu/AI/?p=611), primary document, 2026-10-02.
+- The Village of Alakanuk Tribe partnered on a 2025-26 RAISE mini-grant called ARCTIC, AI for rural community transformation and infrastructure coordination. [University of Alaska Anchorage College of Engineering (AI @ UAA)](https://coeng.uaa.alaska.edu/AI/raise-mini-grant-awardee-announcement-25-26), primary document, 2026-10-02.
+- Nome Joint Utilities System partnered on a RAISE mini-grant using machine learning to predict the thermal conductivity of warming permafrost. [University of Alaska Anchorage College of Engineering (AI @ UAA)](https://coeng.uaa.alaska.edu/AI/raise-mini-grant-awardee-announcement-25-26), primary document, 2026-10-02.
+- Seat D is an open seat because its current holder, Liz Reeves, isn't on the ballot. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Incumbent Nick LaJiness faces Shelly Shupe for Assembly Seat E. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Incumbent Scott Crass faces Joshua Leaders for Assembly Seat H. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- According to Alaska's News Source, the Assembly voted 6-1 to adopt its 2027 legislative priorities. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- The data center moratorium is the only item that appears in both the state and federal halves of the Assembly's priority list. [KUAC (Patrick Gilchrist)](https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request), report, 2026-08-31.
+- The Assembly's 2027 legislative priority list totals 25 items across its state and federal sections. [KUAC (Patrick Gilchrist)](https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request), report, 2026-08-31.
+- Presiding Officer Scott Crass told KUAC the moratorium request was intended to include federal lands as well. [KUAC (Patrick Gilchrist)](https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request), report, 2026-08-31.
+- Seat D candidate Alexis Howell agreed with the idea of a moratorium. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Howell, arguing the borough's grid is already struggling, said "I would hate to see us dump a data center on top of that.". [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Seat D candidate Miguel Ramirez said he can't say "yay" or "nay" because more studies need to be done. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Seat E incumbent Nick LaJiness said "I don't think that data centers are good for any community.". [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Seat E challenger Shelly Shupe said she is "somewhere in between" those worried about data centers and those who don't want to discount them. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Seat H incumbent Scott Crass said "Energy costs in our community have skyrocketed.". [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Crass called a project that would consume more energy than the entire town "absolutely terrifying at first blush.". [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Seat H challenger Joshua Leaders said the impact on infrastructure, the power grid and water needs a serious look to see if the benefit outweighs the cost. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- Leaders supports a temporary moratorium while data is collected. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- None of the six Assembly candidates quoted by Alaska's News Source expressed outright support for data centers. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+- The Pentagon has offered to lease about 4,700 acres of government land in Alaska to private companies for data centers. [KUAC via Alaska Public Media (Shelby Herbert)](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- No data center projects have been awarded under the Air Force leasing offer. [KUAC via Alaska Public Media (Shelby Herbert)](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Twelve parcels across the three Alaska installations have been identified for potential data center development. [Air and Space Forces Magazine (Matthew Cox)](https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases/), report, 2026-04-11.
+- U.S. Senator Lisa Murkowski said she is not a proponent of data centers at JBER or Interior installations because of an insecure energy base. [KUAC via Alaska Public Media (Shelby Herbert)](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Fairbanks already has some of the highest utility costs in the nation, according to KUAC. [KUAC via Alaska Public Media (Shelby Herbert)](https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors), report, 2026-09-15.
+- Eielson Air Force Base could become the first U.S. military installation powered at least partly by a 5-megawatt microreactor. [KUAC (Tim Ellis)](https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site), report, 2026-09-20.
+- Public comments on the Eielson microreactor site were due by September 30th. [KUAC (Tim Ellis)](https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site), report, 2026-09-20.
+- Independent U.S. House candidate Bill Hill said he doesn't want data centers to get tax breaks or build vast complexes without local input and support. [The Alaska Current (Matt Acuna Buxton)](https://thealaskacurrent.com/2026/09/25/bill-hill-data-centers/), report, 2026-09-25.
+- Seat H incumbent Scott Crass defended his vote in favor of the legislative priorities. [Alaska's News Source (KTUU)](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), report, 2026-09-29.
+
+Slides and the deck PDF are linked from the canonical page.
+
+
+---
+
 # Alaska's SNAP Bill Reads a Year That Opened Thursday
 
 > Alaska's SNAP payment error rate ran 57, 60.4, 24.7 and 23 percent from 2022 to 2025.
@@ -5673,6 +5767,7 @@ Canonical: https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/
 **2026-09-27** Re-read the Federal Register text today. Written responses on Docket DOE-HQ-2026-1123 are still accepted on or before October 9th, and no extension has been posted. Checked and unchanged.
 **2026-09-30** Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is the latest and no extension or correction has been published. Responses are accepted on or before October 9th. Checked and unchanged.
 **2026-10-02** Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged.
+**2026-10-03** Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged.
 
 
 ---
@@ -5713,60 +5808,12 @@ Canonical: https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/
 
 ---
 
-# The Air Force nuclear microreactor at Eielson
-
-> The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission.
-
-Status: open for comment. Decided by Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the license.
-Public access: open to you. Until September 30th anyone can comment on the Air Force's preferred site for the reactor, near Spruce Lake east of the south end of the main runway, by email to 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299. The contract itself follows a Nuclear Regulatory Commission license.
-Canonical: https://alaskaaihq.com/docket/eielson-oklo-microreactor/
-
-## Dates
-
-- 2025-06-11, Air Force announces a notice of intent to award to Oklo (milestone)
-- 2026-09-20, Public comment opens on the Air Force's preferred reactor site near Spruce Lake, which sits near wetlands (milestone)
-- 2026-09-30, Comments on the proposed microreactor site due to the Eielson Public Affairs Office (deadline)
-
-## Sources
-
-- [KUAC](https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site), 2026-09-20
-- [U.S. Air Force](https://www.af.mil/News/Article-Display/Article/4213048/microreactor-pilot-reaches-major-project-milestone/), 2025-06-11
-- [Eielson Air Force Base](https://www.eielson.af.mil/microreactor/), 2026-08-06
-- [American Nuclear Society, Nuclear Newswire](https://www.ans.org/news/2025-06-16/article-7114/air-force-issues-notice-to-partner-with-oklo-on-microreactor-deployment-in-alaska/), 2025-06-16
-- [Air and Space Forces Magazine](https://www.airandspaceforces.com/air-force-microreactor-eielson-alaska/), 2025-06-12
-- [World Nuclear News](https://www.world-nuclear-news.org/articles/oklo-named-to-supply-microreactor-for-alaska-airbase), 2025-06-17
-- [U.S. Nuclear Regulatory Commission](https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents), 2026-09-18
-
-## How this decision moved
-
-**2026-08-06** Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force program page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the program rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest.
-**2026-08-12** Re-verified against the base's own program page. No contract has been awarded. The notice of intent to award opened negotiation with Oklo and the award still waits on the company finishing Nuclear Regulatory Commission licensing. The pilot is sized at up to 5 megawatts for critical infrastructure on the base, under a 30-year power purchase agreement.
-**2026-08-16** Re-verified against the Air Force's own announcement. No contract has been awarded. The notice of intent to award opened negotiation toward a thirty year firm fixed price contract, contingent on the company completing Nuclear Regulatory Commission licensing, and the Department of the Air Force and the commission are preparing an environmental analysis as the next step.
-**2026-08-20** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo, issued in May 2025, still has not become a contract, and the page ties any award to the company completing Nuclear Regulatory Commission licensing. The page sizes the plant at up to 5 megawatts delivered to base infrastructure. Its most recent quarterly newsletter is dated June 2026.
-**2026-08-25** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says it begins negotiation toward a possible award, and that any award depends on the company completing Nuclear Regulatory Commission licensing, so the pilot remains pre-award.
-**2026-08-29** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says the notice starts a negotiation to potentially award, pending the company completing Nuclear Regulatory Commission licensing, and it sizes the plant at up to 5 megawatts delivered to the base's critical infrastructure. The most recent quarterly newsletter is still dated June 2026.
-**2026-09-02** Checked and unchanged, re-verified against the American Nuclear Society's account of the June 2025 announcement. The notice of intent to award to Oklo is still a notice and not a contract. The 30 year firm fixed price agreement is signed only once Oklo holds a Nuclear Regulatory Commission license, and an environmental analysis is the next step.
-**2026-09-06** Checked and unchanged, re-verified against Air and Space Forces Magazine's account of the announcement. What the Air Force issued is a notice of intent to award and not a signed contract. Oklo would build and operate a 5 megawatt microreactor at Eielson, the price and the rate the Air Force pays for power are still to be settled in negotiation, and Nuclear Regulatory Commission approval remains a step ahead of it.
-**2026-09-10** Checked and unchanged. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice rather than a signed contract. Environmental analysis, contract negotiation and a Nuclear Regulatory Commission license all remain ahead of it, and the Air Force has put the reactor in service before 2030 without naming a nearer date.
-**2026-09-14** Checked and unchanged. The base's own microreactor page refused an automated request today, so the status was re-read against World Nuclear News and the American Nuclear Society. What stands is a notice of intent to award issued by Defense Logistics Agency Energy, not a signed contract. Oklo would own and operate a 5 megawatt reactor at Eielson and the Air Force would buy the power under a 30 year fixed price agreement, conditional on a Nuclear Regulatory Commission license and on the environmental analysis now under way.
-**2026-09-18** Checked and unchanged, and checked this time against the licensing record rather than the base page, which refused an automated read. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice and not a signed contract, and the contract follows a Nuclear Regulatory Commission license. The commission's own record for the Aurora combined license application shows it was submitted on March 11th, 2020, accepted for review on June 5th, 2020, and denied on January 6th, 2022 for failure to supply information, and that application names Idaho National Laboratory rather than Alaska. No license covering an Eielson unit is on the record.
-**2026-09-24** Updated. The Air Force is now asking for public comment on where the reactor would go. Its preferred site is near Spruce Lake, east of the south end of the main runway, and because that site is near wetlands federal law requires the public be asked first. Comments go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail, and must arrive no later than September 30th. A draft Environmental Assessment is expected later in 2026, and officials expect an assessment rather than a full Environmental Impact Statement. The 5 megawatt Oklo agreement is still a notice of intent, signed only after a Nuclear Regulatory Commission license. Reported by Tim Ellis for KUAC on September 20th.
-**2026-09-25** Re-verified today against KUAC's September 20th report. Comments on the preferred site near Spruce Lake, east of the south end of the main runway, are still due to the Eielson Public Affairs Office no later than September 30th. The base's own microreactor page refused an automated request today. Checked and unchanged.
-**2026-09-26** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299, and must arrive no later than September 30th. The base's own microreactor page refused an automated read today. Checked and unchanged.
-**2026-09-27** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office and must arrive no later than September 30th. Checked and unchanged.
-**2026-09-28** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake, east of the south end of the main runway, still go to the Eielson Public Affairs Office and must arrive no later than September 30th. Checked and unchanged.
-**2026-09-29** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office and must arrive no later than September 30th. No extension is mentioned. Checked and unchanged.
-**2026-09-30** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake go to the Eielson Public Affairs Office and must be submitted no later than September 30th, which is today. No extension is mentioned. Checked and unchanged.
-
-
----
-
 # The FCC asks whether AI should help run the Universal Service Fund
 
 > The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read.
 
 Status: open for comment. Decided by Federal Communications Commission.
-Public access: open to you. Anyone may file. Comments are due on or before September 30th, 2026 and reply comments on or before October 30th, 2026, in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.
+Public access: open to you. Anyone may file. Initial comments closed on September 30th, and reply comments are due on or before October 30th in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.
 Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 
 ## Dates
@@ -5775,7 +5822,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 - 2026-08-07, Released (milestone)
 - 2026-08-31, Published in the Federal Register at 91 FR 55826 (milestone)
 - 2026-09-30, Comments due, WC Docket No. 26-173 (deadline)
-- 2026-10-30, Reply comments due (milestone)
+- 2026-10-30, Reply comments due, WC Docket No. 26-173 (deadline)
 
 ## Sources
 
@@ -5799,6 +5846,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 **2026-09-28** Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are still due on or before September 30th and reply comments on or before October 30th. Checked and unchanged.
 **2026-09-29** Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are due on or before September 30th and reply comments on or before October 30th. Checked and unchanged.
 **2026-09-30** Re-read the Federal Register text on govinfo today. Comments in WC Docket No. 26-173 are due on or before September 30th, which is today, and reply comments on or before October 30th. Checked and unchanged.
+**2026-10-03** Initial comments closed on September 30th. Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th.
 
 
 ---
@@ -5839,6 +5887,7 @@ Canonical: https://alaskaaihq.com/docket/kpb-weather-modification-code/
 **2026-09-30** Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, and its title still carries the October 20th hearing. Checked and unchanged.
 **2026-10-01** Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. No passage or enactment date is recorded. Checked and unchanged.
 **2026-10-02** Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged.
+**2026-10-03** Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged.
 
 
 ---
@@ -5988,6 +6037,7 @@ Canonical: https://alaskaaihq.com/docket/aidea-houston-industrial-park/
 **2026-09-29** Re-read the State of Alaska public notice for ADL 234762 today. It still carries the preliminary decision and the August 19th comment deadline, with no final finding and decision posted. Checked and unchanged.
 **2026-10-01** Re-read the State of Alaska notice for ADL 234762 today. It still presents the preliminary decision to convey about 19,950 acres near Houston to the Alaska Industrial Development and Export Authority, with written comment extended to 5:00 p.m. on September 14th and now closed. The attachments are still the application, the preliminary decision and a vicinity map, with no final finding and decision posted. Checked and unchanged.
 **2026-10-02** Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged.
+**2026-10-03** Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, the notice was last modified August 19th, and no final finding and decision has been posted. Checked and unchanged.
 
 
 ---
@@ -6057,6 +6107,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-09-24** Checked and unchanged. The solicitation of record, AFCEC-26-R-0006, still shows proposals closed on June 29th after a one month extension, a last update of July 14th, and no award or selected lessee. The Air Force has set no public date for choosing one.
 **2026-09-25** Senator Lisa Murkowski has said she is not a proponent of data centers at Joint Base Elmendorf-Richardson and the Interior installations while their energy base is insecure. "I am not a proponent of data centers down at JBER or at our Interior installations because we are not able to support them because of an insecure energy base at this time," she told KUAC, which reported on September 15th that no projects have been awarded yet. No selection or award has been announced.
 **2026-09-29** Searched for newer reporting today. Nothing later than the record above surfaced, and the Air Force's own page did not load. Checked and unchanged.
+**2026-10-03** Searched for newer reporting today. Nothing later than the record above surfaced, no award has been reported, and the Air Force's own announcement page refused an automated read. Checked and unchanged.
 
 
 ---
@@ -6097,6 +6148,7 @@ Canonical: https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/
 **2026-09-21** Re-verified today against the state notice. RFP 2026-0200-0064, Statewide Transcription Services, published July 31st and closed for proposals at 3:30 p.m. Alaska Daylight Time on August 28th, extended by Amendment 1 from August 24th. The notice still shows no award and the state has posted no selection. Checked and unchanged.
 **2026-09-25** Re-verified today against the state notice. RFP 2026-0200-0064 closed for proposals at 3:30 p.m. Alaska Daylight Time on August 28th, and the notice still carries only Amendment 1, with no award, notice of intent to award or cancellation posted. Checked and unchanged.
 **2026-09-29** Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It shows Amendment 1, which moved the proposal deadline from August 24th to August 28th, and announces no award or intent to award. Checked and unchanged.
+**2026-10-03** Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still shows Amendment 1 and a proposal deadline of August 28th, was last modified August 17th, and announces no award or intent to award. Checked and unchanged.
 
 
 ---
@@ -6239,6 +6291,7 @@ Canonical: https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/
 **2026-09-21** Checked today. The commission's own carbon storage page answered an automated request with a 403, so it was checked instead against the published primacy application and the hearing record. Nothing shows an EPA ruling on Alaska's Class VI primacy application, and no new hearing or comment date has been posted since the May 14th public hearing. Unchanged so far as the public record shows, with the caveat that the commission page could not be read directly today.
 **2026-09-25** Checked today. A Federal Register search for Class VI actions naming Alaska since May 1st returns no EPA ruling on Alaska's primacy application, and no new state hearing or comment date has been announced since the May 14th hearing. Checked and unchanged.
 **2026-09-29** Searched for newer reporting today. Nothing after the May 14th hearing surfaced, and no federal proposal on the application was found. Checked and unchanged.
+**2026-10-03** Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application and found none. The commission's own carbon storage page refused an automated read. Checked and unchanged.
 
 
 ---
@@ -6288,6 +6341,55 @@ Canonical: https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/
 **2026-09-25** Re-verified today against the Alaska Energy Authority project page. The final license amendment application filed with FERC on June 30th stands, with the construction estimate of about $400 million and a schedule of about three years of study and permitting followed by about three years of construction. No FERC ruling or decision date is posted. Checked and unchanged.
 **2026-09-27** Alaska's News Source reported on September 24th that the Alaska Energy Authority has hosted three of FERC's five commissioners at Bradley Lake, visits prompted by the Alaska senators' requirement that nominees see the state before confirmation. The report says dam construction is slated to finish in 2030 and the tied transmission upgrades in 2031 or 2032. AEA's own July 23rd release anticipates construction beginning in 2027, pending federal approvals. FERC has still published no decision on the amendment in docket P-8221-124.
 **2026-10-01** Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's license amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. The authority's project page still shows the June 30th filing, a construction estimate of about $400 million and a construction funding source yet to be determined. Checked and unchanged.
+
+
+---
+
+# The Air Force nuclear microreactor at Eielson
+
+> The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission.
+
+Status: pending decision. Decided by Department of the Air Force with Defense Logistics Agency Energy, and the Nuclear Regulatory Commission for the license.
+Public access: closed. The comment window on the Air Force's preferred site near Spruce Lake closed on September 30th, and no extension was announced. The Air Force now weighs what it received and has published no date for a decision. The contract itself follows a Nuclear Regulatory Commission license.
+Canonical: https://alaskaaihq.com/docket/eielson-oklo-microreactor/
+
+## Dates
+
+- 2025-06-11, Air Force announces a notice of intent to award to Oklo (milestone)
+- 2026-09-20, Public comment opens on the Air Force's preferred reactor site near Spruce Lake, which sits near wetlands (milestone)
+- 2026-09-30, Comments on the proposed microreactor site due to the Eielson Public Affairs Office (deadline)
+
+## Sources
+
+- [KUAC](https://fm.kuac.org/sustainability/2026-09-20/air-force-asks-for-public-input-on-proposed-eielson-microreactor-site), 2026-09-20
+- [U.S. Air Force](https://www.af.mil/News/Article-Display/Article/4213048/microreactor-pilot-reaches-major-project-milestone/), 2025-06-11
+- [Eielson Air Force Base](https://www.eielson.af.mil/microreactor/), 2026-08-06
+- [American Nuclear Society, Nuclear Newswire](https://www.ans.org/news/2025-06-16/article-7114/air-force-issues-notice-to-partner-with-oklo-on-microreactor-deployment-in-alaska/), 2025-06-16
+- [Air and Space Forces Magazine](https://www.airandspaceforces.com/air-force-microreactor-eielson-alaska/), 2025-06-12
+- [World Nuclear News](https://www.world-nuclear-news.org/articles/oklo-named-to-supply-microreactor-for-alaska-airbase), 2025-06-17
+- [U.S. Nuclear Regulatory Commission](https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents), 2026-09-18
+
+## How this decision moved
+
+**2026-08-06** Tracked after a reader asked for it, and the reader's own figure did not survive the check. The Air Force program page for the pilot states the capacity, the 30 year power purchase agreement and the licensing condition, and it states no operational date at all. A December 31st, 2027 goal has circulated widely; that comes from the fiscal 2019 defense authorization, which directed that a licensed microreactor be operating on a Defense Department installation by 2027, and it is a statutory goal for the program rather than a commitment for this reactor. A deputy assistant secretary of the Air Force was separately reported hoping the reactor would run by 2030. So the honest position is that no operational date is published, and this entry will not carry one until the Air Force sets one. The notice of intent to award reinstated Oklo after an earlier award was rescinded following a bid protest.
+**2026-08-12** Re-verified against the base's own program page. No contract has been awarded. The notice of intent to award opened negotiation with Oklo and the award still waits on the company finishing Nuclear Regulatory Commission licensing. The pilot is sized at up to 5 megawatts for critical infrastructure on the base, under a 30-year power purchase agreement.
+**2026-08-16** Re-verified against the Air Force's own announcement. No contract has been awarded. The notice of intent to award opened negotiation toward a thirty year firm fixed price contract, contingent on the company completing Nuclear Regulatory Commission licensing, and the Department of the Air Force and the commission are preparing an environmental analysis as the next step.
+**2026-08-20** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo, issued in May 2025, still has not become a contract, and the page ties any award to the company completing Nuclear Regulatory Commission licensing. The page sizes the plant at up to 5 megawatts delivered to base infrastructure. Its most recent quarterly newsletter is dated June 2026.
+**2026-08-25** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says it begins negotiation toward a possible award, and that any award depends on the company completing Nuclear Regulatory Commission licensing, so the pilot remains pre-award.
+**2026-08-29** Re-verified against the base's own microreactor page. The notice of intent to award to Oklo is still not a contract. The page says the notice starts a negotiation to potentially award, pending the company completing Nuclear Regulatory Commission licensing, and it sizes the plant at up to 5 megawatts delivered to the base's critical infrastructure. The most recent quarterly newsletter is still dated June 2026.
+**2026-09-02** Checked and unchanged, re-verified against the American Nuclear Society's account of the June 2025 announcement. The notice of intent to award to Oklo is still a notice and not a contract. The 30 year firm fixed price agreement is signed only once Oklo holds a Nuclear Regulatory Commission license, and an environmental analysis is the next step.
+**2026-09-06** Checked and unchanged, re-verified against Air and Space Forces Magazine's account of the announcement. What the Air Force issued is a notice of intent to award and not a signed contract. Oklo would build and operate a 5 megawatt microreactor at Eielson, the price and the rate the Air Force pays for power are still to be settled in negotiation, and Nuclear Regulatory Commission approval remains a step ahead of it.
+**2026-09-10** Checked and unchanged. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice rather than a signed contract. Environmental analysis, contract negotiation and a Nuclear Regulatory Commission license all remain ahead of it, and the Air Force has put the reactor in service before 2030 without naming a nearer date.
+**2026-09-14** Checked and unchanged. The base's own microreactor page refused an automated request today, so the status was re-read against World Nuclear News and the American Nuclear Society. What stands is a notice of intent to award issued by Defense Logistics Agency Energy, not a signed contract. Oklo would own and operate a 5 megawatt reactor at Eielson and the Air Force would buy the power under a 30 year fixed price agreement, conditional on a Nuclear Regulatory Commission license and on the environmental analysis now under way.
+**2026-09-18** Checked and unchanged, and checked this time against the licensing record rather than the base page, which refused an automated read. The notice of intent to award Oklo a 30 year firm fixed price agreement for up to 5 megawatts at Eielson is still a notice and not a signed contract, and the contract follows a Nuclear Regulatory Commission license. The commission's own record for the Aurora combined license application shows it was submitted on March 11th, 2020, accepted for review on June 5th, 2020, and denied on January 6th, 2022 for failure to supply information, and that application names Idaho National Laboratory rather than Alaska. No license covering an Eielson unit is on the record.
+**2026-09-24** Updated. The Air Force is now asking for public comment on where the reactor would go. Its preferred site is near Spruce Lake, east of the south end of the main runway, and because that site is near wetlands federal law requires the public be asked first. Comments go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail, and must arrive no later than September 30th. A draft Environmental Assessment is expected later in 2026, and officials expect an assessment rather than a full Environmental Impact Statement. The 5 megawatt Oklo agreement is still a notice of intent, signed only after a Nuclear Regulatory Commission license. Reported by Tim Ellis for KUAC on September 20th.
+**2026-09-25** Re-verified today against KUAC's September 20th report. Comments on the preferred site near Spruce Lake, east of the south end of the main runway, are still due to the Eielson Public Affairs Office no later than September 30th. The base's own microreactor page refused an automated request today. Checked and unchanged.
+**2026-09-26** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office by email at 354fw.pa.publicaffairs@us.af.mil or by mail to 354 Broadway St., Suite 15A, Eielson AFB, AK 99702-2299, and must arrive no later than September 30th. The base's own microreactor page refused an automated read today. Checked and unchanged.
+**2026-09-27** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office and must arrive no later than September 30th. Checked and unchanged.
+**2026-09-28** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake, east of the south end of the main runway, still go to the Eielson Public Affairs Office and must arrive no later than September 30th. Checked and unchanged.
+**2026-09-29** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake still go to the Eielson Public Affairs Office and must arrive no later than September 30th. No extension is mentioned. Checked and unchanged.
+**2026-09-30** Re-read the KUAC report today. Comments on the proposed site near Spruce Lake go to the Eielson Public Affairs Office and must be submitted no later than September 30th, which is today. No extension is mentioned. Checked and unchanged.
+**2026-10-03** The comment window on the proposed reactor site near Spruce Lake closed on September 30th. Re-read the KUAC report today, and it names no extension. The base's own microreactor page refused an automated read. The Air Force has published no date for a decision on the site.
 
 
 ---
@@ -6354,6 +6456,7 @@ Canonical: https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-reques
 - 2026-08-06, Armstrong moves the moratorium onto the state list at a Committee of the Whole work session (milestone)
 - 2026-08-20, Committee of the Whole takes up the priorities list (milestone)
 - 2026-08-27, Assembly adopts Resolution 2026-25 (vote)
+- 2026-10-06, Borough election for three Assembly seats whose candidates split on the moratorium request (milestone)
 - 2027-01-19, The 35th Alaska Legislature convenes, the earliest the state half can be taken up (milestone)
 
 ## Sources
@@ -6364,6 +6467,7 @@ Canonical: https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-reques
 - [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/school-testing-data-center-moratorium-spark-discussion-at-assembly/article_6ac582a2-1e7b-41a0-926c-e2389cfa67c0.html), 2026-08-30
 - [Alaska's News Source](https://www.alaskasnewssource.com/2026/09/02/fairbanks-borough-weighs-data-center-regulations-seeks-state-moratorium/), 2026-09-01
 - [Fairbanks North Star Borough](https://www.fnsb.gov/172/Assemblymembers), 2026-09-02
+- [Alaska's News Source](https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/), 2026-09-29
 
 ## How this decision moved
 
@@ -6375,6 +6479,7 @@ Canonical: https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-reques
 **2026-09-21** Re-verified today. The Fairbanks North Star Borough Assembly adopted its 2027 legislative priorities on August 31st, carrying the data center moratorium request as both a state and a federal priority. The resolution asks for a moratorium on the permitting, leasing or construction of new commercial data centers until local governments and the state have set standards for electrical demand, water consumption, environmental impact and air quality. Nothing has moved since, because the Legislature does not convene until January. Checked and unchanged.
 **2026-09-25** Re-verified today against the borough's agenda packet. Resolution 2026-25 still carries the request for a moratorium on the permitting, leasing or construction of new commercial data centers. Its state half waits on the Legislature, which is out of session until the 35th Legislature convenes on January 19th, 2027. Its federal half is addressed to the Alaska congressional delegation, which is not bound by that calendar. Checked and unchanged.
 **2026-09-29** Checked the borough's public meeting calendar today. The next regular Assembly meeting is October 8th, and the calendar lists no meeting on the moratorium request itself. Checked and unchanged.
+**2026-10-03** Alaska's News Source reported on September 29th that the six candidates for three Assembly seats on the October 6th ballot divide on the moratorium. Alexis Howell and Scott Crass support it, Joshua Leaders backs a temporary one while impact data is gathered, Nick LaJiness opposes data centers outright, Shelly Shupe is cautiously open and Miguel Ramirez wants more study first. The borough calendar lists regular Assembly meetings on October 8th and October 22nd.
 
 
 ---
@@ -6569,6 +6674,7 @@ Canonical: https://alaskaaihq.com/docket/terra-energy-center-doe-grant/
 **2026-09-21** Re-verified today against the Department of Energy selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project remains selected for $89,000,000, with Terra Energy Center Corporation of Anchorage named as recipient, front end engineering at FEL-3 or Class 3 targeted for 2027 and baseload generation described as possible by 2031. Checked and unchanged.
 **2026-09-25** Re-verified today against the Department of Energy selection page. The Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project is still listed as selected for $89,000,000, with Terra Energy Center Corporation of Anchorage named as recipient. No award or cancellation is shown. Checked and unchanged.
 **2026-09-29** Searched for newer reporting today. Nothing later than the June 4th award announcement surfaced. Checked and unchanged.
+**2026-10-03** Re-read the Department of Energy's project selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding, $190,375,155 in total, with Class 3 engineering targeted for 2027. No award agreement or later notice was found. Checked and unchanged.
 
 
 ---
@@ -6602,6 +6708,7 @@ Canonical: https://alaskaaihq.com/docket/ua-regents-ai-policy/
 **2026-09-21** Re-verified today against the university's own AI policy index. The page still names the generative AI standards run by the Office of Information Technology and says that UA System regulations are currently under development, with no dated Board of Regents draft published. Checked and unchanged.
 **2026-09-25** Re-verified today against the university's own AI policy index. The page still says UA System regulations are currently under development and carries its March 11th, 2025 update stamp, with no dated Board of Regents policy published. Checked and unchanged.
 **2026-09-29** Re-read the University of Alaska generative AI policies page today. It still says UA System regulations are under development, was last updated March 11th, 2025, and names no Board of Regents action. Checked and unchanged.
+**2026-10-03** Re-read the University of Alaska generative AI policies page and the Board of Regents policy index today. The first still says UA System regulations are under development and was last updated March 11th, 2025, and the index lists no artificial intelligence policy. Checked and unchanged.
 
 
 ---

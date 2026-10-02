@@ -2935,6 +2935,34 @@
       "verification": "tests/aksdf_deadline_verify.py (new, node, real aksdf.js): 7/7 HOLD (generous deadline quiet, a past deadline errors once with the prefix and names shadows row 0 and AO row 1, a shadows:false caller is told AO only, qa.py carries the rule and FAILs it while still WARNing an ordinary console error). Reconstruction, out/2026-10-02/slides/slide-08.html without deadlineMs: pre-upgrade render OK, qa PASS 0 fails 0 warns, pixel-identical to the shipped render above CSS y 1046.5 and up to 180 levels off below; post-upgrade qa FAIL 'art degraded mid-frame: AK DEGRADED: AKSDF.render ran past deadlineMs 15000 at 1080x620 internal and dropped soft shadows from row 283 and ambient occlusion from row 284 of 620'. This run's 9 slides re-rendered: qa WARN with the shipped per-slide counts (0 fails; warns on 03, 05, 07, 09), slide 08 pixel-identical, no AK DEGRADED. examples/demo-deck 4/4 OK, 0 fails, warns 3/5/5/1 as in the ledger baseline. examples/proof-3d (the other aksdf caller) render 3/3 OK with no console errors; its aksdf slide 02 passes, and slides 01 and 03 FAIL on the dead-lower-zone and reserved-text gates, which this change does not touch. tests/aksdf_vfov_verify.py still HOLDS.",
       "rollback": "git revert the upgrade(2026-10-02) commit, or git checkout <commit>^ -- assets/js/aksdf.js .claude/skills/carousel-engine/qa.py .claude/skills/carousel-engine/SKILL.md and delete tests/aksdf_deadline_verify.py.",
       "commit": "d01a0e7c"
+    },
+    {
+      "run_date": "2026-10-03",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/ship_images.py now converts only frames (slide-NN.png) and FAILS any run directory holding another slide-* image, naming the files and the remedy, including on the already-converted and --drop-png paths; a new --run <date> --drop-canvas-layers mode deletes exactly the untracked slide-NN.canvas.{png,webp} and refuses a non-dated directory, a git that can't list the directory, or any canvas layer git already tracks. Phase 11 step 1 says to copy render/slide-NN.png only.",
+      "trigger": "Run No.76 incident 1: the ship step copied render/slide-*.png into runs/2026-10-03/, which took render.py's nine slide-NN.canvas.png art layers along; SLIDE_GLOB slide-*.png matched them, ship_images converted them to slide-NN.canvas.webp and printed OK over eighteen slide files in a run about to merge (run_guard's slide-*.webp census would have counted them). The showrunner caught it by eye and removed them with an improvised one-off delete under runs/ (out/2026-10-03/drop_canvas_layers.py).",
+      "files": [
+        "scripts/ship_images.py",
+        "tests/ship_strays_verify.py",
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "tests/ship_strays_verify.py --base HEAD (new; throwaway git repos carrying a copy of the script and out/2026-10-03/render's real frames and canvas layers, nothing under runs/ touched): 15/15 HOLD. Reconstruction against the pre-upgrade script: exit 0 with 9 slide-NN.canvas.webp written (the defect). Upgraded: exit 1 naming slide-01.canvas.png... and '--drop-canvas-layers', no canvas webp written, the 9 frames still converted; an already-converted run with layers exits 1; --drop-png exits 1 while strays remain; --drop-canvas-layers removes 9 then the normal pass is OK with frames only; a TRACKED layer is refused with both files left in place; 'slide-03 copy.png' fails the pass, is not converted and is never deleted; --all with --drop-canvas-layers is rejected (rc 2); a clean run exits 0 with og.jpg and 9 webps. Regression: ship_images --all --dry-run and --all --drop-png --dry-run over all 76 shipped runs: OK, no strays anywhere; --run 2026-10-03: already converted, OK. Engine (unchanged files, rule run anyway): out/2026-10-03/slides render 9/9 OK, qa 0 fails, 1 warn on 01 (the shipped machine_qa: 0 fails 1 warn); examples/demo-deck render 4/4 OK, qa 0 fails, warns 3/5/5/1 as in the ledger baseline.",
+      "rollback": "git revert the upgrade(2026-10-03) commit, or git checkout <commit>^ -- scripts/ship_images.py prompts/routine_instructions.md and delete tests/ship_strays_verify.py.",
+      "commit": "ac74b975d97714b07cb081d41cd52ee0909211f0"
+    },
+    {
+      "run_date": "2026-10-03",
+      "kind": "fix",
+      "area": "prompts",
+      "change": "Phase 11 step 5 of prompts/routine_instructions.md no longer says a below-threshold score is a WARN row that never blocks a disclosed-shortfall ship; it says what gate_status and ship_gate have enforced since 2026-08-15: a FAIL row that sends the run back to Phase 8.",
+      "trigger": "Run No.76 incident 7 (threshold confusion between the scorer and the rubric ladder) sent this phase through every threshold statement in the spec: the completion-gate paragraph still carried the pre-2026-08-15 sentence, which contradicts scripts/gate_status.py score_row (PASS if passes else FAIL, with or without --require), scripts/ship_gate.py, and CLAUDE.md's 'A LOW SCORE IS A WORK ORDER', and is the reading that ended run No.34.",
+      "files": [
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "Prose only, aligned to code read this run: gate_status.score_row adds FAIL when the scorer's passes flag is false regardless of --require, and ship_gate_row adds FAIL with 'ITERATE, do not stop'. No other sentence in the spec says a low score is a WARN (grep for 'WARN row' and 'below-threshold' across prompts/routine_instructions.md). No gate, threshold or script changed.",
+      "rollback": "git revert the upgrade(2026-10-03) commit, or git checkout <commit>^ -- prompts/routine_instructions.md.",
+      "commit": "ac74b975d97714b07cb081d41cd52ee0909211f0"
     }
   ],
   "scan_log": [
@@ -3406,6 +3434,13 @@
       "searches": "4 searches, 2 fetches (MDN Worker() and OffscreenCanvas), 1 measurement in the engine's own Chromium via render.launch_chromium",
       "found": "(1) A blob: URL Worker runs from a file:// slide in the engine's Chromium, although WebKit documents blob workers failing on file:// (https://bugs.webkit.org/show_bug.cgi?id=192749); MDN says a blob: URL inherits its creator's origin (https://developer.mozilla.org/en-US/docs/Web/API/Worker/Worker). (2) An aksdf-shaped kernel at 1080x620: 1862 ms main thread, 1267 ms on 2 workers, 787 ms on 4 (2.4x), 718 ms on 8 with 4 cores; band output identical. (3) MDN OffscreenCanvas: transferToImageBitmap or transferable buffers return pixels to the main thread (https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas). (4) Measured on render.py itself: the 30 s renderReady race passes 50.5 s of synchronous work and fails yielding work at 31.2 s, so a worker renderer would make that race bind.",
       "outcome": "parked (FIELD_NOTES, 2026-10-02 Phase 12): scene closures must become self-contained source (an API change to every caller), the work turns async under the 30 s race, reseed state must replay per worker, and pixels must land on the main thread for the paint census. UNBLOCKS when a deck needs aksdf above ~600x750 internal twice in ten runs."
+    },
+    {
+      "run_date": "2026-10-03",
+      "focus": "(b) editorial dataviz and cartography, narrowed to which way the light may fall on relief and in ground-plane frames. Legal (last read 2026-09-27) and distinct from the last three logged foci: 2026-10-02 (e) headless Chromium, 2026-10-01 (a) LinkedIn, 2026-09-30 (c) procedural art. The stalest legal slot is (g) accessibility/PDF (2026-09-21), skipped because its last four scans mined the tagged-PDF question to a measured dead end; (b) chosen for relevance: artwork craft is the repeat offender (weakest 8 of 10) and this run's incident 2 was a lighting-direction failure on four frames.",
+      "searches": "6 searches, 4 fetches read (two ICA abstracts extracted from PDF, one arXiv abstract, one PMC paper); news-desk 'how we made it' searches returned nothing substantive for 2026",
+      "found": "(1) Golebiowska et al., ICC 2025, n=352: shaded-relief accuracy is significantly worse only for single-light Lambert at azimuth 225, landform orientation moves accuracy only at 225, and a SkyLum sky model with a dominant 225 light significantly restores it; NNW 337.5 beats NW 315 (https://ica-abs.copernicus.org/articles/10/92/2025/ica-abs-10-92-2025.pdf). (2) Stefanakis, EuroCarto 2026: light running parallel to dominant terrain grain loses cross-slope contrast, so a southern key can beat NW in aligned ranges (https://ica-abs.copernicus.org/articles/12/135/2026/ica-abs-12-135-2026.pdf); his Eduard urban study (https://arxiv.org/abs/2608.20149) is neural and not portable offline. (3) Koizumi et al. 2017: cast shadows are matched to objects with a strong light-from-above bias (d 0.74 to 1.39) and no left/right bias (https://pmc.ncbi.nlm.nih.gov/articles/PMC5298568/), the perceptual reason No.76's lateral casts failed and toward-the-lens casts worked.",
+      "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-10-03 frontier scan, focus (b)'): akrelief already ships a multidirectional set, a single-key warning needs a warn-vs-contract decision and a fixture with no shipped defect behind it, and a planning-time cast-readability check needs sun azimuth and camera heading as dossier fields, a SLIDE_DOSSIER_SPEC change. Unblocks when a second deck solves a real sun."
     }
   ]
 }

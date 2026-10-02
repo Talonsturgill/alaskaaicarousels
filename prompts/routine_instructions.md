@@ -1436,6 +1436,12 @@ JSON in its final message, which YOU persist to
    score_report.json, machine_qa.json, assemble_report.json, selection.md,
    plan.md, run_state.json.
 
+   Copy the FRAMES only, `render/slide-NN.png`, never the
+   `slide-NN.canvas.png` art layers render.py writes beside them (a glob of
+   `render/slide-*.png` takes both, which is how No.76 nearly shipped
+   eighteen slide files). Step 1a refuses any non-frame `slide-*` image and
+   names the remedy, `ship_images.py --run <date> --drop-canvas-layers`.
+
    Copy them as PNG. Step 1a converts them in place, so after Phase 11 the
    run directory holds slide-NN.webp, contact_sheet.webp and og.jpg. The
    gates in step 5 read `out/<date>`, which keeps its lossless PNGs and is
@@ -1753,9 +1759,10 @@ JSON in its final message, which YOU persist to
    it re-reads every gate artifact and PARSES each one instead of measuring
    bytes, so a corrupt-but-large report can never pass and a valid small one
    can never false-flag (run 2026-07-25's completion gate rejected a valid
-   196-byte caption_report.json against a 200-byte size threshold). An honest
-   below-threshold score is a WARN row, not a FAIL, so it never blocks a
-   disclosed shortfall ship.
+   196-byte caption_report.json against a 200-byte size threshold). A
+   below-threshold score is a FAIL row, not a WARN (2026-08-15, run No.34),
+   and so is `ship_gate`: a low score sends the run back to Phase 8, never
+   to a disclosed-shortfall stop (CLAUDE.md, "A LOW SCORE IS A WORK ORDER").
    Then `python scripts/gate_status.py --run-dir out/<date>
    --verify-pasted out/<date>/storyboard.md` must exit 0: it regenerates the
    block and diffs it row by row against the one in the run record, so a
