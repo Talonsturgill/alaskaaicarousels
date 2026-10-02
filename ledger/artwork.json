@@ -2551,6 +2551,57 @@
         "bespoke_median": 0.145
       },
       "note": "Five critics (all revise), round 1; three re-reviewers and the flow critic (7.4, art predicted 7.0), round 2 on its work order (copy plants, cool Act II, one nosing, textures off four frames); first score 8.425 art 6.5; the craft cycle on 05, 08, 07, 06, 04; re-score 8.505 art 7.0. 06 stayed at revise for hatched wedges at the plinth."
+    },
+    {
+      "run_date": "2026-10-02",
+      "carousel_no": 75,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE INSPECTION BENCH. Precision instruments in one metrology room, each reading the same statute from a different side: a PBR year rule with its slide set three graduations back (01), the rule face in macro with milled steel pockets (02), a white-line engraved dial indicator (03), an orthographic step gauge with a depth-pass focus pull (04), gauge blocks wrung to the record on a granite datum (05), a bas-relief EIS nameplate (06), a T-card board of 332 slots and 218 cards (07), raymarched manila tags on a time rod (08), the rule's end with the uncut 2026 field (09).",
+      "atmosphere": "NEW: THE INSPECTION SOFTBOX. One large overhead softbox, top centre and slightly behind, cool hemisphere fill at one sixth; casts fall straight down the frame.",
+      "depth_technique": "akthree PBR with a PMREM softbox environment and front bounce (01, 04, 05), AKSTROBE depth pass and thin-lens focus (04), CPU raymarch at native resolution (08), multi-material plan relief (07), digital bas-relief (06), Lambert-swelled ring engraving (03), lacquer heightfield with scribed grooves and milled pockets (02, 09)",
+      "line_voice": "scribed grooves through layout-blue lacquer with a lit floor and a dark lee lip; white-line ring engraving",
+      "continuity_device": "motif:the reading cursor, a glass runner with one gold hairline, gold meaning only where the statute takes its reading",
+      "continuity_devices": [
+        "D1 the reading cursor (gold hairline)",
+        "D2 the uncut field (fiscal 2026 drawn as an absence)",
+        "D3 one camera moving through one inspection room"
+      ],
+      "hook_archetype": "NEW: THE YEAR ALREADY OPEN",
+      "palette_family": "surface plate and layout blue: granite #090D13 to #3A4552, ground steel #3E4855 to #EEF3F8, layout blue #13306A to #3E6CB8, manila #B9A57A, hammertone #1E2A2E, gold #FFC72C for the reading only",
+      "type_pairing": "Fraunces display (opsz 144, weight 340) over Fraunces text (opsz 24), JetBrains Mono as the instrument voice; no Archivo",
+      "dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 5
+      },
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 5
+      },
+      "narrative_structure": "the year already open, which years the law reads, the first share moved, the second share as a staircase, the record against the lines, the machine, the people, the fix, the ask",
+      "techniques": [
+        "Inspection-room furniture library (assets/js/akmetrology.js, NEW): softbox PMREM env, granite, lapped steel, lacquer heightfield, scribed groove",
+        "Milled steel pocket through lacquer",
+        "Knock-out pads under engraved dial numerals",
+        "Orthographic step gauge with depth-pass focus",
+        "Raymarched tags at native resolution",
+        "Granite front face painted below an ortho datum"
+      ],
+      "new_techniques_logged": [
+        "113 Inspection Softbox Room (akmetrology)",
+        "114 Milled Pocket Through Lacquer"
+      ],
+      "measured": {
+        "revision_rounds": 3,
+        "flow_rounds": 1,
+        "machine_qa": "WARN",
+        "pdf_mode": "vector",
+        "score": 8.14,
+        "artwork": 6.5,
+        "bespoke_median": 0.121
+      },
+      "note": "Round 1 pixel critics (mean about 6.4), round 2 three critics plus the flow critic (6.8, art predicted 6.5): the lower thirds went flat black on four frames and lacquer sat on four. First score 8.14, art 6.5; round 3 was its work order and the one craft cycle on 04, 09, 02, 08, 05 (art 6.5 to 6.5)."
     }
   ]
 }

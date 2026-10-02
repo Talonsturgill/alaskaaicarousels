@@ -9005,3 +9005,13 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   and pdftoppm shows the extra 0.54 pt painted by the root background except a 0.04 pt sliver.
 - CORROBORATION ONLY: "Depth Score" in 2026 algorithm writeups is an industry label, not a
   LinkedIn term; LinkedIn's engineering feed index has nothing on ranking since March 12th.
+
+## 2026-10-02 (No.75, Public Law 119-21's SNAP cost shift, THE INSPECTION BENCH): retro
+
+- Four frames ended in a flat black band below a chamfer or datum, and the flow critic counted it as one cross-frame defect. A fleck-granite face painted from the datum to the frame bottom fixed 02, 05 and 09 in one idiom; on 04 the ortho plate was made deep enough to run off-frame. Plan the lower third as a surface in the CRAFT PLAN.
+- Parallel grooves for a cut-through field read as a barcode to two critics and the scorer. One milled pocket (technique 114) read as metal at thumb size.
+- On an orthographic data frame, a lit plate behind the axis's tick band is measured by the axis census as a mark. On 05 it failed qa twice (1134.5 and 1136.5 px); a plate-end mask made it worse, and a darker, matte granite with clearcoat 0 fixed it.
+- The craft cycle (04 pitch 22 to 12, steel pockets, manila tags, matte granite) moved the art score 6.5 to 6.5. The scorer's ask on 04 was yaw, which zero-yaw x-scale exactness forbade. A depth frame that must also be an exact chart needs projected labels from the first build, or it can't take the yaw the depth needs.
+- The total went 8.14 to 8.14 across the two scoring cycles and shipped on the round-3 ladder. Thumb-stop and arc held at 7 both times: the cover has no number, and Alaska's first figure arrives on slide 05. Put the state's own number on the cover or slide 02 next time a deck is mechanism-first.
+- No AI angle in this deck. The one AI lead had no fetched Alaska link and was killed at the claims gate, and the email says so.
+

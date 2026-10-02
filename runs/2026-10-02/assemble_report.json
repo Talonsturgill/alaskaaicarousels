@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-02/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8153537,
+  "pdf_mb": 8.15,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-02/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-02/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's SNAP Bill Reads a Year That Opened Thursday",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "109d8ad5dd06bcec5388eea1c03cb0cbf5e232c4cb1a480d94b27e2293cdaf53",
+        "bytes": 5389081
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "bc6c3369f03ac6ed649b72f42e7e71f6b39a3eff7e6bc30c4e2533d50b012d7a",
+        "bytes": 5428734
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "c374255262f3dc8ddcd5da0929ffa805d01df3acf849126da3be9287f32cb038",
+        "bytes": 5918284
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "0a8f5ff4780dc529dbe9dbf654898b6873614fc9428ec26cba1d16806949f59e",
+        "bytes": 4427047
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "a9ffafe5dc2c02ae1aa35127ad96a82673730bf345fa7694ce57b8d76e01eb0b",
+        "bytes": 4708431
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "1805786cf7c6d8d9b100cad640f1b315393d4e1f29111a7de9cfcd388caa2727",
+        "bytes": 5851184
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "9d643adfcc32c81f38669cb8343918b2895fd211668a79ddf6724782a91a97fc",
+        "bytes": 5718504
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "6fdd928ed01e843e36efaabb1224c02741e3fe5efca89c674904744846488404",
+        "bytes": 5119879
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "86da086c77b8525bac03231e1ab2913f5c75bf20cb5e427c2d2a45f6fdf04bdf",
+        "bytes": 5370475
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "d89db132e800784c08884cb6940b86a012b89ee1b3a669de4cae350590031819",
+        "bytes": 10806
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "5d7b6cf5d0dd862b36e9f75eeaff0fad4ad9d9a036a223068b65b2dc533d17d9",
+        "bytes": 12562
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "24b13ce54c02f82d00deb9d012e71e8f0b9e4c6983b9d17da09b6c4ebdea1a69",
+        "bytes": 13211
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "6059320cdb972e7a8a903db6be3779b326481952f8b32f3869fa43897c26385b",
+        "bytes": 14217
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "af54b4a8e742a61bf3eb6289205b2d1a7704aaf5dfdbe8f7af1bd12bad063da0",
+        "bytes": 13568
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "eaa5b56aa63bc25c23ee8199c9729bd2cff833e1acfdea1e5fa50c14b862764b",
+        "bytes": 10217
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "311ee6cdb6c25a429fea17cbaecc4d64e46e5a5f489cdc371937ae4c6e07258c",
+        "bytes": 8871
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "69921ce17d37f0b03c627e14f61ff0645d5cc642b5d70272edd1824511d6788c",
+        "bytes": 11715
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "505965b8e5394d9ae04d417df6e70543aabc0ca1ca2d543158b8f4276b383955",
+        "bytes": 9149
+      }
+    ]
+  }
+}

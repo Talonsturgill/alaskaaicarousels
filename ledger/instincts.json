@@ -1818,6 +1818,30 @@
       "evidence": "The flow critic counted one wavy two-tone wood texture on four frames (two different engines) and the table changing physics between hairline, PBR and relief frames; one lit nosing at the same y on every frame and per-engine textures fixed it in one round.",
       "act_on_it": "Plan the shared ground (its front edge, its texture per engine, the act grade) in the storyboard's CRAFT PLAN, and count textures against the same three-frame limit as mark-making.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-02",
+      "carousel_no": 75,
+      "instinct": "A LOWER THIRD BELOW A SURFACE IS A SURFACE TOO: paint the plate or bench to the frame bottom on the first build.",
+      "evidence": "The flow critic found four of nine frames ending in a flat black band under a chamfer or a datum (02, 04, 05, 09); a fleck-granite front face painted below the datum fixed all four in one idiom, and an ortho plate made deeper ran off-frame instead of ending in a hard edge.",
+      "act_on_it": "In the CRAFT PLAN, name what occupies y 1150 to 1350 on every frame, and extend 3D plates past the frame bottom rather than ending them in view.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-02",
+      "carousel_no": 75,
+      "instinct": "A CUT FIELD DRAWN AS PARALLEL GROOVES READS AS A BARCODE; draw it as one milled pocket.",
+      "evidence": "Round 1 and round 2 critics and the scorer all read the 2024 and 2025 cut-to-steel fields on 02 and 09 as barcodes and moire; a single lapped-steel pocket with a shaded top wall and a lit lip read as cut metal at thumb size.",
+      "act_on_it": "Hatching density is for tone; for material removal draw the floor, the wall shade and the lip, once.",
+      "confidence": 0.55
+    },
+    {
+      "run_date": "2026-10-02",
+      "carousel_no": 75,
+      "instinct": "RENDER RAYMARCHED ART AT NATIVE RESOLUTION; an upscale is a stair-step the critics will find.",
+      "evidence": "08's aksdf tags at 540 by 310 into 1080 by 620 showed stair-stepped strings and tag edges to two critics; rendering at 1080 by 620 native cost 37 s against the 30 s budget mark and cleared it.",
+      "act_on_it": "Set aksdf width and height to the box size in design px from the first build, and raise deadlineMs to match.",
+      "confidence": 0.5
     }
   ]
 }

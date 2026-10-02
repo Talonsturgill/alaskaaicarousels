@@ -2964,6 +2964,37 @@
       "sources_lead": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00254.xml",
       "claims": 69,
       "note": "Shipped 8.505 at revision round 3 (threshold 8.0), zero hard fails; first score 8.425 at round 2 (threshold 8.3) with art 6.5, then the one craft-floor cycle on 05, 08, 07, 06, 04 lifted art to 7.0, still under 8.5. Declared UPDATE of No.58 (dedupe flagged LIKELY DUPLICATE, read in full). Primary record: both roll call XMLs, the engrossed bill text and the bill status XML."
+    },
+    {
+      "run_date": "2026-10-02",
+      "carousel_no": 75,
+      "topic": "Public Law 119-21's SNAP cost shift reached Alaska on October 1st: the federal share of SNAP administration fell from 50 to 25 percent in fiscal 2027 (Legislative Finance about $6.6 million a year more, ADN nearly $11 million). From fiscal 2028 states pay 0, 5, 10 or 15 percent of benefits by payment error rate (under 6, 6 to 8, 8 to 10, 10 or more). Alaska's rates ran 57, 60.4, 24.7 and 23 percent for fiscal 2022 to 2025; 23 times 1.5 clears 20, so the benefit share starts in fiscal 2029, and fiscal 2030 if the unpublished fiscal 2026 rate clears it too. From fiscal 2029 the share reads the third preceding fiscal year, so fiscal 2030 reads fiscal 2027 either way. The state's EIS is 'COBOL on a mainframe', 218 of 332 eligibility technician positions were filled on average in state fiscal 2025, and full modernization is scheduled for 2028.",
+      "angle": "THE YEAR ALREADY OPEN: whichever start date applies, the law reads fiscal 2027, which began Thursday, on the eligibility system the state plans to replace in 2028. No prediction of the fiscal 2026 rate, the $6.6 million and nearly $11 million left unreconciled and attributed, the 2029/2030 pairing labelled as arithmetic on the statute.",
+      "entities": [
+        "Public Law 119-21",
+        "SNAP",
+        "USDA Food and Nutrition Service",
+        "Alaska Department of Health",
+        "Division of Public Assistance",
+        "Legislative Finance Division",
+        "Anchorage Daily News",
+        "EIS",
+        "ARIES"
+      ],
+      "keywords": [
+        "SNAP payment error rate",
+        "state cost share",
+        "administrative cost share",
+        "third preceding fiscal year",
+        "eligibility technician vacancy",
+        "COBOL mainframe",
+        "eligibility modernization",
+        "fiscal 2027"
+      ],
+      "headline": "Alaska's SNAP Bill Reads a Year That Opened Thursday",
+      "sources_lead": "https://www.congress.gov/119/plaws/publ21/PLAW-119publ21.pdf",
+      "claims": 57,
+      "note": "Shipped 8.14 at revision round 3 (threshold 8.0), zero hard fails. No AI angle in this deck: the one AI lead had no fetched Alaska link and was killed; flagged in the email."
     }
   ]
 }
