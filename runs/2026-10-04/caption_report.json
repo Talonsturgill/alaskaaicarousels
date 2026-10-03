@@ -1,0 +1,19 @@
+{
+  "chars": 899,
+  "hook": "\"The results have exceeded my expectations,\" Norm Van Vactor said in July of his Wood River AI drone pilot.",
+  "hook_len": 107,
+  "commas": 8,
+  "comma_per_100": 0.92,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#BristolBay",
+    "#Sockeye",
+    "#FishCounts"
+  ],
+  "deck_summary": "The Togiak's 119,298 sockeye are traced from a ten-minute window to their own error bar.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 63
+}

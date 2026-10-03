@@ -1,0 +1,110 @@
+{
+ "weighted_total": 8.485,
+ "threshold": 8.0,
+ "ship": true,
+ "revision_rounds": 3,
+ "scoring_cycle": 2,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "1.05+1.12+1.04+1.12+1.02+0.80+0.60+0.56+0.375+0.80 = 8.485",
+ "hard_fails": [],
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild slide 06's ground as discrete sedge tussocks with dark troughs and one soft overcast cast shadow, without the visible pad or doubled shadow, and repaint 07's black band as graded deep thalweg water.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "fix": "discrete tussock clumps with dark troughs, no pad, one soft overhead key"
+  },
+  {
+   "slide": 7,
+   "fix": "repaint the black lower-right band as graded thalweg water"
+  },
+  {
+   "slide": 4,
+   "fix": "fill the 68 floors with a visible mid-warm tone, stronger raking grade"
+  },
+  {
+   "slide": 2,
+   "fix": "carry the glitter and spruce reflection into the black lower left"
+  },
+  {
+   "slide": 8,
+   "fix": "toned converging banks with a dark cut edge, start the engraving higher"
+  },
+  {
+   "slide": 9,
+   "fix": "move the mast to the near bank, visible ripple ellipses"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   6,
+   4,
+   8,
+   2,
+   9,
+   7
+  ],
+  "art_before": 6.5,
+  "art_after": 6.5,
+  "note": "one cycle, one change per frame; the scorer saw the changes as too small to move art"
+ },
+ "history": [
+  {
+   "cycle": 1,
+   "weighted_total": 8.39,
+   "art": 6.5
+  }
+ ],
+ "editor_notes": "Art did not move with the craft cycle; known shortfalls on 06, 07, 04, 02, 08, 09 listed in artwork_weakest_frames. No.2 covered the same pilot on July 9th and the cover does not say follow-up. The 0.02 CV is a 2004 to 2005 sampling-only average from an ADF&G techdoc whose authors mark it unreviewed (disclosed in the first comment). The 07 figures and the hook quote are single-source SeafoodSource, attributed in the first comment."
+}

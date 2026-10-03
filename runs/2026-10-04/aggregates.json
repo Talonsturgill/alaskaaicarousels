@@ -1,0 +1,154 @@
+{
+ "run_date": "2026-10-04",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "fragment": "10 minutes",
+   "text": "Togiak missed by 702 fish. Its tower counted 10 minutes an hour.",
+   "member": "C33"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "Ten minutes",
+   "text": "Ten minutes, times six.",
+   "member": "C33"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "10 minutes",
+   "text": "Bristol Bay's towers count each bank for 10 minutes of every hour, then expand.",
+   "member": "C33"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "119,298 rests",
+   "text": "the Togiak's 119,298 rests on roughly 19,883 fish someone saw",
+   "member": "C111"
+  },
+  {
+   "kind": "ratio",
+   "slide": 2,
+   "fragment": "1 of 6",
+   "text": "1 of 6 ten-minute windows",
+   "members": [
+    "C85"
+   ],
+   "items": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "found": [
+    "2"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "nine Bristol Bay towers",
+   "text": "ADF&G put the average sampling CV across nine Bristol Bay towers at 0.02 in 2004 and 2005.",
+   "member": "C34"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "ten minutes",
+   "text": "It assumes no miscounts inside the ten minutes.",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "12 to 80",
+   "text": "The rule was tested on 12 to 80 hours.",
+   "member": "C39"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "1966, crews",
+   "text": "In 1965 and 1966, crews counted whole hours",
+   "member": "C37"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "10 minutes",
+   "text": "compared them with the first 10 minutes, expanded",
+   "member": "C37"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "fragment": "One month",
+   "text": "One month, 720 hours",
+   "note": "the plate's own scale: one month drawn as 30 days of 24 hour trays, the shortest season C39 names (a month or longer)"
+  },
+  {
+   "kind": "design",
+   "slide": 4,
+   "fragment": "720 hours",
+   "text": "One month, 720 hours",
+   "note": "the plate's tray count, 30 x 24, asserted by __akAssert on the rendered trays"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "12 to 80",
+   "text": "12 to 80 hours counted in full",
+   "member": "C39"
+  },
+  {
+   "kind": "count",
+   "slide": 5,
+   "fragment": "Eight towers",
+   "text": "Eight towers counted 12.3 million of 15.6 million.",
+   "subject": "towers",
+   "members": [
+    "C13",
+    "C16",
+    "C19",
+    "C20",
+    "C22",
+    "C23",
+    "C24",
+    "C25"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "fragment": "12 to 18",
+   "text": "The project lead says it spots fish 12 to 18 hours before the tower.",
+   "member": "C62"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "fragment": "256 flights",
+   "text": "The first phase logged 256 flights",
+   "member": "C60"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "fragment": "17,552 images",
+   "text": "and 17,552 images",
+   "member": "C60"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "fragment": "117 orthomosaics",
+   "text": "stitched into 117 orthomosaics",
+   "member": "C61"
+  }
+ ]
+}

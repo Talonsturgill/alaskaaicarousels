@@ -1,0 +1,126 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold count line on the panel's upstream edge': canvas 79.4 dE, page 79.0 dE, 94% of its rect is clear of opaque DOM (h1#head stands on the rest)"
+      ],
+      "fits": [
+        "head 'Togiak missed by 702 fish.Its tower counted1' fits 3/3 lines at 106.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the counted window, one solid gold segment of six': canvas 82.0 dE, page 82.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Ten minutes,times six.' fits 2/2 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold floor rule at 120,000': canvas 75.0 dE, page 80.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the magnified escapement axis' runs 116,500 sockeye at 120 to 122,500 sockeye at 960; 7 declared mark(s), and the band's census finds no others",
+        "'the full escapement rail' runs 116,000 sockeye at 120 to 124,000 sockeye at 960; 8 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "head 'The error bar runsthree times the miss.' fits 2/2 lines at 107.5px"
+      ],
+      "asserts": [
+        "'702 fish as solid glyphs of ten' holds: 70 vs 70 marks, counted over 70 declared marks (within 0)",
+        "'702 fish as solid glyphs of ten': 70 mark centres probed at r=7px, cohort median 81.8 dE, all present (weakest 45.9 dE)",
+        "'the 2 percent sleeve as glyphs of ten' holds: 477 vs 477 marks, counted over 477 declared marks (within 0)",
+        "'the 2 percent sleeve as glyphs of ten': 239 mark centres probed at r=7px, sampled every 2 marks, cohort median 43.8 dE, all present (weakest 24.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold rule at the ten-minute mark of one magnified hour': canvas 76.5 dE, page 92.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'one hour of the month on the plate' lands 0.0px from its target",
+        "leader 'one hour of the month on the plate' meets its label 13.0px away",
+        "leader 'one hour of the month on the plate' is drawn 59 px at 66 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The rule was testedon 12 to 80 hours.' fits 2/2 lines at 107.5px"
+      ],
+      "asserts": [
+        "'720 hours in one 30-day month' holds: 720 vs 720 marks, counted over 720 declared marks (within 0)",
+        "'720 hours in one 30-day month': 240 mark centres probed at r=14px, sampled every 3 marks, cohort median 13.5 dE, all present (weakest 8.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'Eight towers counted12.3 million of 15.6 mil' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the dock box on the gravel bar': shadow L* 23.4 vs ground L* 64.4, dL 41.0 at 432w"
+      ],
+      "fits": [
+        "head 'A box opens.A drone takes off.' fits 2/2 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold training line across the reach': canvas 97.8 dE, page 100.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'A key pressfor every fish.' fits 2/2 lines at 111.5px"
+      ],
+      "asserts": [
+        "'one ice tick for each fish already past the training line' holds: 18 vs 18 marks, counted over 18 declared marks (within 0)",
+        "'one ice tick for each fish already past the training line': 18 mark centres probed at r=10px, cohort median 98.8 dE, all present (weakest 94.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the dashed gold phantom line in the empty PASS IF WITHIN field': canvas 118.7 dE, page 119.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Matching the towercan't be the bar.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the dashed gold count line across the night water': canvas 74.4 dE, page 87.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Before the Wood Rivertest runs, who shouldse' fits 3/3 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

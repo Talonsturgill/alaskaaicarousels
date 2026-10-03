@@ -1,0 +1,199 @@
+{
+ "run_date": "2026-10-04",
+ "carousel_no": 77,
+ "effort": "high",
+ "started_utc": "2026-10-03T06:16:18.898551Z",
+ "revision_rounds": 3,
+ "date_note": "Woke 22:15 AKDT on October 2nd (06:15 UTC October 3rd), the regular daily slot, 24 hours after No.76. runs/2026-10-02 holds No.75 and runs/2026-10-03 holds No.76 (dated ahead per the same rule yesterday), both complete. Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-04. run_guard (UTC default 2026-10-03) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-04 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/plan.md",
+    "out/2026-10-04/WORKLOG.md",
+    "out/2026-10-04/trend_check.txt"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "2 searches (LinkedIn document engagement Oct 2026; illustrative PBR texture artifacts); nothing new beyond FIELD_NOTES, no entry written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/scout_merge.md",
+    "out/2026-10-04/research/adfg_bb_2026_summary.txt",
+    "out/2026-10-04/research/adfg_techdoc18.txt"
+   ],
+   "note": "six scouts returned (A 25, B 25, C 25, D 25, E 25, F 22 searches = 147); window thin on new Alaska AI decisions; showrunner pulled two ADF&G PDFs with fetch_pdf_text.py (season summary, techdoc 18) and spent 5 searches"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/claims.json"
+   ],
+   "note": "fact-checker 79 claims then a 31-claim addendum from the AFS Salmonid Field Protocols Handbook tower chapter (C80 to C110), 110 total, 49 primary; 2 stories surviving; claims_check PASS 110/110"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "worklist 6 items refreshed (ana-ai3, fnsb moratorium, kpb weather code, aidea houston, deepgreen, doe bulk power) plus DOT Great Corridors moved to pending-decision/closed after its October 2nd close; watch.json bills agree with the docket (HB 259 ENE, SB 250 CRA), 0 hearings (interim), failed []; 30 candidates triaged, none added (no AI-infrastructure decision among them, same set as yesterday). No new item from this run claims: the drone validation is not a formal public decision, and the UAA RAISE call closed its statements of need on September 21st, so its access state for a new entrant is not verifiable."
+  },
+  "gas_watch": {
+   "status": "in_progress",
+   "note": "cron_health PASS 6 workflows 06:2xZ; site_signoff PASS 132 pages 18 checks; pagecheck PASS; desktop+phone screenshots of home, docket, gas-watch clean; gaswatch live FAIL on source reading published only (CINGSA 18:52 Alaska reading after 23:03Z collection; 04:40Z slot not yet dispatched); workflow_dispatch 403; recheck later in run"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/selection.md"
+   ],
+   "pick": "Bristol Bay escapement towers (10 minutes of every hour, times six) and the Wood River AI drone pilot that must be validated against them"
+  },
+  "directors_room": {
+   "status": "done",
+   "lenses": [
+    "data-journalist",
+    "cinematographer",
+    "systems-illustrator"
+   ],
+   "artifacts": [
+    "out/2026-10-04/storyboard.md",
+    "out/2026-10-04/selection.md",
+    "out/2026-10-04/directors_brief.md"
+   ],
+   "note": "dossier_check PASS 9 of 9 pre-build; C111 and C112 added as showrunner-derived arithmetic claims (declared again in aggregates.json)"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/copy.json"
+   ],
+   "note": "copywriter; three corrections applied (03 tower projects, 04 separate paired tests, 08 sampling error); 05 adds 702 short (C15) in round 1; style_lint clean; caption_check --copy PASS"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/slides",
+    "out/2026-10-04/render"
+   ],
+   "note": "9/9 qa.py PASS; bespoke_check PASS median 0.065 drawn share 68%; aggregates.json PASS 20/20; BUILD RECONCILIATION appended"
+  },
+  "pixel_review": {
+   "status": "done",
+   "rounds": [
+    {
+     "round": 1,
+     "critic_scores": {
+      "01": 6.8,
+      "02": 5.6,
+      "03": 6.8,
+      "04": 6.4,
+      "05": 6.4,
+      "06": 6.4,
+      "07": 6.6,
+      "08": 6.4,
+      "09": 6.6
+     },
+     "fixed": "01 line on panel occluded only by fish, teal absorption, panel segments, focus; 02 diffuse aluminum, bounce and rim lights, bank gravel, six windows framed with ticks, smooth reflection, guy wires off the text; 03 tick labels inside the plate, phantom value, jitter, lit pool; 04 bracket under the 80, plate dome and lips, ghost sixths, leader; 05 Egegik and Ugashik on land, Togiak plate with 702 short; 06 fourth shadowless pass, wider cell grid, fixture veil; 07 polygon stones, brighter fish, ticks 4x26 with halos spaced 20 px; 08 cased channel, lines taper to shore, bank stipple; 09 receding count line under crossing fish, streak ends before near bed, bigger lamp head; deck-wide fixture veils and #8FA3B3 ink"
+    },
+    {
+     "round": 2,
+     "critic_scores": {
+      "01": 6.9,
+      "02": 6.4,
+      "03": 7.3,
+      "04": 7.0,
+      "05": 6.8,
+      "06": 6.5,
+      "07": 7.2,
+      "08": 6.9,
+      "09": 7.0
+     },
+     "flow_critic": {
+      "score": 7.2,
+      "predicted_art": 6.5
+     },
+     "fixed": "flow critic work order: 06 cobbles replaced by tundra moss with a waterline gravel strip; 02 near lane cobbles trimmed, lamp cone, D3 fish entering from the left, label under the counted window; 08 banks as land masses, dusk sky, wider thalweg pitch, lit block arris; 04 body cut to the 1960s check (C89 off the slide), plate falloff and relief; 08 body cut of the two-year line (C63 off the slide); 05 Wood plate planted in ice with AI drone pilot (C41, C52); 03 half-sleeve 2,386 dimension arrow; 07 fish variety, stronger casts, quieter bar; 09 layered spruce, softened lamp, stones fade with distance, warmer bed, fins and eyes; 01 fish spacing and diffuse flank"
+    }
+   ]
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/flow_review.json"
+   ],
+   "note": "flow critic 7.2, predicted art 6.5; work order applied in round 2"
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/final/carousel.pdf",
+    "out/2026-10-04/final/contact_sheet.png"
+   ]
+  },
+  "scoring": {
+   "status": "done",
+   "cycles": [
+    {
+     "cycle": 1,
+     "weighted_total": 8.39,
+     "art": 6.5,
+     "weakest": "Artwork craft & genuine detail"
+    },
+    {
+     "cycle": 2,
+     "weighted_total": 8.485,
+     "art": 6.5
+    }
+   ],
+   "craft_cycle": {
+    "frames": [
+     6,
+     4,
+     8,
+     2,
+     9,
+     7
+    ],
+    "changes": {
+     "06": "tussock moss on one material with a flat pad, straight contact",
+     "04": "the 68 checked trays as warm lit floors, the 80 as one block",
+     "08": "gravel point bar on the inside of the main bend",
+     "02": "ripple glints across the dead open water",
+     "09": "braces bounded by the rails, blue-hour ripple lines in the open water",
+     "07": "black lower-right corner lifted"
+    },
+    "copy": "caption Nine Bristol Bay tower projects; 08 dates the 2 percent to 2004 and 2005; caption shortfall to miss for length",
+    "art_before": 6.5,
+    "art_after": 6.5
+   }
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-10-04/"
+   ],
+   "note": "artifacts copied, webp 5.27M (7.8x), PDF shrunk 16 percent, site rebuilt 133 pages, parsers/scanner/docket_dates/site_fresh PASS, no alerts due, prune freed 1.03M, ledgers appended, FIELD_NOTES retro, techniques 118 to 120"
+  },
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending",
+  "caption_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-04/caption.txt"
+   ],
+   "note": "critic rejected round one; A reassigned to QUOTE FIRST; caption_check PASS 896 chars hook 107"
+  }
+ },
+ "art_build": "done",
+ "copy": "done",
+ "flow_review": "done",
+ "scoring": "done",
+ "pixel_review": "done",
+ "assemble": "done",
+ "ship": "done"
+}

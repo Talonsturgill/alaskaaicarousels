@@ -2653,6 +2653,57 @@
         "bespoke_median": 0.084
       },
       "note": "Round 1 critics 5.6 to 6.5: casts edge-on hairlines on four frames, gold names, footer lost. Round 2 critics 7.0 to 7.8 plus flow 7.0 after turning cameras toward the sun. First score 8.52 with art 7.0; craft cycle on 09, 08, 05, 04, 03."
+    },
+    {
+      "run_date": "2026-10-04",
+      "carousel_no": 77,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE COUNTER'S LANE. A floodlit clear-water counting lane over a white substrate panel (01, PBR with a photon-splat caustic spotlight, fish occluding a gold count line), the tower that watches it (02), the method as instruments (03 isotype error bar, 04 bas-relief month plate, 05 DEM relief of the nine rivers), the drone's morning (06 SDF dock on tussock moss, 07 overhead orthomosaic of the reach), an engraved reach under an unsigned title block (08), the lane at night (09).",
+      "atmosphere": "NEW: THE FLOODLIT NIGHT COUNT turning to an overcast 8:30 a.m. and back: floodlight and blue hour on 01 and 02, instrument night 03 to 05, overcast morning 06 and 07, dusk 08, night 09.",
+      "depth_technique": "akthree PBR with a depth-pass focus pull and Beer-Lambert absorption (01, 02); four averaged aksdf passes for an overcast dome (06); per-pixel water-column absorption over painted stones (07); DEM hillshade (05)",
+      "line_voice": "instrument",
+      "continuity_device": "motif:the gold count line, solid on the panel edge, cut into six windows, the floor, the ten-minute rule, the training line with ice ticks, a dashed phantom in an empty field, a dashed line receding across night water",
+      "continuity_devices": [
+        "D1 the gold count line in world space, changing shape",
+        "D2 the light arc night to morning to dusk to night",
+        "D3 01's lane fish entering 02 from the left"
+      ],
+      "hook_archetype": "NEW: THE MARGIN INSIDE THE METHOD",
+      "palette_family": "Floodlit clearwater: night #050E1A, river glass #12323C, gravel #B5A486, floodlight #F2E8D2, overcast #B9C6C8, tundra #5E6B45, machine ice #5AC8F0 for the drone's marks only, gold #FFC72C for the count line only",
+      "type_pairing": "Bricolage Grotesque alone (700 at stretch 80 display, 400 body) with JetBrains Mono",
+      "narrative_structure": "the miss, how the count is made, the count's own error, was it checked, the season, the box opens, what the model learns, the bar, who sets the margin",
+      "techniques": [
+        "118 Photon-splat Caustic Spotlight Map",
+        "119 Streamline White-line Lay",
+        "120 Overcast Dome by Averaged Raymarch Passes",
+        "DEM relief wash with 10 m isobaths",
+        "bas-relief tray plate"
+      ],
+      "new_techniques_logged": [
+        "118 Photon-splat Caustic Spotlight Map",
+        "119 Streamline White-line Lay",
+        "120 Overcast Dome by Averaged Raymarch Passes"
+      ],
+      "dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 3
+      },
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 3
+      },
+      "measured": {
+        "revision_rounds": 3,
+        "flow_rounds": 1,
+        "machine_qa": "PASS",
+        "pdf_mode": "vector",
+        "score": 8.485,
+        "artwork": 6.5,
+        "bespoke_median": 0.058
+      },
+      "note": "Round 1 critics 5.6 to 6.8, round 2 6.4 to 7.3, flow critic 7.2 (cobble beds on five frames, no dusk step, dead 05 to 06 junction). Craft cycle on 06, 04, 08, 02, 09, 07."
     }
   ]
 }

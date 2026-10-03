@@ -13,6 +13,82 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-10-04/",
+      "url": "https://alaskaaihq.com/archive/2026-10-04/",
+      "title": "Ten Minutes of Every Hour, The Count an AI Drone Must Beat",
+      "summary": "The Togiak's 119,298 sockeye are traced from a ten-minute window to their own error bar.",
+      "content_html": "<p><em>&quot;The results have exceeded my expectations,&quot; Norm Van Vactor said in July of his Wood River AI drone pilot.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-10-04/og.jpg\" alt=\"Ten Minutes of Every Hour, The Count an AI Drone Must Beat cover slide\" width=\"1080\" height=\"1350\"></p><p>Togiak missed by 702 fish. Its tower counted 10 minutes an hour.</p><p>Ten minutes, times six.</p><p>Bristol Bay's towers count each bank for 10 minutes of every hour, then expand. Crews work around the clock with hand clickers. At six to one, the Togiak's 119,298 rests on roughly 19,883 fish someone saw.</p><p>The error bar runs three times the miss.</p><p>ADF&amp;G put the average sampling CV across nine Bristol Bay tower projects at 0.02 in 2004 and 2005. On the Togiak's 119,298 that is about 2,400 fish either way. It assumes no miscounts inside the ten minutes.</p><p>The rule was tested on 12 to 80 hours.</p><p>In 1965 and 1966, crews counted whole hours and compared them with the first 10 minutes, expanded. Errors ran generally under 10 percent, with no significant bias.</p><p>Eight towers counted 12.3 million of 15.6 million.</p><p>A box opens. A drone takes off.</p><p>A computer vision model is learning to pick out the salmon in its footage.</p><p>A key press for every fish.</p><p>Technicians press a key each time a fish crosses a line drawn on the footage. The first phase logged 256 flights and 17,552 images, stitched into 117 orthomosaics. The project lead says it spots fish 12 to 18 hours before the tower.</p><p>Matching the tower can't be the bar.</p><p>The pilot plans to test its model against Fish and Game tower counts next. Tower sampling error averaged about 2 percent in 2004 and 2005. The team's goal is a count with a stated confidence. Write the margin first.</p><p>Before the Wood River test runs, who should set the passing margin?</p><h3>Sources</h3><ul><li><a href=\"https://www.adfg.alaska.gov/static/applications/dcfnewsrelease/1838297519.pdf\">Alaska Department of Fish and Game, Division of Commercial Fisheries</a>, primary document</li><li><a href=\"https://www.adfg.alaska.gov/static/fishing/pdfs/research/wassip/documents/techdoc_18_estimating_escapement_western_alaskan_sockeye_v1.pdf\">Alaska Department of Fish and Game, WASSIP technical document 18</a>, primary document</li><li><a href=\"https://api.nsf.gov/services/v1/awards.json?id=2433241&amp;printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText\">U.S. National Science Foundation awards API</a>, primary document</li><li><a href=\"https://coeng.uaa.alaska.edu/AI/?p=611\">University of Alaska Anchorage, Artificial Intelligence @ UAA</a>, primary document</li><li><a href=\"https://www.alaska.edu/news/system/2026-ai-symposium-ua-system.php\">University of Alaska System news</a>, primary document</li><li><a href=\"https://wildsalmoncenter.org/wp-content/uploads/2008/07/SFPH-Chapter-11-Tower-Counts.pdf\">Salmonid Field Protocols Handbook (American Fisheries Society), Tower Counts chapter by Carol Ann Woody</a>, report</li><li><a href=\"https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts\">KDLG 670AM, via Alaska Public Media (Jessie Sheldon)</a>, report</li><li><a href=\"https://www.kdlg.org/fisheries/2023-07-14/wood-river-counter-crews-tally-sockeye-for-escapement\">KDLG (Jessie Sheldon)</a>, report</li><li><a href=\"https://www.seafoodsource.com/news/alaskan-fisheries-scientists-are-hoping-to-use-ai-for-salmon-enumeration-processes-in-the-bristol-bay\">SeafoodSource</a>, report</li><li><a href=\"https://alaskapublic.org/news/economy/2026-10-02/alaskas-bristol-bay-salmon-return-about-average-this-year-with-higher-prices-paid-to-fishers\">Alaska Beacon, via Alaska Public Media (Yereth Rosen)</a>, report</li><li><a href=\"https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/\">KTOO (Jamie Diep)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-10-04/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Togiak missed by 702 fish. Its tower counted 10 minutes an hour.\n\nTen minutes, times six.\n\nBristol Bay's towers count each bank for 10 minutes of every hour, then expand. Crews work around the clock with hand clickers. At six to one, the Togiak's 119,298 rests on roughly 19,883 fish someone saw.\n\nThe error bar runs three times the miss.\n\nADF&G put the average sampling CV across nine Bristol Bay tower projects at 0.02 in 2004 and 2005. On the Togiak's 119,298 that is about 2,400 fish either way. It assumes no miscounts inside the ten minutes.\n\nThe rule was tested on 12 to 80 hours.\n\nIn 1965 and 1966, crews counted whole hours and compared them with the first 10 minutes, expanded. Errors ran generally under 10 percent, with no significant bias.\n\nEight towers counted 12.3 million of 15.6 million.\n\nA box opens. A drone takes off.\n\nA computer vision model is learning to pick out the salmon in its footage.\n\nA key press for every fish.\n\nTechnicians press a key each time a fish crosses a line drawn on the footage. The first phase logged 256 flights and 17,552 images, stitched into 117 orthomosaics. The project lead says it spots fish 12 to 18 hours before the tower.\n\nMatching the tower can't be the bar.\n\nThe pilot plans to test its model against Fish and Game tower counts next. Tower sampling error averaged about 2 percent in 2004 and 2005. The team's goal is a count with a stated confidence. Write the margin first.\n\nBefore the Wood River test runs, who should set the passing margin?",
+      "date_published": "2026-10-04T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-10-04/og.jpg",
+      "tags": [
+        "BristolBay",
+        "Sockeye",
+        "FishCounts"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 112,
+        "sources": [
+          {
+            "url": "https://www.adfg.alaska.gov/static/applications/dcfnewsrelease/1838297519.pdf",
+            "outlet": "Alaska Department of Fish and Game, Division of Commercial Fisheries",
+            "primary": true
+          },
+          {
+            "url": "https://www.adfg.alaska.gov/static/fishing/pdfs/research/wassip/documents/techdoc_18_estimating_escapement_western_alaskan_sockeye_v1.pdf",
+            "outlet": "Alaska Department of Fish and Game, WASSIP technical document 18",
+            "primary": true
+          },
+          {
+            "url": "https://api.nsf.gov/services/v1/awards.json?id=2433241&printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,abstractText",
+            "outlet": "U.S. National Science Foundation awards API",
+            "primary": true
+          },
+          {
+            "url": "https://coeng.uaa.alaska.edu/AI/?p=611",
+            "outlet": "University of Alaska Anchorage, Artificial Intelligence @ UAA",
+            "primary": true
+          },
+          {
+            "url": "https://www.alaska.edu/news/system/2026-ai-symposium-ua-system.php",
+            "outlet": "University of Alaska System news",
+            "primary": true
+          },
+          {
+            "url": "https://wildsalmoncenter.org/wp-content/uploads/2008/07/SFPH-Chapter-11-Tower-Counts.pdf",
+            "outlet": "Salmonid Field Protocols Handbook (American Fisheries Society), Tower Counts chapter by Carol Ann Woody",
+            "primary": false
+          },
+          {
+            "url": "https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts",
+            "outlet": "KDLG 670AM, via Alaska Public Media (Jessie Sheldon)",
+            "primary": false
+          },
+          {
+            "url": "https://www.kdlg.org/fisheries/2023-07-14/wood-river-counter-crews-tally-sockeye-for-escapement",
+            "outlet": "KDLG (Jessie Sheldon)",
+            "primary": false
+          },
+          {
+            "url": "https://www.seafoodsource.com/news/alaskan-fisheries-scientists-are-hoping-to-use-ai-for-salmon-enumeration-processes-in-the-bristol-bay",
+            "outlet": "SeafoodSource",
+            "primary": false
+          },
+          {
+            "url": "https://alaskapublic.org/news/economy/2026-10-02/alaskas-bristol-bay-salmon-return-about-average-this-year-with-higher-prices-paid-to-fishers",
+            "outlet": "Alaska Beacon, via Alaska Public Media (Yereth Rosen)",
+            "primary": false
+          },
+          {
+            "url": "https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/",
+            "outlet": "KTOO (Jamie Diep)",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-10-03/",
       "url": "https://alaskaaihq.com/archive/2026-10-03/",
       "title": "Fairbanks Votes Tuesday. Six Voices on AI Data Centers",
@@ -3409,78 +3485,6 @@
           {
             "url": "https://www.citizen.org/article/tracker-legislation-on-deepfakes-in-elections/",
             "outlet": "Public Citizen",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-08-06/",
-      "url": "https://alaskaaihq.com/archive/2026-08-06/",
-      "title": "The Land Is On Offer. The Power Is Not.",
-      "summary": "The deck draws both parcels at one true scale, four gas prices as printed and storage against the stated target.",
-      "content_html": "<p><em>April 10th, the Air Force offered about 4,700 acres for AI data centers. August 4th, Alaska defended about 19,950 more.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-06/og.jpg\" alt=\"The Land Is On Offer. The Power Is Not. cover slide\" width=\"1080\" height=\"1350\"></p><p>ABOUT 4,700 ACRES ON OFFER.</p><p>THE POWER IS NOT.</p><p>The sites have &quot;insufficient power&quot; for a data center</p><p>APPROXIMATELY 19,950 ACRES NORTH OF HOUSTON.</p><p>&quot;It just comes down to the fact that nobody has the gas right now that they're willing to sell.&quot;</p><p>Four prices. One unit. Different things.</p><p>About 4 billion cubic feet. The target is 7.</p><p>Thirty minutes at a time, in the worst case.</p><p>&quot;The clock is ticking very loudly right now.&quot;</p><p>Comment on the DNR preliminary decision by August 19th.</p><h3>Sources</h3><ul><li><a href=\"https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/\">Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski</a>, primary document</li><li><a href=\"https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm\">Board of Governors of the Federal Reserve System</a>, primary document</li><li><a href=\"https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage\">Alaska Public Media</a>, report</li><li><a href=\"https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas\">Alaska Beacon, republished by Alaska Public Media</a>, report</li><li><a href=\"https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/\">Mat-Su Sentinel</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session\">Alaska Public Media</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/alaska-legislature/2026-07-20/hilcorp-killed-alaska-lng-bill-some-legislators-say-but-governor-calls-the-claim-bulls-t\">Alaska Beacon, republished by Alaska Public Media</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal\">Alaska Public Media</a>, report</li><li><a href=\"https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/\">HigherGov, aggregating the federal solicitation</a>, report</li><li><a href=\"https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/\">Anchorage Daily News</a>, report</li><li><a href=\"https://www.executivegov.com/articles/air-force-ai-data-centers-alaska\">ExecutiveGov</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-06/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "ABOUT 4,700 ACRES ON OFFER.\n\nTHE POWER IS NOT.\n\nThe sites have \"insufficient power\" for a data center\n\nAPPROXIMATELY 19,950 ACRES NORTH OF HOUSTON.\n\n\"It just comes down to the fact that nobody has the gas right now that they're willing to sell.\"\n\nFour prices. One unit. Different things.\n\nAbout 4 billion cubic feet. The target is 7.\n\nThirty minutes at a time, in the worst case.\n\n\"The clock is ticking very loudly right now.\"\n\nComment on the DNR preliminary decision by August 19th.",
-      "date_published": "2026-08-06T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-06/og.jpg",
-      "tags": [],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 30,
-        "sources": [
-          {
-            "url": "https://www.adn.com/opinions/2026/08/04/opinion-the-best-time-to-shape-mat-su-development-is-before-it-begins/",
-            "outlet": "Anchorage Daily News opinion, signed by AIDEA deputy director Brandon Brefczynski",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm",
-            "outlet": "Board of Governors of the Federal Reserve System",
-            "primary": true
-          },
-          {
-            "url": "https://alaskapublic.org/news/economy/energy/2026-07-28/southcentral-alaska-gas-utility-says-bills-likely-to-rise-amid-supply-shortage",
-            "outlet": "Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/economy/energy/2026-07-28/as-winter-approaches-southcentral-alaska-utilities-are-worried-about-running-short-of-gas",
-            "outlet": "Alaska Beacon, republished by Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://www.matsusentinel.com/mea-says-rolling-blackouts-possible-under-worst-case-winter-gas-shortage/",
-            "outlet": "Mat-Su Sentinel",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-16/dunleavy-rejecting-corporate-tax-change-calls-third-alaska-lng-special-session",
-            "outlet": "Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-20/hilcorp-killed-alaska-lng-bill-some-legislators-say-but-governor-calls-the-claim-bulls-t",
-            "outlet": "Alaska Beacon, republished by Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-07-27/lawmakers-say-third-alaska-lng-session-is-dunleavys-last-chance-to-make-a-deal",
-            "outlet": "Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://www.highergov.com/contract-opportunity/rflp-artificial-intelligence-ai-data-center-deve-afcec-26-r-0006-o-db695/",
-            "outlet": "HigherGov, aggregating the federal solicitation",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/alaska-news/military/2026/05/05/the-military-wants-to-host-data-centers-in-alaska-raising-questions-about-whether-theres-enough-gas-to-power-them/",
-            "outlet": "Anchorage Daily News",
-            "primary": false
-          },
-          {
-            "url": "https://www.executivegov.com/articles/air-force-ai-data-centers-alaska",
-            "outlet": "ExecutiveGov",
             "primary": false
           }
         ]

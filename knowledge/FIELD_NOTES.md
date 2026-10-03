@@ -9112,3 +9112,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   `heading` to the dossier ART block, have dossier_check WARN when |sun_az - heading| mod 180 is
   within 30 degrees of 90 and the frame's art promises casts, and have akrelief warn on a single
   key between 160 and 250 unless the view is rotated.
+
+## 2026-10-04 (No.77, the Togiak's tower and the AI drone that must beat it, THE COUNTER'S LANE): retro
+
+- A GROUND IS A TEXTURE TOO. Five of nine frames carried a dome-cobble bed, drawn by four different engines (PBR instances on 01 and 02, SDF on 06, painted stones on 07, canvas domes on 09). The CRAFT PLAN census counts primary mark-making, so it passed. The flow critic named it as one picture repeated. Rebuilding 06 on tussock moss and trimming 02's lane cleared it. Plan the lower band's texture per frame, beside the mark-making.
+- A COUNT LINE RUNS ACROSS THE PATH OF WHAT IT COUNTS. 09's first line ran horizontally across the water while the fish swam right, so nothing crossed it. Turning it to recede into depth, as on 01, made every fish a crossing. Draw it under the fish.
+- METAL WITHOUT AN ENV MAP PRINTS BLACK. 02's scaffold at metalness 0.85 was a dark cage. At 0.3, with a bounce point light and a rim spot, it read as lit aluminum and the frame went from the deck's weakest to mid-pack.
+- A SYNCHRONOUS RENDER BLOCKS THE LOAD EVENT. aksdf on 06 (90 to 140 s) and 07's per-pixel paint ran before the first await, so page.goto timed out at 45 s. Await the load event, yield once, await the fonts, then do the long work with nothing after it that yields. The 30 s renderReady race timer is already overdue when the work returns.
+- AKSDF HAS ONE SHADOW RAY, SO OVERCAST NEEDS PASSES. Three keyed passes plus a shadowless fill pass, averaged, gave a soft contact shadow that never goes black (technique 120). Colour patches on an SDF ground print as camouflage, because each material id is a flat colour. One material on a heightfield models better.
+- AKENGRAVE `surface()` COLLAPSED ON A SINUOUS CHANNEL even with seedDeg set. A hand-built streamline lay (technique 119) read as water at once. Broken riffle dashes on neighbouring lines beat into moire. Hachures across streamlines print as a grid.
+- THE CAPTION AND THE SLIDES CAN DISAGREE BY ONE WORD. The scorer caught "Nine Bristol Bay towers" in the caption against "Eight towers" on 05. C34 is nine tower PROJECTS in 2004 and 2005. One word fixed it. Re-read the caption against every slide number before scoring.
+- THE CRAFT CYCLE DID NOT MOVE ART (6.5 to 6.5). One change per frame across six frames was too thin to read at the scorer's distance. Two of the changes (07's veil, 09's ripples) were invisible at thumb. A craft cycle should spend its one round on the two frames named first, with a rebuild of the largest object rather than a tweak on six.

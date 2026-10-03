@@ -3029,6 +3029,45 @@
       "sources_lead": "https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/",
       "claims": 57,
       "note": "Shipped 8.60 at revision round 3 (threshold 8.3), zero hard fails; artwork 7.5. Fifth deck in about 30 days touching the Air Force lease lane (68, 70, 71, 76); this one's subject is the election and the six positions."
+    },
+    {
+      "run_date": "2026-10-04",
+      "carousel_no": 77,
+      "topic": "Bristol Bay's escapement towers count 10 minutes of every hour on each bank and multiply by six; ADF&G's September 22nd season summary had the Togiak's tower count at 119,298, 702 short of its 120,000 floor, while ADF&G's own average sampling CV of 0.02 across nine tower projects (2004 and 2005) puts about 2,400 fish either way on that count. The Wood River AI drone pilot (UW FRI, BBRSDA, BBEDC; Fish and Game not directly involved as of July) plans to test its computer vision count against the towers next.",
+      "angle": "MEASURE THE MEASURER: before an AI count is graded against the tower, state the tower's own error bar and write the passing margin first; the 1965 to 1966 validation of the ten-minute rule covered only 12 to 80 hours.",
+      "entities": [
+        "Alaska Department of Fish and Game",
+        "Togiak River",
+        "Wood River",
+        "Bristol Bay counting towers",
+        "WASSIP Technical Document 18",
+        "Norm Van Vactor",
+        "University of Washington Fisheries Research Institute",
+        "BBRSDA",
+        "BBEDC",
+        "KDLG",
+        "SeafoodSource"
+      ],
+      "keywords": [
+        "escapement",
+        "counting tower",
+        "10 minutes per hour",
+        "expansion by six",
+        "sampling CV",
+        "Togiak 702 short",
+        "AI drone",
+        "computer vision",
+        "validation",
+        "passing margin"
+      ],
+      "headline": "Togiak missed by 702 fish. Its tower counted 10 minutes an hour.",
+      "sources_lead": [
+        "https://www.adfg.alaska.gov/static/applications/dcfnewsrelease/1838297519.pdf",
+        "https://www.adfg.alaska.gov/static/fishing/pdfs/research/wassip/documents/techdoc_18_estimating_escapement_western_alaskan_sockeye_v1.pdf",
+        "https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts"
+      ],
+      "claims": 112,
+      "note": "Shipped 8.48 at revision round 3 (threshold 8.3), zero hard fails; artwork 6.5. Follows No.2 (2026-07-09) on the same Wood River pilot, 87 days later, with new material (the September 22nd season summary and the Togiak miss) and the reversed angle; outside the rubric's 30-day window, inside the topics _spec 90-day text, and the cover does not label it an update."
     }
   ]
 }
