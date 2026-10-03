@@ -42,8 +42,8 @@
    "note": "worklist 6 items refreshed (ana-ai3, fnsb moratorium, kpb weather code, aidea houston, deepgreen, doe bulk power) plus DOT Great Corridors moved to pending-decision/closed after its October 2nd close; watch.json bills agree with the docket (HB 259 ENE, SB 250 CRA), 0 hearings (interim), failed []; 30 candidates triaged, none added (no AI-infrastructure decision among them, same set as yesterday). No new item from this run claims: the drone validation is not a formal public decision, and the UAA RAISE call closed its statements of need on September 21st, so its access state for a new entrant is not verifiable."
   },
   "gas_watch": {
-   "status": "in_progress",
-   "note": "cron_health PASS 6 workflows 06:2xZ; site_signoff PASS 132 pages 18 checks; pagecheck PASS; desktop+phone screenshots of home, docket, gas-watch clean; gaswatch live FAIL on source reading published only (CINGSA 18:52 Alaska reading after 23:03Z collection; 04:40Z slot not yet dispatched); workflow_dispatch 403; recheck later in run"
+   "status": "done",
+   "note": "Phase 3.6 complete. cron_health PASS (6 workflows, 06:19Z); site_signoff PASS (133 pages, 18 checks); pagecheck PASS; desktop and phone screenshots clean. Gas Watch live audit UNRESOLVED (github): CINGSA's 18:52 Alaska reading landed after the 23:03Z collection, the 04:40Z and 07:20Z slots were still undispatched at 09:36Z, workflow_dispatch returns 403. Recorded in gaswatch_incident.json; gate row WARN by design."
   },
   "selection": {
    "status": "done",
@@ -178,9 +178,18 @@
    ],
    "note": "artifacts copied, webp 5.27M (7.8x), PDF shrunk 16 percent, site rebuilt 133 pages, parsers/scanner/docket_dates/site_fresh PASS, no alerts due, prune freed 1.03M, ledgers appended, FIELD_NOTES retro, techniques 118 to 120"
   },
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending",
+  "upgrade": {
+   "status": "done",
+   "note": "Weekly machine pass due and run: commits 1d20e423 and 349789f7 (critic_brief.py, tonal_arc_check.py, week_digest cross-frame table, frame_causes in the pixel critic); tonal_arc_check parser hardened after Codex review of PR #417."
+  },
+  "gmail": {
+   "status": "pending",
+   "note": "Phase 13 runs after the merge, because the draft's image URLs point at main. wrap_run.py writes status complete and the draft id into runs/2026-10-04/ in Phase 14."
+  },
+  "retro": {
+   "status": "done",
+   "note": "automation_retro.md, FIELD_NOTES No.77 section, MACHINE_QUEUE (3 open), instincts appended; commit c79642b1."
+  },
   "caption_room": {
    "status": "done",
    "artifacts": [

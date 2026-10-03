@@ -49,8 +49,14 @@ The line is read the way authors write it: clauses split at commas, semicolons,
 clause with a peak word (brightest, lightest, highest key, peak, peaks) the frame
 numbers after the word are the peak, and likewise for darkest, lowest key,
 trough. A peak word that describes a mark rather than a frame ("the brightest
-type on 08", "the only bright point") is skipped. Frames are two-digit numbers,
-which is how every storyboard writes them.
+type on 08", "the only bright point", "the brightest ground on 02", "one warm
+gold peak on 09") is skipped. When the line names a frame-level extreme outright
+("the highest key", "the brightest frame"), that wins over a looser peak word in
+another clause. A line with no darkest word whose author wrote the dark end as
+"low" or "low key" (2026-10-01, 2026-10-02) has those frames read as its darkest,
+and a side the line still never names is a WARN, not a pass on half the census
+(Codex review of PR #417). Frames are two-digit numbers, which is how every
+storyboard writes them.
 
     python3 scripts/tonal_arc_check.py --run-dir out/2026-10-04 [--render-dir ...] [--json]
     python3 scripts/tonal_arc_check.py --self-test
@@ -76,9 +82,15 @@ SHEET_W, SHEET_H = 216, 270
 ARC_RE = re.compile(r"^\s*[-*]?\s*Tonal arc:\s*(\S.*)$", re.M | re.I)
 CRAFT_HEAD_RE = re.compile(r"^##\s+CRAFT PLAN\b.*$", re.M)
 _MARK = r"(?!\s+(?:\w+\s+)?(?:type|point|points|object|accent|accents|glint|glints|highlight|" \
-        r"highlights|halo|star|lamp|mark|marks|word|words|figure|numeral|line|lines)\b)"
+        r"highlights|halo|star|lamp|mark|marks|word|words|figure|numeral|line|lines|ground)\b)"
 PEAK_RE = re.compile(r"\b(?:brightest|lightest|highest[- ]key|peaks?)\b" + _MARK, re.I)
 DARK_RE = re.compile(r"\b(?:darkest|lowest[- ]key|trough)\b" + _MARK, re.I)
+# A frame-level extreme said outright; when a side has one, it is that side's declaration.
+STRONG_RE = re.compile(r"\b(?:highest|lowest)[- ]key\b|\b(?:brightest|lightest|darkest)\s+frame\b", re.I)
+# "one warm gold peak": a counted thing is an object in the frame, not the frame.
+ONE_RE = re.compile(r"\bone\s+(?:\w+\s+){0,2}$", re.I)
+# The dark end as authors also write it, read only when no darkest word is present.
+LOW_RE = re.compile(r"\blow(?:[- ]key)?\b", re.I)
 FRAME_RE = re.compile(r"\b(0[1-9]|1[0-9])\b")
 CLAUSE_RE = re.compile(r"[,;]|\bthen\b|\bwhile\b|\bbut\b|\band\b(?!\s+(?:0[1-9]|1[0-9])\b)", re.I)
 
@@ -98,15 +110,25 @@ def arc_line(text):
 
 def declared(line):
     """({peak frames}, {darkest frames}) as the line names them."""
-    peaks, darks = set(), set()
+    found = {"peak": ([], []), "dark": ([], []), "low": ([], [])}   # (strong, any) frame lists
     for clause in CLAUSE_RE.split(line):
-        for rx, into in ((PEAK_RE, peaks), (DARK_RE, darks)):
+        for rx, side in ((PEAK_RE, "peak"), (DARK_RE, "dark"), (LOW_RE, "low")):
             m = rx.search(clause)
-            if not m:
+            if not m or ONE_RE.search(clause[:m.start()]):
                 continue
             after = FRAME_RE.findall(clause[m.end():])
-            nums = after or FRAME_RE.findall(clause[:m.start()])[-1:]
-            into.update(int(n) for n in nums)
+            nums = [int(n) for n in (after or FRAME_RE.findall(clause[:m.start()])[-1:])]
+            found[side][1].extend(nums)
+            if STRONG_RE.match(clause, m.start()):
+                found[side][0].extend(nums)
+
+    def pick(side):
+        strong, loose = found[side]
+        return set(strong or loose)
+
+    peaks, darks = pick("peak"), pick("dark")
+    if not darks:
+        darks = pick("low")
     return peaks, darks
 
 
@@ -152,7 +174,9 @@ def judge(line, L):
             msgs.append("[NOTE] the line names %s frame(s) %s that have no render"
                         % (name, ", ".join("%02d" % n for n in missing)))
         if not known:
-            msgs.append("[NOTE] the line declares no measurable %s frame" % name)
+            warns += 1
+            msgs.append("[WARN] the line declares no measurable %s frame, so half the arc "
+                        "can't be checked; name the frame that holds it" % name)
             continue
         best = min(known, key=rank)
         if rank(best) <= TOP_N or near(L[best]):
@@ -236,6 +260,17 @@ def self_test():
     ok("'highest key' counts, 'brightest type' does not", p == {3} and d == {4}, (p, d))
     p, d = declared("the lit range peaks on 06, calm close")
     ok("a verb 'peaks' counts", p == {6} and d == set(), (p, d))
+    p, d = declared("low key on 01, the brightest ground on 02, cooler even plan on 03, the highest "
+                    "key on 05, the darkest on 06, dark with the brightest type on 08, one warm gold "
+                    "peak on 09")
+    ok("2026-09-28: component peaks drop out and 'highest key' is the peak", p == {5} and d == {6},
+       (p, d))
+    p, d = declared("low key and cool 01 to 03, the lit peak on 04, steady 05, the breather drops low "
+                    "on 06, warmest on 07 and 08 (manila), calm low key close on 09")
+    ok("2026-10-02: a dark end written 'low key' is read as the darkest", p == {4} and
+       d == {6, 9}, (p, d))
+    p, d = declared("the lit peak on 05, low on 07, the darkest close on 09")
+    ok("'low' is ignored when a darkest word is present", d == {9}, (p, d))
 
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
@@ -268,6 +303,11 @@ def self_test():
         (v, msgs, data), err = run(flat)
         ok("a one-tone sheet WARNS whatever the line says",
            v == "WARN" and any("one tone" in m for m in msgs), msgs)
+        nodark = deck("nodark", [30, 60, 90, 140, 120, 80, 40],
+                      "quiet on 01, the lit peak on 04, a calm close on 07")
+        (v, msgs, data), err = run(nodark)
+        ok("a line that never names its dark end WARNS rather than passing half the census",
+           v == "WARN" and any("no measurable darkest" in m for m in msgs), msgs)
         none = root / "none"
         (none / "render").mkdir(parents=True)
         (none / "storyboard.md").write_text("## CRAFT PLAN\nno arc here\n")
