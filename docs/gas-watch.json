@@ -2,7 +2,7 @@
   "name": "Cook Inlet Gas Watch",
   "description": "A daily numeric record of Southcentral Alaska's natural gas position. Measured storage inventory and deliverability from the CINGSA public dashboard, modeled regional demand from Anchorage degree days, and the derived non CINGSA supply that falls out of the mass balance. It publishes no safety verdict of any kind.",
   "version": "1.0",
-  "updated": "2026-10-04",
+  "updated": "2026-10-03",
   "canonical": "https://alaskaaihq.com/gas-watch.json",
   "documentation": "https://alaskaaihq.com/gas-watch/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -13,9 +13,9 @@
   "temporal_coverage": "2026-08-05/2026-10-02",
   "count": 59,
   "source_status": {
-    "state": "unavailable",
+    "state": "current",
     "last_verified_date": "2026-10-02",
-    "last_collection_utc": "2026-10-02T23:04:26Z",
+    "last_collection_utc": "2026-10-03T10:02:55Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -9618,40 +9618,40 @@
     },
     {
       "date": "2026-10-02",
-      "collected_utc": "2026-10-02T23:04:26Z",
+      "collected_utc": "2026-10-03T10:02:55Z",
       "collector_version": "1.2",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
-        "source_timestamp": "2026-10-02T12:40:00",
-        "source_timestamp_utc": "2026-10-02T20:40:00Z",
-        "inventory_mcf": 7731902,
-        "inventory_delta_mcf": -13182,
+        "source_timestamp": "2026-10-02T18:52:00",
+        "source_timestamp_utc": "2026-10-03T02:52:00Z",
+        "inventory_mcf": 7729242,
+        "inventory_delta_mcf": -2660,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 59.5,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 147800,
+        "withdrawal_available_mcfd": 153500,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 206320,
         "injection_operating_mcfd": 140660,
-        "injection_available_mcfd": 135642,
-        "injection_in_progress_mcfd": 5018,
+        "injection_available_mcfd": 125802,
+        "injection_in_progress_mcfd": 14858,
         "injection_restriction_mcfd": 65660,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 2.4
+        "source_age_hours": 7.2
       },
       "forecast": [
         {
           "date": "2026-10-03",
-          "hours": 24,
-          "mean_temp_f": 36.2,
+          "hours": 23,
+          "mean_temp_f": 35.8,
           "min_temp_f": 29,
-          "hdd65": 28.8,
-          "modeled_demand_mmcfd": 180
+          "hdd65": 29.2,
+          "modeled_demand_mmcfd": 181
         },
         {
           "date": "2026-10-04",
@@ -9672,37 +9672,37 @@
         {
           "date": "2026-10-06",
           "hours": 24,
-          "mean_temp_f": 42.2,
+          "mean_temp_f": 41.5,
           "min_temp_f": 35,
-          "hdd65": 22.8,
-          "modeled_demand_mmcfd": 159
+          "hdd65": 23.5,
+          "modeled_demand_mmcfd": 162
         },
         {
           "date": "2026-10-07",
           "hours": 24,
-          "mean_temp_f": 41.2,
-          "min_temp_f": 34,
-          "hdd65": 23.8,
-          "modeled_demand_mmcfd": 163
+          "mean_temp_f": 42.2,
+          "min_temp_f": 37,
+          "hdd65": 22.8,
+          "modeled_demand_mmcfd": 159
         },
         {
           "date": "2026-10-08",
           "hours": 24,
-          "mean_temp_f": 41.1,
-          "min_temp_f": 34,
-          "hdd65": 23.9,
-          "modeled_demand_mmcfd": 163
+          "mean_temp_f": 41.8,
+          "min_temp_f": 36,
+          "hdd65": 23.2,
+          "modeled_demand_mmcfd": 161
         }
       ],
-      "forecast_source_updated": "2026-10-02T21:16:33+00:00",
+      "forecast_source_updated": "2026-10-03T05:57:33+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-03",
-        "peak_forecast_hdd": 28.8,
-        "peak_modeled_demand_mmcfd": 180,
+        "peak_forecast_hdd": 29.2,
+        "peak_modeled_demand_mmcfd": 181,
         "forecast_window_demand_bcf": 0.99,
-        "storage_withdrawal_mmcfd": 13.2,
+        "storage_withdrawal_mmcfd": 2.7,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 43.0,
+        "days_cover_at_peak": 42.7,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -9748,7 +9748,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-02T23:04:26Z",
+          "fetched_utc": "2026-10-03T10:02:55Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -9757,7 +9757,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-02T23:04:26Z",
+          "fetched_utc": "2026-10-03T10:02:55Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -9766,7 +9766,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-02T23:04:27Z",
+          "fetched_utc": "2026-10-03T10:02:56Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -9775,7 +9775,7 @@
         "injection_restriction_active",
         "inventory_declined"
       ],
-      "supersedes_posting": "2026-10-02T09:00:00"
+      "supersedes_posting": "2026-10-02T12:40:00"
     }
   ]
 }
