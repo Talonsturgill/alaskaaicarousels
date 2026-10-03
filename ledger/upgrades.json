@@ -2979,7 +2979,7 @@
       ],
       "verification": "python3 scripts/critic_brief.py --self-test: 7/7 (one block per dossier, row and wrapped 4a with y range reach their slide, depth flag on one slide only, a missing 4a is named, --slide selects, MISSING is printed). On out/2026-10-04 every slide prints its lines and exits 0; on runs/2026-10-02 --slide 2 prints the 4a promise ('the chamfer worn to bright steel along the bottom edge', design y 900 to 1260) that the shipped frame broke. No engine file changed: render.py + qa.py on out/2026-10-04/slides into a scratch dir, 9/9 OK and qa PASS 0 fails 0 warns; examples/demo-deck 4/4 OK, qa WARN 0 fails (2 busy-art warns, as before).",
       "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/critic_brief.py .claude/agents/pixel-critic.md prompts/routine_instructions.md knowledge/SLIDE_DOSSIER_SPEC.md .github/workflows/run-record-parsers.yml",
-      "commit": "pending"
+      "commit": "1d20e423"
     },
     {
       "run_date": "2026-10-04",
@@ -2997,7 +2997,7 @@
       ],
       "verification": "python3 scripts/tonal_arc_check.py --self-test: 10/10, including a reconstruction of the 2026-10-02 shape (declared peak measuring 5th) that WARNs and names the real peak, and a one-tone sheet that WARNs. On the eight shipped decks with a Tonal arc line it WARNs on 09-26, 09-30, 10-01 and 10-02 and PASSes 09-27, 09-28, 09-29, 10-03; the flow critic named the same miss on 09-30, 10-01 and 10-02. The real shipped defect reproduces: gate_status.py --run-dir runs/2026-10-02 prints '[WARN] tonal_arc peak: the plan puts it on 04, and 04 measures L* 17.3, 5th of 9'. Today's deck PASSES (peak 06 at L* 70.0, darkest 09). gate_status.py --self-test 27/27. WARN-only by design: mean lightness can't see a warm peak, so it is a census and not a gate.",
       "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/tonal_arc_check.py scripts/gate_status.py .claude/agents/flow-critic.md (and the Phase 9 step 4 paragraph in prompts/routine_instructions.md)",
-      "commit": "pending"
+      "commit": "1d20e423"
     },
     {
       "run_date": "2026-10-04",
@@ -3011,7 +3011,7 @@
       ],
       "verification": "python3 scripts/week_digest.py --self-test: 10/10, two new (cross-frame causes counted apart by runs in any case with junk entries ignored; the table carries slides, frames and an escaped pipe). On the live corpus for 2026-10-04: cross-frame a 6 runs / 34 frames named, e 6 / 32, c 3 / 11, d 2 / 7; the weakest-frames table is unchanged (a 1, b 6, c 5, d 6, e 0).",
       "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/week_digest.py prompts/machine_weekly.md",
-      "commit": "pending"
+      "commit": "1d20e423"
     }
   ],
   "scan_log": [
