@@ -1193,7 +1193,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-07-17",
@@ -1378,6 +1378,10 @@
         {
           "date": "2026-10-03",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, the notice was last modified August 19th, and no final finding and decision has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged."
         }
       ]
     },
@@ -2068,7 +2072,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-09-30",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-08-05",
@@ -2153,6 +2157,10 @@
         {
           "date": "2026-09-30",
           "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, now reads archived as of September 26th, with one award expected and a ceiling of $3,500,000. No recipient is listed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, still reads archived as of September 26th, with one award expected and a ceiling of $3,500,000. No recipient is listed and no award notice has been published. Checked and unchanged."
         }
       ]
     },
@@ -3085,10 +3093,14 @@
         {
           "date": "2026-10-01",
           "note": "Searched the Federal Register today for docket P-15423. The September 4th notice accepting DeepGreen Cook Inlet SPV's preliminary permit application is still the only one published, and no permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "Searched the Federal Register today for docket P-15423 and for DeepGreen. The September 4th notice accepting DeepGreen Cook Inlet SPV's preliminary permit application is still the only Cook Inlet notice published, and no permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-01"
+      "last_updated": "2026-10-04"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3461,7 +3473,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-09-01",
@@ -3498,6 +3510,10 @@
         {
           "date": "2026-10-03",
           "note": "Alaska's News Source reported on September 29th that the six candidates for three Assembly seats on the October 6th ballot divide on the moratorium. Alexis Howell and Scott Crass support it, Joshua Leaders backs a temporary one while impact data is gathered, Nick LaJiness opposes data centers outright, Shelly Shupe is cautiously open and Miguel Ramirez wants more study first. The borough calendar lists regular Assembly meetings on October 8th and October 22nd."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "Checked the borough's public meeting calendar today. The October 6th election is followed by canvass board reviews from October 7th to October 12th and a final count of absentee and questioned ballots on October 13th. The next regular Assembly meeting is October 8th, and no meeting on the moratorium request itself is listed. Checked and unchanged."
         }
       ]
     },
@@ -3819,7 +3835,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-09-13",
@@ -3856,6 +3872,10 @@
         {
           "date": "2026-10-03",
           "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged."
         }
       ]
     },
@@ -3863,10 +3883,10 @@
       "id": "dot-great-corridors-rfi-2026",
       "title": "Renting the highway shoulder to power and fiber, with data centers named as the draw",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "U.S. Department of Transportation, Build America Bureau",
-      "public_access": "open",
-      "access_note": "Anyone may comment. Written comments are due by October 2nd under docket DOT-OST-2026-3269, filed at regulations.gov or by mail to DOT Docket Operations. Late comments will be considered to the extent practicable.",
+      "public_access": "closed",
+      "access_note": "The written comment period under docket DOT-OST-2026-3269 closed on October 2nd. The notice says late comments will be considered to the extent practicable, so a filing at regulations.gov is still possible, though a reading is no longer assured.",
       "summary": "A request for information launching America's Great Corridors of Commerce, a voluntary program letting highway and rail right-of-way owners raise revenue by colocating utility infrastructure in their corridors through public-private partnerships. Transmission, fiber, rural broadband and water pipelines are all named. One stated aim is to incentivize data centers, manufacturing facilities and distribution hubs to locate close to the corridors. Alaska has four long corridors and a railroad, and every large compute proposal in the state is shaped around one of them, yet the notice does not mention Alaska and frames the program around multi-state corridors, a shape no Alaskan right-of-way has.",
       "key_dates": [
         {
@@ -3893,7 +3913,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-09-13",
@@ -3942,6 +3962,10 @@
         {
           "date": "2026-10-02",
           "note": "Searched the Federal Register today for any later notice on America's Great Corridors of Commerce. The September 11th request for information is still the latest, with written comments due today, October 2nd, and no extension has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
+          "note": "The written comment period closed on October 2nd. A Federal Register search today finds no extension and no later notice after the September 11th request for information, which says late comments will be considered to the extent practicable. The Department of Transportation has not said when it will act on what it received."
         }
       ]
     },
@@ -4065,7 +4089,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-04",
       "history": [
         {
           "date": "2026-09-15",
@@ -4113,6 +4137,10 @@
         },
         {
           "date": "2026-10-03",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-04",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ]

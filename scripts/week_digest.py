@@ -14,7 +14,8 @@ upgrade engineer:
   THE CAUSES     the flow critic's `craft.weakest_frames`, counted by its own cause letter (a the
                  same drawing on too many frames, b the largest object least modelled, c a dead
                  region, d a texture artifact, e no tonal arc). These are labels the critic chose,
-                 so this count is exact.
+                 so this count is exact. Its `craft.cross_frame` list (one defect over several
+                 frames, where causes a and e live) is counted in its own table (2026-10-04).
   THE THEMES     a word match over the scorer's artwork notes, `artwork_weakest_frames` and one
                  sentence fix, counted by runs. It finds candidates and says so. The engineer reads
                  the evidence before believing a count.
@@ -97,6 +98,15 @@ def art_text(score):
 def digest(root, date, days, queue_text, trend_text):
     runs = run_dirs(root, date, days)
     causes = {k: {} for k in CAUSES}
+    # THE DECK-LEVEL CAUSES WERE NOT COUNTED (2026-10-04, the first weekly pass).
+    # The flow critic files a cause in TWO places: `weakest_frames` (one frame
+    # each) and `cross_frame` (one defect spanning several frames). Only the
+    # first was read, so the week of 2026-09-28 to 10-03 showed cause e (no
+    # tonal arc) at 0 runs while `cross_frame` named it on all six, and cause a
+    # (the same drawing on many frames) at 1 run while `cross_frame` named it on
+    # five. Those two causes are deck-level by definition; this table is where
+    # they live.
+    cross = {k: {} for k in CAUSES}
     themes = {n: [] for n, _ in THEMES}
     evidence = []
     for run in runs:
@@ -105,6 +115,12 @@ def digest(root, date, days, queue_text, trend_text):
         for w in ((flow.get("craft") or {}).get("weakest_frames") or []):
             if isinstance(w, dict) and str(w.get("cause", "")).strip().lower() in causes:
                 causes[str(w["cause"]).strip().lower()].setdefault(run.name, []).append(w.get("slide"))
+        for w in ((flow.get("craft") or {}).get("cross_frame") or []):
+            k = str(w.get("cause", "")).strip().lower() if isinstance(w, dict) else ""
+            if k in cross:
+                sl = w.get("slides") if isinstance(w.get("slides"), list) else []
+                cross[k].setdefault(run.name, []).append(
+                    (sl, str(w.get("problem") or w.get("fix") or "")))
         text = art_text(score)
         for name, rx in THEME_RX:
             if rx.search(text):
@@ -120,6 +136,16 @@ def digest(root, date, days, queue_text, trend_text):
         hits = causes[k]
         frames = sum(len(v) for v in hits.values())
         detail = "; ".join(f"{d} {','.join(str(s) for s in v)}" for d, v in sorted(hits.items()))
+        L.append(f"| {k}, {CAUSES[k]} | {len(hits)} | {frames} | {detail} |")
+    L += ["", "## The flow critic's cross-frame causes, deck level", "",
+          "Its `craft.cross_frame` list: one defect spanning several frames. Causes a and e live here.", "",
+          f"| cause | runs (of {n}) | frames named | runs, slides and problem |", "|---|---|---|---|"]
+    for k in sorted(cross, key=lambda k: (-len(cross[k]), k)):
+        hits = cross[k]
+        frames = sum(len(sl) for v in hits.values() for sl, _ in v)
+        detail = "; ".join(
+            f"{d} [{','.join(str(s) for s in sl)}] {p.replace('|', '/')[:90]}"
+            for d, v in sorted(hits.items()) for sl, p in v)
         L.append(f"| {k}, {CAUSES[k]} | {len(hits)} | {frames} | {detail} |")
     L += ["", "## The scorer's themes, a word match by runs", "",
           "It finds candidates. Read the evidence below before believing a count.", "",
@@ -144,6 +170,7 @@ def digest(root, date, days, queue_text, trend_text):
     L += ["## The queue, open items", ""] + (open_q or ["- none"]) + [""]
     data = {"runs": n,
             "causes": {k: len(v) for k, v in causes.items()},
+            "cross_frame": {k: len(v) for k, v in cross.items()},
             "themes": [{"theme": t, "runs": len(r)} for t, r in ranked]}
     return "\n".join(L), data
 
@@ -177,13 +204,21 @@ def self_test():
                 "one_sentence_fix": "restage 04 in akthree", "craft_cycle": {"art_before": 6.5, "art_after": 7.0,
                                                                             "frames": [4]}}))
             (d / "flow_review.json").write_text(json.dumps({"craft": {"weakest_frames": [
-                {"slide": 4, "cause": "b"}, {"slide": 8, "cause": "C"}, {"slide": 9, "cause": "z"}]}}))
+                {"slide": 4, "cause": "b"}, {"slide": 8, "cause": "C"}, {"slide": 9, "cause": "z"}],
+                "cross_frame": [{"cause": "E", "slides": [3, 4, 6], "problem": "the arc | does not read"},
+                                {"cause": "a", "slides": [1, 2]}, {"cause": "q", "slides": [5]}, "junk"]}}))
         text, data = digest(root, "2026-10-02", 7, "## Open\n- [ ] 2026-10-01 | repeat: 1 | x\n", "TREND x")
         th = {t["theme"]: t["runs"] for t in data["themes"]}
         ok("a run outside the window is not read", data["runs"] == 2, str(data))
         ok("the flow critic's causes are counted by its own label, any case",
            data["causes"]["b"] == 2 and data["causes"]["c"] == 2 and data["causes"]["a"] == 0, str(data))
         ok("an unknown cause letter is not counted", sum(data["causes"].values()) == 4, str(data))
+        ok("the cross-frame causes are counted apart, by runs, any case",
+           data["cross_frame"]["e"] == 2 and data["cross_frame"]["a"] == 2
+           and sum(data["cross_frame"].values()) == 4 and data["causes"]["e"] == 0, str(data))
+        ok("the cross-frame table carries its slides, frames and an escaped problem",
+           "| e, no tonal or density arc across the deck | 2 | 6 |" in text
+           and "[3,4,6] the arc / does not read" in text, text[text.find("cross-frame"):][:600])
         ok("an escaped criterion name is still read as artwork",
            th.get("the depth frame does not deliver depth (2.5D, flat chart)") == 2, str(th))
         ok("the lower third and the contact shadow are their own themes",

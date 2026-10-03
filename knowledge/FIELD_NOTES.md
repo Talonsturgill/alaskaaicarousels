@@ -9112,3 +9112,72 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   `heading` to the dossier ART block, have dossier_check WARN when |sun_az - heading| mod 180 is
   within 30 degrees of 90 and the frame's art promises casts, and have akrelief warn on a single
   key between 160 and 250 unless the view is rotated.
+
+## 2026-10-04 (No.77, the Togiak's tower and the AI drone that must beat it, THE COUNTER'S LANE): retro
+
+- A GROUND IS A TEXTURE TOO. Five of nine frames carried a dome-cobble bed, drawn by four different engines (PBR instances on 01 and 02, SDF on 06, painted stones on 07, canvas domes on 09). The CRAFT PLAN census counts primary mark-making, so it passed. The flow critic named it as one picture repeated. Rebuilding 06 on tussock moss and trimming 02's lane cleared it. Plan the lower band's texture per frame, beside the mark-making.
+- A COUNT LINE RUNS ACROSS THE PATH OF WHAT IT COUNTS. 09's first line ran horizontally across the water while the fish swam right, so nothing crossed it. Turning it to recede into depth, as on 01, made every fish a crossing. Draw it under the fish.
+- METAL WITHOUT AN ENV MAP PRINTS BLACK. 02's scaffold at metalness 0.85 was a dark cage. At 0.3, with a bounce point light and a rim spot, it read as lit aluminum and the frame went from the deck's weakest to mid-pack.
+- A SYNCHRONOUS RENDER BLOCKS THE LOAD EVENT. aksdf on 06 (90 to 140 s) and 07's per-pixel paint ran before the first await, so page.goto timed out at 45 s. Await the load event, yield once, await the fonts, then do the long work with nothing after it that yields. The 30 s renderReady race timer is already overdue when the work returns.
+- AKSDF HAS ONE SHADOW RAY, SO OVERCAST NEEDS PASSES. Three keyed passes plus a shadowless fill pass, averaged, gave a soft contact shadow that never goes black (technique 120). Colour patches on an SDF ground print as camouflage, because each material id is a flat colour. One material on a heightfield models better.
+- AKENGRAVE `surface()` COLLAPSED ON A SINUOUS CHANNEL even with seedDeg set. A hand-built streamline lay (technique 119) read as water at once. Broken riffle dashes on neighbouring lines beat into moire. Hachures across streamlines print as a grid.
+- THE CAPTION AND THE SLIDES CAN DISAGREE BY ONE WORD. The scorer caught "Nine Bristol Bay towers" in the caption against "Eight towers" on 05. C34 is nine tower PROJECTS in 2004 and 2005. One word fixed it. Re-read the caption against every slide number before scoring.
+- THE CRAFT CYCLE DID NOT MOVE ART (6.5 to 6.5). One change per frame across six frames was too thin to read at the scorer's distance. Two of the changes (07's veil, 09's ripples) were invisible at thumb. A craft cycle should spend its one round on the two frames named first, with a rebuild of the largest object rather than a tweak on six.
+
+## 2026-10-04, No.77, the first weekly machine pass: the critic who sees the frame first is asked the flow critic's questions
+
+- THE DIGEST WAS HALF-BLIND. The flow critic files causes in two lists, `craft.weakest_frames`
+  (one frame) and `craft.cross_frame` (one defect over several frames), and week_digest.py read
+  only the first. Over September 28th to October 3rd it reported cause e (no tonal arc) on 0
+  runs and cause a (the same drawing on many frames) on 1. The cross-frame list named e on all
+  six decks (32 frame mentions) and a on all six (34). It now has its own table.
+- 31 OF THE WEEK'S 32 WEAKEST FRAMES WERE PER-FRAME CAUSES: b, the largest object least
+  modelled (10 frames, six decks); d, a texture artifact (13, six decks); c, a dead region (8,
+  five decks). Each had been through its pixel critic's ship loop first, and the pixel critic
+  was never asked those questions or handed the CRAFT PLAN row. It now answers `frame_causes`
+  (b, c, d, each with a region) from CRAFT LINES that `scripts/critic_brief.py` prints, and a
+  no is a revise. The plans were good: 2026-10-02's 4a for slide 02 promised "the chamfer
+  worn to bright steel along the bottom edge" and the frame shipped flat black below the
+  chamfer. What failed was the build against the plan, with nobody checking it until round 1
+  of the flow review.
+- THE DECLARED TONAL ARC IS NOW MEASURED. `scripts/tonal_arc_check.py` (gate_status row
+  `tonal_arc`, PASS or WARN, never FAIL) reads the CRAFT PLAN's line and each frame's mean L* at
+  contact-sheet scale. On the eight decks with a line it warns on four: 09-26 (declared peak 04
+  measures 6th), 09-30 (declared darkest 07 measures 5th darkest), 10-01 (the sheet spans 5.8
+  L*) and 10-02 (declared lit peak 04 measures 5th; 07 is brightest). The flow critic named the
+  same miss on the last three. It PASSES 10-03, whose critic still wrote "05 not the noon peak"
+  of the brightest frame on the sheet, because that miss was colour, which mean L* can't see.
+- MEASURED NULL, AGAIN: A DEAD REGION IS NOT A PIXEL STATISTIC HERE. Three probes over shipped
+  frames against the frames the critics named as dead: frame_balance's bottom-third craft ratio
+  (named frames 0.90 to 2.12, the same spread as the rest; it fired on none of the week's
+  frames); a lower-band coarse flatness fraction, 226 frames, AUC 0.63; a terminal flat band
+  above the footer, 108 frames, named 0.003 to 0.139 of frame height against an unnamed p90 of
+  0.128. Textured-but-eventless reads as modelled to every cell statistic. Do not build this
+  gate again without a new feature; the critic is the instrument, which is why the fix went to
+  the pixel critic's brief.
+- DEFERRED, cause a across frames (six decks). The repeats the critic names are SECONDARY
+  drawings the CRAFT PLAN's primary-mark limit does not count: one AKSNOW floor (09-28), one
+  radial lit-ink pool (09-29, five frames), one wavy table texture (10-01, four), one lacquer
+  mottle (10-02, four; the plan's own census said two), one spruce comb (10-03, six). A
+  self-declared census already failed on 10-02, and runs/ keeps no slide source, so the weekly
+  pass can't measure code reuse across a week. Next step when it recurs: record each slide's
+  assets/js helper calls and shared function hashes in machine_qa.json, then calibrate a
+  per-deck reuse census on two weeks of that record.
+
+### Parked, 2026-10-04 frontier scan, focus (f), self-improving pipelines: how to ask a critic
+
+- BOOLEAN DECOMPOSITION RAISES JUDGE AGREEMENT. CheckEval replaces a holistic Likert score with
+  yes/no checklist questions: average Spearman with humans on SummEval 0.40 to 0.48, and
+  inter-evaluator agreement (Krippendorff alpha) 0.05 to 0.67 for large models, near the human
+  0.70. https://arxiv.org/html/2403.18771v2 . The `frame_causes` block is three such questions.
+- VISION JUDGES UNDER-PENALISE ARTIFACTS. ImagenWorld: VLM-human Spearman on artifacts 0.59
+  against human-human 0.64, with a positive bias that under-penalises "boundary glitches" humans
+  flag. https://arxiv.org/html/2603.27862 . SALART-VQA: the strongest model detects 99.37
+  percent of artifact images but answers presence, region, box and explanation all correctly on
+  53.26 percent. https://www.alphaxiv.org/abs/2606.12671.md . Hence each cause carries a
+  required region, and an unanswered cause is a no.
+- WHY PARKED, the rest: rotating the pixel critic across model families and calibrating it
+  monthly against the scorer (the bias literature's mechanical mitigation) is a change to a
+  pinned model (owner, 2026-09-25) and to the run's cost. UNBLOCKS WHEN the pixel critics'
+  JSON is persisted per round (it is not today), so their `frame_causes` can be scored against
+  the flow critic's later causes for two weeks.

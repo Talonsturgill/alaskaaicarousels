@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-04/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5917674,
+  "pdf_mb": 5.92,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-04/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-04/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Ten Minutes of Every Hour: The Count an AI Drone Must Beat",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "f6cbe11ed37d142b845c059c62bf1fa7509aa54403fe4d34949af7e463d86c2b",
+        "bytes": 5354407
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "3956a4e5b31b00c4a7240b2915b21674aca7eb817d9f1ec3a1b5fcd1ae8a54b5",
+        "bytes": 5890980
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "28e873eea0658d2174eff1fa4da1feffa171258862b0b5219dcf0230ac7600ba",
+        "bytes": 3715850
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "0cec6e273d68f2000d0e396ca19271529206bb4dde01171179f15a182fea0bd4",
+        "bytes": 2439027
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "7b3c4e57bdbf4211c46819558535820ce3b2db7c9f15c85c6be525e2b70feef7",
+        "bytes": 5065515
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "12d3f2b58f1a1b70325948e29836640f8a7c54e35a79cd45f1c4240af8675718",
+        "bytes": 3238511
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "12c10d841c497dafb8225379d2b1d7b15318011711ed8346374bc56d89e349bd",
+        "bytes": 6326971
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "64173a47ca3a8402d66e7c7175e8d1b4dc159480ae8c9d17d5fa1523716e8ecd",
+        "bytes": 2822120
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "46d538e4a564bc90ddbabaaf83b8ae72e3bf3b9823c3aa6cc385865b4b972e26",
+        "bytes": 4388123
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "f8946cc350263e931c33b7fa5c9e2e12236cbe1ea5549f8f72cf8c528af75fdf",
+        "bytes": 14282
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "c2584376614b2850cdd6ef58e60706aaed3c039b65ecc866e5e278a9e7095b01",
+        "bytes": 23053
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "82fb56b00f5d772697809d11dd355e9e7bbdd11f9e0f571fcc23b67b9929ce9e",
+        "bytes": 12299
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "72a4e325d7f728936ab1819556344f1585b77d5b8a857256ea059708e41054c1",
+        "bytes": 12278
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c8d0768906cfe91b8e355ac345f76944c83059c86dcbbcfe51fb80e6d248770c",
+        "bytes": 10558
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "cdcf5532205e0f433beda6ecbe40fa771966a087bdb6a4e25cc458f533e2d834",
+        "bytes": 13762
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "2a566448912d64d22cdeab83ee70b919c4903145e8c80ad006667fe1d20715e0",
+        "bytes": 17887
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "18853135bf4212a4fc575a1a8609cd24a8d00bf4e58beab49985d8d604c87d91",
+        "bytes": 13462
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "9ca6ca04ceb4bede92976b3bf1964d7aaf36da6f77251838db2293310fb44b5b",
+        "bytes": 14816
+      }
+    ]
+  }
+}

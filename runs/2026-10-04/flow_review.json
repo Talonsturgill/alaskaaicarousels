@@ -1,0 +1,138 @@
+{
+ "round": 2,
+ "revision_rounds_at_review": 1,
+ "verdict": "revise",
+ "score_0_10": 7.2,
+ "arc_assessment": "Argument holds as a sequence; 05 never plants the Wood row so 05 to 06 is a cut, and 02 to 05 are four dense frames before the first breath.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong",
+   "note": "D3 edge-tease breaks: 02 has no fish"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "strong"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "none",
+   "note": "Wood plate not planted"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "strong"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  "D3: add 01's fish entering 02 from the left",
+  "05: mark the Wood plate in machine-voice ice as the river the drone pilot works",
+  "08: dusk lift for the D2 light arc",
+  "07: ticks irregular at fish crossings",
+  "09: grade bed toward 01's gravel ramp"
+ ],
+ "rhythm_findings": [
+  "02 to 05 dense run; thin 04's body to about 25 words",
+  "07 and 08 heaviest text back to back; cut 'in a project expected to take about two years' from 08"
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "third dense frame with a flat 720-cell plate"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 8,
+    "score": 6.0,
+    "cause": "b",
+    "fix": "engraved banks of real tone, open the densest gap to kill moire, fill below the block"
+   },
+   {
+    "slide": 4,
+    "score": 6.2,
+    "cause": "c",
+    "fix": "visible raking falloff about 35 percent across the slab, lips and lee walls at 3:1, leader to a lit tray"
+   },
+   {
+    "slide": 6,
+    "score": 6.5,
+    "cause": "d",
+    "fix": "supersample the raymarch or remove the serrated cobble field"
+   },
+   {
+    "slide": 2,
+    "score": 6.8,
+    "cause": "b",
+    "fix": "tower value split lit/lee, fill the dead band with the fish lane"
+   },
+   {
+    "slide": 3,
+    "score": 7.0,
+    "cause": "d",
+    "fix": "break the barcode column rhythm"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     6,
+     7,
+     9
+    ],
+    "problem": "dome cobble bed on five frames, over the CRAFT PLAN limit of three",
+    "fix": "take the cobbles off 06 and 02"
+   },
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     7,
+     9
+    ],
+    "problem": "one rigid fish body repeated",
+    "fix": "vary length and flex, add an eye"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     3,
+     4,
+     5,
+     8,
+     9
+    ],
+    "problem": "one navy value range, no dusk step",
+    "fix": "blue-hour lift on 08, brighter river on 07"
+   }
+  ],
+  "masterful_depth_frame": 1
+ }
+}

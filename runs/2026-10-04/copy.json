@@ -1,0 +1,308 @@
+{
+ "document_title": "Ten Minutes of Every Hour: The Count an AI Drone Must Beat",
+ "post_copy": "\"The results have exceeded my expectations,\" Norm Van Vactor said in July of his Wood River AI drone pilot.\n\nNext comes a test against Fish and Game's tower counts.\n\nBehind it are the University of Washington's Fisheries Research Institute, Bristol Bay Regional Seafood Development Association and Bristol Bay Economic Development Corporation, not Fish and Game.\n\nThe towers count 10 minutes an hour on each bank and multiply by six. Nine Bristol Bay tower projects averaged about 2 percent sampling error in 2004 and 2005. On the Togiak's 119,298 that is about 2,400 fish, over three times its 702 miss.\n\nThe method tested unbiased in 1965 and 1966 on only 12 to 80 hours. Matching the tower can't be the pass mark.\n\nThe Togiak's 119,298 sockeye are traced from a ten-minute window to their own error bar.\n\nBefore that test runs, who should set the passing margin?\n\n#BristolBay #Sockeye #FishCounts",
+ "hook_chars": 107,
+ "total_chars": 899,
+ "deck_summary_line": "The Togiak's 119,298 sockeye are traced from a ten-minute window to their own error bar.",
+ "hashtags": [
+  "#BristolBay",
+  "#Sockeye",
+  "#FishCounts"
+ ],
+ "caption_meta": {
+  "opening_move": "QUOTE FIRST",
+  "structure": "NEW: MEASURE THE MEASURER",
+  "closing_move": "WHO DECIDES, MATCHED TO SLIDE 09",
+  "deck_summary_line": "The Togiak's 119,298 sockeye are traced from a ten-minute window to their own error bar.",
+  "critic": "After round one the caption critic picked the reassigned A candidate, a QUOTE FIRST opening on the pilot lead's own words that measures the measurer and closes on who sets the margin, matched to slide 09.",
+  "first_8_words": "\"The results have exceeded my expectations,\" Norm Van",
+  "hook_type": "quote first, the pilot lead's self-assessment set up against the test that hasn't run"
+ },
+ "first_comment": "Sources, primary first\nAlaska Department of Fish and Game, Division of Commercial Fisheries, 2026 Bristol Bay Salmon Season Summary, advisory announcement of September 22nd, all data preliminary, read 2026-10-04 (escapement by river and counting method in Table 1, the Togiak's 119,298 against a 120,000 lower bound, 15.6 million fish baywide), https://www.adfg.alaska.gov/static/applications/dcfnewsrelease/1838297519.pdf\nAlaska Department of Fish and Game, WASSIP Technical Document 18 on estimating escapement of western Alaska sockeye, by D. Eggers, A. Munro and E. Volk, January 11th, 2012, read 2026-10-04 (counts made 10 minutes of every hour on each bank and then expanded, an average sampling CV of 0.02 across 9 Bristol Bay tower projects in 2004 and 2005 that assumes no miscounts, and the 1965 and 1966 full-hour tests on 12 to 80 hours), https://www.adfg.alaska.gov/static/fishing/pdfs/research/wassip/documents/techdoc_18_estimating_escapement_western_alaskan_sockeye_v1.pdf\nKDLG 670AM via Alaska Public Media, Jessie Sheldon, July 8th, AI drones and salmon and what new technology could mean for Bristol Bay sockeye counts, read 2026-10-04 (the drone box on the Wood River, technicians pressing a key for each fish, the UW Fisheries Research Institute, BBRSDA and BBEDC as partners, Fish and Game not directly involved, round-the-clock clicker shifts, and the test against tower data planned for the next phase), https://alaskapublic.org/news/environment/2026-07-08/ai-drones-and-salmon-what-new-technology-could-mean-for-bristol-bay-sockeye-counts\nSeafoodSource, July 18th, no byline, Alaskan fisheries scientists hoping to use AI for salmon enumeration in Bristol Bay, read 2026-10-04 (Norm Van Vactor's \"results have exceeded my expectations\", 256 flights, 17,552 images and 117 orthomosaics in the first phase, fish spotted 12 to 18 hours before the tower, a project of about two years, and the goal of a count with a stated confidence), https://www.seafoodsource.com/news/alaskan-fisheries-scientists-are-hoping-to-use-ai-for-salmon-enumeration-processes-in-the-bristol-bay\nKDLG, Jessie Sheldon, July 14th, 2023, Wood River counter crews tally sockeye for escapement, read 2026-10-04 (ten-minute counts multiplied by six for the hour), https://www.kdlg.org/fisheries/2023-07-14/wood-river-counter-crews-tally-sockeye-for-escapement\nAmerican Fisheries Society, Salmonid Field Protocols Handbook, Tower Counts chapter by Carol Ann Woody, 2007, read 2026-10-04 (paired counters within 0.4 percent of each other, and towers don't give error-free estimates), https://wildsalmoncenter.org/wp-content/uploads/2008/07/SFPH-Chapter-11-Tower-Counts.pdf\nSome figures are arithmetic on ADF&G's numbers and aren't ADF&G's own. Roughly 19,883 fish seen is 119,298 divided by six. About 2,400 either way is 0.02 times 119,298, or 2,386. The 12.3 million and about 79 percent by tower come from Table 1 with the Nushagak's sonar count taken out. The 2004 and 2005 CV covers sampling only, and the technical document's authors mark it as unreviewed.\nEvery Alaska AI decision on the docket carries its next date at https://alaskaaihq.com\nAnyone who has counted from a Bristol Bay tower or worked on the Wood River pilot is welcome to add context or corrections below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "Bristol Bay · what the AI drone will be graded on",
+   "headline": "Togiak missed by 702 fish. Its tower counted 10 minutes an hour.",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C33",
+    "C55"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "How a tower counts",
+   "headline": "Ten minutes, times six.",
+   "body": "Bristol Bay's towers count each bank for 10 minutes of every hour, then expand. Crews work around the clock with hand clickers. At six to one, the Togiak's 119,298 rests on roughly 19,883 fish someone saw.",
+   "labels": [
+    "1 of 6 ten-minute windows"
+   ],
+   "claim_ids": [
+    "C13",
+    "C33",
+    "C47",
+    "C50",
+    "C111"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "The tower's own number",
+   "headline": "The error bar runs three times the miss.",
+   "body": "ADF&G put the average sampling CV across nine Bristol Bay tower projects at 0.02 in 2004 and 2005. On the Togiak's 119,298 that is about 2,400 fish either way. It assumes no miscounts inside the ten minutes.",
+   "labels": [
+    "Togiak 119,298",
+    "Floor 120,000",
+    "702 short",
+    "Plus or minus 2,386 at a CV of 0.02",
+    "1 glyph = 10 fish",
+    "117,000",
+    "119,000",
+    "120,000",
+    "121,000"
+   ],
+   "claim_ids": [
+    "C13",
+    "C14",
+    "C15",
+    "C34",
+    "C35",
+    "C112"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "Was it ever checked",
+   "headline": "The rule was tested on 12 to 80 hours.",
+   "body": "In 1965 and 1966, crews counted whole hours and compared them with the first 10 minutes, expanded. Errors ran generally under 10 percent, with no significant bias.",
+   "labels": [
+    "One month, 720 hours",
+    "One hour",
+    "Counted, 10 min",
+    "Expanded, 50 min",
+    "12 to 80 hours counted in full"
+   ],
+   "claim_ids": [
+    "C33",
+    "C36",
+    "C37",
+    "C38",
+    "C39"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "2026 sockeye escapement, preliminary",
+   "headline": "Eight towers counted 12.3 million of 15.6 million.",
+   "body": "",
+   "labels": [
+    "Wood",
+    "2,586,432 tower",
+    "AI drone pilot",
+    "Togiak",
+    "119,298 tower",
+    "floor 120,000",
+    "702 short",
+    "Igushik",
+    "551,850 tower",
+    "Nushagak",
+    "3,259,237 sonar",
+    "Kvichak",
+    "3,080,286 tower",
+    "Alagnak",
+    "1,432,782 tower",
+    "Naknek",
+    "892,326 tower",
+    "Egegik",
+    "1,982,724 tower",
+    "Ugashik",
+    "1,703,598 tower",
+    "About 79 percent by tower, figured from ADF&G's table"
+   ],
+   "claim_ids": [
+    "C06",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C19",
+    "C20",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C31",
+    "C41",
+    "C52"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "Wood River · 8:30 a.m.",
+   "headline": "A box opens. A drone takes off.",
+   "body": "A computer vision model is learning to pick out the salmon in its footage.",
+   "labels": [],
+   "claim_ids": [
+    "C41",
+    "C46",
+    "C54"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "What the model learns from",
+   "headline": "A key press for every fish.",
+   "body": "Technicians press a key each time a fish crosses a line drawn on the footage. The first phase logged 256 flights and 17,552 images, stitched into 117 orthomosaics. The project lead says it spots fish 12 to 18 hours before the tower.",
+   "labels": [
+    "A UW, BBRSDA and BBEDC pilot. Fish and Game not directly involved as of July"
+   ],
+   "claim_ids": [
+    "C43",
+    "C52",
+    "C53",
+    "C54",
+    "C60",
+    "C61",
+    "C62"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "The test is next",
+   "headline": "Matching the tower can't be the bar.",
+   "body": "The pilot plans to test its model against Fish and Game tower counts next. Tower sampling error averaged about 2 percent in 2004 and 2005. The team's goal is a count with a stated confidence. Write the margin first.",
+   "labels": [
+    "Pass if within",
+    "Set by"
+   ],
+   "claim_ids": [
+    "C34",
+    "C35",
+    "C55",
+    "C64",
+    "C110"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Before the Wood River test runs, who should set the passing margin?",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C55"
+   ]
+  }
+ ],
+ "slide_copy_corrections": [
+  {
+   "slide": 8,
+   "field": "body",
+   "was": "The tower's own error is about 2 percent.",
+   "now": "The tower's own sampling error is about 2 percent.",
+   "why": "C34 is a sampling CV only; C35 says it assumes no miscounts. Honesty guard.",
+   "claim_ids": [
+    "C34",
+    "C35"
+   ],
+   "applied": true
+  },
+  {
+   "slide": 3,
+   "field": "body",
+   "was": "across nine Bristol Bay towers",
+   "now": "across nine Bristol Bay tower projects",
+   "why": "Slide 05 says eight towers counted in 2026; C34's own wording is tower projects.",
+   "claim_ids": [
+    "C34",
+    "C32"
+   ],
+   "applied": true
+  },
+  {
+   "slide": 4,
+   "field": "body",
+   "was": "Two counters agreed within 0.4 percent.",
+   "now": "In separate paired tests, two counters agreed within 0.4 percent. (later cut from the slide in round 2 for density; C89 stays in the first comment's handbook line)",
+   "why": "C89 is from the AFS handbook's paired-observer tests, not the 1965 and 1966 experiments.",
+   "claim_ids": [
+    "C89"
+   ],
+   "applied": true
+  },
+  {
+   "slide": 7,
+   "field": "body",
+   "was": "The first phase logged 256 flights",
+   "now": "SeafoodSource reports the first phase logged 256 flights",
+   "why": "Optional attribution; the first comment carries SeafoodSource as the source for C60 and C61. Not applied, the frame's body is at its length limit.",
+   "claim_ids": [
+    "C60",
+    "C61"
+   ],
+   "applied": false
+  }
+ ],
+ "aftercare": [
+  "Post on Wednesday, October 7th, or Thursday, October 8th, between 8 and 11 a.m. Alaska time. If the Fairbanks election deck is still unposted, it gets Tuesday morning because it expires when polls close on October 6th. Nothing in this deck is time-bound, and posting cadence is your call.",
+  "On LinkedIn, start a post, choose Add a document, upload the deck PDF and set the document title to Ten Minutes of Every Hour: The Count an AI Drone Must Beat. Then paste post_copy exactly as written, with all three hashtags, and post.",
+  "Paste the sources block as the first comment within 60 seconds of posting.",
+  "Reply to every comment in the first 90 minutes. If ADF&G staff or the pilot team correct a figure, thank them, check it against the linked document and log it rather than argue. If someone asks whether the drone beat the tower, say no comparison result appears in any source found.",
+  "Don't tag Norm Van Vactor, ADF&G biologists or individual technicians without their consent. Whether to tag the organizations' pages (UW Fisheries Research Institute, BBRSDA, BBEDC) is your call.",
+  "After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "Two figures are arithmetic on ADF&G numbers and are labelled that way, roughly 19,883 fish seen (119,298 divided by six, C111) and about 2,400 fish either way, shown as 2,386 on the chart (0.02 times 119,298, C112). The 0.02 is an average sampling CV across nine tower projects in 2004 and 2005 that assumes no miscounts, and the technical document it comes from carries a note from its authors that it is unreviewed, so slide 08 says sampling error and dates it to 2004 and 2005. The Wood River drone pilot belongs to the UW Fisheries Research Institute, BBRSDA and BBEDC, not ADF&G, and its test against tower counts is still planned, with no result in any source. The check on the ten-minute rule is old, from 1965 and 1966, and covered only 12 to 80 hours, which the deck says plainly. Nothing in the post or the deck says the drone flies every day, quotes ADF&G's inconsistent value percentage or treats Van Vactor's illustrative fish count as a result.",
+ "claims_used": [
+  "C06",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C19",
+  "C20",
+  "C22",
+  "C23",
+  "C24",
+  "C25",
+  "C26",
+  "C27",
+  "C31",
+  "C32",
+  "C33",
+  "C34",
+  "C35",
+  "C36",
+  "C37",
+  "C38",
+  "C39",
+  "C41",
+  "C43",
+  "C46",
+  "C47",
+  "C50",
+  "C52",
+  "C53",
+  "C54",
+  "C55",
+  "C60",
+  "C61",
+  "C62",
+  "C63",
+  "C64",
+  "C65",
+  "C89",
+  "C110",
+  "C111",
+  "C112"
+ ],
+ "notes_for_showrunner": "Copywriter notes handled: post_copy is caption.txt verbatim; three slide corrections applied (03, 04, 08), 07 attribution left to the first comment; claim ids follow what rendered."
+}

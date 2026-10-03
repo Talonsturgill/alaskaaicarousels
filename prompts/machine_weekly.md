@@ -15,8 +15,10 @@ that deck's.
 
 1. `out/<date>/week_digest.md`, written by `python3 scripts/week_digest.py --date <date> --out
    out/<date>/week_digest.md` before you were spawned. It carries `trend_check.py`'s report over the
-   week, the flow critic's `craft.weakest_frames` counted by its own cause letter (exact), the
-   scorer's art themes counted by runs (a word match, so read the evidence before you believe one),
+   week, the flow critic's `craft.weakest_frames` counted by its own cause letter (exact), its
+   `craft.cross_frame` list counted the same way in a table of its own (deck-level causes a and e
+   live there; until 2026-10-04 the digest read only the first list and showed e at zero runs in a
+   week the critic named it on all six), the scorer's art themes counted by runs (a word match, so read the evidence before you believe one),
    every run's craft cycle, the scorer's weakest frames and fix, and the open queue.
 2. `knowledge/MACHINE_QUEUE.md`, what the runs queued, with repeat counts.
 3. The newest entries of `ledger/upgrades.json` and `knowledge/FIELD_NOTES.md`, by `grep` or `tail`

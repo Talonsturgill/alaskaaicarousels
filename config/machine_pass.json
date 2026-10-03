@@ -1,5 +1,55 @@
 {
-  "last_pass": null,
-  "themes": [],
+  "last_pass": "2026-10-04",
+  "themes": [
+    {
+      "theme": "b, the largest object least modelled (flow critic weakest frames)",
+      "runs": 6,
+      "frames": 10,
+      "action": "fixed",
+      "what": "pixel-critic answers frame_causes b from the slide's CRAFT PLAN row, printed by scripts/critic_brief.py; a no is a revise"
+    },
+    {
+      "theme": "d, a texture artifact (flow critic weakest frames)",
+      "runs": 6,
+      "frames": 13,
+      "action": "fixed",
+      "what": "pixel-critic answers frame_causes d at 100 percent, with the week's named artifact kinds listed; a no is a revise"
+    },
+    {
+      "theme": "c, a dead or eventless region, the lower third above all (flow critic weakest frames; scorer theme on 5 runs)",
+      "runs": 5,
+      "frames": 8,
+      "action": "fixed",
+      "what": "pixel-critic answers frame_causes c against field 4a; three pixel probes measured null first (AUC 0.63 best), recorded in FIELD_NOTES"
+    },
+    {
+      "theme": "e, no tonal arc (flow critic cross_frame)",
+      "runs": 6,
+      "frames": 32,
+      "action": "fixed",
+      "what": "scripts/tonal_arc_check.py and gate_status row tonal_arc, WARN-only census handed to the flow critic"
+    },
+    {
+      "theme": "the digest counted weakest_frames only and showed e at 0 runs, a at 1",
+      "runs": 6,
+      "frames": 66,
+      "action": "fixed",
+      "what": "week_digest.py counts craft.cross_frame in its own table"
+    },
+    {
+      "theme": "a, the same drawing or texture on many frames (flow critic cross_frame)",
+      "runs": 6,
+      "frames": 34,
+      "action": "deferred",
+      "what": "the repeats are secondary textures the CRAFT PLAN does not count, a self-declared census already failed, and runs/ keeps no slide source to calibrate a reuse census; next step in FIELD_NOTES 2026-10-04"
+    },
+    {
+      "theme": "trend_check stale offender: Legibility and platform fitness, weakest 1 of 7, worked never",
+      "runs": 1,
+      "frames": 0,
+      "action": "deferred",
+      "what": "weakest once in seven; its shipping warn (ragged display line, 5 runs) is a line-break area measured null four times for text-wrap, and the art criterion was weakest 6 of 7"
+    }
+  ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."
 }

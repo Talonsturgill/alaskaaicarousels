@@ -1300,6 +1300,16 @@ that argument was typed by hand.
    Manrope draw straight marks slanted, and on No.72 three critics and the
    scorer reported curly quotes the source never held.
 
+   Paste each critic its slide's CRAFT LINES too (2026-10-04, the first weekly
+   machine pass): `python3 scripts/critic_brief.py --run-dir out/<date>
+   --slide NN` prints the slide's CRAFT PLAN row and field 4a, and the critic
+   answers `frame_causes` from them: b, is the largest object the best-modelled
+   thing on the frame; c, does the lower third render what 4a promised; d, is
+   the frame free of texture artifacts. In the week to October 3rd the flow
+   critic named 31 frames under those three causes, every one already through
+   this loop, so the deck met them with one craft cycle left. A `frame_causes`
+   no is a revise like any major issue.
+
    If a dossier states field 11a, the WORDLESS CLAIM, pass it in the prompt
    and require the critic to answer `encoding_reads`. That judgement cannot be
    automated: it was tested on 2026-07-29 across 171 slides and 19 decks with
@@ -1332,6 +1342,16 @@ that argument was typed by hand.
    not the instance on each slide. A cross-frame repeat is fixed by giving
    the repeated frames different mark-making, never by retuning one shared
    parameter. Persist the critic's JSON to `out/<date>/flow_review.json`.
+   Hand the flow critic the tonal census as well (2026-10-04):
+   `python3 scripts/tonal_arc_check.py --run-dir out/<date>` measures each
+   frame's mean L* at contact-sheet scale against the CRAFT PLAN's `Tonal arc:`
+   line and WARNs when the declared peak or darkest frame measures elsewhere,
+   or when the sheet spans under 8 L*. The same reading is the `tonal_arc` row
+   of gate_status.py, PASS or WARN and never FAIL. Cause e was named on all six
+   decks of that week, and on 2026-10-02 the declared lit peak measured fifth
+   of nine. Mean lightness can't see warmth or one lit object on a dark frame,
+   so the critic stays the judge; the census only stops the arc from being
+   claimed when the numbers say otherwise.
 5. RECORD-SYNC pre-flight. Hand-edits in this phase land in the slide HTML,
    so copy.json can silently go stale (run 2026-07-17: an S5 kicker edited
    "HOW IT STARTED" -> "BEFORE THE CLASS" in the HTML while copy.json kept

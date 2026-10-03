@@ -22,6 +22,9 @@ on:
       - "scripts/week_digest.py"
       - "scripts/machine_due.py"
       - "scripts/trend_check.py"
+      - "scripts/tonal_arc_check.py"
+      - "scripts/critic_brief.py"
+      - "scripts/dossier_check.py"
       - "knowledge/MACHINE_QUEUE.md"
       - ".github/workflows/run-record-parsers.yml"
   push:
@@ -33,6 +36,9 @@ on:
       - "scripts/week_digest.py"
       - "scripts/machine_due.py"
       - "scripts/trend_check.py"
+      - "scripts/tonal_arc_check.py"
+      - "scripts/critic_brief.py"
+      - "scripts/dossier_check.py"
       - "knowledge/MACHINE_QUEUE.md"
       - ".github/workflows/run-record-parsers.yml"
   workflow_dispatch:
@@ -53,7 +59,7 @@ jobs:
       # site_build imports Pillow at module scope for the favicon and the
       # grain tile, so the fixtures cannot import it without this.
       - name: Dependencies
-        run: pip install --quiet Pillow
+        run: pip install --quiet Pillow numpy
 
       - name: Every run-record shape still parses
         run: python scripts/parsers_check.py
@@ -65,6 +71,14 @@ jobs:
         run: |
           python scripts/machine_due.py --self-test
           python scripts/week_digest.py --self-test
+
+      # The storyboard readers the weekly pass of 2026-10-04 added: the tonal-arc
+      # census (gate_status's tonal_arc row) and the pixel critics' CRAFT LINES.
+      # Both parse the storyboard's CRAFT PLAN, which drifts like any agent output.
+      - name: The storyboard's CRAFT PLAN readers (tonal arc census, critic brief)
+        run: |
+          python scripts/tonal_arc_check.py --self-test
+          python scripts/critic_brief.py --self-test
 
       # The fixtures are shapes taken from real runs, but the runs themselves
       # are the ground truth. This catches a reader that passes its fixtures

@@ -1850,6 +1850,30 @@
       "evidence": "Round 1 found invisible casts on 01, 05, 07 and 08, all physically correct. Turning each camera toward the sun (01 160 to 140, 05 270 to 252, 07 320 to 270, 08 345 to 260) made the casts stream toward the lens on all four, and on 08 put the solved disc on the horizon.",
       "act_on_it": "In the dossier, write the heading AFTER solving where the cast must run on screen; reject any heading that puts the sun within 30 degrees of perpendicular unless the cast is meant to vanish.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-04",
+      "carousel_no": 77,
+      "instinct": "COUNT THE SECONDARY TEXTURES TOO: a ground repeated under different engines is still one picture.",
+      "evidence": "No.77 drew a dome-cobble bed on five frames with four different engines (PBR, SDF, painted, canvas); the CRAFT PLAN counted primary mark-making only and passed it, and the flow critic named it as a cross-frame repeat. Rebuilding 06 on tussock moss and trimming 02 cleared it.",
+      "act_on_it": "In the CRAFT PLAN, list each frame's ground and lower-band texture beside its mark-making and hold any one texture to three frames.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-04",
+      "carousel_no": 77,
+      "instinct": "A COUNT LINE HAS TO RUN ACROSS THE PATH OF WHAT IT COUNTS.",
+      "evidence": "No.77's 09 first drew the line horizontally across water with fish swimming right, so nothing crossed it; turning it to recede into depth like 01's made every fish a crossing.",
+      "act_on_it": "For any line a thing crosses, write in the dossier which way the things move and draw the line perpendicular to it on screen.",
+      "confidence": 0.55
+    },
+    {
+      "run_date": "2026-10-04",
+      "carousel_no": 77,
+      "instinct": "WITHOUT AN ENVIRONMENT MAP, METAL RENDERS BLACK.",
+      "evidence": "No.77's 02 tower at metalness 0.85 printed as a dark wire cage; at 0.3 with a bounce light and a rim spot it read as lit aluminum.",
+      "act_on_it": "In akthree scenes with no env map, keep metalness at or below 0.35 and light the metal with a point or spot it can reflect.",
+      "confidence": 0.6
     }
   ]
 }

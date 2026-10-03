@@ -23,7 +23,9 @@ it can't fix safely stays open with ` | escalated <date>: <why>` and goes in the
 
 ## Open
 
-(none yet)
+- [ ] 2026-09-30 | repeat: 3 | gaswatch: evening collection slots land after the daily audit | evidence: runs 2026-09-30, 2026-10-01, 2026-10-02 and 2026-10-03 UTC each found CINGSA's evening reading unpublished because GitHub dispatched the 19:20Z slot 3 to 4 hours late and the 04:40Z and 07:20Z slots after the run; workflow_dispatch from the routine is 403 | fix: owner decision only (schedules and credentials are off limits to a run): either grant the routine Actions write so it can dispatch the collector, or move the routine's audit later than the 07:20Z slot
+- [ ] 2026-10-04 | repeat: 0 | render: synchronous art before the first await blocks page load | evidence: No.77 slides 06 (aksdf, 90 to 140 s) and 07 (per-pixel paint) timed out page.goto('load') at 45 s until the slide awaited load and yielded once | fix: render.py detects a load timeout with no renderReady settled and prints the remedy (await the load event, then never yield after the long block); SKILL.md states it beside the 30 s race note
+- [ ] 2026-10-04 | repeat: 0 | qa: axis census threshold set by a declared-but-undrawn mark | evidence: No.77 slide 03 reported phantom undeclared marks at 144.5 and 904 after a tick was removed but its declaration kept | fix: when the weakest declared mark carries no ink, name THAT mark as undrawn instead of reporting texture as undeclared marks
 
 ## Done
 
