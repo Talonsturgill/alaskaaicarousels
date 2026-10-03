@@ -195,5 +195,12 @@
  "scoring": "done",
  "pixel_review": "done",
  "assemble": "done",
- "ship": "done"
+ "ship": "done",
+ "phase_3_6": {
+  "site_signoff": "PASS. 133 pages, 18 checks, nothing rendered empty, no dead links, current cron values on their pages (checked 2026-10-03 06:2xZ and again at 09:0xZ against the rebuilt docs/; desktop and phone screenshots of home, docket and gas watch clean).",
+  "gaswatch_live": "UNRESOLVED (github). Live audit FAIL on 'source reading published' only: CINGSA posted an 18:52 Alaska reading on October 2nd after the last collection (run 386 at 23:03Z, the 19:20Z slot dispatched 3h43m late), and GitHub had not dispatched the 04:40Z or 07:20Z slots by 09:17Z. The routine's workflow_dispatch returns 403. Collector healthy, nothing in the repo broken. Fourth day running with this shape; queued in MACHINE_QUEUE as an owner decision (grant the routine Actions write, or audit after the 07:20Z slot).",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "PASS. 6 scheduled workflows audited at 2026-10-03T06:19Z.",
+  "site_fixes": "none. Nothing on the live site needed repair; one docket note reworded so the ask box's no-prediction lint passes (CI)."
+ }
 }
