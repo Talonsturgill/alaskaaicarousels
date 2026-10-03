@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-10-03-the-choosing-isnt",
+      "date": "2026-10-03",
+      "title": "The Choosing Isn't",
+      "caption": "Alaska News says its AI agent Walter has helped it publish more than 4,500 stories this year. The Anchorage Press interviewed Walter, and its answer points at what's still hard in local news, choosing what goes on top.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-03-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-03-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-03-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-03-poster_thumb.jpg"
+    },
+    {
       "id": "2026-10-02-who-counted",
       "date": "2026-10-02",
       "title": "Who Counted",
