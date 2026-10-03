@@ -107,7 +107,7 @@
         "description": "Mean modeled demand across every day in the committed record, against the published average day figure.",
         "computed_from": "hdd_history",
         "expect_mean_hdd65": 25.7,
-        "expect_mmcfd": 169.3,
+        "expect_mmcfd": 169.2,
         "compare_to_anchor": "published_average_day_mmcfd",
         "note": "The gap against the published average day is published rather than tuned away. A planning average carries margin that a fit to observed deliveries does not, so the model is expected to sit under it.",
         "sanity_gap_pct": 40,
@@ -167,9 +167,9 @@
       "geography": "EIA reports Alaska statewide. Residential and commercial gas is overwhelmingly Enstar in Southcentral and gas fired power is overwhelmingly Railbelt, so statewide heating and power deliveries stand in for the region. Industrial load is excluded, because Kenai plant demand does not track the weather.",
       "refit_by": "scripts/gaswatch_fit.py, on the monthly EIA workflow"
     },
-    "hdd_history_days": 4643,
+    "hdd_history_days": 4658,
     "hdd_history_start": "2014-01-01",
-    "hdd_history_end": "2026-09-17"
+    "hdd_history_end": "2026-10-02"
   },
   "model_history": [
     {
@@ -213,12 +213,12 @@
     }
   ],
   "crosscheck": {
-    "eia_latest_month": "202606",
+    "eia_latest_month": "202607",
     "eia_months_checked": 131,
     "eia_model_ratio": 1.0,
     "eia_model_gap_pct": 0,
     "eia_model_runs": "high",
-    "eia_ak_working_gas_bcf": 32.5,
+    "eia_ak_working_gas_bcf": 35.0,
     "eia_ak_capacity_bcf": 69.9,
     "eia_storage_fields": 5
   },
