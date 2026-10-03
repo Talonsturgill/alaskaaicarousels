@@ -49,7 +49,13 @@ Checks:
    c. a dead or eventless region, above all a flat lower third;
    d. a texture artifact: fur, stripes, moire, a findable reserve edge,
       banding;
-   e. no tonal or density arc across the contact sheet.
+   e. no tonal or density arc across the contact sheet. You are handed the
+      TONAL ARC census (`scripts/tonal_arc_check.py`, 2026-10-04): each
+      frame's mean L* at contact-sheet scale against the CRAFT PLAN's
+      `Tonal arc:` line. Quote its numbers when you name e, and when it
+      WARNs, say whether the miss is the one you see. It measures mean
+      lightness only; warmth, a lit object on a dark frame and density are
+      still yours to judge.
    Name, per weak frame, the ONE change that would lift it most. Predict
    the artwork-craft score honestly; you're not grading on effort.
    Cross-frame findings belong here, which is why this sits with you and

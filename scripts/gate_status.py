@@ -433,6 +433,36 @@ def plan_drift_row(rows, run, rdir):
     rows.add("plan_drift", "FAIL", "%s (%s)" % (out[-1][:80], first[:90]))
 
 
+def tonal_arc_row(rows, run, rdir):
+    """THE DECLARED TONAL ARC, MEASURED (2026-10-04, the first weekly machine
+    pass). The flow critic named cause e, no tonal arc, on all six decks of the
+    week to October 3rd, and on 2026-10-02 the declared lit peak measured fifth
+    of nine. A CENSUS, NOT A GATE: it is PASS or WARN and never FAIL, with or
+    without --require, because mean lightness can't see a warm peak or a dark
+    frame with one lit object, and the critic stays the judge of those. When it
+    can't look (no renders yet, no Tonal arc line) the row is n/a: dossier_check
+    already FAILs a CRAFT PLAN without the line."""
+    script = REPO / "scripts" / "tonal_arc_check.py"
+    if not script.exists() or not (run / "storyboard.md").exists():
+        rows.add("tonal_arc", "n/a", "tonal_arc_check.py or storyboard.md missing")
+        return
+    try:
+        p = subprocess.run([sys.executable, str(script), "--run-dir", str(run),
+                            "--render-dir", str(rdir), "--json"],
+                           capture_output=True, text=True, timeout=120)
+        d = json.loads(p.stdout)
+    except Exception as e:
+        rows.add("tonal_arc", "n/a", "could not run tonal_arc_check (%s)" % type(e).__name__)
+        return
+    if d.get("verdict") not in ("PASS", "WARN"):
+        rows.add("tonal_arc", "n/a", "could not look: %s" % str(d.get("error"))[:120])
+        return
+    warn = next((m for m in d.get("lines", []) if m.startswith("[WARN]")), "")
+    detail = (warn[7:] if warn else "brightest %s, darkest %s, span %.1f L*, as declared" % (
+        d.get("brightest"), d.get("darkest_measured"), d.get("span", 0)))
+    rows.add("tonal_arc", d["verdict"], detail[:140])
+
+
 def aggregate_row(rows, run, rdir):
     """Every number a slide DERIVES from claims (a count, a span, a duration, a
     ratio) is a fresh factual assertion that claims_check and copy_sync_check
@@ -1298,6 +1328,7 @@ def main():
     copy_sync_row(rows, run, rdir)
     aggregate_row(rows, run, rdir)
     plan_drift_row(rows, run, rdir)
+    tonal_arc_row(rows, run, rdir)
     bespoke_row(rows, run)
     scanner_sync_row(rows)
     ledger_guard_row(rows)

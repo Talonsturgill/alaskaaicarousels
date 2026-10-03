@@ -166,3 +166,15 @@ plus the checklist.
   frame (its line, or its row, says what makes the depth) is where the
   rubric's 10 is earned, so plan it and then build it
   first.
+
+  The Tonal arc line is MEASURED after the build (2026-10-04,
+  `scripts/tonal_arc_check.py`, the `tonal_arc` row of gate_status): name the
+  peak frame with "peak", "brightest" or "highest key" and the darkest with
+  "darkest", each followed by its two-digit number ("the lit peak on 04",
+  "the darkest close on 09"), and the census reads where each one actually
+  falls by mean L* on the contact sheet. It WARNs and never fails. A peak
+  that is warm rather than light, or one lit object on a dark frame, is a
+  real arc the census can't see; say so in the line and in the
+  reconciliation. Each slide's CRAFT PLAN row and its field 4a also go to
+  that slide's pixel critic as CRAFT LINES (`scripts/critic_brief.py`), so
+  write the row and 4a as the promise a critic will check the render against.

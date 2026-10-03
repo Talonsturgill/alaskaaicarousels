@@ -2963,6 +2963,55 @@
       "verification": "Prose only, aligned to code read this run: gate_status.score_row adds FAIL when the scorer's passes flag is false regardless of --require, and ship_gate_row adds FAIL with 'ITERATE, do not stop'. No other sentence in the spec says a low score is a WARN (grep for 'WARN row' and 'below-threshold' across prompts/routine_instructions.md). No gate, threshold or script changed.",
       "rollback": "git revert the upgrade(2026-10-03) commit, or git checkout <commit>^ -- prompts/routine_instructions.md.",
       "commit": "ac74b975d97714b07cb081d41cd52ee0909211f0"
+    },
+    {
+      "run_date": "2026-10-04",
+      "kind": "fix",
+      "area": "agents",
+      "change": "The pixel critic now answers three yes/no frame causes in a required `frame_causes` block, each with a region in design px: b, is the largest object the best-modelled thing on the frame with the modelling its CRAFT PLAN row names; c, does the lower third render what field 4a promised, with no 150 px eventless band outside the text's reserved quiet zone; d, is the frame free of texture artifacts at 100 percent. A no is a major issue and a revise. New scripts/critic_brief.py prints each slide's CRAFT LINES (its CRAFT PLAN row, field 4a with its y range, the depth-frame flag) for Phase 9 step 2 to paste into that slide's critic.",
+      "trigger": "Weekly digest 2026-09-28 to 10-03: the flow critic's weakest frames were cause b on 6 of 6 runs (10 frames), d on 6 of 6 (13), c on 5 of 6 (8), 31 of 32 frames under a per-frame cause, each already through its pixel critic's ship loop, whose protocol never asked those questions nor received the CRAFT PLAN row; the craft cycle then moved art 0 to 0.5 on every run. Three pixel probes for a dead region did not separate the named frames (lower-band flatness AUC 0.63 over 226 frames; terminal flat band, named 0.003 to 0.139 vs unnamed p90 0.128 over 108 frames; frame_balance fired on none), so the fix went to the critic. Question design from the 2026-10-04 scan: CheckEval boolean checklists (https://arxiv.org/html/2403.18771v2), ImagenWorld's VLM under-penalising of artifacts (https://arxiv.org/html/2603.27862), SALART-VQA's detection versus localisation (https://www.alphaxiv.org/abs/2606.12671.md).",
+      "files": [
+        "scripts/critic_brief.py",
+        ".claude/agents/pixel-critic.md",
+        "prompts/routine_instructions.md",
+        "knowledge/SLIDE_DOSSIER_SPEC.md",
+        ".github/workflows/run-record-parsers.yml"
+      ],
+      "verification": "python3 scripts/critic_brief.py --self-test: 7/7 (one block per dossier, row and wrapped 4a with y range reach their slide, depth flag on one slide only, a missing 4a is named, --slide selects, MISSING is printed). On out/2026-10-04 every slide prints its lines and exits 0; on runs/2026-10-02 --slide 2 prints the 4a promise ('the chamfer worn to bright steel along the bottom edge', design y 900 to 1260) that the shipped frame broke. No engine file changed: render.py + qa.py on out/2026-10-04/slides into a scratch dir, 9/9 OK and qa PASS 0 fails 0 warns; examples/demo-deck 4/4 OK, qa WARN 0 fails (2 busy-art warns, as before).",
+      "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/critic_brief.py .claude/agents/pixel-critic.md prompts/routine_instructions.md knowledge/SLIDE_DOSSIER_SPEC.md .github/workflows/run-record-parsers.yml",
+      "commit": "pending"
+    },
+    {
+      "run_date": "2026-10-04",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "New scripts/tonal_arc_check.py reads the CRAFT PLAN's Tonal arc line and each frame's mean L* at contact-sheet scale and WARNs when no declared peak is in the brightest two or within 3 L* of the brightest, when no declared darkest frame is likewise near the darkest, or when the sheet spans under 8 L*; gate_status.py reports it as the `tonal_arc` row (PASS or WARN, never FAIL, n/a when it can't look), and the flow critic is handed the census for cause e.",
+      "trigger": "Weekly digest 2026-09-28 to 10-03, cross-frame table: cause e (no tonal arc) on 6 of 6 decks, 32 frame mentions, invisible to the digest until this pass. The CRAFT PLAN has declared the arc since 2026-09-26 and nothing measured the build against it; on 2026-10-02 the declared lit peak 04 measured 5th of 9 by mean L*.",
+      "files": [
+        "scripts/tonal_arc_check.py",
+        "scripts/gate_status.py",
+        ".claude/agents/flow-critic.md",
+        "prompts/routine_instructions.md",
+        "knowledge/SLIDE_DOSSIER_SPEC.md",
+        ".github/workflows/run-record-parsers.yml"
+      ],
+      "verification": "python3 scripts/tonal_arc_check.py --self-test: 10/10, including a reconstruction of the 2026-10-02 shape (declared peak measuring 5th) that WARNs and names the real peak, and a one-tone sheet that WARNs. On the eight shipped decks with a Tonal arc line it WARNs on 09-26, 09-30, 10-01 and 10-02 and PASSes 09-27, 09-28, 09-29, 10-03; the flow critic named the same miss on 09-30, 10-01 and 10-02. The real shipped defect reproduces: gate_status.py --run-dir runs/2026-10-02 prints '[WARN] tonal_arc peak: the plan puts it on 04, and 04 measures L* 17.3, 5th of 9'. Today's deck PASSES (peak 06 at L* 70.0, darkest 09). gate_status.py --self-test 27/27. WARN-only by design: mean lightness can't see a warm peak, so it is a census and not a gate.",
+      "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/tonal_arc_check.py scripts/gate_status.py .claude/agents/flow-critic.md (and the Phase 9 step 4 paragraph in prompts/routine_instructions.md)",
+      "commit": "pending"
+    },
+    {
+      "run_date": "2026-10-04",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/week_digest.py counts the flow critic's craft.cross_frame causes in a table of their own (runs, frames named, slides and problem per run) beside the weakest-frames table, and returns them as data['cross_frame']; prompts/machine_weekly.md names the new table.",
+      "trigger": "This pass's own input: the digest showed cause e at 0 runs and cause a at 1 run for 2026-09-28 to 10-03, while the critic's cross_frame list named e and a on all six decks. A weekly pass ranking by the digest would have ranked the week's two most recurrent deck-level causes last.",
+      "files": [
+        "scripts/week_digest.py",
+        "prompts/machine_weekly.md"
+      ],
+      "verification": "python3 scripts/week_digest.py --self-test: 10/10, two new (cross-frame causes counted apart by runs in any case with junk entries ignored; the table carries slides, frames and an escaped pipe). On the live corpus for 2026-10-04: cross-frame a 6 runs / 34 frames named, e 6 / 32, c 3 / 11, d 2 / 7; the weakest-frames table is unchanged (a 1, b 6, c 5, d 6, e 0).",
+      "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/week_digest.py prompts/machine_weekly.md",
+      "commit": "pending"
     }
   ],
   "scan_log": [
@@ -3441,6 +3490,13 @@
       "searches": "6 searches, 4 fetches read (two ICA abstracts extracted from PDF, one arXiv abstract, one PMC paper); news-desk 'how we made it' searches returned nothing substantive for 2026",
       "found": "(1) Golebiowska et al., ICC 2025, n=352: shaded-relief accuracy is significantly worse only for single-light Lambert at azimuth 225, landform orientation moves accuracy only at 225, and a SkyLum sky model with a dominant 225 light significantly restores it; NNW 337.5 beats NW 315 (https://ica-abs.copernicus.org/articles/10/92/2025/ica-abs-10-92-2025.pdf). (2) Stefanakis, EuroCarto 2026: light running parallel to dominant terrain grain loses cross-slope contrast, so a southern key can beat NW in aligned ranges (https://ica-abs.copernicus.org/articles/12/135/2026/ica-abs-12-135-2026.pdf); his Eduard urban study (https://arxiv.org/abs/2608.20149) is neural and not portable offline. (3) Koizumi et al. 2017: cast shadows are matched to objects with a strong light-from-above bias (d 0.74 to 1.39) and no left/right bias (https://pmc.ncbi.nlm.nih.gov/articles/PMC5298568/), the perceptual reason No.76's lateral casts failed and toward-the-lens casts worked.",
       "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-10-03 frontier scan, focus (b)'): akrelief already ships a multidirectional set, a single-key warning needs a warn-vs-contract decision and a fixture with no shipped defect behind it, and a planning-time cast-readability check needs sun azimuth and camera heading as dossier fields, a SLIDE_DOSSIER_SPEC change. Unblocks when a second deck solves a real sun."
+    },
+    {
+      "run_date": "2026-10-04",
+      "focus": "(f) agent and automation workflow patterns for self-improving pipelines, narrowed to how a vision critic should be asked so it finds named defects. Legal (last read 2026-09-28) and distinct from the last three logged foci: 2026-10-03 (b) cartography, 2026-10-02 (e) headless Chromium, 2026-10-01 (a) LinkedIn. Chosen over the stalest slot, (g) accessibility and PDF (2026-09-21), on relevance: the week's per-frame causes b, c and d were all passed by the per-slide critic first.",
+      "searches": "4 searches, 4 fetches (the ImagenWorld PDF did not parse; its HTML did), and three local measurements over shipped frames (dead-region probes, see FIELD_NOTES 2026-10-04)",
+      "found": "(1) CheckEval (https://arxiv.org/html/2403.18771v2): yes/no checklist questions over a Likert score raise Spearman with humans 0.40 to 0.48 and inter-evaluator alpha 0.05 to 0.67. (2) ImagenWorld (https://arxiv.org/html/2603.27862): VLM judges under-penalise artifacts (Spearman 0.59 vs human-human 0.64, positive bias on boundary glitches). (3) SALART-VQA (https://www.alphaxiv.org/abs/2606.12671.md): 99.37 percent artifact detection but 53.26 percent fully localised and explained.",
+      "outcome": "applied as the design of this pass's pixel-critic frame_causes fix (yes/no per cause, a required region, an unanswered cause is a no); PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-04 frontier scan, focus (f)'): critic rotation and calibration against the scorer, which needs the pixel critics' JSON persisted per round and touches a pinned model."
     }
   ]
 }
