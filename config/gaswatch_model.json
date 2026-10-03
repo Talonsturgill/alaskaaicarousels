@@ -84,7 +84,7 @@
       "description": "Mean modeled demand across every day in the committed record, against the published average day figure.",
       "computed_from": "hdd_history",
       "expect_mean_hdd65": 25.7,
-      "expect_mmcfd": 169.3,
+      "expect_mmcfd": 169.2,
       "compare_to_anchor": "published_average_day_mmcfd",
       "note": "The gap against the published average day is published rather than tuned away. A planning average carries margin that a fit to observed deliveries does not, so the model is expected to sit under it.",
       "sanity_gap_pct": 40,
