@@ -80,18 +80,33 @@
       "note": "8.645 (threshold 7.7), art 7.0, craft cycle ran on 05, 04, 02, 01, 08 (7.0 -> 7.0)"
     },
     "ship": {
-      "status": "pending"
+      "status": "done",
+      "note": "PR #418 merged after CI green and Codex Completed on 93ab1ce with no findings; branch CI caught two site defects (ask agency rule, docket badge above the coast), fixed in 93ab1ce"
     },
     "upgrade": {
-      "status": "pending"
+      "status": "done",
+      "note": "weekly pass not due; automation_retro.md and MACHINE_QUEUE updated"
     },
     "gmail": {
-      "status": "pending"
+      "status": "done",
+      "note": "draft r6090820869896433356 in docket@alaskaaihq.com, payload verbatim, preview-mode remote"
     },
     "retro": {
-      "status": "pending"
+      "status": "done",
+      "note": "FIELD_NOTES appended, three instincts"
     }
   },
   "score": 8.645,
-  "ship": true
+  "ship": true,
+  "phase_3_6": {
+    "site_signoff": "PASS, 135 pages, 18 checks (re-run on the rebuilt site before merge)",
+    "gaswatch_live": "WARN at 08:21Z: source reading published. CINGSA posted a 22:57 Alaska reading on October 3rd after the last collection; the collector's own runs are green and the last verified day (October 3rd, 59.4 percent) is on the page. Fifth daily run with this late-slot shape; owner decision queued in MACHINE_QUEUE (repeat 4).",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited at 2026-10-04T06:18Z",
+    "site_fixes": "none on the live site. Branch CI caught two site defects from this run's new docket item, both fixed before merge: the ask box had no agency rule for the North Slope Borough, and the Prudhoe Bay pin's badge rose above the coast and shrank the phone map on iPhone 13 landscape."
+  },
+  "gmail_draft_id": "r6090820869896433356",
+  "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/418",
+  "merge_sha": "7833b12afed5d193cc6442c17bd4db7a904885aa",
+  "status": "complete"
 }
