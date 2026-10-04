@@ -1,0 +1,197 @@
+{
+ "weighted_total": 8.645,
+ "threshold": 7.7,
+ "ship": true,
+ "revision_rounds": 5,
+ "scoring_cycle": 2,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Ten words in huge Archivo, and the hook unit is new: 'More than three Alaskas of power, planned for Prudhoe Bay.' It is honest because 10,000/3,106.5 = 3.22 (C46). At the 432px thumb it reads as one big rotor on pale snow. It falls short of 9 for two reasons. The art could be any turbine on any snow, and only the word 'Prudhoe' makes it Alaskan. 'Three Alaskas of power' also takes a beat to parse as a unit."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "02 pays off the cover right away with counted bores (31/30/100, asserted by qa). 06 to 07 to 08 is a strong money, shut terms, ask run with the blind closed and then open. The middle is still loose. The flow critic rated the 02-03, 03-04, 04-05 and 05-06 pulls weak. 04 (fuel, two unreconciled counts, CERAWeek) is the most reorderable beat even after its round-4 trim. Slide 07's headline 'The terms aren't public.' is repeated almost word for word by its last body sentence, 'The financial structure is not public.'"
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.0,
+   "weight": 0.16,
+   "notes": "The craft cycle produced real but marginal gains, none moving the deck-level judgment. 02 gained a darker lower crescent and deeper bore per ring but still reads as 161 identical icons on a pale field. 04's handwheels are spoked and the bodies a touch lighter, but the tree is still a near-black stack of ruled cylinders and the snow strokes read as water. 08's paddle gained a lit rim arc and less blur but still reads as a dark wedge at thumb. 05 and 01 were reverted and are unchanged: 05's smeared jacket blotches and floating fins, 01's unlit pedestals and featureless pad. 03 remains the best frame and 06's stake is well modelled. Five frames still carry named defects, so the honest score stays 7.0."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "The data is in the art. 02 is one bore per 100 MW, counted by the frame. 03 is puck area proportional to EIA installed MW, with the Prudhoe disc at 3,000 MW and the ring at 10,000 MW (ring/disc radius about 1.86, close to sqrt(3.33)). 06's band heights are linear in dollars (48 and 200 px, two declared scales). The literal anchors match the beats: turbine rotor, wellhead tree, VSM line with thermosiphon beside 'N/A', and the spectacle blind closed for 'not public' and open for the ask. Gold means only the public's money. A stranger would guess Slope gas power. The fog keyed to sourcing is invisible to a reader, which keeps this from a 9."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Named throughout: Prudhoe Bay, the North Slope Borough, its seven village plants at 21.4 MW (C44), all 152 Alaska plants on a real DEM, VSMs with thermosiphon radiators (an authentically Slope detail), the Alaska Current, Dermot Cole, and real coordinates. The one imported beat is CERAWeek in Texas. No person is named, deliberately, because of the election."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Every content slide adds a new specific: 3,106.5 MW and 152 plants (02), TFC and the 21.4 MW village plants (03), 30 vs 35 tcf plus EIA's main fuel (04), the proposal's N/A (05), $1.2M and $5M (06), and the resolution's words plus 'initially' (07). Thin or repeated spots: 04 opens with 'Two outlets, two areas, two counts' and repeats 'already' from its headline, and 07 says 'not public' twice."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08,
+   "notes": "Hero (THE PAD LOG), atmosphere, hook, palette and continuity devices are all new against the ledger windows. Reused subsystems: the 'one modelled object per frame, one place, one fixed light' template is the third in four decks (No.74 long table, No.75 inspection bench). Mark-making repeats the same toolkit: 112 lathe ring engraving, 120 averaged overcast raymarch, bas-relief, PBR. Archivo condensed display returns from No.74/70. Survey stake with flagging returns from No.71. The topic lane, data-center power, is the sixth in about 30 days (68, 70, 71, 74, 76)."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Floors met. Counters on all eight frames, vector PDF 7.74 MB titled 'More Than Three Alaskas of Power, Planned for Prudhoe Bay'. All headlines and bodies read at 432px. Squeakers: on 01, alaskaaihq.com sits on the dark near pedestal and snow edge. 03's smallest pucks and footer slug are faint at thumb (decorative)."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.5,
+   "weight": 0.05,
+   "notes": "The hook is the first 132 chars, a cold number, and the caption is 851 chars. It takes a position ('It should be, before a plant this size goes up.'), has a deck-summary line, and closes on a debatable question ('what is the strongest case for keeping the terms private?'). Attribution is careful and the like-for-like nameplate basis is honest. Soft spot: the deck-summary line describes the art ('sits in fog', 'closed pipe blind') rather than adding a point."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "copy.json has the post, exactly 3 hashtags, a first-comment source block with primary EIA queries first, the document title, aftercare (including the October 6th election caution) and editor notes. assemble shows 8 thumbs, contact sheet and verified source hashes. Not yet a finished deliverable: gate_status shows site_fresh FAIL (docs/ not rebuilt) and ship_gate pending this score, and the Gmail draft, URLs and merge are not yet verifiable."
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.0x0.16)+(8.5x0.14)+(8.5x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(8.5x0.05)+(8x0.10) = 8.645. No hard fails. Weights sum to 1.10; normalized 7.859. Both clear the 4+ round threshold of 7.7.",
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "Read caption.txt, copy.json (post_copy, first_comment, all slide strings, aftercare, editor notes) and all 8 renders. Only ASCII hyphens: 'no-bid', 'investor-owned', 'EIA-860M', '13-2026', and ISO dates in the citation block. No U+2013 or U+2014."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in caption, first comment or slides. The 08 Polaris is the brand's drawn mark next to the wordmark, not an emoji."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide fact maps to claims.json (01 C01/C02/C05/C20/C41/C46; 02 C01/C02/C21/C41/C46; 03 C01/C02/C05/C41/C44; 04 C04/C22/C23/C29; 05 C15; 06 C07/C08/C45; 07 C08-C11). Checked against the verbatims: slide 5 matches C15 ('Next to climate change ... wrote \"N/A.\"'), slide 7's quote matches C09, 'initially' matches C10, and $6.2M is the declared derivation C45. plan_drift PASS (0 drifts), aggregate PASS (one advisory warn on S3)."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "Transcribed all 8 frames, e.g. S1 'More than three Alaskas / of power, planned / for Prudhoe Bay.', S3 'Twenty First Century Utilities (TFC) ... colocated AI data centers ... 21.4 MW in all.', S4 'CERAWeek', S7 '\"an investor-owned utility (IOU) with Borough majority ownership\"'. No misspellings ('colocated' is a valid spelling and matches the source). copy_sync PASS, 43 strings present in render."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "All headlines fit (qa fits: 01 3/3 at 106px, 05 5/5 at 59px, 08 3/3 at 91px). No text crosses the frame edge. The 03 map labels are plated inside the safe zone. On 01 the decorative site URL sits over pedestal art but is not clipped or overlapped by other text."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Every primary text block sits on clean fields: #F4F8FF on fog navy (01, 03, 04, 06, 07, 08), #081426 on pale fog (02, 05), 04's tags dark on #E6ECEF plates. None is near 4.5:1. Faint items (01 URL, 03 slug) are data-decorative fixtures."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "8 slides (assemble_report slides: 8)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict PASS, 0 fails, 0 warns. assemble_report pdf_mode 'vector', 7.74 MB."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "topics.json entries from 2026-09-05 to 10-04 have no North Slope Power, TFC or borough-money story. No.68 (STAK, ADL 422741) is a different North Slope project. selection.md dedupe strongest is No.72 at jaccard 0.023."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last 4 heroes in artwork.json are No.74 LONG TABLE OF THE RECORD, No.75 INSPECTION BENCH, No.76 SUNDIAL FIELD and No.77 COUNTER'S LANE. This deck's PAD LOG (industrial objects on an Arctic gravel pad plus an ortho map slab) is not identical, though it is conceptually close to 74/75 (charged under Variety)."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "word_ban PASS (0 banned words). caption_check PASS. No gap, matters, pattern, or 'cannot' in any reader-facing string (slide 7 uses 'aren't')."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "#NorthSlopeBorough #PrudhoeBay #DataCenterPower (3). No URL in post_copy. Every URL is in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholder strings in copy.json, caption or renders. Every frame carries its planned fixtures (wordmark, counter, site, heading slug, coordinates)."
+  }
+ ],
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild 05's VSM frame: replace the smeared jacket blotches with one soft penumbral cast from the radiator, and give the fins thickness, lit edges and between-fin AO seated in the post cap. It is the most damaging frame, and this cycle reverted it untouched.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "fix": "one soft penumbral cast from the radiator on the jacket, thick fins with lit edges and AO seated in a post cap, short sastrugi raised by the low slot light"
+  },
+  {
+   "slide": 1,
+   "fix": "bevel and rim-light both pedestals with a lit bronze sleeve, pull the near pedestal clear of the URL corner, carve lee drifts"
+  },
+  {
+   "slide": 4,
+   "fix": "lift the slot-lit third of every body to pewter (L* 55 to 65), crosslines only in the lee, flat wind-aligned snow tone with short sastrugi dashes"
+  },
+  {
+   "slide": 2,
+   "fix": "visible shaded barrel side and offset bore per ring, 1 to 3 percent tone jitter per pipe, a modelled ledge front face"
+  },
+  {
+   "slide": 8,
+   "fix": "the paddle as a full solid disc with its own ring lay, continuous lit rim and a visible web to the open ring"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   5,
+   4,
+   2,
+   1,
+   8
+  ],
+  "art_before": 7.0,
+  "art_after": 7.0,
+  "kept": "02, 04 and 08 changes kept; 01 and 05 reverted to their pre-cycle versions (byte-identical re-renders)"
+ },
+ "history": [
+  {
+   "scoring_cycle": 1,
+   "revision_rounds": 4,
+   "weighted_total": 8.645,
+   "normalized_by_weight_sum_1_10": 7.859,
+   "threshold": 7.7,
+   "artwork": 7.0,
+   "hard_fails": 0,
+   "weakest": "Artwork craft & genuine detail"
+  },
+  {
+   "scoring_cycle": 2,
+   "revision_rounds": 5,
+   "weighted_total": 8.645,
+   "normalized_by_weight_sum_1_10": 7.859,
+   "threshold": 7.7,
+   "artwork": 7.0,
+   "hard_fails": 0,
+   "weakest": "Artwork craft & genuine detail",
+   "note": "The craft-floor cycle was spent. 02, 04 and 08 gained marginally; 01 and 05 were reverted. Art did not move."
+  }
+ ],
+ "editor_notes": "1) SHIP below the art floor: 8.645 raw (7.859 normalized) clears 7.7 at 5 of 5 rounds; artwork stays 7.0, under 8.5. The owed craft cycle was spent and the run is at the round cap, so CRAFT FLOOR is satisfied by the cycle, not the score. 05's smeared jacket shadow ships. 2) Queue for the weekly pass: a rendered shadow on a cylinder reads as dirt (05); the largest object as a near-black stack of ruled cylinders with no lit third (04). 3) site_fresh must be green before merge; gas_watch_live WARN. 4) Every borough fact is single-outlet reporting from the Alaska Current; resolutions 13-2026 and 84-2025 could not be read; the first comment says so. Nameplate basis; against net summer it would be 1.05x and 3.5x, kept off the slides. 5) The borough election is Tuesday, October 6th; posting on or just before Tuesday may read as election commentary. 6) Sixth data-center or power deck in about 30 days."
+}

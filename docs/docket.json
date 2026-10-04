@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-03",
+  "updated": "2026-10-05",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 33,
+  "count": 34,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-01",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-07-08",
@@ -252,6 +252,10 @@
         {
           "date": "2026-10-01",
           "note": "Re-read the DNR notice for ADL 422741 today. It still carries the preliminary decision to offer STAK Energy Corporation a 50-year lease on 715.4 acres beside the Dalton Highway, about 26 miles south of Deadhorse. The comment period closed July 17th, and the attachments are still the May 12th preliminary decision and its supporting documents, with no Final Finding and Decision posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Tried to re-read the DNR notice for ADL 422741 today and the state's notice server refused the request. No final finding and decision on the STAK Energy lease has been reported in coverage through October 3rd, so the item stays awaiting DNR's decision."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -1213,7 +1217,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-07-17",
@@ -1402,6 +1406,10 @@
         {
           "date": "2026-10-04",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. The attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. It was last modified August 19th and archived September 15th, the attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1808,7 +1816,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-01",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-08-02",
@@ -1881,6 +1889,10 @@
         {
           "date": "2026-10-01",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. Responses were due August 20th and the notice was archived August 21st. The two documents attached are still the request and Amendment One, and the revision history ends on August 7th. No solicitation and no intent to award has followed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, last modified August 7th and archived August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1954,7 +1966,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-01",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-08-04",
@@ -2031,6 +2043,10 @@
         {
           "date": "2026-10-01",
           "note": "Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's license amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. The authority's project page still shows the June 30th filing, a construction estimate of about $400 million and a construction funding source yet to be determined. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -3227,7 +3243,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-01",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-08-25",
@@ -3308,6 +3324,10 @@
         {
           "date": "2026-10-01",
           "note": "Checked the Anchorage Daily News today. Its latest report on AO 2026-108 is still the September 16th story on the Assembly postponing the surveillance ordinance, and no further action has been reported. The ordinance remains set for the regular Assembly meeting on October 20th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Checked the Anchorage Daily News today. Its latest report on AO 2026-108 is still the September 16th story on the Assembly postponing the surveillance ordinance, and no further action has been reported. Checked and unchanged."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3511,7 +3531,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-09-01",
@@ -3552,6 +3572,10 @@
         {
           "date": "2026-10-04",
           "note": "Checked the borough's public meeting calendar today. The October 6th election is followed by canvass board reviews from October 7th to October 12th and a final count of absentee and questioned ballots on October 13th. The next regular Assembly meeting is October 8th, and no meeting on the moratorium request itself is listed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Checked the borough's elections page today. It still points voters to the October 6th municipal election, and no Assembly action on the moratorium request itself is scheduled. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
@@ -3786,7 +3810,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-01",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-09-13",
@@ -3823,6 +3847,10 @@
         {
           "date": "2026-10-01",
           "note": "Updated from the Senate's own roll call. On September 30th at 12:51 p.m. the Senate rejected cloture on the motion to proceed to the bill, 57 to 43, with three-fifths required, and the motion to proceed was withdrawn the same day. Senators Lisa Murkowski and Dan Sullivan both voted yea. In the House on September 16th, Representative Nick Begich voted yea on the 417 to 3 passage vote, per the Clerk's roll call 312. The Senate left for its campaign break that night and returns November 9th, as reported by States Newsroom."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Checked GovInfo today. The engrossed House text of September 16th is still the latest published version, and no further Senate action has been published since the September 30th cloture vote. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -3876,7 +3904,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-09-13",
@@ -3917,6 +3945,10 @@
         {
           "date": "2026-10-04",
           "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th, and no extension or correction has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4133,7 +4165,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-05",
       "history": [
         {
           "date": "2026-09-15",
@@ -4186,6 +4218,10 @@
         {
           "date": "2026-10-04",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, the record was last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-05",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
@@ -4374,6 +4410,43 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/petersburg-data-center-moratorium/"
+    },
+    {
+      "id": "north-slope-power-borough-gas-plant",
+      "title": "North Slope Power, the borough's gas plant for AI data centers",
+      "kind": "other",
+      "status": "watching",
+      "decider": "North Slope Borough mayor and Assembly",
+      "public_access": "indirect",
+      "access_note": "The borough commits money to North Slope Power by Assembly resolution and mayoral contract, so the elected borough government is the path in. The deal's financial structure has not been made public.",
+      "summary": "The North Slope Borough and Twenty First Century Utilities are developing North Slope Power, a gas-fired plant near Prudhoe Bay planned at 3 gigawatts in its first phase and meant to scale to 10, to deliver electricity to colocated AI data centers. As reported by the Alaska Current, the borough has funded a $1.2 million no-bid feasibility contract and committed another $5 million in public funds.",
+      "key_dates": [],
+      "location": {
+        "name": "near Prudhoe Bay",
+        "lon": -148.34,
+        "lat": 70.26
+      },
+      "sources": [
+        {
+          "url": "https://thealaskacurrent.com/2026/10/03/natural-gas-money-arctic-mayor/",
+          "outlet": "The Alaska Current",
+          "date": "2026-10-03"
+        },
+        {
+          "url": "https://www.dermotcole.com/reportingfromalaska/2026/5/12/north-slope-maps-plan-for-largest-natural-gas-power-plant-in-the-world",
+          "outlet": "Dermot Cole, Reporting from Alaska",
+          "date": "2026-05-12"
+        }
+      ],
+      "first_seen": "2026-10-05",
+      "last_updated": "2026-10-05",
+      "history": [
+        {
+          "date": "2026-10-05",
+          "note": "Tracked. The Alaska Current reports a 3 gigawatt first phase with plans for 10, a $1.2 million no-bid feasibility contract authorized in November 2025 and another $5 million committed in March, under a resolution describing an investor-owned utility in which the borough would initially hold majority ownership. Dermot Cole reported the same 3 to 10 gigawatt plan on May 12th. The borough's resolutions are posted only through a document viewer that could not be read directly, so their wording here is as the Current quotes it."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/north-slope-power-borough-gas-plant/"
     }
   ]
 }

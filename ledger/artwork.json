@@ -2704,6 +2704,53 @@
         "bespoke_median": 0.058
       },
       "note": "Round 1 critics 5.6 to 6.8, round 2 6.4 to 7.3, flow critic 7.2 (cobble beds on five frames, no dusk step, dead 05 to 06 junction). Craft cycle on 06, 04, 08, 02, 09, 07."
+    },
+    {
+      "run_date": "2026-10-05",
+      "carousel_no": 78,
+      "slide_count": 8,
+      "hero_structure": "NEW: THE PAD LOG. One industrial object per frame on one Arctic gravel pad near Prudhoe Bay under one fixed light, plus an orthographic map slab: a gas-turbine rotor on pedestals (01, PBR), pipe stacks counted one bore per 100 MW (02), Alaska as a relief slab with 152 area-true plant pucks and the Prudhoe disc and ring (03, PBR ortho), a white-line wellhead tree (04), the elevated line on its VSMs into whiteout (05, raymarch), a galvanized stake in two measured tape bands (06, relit heightfield), a spectacle blind closed with its joint jacked open (07, PBR), the blind open seen down the bore (08, hand-cut turned engraving).",
+      "atmosphere": "NEW: BEAUFORT FREEZING FOG UNDER A FIXED LIGHT SLOT, one pale band low in the south-southwest; tone set by camera heading and fog keyed to the sourcing.",
+      "depth_technique": "akthree PBR with a depth-pass focus pull (01); orthographic PBR slab over a DEM hillshade texture (03); five averaged aksdf passes (05); per-pixel heightfield relighting with supersampled silhouettes (06); PBR rim light in near-black fog (07)",
+      "line_voice": "record",
+      "continuity_device": "motif:the gold flagging tape, the borough's public money, changing shape frame by frame (knot, bow, tie, streamer, speck, measured bands, tie on the closed blind, free on the open blind)",
+      "continuity_devices": [
+        "D1 camera walk round one pad with heading slugs",
+        "D2 the gold flagging tape changing shape",
+        "D3 fog keyed to the sourcing behind each frame's central fact"
+      ],
+      "hook_archetype": "NEW: THE STATE AS THE UNIT",
+      "palette_family": "Beaufort fog over galvanized steel: fog navy #081426, light slot #C9D4DC, aluminium #B4BEC5, galvanized #7C878D, snow #DCE3E8, gold #FFC72C for the tape only",
+      "type_pairing": "Archivo condensed (wdth 72) display over Fraunces text, JetBrains Mono for tags and the record's own words",
+      "narrative_structure": "the size in Alaskas, the count, the map and the venture, the fuel, the proposal's N/A, the money, the shut terms, the ask",
+      "techniques": [
+        "112 lathe white-line engraving",
+        "120 Overcast Dome by Averaged Raymarch Passes",
+        "100 digital bas-relief heightfield",
+        "area-true proportional pucks on a DEM slab",
+        "hand-cut turned-face engraving"
+      ],
+      "new_techniques_logged": [],
+      "dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 2
+      },
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 2
+      },
+      "measured": {
+        "revision_rounds": 5,
+        "flow_rounds": 1,
+        "machine_qa": "PASS",
+        "pdf_mode": "vector",
+        "score": 8.645,
+        "artwork": 7.0,
+        "bespoke_median": 0.084
+      },
+      "note": "Round 1 critics 5.6 to 7.0 (cause c on seven frames), round 2 6.2 to 7.4, round 3 6.0 to 8.0 (06 ship), flow critic 7.4 (bail at 04). 07 took three rounds to read closed; the fix was jacking the joint open so the solid eye stands in the line. Craft cycle on 05, 04, 02, 01, 08; 01 and 05 reverted."
     }
   ]
 }

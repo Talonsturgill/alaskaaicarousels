@@ -1,0 +1,105 @@
+{
+ "run_date": "2026-10-05",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "fragment": "three Alaskas",
+   "text": "More than three Alaskas of power, planned for Prudhoe Bay.",
+   "member": "C46",
+   "note": "10,000 MW over the 3,106.5 MW of installed nameplate in all 152 Alaska plants is 3.22 (C46, from C02 and C41)"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "three times",
+   "text": "Phase one is about the size of every power plant in Alaska combined. The full plan is more than three times that.",
+   "member": "C46"
+  },
+  {
+   "kind": "subset",
+   "slide": 2,
+   "fragment": "ALL 152",
+   "text": "ALL 152 PLANTS",
+   "member": "C41",
+   "members": [
+    "C41"
+   ],
+   "basis": "EIA's own count of Alaska power plants, all of them, 152 (C41); the stack shows the whole set, not a part"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "Twenty First Century Utilities",
+   "text": "The North Slope Borough and Twenty First Century Utilities (TFC) are developing North Slope Power",
+   "member": "C01",
+   "note": "a company name, not a count"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "seven village plants",
+   "text": "The borough's own utility runs seven village plants, 21.4 MW in all.",
+   "member": "C44"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "152 PLANTS",
+   "text": "DISC AREA IS INSTALLED MW. 152 PLANTS, EIA.",
+   "member": "C41"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "fragment": "Two outlets",
+   "text": "Two outlets, two areas, two counts.",
+   "subject": "outlets",
+   "members": [
+    "C04",
+    "C22"
+   ],
+   "items": [
+    "The Alaska Current",
+    "Dermot Cole"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "fragment": "two areas",
+   "text": "Two outlets, two areas, two counts.",
+   "subject": "areas",
+   "members": [
+    "C04",
+    "C22"
+   ],
+   "items": [
+    "Prudhoe Bay",
+    "the North Slope"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "fragment": "two counts",
+   "text": "Two outlets, two areas, two counts.",
+   "subject": "counts",
+   "members": [
+    "C04",
+    "C22"
+   ],
+   "items": [
+    "nearly 30 trillion cubic feet",
+    "more than 35 trillion cubic feet"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "10 North Slope challenges",
+   "text": "TFC's proposal listed climate change among 10 North Slope challenges.",
+   "member": "C15"
+  }
+ ]
+}

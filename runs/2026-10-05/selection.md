@@ -1,0 +1,33 @@
+# SELECTION, run 2026-10-05, Carousel No.78
+
+## Decision
+North Slope Power: the North Slope Borough and Twenty First Century Utilities plan a gas-fired plant near Prudhoe Bay, 3 GW in phase one, scaling to 10 GW, to power colocated AI data centers (C01, C02, C05, C21). Against EIA's measured 2,853 MW of net summer capacity for all of Alaska in 2024 (C25, primary), phase one alone is larger than every power plant in the state combined, and the full plan is about 3.5 times it. The borough has put $1.2 million (no-bid feasibility, November 2025, C07) and $5 million (March 2026, C08) of public money into it; its resolution calls NSP an investor-owned utility with Borough majority ownership, structured so the Borough would "initially" keep that majority (C09, C10); the deal's financial structure is not public (C11).
+
+Criteria: (1) strongest concrete Alaska impact, the largest single power proposal ever floated in the state, by a borough government, for AI; (2) visual potential, a scale comparison with a primary anchor, real geography (Prudhoe Bay, Utqiagvik, the Railbelt), money; (3) tangible numbers; (4) an Alaskan would send this to a coworker, because almost nobody outside the Slope has heard of it.
+
+Dedupe: `dedupe_check.py` printed SOFT OVERLAPS only (strongest No.72 E-Rate, jaccard 0.023, shared entity North Slope Borough only). Read No.68 (six data center sites) in full: it covered STAK Energy ADL 422741, the AIDEA Houston parcel, the Air Force leases and DeepGreen. North Slope Power, TFC and the borough's money appear in no topics entry, no shipped claims and no docket item (grep across runs/, ledger/topics.json, ledger/docket.json returned nothing). Distinct story, not an update.
+
+## Editorial calls (showrunner)
+- Position: before a borough builds a plant bigger than the state's entire grid, the public should be able to read the terms. The deck states what is on the record, attributes every borough fact to the outlet that reported it, and says plainly what is not public.
+- NOT USED on any slide: C12 to C14 (TFC people's contributions to the mayor) and C16 and C17 (Tuesday's vote, prior recall efforts). Single outlet, no primary record reachable (APOC search form only; the borough's election page returned nothing; the fact-checker could not confirm whether Tuesday is a regular election or a recall). Putting a named candidate's donors on a carousel three days before his election on that sourcing is a call about a person; this deck is about the decision. Kept in claims.json as the verified record of what the Current reported.
+- Superlatives ("world record-breaking", "largest in the world") are attributed or dropped; the deck's own comparison is against EIA's Alaska figure, which is primary.
+- Every borough document fact (resolution wording, the $1.2M and $5M, the N/A) is the Alaska Current's reporting of documents it obtained or linked; the resolutions themselves sit behind the borough's SharePoint viewer and could not be read. The deck says "as reported" where it matters and the first comment carries the sources.
+- Gas reserve figures are NOT reconciled: nearly 30 tcf at Prudhoe Bay (the Current, C04) and more than 35 tcf across the North Slope (Cole, C22). If printed, each carries its outlet.
+
+## Runner-up
+Eielson AFB microreactor RFI W911KB279A007 (USACE Alaska District, posted October 2nd, 45 MWth / 5 MWe, responses due October 16th, C31 to C33). Primary and dated, but an UPDATE to No.71 (Air Force 5 MW site prep, September 28th) with an indirect AI link. Third: Bill Hill and H.R. 8400 (the DATA Act), a congressional-race framing.
+
+## Directors room (Phase 5)
+Lenses: cartographer, editorial-essayist, field-documentarian (last run used data-journalist, cinematographer, systems-illustrator). Summaries in out/2026-10-05/treatments/.
+- Cartographer, THE STATE AS YARDSTICK: south-up ortho block diagram, survey-grade line code (solid measured, dashed reported, phantom not public), the unsurveyed sheet as lit peak. Strongest on honesty grammar; weakest on thumb legibility (south-up) and repeats the comparison twice.
+- Editorial-essayist, THE PLATE BESIDE THE PROSE: the record's words carry it ("initially", "N/A", "not public"), one modelled object per page, mono as the record's voice. Strongest on copy; risk of an anthology of six unrelated techniques, and the hourglass leans into the Current's inference.
+- Field-documentarian, THE PAD AT PRUDHOE: one gravel pad near Prudhoe walked around under one fixed light, one real object per frame (rotor, pipe-yard bores, wellhead tree, VSM line in whiteout, staked flagging, a spectacle blind closed then open), fog density keyed to the sourcing. Strongest on craft focus (fewer, larger, modelled objects), Alaskan recognition and a single place; its close turns the position into an object.
+
+WINNER: the field-documentarian's spine, strengthened by:
+1. The "where" frame becomes the showrunner's EIA proportional-symbol map slab (every one of Alaska's 152 plants as an area-true puck, Prudhoe's phase one disc and the 10 GW plan as a phantom ring), which also carries the borough's own seven village plants (21.4 MW, C44). It replaces the field-documentarian's pad frame and is the deck's keepable map.
+2. LIKE FOR LIKE. All three treatments compared the plan with EIA's 2,853 MW NET SUMMER capacity and printed "about 3.5 times" and "bigger than". The showrunner's own pull of EIA's plant records gives installed NAMEPLATE capacity of 3,106.5 MW across 152 plants (C41), which is the basis the plan's figures are presumably on. So phase one is "about the size of" all of it (97 percent) and the full plan "more than three times" (3.22), never "bigger than" (C46). The 2,853 figure is retired from the slides.
+3. The essayist's rule that the record speaks in mono: the resolution's verbatim words are set in JetBrains Mono on 07.
+4. Mark-making census fixed: the documentarian had PBR on 01, 07 and 08 plus the map would make four. 08 becomes a white-line engraving of the open blind (the essayist's re-drawn-as-plate bookend), so PBR is on 01, 03, 07 and engraving on 04, 08.
+5. The pipe-yard frame keeps one bore per 100 MW, but counts Alaska against installed capacity (31 bores for 3,106.5 MW) rather than net summer.
+Kept from the documentarian as is: the fixed SSW light slot (no day arc), the fog keyed to sourcing, the gold flagging tape as the public's money, the walk-around heading slugs, Archivo condensed display over Fraunces text, the spectacle blind close.
+Kept OUT: the wellhead frame's gas figures stay, both attributed and deliberately unreconciled. C15 ("N/A") is used once, attributed, as the breather; it describes the proposal and makes no inference.
