@@ -1,0 +1,106 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-05/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7757393,
+  "pdf_mb": 7.76,
+  "slides": 8,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-05/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-05/final/thumbs/slide-08-thumb.png"
+  ],
+  "title": "More Than Three Alaskas of Power, Planned for Prudhoe Bay",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "5386e8a66c33385385762422ff7133c4f2ffe30f447bdf23a5c09179b5a07f88",
+        "bytes": 5242706
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "74ede69515b57bd9153bced21a0a45a746b7bd6cba3e4f79ad73f23967b91f64",
+        "bytes": 4521411
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "43f66410899d36f801d28c3f79ab0671f49fd020e75284f528a1b0272228158e",
+        "bytes": 4594410
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "09f8b497972b626f5e049beb31c048cdb903f2f81b1d274598435d39454ad802",
+        "bytes": 5349645
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "0eece1a123b01cfaecd8c28d8bb09e4bb232f48f19e9515e5fdb6004a86eba90",
+        "bytes": 2369062
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "839620ce813daf68df3ed57ee706020775b1fb7e01789e5ce7570415c309050f",
+        "bytes": 3779264
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b60da27cc07316945d10e8c54f06b1d90f9d5a58550d92f988ec80088b7c491b",
+        "bytes": 3864806
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "87b9d8f66ae4128de332101c92be23ff9f316751f5880f87c4dfb2e50863554f",
+        "bytes": 5403852
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "7060201556a42ef6a8d84bac17101dd2743a96e5f7d414bbfdd3671d40ef67d4",
+        "bytes": 17339
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "3c7762ebf6e10fa339871ae3af7aa2c422cb6e3763831181557d4da189501b52",
+        "bytes": 16400
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "bbf20040797fda3e22f9bd644ce9e8d7f66159616523251129fb1d4129798d3c",
+        "bytes": 18746
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "fe16ab82871955f2c15dcff53bbe547212f9e587bc82f600d453a62648774417",
+        "bytes": 12336
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "950c80dc1f819f4da0c206bea71e341ec9416bf69d44b549038a9442709884cd",
+        "bytes": 8864
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "0284b8bf315657519e971750c90455f1f76210b02ba2042b3532342e01d6f3c0",
+        "bytes": 24803
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8e5d658524a32d0a4b99ddbe55e437b89087ae0d7035ca25b1f48bbe83ab6707",
+        "bytes": 17191
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "d80fe3a636c50892623741c7f1e1e1f03f68cb7448714024fd1e7f7df1caeb50",
+        "bytes": 14867
+      }
+    ]
+  }
+}

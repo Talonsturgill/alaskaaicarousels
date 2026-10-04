@@ -1,0 +1,129 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the far pedestal on the pad snow': shadow L* 48.2 vs ground L* 73.2, dL 24.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold flagging knot on the near journal': canvas 106.2 dE, page 109.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'More than three Alaskasof power, plannedfor ' fits 3/3 lines at 106px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold bow on the phase one stanchion': canvas 78.1 dE, page 78.4 dE, 89% of its rect is clear of opaque DOM (b stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Each lit bore is 100 MW.' fits 1/1 lines at 103.5px"
+      ],
+      "asserts": [
+        "'all of Alaska, one bore per 100 MW' holds: 31 vs 31 marks, counted over 31 declared marks (within 0)",
+        "'all of Alaska, one bore per 100 MW': 31 mark centres probed at r=14px, cohort median 55.2 dE, all present (weakest 52.7 dE)",
+        "'phase one, one bore per 100 MW' holds: 30 vs 30 marks, counted over 30 declared marks (within 0)",
+        "'phase one, one bore per 100 MW': 30 mark centres probed at r=14px, cohort median 56.0 dE, all present (weakest 52.7 dE)",
+        "'the full plan, one bore per 100 MW' holds: 100 vs 100 marks, counted over 100 declared marks (within 0)",
+        "'the full plan, one bore per 100 MW': 100 mark centres probed at r=14px, cohort median 55.9 dE, all present (weakest 52.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold tie on the Prudhoe disc rim': canvas 114.8 dE, page 115.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the Prudhoe disc's east rim\" lands 0.0px from its target",
+        "leader \"the plan ring's crown\" lands 0.0px from its target",
+        "leader \"the Prudhoe disc's east rim\" meets its label 0.0px away",
+        "leader \"the plan ring's crown\" meets its label 0.0px away",
+        "leader \"the Prudhoe disc's east rim\" is drawn 52 px at 3 degrees, inside the pointer band",
+        "leader \"the plan ring's crown\" is drawn 4 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'A borough's plant,for AI data centers.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the far gold streamer on a stake in the fog': canvas 111.3 dE, page 111.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the left wing valve's end flange\" lands 0.0px from its target",
+        "leader 'the lower master valve' lands 0.0px from its target",
+        "leader \"the left wing valve's end flange\" meets its label 0.0px away",
+        "leader 'the lower master valve' meets its label 0.0px away",
+        "leader \"the left wing valve's end flange\" is drawn 170 px at 9 degrees, inside the pointer band",
+        "leader 'the lower master valve' is drawn 274 px at 1 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The gas is already here.' fits 1/1 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold speck far down the line': canvas 70.2 dE, page 71.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ds 'TFC's proposal listed climate change among 1' fits 5/5 lines at 59px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the stake in its snow collar': shadow L* 52.8 vs ground L* 76.0, dL 23.2 at 432w"
+      ],
+      "motifs": [
+        "'the gold tape in two measured bands': canvas 106.1 dE, page 106.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the first tape band, $1.2M' runs 0 dollars at 688 to 1,200,000 dollars at 640; 2 declared mark(s), and the band's census finds no others",
+        "'the second tape band, $5M' runs 0 dollars at 920 to 5,000,000 dollars at 720; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '$6.2 million in.' fits 1/1 lines at 139.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold tie round the closed blind': canvas 108.2 dE, page 108.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The terms aren't public.' fits 1/1 lines at 109.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold tape fluttering free from the open blind': canvas 118.7 dE, page 118.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Before the next public dollar,should the bor' fits 3/3 lines at 91px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

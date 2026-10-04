@@ -3068,6 +3068,43 @@
       ],
       "claims": 112,
       "note": "Shipped 8.48 at revision round 3 (threshold 8.0), zero hard fails; artwork 6.5. Follows No.2 (2026-07-09) on the same Wood River pilot, 87 days later, with new material (the September 22nd season summary and the Togiak miss) and the reversed angle; outside the rubric's 30-day window, inside the topics _spec 90-day text, and the cover does not label it an update."
+    },
+    {
+      "run_date": "2026-10-05",
+      "carousel_no": 78,
+      "topic": "North Slope Power, the North Slope Borough's venture with Twenty First Century Utilities, plans a gas plant near Prudhoe Bay for colocated AI data centers: 3,000 MW in phase one and 10,000 MW in all, against EIA's 152 Alaska plants and 3,106.5 MW of installed nameplate. The Alaska Current reports $1.2 million (a no-bid feasibility contract, November 2025) and $5 million (March) of borough money in, a resolution quoting 'an investor-owned utility (IOU) with Borough majority ownership' kept 'initially', and a financial structure that is not public.",
+      "angle": "THE STATE AS THE UNIT, LIKE FOR LIKE: phase one is about the size of every power plant in Alaska (97 percent of installed nameplate) and the full plan more than three times it; before the next public dollar, publish the terms.",
+      "entities": [
+        "North Slope Power",
+        "North Slope Borough",
+        "Twenty First Century Utilities",
+        "Prudhoe Bay",
+        "EIA",
+        "Alaska Current",
+        "Dermot Cole",
+        "CERAWeek",
+        "North Slope Borough Power and Light"
+      ],
+      "keywords": [
+        "gas plant",
+        "AI data centers",
+        "3 GW",
+        "10 GW",
+        "installed nameplate",
+        "152 plants",
+        "public money",
+        "resolution",
+        "investor-owned utility",
+        "majority ownership",
+        "financial structure not public"
+      ],
+      "headline": "More than three Alaskas of power, planned for Prudhoe Bay.",
+      "sources_lead": [
+        "https://www.eia.gov/state/print.php?sid=AK",
+        "https://alaskacurrent.com/"
+      ],
+      "claims": 46,
+      "note": "Shipped 8.645 at revision round 5 (threshold 7.7), zero hard fails, art 7.0 after one craft cycle (7.0 -> 7.0). Borough facts are single-outlet (the Alaska Current); resolutions 13-2026 and 84-2025 could not be read. Nothing about donors, Tuesday's vote or recall efforts appears. Runner-up: Eielson RFI."
     }
   ]
 }

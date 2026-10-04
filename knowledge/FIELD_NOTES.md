@@ -9181,3 +9181,13 @@ refuses a plain WebFetch from this container (HTTP 403), same as
   pinned model (owner, 2026-09-25) and to the run's cost. UNBLOCKS WHEN the pixel critics'
   JSON is persisted per round (it is not today), so their `frame_causes` can be scored against
   the flow critic's later causes for two weeks.
+
+## 2026-10-05 (No.78, North Slope Power, THE PAD LOG): retro
+
+- A STATE THAT HIDES CAN'T CARRY A FRAME. A closed spectacle blind is truthfully a solid paddle clamped INSIDE the joint with the ring standing idle outside, so the only legible part said "open". Three critic rounds read 07 as open while its tag said CLOSED. Jacking the joint apart so the solid eye stands visibly in the line, with the open eye idle above, made it read in one look. Plan the visible state before the object: if the thing that matters is occluded in the real object, choose the moment when it is not.
+- THE LOWER THIRD IS WHERE THE CRITICS LIVE. Round one put cause c on seven of eight frames. A ground that is "graded" or "fogged" reads as eventless at thumb. What cleared it was always an EVENT: a collar lip heaped over a stake foot, a mound with a lit crest round a wellhead, a cornice with a shaded front face, a receding pad with forward shadows. Plan one event per lower third, not a texture.
+- A WHITEOUT BREATHER STILL OWES A NEAR GROUND. aksdf averaged passes flatten sastrugi into nothing at fog 0.085. Thinning fog to 0.062, weighting a low raking pass, and adding a high pass from behind the line so the pipe throws toward the camera was the only route to a ground with form, and it is still the frame critics scored lowest.
+- WEBGL GOLD AND RAMPED GOLD BOTH LEAVE THE INK LAW. A gold ramp from #B8871A to a lit tone near #FFC72C never paints the hex itself; qa.py failed 06 on it. Draw one crease or edge stroke in the exact brand hex on every frame that promises it.
+- LABEL TICKS ARE NOT LEADERS. 03's plated map labels used a left border as a tick; a critic read PHASE ONE as labelling the 10,000 MW ring, swapping the two figures. Every label on a quantity map gets a drawn leader to a projected feature point, checked against the projection.
+- LIKE WITH LIKE KEPT THE HEADLINE HONEST. EIA's 2,853 MW net summer capacity would have made phase one "bigger than Alaska". Against the 3,106.5 MW nameplate fleet (152 plants, EIA's own plant records) it is 97 percent, "about the size of", and the full plan 3.22 times, "more than three times". Compare the plan's nameplate to the fleet's nameplate, never to a seasonal net figure.
+- AKENGRAVE `surface()` BROKE ON A RADIAL FORM, the second run running after No.77's river. A hand-cut turned face, concentric rings swelled by the bore's light, read at once. Queued for the weekly pass.

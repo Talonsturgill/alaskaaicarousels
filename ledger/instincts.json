@@ -1874,6 +1874,30 @@
       "evidence": "No.77's 02 tower at metalness 0.85 printed as a dark wire cage; at 0.3 with a bounce light and a rim spot it read as lit aluminum.",
       "act_on_it": "In akthree scenes with no env map, keep metalness at or below 0.35 and light the metal with a point or spot it can reflect.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-05",
+      "carousel_no": 78,
+      "instinct": "CHOOSE THE MOMENT WHEN THE STATE THAT MATTERS IS VISIBLE.",
+      "evidence": "No.78's 07 needed three critic rounds: a closed spectacle blind hides its solid paddle inside the joint, so the visible ring said 'open'. Jacking the joint apart so the solid eye stood in the line made it read in one look.",
+      "act_on_it": "In the dossier, name what the reader must SEE for the beat to land, and check that the real object shows it from the planned camera; if not, pick a different moment of the object.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-05",
+      "carousel_no": 78,
+      "instinct": "EVERY LOWER THIRD NEEDS ONE EVENT, NOT A TEXTURE.",
+      "evidence": "No.78 round one put cause c on seven of eight frames; each was cleared by an event (a collar lip, a banked mound with a crest, a cornice front face, a receding pad with forward shadows), never by more grain or fog.",
+      "act_on_it": "Field 4a names one physical event at the object's foot, with its light and shadow, before any surface texture.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-05",
+      "carousel_no": 78,
+      "instinct": "COMPARE NAMEPLATE TO NAMEPLATE.",
+      "evidence": "No.78 nearly said phase one was 'bigger than Alaska' using EIA's 2,853 MW net summer figure; against the 3,106.5 MW nameplate fleet it is 97 percent.",
+      "act_on_it": "When a planned plant's size is compared to an existing fleet, use the fleet's installed nameplate (EIA plant records) and keep seasonal net figures off the slides.",
+      "confidence": 0.65
     }
   ]
 }

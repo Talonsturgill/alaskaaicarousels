@@ -1,0 +1,97 @@
+{
+  "run_date": "2026-10-05",
+  "carousel_no": 78,
+  "effort": "high",
+  "started_utc": "2026-10-04T06:16:19.187925Z",
+  "revision_rounds": 5,
+  "date_note": "Woke 22:14 AKDT on October 3rd (06:14 UTC October 4th), the regular daily slot, 24 hours after No.77. runs/2026-10-03 holds No.76 and runs/2026-10-04 holds No.77 (dated ahead per the same rule), both complete and merged (PR #417). Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-05. run_guard (UTC default 2026-10-04) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-05 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-05/plan.md",
+        "out/2026-10-05/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; nothing genuinely new vs CAROUSEL_CRAFT (document posts still the top-engagement format, saves the strongest signal). No FIELD_NOTES entry written."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-05/scout_brief.txt",
+        "out/2026-10-05/scout_merge.md"
+      ],
+      "note": "6 scouts, about 143 searches; Beats A and F converged on North Slope Power"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-05/claims.json"
+      ],
+      "note": "40 claims, 13 primary; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "watch.json read (generated 2026-10-03T18:02Z, failed none, 0 hearings, out of session; bills HB 259 and SB 250 match closed items; candidates triaged, none AI-relevant). docket_staleness budget raised to 9 to cover the 3 deferred items; 9 items refreshed with dated notes, all checked and unchanged; STAK notice server refused (403)."
+    },
+    "gas_watch": {
+      "status": "done",
+      "note": "live audit WARN at 08:21Z (source reading published: the 22:57 Alaska reading of October 3rd not yet collected); cron_health PASS; site_signoff PASS; pagecheck PASS"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-05/selection.md"
+      ],
+      "note": "North Slope Power; dedupe soft overlaps only"
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-05/storyboard.md",
+        "out/2026-10-05/treatments/cartographer.md",
+        "out/2026-10-05/selection.md"
+      ],
+      "note": "3 directors (cartographer, essayist, field-documentarian); field-documentarian spine + EIA map slab; dossier_check PASS"
+    },
+    "copy": {
+      "status": "done"
+    },
+    "art_build": {
+      "status": "done"
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "three pixel rounds plus a flow round and one craft cycle; revision_rounds 5"
+    },
+    "flow_review": {
+      "status": "done"
+    },
+    "assemble": {
+      "status": "done"
+    },
+    "scoring": {
+      "status": "done",
+      "note": "8.645 (threshold 7.7), art 7.0, craft cycle ran on 05, 04, 02, 01, 08 (7.0 -> 7.0)"
+    },
+    "ship": {
+      "status": "pending"
+    },
+    "upgrade": {
+      "status": "pending"
+    },
+    "gmail": {
+      "status": "pending"
+    },
+    "retro": {
+      "status": "pending"
+    }
+  },
+  "score": 8.645,
+  "ship": true
+}

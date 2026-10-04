@@ -1,0 +1,156 @@
+{
+  "document_title": "More Than Three Alaskas of Power, Planned for Prudhoe Bay",
+  "post_copy": "3,000 megawatts. Phase one of a gas plant planned near Prudhoe Bay for AI data centers nearly equals all 152 power plants in Alaska.\n\nThe full plan is 10,000 megawatts, more than three times that fleet. Behind it is North Slope Power, the North Slope Borough's venture with Twenty First Century Utilities.\n\nThe Alaska Current's reporting adds up to $6.2 million of public money so far. It quotes the $5 million resolution saying the Borough would \"initially\" keep majority ownership. The financial structure is not public. It should be, before a plant this size goes up.\n\nWhat EIA measures is drawn sharp, all 152 plants mapped to scale. The reported money sits in fog. The terms are a closed pipe blind.\n\nBefore the next public dollar goes in, what is the strongest case for keeping the terms private?\n\n#NorthSlopeBorough #PrudhoeBay #DataCenterPower\n",
+  "deck_summary_line": "What EIA measures is drawn sharp, all 152 plants mapped to scale. The reported money sits in fog. The terms are a closed pipe blind.",
+  "first_comment": "Sources, primary first\nU.S. Energy Information Administration, Power Plants in the U.S. (EIA-860, EIA-860M and EIA-923), all 152 Alaska plants and 3,106.5 MW of installed nameplate capacity, data period February 2025, queried 2026-10-04, https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Power_Plants_in_the_US/FeatureServer/0/query?where=State%3D%27Alaska%27&f=json&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Install_MW%22%2C%22outStatisticFieldName%22%3A%22nameplate%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Total_MW%22%2C%22outStatisticFieldName%22%3A%22summer%22%7D%2C%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22OBJECTID%22%2C%22outStatisticFieldName%22%3A%22n%22%7D%5D\nU.S. Energy Information Administration, Power Plants in the U.S., the seven North Slope Borough Power & Light village plants, 21.4 MW installed, queried 2026-10-04, https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Power_Plants_in_the_US/FeatureServer/0/query?where=State%3D%27Alaska%27+AND+Utility_Na%3D%27North+Slope+Borough+Power+%26+Light%27&f=json&outFields=Plant_Name%2CCity%2CInstall_MW%2CPrimSource%2CPeriod&returnGeometry=false\nU.S. Energy Information Administration, Alaska Electricity Profile 2024, natural gas as the state's primary energy source for electricity, 2025-11-10, https://www.eia.gov/electricity/state/alaska/\nThe Alaska Current, Lauren Windsor on North Slope Power, Twenty First Century Utilities and the borough's public money, 2026-10-03, https://thealaskacurrent.com/2026/10/03/natural-gas-money-arctic-mayor/\nDermot Cole, Reporting from Alaska, \"North Slope maps plan for largest natural gas power plant in the world\", 2026-05-12, https://www.dermotcole.com/reportingfromalaska/2026/5/12/north-slope-maps-plan-for-largest-natural-gas-power-plant-in-the-world\nNorth Slope Borough resolutions 13-2026 and 84-2025 are posted only through the borough's document viewer and are quoted here as the Alaska Current reported them.\nThe $6.2 million total adds the two commitments the Alaska Current reports, and every comparison with Alaska's 152 plants uses EIA's installed nameplate capacity.\nThe Alaska AI Docket follows public decisions on AI and power in this state, with live deadlines, at https://alaskaaihq.com\nKnow the borough's documents or this project better? Add context or a correction below.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "NORTH SLOPE POWER",
+      "headline": "More than three Alaskas of power, planned for Prudhoe Bay.",
+      "body": "",
+      "labels": [
+        "FOR AI DATA CENTERS"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C05",
+        "C20",
+        "C41",
+        "C46"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "COUNT THE BORES",
+      "headline": "Each lit bore is 100 MW.",
+      "body": "Phase one is about the size of every power plant in Alaska combined. The full plan is more than three times it.",
+      "labels": [
+        "ALL 152 PLANTS",
+        "3,106.5 MW",
+        "PHASE ONE",
+        "3,000 MW",
+        "THE FULL PLAN",
+        "10,000 MW",
+        "INSTALLED CAPACITY, EIA. PLAN FIGURES AS REPORTED."
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C21",
+        "C41",
+        "C46"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "EVERY POWER PLANT IN ALASKA, TO SCALE",
+      "headline": "A borough's plant, for AI data centers.",
+      "body": "The North Slope Borough and Twenty First Century Utilities (TFC) are developing North Slope Power to feed colocated AI data centers. The borough's own utility runs seven village plants, 21.4 MW in all.",
+      "labels": [
+        "PHASE ONE, 3,000 MW",
+        "THE PLAN, 10,000 MW",
+        "DISC AREA IS INSTALLED MW. 152 PLANTS, EIA."
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C05",
+        "C41",
+        "C44"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE FUEL",
+      "headline": "The gas is already here.",
+      "body": "Two outlets, two areas, two counts. Gas is already Alaska's main fuel for electricity, per EIA. In March the borough's mayor and TFC took the plan to CERAWeek in Texas.",
+      "labels": [
+        "NEARLY 30 TCF",
+        "PRUDHOE BAY",
+        "THE ALASKA CURRENT",
+        "MORE THAN 35 TCF",
+        "NORTH SLOPE",
+        "DERMOT COLE"
+      ],
+      "claim_ids": [
+        "C04",
+        "C22",
+        "C23",
+        "C29"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "THE PROPOSAL",
+      "headline": "TFC's proposal listed climate change among 10 North Slope challenges. Where it said how it would tackle each one, climate change got \"N/A.\"",
+      "body": "",
+      "labels": [
+        "AS THE ALASKA CURRENT DESCRIBES THE PROPOSAL"
+      ],
+      "claim_ids": [
+        "C15"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "PUBLIC MONEY, SO FAR",
+      "headline": "$6.2 million in.",
+      "body": "A $1.2 million no-bid feasibility contract in November 2025. Another $5 million of public funds in March. Both as reported by the Alaska Current.",
+      "labels": [
+        "$1.2M",
+        "$5M"
+      ],
+      "claim_ids": [
+        "C07",
+        "C08",
+        "C45"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "WHO WOULD OWN IT",
+      "headline": "The terms aren't public.",
+      "body": "That is the resolution behind the $5 million, as the Alaska Current quotes it. It says the Borough would \"initially\" keep that majority. The financial structure is not public.",
+      "labels": [
+        "\"an investor-owned utility (IOU) with Borough majority ownership\"",
+        "SPECTACLE BLIND, CLOSED"
+      ],
+      "claim_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "",
+      "headline": "Before the next public dollar, should the borough publish the terms?",
+      "body": "",
+      "labels": [
+        "SPECTACLE BLIND, OPEN"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "aftercare": [
+    "Post this draft Tuesday to Thursday, 8 to 11 a.m. Alaska time, the strongest slots. Drafts arrive daily, and you decide how often to post.",
+    "Paste the first comment (the sources block) within 60 seconds of posting, with every raw URL showing as plain text.",
+    "Reply to every comment in the first 60 to 90 minutes. A threaded reply from the author is the strongest early reach signal.",
+    "After 48 hours, note saves and comments against the trailing median. Saves count most.",
+    "The Alaska Current reports that the North Slope Borough election is Tuesday, October 6th. Keep the post and every reply about the plant, the public money and the terms, not the vote or the mayor, so it isn't read as election commentary. If you post on Tuesday itself, expect some readers to take it that way anyway."
+  ],
+  "caption_meta": {
+    "opening_move": "COLD NUMBER",
+    "structure": "INVERTED PYRAMID",
+    "closing_move": "NEW: THE STRONGEST CASE AGAINST"
+  },
+  "editor_notes_for_email": "Every fact about the borough comes from secondary reporting. The $1.2 million and $5 million, the resolution's wording, the pipeline and the proposal's N/A come from the Alaska Current on October 3rd; the 3 GW to 10 GW plan, the gas count and CERAWeek also from Dermot Cole on May 12th. The primary sources are EIA (152 plants, 3,106.5 MW installed nameplate, the borough's seven village plants at 21.4 MW, gas as the state's main fuel). Resolutions 13-2026 and 84-2025 couldn't be read directly (the borough's SharePoint viewer returned no text; downloads failed 401 and 404), so both are quoted as the Current reported them and the first comment says so. Phase one is compared on installed nameplate capacity (97 percent of Alaska; the full plan 3.22 times). EIA's 2,853 MW net summer figure would give 1.05 and 3.5 and is kept off the slides. Campaign contributions to the mayor, Tuesday's vote and the earlier recall efforts were left out on purpose: single-outlet sourcing days before an election.",
+  "hashtags": [
+    "#NorthSlopeBorough",
+    "#PrudhoeBay",
+    "#DataCenterPower"
+  ]
+}
