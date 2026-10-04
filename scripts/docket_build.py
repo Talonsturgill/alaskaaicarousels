@@ -733,6 +733,8 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
     # badge that has quietly moved. LEAD_MIN is measured from the dot, so at a
     # badge radius of 14 there is always visible tether between the two.
     LEAD_MIN = 27.0
+    # the highest a badge's centre may sit: the coast's top edge plus half a badge
+    BADGE_TOP = min(T(p)[1] for ring in coast for p in ring) + 14.0
     labels = [[g[0], g[1]] for g in groups]
     for _ in range(12):
         for _ in range(40):                       # push labels off each other
@@ -759,6 +761,23 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                 ux, uy = dx / dist, dy / dist
                 labels[i][0] = g[0] + ux * LEAD_MIN
                 labels[i][1] = g[1] + uy * LEAD_MIN
+        # NO BADGE RISES ABOVE THE STATE (2026-10-05). A displaced label may not
+        # climb past the coastline's northern edge, because the phone fit frames
+        # the union of the coast and every badge's reach, and one badge hung
+        # over the Beaufort Sea makes that union taller than the state. The
+        # Prudhoe Bay item landed 14 units from the North Slope pin already
+        # there, relaxation pushed its badge 44 units up, and on a landscape
+        # phone the home view zoomed out until Alaska filled 24 percent of the
+        # frame (tests/mobile_docket_map.js, iPhone 13 landscape). A clamped
+        # label keeps its tether length by moving sideways instead.
+        for i, g in enumerate(groups):
+            dx = labels[i][0] - g[0]; dy = labels[i][1] - g[1]
+            if math.hypot(dx, dy) > 0.5 and labels[i][1] < BADGE_TOP:
+                labels[i][1] = BADGE_TOP
+                dy = BADGE_TOP - g[1]
+                side = math.sqrt(max(0.0, LEAD_MIN * LEAD_MIN - dy * dy))
+                if abs(dx) < side:
+                    labels[i][0] = g[0] + (1.0 if dx >= 0 else -1.0) * side
 
     # Three layers, because a dot hidden under a NEIGHBOUR's badge is just as
     # useless as one hidden under its own. Tethers at the back, badges over

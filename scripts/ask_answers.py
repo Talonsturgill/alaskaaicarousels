@@ -193,6 +193,15 @@ AGENCY_RULES = [
     # being handed nothing.
     (r"Petersburg Borough Assembly", "the Petersburg Borough Assembly",
      ("petersburg assembly", "petersburg borough assembly", "petersburg borough")),
+    # Added 2026-10-05 with the first North Slope Borough item, North Slope
+    # Power's planned gas plant, and the self-test caught it in branch CI the
+    # same way it caught the FCC, NMFS, DOT, UA and Petersburg ones: an item
+    # with no recognised agency, which is a reader asking who decided this and
+    # being handed nothing. The mayor is in the vocabulary because the decider
+    # line names the mayor before the Assembly.
+    (r"North Slope Borough", "the North Slope Borough",
+     ("north slope borough", "nsb", "borough mayor", "north slope assembly",
+      "north slope borough assembly")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",
