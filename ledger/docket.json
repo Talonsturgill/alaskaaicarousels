@@ -4362,6 +4362,42 @@
           "note": "Added. KFSK reported on September 28th that the Assembly tied 3 to 3 on September 21st after 30 minutes of discussion, so the Planning Commission's requested year-long freeze did not move forward. Read today against the KFSK report."
         }
       ]
+    },
+    {
+      "id": "north-slope-power-borough-gas-plant",
+      "title": "North Slope Power, the borough's gas plant for AI data centers",
+      "kind": "other",
+      "status": "watching",
+      "decider": "North Slope Borough mayor and Assembly",
+      "public_access": "indirect",
+      "access_note": "The borough commits money to North Slope Power by Assembly resolution and mayoral contract, so the elected borough government is the path in. The deal's financial structure has not been made public.",
+      "summary": "The North Slope Borough and Twenty First Century Utilities are developing North Slope Power, a gas-fired plant near Prudhoe Bay planned at 3 gigawatts in its first phase and meant to scale to 10, to deliver electricity to colocated AI data centers. As reported by the Alaska Current, the borough has funded a $1.2 million no-bid feasibility contract and committed another $5 million in public funds.",
+      "key_dates": [],
+      "location": {
+        "name": "near Prudhoe Bay",
+        "lon": -148.34,
+        "lat": 70.26
+      },
+      "sources": [
+        {
+          "url": "https://thealaskacurrent.com/2026/10/03/natural-gas-money-arctic-mayor/",
+          "outlet": "The Alaska Current",
+          "date": "2026-10-03"
+        },
+        {
+          "url": "https://www.dermotcole.com/reportingfromalaska/2026/5/12/north-slope-maps-plan-for-largest-natural-gas-power-plant-in-the-world",
+          "outlet": "Dermot Cole, Reporting from Alaska",
+          "date": "2026-05-12"
+        }
+      ],
+      "first_seen": "2026-10-05",
+      "last_updated": "2026-10-05",
+      "history": [
+        {
+          "date": "2026-10-05",
+          "note": "Tracked. The Alaska Current reports a 3 gigawatt first phase with plans for 10, a $1.2 million no-bid feasibility contract authorized in November 2025 and another $5 million committed in March, under a resolution describing an investor-owned utility in which the borough would initially hold majority ownership. Dermot Cole reported the same 3 to 10 gigawatt plan on May 12th. The borough's resolutions are posted only through a document viewer that could not be read directly, so their wording here is as the Current quotes it."
+        }
+      ]
     }
   ]
 }
