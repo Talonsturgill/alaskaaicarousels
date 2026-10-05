@@ -3012,6 +3012,83 @@
       "verification": "python3 scripts/week_digest.py --self-test: 10/10, two new (cross-frame causes counted apart by runs in any case with junk entries ignored; the table carries slides, frames and an escaped pipe). On the live corpus for 2026-10-04: cross-frame a 6 runs / 34 frames named, e 6 / 32, c 3 / 11, d 2 / 7; the weakest-frames table is unchanged (a 1, b 6, c 5, d 6, e 0).",
       "rollback": "git revert the upgrade(2026-10-04) commit, or git checkout <commit>^ -- scripts/week_digest.py prompts/machine_weekly.md",
       "commit": "1d20e423"
+    },
+    {
+      "run_date": "2026-10-06",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/akthree.js gains an OPT-IN `supersample` option on AKT.setup (2 to 4, 3 tested): three renders into an offscreen canvas at that ratio (R.glCanvas) and AKT.snapshot area-resolves it into the slide's own 2x canvas, which then stays a 2D canvas for marks on top; AKT.drawDown(ctx, src) is the resolve on its own, a separable exact-overlap box filter in JS rather than the browser's drawImage downscale. Without the option nothing changes.",
+      "trigger": "Weekly digest 2026-09-30 to 10-05: flow critic cause d (a texture artifact) on 6 of 6 runs, 16 frames; queue item 2026-10-06 'akthree: dense instanced geometry beats into moire at the 2x backing' (No.79 slides 02 and 05, 10,500 instanced seats, two pixel-critic rounds, a 0.7 px blur failed, a hand-rolled 3x render drawn down cured it). Resolve choice from the frontier scan: drawImage resampling is left to the implementation (https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2014-March/084495.html).",
+      "files": [
+        "assets/js/akthree.js",
+        "tests/akthree_supersample_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md"
+      ],
+      "verification": "python3 tests/akthree_supersample_verify.py: 4/4 in the engine's Chromium on 14,400 instanced seats at a row pitch near 2 device px against a 6x area-resolved reference: low-pass error (the beat) 0.492 at 2x vs 0.247 with supersample 3 (bar: at most 0.6x); area resolve beats drawImage high (0.247 vs 0.353 low-pass, rmse 2.746 vs 2.827); without the option the new file renders pixel-identical to git HEAD's; supersample 6 throws AK CONTRACT. This run's GL frames 01, 02, 05, 07 copied to out/2026-10-06/upgrade_verify/slides and re-rendered (render.py --timeout 480000: 4/4 OK, 29 to 64 s) are PIXEL-IDENTICAL to out/2026-10-06/render, and qa.py rows are identical to HEAD's engine (0 fails, 1 warn, the existing contact-shadow note on 01). Slide 02 rebuilt on the option instead of its hand-rolled 3x (out/2026-10-06/upgrade_verify/option): OK in 61 s, qa PASS 0 warns, rmse 1.28 levels from the hand-rolled frame. examples/demo-deck: 4/4 OK, qa WARN 0 fails 14 warns, rows identical to HEAD's engine.",
+      "rollback": "git checkout <commit>^ -- assets/js/akthree.js .claude/skills/carousel-engine/SKILL.md; git rm tests/akthree_supersample_verify.py (no slide in runs/ uses the option yet)",
+      "commit": "d22914f9"
+    },
+    {
+      "run_date": "2026-10-06",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/akengrave.js surface() takes an OPT-IN `seed: \"even\"` lay: strokes still walk the form's own iso-lines through the same _ribbon (width, ink, tone gate, reservations), but each is seeded one line spacing off the strokes already cut, stops within half a spacing of another stroke or of its own earlier samples, runs 40 px past the region like the raster walk, starts each parent's seed sweep at a golden-ratio offset so closed rings don't stack their tapered ends into spokes, and a final grid sweep seeds any pocket the first family missed (Jobard and Lefer 1997). Any other seed value throws; leaving it out changes nothing.",
+      "trigger": "Queue item 2026-10-05, repeat 1: 'akengrave: surface() lay collapses on non-rectilinear forms' (No.77 slide 08 river channel, No.78 slide 08 radial flange face, both rebuilt by hand); weekly digest cause d on 6 of 6 runs. Technique from the frontier scan: https://www.cg.tuwien.ac.at/courses/Visualisierung1/2015W/exercises/Streamlines_Jobard&Lefer.pdf",
+      "files": [
+        "assets/js/akengrave.js",
+        "tests/akengrave_even_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md"
+      ],
+      "verification": "python3 tests/akengrave_even_verify.py: 12/12 (Node, the real akengrave.js into a recording stub). Reconstructions FAIL on the raster lay: a flange face with its bore 110 px off the region's centre leaves 120 of 900 15 px cells empty (13.3 percent), a meandering channel 228 of 1938 (11.8 percent); the even lay leaves 4 of 900 (0.4) and 0 of 1938, and 0 of 1275 on a plain ramp control; strokes follow the rings (mean |cos| to the radius 0.000); nearest samples of different strokes 2.64 px against dtest 2.5; without the option the new file draws op for op what git HEAD draws on all three forms; two even runs identical; a reserved box gets 0 px of ink; seed: 'random' throws. tests/akengrave_lathe_verify.py still HOLDS. Through render.py: a flange slide with seed 'even' plus crosslines renders OK in 880 ms with no console or page errors (out/2026-10-06/upgrade_verify/engrave). No slide of this run loads akengrave.js, so none goes stale. examples/demo-deck 4/4 OK, qa rows unchanged.",
+      "rollback": "git checkout <commit>^ -- assets/js/akengrave.js; git rm tests/akengrave_even_verify.py; drop the seed: \"even\" sentences from SKILL.md's akengrave entry",
+      "commit": "d22914f9"
+    },
+    {
+      "run_date": "2026-10-06",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py prints the measured remedy under a page.goto load timeout (await the load event, yield once with a setTimeout 0, then the long synchronous draw, then resolve with no further await) and a factual note under its own 30 s renderReady race, and refuses a --timeout under 1000 with exit 2 because the flag is milliseconds; SKILL.md's renderReady paragraph says the same.",
+      "trigger": "Queue items 2026-10-04 'render: synchronous art before the first await blocks page load' (repeat 1: No.77 slides 06 and 07, No.78 slide 06, each timed out page.goto at 45 s) and 2026-10-05 'render: --timeout is milliseconds and a seconds-sized value fails silently' (No.78, --timeout 300 failed in 0.4 s).",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        "tests/render_timeout_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md"
+      ],
+      "verification": "python3 tests/render_timeout_verify.py: 9/9. Unit: a Playwright goto timeout maps to the load remedy, 'renderReady timeout' to the race note, anything else to nothing; 300 and 999 refused, 1000 and 45000 accepted. CLI: --timeout 300 exits 2 before any browser, naming the unit and suggesting 300000. Reconstructions through the real render.py at --timeout 2000 with a 6 s block: at the top of a script FAILS with the remedy (2098 ms); straight after await load ALSO FAILS with the remedy (2101 ms); load, one yield, then the block renders OK (6370 ms), so the printed remedy is the one that works. No check reads less: the remedy is an extra page_errors line on a render that already failed. This run's GL frames and examples/demo-deck re-rendered and qa'd as in the akthree entry.",
+      "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md (render.py also carries the reuse record entry; revert both or hand-remove timeout_remedy/check_timeout_arg); git rm tests/render_timeout_verify.py",
+      "commit": "d22914f9"
+    },
+    {
+      "run_date": "2026-10-06",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py records per slide (render_report.json `reuse`) the assets/js helper calls it makes, module helpers named by their file whatever the slide calls them, and a shape hash of every function over 300 normalised characters (comments, whitespace, numbers and strings normalised, so one drawing pasted into four slides with new colours hashes once); qa.py folds them into machine_qa.json `reuse`, the helper calls and function shapes on MORE than three frames minus the plumbing every frame calls, prints it as a census line, and never adds a fail or a warn. Phase 9 step 4 and the flow critic's cause a are handed the census.",
+      "trigger": "Weekly digest cross-frame table: cause a (the same drawing on more than three frames) on 6 of 6 runs, 34 frame mentions, deferred by the 2026-10-04 pass because runs/ kept nothing to count reuse from; this is the record FIELD_NOTES 2026-10-04 named as the next step.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/reuse_census_verify.py",
+        "prompts/routine_instructions.md",
+        ".claude/agents/flow-critic.md"
+      ],
+      "verification": "python3 tests/reuse_census_verify.py: 9/9: one comb function pasted into five slides with different numbers, colours and comments is one shape on five frames; a function and a helper on exactly three frames are not listed; `const H = (await import('@@ASSETS@@/js/akhall.js'))` is recorded as akhall.*; THREE.* never; setup, fitText, grade and colour mixing left out; on this run's real slides it lists akhall.build on 01, 02, 05 and 07; qa.py's totals are still summed from slide rows only. On out/2026-10-06/upgrade_verify/render qa.py printed 'reuse census ... akhall.build on 01,02,05,07; akhall.layout ...; akhall.seatPoint ...' with verdict, fails and warns identical to HEAD's engine. A record for two weeks of calibration, never a gate.",
+      "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/qa.py .claude/agents/flow-critic.md and remove scan_reuse from render.py (it shares the file with the timeout entry) and the 'Hand it the REUSE census' paragraph from prompts/routine_instructions.md Phase 9 step 4; git rm tests/reuse_census_verify.py",
+      "commit": "d22914f9"
+    },
+    {
+      "run_date": "2026-10-06",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/machine_due.py no longer lets an ESCALATED queue item (one carrying ` | escalated <date>: <why>`, the brief's mark for what a pass can't fix) make the weekly pass due early; it still counts as open, still shows in the digest, and the seven-day pass still reads it. The Gas Watch evening-slot item, an owner decision on schedules and credentials, is escalated in knowledge/MACHINE_QUEUE.md today.",
+      "trigger": "Queue item 2026-09-30 'gaswatch: evening collection slots land after the daily audit' at repeat 5, owner decision only: machine_due's early trigger (repeat 2 or more) fired on it every day, so this pass ran two days after the 2026-10-04 one and the next would have run 2026-10-07, the daily machine upgrading the owner retired on 2026-10-02 ('once a week ... based on the recurring themes').",
+      "files": [
+        "scripts/machine_due.py",
+        "knowledge/MACHINE_QUEUE.md",
+        "prompts/machine_weekly.md"
+      ],
+      "verification": "python3 scripts/machine_due.py --self-test: all passed, with five new checks: an escalated repeat-5 item does not make the pass due the day after a pass; it is still an open item; the seven-day pass still runs; an unescalated repeat offender beside it still makes it due early; the word 'escalated' inside evidence text is not an escalation. Reconstruction: git HEAD's verdict() on the escalated repeat-5 line the day after a pass returns (True, '1 repeat offender(s) queued'). On the live queue after this pass: --date 2026-10-07 exits 1 ('not due ... 0 repeat offender(s)'), --date 2026-10-13 exits 0. No engine file changed, so no render or qa reading moves.",
+      "rollback": "git checkout <commit>^ -- scripts/machine_due.py prompts/machine_weekly.md, and drop the ' | escalated 2026-10-06: ...' suffix from the gaswatch line in knowledge/MACHINE_QUEUE.md",
+      "commit": "d22914f9"
     }
   ],
   "scan_log": [
@@ -3497,6 +3574,13 @@
       "searches": "4 searches, 4 fetches (the ImagenWorld PDF did not parse; its HTML did), and three local measurements over shipped frames (dead-region probes, see FIELD_NOTES 2026-10-04)",
       "found": "(1) CheckEval (https://arxiv.org/html/2403.18771v2): yes/no checklist questions over a Likert score raise Spearman with humans 0.40 to 0.48 and inter-evaluator alpha 0.05 to 0.67. (2) ImagenWorld (https://arxiv.org/html/2603.27862): VLM judges under-penalise artifacts (Spearman 0.59 vs human-human 0.64, positive bias on boundary glitches). (3) SALART-VQA (https://www.alphaxiv.org/abs/2606.12671.md): 99.37 percent artifact detection but 53.26 percent fully localised and explained.",
       "outcome": "applied as the design of this pass's pixel-critic frame_causes fix (yes/no per cause, a required region, an unanswered cause is a no); PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-04 frontier scan, focus (f)'): critic rotation and calibration against the scorer, which needs the pixel critics' JSON persisted per round and touches a pinned model."
+    },
+    {
+      "run_date": "2026-10-06",
+      "focus": "(c) generative and procedural art portable to offline Canvas/SVG, narrowed to lines that reach every iso-line of a curved form and to resolving dense repeated geometry without moire. Legal and distinct from the last three logged foci: 2026-10-04 (f) self-improving pipelines, 2026-10-03 (b) cartography, 2026-10-02 (e) headless Chromium (last (c) 2026-09-30). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: the week's cause d (texture artifact) was on 6 of 6 decks and two queued art defects were a hatch lay and a moire.",
+      "searches": "6 searches, 4 fetches (Jobard and Lefer 1997 read in full, Singh and Schaefer 2010 pages 1 to 3, Skia's mipmap downsampler source, the whatwg drawImage thread via search), 3 measurements in the engine's own Chromium and Node",
+      "found": "(1) Jobard and Lefer: seeds at dsep from existing streamline samples, stop at dtest = 0.5 dsep, a dsep grid, midpoint integration (https://www.cg.tuwien.ac.at/courses/Visualisierung1/2015W/exercises/Streamlines_Jobard&Lefer.pdf). (2) drawImage resampling is a quality-of-implementation choice (https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2014-March/084495.html) and Skia builds non-2x mip levels with CatmullRom (https://skia.googlesource.com/skia/+/chrome/m153/src/core/SkMipmapDrawDownSampler.cpp); MEASURED: an exact-overlap area resolve leaves 0.247 low-pass error against a 6x reference where drawImage high leaves 0.353. (3) Singh and Schaefer, Suggestive Hatching: line density modulated by intensity through a hierarchical proximity grid, farthest-point seeding (https://people.engr.tamu.edu/schaefer/research/suggestiveHatching.pdf). (4) three.js SSAARenderPass: jittered re-render accumulation (https://threejs.org/docs/pages/SSAARenderPass.html).",
+      "outcome": "applied: (1) as akengrave surface()'s seed: \"even\" lay and (2) as AKT.drawDown's area resolve, both inside this pass's fix entries for the queued defects (kind fix, the scan supplied the technique). PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-06 frontier scan, focus (c)'): (3) tone by density, a fourth control on a value akengrave already carries by width, crossline and interdot; (4) jittered accumulation, N renders where one 3x render already halves the beat."
     }
   ]
 }

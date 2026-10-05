@@ -1,0 +1,106 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-06/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9747080,
+  "pdf_mb": 9.75,
+  "slides": 8,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-06/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-06/final/thumbs/slide-08-thumb.png"
+  ],
+  "title": "Of 150 Cited, 119 Used AI. The Rule Says Devices.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "4c3dc275893bf4a92554c4398b34033a0592fd0732e406322af092fc20b7ddc9",
+        "bytes": 6006655
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "e6d5583c0b2b7e03d5237202e3b96d10353b87fc322ff11a1a782d86f0bc748c",
+        "bytes": 6378245
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "6883163a3c1a44e273e0085a660ea3da584cfaaee57ce964d2bd6148dfd63faf",
+        "bytes": 4924651
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "738ff16a606dcadadbe4bde0cf728fce82cd1e84cb38dc1a20f39d0c47bb3b79",
+        "bytes": 4405625
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "6b4eaf8c9bcd9f2cf42d96dbcebac1fb1c1f7aa2b6a7a20f3473fd4e528a3a25",
+        "bytes": 4912868
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "1bee0f708e72c761154e27deac57822ad083f01e13c3f5dee45832a72ad3fd35",
+        "bytes": 5430214
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "c879ef307cb39c36fd1f8ef8eda99daeb21bb70ee9c66170d757140074684d38",
+        "bytes": 5001039
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "75b582b316e886ca772d03158c2660865f4e6ace0c47a733c316dacc4bf8ce9e",
+        "bytes": 5495097
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "8641b289a8ea06b13c8bdce6479a40d283a459058613957a8a58d2c44b4ec5fe",
+        "bytes": 11224
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "0a4e5c15cbf82b5b93ec2f49ce5270359d3c39304824190f60082713a16f7747",
+        "bytes": 10647
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d52d8210b13308c796248a2b638828ba507e0c27ad31532664a56c98fe3ae18a",
+        "bytes": 10962
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "15a759e755bdafc094d42901c07f18f2f098d440acfc5e988c9f5b39361bbedd",
+        "bytes": 11452
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "128320043274550ef36781af845f27bbed73745ee3d38ff6cae3925df61f460c",
+        "bytes": 15255
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "20c7507c02533a2daab2c720bccced36f3e00c38011718f0d98c4562123aca8d",
+        "bytes": 15604
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "6058668ea67b1266458fcfa42f1d8622ae74d867810fce637496ce338fca7e7a",
+        "bytes": 17144
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "46a305679158e11a1c723bcead5743c5818ef1538fb22b5bb1de09898bb3b5ba",
+        "bytes": 10207
+      }
+    ]
+  }
+}

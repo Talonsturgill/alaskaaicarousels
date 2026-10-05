@@ -1,0 +1,162 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the gold sheet on the cited seat pan': shadow L* 35.3 vs ground L* 42.3, dL 7.0 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the gold sheet on the cited seat': canvas 90.0 dE, page 91.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Of 150 cited,119 used AI.' fits 2/2 lines at 149.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader \"the cover's seat in the hall\" lands 8.5px from its target",
+        "leader \"the cover's seat in the hall\" meets its label 8.2px away",
+        "leader \"the cover's seat in the hall\" is drawn 113 px at 60 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '1.1 percent.' fits 1/1 lines at 139.5px"
+      ],
+      "asserts": [
+        "'150 cited seats, one lit pan each' holds: 150 vs 150 marks, counted over 150 declared marks (within 0)",
+        "'150 cited seats, one lit pan each': 150 mark centres probed at r=14px, cohort median 100.4 dE, all present (weakest 55.5 dE)",
+        "'150 cited seats, one lit pan each': 150 declared marks, largest touching mass 11 of them (7%) at a 35px link (a shape starts at 75%)",
+        "'119 gold sheets, one per AI case' holds: 119 vs 119 marks, counted over 119 declared marks (within 0)",
+        "'119 gold sheets, one per AI case': 119 mark centres probed at r=14px, cohort median 101.2 dE, all present (weakest 69.8 dE)",
+        "'119 gold sheets, one per AI case': 119 declared marks, largest touching mass 11 of them (9%) at a 39px link (a shape starts at 75%)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the lectern plinth on the stage floor': shadow L* 1.4 vs ground L* 19.1, dL 17.7 at 432w"
+      ],
+      "fits": [
+        "q '\"utilizing devicesnot authorizedby facultyme' fits 4/4 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the syllabus fan on the board': shadow L* 10.1 vs ground L* 21.9, dL 11.8 at 432w"
+      ],
+      "fits": [
+        "hl 'Every syllabus must address AI.No two have t' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'7 syllabi, one AI line each' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'7 syllabi, one AI line each': 7 mark centres probed at r=14px, cohort median 40.3 dE, all present (weakest 34.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the blank screen at the end of the beam': canvas 83.5 dE, page 83.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"There is no instructionmanual.\"' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'one gold speck in the beam' holds: 1 vs 1 marks, counted over 1 declared mark (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the torn drafting film': canvas 72.7 dE, page 72.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Two reports. Two different counts.' fits 1/1 lines at 67.5px"
+      ],
+      "asserts": [
+        "\"this year's report, 150 cited, one tick each\" holds: 150 vs 150 marks, counted over 150 declared marks (within 0)",
+        "'this year's report, 150 cited, one tick each': 150 mark centres probed at r=14px, cohort median 81.8 dE, all present (weakest 60.5 dE)",
+        "'119 gold ticks, one per student who used AI' holds: 119 vs 119 marks, counted over 119 declared marks (within 0)",
+        "'119 gold ticks, one per student who used AI': 119 mark centres probed at r=14px, cohort median 82.1 dE, all present (weakest 79.8 dE)",
+        "'a year earlier, 115 found responsible, one tick each' holds: 115 vs 115 marks, counted over 115 declared marks (within 0)",
+        "'a year earlier, 115 found responsible, one tick each': 115 mark centres probed at r=9px, cohort median 61.8 dE, all present (weakest 57.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the microphone base on the witness table': shadow L* 69.5 vs ground L* 80.6, dL 11.2 at 432w"
+      ],
+      "motifs": [
+        "'the testimony microphone stand': canvas 95.7 dE, page 78.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The draft says a human decides.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the right standard foot on the carpet': shadow L* 6.3 vs ground L* 25.1, dL 18.8 at 432w"
+      ],
+      "motifs": [
+        "'the blank sheet on the one seat': canvas 76.4 dE, page 76.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Should the regents writewhat a student may d' fits 3/3 lines at 81px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 7,
+    "helpers": [
+      {
+        "call": "akhall.build",
+        "slides": [
+          1,
+          2,
+          5,
+          7
+        ]
+      },
+      {
+        "call": "akhall.layout",
+        "slides": [
+          1,
+          2,
+          5,
+          7
+        ]
+      },
+      {
+        "call": "akhall.seatPoint",
+        "slides": [
+          1,
+          2,
+          5,
+          7
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

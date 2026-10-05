@@ -52,6 +52,7 @@
  *     budget:{main: 5.0, cross: 7.0, dots: true},
  *     inkLo: "#6E8378", inkHi: "#BFD0C4", alpha: 1.0,
  *     seedDeg: 0,           // OPTIONAL, see LAY_ALIGN_WARN below
+ *     seed: "even",         // OPTIONAL, radial or sinuous forms, see _layEven
  *     landformIntended: false  // OPTIONAL, see NOISE_IN_FORM below
  *   });
  *
@@ -276,6 +277,13 @@
      * keeps the historical angOff + 90deg, so every deck built before this
      * option renders identically. See LAY_ALIGN_WARN above. */
     var seedAng = o.seedDeg == null ? null : o.seedDeg * Math.PI / 180;
+    /* seed: "even" (2026-10-06), see EVEN LAY above _layEven. Anything else,
+     * or nothing, keeps the raster seeding and every existing pixel. */
+    var seedMode = o.seed === "even" ? "even" : null;
+    if (o.seed != null && seedMode == null) {
+      throw new TypeError("AKENGRAVE: seed must be \"even\" or left out, got " + o.seed);
+    }
+    var evenTest = o.evenTest == null ? 0.5 : o.evenTest;
     var self = this;
 
     /* Named once, before a single stroke is drawn. See NOISE_IN_FORM. */
@@ -298,7 +306,8 @@
     this._layPass(cx, {
       x0: x0, y0: y0, rw: rw, rh: rh, diag: diag, gap: gapMain, angOff: 0,
       form: form, tone: tone, wMax: wMax, step: step, feather: feather,
-      ink: ink, toneGate: 1.1, channel: "main", seedAng: seedAng
+      ink: ink, toneGate: 1.1, channel: "main", seedAng: seedAng,
+      seedMode: seedMode, evenTest: evenTest
     });
 
     /* ---- channel 2, the CROSSLINE. Only in the darks. ------------------ */
@@ -307,7 +316,8 @@
         x0: x0, y0: y0, rw: rw, rh: rh, diag: diag, gap: gapCross,
         angOff: crossDeg * Math.PI / 180,
         form: form, tone: tone, wMax: wMax * 0.6, step: step, feather: feather,
-        ink: ink, toneGate: 0.45, channel: "cross", seedAng: seedAng
+        ink: ink, toneGate: 0.45, channel: "cross", seedAng: seedAng,
+        seedMode: seedMode, evenTest: evenTest
       });
     }
 
@@ -339,6 +349,7 @@
    * direction field, so the lay bends with the form (rule 1) instead of running
    * straight across it. */
   Engraver.prototype._layPass = function (cx, p) {
+    if (p.seedMode === "even") return this._layEven(cx, p);
     var self = this;
     var cxm = p.x0 + p.rw / 2, cym = p.y0 + p.rh / 2;
     var nLines = Math.ceil(p.diag / p.gap);
@@ -361,6 +372,158 @@
       this._ribbon(cx, poly, p);
       this.stats[p.channel]++;
     }
+  };
+
+  /* ---------------------------------------------------------------- _layEven
+   * EVEN LAY (2026-10-06, weekly machine pass; queue: "surface() lay collapses
+   * on non-rectilinear forms"). OPT-IN, `seed: "even"` on surface().
+   *
+   * WHY. The raster seeding above puts every seed on ONE line through the
+   * region's centre. On a RADIAL face (No.78's flange) the iso-lines are
+   * rings: a seed at +off and one at -off cut the SAME ring twice, and a ring
+   * the centre line never crosses is never seeded at all, so with the bore
+   * 110 px off the region's centre 13 percent of the face's cells print
+   * empty. On a SINUOUS form (No.77's river channel) 12 percent do.
+   * Both runs rebuilt the frame by hand.
+   *
+   * WHAT. Jobard and Lefer, "Creating Evenly-Spaced Streamlines of Arbitrary
+   * Density" (1997): every stroke still walks the form's own iso-lines (rule
+   * 1, unchanged), but seeds are taken from the strokes already drawn, one
+   * line spacing away along each sample's normal, and a stroke stops where
+   * it comes within evenTest times that spacing (dtest; 0.5, which the paper
+   * found best for long lines) of another stroke or of an earlier part of
+   * itself, or runs 40 px past the region (the raster walk's own margin, so
+   * tapered ends land outside the clip). A grid of spacing-sized cells keeps
+   * the distance test local. Each parent's seeds start at a golden-ratio
+   * offset along it, so the tapered ends of closed rings scatter instead of
+   * stacking into spokes. When the queue runs dry the grid is swept for any
+   * cell still a full spacing from every stroke, so a pocket the first family
+   * never reached is seeded too. Samples are min(step, spacing/2) apart with
+   * a midpoint integrator, as the paper asks.
+   * Deterministic: no random numbers anywhere.
+   * https://www.cg.tuwien.ac.at/courses/Visualisierung1/2015W/exercises/Streamlines_Jobard&Lefer.pdf
+   *
+   * Width, ink, tone gate and reservations are the same _ribbon as the raster
+   * lay, so the burin rules hold. tests/akengrave_even_verify.py measures it.
+   */
+  Engraver.prototype._dirAt = function (p, x, y) {
+    var n = this.normalAt(p.form, x, y);
+    var gx = -n[0], gy = -n[1];
+    var gl = Math.sqrt(gx * gx + gy * gy);
+    var ang = gl < 1e-4 ? p.angOff : Math.atan2(gx, -gy) + p.angOff;
+    return [Math.cos(ang), Math.sin(ang)];
+  };
+
+  Engraver.prototype._layEven = function (cx, p) {
+    var self = this;
+    var dsep = p.gap, dtest = dsep * p.evenTest;
+    var h = Math.min(p.step, dsep * 0.5);
+    /* strokes run 40 px past the region, as _walk's do, so their tapered
+     * ends fall outside the clip and the edges print at full weight; seeds
+     * are only ever taken inside the region itself */
+    var M = 40;
+    var bx0 = p.x0 - M, by0 = p.y0 - M, bx1 = p.x0 + p.rw + M, by1 = p.y0 + p.rh + M;
+    var gw = Math.max(1, Math.ceil((bx1 - bx0) / dsep)), gh = Math.max(1, Math.ceil((by1 - by0) / dsep));
+    var grid = new Array(gw * gh);
+    var KSELF = Math.ceil(3 * dsep / h) + 2;     /* own samples this close in index are neighbours */
+    var maxSteps = Math.ceil(4 * (p.rw + p.rh) / h);
+    var lines = 0;
+
+    function cellOf(x, y) {
+      var i = Math.floor((x - bx0) / dsep), j = Math.floor((y - by0) / dsep);
+      return (i < 0 || j < 0 || i >= gw || j >= gh) ? -1 : j * gw + i;
+    }
+    function inside(x, y) { return x >= bx0 && x <= bx1 && y >= by0 && y <= by1; }
+    function inRegion(x, y) { return x >= p.x0 && x <= p.x0 + p.rw && y >= p.y0 && y <= p.y0 + p.rh; }
+    function put(x, y, id, idx) {
+      var c = cellOf(x, y);
+      if (c < 0) return;
+      (grid[c] || (grid[c] = [])).push(x, y, id, idx);
+    }
+    /* true when nothing (other than this stroke's own near samples) is
+     * within d of (x, y); d never exceeds dsep, so the 3x3 cells suffice */
+    function clear(x, y, d, id, idx) {
+      var i = Math.floor((x - bx0) / dsep), j = Math.floor((y - by0) / dsep), d2 = d * d;
+      for (var jj = j - 1; jj <= j + 1; jj++) {
+        if (jj < 0 || jj >= gh) continue;
+        for (var ii = i - 1; ii <= i + 1; ii++) {
+          if (ii < 0 || ii >= gw) continue;
+          var a = grid[jj * gw + ii];
+          if (!a) continue;
+          for (var q = 0; q < a.length; q += 4) {
+            if (a[q + 2] === id && Math.abs(a[q + 3] - idx) <= KSELF) continue;
+            var dx = a[q] - x, dy = a[q + 1] - y;
+            if (dx * dx + dy * dy < d2) return false;
+          }
+        }
+      }
+      return true;
+    }
+    function grow(sx, sy, id) {
+      put(sx, sy, id, 0);
+      var halves = [];
+      for (var sgn = 1; sgn >= -1; sgn -= 2) {
+        var pts = [], x = sx, y = sy;
+        for (var k = 1; k <= maxSteps; k++) {
+          var d1 = self._dirAt(p, x, y);
+          var mx = x + d1[0] * h * 0.5 * sgn, my = y + d1[1] * h * 0.5 * sgn;
+          var d2 = self._dirAt(p, mx, my);
+          var nx = x + d2[0] * h * sgn, ny = y + d2[1] * h * sgn;
+          if (!inside(nx, ny)) break;
+          if (!clear(nx, ny, dtest, id, k * sgn)) break;
+          put(nx, ny, id, k * sgn);
+          pts.push([nx, ny]);
+          x = nx; y = ny;
+        }
+        halves.push(pts);
+      }
+      var back = halves[1].reverse();
+      return back.concat([[sx, sy]], halves[0]);
+    }
+
+    var queue = [], qi = 0, id = 0;
+    function emit(poly) {
+      if (poly.length >= 3) { self._ribbon(cx, poly, p); self.stats[p.channel]++; lines++; }
+      queue.push(poly);
+    }
+    function drain() {
+      while (qi < queue.length) {
+        var line = queue[qi++];
+        /* STAGGER. Taking a child's seed from the parent's first sample lines
+         * every closed ring's start up with its parent's, and on a radial
+         * face the tapered ends stack into visible spokes. Start each
+         * parent's sweep at a golden-ratio offset instead, so the ends
+         * scatter round the form the way an engraver staggers them. */
+        var off = Math.floor(((qi * 0.6180339887) % 1) * line.length);
+        for (var u = 0; u < line.length; u++) {
+          var s = (u + off) % line.length;
+          var a = line[Math.max(s - 1, 0)], b = line[Math.min(s + 1, line.length - 1)];
+          var tx = b[0] - a[0], ty = b[1] - a[1], tl = Math.sqrt(tx * tx + ty * ty);
+          if (tl < 1e-9) continue;
+          var nx = -ty / tl, ny = tx / tl;
+          for (var side = -1; side <= 1; side += 2) {
+            var cx0 = line[s][0] + nx * dsep * side, cy0 = line[s][1] + ny * dsep * side;
+            if (!inRegion(cx0, cy0) || !clear(cx0, cy0, dsep * 0.95, -1, 0)) continue;
+            emit(grow(cx0, cy0, ++id));
+          }
+        }
+      }
+    }
+    var c0x = (bx0 + bx1) / 2, c0y = (by0 + by1) / 2;
+    emit(grow(c0x, c0y, ++id));
+    drain();
+    /* the sweep: any cell centre still a full spacing from every stroke */
+    for (var j = 0; j < gh; j++) {
+      for (var i = 0; i < gw; i++) {
+        var sx = bx0 + (i + 0.5) * dsep, sy = by0 + (j + 0.5) * dsep;
+        if (!inRegion(sx, sy) || !clear(sx, sy, dsep * 0.95, -1, 0)) continue;
+        emit(grow(sx, sy, ++id));
+        drain();
+      }
+    }
+    this.stats.lay.push({channel: p.channel, mode: "even", lines: lines,
+                         region: [p.x0, p.y0, p.rw, p.rh]});
+    return lines;
   };
 
   /* --------------------------------------------------------------- _layCheck

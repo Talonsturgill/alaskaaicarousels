@@ -52,7 +52,9 @@ and fills a slot only when it clears the same verification bar.
    defect, "improvement" for a frontier find), area, change, trigger (the theme and its counts from
    the digest), files, verification evidence, rollback hint.
 5. **Mark the queue.** A shipped item becomes `[x]` with ` | shipped <date> <commit>`. One you
-   can't fix safely stays open with ` | escalated <date>: <why>`.
+   can't fix safely stays open with ` | escalated <date>: <why>`. An escalated item no longer
+   makes the pass due early (`scripts/machine_due.py`, 2026-10-06): an owner decision at
+   `repeat: 5` made the pass due every day until then.
 
 ## What you may not touch
 

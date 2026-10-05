@@ -4103,6 +4103,91 @@ def _dir_name(vx: float, vy: float) -> str:
     return COMPASS8[k]
 
 
+# THE REUSE RECORD (2026-10-06, weekly machine pass). The flow critic named
+# cause a, "the same drawing function or texture carrying more than three
+# frames", across frames on 6 of 6 decks from September 30th to October 5th (34
+# frame mentions: one spruce comb on six frames, one cobble bed on five, one
+# lacquer mottle on four). The 2026-10-04 pass deferred it because the repeats
+# are SECONDARY drawings the CRAFT PLAN's census does not count, and runs/
+# keeps no slide source, so nothing could measure reuse across a week. This is
+# the record FIELD_NOTES named as the next step: per slide, the assets/js
+# helper calls it makes and a SHAPE hash of every sizeable function it defines
+# (comments, whitespace, numbers and strings normalised away, so one drawing
+# copied into four slides with new colours and sizes hashes the same). qa.py
+# turns it into a per-deck census in machine_qa.json, which runs/ keeps. It is
+# a RECORD, never a gate, until two weeks of it are calibrated against the
+# critic's own cause a.
+REUSE_NS_RE = re.compile(r"\b([A-Za-z_$][\w$]*)\s*\.\s*([A-Za-z_]\w*)\s*\(")
+# an ES-module helper is called through whatever name the slide binds it to:
+# `const HALL = (await import('@@ASSETS@@/js/akhall.js')).init(THREE)`
+REUSE_ALIAS_RE = re.compile(
+    r"\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*\(\s*await\s+import\(\s*['\"]"
+    r"@@ASSETS@@/js/([\w.-]+?)(?:\.min)?\.js")
+REUSE_FN_RE = re.compile(
+    r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*\{"
+    r"|\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*"
+    r"(?:async\s+)?(?:function\b[^{(]*\([^)]*\)|\([^)]*\)\s*=>|[A-Za-z_$][\w$]*\s*=>)\s*\{")
+REUSE_MIN_CHARS = 300
+
+
+def _js_body(src: str, open_at: int):
+    """The text from the brace at open_at to its match, skipping strings,
+    template literals and comments. None when it never closes."""
+    depth, i, n = 0, open_at, len(src)
+    while i < n:
+        c = src[i]
+        if c in "'\"`":
+            q, i = c, i + 1
+            while i < n and src[i] != q:
+                i += 2 if src[i] == "\\" else 1
+        elif src.startswith("//", i):
+            j = src.find("\n", i)
+            i = n if j < 0 else j
+        elif src.startswith("/*", i):
+            j = src.find("*/", i + 2)
+            i = n if j < 0 else j + 1
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return src[open_at:i + 1]
+        i += 1
+    return None
+
+
+def _js_shape(body: str) -> str:
+    body = re.sub(r"/\*.*?\*/", " ", body, flags=re.S)
+    body = re.sub(r"(?m)//[^\n]*", " ", body)
+    body = re.sub(r"'(?:\\.|[^'\\])*'|\"(?:\\.|[^\"\\])*\"|`(?:\\.|[^`\\])*`", '""', body)
+    body = re.sub(r"\b0x[0-9a-fA-F]+\b|\b\d+(?:\.\d+)?(?:e[-+]?\d+)?\b|\.\d+\b", "0", body)
+    return re.sub(r"\s+", "", body)
+
+
+def scan_reuse(html: str, name: str) -> dict:
+    """{'calls': sorted helper calls, 'fns': [{name, shape, chars}]} for one slide."""
+    scripts = "\n".join(re.findall(r"<script\b[^>]*>(.*?)</script>", html, flags=re.S | re.I))
+    alias = {m.group(1): m.group(2) for m in REUSE_ALIAS_RE.finditer(scripts)}
+    # the classic helpers' globals (AK, AKENGRAVE, AKPOST, ...) by name, the
+    # module helpers by the file they were imported from; THREE is three.js
+    calls = sorted({"%s.%s" % (alias.get(m.group(1), m.group(1)), m.group(2))
+                    for m in REUSE_NS_RE.finditer(scripts)
+                    if (m.group(1) in alias or re.match(r"AK[A-Z0-9]*$", m.group(1)))
+                    and alias.get(m.group(1)) != "three.module"})
+    fns = []
+    for m in REUSE_FN_RE.finditer(scripts):
+        body = _js_body(scripts, m.end() - 1)
+        if not body:
+            continue
+        shape = _js_shape(body)
+        if len(shape) < REUSE_MIN_CHARS:
+            continue
+        fns.append({"name": m.group(1) or m.group(2),
+                    "shape": hashlib.sha1(shape.encode()).hexdigest()[:12],
+                    "chars": len(shape)})
+    return {"calls": calls, "fns": fns}
+
+
 def scan_light_direction(html: str, name: str) -> dict:
     """Resolve every declared relief azimuth, and read the slide's own comments
     for directions that contradict it. Returns {lights: [...], conflicts: [...]}."""
@@ -4457,10 +4542,59 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
             rec["page_errors"].append("screenshot missing or suspiciously small")
     except Exception as e:
         rec["page_errors"].append(f"render exception: {e}")
+        hint = timeout_remedy(str(e), timeout_ms)
+        if hint:
+            rec["page_errors"].append(hint)
     finally:
         page.close()
     rec["render_ms"] = int((time.time() - t0) * 1000)
     return rec
+
+
+# A TIMEOUT NAMES ITS REMEDY (2026-10-06, weekly machine pass; queue items of
+# 2026-10-04 and 2026-10-05). Two runs running lost renders to page.goto timing
+# out on the load event (No.77 slides 06 and 07, No.78 slide 06), and each time
+# the exception named the symptom and not the fix. The slide's own synchronous
+# art held the load event. MEASURED 2026-10-06 with --timeout 2000 and a 6 s
+# block: the block at the top of a script FAILS; the block right after
+# `await load` ALSO FAILS, because it runs in the load continuation and page.goto
+# still has not returned; `await load`, then ONE yield (a setTimeout 0), then the
+# block PASSES in 6.4 s. That is the remedy printed, beside the record's own
+# "render exception" line. tests/render_timeout_verify.py rebuilds all three.
+LOAD_TIMEOUT_REMEDY = (
+    "remedy: page.goto waited {ms} ms for the load event and the slide's own "
+    "synchronous work was still holding it. Inside window.renderReady, `await` "
+    "the load event, then yield ONCE (`await new Promise(r => setTimeout(r, 0))`), "
+    "and only then run the long draw; resolve straight after it with no further "
+    "await (SKILL.md, renderReady). Raising --timeout (milliseconds) only buys "
+    "time; it does not fix the order.")
+READY_TIMEOUT_REMEDY = (
+    "remedy: renderReady did not settle inside render.py's own 30 s cap, which "
+    "starts after the page has loaded and is NOT --timeout (that flag bounds the "
+    "page load only). Resolve renderReady straight after a long synchronous "
+    "block with no further await (technique 120), or make the work after load "
+    "faster.")
+
+
+def timeout_remedy(message: str, timeout_ms: int):
+    """The remedy line for a render exception that is one of the two timeout
+    shapes above, or None. Pure, so it is tested without a browser."""
+    m = message or ""
+    if "renderReady timeout" in m:
+        return READY_TIMEOUT_REMEDY
+    if "Timeout" in m and "exceeded" in m and ("goto" in m or "navigat" in m.lower()):
+        return LOAD_TIMEOUT_REMEDY.format(ms=timeout_ms)
+    return None
+
+
+def check_timeout_arg(ms: int):
+    """--timeout is MILLISECONDS. A value under 1000 is a seconds number typed
+    into a milliseconds flag (No.78: `--timeout 300` failed page.goto in 0.4 s
+    and read as a broken slide). Returns the error text, or None."""
+    if ms < 1000:
+        return (f"--timeout is in MILLISECONDS, and {ms} would give each slide "
+                f"{ms / 1000:.3g} s to load. Did you mean --timeout {ms * 1000}?")
+    return None
 
 
 def main():
@@ -4475,8 +4609,13 @@ def main():
     ap.add_argument("--only-exact", action="store_true",
                     help="render exactly the --only list, even when other PNGs are stale "
                          "(qa.py still FAILs a stale PNG, so this only defers the re-render)")
-    ap.add_argument("--timeout", type=int, default=45000)
+    ap.add_argument("--timeout", type=int, default=45000,
+                    help="page load budget per slide, in MILLISECONDS (default 45000)")
     args = ap.parse_args()
+    bad_timeout = check_timeout_arg(args.timeout)
+    if bad_timeout:
+        print("FAIL: " + bad_timeout, file=sys.stderr)
+        sys.exit(2)
 
     slides_dir = Path(args.slides_dir).resolve()
     out_dir = Path(args.out_dir).resolve()
@@ -4542,6 +4681,7 @@ def main():
             rec["lights"] = light["lights"]
             rec["light_conflicts"] = light["conflicts"]
             rec["source"] = source_fingerprint(s)
+            rec["reuse"] = scan_reuse(s.read_text(), s.name)
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"

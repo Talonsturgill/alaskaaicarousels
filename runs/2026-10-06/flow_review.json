@@ -1,0 +1,137 @@
+{
+ "verdict": "revise",
+ "round": 1,
+ "predicted_artwork_score": 7.0,
+ "score_0_10": 7.5,
+ "arc_assessment": "The spine holds and slide 2 pays the cover right away. The middle sags after the breather: 06 restates 02's numbers and plants nothing toward November, and 02 already sits as dark as the breather (L* 7 against 6).",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "strong"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "none"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "strong"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 02 and 05",
+   "problem": "02 measures L* 7 against the breather's 6, so the floor-drop is spent at slide 2",
+   "fix": "lift 02's bowl to about L* 14 to 16"
+  },
+  {
+   "severity": "polish",
+   "where": "slides 06 to 07",
+   "problem": "two heaviest frames back to back; 07 headline paraphrases its quote",
+   "fix": "set the quote as 07's headline"
+  },
+  {
+   "severity": "polish",
+   "where": "slide 06",
+   "problem": "plate A restates 02's numbers",
+   "fix": "trim plate A"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "polish",
+   "where": "slide 07 D1",
+   "problem": "gold sheet a 1 to 2 px line"
+  },
+  {
+   "severity": "polish",
+   "where": "slide 05 beam",
+   "problem": "shaft reaches only part of the screen; screen floats with no wall"
+  },
+  {
+   "severity": "polish",
+   "where": "slide 02 legend",
+   "problem": "white swatch says 150 but only 31 are white"
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 6,
+  "fix": "trim plate A and end the guard with a forward plant from C16"
+ },
+ "craft": {
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 6.5,
+    "cause": "b"
+   },
+   {
+    "slide": 2,
+    "score": 7.0,
+    "cause": "c"
+   },
+   {
+    "slide": 7,
+    "score": 7.0,
+    "cause": "d"
+   },
+   {
+    "slide": 3,
+    "score": 7.0,
+    "cause": "b"
+   },
+   {
+    "slide": 8,
+    "score": 7.5,
+    "cause": "d"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     5,
+     7
+    ],
+    "problem": "akhall carries four frames; 01 and 07 read alike; borderline, not a cap by itself"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     2,
+     5,
+     6,
+     7
+    ],
+    "problem": "07 planned lit peak measures 3rd; 02 sits at the breather's floor"
+   }
+  ],
+  "masterful_depth_frame": 1
+ }
+}

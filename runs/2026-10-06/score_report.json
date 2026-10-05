@@ -1,0 +1,113 @@
+{
+ "run_date": "2026-10-06",
+ "carousel_no": 79,
+ "scoring_cycle": 2,
+ "revision_rounds": 5,
+ "weighted_total": 8.27,
+ "threshold": 7.7,
+ "ship": true,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(7x0.14)+(7.5x0.14)+(7.5x0.16)+(8x0.14)+(7x0.12)+(8x0.10)+(7x0.08)+(7.5x0.07)+(8x0.05)+(8x0.10) = 8.275, truncated to 8.27",
+ "weakest_criterion": "Thumb-stop cover",
+ "one_sentence_fix": "Put one unmistakably Alaskan cue inside the cover image itself, a window of Anchorage winter dusk or a named UAA marker catching the booth light behind the cited seat, so the frame says Alaska before the 20px source tag has to.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "fix": "make the lamp light the lectern: a hot pool on the slope, an emissive shade, a birch figure and a worn chamfer"
+  },
+  {
+   "slide": 8,
+   "fix": "material micro-detail: wool weave, brushed standards, loop pile in the pool"
+  },
+  {
+   "slide": 5,
+   "fix": "screen fabric tooth and an offset hotspot; spill fading into a ceiling"
+  },
+  {
+   "slide": 7,
+   "fix": "render the gold sheet in the 3D pass; raise the lit hour cells about 15 L*"
+  },
+  {
+   "slide": 2,
+   "fix": "crisper mark cores; a lit apron crest event"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   5,
+   7,
+   3,
+   8,
+   6
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5,
+  "note": "03's change read worse to the re-review critic and was reverted to its pre-cycle render; 05, 06, 07, 08 kept"
+ },
+ "cycle_1": {
+  "weighted_total": 8.23,
+  "art": 7.0
+ },
+ "editor_notes_for_email": [
+  "Scored 8.27 against the round-5 threshold of 7.7, zero hard fails. Artwork craft rose from 7.0 to 7.5 in the craft cycle and is still under the 8.5 art floor; the run is at the five-round cap, and the carry-over is slide 03's lectern.",
+  "Every count (150 cited, 119 AI, 1.1 percent, the 73 and 56 percent rises, last year's 115 of 8,800) comes from an unpublished Dean of Students report as reported by the Anchorage Daily News. The slides and first comment say so; keep it that way in replies.",
+  "The two years count different things (cited against found responsible) and must never be quoted as a rise from 115 to 150. Correct any comment that does.",
+  "On slide 06, '73% AI USE FOR PLAGIARISM' is a 73 percent increase, per the report. A skim reader may take it as a share.",
+  "Testimony at 4 p.m. November 2nd and the full board on November 5th and 6th were converted from the regents' UTC calendar feed to Alaska standard time (DST ends November 1st). Check alaska.edu/bor before posting in case the schedule has moved.",
+  "Taaga's pushback is the ADN's paraphrase and is printed without quote marks on purpose.",
+  "Slide 07's calendar plate went translucent in the craft cycle; its grey rows and hour cells are softer, readable on a phone but faint in the feed thumbnail.",
+  "docket_alerts.py sent one subscriber email this run: AIDEA's free state land for a Mat-Su data center park, vote in 2 days."
+ ]
+}

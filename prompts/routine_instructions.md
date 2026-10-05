@@ -1352,6 +1352,12 @@ that argument was typed by hand.
    of nine. Mean lightness can't see warmth or one lit object on a dark frame,
    so the critic stays the judge; the census only stops the arc from being
    claimed when the numbers say otherwise.
+   Hand it the REUSE census too (2026-10-06): the `reuse` block of
+   `out/<date>/render/machine_qa.json`, which qa.py also prints, lists every
+   helper call and every copied function shape on more than three frames.
+   Cause a was named across frames on all six decks of September 30th to
+   October 5th. It is a record for the critic and for two weeks of
+   calibration, never a gate, and it can't see a texture drawn inline.
 5. RECORD-SYNC pre-flight. Hand-edits in this phase land in the slide HTML,
    so copy.json can silently go stale (run 2026-07-17: an S5 kicker edited
    "HOW IT STARTED" -> "BEFORE THE CLASS" in the HTML while copy.json kept

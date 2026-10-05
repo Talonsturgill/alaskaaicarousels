@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-04",
+  "updated": "2026-10-06",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -559,7 +559,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-07-08",
@@ -652,6 +652,10 @@
         {
           "date": "2026-10-02",
           "note": "Checked and unchanged. No purchase vote has been reported since the board's 4 to 3 decision on August 25th to keep studying a used LM6000 at no more than $80 million, and the co-op has published no date for one."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Checked KUAC's energy coverage today. The latest Golden Valley story is still the August 27th report that the board voted to keep studying a used LM6000 at no more than $80 million, and no purchase vote has been reported or scheduled since. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -1001,10 +1005,15 @@
           "url": "https://www.petroleumnews.com/story/2026/08/30/utilities/rca-no-reconsideration/50328.html",
           "outlet": "Petroleum News",
           "date": "2026-08-30"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/10/04/news/corps-of-engineers-gives-hilcorp-emergency-processing-for-beluga/50418.html",
+          "outlet": "Petroleum News",
+          "date": "2026-10-04"
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-07-11",
@@ -1077,6 +1086,10 @@
         {
           "date": "2026-10-02",
           "note": "Checked and unchanged. Searches of statewide coverage today found nothing on the Kenai Loop Pool newer than the Regulatory Commission of Alaska's July and August rulings, and no written order on the August 21st denial of reconsideration has been reported."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Petroleum News reported on October 4th that the Army Corps of Engineers issued a public notice on September 29th for Hilcorp's 7.38-acre gas storage pad in the Beluga River unit, processed on an emergency basis, with comments due October 30th. The same report says the Division of Oil and Gas is still weighing competing storage proposals from Hilcorp and Enstar at Kenai. No written order on the RCA's August 21st denial of reconsideration has been reported."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -1217,7 +1230,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-07-17",
@@ -1410,6 +1423,10 @@
         {
           "date": "2026-10-05",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. It was last modified August 19th and archived September 15th, the attachments are still the application, the preliminary decision and a vicinity map, and no final finding and decision has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th, it was archived September 15th, and the attachments are still the application, the preliminary decision and a vicinity map, with no final finding and decision posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1616,7 +1633,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-07-26",
@@ -1677,6 +1694,10 @@
         {
           "date": "2026-10-02",
           "note": "Checked and unchanged for Alaska. The published signatory list carries 324 entries today, up from 318 on September 28th, and none of them is an Alaska utility, cooperative or state office."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Re-read the published signatory list today. It still carries 324 entries, and none of them is an Alaska utility, cooperative or state office. Checked and unchanged for Alaska."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -2533,7 +2554,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-08-06",
@@ -2578,6 +2599,10 @@
         {
           "date": "2026-10-02",
           "note": "Checked and unchanged. A Federal Register search today found no document revoking or amending Executive Order 14318 of July 23rd, 2025, and no Alaska project has been identified as qualifying under it."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Searched the Federal Register today for any document citing Executive Order 14318 since September 25th and found none, so the order stands unamended and no Alaska project has been identified under it. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
@@ -2872,7 +2897,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-10-02",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-08-09",
@@ -2953,6 +2978,10 @@
         {
           "date": "2026-10-02",
           "note": "Checked and unchanged. The district's agenda portal returned a service error today, so nothing newer than the September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "The district's agenda portal returned a service error again today, so nothing newer than the board's September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -3383,7 +3412,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-08-31",
@@ -3448,6 +3477,10 @@
         {
           "date": "2026-10-03",
           "note": "Initial comments closed on September 30th. Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -3531,7 +3564,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-09-01",
@@ -3576,6 +3609,10 @@
         {
           "date": "2026-10-05",
           "note": "Checked the borough's elections page today. It still points voters to the October 6th municipal election, and no Assembly action on the moratorium request itself is scheduled. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Checked KUAC's energy and environment coverage today. Its latest Fairbanks items are the September 20th Eielson microreactor story and a September 29th river-volume story, with nothing new on the borough's moratorium request. The October 6th Assembly election stays the next date on this item. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
@@ -3904,7 +3941,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-09-13",
@@ -3949,6 +3986,10 @@
         {
           "date": "2026-10-05",
           "note": "Searched the Federal Register today for any later notice on Securing the United States Bulk-Power System. The September 9th request for information is still the latest, with responses accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Searched the Federal Register today for any later notice on the bulk-power system. The only newer documents are a September 15th FERC order on reliability standard CIP-014-4, a reliability conference notice and an EPA carbon rule, none of them from the Energy Department on this request, so responses are still accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4165,7 +4206,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-09-15",
@@ -4222,6 +4263,10 @@
         {
           "date": "2026-10-05",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
@@ -4255,6 +4300,26 @@
           "date": "2027-01-01",
           "label": "The security standard's own next scheduled review, January 2027 with no day given",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-11-02",
+          "label": "Public testimony before the November regents meeting, 4 p.m. to 5 p.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Regents committee meetings begin, 1 p.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-05",
+          "label": "Board of Regents meets in Fairbanks, with AI guiding principles expected for consideration",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-06",
+          "label": "Board of Regents meeting continues in Fairbanks",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -4287,10 +4352,20 @@
           "url": "https://www.uaa.alaska.edu/news/archive/2026/09/building-uaa-we-love.cshtml",
           "outlet": "University of Alaska Anchorage",
           "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.alaska.edu/bor/schedules/index.php",
+          "outlet": "University of Alaska Board of Regents",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/education/2026/10/04/ai-policy-coming-to-university-of-alaska-as-student-misuse-increases/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-10-04"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-09-17",
@@ -4311,6 +4386,10 @@
         {
           "date": "2026-10-03",
           "note": "Re-read the University of Alaska generative AI policies page and the Board of Regents policy index today. The first still says UA System regulations are under development and was last updated March 11th, 2025, and the index lists no artificial intelligence policy. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "The regents' public meeting calendar now places the November meeting in Fairbanks, with an hour of public testimony at 4 p.m. on November 2nd, committee meetings from November 4th and the full board on November 5th and 6th. The Anchorage Daily News reported on October 4th that the regents will consider guiding principles for AI across the system in November, and that UAA's Dean of Students Office counted 150 students cited for academic misconduct, 119 of whom used AI. Today a UAA student's academic AI use is still governed by a conduct-code section on devices not authorized by faculty members."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"

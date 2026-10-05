@@ -33,6 +33,9 @@
  * RULES OF THE BENCH
  * - Canvas backing MUST be 2x (width=W*2 etc.); setup() calls setSize(w,h,false)
  *   + setPixelRatio(2) so three renders into the 2x store; screenshots stay crisp.
+ *   Dense repeated geometry (rows, grilles, seats at a pitch near 2 device px)
+ *   beats into moire at 2x: pass setup(canvas, {supersample: 3}) and snapshot()
+ *   area-resolves a 3x render into the 2x canvas (see SUPERSAMPLE below).
  * - Deterministic: nothing here uses Math.random(). If your scene scatters
  *   objects, use AK.rng(seed) from noise.js.
  * - ALWAYS render via snapshot() inside renderReady. One frame; this is a still.
@@ -61,14 +64,37 @@ export function init(THREE) {
 
   /* ---- setup ------------------------------------------------------------ */
   // Returns R = {renderer, scene, camera, w, h}
+  /* SUPERSAMPLE (2026-10-06, weekly pass; No.79 slides 02 and 05). OPT-IN.
+   * Dense instanced geometry whose pitch nears 2 device px (No.79's 10,500
+   * seats) BEATS into moire at the 2x backing: MSAA resolves edges, not the
+   * sampling rate of the rows, and a blur afterwards only smears the beat.
+   * Two pixel-critic rounds named it; rendering the GL pass at 3x and resolving
+   * it down cured it. `supersample: 3` does that here instead of by hand:
+   * three renders into an OFFSCREEN canvas at w*3 x h*3 (R.glCanvas), and
+   * snapshot() resolves it into the canvas you passed, which becomes a 2D
+   * canvas at its own size (keep it at the 2x contract, 2160x2700), so 2D
+   * marks can go on top of the GL frame in the same canvas afterwards. Leave
+   * the option out and NOTHING here changes: same canvas, same context, same
+   * pixels as before this option existed. Pass snapshot(R, {resolve: false})
+   * to resolve later yourself with AKT.drawDown(ctx, R.glCanvas). */
   AKT.setup = function (canvas, opts) {
     opts = opts || {};
     const w = opts.w || 1080, h = opts.h || 1350;
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: opts.antialias !== false,
+    let ss = 0, glCanvas = canvas;
+    if (opts.supersample != null) {
+      ss = Number(opts.supersample);
+      if (!(ss >= 2 && ss <= 4)) {
+        throw new Error("AK CONTRACT: AKT.setup: supersample is the GL backing ratio "
+          + "(2 to 4, 3 is the tested value), got " + opts.supersample);
+      }
+      glCanvas = document.createElement('canvas');
+      glCanvas.width = Math.round(w * ss); glCanvas.height = Math.round(h * ss);
+    }
+    const renderer = new THREE.WebGLRenderer({ canvas: glCanvas, antialias: opts.antialias !== false,
       preserveDrawingBuffer: true });  // stills only: lets the QA gate sample the frame
     // ORDER MATTERS: pixel ratio BEFORE size, or setSize resets the backing
     // store to 1x and every render silently ships at half resolution.
-    const ratio = (canvas.width && canvas.width > w) ? canvas.width / w : 2;
+    const ratio = ss ? ss : ((canvas.width && canvas.width > w) ? canvas.width / w : 2);
     renderer.setPixelRatio(ratio);
     renderer.setSize(w, h, false);                 // buffer becomes w*ratio x h*ratio
     renderer.shadowMap.enabled = true;
@@ -97,7 +123,72 @@ export function init(THREE) {
     if (opts.fog) scene.fog = new THREE.Fog(opts.fog[0], opts.fog[1], opts.fog[2]);
     const camera = new THREE.PerspectiveCamera(opts.fov || 50, w / h, 0.1, 200);
     camera.position.set(5, 4, 8); camera.lookAt(0, 0, 0);
-    return { renderer, scene, camera, w, h };
+    const R = { renderer, scene, camera, w, h };
+    if (ss) { R.supersample = ss; R.glCanvas = glCanvas; R.target = canvas; }
+    return R;
+  };
+
+  /* AREA RESOLVE (box filter) of a supersampled frame into a 2D context, at
+   * the context's canvas size. Every destination pixel is the exact
+   * area-weighted mean of the source pixels it covers, separable, so a 3x to
+   * 2x resolve (ratio 1.5) weighs each source pixel by its true overlap. This
+   * is the textbook supersample resolve and it is what removes the beat; the
+   * browser's own drawImage downscale is left to the implementation by the
+   * spec (whatwg, 2014: "a quality-of-implementation issue"), so it is not
+   * relied on. Averaging is in the canvas's sRGB values, as drawImage does.
+   * Writes with putImageData, which ignores the transform and the clip: call
+   * it first, before any 2D marks. Returns {w, h, ratio} or null. */
+  AKT.drawDown = function (ctx, src, o) {
+    o = o || {};
+    const dw = o.w || ctx.canvas.width, dh = o.h || ctx.canvas.height;
+    const sw = src.width, sh = src.height;
+    if (!(sw > 0 && sh > 0 && dw > 0 && dh > 0)) return null;
+    const tmp = document.createElement('canvas'); tmp.width = sw; tmp.height = sh;
+    const tc = tmp.getContext('2d');
+    tc.drawImage(src, 0, 0);
+    const sd = tc.getImageData(0, 0, sw, sh).data;
+    // per-axis overlap weights: dst i covers src [i*k, (i+1)*k)
+    function taps(dn, sn) {
+      const k = sn / dn, out = [];
+      for (let i = 0; i < dn; i++) {
+        const a = i * k, b = a + k, list = [];
+        for (let j = Math.floor(a); j < Math.min(sn, Math.ceil(b)); j++) {
+          const wgt = Math.min(b, j + 1) - Math.max(a, j);
+          if (wgt > 1e-9) list.push(j, wgt / k);
+        }
+        out.push(list);
+      }
+      return out;
+    }
+    const tx = taps(dw, sw), ty = taps(dh, sh);
+    // horizontal pass into a float buffer sh x dw x 4, then vertical
+    const mid = new Float32Array(sh * dw * 4);
+    for (let y = 0; y < sh; y++) {
+      const srow = y * sw * 4, mrow = y * dw * 4;
+      for (let x = 0; x < dw; x++) {
+        const t = tx[x]; let r = 0, g = 0, b = 0, a = 0;
+        for (let q = 0; q < t.length; q += 2) {
+          const p = srow + t[q] * 4, wgt = t[q + 1];
+          r += sd[p] * wgt; g += sd[p + 1] * wgt; b += sd[p + 2] * wgt; a += sd[p + 3] * wgt;
+        }
+        const m = mrow + x * 4; mid[m] = r; mid[m + 1] = g; mid[m + 2] = b; mid[m + 3] = a;
+      }
+    }
+    const img = ctx.createImageData(dw, dh), dd = img.data;
+    for (let y = 0; y < dh; y++) {
+      const t = ty[y];
+      for (let x = 0; x < dw; x++) {
+        let r = 0, g = 0, b = 0, a = 0;
+        for (let q = 0; q < t.length; q += 2) {
+          const m = (t[q] * dw + x) * 4, wgt = t[q + 1];
+          r += mid[m] * wgt; g += mid[m + 1] * wgt; b += mid[m + 2] * wgt; a += mid[m + 3] * wgt;
+        }
+        const d = (y * dw + x) * 4;
+        dd[d] = r; dd[d + 1] = g; dd[d + 2] = b; dd[d + 3] = a;   // the clamped array rounds
+      }
+    }
+    ctx.putImageData(img, o.x || 0, o.y || 0);
+    return { w: dw, h: dh, ratio: sw / dw };
   };
 
   AKT.frame = function (R, o) {
@@ -482,6 +573,12 @@ export function init(THREE) {
         : Math.max(48, Math.round(sampled * 0.0008));
       ok = meanVarOK || lit >= LIT_MIN;
     } catch (e) { /* readPixels unavailable: trust the render */ }
+    // SUPERSAMPLE (opt-in, see setup): resolve the offscreen GL frame into the
+    // slide's canvas. Only a frame that passed: a failed one leaves the canvas
+    // untouched for the slide's own fallback to paint.
+    if (R.supersample && R.target && ok && o.resolve !== false) {
+      AKT.drawDown(R.target.getContext('2d'), R.glCanvas);
+    }
     return { ok, variance, litCount };
   };
 

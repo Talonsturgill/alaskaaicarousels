@@ -1,54 +1,68 @@
 {
-  "last_pass": "2026-10-04",
+  "last_pass": "2026-10-06",
   "themes": [
-    {
-      "theme": "b, the largest object least modelled (flow critic weakest frames)",
-      "runs": 6,
-      "frames": 10,
-      "action": "fixed",
-      "what": "pixel-critic answers frame_causes b from the slide's CRAFT PLAN row, printed by scripts/critic_brief.py; a no is a revise"
-    },
     {
       "theme": "d, a texture artifact (flow critic weakest frames)",
       "runs": 6,
-      "frames": 13,
+      "frames": 16,
       "action": "fixed",
-      "what": "pixel-critic answers frame_causes d at 100 percent, with the week's named artifact kinds listed; a no is a revise"
+      "what": "akthree supersample option with an area resolve for dense-geometry moire (queued from No.79 slides 02 and 05), and akengrave surface() seed: \"even\" for the holes and collapsed lays on radial and sinuous forms (queued from No.77 and No.78)"
     },
     {
-      "theme": "c, a dead or eventless region, the lower third above all (flow critic weakest frames; scorer theme on 5 runs)",
-      "runs": 5,
-      "frames": 8,
+      "theme": "a, the same drawing on more than three frames (flow critic cross_frame)",
+      "runs": 6,
+      "frames": 34,
       "action": "fixed",
-      "what": "pixel-critic answers frame_causes c against field 4a; three pixel probes measured null first (AUC 0.63 best), recorded in FIELD_NOTES"
+      "what": "the record the 2026-10-04 deferral asked for: render.py records helper calls and function shape hashes per slide, qa.py writes machine_qa.json reuse, handed to the flow critic; a census, never a gate, until two weeks are calibrated against cause a"
+    },
+    {
+      "theme": "b, the largest object least modelled (flow critic weakest frames)",
+      "runs": 6,
+      "frames": 9,
+      "action": "deferred",
+      "what": "the 2026-10-04 fix (pixel critic frame_causes b from the CRAFT PLAN row) took effect on 10-05 only; one run is no evidence for or against it, so it gets another week before any new change"
+    },
+    {
+      "theme": "c, a dead or eventless region (flow critic weakest frames)",
+      "runs": 5,
+      "frames": 7,
+      "action": "deferred",
+      "what": "same as b, the 2026-10-04 frame_causes c question has run once; three pixel probes already measured null (FIELD_NOTES 2026-10-04)"
     },
     {
       "theme": "e, no tonal arc (flow critic cross_frame)",
       "runs": 6,
-      "frames": 32,
-      "action": "fixed",
-      "what": "scripts/tonal_arc_check.py and gate_status row tonal_arc, WARN-only census handed to the flow critic"
-    },
-    {
-      "theme": "the digest counted weakest_frames only and showed e at 0 runs, a at 1",
-      "runs": 6,
-      "frames": 66,
-      "action": "fixed",
-      "what": "week_digest.py counts craft.cross_frame in its own table"
-    },
-    {
-      "theme": "a, the same drawing or texture on many frames (flow critic cross_frame)",
-      "runs": 6,
-      "frames": 34,
+      "frames": 27,
       "action": "deferred",
-      "what": "the repeats are secondary textures the CRAFT PLAN does not count, a self-declared census already failed, and runs/ keeps no slide source to calibrate a reuse census; next step in FIELD_NOTES 2026-10-04"
+      "what": "tonal_arc_check.py shipped 2026-10-04 and ran on 10-05 and 10-06; No.79's own retro shows it caught a spent drop at slide 2 before the flow critic. Another week before changing it"
+    },
+    {
+      "theme": "queue: render load timeout remedy and --timeout units",
+      "runs": 2,
+      "frames": 4,
+      "action": "fixed",
+      "what": "render.py prints the measured remedy under a load timeout and refuses a --timeout under 1000"
+    },
+    {
+      "theme": "queue: the gaswatch evening-slot item (owner only, repeat 5) made the pass due every day",
+      "runs": 6,
+      "frames": 0,
+      "action": "escalated",
+      "what": "escalated in the queue for the owner; machine_due.py no longer lets an escalated item make the pass due early"
+    },
+    {
+      "theme": "queue Done note: a regression test for the stale branch-filtered run listing",
+      "runs": 1,
+      "frames": 0,
+      "action": "deferred",
+      "what": "written and verified (fails on fb3d935f^), held to keep this pass at five changes; the patch is at out/2026-10-06/upgrade_verify/cron_health_regression_test.patch for the next pass"
     },
     {
       "theme": "trend_check stale offender: Legibility and platform fitness, weakest 1 of 7, worked never",
       "runs": 1,
       "frames": 0,
       "action": "deferred",
-      "what": "weakest once in seven; its shipping warn (ragged display line, 5 runs) is a line-break area measured null four times for text-wrap, and the art criterion was weakest 6 of 7"
+      "what": "weakest once in seven against artwork's six; its shipping warn (ragged display line, 5 runs) belongs with the queued fitText authored-line item, deferred today because aktype.js is loaded by all eight of No.79's frames and a change would stale every PNG of the deck still being finished"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

@@ -20,6 +20,14 @@ THE PASS IS DUE WHEN
   an open queue item has bitten two or more runs beyond the one that found it, and the last pass
   was not today, because a repeat offender waiting a week is a week of decks paying for it.
 
+  AN ESCALATED ITEM DOES NOT MAKE IT DUE EARLY (2026-10-06, the second weekly pass). An item the
+  pass can't fix carries ` | escalated <date>: <why>` (prompts/machine_weekly.md) and goes to the
+  owner in the email. The Gas Watch evening-slot item is one, an owner decision on schedules and
+  credentials, and at `repeat: 5` it made the pass due EVERY day, which is the daily upgrading the
+  owner moved away from on 2026-10-02: the pass of 2026-10-06 ran two days after the last for it
+  alone. An escalated item still counts as open, still shows in the digest, and the seven-day pass
+  still reads it.
+
 It is due on schedule even with an empty queue, because the themes come from the week's own score
 reports and flow reviews and not only from what a run remembered to queue.
 
@@ -41,6 +49,7 @@ QUEUE = REPO_ROOT / "knowledge" / "MACHINE_QUEUE.md"
 DAYS = 7
 ITEM = re.compile(r"^- \[ \] (.*)$")
 REPEAT = re.compile(r"repeat:\s*(\d+)", re.I)
+ESCALATED = re.compile(r"\|\s*escalated\s+\d{4}-\d{2}-\d{2}", re.I)
 
 
 def open_items(text: str) -> list[dict]:
@@ -50,7 +59,8 @@ def open_items(text: str) -> list[dict]:
         m = ITEM.match(line)
         if m:
             r = REPEAT.search(m.group(1))
-            items.append({"text": m.group(1), "repeat": int(r.group(1)) if r else 0})
+            items.append({"text": m.group(1), "repeat": int(r.group(1)) if r else 0,
+                          "escalated": bool(ESCALATED.search(m.group(1)))})
     return items
 
 
@@ -66,7 +76,7 @@ def verdict(state: dict, queue_text: str, today: dt.date) -> tuple[bool, str]:
     age = (today - last_d).days
     if age >= DAYS:
         return True, f"last pass {last}, {age} days ago, {len(items)} item(s) queued"
-    repeats = [i for i in items if i["repeat"] >= 2]
+    repeats = [i for i in items if i["repeat"] >= 2 and not i["escalated"]]
     if repeats and age >= 1:
         return True, f"{len(repeats)} repeat offender(s) queued, last pass {last}"
     return False, (f"last pass {last}, {age} day(s) ago, due at {DAYS}; {len(items)} item(s) "
@@ -94,6 +104,16 @@ def self_test() -> int:
     ok("a repeat offender makes it due early", verdict({"last_pass": "2026-10-07"}, q2, d)[0])
     ok("...but never twice on one day", not verdict({"last_pass": "2026-10-10"}, q2, d)[0])
     ok("a date that does not parse is treated as never run", verdict({"last_pass": "soon"}, q1, d)[0])
+    q3 = ("## Open\n- [ ] 2026-09-30 | repeat: 5 | gaswatch: owner only | evidence: x | fix: owner"
+          " | escalated 2026-10-06: schedules and credentials are the owner's\n")
+    ok("an escalated repeat offender does not make it due early",
+       not verdict({"last_pass": "2026-10-06"}, q3, dt.date(2026, 10, 7))[0])
+    ok("...it is still an open item", len(open_items(q3)) == 1 and open_items(q3)[0]["escalated"])
+    ok("...and the seven-day pass still runs", verdict({"last_pass": "2026-10-06"}, q3, dt.date(2026, 10, 13))[0])
+    ok("...while an unescalated repeat offender beside it still does",
+       verdict({"last_pass": "2026-10-06"}, q3 + q2.split("\n", 1)[1], dt.date(2026, 10, 7))[0])
+    ok("the word 'escalated' in evidence is not an escalation",
+       not open_items("- [ ] 2026-10-03 | repeat: 2 | a | evidence: it escalated fast | fix: y\n")[0]["escalated"])
     ok("the live queue and state parse", isinstance(open_items(QUEUE.read_text(encoding="utf-8")
                                                                if QUEUE.exists() else ""), list))
     print("\nmachine_due self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
