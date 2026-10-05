@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "every-door",
+      "date": "2026-10-05",
+      "title": "Every Door, Its Own AI Rule",
+      "caption": "UAA has no single AI rule. Per the Anchorage Daily News, a UAA report counted 119 of 150 students cited for academic misconduct as using AI, and faculty set the rules course by course.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-05-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-05-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-05-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-05-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-03-the-choosing-isnt",
       "date": "2026-10-03",
       "title": "The Choosing Isn't",
