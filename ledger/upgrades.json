@@ -3026,7 +3026,7 @@
       ],
       "verification": "python3 tests/akthree_supersample_verify.py: 4/4 in the engine's Chromium on 14,400 instanced seats at a row pitch near 2 device px against a 6x area-resolved reference: low-pass error (the beat) 0.492 at 2x vs 0.247 with supersample 3 (bar: at most 0.6x); area resolve beats drawImage high (0.247 vs 0.353 low-pass, rmse 2.746 vs 2.827); without the option the new file renders pixel-identical to git HEAD's; supersample 6 throws AK CONTRACT. This run's GL frames 01, 02, 05, 07 copied to out/2026-10-06/upgrade_verify/slides and re-rendered (render.py --timeout 480000: 4/4 OK, 29 to 64 s) are PIXEL-IDENTICAL to out/2026-10-06/render, and qa.py rows are identical to HEAD's engine (0 fails, 1 warn, the existing contact-shadow note on 01). Slide 02 rebuilt on the option instead of its hand-rolled 3x (out/2026-10-06/upgrade_verify/option): OK in 61 s, qa PASS 0 warns, rmse 1.28 levels from the hand-rolled frame. examples/demo-deck: 4/4 OK, qa WARN 0 fails 14 warns, rows identical to HEAD's engine.",
       "rollback": "git checkout <commit>^ -- assets/js/akthree.js .claude/skills/carousel-engine/SKILL.md; git rm tests/akthree_supersample_verify.py (no slide in runs/ uses the option yet)",
-      "commit": "PENDING"
+      "commit": "d22914f9"
     },
     {
       "run_date": "2026-10-06",
@@ -3041,7 +3041,7 @@
       ],
       "verification": "python3 tests/akengrave_even_verify.py: 12/12 (Node, the real akengrave.js into a recording stub). Reconstructions FAIL on the raster lay: a flange face with its bore 110 px off the region's centre leaves 120 of 900 15 px cells empty (13.3 percent), a meandering channel 228 of 1938 (11.8 percent); the even lay leaves 4 of 900 (0.4) and 0 of 1938, and 0 of 1275 on a plain ramp control; strokes follow the rings (mean |cos| to the radius 0.000); nearest samples of different strokes 2.64 px against dtest 2.5; without the option the new file draws op for op what git HEAD draws on all three forms; two even runs identical; a reserved box gets 0 px of ink; seed: 'random' throws. tests/akengrave_lathe_verify.py still HOLDS. Through render.py: a flange slide with seed 'even' plus crosslines renders OK in 880 ms with no console or page errors (out/2026-10-06/upgrade_verify/engrave). No slide of this run loads akengrave.js, so none goes stale. examples/demo-deck 4/4 OK, qa rows unchanged.",
       "rollback": "git checkout <commit>^ -- assets/js/akengrave.js; git rm tests/akengrave_even_verify.py; drop the seed: \"even\" sentences from SKILL.md's akengrave entry",
-      "commit": "PENDING"
+      "commit": "d22914f9"
     },
     {
       "run_date": "2026-10-06",
@@ -3056,7 +3056,7 @@
       ],
       "verification": "python3 tests/render_timeout_verify.py: 9/9. Unit: a Playwright goto timeout maps to the load remedy, 'renderReady timeout' to the race note, anything else to nothing; 300 and 999 refused, 1000 and 45000 accepted. CLI: --timeout 300 exits 2 before any browser, naming the unit and suggesting 300000. Reconstructions through the real render.py at --timeout 2000 with a 6 s block: at the top of a script FAILS with the remedy (2098 ms); straight after await load ALSO FAILS with the remedy (2101 ms); load, one yield, then the block renders OK (6370 ms), so the printed remedy is the one that works. No check reads less: the remedy is an extra page_errors line on a render that already failed. This run's GL frames and examples/demo-deck re-rendered and qa'd as in the akthree entry.",
       "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/render.py .claude/skills/carousel-engine/SKILL.md (render.py also carries the reuse record entry; revert both or hand-remove timeout_remedy/check_timeout_arg); git rm tests/render_timeout_verify.py",
-      "commit": "PENDING"
+      "commit": "d22914f9"
     },
     {
       "run_date": "2026-10-06",
@@ -3073,7 +3073,7 @@
       ],
       "verification": "python3 tests/reuse_census_verify.py: 9/9: one comb function pasted into five slides with different numbers, colours and comments is one shape on five frames; a function and a helper on exactly three frames are not listed; `const H = (await import('@@ASSETS@@/js/akhall.js'))` is recorded as akhall.*; THREE.* never; setup, fitText, grade and colour mixing left out; on this run's real slides it lists akhall.build on 01, 02, 05 and 07; qa.py's totals are still summed from slide rows only. On out/2026-10-06/upgrade_verify/render qa.py printed 'reuse census ... akhall.build on 01,02,05,07; akhall.layout ...; akhall.seatPoint ...' with verdict, fails and warns identical to HEAD's engine. A record for two weeks of calibration, never a gate.",
       "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/qa.py .claude/agents/flow-critic.md and remove scan_reuse from render.py (it shares the file with the timeout entry) and the 'Hand it the REUSE census' paragraph from prompts/routine_instructions.md Phase 9 step 4; git rm tests/reuse_census_verify.py",
-      "commit": "PENDING"
+      "commit": "d22914f9"
     },
     {
       "run_date": "2026-10-06",
@@ -3088,7 +3088,7 @@
       ],
       "verification": "python3 scripts/machine_due.py --self-test: all passed, with five new checks: an escalated repeat-5 item does not make the pass due the day after a pass; it is still an open item; the seven-day pass still runs; an unescalated repeat offender beside it still makes it due early; the word 'escalated' inside evidence text is not an escalation. Reconstruction: git HEAD's verdict() on the escalated repeat-5 line the day after a pass returns (True, '1 repeat offender(s) queued'). On the live queue after this pass: --date 2026-10-07 exits 1 ('not due ... 0 repeat offender(s)'), --date 2026-10-13 exits 0. No engine file changed, so no render or qa reading moves.",
       "rollback": "git checkout <commit>^ -- scripts/machine_due.py prompts/machine_weekly.md, and drop the ' | escalated 2026-10-06: ...' suffix from the gaswatch line in knowledge/MACHINE_QUEUE.md",
-      "commit": "PENDING"
+      "commit": "d22914f9"
     }
   ],
   "scan_log": [
