@@ -84,6 +84,14 @@ FAILs whatever it left stale.
 - **Async art must gate the screenshot**: set
   `window.renderReady = new Promise(resolve => { ...draw, then resolve() })`.
   The engine awaits it (30s cap). Without it you get a 400ms grace only.
+  A LONG SYNCHRONOUS DRAW (a raymarch, a per-pixel field) holds the page's
+  load event wherever it starts before a yield, and page.goto times out on it
+  (No.77, No.78). Measured 2026-10-06: a block at the top of a script FAILS,
+  a block straight after `await load` ALSO fails (it runs in the load
+  continuation); `await load`, then `await new Promise(r => setTimeout(r, 0))`,
+  then the block, then resolve with no further await, PASSES. render.py prints
+  this remedy under a load timeout. `--timeout` is MILLISECONDS (it refuses a
+  value under 1000) and bounds the page load only, never the 30s cap.
 - **Canvas = 2x backing store.** Any `<canvas>` styled at `W x H` CSS px must
   have `canvas.width = W*2; canvas.height = H*2; ctx.scale(2,2)`. Screenshots
   are taken at deviceScaleFactor 2 and the PDF embeds the canvas bitmap — a
@@ -922,6 +930,17 @@ them or every archive page goes blank.
   litCount 0 and returns `ok:false`. Tune with `AKT.snapshot(R,{litFloor,litMin,stride})` only if needed);
   design a Canvas fallback for `AKT.webglOK()===false`;
   composite via an offscreen canvas + drawImage when mixing with 2D art.
+  SUPERSAMPLE (2026-10-06): dense repeated geometry at a pitch near 2 device
+  px (seat rows, grilles, louvres, fences) BEATS into moire at the 2x backing,
+  and neither MSAA nor a blur afterwards cures it (No.79, two critic rounds).
+  Pass `AKT.setup(canvas, {..., supersample: 3})` with the canvas at the usual
+  2x size: three renders into an offscreen 3x canvas (`R.glCanvas`) and
+  `AKT.snapshot` area-resolves it into your canvas, which is then a 2D canvas
+  you can keep drawing on. `snapshot(R, {resolve:false})` +
+  `AKT.drawDown(ctx, R.glCanvas)` resolves by hand. The area resolve removed
+  half the beat against a 6x reference and beat drawImage with
+  imageSmoothingQuality high (tests/akthree_supersample_verify.py). Without the
+  option nothing changes.
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
   `AKT.objectHero(R, group, {toward:[kx,ky,kz], keyColor, intensity, height})`
@@ -963,7 +982,14 @@ them or every archive page goes blank.
   print as black holes (28 percent of cells on No.74's weight); `lathe()` cuts
   one Lambert-swelled ring per `gap`, with optional `lee` crosslines and an
   `underlay`, and honours reservations under any transform. Technique 112;
-  `tests/akengrave_lathe_verify.py`.
+  `tests/akengrave_lathe_verify.py`. For a RADIAL or SINUOUS height field
+  that is not a lathe (a flange face seen square on, a bore off the region's
+  centre, a meandering channel), pass `seed: "even"` to `surface()`: strokes
+  are seeded from the strokes already cut, one line spacing apart (Jobard and Lefer
+  1997), so every iso-line is reached at one spacing. The raster lay left 13
+  percent of a flange face's cells and 12 percent of a channel's empty; the
+  even lay leaves under 1 percent, with the same burin rules
+  (`tests/akengrave_even_verify.py`). Leave it out and nothing changes.
 - `assets/js/akpost.js` — film grade (`AKPOST.grade`): bloom -> exposure ->
   saturation -> log-contrast -> ACES -> gamma -> split-tone -> masked grain ->
   IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before

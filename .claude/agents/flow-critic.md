@@ -43,7 +43,12 @@ Checks:
    across 68 runs, each by slide number:
    a. the same drawing function or texture carrying MORE than three frames
       (the scorers' "four of nine frames are the same drawing"; the same
-      limit the storyboard's CRAFT PLAN is held to);
+      limit the storyboard's CRAFT PLAN is held to). You may be handed the
+      REUSE census (machine_qa.json `reuse`, 2026-10-06): the helper calls
+      and copied function shapes found on more than three frames. Say
+      whether each listed share reads as the same drawing on the sheet; a
+      shared helper drawn with different mark-making is not cause a, and a
+      texture drawn inline is invisible to the census, so look anyway;
    b. a frame whose largest object is its least modelled one, or ships as
       a flat fallback or bare outline;
    c. a dead or eventless region, above all a flat lower third;

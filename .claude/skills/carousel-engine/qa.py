@@ -3369,6 +3369,54 @@ def canvas_dom_overprints(cts, canvases, fallback_k, tnodes):
     return out
 
 
+# THE REUSE CENSUS (2026-10-06, weekly machine pass). render.py records, per
+# slide, the helper calls it makes and a shape hash of each sizeable function
+# it defines (render.scan_reuse, which says why). This folds them into one
+# per-deck census in machine_qa.json: every helper call and every function
+# shape found on MORE than three frames, the limit the flow critic's cause a
+# and the storyboard's CRAFT PLAN both use. It never adds a fail or a warn: the
+# 2026-10-04 pass found the repeats the critic names are secondary drawings,
+# so this has to be calibrated against the critic's own cause a for two weeks
+# before anyone may build a gate on it. Plumbing every frame calls (type fit,
+# grain, the film grade, noise and colour primitives, GL setup and snapshot,
+# projection) is left out, or every deck would list it.
+REUSE_LIMIT = 3
+REUSE_PLUMBING = {
+    "AK.fitText", "AK.measureLines", "AK.svgPlate", "AK.svgPlateAll", "AK.grainTile",
+    "AK.rng", "AK.reseed", "AK.simplex2", "AK.simplex3", "AK.fbm2", "AK.fbm3",
+    "AK.noise2", "AK.noise3", "AKPOST.grade", "AKENGRAVE.create", "AKENGRAVE.boxesFor",
+    "AKENGRAVE.punchReserves", "AKENGRAVE.drawOffscreen",
+    "akthree.setup", "akthree.snapshot", "akthree.frame", "akthree.add",
+    "akthree.projectPoint", "akthree.screenBox", "akthree.webglOK", "akthree.drawDown",
+}
+
+
+def reuse_census(slides):
+    """{'limit', 'helpers': [{call, slides}], 'functions': [{shape, names, slides,
+    chars}], 'recorded'}: what more than REUSE_LIMIT frames share."""
+    calls, fns, recorded = {}, {}, 0
+    for r in slides:
+        rec = r.get("reuse")
+        m = re.search(r"slide-(\d+)", r.get("file", ""))
+        if not rec or not m:
+            continue
+        recorded += 1
+        n = int(m.group(1))
+        for c in rec.get("calls") or []:
+            if c not in REUSE_PLUMBING and not c.startswith("AKC."):
+                calls.setdefault(c, set()).add(n)
+        for f in rec.get("fns") or []:
+            e = fns.setdefault(f["shape"], {"names": set(), "slides": set(), "chars": f.get("chars", 0)})
+            e["names"].add(f.get("name") or "?")
+            e["slides"].add(n)
+    helpers = [{"call": c, "slides": sorted(v)} for c, v in sorted(calls.items())
+               if len(v) > REUSE_LIMIT]
+    functions = [{"shape": k, "names": sorted(v["names"]), "slides": sorted(v["slides"]),
+                  "chars": v["chars"]} for k, v in sorted(fns.items())
+                 if len(v["slides"]) > REUSE_LIMIT]
+    return {"limit": REUSE_LIMIT, "recorded": recorded, "helpers": helpers, "functions": functions}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--render-dir", required=True)
@@ -4695,6 +4743,7 @@ def main():
     out["fails"] = sum(len(s["fails"]) for s in out["slides"])
     out["warns"] = sum(len(s["warns"]) for s in out["slides"])
     out["verdict"] = "FAIL" if out["fails"] else ("WARN" if out["warns"] else "PASS")
+    out["reuse"] = reuse_census(report.get("slides") or [])
     (rdir / "machine_qa.json").write_text(json.dumps(out, indent=2))
     for s in out["slides"]:
         flag = "FAIL" if s["fails"] else ("warn" if s["warns"] else "ok  ")
@@ -4703,6 +4752,13 @@ def main():
             print(f"    FAIL: {f}")
         for w in s["warns"][:6]:
             print(f"    warn: {w}")
+    ru = out["reuse"]
+    if ru["helpers"] or ru["functions"]:
+        shared = ["%s on %s" % (h["call"], ",".join("%02d" % n for n in h["slides"])) for h in ru["helpers"]]
+        shared += ["function %s on %s" % ("/".join(f["names"]), ",".join("%02d" % n for n in f["slides"]))
+                   for f in ru["functions"]]
+        print("reuse census (a record for the flow critic, not a gate): on more than "
+              "%d frames: %s" % (ru["limit"], "; ".join(shared)))
     print(f"verdict: {out['verdict']}  (report -> {rdir / 'machine_qa.json'})")
     sys.exit(1 if out["fails"] else 0)
 
