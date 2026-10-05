@@ -1,0 +1,28 @@
+{
+ "run_date": "2026-10-06",
+ "carousel_no": 79,
+ "effort": "high",
+ "started_utc": "2026-10-05T06:20:14.683996Z",
+ "revision_rounds": 5,
+ "date_note": "Woke 22:17 AKDT on October 4th (06:17 UTC October 5th), the regular daily slot, 24 hours after No.78. runs/2026-10-04 holds No.77 and runs/2026-10-05 holds No.78 (dated ahead per the same rule), both complete and merged (PR #417, PR #418). Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-06. run_guard (UTC default 2026-10-05) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-06 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+ "phases": {
+  "wake": "done: out/2026-10-06/plan.md, run_state.json",
+  "craft_refresh": "done: two searches, nothing new beyond CAROUSEL_CRAFT (doc posts top ER ~6.6 to 6.9 percent, saves the strongest signal); FIELD_NOTES untouched",
+  "research": "done: out/2026-10-06/scout_merge.md (6 scouts, 148 searches)",
+  "claims": "done: out/2026-10-06/claims.json (51 claims, 10 primary, claims_check PASS)",
+  "docket": "done: 10 worklist items refreshed + ua-regents-ai-policy November dates (ledger/docket.json)",
+  "gas_watch": "done: cron_health PASS after in-run fix, gaswatch_health WARN (late evening reading), site_signoff PASS 135 pages, pagecheck PASS",
+  "selection": "done: out/2026-10-06/selection.md (UPDATE to No.61; runner-up Hilcorp Beluga storage)",
+  "directors_room": "done: 3 treatment directors, synthesis in selection.md, directors_brief.md",
+  "copy": "done: storyboard.md (8 dossiers), caption room (winner B), caption.txt, copy.json",
+  "art_build": "done: 8 slides, akhall.js shared hall (commit be533588), qa PASS, contacts measured",
+  "pixel_review": "done: 2 critic rounds over all 8 slides, 3 fix passes",
+  "flow_review": "done: flow critic revise (predicted art 7.0); round 4 applied its fixes; flow_review.json",
+  "assemble": "done: final/carousel.pdf, contact_sheet, thumbs",
+  "scoring": "cycle 1 scored 8.23 (threshold 7.7), art 7; craft cycle on 05, 07, 03, 08, 06 applied (round 5); re-score pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

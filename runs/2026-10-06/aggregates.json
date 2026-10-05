@@ -1,0 +1,74 @@
+{
+ "run_date": "2026-10-06",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "10,500 students",
+   "text": "119 of the more than 10,500 students at UAA last semester. Small as a share, AI cases are now the majority of the conduct office's caseload, the report says.",
+   "member": "C03"
+  },
+  {
+   "kind": "design",
+   "slide": 2,
+   "fragment": "150 SEATS",
+   "text": "150 SEATS DOWN, CITED",
+   "note": "the key for the drawn hall: one folded-down seat per student C01 counts as cited, 150 drawn and asserted by the frame's own __akAssert"
+  },
+  {
+   "kind": "count",
+   "slide": 3,
+   "fragment": "7 WORDS",
+   "text": "1 CLAUSE. 7 WORDS. 0 OF THEM AI",
+   "subject": "words",
+   "members": [
+    "C32"
+   ],
+   "items": [
+    "utilizing",
+    "devices",
+    "not",
+    "authorized",
+    "by",
+    "faculty",
+    "members"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "fragment": "Two reports",
+   "text": "Two reports. Two different counts.",
+   "subject": "reports",
+   "members": [
+    "C07",
+    "C30"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "fragment": "Two different counts",
+   "text": "Two reports. Two different counts.",
+   "subject": "different counts",
+   "members": [
+    "C01",
+    "C30"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "fragment": "150 students",
+   "text": "150 students cited for academic misconduct. 119 used AI.",
+   "member": "C01"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "fragment": "115 students",
+   "text": "115 students found responsible, of more than 8,800. About two-thirds of cases AI-related.",
+   "member": "C30"
+  }
+ ]
+}
