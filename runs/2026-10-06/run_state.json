@@ -19,9 +19,9 @@
   "pixel_review": "done: 2 critic rounds over all 8 slides, 3 fix passes",
   "flow_review": "done: flow critic revise (predicted art 7.0); round 4 applied its fixes; flow_review.json",
   "assemble": "done: final/carousel.pdf, contact_sheet, thumbs",
-  "scoring": "cycle 1 scored 8.23 (threshold 7.7), art 7; craft cycle on 05, 07, 03, 08, 06 applied (round 5); re-score pending",
-  "ship": "pending",
-  "upgrade": "pending",
+  "scoring": "done: cycle 1 8.23 (art 7.0); craft cycle on 05, 07, 03, 08, 06 (03 reverted); cycle 2 8.27 (art 7.5); threshold 7.7, ship",
+  "ship": "in progress",
+  "upgrade": "done: weekly pass, 5 opt-in fixes, commits d22914f9 and 4f22febc; automation_retro.md",
   "gmail": "pending",
   "retro": "pending"
  }
