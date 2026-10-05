@@ -224,8 +224,9 @@ export function init(THREE) {
   };
 
   /* Build the hall into R.scene. opts.rows [r0, r1] limits the seated rows (a close camera does
-   * not need the back of the house); opts.filter(seat) can thin further. opts.blankSheet puts a
-   * paper sheet (not gold) on the given seat index. Returns the meshes and the seats drawn. */
+   * not need the back of the house); opts.filter(seat) can thin further; opts.materials replaces
+   * the palette for one frame. Returns the meshes and the seats drawn. A blank sheet is not an
+   * option here: a frame that needs one adds its own mesh (slide 08 of No.79 draws it in aksdf). */
   H.build = function (R, opts) {
     opts = opts || {};
     const L = H.layout();
