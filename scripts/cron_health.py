@@ -270,8 +270,12 @@ def audit(now):
     for name, crons in workflows.items():
         try:
             runs = []
+            # No server-side branch filter. On 2026-10-05 GitHub's branch=main
+            # listing served runs three weeks stale (Pages newest 09-11 while the
+            # unfiltered list had 10-04), failing healthy jobs; production()
+            # already keeps main only, so filter here instead.
             for event in ("schedule", "workflow_dispatch"):
-                runs += api(f"actions/workflows/{name}/runs?branch=main&event={event}&per_page=20")["workflow_runs"]
+                runs += api(f"actions/workflows/{name}/runs?event={event}&per_page=20")["workflow_runs"]
             runs = production(runs, {"schedule", "workflow_dispatch"})
             checks += assess_workflow(name, crons, states.get(name), runs, jobs_for(runs), now,
                                       schedule_activated(name, crons, main_sha))
@@ -280,7 +284,7 @@ def audit(now):
             checks += [row(f"{name}:{kind}", False, f"audit unavailable: {exc}") for kind in KINDS]
 
     try:
-        runs = api("actions/workflows/pages.yml/runs?branch=main&per_page=100")["workflow_runs"]
+        runs = api("actions/workflows/pages.yml/runs?per_page=100")["workflow_runs"]
         runs = [r for r in production(runs, {"push", "workflow_run", "workflow_dispatch"})
                 if r.get("conclusion") != "skipped"]
         checks.append(row("pages:enabled", states.get("pages.yml") == "active", str(states.get("pages.yml"))))
