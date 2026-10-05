@@ -24,5 +24,12 @@
   "upgrade": "done: weekly pass, 5 opt-in fixes, commits d22914f9 and 4f22febc; automation_retro.md",
   "gmail": "pending",
   "retro": "pending"
+ },
+ "phase_3_6": {
+  "site_signoff": "PASS, 135 published pages, 18 checks, nothing UNFIXED",
+  "gaswatch_live": "WARN, checked 06:25Z October 5th: CINGSA's 22:12 Alaska reading of October 4th posted after the 22:22Z collection slot, so the page showed October 4th's earlier reading. Not fixable from a run: workflow_dispatch from the routine returns 403 and schedules are the owner's. The weekly pass escalated it to you: grant the routine Actions write, or move the audit after the 07:20Z slot",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "PASS, 6 scheduled workflows audited at 06:24Z October 5th, after the in-run fix below",
+  "site_fixes": "scripts/cron_health.py read Pages and broadband as FAIL because GitHub's branch-filtered run listing served runs from September; the filter is dropped (production() already keeps main), audit PASS after (fb3d935f)"
  }
 }
