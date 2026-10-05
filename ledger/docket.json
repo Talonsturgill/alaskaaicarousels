@@ -4255,6 +4255,26 @@
           "date": "2027-01-01",
           "label": "The security standard's own next scheduled review, January 2027 with no day given",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-11-03",
+          "label": "Public testimony before the November regents meeting",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Regents committee meetings, Fairbanks",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-05",
+          "label": "Board of Regents meets in Fairbanks, with AI guiding principles expected for consideration",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-06",
+          "label": "Board of Regents meeting continues in Fairbanks",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -4287,10 +4307,20 @@
           "url": "https://www.uaa.alaska.edu/news/archive/2026/09/building-uaa-we-love.cshtml",
           "outlet": "University of Alaska Anchorage",
           "date": "2026-09-10"
+        },
+        {
+          "url": "https://www.alaska.edu/bor/schedules/index.php",
+          "outlet": "University of Alaska Board of Regents",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/education/2026/10/04/ai-policy-coming-to-university-of-alaska-as-student-misuse-increases/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-10-04"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-06",
       "history": [
         {
           "date": "2026-09-17",
@@ -4311,6 +4341,10 @@
         {
           "date": "2026-10-03",
           "note": "Re-read the University of Alaska generative AI policies page and the Board of Regents policy index today. The first still says UA System regulations are under development and was last updated March 11th, 2025, and the index lists no artificial intelligence policy. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-06",
+          "note": "The regents' public meeting calendar now places the November meeting in Fairbanks, with public testimony on November 3rd, committee meetings on November 4th and the full board on November 5th and 6th. The Anchorage Daily News reported on October 4th that the regents will consider guiding principles for AI across the system in November, and that UAA's Dean of Students Office counted 150 students cited for academic misconduct, 119 of whom used AI. Today a UAA student's academic AI use is still governed by a conduct-code section on devices not authorized by faculty members."
         }
       ]
     },
