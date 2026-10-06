@@ -2237,6 +2237,16 @@
           "date": "2026-09-30",
           "label": "Comments on the proposed microreactor site due to the Eielson Public Affairs Office",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-10-02",
+          "label": "Army Corps of Engineers posts a request for information on connecting the reactor to base utilities",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-16",
+          "label": "Responses to the Army Corps request for information due, 2 p.m. Alaska time",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2279,6 +2289,11 @@
           "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents",
           "outlet": "U.S. Nuclear Regulatory Commission",
           "date": "2026-09-18"
+        },
+        {
+          "url": "https://sam.gov/api/prod/opps/v2/opportunities/8f49aa20106643ea9fb4c235d4811a80",
+          "outlet": "SAM.gov, U.S. Army Corps of Engineers Alaska District",
+          "date": "2026-10-02"
         }
       ],
       "first_seen": "2026-08-06",
@@ -2362,7 +2377,7 @@
         },
         {
           "date": "2026-10-07",
-          "note": "Re-read the KUAC report on the Spruce Lake site today. The comment window closed September 30th, no extension or correction is noted, and the Air Force still names 2030 as the year it hopes the reactor is operating. The Federal Register carries no Air Force or Oklo notice since October 1st. No site decision has been published."
+          "note": "Re-read the KUAC report on the Spruce Lake site today. The comment window closed September 30th, no extension or correction is noted, and the Air Force still names 2030 as the year it hopes the reactor is operating. The Federal Register carries no Air Force or Oklo notice since October 1st. No site decision has been published. Separately, on October 2nd the Army Corps of Engineers Alaska District posted a request for information, notice W911KB279A007, for the design and construction work that would extend heating, power, communications and water systems to a 45 megawatt thermal, 5 megawatt electric microreactor at Eielson. It is market research rather than a contract, and responses are due October 16th at 2 p.m. Alaska time."
         }
       ]
     },
@@ -4516,6 +4531,68 @@
         {
           "date": "2026-10-05",
           "note": "Tracked. The Alaska Current reports a 3 gigawatt first phase with plans for 10, a $1.2 million no-bid feasibility contract authorized in November 2025 and another $5 million committed in March, under a resolution describing an investor-owned utility in which the borough would initially hold majority ownership. Dermot Cole reported the same 3 to 10 gigawatt plan on May 12th. The borough's resolutions are posted only through a document viewer that could not be read directly, so their wording here is as the Current quotes it."
+        }
+      ]
+    },
+    {
+      "id": "beluga-healy-transmission-dpa",
+      "title": "A second power line between Southcentral and the Interior, Beluga to Healy",
+      "kind": "grant",
+      "status": "pending-decision",
+      "decider": "U.S. Department of Energy, with the Alaska Energy Authority",
+      "public_access": "closed",
+      "access_note": "The Energy Department chose this project under the Defense Production Act, and none of the announcements names a public comment period or a hearing. The Alaska Energy Authority, which proposed the line, now has to find the rest of the money.",
+      "summary": "On October 5th the Department of Energy announced its intent to put up to $150 million of Defense Production Act funding into the Alaska Energy Authority's Beluga-Healy Transmission Project, a second high-voltage connection between Southcentral and Interior Alaska. DOE counts on $268 million in non-federal funding for a preliminary estimate of about $418 million, and about 223 miles of new line. The Railbelt now relies on a single corridor, AEA's 170-mile Alaska Intertie between Willow and Healy, built in the mid-1980s. Energy Secretary Chris Wright tied the award to the military expansion under way in Alaska and to mining. The release does not mention data centers, though the Air Force has offered about 4,700 acres at JBER, Eielson and Clear for them.",
+      "key_dates": [
+        {
+          "date": "2026-08-28",
+          "label": "The Alaska Energy Authority presents Beluga to Healy to the Energy Secretary as a project under consideration",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-05",
+          "label": "Energy Department announces up to $150 million in Defense Production Act funding",
+          "kind": "decision"
+        }
+      ],
+      "location": {
+        "name": "Beluga to Healy",
+        "lon": -150.0,
+        "lat": 62.5
+      },
+      "sources": [
+        {
+          "url": "https://www.energy.gov/articles/energy-department-announces-alaska-railbelt-transmission-project-receive-defense",
+          "outlet": "U.S. Department of Energy",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.youralaskalink.com/news/local/alaska-delegation-announces-150m-for-beluga-healy-transmission-project/article_6365e176-5924-4daa-9d60-ac307525f323.html",
+          "outlet": "Your Alaska Link",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.yahoo.com/news/us/articles/feds-approve-150-million-second-005231683.html",
+          "outlet": "Alaska Beacon, via Yahoo News",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/Portals/0/Presentations/2026.09.01%20AEA%20Alaska%20Energy%20Priorities%20and%20DOE%20Partnership%20Presentation%20to%20U.S.%20Sec.%20of%20Energy%20Wright%20(Final).pdf",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-08-28"
+        }
+      ],
+      "first_seen": "2026-10-07",
+      "last_updated": "2026-10-07",
+      "history": [
+        {
+          "date": "2026-10-07",
+          "note": "Tracked from today. The Department of Energy's October 5th release commits up to $150 million in Defense Production Act funding toward an estimated $418 million line of about 223 miles, and names military expansion and mining as the reasons. In late August the Alaska Energy Authority had listed the same line as under consideration in a presentation to Energy Secretary Chris Wright. AEA's executive director told the Alaska Beacon the federal money will likely go to engineering, planning and permitting."
         }
       ]
     }
