@@ -17,17 +17,23 @@
 
   /* ---- DEM ------------------------------------------------------------- */
   // name: 'ak-corridor149-dem' | 'ak-denali-dem' | 'ak-cookinlet-dem' ...
-  // Returns {meta, raw, at(i,j), sample(lon,lat) -> metres (bicubic)}.
+  // Returns {meta, raw, at(i,j), sample(lon,lat) -> metres (monotone bicubic)}.
   AKCOR.loadDEM = async function (assets, name) {
     const meta = await (await fetch(assets + '/geo/' + name + '.json')).json();
     const raw = new Int16Array(await (await fetch(assets + '/geo/' + name + '.bin')).arrayBuffer());
     const C = meta.cols, R = meta.rows;
+    // a truncated or mismatched pair would read undefined past the tail and put NaN into the terrain quietly
+    if (raw.length !== C * R) throw new Error('AK CONTRACT: DEM ' + name + ' has ' + raw.length + ' cells, meta says ' + C * R);
     const at = (i, j) => raw[Math.min(R - 1, Math.max(0, j)) * C + Math.min(C - 1, Math.max(0, i))];
-    const cr = (p0, p1, p2, p3, t) => p1 + 0.5 * t * (p2 - p0 + t * (2 * p0 - 5 * p1 + 4 * p2 - p3 + t * (3 * (p1 - p2) + p3 - p0)));
+    // Steffen's monotone cubic (Steffen 1990, A&A 239, 443), as in akscribe.js and akblock.js: it never leaves
+    // the cell's own posts, so it can't invent peaks or pits between DEM samples the way Catmull-Rom does.
+    const stTan = (a, b, c) => { const s0 = b - a, s1 = c - b; return (Math.sign(s0) + Math.sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), Math.abs(s0 + s1) / 4); };
+    const st = (y0, y1, y2, y3, t) => { const d1 = stTan(y0, y1, y2), d2 = stTan(y1, y2, y3), t2 = t * t, t3 = t2 * t;
+      return (2 * t3 - 3 * t2 + 1) * y1 + (t3 - 2 * t2 + t) * d1 + (-2 * t3 + 3 * t2) * y2 + (t3 - t2) * d2; };
     const atF = (fi, fj) => {
       const i = Math.floor(fi), j = Math.floor(fj), tx = fi - i, ty = fj - j, r = [];
-      for (let m = -1; m < 3; m++) r.push(cr(at(i - 1, j + m), at(i, j + m), at(i + 1, j + m), at(i + 2, j + m), tx));
-      return cr(r[0], r[1], r[2], r[3], ty);
+      for (let m = -1; m < 3; m++) r.push(st(at(i - 1, j + m), at(i, j + m), at(i + 1, j + m), at(i + 2, j + m), tx));
+      return st(r[0], r[1], r[2], r[3], ty);
     };
     const inside = (lon, lat) => lon >= meta.west && lon <= meta.east && lat >= meta.south && lat <= meta.north;
     const sample = (lon, lat) => atF((lon - meta.west) / meta.dlon, (meta.north - lat) / meta.dlat);

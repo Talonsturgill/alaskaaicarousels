@@ -2274,7 +2274,7 @@
         {
           "date": "2026-10-16",
           "label": "Responses to the Army Corps request for information due, 2 p.m. Alaska time",
-          "kind": "milestone"
+          "kind": "deadline"
         }
       ],
       "location": {
@@ -4606,8 +4606,8 @@
       ],
       "location": {
         "name": "Beluga to Healy",
-        "lon": -150.0,
-        "lat": 62.5
+        "lon": -149.3,
+        "lat": 63.25
       },
       "sources": [
         {

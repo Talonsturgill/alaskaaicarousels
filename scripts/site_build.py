@@ -3477,6 +3477,23 @@ ASK_JS = r"""
       single = byId[p.ids[0]] || null;
       if (single) rows = [single];
     } else if (toks.length) {
+      // A WORD MOST OF THE RECORD CARRIES DOES NOT NARROW A FILTERED SET
+      // (2026-10-07). Inside a facet, rank() keeps only the rows a leftover
+      // word lands on, so "nuclear reactor in alaska" returned one of the three
+      // nuclear decisions the day one of them picked up the word Alaska, which
+      // 25 of 36 decisions carry. Such a word says where the whole record is,
+      // not which row was meant, so it is spent before the set is ranked.
+      if (named.length) {
+        var kept = [];
+        for (i = 0; i < toks.length; i++) {
+          var dfx = 0;
+          for (var qx = 0; qx < NALL; qx++) if (IDX[qx].hay.indexOf(toks[i]) !== -1) dfx++;
+          if (dfx * 2 <= NALL) kept.push(toks[i]);
+        }
+        toks = kept;
+      }
+    }
+    if (!p.ids && toks.length) {
       var ranked = rank(rows.length ? rows : IDX, toks, p.phrase);
       if (ranked.length) {
         rows = [];
@@ -3486,6 +3503,20 @@ ASK_JS = r"""
         // hand back a list and leave the reader to do the work.
         if (ranked.length === 1 || ranked[0][0] >= ranked[1][0] * 1.7 ||
             ranked[0][0] >= 60) single = ranked[0][2];
+        // Decisive too when the top row carries every word the next one does
+        // and at least one more (2026-10-07). "The terra energy grant" lands on
+        // the Terra grant by terra and energy and on the Beluga-Healy award by
+        // energy alone; the second row adds nothing the first lacks, so the
+        // first is the one the reader named.
+        if (!single && ranked.length > 1) {
+          var ta = ranked[0][2].hay, tb = ranked[1][2].hay, sup = true, more = false;
+          for (i = 0; i < toks.length; i++) {
+            var ha = ta.indexOf(toks[i]) !== -1, hb = tb.indexOf(toks[i]) !== -1;
+            if (hb && !ha) sup = false;
+            if (ha && !hb) more = true;
+          }
+          if (sup && more) single = ranked[0][2];
+        }
       }
       // Nothing landed inside the filtered set. The filter is the stronger
       // signal of the two, so it is kept rather than answering nothing, and
