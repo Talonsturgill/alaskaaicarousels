@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-07/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 4915778,
+  "pdf_mb": 4.92,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-07/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-07/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's Second Wire Has a Passenger List",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "46482f3249f19ca60bced745f08192f172ab44a9ceacc6c6618b53c9945ca570",
+        "bytes": 5238884
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "0792c5b8c345d25659cc8072c476b8d779b884a5ba89cadc53bf8e68e41046ec",
+        "bytes": 3153509
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "fcee19734263790c52c7d5c28aa5ffe9de5ca3da1358c905c0c863e25d5ffc39",
+        "bytes": 1981556
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "686684300fe95d414baad2ae6b8762ae4a99abc7fa542225c597611b8fd64fc8",
+        "bytes": 1951978
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "989b9a8d635a34738c2eb4b2087d084227d6f85629bc09bcfcabf5f04704e743",
+        "bytes": 1831317
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "5dd62b758b3a69f379700ec0303de470c3206e478bb01e8aa3e33ac72489b803",
+        "bytes": 2682517
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b174e6518031d9ee796a062e8a18dc3accd414395ec4d1f047a7291a78ce58c0",
+        "bytes": 2957400
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "a35929088c70a74be81fa676aafb6b510f206b4af520893ef6f05b8c4663516f",
+        "bytes": 2718435
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "83d30399b2945c848833fa061ff4135c2c32cd39751b0119e27b8912dd34d456",
+        "bytes": 3337775
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "cea7847960e776535a9d7bc9b853b742261de7293949e836ae39eb7c1bd2f96d",
+        "bytes": 14461
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "93ffa76528675d227ee36157250868f909e952526f1b56100bd244c8bcc08f9b",
+        "bytes": 11748
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "6bbaaf1b19bb154de9fff64465b5842cbf39a90baddb20591b6a51a052cb2c8b",
+        "bytes": 12339
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a4bc693ee00cc4f04348bd65551f34da06c31de94e13db2b09f8295b52febe3c",
+        "bytes": 11142
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "7046aed6fb6d53f98611b13945b76a6bbfda62d2f7865f77a7f04df179fbd1a8",
+        "bytes": 9225
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "183ae298f855bc46bdd064f8ac5056b25124647bbdcace06c45f806c6a63b755",
+        "bytes": 14967
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "6f4b45d5e30668de6f53e56b622f11be6ee57c4b8b0fc119927fb4419fbcfadf",
+        "bytes": 10175
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "d3fe58c4948d73bb9b318b10b5a4398e13020339ea49c3217dfbb51a98d2aaed",
+        "bytes": 6618
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a65b402d0b4e9339292dd4f605def42258fe1e19b7ce28852f275e950748627c",
+        "bytes": 15790
+      }
+    ]
+  }
+}

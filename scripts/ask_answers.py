@@ -639,17 +639,30 @@ def index_row(it, today):
         # the obvious term found nothing at all until this line existed.
         it["id"].replace("-", " "),
     ]
-    hay = " ".join(hay_parts).lower()
+    # ONLY WHAT IS NOT ALREADY THERE (2026-10-07). The page matches with a
+    # substring test, so a part or term that is already a substring of the hay
+    # adds bytes and no match. Skipping it is lossless for every query the hay
+    # answered before, and it bought back the room No.80's one new docket item
+    # needed under the inline ceiling, which main had already filled to 98
+    # percent (186,809 of 190,000 bytes).
+    def _add(h, s):
+        s = re.sub(r"\s+", " ", s.lower()).strip()
+        return h if not s or s in h else (h + " " + s if h else s)
+    hay = ""
+    for part in hay_parts:
+        hay = _add(hay, part)
     row["topics"] = [k for k, _lab, terms, _ask in TOPIC_RULES
                      if any(t in hay for t in terms)]
     for k in row["topics"]:
-        hay += " " + k.replace("-", " ")
+        hay = _add(hay, k.replace("-", " "))
     for _pat, label, terms in AGENCY_RULES:
         if label in row["agencies"]:
-            hay += " " + " ".join(terms)
+            for t in terms:
+                hay = _add(hay, t)
     for _pat, label, terms in PLACE_RULES:
         if label in row["places"]:
-            hay += " " + " ".join(terms)
+            for t in terms:
+                hay = _add(hay, t)
     row["hay"] = re.sub(r"\s+", " ", hay)
     return row
 

@@ -1,0 +1,166 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the Alaska Intertie' lands 4.5px from its target",
+        "leader 'the Alaska Intertie' meets its label 5.9px away",
+        "leader 'the Alaska Intertie' is drawn 78 px at 29 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Alaska's second wirehas a passenger list.' fits 2/2 lines at 142px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the Alaska Intertie at its midpoint' lands 4.2px from its target",
+        "leader 'the Alaska Intertie at its midpoint' meets its label 6.2px away",
+        "leader 'the Alaska Intertie at its midpoint' is drawn 77 px at 61 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The money namesthe military, and mining.' fits 2/2 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'miles along the Alaska Intertie, Willow to Healy' runs 0 miles at 120 to 170 miles at 960; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'One line joinsthe two halves today.' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'the profile spans Willow to Healy at the declared scale' holds: 840 vs 840 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'line length in miles, one scale for both rails' runs 0 miles at 120 to 223 miles at 967.4; 3 declared mark(s), and the band's census finds no others",
+        "'dollars, the project estimate' runs 0 million dollars at 120 to 418 million dollars at 956; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The record names its stopsand its price. Not' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'Rail A is 170 miles at the shared scale' holds: 646 vs 646 px (within 0.5)",
+        "'Rail B is about 223 miles at the shared scale' holds: 847.4 vs 847.4 px (within 0.5)",
+        "'the 150 and 268 segments make the 418 bar' holds: 836 vs 836 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'JBER' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (6% of the ring around 'JBER', spanning 40%) -- pixel critic verify the label is not crossed"
+      ],
+      "fits": [
+        "hl 'On Railbelt bases,land offered for AI data c' fits 2/2 lines at 90.5px"
+      ],
+      "asserts": [
+        "'12 parcel tiles, one per parcel, unassigned' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'12 parcel tiles, one per parcel, unassigned': 12 mark centres probed at r=14px, cohort median 69.0 dE, all present (weakest 68.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl 'One corridor.No second pathbetween the halve' fits 3/3 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'Healy, on its azimuth' lands 0.0px from its target",
+        "leader 'Healy, on its azimuth' meets its label 5.0px away",
+        "leader 'Healy, on its azimuth' is drawn 113 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "q '\"I am not a proponent of data centersdown at' fits 5/5 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the register plate on its lit ground': shadow L* 8.9 vs ground L* 25.0, dL 16.1 at 432w"
+      ],
+      "fits": [
+        "hl 'Five records. Two say \"data center.\"The one ' fits 2/2 lines at 80.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "ask 'Should the Beluga to Healy linebe planned wi' fits 3/3 lines at 86.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKCOR.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKCOR.loadDEM",
+        "slides": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9
+        ]
+      },
+      {
+        "call": "AKCOR.loadLines",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

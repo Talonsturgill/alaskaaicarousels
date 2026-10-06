@@ -1,0 +1,175 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I read every string in copy.json (post_copy, first_comment, all slide kickers, headlines, bodies and labels, aftercare) and caption.txt by eye. The only dashes are ASCII hyphens: Beluga-Healy, mid-1980s, AFCEC-26-R-0006, NON-FEDERAL. Transcribing the nine renders turned up no long dash either."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "There are no emoji in the caption, the first comment or any slide string. The Polaris on slide 09 is a DOM SVG star, not a glyph."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide carries claim_ids, and each one resolves to a fetched claim in claims.json. C01 (DOE Oct 5, absence of 'data center'), C02/C03/C04/C05 ($150M/$268M/$418M/223 mi), C09/C18 (Wright quotes), C12/C13 (delegation write-up, relabelled DELEGATION, AS REPORTED on 08), C14 (Thayer, indirect), C17/C28 (attributed single-source), C19/C20 (AEA deck), C22/C24 (170 mi, mid-1980s), C29 (Murkowski verbatim, matches the slide 07 text word for word), C31/C32/C33. Caption facts map to C05/C12/C29/C31/C32/C02/C09/C28. The killed after-2030 timeline does not appear anywhere. aggregate_check and plan_drift both PASS."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed all nine renders, including the 08 register (DOE RELEASE / UP TO $150 MILLION / OCTOBER 5TH / MILITARY, MINING / NO ... SEN. MURKOWSKI / REPORTED SEPTEMBER 28TH / \"INSECURE ENERGY BASE\" / YES), the 04 sheet labels and the 07 quote. Every one matches copy.json, with no misspellings. copy_sync PASS: 96/96 authored strings are present in the render."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "qa.py has 0 fails, and every headline fits its authored lines. qa warns that 05's JBER label is touched by context linework (6% of its ring). In the render JBER and ANCHORAGE stay fully legible and are not clipped, so I am treating this as a legibility squeaker, not a fail. Nothing runs off the frame. 03's PROFILE label passes the plan box edge but stays inside the margin."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "All headlines and bodies are light on navy (about 12:1 or better) or navy on cream on 06 (about 12:1). The 01 headline sits on a measured veil over the sky, and the subline sits on the full-width veil. Only the secondary art labels (DENALI and HEALY on the 01 horizon haze) fall below body contrast, and they still read at thumb size."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides: 9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN with 0 fails and 2 warns (05 JBER). assemble_report pdf_mode \"vector\", 4.92 MB, title \"Alaska's Second Wire Has a Passenger List\"."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "The nearest entries are No.70 (September 27th, Bradley Lake and the Air Force parcels as a calendar argument) and No.54 (September 9th, EO 14421 definition). This deck rests on a new primary decision, the October 5th DOE DPA intent for Beluga-Healy, and has a different thesis (who the wire is for). The Air Force lease lane is background here, but this is about the sixth deck in roughly 30 days to touch it (68, 70, 71, 76 and this one): a variety cost, not a hard fail."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "This deck's hero is THE CORRIDOR SURVEY (one real corridor drawn in nine cartographic hands). The last four are THE SUNDIAL FIELD (76), THE COUNTER'S LANE (77), THE PAD LOG (78) and THE HALL (79), and none of them shares its structure."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS with 74 brand phrases loaded and 100 copy fields checked. word_ban PASS. My own scan for gap, matters, pattern(s) and 'cannot' found none ('not able to' sits inside the verbatim quote). Years are dropped everywhere except the first-comment citations, where they are allowed."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "There are exactly 3 hashtags (#Railbelt #BelugaHealy #AlaskaGrid). The post body has no URL, and all links are in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No lorem, TODO or bracketed placeholder appears in any slide, the caption or the comment. Minor housekeeping that is not a reader-facing unfinished element: copy.json editor_notes_for_email is an empty string, the storyboard's acceptance checkboxes are unticked planning lists, and run_state.json's phase map is stale (it shows copy through gmail as 'pending' while revision_rounds is 5)."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The 7-word headline 'Alaska's second wire has a passenger list.' plus 'Data centers aren't on it.' sets up a named tension in huge serif type, and it reads cleanly at the 432 px thumb. There is one focal point, the gold Intertie climbing from Willow into the Range, and Denali and Cook Inlet make it unmistakably Alaskan without cliche. It stops short of 9 because the hook is a metaphor rather than a number. The $150 million sits in the small kicker, and 'passenger list' needs the subline before it lands."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The beat structure is clear: the hook, then 02 delivering DOE's own reasons at once, then the one wire, the second wire, the bases, a breather, the senator as hinge, the register synthesis and a single ask. The contact sheet reads as one sequence held together by the locator strip and the gold-means-Intertie law. Two things hold it back. 06's 'One corridor. No second path' restates 03's 'One line joins the two halves today' (the same claim, C13), so 03 and 06 are partly interchangeable. The 02 to 05 run is four dense dark plan frames in a row."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "The craft cycle lifted it from 7. 03's plan strip is now a full 100 m / 500 m contour field and no longer an empty band. 09's low moon gives the Talkeetna and Chugach fronts real raking light. 01's lowland now has muskeg and taiga variation in place of flat olive. 02's slope-and-aspect hachure, 05's relief stipple and 07's light-weighted engraving are genuine, distinct hands, and 01 is a real GPU PBR DEM render with occlusion, haze and depth blur. It is still short of 8.5. 06, the highest-key frame, reads as smooth grey clay: no visible snow line, no rock texture, a bright halo rim on every skyline, and a stray crisp snowy fragment at the right edge that belongs to a different render. 09's lower-left third is still near-black lumps. 01's right-hand ranges are repeated rounded snow-capped bumps. 08 is a competent table on a plate with almost no modelled art."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "The art encodes the story's numbers and geometry. It uses the Intertie's real AEA geometry everywhere, and the 03 profile runs along the line's own length from 0 to 170 miles. 04 puts 170 and 223 miles at one asserted scale and builds the $418M bar from asserted 150 and 268 segments. 05 has exactly 12 unassigned parcel tiles. The focus law draws only what exists as a line and leaves the second wire's stops as unjoined discs. A stranger would read 'a power line between two halves of Alaska' from the art alone. The data center half of the story lives only in type and blue marks, which keeps this off 9."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "The deck names places, institutions and people throughout: Beluga, West Susitna, Willow, Healy, Talkeetna, Denali, JBER, Clear, Eielson, AEA, Curtis Thayer, Murkowski and the Alaska Beacon. It is built on the real DEM and real line geometry, and the 'two halves' framing is how the Railbelt talks about itself. One geography wobble an Alaskan could catch: on 01 and 09 the BELUGA ring sits on open inlet water (about x 247, y 2091 at full size), not on the west-side shore by the gas plant."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Most frames add a new verified specific. 02 has Wright's verbatim reasons and the absence. 03 has 170 mi and the mid-1980s. 04 has four named stops, 223 mi, $418M/$150M/$268M and Thayer's 'engineering, planning and permitting'. 05 has June 29th, no award and the Beacon's 'most bases'. 07 has the verbatim quote, and 08 sets five records side by side. 06 adds nothing new (C13 again), and 03 is light at 17 words."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08,
+   "notes": "The hero (THE CORRIDOR SURVEY), the noon atmosphere, the 'passenger list' hook and the Instrument Serif over Archivo pairing are all new. Several subsystems repeat No.76 from three days earlier: slope-and-aspect hachure, blue-noise stipple, forget-me-not reserved for the Air Force, and gold on navy for the one live thing. A DEM oblique terrain also recurs. The Air Force lease lane is a running subject for about the sixth time in 30 days."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Mono labels were raised to 24 px for the mobile floor, and body copy is 32 px or larger. Counters are on every frame, the safe zones are respected (the counter was moved to clear 80 px), and the PDF is vector at 4.92 MB with its title. The squeakers: 05's JBER and ANCHORAGE labels are touched by context linework (the qa warn), and 01's DENALI and HEALY labels sit on light horizon haze. All of it still reads at thumb size."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05,
+   "notes": "The hook is 136 characters and lands inside 140. The caption is 895 characters, right under the 900 ceiling, at 0.93 commas per 100 words, with an analytical voice that takes a position. The deck-summary line is present but clunky ('Today's intertie, the new wire's stops and money, three bases and Murkowski's sentence, then five records, two saying data center.'). The closing question leans rhetorical. Slide 09's 'with data center load in it, or without?' is the better debatable ask."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Post copy, exactly 3 hashtags, a primary-first source block with dated citations, the document title, an aftercare checklist (including the warning about the parentheses in the AEA PDF URL), the vector PDF, thumbs and the contact sheet are all present. Not yet done at scoring time: the Gmail draft and raw URLs (Phase 11), site_fresh still FAIL until the Phase 11 build, and the stale run_state phase map."
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(7.5x0.16)+(8.5x0.14)+(8.5x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(7.5x0.05)+(8x0.10) = 1.12+1.12+1.20+1.19+1.02+0.80+0.56+0.56+0.375+0.80 = 8.745 (rubric weights sum to 1.10; normalized 8.745/1.10 = 7.95, also above 7.7)",
+ "weighted_total": 8.745,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Variety vs ledger",
+ "one_sentence_fix": "Replace 06's smooth clay Range with the real DEM rendered with visible rock texture and a hard 1,500 m snow line, and remove the stray crisp fragment at its right edge. The run is at the five-round cap, so this goes to the queue as a lesson rather than an edit, and the next deck should use something other than hachure and stipple for its plan frames.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The Range behind the conductor still reads as airbrushed grey clay: smooth rounded forms with no visible snow line or rock texture, a bright halo rim on every skyline, and a stray crisp snowy fragment from a different render at the right edge (about x 2040 to 2160, y 1660 to 1850 at full size) that breaks the physics of the frame.",
+   "fix": "Shade the DEM with a slope-gated snow mask (bright snow above 1,500 m and on slopes under 35 degrees, dark rock elsewhere) plus fine-scale normal detail. Drop the skyline rim to the haze value, and crop or regenerate the right edge so a single render fills it."
+  },
+  {
+   "slide": 9,
+   "problem": "The lower-left third (about x 0 to 1550, y 2230 to 2700 at full size) is still near-black lumps under the moon. The light only reaches the far ranges and the right-hand Chugach front, so the frame's foreground is dead.",
+   "fix": "Add a moon-blue hemisphere fill of about 0.25 on the near terrain, and let the inlet water carry a faint moon path toward the camera so the Beluga shore and the near hills separate from the black."
+  },
+  {
+   "slide": 1,
+   "problem": "The Talkeetna and Chugach ranges on the right read as repeated rounded snow-capped bumps (procedural pillows rather than ridgelines), and the BELUGA ring sits on open water (about x 247, y 2091 at full size) instead of the west shore.",
+   "fix": "Sharpen ridgelines with a ridged-noise detail pass, or a higher-resolution DEM tile, on the near ranges. Snap the Beluga ring to the coastline point of the gazetteer's Beluga plant."
+  },
+  {
+   "slide": 8,
+   "problem": "The register is a clean typographic table on a flat graded plate. Its only modelled event is the lit pool under the plate, so the frame carries almost no artwork weight.",
+   "fix": "Give the plate real material, such as an engraved or stamped face with a lit bevel and slight relief on the two YES rows, so the synthesis frame has a modelled object and not just ruled rows."
+  }
+ ],
+ "editor_notes_for_email": "Ships at round 5 (the cap), at 8.745 against a 7.7 threshold, with zero hard fails. The rubric's weights sum to 1.10, so the normalized total is 7.95, which still clears 7.7. Artwork craft is 7.5, under the 8.5 craft floor. The one craft cycle on 06/09/01/03 lifted it from 7.0, and no further edits are possible. Before posting: (1) On slides 01 and 09 the BELUGA ring appears to sit on open Cook Inlet water rather than on the west shore. An Alaskan reader may notice. (2) This is roughly the sixth deck in 30 days to touch the Air Force AI land lease lane (Nos. 68, 70, 71, 76, now 80), though the news here is DOE's October 5th DPA intent for Beluga-Healy. (3) 'No record behind the wire says data center' rests on an absence finding: two full reads of the DOE release, the delegation write-up via Your Alaska Link, and the extracted AEA presentation. The delegation's own release was never fetched, so 08's row C is labelled 'as reported'. (4) The $268 million is DOE's 'non-federal' label. The Alaska Beacon reports it is not yet identified, so the deck says 'PER DOE'. (5) After posting the first comment, check that the AEA presentation URL ending in (Final).pdf stays one working link. (6) site_fresh FAILs until the Phase 11 site build. run_state.json's phase map is stale and should be updated at ship. Paths: /home/user/alaskaaicarousels/out/2026-10-07/render/slide-06.png, /home/user/alaskaaicarousels/out/2026-10-07/render/slide-09.png, /home/user/alaskaaicarousels/out/2026-10-07/render/slide-01.png, /home/user/alaskaaicarousels/out/2026-10-07/run_state.json.",
+ "craft_cycle": {
+  "frames": [
+   "slide-06",
+   "slide-09",
+   "slide-01",
+   "slide-03"
+  ],
+  "art_before": 7,
+  "art_after": 7.5
+ },
+ "first_score": {
+  "weighted_total": 8.6,
+  "artwork": 7
+ },
+ "scored_at_round": 5
+}
