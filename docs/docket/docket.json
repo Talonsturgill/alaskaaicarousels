@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-05",
+  "updated": "2026-10-07",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 34,
+  "count": 35,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -379,7 +379,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-07-08",
@@ -500,6 +500,10 @@
         {
           "date": "2026-10-03",
           "note": "Searched for newer reporting today. Nothing later than the record above surfaced, no award has been reported, and the Air Force's own announcement page refused an automated read. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th deadline as past due, a last update of July 14th and no award or amendment, so no lease has been reported for any of the 12 parcels at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -1230,7 +1234,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-07-17",
@@ -1427,6 +1431,10 @@
         {
           "date": "2026-10-06",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th, it was archived September 15th, and the attachments are still the application, the preliminary decision and a vicinity map, with no final finding and decision posted. The Houston City Council hearing on a two-year moratorium stays set for October 8th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th, it was archived September 15th, and its attachments are still the application, the preliminary decision and a vicinity map. No final finding and decision is posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -1731,7 +1739,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-08-02",
@@ -1804,6 +1812,10 @@
         {
           "date": "2026-10-03",
           "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still shows Amendment 1 and a proposal deadline of August 28th, was last modified August 17th, and announces no award or intent to award. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still lists Amendment One and the August 28th proposal deadline, was last modified August 17th and archived August 31st, and posts no notice of intent to award. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -2253,6 +2265,16 @@
           "date": "2026-09-30",
           "label": "Comments on the proposed microreactor site due to the Eielson Public Affairs Office",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-10-02",
+          "label": "Army Corps of Engineers posts a request for information on connecting the reactor to base utilities",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-16",
+          "label": "Responses to the Army Corps request for information due, 2 p.m. Alaska time",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2295,10 +2317,15 @@
           "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col/aurora-oklo/documents",
           "outlet": "U.S. Nuclear Regulatory Commission",
           "date": "2026-09-18"
+        },
+        {
+          "url": "https://sam.gov/api/prod/opps/v2/opportunities/8f49aa20106643ea9fb4c235d4811a80",
+          "outlet": "SAM.gov, U.S. Army Corps of Engineers Alaska District",
+          "date": "2026-10-02"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-08-06",
@@ -2375,6 +2402,10 @@
         {
           "date": "2026-10-03",
           "note": "The comment window on the proposed reactor site near Spruce Lake closed on September 30th. Re-read the KUAC report today, and it names no extension. The base's own microreactor page refused an automated read. The Air Force has published no date for a decision on the site."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the KUAC report on the Spruce Lake site today. The comment window closed September 30th, no extension or correction is noted, and the Air Force still names 2030 as the year it hopes the reactor is operating. The Federal Register carries no Air Force or Oklo notice since October 1st. No site decision has been published. Separately, on October 2nd the Army Corps of Engineers Alaska District posted a request for information, notice W911KB279A007, for the design and construction work that would extend heating, power, communications and water systems to a 45 megawatt thermal, 5 megawatt electric microreactor at Eielson. It is market research rather than a contract, and responses are due October 16th at 2 p.m. Alaska time."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2502,7 +2533,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-09-06",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-08-06",
@@ -2511,6 +2542,10 @@
         {
           "date": "2026-09-06",
           "note": "Checked and unchanged. The cooperative's project page still carries the August 9th, 2023 release headed that the micro modular nuclear reactor project was tabled indefinitely, with the completed pre feasibility study and the 2023 public meeting materials posted beside it. Nothing newer has been added."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the cooperative's project page today. Its newest item is still the August 9th, 2023 release headed that the micro modular reactor project was tabled indefinitely, and nothing dated 2024 or later has been added. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/cvea-micro-modular-reactor/"
@@ -2646,7 +2681,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-08-06",
@@ -2703,6 +2738,10 @@
         {
           "date": "2026-10-03",
           "note": "Re-read the Department of Energy's project selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding, $190,375,155 in total, with Class 3 engineering targeted for 2027. No award agreement or later notice was found. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Re-read the Department of Energy's project selection page today. It still lists Terra Energy Center Corporation for $89,000,000 in federal funding and $190,375,155 in total, a 1,250 megawatt coal plant with carbon capture in the Mat-Su, with Class 3 engineering targeted for 2027. No award agreement is noted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
@@ -2746,7 +2785,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-03",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-08-06",
@@ -2799,6 +2838,10 @@
         {
           "date": "2026-10-03",
           "note": "Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application and found none. The commission's own carbon storage page refused an automated read. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application published since October 1st and found none. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
@@ -3107,6 +3150,11 @@
           "url": "https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/",
           "outlet": "Anchorage Daily News",
           "date": "2026-09-24"
+        },
+        {
+          "url": "https://www.adn.com/alaska-journal/news/2026/10/04/alaska-fishing-and-wildlife-groups-raise-alarm-over-proposal-for-underwater-cook-inlet-data-center/",
+          "outlet": "Alaska Journal of Commerce, via Anchorage Daily News",
+          "date": "2026-10-04"
         }
       ],
       "history": [
@@ -3177,10 +3225,14 @@
         {
           "date": "2026-10-04",
           "note": "Searched the Federal Register today for docket P-15423 and for DeepGreen. The September 4th notice accepting DeepGreen Cook Inlet SPV's preliminary permit application is still the only Cook Inlet notice published, and no permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Searched the Federal Register today for docket P-15423 and found no notice since October 1st. The Alaska Journal of Commerce reported on October 4th the same three motions to intervene already listed here, from the Center for Biological Diversity, the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-07",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -3941,7 +3993,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-07",
       "history": [
         {
           "date": "2026-09-13",
@@ -3990,6 +4042,10 @@
         {
           "date": "2026-10-06",
           "note": "Searched the Federal Register today for any later notice on the bulk-power system. The only newer documents are a September 15th FERC order on reliability standard CIP-014-4, a reliability conference notice and an EPA carbon rule, none of them from the Energy Department on this request, so responses are still accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-07",
+          "note": "Searched the Federal Register today for anything on the bulk-power system published since October 1st and found nothing, so written responses are still accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4526,6 +4582,69 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/north-slope-power-borough-gas-plant/"
+    },
+    {
+      "id": "beluga-healy-transmission-dpa",
+      "title": "A second power line between Southcentral and the Interior, Beluga to Healy",
+      "kind": "grant",
+      "status": "pending-decision",
+      "decider": "U.S. Department of Energy, with the Alaska Energy Authority",
+      "public_access": "closed",
+      "access_note": "The Energy Department chose this project under the Defense Production Act, and none of the announcements names a public comment period or a hearing. The Alaska Energy Authority, which proposed the line, now has to find the rest of the money.",
+      "summary": "On October 5th the Department of Energy announced its intent to put up to $150 million of Defense Production Act funding into the Alaska Energy Authority's Beluga-Healy Transmission Project, a second high-voltage connection between Southcentral and Interior Alaska. DOE counts on $268 million in non-federal funding for a preliminary estimate of about $418 million, and about 223 miles of new line. The Railbelt now relies on a single corridor, AEA's 170-mile Alaska Intertie between Willow and Healy, built in the mid-1980s. Energy Secretary Chris Wright tied the award to the military expansion under way in Alaska and to mining. The release does not mention data centers, though the Air Force has offered about 4,700 acres at JBER, Eielson and Clear for them.",
+      "key_dates": [
+        {
+          "date": "2026-08-28",
+          "label": "The Alaska Energy Authority presents Beluga to Healy to the Energy Secretary as a project under consideration",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-05",
+          "label": "Energy Department announces up to $150 million in Defense Production Act funding",
+          "kind": "decision"
+        }
+      ],
+      "location": {
+        "name": "Beluga to Healy",
+        "lon": -150.0,
+        "lat": 62.5
+      },
+      "sources": [
+        {
+          "url": "https://www.energy.gov/articles/energy-department-announces-alaska-railbelt-transmission-project-receive-defense",
+          "outlet": "U.S. Department of Energy",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.youralaskalink.com/news/local/alaska-delegation-announces-150m-for-beluga-healy-transmission-project/article_6365e176-5924-4daa-9d60-ac307525f323.html",
+          "outlet": "Your Alaska Link",
+          "date": "2026-10-05"
+        },
+        {
+          "url": "https://www.yahoo.com/news/us/articles/feds-approve-150-million-second-005231683.html",
+          "outlet": "Alaska Beacon, via Yahoo News",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/What-We-Do/Railbelt-Energy/Alaska-Intertie",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/Portals/0/Presentations/2026.09.01%20AEA%20Alaska%20Energy%20Priorities%20and%20DOE%20Partnership%20Presentation%20to%20U.S.%20Sec.%20of%20Energy%20Wright%20(Final).pdf",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-08-28"
+        }
+      ],
+      "first_seen": "2026-10-07",
+      "last_updated": "2026-10-07",
+      "history": [
+        {
+          "date": "2026-10-07",
+          "note": "Tracked from today. The Department of Energy's October 5th release commits up to $150 million in Defense Production Act funding toward an estimated $418 million line of about 223 miles, and names military expansion and mining as the reasons. In late August the Alaska Energy Authority had listed the same line as under consideration in a presentation to Energy Secretary Chris Wright. AEA's executive director told the Alaska Beacon the federal money will likely go to engineering, planning and permitting."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/beluga-healy-transmission-dpa/"
     }
   ]
 }

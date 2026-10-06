@@ -1,0 +1,93 @@
+{
+ "run_date": "2026-10-07",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 8,
+   "fragment": "Five records",
+   "text": "Five records. Two say \"data center.\"",
+   "subject": "records",
+   "members": [
+    "C01",
+    "C20",
+    "C13",
+    "C31",
+    "C29"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 3,
+   "fragment": "two halves",
+   "text": "One line joins",
+   "subject": "halves of the Railbelt",
+   "members": [
+    "C13"
+   ],
+   "items": [
+    "Southcentral",
+    "Interior"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "170 miles",
+   "text": "AEA's Alaska Intertie runs 170 miles from Willow to Healy.",
+   "member": "C22"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "12 PARCELS",
+   "text": "12 PARCELS · ABOUT 4,700 ACRES · ACROSS ALL THREE",
+   "member": "C32"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "4,700 ACRES",
+   "text": "12 PARCELS · ABOUT 4,700 ACRES · ACROSS ALL THREE",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "fragment": "4,700 ACRES",
+   "text": "4,700 ACRES, 12 PARCELS",
+   "member": "C31"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "fragment": "12 PARCELS",
+   "text": "4,700 ACRES, 12 PARCELS",
+   "member": "C32"
+  },
+  {
+   "kind": "subset",
+   "slide": 5,
+   "fragment": "ALL THREE",
+   "n": 3,
+   "of": 3,
+   "text": "12 PARCELS · ABOUT 4,700 ACRES · ACROSS ALL THREE",
+   "member": "C31",
+   "enumerated": [
+    "Joint Base Elmendorf-Richardson",
+    "Eielson Air Force Base",
+    "Clear Space Force Station"
+   ],
+   "selected": [
+    1,
+    2,
+    3
+   ],
+   "terms": [
+    "Elmendorf",
+    "Eielson",
+    "Clear"
+   ],
+   "predicate": "the 12 parcels and about 4,700 acres lie across all three installations C31 names"
+  }
+ ]
+}

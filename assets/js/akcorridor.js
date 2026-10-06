@@ -102,7 +102,7 @@
     state = state || {};
     const light = !!state.light;
     const ink = light ? '#24323F' : '#C9D6E2';
-    const dim = light ? '#5B6874' : '#46545F';
+    const dim = light ? '#5B6874' : '#5E6E7C';
     const root = document.createElement('div');
     root.className = 'akcor-fixtures';
     root.innerHTML = (state.wordmark === false ? '' :
@@ -152,7 +152,8 @@
     const by = H + 6;
     if (state.bracket === 'crest') {
       const c = proj([-149.2, 63.35]);
-      add('path', { d: 'M' + c[0] + ' ' + (by - 4) + 'V' + (by + 4), stroke: light ? '#24323F' : '#F4F8FF', 'stroke-width': 1.4 });
+      // the crest as a small caret pointing down at the baseline
+      add('path', { d: 'M' + (c[0] - 6) + ' ' + (by - 9) + 'L' + (c[0] + 6) + ' ' + (by - 9) + 'L' + c[0] + ' ' + (by + 1) + 'Z', fill: light ? '#24323F' : '#F4F8FF' });
     } else {
       const a = Math.min(bx[0], bx[1]), b = Math.max(bx[0], bx[1]);
       add('path', { d: 'M' + a + ' ' + (by - 4) + 'V' + by + 'H' + b + 'V' + (by - 4), fill: 'none', stroke: light ? '#24323F' : '#F4F8FF', 'stroke-width': 1.2,
