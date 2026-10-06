@@ -1,14 +1,14 @@
 {
- "generated": "2026-10-05T21:32:46Z",
- "for_date": "2026-10-05",
+ "generated": "2026-10-06T19:38:04Z",
+ "for_date": "2026-10-06",
  "session": "34",
  "counted": {
   "basis_bills": 856,
   "basis_meetings": 2854,
-  "fedreg_federal-energy-regulatory-commission": 7,
+  "fedreg_federal-energy-regulatory-commission": 8,
   "fedreg_land-management-bureau": 2,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 7,
+  "fedreg_energy-department": 8,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -292,6 +292,20 @@
    "url": "https://www.akleg.gov/basis/Bill/Detail/34?Root=SJR11",
    "source": "basis",
    "why": "bill on beat"
+  },
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-20451",
+   "title": "Alaska Energy Authority Notice Soliciting Recommendations, Terms and Conditions, and Fishway Prescriptions for Application for Non-Capacity Amendment of License",
+   "type": "Notice",
+   "published": "2026-10-06",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/10/06/2026-20451/alaska-energy-authority-notice-soliciting-recommendations-terms-and-conditions-and-fishway",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
   },
   {
    "source": "federal-register",
