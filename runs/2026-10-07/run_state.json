@@ -24,5 +24,12 @@
   "upgrade": "done (queue day): automation_retro.md, 4 items queued, gaswatch raised to repeat 6; machine_due exit 1 (weekly pass ran 2026-10-06)",
   "gmail": "pending",
   "retro": "pending"
+ },
+ "phase_3_6": {
+  "site_signoff": "PASS, 136 published pages, 18 checks, every cron-written ledger's current value on its page; desktop and phone looked at, nothing to repair",
+  "gaswatch_live": "PASS on re-audit (latest verified 2026-10-06, 59.6 percent of design, source 12 hours old, cron 0.6 hours old). The first audit at 06:20Z FAILED because CINGSA's evening reading of October 5th posted after the 00:51Z collection, the known evening-slot timing item now at repeat 6 and escalated to the owner (dispatch from the routine is 403)",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "PASS, 6 scheduled workflows audited at 06:18Z",
+  "site_fixes": "none. Nothing on the live site needed repair this run."
  }
 }
