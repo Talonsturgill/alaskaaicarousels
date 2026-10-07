@@ -2563,6 +2563,22 @@ ASK_JS = r"""
   var TS_SITEKEY = box.getAttribute('data-sitekey') || '';
 
   var IDX = DATA.index, FAC = DATA.facets, NALL = IDX.length;
+  /* A row flagged h shipped its hay without the opening it shares with its own
+     title, kind, decider, place, summary and howto fields. Rebuild that opening
+     with the rule ask_answers.py used (lowercase, collapse spaces, skip a part
+     already inside) so the hay searched here is the one built there. */
+  (function () {
+    var F = ['title', 'kind', 'decider', 'where', 'summary', 'howto'], i, k, h, s;
+    for (i = 0; i < NALL; i++) {
+      if (!IDX[i].h) continue;
+      h = '';
+      for (k = 0; k < F.length; k++) {
+        s = String(IDX[i][F[k]] || '').toLowerCase().replace(/\s+/g, ' ').trim();
+        if (s && h.indexOf(s) === -1) h = h ? h + ' ' + s : s;
+      }
+      IDX[i].hay = h + (IDX[i].hay ? ' ' + IDX[i].hay : '');
+    }
+  })();
   var byId = {}, bi;
   for (bi = 0; bi < NALL; bi++) byId[IDX[bi].id] = IDX[bi];
 
@@ -4750,7 +4766,7 @@ def ask_html(today):
      phone, and it sat where the eye lands after typing. The shortcuts all
      still work. What the two sending buttons do is described in full on
      /privacy/ under "The one thing you can choose to send". -->
-<script type="application/json" id="qdata">{ld_json(data)}</script>
+<script type="application/json" id="qdata">{ld_json(ask_answers.ship(data))}</script>
 </div></div>"""
 
 MAP_JS = """
