@@ -25,5 +25,12 @@
   "gmail": "pending",
   "retro": "pending"
  },
- "score": 8.41
+ "score": 8.41,
+ "phase_3_6": {
+  "site_signoff": "SITE SIGN-OFF: PASS, 138 pages, 18 checks",
+  "gaswatch_live": "GAS WATCH LIVE: FAIL at 06:2xZ, 07:45Z and 09:47Z, CINGSA's evening reading of October 6th uncollected; UNRESOLVED github incident (no scheduled gas watch run dispatched since 23:06Z October 6th, workflow_dispatch from the routine 403), out/2026-10-08/gaswatch_incident.json; gate WARN",
+  "gaswatch_pagecheck": "GAS WATCH page check: PASS",
+  "cron_health": "CRON HEALTH: PASS, 6 scheduled workflows audited at 06:17Z",
+  "site_fixes": "none needed"
+ }
 }
