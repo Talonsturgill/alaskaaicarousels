@@ -1,0 +1,88 @@
+{
+ "run_date": "2026-10-08",
+ "carousel_no": 81,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.2,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.8,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.0,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.2,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.9,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.8,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.7,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.6,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.0,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(7.7x0.14)+(7.2x0.14)+(6.8x0.16)+(8.0x0.14)+(8.2x0.12)+(7.9x0.10)+(7.8x0.08)+(7.7x0.07)+(7.6x0.05)+(8.0x0.10) = 8.411",
+ "weighted_total": 8.41,
+ "threshold": 7.7,
+ "ship": true,
+ "revision_rounds": 5,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Re-model the three least-built heroes as objects, not flat shapes: give 05's hollow a shaded silt lip and inner wall sunk into the flat, give 09's tag a real burnished mezzotint with a lit edge and contact cast, and give 07's coal irregular conchoidal fracture with specular sheen in place of dotted arris glints.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "fix": "sink the hollow into visibly silty ground with a shaded lit SW and shadowed NE lip and an inner wall gradient"
+  },
+  {
+   "slide": 9,
+   "fix": "a real mezzotint burnish with a visible rocked ground, lit bevel and unburnished cast, tag fully in frame"
+  },
+  {
+   "slide": 7,
+   "fix": "irregular conchoidal scallops, specular sheen patches in place of arris dot strings, rime frost at the contact"
+  },
+  {
+   "slide": 8,
+   "fix": "directional dry-silt relief on the plate top, fibre on the block, longer casts"
+  },
+  {
+   "slide": 4,
+   "fix": "vary cell scale with distance, lifted lips of varying depth, grit in the cracks"
+  }
+ ],
+ "craft_floor": "artwork 6.8 is under 8.5 and the run is at the five-round cap (revision_rounds 5), so the craft cycle stands down and the deck ships as-is",
+ "editor_notes_for_email": "Scored 8.41 against the five-round threshold of 7.7; it ships. Artwork craft 6.8 is under the 8.5 craft floor and the run is at the five-round cap, so no craft cycle was owed. Weakest frames 05, 09, 07. The lease itself isn't public: the term, signing and every rent figure come from university officials quoted by the Mat-Su Sentinel on October 6th. The deck never says the UA lease is for a data center; data centers appear only in DOE's listed loads and the borough resolution, and the 1,000 borough acres are expectations. The caption's question (exemption) and slide 09's (name the purpose) differ by design."
+}

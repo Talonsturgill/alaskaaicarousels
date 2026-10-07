@@ -1,0 +1,237 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 65% / mid 64% / bottom 45% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "ink law: forbidden ink #6EA5FF (the Mat-Su Borough): this frame's paint census hit its entry cap, so absence is unproven here. Reduce the number of distinct colour literals, or accept that this one is unchecked on this frame",
+        "text collision (47% overprint): 'T14N R4W SM' x '829.34 ACRES' near 261,878 [marked data-overlap-ok]",
+        "text collision (63% overprint): '829.34 ACRES' x 'TENANT' near 228,932 [marked data-overlap-ok]"
+      ],
+      "contacts": [
+        "'the tag lying on the silt': shadow L* 7.8 vs ground L* 16.8, dL 9.0 at 432w"
+      ],
+      "motifs": [
+        "'the manila tag': canvas 70.9 dE, page 70.3 dE, 59% of its rect is clear of opaque DOM (div#tagink stands on the rest)"
+      ],
+      "fits": [
+        "hl '829 acres.20 years.' fits 2/2 lines at 183.5px"
+      ],
+      "asserts": [
+        "'829.34 acres printed on the tag, summed from the committed parcel record areas' holds: 829.34 vs 829.34 acres (within 0.005)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'TERRA ENERGY CENTER CAMPUS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.03) beneath 'INDUSTRIAL PARK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the sublease tag lying on the silt': shadow L* 6.0 vs ground L* 18.3, dL 12.3 at 432w"
+      ],
+      "motifs": [
+        "'the main manila tag': canvas 69.8 dE, page 69.2 dE, 69% of its rect is clear of opaque DOM (div.ln stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Terra Energyis the tenant.' fits 2/2 lines at 139.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the township card': canvas 78.0 dE, page 78.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'parcel MS.PM.0002' lands 0.0px from its target",
+        "leader 'parcel MS.PM.0001' lands 0.0px from its target",
+        "leader 'parcel MS.PM.0003' lands 0.0px from its target",
+        "leader 'parcel MS.PM.0004' lands 0.0px from its target",
+        "leader 'parcel MS.PM.0002' meets its label 2.0px away",
+        "leader 'parcel MS.PM.0001' meets its label 2.0px away",
+        "leader 'parcel MS.PM.0003' meets its label 2.0px away",
+        "leader 'parcel MS.PM.0004' meets its label 2.0px away",
+        "leader 'parcel MS.PM.0002' is drawn 261 px at 14 degrees, inside the pointer band",
+        "leader 'parcel MS.PM.0001' is drawn 198 px at 1 degrees, inside the pointer band",
+        "leader 'parcel MS.PM.0003' is drawn 192 px at 5 degrees, inside the pointer band",
+        "leader 'parcel MS.PM.0004' is drawn 221 px at 6 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'An inholdingin the borough's port.' fits 2/2 lines at 123.5px"
+      ],
+      "asserts": [
+        "'1 mile scale bar from the projection' holds: 90.0243 vs 90.0243 px (within 0.5)",
+        "'four parcels drawn sum to their record acres' holds: 829.34 vs 829.34 acres (within 0.005)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "ink law: forbidden ink #6EA5FF (the Mat-Su Borough): this frame's paint census hit its entry cap, so absence is unproven here. Reduce the number of distinct colour literals, or accept that this one is unchecked on this frame"
+      ],
+      "contacts": [
+        "'the late-May loop of twine on the cracked silt': shadow L* 5.5 vs ground L* 37.8, dL 32.3 at 432w"
+      ],
+      "motifs": [
+        "'the twine timeline': canvas 48.2 dE, page 49.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'k1 knot' lands 10.0px from its target",
+        "leader 'k2 knot' lands 10.0px from its target",
+        "leader 'k3 knot' lands 10.0px from its target",
+        "leader 'k4 knot' lands 10.0px from its target",
+        "leader 'k1 knot' meets its label 0.0px away",
+        "leader 'k2 knot' meets its label 0.0px away",
+        "leader 'k3 knot' meets its label 0.0px away",
+        "leader 'k4 knot' meets its label 0.0px away",
+        "leader 'k1 knot' is drawn 102 px at 90 degrees, inside the pointer band",
+        "leader 'k2 knot' is drawn 16 px at 90 degrees, inside the pointer band",
+        "leader 'k3 knot' is drawn 118 px at 90 degrees, inside the pointer band",
+        "leader 'k4 knot' is drawn 16 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Comment was askedon a notice that namedno le' fits 3/3 lines at 111.5px"
+      ],
+      "asserts": [
+        "'March 2nd knot at day 61 on the 3.373 px per day calendar from January 30th' holds: 224.578 vs 224.578 px (within 0.5)",
+        "'October 6th knot at day 279' holds: 960 vs 960 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the water-filled hollow': canvas 37.5 dE, page 38.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'University land skipsthe best interest findi' fits 2/2 lines at 117.5px"
+      ],
+      "asserts": [
+        "'the hollow has a sheet proportion, 8.5 by 11' holds: 1.29412 vs 1.29412 ratio (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the year-five coin stack on the shelf': shadow L* 30.7 vs ground L* 45.9, dL 15.2 at 432w"
+      ],
+      "motifs": [
+        "'the year 5 coin stack': canvas 56.6 dE, page 60.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'la1' lands 6.0px from its target",
+        "leader 'la2' lands 6.0px from its target",
+        "leader 'la3' lands 6.0px from its target",
+        "leader 'la4' lands 6.0px from its target",
+        "leader 'la5' lands 6.0px from its target",
+        "leader 'la1' meets its label 2.4px away",
+        "leader 'la2' meets its label 0.0px away",
+        "leader 'la3' meets its label 2.0px away",
+        "leader 'la4' meets its label 2.0px away",
+        "leader 'la5' meets its label 0.0px away",
+        "leader 'la1' is drawn 18 px at 12 degrees, inside the pointer band",
+        "leader 'la2' is drawn 37 px at 90 degrees, inside the pointer band",
+        "leader 'la3' is drawn 250 px at 37 degrees, inside the pointer band",
+        "leader 'la4' is drawn 73 px at 35 degrees, inside the pointer band",
+        "leader 'la5' is drawn 13 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '$20,000 the first year.$586,000 once it oper' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'145 stated coins: 4 for year one, 12 each for years two and three, 117 for $586,000' holds: 145 vs 145 marks, counted over 145 declared marks (within 0)",
+        "'145 stated coins: 4 for year one, 12 each for years two and three, 117 for $586,000': 145 mark centres probed at r=4px, cohort median 55.0 dE, all present (weakest 53.4 dE)",
+        "'year 20 stack height, coins from 586,000 times 1.02 to the 15th over $5,000' holds: 158 vs 158 coins (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.9 on '07 / 09' (box mean 4.4) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the coal lump on the frost': shadow L* 3.6 vs ground L* 61.5, dL 57.8 at 432w"
+      ],
+      "motifs": [
+        "'the coal lump': canvas 62.4 dE, page 71.2 dE, 91% of its rect is clear of opaque DOM (div.pull stands on the rest)"
+      ],
+      "fits": [
+        "hl 'The campus is partof a coal plan.' fits 2/2 lines at 123.5px"
+      ],
+      "asserts": [
+        "'1,250 glints on the lump, one per planned megawatt' holds: 1250 vs 1250 marks, counted over 1250 declared marks (within 0)",
+        "'1,250 glints on the lump, one per planned megawatt': 209 mark centres probed at r=4px, sampled every 6 marks, cohort median 79.1 dE, all present (weakest 28.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the district plate': canvas 69.6 dE, page 69.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'lp' lands 0.0px from its target",
+        "leader 'lu' lands 0.0px from its target",
+        "leader 'lb' lands 0.0px from its target",
+        "leader 'lp' meets its label 0.0px away",
+        "leader 'lu' meets its label 0.0px away",
+        "leader 'lb' meets its label 2.0px away",
+        "leader 'lp' is drawn 208 px at 90 degrees, inside the pointer band",
+        "leader 'lu' is drawn 200 px at 90 degrees, inside the pointer band",
+        "leader 'lb' is drawn 156 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The borough marketsland with Terra.' fits 2/2 lines at 123.5px"
+      ],
+      "asserts": [
+        "'829 block side over the 8,000 plate side' holds: 0.321908 vs 0.321908 ratio (within 0.0005)",
+        "'1,000 groove side over the 8,000 plate side' holds: 0.353553 vs 0.353553 ratio (within 0.0005)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the tag at night': canvas 42.4 dE, page 43.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Should a university land noticename its purp' fits 3/3 lines at 102.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 8,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPORT.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

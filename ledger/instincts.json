@@ -1946,6 +1946,30 @@
       "evidence": "No.80 slide 07's crest-parallel offset lines read as stacked waves (5.3); lines of constant distance over a per-pixel DEM visibility raster, weighted by the light, scored 7.9 and wrap the real form.",
       "act_on_it": "For an engraved terrain view, march the DEM per column, keep the distance each pixel shows, and draw iso-distance lines whose weight follows the light; fade a line where the next one lands within a few pixels.",
       "confidence": 0.65
+    },
+    {
+      "run_date": "2026-10-08",
+      "carousel_no": 81,
+      "instinct": "A MIRROR SHOWS THE SKY AT THE ANGLE YOU LOOK DOWN.",
+      "evidence": "No.81 slide 05's sheet-shaped hollow mirrored a dark mid-sky (6.0) because at 9 to 13 m ahead it reflects 10 to 13 degrees up, well above the bright band; lifting the band's ramp and moving the hollow nearer the horizon made it the brightest object (7.3 to 7.4).",
+      "act_on_it": "Before building a water mirror as a hero, compute the reflected elevation (rows below the horizon equal rows above it) and make sure the sky ramp is bright there; otherwise the mirror reads as a dark tile.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-08",
+      "carousel_no": 81,
+      "instinct": "GLINTS BELONG ON ARRISES, NOT FACES.",
+      "evidence": "No.81 slide 07's 1,250 glints scattered over facets read as a starfield in three critic rounds; gating them on the change of normal across 2 px put them on the edges and the lump read as faceted stone.",
+      "act_on_it": "Place specular glints where the surface normal turns (an arris measure), not where n.h is merely high; keep the count assertion on the same points.",
+      "confidence": 0.55
+    },
+    {
+      "run_date": "2026-10-08",
+      "carousel_no": 81,
+      "instinct": "AN SDF DEADLINE IS A SEAM, RAISE IT BEFORE RAISING RESOLUTION.",
+      "evidence": "No.81 slide 07 at 650 x 812 internal ran past deadlineMs 70000 and printed a hard horizontal seam from row 590; 200000 cleared it and render.py's 30 s race never cut the synchronous draw.",
+      "act_on_it": "When raising an aksdf internal size, scale deadlineMs by the pixel ratio first, and read render_report console_errors for AK DEGRADED before looking at the picture.",
+      "confidence": 0.7
     }
   ]
 }

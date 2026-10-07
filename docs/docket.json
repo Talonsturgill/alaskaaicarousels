@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-06",
+  "updated": "2026-10-08",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2027-09-13",
-  "count": 35,
+  "count": 36,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -1234,7 +1234,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-08",
       "history": [
         {
           "date": "2026-07-17",
@@ -1435,6 +1435,10 @@
         {
           "date": "2026-10-07",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th, it was archived September 15th, and its attachments are still the application, the preliminary decision and a vicinity map. No final finding and decision is posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-08",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th and its attachments are still the application, the preliminary decision and a vicinity map. No final finding and decision is posted. The Houston City Council's hearing on a two-year moratorium on new data center construction stays on the calendar for October 8th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -2148,7 +2152,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-08",
       "history": [
         {
           "date": "2026-08-05",
@@ -2237,6 +2241,10 @@
         {
           "date": "2026-10-04",
           "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, still reads archived as of September 26th, with one award expected and a ceiling of $3,500,000. No recipient is listed and no award notice has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-08",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, is still archived as of September 26th, with one award expected between $2,500,000 and $3,500,000. No recipient is named and no award notice has been published. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2678,10 +2686,15 @@
           "url": "https://www.energy.gov/hgeo/project-selections-broad-agency-announcement-de-foa-0003605-restoring-reliability-coal-0",
           "outlet": "U.S. Department of Energy",
           "date": "2026-08-30"
+        },
+        {
+          "url": "https://www.matsusentinel.com/large-industrial-energy-projects-planned-for-leased-ua-land-at-port-mackenzie/",
+          "outlet": "Mat-Su Sentinel",
+          "date": "2026-10-06"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-08",
       "history": [
         {
           "date": "2026-08-06",
@@ -2742,9 +2755,76 @@
         {
           "date": "2026-10-07",
           "note": "Re-read the Department of Energy's project selection page today. It still lists Terra Energy Center Corporation for $89,000,000 in federal funding and $190,375,155 in total, a 1,250 megawatt coal plant with carbon capture in the Mat-Su, with Class 3 engineering targeted for 2027. No award agreement is noted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-08",
+          "note": "New development on the ground side of this project. Terra Energy, an affiliate of Flatlands Energy, signed a 20 year lease in late May for 829 acres of University of Alaska land near Port MacKenzie for an industrial park tied to the coal plant, as reported by the Mat-Su Sentinel on October 6th and tracked here as its own entry. Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation for $89,000,000, and its description of the plant's loads names utilities, military installations, data centers and critical mineral operations."
         }
       ],
       "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
+    },
+    {
+      "id": "ua-port-mackenzie-terra-lease",
+      "title": "The University of Alaska's 829 acres at Port MacKenzie, leased to the coal plant's campus",
+      "kind": "other",
+      "status": "decided",
+      "decider": "University of Alaska Land Management signed the lease; any lease of the borough's own port land would need the Mat-Su Borough Assembly",
+      "public_access": "closed",
+      "access_note": "The university's notice of intent to lease took written comments from January 30th to March 2nd and named no tenant and no use. University land is exempt from the state's best interest finding, according to the Mat-Su Sentinel. The next public room is the Mat-Su Borough Assembly, if Terra asks to lease borough land at the port.",
+      "summary": "Terra Energy signed a 20 year lease with the University of Alaska in late May for 829 acres near Port MacKenzie, four parcels in Township 14 North, Range 4 West, Seward Meridian, for what the lease calls the Terra Energy Center Campus, a large-scale industrial park. The project is part of affiliate Flatlands Energy's plan for a coal plant near Skwentna, which the Department of Energy selected for $89 million in engineering funding and whose described loads include data centers. Rent is $20,000 in the first year, $60,000 a year in the second and third, and $586,000 a year once operations begin, targeted for 2030, with a 2 percent annual adjustment. Borough officials expect Terra to pursue about 1,000 acres of borough port land as well.",
+      "key_dates": [
+        {
+          "date": "2026-01-30",
+          "label": "University of Alaska posts its notice of intent to lease the four parcels",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-03-02",
+          "label": "Written comments on the notice close at 5 p.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-03-17",
+          "label": "Mat-Su Assembly overrides the mayor's veto of RS 26-019, a joint marketing effort with Terra aimed at large power users including data centers",
+          "kind": "vote"
+        }
+      ],
+      "location": {
+        "name": "Point MacKenzie, Township 14 North, Range 4 West",
+        "lon": -149.94,
+        "lat": 61.29
+      },
+      "sources": [
+        {
+          "url": "https://www.matsusentinel.com/large-industrial-energy-projects-planned-for-leased-ua-land-at-port-mackenzie/",
+          "outlet": "Mat-Su Sentinel",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://www.alaska.edu/ualand/public-notices/2026/2026.01.30%20Intent%20to%20Lease%20MS.PM.0001-2-3-4%20Public%20Notice%201.php",
+          "outlet": "University of Alaska Land Management",
+          "date": "2026-01-30"
+        },
+        {
+          "url": "https://www.alaska.edu/ualand/public-notices/2026/MS.PM.0001-2-3-4%20Public%20Notice%20and%20Disposal%20Plan%20Final.pdf",
+          "outlet": "University of Alaska Land Management",
+          "date": "2026-01-30"
+        },
+        {
+          "url": "https://webapi.legistar.com/v1/matanuska/matters/5876",
+          "outlet": "Matanuska-Susitna Borough",
+          "date": "2026-03-17"
+        }
+      ],
+      "first_seen": "2026-10-08",
+      "last_updated": "2026-10-08",
+      "history": [
+        {
+          "date": "2026-10-08",
+          "note": "Tracked. The Mat-Su Sentinel reported on October 6th that the University of Alaska leased 829 acres near Port MacKenzie to Terra Energy in late May for 20 years. The university's own notice of January 30th lists four parcels at 369.34, 80, 60 and 320 acres, which sum to 829.34, and it names no tenant and no proposed use. Borough officials were not told before the lease was signed, and the port manager said the university leasing the land without any conversation with the borough blows his mind. Terra's full preliminary development plan is confidential, according to the university, and Terra did not respond to the Sentinel."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/ua-port-mackenzie-terra-lease/"
     },
     {
       "id": "aogcc-class-vi-carbon-storage",
@@ -3993,7 +4073,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-08",
       "history": [
         {
           "date": "2026-09-13",
@@ -4046,6 +4126,10 @@
         {
           "date": "2026-10-07",
           "note": "Searched the Federal Register today for anything on the bulk-power system published since October 1st and found nothing, so written responses are still accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-08",
+          "note": "Searched the Federal Register today for anything on the bulk-power system published since October 1st. The only result is a routine FERC information collection notice of October 6th, unrelated to this request, so written responses are still accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4084,7 +4168,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-04",
+      "last_updated": "2026-10-08",
       "history": [
         {
           "date": "2026-09-13",
@@ -4137,6 +4221,10 @@
         {
           "date": "2026-10-04",
           "note": "The written comment period closed on October 2nd. A Federal Register search today finds no extension and no later notice after the September 11th request for information, which says late comments will be considered to the extent practicable. The Department of Transportation has not said when it will act on what it received."
+        },
+        {
+          "date": "2026-10-08",
+          "note": "Searched the Federal Register today for any Department of Transportation notice since September 12th on the corridors request and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"

@@ -3184,6 +3184,44 @@
       ],
       "claims": 46,
       "note": "New primary decision (DOE, October 5th); distinct from No.70 (Bradley Lake and the 2030 calendar, which named the same parcels) per selection.md. Shipped 8.74 at revision round 5 (threshold 7.7), art 7.5 after the craft cycle (7 before)."
+    },
+    {
+      "run_date": "2026-10-08",
+      "carousel_no": 81,
+      "topic": "The University of Alaska leased 829.34 acres at Port MacKenzie (four parcels in T14N R4W, Seward Meridian) to Terra Energy for 20 years, signed in late May, after a January 30th public notice that named no lessee and no use; comments closed March 2nd. The lease describes the Terra Energy Center Campus as a large-scale industrial park with energy generation, transmission, storage and distribution, and allows subleasing. Rent is $20,000 in year one, $60,000 in years two and three, $586,000 once operating (target 2030) rising 2 percent a year. University land is exempt from the best interest finding. Terra's affiliate Flatlands Energy plans a coal plant near Skwentna that DOE selected for $89 million in engineering funding and whose DOE description lists data centers among its loads. The Mat-Su Assembly overrode a veto 6-1 on March 17th to market borough land jointly with Terra (RS 26-019); borough officials weren't told before the university signed.",
+      "angle": "THE BLANK LINE: the public notice asked for comment on a lease that named no tenant and no use, and the land is exempt from the finding the state would owe on its own land. The ask is whether a university land notice should name its purpose before comments close.",
+      "entities": [
+        "University of Alaska",
+        "UA Land Management",
+        "Adrienne Stolpe",
+        "Terra Energy",
+        "Terra Energy Center Corporation",
+        "Flatlands Energy",
+        "Mat-Su Borough",
+        "Mat-Su Borough Assembly",
+        "Port MacKenzie",
+        "Dave Griffin",
+        "U.S. Department of Energy",
+        "Mat-Su Sentinel"
+      ],
+      "keywords": [
+        "Port MacKenzie",
+        "university land lease",
+        "Terra Energy",
+        "829 acres",
+        "best interest finding",
+        "public notice",
+        "Flatlands Energy",
+        "coal plant",
+        "Skwentna",
+        "data centers",
+        "RS 26-019",
+        "Mat-Su Borough"
+      ],
+      "headline": "829 Acres, 20 Years, and a Notice That Named No Tenant",
+      "sources_lead": "Mat-Su Sentinel (October 6th), University of Alaska land notice (January 30th), DOE project selection page, Mat-Su Borough RS 26-019",
+      "claims": 55,
+      "note": "Lead from the Mat-Su Sentinel's October 6th report; parcels drawn from BLM CadNSDI sections and the notice's legal descriptions. The deck never says the lease is for a data center (C16)."
     }
   ]
 }
