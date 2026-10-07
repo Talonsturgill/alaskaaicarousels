@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-08/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 6926325,
+  "pdf_mb": 6.93,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-08/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-08/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "829 Acres, 20 Years, and a Notice That Named No Tenant",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "03e005bbc8d4497e38b782cbe3091676853c6c322dab4f65e7ba43a699b101ed",
+        "bytes": 5890299
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "5644d856abcecab922e2f3b8b995014e2f362b1a99614638656189f227a93c12",
+        "bytes": 7049543
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "3924fb3580066950196dd7ba0764d8ce4af09df6736593583f3e46bc7e9fc3af",
+        "bytes": 5743539
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "c5d53d857b28b3eea1cba0db22ad022e4caa94a44c25d4e7db9e41aeb5d357ba",
+        "bytes": 5351634
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "32ceefac61b34c7f7aea9f13fc56be610ecf332276e4e0cb8ec36c54e272211d",
+        "bytes": 4232247
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "16a92808f714cb82f9b0be6fe7b259798da19d965237e30bca5f1bc9af2daae7",
+        "bytes": 4202836
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "3787f54b25d18a3c2daa9e61ce9373806ea209b0a3b7f177b4506c5b1e63fe81",
+        "bytes": 4670188
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "a14c100696e457468aefb0a74a945d724326656cb1b466a2dcbdca912d3c89a6",
+        "bytes": 4153632
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6aa68345124ce459b25e75c433bdf2a81d06f0a3ef0140d3389e93b20cdd0964",
+        "bytes": 5358555
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "ace7c26353d93338c852c987d3dfa16151fef77b6caef2d6b700be76ceba24d4",
+        "bytes": 16977
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "6d11144ea339847ada1962ac08546c31e0ceeb5be51e35e9762f033db794d2cb",
+        "bytes": 14046
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "8b4595a74fac307d67a09e2ed3301e512a0f94ee8bf4ab1e496b13bb527b5781",
+        "bytes": 11814
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "46938cc67104c0495511bfbe51f493f9ae6521a7189c885c1599b4255e43a6ec",
+        "bytes": 12457
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "2182ae64467f8d35e8d6a000da8a1d2f00ae1fb7847c9f637a524359fc0f2985",
+        "bytes": 9570
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "1f0893040eb603ed3ef70b90806a4628f0130a8fc6b94164014a98cdb4768a84",
+        "bytes": 12035
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8efeb8c5e49f243909390517c50cf9e6377fd1967cd10aa5e86417e9b74e75e4",
+        "bytes": 11056
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "817a4c95817099dd708378e5387cf2bd4a96b0370364718f12c7531e208f78d5",
+        "bytes": 11803
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "50531eb15dca38b081ef879dfed33928ed459791513bbbbe202f5a845e3dc122",
+        "bytes": 8974
+      }
+    ]
+  }
+}

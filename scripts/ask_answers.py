@@ -1328,6 +1328,54 @@ def build(today=None):
     }
 
 
+# The fields whose text opens every row's hay, in the order index_row adds them.
+# The page already carries each of them as its own field, so the shipped hay
+# leaves them out and the page puts them back (site_build.py, beside DATA).
+SEED_FIELDS = ("title", "kind", "decider", "where", "summary", "howto")
+
+
+def _hay_add(h, s):
+    s = re.sub(r"\s+", " ", (s or "").lower()).strip()
+    return h if not s or s in h else (h + " " + s if h else s)
+
+
+def hay_seed(row):
+    h = ""
+    for k in SEED_FIELDS:
+        h = _hay_add(h, row.get(k) or "")
+    return h
+
+
+def ship(out):
+    """The payload as the page receives it (2026-10-08, No.81).
+
+    Every row's hay opens with its title, kind, decider, place, summary and
+    howto, exactly as index_row added them, and the row ships every one of
+    those as a field of its own, so the same text went out twice. The shipped
+    row drops that opening and sets `h`; the page rebuilds the seed from the
+    fields with the same rule and prepends it, so the hay it searches is
+    byte-identical to the one built here. That bought back about a seventh of
+    the inline ceiling when No.81's new docket item took the payload over it.
+    A row whose hay doesn't open with its seed ships whole and unflagged.
+    """
+    rows = []
+    for r in out["index"]:
+        hay = r.get("hay")
+        seed = hay_seed(r) if isinstance(hay, str) else ""
+        if seed and (hay == seed or hay.startswith(seed + " ")):
+            r = dict(r, hay=hay[len(seed) + 1:], h=1)
+        rows.append(r)
+    return dict(out, index=rows)
+
+
+def unship_hay(r):
+    """What the page does with a shipped row, for the self test."""
+    if not r.get("h"):
+        return r["hay"]
+    seed = hay_seed(r)
+    return seed + (" " + r["hay"] if r["hay"] else "")
+
+
 # --------------------------------------------------------------- self test
 
 
@@ -1555,7 +1603,11 @@ def self_test():
           all(d[0] and d[2] for r in rows for d in r["dates"]))
 
     print("size, because this ships inline in the page")
-    blob = json.dumps(out, separators=(",", ":"))
+    shipped = ship(out)
+    check("the shipped hay rebuilds byte for byte",
+          all(unship_hay(s) == r["hay"] for s, r in zip(shipped["index"], out["index"])),
+          f"{sum(1 for s in shipped['index'] if s.get('h'))} of {len(shipped['index'])} rows trimmed")
+    blob = json.dumps(shipped, separators=(",", ":"))
     check("the payload is small enough to inline", len(blob) < 190_000,
           f"{len(blob) / 1024:.1f} KB, roughly {len(blob) // 3400} KB gzipped")
 

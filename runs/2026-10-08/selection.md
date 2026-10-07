@@ -1,0 +1,34 @@
+# SELECTION, run 2026-10-08, Carousel No.81
+
+## Decision
+**The University of Alaska's 829-acre Port MacKenzie lease to Terra Energy.** On January 30th UA Land Management asked the public about leasing four parcels near Point MacKenzie (369.34 + 80 + 60 + 320 = 829.34 acres in T14N R4W Seward Meridian, Sections 13, 14, 23 and 26) "at or above fair market value". The notice named no tenant and no use. In late May UA signed a 20-year lease of 829 acres to Terra Energy for the "Terra Energy Center Campus", a large-scale industrial park, part of affiliate Flatlands Energy's plan for a coal plant near Skwentna that DOE selected for $89 million in engineering funding, a plant whose described loads on DOE's own page include data centers (C40). Borough officials expect Terra to pursue about 1,000 acres of borough port land too (C18, an expectation, not an approval); in March the Assembly overrode the mayor's veto of RS 26-019, a joint marketing effort with Terra aimed at large power users including data centers (C41 to C43). University land is exempt from the state's best interest finding, and the borough's port manager learned of the lease after it was signed. Reported October 6th (Mat-Su Sentinel, ADN).
+
+Why it wins, against the four criteria:
+1. Concrete Alaska impact: a 20-year disposal of public land at the state's deepwater industrial port, beside the borough land being marketed to data centers, with the lowest public process of any land route in the state.
+2. Visual potential: four legally described parcels on a real township grid at a real port; an acreage sum that is exact; a stepped rent schedule; the notice itself as a document object.
+3. Tangibility: the primary notice is readable (the showrunner extracted its PDF disposal plan) and the numbers reconcile to the hundredth of an acre.
+4. Coworker test: every Mat-Su and Anchorage reader who has followed AIDEA's Houston conveyance (No.50) will want to know a second, quieter route to the same kind of land exists.
+
+AI link, stated honestly: DOE's description of the coal plant names data centers among its loads (C40, primary), and the borough's RS 26-019 markets designated borough lands with Terra to large power consumers for data centers among others (C41, primary). The university's own information about the lease does not highlight data centers (C16) and no data center tenant is named anywhere. The deck must say exactly that: the land is assembled for an industrial park around a plant pitched to data centers, and nobody has named a tenant. Never say the UA lease is for a data center.
+
+## Claims
+claims.json: 53 claims (C01 to C45 the lead, C46 to C53 the runner-up), 28 primary, claims_check PASS. Key corrections from the fact-checker: Flatlands is an AFFILIATE (Sentinel correction); the 1,000 borough acres are an expectation, not an agreement; $586,000 is tied to the start of operations targeted for 2030, not to year 4; the CO2 goes "more than 60 miles to Cook Inlet" (no Beluga); the notice's per-parcel legal descriptions as printed don't reconcile and UA's land page groups them (MS.PM.0001 is Sec 13 SWNW, Lots 2 and 3 plus Sec 14 S2NE and SE), which assets/geo/ak-pointmac-t14n-r4w.geo.json now follows, and whose BLM record areas give exactly 369.34, 80, 60 and 320.
+
+## Dedupe
+`dedupe_check.py --entities "Terra Energy, Flatlands Energy, University of Alaska, Port MacKenzie, Matanuska-Susitna Borough, Skwentna coal plant" --keywords "lease, land, data center, coal, port, acres, rent"`: exit 0, SOFT OVERLAPS only (No.60, No.63, No.66, No.53, No.67, No.61, No.79, No.59, each sharing only "University of Alaska" or "Matanuska-Susitna Borough" at jaccard 0.032 or under). No deck in the last 30 days covered Terra Energy or Port MacKenzie. The docket tracks the $89M DOE selection (terra-energy-center-doe-grant); this is a material new development on that item, not a repeat deck. No.50 (September 4th, AIDEA's Houston conveyance) is the nearest cousin in subject and is outside the 30-day window (34 days).
+
+## Runner-up
+NSF's $6M EPSCoR "Smart Bio-Refinery" (UAF release October 5th): machine learning plus microbes to recover rare earths from coal waste. Clean AI story with primary sources; weaker on Alaska stakes and on visual tension. Also considered and passed: Flock AI plate readers arriving in Anchorage (an UPDATE inside 30 days of No.55 and No.66); Alaska LNG's disputed $54B (not AI).
+
+## Directors room and synthesis
+Three lenses (rotated from No.80's cinematographer, cartographer, field-documentarian): editorial-essayist (A, THE BLANK TAG), systems-illustrator (B, THE CABLE AT LOW WATER), data-journalist (C, THE ARM AT FIVE). Condensed treatments in out/2026-10-08/treatments/ (C summarised below).
+
+Winner: A, strengthened.
+- Why A: its thesis is the sharpest reading of the record (an absence in a public notice), and its grammar, one large fully modelled object per frame, attacks the standing weakness directly: the largest object is the subject, so it is built first and modelled best by construction. It is also the clearest divergence from No.80's map deck.
+- From C: the calendar thesis and the close question ("Should a university land notice name the use before comments close?"), which closes the cover's loop more precisely than A's best-interest question; the area-true district plate for the borough frame (08), which carries C17, C18 and C19 at true scale without inventing a boundary; the honesty discipline around late May (a bracket, not a day) and 2029 (verified as C54, an absence in the report).
+- From B: the self-critique about implied coupling, applied as an honesty guard: the deck never joins the four instruments into one machine, each frame stands as its own record.
+- Changed from A: the brass key is dropped (a stock "lease equals key" image the scorer could call slop, and a metaphor no record supports). The cover object is the tag itself, carrying the notice's own township and summed acreage, so the hero object is honest. The ice key on 08 is replaced by C's district plate. A's coin stacks keep the ghost law (outlined stacks wait on operations) and no total is printed.
+- C rejected as the grammar: 249 scissored per-day GPU passes and new DEM tiles are the heaviest bench pitched, the 320 m DEM measured blobby in a prototype today (out/2026-10-08/proto), and a computed sun would be the third sun in six decks.
+- B rejected as the grammar: one cable implies more coupling than the record proves, and the four-part legend has to be learned before any frame reads.
+
+Treatment C condensed: thesis "the only comment period closed March 2nd before the record said who wanted the land or what for"; one Anchorage-shore view rebuilt one column per day at 5 p.m.; atmosphere THE DEADLINE LIGHT; gold = moments the public or its Assembly acted; type Bricolage condensed over Fraunces; craft plan of nine families with the pile-row rent frame as the depth frame.

@@ -2828,6 +2828,50 @@
         "type_temperature": "4"
       },
       "note": "akcorridor.js shared fixtures and loaders only. Five editing rounds; the flow review rewrote 06 and thinned 03."
+    },
+    {
+      "run_date": "2026-10-08",
+      "carousel_no": 81,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE BLANK TAG. One large modelled object per frame from one lease's world: a PBR manila tag on wet silt (01), a bas-relief debossed tag pair (02), a terraced paper-cut township card with the parcels cut through (03), a plied-cord twine timeline over desiccation cells (04), a per-pixel tide flat with a sheet-shaped mirror hollow (05), lathe-engraved coin stacks with ghost projections (06), an SDF raymarched coal lump with arris glints (07), an isometric district plate with a raised block and a groove (08), a mezzotint-burnished tag at night (09).",
+      "atmosphere": "NEW: SLACK WATER, Knik Arm about twenty minutes after an October sunset, one cold sky band low in the southwest in every wet surface, night on 09",
+      "depth_technique": "akthree PBR macro with a PMREM band environment and tilt focus (01); analytic-bevel height field relief with a two-part cast (02); akstack terraced aperture (03); per-pixel ground plane with a DEM skyline and Fresnel mirror (05); aksdf raymarch at full internal resolution (07); 2:1 dimetric block world (08); device-resolution light field with Bridson dot scrape (09)",
+      "line_voice": "still life",
+      "continuity_device": "the gold blank (what the public record leaves blank) on every frame",
+      "continuity_devices": [
+        "the gold blank, a fill-in rule that moves from the tag's TENANT line to the reader's line on 09",
+        "the twine chained edge to edge, entering each frame where the last one left",
+        "the camera on the tag: low oblique (01), straight down (02), at night (09)"
+      ],
+      "hook_archetype": "NEW: THE BLANK LINE (the absence in a public document is the hook)",
+      "palette_family": "NEW: MANILA, BRASS AND KNIK SILT",
+      "type_pairing": "Bricolage Grotesque condensed over Fraunces, JetBrains Mono instruments",
+      "narrative_structure": "cover blank, payoff, place, process, breather, money, the plan around it, the borough, the ask",
+      "techniques": [
+        "akthree PBR macro",
+        "homography-mapped DOM ink on a projected face",
+        "analytic polygon-distance bevel relief",
+        "glyph-mask deboss",
+        "akstack terrace aperture from BLM CadNSDI geometry",
+        "plied-cord ribbon",
+        "Voronoi desiccation cells",
+        "per-pixel DEM skyline and mirror water",
+        "akengrave lathe coin stacks with ghost projections",
+        "aksdf conchoidal lump with arris-gated glints",
+        "2:1 dimetric area-true block world",
+        "mezzotint burnish by Bridson dot scrape"
+      ],
+      "new_techniques_logged": [
+        "THE BLANK TAG",
+        "arris-gated glints (normal change across 2 px)",
+        "ghost-coin projections (same lathe, silver at low opacity)"
+      ],
+      "variance_dials": [
+        5,
+        2,
+        4
+      ],
+      "note": "Five rounds used. Holdouts at the per-slide cap were 05 (the hollow) and 07 (the coal lump); the flow round restored the twine link 01 to 02 and lightened 04 and 08."
     }
   ]
 }
