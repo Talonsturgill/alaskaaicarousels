@@ -1360,7 +1360,8 @@ def ship(out):
     """
     rows = []
     for r in out["index"]:
-        seed, hay = hay_seed(r), r["hay"]
+        hay = r.get("hay")
+        seed = hay_seed(r) if isinstance(hay, str) else ""
         if seed and (hay == seed or hay.startswith(seed + " ")):
             r = dict(r, hay=hay[len(seed) + 1:], h=1)
         rows.append(r)
