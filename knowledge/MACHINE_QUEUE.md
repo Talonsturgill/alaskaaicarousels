@@ -36,6 +36,8 @@ it can't fix safely stays open with ` | escalated <date>: <why>` and goes in the
 
 - [ ] 2026-10-08 | repeat: 0 | contact_probe: the proposed ground rect can land on the object itself | evidence: No.81 slide 01, the h axis took the lit tag face (L* 67) as the pool and proposed dL 59 for a cast that measures dL 6.5 on the silt; slide 06, the v axis took the twine crossing the shelf front as the lit ground | fix: reject a ground rect whose pixels match the object's own albedo cluster or lie inside the declared motif rect, and fall back to the other axis
 
+- [ ] 2026-10-08 | repeat: 1 | docket: one new item can trip the ask payload ceiling and the landscape phone map fit | evidence: No.80 (2026-10-07) and No.81 (2026-10-08) each added one docket item and each went red on both `checks` (ask_answers inline ceiling) and `mobile` (iPhone 13 landscape fit under 55 percent), fixed by hand in the run both days | fix: a pre-ship check in Phase 3.5 that builds the ask payload and the docket map with the day's ledger and reports the payload headroom and the landscape fit before the PR opens
+
 ## Done
 
 - [x] 2026-10-04 | repeat: 1 | render: synchronous art before the first await blocks page load | evidence: No.77 slides 06 (aksdf, 90 to 140 s) and 07 (per-pixel paint); No.78 slide 06 (per-pixel heightfield) timed out page.goto('load') at 45 s until the slide awaited load and yielded once | fix: render.py detects a load timeout with no renderReady settled and prints the remedy (await the load event, then never yield after the long block); SKILL.md states it beside the 30 s race note | shipped 2026-10-06 d22914f9

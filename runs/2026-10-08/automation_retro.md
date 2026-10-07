@@ -17,6 +17,8 @@ trend_check over the last 10 scored runs names Artwork craft as the weakest crit
 - Phase 8, critics without a crop: every round's critics said again that they judged texture from the 1600 px view. Repeat raised on the open item.
 - Phase 8, rounds: all four per-slide rounds used. 05 and 07 were holdouts at round 4 and carried a final fix into the flow critic unreviewed per slide.
 
+- Phase 11 to 12, branch CI: two checks went red on the first push, both caused by the day's new docket item. The ask box's inline payload passed its 190,000-byte ceiling (189.6 KB), and the landscape phone map fit fell to 53 percent (floor 55) because the item's pin sat 2.2 map units from the Anchorage pins, just outside the 2.0-unit shared-coordinate rule. Fixed in the run without loosening either gate: the payload now ships each row's hay without the opening it shares with the row's own fields and the page rebuilds it byte for byte (170.1 KB, asserted in the self test), and the item uses Port MacKenzie's own coordinate (57 percent). A third red (the embed regression's fixture row has no hay) was the first fix's own edge and is fixed. This is the second day running that one new docket item tripped both gates; queued for the weekly pass.
+
 ## Upgrades this run
 
-No upgrades. The pass is weekly; nothing broke mid-run that needed an engine change to finish the deck.
+No upgrades. The pass is weekly. The two CI repairs above are fixes to what broke in this run's PR (scripts/ask_answers.py, scripts/site_build.py, the docket item's coordinate), carried in the fix commits, not upgrade commits.

@@ -21,7 +21,7 @@
   "assemble": "done: final/carousel.pdf vector 6.93 MB, contact sheet, thumbs",
   "scoring": "done: 8.41, ship; art 6.8 under the craft floor at the five-round cap, cycle stands down",
   "ship": "done: runs/2026-10-08 copied, webp 10.1x, pdf -10 percent, site rebuilt (140 pages), parsers, scanner, docket dates, site_fresh PASS, no alerts, prune freed 0.73M, ledgers and FIELD_NOTES appended",
-  "upgrade": "pending",
+  "upgrade": "done: weekly pass not due (machine_due exit 1), automation_retro.md written, MACHINE_QUEUE updated (10 open), no upgrades; CI repairs carried in fix commits",
   "gmail": "pending",
   "retro": "pending"
  },
