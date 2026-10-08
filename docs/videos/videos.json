@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-10-08",
+      "date": "2026-10-08",
+      "title": "Who Writes the Study",
+      "caption": "FERC accepted DeepGreen's application for a preliminary permit for a proposed Cook Inlet data center. Comments and motions to intervene are due November 2nd.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-08-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-08-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-08-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-08-poster_thumb.jpg"
+    },
+    {
       "id": "fortune-ball-ai-jobs-2026-10-07",
       "date": "2026-10-07",
       "title": "The Fortune Ball Has No AI Number",
