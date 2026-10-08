@@ -128,6 +128,11 @@ def slides():
         13: akt(13, env034, STEEL.replace("EMI", "0.9") + "\n  plate.material.visible = false;"),
         # Codex, PR #422: an environment named inside a string literal sets nothing up
         14: HEAD.replace("SLIDE_NO", "14") + HAND.replace("scene.add(new THREE.AmbientLight", "const note = 'scene.environment = texture'; scene.add(new THREE.AmbientLight"),
+        # Codex, PR #422: a / inside a regex literal is not a comment
+        17: HEAD.replace("SLIDE_NO", "17") + HAND.replace("{ color: 0xc8ccd0, metalness: 0.92",
+                                                          "{ name: /^https?:\\/\\//.source, color: 0xc8ccd0, metalness: 0.92"),
+        # Codex, PR #422: a metal repaired between two snapshots is judged on the last
+        18: akt(18, "", STEEL.replace("EMI", "2.8") + "\n  await AKT.snapshot(R); AKT.environment(R, { intensity: 0.34 });"),
         # Codex, PR #422: metalness set after construction is still metal
         15: HEAD.replace("SLIDE_NO", "15") + HAND.replace("metalness: 0.92, ", "").replace(
             "tube.position.y = 0.6;", "tube.material.metalness = 0.92; tube.position.y = 0.6;"),
@@ -160,7 +165,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the fifteen reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the seventeen reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -191,6 +196,9 @@ def main():
         checks.append((not warns.get(13), "13 an invisible material is not audited"))
         checks.append((has(14, "metal with nothing to reflect"),
                        "14 'scene.environment = texture' inside a string does not silence the scan"))
+        checks.append((has(17, "metal with nothing to reflect"),
+                       "17 a // inside a regex literal on the metal's line does not hide it"))
+        checks.append((not warns.get(18), "18 a metal lit after a first snapshot is judged on the final one"))
         checks.append((has(15, "metal with nothing to reflect"),
                        "15 `material.metalness = 0.92` after construction WARNs"))
         checks.append((has(16, "metal with nothing to reflect"),

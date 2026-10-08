@@ -627,8 +627,11 @@ export function init(THREE) {
   AKT.snapshot = async function (R, o) {
     o = o || {};
     try {
-      const reg = window.__aktAudit || (window.__aktAudit = []);
-      for (const f of AKT.audit(R)) if (reg.length < 60) reg.push(f);
+      // the LATEST audit of each scene: a material repaired between two
+      // snapshots must not be reported from the first (Codex, PR #422)
+      const by = window.__aktAuditByScene || (window.__aktAuditByScene = {});
+      by[R.scene.uuid] = AKT.audit(R).slice(0, 60);
+      window.__aktAudit = [].concat(...Object.values(by)).slice(0, 60);
     } catch (e) { /* the audit never stops a render */ }
     R.renderer.render(R.scene, R.camera);
     await new Promise(r => requestAnimationFrame(() => r()));

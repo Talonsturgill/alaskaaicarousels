@@ -2181,8 +2181,8 @@ IN_PAGE_QA_JS = """
         if (c.nodeType === 3) s += c.nodeValue;
         else if (c.nodeType === 1) {
           if ((c.tagName || "").toUpperCase() === "BR") { s += " "; continue; }
-          const cs2 = getComputedStyle(c);
-          if (cs2.display === "none" || cs2.visibility === "hidden" || parseFloat(cs2.opacity) === 0) continue;
+          // the same clip-aware rule as the heading and its lines, at every depth (Codex, PR #422)
+          if (!_isShown(c)) continue;
           dive(c);
         }
       }
@@ -4709,6 +4709,23 @@ ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b)|
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
 
 
+def _regex_context(js: str, i: int) -> bool:
+    """Whether a / at i opens a regex literal rather than dividing: true after an
+    operator, an opening bracket, a comma or semicolon, a keyword such as return,
+    or at the start, the usual tokenizer heuristic. A // or /* is a comment."""
+    if js[i + 1:i + 2] in ("/", "*"):
+        return False
+    k = i - 1
+    while k >= 0 and js[k] in " \t\r\n":
+        k -= 1
+    if k < 0:
+        return True
+    if js[k] in "(,=:[!&|?{};+-*%<>~^":
+        return True
+    m = re.search(r"(?:return|typeof|instanceof|in|of|new|delete|void|throw|case|do|else)$", js[:k + 1])
+    return bool(m and (m.start() == 0 or not (js[m.start() - 1].isalnum() or js[m.start() - 1] in "_$")))
+
+
 def _js_code_only(js: str) -> str:
     """JavaScript with every string, template literal and comment blanked to
     spaces (newlines kept, so line numbers survive). One pass that knows which
@@ -4728,6 +4745,21 @@ def _js_code_only(js: str) -> str:
         elif two == "/*":
             j = js.find("*/", i + 2); j = n if j < 0 else j + 2
             blank(i, j); i = j
+        elif c == "/" and _regex_context(js, i):
+            # a regex literal, so /^https?:\/\// is not a comment (Codex, PR #422)
+            j, in_class = i + 1, False
+            while j < n and js[j] != "\n":
+                ch = js[j]
+                if ch == "\\":
+                    j += 2; continue
+                if ch == "[":
+                    in_class = True
+                elif ch == "]":
+                    in_class = False
+                elif ch == "/" and not in_class:
+                    break
+                j += 1
+            blank(i + 1, j); i = j + 1
         elif c in "\"'`":
             j = i + 1
             while j < n and js[j] != c:
