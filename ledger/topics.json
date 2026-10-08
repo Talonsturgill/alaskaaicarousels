@@ -3222,6 +3222,44 @@
       "sources_lead": "Mat-Su Sentinel (October 6th), University of Alaska land notice (January 30th), DOE project selection page, Mat-Su Borough RS 26-019",
       "claims": 55,
       "note": "Lead from the Mat-Su Sentinel's October 6th report; parcels drawn from BLM CadNSDI sections and the notice's legal descriptions. The deck never says the lease is for a data center (C16)."
+    },
+    {
+      "run_date": "2026-10-09",
+      "carousel_no": 82,
+      "topic": "NSF's EPSCoR smart bio-refinery award: UAA leads (2614749, $3,824,575, PI Brandon Briggs) with UAF (2614751, $913,037, Srijan Aggarwal) and Montana Tech (2614750, $1,260,800, Robin Bullock), the University of Wyoming a subawardee, about $6 million from September 1st to August 31st, 2030, one of eight EPSCoR projects sharing $39.9 million. Microbes (Shewanella oneidensis) are to recover rare earth elements from coal refuse and ash; AI is planned to screen feedstocks with a Virtual Assay and to run the bioreactor with reinforcement-learning controllers inside a digital twin linked to microgrid simulators, adjusting as energy availability changes. The separate UAF-led Critical Mineral Accelerator Engine ($15 million for two years) plans AI to locate deposits. Background: Alaska mines no rare earths; earlier UAA lab work found Usibelli coal's rare earths too thin to mine with acid.",
+      "angle": "THE WRONG JOB: the reader expects AI that finds minerals; this award's AI ranks waste and budgets power. The power budget is the Alaska half of the bet, and it is a plan with an end date, so it is graded on August 31st, 2030.",
+      "entities": [
+        "National Science Foundation",
+        "NSF EPSCoR",
+        "University of Alaska Anchorage",
+        "University of Alaska Fairbanks",
+        "Montana Technological University",
+        "University of Wyoming",
+        "Brandon Briggs",
+        "Srijan Aggarwal",
+        "Robin Bullock",
+        "Institute of Northern Engineering",
+        "Usibelli Coal Mine",
+        "Critical Mineral Accelerator Engine"
+      ],
+      "keywords": [
+        "rare earth elements",
+        "coal refuse",
+        "fly ash",
+        "biomining",
+        "Shewanella oneidensis",
+        "bioreactor",
+        "digital twin",
+        "microgrid simulator",
+        "reinforcement learning",
+        "Virtual Assay",
+        "EPSCoR",
+        "smart bio-refinery"
+      ],
+      "headline": "Alaska's newest rare-earth AI won't hunt for ore. It will mind microbes.",
+      "sources_lead": "NSF award records 2614749, 2614750 and 2614751; UAF news (October 5th); NSF EPSCoR FEC announcement (August); UAA news (January 22nd)",
+      "claims": 62,
+      "note": "UAF's October 5th announcement is the in-window peg. The Usibelli and Healy material is earlier UAA lab work and the deck never calls it this award's feedstock (C36 to C40). Runner-up Flock cameras in Anchorage (C53 to C62) held for a primary source."
     }
   ]
 }

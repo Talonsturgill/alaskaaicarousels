@@ -1,0 +1,29 @@
+{
+  "run_date": "2026-10-09",
+  "carousel_no": 82,
+  "effort": "high",
+  "revision_rounds": 5,
+  "date_note": "Woke 22:14 AKDT on October 7th (06:14 UTC October 8th), the regular daily slot. runs/2026-10-07 holds No.80 and runs/2026-10-08 holds No.81 (dated ahead by the same rule), both complete and merged (PR #420, PR #421). Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-09. run_guard (UTC default 2026-10-08) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-09 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "started_utc": "2026-10-08T06:16:30.184139Z",
+  "phases": {
+    "wake": "done: out/2026-10-09/plan.md, run_state.json, WORKLOG.md",
+    "craft_refresh": "done: one search (vendor blogs, document posts 6.6 to 6.9 percent ER; nothing beyond CAROUSEL_CRAFT); FIELD_NOTES untouched",
+    "research": "done: out/2026-10-09/scout_merge.md (6 scouts, 140 searches, every scout at or under its cap)",
+    "claims": "done: out/2026-10-09/claims.json (62 claims, 52 primary, 3 stories surviving, 12 killed); claims_check PASS (2 warn, RAISE claims undated)",
+    "docket": "done: worklist budget raised from 6 to 10 after a deferred tail on consecutive days; all 10 refreshed (Bradley Lake new FERC notice 91 FR 63543 with November 30th and January 14th dates; RTCC note on the private Flock install; eight checked and unchanged); watch.json read (2 bills agree, 0 hearings, 31 standing candidates, failed none); staleness now clear; commits 09505144, 9270492a",
+    "gas_watch": "done with an incident: cron_health PASS (all scheduled workflows), site_signoff PASS 140 pages, pagecheck PASS; gaswatch_health FAIL at 06:2xZ, 07:54Z, 08:10Z and 08:22Z on one check (source reading published: CINGSA's 21:29 Alaska reading of October 7th uncollected because GitHub had not dispatched the 04:40Z or 07:20Z slots; workflow_dispatch 403). gaswatch_incident.json filed (blocker github), gate WARN; named in the draft.",
+    "selection": "done: out/2026-10-09/selection.md (NSF smart bio-refinery; runner-up Flock in Anchorage)",
+    "directors_room": "done: 3 treatment directors (cinematographer THE ONER, historian-of-the-future THE PRE-LABELLED CORE BOX, field-documentarian THE MAGNIFICATION LADDER); synthesis in selection.md; storyboard.md 9 dossiers, dossier_check PASS",
+    "copy": "done: caption room (both first-round candidates rejected by the critic; reassigned LEDGER TALLY + COLD OPEN, WARM CLOSE won), caption.txt 882 chars PASS, copy.json by the copywriter with two showrunner accuracy fixes",
+    "art_build": "done: nine bespoke frames (analytic glass-shell tracer x2, akthree PBR, reflected-light relief, transmitted-light domes, hachure over Lambert cones, mezzotint, depth-weighted wireframe, gradient-solid cylinders); qa WARN 1, bespoke 0.159, tonal arc PASS",
+    "pixel_review": "done: four per-slide rounds (5, 5, 4 and 4 critics); 08 shipped in round 2, 01 and 06 in round 4; 02, 03, 04, 05, 07, 09 holdouts at the cap with post-round artifact fixes; verdicts in critics/round2_verdicts.md",
+    "flow_review": "done: flow critic revise 7.4 (predicted art 6.8), flow_review.json; round 5 applied its sequence and craft work order (04 light beat, 06 carries 02's headplate, 05 heap footprints, 07 ring into the void, 02 steel, 03 polish)",
+    "assemble": "done: 9 slides, vector PDF 5.27 MB (4.34 MB after shrink_pdfs), 9 thumbs, contact sheet",
+    "scoring": "done: 8.20 by the rubric formula against the round-5 ladder threshold 7.7 (ship); art 6.5 under the craft floor at the five-round cap, so no craft cycle owed; rubric weights sum to 1.10 (normalized 7.45), flagged to the owner",
+    "ship": "done: runs/2026-10-09 (WebP slides, og.jpg, shrunk PDF), ledgers (topics, artwork, captions, 3 instincts), FIELD_NOTES, 3 techniques, site rebuilt (141 pages, 82 decks), parsers/scanner/docket dates/site_fresh PASS, no alerts due, prune freed 0.76 MB",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "score": 8.2
+}
