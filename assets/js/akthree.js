@@ -205,8 +205,10 @@ export function init(THREE) {
     if (obj.isMesh) { obj.castShadow = o.cast !== false; obj.receiveShadow = o.receive !== false; }
     // A material made by AKT.mat.glass() never casts or takes a shadow (see
     // there). Only that helper sets the flag, so every other scene is as before.
-    const noShadow = m => { if (m.isMesh && m.material && m.material.userData &&
-      m.material.userData.aktNoShadow) { m.castShadow = false; m.receiveShadow = false; } };
+    // A mesh may carry a material ARRAY; any glass() entry takes it out (Codex, PR #422).
+    const noShadow = m => { if (!m.isMesh || !m.material) return;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      if (mats.some(mt => mt && mt.userData && mt.userData.aktNoShadow)) { m.castShadow = false; m.receiveShadow = false; } };
     if (obj.traverse) obj.traverse(noShadow); else noShadow(obj);
     R.scene.add(obj);
     return obj;
@@ -350,8 +352,10 @@ export function init(THREE) {
     const envI = ('environmentIntensity' in scene && scene.environmentIntensity != null)
       ? scene.environmentIntensity : 1;
     const seen = new Set();
+    // three.js draws nothing under an invisible ancestor, so neither does the audit (Codex, PR #422)
+    const shown = o => { for (let p = o; p; p = p.parent) if (!p.visible) return false; return true; };
     scene.traverse(m => {
-      if (!m.isMesh || !m.visible) return;
+      if (!m.isMesh || !shown(m)) return;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mt of mats) {
         if (!mt || !mt.isMeshStandardMaterial) continue;

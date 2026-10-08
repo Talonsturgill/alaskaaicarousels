@@ -73,6 +73,11 @@ SHELL = """const broth = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.9
   shell.name = 'vessel shell'; shell.position.y = 0.7; AKT.add(R, shell);
   window.__shellShadow = [shell.castShadow, shell.receiveShadow];"""
 
+HIDDEN_GROUP = """
+  const ghost = new THREE.Group(); ghost.visible = false;
+  ghost.add(new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 1.4, 64, 1, true), PALE_MAT));
+  AKT.add(R, ghost);"""
+
 PALE = ("new THREE.MeshStandardMaterial({ color: 0xd8e6f2, roughness: 0.05, metalness: 0, "
         "transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false })")
 
@@ -107,8 +112,14 @@ def slides():
         4: akt(4, env034, SHELL.replace("MAT", PALE)),
         5: akt(5, env034, SHELL.replace("MAT", "AKT.mat.glass()")),
         6: HEAD.replace("SLIDE_NO", "06") + HAND,
+        # Codex, PR #422: glass() inside a material ARRAY still leaves the shadow pass
+        8: akt(8, env034, SHELL.replace("MAT", "[AKT.mat.glass(), AKT.mat.clay(0x6b4a2e)]")),
+        # Codex, PR #422: a pale shell under an INVISIBLE group is never drawn, so never audited
+        9: akt(9, env034, STEEL.replace("EMI", "2.8") + HIDDEN_GROUP),
     }
 
+
+HIDDEN_GROUP = HIDDEN_GROUP.replace("PALE_MAT", PALE)
 
 MATERIAL_WARNS = ("metal with nothing to reflect", "transparent shell casts a shadow",
                   "transparent shell washes")
@@ -131,7 +142,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the six reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the eight reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -151,6 +162,8 @@ def main():
         checks.append((has(4, "transparent shell casts a shadow") and has(4, "transparent shell washes"),
                        "04 a pale shell added with AKT.add WARNs for its shadow and its milk"))
         checks.append((not warns.get(5), "05 the same shell from AKT.mat.glass() passes clean"))
+        checks.append((not warns.get(8), "08 glass() inside a material array passes clean (no shadow warn)"))
+        checks.append((not warns.get(9), "09 a pale shell under an invisible group is not audited"))
         checks.append((has(6, "metal with nothing to reflect"),
                        "06 No.80's hand-rolled metal with no environment WARNs (static scan)"))
         mat_fails = [f for s in mq["slides"] for f in s["fails"]

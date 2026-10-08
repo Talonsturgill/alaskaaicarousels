@@ -134,6 +134,10 @@
     var limitW = null;
     if (authored) {
       el.style.whiteSpace = "nowrap";
+      // every authored line holds too: a child rule (h1 span {white-space: normal})
+      // would otherwise beat the inherited nowrap and soft-wrap (Codex, PR #422)
+      var kids = el.querySelectorAll("*");
+      for (var ki = 0; ki < kids.length; ki++) kids[ki].style.whiteSpace = "nowrap";
       limitW = opts.width != null ? opts.width : el.clientWidth;
     }
 

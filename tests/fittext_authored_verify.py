@@ -35,16 +35,19 @@ PAGE = """<!doctype html><html><head><meta charset="utf-8">
 h1{position:absolute;left:96px;top:100px;width:620px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
 h2{position:absolute;left:96px;top:600px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
 h3{position:absolute;left:96px;top:1000px;width:620px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
-h3 span{display:block}</style>
+h3 span{display:block}
+h4{position:absolute;left:96px;top:1180px;width:620px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
+h4 span{display:block;white-space:normal}</style>
 <script src="AKTYPE"></script></head><body>
 <h1 id="a">Ash holds it<br>locked in the waste for now</h1>
 <h2 id="b">Ash holds it<br>locked in the waste for now</h2>
 <h3 id="c"><span>Ash holds it</span><span>locked in the waste for now</span></h3>
+<h4 id="d"><span>Ash holds it</span><span>locked in the waste for now</span></h4>
 <script>
 window.run = async (opt) => {
   await document.fonts.ready;
   const out = {};
-  for (const id of ['a', 'b', 'c']) {
+  for (const id of ['a', 'b', 'c', 'd']) {
     const el = document.getElementById(id);
     const o = Object.assign({ min: 40, max: 96, maxLines: 3 }, opt ? opt : {});
     if (opt && id === 'b') o.width = 620;
@@ -93,7 +96,11 @@ def main():
          % res["authored"]["b"]["right"]),
         (res["authored"]["c"]["lines"] == 2 and res["authored"]["c"]["size"] == au["size"],
          "spans: a span-per-line headline fits to the same %s px" % res["authored"]["c"]["size"]),
-        (res["authored"]["reg"] == [True, True, True] and res["plain"]["reg"] == [False, False, False],
+        # Codex, PR #422: a child rule (h4 span {white-space: normal}) must not let a line soft-wrap
+        (res["authored"]["d"]["lines"] == 2 and res["authored"]["d"]["size"] == au["size"],
+         "child rule: spans styled white-space:normal still hold 2 lines at %s px"
+         % res["authored"]["d"]["size"]),
+        (res["authored"]["reg"] == [True] * 4 and res["plain"]["reg"] == [False] * 4,
          "registry: __akFit records authored per call"),
         (all(res["plain"][k]["size"] == hd[k]["size"] and res["plain"][k]["lines"] == hd[k]["lines"]
              for k in "abc"),

@@ -2179,7 +2179,12 @@ IN_PAGE_QA_JS = """
           // each child is a line, so the lines join with a space (_flatText
           // would run "ranks" into "the"); the sync check compares letters and
           // digits only, so an inline split mid-word still matches
-          const full = Array.from(kids).map(k => _flatText(k)).join(" ")
+          // a child the reader can't see contributes no line (Codex, PR #422)
+          const full = Array.from(kids).filter(k => {
+                           const ks = getComputedStyle(k), kb = k.getBoundingClientRect();
+                           return ks.display !== "none" && ks.visibility !== "hidden" &&
+                                  parseFloat(ks.opacity) !== 0 && kb.width > 0 && kb.height > 0;
+                         }).map(k => _flatText(k)).join(" ")
                          .trim().replace(/\\s+/g, " ").slice(0, 400);
           if (full && cr.width > 0 && cr.height > 0 && ccs.display !== "none" &&
               ccs.visibility !== "hidden" && parseFloat(ccs.opacity) !== 0) {

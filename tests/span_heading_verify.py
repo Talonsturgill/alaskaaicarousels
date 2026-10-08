@@ -20,6 +20,7 @@ It renders a real slide through render.py and checks:
   green   with them, it is found, and so is the <br> headline beside it
   narrow  a block of two <div> children is not a composite, and a shredded
           headline (a word dropped) is still reported missing
+  hidden  a display:none child's words never join the composite (Codex, PR #422)
   inert   qa.py's machine_qa.json is identical with and without the field
 """
 import json
@@ -40,16 +41,20 @@ h1{position:absolute;left:96px;top:120px;font-family:"Bricolage Grotesque",sans-
 h1 span{display:block;white-space:nowrap}
 h2{position:absolute;left:96px;top:520px;font-family:"Bricolage Grotesque",sans-serif;font-size:64px;color:#f2f6fd;white-space:nowrap}
 .pair{position:absolute;left:96px;top:820px;font-family:"Manrope",sans-serif;font-size:32px;color:#cfd8e6}
-.w{position:absolute;right:96px;bottom:96px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#cfd8e6}</style>
+.w{position:absolute;right:96px;bottom:96px;font-family:"JetBrains Mono",monospace;font-size:24px;color:#cfd8e6}
+h3{position:absolute;left:96px;top:1000px;font-family:"Manrope",sans-serif;font-size:40px;color:#f2f6fd}
+h3 span{display:block;white-space:nowrap}</style>
 </head><body>
 <h1><span>The vessel ranks</span><span>the feed it eats</span></h1>
 <h2>A second headline<br>written with a break</h2>
 <div class="pair"><div>first block line</div><div>second block line</div></div>
+<h3><span>A shown line</span><span style="display:none">never rendered words</span><span>and its pair</span></h3>
 <div class="w">alaskaaihq.com 01 / 01</div>
 </body></html>"""
 
 HEADLINE = "The vessel ranks the feed it eats"
 BR_HEADLINE = "A second headline written with a break"
+HIDDEN_KID = "A shown line and its pair"
 
 
 def run(cmd):
@@ -69,8 +74,13 @@ def main():
         rr = json.loads((rd / "render_report.json").read_text())
         comps = rr["slides"][0].get("text_composites") or []
         print("  text_composites: %s" % [c["full"] for c in comps])
-        checks.append(([c["full"] for c in comps] == [HEADLINE],
-                       "exactly the span-per-line <h1> is recorded as a composite"))
+        checks.append(([c["full"] for c in comps] == [HEADLINE, HIDDEN_KID],
+                       "exactly the two span-per-line headings are recorded as composites"))
+        # Codex, PR #422: a hidden child must not lend its words to the composite
+        hid = {"slides": [{"n": 1, "headline": "A shown line never rendered words and its pair"}]}
+        _, misses, _, _, _ = cs.check(hid, rr)
+        checks.append((len(misses) == 1 and not any("never rendered" in c["full"] for c in comps),
+                       "hidden: a display:none child's words are not in the composite"))
 
         copy = {"slides": [{"n": 1, "headline": HEADLINE, "kicker": BR_HEADLINE}]}
         pre = json.loads(json.dumps(rr))
