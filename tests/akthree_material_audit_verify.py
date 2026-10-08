@@ -143,6 +143,8 @@ def slides():
             "tube.position.y = 0.6;", "const tag = `m ${tube.material.metalness = 0.92}`; tube.position.y = 0.6;"),
         # ...and an environment set inside one is still an environment
         21: HEAD.replace("SLIDE_NO", "21") + HAND.replace("scene.add(new THREE.AmbientLight", "const envTex = null; const etag = `e ${scene.environment = envTex}`; scene.add(new THREE.AmbientLight"),
+        # Codex, PR #423: an expression that only STARTS with a primitive is still a texture
+        22: HEAD.replace("SLIDE_NO", "22") + HAND.replace("scene.add(new THREE.AmbientLight", "const envTex = null; scene.environment = 0 ? null : envTex; scene.add(new THREE.AmbientLight"),
         # Codex, PR #422: a // inside a URL string is not a comment
         16: HEAD.replace("SLIDE_NO", "16") + HAND.replace("{ color: 0xc8ccd0, metalness: 0.92",
                                                           "{ name: 'https://cdn.example/a', color: 0xc8ccd0, metalness: 0.92"),
@@ -172,7 +174,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the twenty reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the twenty-one reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -215,6 +217,7 @@ def main():
         checks.append((has(20, "metal with nothing to reflect"),
                        "20 a metalness set inside a template ${...} WARNs"))
         checks.append((not warns.get(21), "21 an environment set inside a template ${...} counts"))
+        checks.append((not warns.get(22), "22 `scene.environment = 0 ? null : envTex` counts as an environment"))
         checks.append((has(6, "metal with nothing to reflect"),
                        "06 No.80's hand-rolled metal with no environment WARNs (static scan)"))
         mat_fails = [f for s in mq["slides"] for f in s["fails"]

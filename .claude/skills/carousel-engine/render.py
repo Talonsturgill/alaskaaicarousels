@@ -4704,9 +4704,13 @@ METAL_RE = re.compile(r"\bmetalness\s*(?::|=(?!=))\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*
 # call that actually gives the scene or a material something to reflect.
 # ...and an assignment of null or undefined is the absence of one (Codex, PR #422),
 # as is a string, number or boolean: config.environment = "production" names a
-# deploy target, never a texture (Codex, PR #422, eighth round).
-ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b|true\b|false\b|[\"'`\d])"
-                          r"|\benvMap\s*[:=](?!=)(?>\s*)(?!null\b|undefined\b|true\b|false\b|[\"'`\d])"
+# deploy target, never a texture (Codex, PR #422, eighth round). Only when it is
+# the WHOLE value, though: `= true && tex` or `= 0 ? null : tex` is a texture
+# (Codex, PR #423). Strings arrive here already blanked by _js_code_only.
+_ENV_PRIMITIVE = (r"(?!(?:null|undefined|true|false|\d[\w.]*|[\"'][^\"'\n]*[\"']|`[^`]*`)"
+                  r"\s*(?:[;,)\]}\n]|$))")
+ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)" + _ENV_PRIMITIVE +
+                          r"|\benvMap\s*[:=](?!=)(?>\s*)" + _ENV_PRIMITIVE +
                           r"|\bPMREMGenerator\b|\bRoomEnvironment\b"
                           r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
