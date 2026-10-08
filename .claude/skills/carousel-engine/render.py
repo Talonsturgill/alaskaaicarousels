@@ -2048,7 +2048,7 @@ CLIP_RULE_HOOK_JS = """
 IN_PAGE_QA_JS = """
 () => {
   const W = window.innerWidth, H = window.innerHeight;
-  const out = { text_nodes: [], overflow_warnings: [], fonts_missing: [], body_overflow: false };
+  const out = { text_nodes: [], text_composites: [], overflow_warnings: [], fonts_missing: [], body_overflow: false };
   const de = document.documentElement, b = document.body;
   // data-breather on <body> declares this slide a deliberate rest beat, which
   // demotes qa.py's frame-balance FAIL to a WARN. Not a free pass: the dossier
@@ -2153,7 +2153,44 @@ IN_PAGE_QA_JS = """
   while ((el = walk.nextNode())) {
     const hasText = Array.from(el.childNodes).some(
       n => n.nodeType === 3 && n.textContent.trim().length > 0);
-    if (!hasText) continue;
+    if (!hasText) {
+      // AN AUTHORED-BREAK HEADING BUILT FROM ONE SPAN PER LINE (2026-10-09,
+      // weekly pass; queue item 2026-10-07 at repeat 1). `<h1><span>line
+      // one</span><span>line two</span></h1>` holds no direct text, so the
+      // element is skipped above and only its spans are recorded; no element
+      // carries the headline whole, and copy_sync_check failed every headline
+      // of No.80 and No.81 until each was rebuilt with <br> by hand. Record the
+      // joined string of such a block in its own list, `text_composites`, which
+      // copy_sync_check reads as one more candidate string. It is NOT a text
+      // node: no layout, contrast or wrap check reads it, so nothing qa.py
+      // judges changes, and the spans are still recorded and checked as before.
+      const kids = el.children;
+      if (kids.length >= 2 && out.text_composites.length < 40) {
+        let spans = 0, inlineOnly = true;
+        for (const k of kids) {
+          const tg = (k.tagName || "").toUpperCase();
+          if (tg === "BR") continue;
+          if (["SPAN", "EM", "STRONG", "B", "I", "MARK", "SMALL", "SUB", "SUP"].includes(tg)) spans++;
+          else { inlineOnly = false; break; }
+        }
+        if (inlineOnly && spans >= 2) {
+          const ccs = getComputedStyle(el);
+          const cr = el.getBoundingClientRect();
+          // each child is a line, so the lines join with a space (_flatText
+          // would run "ranks" into "the"); the sync check compares letters and
+          // digits only, so an inline split mid-word still matches
+          const full = Array.from(kids).map(k => _flatText(k)).join(" ")
+                         .trim().replace(/\\s+/g, " ").slice(0, 400);
+          if (full && cr.width > 0 && cr.height > 0 && ccs.display !== "none" &&
+              ccs.visibility !== "hidden" && parseFloat(ccs.opacity) !== 0) {
+            out.text_composites.push({ full: full, tag: (el.tagName || "").toLowerCase(),
+              x: Math.round(cr.x), y: Math.round(cr.y),
+              w: Math.round(cr.width), h: Math.round(cr.height) });
+          }
+        }
+      }
+      continue;
+    }
     const cs = getComputedStyle(el);
     if (cs.display === "none" || cs.visibility === "hidden" || parseFloat(cs.opacity) === 0) continue;
     const r = el.getBoundingClientRect();
@@ -4435,6 +4472,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                  scale: float, timeout_ms: int) -> dict:
     rec = {"file": path.name, "png": out_png.name, "console_errors": [], "page_errors": [],
            "overflow_warnings": [], "fonts_missing": [], "text_nodes": [],
+           "text_composites": [],
            "body_overflow": False, "canvas_text": [], "svg_plates": [],
            "encodings": [], "contacts": [], "scales": [], "nondeterminism": [],
            "collapsed_fits": [], "vacuous_asserts": [], "material_flags": [],
@@ -4447,6 +4485,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
+           "akthree_audit": [],
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -4500,6 +4539,20 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                 vis = True
             frames += 1 if vis else 0
         qa["lit_edges_frames"] = frames
+        # AKT.audit's findings, pushed by AKT.snapshot (2026-10-09): metals
+        # with too little environment to read as metal, transparent shells that
+        # cast a shadow or wash what is behind them. Reading only; qa.py WARNs.
+        try:
+            seen, aud = set(), []
+            for f in page.evaluate("() => (window.__aktAudit || []).slice(0, 60)") or []:
+                key = (f.get("kind"), f.get("name"))
+                if key not in seen:
+                    seen.add(key)
+                    aud.append(f)
+            rec["akthree_audit"] = aud
+        except Exception:
+            pass
+        rec["text_composites"] = qa.get("text_composites") or []
         rec.update({k: qa[k] for k in ("text_nodes", "overflow_warnings",
                                        "fonts_missing", "body_overflow", "canvases",
                                        "canvas_text", "breather", "svg_plates",
@@ -4585,6 +4638,89 @@ def timeout_remedy(message: str, timeout_ms: int):
     if "Timeout" in m and "exceeded" in m and ("goto" in m or "navigat" in m.lower()):
         return LOAD_TIMEOUT_REMEDY.format(ms=timeout_ms)
     return None
+
+
+# A METAL WITH NOTHING TO REFLECT, IN A SCENE AKT NEVER SEES (2026-10-09,
+# weekly pass; queue item 2026-10-07). AKT.audit catches a weak environment on
+# any scene rendered through AKT.snapshot. No.80 built its renderer by hand, so
+# that hook never ran: an aluminium conductor at metalness 0.92 with no
+# scene.environment and no envMap rendered as a near-black rubber tube and took
+# a critic round and a PMREM of the sky to fix. A metal is lit mostly by what it
+# reflects, so a slide that loads three, sets a metalness above 0.5, and never
+# names an environment, an envMap or a PMREM generator anywhere in its source is
+# that defect, read straight off the text. Reported as an akthree_audit entry
+# and WARNed by qa.py; a slide that does any of those three things is left to
+# the in-page audit.
+METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.[6-9]\d*)\b")
+ENV_TOKEN_RE = re.compile(r"\b(environment|envMap|PMREMGenerator|fromScene|fromEquirectangular)\b")
+
+
+def scan_metal_env(html: str, name: str) -> list:
+    if "three.module" not in html:
+        return []
+    src = _strip_js_comments(html)
+    m = METAL_RE.search(src)
+    if not m or ENV_TOKEN_RE.search(src):
+        return []
+    line = src.count("\n", 0, m.start()) + 1
+    print(f"    [metal] {name}: metalness {m.group(1)} at line {line} and no "
+          f"environment, envMap or PMREM anywhere in the slide")
+    return [{"kind": "metal_no_env_static", "name": "line %d" % line,
+             "metalness": float(m.group(1)), "env": "none", "effective": 0.0,
+             "floor": 0.5}]
+
+
+# NATIVE CROPS FOR THE PIXEL CRITIC (2026-10-09, weekly machine pass; queue
+# item 2026-10-07 at repeat 2). Three runs in a row (No.80, No.81, No.82) every
+# pixel-critic report said it judged texture from "the 1600 px view" and could
+# not confirm an artifact at native size: the critic reads with the Read tool,
+# which hands a 2160x2700 frame over downscaled, so a 1-device-px moire, a hatch
+# seam or a stair-step is averaged away before anyone looks. Meanwhile the flow
+# critic's cause d (a texture artifact) was on 4 of 6 decks and 10 frames in the
+# week to October 9th, every one of them already through that loop.
+#
+# So every frame render.py writes also gets a grid of NATIVE tiles: the frame's
+# own device pixels, uncut and unscaled, each NATIVE_TILE (1080x900 device px,
+# 540x450 design px) so that each tile sits under both the long-edge and the
+# area limit a vision reader downscales at, and is therefore read at 100
+# percent. Six tiles cover a 2160x2700 frame exactly. They are written HERE,
+# beside the frame, rather than by assemble.py beside the thumbs, because a fix
+# round re-renders and re-reviews without re-assembling (Phase 9 step 3), and a
+# crop of the previous render is worse than none. crops/slide-NN.json records
+# the sha256 of the frame the tiles were cut from, so critic_brief.py can refuse
+# stale ones. They live in render/crops/, a subdirectory, so no
+# `render/slide-*.png` glob (assemble, ship_gate, the ship copy) ever sees them.
+# Pure bookkeeping: the frame PNG is untouched, and a failure here is recorded
+# and never fails a render.
+NATIVE_TILE = (1080, 900)
+
+
+def write_native_crops(png: Path, scale: float) -> dict:
+    try:
+        from PIL import Image
+        crops = png.parent / "crops"
+        crops.mkdir(exist_ok=True)
+        stem = png.stem
+        for old in crops.glob(stem + "-r*c*.png"):
+            old.unlink()
+        im = Image.open(png)
+        W, H = im.size
+        tw, th = NATIVE_TILE
+        tiles = []
+        for r, y0 in enumerate(range(0, H, th), 1):
+            for c, x0 in enumerate(range(0, W, tw), 1):
+                x1, y1 = min(W, x0 + tw), min(H, y0 + th)
+                name = "%s-r%dc%d.png" % (stem, r, c)
+                im.crop((x0, y0, x1, y1)).save(crops / name, compress_level=1)
+                tiles.append({"file": name, "px": [x0, y0, x1, y1],
+                              "design": [round(v / scale) for v in (x0, y0, x1, y1)]})
+        h = hashlib.sha256(png.read_bytes()).hexdigest()
+        man = {"frame": png.name, "frame_sha256": h, "scale": scale,
+               "tile_px": [tw, th], "tiles": tiles}
+        (crops / (stem + ".json")).write_text(json.dumps(man, indent=1))
+        return {"ok": True, "dir": "crops", "tiles": len(tiles)}
+    except Exception as e:
+        return {"ok": False, "reason": ("%s: %s" % (type(e).__name__, e))[:160]}
 
 
 def check_timeout_arg(ms: int):
@@ -4682,7 +4818,13 @@ def main():
             rec["light_conflicts"] = light["conflicts"]
             rec["source"] = source_fingerprint(s)
             rec["reuse"] = scan_reuse(s.read_text(), s.name)
-            status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
+            aud = rec.get("akthree_audit") or []
+            if not any(a.get("kind") == "metal_unlit" for a in aud):
+                aud = aud + scan_metal_env(s.read_text(), s.name)   # hand-rolled scenes
+            rec["akthree_audit"] = aud
+            if rec["ok"]:
+                rec["native_crops"] = write_native_crops(png, args.scale)
+            status ="OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
                   f"  warnings={warn}  errors={len(rec['page_errors'])}")

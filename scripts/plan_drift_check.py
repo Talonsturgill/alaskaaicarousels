@@ -671,6 +671,83 @@ SELF_TEST_REPORT = {"slides": [
 ]}
 
 
+# THE 11a REGIONS ARE THE DECLARED ONES (2026-10-09, weekly pass; queue item
+# 2026-10-09). A dossier's field 11a names the two regions its wordless claim
+# lives in, as backticked [x, y, w, h], and the slide's `data-encodes` declares
+# the regions qa.py measures (a and b). They are the same rectangles written in
+# two places, and the critic judges `encoding_reads` against the STORYBOARD's.
+# On No.82 five frames (01, 02, 04, 07, 09) carried 11a rects that no longer
+# matched data-encodes after layout moves, while dossier_check and this check
+# passed, so the critics were judging the claim at rectangles the build had
+# left. Where both exist, the set of rects in 11a must equal the union of the
+# declaration's a and b, rounded to whole px, or this FAILs naming both sides.
+# A dossier whose 11a gives rects while its slide declares no encoding at all is
+# a note, not a fail: the declaration is opt-in (SLIDE_DOSSIER_SPEC 11a), so a
+# missing one is reported as the qa.py measurement that is switched off.
+F11A_RE = re.compile(r"^\s*(?:\*\*)?11a\.?(?:\*\*)?[^\n]*", re.I | re.M)
+F11A_END_RE = re.compile(r"\n\s*\n|\n\s*(?:\*\*)?(?:1[2-9]|11b|[2-9]\d)\.|\n\s*#", re.I)
+RECT_RE = re.compile(r"`\s*\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*,"
+                     r"\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]\s*`")
+
+
+def field_11a_rects(body):
+    """The backticked rects of a dossier's field 11a, as a set of int tuples."""
+    m = F11A_RE.search(body)
+    if not m:
+        return None
+    rest = body[m.start():]
+    e = F11A_END_RE.search(rest, len(m.group(0)))
+    para = rest[:e.start()] if e else rest
+    return {tuple(int(round(float(v))) for v in r.groups()) for r in RECT_RE.finditer(para)}
+
+
+def declared_rects(slide_rec):
+    out = set()
+    for enc in slide_rec.get("encodings") or []:
+        if enc.get("error"):
+            continue
+        for side in ("a", "b"):
+            for r in enc.get(side) or []:
+                try:
+                    out.add(tuple(int(round(float(v))) for v in r[:4]))
+                except (TypeError, ValueError):
+                    continue
+    return out
+
+
+def _fmt_rects(rs):
+    return ", ".join("[%d, %d, %d, %d]" % r for r in sorted(rs)) or "none"
+
+
+def check_wordless_regions(sb_text, report):
+    fails, notes, checked = [], [], 0
+    recs = {slide_no(s.get("file")): s for s in report.get("slides", [])}
+    for no, body in slide_sections(sb_text):
+        plan = field_11a_rects(body)
+        if not plan:
+            continue
+        rec = recs.get(no)
+        if rec is None:
+            notes.append("slide %02d: not in the render report, so its 11a regions were "
+                         "not compared" % no)
+            continue
+        built = declared_rects(rec)
+        if not built:
+            notes.append("slide %02d: field 11a names %d region(s) and the slide declares no "
+                         "data-encodes, so qa.py measures nothing for its wordless claim. "
+                         "Declare it, or say in 11a that it is not declared"
+                         % (no, len(plan)))
+            continue
+        checked += 1
+        if plan != built:
+            fails.append(
+                "slide %02d: field 11a's regions are not the slide's data-encodes. In the "
+                "plan only: %s. Declared only: %s. The critic judges encoding_reads at the "
+                "storyboard's rects. %s"
+                % (no, _fmt_rects(plan - built), _fmt_rects(built - plan), REMEDY))
+    return checked, fails, notes
+
+
 def self_test():
     """Hermetic: no run dir, no network, no subprocess. Covers the shape this
     gate exists for AND the aliasing bug found while building it."""
@@ -766,6 +843,32 @@ def self_test():
     check("  no `body` in copy.json is a note, never a silent pass",
           not nfails and any("not compared" in n for n in nnotes), nnotes)
 
+    # THE No.82 DRIFT: 11a rects left behind by a layout move.
+    sb11 = ("## SLIDE 01 x\n**11a. Wordless claim.** The gold is sealed. Regions: three\n"
+            "specks `[424, 846, 24, 24]`, `[562, 651, 24, 24]` against the rim\n"
+            "`[404, 700, 40, 160]`, reads differ.\n\n**12. Reference intent.** `[1, 2, 3, 4]`\n"
+            "## SLIDE 02 y\n11a. **WORDLESS CLAIM.** Region A `[10, 20, 30, 40]`.\n"
+            "## SLIDE 03 z\n**11a. Wordless claim.** None, a breather.\n")
+    rep11 = {"slides": [
+        {"file": "slide-01.html", "encodings": [{"reads": "differ",
+         "a": [[424, 846, 24, 24], [562, 651, 24, 24]], "b": [[404, 700, 40, 160]]}]},
+        {"file": "slide-02.html", "encodings": []},
+        {"file": "slide-03.html", "encodings": []}]}
+    n11, f11, notes11 = check_wordless_regions(sb11, rep11)
+    check("11a rects that match the declaration pass, read across a wrapped line "
+          "and stopping at field 12", n11 == 1 and not f11, (n11, f11))
+    check("  a slide whose 11a names rects and declares none is a note, not a fail",
+          any("slide 02" in x and "no data-encodes" in x for x in notes11), notes11)
+    moved = json.loads(json.dumps(rep11))
+    moved["slides"][0]["encodings"][0]["b"] = [[404, 760, 40, 160]]
+    _, mf, _ = check_wordless_regions(sb11, moved)
+    check("THE No.82 DEFECT: a declared rect moved after the plan was written FAILS, "
+          "naming both sides", len(mf) == 1 and "[404, 700, 40, 160]" in mf[0]
+          and "[404, 760, 40, 160]" in mf[0], mf)
+    check("  a dossier with no 11a, or 11a with no rects, is not compared",
+          field_11a_rects("**12. x** `[1, 2, 3, 4]`") is None
+          and not field_11a_rects("**11a. Wordless claim.** None."))
+
     with tempfile.TemporaryDirectory() as td:
         run = Path(td) / "2026-01-01"
         run.mkdir()
@@ -846,15 +949,17 @@ def main():
     n_claims, cfails, cnotes = res
     n_counts, dfails, dnotes = check_declared_counts(sb_text, build_counts(report))
     n_body, bfails, bnotes = check_body_copy(sb_text, copy)
+    n_11a, wfails, wnotes = check_wordless_regions(sb_text, report)
 
     out = {
         "run_dir": str(run),
         "claims_indexed": n_claims,
         "counts_checked": n_counts,
         "bodies_checked": n_body,
+        "wordless_regions_checked": n_11a,
         "generated_blocks_skipped": blocks,
-        "fails": cfails + dfails + bfails,
-        "notes": cnotes + dnotes + bnotes,
+        "fails": cfails + dfails + bfails + wfails,
+        "notes": cnotes + dnotes + bnotes + wnotes,
     }
     out["verdict"] = "FAIL" if out["fails"] else "PASS"
 
@@ -866,8 +971,9 @@ def main():
         for n in out["notes"]:
             print("  note: %s" % n)
         print("plan_drift_check: %s -- %d claims indexed, %d declared counts "
-              "checked, %d body quote(s) checked, %d drift(s)"
-              % (out["verdict"], n_claims, n_counts, n_body, len(out["fails"])))
+              "checked, %d body quote(s) checked, %d 11a region set(s) checked, "
+              "%d drift(s)"
+              % (out["verdict"], n_claims, n_counts, n_body, n_11a, len(out["fails"])))
     return 1 if out["fails"] else 0
 
 

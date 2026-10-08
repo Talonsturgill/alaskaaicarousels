@@ -203,6 +203,11 @@ export function init(THREE) {
     obj.traverse ? obj.traverse(m => { if (m.isMesh) { m.castShadow = o.cast !== false; m.receiveShadow = o.receive !== false; } })
                  : null;
     if (obj.isMesh) { obj.castShadow = o.cast !== false; obj.receiveShadow = o.receive !== false; }
+    // A material made by AKT.mat.glass() never casts or takes a shadow (see
+    // there). Only that helper sets the flag, so every other scene is as before.
+    const noShadow = m => { if (m.isMesh && m.material && m.material.userData &&
+      m.material.userData.aktNoShadow) { m.castShadow = false; m.receiveShadow = false; } };
+    if (obj.traverse) obj.traverse(noShadow); else noShadow(obj);
     R.scene.add(obj);
     return obj;
   };
@@ -296,6 +301,86 @@ export function init(THREE) {
     emissive: (c, i, o) => new THREE.MeshStandardMaterial(Object.assign(
       { color: 0x0a0f18, emissive: c != null ? c : 0xffc72c,
         emissiveIntensity: i != null ? i : 2.0, roughness: 0.6 }, o)),
+    /* GLASS (2026-10-09, weekly pass; No.82 slide 02, three critic rounds).
+     * A thin transparent shell in a rasteriser is NOT glass, and the two
+     * obvious settings are two bugs that cancel. (1) A transparent mesh casts
+     * a FULL opaque shadow: No.82's 0.22-opacity shells shadowed the broth
+     * inside them completely. (2) Its albedo is still LAMBERT-LIT and
+     * alpha-blended over everything behind it: at a pale 0xd8e6f2 the broth
+     * region measured mean 107 with the shells and 52 without, so the "milk"
+     * was the glass's own diffuse term, hidden for a round only because (1)
+     * darkened it. So: a near-black albedo (the diffuse term contributes almost
+     * nothing), the read carried by the environment reflection
+     * (envMapIntensity, which needs AKT.environment or an envMap), depthWrite
+     * off so what is inside still draws, and the userData flag AKT.add reads
+     * to take the shell out of the shadow pass both ways. These are No.82's
+     * shipped values. Override anything with `o`. */
+    glass: (o) => {
+      const m = new THREE.MeshStandardMaterial(Object.assign(
+        { color: 0x0b0e12, roughness: 0.04, metalness: 0.0, transparent: true,
+          opacity: 0.26, side: THREE.DoubleSide, depthWrite: false,
+          envMapIntensity: 2.4 }, o));
+      m.userData.aktNoShadow = true;
+      return m;
+    },
+  };
+
+  /* ---- material audit --------------------------------------------------- */
+  /* AKT.audit(R or scene) (2026-10-09, weekly pass). Two material mistakes
+   * cost No.80 and No.82 four critic rounds between them, and each is a fact
+   * about the scene graph, readable before anyone looks:
+   *  - metal_unlit: a metal (metalness > 0.5) is lit almost entirely by what
+   *    it reflects, so with no environment, or a weak one, it renders as matte
+   *    grey or black rubber. No.80's aluminium conductor had no environment at
+   *    all (a 5.5 from round 1's critic); No.82's steel headplate read matte at
+   *    envMapIntensity 0.9 under environmentIntensity 0.34 (0.31 effective) and
+   *    read as steel at 2.8 (0.95). Flagged under METAL_ENV_FLOOR, 0.5.
+   *  - glass_shadow / glass_milk: a transparent mesh under opacity 0.5 that
+   *    still casts a shadow, or whose lit albedo is pale enough to wash what is
+   *    behind it (see AKT.mat.glass).
+   * snapshot() runs it on every frame and pushes the findings onto
+   * window.__aktAudit, which render.py records and qa.py WARNs on. It only
+   * reads the scene: no pixel changes. Returns the list. */
+  const METAL_ENV_FLOOR = 0.5, GLASS_OPACITY = 0.5, GLASS_PALE = 0.2;
+  AKT.audit = function (R) {
+    const scene = R && R.isScene ? R : (R && R.scene);
+    const found = [];
+    if (!scene || !scene.traverse) return found;
+    const sceneEnv = !!scene.environment;
+    const envI = ('environmentIntensity' in scene && scene.environmentIntensity != null)
+      ? scene.environmentIntensity : 1;
+    const seen = new Set();
+    scene.traverse(m => {
+      if (!m.isMesh || !m.visible) return;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      for (const mt of mats) {
+        if (!mt || !mt.isMeshStandardMaterial) continue;
+        const name = mt.name || m.name || ('mesh ' + m.id);
+        const emi = mt.envMapIntensity != null ? mt.envMapIntensity : 1;
+        if (mt.metalness > 0.5 && !seen.has(mt.uuid + 'm')) {
+          const eff = mt.envMap ? emi : (sceneEnv ? emi * envI : 0);
+          if (eff < METAL_ENV_FLOOR) {
+            seen.add(mt.uuid + 'm');
+            found.push({ kind: 'metal_unlit', name: name,
+              metalness: +mt.metalness.toFixed(2), env: mt.envMap ? 'envMap' : (sceneEnv ? 'scene' : 'none'),
+              effective: +eff.toFixed(3), floor: METAL_ENV_FLOOR });
+          }
+        }
+        if (mt.transparent && mt.opacity < GLASS_OPACITY && !(mt.transmission > 0)) {
+          if (m.castShadow && !seen.has(mt.uuid + 's')) {
+            seen.add(mt.uuid + 's');
+            found.push({ kind: 'glass_shadow', name: name, opacity: +mt.opacity.toFixed(2) });
+          }
+          const c = mt.color, lum = c ? 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b : 0;
+          if (mt.metalness < 0.5 && lum > GLASS_PALE && !seen.has(mt.uuid + 'p')) {
+            seen.add(mt.uuid + 'p');
+            found.push({ kind: 'glass_milk', name: name, opacity: +mt.opacity.toFixed(2),
+              albedo: '#' + c.getHexString(), luminance: +lum.toFixed(3), floor: GLASS_PALE });
+          }
+        }
+      }
+    });
+    return found;
   };
 
   /* ---- stage furniture -------------------------------------------------- */
@@ -536,6 +621,10 @@ export function init(THREE) {
   // litCount 0 AND fails the mean/variance path, so it still returns ok=false.
   AKT.snapshot = async function (R, o) {
     o = o || {};
+    try {
+      const reg = window.__aktAudit || (window.__aktAudit = []);
+      for (const f of AKT.audit(R)) if (reg.length < 60) reg.push(f);
+    } catch (e) { /* the audit never stops a render */ }
     R.renderer.render(R.scene, R.camera);
     await new Promise(r => requestAnimationFrame(() => r()));
     let ok = true, variance = -1, litCount = -1;

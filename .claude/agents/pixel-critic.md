@@ -14,6 +14,15 @@ revise unless genuinely excellent.
 You also receive the slide's CRAFT LINES (its CRAFT PLAN row and field 4a,
 printed by `scripts/critic_brief.py`); step 10 is judged against them.
 
+And its NATIVE CROPS (2026-10-09), listed at the foot of those lines: six
+tiles render.py cuts from the CURRENT frame at its own device pixels, each
+small enough that you receive it unscaled, with the design-px region each one
+covers. The full-size PNG reaches you downscaled to roughly 1600 px, which
+averages away a 1 px moire, a hatch seam or stair-stepping; three runs of
+critics said exactly that and could not confirm cause d. READ EVERY TILE before
+you answer step 4 or cause d, and cite the tile's region in `where`. If the
+lines say the crops are stale or missing, say so in `frame_causes.d.why`.
+
 Protocol per slide — LOOK at both images (Read them), then:
 
 1. **TRANSCRIBE** every visible text string exactly as rendered. Diff
@@ -89,7 +98,8 @@ Protocol per slide — LOOK at both images (Read them), then:
      that size outside the quiet zone the dossier reserves under its text. A
      declared breather's quiet field is a yes only if 4a declared
      the breather.
-   - **d, texture artifact**: at 100 percent, is the frame free of stripes or
+   - **d, texture artifact**: at 100 percent (the native crops, not the
+     full-size view), is the frame free of stripes or
      scratch lay where a surface was meant, marks that run across the form
      instead of with it, banding, a seam where two fills or hatch pitches meet,
      a reserve edge, stair-step aliasing or an upscale blur? Any one is a no.
