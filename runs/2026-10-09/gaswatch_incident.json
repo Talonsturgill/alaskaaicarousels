@@ -1,0 +1,14 @@
+{
+  "blocker": "github",
+  "reason": "CINGSA's evening reading of October 7th (21:29 Alaska, 05:29Z October 8th) is not yet collected: GitHub has not dispatched the 04:40Z or 07:20Z gaswatch.yml schedule slots (last scheduled run 23:36Z October 7th, success), and workflow_dispatch from the routine returns 403 Resource not accessible by integration. The collector itself is healthy; the slot timing and dispatch permission are owner decisions (MACHINE_QUEUE item 2026-09-30, escalated).",
+  "attempts": [
+    "gaswatch_health.py at 06:2xZ, 07:54Z and 08:10Z October 8th: one FAIL, source reading published (published 2026-10-07; source 2026-10-07T21:29)",
+    "workflow_dispatch gaswatch.yml on main via the GitHub API at 07:5xZ: 403 Resource not accessible by integration",
+    "listed scheduled runs at 07:55Z and 08:3xZ: no run since 23:36Z October 7th"
+  ],
+  "evidence_urls": [
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml",
+    "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/37703268828",
+    "https://alaskaaihq.com/gas-watch/"
+  ]
+}

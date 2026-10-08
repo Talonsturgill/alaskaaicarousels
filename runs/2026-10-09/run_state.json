@@ -25,5 +25,12 @@
     "gmail": "pending",
     "retro": "pending"
   },
-  "score": 8.2
+  "score": 8.2,
+  "phase_3_6": {
+    "site_signoff": "PASS, 141 pages, 18 of 18 checks clean (the built docs/ re-read after this run's rebuild)",
+    "gaswatch_live": "UNRESOLVED (WARN, blocker github): one check failed all run, source reading published. CINGSA's 21:29 Alaska reading of October 7th was not collected because GitHub had not dispatched the 04:40Z or 07:20Z gaswatch.yml slots (last scheduled run 23:36Z October 7th, success), and workflow_dispatch from the routine returned 403. Audited at 06:2xZ, 07:54Z, 08:10Z, 08:22Z and 08:41Z; every other live check PASS. The collector is healthy; slot timing and dispatch permission are the owner's call (MACHINE_QUEUE, escalated). Incident: gaswatch_incident.json.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows audited at 06:17Z",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
+  }
 }
