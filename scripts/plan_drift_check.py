@@ -684,8 +684,13 @@ SELF_TEST_REPORT = {"slides": [
 # A dossier whose 11a gives rects while its slide declares no encoding at all is
 # a note, not a fail: the declaration is opt-in (SLIDE_DOSSIER_SPEC 11a), so a
 # missing one is reported as the qa.py measurement that is switched off.
-F11A_RE = re.compile(r"^\s*(?:\*\*)?11a\.?(?:\*\*)?[^\n]*", re.I | re.M)
-F11A_END_RE = re.compile(r"\n\s*\n|\n\s*(?:\*\*)?(?:1[2-9]|11b|[2-9]\d)\.|\n\s*#", re.I)
+# The field runs to the next field marker, heading or checklist, NOT to the first
+# blank line: archived dossiers write it as `### 11a. WORDLESS CLAIM` (2026-09-14)
+# or as `11a. **Wordless claim.**` with the regions a paragraph below
+# (2026-09-19), and both were silently skipped (Codex, PR #422). Measured over the
+# 280 archived dossiers, exactly those two change and no other.
+F11A_RE = re.compile(r"^\s*(?:#{1,6}\s*)?(?:\*\*)?11a\.?(?:\*\*)?[^\n]*", re.I | re.M)
+F11A_END_RE = re.compile(r"\n\s*(?:#{1,6}\s*)?(?:\*\*)?(?:1[2-9]|11b|[2-9]\d)\.|\n\s*#|\n\s*-\s*\[[ xX]\]", re.I)
 RECT_RE = re.compile(r"`\s*\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*,"
                      r"\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]\s*`")
 
@@ -868,6 +873,13 @@ def self_test():
     check("  a dossier with no 11a, or 11a with no rects, is not compared",
           field_11a_rects("**12. x** `[1, 2, 3, 4]`") is None
           and not field_11a_rects("**11a. Wordless claim.** None."))
+    # Codex, PR #422: the two archived shapes the first parser skipped
+    check("  a `### 11a.` heading with its regions a paragraph below is read",
+          field_11a_rects("### 11a. WORDLESS CLAIM\n**The claim.**\n\nRegions `[1, 2, 3, 4]` and\n`[5, 6, 7, 8]`.\n\n### 12. NEXT\n`[9, 9, 9, 9]`")
+          == {(1, 2, 3, 4), (5, 6, 7, 8)})
+    check("  `11a. **Wordless claim.**` then a blank line then the regions is read",
+          field_11a_rects("11a. **Wordless claim.**\n\nRegion A `[360, 640, 150, 120]`. Region B `[900, 640, 150, 120]`.\n\n12. **Next.** `[1, 1, 1, 1]`")
+          == {(360, 640, 150, 120), (900, 640, 150, 120)})
 
     with tempfile.TemporaryDirectory() as td:
         run = Path(td) / "2026-01-01"

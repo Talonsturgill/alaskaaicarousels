@@ -36,6 +36,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+BASELINE = "f7c144ec7631a00f511ffde0424c0fff2a25f001"  # main before the 2026-10-09 weekly pass
 ENGINE = ROOT / ".claude" / "skills" / "carousel-engine"
 
 HEAD = """<!doctype html><html><head><meta charset="utf-8">
@@ -116,6 +117,8 @@ def slides():
         8: akt(8, env034, SHELL.replace("MAT", "[AKT.mat.glass(), AKT.mat.clay(0x6b4a2e)]")),
         # Codex, PR #422: a pale shell under an INVISIBLE group is never drawn, so never audited
         9: akt(9, env034, STEEL.replace("EMI", "2.8") + HIDDEN_GROUP),
+        # Codex, PR #422: the static scan covers every metalness above 0.5, 0.55 included
+        10: HEAD.replace("SLIDE_NO", "10") + HAND.replace("metalness: 0.92", "metalness: 0.55"),
     }
 
 
@@ -142,7 +145,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the eight reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the nine reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -164,6 +167,8 @@ def main():
         checks.append((not warns.get(5), "05 the same shell from AKT.mat.glass() passes clean"))
         checks.append((not warns.get(8), "08 glass() inside a material array passes clean (no shadow warn)"))
         checks.append((not warns.get(9), "09 a pale shell under an invisible group is not audited"))
+        checks.append((has(10, "metal with nothing to reflect"),
+                       "10 a hand-rolled metal at 0.55 WARNs from the static scan"))
         checks.append((has(6, "metal with nothing to reflect"),
                        "06 No.80's hand-rolled metal with no environment WARNs (static scan)"))
         mat_fails = [f for s in mq["slides"] for f in s["fails"]
@@ -179,7 +184,8 @@ def main():
         from render import launch_chromium, resolve_html
         rs = td / "resolved"
         rs.mkdir()
-        head_js = run(["git", "show", "HEAD:assets/js/akthree.js"]).stdout
+        # pinned to main before the 2026-10-09 pass; HEAD would compare the code with itself (Codex, PR #422)
+        head_js = run(["git", "show", "%s:assets/js/akthree.js" % BASELINE]).stdout
         (td / "akthree_head.js").write_text(head_js)
         (sd / "slide-07.html").write_text(akt(2, "AKT.environment(R, { intensity: 0.34 });",
                                               STEEL.replace("EMI", "2.8"),

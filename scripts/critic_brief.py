@@ -119,11 +119,17 @@ def native_crops(render_dir, slide):
     if hashlib.sha256(frame.read_bytes()).hexdigest() != m.get("frame_sha256"):
         return {"stale": "the tiles in %s were cut from an earlier render of slide %02d; "
                          "re-render it with render.py to refresh them" % (rd / "crops", slide)}
-    tiles = []
+    tiles, lost = [], []
     for t in m.get("tiles") or []:
         p = (rd / "crops" / t["file"]).resolve()
         if p.exists():
             tiles.append({"path": str(p), "design": t.get("design")})
+        else:
+            lost.append(t["file"])
+    # a partial set would be read as a full 100 percent view (Codex, PR #422)
+    if lost or not tiles:
+        return {"stale": "the crop set for slide %02d is incomplete (%s missing); re-render "
+                         "it with render.py to cut every tile" % (slide, ", ".join(lost) or "all")}
     return {"tiles": tiles}
 
 
@@ -217,6 +223,16 @@ nothing
         ok("crops cut from an earlier render read stale and list nothing",
            "stale" in c and not c.get("tiles"), c)
         ok("a slide with no crops reads missing", "missing" in native_crops(rd, 2))
+        # Codex, PR #422: a manifest naming a tile that is gone is incomplete, not a partial view
+        (rd / "slide-03.png").write_bytes(b"frame three")
+        (rd / "crops" / "slide-03-r1c1.png").write_bytes(b"tile")
+        (rd / "crops" / "slide-03.json").write_text(json.dumps({
+            "frame": "slide-03.png", "frame_sha256": hashlib.sha256(b"frame three").hexdigest(),
+            "tiles": [{"file": "slide-03-r1c1.png", "design": [0, 0, 540, 450]},
+                      {"file": "slide-03-r1c2.png", "design": [540, 0, 540, 450]}]}))
+        c = native_crops(rd, 3)
+        ok("a crop set with a tile missing reads incomplete and lists nothing",
+           "stale" in c and "incomplete" in c["stale"] and not c.get("tiles"), c)
     print("\ncritic_brief self-test: " + ("all passed" if not bad else "%d FAILED" % bad))
     return 1 if bad else 0
 

@@ -4656,7 +4656,8 @@ def timeout_remedy(message: str, timeout_ms: int):
 # that defect, read straight off the text. Reported as an akthree_audit entry
 # and WARNed by qa.py; a slide that does any of those three things is left to
 # the in-page audit.
-METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.[6-9]\d*)\b")
+# every value ABOVE 0.5, the audit's own line: 0.51 and 0.505 match, 0.5 and 0.50 do not (Codex, PR #422)
+METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*|5\d*[1-9]\d*))\b")
 ENV_TOKEN_RE = re.compile(r"\b(environment|envMap|PMREMGenerator|fromScene|fromEquirectangular)\b")
 
 

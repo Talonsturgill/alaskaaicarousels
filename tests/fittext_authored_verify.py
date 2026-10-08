@@ -27,6 +27,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+BASELINE = "f7c144ec7631a00f511ffde0424c0fff2a25f001"  # main before the 2026-10-09 weekly pass
 sys.path.insert(0, str(ROOT / ".claude" / "skills" / "carousel-engine"))
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8">
@@ -37,22 +38,24 @@ h2{position:absolute;left:96px;top:600px;font-family:"Bricolage Grotesque",sans-
 h3{position:absolute;left:96px;top:1000px;width:620px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
 h3 span{display:block}
 h4{position:absolute;left:96px;top:1180px;width:620px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}
-h4 span{display:block;white-space:normal}</style>
+h4 span{display:block;white-space:normal}
+h5{position:absolute;left:700px;top:1000px;width:340px;font-family:"Bricolage Grotesque",sans-serif;line-height:1;margin:0}</style>
 <script src="AKTYPE"></script></head><body>
 <h1 id="a">Ash holds it<br>locked in the waste for now</h1>
 <h2 id="b">Ash holds it<br>locked in the waste for now</h2>
 <h3 id="c"><span>Ash holds it</span><span>locked in the waste for now</span></h3>
 <h4 id="d"><span>Ash holds it</span><span>locked in the waste for now</span></h4>
+<h5 id="e">Rare earths<sup>1</sup><br>in the ash</h5>
 <script>
 window.run = async (opt) => {
   await document.fonts.ready;
   const out = {};
-  for (const id of ['a', 'b', 'c', 'd']) {
+  for (const id of ['a', 'b', 'c', 'd', 'e']) {
     const el = document.getElementById(id);
     const o = Object.assign({ min: 40, max: 96, maxLines: 3 }, opt ? opt : {});
     if (opt && id === 'b') o.width = 620;
     const r = AK.fitText(el, o);
-    out[id] = { size: r.size, lines: r.lines, sw: el.scrollWidth, cw: el.clientWidth,
+    out[id] = { size: r.size, lines: r.lines, sw: el.scrollWidth, cw: el.clientWidth, overflow: el.hasAttribute('data-fit-overflow'),
                 right: Math.round(el.getBoundingClientRect().right) };
   }
   out.reg = (window.__akFit || []).map(f => f.authored);
@@ -64,7 +67,9 @@ window.run = async (opt) => {
 def main():
     from playwright.sync_api import sync_playwright
     from render import launch_chromium
-    head = subprocess.run(["git", "-C", str(ROOT), "show", "HEAD:assets/js/aktype.js"],
+    # the baseline is main BEFORE the 2026-10-09 pass, pinned: HEAD would be the code under test once
+    # committed, and a parity check against itself proves nothing (Codex, PR #422)
+    head = subprocess.run(["git", "-C", str(ROOT), "show", "%s:assets/js/aktype.js" % BASELINE],
                           capture_output=True, text=True, check=True).stdout
     res = {}
     with tempfile.TemporaryDirectory() as td, sync_playwright() as p:
@@ -100,7 +105,11 @@ def main():
         (res["authored"]["d"]["lines"] == 2 and res["authored"]["d"]["size"] == au["size"],
          "child rule: spans styled white-space:normal still hold 2 lines at %s px"
          % res["authored"]["d"]["size"]),
-        (res["authored"]["reg"] == [True] * 4 and res["plain"]["reg"] == [False] * 4,
+        # Codex, PR #422: a raised <sup> shares its line and is not counted as one
+        (res["authored"]["e"]["lines"] == 2 and not res["authored"]["e"].get("overflow"),
+         "sup: a 2-line authored headline with a superscript measures 2 lines at %s px"
+         % res["authored"]["e"]["size"]),
+        (res["authored"]["reg"] == [True] * 5 and res["plain"]["reg"] == [False] * 5,
          "registry: __akFit records authored per call"),
         (all(res["plain"][k]["size"] == hd[k]["size"] and res["plain"][k]["lines"] == hd[k]["lines"]
              for k in "abc"),

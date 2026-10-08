@@ -83,7 +83,9 @@
   function measureText(el) {
     var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     var range = document.createRange();
-    var tops = {}, n = 0, t;
+    // a rect that overlaps a line by half its height belongs to that line, so a
+    // <sup> or a baseline-shifted fragment is not counted as a line of its own (Codex, PR #422)
+    var bands = [], n = 0, t;
     while ((t = tw.nextNode())) {
       if (!t.textContent.trim()) continue;
       range.selectNodeContents(t);
@@ -91,8 +93,14 @@
       for (var i = 0; i < rects.length; i++) {
         var r = rects[i];
         if (r.width > 1 && r.height > 1) {
-          var key = Math.round(r.top);
-          if (!(key in tops)) { tops[key] = 1; n++; }
+          var hit = false;
+          for (var b = 0; b < bands.length; b++) {
+            var ov = Math.min(bands[b][1], r.bottom) - Math.max(bands[b][0], r.top);
+            if (ov >= 0.5 * Math.min(bands[b][1] - bands[b][0], r.height)) {
+              bands[b][0] = Math.min(bands[b][0], r.top); bands[b][1] = Math.max(bands[b][1], r.bottom); hit = true; break;
+            }
+          }
+          if (!hit) { bands.push([r.top, r.bottom]); n++; }
         }
       }
     }
