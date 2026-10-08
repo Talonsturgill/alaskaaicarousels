@@ -358,7 +358,8 @@ export function init(THREE) {
       if (!m.isMesh || !shown(m)) return;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mt of mats) {
-        if (!mt || !mt.isMeshStandardMaterial) continue;
+        // an invisible material is never drawn, so it is never audited (Codex, PR #422)
+        if (!mt || !mt.isMeshStandardMaterial || mt.visible === false) continue;
         const name = mt.name || m.name || ('mesh ' + m.id);
         const emi = mt.envMapIntensity != null ? mt.envMapIntensity : 1;
         if (mt.metalness > 0.5 && !seen.has(mt.uuid + 'm')) {

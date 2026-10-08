@@ -4682,7 +4682,9 @@ METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*|5\d*[1-9]\
 # environment" once silenced the only warning a hand-rolled scene gets (Codex,
 # PR #422). So only <script> bodies are read, and only for an assignment or a
 # call that actually gives the scene or a material something to reflect.
-ENV_TOKEN_RE = re.compile(r"\.environment\s*=|\benvMap\s*[:=]|\bPMREMGenerator\b|\bRoomEnvironment\b"
+# ...and an assignment of null or undefined is the absence of one (Codex, PR #422).
+ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b)|\benvMap\s*[:=](?!=)(?>\s*)(?!null\b|undefined\b)"
+                          r"|\bPMREMGenerator\b|\bRoomEnvironment\b"
                           r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
 

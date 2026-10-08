@@ -10391,9 +10391,38 @@ def main():
     ap.add_argument("--out", default="docs")
     ap.add_argument("--domain", default=db.DEFAULT_DOMAIN,
                     help="custom domain; emits CNAME and rewrites absolute URLs")
+    ap.add_argument("--no-clamp", action="store_true",
+                    help="build for --date even when it is ahead of Anchorage's calendar")
     args = ap.parse_args()
     site = f"https://{args.domain}" if args.domain else db.DEFAULT_SITE
-    build(ddate.fromisoformat(args.date), args.out, site, args.domain)
+    build(effective_date(ddate.fromisoformat(args.date), args.no_clamp), args.out, site, args.domain)
+
+
+def effective_date(run_date, no_clamp=False):
+    """The site is built for the run date, UNLESS that date is still ahead of
+    Anchorage's calendar (2026-10-09, Codex P1 on PR #422; queue item 2026-10-09).
+
+    A run that wakes late in the Anchorage evening takes the NEXT free date
+    (routine_instructions, "IF THAT DATE IS ALREADY TAKEN"), so No.82 woke at
+    22:14 on October 7th as run 2026-10-09 and built a docket whose "today" was
+    two days ahead. Merged at about 01:45 on October 8th, it would have shown the
+    Houston Industrial Park hearing set for October 8th as past, with no further
+    date, for the whole of the day the hearing happened. A docket's one job is
+    when it lands and whether you get a say, so its today is Anchorage's today:
+    min(run date, Anchorage date). The clamp never moves a build backwards past
+    an earlier --date, and site_fresh_check rebuilds through this same function,
+    so both sides clamp alike. Once Anchorage reaches the run date the clamp
+    releases and the build is the plain --date build again."""
+    if no_clamp:
+        return run_date
+    from datetime import datetime as _dt
+    from zoneinfo import ZoneInfo
+    ak = _dt.now(ZoneInfo("America/Anchorage")).date()
+    if run_date > ak:
+        print(f"note: --date {run_date.isoformat()} is ahead of Anchorage's {ak.isoformat()}; "
+              f"the site is built for {ak.isoformat()} so dated items read as they do there today")
+        return ak
+    return run_date
 
 
 if __name__ == "__main__":

@@ -319,8 +319,11 @@ def check_built_site(rep, items, today, out):
     """Build the site for real and read the dates back out of the emitted HTML.
     Nothing here trusts the renderer's return value; it reads what a visitor
     would get."""
+    # --no-clamp: this gate proves the renderer and the resolver agree AT a stated
+    # date, a property of the code and not of the clock, so it builds for exactly
+    # that date even when it is ahead of Anchorage (site_build.effective_date).
     r = subprocess.run([sys.executable, str(REPO / "scripts" / "site_build.py"),
-                        "--date", today.isoformat(), "--out", str(out)],
+                        "--date", today.isoformat(), "--out", str(out), "--no-clamp"],
                        capture_output=True, text=True)
     if r.returncode != 0:
         print((r.stdout + r.stderr)[-2000:], file=sys.stderr)

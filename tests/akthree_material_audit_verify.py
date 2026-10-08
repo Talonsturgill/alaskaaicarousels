@@ -122,6 +122,10 @@ def slides():
         # Codex, PR #422: the word "environment" in the copy is not an environment
         11: HEAD.replace("SLIDE_NO", "11").replace("Material audit reconstruction",
                                                   "Grown in a cold environment") + HAND,
+        # Codex, PR #422: an environment set to null is no environment
+        12: HEAD.replace("SLIDE_NO", "12") + HAND.replace("scene.add(new THREE.AmbientLight", "scene.environment = null; scene.add(new THREE.AmbientLight"),
+        # Codex, PR #422: a material that is not visible is not drawn, so not audited
+        13: akt(13, env034, STEEL.replace("EMI", "0.9") + "\n  plate.material.visible = false;"),
     }
 
 
@@ -148,7 +152,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the ten reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the twelve reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -174,6 +178,9 @@ def main():
                        "10 a hand-rolled metal at 0.55 WARNs from the static scan"))
         checks.append((has(11, "metal with nothing to reflect"),
                        "11 a headline reading 'environment' does not silence the static scan"))
+        checks.append((has(12, "metal with nothing to reflect"),
+                       "12 `scene.environment = null` does not count as an environment"))
+        checks.append((not warns.get(13), "13 an invisible material is not audited"))
         checks.append((has(6, "metal with nothing to reflect"),
                        "06 No.80's hand-rolled metal with no environment WARNs (static scan)"))
         mat_fails = [f for s in mq["slides"] for f in s["fails"]
