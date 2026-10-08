@@ -23,7 +23,17 @@
     "ship": "done: runs/2026-10-09 (WebP slides, og.jpg, shrunk PDF), ledgers (topics, artwork, captions, 3 instincts), FIELD_NOTES, 3 techniques, site rebuilt (141 pages, 82 decks), parsers/scanner/docket dates/site_fresh PASS, no alerts due, prune freed 0.76 MB",
     "upgrade": "pending",
     "gmail": "pending",
-    "retro": "pending"
+    "retro": "pending",
+    "phase_11_merge": {
+      "pr": 422,
+      "merge_sha": "1a18c864a922fc6bc3732808941f1c1e7189aca3",
+      "codex": "Completed on a16b389f, no findings (seven earlier rounds fixed)",
+      "ci": "7/7 green"
+    },
+    "phase_13_draft": {
+      "gmail_draft_id": "r2378964144461001668",
+      "at_utc": "2026-10-08T10:37:58.055873Z"
+    }
   },
   "score": 8.2,
   "phase_3_6": {
@@ -32,5 +42,7 @@
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 6 scheduled workflows audited at 06:17Z",
     "site_fixes": "none. Nothing on the live site needed repair this run."
-  }
+  },
+  "status": "complete",
+  "gmail_draft_id": "r2378964144461001668"
 }
