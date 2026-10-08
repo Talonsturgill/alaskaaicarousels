@@ -36,6 +36,7 @@ Exit 0 when docs/ is exactly a fresh build, 1 otherwise.
 from __future__ import annotations
 
 import argparse
+import re
 import filecmp
 import subprocess
 import sys
@@ -62,11 +63,35 @@ def main() -> int:
         print(f"FAIL: {docs} is not a directory", file=sys.stderr)
         return 1
 
+    # THE BUILD DATE IS READ, NOT RECOMPUTED (Codex, PR #422). site_build clamps
+    # a run dated ahead of Anchorage to Anchorage's date (effective_date), which
+    # reads the clock; rebuilding with the clock again would change its answer
+    # once Anchorage reaches the run date and fail a correct commit. So the
+    # rebuild uses the date the committed build stamped on its own pages, with
+    # --no-clamp, and the stamp must be the run date or at most two days before
+    # it (a run is never dated further ahead than that), so a stale build or a
+    # rolled-back --date still fails here.
+    from datetime import date as _date, timedelta as _td
+    stamp = None
+    try:
+        m = re.search(r"UPDATED (\d{4}-\d{2}-\d{2})", (docs / "index.html").read_text(encoding="utf-8"))
+        stamp = m.group(1) if m else None
+    except OSError:
+        stamp = None
+    run_d = _date.fromisoformat(args.date)
+    if stamp is None:
+        print(f"FAIL: docs/index.html carries no UPDATED stamp to rebuild at.", file=sys.stderr)
+        return 1
+    st = _date.fromisoformat(stamp)
+    if not (run_d - _td(days=2) <= st <= run_d):
+        print(f"FAIL: docs/ was built for {stamp}, which is not the run date {args.date} "
+              f"or the Anchorage date a run dated ahead clamps to.", file=sys.stderr)
+        return 1
     with tempfile.TemporaryDirectory() as tmp:
         fresh = Path(tmp) / "site"
         r = subprocess.run(
             [sys.executable, str(HERE / "site_build.py"),
-             "--date", args.date, "--out", str(fresh)],
+             "--date", stamp, "--out", str(fresh), "--no-clamp"],
             capture_output=True, text=True)
         if r.returncode != 0:
             print("FAIL: the rebuild itself failed, so docs/ cannot be trusted "

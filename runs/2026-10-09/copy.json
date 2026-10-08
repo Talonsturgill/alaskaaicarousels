@@ -1,0 +1,185 @@
+{
+  "document_title": "Alaska's Newest Rare-Earth AI Won't Hunt for Ore",
+  "post_copy": "Brandon Briggs's UAA team holds $3,824,575 of a $6 million NSF bet on microbes and AI for rare earths in coal refuse and ash.\n\nMontana Tech and UAF hold the rest. The AI is to screen feedstocks with a Virtual Assay. Its controllers are to learn on microgrid simulators and adjust the bioreactor as available power changes. Deposit hunting with AI is a different NSF effort (the UAF-led Critical Mineral Accelerator Engine).\n\nThe award calls the system energy-constrained. In Alaska that means a tank that has to adapt when the power dips. Srijan Aggarwal leads UAF's part. Nothing is built yet. The award ends August 31st, 2030. Grade it on that date.\n\nPictured are a grain of coal ash, Healy coal from earlier UAA lab work, the one named microbe, both AI jobs and who holds the money.\n\nWhich Alaska microgrid should host those controllers first?\n\n#RareEarths #Biomining #Microgrids",
+  "deck_summary_line": "Pictured are a grain of coal ash, Healy coal from earlier UAA lab work, the one named microbe, both AI jobs and who holds the money.",
+  "first_comment": "Sources, primary first\nU.S. National Science Foundation award database, award 2614749 to the University of Alaska Anchorage (lead, PI Brandon Briggs), 2026-08-05 https://api.nsf.gov/services/v1/awards.json?id=2614749&printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName,coPDPI,abstractText,fundProgramName\nU.S. National Science Foundation award database, award 2614750 to Montana Technological University (PI Robin Bullock), 2026-08-05 https://api.nsf.gov/services/v1/awards.json?id=2614750&printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName\nU.S. National Science Foundation award database, award 2614751 to the University of Alaska Fairbanks (PI Srijan Aggarwal), 2026-08-05 https://api.nsf.gov/services/v1/awards.json?id=2614751&printFields=id,title,date,startDate,expDate,awardeeName,fundsObligatedAmt,estimatedTotalAmt,piFirstName,piLastName\nUAF News, UAF joins the $6 million NSF critical minerals effort, 2026-10-05 https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php\nU.S. National Science Foundation, Office of Integrative Activities, $39.9 million in NSF EPSCoR awards, 2026-08-24 https://www.nsf.gov/od/oia/updates/nsf-announces-399m-nsf-epscor-awards-strengthen-research\nUAA News, Biomining for rare-earth elements (earlier lab work, not this award), 2026-01-22 https://www.uaa.alaska.edu/news/archive/2026/01/biomining-for-rare-earth-elements.cshtml\nUAF Geophysical Institute, the separate UAF-led Critical Mineral Accelerator Engine, 2026-07-14 https://www.gi.alaska.edu/news/national-science-foundation-funds-uaf-led-critical-minerals-coalition\nWorked with this team, a coal ash stream or an Alaska microgrid? Add what the records leave out below.",
+  "slides": [
+    {
+      "slide": "01",
+      "kicker": "UAA · NSF · $6 MILLION",
+      "headline": "Alaska's newest rare-earth AI won't hunt for ore. It will mind microbes.",
+      "body": "",
+      "labels": [
+        "FLY ASH GRAIN, ILLUSTRATED"
+      ],
+      "claim_ids": [
+        "C01",
+        "C17",
+        "C19",
+        "C29",
+        "C43"
+      ]
+    },
+    {
+      "slide": "02",
+      "kicker": "WHAT THE AWARD PLANS",
+      "headline": "Two jobs, and neither is prospecting.",
+      "body": "A $6 million NSF project led by UAA plans to pull rare earths out of coal refuse and ash with microbes. AI is to rank the waste first, then run the tank as power comes and goes.",
+      "labels": [
+        "JOB ONE · RANK THE FEED",
+        "JOB TWO · PACE THE POWER",
+        "BIOREACTOR, ILLUSTRATED"
+      ],
+      "claim_ids": [
+        "C01",
+        "C14",
+        "C17",
+        "C19",
+        "C20",
+        "C28",
+        "C29"
+      ]
+    },
+    {
+      "slide": "03",
+      "kicker": "EARLIER UAA LAB WORK",
+      "headline": "Alaska doesn't mine rare earths. Coal holds a little.",
+      "body": "Researcher D'Lynn Gleason said so in earlier UAA lab work on coal donated by Usibelli Coal Mine in Healy. She said that coal carries rare earths, scandium and yttrium among them, too thin to mine with acid.",
+      "labels": [
+        "NOT THIS AWARD'S FEED",
+        "HEALY",
+        "ANCHORAGE · UAA",
+        "POLISHED COAL SECTION, ILLUSTRATED"
+      ],
+      "claim_ids": [
+        "C01",
+        "C36",
+        "C37",
+        "C38",
+        "C39"
+      ]
+    },
+    {
+      "slide": "04",
+      "kicker": "BEFORE JOB ONE",
+      "headline": "One microbe is named.",
+      "body": "The award names Shewanella oneidensis. It will be tested on cost and life-cycle metrics.",
+      "labels": [
+        "SHEWANELLA ONEIDENSIS COLONIES, ILLUSTRATED"
+      ],
+      "claim_ids": [
+        "C22"
+      ]
+    },
+    {
+      "slide": "05",
+      "kicker": "JOB ONE",
+      "headline": "Rank the waste before it's fed.",
+      "body": "UAF says AI will help predict how readily rare earths can be recovered from different materials. The award calls it a Virtual Assay to screen feedstocks. It is planned, not built.",
+      "labels": [
+        "REFUSE",
+        "ASH",
+        "NOT YET RANKED"
+      ],
+      "claim_ids": [
+        "C19",
+        "C20",
+        "C28"
+      ]
+    },
+    {
+      "slide": "06",
+      "kicker": "",
+      "headline": "The power dips. Something has to decide what the tank does.",
+      "body": "",
+      "labels": [],
+      "claim_ids": []
+    },
+    {
+      "slide": "07",
+      "kicker": "JOB TWO",
+      "headline": "Job two, the Alaska part.",
+      "body": "Reinforcement-learning controllers will learn inside a digital twin of the bioreactor, linked to microgrid simulators, and adjust it as energy availability changes. The award's own word is energy-constrained.",
+      "labels": [
+        "DIGITAL TWIN · PLANNED",
+        "MICROGRID SIMULATOR",
+        "POWER AVAILABLE · SCHEMATIC",
+        "CONTROLLER · PLANNED",
+        "ASH SAMPLE"
+      ],
+      "claim_ids": [
+        "C21",
+        "C23",
+        "C29"
+      ]
+    },
+    {
+      "slide": "08",
+      "kicker": "WHO HOLDS THE MONEY",
+      "headline": "About $6 million, to August 31st, 2030.",
+      "body": "Began September 1st. One of eight EPSCoR projects sharing $39.9 million.",
+      "labels": [
+        "UAA · LEAD",
+        "BRANDON BRIGGS",
+        "$3,824,575",
+        "MONTANA TECH",
+        "ROBIN BULLOCK",
+        "$1,260,800",
+        "UAF",
+        "SRIJAN",
+        "AGGARWAL",
+        "$913,037",
+        "UNIVERSITY",
+        "OF WYOMING",
+        "SUBAWARD",
+        "NOT THIS AWARD",
+        "The UAF-led Critical Mineral Accelerator Engine gets $15 million for its first two years and plans AI to locate deposits."
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C05",
+        "C06",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C17",
+        "C30",
+        "C31",
+        "C41",
+        "C43"
+      ]
+    },
+    {
+      "slide": "09",
+      "kicker": "",
+      "headline": "New deposits, or old waste? Where should Alaska point its mineral AI?",
+      "body": "",
+      "labels": [
+        "NOTHING RECOVERED YET"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "aftercare": [
+    "Post Tuesday to Thursday, 8 to 11 a.m. Alaska time. The posting cadence is your call.",
+    "Paste the first comment (sources and the context invite) within 60 seconds of posting.",
+    "Reply to every comment in the first 60 to 90 minutes.",
+    "If someone asks what has been recovered, say nothing yet. It is a plan that runs to August 31st, 2030, and the post asks readers to grade it on that date.",
+    "If a reader mixes this award up with the Critical Mineral Accelerator Engine and its deposit-hunting AI, point them to slide 08. The Engine is a different award and is never added to the $6 million. If anyone from Healy or Usibelli comments, the coal was earlier UAA lab work and not this award's feed.",
+    "After 48 hours, note the saves, comments and reposts so the ledger can learn from them."
+  ],
+  "editor_notes_for_email": "Honesty guards on this deck. It shows a plan and nothing has been recovered: no frame shows recovered metal, every AI element is drawn in the planned ink, and the vial on the close is empty. The Usibelli coal from Healy appears only on slide 03, attributed to earlier UAA lab work (UAA News, January 22nd) and stamped as not this award's feed. The UAF-led Critical Mineral Accelerator Engine and its AI for locating deposits are a different NSF award; slide 08 sets it apart and never adds it to this project's $6 million. The caption is the caption room's reassigned round-two candidate (the critic rejected both first-round candidates), shipped byte for byte with its hashtag line.",
+  "caption_meta": {
+    "opening_move": "LEDGER TALLY",
+    "structure": "COLD OPEN, WARM CLOSE",
+    "closing_move": "NEW: THE HOST GRID"
+  },
+  "first_8_words": "Brandon Briggs's UAA team holds $3,824,575 of a",
+  "hook_type": "ledger tally, a plain claim about who holds the money"
+}

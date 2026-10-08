@@ -799,6 +799,12 @@ FAILs whatever it left stale.
   that is the whole question. Skipped, and said to be skipped, when a canvas
   carries a CSS rotation, filter or blend mode, because a bounding box cannot
   re-composite those faithfully and a misregistered layer is worse than none.
+  And `crops/slide-NN-rRcC.png` (2026-10-09): the frame cut into six 1080x900
+  device-px tiles, unscaled, plus `crops/slide-NN.json` naming each tile's
+  design-px region and the sha256 of the frame it came from. They are the pixel
+  critic's 100 percent view for cause d (a vision reader downscales the full
+  2160x2700 frame); `scripts/critic_brief.py` lists them and refuses stale ones.
+  A subdirectory, so no `render/slide-*.png` glob takes them.
 - `qa.py` — machine gate over PNGs + report (`machine_qa.json`, exit 1 on FAIL)
 - `assemble.py` — vector PDF (Chromium print + pypdf merge), contact sheet,
   432px feed thumbs (`assemble_report.json`)
@@ -941,6 +947,17 @@ them or every archive page goes blank.
   half the beat against a 6x reference and beat drawImage with
   imageSmoothingQuality high (tests/akthree_supersample_verify.py). Without the
   option nothing changes.
+  METAL AND GLASS (2026-10-09): a metal is lit mostly by what it reflects, so
+  give it an environment (`AKT.environment`, or an envMap) with
+  envMapIntensity x scene.environmentIntensity at 0.5 or more (No.82's steel
+  read matte at 0.31 and as steel at 0.95; No.80's metal with none came out
+  black rubber). For glass use `AKT.mat.glass(o)`: a near-black albedo with the
+  read carried by envMapIntensity, depthWrite off, and AKT.add takes it out of
+  the shadow pass both ways (a pale transparent shell casts a FULL shadow and
+  washes its contents as milk, No.82). `AKT.snapshot` runs `AKT.audit(R)` on the
+  scene graph and qa.py WARNs each finding; render.py also WARNs a hand-rolled
+  three scene with a metalness over 0.5 and no environment anywhere in its
+  source (tests/akthree_material_audit_verify.py). Reading only: no pixel moves.
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
   `AKT.objectHero(R, group, {toward:[kx,ky,kz], keyColor, intensity, height})`

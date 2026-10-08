@@ -1310,6 +1310,15 @@ that argument was typed by hand.
    this loop, so the deck met them with one craft cycle left. A `frame_causes`
    no is a revise like any major issue.
 
+   The same block ends with the slide's NATIVE CROPS (2026-10-09, weekly
+   pass): render.py cuts every frame it writes into six 1080x900 device-px
+   tiles in `render/crops/`, small enough that a critic receives them unscaled,
+   and critic_brief prints their paths with the design-px region of each. Paste
+   the block whole and the critic reads the tiles for cause d. Every critic
+   report of No.80, No.81 and No.82 said it judged texture from a downscaled
+   view. Run critic_brief AFTER the round's re-render: it reports tiles cut from
+   an earlier render as stale and lists none of them.
+
    If a dossier states field 11a, the WORDLESS CLAIM, pass it in the prompt
    and require the critic to answer `encoding_reads`. That judgement cannot be
    automated: it was tested on 2026-07-29 across 171 slides and 19 decks with

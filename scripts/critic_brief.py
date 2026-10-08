@@ -28,6 +28,12 @@ the CRAFT PLAN row (primary mark-making; largest object and its modelling), fiel
 whether the slide is the masterful depth frame. Paste a slide's block into its
 pixel critic's prompt (Phase 9 step 2); the critic answers `frame_causes` from it.
 
+Since 2026-10-09 the block also lists the slide's NATIVE CROPS, the 100 percent
+tiles render.py cuts from every frame (render/crops/), with the design-px region
+of each, so cause d is judged at native size; a tile set cut from an earlier
+render is reported stale and not listed. A missing or stale set never changes the
+exit code.
+
     python3 scripts/critic_brief.py --run-dir out/2026-10-04 [--slide 5] [--json]
     python3 scripts/critic_brief.py --self-test
 
@@ -86,8 +92,61 @@ def brief(text, only=None):
     return out, missing
 
 
+def native_crops(render_dir, slide):
+    """The 100 percent tiles render.py cut from this slide's CURRENT frame.
+
+    NATIVE CROPS (2026-10-09, weekly machine pass). Three runs of critics said
+    they judged texture from a downscaled view; render.py now writes
+    render/crops/slide-NN-rRcC.png, each tile small enough to be read at native
+    size, and records the sha256 of the frame it cut them from. A tile set cut
+    from an earlier render of the slide is reported STALE and never listed as
+    evidence, because a crop of the frame the critic is not judging is worse
+    than none. Returns {"tiles": [...]} or {"stale"|"missing": reason}.
+    """
+    if not render_dir:
+        return {"missing": "no render dir"}
+    rd = Path(render_dir)
+    man = rd / "crops" / ("slide-%02d.json" % slide)
+    frame = rd / ("slide-%02d.png" % slide)
+    if not man.exists() or not frame.exists():
+        return {"missing": "no native crops for slide %02d in %s (render.py writes "
+                           "them beside every frame it renders)" % (slide, rd / "crops")}
+    try:
+        m = json.loads(man.read_text())
+    except Exception as e:
+        return {"missing": "crops manifest did not parse (%s)" % type(e).__name__}
+    import hashlib
+    if hashlib.sha256(frame.read_bytes()).hexdigest() != m.get("frame_sha256"):
+        return {"stale": "the tiles in %s were cut from an earlier render of slide %02d; "
+                         "re-render it with render.py to refresh them" % (rd / "crops", slide)}
+    tiles, lost = [], []
+    for t in m.get("tiles") or []:
+        p = (rd / "crops" / t["file"]).resolve()
+        if p.exists():
+            tiles.append({"path": str(p), "design": t.get("design")})
+        else:
+            lost.append(t["file"])
+    # a partial set would be read as a full 100 percent view (Codex, PR #422)
+    if lost or not tiles:
+        return {"stale": "the crop set for slide %02d is incomplete (%s missing); re-render "
+                         "it with render.py to cut every tile" % (slide, ", ".join(lost) or "all")}
+    return {"tiles": tiles}
+
+
+def crop_lines(c):
+    if c.get("tiles"):
+        out = ["  native crops, 100 percent (Read every tile before answering cause d; "
+               "regions in design px):"]
+        for t in c["tiles"]:
+            d = t["design"] or [0, 0, 0, 0]
+            out.append("    x %d to %d, y %d to %d: %s" % (d[0], d[2], d[1], d[3], t["path"]))
+        return out
+    return ["  native crops: %s" % (c.get("stale") or c.get("missing"))]
+
+
 def render_block(b):
     yr = b["lower_third_y"]
+    tail = crop_lines(b["native_crops"]) if "native_crops" in b else []
     return "\n".join([
         "CRAFT LINES, slide %02d (from the storyboard; answer frame_causes against these)" % b["slide"],
         "  primary mark-making: %s" % (b["mark_making"] or "MISSING"),
@@ -95,7 +154,7 @@ def render_block(b):
         "  lower third (field 4a)%s: %s" % (
             ", design y %d to %d" % tuple(yr) if yr else "", b["lower_third"] or "MISSING"),
         "  masterful depth frame: %s" % ("YES, the deck's depth is earned here" if b["masterful_depth_frame"]
-                                         else "no")])
+                                         else "no")] + tail)
 
 
 def self_test():
@@ -143,6 +202,37 @@ nothing
         one, _ = brief(p.read_text(), only=2)
         ok("--slide selects one block", [x["slide"] for x in one] == [2], one)
         ok("the printed block says MISSING rather than nothing", "MISSING" in render_block(one[0]))
+        # native crops: fresh tiles listed with their design region, a frame
+        # re-rendered after the cut reads stale, no crops reads missing
+        import hashlib
+        rd = Path(td) / "render"
+        (rd / "crops").mkdir(parents=True)
+        frame = rd / "slide-01.png"
+        frame.write_bytes(b"frame one")
+        (rd / "crops" / "slide-01-r1c1.png").write_bytes(b"tile")
+        (rd / "crops" / "slide-01.json").write_text(json.dumps({
+            "frame": "slide-01.png", "frame_sha256": hashlib.sha256(b"frame one").hexdigest(),
+            "tiles": [{"file": "slide-01-r1c1.png", "design": [0, 0, 540, 450]}]}))
+        c = native_crops(rd, 1)
+        ok("fresh crops are listed with their design region",
+           len(c.get("tiles") or []) == 1 and c["tiles"][0]["design"] == [0, 0, 540, 450], c)
+        ok("the printed block names the tile and its region",
+           "x 0 to 540, y 0 to 450" in render_block(dict(b[0], native_crops=c)))
+        frame.write_bytes(b"frame two, re-rendered")
+        c = native_crops(rd, 1)
+        ok("crops cut from an earlier render read stale and list nothing",
+           "stale" in c and not c.get("tiles"), c)
+        ok("a slide with no crops reads missing", "missing" in native_crops(rd, 2))
+        # Codex, PR #422: a manifest naming a tile that is gone is incomplete, not a partial view
+        (rd / "slide-03.png").write_bytes(b"frame three")
+        (rd / "crops" / "slide-03-r1c1.png").write_bytes(b"tile")
+        (rd / "crops" / "slide-03.json").write_text(json.dumps({
+            "frame": "slide-03.png", "frame_sha256": hashlib.sha256(b"frame three").hexdigest(),
+            "tiles": [{"file": "slide-03-r1c1.png", "design": [0, 0, 540, 450]},
+                      {"file": "slide-03-r1c2.png", "design": [540, 0, 540, 450]}]}))
+        c = native_crops(rd, 3)
+        ok("a crop set with a tile missing reads incomplete and lists nothing",
+           "stale" in c and "incomplete" in c["stale"] and not c.get("tiles"), c)
     print("\ncritic_brief self-test: " + ("all passed" if not bad else "%d FAILED" % bad))
     return 1 if bad else 0
 
@@ -151,6 +241,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--run-dir")
     ap.add_argument("--slide", type=int)
+    ap.add_argument("--render-dir", help="where render.py wrote the frames and crops/; "
+                                         "defaults to <run-dir>/render")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
@@ -163,6 +255,9 @@ def main():
         print("critic_brief: %s missing" % sb)
         return 2
     blocks, missing = brief(sb.read_text(encoding="utf-8"), a.slide)
+    rdir = Path(a.render_dir) if a.render_dir else Path(a.run_dir) / "render"
+    for b in blocks:
+        b["native_crops"] = native_crops(rdir, b["slide"])
     if a.json:
         print(json.dumps({"slides": blocks, "missing": missing}, indent=2))
     else:

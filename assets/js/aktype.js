@@ -42,6 +42,12 @@
  * <br> line breaks are honored: a maxLines:3 headline authored with two <br>
  * is already 3 lines, so fitText only ever needs to shrink if a line ALSO
  * soft-wraps. This is exactly the run-2026-07-09 failure mode.
+ *
+ * And when maxLines is ABOVE the authored count, a long authored line may
+ * soft-wrap at the max size instead. Pass `authored: true` (2026-10-09) to
+ * forbid that: the block goes nowrap and shrinks until its longest authored
+ * line fits (`width: px` for a box that sizes to its content).
+ *   AK.fitText(h1, { min: 56, max: 96, maxLines: 3, authored: true });
  */
 (function (global) {
   "use strict";
@@ -69,6 +75,40 @@
     return { lines: n || 1, overflowX: overflowX, overflowY: overflowY };
   }
 
+  // The same, counting the line boxes of TEXT only (2026-10-09). A Range over
+  // an element also returns the border box of every child element, and a
+  // display:block span's box top sits half a leading away from its text's, so
+  // measure() counts a two-span headline as four lines. Used by the opt-in
+  // `authored` mode only, so every existing fit measures as before.
+  function measureText(el) {
+    var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var range = document.createRange();
+    // a rect that overlaps a line by half its height belongs to that line, so a
+    // <sup> or a baseline-shifted fragment is not counted as a line of its own (Codex, PR #422)
+    var bands = [], n = 0, t;
+    while ((t = tw.nextNode())) {
+      if (!t.textContent.trim()) continue;
+      range.selectNodeContents(t);
+      var rects = range.getClientRects();
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (r.width > 1 && r.height > 1) {
+          var hit = false;
+          for (var b = 0; b < bands.length; b++) {
+            var ov = Math.min(bands[b][1], r.bottom) - Math.max(bands[b][0], r.top);
+            if (ov >= 0.5 * Math.min(bands[b][1] - bands[b][0], r.height)) {
+              bands[b][0] = Math.min(bands[b][0], r.top); bands[b][1] = Math.max(bands[b][1], r.bottom); hit = true; break;
+            }
+          }
+          if (!hit) { bands.push([r.top, r.bottom]); n++; }
+        }
+      }
+    }
+    return { lines: n || 1,
+             overflowX: el.scrollWidth > el.clientWidth + 1,
+             overflowY: el.scrollHeight > el.clientHeight + 1 };
+  }
+
   /* Binary-search the largest font-size in [min, max] (px, resolved to 0.5px)
    * at which `el` fits `maxLines` line boxes with no horizontal overflow.
    * `respectHeight` (default: only when the element has a fixed/clipped height)
@@ -85,11 +125,36 @@
     var cs = getComputedStyle(el);
     var respectHeight = opts.respectHeight != null ? opts.respectHeight
       : (["hidden", "clip"].indexOf(cs.overflowY) !== -1);
+    /* AUTHORED LINES (2026-10-09, weekly pass; queue item 2026-10-06, repeat
+     * 1). OPT-IN: `authored: true`. A headline whose lines are authored with
+     * <br> (or one block span per line) has DECLARED its breaks, and a soft
+     * wrap inside one of them is a break nobody wrote. Without this option a
+     * maxLines above the authored count lets a long authored line wrap at the
+     * max size instead of shrinking (No.79 slides 05 and 08, No.81 every
+     * headline, each fixed by hand with white-space:nowrap). With it the block
+     * is set nowrap and the size is the largest at which the LONGEST authored
+     * line fits the box (or `width` px, for a box that sizes to its content),
+     * every line at one size: CSS text-fit's `shrink consistent`
+     * (developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-fit),
+     * which the engine's Chromium 141 does not have. maxLines still caps the
+     * authored count. Leave it out and nothing changes. */
+    var authored = opts.authored === true;
+    var limitW = null;
+    if (authored) {
+      el.style.whiteSpace = "nowrap";
+      // every authored line holds too: a child rule (h1 span {white-space: normal})
+      // would otherwise beat the inherited nowrap and soft-wrap (Codex, PR #422)
+      var kids = el.querySelectorAll("*");
+      for (var ki = 0; ki < kids.length; ki++) kids[ki].style.whiteSpace = "nowrap";
+      limitW = opts.width != null ? opts.width : el.clientWidth;
+    }
 
+    var probe = authored ? measureText : measure;
     function fitsAt(px) {
       el.style.fontSize = px + "px";
-      var m = measure(el);
+      var m = probe(el);
       var ok = m.lines <= maxLines && !m.overflowX && (!respectHeight || !m.overflowY);
+      if (ok && authored) ok = el.scrollWidth <= limitW + 1;
       return ok;
     }
 
@@ -106,7 +171,7 @@
     } else {
       el.style.fontSize = best + "px";
     }
-    var fm = measure(el);
+    var fm = probe(el);
     var rep = { size: best, lines: fm.lines,
                 fit: !el.hasAttribute("data-fit-overflow") };
     /* REPORT EVERY FIT (2026-08-12). data-fit-overflow has existed since this
@@ -132,7 +197,7 @@
           tag: (el.tagName || "").toLowerCase(),
           text: (el.textContent || "").trim().replace(/\s+/g, " ").slice(0, 60),
           min: min, max: max, maxLines: maxLines,
-          size: best, lines: fm.lines, fit: rep.fit,
+          size: best, lines: fm.lines, fit: rep.fit, authored: authored,
           overflow_x: !!fm.overflowX, overflow_y: !!fm.overflowY
         });
       }

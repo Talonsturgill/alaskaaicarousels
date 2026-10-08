@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-09/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5269128,
+  "pdf_mb": 5.27,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-09/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-09/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's Newest Rare-Earth AI Won't Hunt for Ore",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "64c77b8bfe12c5ebc7cb32a2f551688bd73791b50da9d1b14b9b648d06873f2c",
+        "bytes": 5919735
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d75d3d712cb6cc7c310fa9c921b7b9d1667713d76075248b7fdb9dae129f0725",
+        "bytes": 3841173
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "8b438343f1afe14a2ff675528b66d9db6789f17474452ebaccbe296c1456956d",
+        "bytes": 4532479
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "be14ecc286cc354c40137a81616f248daf8d9357c9e24f5bd074834d60393f30",
+        "bytes": 2818098
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "588f6de4de1c320b4fb5dce26130f4da97e955987d1a5c04a6f39fab29795f5c",
+        "bytes": 3359437
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e55c3bebee34bf0abe5246c79740874ee9af1ecbeba8a3d62f043b9f1f782b3b",
+        "bytes": 2094058
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "2159ddc06dcccd82f0ff865f32a38d516f14b3a764d7523b231bf0f2eff9f884",
+        "bytes": 1596466
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "48bb2c923535140a666e0ded361be48ffd6fad883d17fe5a003c930072f7d5bd",
+        "bytes": 1525606
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "8a90127462a3f2470f57be83d053e05c64ad90daba6496c666294cb7c75abc83",
+        "bytes": 5773264
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "2c9dd29041b75bff976604edee84da4fef56ae9d0610489eb1c0d5fd947cd1de",
+        "bytes": 17526
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "82c4620c9685d34b89c7d6444b88588f1f8e22aaefa8eb2ce92d235a06333427",
+        "bytes": 18284
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "9106cff1780cef030c0272d08402e1add8e025e2fa07904fb1e15f927794eef9",
+        "bytes": 14630
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "03ad6bee491bfc8a2d26ca34575cbadf4cf564254fa8d17c32561f137e508cd4",
+        "bytes": 12453
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c68797d80f8118662c934b054061342bdeb77c5810c2ca8147fa3e5ead3a0b61",
+        "bytes": 11670
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "f37b9214ac5366bf153393f4966350daf9a42c2bb32b4125cea6d3c9538c189d",
+        "bytes": 9370
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "985b209316a115a5b769bac6b788ad1ac89110d82526ff54c9fe5362dd7e5d05",
+        "bytes": 14260
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "df4de02a83aee61225667006b7e3492966024ca54ad0167a6849bdaaa4626a69",
+        "bytes": 10176
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "0f3bfd019e8ce7c07be938a794f7dfa5d2516dc0bf778cf61d4405e98ba36b8f",
+        "bytes": 18757
+      }
+    ]
+  }
+}

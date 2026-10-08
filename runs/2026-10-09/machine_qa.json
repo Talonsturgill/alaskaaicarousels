@@ -1,0 +1,172 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the gold is sealed inside the glass wall': dE 72.0, AUC 0.79, visible 100%/100%, seen 281/1024px at 432w"
+      ],
+      "contacts": [
+        "'the fly ash grain resting on the ash bed': shadow L* 1.1 vs ground L* 42.2, dL 41.1 at 432w"
+      ],
+      "motifs": [
+        "'the six gold specks locked in the grain wall': canvas 92.4 dE, page 82.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Alaska's newestrare-earth AI won'thunt for o' fits 4/4 lines at 92.5px"
+      ],
+      "asserts": [
+        "'six gold specks drawn in the wall, illustrative' holds: 6 vs 6 marks, counted over 6 declared marks (within 0)",
+        "'six gold specks drawn in the wall, illustrative': 6 mark centres probed at r=14px, cohort median 77.4 dE, all present (weakest 71.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the planned AI is dashed and unlit against a solid lit vessel': dE 48.2, AUC 0.93, visible 100%/100%, seen 1920/5760px at 432w"
+      ],
+      "contacts": [
+        "'the bioreactor foot on the epoxy bench': shadow L* 19.8 vs ground L* 36.8, dL 17.0 at 432w"
+      ],
+      "motifs": [
+        "'gold specks suspended in the broth': canvas 72.2 dE, page 69.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Two jobs, and neitheris prospecting.' fits 2/2 lines at 91px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the rare earths are too thin to change how the coal looks': dE 0.8, AUC 0.54, visible 100%/100%, seen 11520/4224px at 432w"
+      ],
+      "contacts": [
+        "'the epoxy mount on the bench': shadow L* 1.1 vs ground L* 12.2, dL 11.1 at 432w"
+      ],
+      "motifs": [
+        "'sparse gold specks across the polished section': canvas 72.5 dE, page 69.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'Anchorage on the locator' lands 8.0px from its target",
+        "leader 'Anchorage on the locator' meets its label 4.0px away",
+        "leader 'Anchorage on the locator' is drawn 108 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Alaska doesn't minerare earths. Coalholds a ' fits 3/3 lines at 73.5px"
+      ],
+      "asserts": [
+        "'Healy sits north of Anchorage on the locator' holds: 1 vs 1 flag (within 0)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the gold sits on the ash, not gathered by the colonies': dE 17.3, AUC 0.85, visible 100%/100%, seen 1024/1152px at 432w"
+      ],
+      "contacts": [
+        "'the culture dish on the light box': shadow L* 81.6 vs ground L* 95.2, dL 13.6 at 432w"
+      ],
+      "motifs": [
+        "'colony domes on the agar': canvas 60.3 dE, page 58.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'One microbe is named.' fits 1/1 lines at 88px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'two feeds, coal refuse and ash, read apart': dE 31.2, AUC 0.95, visible 100%/100%, seen 2304/1024px at 432w"
+      ],
+      "motifs": [
+        "'the six feed piles, hachured': canvas 77.0 dE, page 75.1 dE, 98% of its rect is clear of opaque DOM (rect stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Rank the wastebefore it's fed.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'gold specks settled in the ash at the vessel floor': canvas 94.6 dE, page 100.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The power dips.Something has to decidewhat t' fits 3/3 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'only the ash is real, the twin is planned': dE 81.9, AUC 1.00, visible 100%/100%, seen 720/13376px at 432w"
+      ],
+      "contacts": [
+        "'the ash dish on the floor': shadow L* 1.6 vs ground L* 19.4, dL 17.8 at 432w"
+      ],
+      "motifs": [
+        "'gold specks in the real ash dish': canvas 71.3 dE, page 71.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Job two,the Alaska part.' fits 2/2 lines at 82px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'gold specks in the ash at the tube feet': canvas 72.1 dE, page 82.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'About $6 million,to August 31st, 2030.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'UAA fill height is its dollars on the shared scale' holds: 480 vs 480 px (within 0.5)",
+        "'Montana Tech fill height is its dollars on the shared scale' holds: 158.236 vs 158.236 px (within 0.5)",
+        "'UAF fill height is its dollars on the shared scale' holds: 114.59 vs 114.59 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "encodings": [
+        "'the metal is still in the waste and the vial is empty': dE 50.6, AUC 0.99, visible 100%/100%, seen 261/3200px at 432w"
+      ],
+      "contacts": [
+        "'the fly ash grain resting on the ash bed': shadow L* 1.1 vs ground L* 47.8, dL 46.7 at 432w"
+      ],
+      "motifs": [
+        "'the six gold specks still locked in the grain wall': canvas 79.4 dE, page 82.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'New deposits, or old waste?Where should Alas' fits 3/3 lines at 69px"
+      ],
+      "asserts": [
+        "'the same six gold specks as the cover, still in the wall' holds: 6 vs 6 marks, counted over 6 declared marks (within 0)",
+        "'the same six gold specks as the cover, still in the wall': 6 mark centres probed at r=14px, cohort median 80.2 dE, all present (weakest 74.6 dE)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

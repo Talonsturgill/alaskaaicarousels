@@ -2872,6 +2872,48 @@
         4
       ],
       "note": "Five rounds used. Holdouts at the per-slide cap were 05 (the hollow) and 07 (the coal lump); the flow round restored the twine link 01 to 02 and lightened 04 and 08."
+    },
+    {
+      "run_date": "2026-10-09",
+      "carousel_no": 82,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE MAGNIFICATION LADDER. One sample path through the instruments that would really look at it, every frame a full environment at its own scale: a ray-traced fly-ash cenosphere in darkfield (01), a GPU PBR bench bioreactor under one lamp (02), a polished coal section in an epoxy puck (03), a petri dish on a light box (04), hachured feed piles in plan (05), the vessel in mezzotint with the lamp off (06), a depth-weighted wireframe twin over a microgrid ring (07), gradient-solid test tubes filled to their dollars (08), the grain again beside an empty dashed vial (09).",
+      "atmosphere": "NEW: THE METERED LAMP, one bench lamp whose output is the story's variable (available power): darkfield ring, lamp, raking, light box, overcast, OFF, partial, even, darkfield",
+      "depth_technique": "per-pixel analytic glass-shell ray trace with refraction sampled from a blurred background, bokeh ash sprites and a contact shadow (01, 09); akthree PBR with fog and a bench lip (02); multi-material reflected-light relief on an elliptical puck (03); transmitted-light gradient domes with macro depth of field (04); per-pixel Lambert cones under hachure (05); device-resolution mezzotint burnish (06); depth-weighted hidden-line wireframe (07); parallel-projection gradient cylinders (08)",
+      "line_voice": "instrument",
+      "continuity_device": "the locked gold (rare earth still in the waste) as specks on every frame, never pooled",
+      "continuity_devices": [
+        "the locked gold, six specks sealed in the grain's wall on 01 and 09, sparse specks on every frame between",
+        "the planned ink, ice phantom dashes for what is planned and not built, casting no shadow (02, 05, 07, 09)",
+        "the scale rail, nine ticks with one live word that descends, climbs and returns (GRAIN to GRAIN)",
+        "the metered lamp, OFF on the breather"
+      ],
+      "hook_archetype": "NEW: THE WRONG JOB (the reader expects AI-finds-minerals and the cover turns it)",
+      "palette_family": "NEW: DARKFIELD AND FLY ASH",
+      "type_pairing": "Space Grotesk alone with JetBrains Mono instruments",
+      "narrative_structure": "cover turn, payoff of two jobs, why waste, the microbe, job one, breather, job two, the money and its end date, the grain again with one ask",
+      "techniques": [
+        "analytic glass-shell ray trace",
+        "pre-lit bokeh sprites",
+        "akthree PBR bench still",
+        "laminated coal-section relief",
+        "transmitted-light colony domes",
+        "slope-and-aspect hachure",
+        "mezzotint burnish",
+        "depth-weighted wireframe",
+        "gradient-solid parallel-projection cylinders",
+        "phantom-dash planned ink"
+      ],
+      "new_techniques_logged": [
+        "THE MAGNIFICATION LADDER",
+        "THE METERED LAMP"
+      ],
+      "variance_dials": [
+        3,
+        3,
+        2
+      ],
+      "note": "Five rounds used (four per-slide, one flow). 01, 06 and 08 shipped per-slide; 02 to 05, 07 and 09 were holdouts fixed after round 4 and in the flow round. Art scored 6.5: 05's piles (hairy eggs), 04 (illustrative colonies), 03 (camouflage bands) named weakest. The akthree glass on 02 was milk, then invisible, before its reflections were drawn in 2D."
     }
   ]
 }

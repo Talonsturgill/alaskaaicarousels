@@ -177,6 +177,16 @@ def build_nodes(render_report):
         cands = []
         for n in s.get("text_nodes", []):
             cands.extend(node_strings(n))
+        # A HEADING BUILT FROM ONE SPAN PER LINE (2026-10-09, weekly pass).
+        # render.py records such a block's joined string in `text_composites`,
+        # because the block holds no direct text and was never a text node: No.80
+        # and No.81 failed this check on every headline written in the
+        # authored-break idiom the dossier spec asks for. One element still
+        # carries each candidate whole (the block and its own spans), so this
+        # widens what the check can see and relaxes no matching rule.
+        for c in s.get("text_composites") or []:
+            if c.get("full"):
+                cands.append(c["full"])
         per_slide["S%d" % idx] = cands
         deck.extend(cands)
     return per_slide, deck

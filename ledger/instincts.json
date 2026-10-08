@@ -1970,6 +1970,30 @@
       "evidence": "No.81 slide 07 at 650 x 812 internal ran past deadlineMs 70000 and printed a hard horizontal seam from row 590; 200000 cleared it and render.py's 30 s race never cut the synchronous draw.",
       "act_on_it": "When raising an aksdf internal size, scale deadlineMs by the pixel ratio first, and read render_report console_errors for AK DEGRADED before looking at the picture.",
       "confidence": 0.7
+    },
+    {
+      "run_date": "2026-10-09",
+      "carousel_no": 82,
+      "instinct": "IN THREE.JS A TRANSPARENT GLASS SHELL CASTS A FULL SHADOW AND TAKES DIFFUSE LIGHT; GIVE IT A NEAR-BLACK ALBEDO.",
+      "evidence": "No.82 slide 02: the broth read brown only because the 0.22-opacity glass shells shadowed it completely. Taking the glass out of the shadow pass turned the broth white, and the broth region's mean measured 107 with the glass and 52 without it, so the milk was the glass's own diffuse term (albedo 0xd8e6f2 under a 46-unit spot). A 0x0b0e12 glass albedo with environment reflection fixed it.",
+      "act_on_it": "Glass in akthree: albedo near black, castShadow and receiveShadow false, envMapIntensity carries the read. Set the liquid's albedo for the fully lit case, and scale shadow normalBias to about one percent of the object (0.0012 m on a 16 cm vessel, never 0.02).",
+      "confidence": 0.75
+    },
+    {
+      "run_date": "2026-10-09",
+      "carousel_no": 82,
+      "instinct": "A STRAIGHT CONE UNDER LAMBERT SHADING DRAWS A HARD RADIAL WEDGE; SHADE A HEAP.",
+      "evidence": "No.82 slide 05: a cone's normal is constant along each generatrix, so the terminator is a straight line from apex to toe, and the critic named it a pie-slice seam on all six piles. A heap profile (slope rising with radius) under wrap lighting gave a turning terminator and the seam was gone.",
+      "act_on_it": "For piles, mounds and dunes in plan, use a height profile whose slope varies with radius and a wrap term of about 0.3 on the Lambert, and lift the lee floor above the ground value so the toe never merges.",
+      "confidence": 0.65
+    },
+    {
+      "run_date": "2026-10-09",
+      "carousel_no": 82,
+      "instinct": "DEPTH WEIGHTING BY CAMERA DISTANCE IS INVISIBLE ON A SMALL OBJECT; NORMALISE ACROSS THE OBJECT.",
+      "evidence": "No.82 slide 07: line width and alpha by k = Zc/z spanned only 0.93 to 1.07 on a 16 cm vessel seen from 1.05 m, and the critic read the wireframe as uniform graph paper. Normalising depth from the near rim to the far rim, with a lit-left term and dashed back lines, gave a visible hierarchy.",
+      "act_on_it": "For a wireframe or hatched solid, compute t = (z - zNear)/(zFar - zNear) over the object itself and drive width and alpha from t, not from the ratio to the camera distance.",
+      "confidence": 0.6
     }
   ]
 }

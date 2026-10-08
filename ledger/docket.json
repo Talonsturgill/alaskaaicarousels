@@ -106,7 +106,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-07-08",
@@ -243,6 +243,10 @@
         {
           "date": "2026-10-05",
           "note": "Tried to re-read the DNR notice for ADL 422741 today and the state's notice server refused the request. No final finding and decision on the STAK Energy lease has been reported in coverage through October 3rd, so the item stays awaiting DNR's decision."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Re-read the DNR notice for ADL 422741 today, which answered this time. It still carries the May 12th preliminary decision and its attachments with an archive date of July 18th, and no final finding and decision is posted. No decision has been reported in coverage through October 8th. Checked and unchanged."
         }
       ]
     },
@@ -1828,7 +1832,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-02",
@@ -1905,6 +1909,10 @@
         {
           "date": "2026-10-05",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, last modified August 7th and archived August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, with an archive date of August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
         }
       ]
     },
@@ -1937,6 +1945,16 @@
           "date": "2026-08-28",
           "label": "Comments, motions to intervene and protests due, 5:00 p.m. Eastern",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-11-30",
+          "label": "Recommendations, terms and conditions, and fishway prescriptions due at FERC, 5:00 p.m. Eastern",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-01-14",
+          "label": "Reply comments due at FERC, 5:00 p.m. Eastern",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -1945,6 +1963,11 @@
         "lat": 59.78
       },
       "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-06/html/2026-20451.htm",
+          "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
+          "date": "2026-10-06"
+        },
         {
           "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
           "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
@@ -1977,7 +2000,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-04",
@@ -2058,6 +2081,10 @@
         {
           "date": "2026-10-05",
           "note": "Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "FERC published a new notice on October 6th, 91 FR 63543, in Project No. 8221-124. After reviewing the comments filed by August 28th, Commission staff now request recommendations, terms and conditions, and fishway prescriptions by November 30th, with reply comments due January 14th, 2027, both by 5 p.m. Eastern. No order on the amendment has been issued."
         }
       ]
     },
@@ -2305,7 +2332,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-06",
@@ -2386,6 +2413,10 @@
         {
           "date": "2026-10-07",
           "note": "Re-read the KUAC report on the Spruce Lake site today. The comment window closed September 30th, no extension or correction is noted, and the Air Force still names 2030 as the year it hopes the reactor is operating. The Federal Register carries no Air Force or Oklo notice since October 1st. No site decision has been published. Separately, on October 2nd the Army Corps of Engineers Alaska District posted a request for information, notice W911KB279A007, for the design and construction work that would extend heating, power, communications and water systems to a 45 megawatt thermal, 5 megawatt electric microreactor at Eielson. It is market research rather than a contract, and responses are due October 16th at 2 p.m. Alaska time."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Searched the Federal Register today for any Air Force, Eielson or Oklo notice since October 1st and found none. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
         }
       ]
     },
@@ -3364,10 +3395,15 @@
           "url": "https://www.adn.com/alaska-news/anchorage/2026/09/16/stuck-on-the-details-anchorage-assembly-delays-new-police-surveillance-regulations/",
           "outlet": "Anchorage Daily News",
           "date": "2026-09-16"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/06/downed-flock-camera-outside-south-anchorage-lowes-confirmed-apd-says-no-report-filed-no-access-feed/",
+          "outlet": "Alaska's News Source (KTUU)",
+          "date": "2026-10-05"
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-25",
@@ -3452,6 +3488,10 @@
         {
           "date": "2026-10-05",
           "note": "Checked the Anchorage Daily News today. Its latest report on AO 2026-108 is still the September 16th story on the Assembly postponing the surveillance ordinance, and no further action has been reported. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Checked Anchorage coverage today. No further Assembly action on AO 2026-108 has been reported since the September 16th postponement, so the ordinance returns at the October 20th regular meeting. Separately, KTUU reported on October 5th that a Flock Safety license plate camera installed for a private customer at the South Anchorage Lowe's was cut down on October 4th, and that the Anchorage Police Department says it does not use Flock and has no access to the store's feed. The ordinance as introduced governs municipal surveillance, not private cameras."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3506,7 +3546,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-31",
@@ -3574,6 +3614,10 @@
         },
         {
           "date": "2026-10-06",
+          "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
           "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
@@ -3938,7 +3982,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-13",
@@ -3979,6 +4023,10 @@
         {
           "date": "2026-10-05",
           "note": "Checked GovInfo today. The engrossed House text of September 16th is still the latest published version, and no further Senate action has been published since the September 30th cloture vote. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Checked GovInfo today. The latest published versions are still the engrossed House text and the Senate calendar print, with no Senate-passed or enrolled version, so no further Senate action has been published. Checked and unchanged."
         }
       ]
     },
@@ -4031,7 +4079,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-13",
@@ -4088,6 +4136,10 @@
         {
           "date": "2026-10-08",
           "note": "Searched the Federal Register today for anything on the bulk-power system published since October 1st. The only result is a routine FERC information collection notice of October 6th, unrelated to this request, so written responses are still accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Searched the Federal Register today for anything on the bulk-power system since October 1st and found no extension or correction to this request. Written responses are still accepted on or before October 9th. Checked and unchanged."
         }
       ]
     },
@@ -4305,7 +4357,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-15",
@@ -4366,6 +4418,10 @@
         {
           "date": "2026-10-06",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee, last modified September 29th, with one recorded action (introduced and set for hearing on September 15th), and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ]
     },
@@ -4613,11 +4669,15 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-10-05",
           "note": "Tracked. The Alaska Current reports a 3 gigawatt first phase with plans for 10, a $1.2 million no-bid feasibility contract authorized in November 2025 and another $5 million committed in March, under a resolution describing an investor-owned utility in which the borough would initially hold majority ownership. Dermot Cole reported the same 3 to 10 gigawatt plan on May 12th. The borough's resolutions are posted only through a document viewer that could not be read directly, so their wording here is as the Current quotes it."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Searched Alaska energy coverage from September 28th to October 8th today and found no new filing, contract or borough action on the North Slope Power plan since The Alaska Current's October 3rd report. Checked and unchanged."
         }
       ]
     },

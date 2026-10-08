@@ -3089,6 +3089,83 @@
       "verification": "python3 scripts/machine_due.py --self-test: all passed, with five new checks: an escalated repeat-5 item does not make the pass due the day after a pass; it is still an open item; the seven-day pass still runs; an unescalated repeat offender beside it still makes it due early; the word 'escalated' inside evidence text is not an escalation. Reconstruction: git HEAD's verdict() on the escalated repeat-5 line the day after a pass returns (True, '1 repeat offender(s) queued'). On the live queue after this pass: --date 2026-10-07 exits 1 ('not due ... 0 repeat offender(s)'), --date 2026-10-13 exits 0. No engine file changed, so no render or qa reading moves.",
       "rollback": "git checkout <commit>^ -- scripts/machine_due.py prompts/machine_weekly.md, and drop the ' | escalated 2026-10-06: ...' suffix from the gaswatch line in knowledge/MACHINE_QUEUE.md",
       "commit": "d22914f9"
+    },
+    {
+      "run_date": "2026-10-09",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py cuts every frame it writes into six 1080x900 device-px NATIVE tiles in render/crops/ (slide-NN-rRcC.png, plus slide-NN.json with each tile's design-px region and the sha256 of the frame it came from), each small enough that a vision reader receives it unscaled; scripts/critic_brief.py lists them at the foot of each slide's CRAFT LINES and reports a tile set cut from an earlier render as stale; the pixel-critic agent reads every tile before answering step 4 and cause d.",
+      "trigger": "Queue item 2026-10-07 'pixel-critic: critics can't crop to 100 percent' at repeat 2 (No.80, No.81 and No.82: every critic report said it judged texture from the 1600 px view), the item that made this pass due; weekly digest cause d, a texture artifact, on 4 of 6 runs and 10 weakest frames, plus cross-frame d on 1 run (4 frames). Written by render.py rather than assemble.py (the queue's proposal) because Phase 9 step 3 re-renders and re-reviews without re-assembling, and a crop of the previous render is worse than none.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        "scripts/critic_brief.py",
+        ".claude/agents/pixel-critic.md",
+        "prompts/routine_instructions.md",
+        ".claude/skills/carousel-engine/SKILL.md"
+      ],
+      "verification": "python3 scripts/critic_brief.py --self-test: all passed, four new (fresh tiles listed with their design region, the printed block names the region, tiles cut from an earlier render read stale and list nothing, a slide with no crops reads missing). Render of this run's slides: 54 tiles, each 1080x900, read back at native size with the Read tool (slide-02 r2c1 shows the dashed loop and the vessel lid at device resolution); critic_brief --slide 2 printed the six paths and regions. Cost about 0.5 s and 4.8 MB per frame in out/. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical. The tiles sit in a subdirectory, so assemble.py, ship_gate.py and the Phase 11 copy (all non-recursive render/slide-*.png globs) never see them.",
+      "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/render.py scripts/critic_brief.py .claude/agents/pixel-critic.md prompts/routine_instructions.md .claude/skills/carousel-engine/SKILL.md (render.py also carries changes 2 and 3 of this set; revert the whole upgrade commit to drop all three together)",
+      "commit": "19f42084"
+    },
+    {
+      "run_date": "2026-10-09",
+      "kind": "fix",
+      "area": "assets",
+      "change": "assets/js/akthree.js gains AKT.mat.glass() (near-black albedo, read carried by envMapIntensity 2.4, depthWrite off, and a userData flag AKT.add reads to take the mesh out of the shadow pass both ways) and AKT.audit(R), which AKT.snapshot runs on the scene graph and pushes onto window.__aktAudit: a metal (metalness over 0.5) whose effective environment (envMapIntensity x scene.environmentIntensity, or envMapIntensity on its own envMap) is under 0.5, and a transparent mesh under opacity 0.5 that casts a shadow or carries a pale albedo. render.py records the findings (and statically flags a hand-rolled three scene with a metalness over 0.5 and no environment, envMap or PMREM anywhere in its source); qa.py WARNs each one with the remedy. Reading only, and opt-in for the helper: no existing scene's pixels move.",
+      "trigger": "Weekly digest cause b, the largest object least modelled, on 4 of 6 runs (7 frames); queue items 2026-10-07 'akthree: a metal material with no environment renders black' (repeat 1: No.80 slide 06 aluminium conductor with no environment, a 5.5 from round 1; No.82 slide 02 steel headplate matte at 0.9 x 0.34 until 2.8) and 2026-10-09 'akthree: transparent glass casts a full shadow and takes diffuse light' (No.82 slide 02, three critic rounds; broth region mean 107 with the glass, 52 without).",
+      "files": [
+        "assets/js/akthree.js",
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/akthree_material_audit_verify.py"
+      ],
+      "verification": "python3 tests/akthree_material_audit_verify.py: 10/10. Six reconstruction slides through the real render.py and qa.py: No.82's steel at 0.9 x 0.34 WARNs; the same scene at No.82's fix, 2.8, is clean; AKT steel with no environment WARNs; a pale 0.22-opacity shell added with AKT.add WARNs for its shadow and its milk; the same shell from AKT.mat.glass() is clean and reads castShadow and receiveShadow false in the page; No.80's hand-rolled metalness 0.92 scene with no environment WARNs from the static scan; no FAIL from any of it; a scene without the helper renders the same canvas pixels with git HEAD's akthree.js. python3 tests/akthree_supersample_verify.py still 4/4. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical. This run's slide 02 (steel 2.8 x 0.34 = 0.95, motor 2.2 x 0.34 = 0.75, glass albedo 0x0b0e12 out of the shadow pass) raises no audit finding.",
+      "rollback": "git checkout <commit>^ -- assets/js/akthree.js tests/akthree_material_audit_verify.py, and drop the akthree_audit blocks from render.py and qa.py (or revert the whole upgrade commit)",
+      "commit": "19f42084"
+    },
+    {
+      "run_date": "2026-10-09",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py records a block that holds no direct text but two or more inline children (one span per line, the authored-break idiom) in a new per-slide list, text_composites, as its lines joined with spaces; copy_sync_check.py takes each one as a candidate string. It is not a text node, so no qa.py check reads it; the spans are still recorded and checked as before.",
+      "trigger": "Queue item 2026-10-07 'render: a heading built from per-line nowrap spans is not recorded as one text node' at repeat 1: No.80 (all nine headlines) and No.81 (all headlines) failed copy_sync_check until each was rebuilt with <br> by hand.",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        "scripts/copy_sync_check.py",
+        "tests/span_heading_verify.py"
+      ],
+      "verification": "python3 tests/span_heading_verify.py: 6/6. A real render of a span-per-line <h1> beside a <br> <h2> and a two-<div> block: exactly the <h1> is recorded ('The vessel ranks the feed it eats'); with text_composites removed (the pre-fix record) copy_sync_check reports that headline MISSING; with them both headlines are found; a headline the page never carried is still missing; machine_qa.json is byte identical with and without the field. tests/copy_sync_shred_verify.py and tests/copy_sync_punct_verify.py HOLD; tests/line_text_verify.py, wrap_drift_verify.py, leader_span_verify.py, declaration_surface_verify.py HOLD. copy_sync_check on this run's copy before and after the change: identical output. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical.",
+      "rollback": "revert the text_composites block in render.py's IN_PAGE_QA_JS and the composites loop in scripts/copy_sync_check.py build_nodes (or revert the whole upgrade commit)",
+      "commit": "19f42084"
+    },
+    {
+      "run_date": "2026-10-09",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/plan_drift_check.py gains a fourth check: where a dossier's field 11a gives backticked [x, y, w, h] regions and the slide declares data-encodes, the set of 11a rects must equal the union of the declaration's a and b (whole px) or the check FAILs naming the plan-only and declared-only rects; 11a rects on a slide with no declaration at all are a note, since the declaration is opt-in.",
+      "trigger": "Queue item 2026-10-09 'plan_drift: the storyboard's 11a rects are never compared with the slide's data-encodes' (No.82: five frames, 01, 02, 04, 07 and 09, carried 11a rects the layout had left while dossier_check and plan_drift_check passed; the pixel critic judges encoding_reads at the storyboard's rects). Taken at repeat 0 because it feeds the artwork judgement directly: a critic reading the wordless claim at the wrong rectangle is the cause-b and cause-c review reading the wrong place.",
+      "files": [
+        "scripts/plan_drift_check.py"
+      ],
+      "verification": "python3 scripts/plan_drift_check.py --self-test: PASS, four new (matching rects pass across a wrapped 11a line and stop at field 12; 11a rects with no declaration are a note; THE No.82 DEFECT, a declared rect moved after the plan, FAILs naming both rects; no 11a or an 11a of 'None' is not compared). On this run's storyboard, copy and render report: PASS, 7 region sets compared, 0 drift, and a note that slide 08's 11a names two regions with no data-encodes. Reconstruction on the same real data with slide 07's declared dish moved to No.82's round-2 position [168, 1128, 150, 30]: exit 1, 'In the plan only: [137, 1100, 150, 30]. Declared only: [168, 1128, 150, 30]'. The parser reads backticked rects out of 60 of the 80 field-11a paragraphs in the 15 archived storyboards that carry one (12 runs), across wrapped lines and both '**11a.' and '11a. **' shapes; those runs can't be replayed against the declarations because render reports are not archived.",
+      "rollback": "git checkout <commit>^ -- scripts/plan_drift_check.py",
+      "commit": "19f42084"
+    },
+    {
+      "run_date": "2026-10-09",
+      "kind": "improvement",
+      "area": "assets",
+      "change": "AK.fitText takes an OPT-IN `authored: true`: the block is set nowrap, lines are counted from text only (a display:block span's box no longer doubles the count), and the size is the largest at which the longest authored line fits the box (or `width` px for a content-sized box), every line at one size, which is CSS text-fit's `shrink consistent` in about 30 lines for a Chromium (141) that lacks it; __akFit records `authored` per call and qa.py's wrap-drift WARN names the option. Without the option nothing changes.",
+      "trigger": "Queue item 2026-10-06 'aktype: an authored <br> block wraps instead of shrinking' at repeat 1 (No.79 slides 05 and 08; No.81 every headline, each fixed with white-space:nowrap by hand). Technique from this pass's frontier scan, focus (d): CSS text-fit, shipped in Chrome 150 on June 30th (https://developer.chrome.com/en/blog/new-in-chrome-150, https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-fit), absent from the engine's Chromium 141 (CSS.supports('text-fit','shrink') is false, measured).",
+      "files": [
+        "assets/js/aktype.js",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/fittext_authored_verify.py"
+      ],
+      "verification": "python3 tests/fittext_authored_verify.py: 6/6 in the engine's own browser. Red: No.79's shape (two authored lines, maxLines 3, max 96) wraps to 3 lines at 95.5 px without the option; green: with it 2 lines at 48 px, the longest line 620 inside 620; a content-sized box with width 620 ends at x 713 of a 716 limit; a span-per-line headline fits to the same 48 px (without the option it measures 4 lines and clamps to min 40, the No.81 symptom); __akFit records authored per call; without the option sizes and line counts equal git HEAD's aktype.js on all three shapes. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical.",
+      "rollback": "git checkout <commit>^ -- assets/js/aktype.js tests/fittext_authored_verify.py, and drop the last sentence of qa.py's wrap-drift WARN",
+      "commit": "19f42084"
     }
   ],
   "scan_log": [
@@ -3581,6 +3658,13 @@
       "searches": "6 searches, 4 fetches (Jobard and Lefer 1997 read in full, Singh and Schaefer 2010 pages 1 to 3, Skia's mipmap downsampler source, the whatwg drawImage thread via search), 3 measurements in the engine's own Chromium and Node",
       "found": "(1) Jobard and Lefer: seeds at dsep from existing streamline samples, stop at dtest = 0.5 dsep, a dsep grid, midpoint integration (https://www.cg.tuwien.ac.at/courses/Visualisierung1/2015W/exercises/Streamlines_Jobard&Lefer.pdf). (2) drawImage resampling is a quality-of-implementation choice (https://lists.whatwg.org/pipermail/whatwg-whatwg.org/2014-March/084495.html) and Skia builds non-2x mip levels with CatmullRom (https://skia.googlesource.com/skia/+/chrome/m153/src/core/SkMipmapDrawDownSampler.cpp); MEASURED: an exact-overlap area resolve leaves 0.247 low-pass error against a 6x reference where drawImage high leaves 0.353. (3) Singh and Schaefer, Suggestive Hatching: line density modulated by intensity through a hierarchical proximity grid, farthest-point seeding (https://people.engr.tamu.edu/schaefer/research/suggestiveHatching.pdf). (4) three.js SSAARenderPass: jittered re-render accumulation (https://threejs.org/docs/pages/SSAARenderPass.html).",
       "outcome": "applied: (1) as akengrave surface()'s seed: \"even\" lay and (2) as AKT.drawDown's area resolve, both inside this pass's fix entries for the queued defects (kind fix, the scan supplied the technique). PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-06 frontier scan, focus (c)'): (3) tone by density, a fourth control on a value akengrave already carries by width, crossline and interdot; (4) jittered accumulation, N renders where one 3x render already halves the beat."
+    },
+    {
+      "run_date": "2026-10-09",
+      "focus": "(d) typography and layout craft, narrowed to fitting authored display lines to a measure in the engine's Chromium. Legal and distinct from the last three logged foci: 2026-10-06 (c) procedural art, 2026-10-04 (f) self-improving pipelines, 2026-10-03 (b) cartography (last (d) 2026-09-29). Chosen over the stalest slot, (g) accessibility/PDF (2026-09-21, mined to a measured dead end by its last four scans), on relevance: two queued headline defects at repeat 1 (fitText wrapping inside authored lines, span-per-line headings) bit No.79, No.80 and No.81.",
+      "searches": "3 searches, 2 fetches (MDN text-fit read in full to the syntax and caveats, Chrome 150 release post), 1 measurement in the engine's own Chromium via render.launch_chromium: version 141.0.7390.37, CSS.supports text-fit shrink false, text-fit grow per-line-all false, text-grow false, text-box trim-both cap alphabetic true, text-wrap pretty true",
+      "found": "(1) CSS text-fit shipped in Chrome 150 (June 30th): grow or shrink, then consistent (the smallest per-line factor on every line), per-line or per-line-all (a forced <br> break is its own line), then a percentage limit; it scales the rendered size after layout and does NOT change the computed font-size, and MDN notes that wrapping defeats shrink unless white-space is nowrap (https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-fit, https://developer.chrome.com/en/blog/new-in-chrome-150). (2) The earlier text-grow/text-shrink prototype names were folded into one property in the CSS WG (https://lists.w3.org/Archives/Public/public-css-archive/2025Sep/0933.html). (3) text-box-trim (Chrome 133) is already parked in FIELD_NOTES; text-wrap balance/pretty already reconfirmed null four times there, so neither was re-mined.",
+      "outcome": "applied: (1)'s 'shrink consistent' semantics re-implemented as AK.fitText's opt-in authored mode (this pass's improvement entry), since the engine's Chromium 141 lacks the property. PARKED (for the showrunner to add to knowledge/FIELD_NOTES.md, which this pass may not write): native text-fit itself, because adopting it means a browser upgrade (a dependency change), and because it leaves the computed font-size untouched, every qa.py check that reads font_px (tiny text, the 24 px floor, type scale) would read the pre-scale size and pass type that renders smaller; revisit when the container's Chromium is 150 or later, with a render.py read of the rendered glyph size."
     }
   ]
 }

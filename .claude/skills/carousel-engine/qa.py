@@ -3545,7 +3545,9 @@ def main():
                 f"block (canvas markers, struck fields, a leader's row) is now "
                 f"one or more rows out. Fix by giving the block the width its "
                 f"longest line needs, or white-space:nowrap, and read mark "
-                f"positions off getBoundingClientRect rather than a fixed pitch")
+                f"positions off getBoundingClientRect rather than a fixed pitch. "
+                f"A headline sized by AK.fitText takes `authored: true`, which "
+                f"sets it nowrap and shrinks until the longest authored line fits")
 
         # DETERMINISM (2026-08-01). render.py scans the slide SOURCE; this is
         # the judgement. Unseeded randomness is a FAIL because it makes the
@@ -3660,6 +3662,45 @@ def main():
                 f"render. Check it only if this material was already drawn, in "
                 f"which case add {mf['receiver']}.needsUpdate = true or pass "
                 f"the property in the constructor's options object")
+
+        # A MATERIAL THAT CAN'T READ AS ITSELF (2026-10-09, weekly pass; queue
+        # items 2026-10-07 and 2026-10-09). AKT.audit, and render.py's static
+        # scan for hand-rolled three scenes, read the scene graph for the two
+        # material mistakes that cost No.80 and No.82 four critic rounds: a
+        # metal with too little environment to reflect (No.80 none at all, a
+        # black rubber tube; No.82 0.31 effective, matte grey; 0.95 read as
+        # steel), and a transparent shell that casts a shadow or washes what is
+        # behind it with its own lit albedo (No.82's milk). A WARN: the critic
+        # still judges the frame, and a deliberately dull metal is allowed.
+        for fa in rec.get("akthree_audit", []) or []:
+            k = fa.get("kind")
+            if k in ("metal_unlit", "metal_no_env_static"):
+                res["warns"].append(
+                    "metal with nothing to reflect: %s (metalness %s) has an effective "
+                    "environment of %s (env: %s; floor %s). A metal is lit mostly by "
+                    "what it reflects, so it renders as matte grey or black rubber. "
+                    "Call AKT.environment(R, ...) or give the material an envMap, and "
+                    "raise envMapIntensity until envMapIntensity x "
+                    "scene.environmentIntensity clears the floor (No.82's steel read "
+                    "matte at 0.31 and as steel at 0.95)"
+                    % (fa.get("name"), fa.get("metalness"), fa.get("effective"),
+                       fa.get("env"), fa.get("floor")))
+            elif k == "glass_shadow":
+                res["warns"].append(
+                    "transparent shell casts a shadow: %s at opacity %s still casts a "
+                    "FULL opaque shadow over whatever it holds (No.82's broth). Build "
+                    "it with AKT.mat.glass(), which AKT.add takes out of the shadow "
+                    "pass, or set castShadow and receiveShadow false on the mesh"
+                    % (fa.get("name"), fa.get("opacity")))
+            elif k == "glass_milk":
+                res["warns"].append(
+                    "transparent shell washes what is behind it: %s has a pale albedo "
+                    "%s (linear luminance %s, over %s) at opacity %s, and its lit "
+                    "diffuse term is blended over the contents as milk (No.82: region "
+                    "mean 107 with the shells, 52 without). Use AKT.mat.glass(): a "
+                    "near-black albedo, with the read carried by envMapIntensity"
+                    % (fa.get("name"), fa.get("albedo"), fa.get("luminance"),
+                       fa.get("floor"), fa.get("opacity")))
 
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually

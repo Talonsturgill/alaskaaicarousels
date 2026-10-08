@@ -1,0 +1,117 @@
+{
+ "run_date": "2026-10-09",
+ "carousel_no": 82,
+ "revision_rounds": 5,
+ "hard_fails": [],
+ "hard_fail_check": "all 13 rubric hard fails checked and passed (evidence in the scorer's report: no dashes, no emoji, every fact on a fetched primary claim, no typos, no clipping, contrast 12:1 to 19:1 on primary text, 9 slides, machine_qa PASS and vector PDF, no topic repeat in 30 days, hero not identical to the last four, no banned phrase, 3 hashtags and no link in the body, no placeholder)",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8.0,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.0,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.0,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 6.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8.0,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.0,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.0,
+   "weight": 0.1
+  }
+ ],
+ "criteria_notes": {
+  "Thumb-stop cover": "Hook turns the reader's assumption in 12 words, huge type, clean thumb; nothing in the image is Alaskan and the cenosphere needs its label to read as fly ash.",
+  "Story arc & swipe momentum": "02 pays the cover at once, 06 makes job two felt, 09 bookends with the empty vial; the middle sags (job one at 05), and the 09 ask differs from the caption's ask.",
+  "Artwork craft & genuine detail": "01 and 09 strongest (analytic shell tracer, sprite bed, bokeh, contact); 02 headplate and meter under-modelled; 03 face reads as camouflage bands; 04 illustrative (outlined colonies, flat flecks, seam under the dark band); 05 piles read as hairy eggs; 06 mostly black; 07 scatters into islands; 08 clean. Every frame has its own mark-making.",
+  "Story-art fusion": "The ink law holds on every frame (gold = rare earth still locked in waste; phantom ice = planned, no shadow); 08's fills are dollars on one asserted scale; the empty vial closes wordlessly.",
+  "Alaska authenticity & local relevance": "Named Alaskans and places throughout; the one Alaska coal is honestly stamped not this award's feed; 07's 'the Alaska part' names no Alaska microgrid.",
+  "Insight density & factual weight": "Verified specifics on 02, 03, 05, 07 and a dense keepable ledger on 08; 04 deliberately thin; no energy or concentration number.",
+  "Variety vs ledger": "New hero, hook and pairing; mezzotint (No.81), hachure (No.80), gold-only ink with Polaris (No.79) and phantom dashed ink recur, and the narrative skeleton is close to No.81's.",
+  "Legibility & platform fitness": "34 px body, 24 px labels, vector PDF 5.27 MB with title; 08's twelve labels small at thumb, 09's site fixture faint.",
+  "Copy: voice & hook": "125-character hook with a named PI and exact dollars, 882-character caption, a real position and a debatable question; opens on a tally rather than the wrong-job turn.",
+  "Deliverable completeness": "Everything for the draft present; the draft and main URLs did not exist at scoring time; the gas_watch_live WARN must be named in the draft."
+ },
+ "calculation": "(8.0x0.14)+(7.5x0.14)+(6.5x0.16)+(8.0x0.14)+(7.0x0.12)+(7.5x0.10)+(6.5x0.08)+(8.0x0.07)+(8.0x0.05)+(8.0x0.10) = 8.20 by the rubric's stated formula. The rubric weights sum to 1.10, not 1.00 (verified in config/scoring_rubric.yaml); normalized by the weight sum the total is 7.45. Flagged to the owner; the rubric is not changed by a run.",
+ "weighted_total": 8.2,
+ "threshold": 7.7,
+ "threshold_rule": "iteration_ladder revision_rounds 4+ = 7.7, ship best version, flag shortfall in email",
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild slide 05's piles as crisp-edged heaps, with a hard toe and cast and hachure running down the fall lines weighted by illumination (thin on the lit northwest, heavy in the lee), and delete the six empty rank tabs so the dashed rings alone say 'not yet ranked'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "feathered blobs with radial fur hachure converging on one apex read as hairy eggs; the empty tabs read as missing labels at thumb",
+   "fix": "crisp noise-perturbed footprint with a hard toe and cast, fall-line hachure weighted by illumination stopping short of an offset crest, no rank tabs"
+  },
+  {
+   "slide": 4,
+   "problem": "outlined candy-bead colonies, flat polygon flecks, a flat box with a hard seam under a dead dark band",
+   "fix": "translucent colony margins with transmitted glow, lit fleck edges with soft contacts, the box edge raised or the rim breaking into the band"
+  },
+  {
+   "slide": 3,
+   "problem": "the polished face reads as camouflage bands with cartoon pits; the cast is dark on dark",
+   "fix": "fine low-relief maceral texture under one broad polish sweep; a brighter, tighter pool under the puck's lower right"
+  },
+  {
+   "slide": 2,
+   "problem": "headplate a matte disc, motor unlit, meter flat, bench featureless",
+   "fix": "brushed steel with a visible env reflection and a specular arc, a lit motor edge, a glass sheen and bezel on the meter"
+  },
+  {
+   "slide": 6,
+   "problem": "about 70 percent black; headplate, ports and motor barely register at thumb",
+   "fix": "burnish the headplate rim, shoulder and right wall to about L* 35"
+  }
+ ],
+ "craft_floor": "Artwork 6.5 is under the 8.5 craft floor; the run is at the five-round cap (four per-slide rounds and the flow critic's round), so the floor stands down and no craft cycle is owed. The flow critic's round 5 was the craft pass on 02, 03, 04, 05, 06 and 07.",
+ "shortfall": "Ships at the round-5 ladder threshold (7.7), not the base 8.3; artwork 6.5 under the craft floor at the round cap.",
+ "editor_notes_for_email": [
+  "Ships at the round-5 ladder threshold 7.7, not the base 8.3; artwork 6.5 is under the 8.5 craft floor and the run was at the five-round cap.",
+  "The rubric's weights sum to 1.10, not 1.00, and have since the rubric's first commit. By its stated formula this deck scores 8.20; normalized, 7.45. Every past score carries the same 10 percent inflation. This is the owner's call; a run does not change the rubric.",
+  "Slide 03's headline 'Coal holds a little' simplifies Gleason: she called Usibelli coal's concentrations 'relatively high' (C37) yet too small to mine with acid (C39). Both are her words.",
+  "The cover's 'newest' rests on dates: this award August 5th, the Engine July 14th.",
+  "The 09 ask (new deposits or old waste) and the caption's ask (which Alaska microgrid hosts the controllers) are different questions; expect comments split across both.",
+  "The empty dashed tabs on slide 05 are deliberate (not yet ranked); a reader may take them for missing labels.",
+  "gas_watch_live is WARN: GitHub had not dispatched the 04:40Z and 07:20Z gaswatch.yml slots and workflow_dispatch returns 403.",
+  "Variety: the narrative skeleton and the mezzotint and hachure subsystems echo No.80 and No.81; the next run should change both."
+ ]
+}
