@@ -10080,7 +10080,7 @@ def power_placement_gate(pages):
                     "else. See power_placement_gate.")
 
 
-def build(today, out_dir, site_url=None, domain=""):
+def build(today, out_dir, site_url=None, domain="", run_date=None):
     global THIS_YEAR
     THIS_YEAR = today.year
     site_url = site_url or db.DEFAULT_SITE
@@ -10191,6 +10191,15 @@ def build(today, out_dir, site_url=None, domain=""):
     #
     # An em dash in a source name is enough to trigger it, which is exactly the
     # case house() exists for and feeds_build was missing.
+    # THE RUN DATE THE BUILD WAS ASKED FOR, recorded beside the date it was
+    # built for (Codex P1, PR #422). The footer's UPDATED stamp is the clamped
+    # date, which can sit a day or two behind the run date, so on its own it
+    # can't tell a legitimate clamp from a build run with a stale --date.
+    # site_fresh_check rebuilds with this run date and the stamp, so a build
+    # asked for any other date differs from its rebuild in this one line.
+    if run_date is not None:
+        pages["index.html"] = pages["index.html"].replace(
+            "<head>\n", f"<head>\n<!-- run-date {run_date.isoformat()} -->\n", 1)
     for rel, html in pages.items():
         bad = db.BANNED.findall(html)
         if bad:
@@ -10393,9 +10402,19 @@ def main():
                     help="custom domain; emits CNAME and rewrites absolute URLs")
     ap.add_argument("--no-clamp", action="store_true",
                     help="build for --date even when it is ahead of Anchorage's calendar")
+    ap.add_argument("--as-of", default=None,
+                    help="REBUILDS ONLY (site_fresh_check): the date a committed build was "
+                         "clamped to, read off its UPDATED stamp; never the clock")
     args = ap.parse_args()
     site = f"https://{args.domain}" if args.domain else db.DEFAULT_SITE
-    build(effective_date(ddate.fromisoformat(args.date), args.no_clamp), args.out, site, args.domain)
+    run_date = ddate.fromisoformat(args.date)
+    if args.as_of:
+        today = ddate.fromisoformat(args.as_of)
+        if today > run_date:
+            db.fail(f"--as-of {args.as_of} is after --date {args.date}; a clamp only moves a build back")
+    else:
+        today = effective_date(run_date, args.no_clamp)
+    build(today, args.out, site, args.domain, run_date=run_date)
 
 
 def effective_date(run_date, no_clamp=False):

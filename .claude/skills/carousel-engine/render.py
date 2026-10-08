@@ -4702,8 +4702,15 @@ METAL_RE = re.compile(r"\bmetalness\s*(?::|=(?!=))\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*
 # environment" once silenced the only warning a hand-rolled scene gets (Codex,
 # PR #422). So only <script> bodies are read, and only for an assignment or a
 # call that actually gives the scene or a material something to reflect.
-# ...and an assignment of null or undefined is the absence of one (Codex, PR #422).
-ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b)|\benvMap\s*[:=](?!=)(?>\s*)(?!null\b|undefined\b)"
+# ...and an assignment of null or undefined is the absence of one (Codex, PR #422),
+# as is a string, number or boolean: config.environment = "production" names a
+# deploy target, never a texture (Codex, PR #422, eighth round). Only when it is
+# the WHOLE value, though: `= true && tex` or `= 0 ? null : tex` is a texture
+# (Codex, PR #423). Strings arrive here already blanked by _js_code_only.
+_ENV_PRIMITIVE = (r"(?!(?:null|undefined|true|false|\d[\w.]*|[\"'][^\"'\n]*[\"']|`[^`]*`)"
+                  r"\s*(?:[;,)\]}\n]|$))")
+ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)" + _ENV_PRIMITIVE +
+                          r"|\benvMap\s*[:=](?!=)(?>\s*)" + _ENV_PRIMITIVE +
                           r"|\bPMREMGenerator\b|\bRoomEnvironment\b"
                           r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
@@ -4731,12 +4738,27 @@ def _js_code_only(js: str) -> str:
     spaces (newlines kept, so line numbers survive). One pass that knows which
     of those it is inside, because a regex cannot: a // inside a URL string is
     not a comment, and a quote inside a comment opens no string (Codex, PR #422,
-    after regex fixes for each case in turn kept leaving the next one open)."""
+    after regex fixes for each case in turn kept leaving the next one open).
+    A template's ${...} interpolations are code and stay, nested to any depth:
+    `${material.metalness = 0.9}` sets a metal (Codex, PR #422, eighth round)."""
     out, i, n = list(js), 0, len(js)
+    interp = []  # brace depth inside each open ${ }
     def blank(a, b):
         for k in range(a, min(b, n)):
             if out[k] != "\n":
                 out[k] = " "
+    def template(a):
+        # literal text from a until the closing backtick or the next ${
+        j = a
+        while j < n:
+            if js[j] == "\\":
+                j += 2; continue
+            if js[j] == "`":
+                blank(a, j); return j + 1
+            if js.startswith("${", j):
+                blank(a, j); interp.append(0); return j + 2
+            j += 1
+        blank(a, n); return n
     while i < n:
         c, two = js[i], js[i:i + 2]
         if two == "//":
@@ -4760,15 +4782,24 @@ def _js_code_only(js: str) -> str:
                     break
                 j += 1
             blank(i + 1, j); i = j + 1
-        elif c in "\"'`":
+        elif c == "`":
+            i = template(i + 1)
+        elif c in "\"'":
             j = i + 1
             while j < n and js[j] != c:
                 if js[j] == "\\":
                     j += 1
-                elif js[j] == "\n" and c != "`":
+                elif js[j] == "\n":
                     break
                 j += 1
             blank(i + 1, j); i = j + 1
+        elif interp and c == "{":
+            interp[-1] += 1; i += 1
+        elif interp and c == "}":
+            if interp[-1]:
+                interp[-1] -= 1; i += 1
+            else:
+                interp.pop(); i = template(i + 1)
         else:
             i += 1
     return "".join(out)
