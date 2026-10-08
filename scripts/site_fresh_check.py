@@ -67,10 +67,16 @@ def main() -> int:
     # a run dated ahead of Anchorage to Anchorage's date (effective_date), which
     # reads the clock; rebuilding with the clock again would change its answer
     # once Anchorage reaches the run date and fail a correct commit. So the
-    # rebuild uses the date the committed build stamped on its own pages, with
-    # --no-clamp, and the stamp must be the run date or at most two days before
+    # rebuild uses the date the committed build stamped on its own pages (passed
+    # as --as-of, which skips the clock), and the stamp must be the run date or at most two days before
     # it (a run is never dated further ahead than that), so a stale build or a
     # rolled-back --date still fails here.
+    # AND THE STAMP IS BOUND TO THE RUN DATE THE BUILD WAS ASKED FOR (Codex P1,
+    # PR #422, eighth round). Inside that window a stamp alone can't tell a
+    # clamp from a build run with --date two days stale, so site_build records
+    # the requested date in docs/index.html and the rebuild below passes --date
+    # <run date> --as-of <stamp>: a build asked for any other date differs from
+    # its rebuild on that line and fails.
     from datetime import date as _date, timedelta as _td
     stamp = None
     try:
@@ -91,7 +97,7 @@ def main() -> int:
         fresh = Path(tmp) / "site"
         r = subprocess.run(
             [sys.executable, str(HERE / "site_build.py"),
-             "--date", stamp, "--out", str(fresh), "--no-clamp"],
+             "--date", args.date, "--as-of", stamp, "--out", str(fresh)],
             capture_output=True, text=True)
         if r.returncode != 0:
             print("FAIL: the rebuild itself failed, so docs/ cannot be trusted "
