@@ -119,6 +119,9 @@ def slides():
         9: akt(9, env034, STEEL.replace("EMI", "2.8") + HIDDEN_GROUP),
         # Codex, PR #422: the static scan covers every metalness above 0.5, 0.55 included
         10: HEAD.replace("SLIDE_NO", "10") + HAND.replace("metalness: 0.92", "metalness: 0.55"),
+        # Codex, PR #422: the word "environment" in the copy is not an environment
+        11: HEAD.replace("SLIDE_NO", "11").replace("Material audit reconstruction",
+                                                  "Grown in a cold environment") + HAND,
     }
 
 
@@ -145,7 +148,7 @@ def main():
         print(r.stdout[-1500:])
         if r.returncode != 0:
             print(r.stderr[-2000:])
-        checks.append((r.returncode == 0, "render.py rendered the nine reconstruction slides"))
+        checks.append((r.returncode == 0, "render.py rendered the ten reconstruction slides"))
         q = run([sys.executable, str(ENGINE / "qa.py"), "--render-dir", str(rd)])
         mq = json.loads((rd / "machine_qa.json").read_text())
         rep = json.loads((rd / "render_report.json").read_text())
@@ -169,6 +172,8 @@ def main():
         checks.append((not warns.get(9), "09 a pale shell under an invisible group is not audited"))
         checks.append((has(10, "metal with nothing to reflect"),
                        "10 a hand-rolled metal at 0.55 WARNs from the static scan"))
+        checks.append((has(11, "metal with nothing to reflect"),
+                       "11 a headline reading 'environment' does not silence the static scan"))
         checks.append((has(6, "metal with nothing to reflect"),
                        "06 No.80's hand-rolled metal with no environment WARNs (static scan)"))
         mat_fails = [f for s in mq["slides"] for f in s["fails"]

@@ -2146,6 +2146,26 @@ IN_PAGE_QA_JS = """
     dive(el);
     return s;
   };
+  /* The same walk, skipping every element the reader can't see, at ANY depth:
+     a visible line holding a hidden <em> must not lend the composite its words
+     (Codex, PR #422, twice: first the direct children, then the descendants).
+     Used only for text_composites, so every recorded text node is unchanged. */
+  const _shownText = (el) => {
+    let s = "";
+    const dive = (n) => {
+      for (let c = n.firstChild; c; c = c.nextSibling) {
+        if (c.nodeType === 3) s += c.nodeValue;
+        else if (c.nodeType === 1) {
+          if ((c.tagName || "").toUpperCase() === "BR") { s += " "; continue; }
+          const cs2 = getComputedStyle(c);
+          if (cs2.display === "none" || cs2.visibility === "hidden" || parseFloat(cs2.opacity) === 0) continue;
+          dive(c);
+        }
+      }
+    };
+    dive(el);
+    return s;
+  };
   const seenFam = new Set();
   const recorded = new Map();   // element -> index in out.text_nodes (for ancestry)
   const walk = document.createTreeWalker(document.body || de, NodeFilter.SHOW_ELEMENT);
@@ -2184,7 +2204,7 @@ IN_PAGE_QA_JS = """
                            const ks = getComputedStyle(k), kb = k.getBoundingClientRect();
                            return ks.display !== "none" && ks.visibility !== "hidden" &&
                                   parseFloat(ks.opacity) !== 0 && kb.width > 0 && kb.height > 0;
-                         }).map(k => _flatText(k)).join(" ")
+                         }).map(k => _shownText(k)).join(" ")
                          .trim().replace(/\\s+/g, " ").slice(0, 400);
           if (full && cr.width > 0 && cr.height > 0 && ccs.display !== "none" &&
               ccs.visibility !== "hidden" && parseFloat(ccs.opacity) !== 0) {
@@ -4658,15 +4678,22 @@ def timeout_remedy(message: str, timeout_ms: int):
 # the in-page audit.
 # every value ABOVE 0.5, the audit's own line: 0.51 and 0.505 match, 0.5 and 0.50 do not (Codex, PR #422)
 METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*|5\d*[1-9]\d*))\b")
-ENV_TOKEN_RE = re.compile(r"\b(environment|envMap|PMREMGenerator|fromScene|fromEquirectangular)\b")
+# An environment SET UP in script, not the word: a headline reading "the
+# environment" once silenced the only warning a hand-rolled scene gets (Codex,
+# PR #422). So only <script> bodies are read, and only for an assignment or a
+# call that actually gives the scene or a material something to reflect.
+ENV_TOKEN_RE = re.compile(r"\.environment\s*=|\benvMap\s*[:=]|\bPMREMGenerator\b|\bRoomEnvironment\b"
+                          r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
+SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
 
 
 def scan_metal_env(html: str, name: str) -> list:
     if "three.module" not in html:
         return []
     src = _strip_js_comments(html)
+    code = "\n".join(SCRIPT_BODY_RE.findall(src))
     m = METAL_RE.search(src)
-    if not m or ENV_TOKEN_RE.search(src):
+    if not m or ENV_TOKEN_RE.search(code):
         return []
     line = src.count("\n", 0, m.start()) + 1
     print(f"    [metal] {name}: metalness {m.group(1)} at line {line} and no "

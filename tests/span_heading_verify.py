@@ -48,7 +48,7 @@ h3 span{display:block;white-space:nowrap}</style>
 <h1><span>The vessel ranks</span><span>the feed it eats</span></h1>
 <h2>A second headline<br>written with a break</h2>
 <div class="pair"><div>first block line</div><div>second block line</div></div>
-<h3><span>A shown line</span><span style="display:none">never rendered words</span><span>and its pair</span></h3>
+<h3><span>A shown line</span><span style="display:none">never rendered words</span><span>and <em style="display:none">buried </em>its pair</span></h3>
 <div class="w">alaskaaihq.com 01 / 01</div>
 </body></html>"""
 
@@ -81,6 +81,8 @@ def main():
         _, misses, _, _, _ = cs.check(hid, rr)
         checks.append((len(misses) == 1 and not any("never rendered" in c["full"] for c in comps),
                        "hidden: a display:none child's words are not in the composite"))
+        checks.append((not any("buried" in c["full"] for c in comps),
+                       "hidden deeper: a display:none <em> inside a visible line is not in it either"))
 
         copy = {"slides": [{"n": 1, "headline": HEADLINE, "kicker": BR_HEADLINE}]}
         pre = json.loads(json.dumps(rr))

@@ -695,6 +695,13 @@ RECT_RE = re.compile(r"`\s*\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*,"
                      r"\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]\s*`")
 
 
+def _jsround(v):
+    """JavaScript's Math.round, which the render report uses: halves go up, never
+    to even, so [10.5, ...] is 11 on both sides (Codex, PR #422)."""
+    import math
+    return int(math.floor(float(v) + 0.5))
+
+
 def field_11a_rects(body):
     """The backticked rects of a dossier's field 11a, as a set of int tuples."""
     m = F11A_RE.search(body)
@@ -703,7 +710,7 @@ def field_11a_rects(body):
     rest = body[m.start():]
     e = F11A_END_RE.search(rest, len(m.group(0)))
     para = rest[:e.start()] if e else rest
-    return {tuple(int(round(float(v))) for v in r.groups()) for r in RECT_RE.finditer(para)}
+    return {tuple(_jsround(v) for v in r.groups()) for r in RECT_RE.finditer(para)}
 
 
 def declared_rects(slide_rec):
@@ -714,7 +721,7 @@ def declared_rects(slide_rec):
         for side in ("a", "b"):
             for r in enc.get(side) or []:
                 try:
-                    out.add(tuple(int(round(float(v))) for v in r[:4]))
+                    out.add(tuple(_jsround(v) for v in r[:4]))
                 except (TypeError, ValueError):
                     continue
     return out
@@ -873,6 +880,10 @@ def self_test():
     check("  a dossier with no 11a, or 11a with no rects, is not compared",
           field_11a_rects("**12. x** `[1, 2, 3, 4]`") is None
           and not field_11a_rects("**11a. Wordless claim.** None."))
+    # Codex, PR #422: a half-pixel rect rounds the way the render report's Math.round does
+    check("  a half-pixel 11a rect rounds half up, as Math.round does",
+          field_11a_rects("**11a. Wordless claim.** `[10.5, 20.5, 30.5, 40.5]`") == {(11, 21, 31, 41)}
+          and declared_rects({"encodings": [{"a": [[10.5, 20.5, 30.5, 40.5]], "b": []}]}) == {(11, 21, 31, 41)})
     # Codex, PR #422: the two archived shapes the first parser skipped
     check("  a `### 11a.` heading with its regions a paragraph below is read",
           field_11a_rects("### 11a. WORDLESS CLAIM\n**The claim.**\n\nRegions `[1, 2, 3, 4]` and\n`[5, 6, 7, 8]`.\n\n### 12. NEXT\n`[9, 9, 9, 9]`")
