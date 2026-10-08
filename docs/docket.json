@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-07",
+  "updated": "2026-10-09",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1853,7 +1853,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-02",
@@ -1930,6 +1930,10 @@
         {
           "date": "2026-10-05",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, last modified August 7th and archived August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, with an archive date of August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -1963,6 +1967,16 @@
           "date": "2026-08-28",
           "label": "Comments, motions to intervene and protests due, 5:00 p.m. Eastern",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-11-30",
+          "label": "Recommendations, terms and conditions, and fishway prescriptions due at FERC, 5:00 p.m. Eastern",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-01-14",
+          "label": "Reply comments due at FERC, 5:00 p.m. Eastern",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -1971,6 +1985,11 @@
         "lat": 59.78
       },
       "sources": [
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-06/html/2026-20451.htm",
+          "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
+          "date": "2026-10-06"
+        },
         {
           "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-03/html/2026-15691.htm",
           "outlet": "Federal Energy Regulatory Commission, via govinfo.gov",
@@ -2003,7 +2022,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-04",
@@ -2084,6 +2103,10 @@
         {
           "date": "2026-10-05",
           "note": "Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "FERC published a new notice on October 6th, 91 FR 63543, in Project No. 8221-124. After reviewing the comments filed by August 28th, Commission staff now request recommendations, terms and conditions, and fishway prescriptions by November 30th, with reply comments due January 14th, 2027, both by 5 p.m. Eastern. No order on the amendment has been issued."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -3544,7 +3567,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-08-31",
@@ -3612,6 +3635,10 @@
         },
         {
           "date": "2026-10-06",
+          "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
           "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ],
@@ -3979,7 +4006,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-05",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-13",
@@ -4020,6 +4047,10 @@
         {
           "date": "2026-10-05",
           "note": "Checked GovInfo today. The engrossed House text of September 16th is still the latest published version, and no further Senate action has been published since the September 30th cloture vote. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Checked GovInfo today. The latest published versions are still the engrossed House text and the Senate calendar print, with no Senate-passed or enrolled version, so no further Senate action has been published. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -4073,7 +4104,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-13",
@@ -4130,6 +4161,10 @@
         {
           "date": "2026-10-08",
           "note": "Searched the Federal Register today for anything on the bulk-power system published since October 1st. The only result is a routine FERC information collection notice of October 6th, unrelated to this request, so written responses are still accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Searched the Federal Register today for anything on the bulk-power system since October 1st and found no extension or correction to this request. Written responses are still accepted on or before October 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4350,7 +4385,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-09",
       "history": [
         {
           "date": "2026-09-15",
@@ -4411,6 +4446,10 @@
         {
           "date": "2026-10-06",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with an agenda date of October 6th, last modified September 29th, and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-09",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee, last modified September 29th, with one recorded action (introduced and set for hearing on September 15th), and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"
