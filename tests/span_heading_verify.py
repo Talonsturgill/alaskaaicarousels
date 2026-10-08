@@ -50,6 +50,7 @@ h3 span{display:block;white-space:nowrap}</style>
 <div class="pair"><div>first block line</div><div>second block line</div></div>
 <h3><span>A shown line</span><span style="display:none">never rendered words</span><span>and <em style="display:none">buried </em>its pair</span></h3>
 <div style="opacity:0;position:absolute;left:600px;top:1000px"><h4 style="font-size:40px"><span style="display:block">A ghost state</span><span style="display:block">never on screen</span></h4></div>
+<div style="position:absolute;left:600px;top:1150px;width:400px;height:0;overflow:hidden"><h4 style="font-size:40px"><span style="display:block">A clipped state</span><span style="display:block">cut to nothing</span></h4></div>
 <div class="w">alaskaaihq.com 01 / 01</div>
 </body></html>"""
 
@@ -82,6 +83,8 @@ def main():
         _, misses, _, _, _ = cs.check(hid, rr)
         checks.append((len(misses) == 1 and not any("never rendered" in c["full"] for c in comps),
                        "hidden: a display:none child's words are not in the composite"))
+        checks.append((not any("clipped" in c["full"] for c in comps),
+                       "clip: a span heading inside a height:0 overflow:hidden wrapper is not a composite"))
         checks.append((not any("ghost" in c["full"] for c in comps),
                        "ancestor: a span heading inside an opacity:0 wrapper is not a composite"))
         checks.append((not any("buried" in c["full"] for c in comps),

@@ -2156,12 +2156,23 @@ IN_PAGE_QA_JS = """
      opacity does not inherit, so a heading inside an opacity:0 wrapper reports
      its own opacity as 1; only walking the ancestors sees it. */
   const _isShown = (node) => {
+    const b = node.getBoundingClientRect();
+    // what survives of the box: the viewport, then every ancestor that clips
+    // (overflow other than visible), so a heading in a height:0 overflow:hidden
+    // wrapper is clipped to nothing (Codex, PR #422, the fourth finding on it)
+    let l = Math.max(b.left, 0), t = Math.max(b.top, 0),
+        r = Math.min(b.right, innerWidth), btm = Math.min(b.bottom, innerHeight);
     for (let p = node; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
       const ps = getComputedStyle(p);
       if (ps.display === "none" || ps.visibility === "hidden" || parseFloat(ps.opacity) === 0) return false;
+      if (p !== node && ((ps.overflowX || "visible") !== "visible" || (ps.overflowY || "visible") !== "visible")) {
+        const q = p.getBoundingClientRect();
+        const ql = q.left + p.clientLeft, qt = q.top + p.clientTop;
+        if ((ps.overflowX || "visible") !== "visible") { l = Math.max(l, ql); r = Math.min(r, ql + p.clientWidth); }
+        if ((ps.overflowY || "visible") !== "visible") { t = Math.max(t, qt); btm = Math.min(btm, qt + p.clientHeight); }
+      }
     }
-    const b = node.getBoundingClientRect();
-    return b.width > 0 && b.height > 0;
+    return r - l > 0 && btm - t > 0;
   };
   const _shownText = (el) => {
     let s = "";
@@ -4685,7 +4696,8 @@ def timeout_remedy(message: str, timeout_ms: int):
 # and WARNed by qa.py; a slide that does any of those three things is left to
 # the in-page audit.
 # every value ABOVE 0.5, the audit's own line: 0.51 and 0.505 match, 0.5 and 0.50 do not (Codex, PR #422)
-METAL_RE = re.compile(r"\bmetalness\s*:\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*|5\d*[1-9]\d*))\b")
+# the object-literal form AND a later assignment, material.metalness = 0.9 (Codex, PR #422)
+METAL_RE = re.compile(r"\bmetalness\s*(?::|=(?!=))\s*(1(?:\.0*)?|0?\.(?:[6-9]\d*|5\d*[1-9]\d*))\b")
 # An environment SET UP in script, not the word: a headline reading "the
 # environment" once silenced the only warning a hand-rolled scene gets (Codex,
 # PR #422). So only <script> bodies are read, and only for an assignment or a
@@ -4695,20 +4707,50 @@ ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b)|
                           r"|\bPMREMGenerator\b|\bRoomEnvironment\b"
                           r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
-JS_STRING_RE = re.compile(r"\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`", re.S)
+
+
+def _js_code_only(js: str) -> str:
+    """JavaScript with every string, template literal and comment blanked to
+    spaces (newlines kept, so line numbers survive). One pass that knows which
+    of those it is inside, because a regex cannot: a // inside a URL string is
+    not a comment, and a quote inside a comment opens no string (Codex, PR #422,
+    after regex fixes for each case in turn kept leaving the next one open)."""
+    out, i, n = list(js), 0, len(js)
+    def blank(a, b):
+        for k in range(a, min(b, n)):
+            if out[k] != "\n":
+                out[k] = " "
+    while i < n:
+        c, two = js[i], js[i:i + 2]
+        if two == "//":
+            j = js.find("\n", i); j = n if j < 0 else j
+            blank(i, j); i = j
+        elif two == "/*":
+            j = js.find("*/", i + 2); j = n if j < 0 else j + 2
+            blank(i, j); i = j
+        elif c in "\"'`":
+            j = i + 1
+            while j < n and js[j] != c:
+                if js[j] == "\\":
+                    j += 1
+                elif js[j] == "\n" and c != "`":
+                    break
+                j += 1
+            blank(i + 1, j); i = j + 1
+        else:
+            i += 1
+    return "".join(out)
 
 
 def scan_metal_env(html: str, name: str) -> list:
     if "three.module" not in html:
         return []
-    src = _strip_js_comments(html)
-    # string literals are text, not code: "scene.environment = tex" inside a
-    # quote sets nothing up (Codex, PR #422)
-    code = JS_STRING_RE.sub('""', "\n".join(SCRIPT_BODY_RE.findall(src)))
-    m = METAL_RE.search(src)
+    # only script bodies, lexed so strings and comments are not code
+    code = _js_code_only("\n".join(SCRIPT_BODY_RE.findall(html)))
+    m = METAL_RE.search(code)
     if not m or ENV_TOKEN_RE.search(code):
         return []
-    line = src.count("\n", 0, m.start()) + 1
+    line = code.count("\n", 0, m.start()) + 1
     print(f"    [metal] {name}: metalness {m.group(1)} at line {line} and no "
           f"environment, envMap or PMREM anywhere in the slide")
     return [{"kind": "metal_no_env_static", "name": "line %d" % line,
