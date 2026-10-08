@@ -2150,6 +2150,19 @@ IN_PAGE_QA_JS = """
      a visible line holding a hidden <em> must not lend the composite its words
      (Codex, PR #422, twice: first the direct children, then the descendants).
      Used only for text_composites, so every recorded text node is unchanged. */
+  /* ONE visibility rule for composites, at every level (Codex, PR #422, the
+     third finding on it): an element is shown only if it and EVERY ancestor up
+     to <body> are displayed, visible and not transparent, and it has a box.
+     opacity does not inherit, so a heading inside an opacity:0 wrapper reports
+     its own opacity as 1; only walking the ancestors sees it. */
+  const _isShown = (node) => {
+    for (let p = node; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
+      const ps = getComputedStyle(p);
+      if (ps.display === "none" || ps.visibility === "hidden" || parseFloat(ps.opacity) === 0) return false;
+    }
+    const b = node.getBoundingClientRect();
+    return b.width > 0 && b.height > 0;
+  };
   const _shownText = (el) => {
     let s = "";
     const dive = (n) => {
@@ -2200,14 +2213,9 @@ IN_PAGE_QA_JS = """
           // would run "ranks" into "the"); the sync check compares letters and
           // digits only, so an inline split mid-word still matches
           // a child the reader can't see contributes no line (Codex, PR #422)
-          const full = Array.from(kids).filter(k => {
-                           const ks = getComputedStyle(k), kb = k.getBoundingClientRect();
-                           return ks.display !== "none" && ks.visibility !== "hidden" &&
-                                  parseFloat(ks.opacity) !== 0 && kb.width > 0 && kb.height > 0;
-                         }).map(k => _shownText(k)).join(" ")
+          const full = Array.from(kids).filter(k => _isShown(k)).map(k => _shownText(k)).join(" ")
                          .trim().replace(/\\s+/g, " ").slice(0, 400);
-          if (full && cr.width > 0 && cr.height > 0 && ccs.display !== "none" &&
-              ccs.visibility !== "hidden" && parseFloat(ccs.opacity) !== 0) {
+          if (full && _isShown(el)) {
             out.text_composites.push({ full: full, tag: (el.tagName || "").toLowerCase(),
               x: Math.round(cr.x), y: Math.round(cr.y),
               w: Math.round(cr.width), h: Math.round(cr.height) });
@@ -4687,13 +4695,16 @@ ENV_TOKEN_RE = re.compile(r"\.environment\s*=(?!=)(?>\s*)(?!null\b|undefined\b)|
                           r"|\bPMREMGenerator\b|\bRoomEnvironment\b"
                           r"|\.fromScene\s*\(|\.fromEquirectangular\s*\(|\bAKT\.environment\s*\(")
 SCRIPT_BODY_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
+JS_STRING_RE = re.compile(r"\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'|`(?:\\.|[^`\\])*`", re.S)
 
 
 def scan_metal_env(html: str, name: str) -> list:
     if "three.module" not in html:
         return []
     src = _strip_js_comments(html)
-    code = "\n".join(SCRIPT_BODY_RE.findall(src))
+    # string literals are text, not code: "scene.environment = tex" inside a
+    # quote sets nothing up (Codex, PR #422)
+    code = JS_STRING_RE.sub('""', "\n".join(SCRIPT_BODY_RE.findall(src)))
     m = METAL_RE.search(src)
     if not m or ENV_TOKEN_RE.search(code):
         return []
