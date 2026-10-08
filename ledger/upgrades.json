@@ -3105,7 +3105,7 @@
       ],
       "verification": "python3 scripts/critic_brief.py --self-test: all passed, four new (fresh tiles listed with their design region, the printed block names the region, tiles cut from an earlier render read stale and list nothing, a slide with no crops reads missing). Render of this run's slides: 54 tiles, each 1080x900, read back at native size with the Read tool (slide-02 r2c1 shows the dashed loop and the vessel lid at device resolution); critic_brief --slide 2 printed the six paths and regions. Cost about 0.5 s and 4.8 MB per frame in out/. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical. The tiles sit in a subdirectory, so assemble.py, ship_gate.py and the Phase 11 copy (all non-recursive render/slide-*.png globs) never see them.",
       "rollback": "git checkout <commit>^ -- .claude/skills/carousel-engine/render.py scripts/critic_brief.py .claude/agents/pixel-critic.md prompts/routine_instructions.md .claude/skills/carousel-engine/SKILL.md (render.py also carries changes 2 and 3 of this set; revert the whole upgrade commit to drop all three together)",
-      "commit": "PENDING"
+      "commit": "19f42084"
     },
     {
       "run_date": "2026-10-09",
@@ -3122,7 +3122,7 @@
       ],
       "verification": "python3 tests/akthree_material_audit_verify.py: 10/10. Six reconstruction slides through the real render.py and qa.py: No.82's steel at 0.9 x 0.34 WARNs; the same scene at No.82's fix, 2.8, is clean; AKT steel with no environment WARNs; a pale 0.22-opacity shell added with AKT.add WARNs for its shadow and its milk; the same shell from AKT.mat.glass() is clean and reads castShadow and receiveShadow false in the page; No.80's hand-rolled metalness 0.92 scene with no environment WARNs from the static scan; no FAIL from any of it; a scene without the helper renders the same canvas pixels with git HEAD's akthree.js. python3 tests/akthree_supersample_verify.py still 4/4. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical. This run's slide 02 (steel 2.8 x 0.34 = 0.95, motor 2.2 x 0.34 = 0.75, glass albedo 0x0b0e12 out of the shadow pass) raises no audit finding.",
       "rollback": "git checkout <commit>^ -- assets/js/akthree.js tests/akthree_material_audit_verify.py, and drop the akthree_audit blocks from render.py and qa.py (or revert the whole upgrade commit)",
-      "commit": "PENDING"
+      "commit": "19f42084"
     },
     {
       "run_date": "2026-10-09",
@@ -3137,7 +3137,7 @@
       ],
       "verification": "python3 tests/span_heading_verify.py: 6/6. A real render of a span-per-line <h1> beside a <br> <h2> and a two-<div> block: exactly the <h1> is recorded ('The vessel ranks the feed it eats'); with text_composites removed (the pre-fix record) copy_sync_check reports that headline MISSING; with them both headlines are found; a headline the page never carried is still missing; machine_qa.json is byte identical with and without the field. tests/copy_sync_shred_verify.py and tests/copy_sync_punct_verify.py HOLD; tests/line_text_verify.py, wrap_drift_verify.py, leader_span_verify.py, declaration_surface_verify.py HOLD. copy_sync_check on this run's copy before and after the change: identical output. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical.",
       "rollback": "revert the text_composites block in render.py's IN_PAGE_QA_JS and the composites loop in scripts/copy_sync_check.py build_nodes (or revert the whole upgrade commit)",
-      "commit": "PENDING"
+      "commit": "19f42084"
     },
     {
       "run_date": "2026-10-09",
@@ -3150,7 +3150,7 @@
       ],
       "verification": "python3 scripts/plan_drift_check.py --self-test: PASS, four new (matching rects pass across a wrapped 11a line and stop at field 12; 11a rects with no declaration are a note; THE No.82 DEFECT, a declared rect moved after the plan, FAILs naming both rects; no 11a or an 11a of 'None' is not compared). On this run's storyboard, copy and render report: PASS, 7 region sets compared, 0 drift, and a note that slide 08's 11a names two regions with no data-encodes. Reconstruction on the same real data with slide 07's declared dish moved to No.82's round-2 position [168, 1128, 150, 30]: exit 1, 'In the plan only: [137, 1100, 150, 30]. Declared only: [168, 1128, 150, 30]'. The parser reads backticked rects out of 60 of the 80 field-11a paragraphs in the 15 archived storyboards that carry one (12 runs), across wrapped lines and both '**11a.' and '11a. **' shapes; those runs can't be replayed against the declarations because render reports are not archived.",
       "rollback": "git checkout <commit>^ -- scripts/plan_drift_check.py",
-      "commit": "PENDING"
+      "commit": "19f42084"
     },
     {
       "run_date": "2026-10-09",
@@ -3165,7 +3165,7 @@
       ],
       "verification": "python3 tests/fittext_authored_verify.py: 6/6 in the engine's own browser. Red: No.79's shape (two authored lines, maxLines 3, max 96) wraps to 3 lines at 95.5 px without the option; green: with it 2 lines at 48 px, the longest line 620 inside 620; a content-sized box with width 620 ends at x 713 of a 716 limit; a span-per-line headline fits to the same 48 px (without the option it measures 4 lines and clamps to min 40, the No.81 symptom); __akFit records authored per call; without the option sizes and line counts equal git HEAD's aktype.js on all three shapes. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical.",
       "rollback": "git checkout <commit>^ -- assets/js/aktype.js tests/fittext_authored_verify.py, and drop the last sentence of qa.py's wrap-drift WARN",
-      "commit": "PENDING"
+      "commit": "19f42084"
     }
   ],
   "scan_log": [
