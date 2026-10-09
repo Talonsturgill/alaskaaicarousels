@@ -22,8 +22,8 @@
     "scoring": "done",
     "ship": "done",
     "upgrade": "done (weekly pass not due; one in-run fix logged)",
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": "done: draft r-2616089764781227032 to docket@alaskaaihq.com (payload out/2026-10-10/gmail_payload.json, remote preview, sign-off table names verdicts)",
+    "retro": "done: automation_retro.md, FIELD_NOTES, MACHINE_QUEUE (four new items); PR #425 merged as 7ccdae79 after eleven Codex rounds"
   },
   "phase_3_6": {
     "site_signoff": "PASS, 141 pages, 18 of 18 checks clean (published docs/ read at 06:3xZ)",
@@ -32,5 +32,13 @@
     "cron_health": "PASS, 6 scheduled workflows plus Pages audited at 06:2xZ",
     "site_fixes": "none needed at the morning audit; desktop and phone looked at for home, docket, gas watch (no horizontal scroll at 390 px)"
   },
-  "score": 8.6
+  "score": 8.6,
+  "status": "complete",
+  "gmail_draft_id": "r-2616089764781227032",
+  "merged": {
+    "pr": 425,
+    "sha": "7ccdae79b6ca8bda0018ac18841b4f16be5abf94",
+    "method": "squash (owner rule 2026-10-09: no Claude attribution on main)"
+  },
+  "completed_utc": "2026-10-09T12:28:45.255905Z"
 }
