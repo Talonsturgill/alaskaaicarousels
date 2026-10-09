@@ -3166,6 +3166,19 @@
       "verification": "python3 tests/fittext_authored_verify.py: 6/6 in the engine's own browser. Red: No.79's shape (two authored lines, maxLines 3, max 96) wraps to 3 lines at 95.5 px without the option; green: with it 2 lines at 48 px, the longest line 620 inside 620; a content-sized box with width 620 ends at x 713 of a 716 limit; a span-per-line headline fits to the same 48 px (without the option it measures 4 lines and clamps to min 40, the No.81 symptom); __akFit records authored per call; without the option sizes and line counts equal git HEAD's aktype.js on all three shapes. Byte identity on this run's nine slides (snapshot copied to out/2026-10-09/upgrade_verify/slides, rendered before any edit twice to prove the render deterministic, then after all five changes): all nine slide PNGs and nine canvas layers sha1-identical, machine_qa.json identical (PASS, 0 fails, 0 warns before and after). examples/demo-deck: all four PNGs and three canvas layers identical, qa WARN 14 warns before and after, identical.",
       "rollback": "git checkout <commit>^ -- assets/js/aktype.js tests/fittext_authored_verify.py, and drop the last sentence of qa.py's wrap-drift WARN",
       "commit": "19f42084"
+    },
+    {
+      "run_date": "2026-10-10",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "scripts/aggregate_check.py reads a thousands-grouped number as one number in its ratio pattern (_NUMG = \\d{1,3}(,\\d{3})+ or \\d+, with lookarounds that refuse a partial group) and strips commas before comparing a ratio's parts with the declared claims. Codex (PR #425): the boundary guards also refuse a word character, so a numeral inside an alphanumeric token (\"PAGE A15 of 20\", \"15 of 20B\") is not a ratio; pinned by an import-time assertion. A second Codex round: a comma is refused only where it belongs to a real thousands group, so a compact list (\"1 of 2,3 of 4\") still yields both ratios.",
+      "trigger": "Mid-run breakage, No.83 slide 05: the headline \"15,141 of 77,227\" was detected as \"141 of 77\" and failed against a correct declaration.",
+      "files": [
+        "scripts/aggregate_check.py"
+      ],
+      "verification": "Inline regression assertion on the No.83 headline; tests/subset_assert_verify.py and tests/figure_backing_verify.py still HOLD; aggregate_check PASS 13 of 13 on this run. Boundary cases pinned on import; aggregate_check PASS on this run after the change.",
+      "commit": "2d153023",
+      "rollback": "git revert 2d153023"
     }
   ],
   "scan_log": [

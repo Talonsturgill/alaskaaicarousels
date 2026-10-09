@@ -2914,6 +2914,47 @@
         2
       ],
       "note": "Five rounds used (four per-slide, one flow). 01, 06 and 08 shipped per-slide; 02 to 05, 07 and 09 were holdouts fixed after round 4 and in the flow round. Art scored 6.5: 05's piles (hairy eggs), 04 (illustrative colonies), 03 (camouflage bands) named weakest. The akthree glass on 02 was milk, then invisible, before its reflections were drawn in 2D."
+    },
+    {
+      "run_date": "2026-10-10",
+      "carousel_no": 83,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE MARGIN WALK. A dataset deck where every frame is a different physical rendering of the clerk's own count: an orthographic acrylic fin of the running Seat D margin (01), cabinet margin bars (02), paper precinct tabs (03), a zinc relief plate of 96 pills (04), a 77,227-bead turnout field (05), hachured Eielson terrain over a hillshade (06), a pressed ledger plate (07), envelope stacks on a birch table (08), a debossed blank ballot card (09).",
+      "atmosphere": "NEW: COUNTED THINGS GLOW, the election-night count room (dark grounds, one key upper left) breaking to count-day overcast daylight on 08 and dusk on 09",
+      "depth_technique": "akthree orthographic PBR with exp2 fog, emissive cut edges and VSM soft shadows (01); cabinet extrusion with ramped hatching and two-part casts (02); folded paper tabs with fold bands and layered casts (03); akbench multi-material relief with an explicit plate cast (04); blue-noise beads with a full-resolution glow layer (05); slope-and-aspect hachure over a DEM hillshade (06); SVG Phong emboss with a bevel rim and two-part desk cast (07); akthree daylight PBR with instanced envelopes, contact seats and a near-edge focus falloff (08); akbench bas-relief deboss under a raking key (09)",
+      "line_voice": "instrument",
+      "continuity_device": "motif:THE CLERK'S 35 ROWS, a 35-cell strip in the rail lighting the rows each frame reads, two hollow phantoms for the uncounted rows",
+      "continuity_devices": [
+        "motif:the clerk's 35 rows strip",
+        "palette-arc: count room to count-day daylight to dusk",
+        "the key: one light upper left on every frame",
+        "the gold lead travels 01 nub, 02 overhang, 08 banded stack"
+      ],
+      "hook_archetype": "NEW: THE REMAINDER (a lead set beside the larger pile still out)",
+      "palette_family": "NEW: SMOKED ACRYLIC, RIVER ICE AND FIREWEED",
+      "type_pairing": "Fraunces display + Archivo text + JetBrains Mono instruments",
+      "narrative_structure": "remainder, subtraction, where, same line, breather, the base, the record, count day, the ask",
+      "variance_dials": {
+        "design_variance": 2,
+        "visual_density": 4,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "akthree orthographic",
+        "akpost grade",
+        "cabinet hatching",
+        "cut paper",
+        "akbench relief",
+        "blue-noise stipple",
+        "akhachure",
+        "DEM hillshade",
+        "SVG feSpecularLighting",
+        "instanced envelopes"
+      ],
+      "new_techniques_logged": [
+        "NEW: inverted hachure sun on a dark ground with a hillshade underlay (06)"
+      ],
+      "note": "Five rounds used (four per-slide, one deck). Scored 8.6."
     }
   ]
 }

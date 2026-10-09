@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-10/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5974385,
+  "pdf_mb": 5.97,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-10/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-10/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Fairbanks So Far. A 123-Vote Lead, 1,235 Ballots Out",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "614c357e77545cdbb7ca0585bb4162090a60a158f8316c85e26fe7b809f6890c",
+        "bytes": 5269936
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "476ecdf7688fcc90e50a94a825f12323e56f63892289f08c62921818ebc62de6",
+        "bytes": 2556828
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "d49dc535021e16772496ee7bfc632dd763be243891d03ff832bbeaf2ec8676e5",
+        "bytes": 2702510
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "62438d3c887dee409d4dfe7b6ef29ee071a0671e4ff5dfe29bcd40452fe89241",
+        "bytes": 3170739
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "650101770b81f34d2b09edd932881454d39346601d5b20278bd8057e8a278160",
+        "bytes": 6009960
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "09a2652b72f2fbd18c0ff9770f02e2d639cdb362f454c3bcbdc1c6aac1bf48c0",
+        "bytes": 3790671
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "4cb82b4196e0a497479fa404e607d9e6fe4dcef9354fbf08675ea7ece7a451e1",
+        "bytes": 3615758
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "393fbb3f7c4ae42215a95b2b30ddcfef323de53c880368b4a6651ddae821bdc1",
+        "bytes": 4825305
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "af3089e0beef835c3f96e9f6d8a4e6cbca42c3cc724944e0d928f1c64892f420",
+        "bytes": 2432859
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "a379028a6f9fd1493ccd8dc5314e8031a0d29ae324fe5bcf18d6de5efb64b38b",
+        "bytes": 19562
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "883e0e70c153f106fc834e3efebc90b2991a304cfaf7aefad69334c06fb66984",
+        "bytes": 12006
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "13bc17fa73dc91f77f2d74b1f4ebc06053eebc5f07bfe5890c92eb01ec806d25",
+        "bytes": 12652
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "cad92051a0cab2503d36c561f916a1efeb57ab7e5ba7ec006dac3c81af633f43",
+        "bytes": 11853
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "2a1f9a1326fcf1eb737ffa5cbb2a26e6f5562a22f2dbfbe84bba2f7146353794",
+        "bytes": 12648
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "fe96dc30052e4406a2629111f0041f3dc4cd88a04bc4b6b33bc89e2fd0aa2fc1",
+        "bytes": 14049
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8b2aab5a57535ff72a48f294bc56d95e9f59af584f618584b5ad2c243f97f4f7",
+        "bytes": 12999
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "e551732fb511a790460319a964a879f1c12e66e83b2c793712b73875536609d8",
+        "bytes": 13729
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1897ce82b5d9986ed815ca482fb153322549f2577b52973d0f5f8fa1981ad2ee",
+        "bytes": 9018
+      }
+    ]
+  }
+}

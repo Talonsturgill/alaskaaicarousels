@@ -1,0 +1,36 @@
+{
+  "run_date": "2026-10-10",
+  "carousel_no": 83,
+  "effort": "high",
+  "revision_rounds": 5,
+  "date_note": "Woke 22:19 AKDT on October 8th (06:19 UTC October 9th), the regular daily slot. runs/2026-10-08 holds No.81 and runs/2026-10-09 holds No.82 (dated ahead by the same rule), both complete and merged. Per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-10. run_guard (UTC default 2026-10-09) printed ALREADY_SHIPPED; run_guard --run-date 2026-10-10 CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+  "started_utc": "2026-10-09T06:20:51.543041Z",
+  "phases": {
+    "wake": "done: out/2026-10-10/plan.md, run_state.json, WORKLOG.md, instincts_top5.txt",
+    "craft_refresh": "done: one search (2026 benchmarks, documents 6.6 to 7.0 percent ER; nothing beyond CAROUSEL_CRAFT); FIELD_NOTES untouched",
+    "research": "done: out/2026-10-10/scout_merge.md (6 scouts, 143 searches, every scout at or under its cap); thin window",
+    "claims": "done: out/2026-10-10/claims.json (73 claims, 49 primary, 3 stories surviving, 7 killed); claims_check PASS 73/73",
+    "docket": "done: worklist budget raised from 6 to 10 after a deferred tail; 9 items refreshed (FNSB unofficial results with October 13th and 22nd dates; ratepayer pledge correction, Cordova Electric is on the list; seven checked and unchanged); watch.json read (2 bills closed and agree, 0 hearings out of session, 31 standing candidates, failed none); staleness clear; commit 142f4e9a",
+    "gas_watch": "done",
+    "selection": "done: out/2026-10-10/selection.md (FNSB October 6th results as an UPDATE of No.76; runner-up Koniag CDAO award)",
+    "directors_room": "done: 3 treatment directors (data-journalist THE REMAINDER, cartographer THE BOROUGH CORED, systems-illustrator THE TEARDOWN); synthesis in selection.md; storyboard.md 9 dossiers, dossier_check PASS; showrunner-derived arithmetic claims C74 to C79 added from the primary rows",
+    "copy": "done: caption room (A SCENE + Q AND A won with the critic's one fix to the deck-summary line; B lost on a receipt stack and a PUNCH THEN PROOF disguise), caption.txt 894 chars PASS, copy.json by the copywriter with showrunner corrections to slides 03, 04, 05, 07, 09 after build changes; caption_check --copy PASS",
+    "art_build": "done: nine bespoke frames (akthree ortho acrylic fin, cabinet bars with density-ramp hatching, cut paper terraces, akbench zinc pill plate, blue-noise bead field, slope hachure on the Eielson DEM, SVG emboss ledger, akthree envelope stacks, akbench debossed card); qa WARN 3 (no fails), bespoke 0.131 median, tonal arc PASS (peak 08, darkest 05), aggregate PASS, plan_drift PASS, dossier PASS",
+    "pixel_review": "done",
+    "flow_review": "done: out/2026-10-10/flow_review.json (revise 7.2; deck round applied as round 5)",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "done (weekly pass not due; one in-run fix logged)",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 141 pages, 18 of 18 checks clean (published docs/ read at 06:3xZ)",
+    "gaswatch_live": "PASS, checked 2026-10-09 06:3xZ, read October 8th (59.7 percent), 65 days on record, every live check clean",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 6 scheduled workflows plus Pages audited at 06:2xZ",
+    "site_fixes": "none needed at the morning audit; desktop and phone looked at for home, docket, gas watch (no horizontal scroll at 390 px)"
+  },
+  "score": 8.6
+}

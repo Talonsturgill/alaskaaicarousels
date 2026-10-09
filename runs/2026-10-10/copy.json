@@ -1,0 +1,249 @@
+{
+  "document_title": "Fairbanks So Far. A 123-Vote Lead, 1,235 Ballots Out",
+  "post_copy": "The unofficial Fairbanks results printed at 9:57 a.m. on October 7th carry two columns of zeros, absentee and questioned.\n\nHow does Alexis Howell lead Miguel Ramirez by 123 in Seat D? Ramirez won Election Day by 639. Howell won early voting by 762. Seat H's lead came the same way.\n\nCan the zeros change Seat D? They could. Up to 1,235 ballots are due to fill those columns at 2 p.m. on October 13th.\n\nIs it a data center vote? Not directly, and a lead isn't a mandate. The Assembly asked the state for an AI data center moratorium. Howell agreed with one. Seat H leader Scott Crass voted for it. Ramirez wanted more study.\n\nElection Day is set against early voting, then 32 precincts, Eielson's 24 Election Day ballots and every unofficial total.\n\nIf the leads hold, what can the winners fairly say voters told them about data centers?\n\n#FairbanksBorough #DataCenterMoratorium #AbsenteeBallots",
+  "hook_chars": 121,
+  "total_chars": 894,
+  "hashtags": [
+    "#FairbanksBorough",
+    "#DataCenterMoratorium",
+    "#AbsenteeBallots"
+  ],
+  "deck_summary_line": "Election Day is set against early voting, then 32 precincts, Eielson's 24 Election Day ballots and every unofficial total.",
+  "first_comment": "Sources, primary first\nFairbanks North Star Borough Clerk's Office, Election Summary Report (unofficial), 2026-10-07, every Seat D, E and H total, the Election Day and early voting columns, the zero absentee and questioned columns, 15,141 of 77,227 registered voters counted so far and 32 of 35 precincts reported https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-\nFairbanks North Star Borough Clerk's Office, Unofficial Election Results by Precinct, 2026-10-07, the 32 precinct rows, the single early voting row of 2,603 ballots, Eielson's 24 of 2,103 and the precincts that went the same way in all three seats https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT\nFairbanks North Star Borough Clerk's Office, Sample Ballot (undated), who ran for Seats D, E and H and the wording of Propositions 1 to 3 https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF\nFairbanks North Star Borough Clerk's Office, Elections page (undated, fetched 2026-10-09), 811 absentee and 424 questioned ballots outstanding, the count on October 13th at 2 p.m. and certification on October 22nd https://www.fnsb.gov/elections\nFairbanks North Star Borough Assembly, Resolution 2026-25 text, 2026-08-27, the moratorium request on new commercial data centers on state-owned or municipal lands (the resolution text never says AI) https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)\nAlaska's News Source (KTUU), Fairbanks borough Assembly candidates weigh data centers, 2026-09-29, each candidate's stated position on data centers and Crass's vote for the moratorium https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/\nKUAC, Assembly doubles up on AI data center moratorium request, 2026-08-31, the \"AI data center moratorium\" label used in the post https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\nAlaska Public Media and KUAC, Forget jets and helicopters, data centers could be Alaska military towns' next noisy neighbors, 2026-09-15, the Pentagon's plan for up to a dozen military data centers near Anchorage, Healy and Fairbanks https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors\nA note on the numbers. Every result here is unofficial. The 639 and 762 margins are arithmetic on the clerk's rows (6,251 minus 5,612, and 1,618 minus 856), and so is the count of 27 precincts that went the same way in all three seats. The 9:57 a.m. stamp is the summary report's print time.\nVoted in Fairbanks, worked the count or sat in on the Assembly? Add what the records leave out below.\nEvery Alaska AI decision on the public docket, with its live dates, is at https://alaskaaihq.com",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "UPDATE · FAIRBANKS SEAT D",
+      "headline": "A 123-vote lead. 1,235 ballots still out.",
+      "body": "",
+      "labels": [
+        "UNOFFICIAL · HOWELL MINUS RAMIREZ, ROW BY ROW IN THE CLERK'S ORDER",
+        "0",
+        "+123"
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C24"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "SEAT D · HOW 123 WAS BUILT",
+      "headline": "Ramirez won Election Day. Early voting carried Howell.",
+      "body": "Howell agreed with the idea of a data center moratorium. Election Day ballots went to Ramirez 6,251 to 5,612. Early ballots went to Howell 1,618 to 856. Seat H ran the same way, Leaders ahead on Election Day and Crass ahead early.",
+      "labels": [
+        "ELECTION DAY · RAMIREZ +639",
+        "EARLY VOTING · HOWELL +762",
+        "LEAD · HOWELL +123"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C14",
+        "C15",
+        "C16",
+        "C39",
+        "C74",
+        "C75"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "SEAT D · ELECTION DAY · 32 PRECINCTS",
+      "headline": "Ramirez carried 20 precincts. Howell carried 12.",
+      "body": "Ramirez's widest was Chena Lakes, 359 to 123. Howell's was Goldstream #2, 323 to 117. The 2,603 early ballots aren't split by precinct. They sit in one row of the clerk's report.",
+      "labels": [
+        "CHENA LAKES · 359 TO 123",
+        "GOLDSTREAM #2 · 323 TO 117",
+        "EARLY VOTING · ONE ROW · HOWELL +762"
+      ],
+      "claim_ids": [
+        "C31",
+        "C32",
+        "C33",
+        "C75",
+        "C79"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "ELECTION DAY · THREE SEATS",
+      "headline": "27 of 32 precincts went the same way in every seat.",
+      "body": "In 11, Election Day chose Howell, LaJiness and Crass. In 16, it chose Ramirez, Shupe and Leaders.",
+      "labels": [
+        "SEAT D",
+        "SEAT E",
+        "SEAT H",
+        "CHENA LAKES",
+        "NEWBY",
+        "BADGER #1",
+        "PLACK",
+        "FARMERS LOOP",
+        "ESTER"
+      ],
+      "claim_ids": [
+        "C37",
+        "C38",
+        "C80"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "",
+      "headline": "15,141 of 77,227 registered voters, counted so far.",
+      "body": "",
+      "labels": [
+        "19.61% SO FAR · ESTER 30.01% ON ELECTION DAY",
+        "EARLY VOTING · 2,603 BALLOTS, ONE LIT DOT EACH",
+        "BLOCKS · ONE DOT PER VOTER, LIT PER ELECTION DAY BALLOT"
+      ],
+      "claim_ids": [
+        "C17",
+        "C36",
+        "C79"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "EIELSON PRECINCT · 34-235",
+      "headline": "24 Election Day ballots from 2,103 registered voters.",
+      "body": "The Pentagon wants up to a dozen military data centers near Anchorage, Healy and Fairbanks. The moratorium the Assembly asked for names state-owned or municipal land. Fort Wainwright's precinct cast 59 of 3,256 on Election Day.",
+      "labels": [
+        "EIELSON AFB",
+        "RELIEF DRAWN FROM ELEVATION, ONE STROKE PER SLOPE CELL"
+      ],
+      "claim_ids": [
+        "C34",
+        "C35",
+        "C51",
+        "C55"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "SAVE THIS · UNOFFICIAL · OCTOBER 6TH",
+      "headline": "The count so far",
+      "body": "",
+      "labels": [
+        "ELECTION DAY",
+        "EARLY",
+        "TOTAL",
+        "SEAT D",
+        "Alexis Howell",
+        "5,612",
+        "1,618",
+        "7,230",
+        "moratorium, yes",
+        "Miguel Ramirez",
+        "6,251",
+        "856",
+        "7,107",
+        "more study",
+        "SEAT E",
+        "Nick LaJiness",
+        "6,220",
+        "1,699",
+        "7,919",
+        "data centers, no",
+        "Shelly Shupe",
+        "5,779",
+        "820",
+        "6,599",
+        "in between",
+        "SEAT H",
+        "Scott W. Crass",
+        "5,790",
+        "1,675",
+        "7,465",
+        "voted for it",
+        "Joshua Leaders",
+        "6,034",
+        "809",
+        "6,843",
+        "temporary pause",
+        "PROP 1 · TAX CAP · YES 9,412 · NO 5,322",
+        "PROP 2 · NOVEMBER ELECTIONS · YES 8,088 · NO 6,749",
+        "PROP 3 · HAND COUNT ONLY · YES 6,633 · NO 8,256",
+        "32 OF 35 PRECINCTS · 19.61% SO FAR · 1,235 STILL OUT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C14",
+        "C15",
+        "C17",
+        "C18",
+        "C24",
+        "C26",
+        "C28",
+        "C30",
+        "C39",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C46"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "OCTOBER 13TH · 2 P.M.",
+      "headline": "The qualified rest is counted on October 13th.",
+      "body": "811 absentee and 424 questioned ballots. Only qualified ballots count, and not every one marks Seat D. Certification is scheduled for October 22nd.",
+      "labels": [
+        "811 ABSENTEE",
+        "424 QUESTIONED",
+        "123 · UNOFFICIAL SEAT D LEAD"
+      ],
+      "claim_ids": [
+        "C03",
+        "C20",
+        "C21",
+        "C22",
+        "C23"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Save the table. October 13th's count is the one to check.",
+      "body": "",
+      "labels": [],
+      "claim_ids": [
+        "C22"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Post before the count. The draft arrives Saturday, October 10th, and the deck goes stale at 2 p.m. on Tuesday, October 13th. Post Monday, October 12th, 8 to 11 a.m. Alaska time, which gives the deck a full day before the count. Don't post it after the count without updating it.",
+    "Paste the first comment (sources, the note on the numbers, the context invite and the site line) within 60 seconds of posting.",
+    "Reply to every comment in the first hour. Never call the result final or say who won. Every number is unofficial until the October 22nd certification, and the 1,235 outstanding ballots can't be assumed to favour either candidate.",
+    "Watch the October 13th 2 p.m. count at https://www.fnsb.gov/elections. If Seat D flips, edit the post or delete it the same day. If it holds, add a dated comment with the new totals instead of rewriting the caption.",
+    "If a reader calls it a data center referendum, point out that the post says a lead isn't a mandate. If someone says the moratorium covers Eielson, the resolution text names only state-owned or municipal land (slide 06).",
+    "After 48 hours, note the saves, comments and reposts so the ledger can learn from them."
+  ],
+  "editor_notes_for_email": "The caption is the room's winner with the critic's one fix, shipped byte for byte with its hashtag line. It says the Assembly asked for an \"AI data center moratorium\", which is KUAC's label (C53); Resolution 2026-25 itself says new commercial data centers on state-owned or municipal lands and never says AI, and the first comment says so. Margins 639 and 762 and the 27 of 32 precinct count are showrunner arithmetic on the clerk's primary rows (C74, C75, C80). Every result is unofficial and the deck never claims a mandate.",
+  "caption_meta": {
+    "opening_move": "SCENE",
+    "structure": "Q AND A",
+    "closing_move": "NEW: THE WINNER'S WARRANT",
+    "deck_summary_line": "Election Day is set against early voting, then 32 precincts, Eielson's 24 Election Day ballots and every unofficial total.",
+    "critic": "Round one: A won with one fix (the deck-summary line replaced; 'Slide by slide' is the pointer-opener family). B lost on a receipt stack, a PUNCH THEN PROOF disguise, cover restatement and a weight-of-the-vote close. BURNED FOR THE NEXT ROOM: 'Slide by slide' summary opener, NEW: THE REMAINDER opener, NEW: TWO COUNTS ONE PILE structure, NEW: THE INFERENCE BUDGET close, restating the cover before the close.",
+    "first_8_words": "The unofficial Fairbanks results printed at 9:57 a.m.",
+    "hook_type": "scene, a dated document detail (the clerk's 9:57 a.m. printout and its two columns of zeros)"
+  },
+  "first_8_words": "The unofficial Fairbanks results printed at 9:57 a.m.",
+  "hook_type": "scene, a dated document detail (the clerk's 9:57 a.m. printout and its two columns of zeros)"
+}

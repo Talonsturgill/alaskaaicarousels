@@ -1,0 +1,170 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "Only hyphens and U+00B7 middle dots; no U+2013 or U+2014. caption_check PASS."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "None; the four-point star on 09 is the gold Polaris SVG."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Every slide carries claim_ids resolving to C01 to C80; derived figures labelled as arithmetic on the clerk's rows; plan_drift PASS."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "All nine frames transcribed; every 07 figure matches the claims; copy_sync PASS, 67 strings."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "No text clipped or overprinted; the 08 gold chip covers part of the 424 stack (art, charged to artwork)."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Snow text on #050A14 to #15233A grounds, about 13 to 18:1; footer fixtures data-decorative."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "9 slides."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa WARN with 0 fails; pdf_mode vector, 5.96 MB."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "No.76 was the preview; this reports the October 6th unofficial results, framed UPDATE."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "THE MARGIN WALK differs from THE HALL, THE CORRIDOR SURVEY, THE BLANK TAG and THE MAGNIFICATION LADDER; kinship to 80 charged under Variety."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_check PASS with 74 phrases; word_ban PASS; ordinal dates, no current year."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Three hashtags, no URL in the body."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "None; site_fresh and ship_gate rows are pipeline-pending."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Seven-word headline with a specific tension, gold 123, instant at thumb. The fin reads as dark curtains at thumb, a dead band separates headline and art, nothing in the image says Alaska."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "02 pays the cover; 05 to 06 and 07 to 08 strong; 02, 03 and 04 three views of one mechanism; 04 to 05 has no pull; the moratorium line at the head of 02 plants the stakes but reads as a non sequitur there."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.0,
+      "weight": 0.16,
+      "notes": "01's fin reads as murky curtains with black riser-foot blocks and a hazy floor, last fixes unreviewed; 03 reads as a stock bar chart; 06's lowland is muddy and its hills read as fur; 09 is a large flat card; 08 has real depth but smeared wood and a label chip over the 424 stack; 04 and 05 solid."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14,
+      "notes": "Measured off the renders: 02's bars 550:655 px against 639:762 with the gold 105 px equal to 123; 03's 12 up and 20 down at one scale; 04's 96 pills match C80; 05 exactly 77,227 beads with 15,141 lit; 08's stacks 811:424:123."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12,
+      "notes": "Named precincts, candidates and stances, the clerk, Resolution 2026-25's land wording, a real Eielson DEM and true coordinates; most frames' art is placeless."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.5,
+      "weight": 0.1,
+      "notes": "Every content slide adds a new verified specific; 04's body is thin at 17 words but the plate carries the data."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 6.5,
+      "weight": 0.08,
+      "notes": "Required divergences pass, but one dataset in nine hands is kin to 80 and the one-object logic of 81 and 82; several subsystems reused from the last four decks."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07,
+      "notes": "Floors met, vector PDF with title; 04's rotated names strain at thumb; 07's stance lines small; no legend for the D1 strip or 04's dashed splits."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8.0,
+      "weight": 0.05,
+      "notes": "Hook 121 chars, total 894; honest Q and A; the 9:57 a.m. scene opener postpones the tension; the deck-summary line is clunky."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1,
+      "notes": "Post copy, hashtags, primary-first sources, title, aftercare, editor notes, vector PDF and thumbs in place; Gmail draft, URLs and site_fresh pending at scoring; one aftercare call (Tuesday morning) is rough."
+    }
+  ],
+  "calculation": "(8x0.14)+(7.5x0.14)+(7.0x0.16)+(8.5x0.14)+(8.5x0.12)+(8.5x0.10)+(6.5x0.08)+(7.5x0.07)+(8.0x0.05)+(8.0x0.10) = 8.595",
+  "weighted_total": 8.6,
+  "threshold": 7.7,
+  "ship": true,
+  "revision_rounds": 5,
+  "weakest_criterion": "Variety vs ledger",
+  "one_sentence_fix": "The highest-leverage fix is the cover hero: re-model slide 01's fin so it reads as one lit acrylic object, with a key-lit top edge and cut-edge glow on every tread, the black riser-foot blocks removed, a lit edge on the uncounted panel and a floor reflection under the fin.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 1,
+      "problem": "The fin reads as dark hanging curtains; black notch blocks at the riser feet; flat dark uncounted panel; hazy floor; rounds 4 and 5 unreviewed.",
+      "fix": "Delete the riser-foot blocks, give every tread a key-lit top bevel and an emissive cut edge, light the uncounted panel's edge, add a dim floor reflection."
+    },
+    {
+      "slide": 3,
+      "problem": "Cut-paper terraces read as a stock bar chart; no visible fold; empty lower right.",
+      "fix": "Crease shadow at the fold, a lighter turned flap at the free end, two-part cast onto a toothed sheet; the strip carries the same fold."
+    },
+    {
+      "slide": 6,
+      "problem": "Lowland half is a muddy field of faint lines; eastern hills read as fur and smudge.",
+      "fix": "Lift the hillshade under the lowland, clamp the hill strokes further, let lake shores catch the key."
+    },
+    {
+      "slide": 9,
+      "problem": "The card is a large flat beige plane with no visible thickness and a small tight cast.",
+      "fix": "Show the card's thickness under the raking key, deepen the oval's lips, add fibre and warp, lengthen the soft cast."
+    },
+    {
+      "slide": 8,
+      "problem": "The gold 123 chip covers part of the 424 stack; birch grain radially smeared.",
+      "fix": "Move the 123 label over clear table; straight grain receding in perspective."
+    }
+  ],
+  "craft_cycle": {
+    "stood_down": "five-round cap reached (rounds 1 to 4 per slide, round 5 deck-level); no craft cycle owed",
+    "art": 7.0
+  },
+  "editor_notes_for_email": "Scored 8.60 against the five-round threshold of 7.7, no hard fails. Art 7.0, under the 8.5 craft floor; the run is at the five-round cap so no craft cycle is owed. Weak frames 01, 03, 06, 09. The deck goes stale at 2 p.m. on October 13th: post Monday, October 12th in the morning rather than Tuesday. If Seat D flips at the count, edit or delete the post the same day. 'AI data center moratorium' is KUAC's label; Resolution 2026-25 says new commercial data centers on state-owned or municipal lands and never says AI, and the first comment discloses it. 639, 762 and 27 of 32 are showrunner arithmetic on the clerk's rows. Every result is unofficial. Slide 01's last fixes had no per-slide critic review. Neither the D1 strip nor 04's dashed split columns has a legend."
+}
