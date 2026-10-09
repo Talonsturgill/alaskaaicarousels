@@ -14,6 +14,7 @@
 // A bundle that drifts from these modules would be a worker whose guard is not
 // the guard anybody tested. See test-bundle.mjs.
 const UNDER_TEST = process.env.ASK_MODULE || "./answer.js";
+const { readFileSync } = await import("node:fs");
 const {
   answer, cacheKey, capOf, monthKey, normaliseQuestion, verify,
 } = await import(UNDER_TEST);
@@ -44,7 +45,7 @@ function fakeKV(seed = {}) {
 
 // Stands in for the pack fetch and the Messages API both, and counts each, so
 // a test can assert that a request was NOT made.
-function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK } = {}) {
+function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK, stopReason = "end_turn" } = {}) {
   const calls = { pack: 0, api: 0, body: null };
   const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) {
@@ -58,7 +59,7 @@ function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK } = {}) {
     }
     return {
       ok: true,
-      json: async () => ({ content: [{ type: "text", text: reply }], usage: {} }),
+      json: async () => ({ content: [{ type: "text", text: reply }], usage: {}, stop_reason: stopReason }),
     };
   };
   fn.calls = calls;
@@ -94,6 +95,9 @@ check("a new pack retires yesterday's answers", k1 !== k3);
 check("a different question is a different key", k1 !== k4);
 check("new rules retire answers written under old behavior", k1 !== k5);
 check("a same-day record rebuild retires earlier answers", k5 !== k6);
+check("a model upgrade retires the previous model's answers",
+  k1 !== await cacheKey("What is the STAK lease?", "2026-08-14", "",
+    { ASK_MODEL: "claude-sonnet-5" }));
 check("the key carries the pack date, readable in a KV listing",
   k1.startsWith("a:2026-08-14:"), k1);
 
@@ -147,6 +151,10 @@ section("the route");
   check("the record and the rules went as two system blocks",
     Array.isArray(globalThis.fetch.calls.body.system) &&
     globalThis.fetch.calls.body.system.length === 2);
+  check("the plain request uses Haiku 5.5 without rejected sampling parameters",
+    globalThis.fetch.calls.body.model === "claude-haiku-5-5"
+    && globalThis.fetch.calls.body.thinking?.type === "disabled"
+    && !["temperature", "top_p", "top_k"].some((name) => name in globalThis.fetch.calls.body));
   // Was "temperature is pinned to zero". That assertion encoded the belief
   // that broke the box: temperature 0 is a 400 on every Sonnet 5 request. What
   // matters is that the request carries what THIS model accepts.
@@ -163,6 +171,10 @@ section("the route");
     globalThis.fetch.calls.api === before, `api calls ${globalThis.fetch.calls.api}`);
   check("a repeat does not count against the month",
     e.ASK_KV.store.get("spend:2026-08") === "1");
+  const switched = await answer("what is in storage", { ...e, ASK_MODEL: "claude-sonnet-5" }, { now: NOW });
+  check("a model override reaches the API instead of replaying a cached answer",
+    switched.body.cached === false && globalThis.fetch.calls.api === before + 1
+    && globalThis.fetch.calls.body.model === "claude-sonnet-5");
 }
 
 {
@@ -178,6 +190,17 @@ section("the route");
   check("a withheld answer is NOT cached", cached.length === 0, JSON.stringify(cached));
 }
 
+section("provider refusals are explicit");
+for (const reply of ["", "Storage held 6.54 Bcf."]) {
+  const e = env();
+  globalThis.fetch = stubFetch({ reply, stopReason: "refusal" });
+  const r = await answer("a declined question", e, { now: NOW });
+  check("a provider refusal is explicit and discards any plain response prefix",
+    r.status === 200 && r.body.refused === true && r.body.text === "" && /declined/.test(r.body.error));
+  check("a provider refusal is counted without caching its prefix",
+    e.ASK_KV.store.get("spend:2026-08") === "1"
+    && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
 section("the ceiling actually stops spending");
 {
   const e = env({ ASK_MONTHLY_CAP: "2", ASK_KV: fakeKV({ "spend:2026-08": "2" }) });
@@ -243,7 +266,7 @@ const { answerStream } = await import(UNDER_TEST);
 
 // Build an SSE body the way the API sends one, so the parser is tested against
 // the real frame shape rather than a convenient one.
-function sseFetch(chunks, { status = 200 } = {}) {
+function sseFetch(chunks, { status = 200, stopReason = "end_turn" } = {}) {
   const calls = { api: 0 };
   const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) return { ok: true, json: async () => PACK };
@@ -253,6 +276,8 @@ function sseFetch(chunks, { status = 200 } = {}) {
     const enc = new TextEncoder();
     const frames = chunks.map(t => `event: content_block_delta\ndata: ${JSON.stringify(
       { type: "content_block_delta", delta: { type: "text_delta", text: t } })}\n\n`);
+    frames.push(`event: message_delta\ndata: ${JSON.stringify({ type: "message_delta",
+      delta: { stop_reason: stopReason }, stop_details: { category: null } })}\n\n`);
     let i = 0;
     return {
       ok: true,
@@ -315,7 +340,7 @@ async function drain(stream) {
   globalThis.fetch = sseFetch(["Storage held 6.54 Bcf. ", "It fell to 3.11 Bcf. ", "Then more."]);
   const ev = await drain(await answerStream("q", e, { now: NOW }));
   const sents = ev.filter(x => x.sentence).map(x => x.sentence);
-  check("the good sentence was already streamed",
+  check("the checked prefix survives a later numeral failure",
     sents.length === 1 && sents[0] === "Storage held 6.54 Bcf.", JSON.stringify(sents));
   check("the invented figure stopped the stream",
     ev.some(x => x.withheld === "numeral"), JSON.stringify(ev.filter(x => x.withheld)));
@@ -324,6 +349,19 @@ async function drain(stream) {
     e.ASK_KV.store.get("spend:2026-08") === "1");
   check("a withheld streamed answer is NOT cached",
     ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+
+for (const chunks of [[], ["Storage held 6.54 Bcf. ", "See [[stak-lease]]."]]) {
+  const e = env();
+  globalThis.fetch = sseFetch(chunks, { stopReason: "refusal" });
+  const ev = await drain(await answerStream("a declined question", e, { now: NOW }));
+  check("a streaming refusal releases no prefix, even with a null category",
+    !ev.some(x => x.sentence) && ev.some(x => x.refused && /declined/.test(x.error)));
+  check("a streaming refusal closes with no verified sentences",
+    ev.at(-1)?.done === true && ev.at(-1)?.verified === 0);
+  check("a streaming refusal is counted without caching partial text",
+    e.ASK_KV.store.get("spend:2026-08") === "1"
+    && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
 }
 
 {
@@ -354,6 +392,15 @@ async function drain(stream) {
 // from the docs, so it is asserted here rather than discovered in production.
 section("request shape per model");
 const { modelParams } = await import(UNDER_TEST);
+const { effectiveModel } = await import(UNDER_TEST);
+check("the answerer defaults to Haiku 5.5", effectiveModel({}) === "claude-haiku-5-5");
+check("the deployment pins the same model as the answerer",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8")
+    .includes(`ASK_MODEL = "${effectiveModel({})}"`));
+check("Haiku 5.5 receives no sampling parameters",
+  !["temperature", "top_p", "top_k"].some((name) => name in modelParams("claude-haiku-5-5")));
+check("Haiku 5.5 keeps the short-answer token budget for text",
+  modelParams("claude-haiku-5-5").thinking?.type === "disabled");
 
 check("Sonnet 5 gets NO temperature",
   modelParams("claude-sonnet-5").temperature === undefined,
@@ -377,6 +424,15 @@ check("Haiku is NOT sent a thinking block it does not want",
   check("the streamed request omits temperature on Sonnet 5",
     !("temperature" in (globalThis.fetch.lastBody || {})),
     JSON.stringify(Object.keys(globalThis.fetch.lastBody || {})));
+}
+{
+  const e = env();
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf."]);
+  await drain(await answerStream("q", e, { now: NOW }));
+  const sent = globalThis.fetch.lastBody;
+  check("the streaming request uses Haiku 5.5 without rejected parameters",
+    sent.model === "claude-haiku-5-5" && sent.thinking?.type === "disabled"
+    && !["temperature", "top_p", "top_k"].some((name) => name in sent));
 }
 
 section("the record is marked cacheable");

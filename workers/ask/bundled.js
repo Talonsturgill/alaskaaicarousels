@@ -249,6 +249,7 @@ export function splitSentences(buffer) {
 // and the answer would simply vanish. KV is the smallest durable thing that
 // works, it is part of the Workers platform rather than a separate service,
 // and it does not pause when idle.
+
 const FIRE = "https://api.anthropic.com/v1/claude_code/routines";
 const BETA = "experimental-cc-routine-2026-04-01";
 
@@ -453,6 +454,7 @@ export async function result(id, env) {
 // introductory rate ends on 2026-08-31 the same ceiling is about 32 dollars.
 // The bill has a maximum you choose, not a maximum the internet chooses, and
 // ASK_MONTHLY_CAP is where you choose it.
+
 const API = "https://api.anthropic.com/v1/messages";
 const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 
@@ -465,18 +467,13 @@ const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 // to click Deploy again, the choice lives in code, where it is reviewable and
 // where changing it is the same one paste as any other worker change.
 //
-// Sonnet 5 while its behaviour is being compared against Haiku 4.5 on the
-// standing eval set. Haiku answered the hardest question on that set well, so
-// this is a measurement and not a conclusion. Switching back is one line.
-//
-// NOTE ON PRICE: Sonnet 5's introductory rate ends 2026-08-31, after which
-// input goes $2 to $3 per million and output $10 to $15. At this pack size
-// that moves a question from about 4.3 cents to about 6.4 cents.
-const DEFAULT_MODEL = "claude-sonnet-5";
+// Haiku 5.5 is also pinned in wrangler.toml. Both deployment paths use the same model.
+const DEFAULT_MODEL = "claude-haiku-5-5";
 
 // Three or four sentences. The guard checks sentence by sentence and the page
 // shows a short answer, so a long generation is spend with nowhere to go.
 const MAX_TOKENS = 1024;
+const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
 
 /**
  * Models that REJECT a non-default temperature, top_p or top_k with a 400 on
@@ -491,7 +488,7 @@ const MAX_TOKENS = 1024;
  * this is knowable up front. From the thinking docs, sampling parameters
  * section: Fable 5, Mythos 5, Opus 5, Opus 4.8, Opus 4.7 and Sonnet 5.
  */
-const NO_SAMPLING = /^claude-(fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|opus-4-7|sonnet-5)/;
+const NO_SAMPLING = /^claude-(haiku-5|fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|opus-4-7|sonnet-5)/;
 
 /**
  * Models with thinking ON by default. Their thinking tokens are billed as
@@ -499,7 +496,7 @@ const NO_SAMPLING = /^claude-(fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|op
  * paying to deliberate about a lookup. Turned off where the docs say it can
  * be, left alone everywhere else.
  */
-const THINKS_BY_DEFAULT = /^claude-(opus-5|sonnet-5|fable-5|mythos-5|mythos-preview)/;
+const THINKS_BY_DEFAULT = /^claude-(haiku-5|opus-5|sonnet-5|fable-5|mythos-5|mythos-preview)/;
 
 /**
  * The parts of a request that depend on which model is answering. One place,
@@ -586,17 +583,20 @@ export async function probe(env, fetchImpl = fetch) {
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({ model, max_tokens: 1, ...modelParams(model),
+      body: JSON.stringify({ model, max_tokens: 32, ...modelParams(model),
                              messages: [{ role: "user", content: "hi" }] }),
     });
     const raw = await r.text().catch(() => "");
-    let type = null, message = null;
+    let type = null, message = null, responseModel = null, textReturned = false;
     try {
       const j = JSON.parse(raw);
       type = j?.error?.type ?? null;
       message = j?.error?.message ?? null;
+      responseModel = j?.model ?? null;
+      textReturned = (j?.content || []).some((block) => block.type === "text" && !!block.text);
     } catch { message = raw.slice(0, 160); }
-    return { ok: r.ok, status: r.status, model, error_type: type, error_message: message };
+    return { ok: r.ok, status: r.status, model, response_model: responseModel,
+             text_returned: textReturned, error_type: type, error_message: message };
   } catch (e) {
     return { ok: false, model, threw: String(e).slice(0, 200) };
   }
@@ -632,13 +632,14 @@ export function normaliseQuestion(q) {
  * keying on the last message alone would serve one thread's answer into
  * another's. Follow-ups mostly miss the cache and that is correct.
  */
-export async function cacheKey(turns, packDate, packRevision = "") {
+export async function cacheKey(turns, packDate, packRevision = "", env = {}) {
   const thread = (Array.isArray(turns) ? turns : [{ role: "user", content: String(turns) }])
     .map(m => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   // Rules and record data can both change more than once on the same published
   // date. Include those bytes so KV cannot replay an answer written under the
   // previous behavior or an earlier same-day Gas Watch/Docket build.
-  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${thread}`);
+  const settings = JSON.stringify({ model: effectiveModel(env), ...modelParams(effectiveModel(env)) });
+  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${settings}\n${thread}`);
   const digest = await crypto.subtle.digest("SHA-256", data);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
   // The pack date rides in the key as well as in the hash so a human reading
@@ -768,16 +769,16 @@ export async function callModel(turns, pack, env, fetchImpl = fetch) {
   const out = await r.json();
   const text = (out.content || [])
     .filter(b => b.type === "text").map(b => b.text).join("").trim();
-  return { text, usage: out.usage || null };
+  return { text, usage: out.usage || null, stop_reason: out.stop_reason || null };
 }
 
 /**
  * Stream the model's reply, calling onDelta with each text fragment.
  *
  * The guard already works a sentence at a time, so streaming is not a
- * cosmetic addition here: a sentence can be checked the moment it is complete
- * and shown immediately, and one that fails ends the answer there. Waiting for
- * the whole reply before checking any of it was never necessary.
+ * cosmetic addition here: a sentence is checked the moment it is complete,
+ * and one that fails ends the accepted prefix. Text waits for the provider's
+ * terminal classification before it is released to the page.
  */
 export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) {
   const r = await fetchImpl(API, {
@@ -805,7 +806,7 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
 
   const reader = r.body.getReader();
   const dec = new TextDecoder();
-  let buf = "";
+  let buf = "", stopReason = null;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
@@ -819,12 +820,14 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
         if (!line.startsWith("data:")) continue;
         let ev;
         try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
+        if (ev.type === "message_delta") stopReason = ev.delta?.stop_reason || stopReason;
         if (ev.type === "content_block_delta" && ev.delta?.type === "text_delta") {
           onDelta(ev.delta.text);
         }
       }
     }
   }
+  return { stop_reason: stopReason };
 }
 
 /**
@@ -849,7 +852,7 @@ async function preflight(turns, env, now) {
     return { stop: { status: 502, body: { error: "the record is unreachable" } } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack, env);
   const hit = await env.ASK_KV.get(key);
   if (hit) return { cached: { ...JSON.parse(hit), cached: true }, pack, key };
 
@@ -918,9 +921,9 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
   return new ReadableStream({
     async start(c) {
       c.enqueue(line({ stage: "Opening today's published record", step: "record", progress: 1, total: 3 }));
-      let buf = "", kept = [], withheld = null, opened = false, verifying = false;
+      let buf = "", kept = [], withheld = null, opened = false, verifying = false, refused = false;
       try {
-        await streamModel(turns, pack, env, (delta) => {
+        const result = await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
             opened = true;
             c.enqueue(line({ stage: "Drafting only from the published record", step: "draft", progress: 2, total: 3 }));
@@ -937,19 +940,19 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
             const v = checkSentence(s, { allowed, slugs });
             if (!v.ok) { withheld = v.reason; return; }
             kept.push(s.trim());
-            c.enqueue(line({ sentence: s.trim() }));
           }
         }, fetchImpl || fetch);
+        refused = result.stop_reason === "refusal";
 
         // Whatever is left over after the last sentence end.
-        if (!withheld && buf.trim()) {
+        if (!refused && !withheld && buf.trim()) {
           if (!verifying) {
             verifying = true;
             c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
           }
           const v = checkSentence(buf, { allowed, slugs });
           if (!v.ok) withheld = v.reason;
-          else { kept.push(buf.trim()); c.enqueue(line({ sentence: buf.trim() })); }
+          else kept.push(buf.trim());
         }
       } catch (e) {
         console.log("answer stream failed", String(e));
@@ -966,7 +969,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
           st >= 500 ? "The model is having a moment. Try again shortly." :
           "That answer did not come back.",
           status: st || null }));
-        c.enqueue(line({ done: true, verified: kept.length }));
+        c.enqueue(line({ done: true, verified: 0 }));
         c.close();
         return;
       }
@@ -975,6 +978,15 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
       // the same as an accepted one.
       await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
 
+      // Haiku 5.5 can refuse after emitting text. Hold checked sentences until its
+      // terminal classification arrives, so an existing page never sees a refused prefix.
+      if (refused) {
+        c.enqueue(line({ error: REFUSAL_MESSAGE, refused: true }));
+        c.enqueue(line({ done: true, verified: 0 }));
+        c.close();
+        return;
+      }
+      for (const sentence of kept) c.enqueue(line({ sentence }));
       if (withheld) {
         c.enqueue(line({ withheld }));
         console.log("answer withheld", JSON.stringify({ reason: withheld }));
@@ -1010,7 +1022,7 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
     return { status: 502, body: { error: "the record is unreachable" } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack, env);
   const hit = await env.ASK_KV.get(key);
   if (hit) {
     const rec = JSON.parse(hit);
@@ -1046,6 +1058,9 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
   // kept the text. A refused answer costs the same as an accepted one.
   await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
 
+  if (out.stop_reason === "refusal") {
+    return { status: 200, body: { text: "", withheld: false, refused: true, error: REFUSAL_MESSAGE } };
+  }
   if (!out.text) {
     return { status: 200, body: { text: "", withheld: false,
                                   error: "The record did not produce an answer to that." } };
@@ -1117,6 +1132,8 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
 // Every sentence of a delivered answer passes checks.js against the published
 // corpus before it is stored, and a sentence that fails ends the answer there,
 // visibly, rather than being quietly repaired.
+
+
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
 

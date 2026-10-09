@@ -48,13 +48,13 @@ enabled = true
 #                    where every call is used; expected spend is a few dollars
 #                    after prompt-cache reuse. Set it to 0 to
 #                    switch the lane off without a deploy.
-#   ASK_MODEL        model id. Production pins Sonnet 5 here so a dashboard
+#   ASK_MODEL        model id. Production pins Haiku 5.5 here so a dashboard
 #                    variable cannot silently switch the answerer's behavior.
 #   ASK_PACK_URL     where to read the record. Defaults to the live site; point
 #                    it at a staging build to try a change without shipping it.
 [vars]
 ASK_MONTHLY_CAP = "500"
-ASK_MODEL = "claude-sonnet-5"
+ASK_MODEL = "claude-haiku-5-5"
 
 # Secrets are set with `wrangler secret put`, never in this file:
 #   ANTHROPIC_API_KEY    a Console key, and the only metered thing in this
