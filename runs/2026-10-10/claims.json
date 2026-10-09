@@ -257,10 +257,10 @@
       "source_url": "https://www.fnsb.gov/elections",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Elections page",
       "source_is_primary": true,
-      "date_of_source": "2026-10-07",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "The page is undated. It was fetched October 9th and was posted after the election, so date_of_source is the results date. Only qualified ballots will be counted, so the final number added may be lower."
+      "notes": "The page is undated. It was fetched October 9th and was posted after the election, so date_of_source is the results date. Only qualified ballots will be counted, so the final number added may be lower. date_of_source is left blank because the page carries no date (fetched October 9th)."
     },
     {
       "id": "C21",
@@ -270,10 +270,10 @@
       "source_url": "https://www.fnsb.gov/elections",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Elections page",
       "source_is_primary": true,
-      "date_of_source": "2026-10-07",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "Same page as C20."
+      "notes": "Same page as C20. date_of_source is left blank because the page carries no date (fetched October 9th)."
     },
     {
       "id": "C22",
@@ -283,10 +283,10 @@
       "source_url": "https://www.fnsb.gov/elections",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Elections page",
       "source_is_primary": true,
-      "date_of_source": "2026-10-07",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "The count is in the Mona Lisa Drexler Assembly Chambers, Juanita Helms Administrative Center, 907 Terminal Street. Because it's a future event, write 'is scheduled to be counted'."
+      "notes": "The count is in the Mona Lisa Drexler Assembly Chambers, Juanita Helms Administrative Center, 907 Terminal Street. Because it's a future event, write 'is scheduled to be counted'. date_of_source is left blank because the page carries no date (fetched October 9th)."
     },
     {
       "id": "C23",
@@ -296,10 +296,10 @@
       "source_url": "https://www.fnsb.gov/elections",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Elections page",
       "source_is_primary": true,
-      "date_of_source": "2026-10-07",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.9,
-      "notes": "The verbatim is as returned by WebFetch. That wording may be lightly normalized, but the date and event were confirmed. The page also says terms begin Monday, October 26th. Write 'scheduled'."
+      "notes": "The verbatim is as returned by WebFetch. That wording may be lightly normalized, but the date and event were confirmed. The page also says terms begin Monday, October 26th. Write 'scheduled'. date_of_source is left blank because the page carries no date (fetched October 9th)."
     },
     {
       "id": "C24",
@@ -309,10 +309,10 @@
       "source_url": "https://www.fnsb.gov/elections",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Elections page",
       "source_is_primary": true,
-      "date_of_source": "2026-10-07",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.9,
-      "notes": "DERIVED arithmetic. 811 + 424 = 1,235, and 1,235 / 123 = 10.0. NEEDS SOFTENING. Not every outstanding ballot will qualify or mark Seat D (Seat D had 723 undervotes among 15,141 ballots). Don't imply the result will flip. Suggested phrasing: 'more ballots remain to be counted than the Seat D margin'. For comparison, the Seat E margin, 1,320, is larger than 1,235. The Seat H margin, 622, is smaller."
+      "notes": "DERIVED arithmetic. 811 + 424 = 1,235, and 1,235 / 123 = 10.0. NEEDS SOFTENING. Not every outstanding ballot will qualify or mark Seat D (Seat D had 723 undervotes among 15,141 ballots). Don't imply the result will flip. Suggested phrasing: 'more ballots remain to be counted than the Seat D margin'. For comparison, the Seat E margin, 1,320, is larger than 1,235. The Seat H margin, 622, is smaller. date_of_source is left blank because the page carries no date (fetched October 9th)."
     },
     {
       "id": "C25",
