@@ -98,6 +98,12 @@ jobs:
       - name: The deep lane verifies and authenticates what it publishes
         run: node workers/ask/test-deep.mjs
 
+      - name: The written agent accepts model requests and preserves cache and caps
+        run: node workers/ask/test-answer.mjs
+
+      - name: The deployed dashboard bundle matches the tested agent
+        run: node workers/ask/test-bundle.mjs
+
       # The corpus ships as part of the site, so a builder change that breaks
       # the page build has to fail here rather than at deploy.
       - name: The site still builds with the corpus in it

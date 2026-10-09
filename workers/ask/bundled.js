@@ -249,6 +249,7 @@ export function splitSentences(buffer) {
 // and the answer would simply vanish. KV is the smallest durable thing that
 // works, it is part of the Workers platform rather than a separate service,
 // and it does not pause when idle.
+
 const FIRE = "https://api.anthropic.com/v1/claude_code/routines";
 const BETA = "experimental-cc-routine-2026-04-01";
 
@@ -453,6 +454,7 @@ export async function result(id, env) {
 // introductory rate ends on 2026-08-31 the same ceiling is about 32 dollars.
 // The bill has a maximum you choose, not a maximum the internet chooses, and
 // ASK_MONTHLY_CAP is where you choose it.
+
 const API = "https://api.anthropic.com/v1/messages";
 const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 
@@ -465,14 +467,8 @@ const PACK_URL = "https://alaskaaihq.com/ask-pack.json";
 // to click Deploy again, the choice lives in code, where it is reviewable and
 // where changing it is the same one paste as any other worker change.
 //
-// Sonnet 5 while its behaviour is being compared against Haiku 4.5 on the
-// standing eval set. Haiku answered the hardest question on that set well, so
-// this is a measurement and not a conclusion. Switching back is one line.
-//
-// NOTE ON PRICE: Sonnet 5's introductory rate ends 2026-08-31, after which
-// input goes $2 to $3 per million and output $10 to $15. At this pack size
-// that moves a question from about 4.3 cents to about 6.4 cents.
-const DEFAULT_MODEL = "claude-sonnet-5";
+// Haiku 5.5 is also pinned in wrangler.toml. Both deployment paths use the same model.
+const DEFAULT_MODEL = "claude-haiku-5-5";
 
 // Three or four sentences. The guard checks sentence by sentence and the page
 // shows a short answer, so a long generation is spend with nowhere to go.
@@ -491,7 +487,7 @@ const MAX_TOKENS = 1024;
  * this is knowable up front. From the thinking docs, sampling parameters
  * section: Fable 5, Mythos 5, Opus 5, Opus 4.8, Opus 4.7 and Sonnet 5.
  */
-const NO_SAMPLING = /^claude-(fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|opus-4-7|sonnet-5)/;
+const NO_SAMPLING = /^claude-(haiku-5|fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|opus-4-7|sonnet-5)/;
 
 /**
  * Models with thinking ON by default. Their thinking tokens are billed as
@@ -499,7 +495,7 @@ const NO_SAMPLING = /^claude-(fable-5|mythos-5|mythos-preview|opus-5|opus-4-8|op
  * paying to deliberate about a lookup. Turned off where the docs say it can
  * be, left alone everywhere else.
  */
-const THINKS_BY_DEFAULT = /^claude-(opus-5|sonnet-5|fable-5|mythos-5|mythos-preview)/;
+const THINKS_BY_DEFAULT = /^claude-(haiku-5|opus-5|sonnet-5|fable-5|mythos-5|mythos-preview)/;
 
 /**
  * The parts of a request that depend on which model is answering. One place,
@@ -586,17 +582,20 @@ export async function probe(env, fetchImpl = fetch) {
         "anthropic-version": "2023-06-01",
         "content-type": "application/json",
       },
-      body: JSON.stringify({ model, max_tokens: 1, ...modelParams(model),
+      body: JSON.stringify({ model, max_tokens: 32, ...modelParams(model),
                              messages: [{ role: "user", content: "hi" }] }),
     });
     const raw = await r.text().catch(() => "");
-    let type = null, message = null;
+    let type = null, message = null, responseModel = null, textReturned = false;
     try {
       const j = JSON.parse(raw);
       type = j?.error?.type ?? null;
       message = j?.error?.message ?? null;
+      responseModel = j?.model ?? null;
+      textReturned = (j?.content || []).some((block) => block.type === "text" && !!block.text);
     } catch { message = raw.slice(0, 160); }
-    return { ok: r.ok, status: r.status, model, error_type: type, error_message: message };
+    return { ok: r.ok, status: r.status, model, response_model: responseModel,
+             text_returned: textReturned, error_type: type, error_message: message };
   } catch (e) {
     return { ok: false, model, threw: String(e).slice(0, 200) };
   }
@@ -632,13 +631,14 @@ export function normaliseQuestion(q) {
  * keying on the last message alone would serve one thread's answer into
  * another's. Follow-ups mostly miss the cache and that is correct.
  */
-export async function cacheKey(turns, packDate, packRevision = "") {
+export async function cacheKey(turns, packDate, packRevision = "", env = {}) {
   const thread = (Array.isArray(turns) ? turns : [{ role: "user", content: String(turns) }])
     .map(m => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   // Rules and record data can both change more than once on the same published
   // date. Include those bytes so KV cannot replay an answer written under the
   // previous behavior or an earlier same-day Gas Watch/Docket build.
-  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${thread}`);
+  const settings = JSON.stringify({ model: effectiveModel(env), ...modelParams(effectiveModel(env)) });
+  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${settings}\n${thread}`);
   const digest = await crypto.subtle.digest("SHA-256", data);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
   // The pack date rides in the key as well as in the hash so a human reading
@@ -849,7 +849,7 @@ async function preflight(turns, env, now) {
     return { stop: { status: 502, body: { error: "the record is unreachable" } } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack, env);
   const hit = await env.ASK_KV.get(key);
   if (hit) return { cached: { ...JSON.parse(hit), cached: true }, pack, key };
 
@@ -1010,7 +1010,7 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
     return { status: 502, body: { error: "the record is unreachable" } };
   }
 
-  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack);
+  const key = await cacheKey(turns, pack.generated, pack.system + "\n" + pack.pack, env);
   const hit = await env.ASK_KV.get(key);
   if (hit) {
     const rec = JSON.parse(hit);
@@ -1117,6 +1117,8 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
 // Every sentence of a delivered answer passes checks.js against the published
 // corpus before it is stored, and a sentence that fails ends the answer there,
 // visibly, rather than being quietly repaired.
+
+
 const CORPUS_URL = "https://alaskaaihq.com/ask-corpus.json";
 const MAX_QUESTION = 400;
 

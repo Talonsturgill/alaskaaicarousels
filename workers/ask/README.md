@@ -82,12 +82,13 @@ account, no metered call.
 
 **The answerer does have one, and it is the only metered thing here.**
 `ANTHROPIC_API_KEY`, a Console key. The default model is pinned in `answer.js`;
-the current value is Sonnet 5. The August 28th corpus self-test estimates a
+the current value is Haiku 5.5. The August 28th corpus self-test estimates a
 request carries roughly 68,000 input tokens of
 record plus a short answer. Two things keep the month bounded, in this order:
 
 1. An identical question is served from KV, keyed by the question and the pack
-   date, so a repeat costs nothing and a new pack retires yesterday's answers.
+   revision and model request settings, so a repeat costs nothing and an upgrade
+   retires the previous model's answers.
    This is never announced in the UI; cached and fresh replies share the same
    sentence protocol and provenance surface.
 2. `ASK_MONTHLY_CAP` counts calls that reached the model. Over it, the lane

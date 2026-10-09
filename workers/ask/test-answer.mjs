@@ -14,6 +14,7 @@
 // A bundle that drifts from these modules would be a worker whose guard is not
 // the guard anybody tested. See test-bundle.mjs.
 const UNDER_TEST = process.env.ASK_MODULE || "./answer.js";
+const { readFileSync } = await import("node:fs");
 const {
   answer, cacheKey, capOf, monthKey, normaliseQuestion, verify,
 } = await import(UNDER_TEST);
@@ -94,6 +95,9 @@ check("a new pack retires yesterday's answers", k1 !== k3);
 check("a different question is a different key", k1 !== k4);
 check("new rules retire answers written under old behavior", k1 !== k5);
 check("a same-day record rebuild retires earlier answers", k5 !== k6);
+check("a model upgrade retires the previous model's answers",
+  k1 !== await cacheKey("What is the STAK lease?", "2026-08-14", "",
+    { ASK_MODEL: "claude-sonnet-5" }));
 check("the key carries the pack date, readable in a KV listing",
   k1.startsWith("a:2026-08-14:"), k1);
 
@@ -147,6 +151,10 @@ section("the route");
   check("the record and the rules went as two system blocks",
     Array.isArray(globalThis.fetch.calls.body.system) &&
     globalThis.fetch.calls.body.system.length === 2);
+  check("the plain request uses Haiku 5.5 without rejected sampling parameters",
+    globalThis.fetch.calls.body.model === "claude-haiku-5-5"
+    && globalThis.fetch.calls.body.thinking?.type === "disabled"
+    && !["temperature", "top_p", "top_k"].some((name) => name in globalThis.fetch.calls.body));
   // Was "temperature is pinned to zero". That assertion encoded the belief
   // that broke the box: temperature 0 is a 400 on every Sonnet 5 request. What
   // matters is that the request carries what THIS model accepts.
@@ -163,6 +171,10 @@ section("the route");
     globalThis.fetch.calls.api === before, `api calls ${globalThis.fetch.calls.api}`);
   check("a repeat does not count against the month",
     e.ASK_KV.store.get("spend:2026-08") === "1");
+  const switched = await answer("what is in storage", { ...e, ASK_MODEL: "claude-sonnet-5" }, { now: NOW });
+  check("a model override reaches the API instead of replaying a cached answer",
+    switched.body.cached === false && globalThis.fetch.calls.api === before + 1
+    && globalThis.fetch.calls.body.model === "claude-sonnet-5");
 }
 
 {
@@ -354,6 +366,15 @@ async function drain(stream) {
 // from the docs, so it is asserted here rather than discovered in production.
 section("request shape per model");
 const { modelParams } = await import(UNDER_TEST);
+const { effectiveModel } = await import(UNDER_TEST);
+check("the answerer defaults to Haiku 5.5", effectiveModel({}) === "claude-haiku-5-5");
+check("the deployment pins the same model as the answerer",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8")
+    .includes(`ASK_MODEL = "${effectiveModel({})}"`));
+check("Haiku 5.5 receives no sampling parameters",
+  !["temperature", "top_p", "top_k"].some((name) => name in modelParams("claude-haiku-5-5")));
+check("Haiku 5.5 keeps the short-answer token budget for text",
+  modelParams("claude-haiku-5-5").thinking?.type === "disabled");
 
 check("Sonnet 5 gets NO temperature",
   modelParams("claude-sonnet-5").temperature === undefined,
@@ -377,6 +398,15 @@ check("Haiku is NOT sent a thinking block it does not want",
   check("the streamed request omits temperature on Sonnet 5",
     !("temperature" in (globalThis.fetch.lastBody || {})),
     JSON.stringify(Object.keys(globalThis.fetch.lastBody || {})));
+}
+{
+  const e = env();
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf."]);
+  await drain(await answerStream("q", e, { now: NOW }));
+  const sent = globalThis.fetch.lastBody;
+  check("the streaming request uses Haiku 5.5 without rejected parameters",
+    sent.model === "claude-haiku-5-5" && sent.thinking?.type === "disabled"
+    && !["temperature", "top_p", "top_k"].some((name) => name in sent));
 }
 
 section("the record is marked cacheable");
