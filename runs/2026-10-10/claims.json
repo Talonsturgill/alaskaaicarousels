@@ -407,7 +407,7 @@
     },
     {
       "id": "C32",
-      "claim": "Howell's widest precinct margin in Seat D was Goldstream #2, 323 to 117.",
+      "claim": "On Election Day ballots, Howell's widest precinct margin in Seat D was Goldstream #2, 323 to 117.",
       "value": "323 to 117",
       "verbatim": "36-002 Goldstream #2 1620 465 28.70% 117 323",
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
@@ -420,7 +420,7 @@
     },
     {
       "id": "C33",
-      "claim": "Ramirez's widest precinct margin in Seat D was Chena Lakes, 359 to 123.",
+      "claim": "On Election Day ballots, Ramirez's widest precinct margin in Seat D was Chena Lakes, 359 to 123.",
       "value": "359 to 123",
       "verbatim": "33-135 Chena Lakes 3339 510 15.27% 359 123",
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
@@ -433,7 +433,7 @@
     },
     {
       "id": "C34",
-      "claim": "Fort Wainwright's precinct recorded 59 ballots from 3,256 registered voters, a turnout of 1.81%.",
+      "claim": "Fort Wainwright's precinct recorded 59 Election Day ballots from 3,256 registered voters, an Election Day turnout of 1.81%.",
       "value": "1.81%",
       "verbatim": "32-375 Fort Wainwright 3256 59 1.81% 36 19",
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
@@ -446,7 +446,7 @@
     },
     {
       "id": "C35",
-      "claim": "The Eielson precinct recorded 24 ballots from 2,103 registered voters, a turnout of 1.14%, the lowest in the borough.",
+      "claim": "The Eielson precinct recorded 24 Election Day ballots from 2,103 registered voters, an Election Day turnout of 1.14%, the lowest in the borough.",
       "value": "1.14%",
       "verbatim": "34-235 Eielson 2103 24 1.14% 12 9",
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
@@ -459,7 +459,7 @@
     },
     {
       "id": "C36",
-      "claim": "Ester had the highest precinct turnout in the borough at 30.01%, with 406 ballots from 1,353 registered voters.",
+      "claim": "On Election Day ballots, Ester had the highest precinct turnout in the borough at 30.01%, with 406 ballots from 1,353 registered voters.",
       "value": "30.01%",
       "verbatim": "35-584 Ester 1353 406 30.01% 123 255",
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
@@ -468,7 +468,7 @@
       "date_of_source": "2026-10-07",
       "fetched": true,
       "confidence": 0.92,
-      "notes": "Text extracted by fetch_pdf_text.py. Next highest are Goldstream #2 at 28.70% and Farmers Loop at 26.95%. 406 / 1,353 = 30.007%, which checks."
+      "notes": "Text extracted by fetch_pdf_text.py. Next highest are Goldstream #2 at 28.70% and Farmers Loop at 26.95%. 406 / 1,353 = 30.007%, which checks. The precinct report counts Election Day ballots only; the 2,603 early ballots sit in one borough-wide row (C79), so this is Election Day turnout."
     },
     {
       "id": "C37",
