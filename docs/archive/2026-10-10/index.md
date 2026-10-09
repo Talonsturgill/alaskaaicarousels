@@ -23,9 +23,9 @@ In 11, Election Day chose Howell, LaJiness and Crass. In 16, it chose Ramirez, S
 
 15,141 of 77,227 registered voters cast a ballot.
 
-24 ballots from 2,103 voters.
+24 Election Day ballots from 2,103 registered voters.
 
-The Pentagon wants up to a dozen military data centers near Anchorage, Healy and Fairbanks. The moratorium the Assembly asked for names state-owned or municipal land. Fort Wainwright's precinct cast 59 of 3,256.
+The Pentagon wants up to a dozen military data centers near Anchorage, Healy and Fairbanks. The moratorium the Assembly asked for names state-owned or municipal land. Fort Wainwright's precinct cast 59 of 3,256 on Election Day.
 
 The count so far
 
