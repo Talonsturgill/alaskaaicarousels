@@ -190,12 +190,18 @@ RX_DURATION = re.compile(r"(?i)\b(" + _NUM + r")\s+(days?|weeks?|months?|years?)
 # read "15,141 of 77,227" as "141 of 77" (a word boundary sits after the comma),
 # a subset no declaration can make true, on the deck's own headline.
 _NUMG = r"(?:\d{1,3}(?:,\d{3})+|\d+)"
-RX_RATIO = re.compile(r"(?i)(?<![\w,])(" + _NUMG + r")\s+of\s+(" + _NUMG + r")(?!\w|,\d)")
-# Pinned on import: a grouped number is one number, and a numeral inside an
-# alphanumeric token ("PAGE A15 of 20", "15 of 20B") is not a ratio (Codex, PR #425).
+RX_RATIO = re.compile(r"(?i)(?<!\w)(?!(?<=\d,)\d{3}(?!\d))(" + _NUMG + r")\s+of\s+(" + _NUMG + r")(?!\w|,\d{3}(?!\d))")
+# Pinned on import: a grouped number is one number, a numeral inside an
+# alphanumeric token ("PAGE A15 of 20", "15 of 20B") is not a ratio, and a comma
+# is refused only where it is a real thousands group, so a compact list
+# ("1 of 2,3 of 4") still yields both ratios (Codex, PR #425).
 assert [m.groups() if m else None for m in map(RX_RATIO.search, (
     "15,141 of 77,227 voters", "PAGE A15 of 20", "15 of 20B", "59 of 3,256."))] == [
     ("15,141", "77,227"), None, None, ("59", "3,256")], "RX_RATIO boundary regression"
+assert [m.groups() for m in RX_RATIO.finditer("1 of 2,3 of 4 precincts")] == [("1", "2"), ("3", "4")], \
+    "RX_RATIO comma-list regression"
+assert [m.groups() for m in RX_RATIO.finditer("x 15,141 of 20B, 141 of 77")] == [("141", "77")], \
+    "RX_RATIO thousands-tail regression"
 RX_SPAN = re.compile(r"(?i)\b(\d{1,2})\s+to\s+(\d{1,2})\b")
 RX_COUNT = re.compile(r"(?i)\b(" + _NUM + r")\s+((?:[a-z][a-z-]*\s+){0,2}[a-z][a-z-]*s)\b")
 RX_SLIDE_COUNTER = re.compile(r"^\d{1,2}\s*/\s*\d{1,2}$")

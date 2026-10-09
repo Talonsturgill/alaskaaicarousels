@@ -3171,7 +3171,7 @@
       "run_date": "2026-10-10",
       "kind": "fix",
       "area": "scripts",
-      "change": "scripts/aggregate_check.py reads a thousands-grouped number as one number in its ratio pattern (_NUMG = \\d{1,3}(,\\d{3})+ or \\d+, with lookarounds that refuse a partial group) and strips commas before comparing a ratio's parts with the declared claims. Codex (PR #425): the boundary guards also refuse a word character, so a numeral inside an alphanumeric token (\"PAGE A15 of 20\", \"15 of 20B\") is not a ratio; pinned by an import-time assertion.",
+      "change": "scripts/aggregate_check.py reads a thousands-grouped number as one number in its ratio pattern (_NUMG = \\d{1,3}(,\\d{3})+ or \\d+, with lookarounds that refuse a partial group) and strips commas before comparing a ratio's parts with the declared claims. Codex (PR #425): the boundary guards also refuse a word character, so a numeral inside an alphanumeric token (\"PAGE A15 of 20\", \"15 of 20B\") is not a ratio; pinned by an import-time assertion. A second Codex round: a comma is refused only where it belongs to a real thousands group, so a compact list (\"1 of 2,3 of 4\") still yields both ratios.",
       "trigger": "Mid-run breakage, No.83 slide 05: the headline \"15,141 of 77,227\" was detected as \"141 of 77\" and failed against a correct declaration.",
       "files": [
         "scripts/aggregate_check.py"
