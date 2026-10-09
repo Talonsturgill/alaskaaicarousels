@@ -1994,6 +1994,30 @@
       "evidence": "No.82 slide 07: line width and alpha by k = Zc/z spanned only 0.93 to 1.07 on a 16 cm vessel seen from 1.05 m, and the critic read the wireframe as uniform graph paper. Normalising depth from the near rim to the far rim, with a lit-left term and dashed back lines, gave a visible hierarchy.",
       "act_on_it": "For a wireframe or hatched solid, compute t = (z - zNear)/(zFar - zNear) over the object itself and drive width and alpha from t, not from the ratio to the camera distance.",
       "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-10",
+      "carousel_no": 83,
+      "instinct": "ON A DARK GROUND, PALE HACHURE THAT THICKENS ON LEE FACES LIGHTS THE LEE. INVERT THE STROKE SUN OR SHADE UNDER IT.",
+      "evidence": "No.83 slide 06: akhachure at sunAz 315 drew dense pale strokes on the lee, so hills read lit from every side and two critics called it fur. Turning the stroke sun to 135 and laying a coarse, smoothed hillshade from the same DEM (az 315, el 32) under the strokes made lit and lee legible; the critic shipped it.",
+      "act_on_it": "When hachure ink is lighter than its ground, pass sunAz + 180 so density lands on the lit faces, and put a hillshade from the same height field beneath it for the direction.",
+      "confidence": 0.65
+    },
+    {
+      "run_date": "2026-10-10",
+      "carousel_no": 83,
+      "instinct": "A DARK 3D FLOOR THAT REFLECTS THE ENVIRONMENT PRINTS BANDS, AND FOG IN A COLOUR OTHER THAN THE VOID PRINTS A HORIZON.",
+      "evidence": "No.83 slide 01: three critics in a row read wavy horizontal bands and a hard step on the floor. The floor (roughness 0.42, env 0.7) mirrored the softbox environment, and the exp2 fog colour #0C1626 was lighter than the #050A14 background, so the floor's far edge drew a line. Roughness 0.9, env 0.25 and fog in the void colour removed both.",
+      "act_on_it": "For a dark floor under an akthree scene: roughness 0.85 or more, envMapIntensity 0.3 or less, fog colour equal to the background, and VSM soft shadows for any long cast.",
+      "confidence": 0.6
+    },
+    {
+      "run_date": "2026-10-10",
+      "carousel_no": 83,
+      "instinct": "BLOOM ON A FIELD OF ONE-PIXEL BEADS TILES; BUILD THE GLOW FROM A FULL-RESOLUTION BLURRED COPY.",
+      "evidence": "No.83 slide 05: akpost bloom over 15,141 lit beads read at 100 percent as 4 to 6 px quantised tiles. Drawing the lit cores to their own canvas, adding it back blurred at 5 px and 1.5 px, and dropping the grade's bloom gave a clean glow; the unlit beads at #0E1624 with no highlight let the breather rest.",
+      "act_on_it": "For thousands of tiny emitters, skip the grade's bloom and composite a blurred copy of the emitter layer with 'lighter'.",
+      "confidence": 0.6
     }
   ]
 }

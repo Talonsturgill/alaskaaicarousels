@@ -3260,6 +3260,46 @@
       "sources_lead": "NSF award records 2614749, 2614750 and 2614751; UAF news (October 5th); NSF EPSCoR FEC announcement (August); UAA news (January 22nd)",
       "claims": 62,
       "note": "UAF's October 5th announcement is the in-window peg. The Usibelli and Healy material is earlier UAA lab work and the deck never calls it this award's feedstock (C36 to C40). Runner-up Flock cameras in Anchorage (C53 to C62) held for a primary source."
+    },
+    {
+      "run_date": "2026-10-10",
+      "carousel_no": 83,
+      "topic": "UPDATE of No.76: the Fairbanks North Star Borough's unofficial October 6th results (printed 9:57 a.m. October 7th). Seat D: Alexis Howell 7,230, Miguel Ramirez 7,107, a 123-vote lead with 811 absentee and 424 questioned ballots (1,235) counted October 13th at 2 p.m. and certification scheduled October 22nd. Ramirez won Election Day 6,251 to 5,612; early voting went to Howell 1,618 to 856. Seat E LaJiness 7,919 to Shupe 6,599; Seat H Crass 7,465 to Leaders 6,843, also reversed by early voting. 27 of 32 precincts went the same way in all three seats. Turnout 15,141 of 77,227 (19.61%); Eielson's precinct cast 24 ballots from 2,103 registered, Fort Wainwright's 59 of 3,256. Props 1 and 2 passed, Prop 3 (hand count only) failed.",
+      "angle": "THE REMAINDER: a 123-vote lead in the seat whose leader backs a data center moratorium sits beside 1,235 uncounted ballots; Election Day went one way and one early-voting row reversed it. Reports who leads and what each said, never a mandate or a referendum.",
+      "entities": [
+        "Fairbanks North Star Borough",
+        "FNSB Assembly",
+        "Alexis Howell",
+        "Miguel Ramirez",
+        "Nick LaJiness",
+        "Shelly Shupe",
+        "Scott W. Crass",
+        "Joshua Leaders",
+        "Eielson AFB",
+        "Fort Wainwright",
+        "Resolution 2026-25",
+        "Pentagon"
+      ],
+      "keywords": [
+        "unofficial results",
+        "Assembly election",
+        "data center moratorium",
+        "absentee ballots",
+        "questioned ballots",
+        "early voting",
+        "precinct results",
+        "turnout",
+        "canvass",
+        "military data centers"
+      ],
+      "headline": "A 123-vote lead. 1,235 ballots still out.",
+      "sources_lead": [
+        "https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-",
+        "https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT",
+        "https://www.fnsb.gov/elections"
+      ],
+      "claims": 80,
+      "note": "Update framing of No.76 (October 3rd preview of six stances); the material new development is the count. Runner-up Koniag IT Systems' $54,993,726 Pentagon CDAO contract (C57 to C65), held because both dates fall before the window. Scored 8.6. October 13th's canvass is the follow-up peg."
     }
   ]
 }

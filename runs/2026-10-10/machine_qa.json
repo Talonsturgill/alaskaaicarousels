@@ -1,0 +1,149 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (3% of the ring around '+123', spanning 19%) -- pixel critic verify the label is not crossed"
+      ],
+      "fits": [
+        "hd 'A 123-vote lead.1,235 ballots still out.' fits 2/2 lines at 118.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Election Day margin bar on the ledger': shadow L* 5.0 vs ground L* 15.2, dL 10.2 at 432w",
+        "'the early voting margin bar on the ledger': shadow L* 3.1 vs ground L* 34.6, dL 31.4 at 432w"
+      ],
+      "motifs": [
+        "'the gold 123 remainder on the early bar': canvas 20.0 dE, page 41.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Seat D margin rule' runs -639 votes at 169 to 762 votes at 982; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Ramirez won Election Day.Early voting carrie' fits 2/2 lines at 88px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'Chena Lakes tab end' lands 4.0px from its target",
+        "leader 'Goldstream #2 tab end' lands 3.0px from its target",
+        "leader 'Chena Lakes tab end' meets its label 6.0px away",
+        "leader 'Goldstream #2 tab end' meets its label 6.9px away",
+        "leader 'Chena Lakes tab end' is drawn 10 px at 90 degrees, inside the pointer band",
+        "leader 'Goldstream #2 tab end' is drawn 19 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Ramirez carried 20 precincts.Howell carried ' fits 2/2 lines at 82.5px"
+      ],
+      "asserts": [
+        "'12 precincts Howell carried on Election Day, one tab each' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'12 precincts Howell carried on Election Day, one tab each': 12 mark centres probed at r=14px, cohort median 72.9 dE, all present (weakest 62.6 dE)",
+        "'20 precincts Ramirez carried on Election Day, one tab each' holds: 20 vs 20 marks, counted over 20 declared marks (within 0)",
+        "'20 precincts Ramirez carried on Election Day, one tab each': 20 mark centres probed at r=14px, cohort median 64.8 dE, all present (weakest 44.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd '27 of 32 precincts wentthe same way in every' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'96 precinct dots, three seats by 32 precincts' holds: 96 vs 96 marks, counted over 96 declared marks (within 0)",
+        "'96 precinct dots, three seats by 32 precincts': 96 mark centres probed at r=12px, cohort median 36.8 dE, all present (weakest 32.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "a layer of light ends in mid-air: the light an additive (lighter) drawImage painted stops at y 1208 (its bottom edge) within a pixel (up to 0.015 of full just inside, nothing just outside), and the final picture shows a straight 31.7-level step for 48 design px (x 644 to 692). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "ragged display line: line 1 of 2 in '15,141 of 77,227 registered voters cast a ba' ends 'of' -- an article, conjunction or preposition left hanging at the line end. It reads at 80px, so the break is the first thing a feed sees. Author the break with <br> before 'registered' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "fits": [
+        "hd '15,141 of 77,227registered voters cast a bal' fits 2/2 lines at 80px"
+      ],
+      "asserts": [
+        "'15,141 lit beads, one per ballot cast' holds: 15141 vs 15141 beads (within 0)",
+        "'77,227 precinct beads, one per registered voter' holds: 77227 vs 77227 beads (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the ring on Eielson AFB': canvas 56.1 dE, page 56.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Eielson AFB gazetteer point' lands 18.4px from its target",
+        "leader 'the Eielson AFB gazetteer point' meets its label 0.5px away",
+        "leader 'the Eielson AFB gazetteer point' is drawn 41 px at 31 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd '24 ballotsfrom 2,103 voters.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": []
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the 811 absentee stack on the count table': shadow L* 46.4 vs ground L* 76.8, dL 30.3 at 432w",
+        "'the 424 questioned stack on the count table': shadow L* 50.4 vs ground L* 80.7, dL 30.3 at 432w",
+        "'the 123 lead stack on the count table': shadow L* 45.7 vs ground L* 79.3, dL 33.7 at 432w"
+      ],
+      "leaders": [
+        "leader 'stack top 0' lands 6.0px from its target",
+        "leader 'stack top 1' lands 6.0px from its target",
+        "leader 'stack top 2' lands 6.0px from its target",
+        "leader 'stack top 0' meets its label 1.7px away",
+        "leader 'stack top 1' meets its label 2.2px away",
+        "leader 'stack top 2' meets its label 1.5px away",
+        "leader 'stack top 0' is drawn 30 px at 90 degrees, inside the pointer band",
+        "leader 'stack top 1' is drawn 30 px at 90 degrees, inside the pointer band",
+        "leader 'stack top 2' is drawn 30 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'The rest is countedon October 13th.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the ballot card on the table': shadow L* 7.5 vs ground L* 20.9, dL 13.4 at 432w"
+      ],
+      "motifs": [
+        "'the empty debossed ballot oval': canvas 11.9 dE, page 12.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Save the table.October 13th's countis the on' fits 3/3 lines at 103.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

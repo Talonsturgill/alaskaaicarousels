@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -567,7 +567,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-07-08",
@@ -664,6 +664,10 @@
         {
           "date": "2026-10-06",
           "note": "Checked KUAC's energy coverage today. The latest Golden Valley story is still the August 27th report that the board voted to keep studying a used LM6000 at no more than $80 million, and no purchase vote has been reported or scheduled since. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Checked KUAC's energy coverage again today. Its newest Golden Valley story is still the August 27th report that the board voted to keep studying a used LM6000 at no more than $80 million, and no purchase vote has been reported or scheduled since. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -1021,7 +1025,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-07-11",
@@ -1098,6 +1102,10 @@
         {
           "date": "2026-10-06",
           "note": "Petroleum News reported on October 4th that the Army Corps of Engineers issued a public notice on September 29th for Hilcorp's 7.38-acre gas storage pad in the Beluga River unit, processed on an emergency basis, with comments due October 30th. The same report says the Division of Oil and Gas is still weighing competing storage proposals from Hilcorp and Enstar at Kenai. No written order on the RCA's August 21st denial of reconsideration has been reported."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Searched statewide coverage today and found nothing on the Kenai Loop Pool newer than the Petroleum News report of October 4th on Hilcorp's Beluga River storage pad, whose Army Corps comments remain due October 30th. The Division of Oil and Gas has published no decision between the competing Hilcorp and Enstar storage proposals. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -1598,7 +1606,7 @@
       "decider": "Each Alaska electric utility board, including the Railbelt cooperatives",
       "public_access": "indirect",
       "access_note": "Alaska's electric cooperatives are governed by boards their own members elect, so a member can ask their board directly whether it intends to sign. A voluntary federal pledge has no public comment docket, which is why this room is indirect rather than open.",
-      "summary": "The White House Ratepayer Protection Pledge asks AI companies, utilities and data center developers to commit that new data center load pays for its own generation and delivery instead of shifting the cost onto households. USA TODAY and POWER both describe it as voluntary and non binding. Gov. Mike Dunleavy signed the governors addendum on July 23rd, 2026, one of 23 governors. The signatory list has grown from 281 when it was first read here on July 26th, 2026 to 317 on September 11th, 2026, and across that growth exactly one Alaska entity appears on it, Cordova Electric Cooperative, a 1,566 customer cooperative that is not connected by transmission line to any other community. No Railbelt utility has signed.",
+      "summary": "The White House Ratepayer Protection Pledge asks AI companies, utilities and data center developers to commit that new data center load pays for its own generation and delivery instead of shifting the cost onto households. USA TODAY and POWER both describe it as voluntary and non binding. Gov. Mike Dunleavy signed the governors addendum on July 23rd, 2026, one of 23 governors. The signatory list has grown from 281 when it was first read here on July 26th, 2026 to 324 on October 10th, and across that growth exactly one Alaska entity appears on it, Cordova Electric Cooperative, a 1,566 customer cooperative that is not connected by transmission line to any other community. No Railbelt utility has signed.",
       "key_dates": [
         {
           "date": "2026-03-04",
@@ -1649,7 +1657,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-07-26",
@@ -1714,6 +1722,10 @@
         {
           "date": "2026-10-06",
           "note": "Re-read the published signatory list today. It still carries 324 entries, and none of them is an Alaska utility, cooperative or state office. Checked and unchanged for Alaska."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Correction. Notes here from September 19th to October 6th said no Alaska entity appeared on the signatory list. Cordova Electric Cooperative is on it, listed under Cooperatives with its own site cordovaelectric.com, re-read today against the White House page, which counts 324 signatories (207 cooperatives, 72 utilities and 45 data center developers). It remains the only Alaska signatory, and no Railbelt utility appears."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -2360,7 +2372,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-09",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-08-06",
@@ -2445,6 +2457,10 @@
         {
           "date": "2026-10-09",
           "note": "Searched the Federal Register today for any Air Force, Eielson or Oklo notice since October 1st and found none. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Searched the Federal Register today for Alaska notices published since October 1st and found no Air Force, Eielson or Oklo notice. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2628,7 +2644,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-08-06",
@@ -2677,6 +2693,10 @@
         {
           "date": "2026-10-06",
           "note": "Searched the Federal Register today for any document citing Executive Order 14318 since September 25th and found none, so the order stands unamended and no Alaska project has been identified under it. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Searched the Federal Register today for any document citing Executive Order 14318 published since October 1st and found none. The order stands unamended, and no Alaska project has been identified under it. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
@@ -3051,7 +3071,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-08-09",
@@ -3136,6 +3156,10 @@
         {
           "date": "2026-10-06",
           "note": "The district's agenda portal returned a service error again today, so nothing newer than the board's September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "The district's agenda portal returned a 503 service error today, the third check in a row it could not be read, so nothing newer than the board's September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -3340,10 +3364,14 @@
         {
           "date": "2026-10-07",
           "note": "Searched the Federal Register today for docket P-15423 and found no notice since October 1st. The Alaska Journal of Commerce reported on October 4th the same three motions to intervene already listed here, from the Center for Biological Diversity, the Alaska Commercial Fisheries Conservation Alliance and the Kenai Peninsula Borough. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Searched the Federal Register today for Alaska notices published since October 1st and found none for docket P-15423 or DeepGreen. No permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-10",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -3695,6 +3723,16 @@
           "date": "2027-01-19",
           "label": "The 35th Alaska Legislature convenes, the earliest the state half can be taken up",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-13",
+          "label": "Borough clerk counts 811 absentee and 424 questioned ballots, 2 p.m.",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-22",
+          "label": "Assembly certifies the October 6th election and swears in new members",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -3737,10 +3775,15 @@
           "url": "https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/",
           "outlet": "Alaska's News Source",
           "date": "2026-09-29"
+        },
+        {
+          "url": "https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-",
+          "outlet": "Fairbanks North Star Borough Clerk, Unofficial Election Results Summary",
+          "date": "2026-10-07"
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-09-01",
@@ -3789,6 +3832,10 @@
         {
           "date": "2026-10-06",
           "note": "Checked KUAC's energy and environment coverage today. Its latest Fairbanks items are the September 20th Eielson microreactor story and a September 29th river-volume story, with nothing new on the borough's moratorium request. The October 6th Assembly election stays the next date on this item. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "The borough's unofficial results of October 7th show Alexis Howell ahead of Miguel Ramirez 7,230 to 7,107 for Seat D, Nick LaJiness ahead of Shelly Shupe 7,919 to 6,599 for Seat E, and Scott W. Crass ahead of Joshua Leaders 7,465 to 6,843 for Seat H. The clerk counts 811 absentee and 424 questioned ballots on October 13th and certifies the election on October 22nd, so Seat D's 123 vote margin is not final. No Assembly action on the moratorium request itself is scheduled."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
@@ -4565,7 +4612,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-06",
+      "last_updated": "2026-10-10",
       "history": [
         {
           "date": "2026-09-17",
@@ -4590,6 +4637,10 @@
         {
           "date": "2026-10-06",
           "note": "The regents' public meeting calendar now places the November meeting in Fairbanks, with an hour of public testimony at 4 p.m. on November 2nd, committee meetings from November 4th and the full board on November 5th and 6th. The Anchorage Daily News reported on October 4th that the regents will consider guiding principles for AI across the system in November, and that UAA's Dean of Students Office counted 150 students cited for academic misconduct, 119 of whom used AI. Today a UAA student's academic AI use is still governed by a conduct-code section on devices not authorized by faculty members."
+        },
+        {
+          "date": "2026-10-10",
+          "note": "Re-read the Board of Regents schedule page today. It posts no agenda for the November meeting yet and lists no artificial intelligence policy in its policy index, so the draft policy has not been published for the November 5th and 6th board meeting. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
