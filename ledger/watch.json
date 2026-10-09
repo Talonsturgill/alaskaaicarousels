@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-08T20:01:09Z",
- "for_date": "2026-10-08",
+ "generated": "2026-10-09T19:36:57Z",
+ "for_date": "2026-10-09",
  "session": "34",
  "counted": {
   "basis_bills": 856,
@@ -365,5 +365,5 @@
   }
  ],
  "failed": [],
- "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2854 meetings and 2 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
+ "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2854 meetings and 0 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
 }
