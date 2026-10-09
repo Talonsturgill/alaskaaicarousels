@@ -81,6 +81,9 @@ claude.ai subscription rather than on Console credit. No card, no separate
 account, no metered call.
 
 **The answerer does have one, and it is the only metered thing here.**
+Checked sentences wait for the provider's terminal classification. A declined
+turn returns a clear notice and discards partial text without caching it.
+
 `ANTHROPIC_API_KEY`, a Console key. The default model is pinned in `answer.js`;
 the current value is Haiku 5.5. The August 28th corpus self-test estimates a
 request carries roughly 68,000 input tokens of

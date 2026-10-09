@@ -68,6 +68,7 @@ const DEFAULT_MODEL = "claude-haiku-5-5";
 // Three or four sentences. The guard checks sentence by sentence and the page
 // shows a short answer, so a long generation is spend with nowhere to go.
 const MAX_TOKENS = 1024;
+const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
 
 /**
  * Models that REJECT a non-default temperature, top_p or top_k with a 400 on
@@ -363,16 +364,16 @@ export async function callModel(turns, pack, env, fetchImpl = fetch) {
   const out = await r.json();
   const text = (out.content || [])
     .filter(b => b.type === "text").map(b => b.text).join("").trim();
-  return { text, usage: out.usage || null };
+  return { text, usage: out.usage || null, stop_reason: out.stop_reason || null };
 }
 
 /**
  * Stream the model's reply, calling onDelta with each text fragment.
  *
  * The guard already works a sentence at a time, so streaming is not a
- * cosmetic addition here: a sentence can be checked the moment it is complete
- * and shown immediately, and one that fails ends the answer there. Waiting for
- * the whole reply before checking any of it was never necessary.
+ * cosmetic addition here: a sentence is checked the moment it is complete,
+ * and one that fails ends the accepted prefix. Text waits for the provider's
+ * terminal classification before it is released to the page.
  */
 export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) {
   const r = await fetchImpl(API, {
@@ -400,7 +401,7 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
 
   const reader = r.body.getReader();
   const dec = new TextDecoder();
-  let buf = "";
+  let buf = "", stopReason = null;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
@@ -414,12 +415,14 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
         if (!line.startsWith("data:")) continue;
         let ev;
         try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
+        if (ev.type === "message_delta") stopReason = ev.delta?.stop_reason || stopReason;
         if (ev.type === "content_block_delta" && ev.delta?.type === "text_delta") {
           onDelta(ev.delta.text);
         }
       }
     }
   }
+  return { stop_reason: stopReason };
 }
 
 /**
@@ -513,9 +516,9 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
   return new ReadableStream({
     async start(c) {
       c.enqueue(line({ stage: "Opening today's published record", step: "record", progress: 1, total: 3 }));
-      let buf = "", kept = [], withheld = null, opened = false, verifying = false;
+      let buf = "", kept = [], withheld = null, opened = false, verifying = false, refused = false;
       try {
-        await streamModel(turns, pack, env, (delta) => {
+        const result = await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
             opened = true;
             c.enqueue(line({ stage: "Drafting only from the published record", step: "draft", progress: 2, total: 3 }));
@@ -532,19 +535,19 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
             const v = checkSentence(s, { allowed, slugs });
             if (!v.ok) { withheld = v.reason; return; }
             kept.push(s.trim());
-            c.enqueue(line({ sentence: s.trim() }));
           }
         }, fetchImpl || fetch);
+        refused = result.stop_reason === "refusal";
 
         // Whatever is left over after the last sentence end.
-        if (!withheld && buf.trim()) {
+        if (!refused && !withheld && buf.trim()) {
           if (!verifying) {
             verifying = true;
             c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
           }
           const v = checkSentence(buf, { allowed, slugs });
           if (!v.ok) withheld = v.reason;
-          else { kept.push(buf.trim()); c.enqueue(line({ sentence: buf.trim() })); }
+          else kept.push(buf.trim());
         }
       } catch (e) {
         console.log("answer stream failed", String(e));
@@ -561,7 +564,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
           st >= 500 ? "The model is having a moment. Try again shortly." :
           "That answer did not come back.",
           status: st || null }));
-        c.enqueue(line({ done: true, verified: kept.length }));
+        c.enqueue(line({ done: true, verified: 0 }));
         c.close();
         return;
       }
@@ -570,6 +573,15 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
       // the same as an accepted one.
       await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
 
+      // Haiku 5.5 can refuse after emitting text. Hold checked sentences until its
+      // terminal classification arrives, so an existing page never sees a refused prefix.
+      if (refused) {
+        c.enqueue(line({ error: REFUSAL_MESSAGE, refused: true }));
+        c.enqueue(line({ done: true, verified: 0 }));
+        c.close();
+        return;
+      }
+      for (const sentence of kept) c.enqueue(line({ sentence }));
       if (withheld) {
         c.enqueue(line({ withheld }));
         console.log("answer withheld", JSON.stringify({ reason: withheld }));
@@ -641,6 +653,9 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
   // kept the text. A refused answer costs the same as an accepted one.
   await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
 
+  if (out.stop_reason === "refusal") {
+    return { status: 200, body: { text: "", withheld: false, refused: true, error: REFUSAL_MESSAGE } };
+  }
   if (!out.text) {
     return { status: 200, body: { text: "", withheld: false,
                                   error: "The record did not produce an answer to that." } };

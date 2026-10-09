@@ -45,7 +45,7 @@ function fakeKV(seed = {}) {
 
 // Stands in for the pack fetch and the Messages API both, and counts each, so
 // a test can assert that a request was NOT made.
-function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK } = {}) {
+function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK, stopReason = "end_turn" } = {}) {
   const calls = { pack: 0, api: 0, body: null };
   const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) {
@@ -59,7 +59,7 @@ function stubFetch({ reply = "ok.", apiStatus = 200, pack = PACK } = {}) {
     }
     return {
       ok: true,
-      json: async () => ({ content: [{ type: "text", text: reply }], usage: {} }),
+      json: async () => ({ content: [{ type: "text", text: reply }], usage: {}, stop_reason: stopReason }),
     };
   };
   fn.calls = calls;
@@ -190,6 +190,17 @@ section("the route");
   check("a withheld answer is NOT cached", cached.length === 0, JSON.stringify(cached));
 }
 
+section("provider refusals are explicit");
+for (const reply of ["", "Storage held 6.54 Bcf."]) {
+  const e = env();
+  globalThis.fetch = stubFetch({ reply, stopReason: "refusal" });
+  const r = await answer("a declined question", e, { now: NOW });
+  check("a provider refusal is explicit and discards any plain response prefix",
+    r.status === 200 && r.body.refused === true && r.body.text === "" && /declined/.test(r.body.error));
+  check("a provider refusal is counted without caching its prefix",
+    e.ASK_KV.store.get("spend:2026-08") === "1"
+    && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
 section("the ceiling actually stops spending");
 {
   const e = env({ ASK_MONTHLY_CAP: "2", ASK_KV: fakeKV({ "spend:2026-08": "2" }) });
@@ -255,7 +266,7 @@ const { answerStream } = await import(UNDER_TEST);
 
 // Build an SSE body the way the API sends one, so the parser is tested against
 // the real frame shape rather than a convenient one.
-function sseFetch(chunks, { status = 200 } = {}) {
+function sseFetch(chunks, { status = 200, stopReason = "end_turn" } = {}) {
   const calls = { api: 0 };
   const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) return { ok: true, json: async () => PACK };
@@ -265,6 +276,8 @@ function sseFetch(chunks, { status = 200 } = {}) {
     const enc = new TextEncoder();
     const frames = chunks.map(t => `event: content_block_delta\ndata: ${JSON.stringify(
       { type: "content_block_delta", delta: { type: "text_delta", text: t } })}\n\n`);
+    frames.push(`event: message_delta\ndata: ${JSON.stringify({ type: "message_delta",
+      delta: { stop_reason: stopReason }, stop_details: { category: null } })}\n\n`);
     let i = 0;
     return {
       ok: true,
@@ -327,7 +340,7 @@ async function drain(stream) {
   globalThis.fetch = sseFetch(["Storage held 6.54 Bcf. ", "It fell to 3.11 Bcf. ", "Then more."]);
   const ev = await drain(await answerStream("q", e, { now: NOW }));
   const sents = ev.filter(x => x.sentence).map(x => x.sentence);
-  check("the good sentence was already streamed",
+  check("the checked prefix survives a later numeral failure",
     sents.length === 1 && sents[0] === "Storage held 6.54 Bcf.", JSON.stringify(sents));
   check("the invented figure stopped the stream",
     ev.some(x => x.withheld === "numeral"), JSON.stringify(ev.filter(x => x.withheld)));
@@ -336,6 +349,19 @@ async function drain(stream) {
     e.ASK_KV.store.get("spend:2026-08") === "1");
   check("a withheld streamed answer is NOT cached",
     ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+
+for (const chunks of [[], ["Storage held 6.54 Bcf. ", "See [[stak-lease]]."]]) {
+  const e = env();
+  globalThis.fetch = sseFetch(chunks, { stopReason: "refusal" });
+  const ev = await drain(await answerStream("a declined question", e, { now: NOW }));
+  check("a streaming refusal releases no prefix, even with a null category",
+    !ev.some(x => x.sentence) && ev.some(x => x.refused && /declined/.test(x.error)));
+  check("a streaming refusal closes with no verified sentences",
+    ev.at(-1)?.done === true && ev.at(-1)?.verified === 0);
+  check("a streaming refusal is counted without caching partial text",
+    e.ASK_KV.store.get("spend:2026-08") === "1"
+    && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
 }
 
 {
