@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-10-09-the-design-brief",
+      "date": "2026-10-09",
+      "title": "The Design Brief",
+      "caption": "UAF is joining a $6 million NSF project to use microbes and two planned AI tools on coal refuse and ash. Everything described is planned, and the second AI is the one built around Alaska's power.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-09-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-09-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-09-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-09-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-08",
       "date": "2026-10-08",
       "title": "Who Writes the Study",
