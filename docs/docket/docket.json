@@ -3723,16 +3723,6 @@
           "date": "2027-01-19",
           "label": "The 35th Alaska Legislature convenes, the earliest the state half can be taken up",
           "kind": "milestone"
-        },
-        {
-          "date": "2026-10-13",
-          "label": "Borough clerk counts the qualified ballots among 811 absentee and 424 questioned, 2 p.m.",
-          "kind": "milestone"
-        },
-        {
-          "date": "2026-10-22",
-          "label": "Assembly certifies the October 6th election and swears in new members",
-          "kind": "milestone"
         }
       ],
       "location": {
@@ -3779,6 +3769,11 @@
         {
           "url": "https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-",
           "outlet": "Fairbanks North Star Borough Clerk, Unofficial Election Results Summary",
+          "date": "2026-10-07"
+        },
+        {
+          "url": "https://www.fnsb.gov/elections",
+          "outlet": "Fairbanks North Star Borough, Elections",
           "date": "2026-10-07"
         }
       ],
