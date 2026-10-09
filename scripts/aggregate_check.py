@@ -186,7 +186,11 @@ UNIT_DAYS = {"day": 1, "days": 1, "week": 7, "weeks": 7}
 # a month is not 30 days and a year is not 365.
 UNIT_MONTHS = {"month": 1, "months": 1, "year": 12, "years": 12}
 RX_DURATION = re.compile(r"(?i)\b(" + _NUM + r")\s+(days?|weeks?|months?|years?)\b")
-RX_RATIO = re.compile(r"(?i)\b(\d+)\s+of\s+(\d+)\b")
+# THOUSANDS SEPARATORS ARE ONE NUMBER (2026-10-10, No.83). The digits-only form
+# read "15,141 of 77,227" as "141 of 77" (a word boundary sits after the comma),
+# a subset no declaration can make true, on the deck's own headline.
+_NUMG = r"(?:\d{1,3}(?:,\d{3})+|\d+)"
+RX_RATIO = re.compile(r"(?i)(?<![\d,])(" + _NUMG + r")\s+of\s+(" + _NUMG + r")(?![\d]|,\d)")
 RX_SPAN = re.compile(r"(?i)\b(\d{1,2})\s+to\s+(\d{1,2})\b")
 RX_COUNT = re.compile(r"(?i)\b(" + _NUM + r")\s+((?:[a-z][a-z-]*\s+){0,2}[a-z][a-z-]*s)\b")
 RX_SLIDE_COUNTER = re.compile(r"^\d{1,2}\s*/\s*\d{1,2}$")
@@ -514,7 +518,7 @@ def detect(strings):
             spans.append((m.start(), m.end()))
         for m in RX_RATIO.finditer(text):
             hits.append({"slide": slide, "kind": "ratio", "fragment": m.group(0), "at": m.start(),
-                         "text": text, "n": int(m.group(1)), "of": int(m.group(2))})
+                         "text": text, "n": int(m.group(1).replace(",", "")), "of": int(m.group(2).replace(",", ""))})
             spans.append((m.start(), m.end()))
         # SUBSET before span and count, so "Nine of the ten items" claims the
         # whole phrase and the count detector does not also fire on "ten items".
@@ -939,7 +943,7 @@ def verify(decl, claims, fails, warns):
         if not m:
             fails.append("%s: no printed 'A OF B' found in the text" % where)
             return
-        a, b = int(m.group(1)), int(m.group(2))
+        a, b = int(m.group(1).replace(",", "")), int(m.group(2).replace(",", ""))
         members = [str(x) for x in (decl.get("members") or [])]
         items = [str(x) for x in (decl.get("items") or [])]
         found = [str(x) for x in (decl.get("found") or [])]
