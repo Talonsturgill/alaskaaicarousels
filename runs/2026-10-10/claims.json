@@ -322,10 +322,10 @@
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Sample Ballot",
       "source_is_primary": true,
-      "date_of_source": "2026-10-06",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "Text extracted by fetch_pdf_text.py, out/2026-10-10/fnsb_sample_ballot.txt. The sample ballot PDF is undated, so date_of_source is the election it serves. The ballot also says a YES vote means the reenacted code can't be modified or negated within two years."
+      "notes": "Text extracted by fetch_pdf_text.py, out/2026-10-10/fnsb_sample_ballot.txt. The sample ballot PDF is undated, so date_of_source is the election it serves. The ballot also says a YES vote means the reenacted code can't be modified or negated within two years. date_of_source is left blank because the sample ballot PDF carries no date."
     },
     {
       "id": "C26",
@@ -348,10 +348,10 @@
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Sample Ballot",
       "source_is_primary": true,
-      "date_of_source": "2026-10-06",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "Text extracted by fetch_pdf_text.py. It also adjusts the mailed absentee deadline for Veterans Day and changes the terms of the Presiding Officer and Deputy Presiding Officer."
+      "notes": "Text extracted by fetch_pdf_text.py. It also adjusts the mailed absentee deadline for Veterans Day and changes the terms of the Presiding Officer and Deputy Presiding Officer. date_of_source is left blank because the sample ballot PDF carries no date."
     },
     {
       "id": "C28",
@@ -374,10 +374,10 @@
       "source_url": "https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF",
       "source_outlet": "Fairbanks North Star Borough Clerk's Office, Sample Ballot",
       "source_is_primary": true,
-      "date_of_source": "2026-10-06",
+      "date_of_source": null,
       "fetched": true,
       "confidence": 0.95,
-      "notes": "Text extracted by fetch_pdf_text.py. The ballot text ends 'and become effective in 2027?'. A citizens' initiative."
+      "notes": "Text extracted by fetch_pdf_text.py. The ballot text ends 'and become effective in 2027?'. A citizens' initiative. date_of_source is left blank because the sample ballot PDF carries no date."
     },
     {
       "id": "C30",

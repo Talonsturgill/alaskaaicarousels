@@ -9,7 +9,7 @@
     "#AbsenteeBallots"
   ],
   "deck_summary_line": "Election Day is set against early voting, then 32 precincts, the Eielson precinct's 24 ballots and every unofficial total.",
-  "first_comment": "Sources, primary first\nFairbanks North Star Borough Clerk's Office, Election Summary Report (unofficial), 2026-10-07, every Seat D, E and H total, the Election Day and early voting columns, the zero absentee and questioned columns, turnout of 15,141 of 77,227 and 32 of 35 precincts reported https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-\nFairbanks North Star Borough Clerk's Office, Unofficial Election Results by Precinct, 2026-10-07, the 32 precinct rows, the single early voting row of 2,603 ballots, Eielson's 24 of 2,103 and the precincts that went the same way in all three seats https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT\nFairbanks North Star Borough Clerk's Office, Sample Ballot, 2026-10-06, who ran for Seats D, E and H and the wording of Propositions 1 to 3 https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF\nFairbanks North Star Borough Clerk's Office, Elections page (undated, fetched 2026-10-09), 811 absentee and 424 questioned ballots outstanding, the count on October 13th at 2 p.m. and certification on October 22nd https://www.fnsb.gov/elections\nFairbanks North Star Borough Assembly, Resolution 2026-25 text, 2026-08-27, the moratorium request on new commercial data centers on state-owned or municipal lands (the resolution text never says AI) https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)\nAlaska's News Source (KTUU), Fairbanks borough Assembly candidates weigh data centers, 2026-09-29, each candidate's stated position on data centers and Crass's vote for the moratorium https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/\nKUAC, Assembly doubles up on AI data center moratorium request, 2026-08-31, the \"AI data center moratorium\" label used in the post https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\nAlaska Public Media and KUAC, Forget jets and helicopters, data centers could be Alaska military towns' next noisy neighbors, 2026-09-15, the Pentagon's plan for up to a dozen military data centers near Anchorage, Healy and Fairbanks https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors\nA note on the numbers. Every result here is unofficial. The 639 and 762 margins are arithmetic on the clerk's rows (6,251 minus 5,612, and 1,618 minus 856), and so is the count of 27 precincts that went the same way in all three seats. The 9:57 a.m. stamp is the summary report's print time.\nVoted in Fairbanks, worked the count or sat in on the Assembly? Add what the records leave out below.\nEvery Alaska AI decision on the public docket, with its live dates, is at https://alaskaaihq.com",
+  "first_comment": "Sources, primary first\nFairbanks North Star Borough Clerk's Office, Election Summary Report (unofficial), 2026-10-07, every Seat D, E and H total, the Election Day and early voting columns, the zero absentee and questioned columns, 15,141 of 77,227 registered voters counted so far and 32 of 35 precincts reported https://www.fnsb.gov/DocumentCenter/View/29574/UNOFFICIAL-ELECTION-RESULTS-PDF-SUMMARY-\nFairbanks North Star Borough Clerk's Office, Unofficial Election Results by Precinct, 2026-10-07, the 32 precinct rows, the single early voting row of 2,603 ballots, Eielson's 24 of 2,103 and the precincts that went the same way in all three seats https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT\nFairbanks North Star Borough Clerk's Office, Sample Ballot (undated), who ran for Seats D, E and H and the wording of Propositions 1 to 3 https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF\nFairbanks North Star Borough Clerk's Office, Elections page (undated, fetched 2026-10-09), 811 absentee and 424 questioned ballots outstanding, the count on October 13th at 2 p.m. and certification on October 22nd https://www.fnsb.gov/elections\nFairbanks North Star Borough Assembly, Resolution 2026-25 text, 2026-08-27, the moratorium request on new commercial data centers on state-owned or municipal lands (the resolution text never says AI) https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13110,plainText=true)\nAlaska's News Source (KTUU), Fairbanks borough Assembly candidates weigh data centers, 2026-09-29, each candidate's stated position on data centers and Crass's vote for the moratorium https://www.alaskasnewssource.com/2026/09/30/fairbanks-borough-assembly-candidates-weigh-data-centers/\nKUAC, Assembly doubles up on AI data center moratorium request, 2026-08-31, the \"AI data center moratorium\" label used in the post https://fm.kuac.org/2026-08-31/in-legislative-priorities-fairbanks-north-star-borough-assembly-doubles-up-on-ai-data-center-moratorium-request\nAlaska Public Media and KUAC, Forget jets and helicopters, data centers could be Alaska military towns' next noisy neighbors, 2026-09-15, the Pentagon's plan for up to a dozen military data centers near Anchorage, Healy and Fairbanks https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors\nA note on the numbers. Every result here is unofficial. The 639 and 762 margins are arithmetic on the clerk's rows (6,251 minus 5,612, and 1,618 minus 856), and so is the count of 27 precincts that went the same way in all three seats. The 9:57 a.m. stamp is the summary report's print time.\nVoted in Fairbanks, worked the count or sat in on the Assembly? Add what the records leave out below.\nEvery Alaska AI decision on the public docket, with its live dates, is at https://alaskaaihq.com",
   "slides": [
     {
       "n": 1,
@@ -94,10 +94,10 @@
     {
       "n": 5,
       "kicker": "",
-      "headline": "15,141 of 77,227 registered voters cast a ballot.",
+      "headline": "15,141 of 77,227 registered voters, counted so far.",
       "body": "",
       "labels": [
-        "19.61% OVERALL · ESTER 30.01% ON ELECTION DAY",
+        "19.61% SO FAR · ESTER 30.01% ON ELECTION DAY",
         "EARLY VOTING · 2,603 BALLOTS, ONE LIT DOT EACH",
         "BLOCKS · ONE DOT PER VOTER, LIT PER ELECTION DAY BALLOT"
       ],
@@ -168,7 +168,7 @@
         "PROP 1 · TAX CAP · YES 9,412 · NO 5,322",
         "PROP 2 · NOVEMBER ELECTIONS · YES 8,088 · NO 6,749",
         "PROP 3 · HAND COUNT ONLY · YES 6,633 · NO 8,256",
-        "32 OF 35 PRECINCTS · 19.61% TURNOUT · 1,235 STILL OUT"
+        "32 OF 35 PRECINCTS · 19.61% SO FAR · 1,235 STILL OUT"
       ],
       "claim_ids": [
         "C01",
@@ -200,7 +200,7 @@
     {
       "n": 8,
       "kicker": "OCTOBER 13TH · 2 P.M.",
-      "headline": "The rest is counted on October 13th.",
+      "headline": "The qualified rest is counted on October 13th.",
       "body": "811 absentee and 424 questioned ballots. Only qualified ballots count, and not every one marks Seat D. Certification is scheduled for October 22nd.",
       "labels": [
         "811 ABSENTEE",

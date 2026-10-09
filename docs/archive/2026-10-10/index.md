@@ -21,7 +21,7 @@ Ramirez's widest was Chena Lakes, 359 to 123. Howell's was Goldstream #2, 323 to
 
 In 11, Election Day chose Howell, LaJiness and Crass. In 16, it chose Ramirez, Shupe and Leaders.
 
-15,141 of 77,227 registered voters cast a ballot.
+15,141 of 77,227 registered voters, counted so far.
 
 24 Election Day ballots from 2,103 registered voters.
 
@@ -29,7 +29,7 @@ The Pentagon wants up to a dozen military data centers near Anchorage, Healy and
 
 The count so far
 
-The rest is counted on October 13th.
+The qualified rest is counted on October 13th.
 
 811 absentee and 424 questioned ballots. Only qualified ballots count, and not every one marks Seat D. Certification is scheduled for October 22nd.
 
@@ -61,11 +61,11 @@ Save the table. October 13th's count is the one to check.
 - All qualified absentee and questioned ballots are to be counted on October 13th at 2 p.m. [Fairbanks North Star Borough Clerk's Office, Elections page](https://www.fnsb.gov/elections), primary document.
 - The borough is scheduled to certify the election and swear in newly elected officials on October 22nd. [Fairbanks North Star Borough Clerk's Office, Elections page](https://www.fnsb.gov/elections), primary document.
 - The 1,235 outstanding absentee and questioned ballots are about ten times Howell's 123 vote lead in Seat D. [Fairbanks North Star Borough Clerk's Office, Elections page](https://www.fnsb.gov/elections), primary document.
-- Proposition 1 was a citizens' initiative to reenact borough code sections 8.04.290 and 8.04.300, which limit the borough's maximum allowable tax revenues. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-06.
+- Proposition 1 was a citizens' initiative to reenact borough code sections 8.04.290 and 8.04.300, which limit the borough's maximum allowable tax revenues. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document.
 - Proposition 1 was approving 9,412 to 5,322 in the unofficial count. [Fairbanks North Star Borough Clerk's Office, Unofficial Results by Precinct](https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT), primary document, 2026-10-07.
-- Proposition 2 would move the borough's regular election from the first Tuesday in October to the first Tuesday after the first Monday in November. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-06.
+- Proposition 2 would move the borough's regular election from the first Tuesday in October to the first Tuesday after the first Monday in November. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document.
 - Proposition 2 was leading 8,088 to 6,749 in the unofficial count. [Fairbanks North Star Borough Clerk's Office, Unofficial Results by Precinct](https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT), primary document, 2026-10-07.
-- Proposition 3 would require all borough ballots to be hand counted by registered borough voters and prohibit electronic tabulation systems, effective in 2027. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document, 2026-10-06.
+- Proposition 3 would require all borough ballots to be hand counted by registered borough voters and prohibit electronic tabulation systems, effective in 2027. [Fairbanks North Star Borough Clerk's Office, Sample Ballot](https://www.fnsb.gov/DocumentCenter/View/28941/FNSB-Sample-Ballot-PDF), primary document.
 - Proposition 3 was failing 8,256 no to 6,633 yes in the unofficial count. [Fairbanks North Star Borough Clerk's Office, Unofficial Results by Precinct](https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT), primary document, 2026-10-07.
 - Counting Election Day ballots alone, Ramirez carried 20 of the 32 geographic precincts in Seat D and Howell carried 12. [Fairbanks North Star Borough Clerk's Office, Unofficial Results by Precinct](https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT), primary document, 2026-10-07.
 - On Election Day ballots, Howell's widest precinct margin in Seat D was Goldstream #2, 323 to 117. [Fairbanks North Star Borough Clerk's Office, Unofficial Results by Precinct](https://www.fnsb.gov/DocumentCenter/View/29575/UNOFFICIAL-ELECTION-RESULTS-BY-PRECINCT), primary document, 2026-10-07.

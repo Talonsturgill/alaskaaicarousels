@@ -66,11 +66,10 @@
       "file": "slide-05.html",
       "fails": [],
       "warns": [
-        "a layer of light ends in mid-air: the light an additive (lighter) drawImage painted stops at y 1208 (its bottom edge) within a pixel (up to 0.015 of full just inside, nothing just outside), and the final picture shows a straight 31.7-level step for 48 design px (x 644 to 692). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
-        "ragged display line: line 1 of 2 in '15,141 of 77,227 registered voters cast a ba' ends 'of' -- an article, conjunction or preposition left hanging at the line end. It reads at 80px, so the break is the first thing a feed sees. Author the break with <br> before 'registered' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+        "a layer of light ends in mid-air: the light an additive (lighter) drawImage painted stops at y 1208 (its bottom edge) within a pixel (up to 0.015 of full just inside, nothing just outside), and the final picture shows a straight 31.7-level step for 48 design px (x 644 to 692). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render."
       ],
       "fits": [
-        "hd '15,141 of 77,227registered voters cast a bal' fits 2/2 lines at 80px"
+        "hd '15,141 of 77,227 registeredvoters, counted s' fits 2/2 lines at 89px"
       ],
       "asserts": [
         "'15,141 lit beads, one per ballot cast' holds: 15141 vs 15141 beads (within 0)",
@@ -119,7 +118,7 @@
         "leader 'stack top 2' is drawn 30 px at 90 degrees, inside the pointer band"
       ],
       "fits": [
-        "hd 'The rest is countedon October 13th.' fits 2/2 lines at 95.5px"
+        "hd 'The qualified restis counted on October 13th' fits 2/2 lines at 91px"
       ]
     },
     {
@@ -138,7 +137,7 @@
     }
   ],
   "fails": 0,
-  "warns": 3,
+  "warns": 2,
   "verdict": "WARN",
   "reuse": {
     "limit": 3,

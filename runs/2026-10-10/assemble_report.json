@@ -1,7 +1,7 @@
 {
   "pdf": "/home/user/alaskaaicarousels/out/2026-10-10/final/carousel.pdf",
   "pdf_mode": "vector",
-  "pdf_bytes": 5969320,
+  "pdf_bytes": 5974385,
   "pdf_mb": 5.97,
   "slides": 9,
   "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-10/final/contact_sheet.png",
@@ -42,8 +42,8 @@
       },
       {
         "name": "slide-05.png",
-        "sha256": "2a182958277cada36104f0986d139dd7ad995ae30620ac6e9d035e949f15ce6b",
-        "bytes": 6004319
+        "sha256": "650101770b81f34d2b09edd932881454d39346601d5b20278bd8057e8a278160",
+        "bytes": 6009960
       },
       {
         "name": "slide-06.png",
@@ -52,13 +52,13 @@
       },
       {
         "name": "slide-07.png",
-        "sha256": "3fc52dc8b4df375e5ec5c75f67ba2c1f129c23228bd8b8151b2212240aab0c47",
-        "bytes": 3616023
+        "sha256": "4cb82b4196e0a497479fa404e607d9e6fe4dcef9354fbf08675ea7ece7a451e1",
+        "bytes": 3615758
       },
       {
         "name": "slide-08.png",
-        "sha256": "496d5eb1a53898deaff1469cb74353a8992ae567612ab71175e860174d5a8c5f",
-        "bytes": 4825254
+        "sha256": "393fbb3f7c4ae42215a95b2b30ddcfef323de53c880368b4a6651ddae821bdc1",
+        "bytes": 4825305
       },
       {
         "name": "slide-09.png",
@@ -89,8 +89,8 @@
       },
       {
         "name": "slide-05.html",
-        "sha256": "f2ac35ab5f47aaf74de5edd32ca5aff62beb7114e953b83682f56cb2425ea0ab",
-        "bytes": 12647
+        "sha256": "2a1f9a1326fcf1eb737ffa5cbb2a26e6f5562a22f2dbfbe84bba2f7146353794",
+        "bytes": 12648
       },
       {
         "name": "slide-06.html",
@@ -99,13 +99,13 @@
       },
       {
         "name": "slide-07.html",
-        "sha256": "a6ec706692426a9f8ea8413fd957a135ce679c93f790c217ab1b30b9c5074f56",
-        "bytes": 13000
+        "sha256": "8b2aab5a57535ff72a48f294bc56d95e9f59af584f618584b5ad2c243f97f4f7",
+        "bytes": 12999
       },
       {
         "name": "slide-08.html",
-        "sha256": "9cd87fa5871ae49ffd1dae037a7f81505cb66002451a09152a1d743bec087ed0",
-        "bytes": 13719
+        "sha256": "e551732fb511a790460319a964a879f1c12e66e83b2c793712b73875536609d8",
+        "bytes": 13729
       },
       {
         "name": "slide-09.html",
