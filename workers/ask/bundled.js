@@ -474,6 +474,7 @@ const DEFAULT_MODEL = "claude-haiku-5-5";
 // shows a short answer, so a long generation is spend with nowhere to go.
 const MAX_TOKENS = 1024;
 const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
+const RETRY_MESSAGE = "The model returned no complete answer. Try again or ask a narrower question.";
 
 /**
  * Models that REJECT a non-default temperature, top_p or top_k with a 400 on
@@ -780,7 +781,7 @@ export async function callModel(turns, pack, env, fetchImpl = fetch) {
  * and one that fails ends the accepted prefix. Text waits for the provider's
  * terminal classification before it is released to the page.
  */
-export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) {
+export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch, onAccepted = async () => {}) {
   const r = await fetchImpl(API, {
     method: "POST",
     headers: {
@@ -804,9 +805,12 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
     throw e;
   }
 
+  // Count a successful provider request before reading it. An interrupted stream
+  // still consumed a call even when none of its text can be published.
+  await onAccepted();
   const reader = r.body.getReader();
   const dec = new TextDecoder();
-  let buf = "", stopReason = null;
+  let buf = "", stopReason = null, messageStopped = false;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
@@ -820,6 +824,8 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
         if (!line.startsWith("data:")) continue;
         let ev;
         try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
+        if (ev.type === "error") throw new Error("provider stream error");
+        if (ev.type === "message_stop") messageStopped = true;
         if (ev.type === "message_delta") stopReason = ev.delta?.stop_reason || stopReason;
         if (ev.type === "content_block_delta" && ev.delta?.type === "text_delta") {
           onDelta(ev.delta.text);
@@ -827,6 +833,7 @@ export async function streamModel(turns, pack, env, onDelta, fetchImpl = fetch) 
       }
     }
   }
+  if (!stopReason || !messageStopped) throw new Error("provider stream did not complete");
   return { stop_reason: stopReason };
 }
 
@@ -921,7 +928,7 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
   return new ReadableStream({
     async start(c) {
       c.enqueue(line({ stage: "Opening today's published record", step: "record", progress: 1, total: 3 }));
-      let buf = "", kept = [], withheld = null, opened = false, verifying = false, refused = false;
+      let buf = "", kept = [], withheld = null, opened = false, verifying = false, refused = false, incomplete = false;
       try {
         const result = await streamModel(turns, pack, env, (delta) => {
           if (!opened) {
@@ -941,11 +948,13 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
             if (!v.ok) { withheld = v.reason; return; }
             kept.push(s.trim());
           }
-        }, fetchImpl || fetch);
+        }, fetchImpl || fetch, () => env.ASK_KV.put(mk, String(spent + 1),
+          { expirationTtl: 60 * 60 * 24 * 70 }));
         refused = result.stop_reason === "refusal";
+        incomplete = ["max_tokens", "model_context_window_exceeded"].includes(result.stop_reason);
 
         // Whatever is left over after the last sentence end.
-        if (!refused && !withheld && buf.trim()) {
+        if (!refused && !incomplete && !withheld && buf.trim()) {
           if (!verifying) {
             verifying = true;
             c.enqueue(line({ stage: "Verifying figures and source links", step: "verify", progress: 3, total: 3 }));
@@ -967,21 +976,23 @@ export async function answerStream(turns, env, { now, fetchImpl } = {}) {
           st === 404 ? "The configured model does not exist. Check ASK_MODEL." :
           st === 429 ? "Too many questions at once. Give it a few seconds." :
           st >= 500 ? "The model is having a moment. Try again shortly." :
-          "That answer did not come back.",
-          status: st || null }));
+          RETRY_MESSAGE,
+          status: st || null, retryable: !st }));
         c.enqueue(line({ done: true, verified: 0 }));
         c.close();
         return;
       }
 
-      // Counted whether or not the guard kept the text. A refused answer costs
-      // the same as an accepted one.
-      await env.ASK_KV.put(mk, String(spent + 1), { expirationTtl: 60 * 60 * 24 * 70 });
-
       // Haiku 5.5 can refuse after emitting text. Hold checked sentences until its
       // terminal classification arrives, so an existing page never sees a refused prefix.
       if (refused) {
         c.enqueue(line({ error: REFUSAL_MESSAGE, refused: true }));
+        c.enqueue(line({ done: true, verified: 0 }));
+        c.close();
+        return;
+      }
+      if (incomplete || (!kept.length && !withheld)) {
+        c.enqueue(line({ error: RETRY_MESSAGE, retryable: true }));
         c.enqueue(line({ done: true, verified: 0 }));
         c.close();
         return;
@@ -1061,9 +1072,8 @@ export async function answer(turns, env, { now, fetchImpl } = {}) {
   if (out.stop_reason === "refusal") {
     return { status: 200, body: { text: "", withheld: false, refused: true, error: REFUSAL_MESSAGE } };
   }
-  if (!out.text) {
-    return { status: 200, body: { text: "", withheld: false,
-                                  error: "The record did not produce an answer to that." } };
+  if (!out.text || ["max_tokens", "model_context_window_exceeded"].includes(out.stop_reason)) {
+    return { status: 502, body: { error: RETRY_MESSAGE, retryable: true } };
   }
 
   const checked = verify(out.text, {

@@ -266,7 +266,7 @@ const { answerStream } = await import(UNDER_TEST);
 
 // Build an SSE body the way the API sends one, so the parser is tested against
 // the real frame shape rather than a convenient one.
-function sseFetch(chunks, { status = 200, stopReason = "end_turn" } = {}) {
+function sseFetch(chunks, { status = 200, stopReason = "end_turn", messageDelta = true, messageStop = true, error = false } = {}) {
   const calls = { api: 0 };
   const fn = async (url, opts) => {
     if (String(url).includes("ask-pack.json")) return { ok: true, json: async () => PACK };
@@ -276,8 +276,10 @@ function sseFetch(chunks, { status = 200, stopReason = "end_turn" } = {}) {
     const enc = new TextEncoder();
     const frames = chunks.map(t => `event: content_block_delta\ndata: ${JSON.stringify(
       { type: "content_block_delta", delta: { type: "text_delta", text: t } })}\n\n`);
-    frames.push(`event: message_delta\ndata: ${JSON.stringify({ type: "message_delta",
+    if (error) frames.push(`event: error\ndata: ${JSON.stringify({ type: "error", error: { type: "overloaded_error" } })}\n\n`);
+    if (messageDelta) frames.push(`event: message_delta\ndata: ${JSON.stringify({ type: "message_delta",
       delta: { stop_reason: stopReason }, stop_details: { category: null } })}\n\n`);
+    if (messageStop) frames.push('event: message_stop\ndata: {"type":"message_stop"}\n\n');
     let i = 0;
     return {
       ok: true,
@@ -390,6 +392,34 @@ for (const chunks of [[], ["Storage held 6.54 Bcf. ", "See [[stak-lease]]."]]) {
 // This is the bug that took the box down for an evening: temperature 0 is
 // fine on Haiku and a 400 on every single Sonnet 5 request. It is knowable
 // from the docs, so it is asserted here rather than discovered in production.
+section("empty and incomplete replies remain retryable");
+for (const settings of [{ messageDelta: false }, { messageStop: false },
+  { messageDelta: false, messageStop: false }, { error: true }, { stopReason: "max_tokens" }]) {
+  const e = env();
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf. "], settings);
+  const ev = await drain(await answerStream("q", e, { now: NOW }));
+  check("an incomplete stream returns a retryable error without releasing a prefix",
+    ev.some(x => x.error && x.retryable) && !ev.some(x => x.sentence), JSON.stringify(settings));
+  check("an accepted provider call is counted even when its stream fails",
+    e.ASK_KV.store.get("spend:2026-08") === "1");
+  check("an incomplete stream is never cached", ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+{
+  const e = env();
+  globalThis.fetch = sseFetch([]);
+  const ev = await drain(await answerStream("q", e, { now: NOW }));
+  check("an empty completed stream is retryable and never cached",
+    ev.some(x => x.retryable && x.error) && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+}
+{
+  const e = env();
+  globalThis.fetch = stubFetch({ reply: "" });
+  const r = await answer("q", e, { now: NOW });
+  check("an empty plain reply is retryable and never cached",
+    r.status === 502 && r.body.retryable && ![...e.ASK_KV.store.keys()].some(k => k.startsWith("a:")));
+  check("an empty plain reply still consumes a call", e.ASK_KV.store.get("spend:2026-08") === "1");
+}
+
 section("request shape per model");
 const { modelParams } = await import(UNDER_TEST);
 const { effectiveModel } = await import(UNDER_TEST);
