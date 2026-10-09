@@ -17,7 +17,7 @@
     "copy": "done: caption room (A SCENE + Q AND A won with the critic's one fix to the deck-summary line; B lost on a receipt stack and a PUNCH THEN PROOF disguise), caption.txt 894 chars PASS, copy.json by the copywriter with showrunner corrections to slides 03, 04, 05, 07, 09 after build changes; caption_check --copy PASS",
     "art_build": "done: nine bespoke frames (akthree ortho acrylic fin, cabinet bars with density-ramp hatching, cut paper terraces, akbench zinc pill plate, blue-noise bead field, slope hachure on the Eielson DEM, SVG emboss ledger, akthree envelope stacks, akbench debossed card); qa WARN 3 (no fails), bespoke 0.131 median, tonal arc PASS (peak 08, darkest 05), aggregate PASS, plan_drift PASS, dossier PASS",
     "pixel_review": "done",
-    "flow_review": "pending",
+    "flow_review": "done: out/2026-10-10/flow_review.json (revise 7.2; deck round applied as round 5)",
     "assemble": "done",
     "scoring": "done",
     "ship": "done",
