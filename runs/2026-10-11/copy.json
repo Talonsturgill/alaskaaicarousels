@@ -1,0 +1,231 @@
+{
+ "document_title": "Who Sets the Clock on a Plate Read",
+ "post_copy": "In the Anchorage mayor's version of the surveillance ordinance, a plate data \"limit\" is a reason, not a number.\n\nThe city's plate reader policy must limit storage \"based on articulable operational needs.\" The sponsors' S-1 text names no number either.\n\nFlock says it began installing plate readers for a private customer the week before October 5th. A crowdsourced map showed eight at two Anchorage Lowe's stores.\n\nIn the August 18th original, \"limit\" means 14 days and then deletion.\n\nAPD says it has no access to plate readers at privately owned locations.\n\nWhatever \"limit\" means after October 20th, it will govern city readers, not store readers.\n\nThe three texts' clocks, the September definition built on AI, APD's 14-day policy and the store readers none reach.\n\nShould Anchorage's plate data rules ever reach a reader on private property?\n\n#AnchorageAssembly #PlateReaders #PrivacyLaw",
+ "hook_chars": 111,
+ "total_chars": 892,
+ "hashtags": [
+  "#AnchorageAssembly",
+  "#PlateReaders",
+  "#PrivacyLaw"
+ ],
+ "deck_summary_line": "The three texts' clocks, the September definition built on AI, APD's 14-day policy and the store readers none reach.",
+ "first_comment": "Sources, primary first\nAnchorage Assembly, AO 2026-108 as introduced (the sponsors' original), 2026-08-18, the 14-day deletion rule, the warrant for older data, sixty-minute live access, 90-day trials, the 2031 end date and the definition by what a system collects, https://www.muni.org/Departments/Assembly/SiteAssets/Pages/focus-on-public-safety/AO%202026-108_1_Surveillance_Technology_Final.pdf\nAnchorage Assembly, AO 2026-108(S), the mayor's substitute with memo AM 603-2026, 2026-09-15, the storage limit \"based on articulable operational needs\", the AI definition, the plate reader defined by optical character recognition, the 30-day and 45-day clocks and the untimed tests and pilots, https://www.muni.org/Departments/Assembly/SiteAssets/Pages/focus-on-public-safety/13.C.3.--AO%202026-108%28S%29.pdf\nAnchorage Assembly, AO 2026-108(S-1), the sponsors' refinement of the (S) text, 2026-09-15, the same AI definition and no 14-day rule or 2031 sunset as filed, https://www.muni.org/Departments/Assembly/SiteAssets/Pages/focus-on-public-safety/13.C.5.--AO%202026-108%28S-1%29.pdf\nAnchorage Assembly, Focus on Public Safety page (undated, fetched 2026-10-10), further action postponed to October 20th and a second work session listed for October 14th, https://www.muni.org/Departments/Assembly/Pages/focus-on-public-safety.aspx\nAnchorage Police Department, Safe Anchorage page (undated, fetched 2026-10-10), scanned plate data deleted after 14 days and APD doesn't use Flock cameras, https://www.anchoragepolice.com/safe\nAnchorage Daily News, Flock cameras arrive in Anchorage while Assembly duels over surveillance policies, 2026-10-07, eight cameras at two Lowe's stores on a crowdsourced map, Lowe's stated 90 days and APD's lack of access to private readers, https://www.adn.com/alaska-news/anchorage/2026/10/06/flock-cameras-arrive-in-anchorage-while-assembly-duels-over-surveillance-policies/\nAlaska's News Source (KTUU), Flock camera cut down outside Anchorage Lowe's, 2026-10-05, Flock's statement on installing readers for a private customer in Alaska, https://www.alaskasnewssource.com/2026/10/06/downed-flock-camera-outside-south-anchorage-lowes-confirmed-apd-says-no-report-filed-no-access-feed/\nKTOO, on the Juneau parking garage cameras that aren't Flock-branded, 2026-10-07, until recently Alaska was the only state without any Flock cameras, https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/\nAlaska Public Media, the Assembly approves a police crime center upgrade and holds off on privacy protections, 2026-09-03, a crime center that could connect up to 750 cameras, https://alaskapublic.org/news/public-safety/2026-09-03/anchorage-assembly-approves-600k-police-crime-center-upgrade-holds-off-on-updating-privacy-protections\nAlaska's News Source (KTUU), inside Anchorage police's Real Time Crime Center, 2026-08-27, 238 registered and 11 integrated cameras and plate readers enabled only in patrol dashcams, https://www.alaskasnewssource.com/2026/08/28/looking-inside-anchorage-polices-real-time-crime-center/\nA note on the texts. \"No 14-day rule\" for (S) and (S-1) comes from whole-text reads of each PDF as filed for September 15th. No source says which text the sponsors will move on October 20th, and none of the three governs a private business's own cameras.\nTestified on AO 2026-108 or read the September texts line by line? Add what the PDFs leave out below.\nAlaska's open AI decisions, each with its next live date, are tracked at https://alaskaaihq.com",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "UPDATE · ANCHORAGE PLATE DATA · OCTOBER 20TH",
+   "headline": "14 days in code, or a limit set in policy?",
+   "body": "",
+   "labels": [
+    "DAY 14 · AUGUST DRAFT",
+    "SEPTEMBER TEXTS NO 14-DAY RULE",
+    "ONE LOT, ONE STRIP A NIGHT"
+   ],
+   "claim_ids": [
+    "C03",
+    "C24",
+    "C29",
+    "C73",
+    "C74"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "AO 2026-108 · THREE TEXTS",
+   "headline": "Three texts. One sets a day.",
+   "body": "The sponsors' August 18th original would delete plate data within 14 days, and searching older data would need a warrant. The mayor's September 15th substitute asks for a policy limit \"based on articulable operational needs.\" The sponsors' own S-1 builds on the mayor's text.",
+   "labels": [
+    "AUGUST 18TH · ORIGINAL",
+    "SEPTEMBER 15TH · (S) MAYOR",
+    "SEPTEMBER 15TH · (S-1) SPONSORS",
+    "\"permanently deleted no later than fourteen days after capture\"",
+    "\"based on articulable operational needs\"",
+    "\"targeted refinements to the S draft\""
+   ],
+   "claim_ids": [
+    "C02",
+    "C03",
+    "C05",
+    "C27",
+    "C29",
+    "C35",
+    "C73",
+    "C74"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "WHAT ELSE THE ORIGINAL TIMED",
+   "headline": "The original timed the live feed too.",
+   "body": "Live camera access would shut off after sixty minutes, renewed thirty at a time. Trials of new tools, 90 days at most. Plate reader authority, ending January 1st, 2031. The September texts set other clocks, 30 days to report a policy change and 45 to act on a complaint.",
+   "labels": [
+    "ONE HOUR OF SKY · SIXTY MINUTES",
+    "SEPTEMBER TEXTS · TESTS AND PILOTS, NO STATED LIMIT"
+   ],
+   "claim_ids": [
+    "C08",
+    "C10",
+    "C20",
+    "C34",
+    "C76",
+    "C78",
+    "C83",
+    "C84",
+    "C85"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "WHAT SEPTEMBER ADDED",
+   "headline": "September's texts name artificial intelligence.",
+   "body": "Both define surveillance technology as tools that work \"by using fully or partially-automated machine learning, artificial intelligence, or similar technology.\" The August original defined it by what a system collects.",
+   "labels": [
+    "ILLUSTRATION · DASHCAM APD'S ONLY PLATE READERS, PER THE CHIEF IN AUGUST",
+    "PLATE READ · OPTICAL CHARACTER RECOGNITION"
+   ],
+   "claim_ids": [
+    "C15",
+    "C30",
+    "C32",
+    "C40",
+    "C75"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "WHAT EXISTS TODAY",
+   "headline": "There is already a 14.",
+   "body": "APD's own page says scanned plate data is deleted after 14 days. That's police policy on a web page, not code.",
+   "labels": [
+    "14 TREAD REPEATS · APD POLICY"
+   ],
+   "claim_ids": [
+    "C38"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "SAVE THIS · AO 2026-108 SIDE BY SIDE",
+   "headline": "Three texts, side by side.",
+   "body": "",
+   "labels": [
+    "AUGUST 18TH ORIGINAL",
+    "SEPTEMBER 15TH (S) MAYOR",
+    "SEPTEMBER 15TH (S-1) SPONSORS",
+    "PLATE DATA",
+    "TRIALS",
+    "SUNSET",
+    "TAKES EFFECT",
+    "DEFINED BY",
+    "14 DAYS",
+    "90 DAYS",
+    "2031",
+    "90 DAYS",
+    "WHAT IT COLLECTS",
+    "A POLICY LIMIT",
+    "NO STATED LIMIT",
+    "NONE",
+    "30 DAYS",
+    "AI AND MACHINE LEARNING",
+    "NO 14-DAY RULE",
+    "AS (S)",
+    "NONE",
+    "30 DAYS",
+    "AI AND MACHINE LEARNING",
+    "OUTSIDE EVERY TEXT",
+    "A STORE'S OWN CAMERAS",
+    "LOWE'S STATEMENT, PER ADN · TYPICALLY NO MORE THAN 90 DAYS",
+    "APD'S PAGE TODAY · 14 DAYS · POLICY",
+    "GOLD PAINT · A NUMBER IN THE TEXT",
+    "WHITE PAINT · A POLICY OR NONE",
+    "BARE ASPHALT · OUTSIDE THE TEXTS"
+   ],
+   "claim_ids": [
+    "C02",
+    "C03",
+    "C08",
+    "C10",
+    "C15",
+    "C19",
+    "C22",
+    "C27",
+    "C29",
+    "C30",
+    "C34",
+    "C35",
+    "C38",
+    "C52",
+    "C73",
+    "C74",
+    "C75",
+    "C77",
+    "C82",
+    "C83"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "UNTIL RECENTLY, NO FLOCK IN ALASKA, PER KTOO",
+   "headline": "No version reaches this pole.",
+   "body": "Flock says it began installing plate readers for a private customer in Alaska the week before October 5th. A crowdsourced map showed eight at two Anchorage Lowe's stores, ADN reports. APD says it doesn't use Flock and has no access to them. Each text governs city agencies.",
+   "labels": [
+    "ILLUSTRATION A READER LIKE THOSE MAPPED AT LOWE'S"
+   ],
+   "claim_ids": [
+    "C19",
+    "C37",
+    "C47",
+    "C50",
+    "C51",
+    "C56"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "OCTOBER 14TH WORK SESSION · OCTOBER 20TH MEETING",
+   "headline": "October 20th could set the city's clock.",
+   "body": "The Assembly returns to AO 2026-108 on October 20th, after a work session scheduled for October 14th. The crime center it governs could connect up to 750 cameras. In late August, 238 were registered with APD and 11 integrated, per KTUU.",
+   "labels": [
+    "ONE DISC, ONE CAMERA AUGUST · 238 REGISTERED 11 INTEGRATED",
+    "UP TO 750 · A CAPACITY, NOT DRAWN"
+   ],
+   "claim_ids": [
+    "C24",
+    "C41",
+    "C43",
+    "C79",
+    "C04",
+    "C81"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "BEFORE OCTOBER 20TH",
+   "headline": "Where should Anchorage write its number, in code or in policy?",
+   "body": "Say which below.",
+   "labels": [],
+   "claim_ids": [
+    "C24"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post Tuesday, October 13th, 8 to 11 a.m. Alaska time, ahead of the October 14th work session. Wednesday or Thursday morning in the same window also works. Don't post after October 20th without updating the deck.",
+  "Paste the first comment (sources, the note on the texts, the context invite and the site line) within 60 seconds of posting.",
+  "Reply to every comment in the first 60 to 90 minutes. Never write that the September texts allow unlimited retention, that the sponsors dropped the 14 days, or that Lowe's is Flock's customer. The September texts set no day count but require a policy limit, no source says which text moves on October 20th, and Flock hasn't named its customer.",
+  "Recheck the Assembly's page at https://www.muni.org/Departments/Assembly/Pages/focus-on-public-safety.aspx before October 14th and again before October 20th. If a new version appears or the action moves again, add a dated comment rather than rewriting the caption.",
+  "If a reader says October 20th will regulate the Lowe's cameras, point to slide 07. Each text governs city agencies, and its private camera rules cover only registration and integration with the city.",
+  "After 48 hours, note the saves, comments and reposts so the ledger can learn from them."
+ ],
+ "editor_notes_for_email": "This is an UPDATE of No.55 on AO 2026-108, built on the three ordinance texts themselves, which No.55 couldn't reach. The 14-day deletion rule, the warrant and the 2031 end date sit in the August 18th original only. Both September 15th texts are described as containing no 14-day rule and never as unlimited, because the mayor's requires a policy limit. The \"articulable operational needs\" phrase is quoted from the mayor's (S) only; the S-1 sheet quotes the sponsors' \"targeted refinements to the S draft\". Flock's customer stays unnamed, the Lowe's count is a crowdsourced map reported by ADN, and October 20th is framed as governing city readers, not store readers. The caption's \"S-1 text names no number either\" means a retention number; S-1 does carry 30-day and 45-day clocks, which slide 03 shows. ADN's URL path reads 10/06, but the page prints October 7th, so it is cited as 2026-10-07.",
+ "caption_meta": {
+  "opening_move": "DEFINITION SUBVERSION",
+  "structure": "BRAID",
+  "closing_move": "NEW: THE PROPERTY LINE",
+  "deck_summary_line": "The three texts' clocks, the September definition built on AI, APD's 14-day policy and the store readers none reach.",
+  "first_8_words": "In the Anchorage mayor's version of the surveillance",
+  "hook_type": "definition subversion, the word \"limit\" read as a reason rather than a number"
+ },
+ "first_8_words": "In the Anchorage mayor's version of the surveillance",
+ "hook_type": "definition subversion, the word \"limit\" read as a reason rather than a number"
+}

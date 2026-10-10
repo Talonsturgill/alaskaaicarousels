@@ -199,14 +199,30 @@
       const bs = o.bloom.strength != null ? o.bloom.strength : 0.35;
       const ds = 4, bw = Math.ceil(W / ds), bh = Math.ceil(H / ds);
       const rad = Math.max(1, Math.round((o.bloom.radius || 8) / ds));
+      // AREA-MEAN DOWNSAMPLE, BILINEAR UPSAMPLE (2026-10-11, weekly machine
+      // pass). The bloom used to take ONE pixel per 4 x 4 block and write each
+      // block back as a flat 4 px square, so an emitter smaller than a block was
+      // either caught whole or missed, and every caught one printed a square:
+      // No.83 slide 05's 15,141 one-pixel beads bloomed into 4 to 6 px
+      // quantised tiles the critic named, and the run dropped bloom by hand.
+      // Every pixel past the threshold now contributes its share to its block,
+      // and the blurred blocks are read back between their centres
+      // (tests/akpost_verify.mjs, the dot-lattice fixture).
       let buf = new Float32Array(bw * bh * 3);
-      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
-        const si = ((y * ds) * W + (x * ds)) * 4;
-        const r = toLin[d[si]], g = toLin[d[si + 1]], b = toLin[d[si + 2]];
-        const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        if (lum > bt * bt) {  // threshold approx in linear
-          const k = Math.min(1, (Math.sqrt(lum) - bt) / (1 - bt)), bi = (y * bw + x) * 3;
-          if (k > 0) { buf[bi] = r * k; buf[bi + 1] = g * k; buf[bi + 2] = b * k; }
+      const inv = 1 / (ds * ds);
+      for (let y = 0; y < H; y++) {
+        const by0 = ((y / ds) | 0) * bw;
+        for (let x = 0; x < W; x++) {
+          const si = (y * W + x) * 4;
+          const r = toLin[d[si]], g = toLin[d[si + 1]], b = toLin[d[si + 2]];
+          const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+          if (lum > bt * bt) {  // threshold approx in linear
+            const k = Math.min(1, (Math.sqrt(lum) - bt) / (1 - bt)) * inv;
+            if (k > 0) {
+              const bi = (by0 + ((x / ds) | 0)) * 3;
+              buf[bi] += r * k; buf[bi + 1] += g * k; buf[bi + 2] += b * k;
+            }
+          }
         }
       }
       // separable box blur x2
@@ -227,13 +243,20 @@
         }
         buf = out;
       }
+      const half = (ds - 1) / 2;
       for (let y = 0; y < H; y++) {
-        const by = Math.min(bh - 1, (y / ds) | 0);
+        const gy = Math.min(bh - 1, Math.max(0, (y - half) / ds));
+        const y0 = gy | 0, y1 = Math.min(bh - 1, y0 + 1), ty = gy - y0;
         for (let x = 0; x < W; x++) {
-          const bi = (by * bw + Math.min(bw - 1, (x / ds) | 0)) * 3;
+          const gx = Math.min(bw - 1, Math.max(0, (x - half) / ds));
+          const x0 = gx | 0, x1 = Math.min(bw - 1, x0 + 1), tx = gx - x0;
+          const b00 = (y0 * bw + x0) * 3, b01 = (y0 * bw + x1) * 3;
+          const b10 = (y1 * bw + x0) * 3, b11 = (y1 * bw + x1) * 3;
           const i4 = (y * W + x) * 4;
           for (let c = 0; c < 3; c++) {
-            const s = toLin[d[i4 + c]], add = buf[bi + c] * bs;
+            const top = buf[b00 + c] + (buf[b01 + c] - buf[b00 + c]) * tx;
+            const bot = buf[b10 + c] + (buf[b11 + c] - buf[b10 + c]) * tx;
+            const s = toLin[d[i4 + c]], add = (top + (bot - top) * ty) * bs;
             // additive in linear, encode back
             d[i4 + c] = 255 * Math.pow(Math.min(1, s + add), 1 / 2.2);
           }
@@ -253,7 +276,14 @@
     const log2 = Math.log2 || ((x) => Math.log(x) / Math.LN2);
     for (let c = 0; c < 3; c++) {
       for (let i = 0; i < NL; i++) {
-        let x = (i / (NL - 1)) * LMAX;         // linear in
+        // SQUARE-ROOT INDEXED (2026-10-11, No.84). The table used to be indexed
+        // linearly in LINEAR light, 1024 bins over 0..2, so every value under
+        // about sRGB 10 fell in bin 0 and the next bin up landed at sRGB 15:
+        // a dark gradient graded into hard steps (slide 08's teal seam and the
+        // striped header of the same frame). Indexing by sqrt spends the bins
+        // where the eye resolves them, and the lookup below interpolates.
+        const u = i / (NL - 1);
+        let x = u * u * LMAX;                  // linear in
         // log-space contrast, pivot 0.18 (never clamps blacks)
         x = Math.pow(2, (log2(x + 1e-5) - log2(0.18)) * con + log2(0.18));
         // ACES Narkowicz fit (per-channel: film-like hue shifts by design)
@@ -276,6 +306,10 @@
           ") -- a grade option produced NaN; the graded frame would be blank");
     }
 
+    const look = (t, v) => {
+      const f = Math.min(NL - 1, Math.sqrt(Math.max(0, v) / LMAX) * (NL - 1)), i0 = f | 0, i1 = Math.min(NL - 1, i0 + 1);
+      return t[i0] + (t[i1] - t[i0]) * (f - i0);
+    };
     const vig = o.vignette || 0;
     const cxm = W / 2, cym = H / 2, maxR2 = cxm * cxm + cym * cym;
 
@@ -291,9 +325,7 @@
           r = r < 0 ? 0 : r; g = g < 0 ? 0 : g; b = b < 0 ? 0 : b;
         }
         // LUT chain
-        let R = lut[0][Math.min(NL - 1, (r / LMAX * (NL - 1)) | 0)];
-        let G = lut[1][Math.min(NL - 1, (g / LMAX * (NL - 1)) | 0)];
-        let B = lut[2][Math.min(NL - 1, (b / LMAX * (NL - 1)) | 0)];
+        let R = look(lut[0], r), G = look(lut[1], g), B = look(lut[2], b);
         // vignette: multiply toward a slightly COOLER edge (corners stay alive)
         if (vig > 0) {
           const dx = x - cxm, dy = y - cym;

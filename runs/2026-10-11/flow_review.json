@@ -1,0 +1,196 @@
+{
+ "verdict": "ship",
+ "score_0_10": 7.3,
+ "revision_rounds_at_review": 5,
+ "verdict_note": "At the five-round cap; sequence holds, art under the 8.5 floor. Two must-fix copy items before merge: (1) slide 03 attributed (S)-only clocks C76/C78 to 'the September texts' and lacked C83; (2) slide 04's dashcam frame had no ILLUSTRATION slate (guard 7).",
+ "must_fix_resolution": [
+  "Slide 03: added C84 and C85 from the S-1 PDF (30-day policy notice, 45-day complaint clock) and C83 to slide 03's claim_ids; the sentence now rests on both texts.",
+  "Slide 04: OSD now reads 'ILLUSTRATION · DASHCAM / APD'S ONLY PLATE READERS, PER THE CHIEF IN AUGUST'; body cut to 31 words (rhythm finding).",
+  "Slide 08: last sentence cut (repeated 07). Slide 07: tracks redrawn as depressions, not pale bands (D1 finding)."
+ ],
+ "arc_assessment": "Tells the promised story; sag at 03 and 04, two dense evidence beats between the payoff and the breather; escalation real from 05 to 08.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "weak"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "none"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "strong"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "05-06-07 D3 tracks",
+   "problem": "chain does not complete across the cuts (05 arcs read as ripples, 06 enters top right, 07 bands read as paint)"
+  },
+  {
+   "severity": "major",
+   "where": "07 D1",
+   "problem": "tracks read as white paint where the law says no paint",
+   "resolution": "redrawn as depressions"
+  },
+  {
+   "severity": "polish",
+   "where": "06",
+   "problem": "stall outlines all white"
+  },
+  {
+   "severity": "polish",
+   "where": "03",
+   "problem": "gold ticks as confetti"
+  },
+  {
+   "severity": "polish",
+   "where": "02",
+   "problem": "no flakes past the window"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "02-03-04",
+   "problem": "three dense frames in a row",
+   "resolution": "04 body cut to 31 words"
+  },
+  {
+   "severity": "major",
+   "where": "06-07-08",
+   "problem": "three dense frames; 08 repeats 07",
+   "resolution": "08 last sentence cut"
+  }
+ ],
+ "honesty_guard_audit": [
+  "G1 to G6 hold",
+  "G7: 04 lacked a slate (fixed)",
+  "Claim carriage on 03 (fixed with C84, C85)"
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "third 50-word evidence block over a murky raster with nothing planting 05"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "weakest_frames": [
+   {
+    "slide": 3,
+    "score": 6.4,
+    "cause": "b"
+   },
+   {
+    "slide": 8,
+    "score": 6.7,
+    "cause": "c"
+   },
+   {
+    "slide": 9,
+    "score": 6.9,
+    "cause": "d"
+   },
+   {
+    "slide": 1,
+    "score": 7.0,
+    "cause": "b"
+   },
+   {
+    "slide": 5,
+    "score": 7.0,
+    "cause": "c"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "e",
+    "slides": [
+     3,
+     4,
+     6,
+     7,
+     8
+    ],
+    "problem": "tonal arc is one bright spike over a flat dark plateau (16 to 20 L*)"
+   },
+   {
+    "cause": "a",
+    "slides": [],
+    "problem": "none; every frame a different instrument"
+   },
+   {
+    "cause": "d",
+    "slides": [
+     6,
+     9
+    ],
+    "problem": "06 drift blades; 09 doubled glyph walls"
+   }
+  ],
+  "frame_causes": {
+   "1": [
+    "b",
+    "c"
+   ],
+   "2": [
+    "c"
+   ],
+   "3": [
+    "b",
+    "c",
+    "d"
+   ],
+   "4": [],
+   "5": [
+    "c",
+    "d"
+   ],
+   "6": [
+    "d"
+   ],
+   "7": [
+    "b"
+   ],
+   "8": [
+    "b",
+    "c"
+   ],
+   "9": [
+    "d",
+    "b"
+   ]
+  },
+  "masterful_depth_frame": 7,
+  "masterful_depth_note": "best frame, about 7.8; hood repoussoir lacks a lit edge"
+ }
+}

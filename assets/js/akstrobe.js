@@ -294,9 +294,25 @@
     var src0 = imgs[0], opaque = true;
     for (var ai = 3; ai < src0.length; ai += 4) if (src0[ai] < 255) { opaque = false; break; }
     var out = dst.createImageData(W, H), od = out.data;
+    // THE NEAR MAP IS READ BILINEARLY BETWEEN CELL CENTRES (2026-10-11, weekly
+    // machine pass). It was read by nearest cell, x >> 2, so the bleed radius
+    // stepped every 4 backing px and the gathered blur printed a 4 px cell grid
+    // wherever a defocused foreground bled over the sharp plane (No.84 slide 07,
+    // a lattice one critic still named after the grain was fixed). The cell
+    // values are unchanged; only the read between them is smooth
+    // (tests/strobe_focus_cells_verify.py).
+    var nbw = nb.width, nbh = nb.height;
+    function nearAt(px, py) {
+      var gx = Math.min(nbw - 1, Math.max(0, (px - 1.5) / 4)), gy = Math.min(nbh - 1, Math.max(0, (py - 1.5) / 4));
+      var x0 = gx | 0, y0 = gy | 0, x1 = Math.min(nbw - 1, x0 + 1), y1 = Math.min(nbh - 1, y0 + 1);
+      var tx = gx - x0, ty = gy - y0;
+      var a = nd[(y0 * nbw + x0) * 4], b = nd[(y0 * nbw + x1) * 4];
+      var c = nd[(y1 * nbw + x0) * 4], e = nd[(y1 * nbw + x1) * 4];
+      return (a + (b - a) * tx) + ((c + (e - c) * tx) - (a + (b - a) * tx)) * ty;
+    }
     for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
       var idx = y * W + x;
-      var nn = nd[(((y >> 2) * nb.width) + (x >> 2)) * 4] / 255 * maxR;
+      var nn = nearAt(x, y) / 255 * maxR;
       var r = Math.max(coc[idx], nn * 1.6);
       var t = maxR > 0 ? Math.min(levels - 1, r / maxR * (levels - 1)) : 0;   // maxR 0: the sharp level everywhere
       var l0 = Math.floor(t), l1 = Math.min(levels - 1, l0 + 1), fr = t - l0;

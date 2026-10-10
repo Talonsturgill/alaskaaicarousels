@@ -8,6 +8,11 @@
  *   const n = AK.simplex2(x, y);     // [-1, 1]
  *   const f = AK.fbm2(x, y, {octaves: 5, lacunarity: 2, gain: 0.5});
  *   AK.reseed(1337);                 // reshuffle the permutation table
+ *   AK.grainOn(el, {size: 280, strength: 46, seed: 1});  // film grain, one cell per DEVICE px
+ *
+ * AK.noise2 and AK.noise3 are the same functions as simplex2 and simplex3
+ * (2026-10-11): No.79's slide 08 reached for the common name and died on
+ * `AK.noise2 is not a function` three minutes into its first render.
  */
 (function (global) {
   "use strict";
@@ -156,12 +161,28 @@
    * Use as a repeating CSS background for film grain — NEVER a full-frame
    * feTurbulence rect (the printed PDF embeds full-frame noise as a 10-40MB
    * incompressible bitmap; a repeated tile embeds once).
-   *   const url = AK.grainTile(280, 46, 1);   // size px, strength 0-127, seed
-   *   grainEl.style.backgroundImage = `url(${url})`;
-   * Pair with: background-repeat: repeat; mix-blend-mode: overlay; opacity .05-.12
+   *
+   * USE grainOn, WHICH PUTS ONE GRAIN CELL ON ONE DEVICE PIXEL (2026-10-11,
+   * No.84). The engine renders at deviceScaleFactor 2, so a 280 px tile shown
+   * at 280 CSS px spreads every grain cell over 2 x 2 device pixels. Measured in
+   * the engine's Chromium, neighbouring device pixels then correlate at 0.75
+   * (0.00 at one cell per device pixel), and three critics read those clumps as
+   * "a faint regular dot lattice" in the near-black skies of slides 07, 08 and
+   * 09 (tests/grain_device_verify.py). grainOn makes the tile at the device
+   * ratio and shows it at the CSS size:
+   *   AK.grainOn(grainEl, {size: 280, strength: 46, seed: 1});
+   * Pair with: mix-blend-mode: overlay; opacity .05-.12 (grainOn sets the
+   * image, the size and the repeat).
+   *
+   * grainTile(size, strength, seed[, scale]) still returns the bare data URL,
+   * size * scale px square (scale defaults to 1, so an existing call draws the
+   * same tile it always did). A createPattern fill made from a scaled tile
+   * needs setTransform(new DOMMatrix().scale(1 / scale)) on a context that
+   * is itself scaled by the device ratio; AKINLET.grain does exactly that.
    */
-  function grainTile(size, strength, seed) {
-    const s = size || 280, k = strength === undefined ? 46 : strength;
+  function grainTile(size, strength, seed, scale) {
+    const s = Math.max(1, Math.round((size || 280) * (scale || 1)));
+    const k = strength === undefined ? 46 : strength;
     const rand = mulberry32(seed === undefined ? 1 : seed);
     const cv = (typeof document !== "undefined") ? document.createElement("canvas") : null;
     if (!cv) return null;
@@ -177,6 +198,25 @@
     return cv.toDataURL("image/png");
   }
 
+  function deviceRatio() {
+    const r = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
+    return Math.max(1, Math.round(r));
+  }
+
+  /* grainOn(el, {size, strength, seed}): the grain tile on a DOM element at one
+   * cell per device pixel. Returns the data URL (null outside a browser). */
+  function grainOn(el, o) {
+    o = o || {};
+    const size = o.size || 280, dpr = deviceRatio();
+    const url = grainTile(size, o.strength, o.seed, dpr);
+    if (el && url) {
+      el.style.backgroundImage = "url(" + url + ")";
+      el.style.backgroundSize = size + "px " + size + "px";
+      el.style.backgroundRepeat = "repeat";
+    }
+    return url;
+  }
+
   global.AK = {
     rng: mulberry32,
     reseed: reseed,
@@ -185,6 +225,10 @@
     fbm2: fbm2,
     fbm3: fbm3,
     warp2: warp2,
-    grainTile: grainTile
+    noise2: simplex2,
+    noise3: simplex3,
+    grainTile: grainTile,
+    grainOn: grainOn,
+    deviceRatio: deviceRatio
   };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -79,6 +79,27 @@ DETACH_PX = 24
 # way; profiled downward they read 17.9 and 16.3, which qa.py confirmed. The
 # cast must start within DETACH_PX below the base; lit ground within VSPAN.
 VSPAN = 64
+# THE OBJECT'S OWN COLOUR (2026-10-11, weekly machine pass). Both reads take the
+# BRIGHTEST pixels in their window as the lit ground, and an object's lit face
+# is often the brightest thing there. Three runs in four days proposed a ground
+# rect ON the object: No.81 slide 01 (the tag face, dL 59 for a cast the silt
+# shows at dL 6.5), No.83 slide 09 (the card's lit corner) and No.84 slide 09
+# (the gold can's lit side, dL 59.5 against a cast that reads 13 down from the
+# foot). So the probe samples the object just above the base, and a ground rect
+# whose pixels share that colour is on the object, not the ground: auto takes
+# the other axis when it is clear, and either way the note says so. The sample
+# is trusted only when it is one albedo (an L* spread under OBJ_SPREAD); a pole
+# thinner than the sample, or a base given below the foot, mixes surfaces and
+# gives no verdict, so the probe then behaves exactly as it did before.
+OBJ_SAMPLE_W = 12      # design px across, centred on the base x
+OBJ_SAMPLE_H = 18      # design px tall ...
+OBJ_SAMPLE_GAP = 4     # ... ending this far above the base (skips the antialiased foot)
+OBJ_SPREAD = 10.0      # L* p90 minus p10 above which the sample is not one surface
+OBJ_DE = 12.0          # CIELAB distance, L* at HALF weight (shading moves L*, albedo moves a*b*)
+OBJ_FRAC = 0.30        # share of a ground rect's pixels that match: the rect is on the object
+# Measured on the defects and on No.84's nine good declarations: on-object
+# ground rects matched 0.35 to 0.72 of their pixels, every lit-ground rect a
+# probe kept matched 0.00 to 0.25 (tests/contact_probe_verify.py, case 5).
 
 
 def load_qa():
@@ -100,7 +121,8 @@ class Frame:
         feed = im.resize((QA.FEED_W, max(1, int(round(design_h * self.s)))),
                          Image.LANCZOS)
         self.rgb = np.asarray(feed)
-        self.L = QA._srgb_to_lab(self.rgb)[..., 0]
+        self.lab = QA._srgb_to_lab(self.rgb)
+        self.L = self.lab[..., 0]
         self.design_w, self.design_h = design_w, design_h
 
     def median_L(self, rect):
@@ -113,6 +135,16 @@ class Frame:
             return None, 0
         band = self.L[y0:y1, x0:x1]
         return float(np.median(band)), band.size
+
+    def lab_px(self, rect):
+        """The CIELAB pixels of a design-px rect at feed scale, as (n, 3)."""
+        x, y, w, h = rect
+        x0, y0 = max(0, int(x * self.s)), max(0, int(y * self.s))
+        x1 = min(self.L.shape[1], int((x + w) * self.s))
+        y1 = min(self.L.shape[0], int((y + h) * self.s))
+        if x1 <= x0 or y1 <= y0:
+            return np.zeros((0, 3))
+        return self.lab[y0:y1, x0:x1].reshape(-1, 3)
 
     def profile(self, cy, h, cx, span):
         """Median L* per column across a horizontal band, in design px.
@@ -190,24 +222,76 @@ def propose_v(fr, base_x, base_y, span=VSPAN, rect=(RECT_W, RECT_H),
     return out
 
 
+def object_colour(fr, base_x, base_y):
+    """The object's own colour, sampled just ABOVE its base: {'lab', 'spread'},
+    or None when the sample leaves the frame or is not one surface."""
+    rect = (base_x - OBJ_SAMPLE_W / 2.0, base_y - OBJ_SAMPLE_GAP - OBJ_SAMPLE_H,
+            OBJ_SAMPLE_W, OBJ_SAMPLE_H)
+    if rect[1] < 0:
+        return None
+    px = fr.lab_px(rect)
+    if px.shape[0] < 12:
+        return None
+    lo, hi = np.percentile(px[:, 0], [10, 90])
+    if hi - lo > OBJ_SPREAD:
+        return None
+    return {"lab": [round(float(v), 1) for v in np.median(px, axis=0)],
+            "spread": round(float(hi - lo), 1)}
+
+
+def on_object(fr, rect, sig):
+    """Share of a design-px rect's pixels within OBJ_DE of the object colour."""
+    px = fr.lab_px(rect)
+    if sig is None or not px.shape[0]:
+        return 0.0
+    o = np.asarray(sig["lab"])
+    d = np.sqrt(((px[:, 0] - o[0]) / 2.0) ** 2 + (px[:, 1] - o[1]) ** 2
+                + (px[:, 2] - o[2]) ** 2)
+    return float((d <= OBJ_DE).mean())
+
+
+def _mark_object(fr, rec, sig):
+    """Stamp a read with how much of its ground rect is the object itself."""
+    if sig is None or "error" in rec or not rec.get("ground"):
+        return rec
+    frac = on_object(fr, rec["ground"][0], sig)
+    rec["ground_on_object"] = round(frac, 2)
+    return rec
+
+
 def best_axis(fr, base_x, base_y, axis="auto", span=None, rect=(RECT_W, RECT_H),
               cast_span=None):
     """'h', 'v', or 'auto': both reads, the higher dL wins, the other is kept.
     span and cast_span left as None take each axis's own default (SPAN and
     CAST_SPAN along the base, VSPAN and DETACH_PX down from it); a value the
-    caller passed is honoured on whichever axis reads."""
+    caller passed is honoured on whichever axis reads.
+
+    A read whose ground rect is on the object (object_colour, OBJ_FRAC) loses
+    to one whose ground is clear of it, whatever its dL: a dL measured against
+    the object's own lit face is not a contact reading. When both or neither
+    are on the object, the higher dL wins as before."""
     hk = {"span": SPAN if span is None else span,
           "cast_span": CAST_SPAN if cast_span is None else cast_span}
     vk = {"span": VSPAN if span is None else span,
           "cast_span": DETACH_PX if cast_span is None else cast_span}
+    sig = object_colour(fr, base_x, base_y) if fr is not None else None
     if axis == "h":
-        return propose(fr, base_x, base_y, rect=rect, **hk)
+        return _mark_object(fr, propose(fr, base_x, base_y, rect=rect, **hk), sig)
     if axis == "v":
-        return propose_v(fr, base_x, base_y, rect=rect, **vk)
-    h = propose(fr, base_x, base_y, rect=rect, **hk)
-    v = propose_v(fr, base_x, base_y, rect=rect, **vk)
+        return _mark_object(fr, propose_v(fr, base_x, base_y, rect=rect, **vk), sig)
+    h = _mark_object(fr, propose(fr, base_x, base_y, rect=rect, **hk), sig)
+    v = _mark_object(fr, propose_v(fr, base_x, base_y, rect=rect, **vk), sig)
     dh, dv = h.get("dL"), v.get("dL")
-    win, lose = (v, h) if dv is not None and (dh is None or dv > dh) else (h, v)
+    oh = h.get("ground_on_object", 0.0) >= OBJ_FRAC
+    ov = v.get("ground_on_object", 0.0) >= OBJ_FRAC
+    if oh != ov and dh is not None and dv is not None:
+        win, lose = (v, h) if oh else (h, v)
+        win = dict(win)
+        win["object_fallback"] = {"axis": lose.get("axis"), "dL": lose.get("dL"),
+                                  "ground_on_object": lose.get("ground_on_object"),
+                                  "object_lab": sig["lab"]}
+    else:
+        win, lose = (v, h) if dv is not None and (dh is None or dv > dh) else (h, v)
     if "error" not in lose:
         win = dict(win)
         win["alternative"] = {"axis": lose.get("axis", "h"), "dL": lose.get("dL"),
@@ -291,6 +375,20 @@ def notes(rec):
     n = min(rec.get("px", [99, 99]) or [99, 99])
     if n < 12:
         out.append("a rect this small measures %d feed pixels; qa.py needs 12" % n)
+    fb = rec.get("object_fallback")
+    if fb:
+        out.append("axis %s read dL %s, but %d percent of its ground rect is the "
+                   "object's own colour (L*a*b* %s, sampled just above the base): "
+                   "that rect is on the object itself, not on lit ground, so this "
+                   "is the axis %s read" % (fb["axis"], fb["dL"],
+                                     round(100 * (fb["ground_on_object"] or 0)),
+                                     fb["object_lab"], rec.get("axis")))
+    elif rec.get("ground_on_object", 0.0) >= OBJ_FRAC:
+        out.append("%d percent of the ground rect is the object's own colour "
+                   "(sampled just above the base): it may be on the object itself "
+                   "rather than on lit ground. Look at it before declaring it, and "
+                   "move --base to the foot itself if the base line crosses the "
+                   "object" % round(100 * rec["ground_on_object"]))
     return out
 
 
@@ -376,6 +474,12 @@ def main():
                 best = best_axis(fr, base_x, rs[1], "auto" if stacked else "h",
                                  args.span, (rs[2] or RECT_W, rs[3] or RECT_H),
                                  cast_span=args.cast_span)
+                if not stacked and best.get("ground_on_object", 0.0) >= OBJ_FRAC:
+                    # a side-by-side pair whose measured ground is on the
+                    # object: read down from the base as well (2026-10-11)
+                    best = best_axis(fr, base_x, rs[1], "auto", args.span,
+                                     (rs[2] or RECT_W, rs[3] or RECT_H),
+                                     cast_span=args.cast_span)
                 rec["measured"] = best
                 reads = rec.get("dL") is not None and rec["dL"] >= QA.CONTACT_WARN_DL
                 if stacked and not reads:
@@ -400,7 +504,16 @@ def main():
                         "the darkest point on this line is %.0f px away at x=%.0f, "
                         "not under the declared rect at x=%.0f"
                         % (abs(best["trough_x"] - base_x), best["trough_x"], base_x))
-                rec["notes"] = notes(rec) + rec.get("structure", [])
+                sig = object_colour(fr, base_x, rs[1])
+                if sig is not None and on_object(fr, rg, sig) >= OBJ_FRAC:
+                    rec.setdefault("structure", []).append(
+                        "the DECLARED ground rect is %d percent the object's own "
+                        "colour (L*a*b* %s, sampled just above the shadow rect): "
+                        "the gate may be measuring the cast against the object "
+                        "itself rather than against lit ground"
+                        % (round(100 * on_object(fr, rg, sig)), sig["lab"]))
+                rec["notes"] = (notes(rec) + rec.get("structure", [])
+                                + [n for n in notes(best) if "object's own colour" in n])
                 out["slides"].append(rec)
     else:
         print("FAIL: give either --slide N --base cx,cy or --verify", file=sys.stderr)

@@ -3383,6 +3383,7 @@ def canvas_dom_overprints(cts, canvases, fallback_k, tnodes):
 REUSE_LIMIT = 3
 REUSE_PLUMBING = {
     "AK.fitText", "AK.measureLines", "AK.svgPlate", "AK.svgPlateAll", "AK.grainTile",
+    "AK.grainOn", "AK.deviceRatio",
     "AK.rng", "AK.reseed", "AK.simplex2", "AK.simplex3", "AK.fbm2", "AK.fbm3",
     "AK.noise2", "AK.noise3", "AKPOST.grade", "AKENGRAVE.create", "AKENGRAVE.boxesFor",
     "AKENGRAVE.punchReserves", "AKENGRAVE.drawOffscreen",

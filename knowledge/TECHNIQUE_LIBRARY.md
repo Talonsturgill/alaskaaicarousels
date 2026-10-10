@@ -24,7 +24,10 @@ headless Chromium (Canvas 2D, SVG, CSS) unless flagged. Committed helpers:
    seeds) → feDisplacementMap(scale 120-200) → blur(15-25) → mix-blend
    screen; 2-3 layers, green-first hues. Sky stories, hero hooks. D2
 2. **Grain Pass** — tileable noise tile as repeating background
-   (`AK.grainTile(280, 45-60, seed)`), mix-blend overlay, opacity 0.05-0.12.
+   (`AK.grainOn(el, {size: 280, strength: 45-60, seed})`, which makes the tile
+   at the device ratio so one grain cell is one device pixel; a bare
+   `AK.grainTile(280, ...)` at 280 CSS px puts each cell on 2 x 2 device px and
+   read as a dot mesh in No.84's dark skies), mix-blend overlay, opacity 0.05-0.12.
    EVERY slide, final layer. NEVER a full-frame feTurbulence rect (10-40MB
    in the PDF; the tile embeds once). D1
 3. **Mesh Wash** — 4-7 stacked radial-gradients (OKLCH stops) at varied

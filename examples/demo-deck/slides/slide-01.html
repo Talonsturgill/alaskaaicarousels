@@ -100,8 +100,7 @@
   const cv = document.getElementById("stars");
   const cx = cv.getContext("2d");
   cx.scale(2, 2);
-  document.getElementById("grain").style.backgroundImage =
-    `url(${AK.grainTile(280, 52, 11)})`;
+  AK.grainOn(document.getElementById("grain"), { size: 280, strength: 52, seed: 11 });
   const R = AK.rng(20260708);
   for (let i = 0; i < 210; i++) {
     const x = R() * 1080, y = R() * 720 * (0.4 + 0.6 * R());
