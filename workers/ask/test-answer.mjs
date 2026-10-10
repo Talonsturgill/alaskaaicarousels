@@ -142,6 +142,16 @@ check("declining to make the call is NOT cut", !declines.withheld, declines.text
 // -------------------------------------------------------------- end to end
 section("the route");
 {
+  // Frozen key from the deployed cache schema, for this fixture and question.
+  const legacyKey = "a:2026-08-14:9d04aea9e0b65131853280ba2efa8bf7";
+  const e = env();
+  e.ASK_KV.store.set(legacyKey, JSON.stringify({ text: "Old incomplete output", withheld: false }));
+  globalThis.fetch = stubFetch({ reply: "Storage held 6.54 Bcf." });
+  const r = await answer("what is in storage", e, { now: NOW });
+  check("plain answers skip the previous cache schema",
+    globalThis.fetch.calls.api === 1 && r.body.cached === false && r.body.text === "Storage held 6.54 Bcf.");
+}
+{
   const e = env();
   globalThis.fetch = stubFetch({ reply: "Storage held 6.54 Bcf." });
   const r = await answer("what is in storage", e, { now: NOW });
@@ -302,6 +312,17 @@ async function drain(stream) {
     for (const l of lines) if (l.trim()) out.push(JSON.parse(l));
   }
   return out;
+}
+
+{
+  const e = env();
+  e.ASK_KV.store.set("a:2026-08-14:9d04aea9e0b65131853280ba2efa8bf7",
+    JSON.stringify({ text: "Old incomplete output", withheld: false }));
+  globalThis.fetch = sseFetch(["Storage held 6.54 Bcf."]);
+  const ev = await drain(await answerStream("what is in storage", e, { now: NOW }));
+  check("streamed answers skip the previous cache schema",
+    globalThis.fetch.calls.api === 1 && !ev.some(x => x.cached)
+    && ev.filter(x => x.sentence).map(x => x.sentence).join(" ") === "Storage held 6.54 Bcf.");
 }
 
 {

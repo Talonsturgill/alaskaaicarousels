@@ -474,7 +474,9 @@ const DEFAULT_MODEL = "claude-haiku-5-5";
 // shows a short answer, so a long generation is spend with nowhere to go.
 const MAX_TOKENS = 1024;
 const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
-const RETRY_MESSAGE = "The model returned no complete answer. Try again or ask a narrower question.";
+const RETRY_MESSAGE = "The answer did not finish. Please try again.";
+// Retire older entries that could contain incomplete provider output.
+const ANSWER_CACHE_SCHEMA = "complete-v1";
 
 /**
  * Models that REJECT a non-default temperature, top_p or top_k with a 400 on
@@ -640,7 +642,7 @@ export async function cacheKey(turns, packDate, packRevision = "", env = {}) {
   // date. Include those bytes so KV cannot replay an answer written under the
   // previous behavior or an earlier same-day Gas Watch/Docket build.
   const settings = JSON.stringify({ model: effectiveModel(env), ...modelParams(effectiveModel(env)) });
-  const data = new TextEncoder().encode(`${packDate}\n${packRevision}\n${settings}\n${thread}`);
+  const data = new TextEncoder().encode(`${ANSWER_CACHE_SCHEMA}\n${packDate}\n${packRevision}\n${settings}\n${thread}`);
   const digest = await crypto.subtle.digest("SHA-256", data);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
   // The pack date rides in the key as well as in the hash so a human reading

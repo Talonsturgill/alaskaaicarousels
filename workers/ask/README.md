@@ -85,6 +85,7 @@ Checked sentences wait for the provider's terminal classification. A declined
 turn returns a clear notice and discards partial text without caching it.
 Empty replies, interrupted streams and provider stream errors remain retryable.
 Successful provider calls consume a slot even if their streams later fail.
+The cache schema retires entries written before these completion checks.
 
 `ANTHROPIC_API_KEY`, a Console key. The default model is pinned in `answer.js`;
 the current value is Haiku 5.5. The August 28th corpus self-test estimates a
