@@ -3191,8 +3191,8 @@
     "tests/contact_probe_verify.py"
    ],
    "verification": "tests/contact_probe_verify.py HOLDS with a new case 5 (a synthetic pale card with a sloping edge, plus No.81 slide 01 and No.83 slide 09 read from runs/); the same test against the HEAD probe is BROKEN on the card (ground L* 82.4, dL 64.6) and the tag (ground L* 75.3, dL 66.7). The three defects now read axis v at dL 13.0 (can), 11.1 (card) and 16.7 (tag). Measured on-object share: defects 0.35 to 0.72, kept ground rects on No.84's nine declarations 0.00 to 0.25. --verify on No.84 also moved two measured reads off objects nobody had named (02 August sheet edge, 0.40; 07 pier flank, 0.70). render.py + qa.py on No.84's nine slides (scratch out dir): 8 frames pixel-identical to the shipped render, slide 07 max 7 levels on 0.02 percent of pixels (the AKSTROBE.focus read), every slide's fails and warns identical (verdict WARN both, 0 fails). examples/demo-deck: render 4/4 OK, qa 0 fails, warns identical except slide 01 losing its 'top-loaded composition' warn (device-pixel grain; the coarse grain had counted as craft density in the dark sky).",
-   "rollback": "git revert the upgrade(2026-10-11) commit, or restore scripts/contact_probe.py and tests/contact_probe_verify.py from its parent",
-   "commit": "pending"
+   "rollback": "git revert bff3fb30",
+   "commit": "bff3fb30"
   },
   {
    "run_date": "2026-10-11",
@@ -3211,8 +3211,8 @@
     "tests/grain_device_verify.py"
    ],
    "verification": "tests/grain_device_verify.py HOLDS in the engine's Chromium at deviceScaleFactor 2: lag-1 device-pixel correlation 0.74 for the old pairing (the defect reproduces), 0.00 for AK.grainOn, AKPOUR.grainOn and AKINLET.grain, 0.72 for the committed AKINLET.grain; AK.grainTile(280, 46, 1) returns the same data URL as HEAD. tests/reuse_census_verify.py 8/8. render.py + qa.py on No.84's nine slides (scratch out dir): 8 frames pixel-identical to the shipped render, slide 07 max 7 levels on 0.02 percent of pixels (the AKSTROBE.focus read), every slide's fails and warns identical (verdict WARN both, 0 fails). examples/demo-deck: render 4/4 OK, qa 0 fails, warns identical except slide 01 losing its 'top-loaded composition' warn (device-pixel grain; the coarse grain had counted as craft density in the dark sky).",
-   "rollback": "git revert the upgrade(2026-10-11) commit; a slide calling AK.grainOn would then need grainTile(560, ...) with background-size 280px by hand, as No.84 did",
-   "commit": "pending"
+   "rollback": "git revert bff3fb30",
+   "commit": "bff3fb30"
   },
   {
    "run_date": "2026-10-11",
@@ -3225,8 +3225,8 @@
     "tests/strobe_focus_cells_verify.py"
    ],
    "verification": "tests/strobe_focus_cells_verify.py HOLDS: on a 1 px stripe fixture the share of the bleed band's change on 4 px cell boundaries is 1.00 for the committed nearest-cell read and 0.27 now (0.25 is a smooth ramp); outside the bleed band the two versions agree within 1 level. tests/aksnow_verify.py and tests/aksnow_recede_verify.py PASS. render.py + qa.py on No.84's nine slides (scratch out dir): 8 frames pixel-identical to the shipped render, slide 07 max 7 levels on 0.02 percent of pixels (the AKSTROBE.focus read), every slide's fails and warns identical (verdict WARN both, 0 fails). examples/demo-deck: render 4/4 OK, qa 0 fails, warns identical except slide 01 losing its 'top-loaded composition' warn (device-pixel grain; the coarse grain had counted as craft density in the dark sky).",
-   "rollback": "git revert the upgrade(2026-10-11) commit",
-   "commit": "pending"
+   "rollback": "git revert bff3fb30",
+   "commit": "bff3fb30"
   },
   {
    "run_date": "2026-10-11",
@@ -3239,8 +3239,8 @@
     "tests/akpost_verify.mjs"
    ],
    "verification": "node tests/akpost_verify.mjs HOLDS: on a 1 px dot lattice at a 3 px pitch the share of the bloom's column-to-column change on block edges is 1.00 at HEAD (point-sampled) and 0.33 now, mean lift 63 levels; a sRGB 0..40 ramp grades monotone with max jump 1 level now and 6 before 02c6abf3. No.84 uses no bloom, so its frames are unchanged. render.py + qa.py on No.84's nine slides (scratch out dir): 8 frames pixel-identical to the shipped render, slide 07 max 7 levels on 0.02 percent of pixels (the AKSTROBE.focus read), every slide's fails and warns identical (verdict WARN both, 0 fails). examples/demo-deck: render 4/4 OK, qa 0 fails, warns identical except slide 01 losing its 'top-loaded composition' warn (device-pixel grain; the coarse grain had counted as craft density in the dark sky).",
-   "rollback": "git revert the upgrade(2026-10-11) commit",
-   "commit": "pending"
+   "rollback": "git revert bff3fb30",
+   "commit": "bff3fb30"
   },
   {
    "run_date": "2026-10-11",
@@ -3252,8 +3252,8 @@
     "assets/js/noise.js"
    ],
    "verification": "tests/grain_device_verify.py checks AK.noise2 === AK.simplex2 and AK.noise3 === AK.simplex3 and a sampled value; node require of noise.js: typeof AK.noise2 'function'. render.py + qa.py on No.84's nine slides (scratch out dir): 8 frames pixel-identical to the shipped render, slide 07 max 7 levels on 0.02 percent of pixels (the AKSTROBE.focus read), every slide's fails and warns identical (verdict WARN both, 0 fails). examples/demo-deck: render 4/4 OK, qa 0 fails, warns identical except slide 01 losing its 'top-loaded composition' warn (device-pixel grain; the coarse grain had counted as craft density in the dark sky).",
-   "rollback": "git revert the upgrade(2026-10-11) commit",
-   "commit": "pending"
+   "rollback": "git revert bff3fb30",
+   "commit": "bff3fb30"
   },
   {
    "run_date": "2026-10-11",
