@@ -546,6 +546,7 @@ const MAX_TURNS = 8;
  * answer is not a conversation.
  */
 export function turnsOf(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) return [];
   const raw = Array.isArray(payload.messages) ? payload.messages : null;
   if (!raw) {
     const q = String(payload.question ?? "").trim();
