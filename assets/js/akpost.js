@@ -253,7 +253,14 @@
     const log2 = Math.log2 || ((x) => Math.log(x) / Math.LN2);
     for (let c = 0; c < 3; c++) {
       for (let i = 0; i < NL; i++) {
-        let x = (i / (NL - 1)) * LMAX;         // linear in
+        // SQUARE-ROOT INDEXED (2026-10-11, No.84). The table used to be indexed
+        // linearly in LINEAR light, 1024 bins over 0..2, so every value under
+        // about sRGB 10 fell in bin 0 and the next bin up landed at sRGB 15:
+        // a dark gradient graded into hard steps (slide 08's teal seam and the
+        // striped header of the same frame). Indexing by sqrt spends the bins
+        // where the eye resolves them, and the lookup below interpolates.
+        const u = i / (NL - 1);
+        let x = u * u * LMAX;                  // linear in
         // log-space contrast, pivot 0.18 (never clamps blacks)
         x = Math.pow(2, (log2(x + 1e-5) - log2(0.18)) * con + log2(0.18));
         // ACES Narkowicz fit (per-channel: film-like hue shifts by design)
@@ -276,6 +283,10 @@
           ") -- a grade option produced NaN; the graded frame would be blank");
     }
 
+    const look = (t, v) => {
+      const f = Math.min(NL - 1, Math.sqrt(Math.max(0, v) / LMAX) * (NL - 1)), i0 = f | 0, i1 = Math.min(NL - 1, i0 + 1);
+      return t[i0] + (t[i1] - t[i0]) * (f - i0);
+    };
     const vig = o.vignette || 0;
     const cxm = W / 2, cym = H / 2, maxR2 = cxm * cxm + cym * cym;
 
@@ -291,9 +302,7 @@
           r = r < 0 ? 0 : r; g = g < 0 ? 0 : g; b = b < 0 ? 0 : b;
         }
         // LUT chain
-        let R = lut[0][Math.min(NL - 1, (r / LMAX * (NL - 1)) | 0)];
-        let G = lut[1][Math.min(NL - 1, (g / LMAX * (NL - 1)) | 0)];
-        let B = lut[2][Math.min(NL - 1, (b / LMAX * (NL - 1)) | 0)];
+        let R = look(lut[0], r), G = look(lut[1], g), B = look(lut[2], b);
         // vignette: multiply toward a slightly COOLER edge (corners stay alive)
         if (vig > 0) {
           const dx = x - cxm, dy = y - cym;
