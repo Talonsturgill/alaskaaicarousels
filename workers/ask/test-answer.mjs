@@ -540,6 +540,39 @@ section("the month's spend is visible");
     s2.spent === null && !!s2.note, JSON.stringify(s2));
 }
 
+section("invalid JSON values stop before verification or generation");
+{
+  const module = UNDER_TEST === "./bundled.js" ? UNDER_TEST : "./worker.js";
+  const { default: worker } = await import(module);
+  let calls = 0;
+  globalThis.fetch = async () => { calls++; throw new Error("unexpected request"); };
+  for (const value of [null, [], 1, "question", false]) {
+    let response;
+    try {
+      response = await worker.fetch(new Request("https://ask.example/answer", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(value),
+      }), {});
+    } catch (error) {
+      check(`rejects ${JSON.stringify(value)} without a runtime exception`, false, error.name);
+      continue;
+    }
+    const body = await response.json();
+    check(`rejects ${JSON.stringify(value)} as a bad request`,
+      response.status === 400 && body.error === "ask a question");
+    check(`invalid ${JSON.stringify(value)} retains CORS`,
+      response.headers.get("access-control-allow-origin") === "https://alaskaaihq.com");
+  }
+  check("invalid JSON values call neither verification nor the model", calls === 0);
+  const valid = await worker.fetch(new Request("https://ask.example/answer", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ question: "Who decides the STAK lease?" }),
+  }), {});
+  check("a valid question still reaches the human gate", valid.status === 403 && calls === 0);
+}
+
 section("the human check fails closed");
 {
   const { verifyTurnstile } = await import("./worker.js");
