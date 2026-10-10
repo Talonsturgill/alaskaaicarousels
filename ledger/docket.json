@@ -369,7 +369,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-11",
       "history": [
         {
           "date": "2026-07-08",
@@ -494,6 +494,10 @@
         {
           "date": "2026-10-07",
           "note": "Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th deadline as past due, a last update of July 14th and no award or amendment, so no lease has been reported for any of the 12 parcels at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-11",
+          "note": "Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th deadline as past due, a last update and archive date of July 14th, and no award, so no lease has been reported for any parcel at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
         }
       ]
     },
@@ -1735,7 +1739,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-11",
       "history": [
         {
           "date": "2026-08-02",
@@ -1811,6 +1815,10 @@
         },
         {
           "date": "2026-10-07",
+          "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still lists Amendment One and the August 28th proposal deadline, was last modified August 17th and archived August 31st, and posts no notice of intent to award. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-11",
           "note": "Re-read the State of Alaska public notice for RFP 2026-0200-0064 today. It still lists Amendment One and the August 28th proposal deadline, was last modified August 17th and archived August 31st, and posts no notice of intent to award. Checked and unchanged."
         }
       ]
@@ -2344,7 +2352,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-10",
+      "last_updated": "2026-10-11",
       "history": [
         {
           "date": "2026-08-06",
@@ -2433,6 +2441,10 @@
         {
           "date": "2026-10-10",
           "note": "Searched the Federal Register today for Alaska notices published since October 1st and found no Air Force, Eielson or Oklo notice. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-11",
+          "note": "Searched the Federal Register today for Alaska documents published since October 1st and found no Air Force, Eielson or Oklo notice among the 37. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
         }
       ]
     },
@@ -2882,7 +2894,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-11",
       "history": [
         {
           "date": "2026-08-06",
@@ -2939,6 +2951,10 @@
         {
           "date": "2026-10-07",
           "note": "Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application published since October 1st and found none. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-11",
+          "note": "Searched the Federal Register today for Alaska documents published since October 1st. None of the 37 concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
         }
       ]
     },
@@ -4780,11 +4796,15 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-07",
+      "last_updated": "2026-10-11",
       "history": [
         {
           "date": "2026-10-07",
           "note": "Tracked from today. The Department of Energy's October 5th release commits up to $150 million in Defense Production Act funding toward an estimated $418 million line of about 223 miles, and names military expansion and mining as the reasons. In late August the Alaska Energy Authority had listed the same line as under consideration in a presentation to Energy Secretary Chris Wright. AEA's executive director told the Alaska Beacon the federal money will likely go to engineering, planning and permitting."
+        },
+        {
+          "date": "2026-10-11",
+          "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding, about $418 million in all, and names no agreement, environmental review or construction schedule yet. Checked and unchanged."
         }
       ]
     }
