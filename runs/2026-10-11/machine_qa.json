@@ -1,0 +1,157 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the near light standard pier on the lot': shadow L* 21.0 vs ground L* 78.9, dL 57.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold paint cut after the fourteenth night': canvas 62.8 dE, page 84.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'nights of plate data kept, one strip a night' runs 0 days at 0 to 14 days at 756; 14 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '14 days in code,or a limit set in policy?' fits 2/2 lines at 116px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'articulable operational needs' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the August sheet on the slate desk': shadow L* 8.6 vs ground L* 17.1, dL 8.5 at 432w",
+        "'the mayor sheet on the slate desk': shadow L* 9.1 vs ground L* 19.7, dL 10.7 at 432w",
+        "'the S-1 sheet on the slate desk': shadow L* 5.4 vs ground L* 17.5, dL 12.0 at 432w"
+      ],
+      "fits": [
+        "hl 'Three texts.One sets a day.' fits 2/2 lines at 109.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the hour of star trails about the pole': canvas 89.1 dE, page 92.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the gold end of one hour-long star trail' lands 4.2px from its target",
+        "leader 'the gold end of one hour-long star trail' meets its label 4.0px away",
+        "leader 'the gold end of one hour-long star trail' is drawn 116 px at 71 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The originaltimed the live feed too.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 2 of 2 at (88,647) of 'ILLUSTRATION \u00b7 DASHCAM APD'S ONLY PLATE ' carries 134 px^2 of hard-edged canvas ink (densest 40px window 9.1%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "contacts": [
+        "'the parked sedan on the lot': shadow L* 9.9 vs ground L* 48.1, dL 38.2 at 432w"
+      ],
+      "motifs": [
+        "'the plate under the OCR box': canvas 25.7 dE, page 31.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'September's textsname artificial intelligenc' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the two ruts filling to nothing': canvas 21.4 dE, page 40.2 dE, 95% of its rect is clear of opaque DOM (div#lab.lab stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the fourteenth tread repeat, where the rut fills in' lands 4.5px from its target",
+        "leader 'the fourteenth tread repeat, where the rut fills in' meets its label 7.6px away",
+        "leader 'the fourteenth tread repeat, where the rut fills in' is drawn 39 px at 75 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'There is already a 14.' fits 1/1 lines at 119.5px"
+      ],
+      "asserts": [
+        "'fourteen tread repeats along the right rut' holds: 14 vs 14 marks, counted over 14 declared marks (within 0)",
+        "'fourteen tread repeats along the right rut': 14 mark centres probed at r=9px, cohort median 3.8 dE, all present (weakest 1.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold stall lines under the numbers each text writes': canvas 97.8 dE, page 101.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Three texts, side by side.' fits 1/1 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "lit-edge check skipped 1 additive drawImage call(s) or seam(s) past its budget (16 measured draws onto on-page canvases and 24 onto off-page ones, a bitmap of at most 17.5 million pixels and sixteen 2x canvases' worth of readback per slide, eight measured draws of that size, 24 seams per slide), so a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that once, or check the additive layers by eye at thumb"
+      ],
+      "contacts": [
+        "'the reader pole pier in the snow': shadow L* 38.6 vs ground L* 61.7, dL 23.1 at 432w"
+      ],
+      "motifs": [
+        "'the plate reader housing on its pole': canvas 53.7 dE, page 54.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'No versionreaches this pole.' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold centreline north toward the chambers': canvas 104.3 dE, page 104.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'October 20th couldset the city's clock.' fits 2/2 lines at 99.5px"
+      ],
+      "asserts": [
+        "'238 registered cameras, one dim disc each' holds: 238 vs 238 marks, counted over 238 declared marks (within 0)",
+        "'238 registered cameras, one dim disc each': 238 mark centres probed at r=10px, cohort median 32.1 dE, all present (weakest 19.3 dE)",
+        "'11 integrated cameras, one bright disc each' holds: 11 vs 11 marks, counted over 11 declared marks (within 0)",
+        "'11 integrated cameras, one bright disc each': 11 mark centres probed at r=14px, cohort median 77.6 dE, all present (weakest 76.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the stencil plate on the snow': shadow L* 51.0 vs ground L* 58.7, dL 7.7 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "contacts": [
+        "'the gold paint can on the snow': shadow L* 32.8 vs ground L* 45.8, dL 13.0 at 432w"
+      ],
+      "motifs": [
+        "'the unpainted stencil 14 on the snow': canvas 48.6 dE, page 48.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Where should Anchoragewrite its number,in co' fits 3/3 lines at 102px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 4,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

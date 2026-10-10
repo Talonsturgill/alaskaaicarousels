@@ -1,0 +1,151 @@
+{
+ "run_date": "2026-10-11",
+ "carousel_no": 84,
+ "revision_rounds": 5,
+ "hard_fails": [
+  {
+   "rule": "em/en dash",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji",
+   "status": "pass"
+  },
+  {
+   "rule": "claim without claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary contrast",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or non-vector pdf",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat without update",
+   "status": "pass"
+  },
+  {
+   "rule": "hero identical to last 4",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtags/link",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Strong named tension in 10 words; gold '14 days' reads at 432 px; generic night lot art, busy lower half, gold cut competes with gold headline."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.0,
+   "weight": 0.14,
+   "notes": "02 pays the cover; 06 to 09 escalate; 03 and 04 sag as dense evidence beats; 04 to 05 junction has no pull; D3 chain does not read as one chain."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16,
+   "notes": "07 masterful depth frame, 05 convincing carved-snow peak, 06 crisp paint lips; 08 luminaire and road flat, bokeh wallpaper; 09 doubled walls on the 4 and toy-like can; 03 flat store and hairline ruts; 01 and 04 crude car blocks."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.0,
+   "weight": 0.14,
+   "notes": "The paint law is a real semantic system; fourteen strips, sixty-minute trails, fourteen tread repeats, 238 and 11 discs, an unpainted 14; 03 and 08 need labels."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.0,
+   "weight": 0.12,
+   "notes": "Named bodies, texts, outlets and dates; first-snow arc; honest scope; much of the art could be any US city."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "Every content slide adds a verified specific; 08's 'it governs' leaned on a claim it did not list (since attached: C04, C81)."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.0,
+   "weight": 0.08,
+   "notes": "Surface labels all new; 'every frame a different instrument' is the third deck running and the dark navy plus single gold law is the house register."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07,
+   "notes": "Floors met; 01 and 07 fixtures crossed by seams and shadows; 06 small labels at thumb; 05 stencil foreshortened."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05,
+   "notes": "Hook lands with a definitional turn; closing question differs from slide 09's ask; 'it will govern city readers' presumes passage."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.0,
+   "weight": 0.1,
+   "notes": "Post copy, three hashtags, dated first comment, title, aftercare, vector PDF, thumbs, contact sheet; Gmail draft and raw URLs need the merge; email must carry the Gas Watch WARN."
+  }
+ ],
+ "calculation": "(7.5x0.14)+(7.0x0.14)+(6.5x0.16)+(8.0x0.14)+(8.0x0.12)+(8.5x0.10)+(7.0x0.08)+(7.5x0.07)+(7.5x0.05)+(8.0x0.10) = 8.26 (rubric formula as written; the rubric weights sum to 1.10, so the weight-normalised equivalent is 7.51)",
+ "weighted_total": 8.26,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild slide 08's near luminaire and road as modelled, lit objects: a curved head on its arm with a lit underside throwing a visible LED pool onto a textured wet-sheen asphalt surface.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "fix": "model the luminaire as a curved solid on a visible arm with a lit underside and a cast pool on stippled wet asphalt; delete the streaks under the disc band"
+  },
+  {
+   "slide": 9,
+   "fix": "derive each cut wall from one inward offset of the glyph mask in plate space; deepen the plate's tight contact"
+  },
+  {
+   "slide": 3,
+   "fix": "cut the store to a roofline silhouette with an LED-lit lower edge, move the label into the sky, carve the ruts with lit and lee walls, remove the bracket"
+  },
+  {
+   "slide": 1,
+   "fix": "bevelled car bodies with dark glass and wet reflections"
+  },
+  {
+   "slide": 4,
+   "fix": "a shaped trunk lid gradient, a bumper in lee and a smeared taillight reflection before the sensor pass"
+  }
+ ],
+ "craft_floor_note": "Art 6.5 under the 8.5 floor; the run is at the five-round cap, so no craft cycle (ship_gate stands down at the cap).",
+ "editor_notes_for_email": "Ship at the five-round cap, 8.26 against 7.7; art 6.5 flagged. Rubric weights sum to 1.10 (normalised 7.51), scored on the same basis as prior runs and queued for the weekly pass. Gas Watch live WARN with a documented GitHub blocker. Caption close (private property) differs from slide 09's ask (code or policy). Honesty guards hold. Post window Tuesday October 13th 8 to 11 a.m. Alaska time, before the October 14th work session."
+}

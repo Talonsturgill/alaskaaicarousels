@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-11/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7153085,
+  "pdf_mb": 7.15,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-11/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-11/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Who Sets the Clock on a Plate Read",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "6ded68fa5478b4d41b9b6d6ddd105d29a2263c3c20da1e5d53f5d983bb1778d4",
+        "bytes": 3243477
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "c2940bd08046bd53ce5c123351b0f1f6c0cce9ca494b0cea11dfc05760abbaff",
+        "bytes": 3496625
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "ed39fddddec3aa4e694985837d42e964002acdbcc4a2597c338e947e885e68ac",
+        "bytes": 3360675
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "6ae97992b0c0ba55f00e847b04a92327b72daa6dde0a0f2766dafcbfd0c15b15",
+        "bytes": 1957924
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "adf7256a382d80d288be4e1cd4f5f7f3d44bb2c4479430446be3ed8884706c09",
+        "bytes": 5068088
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "bae6c0b2e2c492ce8f099d7799280796201bd3c9584359465aaa723e00b2eca8",
+        "bytes": 5349007
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "2a778526b6fc09815640827864a6310f20b9e2c6b19f7b0d0c887b52571a7e51",
+        "bytes": 2966558
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "2843555b15471a92eeb6fa5eb305d237c64825154d83073a26ddb9df460ff945",
+        "bytes": 4240532
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b7124e35912439795fb831d9a66ea0a1c77c065fb53c8c7800d54a15509a9e25",
+        "bytes": 3114051
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "b52fb77bcae88c9ee6f6830f56c3a6b91c0280c1361cc36bf9013b024eb23791",
+        "bytes": 15797
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "5b5a9b763ecc42d6bc15d3b63556d1323b98ce599ed270398df85c5139a5c5fc",
+        "bytes": 13270
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "54a337968e75f2e1322a9f4b5f11ef035945260766951a6712837a399dddf43c",
+        "bytes": 15252
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "ce522e8af184645744d181d7918e0e277aed6cbd538d7da702032ddf8330946d",
+        "bytes": 13829
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c265439d656b2b6563cf82b1f306b99b1988245e941d8b4aaac614b63e7f1cc6",
+        "bytes": 9192
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "0996d2701c435bd3f085e27bf8f453a577115d3eb05b39ad065abbefd2d64b55",
+        "bytes": 12275
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "347b1cc241c4925fadcab5b0ae37341bc4956fe1fb307353037c5a4dc139f091",
+        "bytes": 17621
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "78373d96fc51080c9dd9f92df9354be7286ff6905edae06dc5d87370aff51510",
+        "bytes": 14845
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "8bb0f0910e8940f479b63f2ba733bd3463c9f143ba6e4a4d51a67a08c348e11e",
+        "bytes": 15839
+      }
+    ]
+  }
+}
