@@ -199,14 +199,30 @@
       const bs = o.bloom.strength != null ? o.bloom.strength : 0.35;
       const ds = 4, bw = Math.ceil(W / ds), bh = Math.ceil(H / ds);
       const rad = Math.max(1, Math.round((o.bloom.radius || 8) / ds));
+      // AREA-MEAN DOWNSAMPLE, BILINEAR UPSAMPLE (2026-10-11, weekly machine
+      // pass). The bloom used to take ONE pixel per 4 x 4 block and write each
+      // block back as a flat 4 px square, so an emitter smaller than a block was
+      // either caught whole or missed, and every caught one printed a square:
+      // No.83 slide 05's 15,141 one-pixel beads bloomed into 4 to 6 px
+      // quantised tiles the critic named, and the run dropped bloom by hand.
+      // Every pixel past the threshold now contributes its share to its block,
+      // and the blurred blocks are read back between their centres
+      // (tests/akpost_verify.mjs, the dot-lattice fixture).
       let buf = new Float32Array(bw * bh * 3);
-      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
-        const si = ((y * ds) * W + (x * ds)) * 4;
-        const r = toLin[d[si]], g = toLin[d[si + 1]], b = toLin[d[si + 2]];
-        const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        if (lum > bt * bt) {  // threshold approx in linear
-          const k = Math.min(1, (Math.sqrt(lum) - bt) / (1 - bt)), bi = (y * bw + x) * 3;
-          if (k > 0) { buf[bi] = r * k; buf[bi + 1] = g * k; buf[bi + 2] = b * k; }
+      const inv = 1 / (ds * ds);
+      for (let y = 0; y < H; y++) {
+        const by0 = ((y / ds) | 0) * bw;
+        for (let x = 0; x < W; x++) {
+          const si = (y * W + x) * 4;
+          const r = toLin[d[si]], g = toLin[d[si + 1]], b = toLin[d[si + 2]];
+          const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+          if (lum > bt * bt) {  // threshold approx in linear
+            const k = Math.min(1, (Math.sqrt(lum) - bt) / (1 - bt)) * inv;
+            if (k > 0) {
+              const bi = (by0 + ((x / ds) | 0)) * 3;
+              buf[bi] += r * k; buf[bi + 1] += g * k; buf[bi + 2] += b * k;
+            }
+          }
         }
       }
       // separable box blur x2
@@ -227,13 +243,20 @@
         }
         buf = out;
       }
+      const half = (ds - 1) / 2;
       for (let y = 0; y < H; y++) {
-        const by = Math.min(bh - 1, (y / ds) | 0);
+        const gy = Math.min(bh - 1, Math.max(0, (y - half) / ds));
+        const y0 = gy | 0, y1 = Math.min(bh - 1, y0 + 1), ty = gy - y0;
         for (let x = 0; x < W; x++) {
-          const bi = (by * bw + Math.min(bw - 1, (x / ds) | 0)) * 3;
+          const gx = Math.min(bw - 1, Math.max(0, (x - half) / ds));
+          const x0 = gx | 0, x1 = Math.min(bw - 1, x0 + 1), tx = gx - x0;
+          const b00 = (y0 * bw + x0) * 3, b01 = (y0 * bw + x1) * 3;
+          const b10 = (y1 * bw + x0) * 3, b11 = (y1 * bw + x1) * 3;
           const i4 = (y * W + x) * 4;
           for (let c = 0; c < 3; c++) {
-            const s = toLin[d[i4 + c]], add = buf[bi + c] * bs;
+            const top = buf[b00 + c] + (buf[b01 + c] - buf[b00 + c]) * tx;
+            const bot = buf[b10 + c] + (buf[b11 + c] - buf[b10 + c]) * tx;
+            const s = toLin[d[i4 + c]], add = (top + (bot - top) * ty) * bs;
             // additive in linear, encode back
             d[i4 + c] = 255 * Math.pow(Math.min(1, s + add), 1 / 2.2);
           }

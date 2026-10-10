@@ -434,11 +434,18 @@
   };
 
   AKI.grain = function (cx, w, h, seed) {
-    var url = AK.grainTile(280, 52, seed);   // RETURNS A DATA URL, NOT A CANVAS
+    // ONE GRAIN CELL PER DEVICE PIXEL (2026-10-11): createPattern takes the
+    // context's own scale, so a 280 px tile on a 2x context lands each cell on
+    // 2 x 2 device px. Make the tile at that scale and undo the scale on the fill.
+    var t = cx.getTransform ? cx.getTransform() : { a: 1 };
+    var sc = Math.max(1, Math.round(Math.abs(t.a) || 1));
+    var url = AK.grainTile(280, 52, seed, sc);   // RETURNS A DATA URL, NOT A CANVAS
     return new Promise(function (resolve) {
       var img = new Image();
       img.onload = function () {
         var pat = cx.createPattern(img, "repeat");
+        if (sc > 1 && pat.setTransform && typeof DOMMatrix !== "undefined")
+          pat.setTransform(new DOMMatrix().scale(1 / sc));
         cx.save();
         cx.globalCompositeOperation = "overlay";
         cx.globalAlpha = 0.07;

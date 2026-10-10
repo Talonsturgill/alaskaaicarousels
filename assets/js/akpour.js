@@ -658,7 +658,8 @@
    * 10 to 40 MB in the PDF while the tile embeds once.
    */
   P.grainOn = function (el, seed, alpha) {
-    el.style.backgroundImage = 'url(' + global.AK.grainTile(280, 52, seed || 11) + ')';
+    // one grain cell per DEVICE pixel (2026-10-11): see AK.grainOn in noise.js
+    global.AK.grainOn(el, { size: 280, strength: 52, seed: seed || 11 });
     el.style.opacity = String(alpha == null ? 0.06 : alpha);
   };
 

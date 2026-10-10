@@ -365,7 +365,11 @@
 
   /* grain as a small repeating tile. NEVER a full-frame feTurbulence rect, which
    * embeds at 10 to 40 MB in the PDF. grainTile returns a DATA URL, not a canvas,
-   * so it goes on a DOM div's background and never into createPattern. */
+   * so it goes on a DOM div's background and never into createPattern.
+   * This string puts each grain cell on 2 x 2 device pixels, which critics read
+   * as a dot mesh in dark fields (2026-10-11); prefer AK.grainOn(el, {seed}),
+   * which sets the size as well. Kept as it was so existing callers keep their
+   * pixels. */
   function grainCss(seed) {
     return "url(" + AK.grainTile(280, 52, seed) + ")";
   }

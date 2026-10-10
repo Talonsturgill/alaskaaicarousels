@@ -1,75 +1,68 @@
 {
-  "last_pass": "2026-10-09",
+  "last_pass": "2026-10-11",
   "themes": [
     {
-      "theme": "d, a texture artifact (flow critic weakest frames; cross-frame d 1 run, 4 frames)",
-      "runs": 4,
-      "frames": 10,
+      "theme": "queue repeat offender: contact_probe proposes a ground rect on the object itself (made the pass due)",
+      "runs": 3,
+      "frames": 4,
       "action": "fixed",
-      "what": "the queue's repeat-2 item that made the pass due: render.py cuts every frame into six native 1080x900 tiles in render/crops/, critic_brief.py lists them (stale ones refused), and the pixel critic judges cause d from them; every critic of No.80 to No.82 said it judged texture downscaled"
+      "what": "the probe samples the object's own colour just above the base and a ground rect 30 percent or more in it loses auto to the other axis; No.81 01, No.83 09 and No.84 09 now read v at dL 16.7, 11.1 and 13.0, and two more on No.84 (02, 07) moved off their objects"
     },
     {
-      "theme": "b, the largest object least modelled (flow critic weakest frames)",
+      "theme": "d, a texture artifact (flow critic weakest frames 2 runs, 5 frames; scorer texture theme 2 runs; No.84's dot lattice and banding)",
       "runs": 4,
+      "frames": 8,
+      "action": "fixed",
+      "what": "three engine sources of it removed and held by tests: grain at one cell per device pixel (AK.grainOn, AKPOUR.grainOn, AKINLET.grain), AKSTROBE.focus's 4 px near-field cell steps, and akpost bloom's point-sampled blocks; akpost_verify.mjs also holds the run's own tone table fix"
+    },
+    {
+      "theme": "b, the largest object least modelled (flow critic 2 runs, 3 frames; cross-frame 1 run, 3 frames; scorer flat-fill theme 2 runs)",
+      "runs": 2,
+      "frames": 3,
+      "action": "deferred",
+      "what": "No.84's stalls were scene modelling (crude cars, a flat facade, a flat luminaire, a stepped stencil wall) with no shared helper defect to fix in the engine this week; the critic's frame_causes question and the craft cycle stay the instrument. The art criterion was worked through the cause d fixes"
+    },
+    {
+      "theme": "c, a dead or eventless region (flow critic 2 runs, 4 frames)",
+      "runs": 2,
+      "frames": 4,
+      "action": "deferred",
+      "what": "two runs, both early in the window (10-05, 10-06), not recurring at the week's end; no new measurable cause"
+    },
+    {
+      "theme": "a and e cross-frame (2 runs each, 7 frames each)",
+      "runs": 2,
       "frames": 7,
-      "action": "fixed",
-      "what": "for the 3D frames where the machine makes the defect: AKT.audit (metal with too little environment, glass that casts a shadow or washes its contents) WARNed by qa.py, AKT.mat.glass(), and a static scan for hand-rolled three scenes; the queued akthree metal (repeat 1) and glass items. Non-3D cause b is still the critic's frame_causes question from 2026-10-04"
-    },
-    {
-      "theme": "c, a dead or eventless region (flow critic weakest frames)",
-      "runs": 3,
-      "frames": 5,
       "action": "deferred",
-      "what": "three pixel probes already measured null (FIELD_NOTES 2026-10-04) and the frame_causes c question is the live instrument; nothing new is measurable this week"
+      "what": "the reuse census and tonal_arc_check are still inside their calibration windows; the critic's own notes called the a cases within the limit or borderline"
     },
     {
-      "theme": "a, the same drawing on more than three frames (cross-frame)",
+      "theme": "trend_check stale offender: Artwork craft and genuine detail, weakest 4 of 7, mean 6.97",
       "runs": 4,
-      "frames": 21,
-      "action": "deferred",
-      "what": "the reuse census shipped 2026-10-06 and has two runs on record; it needs the two calibrated weeks its entry asked for before it can be a gate"
-    },
-    {
-      "theme": "e, no tonal arc (cross-frame)",
-      "runs": 4,
-      "frames": 17,
-      "action": "deferred",
-      "what": "tonal_arc_check.py WARNs since 2026-10-04; its record is still under two weeks, so it gets another before any change"
-    },
-    {
-      "theme": "trend_check stale offender: Artwork craft and genuine detail, weakest 5 of 7, mean 7.04",
-      "runs": 5,
       "frames": 0,
       "action": "fixed",
-      "what": "worked through the two changes above (native crops for cause d, the akthree material audit for cause b), and through the 11a region check so the critic judges the wordless claim at the declared rectangles"
+      "what": "worked through the cause d engine fixes and the contact probe, which is how a builder declares a seated object; Variety vs ledger (2 of 7) and Thumb-stop cover (1 of 7) deferred, not recurring"
     },
     {
-      "theme": "queue: span-per-line headings (render, repeat 1) and fitText wrapping inside authored lines (aktype, repeat 1)",
-      "runs": 3,
-      "frames": 0,
-      "action": "fixed",
-      "what": "render.py records the block in text_composites for copy_sync_check; AK.fitText takes an opt-in authored:true (CSS text-fit shrink consistent, from the frontier scan); a default-measure bug found on the way is queued"
-    },
-    {
-      "theme": "queue: plan_drift 11a rects vs data-encodes (No.82, five frames)",
+      "theme": "queue: noise2 alias (No.79), held at the 2026-10-06 pass",
       "runs": 1,
-      "frames": 5,
+      "frames": 1,
       "action": "fixed",
-      "what": "plan_drift_check FAILs 11a rects that differ from the declaration; today's run passes it (7 sets, 0 drift; slide 08 is a note, 11a rects with no data-encodes)"
+      "what": "AK.noise2 and AK.noise3 alias simplex2 and simplex3"
     },
     {
-      "theme": "queue: gaswatch evening slots (repeat 8)",
-      "runs": 8,
+      "theme": "queue: gaswatch evening slots (repeat 9)",
+      "runs": 9,
       "frames": 0,
       "action": "escalated",
       "what": "owner decision on schedules and credentials, escalated 2026-10-06; untouched"
     },
     {
-      "theme": "trend_check stale offenders: Variety vs ledger and Thumb-stop cover, weakest 1 of 7 each",
+      "theme": "queue: akhachure light ink, ragged-line numeral, dossier label floor, measure() default, runtime metal audit, axis census, docket pre-ship, site_build verified list",
       "runs": 1,
       "frames": 0,
       "action": "deferred",
-      "what": "one run each in the window, not a recurring theme; the five-change cap went to the art"
+      "what": "all at repeat 0 or 1; the five-change cap went to the defects that bit this week's art. site_build's verified list stays the maintainer's call (83 published pages)"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

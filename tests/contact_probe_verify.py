@@ -17,6 +17,12 @@ x. Three things are held.
   3. THE PROPOSAL. Pointed at the object's base, the probe finds the cast
      within a few px of where it was actually drawn and pairs it with lit
      ground at the same y, and that pair clears qa.py's floor.
+  5. NOT ON THE OBJECT (2026-10-11, weekly machine pass). A pale card whose
+     bottom edge slopes, on a dark plate: the base line runs INTO the card on
+     one side, so the horizontal read's brightest window is the card's own
+     face. Auto must not propose it, and on the two shipped frames that showed
+     the defect (No.81 slide 01, the tag; No.83 slide 09, the card, both under
+     runs/) the proposed ground must be the dark ground, not the object.
 
     python3 tests/contact_probe_verify.py
 
@@ -222,6 +228,46 @@ def main():
     if not defaults:
         bad.append("best_axis gave the vertical read the horizontal defaults")
 
+    # 5. NOT ON THE OBJECT. Checked by the ground rect's own L*, which the old
+    # probe can be held to as well: the card is L* ~80, the plate under 45.
+    with tempfile.TemporaryDirectory() as d:
+        rdir = Path(d)
+        (rdir / "render_report.json").write_text(json.dumps(
+            {"canvas": {"width": DW, "height": DH, "scale": SCALE}, "slides": []}))
+        h, w = DH * SCALE, DW * SCALE
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float64) / SCALE
+        edge = 1000.0 + 0.12 * (xx - 540.0)            # the card's sloping bottom edge
+        card = (yy < edge) & (yy > edge - 300) & (xx > 300) & (xx < 800)
+        below = yy - edge                                # design px under the edge
+        v = np.full((h, w), 70.0)
+        v += 40.0 * np.clip(1.0 - np.abs(below - 60.0) / 60.0, 0, 1)   # a lit band below
+        v -= 55.0 * np.clip(1.0 - np.maximum(below, 0) / 14.0, 0, 1) * (below >= 0)  # attached cast
+        v = np.where(card, 205.0, v)
+        v = np.clip(v, 0, 255).astype(np.uint8)
+        arr = np.stack([v, v, v], -1)
+        Image.fromarray(arr).save(rdir / "slide-01.png")
+        fr = cp.Frame(rdir / "slide-01.png", DW, DH)
+        auto = cp.best_axis(fr, 540.0, 1000.0)
+        gl, _ = fr.median_L(auto["ground"][0]) if "ground" in auto else (None, 0)
+        if gl is None or gl > 60:
+            bad.append("5. card: auto proposed a ground rect on the card's face "
+                       "(axis %s, ground L* %s, dL %s)" % (auto.get("axis"), gl, auto.get("dL")))
+        elif auto.get("dL", 0) < cp.QA.CONTACT_WARN_DL:
+            bad.append("5. card: the off-object read measures dL %s" % auto.get("dL"))
+    shipped = [("2026-10-08", 1, 500.0, 1045.0, "No.81 slide 01, the tag"),
+               ("2026-10-10", 9, 300.0, 1168.0, "No.83 slide 09, the card")]
+    for date, n, bx, by, name in shipped:
+        src = ROOT / "runs" / date / ("slide-%02d.webp" % n)
+        if not src.exists():
+            bad.append("5. %s: fixture %s is missing" % (name, src))
+            continue
+        fr = cp.Frame(src, DW, DH)
+        auto = cp.best_axis(fr, bx, by)
+        gl, _ = fr.median_L(auto["ground"][0]) if "ground" in auto else (None, 0)
+        if gl is None or gl > 45:
+            bad.append("5. %s: auto proposed a ground rect on the object (axis %s, "
+                       "ground L* %s, dL %s)" % (name, auto.get("axis"), gl, auto.get("dL")))
+
     if bad:
         print("BROKEN")
         for b in bad:
@@ -230,7 +276,8 @@ def main():
     print("HOLDS: the probe's numbers are the gate's numbers, the stacked-rect "
           "defect measures negative and is named, a pair proposed from the "
           "object's base alone lands on the drawn cast and clears the gate, and "
-          "a long foot is read DOWN from its base instead of floating.")
+          "a long foot is read DOWN from its base instead of floating, and a ground "
+          "rect on the object's own face is never the one proposed.")
     return 0
 
 
