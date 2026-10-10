@@ -20,15 +20,15 @@
   "flow_review": "done: out/2026-10-11/flow_review.json, ship 7.3; must-fixes applied (03 S-1 clocks C84/C85, 04 ILLUSTRATION slate), deck round 5",
   "assemble": "done: final/carousel.pdf vector 7.15 MB, 9 slides, contact sheet, thumbs",
   "scoring": "done: score_report.json 8.26 vs 7.7 (5 rounds), art 6.5 at the cap, ship_gate PASS",
-  "ship": "pending",
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
+  "ship": "done: runs/2026-10-11 committed (d4fcf324), PR #428 ready, CI green 6 of 6, Codex completed on c2382b1b with no findings, merged 9012a2f5; raw URLs 200",
+  "upgrade": "done: weekly pass due (contact_probe repeat 2) and run: 5 fixes in bff3fb30 plus the in-run akpost LUT fix 02c6abf3, logged in ledger/upgrades.json; automation_retro.md committed",
+  "gmail": "done: draft r-2752495453213179573 in docket@alaskaaihq.com, payload verbatim from gmail_draft.py --preview-mode remote, sign-off table reads verdicts",
+  "retro": "done: ledgers, FIELD_NOTES, instincts appended; run complete"
  },
  "phase_3_6": {
   "cron_health": "PASS, 6 scheduled workflows plus Pages audited at 06:1xZ October 10th",
-  "gaswatch_live": "FAIL at 06:1xZ: CINGSA's 16:00 Alaska reading of October 9th not yet collected (last collection 23:18Z); workflow_dispatch 403 again; re-audit after the 07:20Z slot",
-  "site_signoff": "PASS, 142 pages, 18 of 18 (published docs/ before rebuild)",
+  "gaswatch_live": "UNRESOLVED (github), WARN at 09:31Z: FAIL at 06:1xZ and 07:53Z because CINGSA revised the October 9th reading at 16:00 Alaska after the 23:18Z collection and GitHub had not started the 04:40Z or 07:20Z slots; workflow_dispatch 403 again. At 09:31Z the page still shows the October 9th reading while a 01:00 Alaska October 10th reading waits for the next collection. Incident filed in runs/2026-10-11/gaswatch_incident.json; the next run re-audits. The owner-only fix (Actions write for the routine, or a later audit) is queued at repeat 9.",
+  "site_signoff": "PASS, 143 pages, 18 of 18 (after the run rebuild; 142 before it)",
   "gaswatch_pagecheck": "PASS",
   "site_look": "home, docket, gas watch at 1280 and 390 px, no horizontal scroll, nothing cut off"
  },
@@ -43,5 +43,14 @@
   "phase_9_round5": "deck-level round: fixes to 03 facade/ruts, 08 road edges, 09 cut walls and drift ends; flow critic",
   "phase_10": "scored 8.26 vs 7.7 (rounds 5), art 6.5 at the cap; ship_gate PASS"
  },
- "score": 8.26
+ "score": 8.26,
+ "status": "complete",
+ "gmail_draft_id": "r-2752495453213179573",
+ "merged": {
+  "pr": 428,
+  "sha": "9012a2f5349feb06617a032aec4379b37bf8587c",
+  "method": "merge commit, no attribution trailers"
+ },
+ "completed_utc": "2026-10-10T09:33:39Z",
+ "merged_to_main": "9012a2f5349feb06617a032aec4379b37bf8587c"
 }
