@@ -7,6 +7,16 @@ date share the heading row. Dates display in Alaska time, preserving evening pub
 across UTC midnight. Hover, focus and pressing a link hold it steady. Reduced-motion
 preferences use manual navigation. Background and offscreen tabs stop their timers.
 
+Activating a headline opens a minimal native dialog on the homepage. It shows the headline,
+original source/date and the publisher's bounded feed excerpt, with one optional full-article
+link. Source excerpts stay verbatim. Missing excerpts get a clear availability message.
+The browser traps focus, Escape and the close control dismiss it, and a backdrop press also
+closes it. The carousel stays paused while reading, including through refresh or expiry;
+closing applies the newest eligible pool. Keyboard dismissal restores headline focus.
+Ordinary pointer dismissal resumes rotation after the pointer leaves the strip. A summary
+never requests an article page or opens a new tab. Without JavaScript, the original source
+link remains available.
+
 ## Selection
 
 Every story needs an explicit Alaska location or institution in its headline or bounded source

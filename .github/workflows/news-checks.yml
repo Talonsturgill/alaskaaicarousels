@@ -57,4 +57,6 @@ jobs:
           date=$(python3 -c 'import re; from pathlib import Path; print(re.search(r"<!-- run-date ([0-9-]+) -->", Path("docs/index.html").read_text())[1])')
           python3 scripts/site_fresh_check.py --date "$date"
       - name: Responsive carousel, quiet periods, original-date expiry and offline recovery
-        run: SITE=docs node tests/news_headline.mjs
+        run: |
+          SITE=docs node tests/news_headline.mjs
+          SITE=docs node tests/news_popup.mjs
