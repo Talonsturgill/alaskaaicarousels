@@ -7,7 +7,7 @@ Canonical: https://alaskaaihq.com/archive/2026-10-12/
 
 ## The story
 
-57 of 112 said outlaw AI data centers.
+57 of 112 said outlaw large AI data centers in Mat-Su.
 
 Three other rooms decide.
 

@@ -6,7 +6,7 @@ On October 4th the Mat-Su Sentinel asked a forum audience in Palmer's Glenn Mass
 PDF document title (copy.json): "112 Answers in Palmer, and Where They Go" (40 chars).
 
 ## ARC, nine slides
-1. COVER, wide from the booth. 57 of 112 said outlaw AI data centers; three other rooms decide. Plants: what exactly did they answer?
+1. COVER, wide from the booth. 57 of 112 said outlaw large AI data centers in Mat-Su; three other rooms decide. Plants: what exactly did they answer?
 2. PAYOFF, the insert. The question as asked and all three answers, 57 / 47 / 8. Keepable. Plants: who was answering?
 3. THE REVERSE ANGLE. A room, not a poll: about 200 came, 112 answered, 22 legislative candidates were there. Plants: the question said "the state". Which state?
 4. THE HINGE, over the land. On Mat-Su land "the state" is three rooms: DNR at Houston, the University at Port MacKenzie, the Legislature. Temperature turns from the room to the ground. Plants: room one.
@@ -165,7 +165,7 @@ Tonal arc: a dark house open on 01 to 03, overcast land in mid tones on 04 to 06
 
 **2. COPY, final.**
 - Kicker: `PALMER · OCTOBER 4TH · CANDIDATE FORUM` (C01) (38)
-- Headline: `57 of 112 said` / `outlaw AI data centers.` (C11, C10) (38, 8 words)
+- Headline: `57 of 112 said outlaw large` / `AI data centers in Mat-Su.` (C11, C10) (54, 11 words; scoped to the question as asked after Codex review)
 - Deck line: `Three other rooms decide.` (C24, C39, C44) (25, 4 words)
 
 **3. Reader takeaway.** A room in Palmer answered loudly, and the decision isn't in that room.
@@ -543,6 +543,7 @@ Every place the build left the dossiers above, measured off the renders of round
 - Round 3: Slide 02's armrest has an 18 px rounded nosing, and the phone's screen tints the walnut beside it and lifts the velvet nap near it, inside the material rather than as a painted pool (a painted pool over the declared contact is a qa.py fail). Slide 03's boards each take the spill at their own level, each seam has a lit lip on its screen side, and the near fade is lighter. Slide 04's haze is denser (exp2 0.0128) so the far DEM edge dissolves into the horizon colour, the violet hemisphere fill is stronger, and the camera heading moved from 6 to 3.5 degrees so the Port MacKenzie ring sits inside the margin. Slide 05's contour grid is smoothed further, the type reserve tapers over 30 px, and the disc carries a lit bevel band inside its west rim. Slide 06's footer reserve is two small boxes instead of a full-width band, the water erases the land lay more firmly, and the case is softened by 0.8 px. Slide 07's door bounce is a feathered ellipse, the folder is a lighter paper tone, and the table lip is brighter.
 - Round 4 (the flow critic's work order): copy cuts for rhythm, 03 body to "About 200 came. 112 answered, and each could see the tally grow. 22 legislative candidates were there too." (C04 and C05 leave 03; the districts stay on 08), 05 body drops the 2,100 comments (C28 now NOT USED), and 04's last sentence reads "A data center bill stopped in the Legislature." (C45 added). Slide 03 draws every seat back of the house as its own defocused panel up the rake, so each disc sits on a seat, and the far doors are a door-shaped gold glow. Slide 07 marches at 1296 x 948 (1.2x, 23 s; 1080 x 1350 would run past render.py's 30 s cap). Slide 04's exposure is 1.95. Slide 05's tint ramp is desaturated toward the overcast plan. Slide 06's lay is about 20 percent lower in value so the parcels are the bright mass. Slide 08's hillshade presmooth is halved. Slide 09's spill rake carries further along the left wall's wainscot. Slide 02's armrest is a 540 px bar the phone overhangs.
 - Round 5, the craft cycle on the scorer's frames: 07 gets an edge anti-alias pass over the march (pixels where luminance steps across a silhouette blend with their 3x3 neighbourhood). 03's house floor carries the screen's spill past the lip, so the house meets the stage. 04's terrain mesh is 1500 x 1240 with its heights smoothed over two cells and the sea floor set under the water plane, so the coasts cross the water on smooth curves instead of DEM cell steps.
+- After the merge review: the cover headline keeps the question's scope, "57 of 112 said outlaw large / AI data centers in Mat-Su." (the question asked about large AI and data center development in areas like Mat-Su, C10, and "outlaw them entirely" answers that, C11). The docket refresh stamps carry 2026-10-11, the Anchorage date the items were checked, not the run date.
 - Tonal arc, measured (round 2): the frames sit at L* 8 (01), 10 (02, 03, 04, 06), 12 (07, 09), 24 (05) and 82 (08). The declared peak, 08, is the brightest by a wide margin. The darkest by mean is 01 at 7.8, because its house is black above and below a narrow lit band; 07 measures 11.5, within 4 L* of it, because its lit table and folder fill the lower half. The arc moved by that much: the dark run is 01 to 04 with 06 and 07, and 07 is the darkest in register (one downlight on walnut black), not by mean. Reported here rather than re-keyed toward a number.
 - Slide 02: the phone now casts onto the walnut toward the lower right, away from the key at azimuth 318, a tight core and a soft penumbra, declared as a contact pair measured with contact_probe (dL 16.1).
 - Slide 09: frontal elevation of the doors at x 506 to 978, y 618 to 1196, the right leaf swung away and foreshortened, the gap at x 740 to 766. The headline breaks after "Senate" so it fits two lines at the deck's display size. The spill wedge runs down and to the lower left from the gap, with the open leaf's cast on its right side.
@@ -554,17 +555,17 @@ GATE STATUS -- generated by scripts/gate_status.py from the artifacts in out/202
 [PASS] render         9/9 slides OK, 0 page errors, 0 overflow warnings
 [WARN] qa.py          WARN, 0 fails, 5 warns
 [PASS] dossier_check  PASS, 9 dossiers, 0 fails, 0 warns
-[PASS] reconciled     BUILD RECONCILIATION present, 17 line(s), 9406 chars
+[PASS] reconciled     BUILD RECONCILIATION present, 18 line(s), 9779 chars
 [PASS] caption_check  PASS, 895 chars, hook 118, 3 hashtags
 [PASS] word_ban       word_ban: 0 banned word(s) in out/2026-10-12 and the docket
 [PASS] copy_sync      copy_sync_check: PASS -- 47 authored slide strings all present in the render; alaskaaihq.com on every slide; no banned slide string; no curl
 [PASS] aggregate      aggregate_check: PASS -- 14 aggregate assertion(s) detected, 14 declared -> out/2026-10-12/aggregate_report.json
 [PASS] plan_drift     plan_drift_check: PASS -- 65 claims indexed, 0 declared counts checked, 6 body quote(s) checked, 0 11a region set(s) checked, 0 drift(s)
-[WARN] tonal_arc      darkest: the plan puts it on 07, and 07 measures L* 12.0, 5th of 9 by darkness; 01 holds that place at L* 7.8. Re-key 07 or say in the recon
+[WARN] tonal_arc      darkest: the plan puts it on 07, and 07 measures L* 12.0, 5th of 9 by darkness; 01 holds that place at L* 8.0. Re-key 07 or say in the recon
 [PASS] bespoke        bespoke_check: PASS -- 9 slides, median pairwise art similarity 0.069 (fail at 0.60), max pair 0.115, drawn share 66% (127 drawn vs 66 block
 [PASS] scanner_sync   the live scan page still matches the routine contract
 [PASS] ledger_guard   LEDGER GUARD: PASS, 7 cron-written file(s) untouched
-[PASS] docket_dates   docket dates clean at 2026-10-12: 399 assertions over 6 fixtures and 36 ledger items
+[PASS] docket_dates   docket dates clean at 2026-10-11: 399 assertions over 6 fixtures and 36 ledger items
 [PASS] gas_watch      67 day(s) on record, 54 verified, no gaps, latest 2026-10-10, EIA through 202607 over 131 months, model misses by 6.82%
 [WARN] gas_watch_live UNRESOLVED github: CINGSA posted its 2026-10-10 storage reading at 20:47 Alaska (04:47 UTC October 11th), after the last gas watch collection ran at 22:39 UTC October 10th. The two scheduled collections that would pick it up (04:40 and 07:20 UTC) had not been started by GitHub at 08:12 UTC, and a manual workflow_dispatch from this session is refused with 403 Resource not accessible by integration. The collector, parser and page are healthy (the 22:39 UTC run succeeded); the published reading is one evening reading behind until GitHub runs the next scheduled collection. This is the standing queue item (repeat 10), an owner decision on schedules or Actions credentials.
 [PASS] cron_health    6 scheduled workflows audited at 2026-10-11T06:17:56.478468Z
