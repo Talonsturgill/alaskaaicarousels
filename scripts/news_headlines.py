@@ -25,6 +25,7 @@ import urllib.robotparser
 import news_feeds
 from html.parser import HTMLParser
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'ledger/news/latest.json'
@@ -395,7 +396,7 @@ def markup(today: str, data: dict | None = None) -> str:
     publisher = selected['publisher'] if selected else ''
     date = ''
     if selected:
-        observed = instant(selected['first_seen_at'])
+        observed = instant(selected['first_seen_at']).astimezone(ZoneInfo('America/Anchorage'))
         day = observed.day
         suffix = 'th' if 10 <= day % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
         date = f'{observed:%B} {day}{suffix}'

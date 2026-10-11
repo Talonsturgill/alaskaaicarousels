@@ -245,6 +245,17 @@ class NewsSelection(unittest.TestCase):
         result['feeds'][1]['url'] = n.RSS_FEEDS[1]
         self.assertIn('fewer than two independent publisher feeds are available', n.health_problems(result, NOW))
 
+    def test_visible_dates_use_the_alaska_publication_day(self):
+        for seen, checked, expected in [
+            ('2026-10-10T03:30:00Z', '2026-10-10T20:00:00Z', 'October 9th'),
+            ('2026-11-04T08:30:00Z', '2026-11-04T20:00:00Z', 'November 3rd'),
+        ]:
+            article = row()
+            article['first_seen_at'] = seen
+            state = n.snapshot({'articles': []}, n.instant(checked), {'articles': [article]}, rotate=True)
+            markup = n.markup(checked[:10], state)
+            self.assertIn('datetime="' + seen + '">' + expected + '</time>', markup)
+
     def test_source_headlines_remain_verbatim_and_house_copy_still_has_gates(self):
         import site_build as build
         import site_signoff as signoff

@@ -110,9 +110,10 @@
     }, Math.max(0, cadence - (motion.matches ? 0 : fade) - (performance.now() - shownAt)));
   }
   function dateText(value) {
-    var observed = new Date(value), day = observed.getUTCDate();
+    var observed = new Date(value), zone = 'America/Anchorage';
+    var day = Number(observed.toLocaleDateString('en-US', {day:'numeric', timeZone:zone}));
     var suffix = day % 100 >= 10 && day % 100 <= 20 ? 'th' : ({1:'st', 2:'nd', 3:'rd'}[day % 10] || 'th');
-    return observed.toLocaleDateString('en-US', {month:'long', timeZone:'UTC'}) +
+    return observed.toLocaleDateString('en-US', {month:'long', timeZone:zone}) +
       ' ' + day + suffix;
   }
   function select(next) {

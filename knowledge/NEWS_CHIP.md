@@ -3,7 +3,8 @@
 The homepage news strip replaces its daylight readout. It reuses Texas AI Docket's compact
 carousel, with Alaska fonts and colors, previous and next controls, and no visible count or
 pause icon. Headlines, source and original date fade together every five seconds. Source and
-date share the heading row. Hover, focus and pressing a link hold it steady. Reduced-motion
+date share the heading row. Dates display in Alaska time, preserving evening publication days
+across UTC midnight. Hover, focus and pressing a link hold it steady. Reduced-motion
 preferences use manual navigation. Background and offscreen tabs stop their timers.
 
 ## Selection

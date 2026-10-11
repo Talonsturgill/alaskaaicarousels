@@ -43,6 +43,14 @@ page.on('console', m => {
   if (m.type() === 'error' && !HARNESS.test(m.text())) errs.push(m.text());
 });
 await page.route('**://challenges.cloudflare.com/**', r => r.abort());
+// Keep the external news service deterministic in this Ask suite, including before
+// its first publication. Carousel/network recovery is covered by news_headline.mjs.
+const newsSeed = (await import('node:fs')).readFileSync(
+  new URL('../ledger/news/latest.json', import.meta.url), 'utf8');
+await page.route('**/news-data/ledger/news/latest.json*', r => r.fulfill({
+  status: 200, contentType: 'application/json', body: newsSeed,
+  headers: { 'access-control-allow-origin': '*' },
+}));
 
 // The worker, stubbed. Two turns, so conversation memory is observable.
 let seen = [];

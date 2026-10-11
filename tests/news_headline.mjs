@@ -18,6 +18,8 @@ article = {'title': 'Alaska AI researchers open a new robotics laboratory to tes
            'url': 'https://www.ktoo.org/news-browser-fixture/', 'first_seen_at': '2026-09-17T19:00:00Z'}
 states = {'current': news.snapshot({'articles': []}, now, {'articles': [article]}),
           'empty': news.snapshot({'articles': []}, now)}
+states['source-date'] = news.snapshot({'articles': []}, now,
+    {'articles': [{**article, 'first_seen_at': '2026-09-17T03:30:00Z'}]}, rotate=True)
 titles = ['AI diagnoses pancreatic cancer in screening trials', 'ChatGPT faces new school privacy rules',
           'Anthropic releases smaller coding models', 'AI forecasts hurricanes along the coast',
           'AI accelerators reduce electricity consumption', 'Robots use AI to sort textile waste',
@@ -132,6 +134,15 @@ try {
     await page.close();checked++;
   }
   const base=fixtures.current.state;
+  {
+    const source=fixtures['source-date'].state;
+    const page=await pageFor(source,390,source);
+    await loaded(page,'/__news_source-date.html');
+    assert.equal(await activeLink(page).locator('.news-date').textContent(),'September 16th',
+      'an Alaska evening publication keeps its local day after UTC midnight');
+    assert.equal(await activeLink(page).locator('.news-date').getAttribute('datetime'),'2026-09-17T03:30:00Z');
+    await page.close();checked++;
+  }
   const fresh=structuredClone(base);
   fresh.checked_at='2026-09-17T20:01:00Z';
   fresh.selected={...fresh.selected,title:'Alaska AI technique makes surgery safer and more precise',url:'https://www.akbizmag.com/2026/ai-surgery/',publisher:'Alaska Business'};
