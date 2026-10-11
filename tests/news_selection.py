@@ -50,6 +50,9 @@ class NewsSelection(unittest.TestCase):
     def test_global_and_brand_only_coverage_is_rejected(self):
         for title in ['AI data center opens in Malaysia', 'Arctic energy project opens in Norway',
                       'Alaska Airlines launches AI pricing for Seattle flights',
+                      'Kodiak Robotics expands AI autonomous truck operations in Texas',
+                      'Bethel University opens a new AI computing lab in Minnesota',
+                      'Palmer develops a new AI computing chip in England',
                       'Alaska hosts a community reading program', 'Alaska football team wins with AI forecasts',
                       'Alaska sponsored webinar introduces AI tools', 'This Day in Alaska History on oil exploration']:
             article = row(title)
@@ -57,6 +60,9 @@ class NewsSelection(unittest.TestCase):
                 article['summary'] = 'Alaska Airlines is expanding its Seattle-based operation.'
             self.assertFalse(n.eligible(article, NOW), title)
         self.assertTrue(n.eligible(row('Alaska Airlines opens an AI operations hub in Anchorage'), NOW))
+        local = row('Kodiak plans a new electrical power link')
+        local['summary'] = 'The project would serve the island community in Alaska.'
+        self.assertTrue(n.eligible(local, NOW))
 
     def test_feed_summary_can_establish_real_alaska_context(self):
         article = row('Utilities receive funds for a new electrical intertie')

@@ -11,7 +11,8 @@ preferences use manual navigation. Background and offscreen tabs stop their time
 
 Every story needs an explicit Alaska location or institution in its headline or bounded source
 excerpt, plus AI, computing, energy or relevant technology. Alaska Airlines' brand alone and
-Arctic reporting from other countries do not establish Alaska relevance. Sports, promotional
+Arctic reporting from other countries do not establish Alaska relevance. Common names such as
+Kodiak, Bethel and Palmer need explicit Alaska context. Sports, promotional
 items, daily newscast compilations and republished time capsules are excluded. The same tests
 cover the seed, cache, responses and every queued story. An outlet's address never qualifies a
 national story. Publisher headlines are attributed quotations and remain verbatim, including

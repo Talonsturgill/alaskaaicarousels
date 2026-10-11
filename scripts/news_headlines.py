@@ -45,7 +45,7 @@ EDITION_ANCHOR = dt.datetime(1970, 1, 1, 1, 23, tzinfo=UTC)
 UA = 'AlaskaAIHQ/1.0 (+https://alaskaaihq.com)'
 ALASKA = re.compile(r'\b(?:alaska|alaskan|alaskans|anchorage|fairbanks|juneau|kenai|'
                     r'cook inlet|railbelt|north slope|prudhoe bay|mat[- ]su|'
-                    r'palmer|wasilla|kodiak|valdez|ketchikan|sitka|nome|bethel|'
+                    r'wasilla|ketchikan|'
                     r'kotzebue|utqiagvik|eielson|jber|beluga[- ]healy|UAF|UAA)\b', re.I)
 BRAND_ONLY = re.compile(r'\bAlaska Airlines?\b', re.I)
 TECH = re.compile(r'\b(?:AI|artificial intelligence|machine learning|data[- ]cent(?:er|re)s?|'

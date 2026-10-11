@@ -190,6 +190,8 @@ try {
     {...fresh,selected:{...fresh.selected,url:'https://www.akbizmag.com/2020/09/11/archive/'}},
     {...fresh,selected:{...fresh.selected,title:'A community reading program opens today',
       url:'https://openai.com/index/community-reading',publisher:'OpenAI',feed:'https://openai.com/news/rss.xml'}},
+    {...fresh,selected:{...fresh.selected,title:'Kodiak Robotics expands AI autonomous truck operations in Texas'}},
+    {...fresh,selected:{...fresh.selected,title:'Bethel University opens a new AI computing lab in Minnesota'}},
   ];
   for(const bad of badStates) {
     const page=await pageFor(base,390,bad);
@@ -197,7 +199,7 @@ try {
     assert.equal(await activeLink(page).locator('.news-title').textContent(),base.selected.title,'invalid or older data must not replace a good headline');
     await page.close();checked++;
   }
-  for(const offTopic of [badStates[6],badStates[7],badStates[8],badStates[9],badStates[10]]) {
+  for(const offTopic of [badStates[6],badStates[7],badStates[8],badStates[9],badStates[10],badStates[12],badStates[13]]) {
   for(const initial of ['current','empty']) {
     const page=await pageFor(base,390,offTopic);
     await page.addInitScript(data=>localStorage.setItem('alaska-ai-news-v2',JSON.stringify(data)),offTopic);
