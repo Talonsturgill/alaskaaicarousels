@@ -17,7 +17,9 @@
   var paused = motion.matches, held = false, hovering = false, inView = true;
   var pool = [], index = 0, editionKey = '', shownAt = 0, cycleTimer, swapTimer, animation, revision = 0;
   var storyDialog = document.getElementById('news-story');
+  var canPreview = typeof storyDialog.showModal === 'function';
   var dialogURL = '', restoreFocus = false, backdropPressed = false;
+  if (!canPreview) chip.title = 'Read the publisher report.';
   chip.dataset.newsCadence = String(cadence);
   function relevant(title, group, summary) {
     var text = title + ' ' + summary;
@@ -159,14 +161,17 @@
     var fragment = document.createDocumentFragment();
     pool.forEach(function (story, i) {
       var slide = template.cloneNode(true), original = slide.querySelector('.news-link');
-      var link = document.createElement('button');
-      link.className = 'news-link';
-      link.type = 'button';
+      var link = original;
+      if (canPreview) {
+        link = document.createElement('button');
+        link.className = 'news-link';
+        link.type = 'button';
+        link.setAttribute('aria-haspopup', 'dialog');
+        link.setAttribute('aria-controls', 'news-story');
+        while (original.firstChild) link.appendChild(original.firstChild);
+        original.replaceWith(link);
+      } else link.href = story.url;
       link.dataset.newsUrl = story.url;
-      link.setAttribute('aria-haspopup', 'dialog');
-      link.setAttribute('aria-controls', 'news-story');
-      while (original.firstChild) link.appendChild(original.firstChild);
-      original.replaceWith(link);
       slide.setAttribute('aria-label', (i + 1) + ' of ' + pool.length);
       slide.setAttribute('aria-hidden', String(i !== 0));
       slide.inert = i !== 0;
@@ -263,7 +268,7 @@
     if (pool.length && before === editionKey) select((index + direction + pool.length) % pool.length);
   }
   function openStory(story, keyboard) {
-    if (storyDialog.open || !story || !validStory(story, Date.parse(active.checked_at), Date.now())) return;
+    if (!canPreview || storyDialog.open || !story || !validStory(story, Date.parse(active.checked_at), Date.now())) return;
     pause();
     dialogURL = story.url;
     restoreFocus = keyboard;
@@ -283,7 +288,7 @@
     updateControls();
   }
   chip.addEventListener('click', function (event) {
-    if (event.target.closest('.news-controls') || !pool[index]) return;
+    if (!canPreview || event.target.closest('.news-controls') || !pool[index]) return;
     var control = event.target.closest('.news-link');
     if (control && (control.tagName !== 'BUTTON' || control.dataset.newsUrl !== pool[index].url)) return;
     event.preventDefault();
@@ -299,7 +304,10 @@
     var first = storyDialog.querySelector('.news-story-close');
     var last = storyDialog.querySelector('.news-story-source');
     var focus = document.activeElement;
-    if (event.shiftKey && (focus === first || focus === storyDialog.querySelector('.news-story-title'))) {
+    if (event.shiftKey && focus === storyDialog.querySelector('.news-story-title')) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && focus === first) {
       event.preventDefault();
       last.focus();
     } else if (!event.shiftKey && focus === last) {
@@ -357,9 +365,14 @@
   chip.addEventListener('focusout', function (event) {
     if (!chip.contains(event.relatedTarget)) setTimeout(resume, 0);
   });
-  chip.addEventListener('pointerdown', pause);
-  chip.addEventListener('pointerup', function () { setTimeout(resume, 0); });
-  chip.addEventListener('pointercancel', function () { setTimeout(resume, 0); });
+  chip.addEventListener('pointerdown', function (event) {
+    if (!event.target.closest('.news-controls')) pause();
+  });
+  function releaseStory(event) {
+    if (!event.target.closest('.news-controls')) setTimeout(resume, 0);
+  }
+  chip.addEventListener('pointerup', releaseStory);
+  chip.addEventListener('pointercancel', releaseStory);
   motion.addEventListener('change', function () {
     if (motion.matches) {
       paused = true;

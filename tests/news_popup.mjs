@@ -64,9 +64,10 @@ const browser=await chromium.launch();
 const feed='**/news-data/ledger/news/latest.json*';
 const activeControl=page=>page.locator('.news-slide[aria-hidden="false"] .news-link');
 let checked=0;
-async function reader(name='normal',width=390,height=844,motion='reduce',touch=false) {
+async function reader(name='normal',width=390,height=844,motion='reduce',touch=false,modal=true) {
   const state=fixtures[name].state;
   const page=await browser.newPage({viewport:{width,height},reducedMotion:motion,hasTouch:touch,isMobile:touch});
+  if(!modal) await page.addInitScript(()=>{HTMLDialogElement.prototype.showModal=undefined;});
   await page.clock.install({time:new Date(state.checked_at)});
   let incoming=state;
   await page.route(feed,r=>r.fulfill({json:incoming,headers:{'access-control-allow-origin':'*'}}));
@@ -125,9 +126,18 @@ try {
     await activeControl(page).focus();
     await page.keyboard.press(key);
     await page.waitForFunction(()=>document.querySelector('#news-story').open);
-    for(let i=0;i<6;i++) {
-      await page.keyboard.press('Tab');
-      assert.equal(await page.evaluate(()=>!!document.activeElement.closest('#news-story')),true,'focus stays in the native modal');
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.locator('.news-story-close').evaluate(el=>el===document.activeElement),true,
+      'reverse Tab from the title reaches the preceding close control');
+    for(const direction of ['Tab','Shift+Tab']) {
+      const visited=new Set();
+      for(let i=0;i<6;i++) {
+        await page.keyboard.press(direction);
+        assert.equal(await page.evaluate(()=>!!document.activeElement.closest('#news-story')),true,'focus stays in the native modal');
+        visited.add(await page.evaluate(()=>document.activeElement.className));
+      }
+      assert.ok(visited.has('news-story-close') && visited.has('news-story-source'),
+        'both keyboard directions reach close and the optional source');
     }
     await page.keyboard.press('Escape');
     await closed(page);
@@ -167,6 +177,38 @@ try {
     await page.mouse.click(5,5);
     await closed(page);
     await page.close();checked++;
+  }
+  {
+    const {page}=await reader('normal',390,844,'no-preference',true);
+    await page.evaluate(()=>{
+      document.activeElement.blur();
+      const control=document.querySelector('.news-next');
+      control.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch'}));
+      control.dispatchEvent(new PointerEvent('pointerup',{bubbles:true,pointerType:'touch'}));
+      control.dispatchEvent(new MouseEvent('click',{bubbles:true,detail:1}));
+    });
+    const url=await activeControl(page).getAttribute('data-news-url');
+    assert.equal(await page.evaluate(()=>document.activeElement.tagName),'BODY','simulate a touch browser that does not focus tapped buttons');
+    await page.clock.runFor(16000);
+    assert.equal(await activeControl(page).getAttribute('data-news-url'),url,
+      'manual touch selection stays paused without hover or button focus');
+    assert.equal(await page.locator('.news-chip').getAttribute('data-news-playing'),'false');
+    await page.close();checked++;
+  }
+  {
+    const {page,state}=await reader('normal',390,844,'reduce',false,false);
+    const link=activeControl(page);
+    assert.equal(await link.evaluate(el=>el.tagName),'A','an unsupported modal keeps a working source link');
+    const url=await link.getAttribute('href');
+    assert.ok(state.editions[0].stories.some(s=>s.url===url));
+    assert.equal(await page.locator('#news-story').isVisible(),false);
+    await page.context().route(url,r=>r.fulfill({contentType:'text/html',body:'<title>Compatibility source link</title>'}));
+    const opened=page.waitForEvent('popup');
+    await link.click();
+    const source=await opened;
+    await source.waitForLoadState();
+    assert.equal(source.url(),url);
+    await source.close();await page.close();checked++;
   }
   {
     const {page,state}=await reader();

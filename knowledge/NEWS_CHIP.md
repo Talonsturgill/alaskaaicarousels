@@ -15,7 +15,7 @@ closes it. The carousel stays paused while reading, including through refresh or
 closing applies the newest eligible pool. Keyboard dismissal restores headline focus.
 Ordinary pointer dismissal resumes rotation after the pointer leaves the strip. A summary
 never requests an article page or opens a new tab. Without JavaScript, the original source
-link remains available.
+link remains available, including browsers without native modal support.
 
 ## Selection
 
