@@ -589,12 +589,13 @@
    "source_url": "https://www.energy.gov/hgeo/project-selections-broad-agency-announcement-de-foa-0003605-restoring-reliability-coal-0",
    "source_outlet": "U.S. Department of Energy",
    "source_is_primary": true,
-   "date_of_source": "2026-10-11",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.93,
    "needs_softening": true,
    "suggested_phrasing": "a proposed 1,250 MW (target gross) coal plant; the DOE money is for engineering and design",
-   "notes": "This is a target capacity for a proposed plant, not a built plant. The DOE text continues 'power facility with integrated CCUS, sited in the Matanuska-Susitna Borough of Southcentral Alaska' and says it would capture 'greater than 90%' of CO2, 'an estimated 8.26 million tonnes annually.' The Sentinel places the plant near Skwentna, with carbon piped more than 60 miles to Cook Inlet."
+   "notes": "The source page is undated; date_of_source is left blank and the retrieval date is recorded in retrieved. This is a target capacity for a proposed plant, not a built plant. The DOE text continues 'power facility with integrated CCUS, sited in the Matanuska-Susitna Borough of Southcentral Alaska' and says it would capture 'greater than 90%' of CO2, 'an estimated 8.26 million tonnes annually.' The Sentinel places the plant near Skwentna, with carbon piped more than 60 miles to Cook Inlet.",
+   "retrieved": "2026-10-11"
   },
   {
    "id": "C44",
@@ -881,10 +882,11 @@
    "source_url": "https://en.wikipedia.org/wiki/Houston,_Alaska",
    "source_outlet": "Wikipedia, Houston, Alaska",
    "source_is_primary": false,
-   "date_of_source": "2026-10-11",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.9,
-   "notes": "Fetched by the showrunner. Used only to place the Houston label on the maps on slides 04 and 05; no coordinate is printed. The DNR notice places the conveyance about two miles north of Houston (C24 notes), so the disc's placement is design, labelled as drawn to area and not to a surveyed line."
+   "notes": "The 2026-10-11 date was the retrieval date, not a publication date; it is recorded in retrieved. Fetched by the showrunner. Used only to place the Houston label on the maps on slides 04 and 05; no coordinate is printed. The DNR notice places the conveyance about two miles north of Houston (C24 notes), so the disc's placement is design, labelled as drawn to area and not to a surveyed line.",
+   "retrieved": "2026-10-11"
   }
  ],
  "stories_surviving": [
