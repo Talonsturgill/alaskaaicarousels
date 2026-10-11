@@ -4151,8 +4151,8 @@
       "kind": "regulatory-docket",
       "status": "pending-decision",
       "decider": "U.S. Department of Energy",
-      "public_access": "open",
-      "access_note": "Anyone may respond. Written responses are accepted on or before October 9th under docket DOE-HQ-2026-1123, and the department holds a public webinar on Wednesday September 16th from 3 to 4 p.m. Eastern, which is 11 a.m. to noon in Anchorage.",
+      "public_access": "closed",
+      "access_note": "The written response period under docket DOE-HQ-2026-1123 closed on October 9th. The department has not said when it will act on the responses.",
       "summary": "A request for information implementing the August 26th emergency declaration on securing the United States bulk-power system. It asks which equipment and transactions should count as covered, naming grid-connected inverters, battery energy storage, universal power systems, generators and industrial control systems. The notice grounds the emergency in a finding that rapid growth of advanced manufacturing, data centers, artificial intelligence and defense production has increased the nation's dependence on abundant, reliable electricity. Alaska's Railbelt and rural utilities are mid-buildout on the inverter and storage categories listed, so a restriction reprices projects already in planning.",
       "key_dates": [
         {
