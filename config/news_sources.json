@@ -1,0 +1,51 @@
+{
+  "public_feed": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/news-data/ledger/news/latest.json",
+  "sources": {
+    "ktoo.org": [
+      "KTOO",
+      "alaska-public-media"
+    ],
+    "akbizmag.com": [
+      "Alaska Business",
+      "alaska-business"
+    ],
+    "alaska-native-news.com": [
+      "Alaska Native News",
+      "alaska-native-news"
+    ],
+    "datacenterdynamics.com": [
+      "Data Center Dynamics",
+      "dcd"
+    ],
+    "sciencedaily.com": [
+      "ScienceDaily",
+      "science"
+    ],
+    "uaf.edu": [
+      "UAF",
+      "university"
+    ],
+    "alaska.edu": [
+      "University of Alaska",
+      "university"
+    ]
+  },
+  "first_party_groups": [
+    "university"
+  ],
+  "feeds": [
+    "https://www.ktoo.org/feed/",
+    "https://www.ktoo.org/feed/?paged=2",
+    "https://www.ktoo.org/feed/?paged=3",
+    "https://www.akbizmag.com/feed/",
+    "https://www.akbizmag.com/feed/?paged=2",
+    "https://alaska-native-news.com/feed/",
+    "https://alaska-native-news.com/category/science/feed/",
+    "https://www.datacenterdynamics.com/en/rss/",
+    "https://www.sciencedaily.com/rss/top/technology.xml",
+    "https://www.uaf.edu/news/"
+  ],
+  "formats": {
+    "https://www.uaf.edu/news/": "university-index"
+  }
+}

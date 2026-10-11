@@ -61,6 +61,7 @@ Run:
 import argparse
 import html as _html
 import json
+import news_headlines
 import os
 import re
 import sys
@@ -194,7 +195,7 @@ def visible(page_html, drop_svg=True, sep=" "):
     contraction_gate carries the same exclusion for the same reason; these two
     are meant to agree, and that is why the rule is spelled out in both.
     """
-    txt = DECK_CARD.sub(" ", page_html)
+    txt = DECK_CARD.sub(" ", news_headlines.authored_html(page_html))
     txt = re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     if drop_svg:
         txt = re.sub(r"(?s)<svg.*?</svg>", " ", txt)
