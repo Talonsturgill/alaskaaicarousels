@@ -127,10 +127,12 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.96,
-   "notes": "Confirmed by WebFetch of https://r.jina.ai/ on the PDF URL. The counts were also read from the showrunner's pypdf extraction at /home/user/alaskaaicarousels/out/2026-10-12/scouts/matsu_state_pdf.txt (scripts/fetch_pdf_text.py). The verbatim combines the question line with the printed total line, and '...' marks an elision. The three options sum exactly to 112 (57+8+47), matching the printed total. The PDF carries no date of its own. The Oct 9th article links it as '2026 Flip the Script State Edition Results.pdf', and the file path is /2026/10/. A respondent count, not a sample of Mat-Su."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Confirmed by WebFetch of https://r.jina.ai/ on the PDF URL. The counts were also read from the showrunner's pypdf extraction at /home/user/alaskaaicarousels/out/2026-10-12/scouts/matsu_state_pdf.txt (scripts/fetch_pdf_text.py). The verbatim combines the question line with the printed total line, and '...' marks an elision. The three options sum exactly to 112 (57+8+47), matching the printed total. The PDF carries no date of its own. The Oct 9th article links it as '2026 Flip the Script State Edition Results.pdf', and the file path is /2026/10/. A respondent count, not a sample of Mat-Su.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C11",
@@ -140,12 +142,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.96,
    "needs_softening": true,
    "suggested_phrasing": "57 of 112 people who answered on their phones at the Sentinel's candidate forum chose 'Outlaw them entirely'",
-   "notes": "57/112 = 50.9 percent. Confirmed via r.jina.ai and the pypdf extraction. The forum audience was self-selected and answered with results visible on screen, so this is not a scientific poll and must never be written as 'Mat-Su residents want' or 'half of Mat-Su'."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. 57/112 = 50.9 percent. Confirmed via r.jina.ai and the pypdf extraction. The forum audience was self-selected and answered with results visible on screen, so this is not a scientific poll and must never be written as 'Mat-Su residents want' or 'half of Mat-Su'.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C12",
@@ -155,12 +159,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.96,
    "needs_softening": true,
    "suggested_phrasing": "47 in the room chose 'Allow them, but with strict regulations'",
-   "notes": "47/112 = 42.0 percent. The verbatim is the pypdf extraction string, which has no space before 47. The r.jina.ai render reads 'Allow them, but with strict regulations': 47. Self-selected forum audience."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. 47/112 = 42.0 percent. The verbatim is the pypdf extraction string, which has no space before 47. The r.jina.ai render reads 'Allow them, but with strict regulations': 47. Self-selected forum audience.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C13",
@@ -170,12 +176,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.96,
    "needs_softening": true,
    "suggested_phrasing": "8 in the room chose 'No, allow them'",
-   "notes": "8/112 = 7.1 percent. The option text is 'No, allow them', answering the question 'Should the state restrict...'. Self-selected forum audience."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. 8/112 = 7.1 percent. The option text is 'No, allow them', answering the question 'Should the state restrict...'. Self-selected forum audience.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C14",
@@ -200,12 +208,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.88,
    "needs_softening": true,
    "suggested_phrasing": "69 in the room chose '$0, no state subsidy'",
-   "notes": "TOTAL MISMATCH. The options are $0 69, up to $5B 19, up to $10B 17, $20B or more 13, and state pays the whole thing up to $60B 7. They sum to 125, but the PDF prints 127. The Sentinel's '55% opposed' (C16) matches 69/125 = 55.2 percent, while 69/127 = 54.3 percent. Prefer the raw count '69' and avoid the denominator, or cite the Sentinel's 55 percent with attribution. Self-selected audience."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. TOTAL MISMATCH. The options are $0 69, up to $5B 19, up to $10B 17, $20B or more 13, and state pays the whole thing up to $60B 7. They sum to 125, but the PDF prints 127. The Sentinel's '55% opposed' (C16) matches 69/125 = 55.2 percent, while 69/127 = 54.3 percent. Prefer the raw count '69' and avoid the denominator, or cite the Sentinel's 55 percent with attribution. Self-selected audience.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C16",
@@ -230,12 +240,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.88,
    "needs_softening": true,
    "suggested_phrasing": "52 in the room chose 'Both equally'",
-   "notes": "TOTAL MISMATCH. The options (gas pipeline 51, renewables 28, both 52) sum to 131, but the PDF prints 133. Use the raw counts and not percentages. Self-selected audience."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. TOTAL MISMATCH. The options (gas pipeline 51, renewables 28, both 52) sum to 131, but the PDF prints 133. Use the raw counts and not percentages. Self-selected audience.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C18",
@@ -245,12 +257,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.88,
    "needs_softening": true,
    "suggested_phrasing": "51 in the room chose 'Natural gas (pipeline)'",
-   "notes": "Same question as C17. Printed total 133 against an option sum of 131."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Same question as C17. Printed total 133 against an option sum of 131.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C19",
@@ -260,12 +274,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.88,
    "needs_softening": true,
    "suggested_phrasing": "28 in the room chose renewables",
-   "notes": "Same question as C17. Printed total 133 against an option sum of 131."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Same question as C17. Printed total 133 against an option sum of 131.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C20",
@@ -275,12 +291,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.94,
    "needs_softening": true,
    "suggested_phrasing": "52 of 105 in the room said no",
-   "notes": "Yes 32, No 52, and 'Only if it can be shown to pay for itself' 21. These sum exactly to the printed 105. 52/105 = 49.5 percent, which the article rounds to 'half opposed state funding for the proposed West Susitna Access Road.' '...' in the verbatim marks an elision."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Yes 32, No 52, and 'Only if it can be shown to pay for itself' 21. These sum exactly to the printed 105. 52/105 = 49.5 percent, which the article rounds to 'half opposed state funding for the proposed West Susitna Access Road.' '...' in the verbatim marks an elision.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C21",
@@ -290,12 +308,14 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.96,
    "needs_softening": true,
    "suggested_phrasing": "101 of 111 in the room",
-   "notes": "Options sum exactly to the printed 111 (2+101+2+6). Corroborated by the article: '101 of 111 respondents saying Alaska residents fishing for personal use'. Self-selected audience."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Options sum exactly to the printed 111 (2+101+2+6). Corroborated by the article: '101 of 111 respondents saying Alaska residents fishing for personal use'. Self-selected audience.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C22",
@@ -305,10 +325,12 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.87,
-   "notes": "In the pypdf string, district number and count run together ('House District 2529' = HD25, 29). The r.jina.ai render separates them as HD25 29, HD26 18, HD27 12, HD28 11, HD29 21, HD30 12. TOTAL MISMATCH: these sum to 103, but the PDF prints 104. Only about 104 of the roughly 200 attendees answered this question, which shows that counts vary by question."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. In the pypdf string, district number and count run together ('House District 2529' = HD25, 29). The r.jina.ai render separates them as HD25 29, HD26 18, HD27 12, HD28 11, HD29 21, HD30 12. TOTAL MISMATCH: these sum to 103, but the PDF prints 104. Only about 104 of the roughly 200 attendees answered this question, which shows that counts vary by question.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C23",
@@ -318,10 +340,12 @@
    "source_url": "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
    "source_outlet": "Mat-Su Sentinel (Flip the Script State Edition results)",
    "source_is_primary": true,
-   "date_of_source": "2026-10-09",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.87,
-   "notes": "Senate M 53, N 28 (printed 'Distirct' typo in source), O 38. TOTAL MISMATCH: these sum to 119, but the PDF prints 120. Low editorial value. Optional."
+   "notes": "The source document is undated; date_of_source is left blank, the date of the article that links it is kept in linked_date, and the fetch in retrieved. Senate M 53, N 28 (printed 'Distirct' typo in source), O 38. TOTAL MISMATCH: these sum to 119, but the PDF prints 120. Low editorial value. Optional.",
+   "retrieved": "2026-10-11",
+   "linked_date": "2026-10-09"
   },
   {
    "id": "C24",
