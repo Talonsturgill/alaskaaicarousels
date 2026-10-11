@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-10",
+  "updated": "2026-10-11",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1250,7 +1250,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-07-17",
@@ -1455,6 +1455,10 @@
         {
           "date": "2026-10-08",
           "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th and its attachments are still the application, the preliminary decision and a vicinity map. No final finding and decision is posted. The Houston City Council's hearing on a two-year moratorium on new data center construction stays on the calendar for October 8th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Re-read the State of Alaska notice for ADL 234762 today. Its revision history still ends on August 19th and its attachments are still the application, the preliminary decision and a vicinity map. No final finding and decision is posted. No outcome of the Houston City Council's October 8th moratorium hearing has been published that could be found today. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -2199,7 +2203,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-08-05",
@@ -2292,6 +2296,10 @@
         {
           "date": "2026-10-08",
           "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, is still archived as of September 26th, with one award expected between $2,500,000 and $3,500,000. No recipient is named and no award notice has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Re-read the Grants.gov listing today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, is still archived as of September 26th, with one award expected between $2,500,000 and $3,500,000. No recipient is named and no award notice has been published. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -2380,7 +2388,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-11",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-08-06",
@@ -2473,6 +2481,10 @@
         {
           "date": "2026-10-11",
           "note": "Searched the Federal Register today for Alaska documents published since October 1st and found no Air Force, Eielson or Oklo notice among the 37. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Searched the Federal Register today for any Eielson, Air Force microreactor or Oklo notice published since September 25th and found none. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -2757,7 +2769,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-08-06",
@@ -2822,6 +2834,10 @@
         {
           "date": "2026-10-08",
           "note": "New development on the ground side of this project. Terra Energy, an affiliate of Flatlands Energy, signed a 20 year lease in late May for 829 acres of University of Alaska land near Port MacKenzie for an industrial park tied to the coal plant, as reported by the Mat-Su Sentinel on October 6th and tracked here as its own entry. Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation for $89,000,000, and its description of the plant's loads names utilities, military installations, data centers and critical mineral operations."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project, a 1,250 MW coal plant with carbon capture in the Matanuska-Susitna Borough, with no award or cancellation notice. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/terra-energy-center-doe-grant/"
@@ -3514,7 +3530,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-11",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-08-25",
@@ -3607,6 +3623,10 @@
         {
           "date": "2026-10-11",
           "note": "Read the three texts on the Assembly's own page today. The August 18th original would have required plate data to be deleted within fourteen days, a warrant to search older data and an end to plate reader authority on January 1st, 2031. The mayor's substitute, AO 2026-108(S), and the sponsors' S-1 version, both dated September 15th, contain no fourteen-day rule and no 2031 end date. Both define surveillance technology by its use of machine learning, artificial intelligence or similar technology. The Assembly's page sets a second work session on Wednesday, October 14th, and returns the ordinance at the regular meeting on October 20th. The private camera rules in all three cover only feeds registered or connected to the city, so none of them reaches a store's own cameras, such as the Flock readers reported at Anchorage Lowe's stores."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Re-read the Anchorage Daily News report of October 7th today. The two competing proposals, the mayor's and a group of Assembly members', are still expected to go before the Assembly for a vote on October 20th. No action on the ordinance has been reported since. Checked and unchanged."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3662,7 +3682,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-09",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-08-31",
@@ -3735,6 +3755,10 @@
         {
           "date": "2026-10-09",
           "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Searched the Federal Register today for any later notice in WC Docket No. 26-173 published since September 25th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -4167,10 +4191,10 @@
       "id": "doe-bulk-power-rfi-2026",
       "title": "Which grid equipment gets restricted, and the reason given is AI",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "U.S. Department of Energy",
-      "public_access": "open",
-      "access_note": "Anyone may respond. Written responses are accepted on or before October 9th under docket DOE-HQ-2026-1123, and the department holds a public webinar on Wednesday September 16th from 3 to 4 p.m. Eastern, which is 11 a.m. to noon in Anchorage.",
+      "public_access": "closed",
+      "access_note": "The written response period under docket DOE-HQ-2026-1123 closed on October 9th. The department has not said when it will act on the responses.",
       "summary": "A request for information implementing the August 26th emergency declaration on securing the United States bulk-power system. It asks which equipment and transactions should count as covered, naming grid-connected inverters, battery energy storage, universal power systems, generators and industrial control systems. The notice grounds the emergency in a finding that rapid growth of advanced manufacturing, data centers, artificial intelligence and defense production has increased the nation's dependence on abundant, reliable electricity. Alaska's Railbelt and rural utilities are mid-buildout on the inverter and storage categories listed, so a restriction reprices projects already in planning.",
       "key_dates": [
         {
@@ -4212,7 +4236,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-09",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-09-13",
@@ -4273,6 +4297,10 @@
         {
           "date": "2026-10-09",
           "note": "Searched the Federal Register today for anything on the bulk-power system since October 1st and found no extension or correction to this request. Written responses are still accepted on or before October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "The written response period closed on October 9th. Searched the Federal Register today for anything on the bulk-power system published since September 25th and found only a routine FERC information collection notice of October 6th, with no extension or reopening of this request. The department has not said when it will act on the responses."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -4311,7 +4339,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-08",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-09-13",
@@ -4368,6 +4396,10 @@
         {
           "date": "2026-10-08",
           "note": "Searched the Federal Register today for any Department of Transportation notice since September 12th on the corridors request and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Searched the Federal Register today for any Department of Transportation notice on the corridors request published since September 25th and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
@@ -4493,7 +4525,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-09",
+      "last_updated": "2026-10-12",
       "history": [
         {
           "date": "2026-09-15",
@@ -4558,6 +4590,10 @@
         {
           "date": "2026-10-09",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee, last modified September 29th, with one recorded action (introduced and set for hearing on September 15th), and its title still carries the October 20th hearing. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-12",
+          "note": "Re-read the borough's legislative record today. Ordinance 2026-35 is still Pending in the Policies and Procedures Committee with one recorded action, introduced and set for hearing on September 15th. Its attachments are unchanged since September 17th and its title still carries the October 20th hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpb-weather-modification-code/"

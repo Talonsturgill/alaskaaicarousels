@@ -1,0 +1,192 @@
+{
+ "verdict": "revise",
+ "score_0_10": 7.1,
+ "reviewed_after_round": 3,
+ "arc_assessment": "The sequence tells the promised story: cover count, 02 pays the tally, the three rooms one per frame 04 to 07, ballot and one ask 08 to 09. Weak stretch 02 to 05: four text-heavy frames; 03 plants nothing about 'the state'.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "weak",
+   "pull": "body line only; gold sliver reads as a stray stroke"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "weak",
+   "pull": "the cover's unpaid 'three other rooms decide'"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "strong"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "strong"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "weak",
+   "pull": "'then stopped'; the gold line floats with no door"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slide 03",
+   "problem": "the reverse angle does not read as the room from 01: discs on a black void, no seats",
+   "fix": "draw the house's seat rows behind the discs"
+  },
+  {
+   "severity": "polish",
+   "where": "01-02 edge-tease",
+   "problem": "02's sliver reads as a stray stroke"
+  },
+  {
+   "severity": "polish",
+   "where": "07 D1 LINE",
+   "problem": "gold line floats with no door"
+  },
+  {
+   "severity": "polish",
+   "where": "03 D1 FAR",
+   "problem": "door glow reads as a 113th disc"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "02-05",
+   "problem": "four text-dense frames in a row",
+   "fix": "cut 03 and 05 bodies"
+  },
+  {
+   "severity": "polish",
+   "where": "06",
+   "problem": "breather lay at full contrast"
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "counters",
+   "problem": "all counters correct"
+  },
+  {
+   "severity": "major",
+   "where": "07",
+   "problem": "low march resolution: stair-stepped silhouettes and banding",
+   "fix": "raise the march resolution, dither the figure"
+  },
+  {
+   "severity": "polish",
+   "where": "05",
+   "problem": "saturated green reads off-palette"
+  },
+  {
+   "severity": "polish",
+   "where": "guard 5, 01 and 04",
+   "problem": "'sits with the Legislature' softer than 07; fact-check 'decide' for the University room"
+  },
+  {
+   "severity": "polish",
+   "where": "02",
+   "problem": "flat DOM screen"
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 5,
+  "why": "fourth text-heavy frame in a row"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "weakest_frames": [
+   {
+    "slide": 7,
+    "score": 6.2,
+    "cause": "b"
+   },
+   {
+    "slide": 3,
+    "score": 6.4,
+    "cause": "c"
+   },
+   {
+    "slide": 2,
+    "score": 6.8,
+    "cause": "b"
+   },
+   {
+    "slide": 8,
+    "score": 7.0,
+    "cause": "d"
+   },
+   {
+    "slide": 4,
+    "score": 7.2,
+    "cause": "d"
+   },
+   {
+    "slide": 6,
+    "score": 7.4,
+    "cause": "d"
+   },
+   {
+    "slide": 9,
+    "score": 7.5,
+    "cause": "c"
+   },
+   {
+    "slide": 5,
+    "score": 7.6,
+    "cause": "d"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     2,
+     3,
+     4,
+     6,
+     7,
+     9
+    ],
+    "problem": "seven of nine frames in an L* 8 to 13 band; the land run 04 to 06 does not lift",
+    "fix": "lift 04 and 06, darken 07"
+   },
+   {
+    "cause": "a",
+    "slides": [
+     4,
+     5,
+     6,
+     8
+    ],
+    "problem": "loadDEM is the data source, four different mark-makings; not cause a"
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "round4_response": "03 and 05 bodies cut, 04 body says 'stopped in the Legislature' (C45 added); 03 draws the house's seat panels behind the discs and a door-shaped far glow; 07 marches at 1.2x (1296 x 948, 23 s inside the 30 s cap; 1080 x 1350 would be about 60 s and fails the cap) with a 2.4 cm warped figure, brass toned toward #B08A3E; 04 exposure 1.95; 05 tint ramp desaturated; 06 lay value dropped about 20 percent; 08 hillshade presmooth halved; 09 tungsten rake carried further along the left wall; 02 armrest narrowed to a 540 px bar. Declined: the University 'decide' wording on 01 stays, guard 5 holds (no frame says the lease is for data centers)."
+}

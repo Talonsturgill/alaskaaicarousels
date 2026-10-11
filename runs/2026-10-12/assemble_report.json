@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-12/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 13008312,
+  "pdf_mb": 13.01,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-12/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-12/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "112 Answers in Palmer, and Where They Go",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "f965b8a15ccb55211a0c95d97bd9344185937d28f1d276d310f9f95e058ddf3b",
+        "bytes": 3371224
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "e4bf93444995687e632be8e621581495a2771c438da62fb7c1dac584bb588ad2",
+        "bytes": 4787510
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "0b81912a7f4fb2b50885e30b6ba7be7cf8cfab23c033293d6dc7b742fc10f60d",
+        "bytes": 3527688
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "1dc37dbe46a8ef0983b78b205e4c5586126452b0a2b0138b3a08825557888bad",
+        "bytes": 3148601
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "700ba1d9ce917a3ecfd14fe66217269f7161e72e53e04f15022acaccc54600ca",
+        "bytes": 5051246
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e4d58e84c329d2e5c1860694a2e093838e89ded473bcd9fce2c8d1ac5ef63cc1",
+        "bytes": 4006126
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f8a73a4e56d38df2e182edeb0e259046d5cb576618f89262b9a1e3f59d798e03",
+        "bytes": 2979430
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "47bc6ab0772727d399da154ebf1f574205eb04d0af31844c0df7d51c3b527060",
+        "bytes": 6515860
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "22da2b2e8c4c33884c28383fb5307b58e4004af479c44213b01451c3df5a9f4f",
+        "bytes": 4015510
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "fbf06873fb067d7aa0edd811a2a13937149ce8aedabb1343060bc21e15b93f26",
+        "bytes": 16354
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "d1cfff027443261afaf7a3389b2e6de22fb78e18db69477af3a2da781fbf51ce",
+        "bytes": 12766
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "bd8b4abb911540bc6f304aa97adace1f8f9e19d7fcb2bdfea4f586d1a6bf9cb2",
+        "bytes": 18013
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a322ae379234fdd6c1e49a3a76a3ed643bf0dcdf1abcb12930bcaf314053667e",
+        "bytes": 13426
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "a4bf83bb915ec161396fd7d450aaf027d6ec1af101af58820120b0de89d44b62",
+        "bytes": 16807
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "9cbeec103b12430939d92fe229e060d1d402a2a4f7f1f1744988c12a337b0793",
+        "bytes": 16260
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e926e817d01756a4489e4395bdcf57454109829705e2716d3166e6cc22af9487",
+        "bytes": 12653
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "60776de98c1cfd1b758dbaf13b6a3591c1f090e50ba0f2a650d42fcb8954d711",
+        "bytes": 15162
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "913084f9c6396adc861dce91b625f236e05d7153d16050628d80869c4efa6359",
+        "bytes": 19568
+      }
+    ]
+  }
+}

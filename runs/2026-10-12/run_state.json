@@ -1,0 +1,35 @@
+{
+ "run_date": "2026-10-12",
+ "carousel_no": 85,
+ "effort": "high",
+ "revision_rounds": 5,
+ "date_note": "Woke 22:14 AKDT on October 10th (06:14 UTC October 11th), the regular daily slot. runs/2026-10-10 holds No.83 and runs/2026-10-11 holds No.84 (dated ahead by the same rule), both complete and merged. run_guard (UTC default 2026-10-11) printed ALREADY_SHIPPED for No.84; per the date rule the run date is the first date with no runs/<date>/ directory, 2026-10-12, and run_guard --run-date 2026-10-12 printed CLEAR. NEXT_RUN.md brief is PARKED until October 14th and stays in place.",
+ "started_utc": "2026-10-11T06:15:18.992127Z",
+ "phases": {
+  "wake": "done: out/2026-10-12/plan.md, run_state.json, WORKLOG.md",
+  "craft_refresh": "done: one search (LinkedIn carousel 2026 algorithm), only vendor blogs repeating known benchmarks; FIELD_NOTES untouched",
+  "research": "done: out/2026-10-12/scout_merge.md, scouts/ (6 scouts, 147 searches, all at or under the 25 cap); thin window",
+  "claims": "done: out/2026-10-12/claims.json (64 claims, 3 stories surviving), claims_check PASS",
+  "docket": "done: ledger/docket.json, nine worklist items refreshed, DOE bulk-power RFI closed (status pending-decision, access closed); watch.json bills unchanged, FR candidates triaged (Bradley Lake notice already tracked); docket_dates_check clean; committed 623de70c, 30d6e9f7",
+  "gas_watch": "done: cron_health PASS, site_signoff PASS 143 pages, pagecheck PASS; gaswatch live FAIL at 08:12Z on the October 10th evening reading (GitHub slots late, dispatch 403), incident filed as github blocker; queue item repeat 10",
+  "selection": "done: out/2026-10-12/selection.md (Mat-Su Sentinel forum; dedupe read No.68, No.66, No.81 in full)",
+  "directors_room": "done: out/2026-10-12/storyboard.md, treatments/ (cinematographer, cartographer, editorial-essayist); dossier_check PASS 9 of 9",
+  "copy": "done: caption room (2 caption-directors, caption-critic chose A with one fix), copy.json, caption_check PASS 895 chars hook 118",
+  "art_build": "done: nine bespoke slides (akthree PBR x2, akbench, bokeh canvas, Tanaka contours, akengrave, aksdf, akstipple, bas-relief), qa.py WARN 0 fails, bespoke_check PASS median 0.084",
+  "pixel_review": "done: four rounds; per-slide verdicts 01 7.6, 08 7.7, 09 8.0 ship; 02-07 revise 5.8 to 7.2 at round 3, then round 4 from the flow critic",
+  "flow_review": "done: flow critic 7.1 revise, round 4 applied its work order; flow_review.json",
+  "assemble": "done: vector PDF 13.0 MB, contact sheet, thumbs",
+  "scoring": "done: 8.62 vs 7.7 (normalised 7.84), art 7.0; craft cycle on 07, 03, 04 at round 5, art 7.0 to 7.0; ship",
+  "ship": "done: runs/2026-10-12 (webp, og.jpg, pdf), site_build 144 pages, parsers, scanner_sync, docket_dates, site_fresh PASS, no alerts due, prune 0.56M, ledgers and FIELD_NOTES",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "phase_3_6": {
+  "cron_health": "PASS, 6 scheduled workflows plus Pages audited at 06:1xZ October 11th",
+  "gaswatch_live": "WARN at 06:1xZ: CINGSA's 20:47 Alaska reading of October 10th posted after the 22:39Z collection; the 04:40Z slot had not run by 06:19Z; workflow_dispatch 403 again (MCP actions_run_trigger). Re-audit after the 07:20Z slot.",
+  "site_signoff": "PASS, 143 pages, 18 of 18 (pre-rebuild)",
+  "gaswatch_pagecheck": "PASS",
+  "site_look": "home, docket, gas watch at 1280 and 390 px, no horizontal scroll, nothing cut off"
+ }
+}

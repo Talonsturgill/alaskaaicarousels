@@ -2996,6 +2996,48 @@
     "NEW: sensor raster with chroma-clamped demosaic and a row-skew rolling shutter (04)"
    ],
    "note": "Rounds used 5. Scored 8.26. Engine fix in-run: akpost's tone table was posterising near-black (slide 08's seam)."
+  },
+  {
+   "run_date": "2026-10-12",
+   "carousel_no": 85,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE ROOM AND THREE ADDRESSES. One real room filmed in three shots (booth wide, armrest insert, reverse angle from the stage), the three places that decide charted in three cartographic media, then the ballot and the doors: a journey out of a room and back.",
+   "atmosphere": "NEW: THE ROOM LIT BY ITS SCREEN, then one low west light over the Mat-Su lowland, walnut black under one downlight, paper daylight, lobby tungsten",
+   "depth_technique": "akthree PBR house with AKSTROBE focus pull and phone halos at depth (01); akbench multi-material plan relief (02); nine-blade bokeh over a pinhole-projected house and perspective apron (03); akthree PBR Berann DEM oblique with a sky environment (04); Tanaka illuminated contours with a raised area disc (05); akengrave white-line intaglio with union plateaus and streamline water (06); aksdf raymarched still life with an edge AA pass (07); akstipple tone field from a state DEM hillshade with an embossed calendar rule (08); bas-relief height field doors with cavity occlusion and a carpet spill wedge (09)",
+   "line_voice": "cinematic, then cartographic",
+   "continuity_device": "motif:THE DOOR LIGHT, gold for a way the room's answer can still go, absent where a door has shut",
+   "continuity_devices": [
+    "motif:the door light (crack, sliver, far, absent x3, line, marker, open)",
+    "camera flight: booth, armrest, stage, Knik Arm, Houston, Point MacKenzie, committee room, ballot paper, the doors",
+    "palette arc: projector cool, overcast land, walnut black, paper daylight, tungsten"
+   ],
+   "hook_archetype": "NEW: THE ADDRESS (a count from a room, and the question of where it goes)",
+   "palette_family": "NEW: PROJECTOR SPILL, SLATE VELVET AND LOWLAND TINT",
+   "type_pairing": "Instrument Serif roman + Manrope + JetBrains Mono",
+   "narrative_structure": "room count, the answer, who answered, the hinge, room one, rest, room three, the ballot, the ask",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 2,
+    "type_temperature": 3
+   },
+   "techniques": [
+    "akthree",
+    "akstrobe focus",
+    "akbench",
+    "nine-blade bokeh",
+    "Tanaka contours",
+    "akengrave",
+    "aksdf",
+    "akstipple",
+    "bas-relief height field",
+    "akpost grade"
+   ],
+   "new_techniques_logged": [
+    "NEW: union-mask plateau case (06), the parcel parts drawn as one raised surface from a grown raster mask",
+    "NEW: luminance-edge AA pass over an aksdf march (07)",
+    "NEW: sea floor under the water plane with smoothed heights so a DEM coast crosses water on a curve (04)"
+   ],
+   "note": "Rounds used 5. Scored 8.62, art 7.0. aksdf at native resolution is blocked by render.py's 30 s ready cap (queued)."
   }
  ]
 }

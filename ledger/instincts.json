@@ -2042,6 +2042,30 @@
    "confidence": 0.5,
    "run_date": "2026-10-11",
    "carousel_no": 84
+  },
+  {
+   "instinct": "A PAINTED GLOW CAN'T SIT ON A DECLARED CONTACT; PUT THE SCREEN'S LIGHT INTO THE MATERIAL.",
+   "evidence": "No.85 slide 02: a screen-blend pool over the phone's declared cast failed qa.py twice (painted light on the shadow rect) even when clipped; mixing the screen colour into the walnut and velvet albedo by distance from the phone passed and read as light on the surface.",
+   "act_on_it": "When a light source is drawn as an object, tint the surfaces it reaches in their own albedo or shading pass rather than compositing a pool over them.",
+   "confidence": 0.6,
+   "run_date": "2026-10-12",
+   "carousel_no": 85
+  },
+  {
+   "instinct": "BUDGET AN AKSDF STILL LIFE AGAINST RENDER.PY'S 30 SECOND READY CAP BEFORE PLANNING ITS RESOLUTION.",
+   "evidence": "No.85 slide 07 marched at 1080 x 790 internal in 29 to 30 s, every critic named its stair-stepped silhouettes, and native resolution would take about 60 s; a distance-only shadowScene cut the march to 19 s and bought 1.2x.",
+   "act_on_it": "Pass a shadowScene that returns the distance only, measure the march at the planned size first, and plan a still life's scene cost so the march fits 25 s at 1.2x or better.",
+   "confidence": 0.6,
+   "run_date": "2026-10-12",
+   "carousel_no": 85
+  },
+  {
+   "instinct": "A DEM COAST STAIR-STEPS WHERE TIDAL FLATS CLAMP TO ZERO; SINK THE SEA FLOOR AND SMOOTH BEFORE MESHING.",
+   "evidence": "No.85 slide 04: a denser mesh and a deeper near plane did not remove the coast's cell steps; setting h <= 1 to just below the water plane and smoothing heights two cells before meshing turned them into curves.",
+   "act_on_it": "In an akthree terrain over water, never clamp the sea floor to the water plane's height.",
+   "confidence": 0.6,
+   "run_date": "2026-10-12",
+   "carousel_no": 85
   }
  ]
 }
