@@ -19,9 +19,9 @@ House gates carried over from docket_build: schema validation, date
 checks, and a banned-punctuation refusal over every emitted page.
 
 Alaskan identity, by design: the hero night sky is the state flag (the
-Big Dipper and Polaris in gold), and a daylight telemetry chip computes
-Anchorage's hours of daylight for the build date, including whether the
-day is growing or shrinking. Flare with taste: CSS scroll-driven reveals
+Big Dipper and Polaris in gold), and attributed Alaska news rotates in a
+compact homepage strip. The services page retains its daylight telemetry.
+Flare with taste: CSS scroll-driven reveals
 (compositor-only) with an IntersectionObserver fallback, one-line view
 transitions between pages, a gold scroll-progress hairline, drifting
 aurora, seeded grain. Zero dependencies, static files only.
@@ -45,6 +45,7 @@ import gaswatch_build as gw  # gas watch series, figures, chart, page components
 import power_panel as pw    # the retail power price panel and its lint authorisation
 import ask_corpus           # the answering corpus behind the docket's ask box
 import ask_pack             # the same record as prose, for the written answer lane
+import news_headlines      # bounded Alaska headlines and homepage carousel
 import ask_answers          # the query index and smart views the page ships with
 
 REPO = Path(__file__).resolve().parents[1]
@@ -7255,7 +7256,7 @@ width="960" height="480" alt="" aria-hidden="true" loading="lazy" decoding="asyn
         next_line = (f"Next on the docket is {esc(dated[0]['title'])}, "
                      f"{esc(pretty_date(nearest['date']))}. ")
     body = f"""<div class="hero heroanim">
-<div><div class="daylight">{daylight_chip(today)}</div></div>
+{news_headlines.markup(today.isoformat())}
 <h1>AI is coming <em>north</em></h1>
 <p class="tag">Every AI decision in Alaska and the source behind it.</p>
 <div class="ctarow">
@@ -7284,7 +7285,7 @@ width="960" height="480" alt="" aria-hidden="true" loading="lazy" decoding="asyn
                 "Alaska's AI studio in Anchorage. Daily verified stories on Alaska and AI, "
                 "a public docket of AI infrastructure decisions, and AI consulting for "
                 "Alaska businesses.", body, "", "home", today, site_url, "",
-                ld=ld, extra_css=(gw.GW_CSS if gas_strip else "") + HOMEASK_CSS + HOME_DOCKET_CSS,
+                ld=ld, extra_css=(gw.GW_CSS if gas_strip else "") + HOMEASK_CSS + HOME_DOCKET_CSS + news_headlines.styles(),
                 extra_js=ASK_COMMON_JS + HOMEASK_JS)
 
 
@@ -9773,25 +9774,9 @@ The stars will get you home.</p>
 
 
 def touch_icon(out):
-    """The logo tile at 180px for phone home screens: the gold Alaska
-    silhouette (true geodata) on the night, with a soft glow."""
-    try:
-        from PIL import Image, ImageDraw
-    except ImportError:
-        return
-    s = 180
-    im = Image.new("RGB", (s, s), (2, 6, 15))
-    dr = ImageDraw.Draw(im)
-    paths = db.alaska_paths(max_points=1400, keep_rings=6)
-    T = db.fit_transform(paths, s, s, 16)
-    rings = [[T(p) for p in path] for path in paths]
-    cx = cy = s / 2
-    for gr, col in ((1.10, (80, 62, 10)), (1.045, (166, 130, 26)), (1.0, (255, 199, 44))):
-        for pts in rings:
-            glow = [(cx + (x - cx) * gr, cy + (y - cy) * gr) for x, y in pts]
-            if len(glow) >= 3:
-                dr.polygon(glow, fill=col)
-    im.save(out / "apple-touch-icon.png", optimize=True)
+    """Copy the published 180px Alaska tile without platform-dependent PNG compression."""
+    (out / "apple-touch-icon.png").write_bytes(
+        (REPO / "assets/site/apple-touch-icon.png").read_bytes())
 
 
 def sitemap(site_url, runs, today, decisions=None):
@@ -10020,7 +10005,7 @@ def prose_colon_gate(rel, html):
     """House style bans colons in visible copy (clock times like 4:30 and
     URLs are not prose and pass). Fails the build if one slips in."""
     import re as _re
-    txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", html)
+    txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", news_headlines.authored_html(html))
     txt = _re.sub(r"<[^>]+>", "\n", txt)
     txt = _re.sub(r"https?://\S+", " ", txt)
     txt = _re.sub(r"\d{1,2}:\d{2}", " ", txt)
@@ -10062,7 +10047,7 @@ def contraction_gate(rel, html):
     import re as _re
     if _re.fullmatch(r"archive/\d{4}-\d{2}-\d{2}/index\.html", rel):
         return
-    txt = _re.sub(r'(?s)<a class="deck".*?</a>', " ", html)
+    txt = _re.sub(r'(?s)<a class="deck".*?</a>', " ", news_headlines.authored_html(html))
     txt = _re.sub(r"(?s)<(script|style)[^>]*>.*?</\1>", " ", txt)
     txt = _re.sub(r"(?s)<!--.*?-->", " ", txt)
     txt = __import__("html").unescape(_re.sub(r"<[^>]+>", " ", txt))
@@ -10219,7 +10204,7 @@ def build(today, out_dir, site_url=None, domain="", run_date=None):
         pages["index.html"] = pages["index.html"].replace(
             "<head>\n", f"<head>\n<!-- run-date {run_date.isoformat()} -->\n", 1)
     for rel, html in pages.items():
-        bad = db.BANNED.findall(html)
+        bad = db.BANNED.findall(news_headlines.authored_html(html))
         if bad:
             db.fail(f"banned punctuation in {rel} {bad[:8]}")
         prose_colon_gate(rel, html)

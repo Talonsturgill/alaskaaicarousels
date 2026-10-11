@@ -1,0 +1,60 @@
+name: Alaska headline checks
+
+on:
+  pull_request:
+    paths:
+      - "scripts/news*"
+      - "scripts/site_build.py"
+      - "scripts/site_signoff.py"
+      - "config/news_sources.json"
+      - "ledger/news/**"
+      - "tests/news*"
+      - "tests/playwright_resolve.mjs"
+      - "assets/site/**"
+      - "docs/index.html"
+      - ".github/workflows/news*.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/news*"
+      - "scripts/site_build.py"
+      - "scripts/site_signoff.py"
+      - "config/news_sources.json"
+      - "ledger/news/**"
+      - "tests/news*"
+      - "tests/playwright_resolve.mjs"
+      - "assets/site/**"
+      - ".github/workflows/news*.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Selection, source restrictions, publication and quote boundaries
+        run: |
+          python3 scripts/news_headlines.py --self-test
+          python3 scripts/news_publish.py --self-test
+          python3 scripts/news_headlines.py --check
+      - name: Install the browser runtime
+        run: |
+          python3 -m pip install --quiet Pillow
+          npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          npx --no-install playwright install chromium
+      - name: The committed homepage reproduces from its inputs
+        run: |
+          date=$(python3 -c 'import re; from pathlib import Path; print(re.search(r"<!-- run-date ([0-9-]+) -->", Path("docs/index.html").read_text())[1])')
+          python3 scripts/site_fresh_check.py --date "$date"
+      - name: Responsive carousel, quiet periods, original-date expiry and offline recovery
+        run: SITE=docs node tests/news_headline.mjs

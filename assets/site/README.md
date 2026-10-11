@@ -1,0 +1,1 @@
+The 180px Apple touch icon is the original published gold Alaska silhouette on the night background. The site builder copies these exact bytes so PNG compression differences between macOS and Linux do not change an otherwise identical build.
