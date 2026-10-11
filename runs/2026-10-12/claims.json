@@ -575,10 +575,11 @@
    "source_url": "https://www.energy.gov/hgeo/project-selections-broad-agency-announcement-de-foa-0003605-restoring-reliability-coal-0",
    "source_outlet": "U.S. Department of Energy",
    "source_is_primary": true,
-   "date_of_source": "2026-10-11",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.95,
-   "notes": "The DOE page is undated, so date_of_source is the retrieval date. The project is titled 'Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project', Terra Energy Center Corporation (Anchorage, Alaska), under BAA DE-FOA-0003605. Corroboration: the Mat-Su Sentinel (C39 URL) says 'The company received an $89 million grant from the U.S. Department of Energy this summer.' A selection is not a disbursed award, so 'selected for' is the safe verb."
+   "notes": "The DOE page is undated, so date_of_source is left blank and the retrieval date is recorded in retrieved. The project is titled 'Alaska Carbon Capture, Utilization, and Storage Coal Commissioning Project', Terra Energy Center Corporation (Anchorage, Alaska), under BAA DE-FOA-0003605. Corroboration: the Mat-Su Sentinel (C39 URL) says 'The company received an $89 million grant from the U.S. Department of Energy this summer.' A selection is not a disbursed award, so 'selected for' is the safe verb.",
+   "retrieved": "2026-10-11"
   },
   {
    "id": "C43",
@@ -707,10 +708,11 @@
    "source_url": "https://www.elections.alaska.gov/calendar/",
    "source_outlet": "Alaska Division of Elections",
    "source_is_primary": true,
-   "date_of_source": "2026-10-11",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.94,
-   "notes": "Read via r.jina.ai. The calendar lists 11/03/2026 against that entry. The page's dash between the times is shown here as a hyphen. The calendar is undated, so date_of_source is the retrieval date. The scout-cited homepage returned 503 directly, and via r.jina.ai it does not show the election date. The calendar also lists 10/04/2026 as the registration deadline, the day of the forum."
+   "notes": "The calendar page is undated; date_of_source is left blank and the retrieval date is recorded in retrieved. Read via r.jina.ai. The calendar lists 11/03/2026 against that entry. The page's dash between the times is shown here as a hyphen. The calendar is undated, so date_of_source is the retrieval date. The scout-cited homepage returned 503 directly, and via r.jina.ai it does not show the election date. The calendar also lists 10/04/2026 as the registration deadline, the day of the forum.",
+   "retrieved": "2026-10-11"
   },
   {
    "id": "C53",
@@ -720,10 +722,11 @@
    "source_url": "https://www.elections.alaska.gov/",
    "source_outlet": "Alaska Division of Elections",
    "source_is_primary": true,
-   "date_of_source": "2026-10-11",
+   "date_of_source": "",
    "fetched": true,
    "confidence": 0.95,
-   "notes": "Read via r.jina.ai (the direct fetch returned 503). Corroborated on https://www.elections.alaska.gov/calendar/ at 10/19/2026 with 'Absentee In Person, EV, electronic transmission and Special Needs voting begins.' The homepage also gives an absentee by-mail application deadline of October 24th."
+   "notes": "The Division of Elections home page is undated; date_of_source is left blank and the retrieval date is recorded in retrieved. Read via r.jina.ai (the direct fetch returned 503). Corroborated on https://www.elections.alaska.gov/calendar/ at 10/19/2026 with 'Absentee In Person, EV, electronic transmission and Special Needs voting begins.' The homepage also gives an absentee by-mail application deadline of October 24th.",
+   "retrieved": "2026-10-11"
   },
   {
    "id": "C54",

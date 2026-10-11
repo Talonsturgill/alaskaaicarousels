@@ -3386,7 +3386,12 @@
     "https://www.alaska.edu/ualand/public-notices/2026/2026.01.30%20Intent%20to%20Lease%20MS.PM.0001-2-3-4%20Public%20Notice%201.php"
    ],
    "claims": 65,
-   "note": "New dated event (the October 4th forum and its October 9th results PDF); Houston and Port MacKenzie appear as context only after No.68 and No.81 (dedupe read in selection.md). Runner-up UAF SWEAT ice tower; third Enstar Kenai Loop. Scored 8.62 at the five-round cap, art 7.0."
+   "note": "New dated event (the October 4th forum and its October 9th results PDF); Houston and Port MacKenzie appear as context only after No.68 and No.81 (dedupe read in selection.md). Runner-up UAF SWEAT ice tower; third Enstar Kenai Loop. Scored 8.62 at the five-round cap, art 7.0.",
+   "beats": [
+    "data-centers",
+    "land-and-permitting",
+    "state-policy"
+   ]
   }
  ]
 }
