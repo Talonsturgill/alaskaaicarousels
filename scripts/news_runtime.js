@@ -282,9 +282,10 @@
     storyDialog.querySelector('.news-story-title').focus({preventScroll:true});
     updateControls();
   }
-  slides.addEventListener('click', function (event) {
+  chip.addEventListener('click', function (event) {
+    if (event.target.closest('.news-controls') || !pool[index]) return;
     var control = event.target.closest('.news-link');
-    if (!control || control.tagName !== 'BUTTON' || !pool[index] || control.dataset.newsUrl !== pool[index].url) return;
+    if (control && (control.tagName !== 'BUTTON' || control.dataset.newsUrl !== pool[index].url)) return;
     event.preventDefault();
     openStory(pool[index], event.detail === 0);
   });
@@ -356,9 +357,9 @@
   chip.addEventListener('focusout', function (event) {
     if (!chip.contains(event.relatedTarget)) setTimeout(resume, 0);
   });
-  slides.addEventListener('pointerdown', pause);
-  slides.addEventListener('pointerup', function () { setTimeout(resume, 0); });
-  slides.addEventListener('pointercancel', function () { setTimeout(resume, 0); });
+  chip.addEventListener('pointerdown', pause);
+  chip.addEventListener('pointerup', function () { setTimeout(resume, 0); });
+  chip.addEventListener('pointercancel', function () { setTimeout(resume, 0); });
   motion.addEventListener('change', function () {
     if (motion.matches) {
       paused = true;

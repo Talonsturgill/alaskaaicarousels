@@ -135,6 +135,21 @@ try {
     await page.close();checked++;
   }
   {
+    const {page}=await reader();
+    await page.locator('.news-next').click();
+    assert.equal(await page.locator('#news-story').evaluate(el=>el.open),false,'navigation controls remain separate');
+    for(const target of ['label','padding']) {
+      const title=await activeControl(page).locator('.news-title').textContent();
+      if(target==='label') await page.locator('.news-label').click();
+      else await page.locator('.news-chip').click({position:{x:5,y:5}});
+      await page.waitForFunction(()=>document.querySelector('#news-story').open);
+      assert.equal(await page.locator('.news-story-title').textContent(),title,'the entire story box opens its summary');
+      await page.locator('.news-story-close').click();
+      await closed(page);
+    }
+    await page.close();checked++;
+  }
+  {
     const {page,state}=await reader('normal',390,844,'no-preference');
     await show(page,state);
     await page.mouse.move(0,0);
