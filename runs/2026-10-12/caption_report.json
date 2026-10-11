@@ -1,0 +1,19 @@
+{
+  "chars": 895,
+  "hook": "22 legislative candidates were in a Palmer theater on October 4th as the crowd answered a question on AI data centers.",
+  "hook_len": 118,
+  "commas": 7,
+  "comma_per_100": 0.8,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#MatSu",
+    "#AIDEA",
+    "#AKLeg"
+  ],
+  "deck_summary": "Pictured are the room's phones, the Houston land, the Port MacKenzie parcels, a gavel on SB 250 and the voting calendar.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 51
+}

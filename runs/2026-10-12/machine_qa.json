@@ -1,0 +1,158 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl '57 of 112 said outlaw largeAI data centers i' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the phone lying on the walnut armrest, its cast to the lower right': shadow L* 5.0 vs ground L* 23.5, dL 18.5 at 432w"
+      ],
+      "motifs": [
+        "'the door light's gold sliver on the armrest's far bevel': canvas 87.7 dE, page 87.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl '57 outlaw. 47 regulate.8 allow.' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'the 57 bar against the 112 track' holds: 165 vs 165 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'one phone disc' lands 3.7px from its target",
+        "leader 'one phone disc' meets its label 6.0px away",
+        "leader 'one phone disc' is drawn 110 px at 31 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'A room,not a poll of Mat-Su.' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'112 phone discs, one per answer' holds: 112 vs 112 marks, counted over 112 declared marks (within 0)",
+        "'112 phone discs, one per answer': 112 mark centres probed at r=14px, cohort median 31.8 dE, all present (weakest 17.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'The question said \"the state.\" Here, tha' at 76,172 940x187 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'PALMER \u00b7 THE ROOM' lands 0.0px from its target",
+        "leader 'HOUSTON \u00b7 DNR' lands 0.0px from its target",
+        "leader 'PORT MACKENZIE \u00b7 UNIVERSITY' lands 0.0px from its target",
+        "leader 'PALMER \u00b7 THE ROOM' meets its label 0.0px away",
+        "leader 'HOUSTON \u00b7 DNR' meets its label 0.0px away",
+        "leader 'PORT MACKENZIE \u00b7 UNIVERSITY' meets its label 0.3px away",
+        "leader 'PALMER \u00b7 THE ROOM' is drawn 107 px at 24 degrees, inside the pointer band",
+        "leader 'HOUSTON \u00b7 DNR' is drawn 74 px at 36 degrees, inside the pointer band",
+        "leader 'PORT MACKENZIE \u00b7 UNIVERSITY' is drawn 100 px at 59 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The question said \"the state.\"Here, that's t' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 66% of this slide's own average craft density (top 39% / mid 62% / bottom 28% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "motifs": [
+        "'the disc's radius from 19,950 acres at the map's own scale': canvas 49.4 dE, page 52.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the rim of the area disc' lands 0.0px from its target",
+        "leader 'the rim of the area disc' meets its label 0.5px away",
+        "leader 'the rim of the area disc' is drawn 50 px at 28 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'About 19,950 acres.Comments closed September' fits 2/2 lines at 82.5px"
+      ],
+      "asserts": [
+        "\"the disc's radius from 19,950 acres at the map's own scale\" holds: 172.359 vs 172.359 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'parcel MS.PM.0001, the largest' lands 0.0px from its target",
+        "leader 'parcel MS.PM.0001, the largest' meets its label 0.0px away",
+        "leader 'parcel MS.PM.0001, the largest' is drawn 296 px at 1 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '829 acres.Leased in late May,for 20 years.' fits 3/3 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'A data center bill passed the Senate, th' at 76,172 940x181 (margin 80px)",
+        "art touching glyphs (3% of the ring around '(S) PASSED ON RECONSIDERATION Y14 N5 E1', spanning 41%) -- pixel critic verify the label is not crossed"
+      ],
+      "fits": [
+        "hl 'A data center billpassed the Senate, then st' fits 2/2 lines at 88.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '22 candidates for those seats were in th' at 76,172 940x207 (margin 80px)"
+      ],
+      "scales": [
+        "'the voting calendar rule' runs 1 day of October 2026 (32 is November 1st) at 120 to 36 day of October 2026 (32 is November 1st) at 1000; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '22 candidates for those seatswere in the roo' fits 2/2 lines at 101.5px"
+      ],
+      "asserts": [
+        "'the calendar rule, 35 days from October 1st to November 5th' holds: 880 vs 880 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the door light OPEN, gold in the gap between the leaves': canvas 70.5 dE, page 69.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Ask your House and Senatecandidates before O' fits 2/2 lines at 90px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKCOR.loadDEM",
+        "slides": [
+          4,
+          5,
+          6,
+          8
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

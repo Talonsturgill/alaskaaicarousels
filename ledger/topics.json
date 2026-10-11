@@ -3345,6 +3345,53 @@
    ],
    "claims": 85,
    "note": "Update framing of No.55 (the ordinance before its texts could be read); the material new development is the three texts themselves, the October 14th work session and Flock's first Alaska installs. Runner-up NOAA/Mat-Su (C60 to C72). Scored 8.26 after 5 rounds."
+  },
+  {
+   "run_date": "2026-10-12",
+   "carousel_no": 85,
+   "topic": "The Mat-Su Sentinel's Flip the Script State Edition candidate forum at the Glenn Massey Theater in Palmer on October 4th: about 200 residents and 22 legislative candidates (House 25 to 30, Senate M and O); the room answered a live phone question on restricting large AI and data center development in areas like Mat-Su, 57 of 112 outlaw them entirely, 47 allow with strict regulations, 8 allow. The deck follows where 'the state' actually decides on Mat-Su land: DNR's preliminary decision to convey about 19,950 acres near Houston to AIDEA (ADL 234762, comments closed September 14th, no final decision as of late September; AIDEA lists data centers among possible uses and says none is proposed), the University of Alaska's 829-acre, 20-year Port MacKenzie lease to Terra Energy per university officials, and SB 250, passed by the Senate 14 to 5 and held in a House committee. Early voting opens October 19th, Election Day November 3rd.",
+   "angle": "THE ADDRESS: one room's tally on screen and the three places where 'the state' decides; never a poll of Mat-Su, never a candidate view, never a data center proposed at Houston, never the lease as a data center lease.",
+   "entities": [
+    "Mat-Su Sentinel",
+    "Flip the Script State Edition",
+    "Glenn Massey Theater",
+    "Palmer",
+    "Alaska DNR",
+    "AIDEA",
+    "Houston",
+    "University of Alaska",
+    "Terra Energy",
+    "Port MacKenzie",
+    "SB 250",
+    "Alaska Legislature",
+    "House Community and Regional Affairs Committee",
+    "Alaska Division of Elections"
+   ],
+   "keywords": [
+    "candidate forum",
+    "live phone poll",
+    "outlaw data centers",
+    "state land conveyance",
+    "industrial park",
+    "university land lease",
+    "data center bill",
+    "early voting",
+    "Mat-Su legislative races"
+   ],
+   "headline": "57 of 112 said outlaw large AI data centers in Mat-Su.",
+   "sources_lead": [
+    "https://www.matsusentinel.com/content/files/2026/10/2026-Flip-the-Script-State-Edition-Results.pdf",
+    "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
+    "https://www.akleg.gov/basis/Bill/Detail/34?Root=SB%20250",
+    "https://www.alaska.edu/ualand/public-notices/2026/2026.01.30%20Intent%20to%20Lease%20MS.PM.0001-2-3-4%20Public%20Notice%201.php"
+   ],
+   "claims": 65,
+   "note": "New dated event (the October 4th forum and its October 9th results PDF); Houston and Port MacKenzie appear as context only after No.68 and No.81 (dedupe read in selection.md). Runner-up UAF SWEAT ice tower; third Enstar Kenai Loop. Scored 8.62 at the five-round cap, art 7.0.",
+   "beats": [
+    "data-centers",
+    "land-and-permitting",
+    "state-policy"
+   ]
   }
  ]
 }

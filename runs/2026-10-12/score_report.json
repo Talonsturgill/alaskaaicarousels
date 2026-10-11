@@ -1,0 +1,98 @@
+{
+ "run_date": "2026-10-12",
+ "carousel_no": 85,
+ "revision_rounds": 5,
+ "hard_fails": [],
+ "hard_fail_checks": "12 rubric hard fails checked one by one, all pass (dashes, emoji, claim ids, typos, clipping, contrast, slide count, qa and pdf mode, topic repeat, hero repeat, banned phrases, hashtags and links, placeholders)",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8x0.14)+(8.5x0.12)+(8x0.10)+(7x0.08)+(8x0.07)+(8x0.05)+(8x0.10) = 8.62 (rubric formula as written; the weights sum to 1.10, so the weight-normalised figure is 7.84; both clear 7.7). Re-scored after the craft cycle.",
+ "weighted_total": 8.62,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild 07's table and shadows: soften the gavel's cast shadow with jittered multi-sample shadow rays, replace the regular walnut stripes with domain-warped grain of varying pitch under a specular pool, and give the brass a highlight-to-shadow ramp so the still life reads as photographed rather than CG.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "fix": "jittered multi-sample shadows and AO, domain-warped varying-pitch grain, a brass specular ramp"
+  },
+  {
+   "slide": 3,
+   "fix": "close the dark band with a lit apron front riser and the first row's seat backs; per-board grain"
+  },
+  {
+   "slide": 4,
+   "fix": "Fresnel sky reflection on the water, lowland green against upland tan, the near field lifted by the west key"
+  },
+  {
+   "slide": 8,
+   "fix": "contrast-curved hillshade, finer dots in the ranges, a lowland base tone and cased rivers"
+  },
+  {
+   "slide": 2,
+   "fix": "a narrow rounded bar the phone overhangs, glass over the screen"
+  }
+ ],
+ "craft_floor_note": "Artwork craft 7.0 before and after the one owed craft cycle on 07, 03 and 04 (round 5): 07's silhouettes and 04's coasts improved a little, and 03's dark band did not move. The run is at the five-round cap and the cycle is spent, so the floor does not block the ship.",
+ "editor_notes_for_email": "No.85 scores 8.62 against the 7.7 threshold on the as-written rubric formula, or 7.84 weight-normalised (the rubric weights sum to 1.10, queued for the weekly pass). Art is 7.0, under the 8.5 floor. The one craft cycle on 07, 03 and 04 ran at the five-round cap and moved them only slightly. Look hardest at 07: the gavel shadow still steps and the walnut reads as stripes. Post Tuesday October 13th or Wednesday October 14th, 8 to 11 a.m. Alaska time. Slide 09's ask expires October 19th. Honesty guards hold. Soft spots: 'Three other rooms decide' counts the University, whose lease is already signed. 05's 'there is no final decision' rests on a September 28th DNR spokesperson quote. The AJOC source is cited as September 28th though its URL path says 10/04. 'didn't' on 07 and 08 is U+0027 drawn slanted by Manrope.",
+ "craft_cycle": {
+  "frames": [
+   7,
+   3,
+   4
+  ],
+  "art_before": 7.0,
+  "art_after": 7.0
+ }
+}

@@ -6598,10 +6598,23 @@ def topic_index(runs, topics_ledger):
     Matched against the run's own ledger entry (topic, angle, entities,
     keywords) plus its title and caption, so a deck lands on a beat because of
     what it is about rather than because of a word that happened to appear in
-    one headline."""
-    by_date = {}
+    one headline.
+
+    A ledger entry may also carry "beats", a list of beat slugs, and then the
+    deck goes on exactly those beats and term matching is skipped for it
+    (2026-10-12, Codex on PR #431). Term matching is a substring scan, so a
+    state Senate vote matched "senate" and filed No.85 under Defense and
+    federal; a run that knows its beats says so instead of loosening the terms
+    every other deck depends on. An unknown slug raises rather than vanishing."""
+    by_date, explicit = {}, {}
+    slugs = {t["slug"] for t in TOPICS}
     for e in (topics_ledger or {}).get("entries", []):
         d = e.get("run_date")
+        if d and e.get("beats") is not None:
+            bad = [b for b in e["beats"] if b not in slugs]
+            if bad or not e["beats"]:
+                raise ValueError("topics.json %s: beats must name known beat slugs, got %r" % (d, e["beats"]))
+            explicit[d] = set(e["beats"])
         if d:
             by_date[d] = " ".join([
                 str(e.get("topic") or ""), str(e.get("angle") or ""),
@@ -6609,6 +6622,11 @@ def topic_index(runs, topics_ledger):
             ]).lower()
     out = {t["slug"]: [] for t in TOPICS}
     for r in runs:
+        if r["date"] in explicit:
+            for t in TOPICS:
+                if t["slug"] in explicit[r["date"]]:
+                    out[t["slug"]].append(r)
+            continue
         hay = " ".join([by_date.get(r["date"], ""), r["title"].lower(),
                         (r.get("caption") or "").lower()[:1200]])
         for t in TOPICS:
