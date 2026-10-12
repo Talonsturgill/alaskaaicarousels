@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-12T18:11:55Z",
+ "generated": "2026-10-12T22:48:12Z",
  "source": "US Energy Information Administration, Form EIA-861",
- "source_url": "https://www.eia.gov/electricity/data/eia861/zip/f8612024.zip",
- "data_year": 2024,
+ "source_url": "https://www.eia.gov/electricity/data/eia861/zip/f8612025.zip",
+ "data_year": 2025,
  "geography": "Alaska, one row per utility, boroughs served as filed",
  "units": "cents per kilowatthour",
  "basis": "retail revenue divided by retail sales for the year, as filed. An average of what was billed, not a tariff",
@@ -17,19 +17,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 21.24,
-     "customers": 97048,
-     "megawatthours": 590921
+     "cents_per_kwh": 22.97,
+     "customers": 97742,
+     "megawatthours": 575950
     },
     "commercial": {
-     "cents_per_kwh": 16.88,
-     "customers": 16325,
-     "megawatthours": 1242359
+     "cents_per_kwh": 17.59,
+     "customers": 16416,
+     "megawatthours": 1230683
     },
     "industrial": {
-     "cents_per_kwh": 14.24,
+     "cents_per_kwh": 14.76,
      "customers": 5,
-     "megawatthours": 52775
+     "megawatthours": 55195
     }
    }
   },
@@ -43,14 +43,14 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 23.37,
-     "customers": 64205,
-     "megawatthours": 466931
+     "cents_per_kwh": 24.54,
+     "customers": 65371,
+     "megawatthours": 461660
     },
     "commercial": {
-     "cents_per_kwh": 20.25,
-     "customers": 6849,
-     "megawatthours": 321388
+     "cents_per_kwh": 21.32,
+     "customers": 6925,
+     "megawatthours": 318870
     }
    }
   },
@@ -66,19 +66,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 30.32,
-     "customers": 40675,
-     "megawatthours": 288667
+     "cents_per_kwh": 31.47,
+     "customers": 40931,
+     "megawatthours": 278550
     },
     "commercial": {
-     "cents_per_kwh": 29.15,
-     "customers": 6905,
-     "megawatthours": 118991
+     "cents_per_kwh": 30.24,
+     "customers": 7021,
+     "megawatthours": 116489
     },
     "industrial": {
-     "cents_per_kwh": 21.9,
-     "customers": 583,
-     "megawatthours": 819779
+     "cents_per_kwh": 21.87,
+     "customers": 602,
+     "megawatthours": 875371
     }
    }
   },
@@ -91,19 +91,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 29.79,
-     "customers": 29721,
-     "megawatthours": 177136
+     "cents_per_kwh": 31.51,
+     "customers": 30143,
+     "megawatthours": 171561
     },
     "commercial": {
-     "cents_per_kwh": 26.39,
-     "customers": 4415,
-     "megawatthours": 160774
+     "cents_per_kwh": 27.93,
+     "customers": 4436,
+     "megawatthours": 155968
     },
     "industrial": {
-     "cents_per_kwh": 12.41,
+     "cents_per_kwh": 14.66,
      "customers": 21,
-     "megawatthours": 150301
+     "megawatthours": 153233
     }
    }
   },
@@ -116,19 +116,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 12.93,
-     "customers": 15407,
-     "megawatthours": 170626
+     "cents_per_kwh": 13.73,
+     "customers": 15516,
+     "megawatthours": 168933
     },
     "commercial": {
-     "cents_per_kwh": 10.76,
-     "customers": 2459,
-     "megawatthours": 126119
+     "cents_per_kwh": 11.48,
+     "customers": 2504,
+     "megawatthours": 122373
     },
     "industrial": {
-     "cents_per_kwh": 11.07,
-     "customers": 139,
-     "megawatthours": 130040
+     "cents_per_kwh": 11.43,
+     "customers": 146,
+     "megawatthours": 109837
     }
    }
   },
@@ -148,13 +148,13 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 69.95,
-     "customers": 7689,
-     "megawatthours": 43854
+     "cents_per_kwh": 65.93,
+     "customers": 7853,
+     "megawatthours": 45589
     },
     "commercial": {
-     "cents_per_kwh": 56.8,
-     "customers": 3829,
+     "cents_per_kwh": 53.47,
+     "customers": 3634,
      "megawatthours": 81597
     }
    }
@@ -168,19 +168,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 12.48,
-     "customers": 6561,
-     "megawatthours": 78034
+     "cents_per_kwh": 13.88,
+     "customers": 6608,
+     "megawatthours": 78706
     },
     "commercial": {
-     "cents_per_kwh": 12.03,
-     "customers": 1389,
-     "megawatthours": 76702
+     "cents_per_kwh": 13.45,
+     "customers": 1408,
+     "megawatthours": 77549
     },
     "industrial": {
-     "cents_per_kwh": 10.38,
+     "cents_per_kwh": 11.8,
      "customers": 14,
-     "megawatthours": 22752
+     "megawatthours": 19912
     }
    }
   },
@@ -196,14 +196,14 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 37.18,
-     "customers": 5737,
-     "megawatthours": 27967
+     "cents_per_kwh": 41.78,
+     "customers": 5798,
+     "megawatthours": 28632
     },
     "commercial": {
-     "cents_per_kwh": 31.31,
-     "customers": 2719,
-     "megawatthours": 50720
+     "cents_per_kwh": 37.75,
+     "customers": 2738,
+     "megawatthours": 50151
     }
    }
   },
@@ -216,19 +216,19 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 18.83,
-     "customers": 4772,
-     "megawatthours": 39813
+     "cents_per_kwh": 19.47,
+     "customers": 4676,
+     "megawatthours": 38515
     },
     "commercial": {
-     "cents_per_kwh": 18.64,
-     "customers": 1363,
-     "megawatthours": 24379
+     "cents_per_kwh": 19.28,
+     "customers": 1539,
+     "megawatthours": 25355
     },
     "industrial": {
-     "cents_per_kwh": 16.69,
-     "customers": 120,
-     "megawatthours": 84636
+     "cents_per_kwh": 17.19,
+     "customers": 122,
+     "megawatthours": 91819
     }
    }
   },
@@ -241,14 +241,14 @@
    ],
    "sectors": {
     "residential": {
-     "cents_per_kwh": 47.9,
-     "customers": 1227,
-     "megawatthours": 7715
+     "cents_per_kwh": 52.23,
+     "customers": 1217,
+     "megawatthours": 7721
     },
     "commercial": {
-     "cents_per_kwh": 45.49,
-     "customers": 127,
-     "megawatthours": 11559
+     "cents_per_kwh": 48.59,
+     "customers": 125,
+     "megawatthours": 11575
     }
    }
   },
@@ -261,15 +261,15 @@
    ],
    "sectors": {
     "commercial": {
-     "cents_per_kwh": 24.81,
+     "cents_per_kwh": 23.94,
      "customers": 162,
-     "megawatthours": 47662
+     "megawatthours": 51610
     }
    }
   }
  ],
- "residential_low": 12.48,
- "residential_high": 69.95,
+ "residential_low": 13.73,
+ "residential_high": 65.93,
  "not_shown": {
   "short_form_filers": 55,
   "why": "Alaska's smallest utilities file a short form that reports one revenue figure across all sectors. A household rate and an all customers rate are different measurements and this record does not put them in one column."
