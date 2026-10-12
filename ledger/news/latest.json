@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-12T00:00:21Z",
+  "checked_at": "2026-10-12T07:27:15Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "bdcf2e9a26bb854c0e67a2487d8263acb11fad2c5274fced2ed4af3fbdbfb7f8",
+  "response_sha256": "e47c593596155a777e483e1b0f27dd83f9c61d70dcd3a95e59831e2081e61e32",
   "articles": [
     {
       "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
@@ -45,175 +45,20 @@
     }
   ],
   "selected": {
-    "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-    "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-    "first_seen_at": "2026-10-07T18:51:10Z",
-    "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
-    "publisher": "Alaska Business",
+    "title": "UAF joins $6M NSF critical minerals effort",
+    "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+    "first_seen_at": "2026-10-05T08:00:00Z",
+    "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
+    "feed": "https://www.uaf.edu/news/",
+    "publisher": "UAF",
     "coverage": 1,
-    "score": 0.053857,
-    "priority": 4
+    "score": 0.007937,
+    "priority": 3
   },
-  "expires_at": "2026-10-21T18:51:10Z",
+  "expires_at": "2026-10-19T08:00:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-11T19:23:00Z",
-      "selected": {
-        "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-        "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-        "first_seen_at": "2026-10-07T18:51:10Z",
-        "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
-        "publisher": "Alaska Business",
-        "coverage": 1,
-        "score": 0.053857,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-          "first_seen_at": "2026-10-07T18:51:10Z",
-          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.053857,
-          "priority": 4
-        },
-        {
-          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
-          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
-          "first_seen_at": "2026-10-09T12:59:19Z",
-          "summary": "The online map covers 66 coastal communities.",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.181866,
-          "priority": 2
-        },
-        {
-          "title": "UAF joins $6M NSF critical minerals effort",
-          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
-          "first_seen_at": "2026-10-05T08:00:00Z",
-          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.009841,
-          "priority": 3
-        },
-        {
-          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
-          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
-          "first_seen_at": "2026-10-02T00:30:05Z",
-          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000991,
-          "priority": 4
-        },
-        {
-          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
-          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
-          "first_seen_at": "2026-10-08T00:59:30Z",
-          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.064305,
-          "priority": 5
-        },
-        {
-          "title": "Drone research gets a lift from UAF ice tower",
-          "url": "https://www.uaf.edu/news/drone-research-gets-a-lift-from-UAF-ice-tower.php",
-          "first_seen_at": "2026-09-30T08:00:00Z",
-          "summary": "The ice tower of the Alaska Center for Unmanned Aircraft Systems Integration, ACUASI, at the University of Alaska Fairbanks Geophysical Institute is where research into wintertime drone flight happens.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.000308,
-          "priority": 5
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-10-12T01:23:00Z",
-      "selected": {
-        "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
-        "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
-        "first_seen_at": "2026-10-09T12:59:19Z",
-        "summary": "The online map covers 66 coastal communities.",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.174773,
-        "priority": 2
-      },
-      "stories": [
-        {
-          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
-          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
-          "first_seen_at": "2026-10-09T12:59:19Z",
-          "summary": "The online map covers 66 coastal communities.",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.174773,
-          "priority": 2
-        },
-        {
-          "title": "UAF joins $6M NSF critical minerals effort",
-          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
-          "first_seen_at": "2026-10-05T08:00:00Z",
-          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.009458,
-          "priority": 3
-        },
-        {
-          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-          "first_seen_at": "2026-10-07T18:51:10Z",
-          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.051757,
-          "priority": 4
-        },
-        {
-          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
-          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
-          "first_seen_at": "2026-10-02T00:30:05Z",
-          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000952,
-          "priority": 4
-        },
-        {
-          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
-          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
-          "first_seen_at": "2026-10-08T00:59:30Z",
-          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.061797,
-          "priority": 5
-        },
-        {
-          "title": "Drone research gets a lift from UAF ice tower",
-          "url": "https://www.uaf.edu/news/drone-research-gets-a-lift-from-UAF-ice-tower.php",
-          "first_seen_at": "2026-09-30T08:00:00Z",
-          "summary": "The ice tower of the Alaska Center for Unmanned Aircraft Systems Integration, ACUASI, at the University of Alaska Fairbanks Geophysical Institute is where research into wintertime drone flight happens.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.000296,
-          "priority": 5
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-12T07:23:00Z",
       "selected": {
@@ -224,7 +69,7 @@
         "feed": "https://www.uaf.edu/news/",
         "publisher": "UAF",
         "coverage": 1,
-        "score": 0.007953,
+        "score": 0.007937,
         "priority": 3
       },
       "stories": [
@@ -236,7 +81,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.007953,
+          "score": 0.007937,
           "priority": 3
         },
         {
@@ -246,7 +91,7 @@
           "summary": "The online map covers 66 coastal communities.",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.146966,
+          "score": 0.146666,
           "priority": 2
         },
         {
@@ -256,7 +101,7 @@
           "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.043522,
+          "score": 0.043433,
           "priority": 4
         },
         {
@@ -267,7 +112,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000801,
+          "score": 0.000799,
           "priority": 4
         },
         {
@@ -277,7 +122,7 @@
           "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.051965,
+          "score": 0.051859,
           "priority": 5
         },
         {
@@ -288,7 +133,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.000249,
+          "score": 0.000248,
           "priority": 5
         }
       ]
@@ -371,6 +216,163 @@
           "priority": 5
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-12T19:23:00Z",
+      "selected": {
+        "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
+        "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
+        "first_seen_at": "2026-10-08T00:59:30Z",
+        "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
+        "publisher": "KTOO",
+        "coverage": 1,
+        "score": 0.036745,
+        "priority": 5
+      },
+      "stories": [
+        {
+          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
+          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
+          "first_seen_at": "2026-10-08T00:59:30Z",
+          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.036745,
+          "priority": 5
+        },
+        {
+          "title": "UAF joins $6M NSF critical minerals effort",
+          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+          "first_seen_at": "2026-10-05T08:00:00Z",
+          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.005624,
+          "priority": 3
+        },
+        {
+          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
+          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
+          "first_seen_at": "2026-10-07T18:51:10Z",
+          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.030775,
+          "priority": 4
+        },
+        {
+          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
+          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
+          "first_seen_at": "2026-10-02T00:30:05Z",
+          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.000566,
+          "priority": 4
+        },
+        {
+          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
+          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
+          "first_seen_at": "2026-10-09T12:59:19Z",
+          "summary": "The online map covers 66 coastal communities.",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.103921,
+          "priority": 5
+        },
+        {
+          "title": "Drone research gets a lift from UAF ice tower",
+          "url": "https://www.uaf.edu/news/drone-research-gets-a-lift-from-UAF-ice-tower.php",
+          "first_seen_at": "2026-09-30T08:00:00Z",
+          "summary": "The ice tower of the Alaska Center for Unmanned Aircraft Systems Integration, ACUASI, at the University of Alaska Fairbanks Geophysical Institute is where research into wintertime drone flight happens.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.000176,
+          "priority": 5
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-13T01:23:00Z",
+      "selected": {
+        "title": "Drone research gets a lift from UAF ice tower",
+        "url": "https://www.uaf.edu/news/drone-research-gets-a-lift-from-UAF-ice-tower.php",
+        "first_seen_at": "2026-09-30T08:00:00Z",
+        "summary": "The ice tower of the Alaska Center for Unmanned Aircraft Systems Integration, ACUASI, at the University of Alaska Fairbanks Geophysical Institute is where research into wintertime drone flight happens.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.000148,
+        "priority": 5
+      },
+      "stories": [
+        {
+          "title": "Drone research gets a lift from UAF ice tower",
+          "url": "https://www.uaf.edu/news/drone-research-gets-a-lift-from-UAF-ice-tower.php",
+          "first_seen_at": "2026-09-30T08:00:00Z",
+          "summary": "The ice tower of the Alaska Center for Unmanned Aircraft Systems Integration, ACUASI, at the University of Alaska Fairbanks Geophysical Institute is where research into wintertime drone flight happens.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.000148,
+          "priority": 5
+        },
+        {
+          "title": "UAF joins $6M NSF critical minerals effort",
+          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+          "first_seen_at": "2026-10-05T08:00:00Z",
+          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.004729,
+          "priority": 3
+        },
+        {
+          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
+          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
+          "first_seen_at": "2026-10-07T18:51:10Z",
+          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.025878,
+          "priority": 4
+        },
+        {
+          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
+          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
+          "first_seen_at": "2026-10-02T00:30:05Z",
+          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.000476,
+          "priority": 4
+        },
+        {
+          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
+          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
+          "first_seen_at": "2026-10-09T12:59:19Z",
+          "summary": "The online map covers 66 coastal communities.",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.087386,
+          "priority": 5
+        },
+        {
+          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
+          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
+          "first_seen_at": "2026-10-08T00:59:30Z",
+          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.030898,
+          "priority": 5
+        }
+      ]
     }
   ],
   "history": [
@@ -378,6 +380,16 @@
       "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
       "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
       "shown_at": "2026-10-11T19:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
+      "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
+      "shown_at": "2026-10-12T01:23:00Z"
+    },
+    {
+      "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+      "title": "UAF joins $6M NSF critical minerals effort",
+      "shown_at": "2026-10-12T07:23:00Z"
     }
   ],
   "feeds": [
@@ -415,7 +427,9 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "8c991d40ac6f313d51755fa21a879bd3002d46581559d8a91bcf6413fa6135fc"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
@@ -433,7 +447,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "0d9dbf81314e7048a8f4ce933cfc420c2ef519f9db233f89bb227b9d382e51ec",
       "parser_version": 2
     },
@@ -441,7 +455,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "47df7e6a646591f0016c1a747c4023bb485756781536ac1d53cd3e5ab810922a",
       "parser_version": 2
     },
@@ -449,7 +463,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "26732834477fe95e2a92595c0b153275b5afdea6b7820c41c0ab19298e5a1930",
       "parser_version": 2
     },
@@ -457,7 +471,7 @@
       "etag": "W/\"3565444aa2c4804dbe61670f60d9b102\"",
       "last_modified": "Fri, 09 Oct 2026 16:40:26 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "e78910791a5133c976c5ba8cf30346fbad041b9c44850e6c146f36e9696d3064",
       "parser_version": 2
     },
@@ -465,38 +479,38 @@
       "etag": "W/\"3565444aa2c4804dbe61670f60d9b102\"",
       "last_modified": "Fri, 09 Oct 2026 16:40:26 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "da48c75550e94c6928423681310b90da33cccf26d098a98025a78080fd3e221f",
       "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "371b50068c344565031b8049619cc02a3edc80c3400c65db9def53301f99b358"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4a479e9f3a20cc7cc600f82c94eeb7a7e24b6cb038969a91fc8e3a7d147e4c8f"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Sun, 11 Oct 2026 15:00:42 GMT",
+      "ok_at": "2026-10-12T07:27:12Z",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
-      "sha256": "94958fce76c916980b1487175fb8378f1da1ff9b38d78730b956e23dddaa463c",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "8c991d40ac6f313d51755fa21a879bd3002d46581559d8a91bcf6413fa6135fc",
+      "last_modified": "Mon, 12 Oct 2026 07:00:52 GMT"
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
       "last_modified": "Sun, 11 Oct 2026 06:02:37 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "sha256": "2d6b9fdd2b448350da067941b09cee5d8088f32a40dc047e324063b516cf190c",
       "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-10-12T00:00:15Z",
+      "ok_at": "2026-10-12T07:27:12Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "6d14ecc07402db7f15c3db889ccf40d129e3765405a07f4404b8436b0ce6e34a"
