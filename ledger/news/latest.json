@@ -1,6 +1,6 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-11T22:41:23Z",
+  "checked_at": "2026-10-12T00:00:21Z",
   "provider": "Publisher feeds and news indexes",
   "response_sha256": "bdcf2e9a26bb854c0e67a2487d8263acb11fad2c5274fced2ed4af3fbdbfb7f8",
   "articles": [
@@ -51,7 +51,7 @@
     "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
     "publisher": "Alaska Business",
     "coverage": 1,
-    "score": 0.055944,
+    "score": 0.053857,
     "priority": 4
   },
   "expires_at": "2026-10-21T18:51:10Z",
@@ -67,7 +67,7 @@
         "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
         "publisher": "Alaska Business",
         "coverage": 1,
-        "score": 0.055944,
+        "score": 0.053857,
         "priority": 4
       },
       "stories": [
@@ -78,7 +78,7 @@
           "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.055944,
+          "score": 0.053857,
           "priority": 4
         },
         {
@@ -88,7 +88,7 @@
           "summary": "The online map covers 66 coastal communities.",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.188912,
+          "score": 0.181866,
           "priority": 2
         },
         {
@@ -99,7 +99,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.010223,
+          "score": 0.009841,
           "priority": 3
         },
         {
@@ -110,7 +110,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.001029,
+          "score": 0.000991,
           "priority": 4
         },
         {
@@ -120,7 +120,7 @@
           "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.066796,
+          "score": 0.064305,
           "priority": 5
         },
         {
@@ -131,7 +131,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.000319,
+          "score": 0.000308,
           "priority": 5
         }
       ]
@@ -433,7 +433,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "0d9dbf81314e7048a8f4ce933cfc420c2ef519f9db233f89bb227b9d382e51ec",
       "parser_version": 2
     },
@@ -441,7 +441,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "47df7e6a646591f0016c1a747c4023bb485756781536ac1d53cd3e5ab810922a",
       "parser_version": 2
     },
@@ -449,7 +449,7 @@
       "etag": "\"ebbb77ab17302465f10d077320e6973b\"",
       "last_modified": "Sat, 10 Oct 2026 20:11:05 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "26732834477fe95e2a92595c0b153275b5afdea6b7820c41c0ab19298e5a1930",
       "parser_version": 2
     },
@@ -457,7 +457,7 @@
       "etag": "W/\"3565444aa2c4804dbe61670f60d9b102\"",
       "last_modified": "Fri, 09 Oct 2026 16:40:26 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "e78910791a5133c976c5ba8cf30346fbad041b9c44850e6c146f36e9696d3064",
       "parser_version": 2
     },
@@ -465,18 +465,18 @@
       "etag": "W/\"3565444aa2c4804dbe61670f60d9b102\"",
       "last_modified": "Fri, 09 Oct 2026 16:40:26 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "da48c75550e94c6928423681310b90da33cccf26d098a98025a78080fd3e221f",
       "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "371b50068c344565031b8049619cc02a3edc80c3400c65db9def53301f99b358"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4a479e9f3a20cc7cc600f82c94eeb7a7e24b6cb038969a91fc8e3a7d147e4c8f"
@@ -484,19 +484,19 @@
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 11 Oct 2026 15:00:42 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "94958fce76c916980b1487175fb8378f1da1ff9b38d78730b956e23dddaa463c",
       "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
       "last_modified": "Sun, 11 Oct 2026 06:02:37 GMT",
       "failures": 0,
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "sha256": "2d6b9fdd2b448350da067941b09cee5d8088f32a40dc047e324063b516cf190c",
       "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-10-11T22:41:20Z",
+      "ok_at": "2026-10-12T00:00:15Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "6d14ecc07402db7f15c3db889ccf40d129e3765405a07f4404b8436b0ce6e34a"
