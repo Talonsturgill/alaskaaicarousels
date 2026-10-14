@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-14T18:04:20Z",
+  "checked_at": "2026-10-14T22:21:33Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "2024daaef378dbdee9cc9d77b2c5e6d7eb94cc88c1ef93656681cf7f890ba69d",
+  "response_sha256": "b6920d290d668f3fb27312af24f79edbf5be057083cf6c498bd8b7dabbbf1b70",
   "articles": [
     {
       "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
@@ -30,7 +30,7 @@
       "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
       "first_seen_at": "2026-10-09T12:59:19Z",
       "summary": "The online map covers 66 coastal communities.",
-      "feed": "https://www.ktoo.org/feed/"
+      "feed": "https://www.ktoo.org/feed/?paged=2"
     },
     {
       "title": "Trump’s push for $50B Korean investment in Alaska gasline faces familiar economic challenges",
@@ -55,113 +55,20 @@
     }
   ],
   "selected": {
-    "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
-    "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
-    "first_seen_at": "2026-10-08T00:59:30Z",
-    "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
-    "feed": "https://www.ktoo.org/feed/?paged=2",
-    "publisher": "KTOO",
+    "title": "New guide helps Alaskans shape data center conversations",
+    "url": "https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php",
+    "first_seen_at": "2026-10-14T08:00:00Z",
+    "summary": "As data centers and artificial intelligence raise new questions about energy, water, land, infrastructure, jobs and community priorities across Alaska, a new report offers a different way to approach the conversation.",
+    "feed": "https://www.uaf.edu/news/",
+    "publisher": "UAF",
     "coverage": 1,
-    "score": 0.009541,
-    "priority": 5
+    "score": 0.660532,
+    "priority": 0
   },
-  "expires_at": "2026-10-22T00:59:30Z",
+  "expires_at": "2026-10-28T08:00:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-14T13:23:00Z",
-      "selected": {
-        "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
-        "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
-        "first_seen_at": "2026-10-08T00:59:30Z",
-        "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
-        "feed": "https://www.ktoo.org/feed/?paged=2",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.009541,
-        "priority": 5
-      },
-      "stories": [
-        {
-          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
-          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
-          "first_seen_at": "2026-10-08T00:59:30Z",
-          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
-          "feed": "https://www.ktoo.org/feed/?paged=2",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.009541,
-          "priority": 5
-        },
-        {
-          "title": "New guide helps Alaskans shape data center conversations",
-          "url": "https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php",
-          "first_seen_at": "2026-10-14T08:00:00Z",
-          "summary": "As data centers and artificial intelligence raise new questions about energy, water, land, infrastructure, jobs and community priorities across Alaska, a new report offers a different way to approach the conversation.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.747593,
-          "priority": 0
-        },
-        {
-          "title": "Trump’s push for $50B Korean investment in Alaska gasline faces familiar economic challenges",
-          "url": "https://www.ktoo.org/2026/10/13/trumps-push-for-50b-korean-investment-in-alaska-gasline-faces-familiar-economic-challenges/",
-          "first_seen_at": "2026-10-13T13:00:41Z",
-          "summary": "Trump is pushing Korea to invest in Alaska LNG, and the Iran War has scrambled global energy flows. Is that enough to move a long-sought gasline forward?",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.432009,
-          "priority": 1
-        },
-        {
-          "title": "UAF joins $6M NSF critical minerals effort",
-          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
-          "first_seen_at": "2026-10-05T08:00:00Z",
-          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.00146,
-          "priority": 3
-        },
-        {
-          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-          "first_seen_at": "2026-10-07T18:51:10Z",
-          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.007991,
-          "priority": 4
-        },
-        {
-          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
-          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
-          "first_seen_at": "2026-10-02T00:30:05Z",
-          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000147,
-          "priority": 4
-        },
-        {
-          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
-          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
-          "first_seen_at": "2026-10-09T12:59:19Z",
-          "summary": "The online map covers 66 coastal communities.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.026983,
-          "priority": 5
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-14T19:23:00Z",
       "selected": {
@@ -172,7 +79,7 @@
         "feed": "https://www.uaf.edu/news/",
         "publisher": "UAF",
         "coverage": 1,
-        "score": 0.719813,
+        "score": 0.660532,
         "priority": 0
       },
       "stories": [
@@ -184,7 +91,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.719813,
+          "score": 0.660532,
           "priority": 0
         },
         {
@@ -195,7 +102,7 @@
           "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.415956,
+          "score": 0.3817,
           "priority": 1
         },
         {
@@ -206,7 +113,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.001406,
+          "score": 0.00129,
           "priority": 3
         },
         {
@@ -217,7 +124,7 @@
           "feed": "https://www.akbizmag.com/feed/?paged=2",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.007694,
+          "score": 0.00706,
           "priority": 4
         },
         {
@@ -228,7 +135,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000142,
+          "score": 0.00013,
           "priority": 4
         },
         {
@@ -236,10 +143,10 @@
           "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
           "first_seen_at": "2026-10-09T12:59:19Z",
           "summary": "The online map covers 66 coastal communities.",
-          "feed": "https://www.ktoo.org/feed/",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.02598,
+          "score": 0.023841,
           "priority": 5
         },
         {
@@ -250,7 +157,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.009186,
+          "score": 0.00843,
           "priority": 5
         }
       ]
@@ -329,7 +236,7 @@
           "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
           "first_seen_at": "2026-10-09T12:59:19Z",
           "summary": "The online map covers 66 coastal communities.",
-          "feed": "https://www.ktoo.org/feed/",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
           "score": 0.021847,
@@ -355,7 +262,7 @@
         "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
         "first_seen_at": "2026-10-09T12:59:19Z",
         "summary": "The online map covers 66 coastal communities.",
-        "feed": "https://www.ktoo.org/feed/",
+        "feed": "https://www.ktoo.org/feed/?paged=2",
         "publisher": "KTOO",
         "coverage": 1,
         "score": 0.018371,
@@ -367,7 +274,7 @@
           "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
           "first_seen_at": "2026-10-09T12:59:19Z",
           "summary": "The online map covers 66 coastal communities.",
-          "feed": "https://www.ktoo.org/feed/",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
           "score": 0.018371,
@@ -440,6 +347,99 @@
           "priority": 5
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-15T13:23:00Z",
+      "selected": {
+        "title": "UAF joins $6M NSF critical minerals effort",
+        "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+        "first_seen_at": "2026-10-05T08:00:00Z",
+        "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.000836,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "UAF joins $6M NSF critical minerals effort",
+          "url": "https://www.uaf.edu/news/uaf-joins-6m-nsf-critical-minerals-effort.php",
+          "first_seen_at": "2026-10-05T08:00:00Z",
+          "summary": "UAF researchers are joining a four-year, $6 million National Science Foundation effort to explore how microorganisms and artificial intelligence can improve the recovery of critical minerals from coal waste.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.000836,
+          "priority": 3
+        },
+        {
+          "title": "New guide helps Alaskans shape data center conversations",
+          "url": "https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php",
+          "first_seen_at": "2026-10-14T08:00:00Z",
+          "summary": "As data centers and artificial intelligence raise new questions about energy, water, land, infrastructure, jobs and community priorities across Alaska, a new report offers a different way to approach the conversation.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.428003,
+          "priority": 0
+        },
+        {
+          "title": "Trump’s push for $50B Korean investment in Alaska gasline faces familiar economic challenges",
+          "url": "https://www.ktoo.org/2026/10/13/trumps-push-for-50b-korean-investment-in-alaska-gasline-faces-familiar-economic-challenges/",
+          "first_seen_at": "2026-10-13T13:00:41Z",
+          "summary": "Trump is pushing Korea to invest in Alaska LNG, and the Iran War has scrambled global energy flows. Is that enough to move a long-sought gasline forward?",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.247329,
+          "priority": 1
+        },
+        {
+          "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
+          "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
+          "first_seen_at": "2026-10-07T18:51:10Z",
+          "summary": "The US Department of Energy awarded $150 million in defense readiness funds for an electrical intertie between Beluga and Healy.",
+          "feed": "https://www.akbizmag.com/feed/?paged=2",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.004575,
+          "priority": 4
+        },
+        {
+          "title": "Trump claims South Korea will invest $50B in Alaska gas pipeline. Not so fast, Korean officials say",
+          "url": "https://www.ktoo.org/2026/10/01/trump-claims-south-korea-will-invest-50b-in-alaska-gas-pipeline-not-so-fast-korean-officials-say/",
+          "first_seen_at": "2026-10-02T00:30:05Z",
+          "summary": "The South Korean trade minister said Trump's announcement \"went beyond what was agreed\" and denied that the country had committed to investing in the Alaska LNG project.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 8.4e-05,
+          "priority": 4
+        },
+        {
+          "title": "New interactive tsunami map helps Alaska communities prepare for the worst",
+          "url": "https://www.ktoo.org/2026/10/09/new-interactive-tsunami-map-helps-alaska-communities-prepare-for-the-worst/",
+          "first_seen_at": "2026-10-09T12:59:19Z",
+          "summary": "The online map covers 66 coastal communities.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.015448,
+          "priority": 5
+        },
+        {
+          "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
+          "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
+          "first_seen_at": "2026-10-08T00:59:30Z",
+          "summary": "The five cameras on the map are all in Juneau’s parking garages, owned and managed by the city. But, the city said they’re not what people think.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.005462,
+          "priority": 5
+        }
+      ]
     }
   ],
   "history": [
@@ -502,6 +502,11 @@
       "url": "https://www.ktoo.org/2026/10/07/cameras-in-downtown-juneau-parking-garages-arent-flock-branded/",
       "title": "Cameras in downtown Juneau parking garages aren’t Flock-branded",
       "shown_at": "2026-10-14T13:23:00Z"
+    },
+    {
+      "url": "https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php",
+      "title": "New guide helps Alaskans shape data center conversations",
+      "shown_at": "2026-10-14T19:23:00Z"
     }
   ],
   "feeds": [
@@ -509,31 +514,27 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "8ad9f39b19f0bda143d3a60d49122873fd82b29dfd771b6b753338da71b9a921"
+      "sha256": "e589e3270fedea77ffb7a3b63a75a3ba0061f80afe5278042b3670b76974e798"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "2bb10abae63af0ecaa5016040e37fe9491aef8dbc7ae9036b6b13f01009ee9c6"
+      "sha256": "256f238d1544ca2662222643aa4a49d22292dfe3fad6ebf09cca42588f7d3096"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "8f3ed23c8f35565e4bfa881064bd4e584ade7fccd60d0f17e37cfc000127d026"
+      "sha256": "b0b733d3a40864f60407a69d88ffe4ba7e0cdf27cedc23276c08128e8624d86c"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "34410f6ae8de9ea6042a287ee7cd3258c7ecfb3e6a89f3d5ab9793d878230f79"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
-      "status": "ok",
-      "items": 10,
-      "sha256": "3c296e2744aa28850e9a0af527b5843ffbde9423b3ace7effe9cae3c5e98ec96"
+      "status": "not_modified"
     },
     {
       "url": "https://alaska-native-news.com/feed/",
@@ -551,7 +552,7 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "b3f52059c21d92550ad321ed0e596dc51c612c8a862929028cd4bda98a9ea7ed"
+      "sha256": "f2e102f0ad107afeeea22e2b2c1f46fb0e45835eed2eede2cee3be7de17b2af4"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
@@ -566,73 +567,73 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8ad9f39b19f0bda143d3a60d49122873fd82b29dfd771b6b753338da71b9a921",
-      "etag": "\"fb4d6a2c557a350f6be302f001a98689\"",
-      "last_modified": "Wed, 14 Oct 2026 13:00:36 GMT"
+      "sha256": "e589e3270fedea77ffb7a3b63a75a3ba0061f80afe5278042b3670b76974e798",
+      "etag": "\"e3e89843126dc8881b119983ae57f82d\"",
+      "last_modified": "Wed, 14 Oct 2026 21:15:16 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "2bb10abae63af0ecaa5016040e37fe9491aef8dbc7ae9036b6b13f01009ee9c6",
-      "etag": "\"fb4d6a2c557a350f6be302f001a98689\"",
-      "last_modified": "Wed, 14 Oct 2026 13:00:36 GMT"
+      "sha256": "256f238d1544ca2662222643aa4a49d22292dfe3fad6ebf09cca42588f7d3096",
+      "etag": "\"e3e89843126dc8881b119983ae57f82d\"",
+      "last_modified": "Wed, 14 Oct 2026 21:15:16 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8f3ed23c8f35565e4bfa881064bd4e584ade7fccd60d0f17e37cfc000127d026",
-      "etag": "\"fb4d6a2c557a350f6be302f001a98689\"",
-      "last_modified": "Wed, 14 Oct 2026 13:00:36 GMT"
+      "sha256": "b0b733d3a40864f60407a69d88ffe4ba7e0cdf27cedc23276c08128e8624d86c",
+      "etag": "\"e3e89843126dc8881b119983ae57f82d\"",
+      "last_modified": "Wed, 14 Oct 2026 21:15:16 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-10-14T18:04:17Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "34410f6ae8de9ea6042a287ee7cd3258c7ecfb3e6a89f3d5ab9793d878230f79",
       "etag": "W/\"ab60a2c481f2d451d3bb953bb880b655\"",
-      "last_modified": "Wed, 14 Oct 2026 16:00:50 GMT"
+      "last_modified": "Wed, 14 Oct 2026 16:00:50 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-14T22:21:31Z",
+      "sha256": "34410f6ae8de9ea6042a287ee7cd3258c7ecfb3e6a89f3d5ab9793d878230f79",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-10-14T18:04:17Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "3c296e2744aa28850e9a0af527b5843ffbde9423b3ace7effe9cae3c5e98ec96",
       "etag": "W/\"ab60a2c481f2d451d3bb953bb880b655\"",
-      "last_modified": "Wed, 14 Oct 2026 16:00:50 GMT"
+      "last_modified": "Wed, 14 Oct 2026 16:00:50 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-14T22:21:31Z",
+      "sha256": "3c296e2744aa28850e9a0af527b5843ffbde9423b3ace7effe9cae3c5e98ec96",
+      "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "db8decc3a60c39a2255e872532415ad8b1aea3cc4fe00358c319560e9bcab1ee"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "8c715fdd1a8056a5bebc638b7d449d36b2753be35531c9859e9ebe6831520fc2"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b3f52059c21d92550ad321ed0e596dc51c612c8a862929028cd4bda98a9ea7ed",
-      "last_modified": "Wed, 14 Oct 2026 17:13:26 GMT"
+      "sha256": "f2e102f0ad107afeeea22e2b2c1f46fb0e45835eed2eede2cee3be7de17b2af4",
+      "last_modified": "Wed, 14 Oct 2026 21:02:01 GMT"
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
       "last_modified": "Wed, 14 Oct 2026 12:09:29 GMT",
       "failures": 0,
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "sha256": "6aa3b7dbb19a7bd2081faa4904cc41cb9c50e097797dbb16eea979a691d8864a",
       "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-10-14T18:04:17Z",
+      "ok_at": "2026-10-14T22:21:31Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "343a36cdafbf9796e1253a927de86b1b6abe404f73a18934b897be7902b03e93"
