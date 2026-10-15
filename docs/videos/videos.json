@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-10-15",
+      "date": "2026-10-15",
+      "title": "The Door With a Condition",
+      "caption": "Fairbanks's Assembly asked the Legislature to pause new commercial data centers until standards exist, KUAC reported. A UAF guide asks who benefits and who pays.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-11",
       "date": "2026-10-11",
       "title": "This Crate Was Supposed to Fly",
