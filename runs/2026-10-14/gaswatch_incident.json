@@ -1,5 +1,6 @@
 {
   "blocker": "github",
+  "audit_checked_utc": "2026-10-15T08:34:27Z",
   "reason": "CINGSA posted its October 14th storage reading at 16:00 Alaska (00:00 UTC October 15th), after the last gas watch collection ran at 22:21 UTC October 14th. The two scheduled collections that would pick it up (04:40 and 07:20 UTC) had not been started by GitHub at 07:56 UTC, and a manual workflow_dispatch from this session is refused with 403 Resource not accessible by integration. The October 13th weather true-up from ACIS waits on the same next collection, so 'observations and true-ups' also reads FAIL. The collector, parser and page are healthy (the 22:21 UTC run succeeded); the published reading is one reading behind until GitHub runs the next scheduled collection. This is the standing queue item (repeat 11), an owner decision on schedules or Actions credentials.",
   "attempts": [
     "2026-10-15T06:1xZ gaswatch_health.py live audit at wake: FAIL, source reading posted after the 22:21Z collection",
