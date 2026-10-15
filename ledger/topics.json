@@ -3392,6 +3392,51 @@
     "land-and-permitting",
     "state-policy"
    ]
+  },
+  {
+   "run_date": "2026-10-14",
+   "carousel_no": 86,
+   "topic": "The North Pacific Fishery Management Council's October 9th motion at its 280th meeting in Anchorage backing NMFS's draft 2027 Annual Deployment Plan for observers and electronic monitoring: a yearly NMFS test that moves fixed-gear EM boats averaging under 3 trips a year over 3 years to the observer pool from the 2028 plan (32 boats with no monitoring plan move for 2027). NMFS's test on 172 boats with a full 2023 to 2025 history: 39 took no trips, 37 more fished under the line, 76 would move with 77 trips; per-trip costs fall in NMFS's scenario and about $96,000 shifts. Software from an AFSC, APU, Nexus and NMFS team found 96 of 97 Pacific sleeper sharks on longline EM video in earlier research; NMFS intends to support scaling the tools in 2027 if staff are available, while calling the camera gear a high buy-in of about $6,003 a boat a year. Gulf fixed-gear catch is expected to be 14.25 percent monitored. The Advisory Panel, 18 to 0, said a boat moved to observers should not have to carry one less crew member; the Council asked NMFS to consider boats with no bunk. Pool requests due in ODDS by November 1st; final ADP in December.",
+   "angle": "BETTER EYES, SAME BILL: the AI reads the tape and works on the cheap side of the bill; the line that decides who keeps a camera is a trip count, and its cost lands on a bunk. Never 'approved', never a list of boats, never 'funded'.",
+   "entities": [
+    "North Pacific Fishery Management Council",
+    "NMFS",
+    "NOAA Fisheries",
+    "Alaska Fisheries Science Center",
+    "Advisory Panel",
+    "PCFMAC",
+    "Alaska Pacific University",
+    "Nexus Data Solutions",
+    "NMFS Alaska Region",
+    "Cindy Tribuzio",
+    "ODDS",
+    "Gulf of Alaska",
+    "Bering Sea and Aleutian Islands"
+   ],
+   "keywords": [
+    "electronic monitoring",
+    "fishery observers",
+    "annual deployment plan",
+    "fixed gear",
+    "longline",
+    "machine learning on EM video",
+    "sleeper shark detection",
+    "trip threshold",
+    "observer bunk space",
+    "monitoring coverage"
+   ],
+   "headline": "Software can read the tape. 76 boats would still lose the camera.",
+   "sources_lead": [
+    "https://meetings.npfmc.org/CommentReview/DownloadFile?p=1b5d78cf-b328-4df6-9203-47dbc9e1bf97.pdf&fileName=C1%20MOTION.pdf",
+    "https://meetings.npfmc.org/CommentReview/DownloadFile?p=eefafa07-fbe1-4afb-b3c5-9c5d7d5f29c1.pdf&fileName=C1%20Observer%202027%20Annual%20Deployment%20Plan.pdf",
+    "https://meetings.npfmc.org/CommentReview/DownloadFile?p=c69babbe-d931-4bd8-8b97-a0d49b87f093.pdf&fileName=C1%20AP%20Report.pdf"
+   ],
+   "claims": 86,
+   "note": "Queued brief from No.65 (prompts/NEXT_RUN.md), eligible from October 14th; dedupe soft overlaps only; last fisheries-monitoring deck No.57 (32 days). Runner-up GVEA's first Level 2 energy emergency alert. Scored 8.51, art 6.5, rounds 4.",
+   "beats": [
+    "research-and-science",
+    "defense-and-federal"
+   ]
   }
  ]
 }

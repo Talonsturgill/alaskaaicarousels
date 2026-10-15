@@ -1,0 +1,112 @@
+{
+ "run_date": "2026-10-14",
+ "carousel_no": 86,
+ "revision_rounds": 4,
+ "hard_fails": [],
+ "hard_fail_checks": "all 13 pass (scorer, round 4): no dashes, no emoji, every fact claim-backed, no typos, no clipping, primary contrast above 4.5 (09 wordmark 3.8 is brand furniture, charged under Legibility), 9 slides, qa WARN 0 fails with a vector PDF, no topic repeat within 30 days, hero not identical to the last 4, no banned phrase, 3 hashtags and no link in the post, no placeholder",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.5,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(6.5x0.16)+(8.5x0.14)+(7.5x0.12)+(8.5x0.10)+(7.5x0.08)+(8x0.07)+(8x0.05)+(8x0.10) = 8.51",
+ "weighted_total": 8.51,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Re-render 05's sleeper shark in the water rather than on it, with refraction, caustics and depth attenuation, and give it real form so the AI frame's anchor stops reading as clip art.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "fix": "composite the shark under the surface with refraction and caustics; a lit dorsal ridge, dark ventral lee and fins with thickness; visible shading on the inboard deck"
+  },
+  {
+   "slide": 6,
+   "fix": "a lit egg-crate foam relief in the lid and the coil as a shaded tube with a specular per turn"
+  },
+  {
+   "slide": 4,
+   "fix": "mill striations and a teak reflection on the polished bars, bead-blast grain on the matte ones"
+  },
+  {
+   "slide": 2,
+   "fix": "zinc castings with irregular bevel and pitting; a larger lifted token owning the empty lower-left board"
+  },
+  {
+   "slide": 9,
+   "fix": "flatten the beads into wet spots, seat or drop the hatch dog, turn the dome further to the eye"
+  }
+ ],
+ "craft_floor_note": "Art 6.5, under the 8.5 floor. The one owed craft cycle ran at round 4 on frames 06, 02, 05, 09 and 04 and did not move the art score (6.5 before and after); the floor is never a reason not to ship.",
+ "craft_cycle": {
+  "frames": [
+   6,
+   2,
+   5,
+   9,
+   4
+  ],
+  "art_before": 6.5,
+  "art_after": 6.5
+ },
+ "score_history": [
+  {
+   "round": 3,
+   "weighted_total": 8.18,
+   "art": 6.5
+  },
+  {
+   "round": 4,
+   "weighted_total": 8.51,
+   "art": 6.5
+  }
+ ],
+ "editor_notes_for_email": "Scored 8.51 against a 7.7 threshold at revision round 4, no hard fails. Artwork craft is 6.5, under the 8.5 craft floor after its one craft cycle; the weakest frames are 05 (the shark reads as an illustration on the water) and 06 (the gear case reads as a flat layout). The 76 of 172 is NMFS's test against 2023 to 2025 effort ('would move', never a list of boats). The 96 of 97 is earlier research. NMFS 'intends to support' scaling the AI tools only if staff are available. The Council 'backed' the draft and final rates come in December. The opening quote is the Advisory Panel's wording (C58). The 09 sign-off wordmark measures 3.8:1 at its worst point over the dawn cover. The caption credits 'Cindy Tribuzio's AFSC team'; the team spans AFSC, APU, Nexus and NMFS Alaska Region, so 'an AFSC and APU team' is the more even-handed edit if wanted. Post well before the November 1st ODDS deadline."
+}

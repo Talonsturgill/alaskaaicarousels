@@ -3038,6 +3038,45 @@
     "NEW: sea floor under the water plane with smoothed heights so a DEM coast crosses water on a curve (04)"
    ],
    "note": "Rounds used 5. Scored 8.62, art 7.0. aksdf at native resolution is blocked by render.py's 30 s ready cap (queued)."
+  },
+  {
+   "run_date": "2026-10-14",
+   "carousel_no": 86,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE EXHIBITS. One agency dataset with each figure cast as one modelled physical exhibit (zinc hull tokens on a slate board, a cedar tally stick, machined bars on a chart table, the camera's own picture, an open gear case, glass gauges, a berth), bracketed by the camera itself seen from below (01) and from above (09).",
+   "atmosphere": "NEW: SEA SMOKE AT THE RAIL, then overcast working surfaces, the camera's grey video, dusk, the dark shelf, one tungsten lamp, dawn on a wet hatch",
+   "depth_technique": "akthree PBR camera on its mast in exp2 sea smoke with halo sprites (01); akbench plan relief, zinc tokens in routed trays (02); akbench planks plus akengrave white-line stick with a brass pin (03); cabinet-oblique machined bars on teak (04); two-pass aksdf (surface and shark, depth veil) under a barrel remap (05); akbench gear case with an authored anodised finish (06); akengrave lathe glass and liquid on one declared scale (07); akstipple tone field from a value study under one lamp (08); akthree camera on a wet hatch at dawn (09)",
+   "line_voice": "documentary, exhibits as evidence",
+   "continuity_device": "camera move: THE MAST'S EYE, the deck shot from where an EM camera sits",
+   "continuity_devices": [
+    "camera move: below the mast, plan views from the mast, the camera's own picture, below deck, above the camera on a hatch",
+    "palette arc: night sodium, overcast slate, video grey, dusk, darkest, tungsten, dawn",
+    "edge-teases: the cable 01 to 02, the scrub bar to the case lip 05 to 06, the lamp's spill 08 to 09"
+   ],
+   "hook_archetype": "NEW: BETTER EYES, SAME BILL (a capability improves, the decision turns on something else)",
+   "palette_family": "NEW: GALVANIZED ZINC, TARRED GROUNDLINE AND GULF SEA SMOKE",
+   "type_pairing": "Fraunces display and text (opsz axis) + JetBrains Mono",
+   "narrative_structure": "the camera, the count, the rule, the trade, the software (rest), the turn, the stake, the bunk, the ask",
+   "variance_dials": {
+    "design_variance": 3,
+    "visual_density": 4,
+    "type_temperature": 5
+   },
+   "techniques": [
+    "akthree",
+    "akbench",
+    "akengrave surface",
+    "akengrave lathe",
+    "aksdf two-pass",
+    "akstipple",
+    "cabinet oblique",
+    "akpost grade"
+   ],
+   "new_techniques_logged": [
+    "NEW: two-pass aksdf, a subject rendered alone against black and composited under a surface pass with a depth veil and a clip outboard of the occluder (05)",
+    "NEW: detection box measured from the subject pass's own pixels through the barrel remap (05)"
+   ],
+   "note": "Rounds used 4. Scored 8.51, art 6.5."
   }
  ]
 }

@@ -2066,6 +2066,30 @@
    "confidence": 0.6,
    "run_date": "2026-10-12",
    "carousel_no": 85
+  },
+  {
+   "instinct": "A SUBJECT UNDER WATER IS TWO PASSES: THE SURFACE, AND THE SUBJECT ALONE, VEILED AND CLIPPED.",
+   "evidence": "No.86 slide 05: depth bands inside the water SDF cost five subject evaluations per water pixel, took 38 s and posterised into a pale halo; a surface pass plus a shark-only pass through the same lens, veiled toward the water colour along the body and clipped outboard of the rail, rendered in 13 s and read as a shark below the surface.",
+   "act_on_it": "For anything seen through water or glass in aksdf, render the subject in its own pass against black and composite it with a veil and a clip.",
+   "confidence": 0.6,
+   "run_date": "2026-10-14",
+   "carousel_no": 86
+  },
+  {
+   "instinct": "A 2X CANVAS NEEDS THE 2X TRANSFORM BEFORE EVERY LIBRARY THAT DRAWS IN CSS PX.",
+   "evidence": "No.86: akpost graded a quarter of 02, aksdf rendered into a quarter of 05 and 09's akthree canvas drew into a quarter, each until cx.setTransform(2, 0, 0, 2, 0, 0) or cx.scale(2, 2) came first.",
+   "act_on_it": "Set the 2x transform at the top of renderReady on every slide, and re-set it after any setTransform(1, ...) used for putImageData.",
+   "confidence": 0.7,
+   "run_date": "2026-10-14",
+   "carousel_no": 86
+  },
+  {
+   "instinct": "A CRAFT CYCLE OF FIVE SMALL TOUCHES DOES NOT MOVE THE ART SCORE; ONE REBUILT LARGEST OBJECT MIGHT.",
+   "evidence": "No.86 round 4 made one change on each of five frames (cap proportions, tone jitter, deck streaks, seated beads, a table edge); the scorer read them as below viewing scale and art held at 6.5.",
+   "act_on_it": "Spend the craft cycle rebuilding the one or two largest objects the scorer names, not a touch on every frame it lists.",
+   "confidence": 0.55,
+   "run_date": "2026-10-14",
+   "carousel_no": 86
   }
  ]
 }
