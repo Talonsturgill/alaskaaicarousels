@@ -1,0 +1,28 @@
+{
+ "run_date": "2026-10-14",
+ "carousel_no": 86,
+ "effort": "high",
+ "date_note": "Woke 2026-10-15 06:09 UTC = 2026-10-14 22:09 America/Anchorage. runs/2026-10-14 did not exist, so the run date is the Anchorage date. runs/2026-10-13 never shipped (no run that day).",
+ "branch": "tsturg/clever-mayer-75gyo6",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": "done: plan.md, run_state.json",
+  "craft_refresh": "done: 2 searches, nothing new and verified, FIELD_NOTES untouched",
+  "research": "done: scout_merge.md, scouts/beat_A..F.md, pdf/*.txt",
+  "claims": "done: claims.json (86 claims, 74 primary), claims_check PASS",
+  "docket": "done: 18 items refreshed, ledger/docket.json committed a15775d4",
+  "gas_watch": "done: live FAIL documented, gaswatch_incident.json (github, dispatch 403), cron_health PASS",
+  "selection": "done: selection.md (queued NPFMC brief; runner-up GVEA alert)",
+  "directors_room": "done: storyboard.md (9 dossiers, dossier_check PASS), selection.md synthesis",
+  "copy": "done: caption.txt, copy.json, caption_check PASS",
+  "art_build": "done: 9 slides, qa WARN 0 fails, bespoke PASS",
+  "pixel_review": "done: 2 rounds",
+  "flow_review": "done: flow_review.json, round 3 applied",
+  "assemble": "done",
+  "scoring": "done: 8.51 at round 4 (threshold 7.7), art 6.5, craft cycle 6.5 to 6.5",
+  "ship": "in progress: artifacts in runs/2026-10-14, ledgers appended",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "FIELD_NOTES appended"
+ }
+}

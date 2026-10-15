@@ -1,0 +1,179 @@
+{
+ "document_title": "Software Can Read the Tape. The Camera Is the Cost.",
+ "post_copy": "\"Should not have to carry one less crew member,\" the North Pacific Council's Advisory Panel said of boats sent from cameras to observers.\n\nOn October 9th the Council backed a yearly test. A boat averaging under 3 trips a year over 3 years goes to observers from 2028 in NMFS's draft.\n\nSoftware from Cindy Tribuzio's AFSC team found 96 of 97 sleeper sharks on camera video in earlier research. NMFS says review adds little per trip and the gear is the buy-in. Most fixed-gear camera trips fish the Gulf. NMFS expects to monitor 14.25 percent of that catch.\n\nFrom the camera on its mast to the same camera on a hatch, the deck shows 76 of 172 boats that would move, a 3-trip tally, cheaper trips, 96 of 97 sharks, a $6,003 gear case, the Gulf's 14.25 percent and an empty berth.\n\nWhat is a deckhand's bunk worth on a boat that fishes twice a year?\n\n#FisheryObservers #GulfOfAlaska #FisheriesAI",
+ "hook_chars": 137,
+ "total_chars": 891,
+ "hashtags": [
+  "#FisheryObservers",
+  "#GulfOfAlaska",
+  "#FisheriesAI"
+ ],
+ "deck_summary_line": "From the camera on its mast to the same camera on a hatch, the deck shows 76 of 172 boats that would move, a 3-trip tally, cheaper trips, 96 of 97 sharks, a $6,003 gear case, the Gulf's 14.25 percent and an empty berth.",
+ "first_comment": "Sources, primary first\nNorth Pacific Fishery Management Council, C1 Motion on the Draft 2027 Annual Deployment Plan (October 9th, 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=1b5d78cf-b328-4df6-9203-47dbc9e1bf97.pdf&fileName=C1%20MOTION.pdf\nNPFMC Advisory Panel, C1 AP Report on the 2027 observer plan (October 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=c69babbe-d931-4bd8-8b97-a0d49b87f093.pdf&fileName=C1%20AP%20Report.pdf\nNOAA Fisheries AFSC, PPT C1 Draft 2027 Annual Deployment Plan, slides to the Council (October 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=6dc29ec2-85ff-4dcc-92e6-6d536acdaa8f.pdf&fileName=PPT%20C1%20Draft%202027%20Annual%20Deployment%20Plan.pdf\nNOAA Fisheries, Draft 2027 Annual Deployment Plan for observers and electronic monitoring (September 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=eefafa07-fbe1-4afb-b3c5-9c5d7d5f29c1.pdf&fileName=C1%20Observer%202027%20Annual%20Deployment%20Plan.pdf\nNPFMC Partial Coverage Fishery Monitoring Advisory Committee, C1 PCFMAC Report (September 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=dcb87af9-1053-45b7-b6b0-e5fc6f2a355a.pdf&fileName=C1%20PCFMAC%20Report.pdf\nTribuzio et al., Advancing Fisheries Monitoring, AI tools for EM video, presented to the PCFMAC (September 15th, 2026) https://meetings.npfmc.org/CommentReview/DownloadFile?p=3a701d95-03ef-452c-84dc-52e252e11f26.pdf&fileName=Williamson%20PCFMAC%20Presentation.pdf\nNPFMC eAgenda, 280th Council meeting, Anchorage (October 2026) https://meetings.npfmc.org/Meeting/Details/7159\nNOAA Fisheries Information Bulletin IB 26-02, final 2026 Annual Deployment Plan (January 13th, 2026) https://www.fisheries.noaa.gov/bulletin/ib-26-02-final-2026-annual-deployment-plan-observers-and-electronic-monitoring\n\nAlaska's AI decisions and their next dates are tracked at https://alaskaaihq.com\nIf you fish fixed gear, add what these numbers miss, from bunk space to trip counts, in the replies.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "THE 2027 OBSERVER PLAN · OCTOBER 9TH",
+   "headline": "Software can read the tape. 76 boats would still lose the camera.",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C01",
+    "C06",
+    "C17",
+    "C61"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "NMFS TEST · FIXED-GEAR CAMERA POOL · 2023 TO 2025",
+   "headline": "172 camera boats. 76 would move.",
+   "body": "39 took no trips in three years. 37 more averaged under 3 trips a year. The other boats stay on camera.",
+   "labels": [
+    "A TEST AGAINST PAST TRIPS, NOT A LIST OF BOATS",
+    "39 · NO TRIPS",
+    "37 · UNDER 3 A YEAR",
+    "STAY ON CAMERA"
+   ],
+   "claim_ids": [
+    "C14",
+    "C15",
+    "C16",
+    "C17"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "THE COUNCIL MOTION · OCTOBER 9TH",
+   "headline": "Under 3 trips a year, the camera goes to a boat that fishes.",
+   "body": "NMFS's draft starts the yearly check with the 2028 plan, at least 9 trips over 3 years. In 2027, 32 boats that filed no monitoring plan since 2024 go to observers first.",
+   "labels": [
+    "9 TRIPS IN 3 YEARS"
+   ],
+   "claim_ids": [
+    "C01",
+    "C05",
+    "C06",
+    "C07",
+    "C08"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "IN NMFS'S SCENARIO · 76 BOATS, 77 TRIPS WOULD MOVE",
+   "headline": "Monitored trips get cheaper.",
+   "body": "About $96,000 shifts to boats that fish.",
+   "labels": [
+    "MATTE BAR NOW · POLISHED BAR AFTER THE MOVE",
+    "OBSERVER, COST PER TRIP",
+    "$10,964 TO $9,967",
+    "CAMERA, COST PER TRIP",
+    "$7,494 TO $7,017",
+    "OBSERVER SAMPLE RATE",
+    "12.60% TO 13.43%",
+    "CAMERA SAMPLE RATE",
+    "16.96% TO 19.49%"
+   ],
+   "claim_ids": [
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "WHAT SOFTWARE FOUND ON THE TAPE, IN EARLIER RESEARCH",
+   "headline": "96 of 97",
+   "body": "Pacific sleeper sharks, found on longline camera video by a machine-learning model.",
+   "labels": [
+    "PACIFIC SLEEPER SHARK",
+    "AFSC · ALASKA PACIFIC UNIVERSITY",
+    "NEXUS DATA SOLUTIONS · NMFS ALASKA REGION"
+   ],
+   "claim_ids": [
+    "C61",
+    "C63"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "WHERE THE COST SITS, PER NMFS",
+   "headline": "Reading the tape is the cheap part.",
+   "body": "NMFS calls the camera gear a high buy-in, about $6,003 a boat a year, while reviewing a selected trip adds little. It intends to support scaling the AI tools in 2027, if staff are available.",
+   "labels": [
+    "$6,003 A BOAT A YEAR, UPKEEP AND REPLACEMENT"
+   ],
+   "claim_ids": [
+    "C23",
+    "C24",
+    "C60"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "SHARE OF RETAINED CATCH NMFS EXPECTS TO MONITOR IN 2027",
+   "headline": "The Gulf's fixed-gear catch is the least watched.",
+   "body": "NMFS expects 1,010 Gulf fixed-gear camera trips in 2027, against 92 in the Bering Sea, and plans to review 154 of the Gulf's.",
+   "labels": [
+    "BERING SEA TRAWL 99.96%",
+    "BERING SEA FIXED GEAR 88.74%",
+    "GULF TRAWL 86.42%",
+    "GULF FIXED GEAR 14.25%",
+    "100",
+    "0"
+   ],
+   "claim_ids": [
+    "C39",
+    "C40",
+    "C41",
+    "C42",
+    "C45",
+    "C46"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "THE ADVISORY PANEL, 18 TO 0",
+   "headline": "A camera takes no bunk. An observer does.",
+   "body": "The panel said a boat moved to observers shouldn't have to leave a crew member ashore. The Council asked NMFS to consider active boats that can prove they have no bunk for one.",
+   "labels": [],
+   "claim_ids": [
+    "C57",
+    "C58",
+    "C10"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "2027 CAMERA POOL REQUESTS ARE DUE IN ODDS BY NOVEMBER 1ST",
+   "headline": "3 trips a year to keep a camera. Fair line, or wrong test?",
+   "body": "Final rates are expected in December.",
+   "labels": [],
+   "claim_ids": [
+    "C54",
+    "C06",
+    "C02"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post when you choose. Drafts arrive daily and you set the cadence. Tuesday to Thursday, 8 to 11am AKT, are the strongest slots, and the November 1st ODDS deadline on slide 9 argues for posting this one well before late October.",
+  "Paste the sources comment within 60 seconds of posting, as plain text, so every raw URL stays a working link.",
+  "Reply to every comment in the first 90 minutes, especially from people who fish fixed gear in the Gulf or sit on the Advisory Panel or the PCFMAC.",
+  "At 48 hours, note this post's saves and comments so the next run's ledger and instincts learn from it."
+ ],
+ "editor_notes_for_email": "No.86 leads with the North Pacific Council's October 9th motion on NMFS's draft 2027 observer plan, because it is the first time a trip count, not software, decides which Gulf fixed-gear boats keep their cameras. Every figure is NMFS's own: the 76 of 172 is a test against 2023 to 2025 effort and says 'would move', never a list of boats. The 96 of 97 sharks is earlier research, and NMFS intends to support scaling those AI tools in 2027 only if staff are available. The Council backed the draft; NMFS finalizes it in December. The bunk line on slide 08 is the Advisory Panel's, attributed.",
+ "caption_meta": {
+  "opening_move": "QUOTE FIRST",
+  "structure": "COLD OPEN, WARM CLOSE",
+  "closing_move": "PRICE",
+  "deck_summary_line": "From the camera on its mast to the same camera on a hatch, the deck shows 76 of 172 boats that would move, a 3-trip tally, cheaper trips, 96 of 97 sharks, a $6,003 gear case, the Gulf's 14.25 percent and an empty berth.",
+  "first_8_words": "\"Should not have to carry one less crew",
+  "hook_type": "quote first, the Advisory Panel on boats sent from cameras to observers"
+ },
+ "first_8_words": "\"Should not have to carry one less crew",
+ "hook_type": "quote first, the Advisory Panel on boats sent from cameras to observers"
+}

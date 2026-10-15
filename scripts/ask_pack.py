@@ -140,9 +140,25 @@ UNCHANGED_RE = re.compile(
     r"(?:and\s+)?(?:unchanged|nothing\b)", re.I)
 
 
+# A NOTE CAN CLOSE ON THE VERDICT AS WELL AS OPEN ON IT (2026-10-15, run No.86).
+#
+# The daily refresh has written its no-change notes as a sentence of what was
+# re-read followed by "Checked and unchanged." since late September, so the
+# verdict sits at the END. UNCHANGED_RE only reads the start, and on October
+# 14th 139 of 579 notes closed that way while the collapse saw none of them. The
+# pack had crept to 31,884 tokens on main and that day's ordinary refresh took
+# it to 32,108, over the ceiling, with nothing wrong in the record. A note whose
+# last sentence is the author's own "checked and unchanged" says exactly what an
+# opening one says, so it joins a run the same way.
+UNCHANGED_TAIL_RE = re.compile(
+    r"(?:^|[.!?]\s+)(?:checked|re-?checked|re-?verified|checked again)[\s,]*"
+    r"(?:and\s+)?unchanged\.?\s*$", re.I)
+
+
 def is_unchanged_note(h):
-    """True when a history note opens by reporting that nothing had moved."""
-    return bool(h) and bool(UNCHANGED_RE.match(h.get("note") or ""))
+    """True when a history note opens or closes by reporting that nothing had moved."""
+    note = (h or {}).get("note") or ""
+    return bool(h) and bool(UNCHANGED_RE.match(note) or UNCHANGED_TAIL_RE.search(note))
 
 
 def collapse_unchanged(entries):
@@ -582,6 +598,12 @@ def self_test():
           f"{len(corpus['docket']['items'])} items")
     check("every slug is listed", len(p["slugs"]) == len(corpus["slugs"]))
     check("the gas watch section is present", "COOK INLET GAS WATCH" in text)
+    # 2026-10-15: the daily refresh closes its no-change notes on the verdict,
+    # and a matcher that only read the start let the pack cross the ceiling.
+    check("a note closing on 'Checked and unchanged.' joins an unchanged run",
+          is_unchanged_note({"note": "Re-read the notice today. It still carries the May decision. Checked and unchanged."}))
+    check("a note that only mentions the words mid sentence does not",
+          not is_unchanged_note({"note": "Status moved to passed. Checked and unchanged items elsewhere"}))
     check("the standing no-verdict rule is in the pack",
           "NEVER publishes a safety verdict" in text)
 

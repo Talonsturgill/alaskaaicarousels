@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-14/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7806597,
+  "pdf_mb": 7.81,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-14/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-14/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Software Can Read the Tape. The Camera Is the Cost.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "8e1920e80606d92d3e3aec6515573ee1c3a2d1ed044c8ad8f86858cd58ba0aac",
+        "bytes": 5389255
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "f5d228f601abb311f76c9b78c1416129763f189b7f10d61443e9c303fe389957",
+        "bytes": 5321520
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "3c43beff50bfcad56d229de3f57c2a0cc3738cf3dd43d1c0cf6257c5062eb533",
+        "bytes": 6363560
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "681ac50fe88e51cb99fa222d82f612258be7ae5ae67c6193939c73dc356c06d5",
+        "bytes": 5349790
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "66315ec87478b88c79d40e1083eb8d6c37914785f604ca7b38e310e76847383b",
+        "bytes": 7931473
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e05d7a1fc35b9e36329866484c4aef355fe6a977ca8f222232ee3a7cbc95849b",
+        "bytes": 8262226
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "e7fc2a7e3c21c98ee6e5f3bedd7f6ec68259d040ec6235ddf410bb171fb992b8",
+        "bytes": 4733839
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "3490429e62c734468cde86ff9efae9d418425b5dc24ce26640b5729e74211357",
+        "bytes": 3859453
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "2ea1023d891cc88a9fc0408fa9c7ed5bb1fe9f70e39c5cd84204b7116b7f092b",
+        "bytes": 7965790
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "8c66b648aa4a3e6b3947a41d309f1167f8e27bd1a07740e41cd045484c9ab39a",
+        "bytes": 16587
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "340898cd5dd28e56dbef2b7965e791b07687d8f56dcbcfd030d984baa98808f1",
+        "bytes": 10397
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "ecb6d4fd120f2a47c7774408a5b06a225a8d184e03b505c2b862884f88638b62",
+        "bytes": 12071
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "e897b43b7fd15b75f190a3597c05c2139cc815b860a21c9a0a2bd5eeeee57bca",
+        "bytes": 9114
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "024412c1709d2a6430b2733a1108c4f2cea9a4076e844bb17c82cfb6d1e65ec6",
+        "bytes": 15937
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c6bc3f72823c418899a324bcb4d738ee7fef02ce621b3e4a3ffc0863c9af94ee",
+        "bytes": 14469
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "65fb3cbb696435ffe27f43cabd79465a89771e7296e9b90ef403ac0050636515",
+        "bytes": 8398
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "1afa80f0715dbd1f715c7697c331c40ddf0dd45fe26cd2da961a5e8b5274377c",
+        "bytes": 9587
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1637959b99056c2b40819b2f3b30ac74e2323ac122b4c8e12e03d4b0278fdb49",
+        "bytes": 14408
+      }
+    ]
+  }
+}
