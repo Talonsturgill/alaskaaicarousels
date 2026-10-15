@@ -18,7 +18,10 @@ Artwork craft and genuine detail was the weakest criterion 7 of 10 times, mean 6
 - Phase 11: docket_alerts sent its one designed subscriber email (Eielson microreactor, deadline in 2 days); prune_runs freed 3.70 MB across 4 runs.
 - Phase 8: the reuse census put AKBENCH.relief on four frames; 04's teak was repainted per pixel so the bench sits on three.
 
+- Phase 12: PR #434's checks job failed on site_signoff --ci because the gas watch incident record lacked audit_checked_utc; stamped from the audit's checked_utc (c20cb314).
+
 ## Queued today
+- docs: the incident field list omits audit_checked_utc (new).
 - plan_drift: the claim regex reads an agenda code like 'item C1' as claim C01 (new).
 - akbench: material edges are sampled once per device pixel with no antialiasing (new).
 - gaswatch: evening collection slots land after the daily audit (repeat 11, owner decision).
