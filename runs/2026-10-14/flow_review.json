@@ -1,0 +1,85 @@
+{
+ "verdict": "revise",
+ "score_0_10": 7.2,
+ "round": 2,
+ "predicted_bail_point": {
+  "slide": 4
+ },
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 6.3,
+    "cause": "b",
+    "fix": "model the animal: blunt snout with eye and mouth line, gill slits, low small dorsals, mottled skin, depth darkening"
+   },
+   {
+    "slide": 8,
+    "score": 6.5,
+    "cause": "c",
+    "fix": "form on the lower berth front and left bulkhead (plank seams, lee board edge)"
+   },
+   {
+    "slide": 4,
+    "score": 6.7,
+    "cause": "b",
+    "fix": "a real chart table surface under the bars"
+   },
+   {
+    "slide": 3,
+    "score": 7.0,
+    "cause": "d",
+    "fix": "re-loft the stick without plateau contours"
+   },
+   {
+    "slide": 7,
+    "score": 7.0,
+    "cause": "d",
+    "fix": "lit wall and lee per cylinder, drop the vertical hatch in the liquid"
+   },
+   {
+    "slide": 9,
+    "score": 7.0,
+    "cause": "b",
+    "fix": "rebuild on 01's profile, give the cover a readable plane"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "e",
+    "slides": [
+     3,
+     4
+    ],
+    "fix": "cool and desaturate 03 and 04 toward overcast so warmth enters at 08"
+   },
+   {
+    "cause": "b",
+    "slides": [
+     4,
+     5,
+     8,
+     9
+    ]
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "continuity_major": [
+  "09 camera reads as a different object from 01"
+ ],
+ "consistency_major": [
+  "03 and 04 too warm for the D2 overcast arc"
+ ],
+ "junctions": {
+  "1-2": "strong",
+  "2-3": "strong",
+  "3-4": "weak",
+  "4-5": "none",
+  "5-6": "weak",
+  "6-7": "weak",
+  "7-8": "weak",
+  "8-9": "strong"
+ }
+}

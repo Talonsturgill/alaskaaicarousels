@@ -1,0 +1,87 @@
+{
+  "checked_utc": "2026-10-15T08:34:27Z",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "name": "live dataset",
+      "status": "PASS",
+      "detail": "70 daily records",
+      "remedy": ""
+    },
+    {
+      "name": "recent calendar days",
+      "status": "FAIL",
+      "detail": "2026-10-14",
+      "remedy": "Run the repaired collector to append explicit missing-day records. Never invent storage."
+    },
+    {
+      "name": "unverified storage stays empty",
+      "status": "PASS",
+      "detail": "no carried-forward measurements",
+      "remedy": ""
+    },
+    {
+      "name": "source freshness",
+      "status": "PASS",
+      "detail": "source 2026-10-14T16:00:00 Alaska, 8.6 hours old",
+      "remedy": ""
+    },
+    {
+      "name": "live headline agrees",
+      "status": "PASS",
+      "detail": "last verified 2026-10-13, 60.1 percent",
+      "remedy": ""
+    },
+    {
+      "name": "source reading published",
+      "status": "FAIL",
+      "detail": "published 2026-10-13; source 2026-10-14T16:00:00",
+      "remedy": "Inspect collector logs and source snapshots, repair the parser or rerun collection, then deploy."
+    },
+    {
+      "name": "source gap disclosed",
+      "status": "PASS",
+      "detail": "no source notice",
+      "remedy": ""
+    },
+    {
+      "name": "history chart present",
+      "status": "PASS",
+      "detail": "chart present",
+      "remedy": ""
+    },
+    {
+      "name": "weather forecast current",
+      "status": "PASS",
+      "detail": "forecast age 24.2 hours",
+      "remedy": ""
+    },
+    {
+      "name": "live modeled peak agrees",
+      "status": "PASS",
+      "detail": "page 183, computed 183",
+      "remedy": ""
+    },
+    {
+      "name": "observations and true-ups",
+      "status": "FAIL",
+      "detail": "2026-10-13",
+      "remedy": "Retry ACIS observations. Compute supply only where verified same-day storage exists."
+    },
+    {
+      "name": "cron is running",
+      "status": "PASS",
+      "detail": "last run 10.2 hours ago",
+      "remedy": ""
+    },
+    {
+      "name": "cron completed successfully",
+      "status": "PASS",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/38647124697",
+      "remedy": ""
+    }
+  ],
+  "last_verified_date": "2026-10-13",
+  "maintenance_window": null,
+  "site_url": "https://alaskaaihq.com"
+}

@@ -1,0 +1,193 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '01 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '01' at 889,60 32x31 (margin 80px)"
+      ],
+      "fits": [
+        "hl 'Software can read the tape.76 boats would st' fits 3/3 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '02 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '02' at 889,60 32x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the lifted token and its cast': canvas 59.2 dE, page 60.4 dE, 100% of its rect is clear of opaque DOM",
+        "'tray A's empty sockets': canvas 64.9 dE, page 66.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl '172 camera boats.76 would move.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'172 camera boats, one token each' holds: 172 vs 172 marks, counted over 172 declared marks (within 0)",
+        "'172 camera boats, one token each': 172 mark centres probed at r=14px, cohort median 68.4 dE, all present (weakest 38.6 dE)",
+        "'39 tokens in the no-trips tray' holds: 39 vs 39 marks, counted over 39 declared marks (within 0)",
+        "'39 tokens in the no-trips tray': 39 mark centres probed at r=14px, cohort median 42.1 dE, all present (weakest 39.8 dE)",
+        "'37 tokens under 3 a year, one lifted out' holds: 37 vs 37 marks, counted over 37 declared marks (within 0)",
+        "'37 tokens under 3 a year, one lifted out': 37 mark centres probed at r=14px, cohort median 41.0 dE, all present (weakest 38.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '03 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '03' at 889,60 32x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the brass pin at the 9th notch': canvas 67.5 dE, page 82.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the brass pin at the 9th notch' lands 12.0px from its target",
+        "leader 'the brass pin at the 9th notch' meets its label 0.0px away",
+        "leader 'the brass pin at the 9th notch' is drawn 166 px at 62 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Under 3 trips a year,the camera goesto a boa' fits 3/3 lines at 89.5px"
+      ],
+      "asserts": [
+        "'9 notches, 3 a year for 3 years' holds: 9 vs 9 marks, counted over 9 declared marks (within 0)",
+        "'9 notches, 3 a year for 3 years': 9 mark centres probed at r=14px, cohort median 82.1 dE, all present (weakest 79.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '04 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '04' at 889,60 32x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the camera sample rate bar standing on the teak': shadow L* 3.5 vs ground L* 32.1, dL 28.6 at 432w"
+      ],
+      "motifs": [
+        "'the polished after bars with gold end faces': canvas 64.5 dE, page 64.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Monitored tripsget cheaper.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '05 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '05' at 889,60 32x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the sleeper shark in its detection box': canvas 31.2 dE, page 31.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the hollow tick, the one missed shark': canvas 77.5 dE, page 72.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "asserts": [
+        "'97 events on the review bar, one hollow' holds: 97 vs 97 marks, counted over 97 declared marks (within 0)",
+        "'97 events on the review bar, one hollow': 97 mark centres probed at r=5px, cohort median 43.3 dE, all present (weakest 36.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '06 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '06' at 889,60 32x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the camera nested in its foam pocket': canvas 61.6 dE, page 67.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the cable spilling over the front lip onto the deck': canvas 43.1 dE, page 47.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Reading the tapeis the cheap part.' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '07 / 09' at 892,60 108x31 (margin 80px)",
+        "outside safe zone: '07' at 892,60 31x31 (margin 80px)",
+        "outside safe zone: 'SHARE OF RETAINED CATCH NMFS EXPECTS TO ' at 80,136 930x31 (margin 80px)",
+        "outside safe zone: 'BERING SEA TRAWL 99.96%' at 60,494 220x90 (margin 80px)"
+      ],
+      "contacts": [
+        "'the Gulf fixed-gear cylinder foot on the shelf': shadow L* 1.1 vs ground L* 10.6, dL 9.5 at 432w"
+      ],
+      "motifs": [
+        "'the Gulf fixed-gear cylinder's lit meniscus': canvas 88.7 dE, page 91.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'share of retained catch NMFS expects to monitor in 2027, a gauge on the back wall' runs 0 percent at 1210 to 100 percent at 640; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The Gulf's fixed-gear catchis the least watc' fits 2/2 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the rolled bag on the lower berth mattress': shadow L* 7.2 vs ground L* 25.5, dL 18.3 at 432w -- and the two rects are 99 design px apart, past the 96 px window a contact pool spans: at that reach the difference between them is as easily the scene's own lighting falloff, or a second surface, as it is this object's shadow, and dL can't tell you which. Pair the shadow against lit ground on the object's OWN plate, within 96 px of the foot. If there is no lit ground that close, the pool was drawn no wider than the object and the fix is to widen the pool, never to reach further for something bright. `python3 scripts/contact_probe.py --render-dir <dir> --slides-dir <dir> --verify` prints the profile this pair was read off.",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '08 / 09' at 889,60 111x31 (margin 80px)",
+        "outside safe zone: '08' at 889,60 32x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the rolled bag on the empty lower berth': canvas 65.5 dE, page 64.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the lamp pool and the tipped boot': canvas 59.3 dE, page 59.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'A camera takes no bunk.An observer does.' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA.AI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,62 150x29 (margin 80px)",
+        "outside safe zone: '09 / 09' at 892,60 108x31 (margin 80px)",
+        "outside safe zone: '09' at 892,60 31x31 (margin 80px)",
+        "outside safe zone: '2027 CAMERA POOL REQUESTS ARE DUE IN ODD' at 80,136 930x31 (margin 80px)",
+        "worst-point contrast 3.8 on 'ALASKA.AI' (box mean 4.1) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the camera housing on the wet hatch cover': shadow L* 31.1 vs ground L* 40.9, dL 9.8 at 432w"
+      ],
+      "motifs": [
+        "'the camera off its mast, its dome catching the dawn': canvas 56.1 dE, page 55.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl '3 trips a yearto keep a camera.Fair line, or' fits 3/3 lines at 99.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 41,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
