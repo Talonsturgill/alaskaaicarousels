@@ -779,6 +779,70 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                 if abs(dx) < side:
                     labels[i][0] = g[0] + (1.0 if dx >= 0 else -1.0) * side
 
+    # A BADGE THAT SETS THE PHONE FRAME'S HEIGHT LOOKS FOR A SHORTER SPOT
+    # (2026-10-15, No.87). The phone fit frames the coast and every badge's
+    # reach, and it scales the reach by the mark scale while the dots scale only
+    # by the zoom, so on a short landscape frame a badge hung far below (or
+    # above) its dot is what shrinks the state. One Enstar item opening for
+    # comment renumbered the badges, the relaxation settled with a Southcentral
+    # badge 52 units under its dot, and Alaska fell from 57 to 52 percent of an
+    # iPhone 13 landscape frame (tests/mobile_docket_map.js). So, after the
+    # relaxation: for every displaced badge, try the other tethered spots
+    # around its dot (any angle, tethers up to 2.2 times
+    # as long), and move one only when the spot is clear of every other badge,
+    # under BADGE_TOP, the frame's vertical need strictly shrinks and its
+    # horizontal need (what binds a portrait phone) does not grow. Dots never
+    # move and every moved badge keeps its disclosed tether. KK and MS approximate the
+    # zoom and mark scale of that landscape fit, read off the measured fill of
+    # its 702 by 219 px frame: about 0.3 and 1.5.
+    KK, MS = 0.3, 1.5
+    coast_y0 = min(T(p)[1] for ring in coast for p in ring)
+    coast_y1 = max(T(p)[1] for ring in coast for p in ring)
+    def vneed(ls):
+        lo, hi = coast_y0 * KK, coast_y1 * KK
+        for (gx, gy, _m), (lx, ly) in zip(groups, ls):
+            up = max(DOT_R0, gy - ly + 14.0); dn = max(DOT_R0, ly - gy + 14.0)
+            lo = min(lo, gy * KK - up * MS); hi = max(hi, gy * KK + dn * MS)
+        return hi - lo
+    DOT_R0 = 3.4
+    coast_x0 = min(T(p)[0] for ring in coast for p in ring)
+    coast_x1 = max(T(p)[0] for ring in coast for p in ring)
+    def hneed(ls):                       # a portrait phone is bound by WIDTH, so this must never grow
+        lo, hi = coast_x0 * KK, coast_x1 * KK
+        for g, (lx, ly) in zip(groups, ls):
+            hw = badge_w(g) / 2.0
+            lf = max(DOT_R0, g[0] - lx + hw); rt = max(DOT_R0, lx - g[0] + hw)
+            lo = min(lo, g[0] * KK - lf * MS); hi = max(hi, g[0] * KK + rt * MS)
+        return hi - lo
+    def free(i, c, ls):
+        if c[1] < BADGE_TOP:
+            return False
+        for j in range(len(groups)):
+            if j != i and math.hypot(ls[j][0] - c[0], ls[j][1] - c[1]) < (badge_w(groups[i]) + badge_w(groups[j])) / 2.0 + 6.0:
+                return False
+        return True
+    for _ in range(len(groups)):
+        base = vneed(labels); hbase = hneed(labels)
+        best = None
+        for i, g in enumerate(groups):
+            dx = labels[i][0] - g[0]; dy = labels[i][1] - g[1]
+            L = math.hypot(dx, dy)
+            if L <= 0.5:
+                continue
+            for f in (1.0, 1.4, 1.8, 2.2):
+                for deg in range(0, 360, 15):
+                    t = math.radians(deg)
+                    c = (g[0] + math.cos(t) * L * f, g[1] - math.sin(t) * L * f)
+                    if not free(i, c, labels):
+                        continue
+                    trial = [list(l) for l in labels]; trial[i] = [c[0], c[1]]
+                    v = vneed(trial)
+                    if v < base - 0.5 and hneed(trial) <= hbase + 0.01 and (best is None or v < best[0]):
+                        best = (v, i, c)
+        if best is None:
+            break
+        labels[best[1]] = [best[2][0], best[2][1]]
+
     # Three layers, because a dot hidden under a NEIGHBOUR's badge is just as
     # useless as one hidden under its own. Tethers at the back, badges over
     # them, and the dots last so nothing can ever cover the one mark on this
