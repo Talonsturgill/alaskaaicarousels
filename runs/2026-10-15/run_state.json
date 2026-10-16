@@ -22,8 +22,9 @@
     "scoring": "done: 8.66 at round 4 (art 7.0, craft floor owed); craft cycle on 10, 01, 05, 02, 08 as round 5; re-score 8.665, art 7.5, threshold 7.7, ship",
     "ship": "done: runs/2026-10-15 (webp, og.jpg, pdf shrunk 23%), site_build 146 pages, parsers/scanner/docket_dates/site_fresh PASS, docket_alerts sent 1 (Enstar Kenai Loop comment window), prune freed 1.42M, ledgers appended",
     "upgrade": "done: weekly pass not due (machine_due exit 1, last pass 2026-10-11); automation_retro.md written; MACHINE_QUEUE: gas watch repeat 12, docket map fit repeat 2 (fixed in run), two new items; no upgrade commit",
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": "done: draft r-100671227734166192 in docket@alaskaaihq.com, body verbatim from gmail_draft.py --preview-mode remote; sign-off table carries verdicts",
+    "retro": "done: No.87 shipped at 8.665 (art 7.5 after the craft cycle); next run, rebuild the largest object first and score 09's hyperscale board as real board",
+    "merge": "done: PR #436 merged 083d3200 after CI 7/7 green and Codex Completed with no findings on 5a69349 (two Codex rounds, seven findings, all fixed); raw URLs on main verified 200"
   },
   "phase_3_6": {
     "site_signoff": "PASS, 146 pages, 18 checks (re-run on the built docs/ before ship; 145 pages and PASS at wake)",
@@ -31,5 +32,7 @@
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 7 scheduled workflows audited at 06:18Z October 16th",
     "site_fixes": "none needed on the live site; the docket refresh (Enstar comment window, AIDEA hearing date, the GVEA LM6000 note) rebuilt docs/"
-  }
+  },
+  "gmail_draft_id": "r-100671227734166192",
+  "status": "complete"
 }
