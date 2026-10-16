@@ -237,7 +237,7 @@
       keyMask: function (X, Y) { return M.pane(X, Y, o.panes); }, keyColor: M.KEY, ambColor: M.AMB,
       ambient: o.ambient == null ? 0.17 : o.ambient, diffuse: o.diffuse == null ? 3.1 : o.diffuse,
       ao: o.ao == null ? 0.42 : o.ao, shadow: o.shadow == null ? 0.9 : o.shadow,
-      softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength, dither: true });
+      softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength, dither: true, visBlur: o.visBlur == null ? 2 : o.visBlur });
   };
   /* the deck grade, once, after all canvas drawing; then the grain tile on the DOM overlay */
   M.finish = function (cx, seed, o) {

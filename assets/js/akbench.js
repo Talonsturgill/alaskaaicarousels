@@ -52,13 +52,8 @@
     const img = cx.createImageData(W, H), d = img.data, spec = o.spec || {};
     const dith = !!o.dither, keyMask = typeof o.keyMask === "function" ? o.keyMask : null, kC = o.keyColor || [1, 1, 1], aC = o.ambColor || [1, 1, 1];
     const at = (i, j) => hb[Math.max(0, Math.min(H - 1, j)) * W + Math.max(0, Math.min(W - 1, i))];
-    for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
-      const k = j * W + i, h0 = hb[k];
-      const gx = (at(i + 1, j - 1) + 2 * at(i + 1, j) + at(i + 1, j + 1) - at(i - 1, j - 1) - 2 * at(i - 1, j) - at(i - 1, j + 1)) / 8;
-      const gy = (at(i - 1, j + 1) + 2 * at(i, j + 1) + at(i + 1, j + 1) - at(i - 1, j - 1) - 2 * at(i, j - 1) - at(i + 1, j - 1)) / 8;
-      let nx = -gx, ny = -gy, nz = 1; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
-      const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
-      // the cast: march toward the key; the penumbra is the closest miss over distance
+    // the cast: march toward the key; the penumbra is the closest miss over distance
+    function march(i, j, h0) {
       let vis = 1;
       for (let t = stepLen; t < maxLen; t += stepLen * (1 + t / 120)) {
         const ray = h0 + t * tanEl; if (ray - hMax > soft * (0.15 + t / maxLen)) break;   // exact: past here every term is >= 1
@@ -66,7 +61,19 @@
         const over = hh - ray; if (over > 0) { vis = 0; break; }
         vis = Math.min(vis, -over / (soft * (0.15 + t / maxLen)) );
       }
-      vis = Math.max(0, Math.min(1, vis));
+      return Math.max(0, Math.min(1, vis));
+    }
+    // visBlur: n device px of box blur on the shadow term alone (No.87): a crinkled or scored top makes near-miss
+    // rays that speckle the penumbra; the cast is soft by nature, the surface relief is not, so only the cast is blurred
+    let visBuf = null;
+    if (o.visBlur) { visBuf = new Float32Array(W * H); for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) visBuf[j * W + i] = march(i, j, hb[j * W + i]); visBuf = boxBlur(visBuf, W, H, o.visBlur); }
+    for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
+      const k = j * W + i, h0 = hb[k];
+      const gx = (at(i + 1, j - 1) + 2 * at(i + 1, j) + at(i + 1, j + 1) - at(i - 1, j - 1) - 2 * at(i - 1, j) - at(i - 1, j + 1)) / 8;
+      const gy = (at(i - 1, j + 1) + 2 * at(i, j + 1) + at(i + 1, j + 1) - at(i - 1, j - 1) - 2 * at(i, j - 1) - at(i + 1, j - 1)) / 8;
+      let nx = -gx, ny = -gy, nz = 1; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
+      const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+      const vis = visBuf ? visBuf[k] : march(i, j, h0);
       const cav = Math.max(0, blur[k] - h0) / sc, ao = Math.max(0, 1 - aoK * Math.min(1, cav / 6));
       const m = mb[k], X = (X0 + i + 0.5) / sc, Y = (Y0 + j + 0.5) / sc, a = o.albedo(X, Y, m);
       const sh = 1 - shK * (1 - vis), km = keyMask ? keyMask(X, Y) : 1;
