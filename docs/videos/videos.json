@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-10-16-the-forecast-that-shows-its-work",
+      "date": "2026-10-16",
+      "title": "The Forecast That Shows Its Work",
+      "caption": "USGS posted aftershock odds twelve hours after the October 15th magnitude 5.6 near Lake Minchumina: a range, its own stated limit, and the time of its next update.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-16-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-16-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-16-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-16-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-15",
       "date": "2026-10-15",
       "title": "The Door With a Condition",
