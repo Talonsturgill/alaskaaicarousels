@@ -13,6 +13,10 @@
  *     light: {azDeg, elDeg},           // azimuth 0 = toward the top of the frame, clockwise
  *     ambient: 0.22, diffuse: 0.95, ao: 0.9, shadow: 0.85, softness: 10});
  *
+ *   Optional window light (No.87, 2026-10-15): keyMask: (X, Y) => 0..1 gates the key (a sun pane through a
+ *   window; outside it only the ambient sky reaches the surface), keyColor: [r, g, b] tints the key and its
+ *   specular, ambColor: [r, g, b] tints the ambient. All three default to the old behaviour (1, white, white).
+ *
  * Height is evaluated once per device pixel into a buffer. Normals are a Sobel of that buffer. Cavity occlusion
  * compares each height with a box-blurred copy. The cast is a march from each pixel toward the key across the
  * buffer, with a penumbra from the closest miss. Everything is deterministic. Text never goes here.
@@ -43,7 +47,9 @@
     const amb = o.ambient != null ? o.ambient : 0.22, dif = o.diffuse != null ? o.diffuse : 0.95, aoK = o.ao != null ? o.ao : 0.9, shK = o.shadow != null ? o.shadow : 0.85;
     const soft = (o.softness || 10) * sc, tanEl = Math.tan(el), stepLen = 1.5, maxLen = (o.castLength || 140) * sc;
     const lx = L[0] / Math.hypot(L[0], L[1]), ly = L[1] / Math.hypot(L[0], L[1]);
+    let hMax = -Infinity; for (let q = 0; q < hb.length; q++) if (hb[q] > hMax) hMax = hb[q];   // a ray above every height can't be occluded
     const img = cx.createImageData(W, H), d = img.data, spec = o.spec || {};
+    const keyMask = typeof o.keyMask === "function" ? o.keyMask : null, kC = o.keyColor || [1, 1, 1], aC = o.ambColor || [1, 1, 1];
     const at = (i, j) => hb[Math.max(0, Math.min(H - 1, j)) * W + Math.max(0, Math.min(W - 1, i))];
     for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
       const k = j * W + i, h0 = hb[k];
@@ -54,17 +60,18 @@
       // the cast: march toward the key; the penumbra is the closest miss over distance
       let vis = 1;
       for (let t = stepLen; t < maxLen; t += stepLen * (1 + t / 120)) {
-        const hh = at(Math.round(i + lx * t), Math.round(j + ly * t)), ray = h0 + t * tanEl;
+        const ray = h0 + t * tanEl; if (ray - hMax > soft * (0.15 + t / maxLen)) break;   // exact: past here every term is >= 1
+        const hh = at(Math.round(i + lx * t), Math.round(j + ly * t));
         const over = hh - ray; if (over > 0) { vis = 0; break; }
         vis = Math.min(vis, -over / (soft * (0.15 + t / maxLen)) );
       }
       vis = Math.max(0, Math.min(1, vis));
       const cav = Math.max(0, blur[k] - h0) / sc, ao = Math.max(0, 1 - aoK * Math.min(1, cav / 6));
       const m = mb[k], X = (X0 + i + 0.5) / sc, Y = (Y0 + j + 0.5) / sc, a = o.albedo(X, Y, m);
-      const sh = 1 - shK * (1 - vis);
-      const sp = spec[m] ? spec[m][0] * Math.pow(Math.max(0, nx * Hv[0] + ny * Hv[1] + nz * Hv[2]), spec[m][1]) * sh : 0;
-      const lightT = amb * ao + dif * lam * sh;
-      for (let c = 0; c < 3; c++) { let v = a[c] * lightT + sp; v = v / (1 + v * 0.35); d[k * 4 + c] = 255 * Math.pow(Math.max(0, Math.min(1, v)), 1 / 2.2); }
+      const sh = 1 - shK * (1 - vis), km = keyMask ? keyMask(X, Y) : 1;
+      const sp = spec[m] ? km * spec[m][0] * Math.pow(Math.max(0, nx * Hv[0] + ny * Hv[1] + nz * Hv[2]), spec[m][1]) * sh : 0;
+      const ka = amb * ao, kd = dif * lam * sh * km;
+      for (let c = 0; c < 3; c++) { let v = a[c] * (ka * aC[c] + kd * kC[c]) + sp * kC[c]; v = v / (1 + v * 0.35); d[k * 4 + c] = 255 * Math.pow(Math.max(0, Math.min(1, v)), 1 / 2.2); }
       d[k * 4 + 3] = 255;
     }
     cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.putImageData(img, X0, Y0); cx.restore();
