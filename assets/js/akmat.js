@@ -29,7 +29,7 @@
   M.KEY = [1.06, 0.90, 0.70];                     // warm low sun
   M.AMB = [0.42, 0.58, 0.74];                     // cool north sky
   M.RULER = { top: 1166, bottom: 1234, h: 6, band: [1168, 1190] };
-  M.SHEAR = 1.10;                                 // pane edges run along the light, x shifts 1.1 px per px of y
+  M.SHEAR = 1.732;                                // pane sides run down the light: at az 300 a ray moves 1.732 px in x per px of y, the same direction every cast takes
 
   function lin(hex) {
     hex = hex.replace("#", "");
@@ -80,7 +80,7 @@
   /* ---- the mat. A dark blue-green self-healing mat: a printed grid every 10 MW (108 px) in both axes, a
    * fainter 5 MW grid, a fine rubber tooth, and healed knife scores (thin straight cuts that closed, slightly
    * glossier than the field). gx is the GLOBAL x so the grid chains across frames. */
-  var MAT = lin("#3E6670"), GRID = lin("#86AAB2"), SCORE = lin("#5A8590");
+  var MAT = lin("#6C9DA8"), GRID = lin("#A9C7CE"), SCORE = lin("#7FA7B0");
   M.matAlbedo = function (X, Y, frame, scores) {
     var gx = frame * 1080 + X;
     var t = vnoise(gx * 0.9, Y * 0.9, 11) * 0.5 + vnoise(gx * 0.23, Y * 0.23, 12) * 0.5;
@@ -113,14 +113,14 @@
   };
   /* ---- gold leaf. Squares of leaf about 54 px, each a slightly different gold, with darker overlapping
    * seams where two leaves meet and a few skips where the bole shows through. */
-  var GOLD = lin("#FFD24A"), BOLE = lin("#7A3E1A");
+  var GOLD = lin("#F2B53A"), BOLE = lin("#7A3E1A");
   M.goldAlbedo = function (X, Y, seed) {
     var cs = 54, ix = Math.floor(X / cs + 0.31 * Math.floor(Y / cs)), iy = Math.floor(Y / cs);
     var fx = X / cs + 0.31 * Math.floor(Y / cs) - ix, fy = Y / cs - iy;
     var v = 0.88 + 0.16 * hash(ix, iy, seed);
     var e = Math.min(fx, 1 - fx, fy, 1 - fy) * cs;
-    var seam = e < 1.6 ? 0.72 + 0.28 * (e / 1.6) : 1;
-    var c = [GOLD[0] * v * seam, GOLD[1] * v * seam * 0.98, GOLD[2] * v * seam * 0.9];
+    var seam = e < 1.2 ? 0.86 + 0.14 * (e / 1.2) : 1;
+    var c = [GOLD[0] * v * seam, GOLD[1] * v * seam * 0.96, GOLD[2] * v * seam * 0.8];
     var skip = vnoise(X / 9, Y / 9, seed + 7);
     if (skip > 0.93) { var w = (skip - 0.93) / 0.07; c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
     return c;
@@ -171,9 +171,64 @@
     var out = [];
     for (var mw = 0; mw <= 100; mw += 5) {
       var x = mw * M.PXMW; if (x > 1079.5) continue;
-      out.push({ at: +x.toFixed(1), means: (frame * 100 + mw) + " MW on the deck's one scale" });
+      out.push({ at: +x.toFixed(1), means: (frame * 100 + mw) + " MW on the one deck scale" });
     }
     return out;
+  };
+
+
+  /* ---- gold leaf catches the window: a soft band of reflected sky across the leaf, perpendicular to the
+   * sun, so a flat leafed face is never one value. `c` places the band (in px along the band axis). */
+  M.goldSheen = function (X, Y, c, w) {
+    var a = X * 0.5 + Y * 0.866, d = (a - c) / (w || 150);
+    return 0.62 + 0.95 * Math.exp(-d * d);
+  };
+
+  /* ================= THE PLUMBING (harness, not art) =================
+   * ready(fn): fonts, the load event, one yield (a long synchronous draw must start after it, SKILL.md),
+   * then fn(); resolves renderReady when fn's promise settles. */
+  M.ready = function (fn) {
+    window.renderReady = new Promise(function (resolve, reject) {
+      (async function () {
+        await document.fonts.ready;
+        await new Promise(function (r) { if (document.readyState === "complete") r(); else window.addEventListener("load", r); });
+        await new Promise(function (r) { setTimeout(r, 0); });
+        await fn();
+        resolve();
+      })().catch(function (e) { console.error(e); reject(e); });
+    });
+  };
+  /* the ruler's local numerals and the running-total tab, as DOM text (vector in the PDF) */
+  M.numerals = function (frame, host) {
+    host = host || document.body;
+    for (var mw = 0; mw < 100; mw += 10) {
+      var d = document.createElement("div");
+      d.className = "akm-num"; d.setAttribute("data-decorative", "");
+      d.style.cssText = "position:absolute;top:1198px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;color:#22303A;transform:translateX(-50%);left:" + (mw * M.PXMW + (mw === 0 ? 14 : 0)) + "px";
+      d.textContent = String(mw); host.appendChild(d);
+    }
+    var t = document.createElement("div");
+    t.className = "akm-tab"; t.setAttribute("data-decorative", "");
+    t.style.cssText = "position:absolute;left:0;top:1236px;width:112px;height:30px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;letter-spacing:.06em;color:#1E2A2E;text-align:center;line-height:30px";
+    t.textContent = (frame * 100).toLocaleString("en-US") + " MW"; host.appendChild(t);
+  };
+  /* the deck's one relief call: the same sun, the same sky, the key gated by the frame's panes */
+  M.relief = function (cx, o) {
+    return AKBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+      height: o.height, material: o.material, albedo: o.albedo, spec: o.spec, light: M.LIGHT,
+      keyMask: function (X, Y) { return M.pane(X, Y, o.panes); }, keyColor: M.KEY, ambColor: M.AMB,
+      ambient: o.ambient == null ? 0.17 : o.ambient, diffuse: o.diffuse == null ? 3.1 : o.diffuse,
+      ao: o.ao == null ? 0.8 : o.ao, shadow: o.shadow == null ? 0.9 : o.shadow,
+      softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength });
+  };
+  /* the deck grade, once, after all canvas drawing; then the grain tile on the DOM overlay */
+  M.finish = function (cx, seed, o) {
+    o = o || {};
+    AKPOST.grade(cx, { w: 1080, h: 1350, exposure: o.exposure || 0, saturation: 1.02, contrast: 1.04, filmic: true,
+      lift: [0.004, 0.008, 0.012], gain: [1.01, 1.0, 0.98], vignette: 0.12,
+      bloom: { threshold: 0.86, strength: 0.18, radius: 10 }, grain: { amount: 0.03, size: 2, seed: seed },
+      dither: true, sharpen: 0.2 });
+    var g = document.getElementById("grain"); if (g) AK.grainOn(g, { size: 280, strength: 0.06, seed: seed * 10 + 1 });
   };
 
   global.AKMAT = M;
