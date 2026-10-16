@@ -131,7 +131,7 @@
     var seam = 1 - 0.07 * Math.max(0, 1 - Math.abs(lap - 0.5) * 22);
     var c = [GOLD[0] * v * seam, GOLD[1] * v * seam * 0.96, GOLD[2] * v * seam * 0.8];
     var skip = vnoise((X * 0.8 + Y * 0.6) / 4.5, (Y * 0.8 - X * 0.6) / 4.5, seed + 7) * vnoise(X / 23, Y / 23, seed + 8);   // small round specks, a few
-    if (skip > 0.80) { var w = Math.min(1, (skip - 0.80) / 0.08); c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
+    if (skip > 0.86) { var w = Math.min(1, (skip - 0.86) / 0.06); c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
     return c;
   };
 
@@ -187,6 +187,16 @@
 
   /* ---- gold leaf catches the window: a soft band of reflected sky across the leaf, perpendicular to the
    * sun, so a flat leafed face is never one value. `c` places the band (in px along the band axis). */
+  /* leaf as it ships from round 4 on: the base leaf a little dimmer, and a reflected window lying across it as a
+   * pale band parallel to the mullions (u = X - Y * SHEAR is constant along a mullion), through (px, py), w px
+   * wide, with a fainter second band 70 px further down the light. The band blends toward pale gold rather than
+   * multiplying the saturated leaf, which only clips to lemon. */
+  var PALE = lin("FFE9A0");
+  M.leaf = function (X, Y, seed, px, py, w) {
+    var g = M.goldAlbedo(X, Y, seed), u = (X - Y * M.SHEAR) - (px - py * M.SHEAR), s = w || 36;
+    var e = 0.55 * Math.exp(-(u * u) / (s * s)) + 0.22 * Math.exp(-((u + 140) * (u + 140)) / (0.5 * s * s));
+    var b = 1.08; return [g[0] * b + (PALE[0] * 1.2 - g[0] * b) * e, g[1] * b + (PALE[1] * 1.2 - g[1] * b) * e, g[2] * b + (PALE[2] * 1.2 - g[2] * b) * e];
+  };
   M.goldSheen = function (X, Y, c, w) {
     var a = X * 0.5 + Y * 0.866, d = (a - c) / (w || 150);
     return 0.62 + 0.95 * Math.exp(-d * d);
@@ -227,7 +237,7 @@
       keyMask: function (X, Y) { return M.pane(X, Y, o.panes); }, keyColor: M.KEY, ambColor: M.AMB,
       ambient: o.ambient == null ? 0.17 : o.ambient, diffuse: o.diffuse == null ? 3.1 : o.diffuse,
       ao: o.ao == null ? 0.42 : o.ao, shadow: o.shadow == null ? 0.9 : o.shadow,
-      softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength });
+      softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength, dither: true });
   };
   /* the deck grade, once, after all canvas drawing; then the grain tile on the DOM overlay */
   M.finish = function (cx, seed, o) {
