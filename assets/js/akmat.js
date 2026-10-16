@@ -105,32 +105,28 @@
   };
 
   /* ---- museum board. Off-white four-ply with a fibre tooth; `tint` lets a frame cool or warm one board. */
-  var BOARD = lin("#E3E9EA");
+  var BOARD = lin("#DDE8EF"), LIFT = [1.22, 1.30, 1.42];   // the warm low key turns a neutral board olive; a cool-biased lift keeps it museum white
   M.boardAlbedo = function (X, Y, seed, tint) {
     var f = vnoise(X * 1.3, Y * 0.35, seed) * 0.6 + vnoise(X * 0.31, Y * 0.31, seed + 1) * 0.4;
     var k = 0.90 + 0.10 * f, b = tint || BOARD;
-    return [b[0] * k, b[1] * k, b[2] * k];
+    return [b[0] * k * LIFT[0], b[1] * k * LIFT[1], b[2] * k * LIFT[2]];
   };
   /* ---- gold leaf. Squares of leaf about 54 px, each a slightly different gold, with darker overlapping
    * seams where two leaves meet and a few skips where the bole shows through. */
   var GOLD = lin("#F2B53A"), BOLE = lin("#7A3E1A");
   M.goldAlbedo = function (X, Y, seed) {
-    var cs = 54, ix = Math.floor(X / cs + 0.31 * Math.floor(Y / cs)), iy = Math.floor(Y / cs);
-    var fx = X / cs + 0.31 * Math.floor(Y / cs) - ix, fy = Y / cs - iy;
-    var v = 0.88 + 0.16 * hash(ix, iy, seed);
-    var e = Math.min(fx, 1 - fx, fy, 1 - fy) * cs;
-    var seam = e < 1.2 ? 0.86 + 0.14 * (e / 1.2) : 1;
+    var v = 0.90 + 0.10 * vnoise(X / 38, Y / 38, seed) + 0.06 * (vnoise(X / 7, Y / 7, seed + 2) - 0.5);
+    var lap = vnoise(X / 61 + 0.4 * vnoise(Y / 90, X / 90, seed + 5), Y / 61, seed + 4);   // where two leaves lap: a soft, irregular darker ridge
+    var seam = 1 - 0.07 * Math.max(0, 1 - Math.abs(lap - 0.5) * 22);
     var c = [GOLD[0] * v * seam, GOLD[1] * v * seam * 0.96, GOLD[2] * v * seam * 0.8];
     var skip = vnoise(X / 9, Y / 9, seed + 7);
-    if (skip > 0.93) { var w = (skip - 0.93) / 0.07; c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
+    if (skip > 0.94) { var w = (skip - 0.94) / 0.06; c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
     return c;
   };
 
   /* ---- gold leaf is never flat: each leaf is a slightly domed, crinkled skin, which is what throws glints. */
   M.leafCrinkle = function (X, Y, seed) {
-    var cs = 54, fx = X / cs + 0.31 * Math.floor(Y / cs), fy = Y / cs;
-    var u = fx - Math.floor(fx), v = fy - Math.floor(fy);
-    return 0.55 * Math.sin(Math.PI * u) * Math.sin(Math.PI * v) + 0.35 * (vnoise(X / 6, Y / 6, seed) - 0.5) + 0.25 * (vnoise(X / 17, Y / 17, seed + 3) - 0.5);
+    return 0.45 * (vnoise(X / 6, Y / 6, seed) - 0.5) + 0.35 * (vnoise(X / 17, Y / 17, seed + 3) - 0.5) + 0.25 * (vnoise(X / 41, Y / 41, seed + 6) - 0.5);
   };
 
   /* ---- a board lying on the mat: a rounded rectangle with a bevelled cut edge. Returns height in CSS px
@@ -204,12 +200,12 @@
     for (var mw = 0; mw < 100; mw += 10) {
       var d = document.createElement("div");
       d.className = "akm-num"; d.setAttribute("data-decorative", "");
-      d.style.cssText = "position:absolute;top:1198px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;color:#22303A;transform:translateX(-50%);left:" + (mw * M.PXMW + (mw === 0 ? 14 : 0)) + "px";
+      d.style.cssText = "position:absolute;top:1198px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:24px;color:#0E1A1F;transform:translateX(-50%);left:" + (mw * M.PXMW + (mw === 0 ? 14 : 0)) + "px";
       d.textContent = String(mw); host.appendChild(d);
     }
     var t = document.createElement("div");
     t.className = "akm-tab"; t.setAttribute("data-decorative", "");
-    t.style.cssText = "position:absolute;left:0;top:1236px;width:112px;height:30px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;letter-spacing:.06em;color:#1E2A2E;text-align:center;line-height:30px";
+    t.style.cssText = "position:absolute;left:0;top:1236px;width:112px;height:30px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:20px;letter-spacing:.06em;color:#0E1A1F;text-align:center;line-height:30px";
     t.textContent = (frame * 100).toLocaleString("en-US") + " MW"; host.appendChild(t);
   };
   /* the deck's one relief call: the same sun, the same sky, the key gated by the frame's panes */
@@ -218,7 +214,7 @@
       height: o.height, material: o.material, albedo: o.albedo, spec: o.spec, light: M.LIGHT,
       keyMask: function (X, Y) { return M.pane(X, Y, o.panes); }, keyColor: M.KEY, ambColor: M.AMB,
       ambient: o.ambient == null ? 0.17 : o.ambient, diffuse: o.diffuse == null ? 3.1 : o.diffuse,
-      ao: o.ao == null ? 0.8 : o.ao, shadow: o.shadow == null ? 0.9 : o.shadow,
+      ao: o.ao == null ? 0.42 : o.ao, shadow: o.shadow == null ? 0.9 : o.shadow,
       softness: o.softness == null ? 16 : o.softness, castLength: o.castLength == null ? 160 : o.castLength });
   };
   /* the deck grade, once, after all canvas drawing; then the grain tile on the DOM overlay */
