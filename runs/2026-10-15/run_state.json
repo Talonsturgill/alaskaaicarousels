@@ -9,7 +9,7 @@
     "wake": "done: plan.md, run_state.json",
     "craft_refresh": "done: 2 searches (LinkedIn document-post reach, riso/halftone editorial technique), nothing new and verified beyond FIELD_NOTES, FIELD_NOTES untouched",
     "research": "done: scout_merge.md, scouts/beat_A..F.md, pdf/computing_in_place.txt (141 searches across six scouts)",
-    "claims": "done: claims.json (72 claims, 45 primary, 12 killed), claims_check PASS",
+    "claims": "done: claims.json ships the deck's 55 claims (C01 to C55, 41 primary); the full research record of 72 (45 primary, with the docket re-verification C56 to C63 and runner-up C64 to C72) is claims_research.json; 12 killed at the fact check, claims_check PASS",
     "docket": "done: 9 worklist items re-verified (b78f6c74); Kenai Loop preliminary finding (open for comment to November 13th), Crowther hearing October 26th, GVEA release note (27622835); docket_dates_check clean",
     "gas_watch": "done: cron_health PASS (7 workflows); gaswatch_health FAIL at wake on the late CINGSA revision (dispatch 403), PASS at 09:28Z; incident withdrawn",
     "selection": "done: selection.md (GVEA first EEA + Burgum + ACEP Computing in Place; runner-up Senate Resources subpoena)",
