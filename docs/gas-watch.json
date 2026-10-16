@@ -15,7 +15,7 @@
   "source_status": {
     "state": "current",
     "last_verified_date": "2026-10-16",
-    "last_collection_utc": "2026-10-16T09:17:21Z",
+    "last_collection_utc": "2026-10-16T12:32:12Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -11861,7 +11861,7 @@
     },
     {
       "date": "2026-10-16",
-      "collected_utc": "2026-10-16T09:17:21Z",
+      "collected_utc": "2026-10-16T12:32:12Z",
       "collector_version": "1.2",
       "verified": true,
       "cingsa": {
@@ -11885,23 +11885,23 @@
         "injection_restriction_mcfd": 62700,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 1.0
+        "source_age_hours": 4.2
       },
       "forecast": [
         {
           "date": "2026-10-16",
-          "hours": 23,
-          "mean_temp_f": 42.4,
-          "min_temp_f": 40,
-          "hdd65": 22.6,
-          "modeled_demand_mmcfd": 159
+          "hours": 20,
+          "mean_temp_f": 41.2,
+          "min_temp_f": 39,
+          "hdd65": 23.8,
+          "modeled_demand_mmcfd": 163
         },
         {
           "date": "2026-10-17",
           "hours": 24,
-          "mean_temp_f": 38.2,
-          "min_temp_f": 34,
-          "hdd65": 26.8,
+          "mean_temp_f": 38.1,
+          "min_temp_f": 36,
+          "hdd65": 26.9,
           "modeled_demand_mmcfd": 173
         },
         {
@@ -11937,12 +11937,12 @@
           "modeled_demand_mmcfd": 181
         }
       ],
-      "forecast_source_updated": "2026-10-16T05:42:28+00:00",
+      "forecast_source_updated": "2026-10-16T11:58:01+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-18",
         "peak_forecast_hdd": 30.0,
         "peak_modeled_demand_mmcfd": 184,
-        "forecast_window_demand_bcf": 1.05,
+        "forecast_window_demand_bcf": 1.06,
         "storage_withdrawal_mmcfd": -5.4,
         "non_cingsa_supply_mmcfd": null,
         "days_cover_at_peak": 42.5,
@@ -11951,13 +11951,12 @@
       "reconciliation": {
         "date": "2026-10-15",
         "forecast_hdd65": 22.5,
-        "actual_hdd65": null,
-        "error": null,
-        "modeled_demand_mmcfd": null,
-        "storage_withdrawal_mmcfd": null,
-        "non_cingsa_supply_mmcfd": null,
-        "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date",
-        "unresolved": true
+        "actual_hdd65": 20.0,
+        "error": 2.5,
+        "modeled_demand_mmcfd": 150,
+        "storage_withdrawal_mmcfd": 2.0,
+        "non_cingsa_supply_mmcfd": 148.0,
+        "basis": "observed HDD from ACIS PANC, measured inventory draw from the CINGSA record committed for that date"
       },
       "model": {
         "version": "2.0",
@@ -11992,7 +11991,7 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-16T09:17:21Z",
+          "fetched_utc": "2026-10-16T12:32:12Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -12001,7 +12000,7 @@
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-16T09:17:21Z",
+          "fetched_utc": "2026-10-16T12:32:13Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -12010,14 +12009,16 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-16T09:17:22Z",
+          "fetched_utc": "2026-10-16T12:32:16Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
       "flags": [
-        "balance_unresolved",
         "injection_restriction_active"
+      ],
+      "reconciles_dates": [
+        "2026-10-15"
       ]
     }
   ]
