@@ -1,0 +1,227 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gold block on the mat': shadow L* 27.3 vs ground L* 36.4, dL 9.2 at 432w"
+      ],
+      "scales": [
+        "'the gigawatt ruler, frame 1 of 10' runs 0 MW at 0 to 100 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h01 'Fairbanks' gridhad 15 MW to spare.' fits 2/2 lines at 75px"
+      ],
+      "asserts": [
+        "'the 15 MW block printed as 15 MW, at the deck scale' holds: 162 vs 162 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the museum ply on the mat': shadow L* 27.3 vs ground L* 36.9, dL 9.6 at 432w"
+      ],
+      "scales": [
+        "'the gigawatt ruler, frame 2 of 10' runs 100 MW at 0 to 200 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the Level 1 riser at 38 MW' lands 0.0px from its target",
+        "leader 'the Level 2 riser at 15 MW' lands 0.0px from its target",
+        "leader 'the bare mat past both plies, Level 3' lands 0.0px from its target",
+        "leader 'the Level 1 riser at 38 MW' meets its label 8.0px away",
+        "leader 'the Level 2 riser at 15 MW' meets its label 6.0px away",
+        "leader 'the bare mat past both plies, Level 3' meets its label 4.0px away",
+        "leader 'the Level 1 riser at 38 MW' is drawn 41 px at 85 degrees, inside the pointer band",
+        "leader 'the Level 2 riser at 15 MW' is drawn 85 px at 86 degrees, inside the pointer band",
+        "leader 'the bare mat past both plies, Level 3' is drawn 44 px at 74 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h02 'Level 2.One backup unit left.' fits 2/2 lines at 74px"
+      ],
+      "asserts": [
+        "'the museum ply printed as Level 1, 38 MW' holds: 410.4 vs 410.4 px (within 0.5)",
+        "'the gold ply printed as Level 2, 15 MW' holds: 162 vs 162 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the gold backup token on the mat': shadow L* 27.2 vs ground L* 34.8, dL 7.6 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "scales": [
+        "'the gigawatt ruler, frame 3 of 10' runs 200 MW at 0 to 300 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h03 '\"Probably not goingto be a one-off.\"' fits 2/2 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the gigawatt ruler, frame 4 of 10' runs 300 MW at 0 to 400 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h04 '\"Want to drop 10 billionon a data center\"' fits 2/2 lines at 66.5px"
+      ],
+      "asserts": [
+        "'as many as 15 proposals, one vellum card each' holds: 15 vs 15 marks, counted over 15 declared marks (within 0)",
+        "'as many as 15 proposals, one vellum card each': 15 mark centres probed at r=14px, cohort median 26.7 dE, all present (weakest 22.3 dE)",
+        "'as many as 15 proposals, one vellum card each': 15 declared marks, largest touching mass 8 of them (53%) at a 149px link (a shape starts at 75%)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the enterprise board on the mat': shadow L* 27.2 vs ground L* 35.9, dL 8.6 at 432w"
+      ],
+      "scales": [
+        "'the gigawatt ruler, frame 5 of 10' runs 400 MW at 0 to 500 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the enterprise board's 10 MW edge\" lands 2.0px from its target",
+        "leader \"the edge sliver's top end, 0.1 to 0.5 MW\" lands 1.0px from its target",
+        "leader \"the enterprise board's 10 MW edge\" meets its label 6.0px away",
+        "leader \"the edge sliver's top end, 0.1 to 0.5 MW\" meets its label 6.0px away",
+        "leader \"the enterprise board's 10 MW edge\" is drawn 90 px at 0 degrees, inside the pointer band",
+        "leader \"the edge sliver's top end, 0.1 to 0.5 MW\" is drawn 194 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h05 'The guide's two smallestsizes fall under 15 ' fits 2/2 lines at 62px"
+      ],
+      "asserts": [
+        "\"the enterprise board's upper end printed as 10 MW\" holds: 108 vs 108 px (within 0.5)",
+        "\"the edge sliver's upper end printed as 0.5 MW\" holds: 5.4 vs 5.4 px (within 0.3)",
+        "'the gold rule printed at 15 MW' holds: 162 vs 162 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the gigawatt ruler, frame 6 of 10' runs 500 MW at 0 to 600 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the edge bar, 0.1 to 0.5 MW' lands 0.0px from its target",
+        "leader \"the enterprise bar's 10 MW end\" lands 1.0px from its target",
+        "leader 'the edge bar, 0.1 to 0.5 MW' meets its label 16.0px away",
+        "leader \"the enterprise bar's 10 MW end\" meets its label 16.0px away",
+        "leader 'the edge bar, 0.1 to 0.5 MW' is drawn 171 px at 0 degrees, inside the pointer band",
+        "leader \"the enterprise bar's 10 MW end\" is drawn 67 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h06 'Five sizes,one ruler.' fits 2/2 lines at 69.5px"
+      ],
+      "asserts": [
+        "'edge bar top at 0.5 MW' holds: 5.4 vs 5.4 px (within 0.3)",
+        "'enterprise bar top at 10 MW' holds: 108 vs 108 px (within 0.5)",
+        "'co-location bar top at 100 MW, the frame edge' holds: 1080 vs 1080 px (within 0.5)",
+        "'cloud bar foot at 50 MW' holds: 540 vs 540 px (within 0.5)",
+        "'hyperscale bar foot at 50 MW' holds: 540 vs 540 px (within 0.5)",
+        "'gold rule at 15 MW' holds: 162 vs 162 px (within 0.5)",
+        "'ice rule at 38 MW' holds: 410.4 vs 410.4 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the gigawatt ruler, frame 7 of 10' runs 600 MW at 0 to 700 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the vellum slip over the North Slope' lands 0.0px from its target",
+        "leader 'the vellum slip over the North Slope' meets its label 1.0px away",
+        "leader 'the vellum slip over the North Slope' is drawn 58 px at 74 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h07 'No hyperscale siteruns in Alaska.' fits 2/2 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the gold block on the mat': shadow L* 26.0 vs ground L* 34.4, dL 8.4 at 432w"
+      ],
+      "scales": [
+        "'the gigawatt ruler, frame 8 of 10' runs 700 MW at 0 to 800 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h08 'The fixestake years.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'the battery printed as 70 MW' holds: 756 vs 756 px (within 0.5)",
+        "'seven 10 MW bays fill the 70 MW sheet' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven 10 MW bays fill the 70 MW sheet': 7 mark centres probed at r=14px, cohort median 3.8 dE, all present (weakest 2.4 dE)",
+        "'the gold block printed as 15 MW' holds: 162 vs 162 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the gigawatt ruler, frame 9 of 10' runs 800 MW at 0 to 900 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h09 '\"How much changeis our communityprepared to ' fits 3/3 lines at 72.5px"
+      ],
+      "asserts": [
+        "'the hyperscale floor starts at 50 MW' holds: 540 vs 540 px (within 0.5)",
+        "'gold rule at 15 MW' holds: 162 vs 162 px (within 0.5)",
+        "'ice rule at 38 MW' holds: 410.4 vs 410.4 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the gigawatt ruler, frame 10 of 10' runs 900 MW at 0 to 1,000 MW at 1080; 21 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the end block where the ruler stops at 1,000 MW' lands 0.0px from its target",
+        "leader 'the end block where the ruler stops at 1,000 MW' meets its label 6.0px away",
+        "leader 'the end block where the ruler stops at 1,000 MW' is drawn 73 px at 35 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h10 'That wasone gigawatt.' fits 2/2 lines at 103.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 10,
+    "helpers": [
+      {
+        "call": "AKMAT.ready",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

@@ -3077,6 +3077,46 @@
     "NEW: detection box measured from the subject pass's own pixels through the barrel remap (05)"
    ],
    "note": "Rounds used 4. Scored 8.51, art 6.5."
+  },
+  {
+   "run_date": "2026-10-15",
+   "carousel_no": 87,
+   "slide_count": 10,
+   "hero_structure": "NEW: THE FRAME IS THE RULER. Every frame is exactly 100 MW wide at 10.8 px per MW, so ten frames are one gigawatt; a museum-board ruler along the lower third chains its grooves across every cut and a tab prints the running total; square to the ruler is measured, loose on the mat has no megawatt figure.",
+   "atmosphere": "NEW: THE SOUTH WINDOW AT TWENTY DEGREES, a low October sun at az 300 laying sheared panes with mullion shadows across one long cutting mat, warm key and cool sky, darkest on the breather (09)",
+   "depth_technique": "akbench plan relief through akmat (window-light keyMask, sheared panes, tooth as an albedo bump, cast-term blur with crisp ruler casts): gilded board (01), stepped plies (02), lathe-turned tokens and a sunk socket (03), fifteen vellum sheets with transmitted shadows (04), scored board slab plus a loose booklet with a page block (05), drafted relief bars crossed by gold and ice rules (06), two-ply cut-paper Alaska (07), a fibred vellum battery over the ruler (08), one narrow pane on the hyperscale board (09), a carved end block with an inlaid Polaris and the grooves cut through it (10)",
+   "line_voice": "measured, the deck as an instrument",
+   "continuity_device": "panorama spine: THE GIGAWATT RULER, one ruler across all ten frames with a running-total tab",
+   "continuity_devices": [
+    "panorama spine: the ruler's grooves chain by global x across every cut, tabs 0 MW to 900 MW",
+    "motif: gold leaf only for the 15 MW spare, ice only for the 38 MW Level 1 line",
+    "light: one sun at az 300 on every frame, mullions parallel to every cast",
+    "edge-tease: a vellum corner from 04's drop on 03's right edge"
+   ],
+   "hook_archetype": "NEW: THE DECK AS MEASURE (the carousel's own length is the unit)",
+   "palette_family": "NEW: CUTTING MAT, MUSEUM BOARD, VELLUM AND GOLD LEAF",
+   "type_pairing": "Unbounded 560 display + Archivo text + JetBrains Mono",
+   "narrative_structure": "the cushion, the ladder, the units, the pitch, the guide's two smallest, five sizes on one ruler, none here yet, the fixes, the question (rest), that was one gigawatt",
+   "variance_dials": {
+    "design_variance": 5,
+    "visual_density": 2,
+    "type_temperature": 2
+   },
+   "techniques": [
+    "akbench",
+    "akmat window-light relief",
+    "sheared sun panes",
+    "albedo tooth",
+    "visBlur and visSharp",
+    "akpost grade",
+    "d3 + akgeo mask (07)",
+    "vellum transmission compositing"
+   ],
+   "new_techniques_logged": [
+    "NEW: window-light plan relief, a sun pane gating the key along the sun's own plan direction (TECHNIQUE_LIBRARY 124)",
+    "NEW: one deck scale as the hero, the axis census guarding the art (TECHNIQUE_LIBRARY 125)"
+   ],
+   "note": "Rounds used 5 (4 rounds plus the craft cycle). Scored 8.665, art 7.5."
   }
  ]
 }

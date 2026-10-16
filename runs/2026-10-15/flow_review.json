@@ -1,0 +1,17 @@
+{"round": 1, "rounds_used_at_review": 4, "verdict": "revise", "score_0_10": 7.8,
+ "arc_assessment": "The sequence keeps the cover's promise; the swipe itself is the gigawatt. Soft spots: 04's loop is paid by 06 rather than 05, and the close doesn't tie the gigawatt back to the guide's 'or even GW'.",
+ "junction_pulls": [{"from":1,"to":2,"strength":"strong"},{"from":2,"to":3,"strength":"strong"},{"from":3,"to":4,"strength":"weak"},{"from":4,"to":5,"strength":"strong"},{"from":5,"to":6,"strength":"strong"},{"from":6,"to":7,"strength":"strong"},{"from":7,"to":8,"strength":"weak"},{"from":8,"to":9,"strength":"weak"},{"from":9,"to":10,"strength":"strong"}],
+ "continuity_findings": ["ruler numerals reset per frame (polish)", "slide 10 end stop reads as a glitch; 1,000 MW label left of the 90 numeral", "03 to 04 seam has no plant: let a vellum corner poke in at 03's right edge"],
+ "rhythm_findings": ["02 to 05 share one text-over-art template; 05 is where it is felt; cut 05's body to the two ranges"],
+ "predicted_bail_point": {"slide": 5, "why": "36-word body against a narrow strip on the left edge with two thirds of the art band empty lit mat"},
+ "craft": {"predicted_artwork_score": 7.0,
+  "weakest_frames": [
+   {"slide": 5, "score": 6.5, "cause": "c", "fix": "lay the guide itself on the empty pane as a loose rotated booklet with stacked page edges, a printed title box and a cast"},
+   {"slide": 2, "score": 7.0, "cause": "b", "fix": "museum ply bevel about 5 px at 2x with the bright cut core lit and a darker lee, so the plies step"},
+   {"slide": 10, "score": 7.0, "cause": "c", "fix": "end stop as a full-height terminal flush to x 1080; 1,000 MW right-aligned with a leader"},
+   {"slide": 6, "score": 7.5, "cause": "b", "fix": "plates to about 0.5 alpha so the grid and casts read through"}],
+  "cross_frame": [
+   {"cause": "a", "slides": [2,5,6,9,10], "problem": "seven of ten main objects are axis-aligned rectangles; gold-leaf rectangle with the same sheen on 01, 02, 08 (at the limit of three)", "fix": "05's loose booklet; 02's thick-board bevel"},
+   {"cause": "e", "slides": [1,2,3,4,5,6,7,8,9,10], "problem": "04 and 08 tie at L* 36", "fix": "grade 08 about -0.1 exposure"},
+   {"cause": "d", "slides": [1,5], "problem": "granular penumbra speckle in the marched casts beside the gold block (01) and the enterprise board (05)", "fix": "blur the shadow term 1 to 2 px before compositing"}],
+  "masterful_depth_frame": 3}}

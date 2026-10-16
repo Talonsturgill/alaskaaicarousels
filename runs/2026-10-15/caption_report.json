@@ -1,0 +1,19 @@
+{
+  "chars": 875,
+  "hook": "UAF's new guide counts a state transportation container of drone imagery as a data center.",
+  "hook_len": 90,
+  "commas": 7,
+  "comma_per_100": 0.84,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#EdgeComputing",
+    "#GVEA",
+    "#ComputingInPlace"
+  ],
+  "deck_summary": "Every frame is 100 MW wide at one scale, so the carousel is one gigawatt long. On it are the 15 MW cushion, five data center sizes and a planned 70 MW battery.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 64
+}

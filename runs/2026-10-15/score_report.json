@@ -1,0 +1,98 @@
+{
+  "run_date": "2026-10-15",
+  "carousel_no": 87,
+  "revision_rounds": 5,
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 8.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.5,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.0,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.0,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7.5x0.14)+(8.0x0.14)+(7.5x0.16)+(8.5x0.14)+(8.5x0.12)+(8.5x0.10)+(7.0x0.08)+(7.5x0.07)+(7.0x0.05)+(8.0x0.10) = 8.665; the rubric weights sum to 1.10, so the weight-normalised total is 7.877; both clear 7.7. Re-score after the craft cycle; the first score at round 4 was 8.66 with art 7.0.",
+  "weighted_total": 8.665,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Model 09's hyperscale board as real museum board, scored every 10 MW with a lit cut-core bevel so the narrow pane rakes across grooves, and re-gild 10's Polaris to the cover's bright leaf so it is the brightest point of the close.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 9,
+      "fix": "score the hyperscale board every 10 MW with a lit cut-core bevel and lee riser"
+    },
+    {
+      "slide": 10,
+      "fix": "re-gild the Polaris with the cover's leaf and sheen; a lit chamfer across the block's top"
+    },
+    {
+      "slide": 5,
+      "fix": "a stepped page block on both lee sides, a spine fold, nearer the gold rule"
+    },
+    {
+      "slide": 8,
+      "fix": "halve the fibre amplitude and randomise its angle within 20 degrees"
+    },
+    {
+      "slide": 2,
+      "fix": "tooth and a bright cut-core edge on the museum ply's top riser"
+    }
+  ],
+  "editor_notes_for_email": "Scored 8.665 against 7.7 at round 5 of 5, no hard fails; normalised by the rubric's 1.10 weight sum the total is 7.877, which still clears. Art 7.5 after the one craft cycle (7.0 before), under the 8.5 craft floor; it ships at the five-round cap. After this score the caption close was changed to the deck's own ask (the scorer noted the old close was answered inside the caption) and two commas were cut to stay in budget; caption_check PASS. Before posting: slide 02 says 'a third unit failed' (GVEA: 'unexpectedly went offline'; KTUU: generator failure); the 15 MW cushion (C19) and the 15 MW Level 2 line (C05) are separate claims that agree; Burgum's 10 billion is printed as said; each frame measures from its own zero while the tab prints the running total; roughly the sixth Railbelt or data-center deck since October 5th.",
+  "craft_cycle": {
+    "frames": [
+      "slide-10",
+      "slide-01",
+      "slide-05",
+      "slide-02",
+      "slide-08"
+    ],
+    "art_before": 7.0,
+    "art_after": 7.5
+  }
+}
