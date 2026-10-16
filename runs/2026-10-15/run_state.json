@@ -24,5 +24,12 @@
     "upgrade": "pending",
     "gmail": "pending",
     "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 146 pages, 18 checks (re-run on the built docs/ before ship; 145 pages and PASS at wake)",
+    "gaswatch_live": "PASS at 09:28Z October 16th. FAIL at wake, 06:26Z, 07:40Z and 08:10Z on 'source reading published' only: CINGSA's revised October 15th reading posted at 16:39 Alaska, after the 22:26Z collection; workflow_dispatch returned 403 three times; GitHub then ran a late slot and the incident was withdrawn",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 06:18Z October 16th",
+    "site_fixes": "none needed on the live site; the docket refresh (Enstar comment window, AIDEA hearing date, the GVEA LM6000 note) rebuilt docs/"
   }
 }
