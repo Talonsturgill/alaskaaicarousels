@@ -73,7 +73,7 @@
       const gy = (at(i - 1, j + 1) + 2 * at(i, j + 1) + at(i + 1, j + 1) - at(i - 1, j - 1) - 2 * at(i, j - 1) - at(i + 1, j - 1)) / 8;
       let nx = -gx, ny = -gy, nz = 1; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
       const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
-      const vis = visBuf ? visBuf[k] : march(i, j, h0);
+      const vis = visBuf && !(o.visSharp && o.visSharp.indexOf(mb[k]) >= 0) ? visBuf[k] : march(i, j, h0);   // visSharp: materials whose own cast stays crisp (a measured scale's grooves)
       const cav = Math.max(0, blur[k] - h0) / sc, ao = Math.max(0, 1 - aoK * Math.min(1, cav / 6));
       const m = mb[k], X = (X0 + i + 0.5) / sc, Y = (Y0 + j + 0.5) / sc, a = o.albedo(X, Y, m);
       const sh = 1 - shK * (1 - vis), km = keyMask ? keyMask(X, Y) : 1;
