@@ -77,6 +77,17 @@
     return best;
   };
 
+  /* ---- tooth: the fine relief of a rubber or paper surface, too small for the height buffer (a 0.3 px bump
+   * there only feeds the cast's penumbra term and speckles the shade), so it is shaded here as an albedo bump:
+   * the slope of a two-octave noise taken along the sun's direction in plan (az 300, upper left), on rotated
+   * coordinates so the noise lattice never shows. Returns about -0.5..0.5; lit faces positive. */
+  function tooth(X, Y, s) {
+    var u = X * 0.80 + Y * 0.60, v = -X * 0.60 + Y * 0.80, lx = -0.866 * 0.8 - 0.5 * 0.6, ly = 0.866 * 0.6 - 0.5 * 0.8;
+    function n(a, b) { return 0.6 * vnoise(a / 2.6, b / 2.6, s) + 0.4 * vnoise(a / 7.5, b / 7.5, s + 1); }
+    return (n(u + lx, v + ly) - n(u - lx, v - ly)) * 1.6;
+  }
+  M.tooth = tooth;
+
   /* ---- the mat. A dark blue-green self-healing mat: a printed grid every 10 MW (108 px) in both axes, a
    * fainter 5 MW grid, a fine rubber tooth, and healed knife scores (thin straight cuts that closed, slightly
    * glossier than the field). gx is the GLOBAL x so the grid chains across frames. */
@@ -85,7 +96,7 @@
     var gx = frame * 1080 + X;
     var t = vnoise(gx * 0.9, Y * 0.9, 11) * 0.5 + vnoise(gx * 0.23, Y * 0.23, 12) * 0.5;
     var big = vnoise(gx / 260, Y / 260, 13);
-    var k = 0.86 + 0.10 * t + 0.10 * big;
+    var k = (0.86 + 0.10 * t + 0.10 * big) * (1 + 0.22 * tooth(gx, Y, 14));
     var c = [MAT[0] * k, MAT[1] * k, MAT[2] * k];
     var mx = gx % 108, my = Y % 108; if (mx < 0) mx += 108;
     var lineA = 0;
@@ -105,10 +116,10 @@
   };
 
   /* ---- museum board. Off-white four-ply with a fibre tooth; `tint` lets a frame cool or warm one board. */
-  var BOARD = lin("#DDE8EF"), LIFT = [1.22, 1.30, 1.42];   // the warm low key turns a neutral board olive; a cool-biased lift keeps it museum white
+  var BOARD = lin("#DDE8EF"), LIFT = [1.50, 1.60, 1.74];   // the warm low key turns a neutral board olive; a cool-biased lift keeps it museum white
   M.boardAlbedo = function (X, Y, seed, tint) {
     var f = vnoise(X * 1.3, Y * 0.35, seed) * 0.6 + vnoise(X * 0.31, Y * 0.31, seed + 1) * 0.4;
-    var k = 0.90 + 0.10 * f, b = tint || BOARD;
+    var k = (0.90 + 0.10 * f) * (1 + 0.16 * tooth(X, Y, seed + 9)), b = tint || BOARD;
     return [b[0] * k * LIFT[0], b[1] * k * LIFT[1], b[2] * k * LIFT[2]];
   };
   /* ---- gold leaf. Squares of leaf about 54 px, each a slightly different gold, with darker overlapping
@@ -119,14 +130,15 @@
     var lap = vnoise(X / 61 + 0.4 * vnoise(Y / 90, X / 90, seed + 5), Y / 61, seed + 4);   // where two leaves lap: a soft, irregular darker ridge
     var seam = 1 - 0.07 * Math.max(0, 1 - Math.abs(lap - 0.5) * 22);
     var c = [GOLD[0] * v * seam, GOLD[1] * v * seam * 0.96, GOLD[2] * v * seam * 0.8];
-    var skip = vnoise(X / 9, Y / 9, seed + 7);
-    if (skip > 0.94) { var w = (skip - 0.94) / 0.06; c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
+    var skip = vnoise((X * 0.8 + Y * 0.6) / 4.5, (Y * 0.8 - X * 0.6) / 4.5, seed + 7) * vnoise(X / 23, Y / 23, seed + 8);   // small round specks, a few
+    if (skip > 0.80) { var w = Math.min(1, (skip - 0.80) / 0.08); c = [c[0] + (BOLE[0] - c[0]) * w, c[1] + (BOLE[1] - c[1]) * w, c[2] + (BOLE[2] - c[2]) * w]; }
     return c;
   };
 
   /* ---- gold leaf is never flat: each leaf is a slightly domed, crinkled skin, which is what throws glints. */
   M.leafCrinkle = function (X, Y, seed) {
-    return 0.45 * (vnoise(X / 6, Y / 6, seed) - 0.5) + 0.35 * (vnoise(X / 17, Y / 17, seed + 3) - 0.5) + 0.25 * (vnoise(X / 41, Y / 41, seed + 6) - 0.5);
+    var u = X * 0.80 + Y * 0.60, v = Y * 0.80 - X * 0.60;   // rotated so the noise lattice can't stair-step a contour
+    return 0.20 * (vnoise(u / 11, v / 11, seed) - 0.5) + 0.30 * (vnoise(u / 23, v / 23, seed + 3) - 0.5) + 0.22 * (vnoise(u / 47, v / 47, seed + 6) - 0.5);
   };
 
   /* ---- a board lying on the mat: a rounded rectangle with a bevelled cut edge. Returns height in CSS px
