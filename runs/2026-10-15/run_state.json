@@ -21,7 +21,7 @@
     "assemble": "done: assemble 10 slides, vector PDF 7.27 MB",
     "scoring": "done: 8.66 at round 4 (art 7.0, craft floor owed); craft cycle on 10, 01, 05, 02, 08 as round 5; re-score 8.665, art 7.5, threshold 7.7, ship",
     "ship": "done: runs/2026-10-15 (webp, og.jpg, pdf shrunk 23%), site_build 146 pages, parsers/scanner/docket_dates/site_fresh PASS, docket_alerts sent 1 (Enstar Kenai Loop comment window), prune freed 1.42M, ledgers appended",
-    "upgrade": "pending",
+    "upgrade": "done: weekly pass not due (machine_due exit 1, last pass 2026-10-11); automation_retro.md written; MACHINE_QUEUE: gas watch repeat 12, docket map fit repeat 2 (fixed in run), two new items; no upgrade commit",
     "gmail": "pending",
     "retro": "pending"
   },

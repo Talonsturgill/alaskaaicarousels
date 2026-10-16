@@ -1028,7 +1028,7 @@
         },
         {
           "date": "2026-10-13",
-          "label": "Division of Oil and Gas issues a preliminary written finding favoring an ENSTAR storage lease",
+          "label": "Division of Oil and Gas issued a preliminary written finding favoring an ENSTAR storage lease, opening public comment",
           "kind": "milestone"
         },
         {
@@ -1043,6 +1043,11 @@
         "lat": 60.55
       },
       "sources": [
+        {
+          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=225521",
+          "outlet": "Alaska DNR Division of Oil and Gas",
+          "date": "2026-10-13"
+        },
         {
           "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
           "outlet": "Anchorage Daily News",
@@ -1087,11 +1092,6 @@
           "url": "https://www.petroleumnews.com/story/2026/10/11/news/enstar-applies-to-aogcc-for-gas-storage-at-depleted-kenai-loop/50436.html",
           "outlet": "Petroleum News",
           "date": "2026-10-11"
-        },
-        {
-          "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=225521",
-          "outlet": "Alaska DNR Division of Oil and Gas",
-          "date": "2026-10-13"
         },
         {
           "url": "https://dog.dnr.alaska.gov/Document/Download/034A91BF914342ABB642C3F5B12DBC70/Kenai%20Loop%20Gas%20Storage%20Lease%20Preliminary%20Decision.pdf",

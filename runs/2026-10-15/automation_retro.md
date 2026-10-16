@@ -12,6 +12,14 @@ These are chassis repairs to this deck's own helpers and to an opt-in path in ak
 - `assets/js/akmat.js` (new): this deck's world chassis. Museum board rendered olive and then mid-grey because the warm key and the two tone curves (akbench's v/(1+0.35v) and AKPOST's ACES) compress a lit near-white board to about L* 74; a cool-biased lift [1.50, 1.60, 1.74] brings it back. The tooth went into the albedo as a bump along the sun's direction, because a 0.3 px tooth in the height buffer only feeds the penumbra term and speckles the shade.
 - `visSharp` exists because of a measurement: at visBlur 4 the ruler's groove shadows softened, the axis census threshold dropped with them, and board tooth on 08 and 10 then read as undeclared ruler marks (3 and 4 to 5 of them). Keeping the ruler's own cast crisp cleared both without touching the gate.
 
+- `scripts/docket_build.py` (PR #436's red `mobile` check): the Enstar item opening for comment renumbered the docket, the badge relaxation settled with a Southcentral badge 52 units under its dot, and the iPhone 13 landscape home view framed Alaska at 52 percent (main 57, floor 55). A fit-aware pass after the relaxation now moves a displaced badge to another free tethered spot only when the landscape frame's vertical need shrinks and the horizontal need does not grow: 65 percent, 148 of 148 checks on the branch and on main's data. Two narrower tries (a mirrored flip, then relaxation orderings) moved nothing and were reverted.
+
+## Codex on PR #436 (reviewed 413d74f)
+- P1, the Enstar COMMENT NOW link pointed at a July ADN story: `cta_html()` uses `sources[0]`, so the DNR public notice now leads the item's sources. Fixed.
+- P2, the comment window's Event startDate fell back to first_seen (July 11th): the milestone read "issues", which `window_open_date()`'s pattern doesn't match; it now reads "issued ..., opening public comment". Fixed.
+- P2, "What we verified" published the docket and runner-up claims (C56 to C72): runs/2026-10-15/claims.json now carries the story's C01 to C55 and the full record rides beside it as claims_research.json. The site-wide fix (build the section from the claims a deck cites) stays the queued site_build item, because it rewrites every past deck page.
+- P2, run_state's upgrade phase read pending: recorded as done with the not-due result. Fixed.
+
 ## Deviations, phase by phase
 - Phase 0: run_guard defaults to the UTC date, which was already October 16th at wake; `--run-date 2026-10-15` (Anchorage) gave CLEAR.
 - Phase 3.6, gas watch: FAIL at wake, 06:26Z, 07:40Z and 08:10Z on 'source reading published' only. CINGSA posted a revised October 15th reading at 16:39 Alaska, after the 22:26Z collection; the 04:40Z and 07:20Z slots had not run and workflow_dispatch returned 403 three times. An incident was filed, then withdrawn when the audit PASSED at 09:28Z after GitHub ran a late slot. Repeat 12 on the queue item (owner decision on schedules or Actions credentials).
