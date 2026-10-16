@@ -1,0 +1,213 @@
+{
+  "document_title": "One Gigawatt, to Scale",
+  "post_copy": "UAF's new guide counts a state transportation container of drone imagery as a data center.\n\nIts type is edge, the bottom rung at about 0.1 to 0.5 MW. Enterprise runs 0.5 to 10 MW and holds the University of Alaska and Providence Hospital. Golden Valley Electric had 15 MW to spare at its first Energy Emergency Alert on October 12th. Its planned battery would supply 70 MW for up to 2 hours.\n\nHyperscale runs 50 to 100+ MW or even gigawatts, with none operating in Alaska. Interior Secretary Doug Burgum said people \"want to drop 10 billion on a data center\". He named no investor, and 10 billion fits no rung.\n\nEvery frame is 100 MW wide at one scale, so the carousel is one gigawatt long. On it are the 15 MW cushion, five data center sizes and a planned 70 MW battery.\n\nWhat size of data center, if any, should Fairbanks say yes to?\n\n#EdgeComputing #GVEA #ComputingInPlace",
+  "hook_chars": 90,
+  "total_chars": 875,
+  "hashtags": [
+    "#EdgeComputing",
+    "#GVEA",
+    "#ComputingInPlace"
+  ],
+  "deck_summary_line": "Every frame is 100 MW wide at one scale, so the carousel is one gigawatt long. On it are the 15 MW cushion, five data center sizes and a planned 70 MW battery.",
+  "first_comment": "Sources, primary first\nGolden Valley Electric Association, GVEA's Energy Emergency Alerts, why they're needed and what members should know (October 13th, 2026) https://www.gvea.com/news-releases/gveas-energy-emergency-alerts-why-theyre-needed-and-what-members-should-know/\nGolden Valley Electric Association, Energy Emergency Alert page with the Level 1 and Level 2 megawatt thresholds (status stamp October 14th, 2026) https://www.gvea.com/energy-emergency-alert\nUAF Alaska Center for Energy and Power, Computing in Place, A Conversation Guide on Data Centers for Alaskans, the PDF (October 2026) https://zenodo.org/records/23175112/files/Computing%20in%20Place%20-%202026.pdf\nZenodo, the Computing in Place record, CC BY 4.0 (published October 6th, 2026) https://zenodo.org/records/23175112\nUniversity of Alaska Fairbanks, New guide helps Alaskans shape data center conversations (October 14th, 2026) https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php\nKUAC, GVEA issues first alert urging members to conserve electricity, Tim Ellis (October 13th, 2026) https://fm.kuac.org/energy/2026-10-13/gvea-issues-first-alert-urging-members-to-conserve-electricity\nAlaska Public Media and KUAC, In Fairbanks, Interior Secretary Burgum touts deregulation and data centers, Shelby Herbert (October 15th, 2026) https://alaskapublic.org/news/alaska-desk/2026-10-15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers\nAlaska's News Source (KTUU), GVEA asks members to conserve energy amid generator failure (October 14th, 2026) https://www.alaskasnewssource.com/2026/10/15/gvea-asks-members-conserve-energy-amid-generator-failure/\nAlaska Beacon via Anchorage Daily News, Feds approve $150 million for second power link between Interior and Southcentral Alaska, James Brooks (October 8th, 2026) https://www.adn.com/alaska-news/2026/10/07/feds-approve-150-million-for-second-power-link-between-interior-and-southcentral-alaska/\n\nThe Alaska AI Docket keeps each decision on one page with its next live date, at https://alaskaaihq.com\nIf you work on the Interior grid or on a data center proposal, add what this ruler leaves out in the replies.",
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "GOLDEN VALLEY ELECTRIC · OCTOBER 12TH",
+      "headline": "Fairbanks' grid had 15 MW to spare.",
+      "body": "This carousel is one gigawatt wide.",
+      "labels": [
+        "15 MW"
+      ],
+      "claim_ids": [
+        "C01",
+        "C19"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "OCTOBER 12TH · A FIRST FOR GOLDEN VALLEY",
+      "headline": "Level 2. One backup unit left.",
+      "body": "Golden Valley issued its first Energy Emergency Alert after a third unit failed while two were down for planned maintenance. It hasn't said which one. Its alert page puts Level 2 at reserves below 15 MW.",
+      "labels": [
+        "LEVEL 1 · BELOW 38 MW",
+        "LEVEL 2 · BELOW 15 MW",
+        "LEVEL 3 · ROTATING OUTAGES OF 30 TO 60 MINUTES"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C08",
+        "C09",
+        "C23"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "WHAT GOLDEN VALLEY SAYS",
+      "headline": "\"Probably not going to be a one-off.\"",
+      "body": "It says it has met Level 1 and Level 2 conditions on numerous occasions over the past year. It lost access to power from Anchorage-area gas plants as Cook Inlet gas ran short.",
+      "labels": [
+        "ASHLEY BRADISH, GOLDEN VALLEY, TO KUAC",
+        "IN MAINTENANCE",
+        "IN MAINTENANCE",
+        "FAILED NOT NAMED",
+        "THE ONE BACKUP",
+        "LOOSE ON THE MAT, NO MEGAWATT FIGURE · ILLUSTRATIVE UNITS"
+      ],
+      "claim_ids": [
+        "C03",
+        "C08",
+        "C10",
+        "C17",
+        "C21",
+        "C23"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "OCTOBER 14TH · FAIRBANKS CHAMBER OF COMMERCE",
+      "headline": "\"Want to drop 10 billion on a data center\"",
+      "body": "Interior Secretary Doug Burgum said it in Fairbanks two days after the alert, and named no investor. Alaska has seen proposals for as many as 15 data centers, Alaska Public Media reports. A dollar figure and a count. Neither is a megawatt.",
+      "labels": [
+        "AS MANY AS 15 PROPOSALS · NO MEGAWATT FIGURES"
+      ],
+      "claim_ids": [
+        "C25",
+        "C26",
+        "C28"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "COMPUTING IN PLACE · UAF'S ENERGY CENTER",
+      "headline": "The guide's two smallest sizes fall under 15 MW.",
+      "body": "UAF's energy center sizes an edge site at about 0.1 to 0.5 MW, like the state transportation department's drone imagery container. Enterprise runs about 0.5 to 10 MW, like the University of Alaska's and Providence's.",
+      "labels": [
+        "15 MW · SPARE ON OCTOBER 12TH",
+        "ENTERPRISE · 0.5 TO 10 MW",
+        "EDGE · 0.1 TO 0.5 MW",
+        "COMPUTING IN PLACE"
+      ],
+      "claim_ids": [
+        "C19",
+        "C32",
+        "C40",
+        "C41",
+        "C42",
+        "C43"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "COMPUTING IN PLACE · FIVE SIZES, ONE SCALE",
+      "headline": "Five sizes, one ruler.",
+      "body": "",
+      "labels": [
+        "SQUARE TO THE RULER IS MEASURED. PAST THE EDGE MEANS 100+.",
+        "15 MW SPARE · OCTOBER 12TH",
+        "LEVEL 1 · BELOW 38 MW",
+        "EDGE 0.1 TO 0.5 MW",
+        "ENTERPRISE 0.5 TO 10 MW",
+        "CO-LOCATION · 0.5 TO 100 MW",
+        "CLOUD 50 TO 100+ MW, OR EVEN GW",
+        "HYPERSCALE 50 TO 100+ MW, OR EVEN GW"
+      ],
+      "claim_ids": [
+        "C04",
+        "C19",
+        "C40",
+        "C42",
+        "C44",
+        "C45",
+        "C48"
+      ]
+    },
+    {
+      "n": 7,
+      "kicker": "WHAT THE GUIDE SAYS ALASKA HAS",
+      "headline": "No hyperscale site runs in Alaska.",
+      "body": "The guide cites one proposal, STAK on the North Slope. No large cloud provider runs a region here. On the Railbelt, it says, the biggest sizes may need significant new generation and transmission.",
+      "labels": [
+        "STAK · PROPOSED · NORTH SLOPE",
+        "LOOSE ON THE MAT, NO MEGAWATT FIGURE"
+      ],
+      "claim_ids": [
+        "C46",
+        "C47",
+        "C50"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT GOLDEN VALLEY IS ADDING",
+      "headline": "The fixes take years.",
+      "body": "A planned battery would deliver 70 MW for up to 2 hours, at about $130 million. A used LM6000 turbine, or an equivalent, is under evaluation at up to $80 million. Construction of the Beluga to Healy line isn't expected until after 2030.",
+      "labels": [
+        "15 MW",
+        "PLANNED BATTERY · 70 MW · UP TO 2 HOURS",
+        "TURBINE UP TO $80M NO MW GIVEN",
+        "BELUGA TO HEALY LINE AFTER 2030"
+      ],
+      "claim_ids": [
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C19",
+        "C24",
+        "C55"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "\"How much change is our community prepared to absorb?\"",
+      "body": "",
+      "labels": [
+        "COMPUTING IN PLACE, ON HYPERSCALE · 50 TO 100+ MW",
+        "15 MW SPARE",
+        "LEVEL 1 · 38 MW"
+      ],
+      "claim_ids": [
+        "C04",
+        "C19",
+        "C48",
+        "C49"
+      ]
+    },
+    {
+      "n": 10,
+      "kicker": "",
+      "headline": "That was one gigawatt.",
+      "body": "What size of data center, if any, should Fairbanks say yes to?",
+      "labels": [
+        "ALASKA.AI",
+        "1,000 MW"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "aftercare": [
+    "Post when you choose. Drafts arrive daily and you set the cadence. Tuesday to Thursday, 8 to 11am Alaska time, are the strongest slots.",
+    "Paste the sources comment within 60 seconds of posting, as plain text, so every raw URL stays a working link.",
+    "Reply to every comment in the first 90 minutes, especially from Golden Valley members, Interior utility people and anyone who worked on the Computing in Place guide.",
+    "Expect two questions. The 15 MW is a reserve cushion on a bad day as KUAC reported it, never the size of the Fairbanks grid. The battery is planned and the turbine is under evaluation, so neither exists yet.",
+    "At 48 hours, note this post's saves and comments so the next run's ledger and instincts learn from it."
+  ],
+  "editor_notes_for_email": "No.87 sets the week's three Interior stories on one scale, Golden Valley's first Energy Emergency Alert on October 12th, Burgum's Fairbanks pitch on October 14th and UAF's Computing in Place guide, and takes no side on data centers. The 15 MW cushion is KUAC's reported figure (C19); the 15 MW Level 2 line is the definition on GVEA's alert page (C05); the two agree without being the same claim. Burgum named no investor, and his 10 billion is printed as he said it, with no dollar sign. The caption names Providence Hospital as one of the guide's enterprise examples; it is in Anchorage, and the caption no longer pairs it with an Interior close: the post now ends on the deck's own ask, what size of data center, if any, Fairbanks should say yes to. Slide 2 says a third unit failed, where GVEA's release says it unexpectedly went offline and KTUU calls it a generator failure. Each frame's tab prints the running total while objects are measured from that frame's own zero, so expect a reader to ask whether 02's gold ply is 115 MW; it is 15.",
+  "caption_meta": {
+    "opening_move": "THE ABSURD DETAIL",
+    "structure": "NEW: THE LADDER",
+    "closing_move": "THE DECK'S OWN ASK (the close repeats slide 10's question word for word, so post and carousel end on one fork)",
+    "deck_summary_line": "Every frame is 100 MW wide at one scale, so the carousel is one gigawatt long. On it are the 15 MW cushion, five data center sizes and a planned 70 MW battery.",
+    "first_8_words": "UAF's new guide counts a state transportation container",
+    "hook_type": "absurd detail, the state transportation department's drone imagery container counted as a data center"
+  },
+  "first_8_words": "UAF's new guide counts a state transportation container",
+  "hook_type": "absurd detail, the state transportation department's drone imagery container counted as a data center"
+}

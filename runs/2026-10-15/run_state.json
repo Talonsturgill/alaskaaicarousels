@@ -1,0 +1,35 @@
+{
+  "run_date": "2026-10-15",
+  "carousel_no": 87,
+  "effort": "high",
+  "date_note": "Woke 2026-10-16 06:14 UTC = 2026-10-15 22:14 America/Anchorage. runs/2026-10-15 did not exist, so the run date is the Anchorage date. run_guard --run-date 2026-10-15 printed CLEAR.",
+  "branch": "tsturg/clever-mayer-bp9hba",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": "done: plan.md, run_state.json",
+    "craft_refresh": "done: 2 searches (LinkedIn document-post reach, riso/halftone editorial technique), nothing new and verified beyond FIELD_NOTES, FIELD_NOTES untouched",
+    "research": "done: scout_merge.md, scouts/beat_A..F.md, pdf/computing_in_place.txt (141 searches across six scouts)",
+    "claims": "done: claims.json ships the deck's 55 claims (C01 to C55, 41 primary); the full research record of 72 (45 primary, with the docket re-verification C56 to C63 and runner-up C64 to C72) is claims_research.json; 12 killed at the fact check, claims_check PASS",
+    "docket": "done: 9 worklist items re-verified (b78f6c74); Kenai Loop preliminary finding (open for comment to November 13th), Crowther hearing October 26th, GVEA release note (27622835); docket_dates_check clean",
+    "gas_watch": "done: cron_health PASS (7 workflows); gaswatch_health FAIL at wake on the late CINGSA revision (dispatch 403), PASS at 09:28Z; incident withdrawn",
+    "selection": "done: selection.md (GVEA first EEA + Burgum + ACEP Computing in Place; runner-up Senate Resources subpoena)",
+    "directors_room": "done: three treatments (data-journalist, cartographer, cinematographer), synthesis in selection.md, storyboard.md (10 dossiers), dossier_check PASS",
+    "copy": "done: caption room (A and B rejected by the critic, reassigned C shipped), caption.txt, copy.json, caption_check PASS with --copy",
+    "art_build": "done: 10 slides via build_slides.py from src/, qa WARN 0 fails, bespoke PASS 0.212, aggregate PASS, plan_drift PASS, contacts dL 7.8 to 9.2",
+    "pixel_review": "done: 4 per-slide rounds (round 1 machine QA; critics 2 to 4)",
+    "flow_review": "done: flow critic 7.8 revise; one sequence pass applied (05 booklet, 02 bevel, 10 end cap, 06 plates, 08 grade, 03 edge-tease, cast-term blur); flow_review.json",
+    "assemble": "done: assemble 10 slides, vector PDF 7.27 MB",
+    "scoring": "done: 8.66 at round 4 (art 7.0, craft floor owed); craft cycle on 10, 01, 05, 02, 08 as round 5; re-score 8.665, art 7.5, threshold 7.7, ship",
+    "ship": "done: runs/2026-10-15 (webp, og.jpg, pdf shrunk 23%), site_build 146 pages, parsers/scanner/docket_dates/site_fresh PASS, docket_alerts sent 1 (Enstar Kenai Loop comment window), prune freed 1.42M, ledgers appended",
+    "upgrade": "done: weekly pass not due (machine_due exit 1, last pass 2026-10-11); automation_retro.md written; MACHINE_QUEUE: gas watch repeat 12, docket map fit repeat 2 (fixed in run), two new items; no upgrade commit",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 146 pages, 18 checks (re-run on the built docs/ before ship; 145 pages and PASS at wake)",
+    "gaswatch_live": "PASS at 09:28Z October 16th. FAIL at wake, 06:26Z, 07:40Z and 08:10Z on 'source reading published' only: CINGSA's revised October 15th reading posted at 16:39 Alaska, after the 22:26Z collection; workflow_dispatch returned 403 three times; GitHub then ran a late slot and the incident was withdrawn",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 06:18Z October 16th",
+    "site_fixes": "none needed on the live site; the docket refresh (Enstar comment window, AIDEA hearing date, the GVEA LM6000 note) rebuilt docs/"
+  }
+}

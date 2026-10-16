@@ -1,0 +1,128 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-15/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7263129,
+  "pdf_mb": 7.26,
+  "slides": 10,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-15/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-09-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-15/final/thumbs/slide-10-thumb.png"
+  ],
+  "title": "One Gigawatt, to Scale",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "6ef95b1f925b2af81b34bdc50b822316fd80ec4d9ee49ed27c9630255393d8cc",
+        "bytes": 6291783
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "fa96597470d8c8ee6ced1cc77f8e01ed312965af50e43e17beb6df4351873712",
+        "bytes": 6295657
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "75e86d5d826c8d5d2dc4b538ce6594cc3460469469a5ff0c540b1fb788781ec9",
+        "bytes": 6457413
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "8adb4fb9164ea17892293b93cffe9db89697dd2fa4e775749758d7688740b51a",
+        "bytes": 6314293
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "6278f5b64809912249577833eb569acbcb6c9eca1491cdf84deedaba2d239985",
+        "bytes": 6363568
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e691d28e83c8543d9b77a2bc1de4a2b1963ddf638d6bab28b6589bd54812407d",
+        "bytes": 6326983
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "140b40a0b04dbfd9a6f6cec8241d9f8112dda79a9c2a9b2ba80e2d3402e1be37",
+        "bytes": 6464615
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "34b35f92014035493c9b3d540efcda51796911e66ade92a057220a04e90dc33a",
+        "bytes": 6192229
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "d9677cee5fe62d515ea0f6cb376f7935e383ab0ba5f18d91dc607b5a05d8f882",
+        "bytes": 5974161
+      },
+      {
+        "name": "slide-10.png",
+        "sha256": "15a169208d707e6c702c0b353388a74fe2e3e5300dcd13c0b45536ab3f96437e",
+        "bytes": 6243395
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "d4405cd48cfa6c49d19c2463eabf7cf0e632b283a68c1300c2f2828c21d8ba10",
+        "bytes": 6277
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "b329de8076a965ac9cf5685c08e72d018f453ec50abb6cc816356592ca207d35",
+        "bytes": 8347
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "0aebd5e627d6d075f37b4347e5cea3883b8349719f85c49919803de0d8f61160",
+        "bytes": 9870
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "8f27a44f79e57fea0059da0b7690130231bc912e4c3027ae1e92d696ba0c3c0f",
+        "bytes": 10054
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "616c4417040de750dc774c826930062881281dcc3293336b5bdec45d81d990c6",
+        "bytes": 10435
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "0bac7d10afc61909329bd1c0c926363754622ea0ece73897d35f3cbe7649f769",
+        "bytes": 9993
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "fca345020b2114b3f48d871ec38f70d88e38c46e43993e85d8e11a19ef62180f",
+        "bytes": 10196
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "d9d29977b97df0f9439ba6c8e1a7ab33c32c13ed245cd942c1d228ab16cb68c4",
+        "bytes": 12041
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "72c3e37c66b0fedb662a70e1e8a6df423ba439d2fb48826bcd4ce310905cf4ab",
+        "bytes": 6851
+      },
+      {
+        "name": "slide-10.html",
+        "sha256": "b5198eae72b73a5494b158079179f632f127f1ba0fffa2ed8b7c5e8d20ef4ec5",
+        "bytes": 8613
+      }
+    ]
+  }
+}

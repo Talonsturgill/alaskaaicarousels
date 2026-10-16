@@ -3437,6 +3437,64 @@
     "research-and-science",
     "defense-and-federal"
    ]
+  },
+  {
+   "run_date": "2026-10-15",
+   "carousel_no": 87,
+   "topic": "Golden Valley Electric's first Energy Emergency Alert in its history, a Level 2 on October 12th (reserves below 15 MW on its alert page; KUAC reported a 15 MW cushion) after two units in planned maintenance were joined by a third that went offline, unnamed; Interior Secretary Doug Burgum telling the Fairbanks Chamber on October 14th that people 'want to drop 10 billion on a data center' (no investor named), with as many as 15 data center proposals in Alaska per Alaska Public Media; and UAF ACEP's Computing in Place guide (Zenodo 23175112) sizing five data center types in megawatts, edge about 0.1 to 0.5 MW (a DOT&PF drone imagery container), enterprise 0.5 to 10 MW (University of Alaska, Providence), co-location 0.5 to 100 MW, cloud and hyperscale 50 to 100+ MW or even GW, none of the largest operating in Alaska (STAK on the North Slope proposed). GVEA's fixes: a 70 MW battery for up to 2 hours at about $130 million, a used LM6000 or equivalent at up to $80 million under evaluation, Beluga to Healy construction after 2030.",
+   "angle": "THE DECK AS MEASURE: every frame is 100 MW at one scale, so the carousel is one gigawatt long and the 15 MW cushion, the guide's five sizes and the planned battery sit on one ruler. Never 'capacity' for the cushion, never data centers as the alert's cause, no dollar sign on Burgum's 10 billion.",
+   "entities": [
+    "Golden Valley Electric Association",
+    "GVEA",
+    "KUAC",
+    "Ashley Bradish",
+    "Doug Burgum",
+    "Fairbanks Chamber of Commerce",
+    "Alaska Public Media",
+    "UAF",
+    "Alaska Center for Energy and Power",
+    "Computing in Place",
+    "DOT&PF",
+    "University of Alaska",
+    "Providence",
+    "STAK",
+    "Cook Inlet",
+    "Beluga to Healy line",
+    "Railbelt"
+   ],
+   "keywords": [
+    "energy emergency alert",
+    "reserve margin",
+    "data center sizes",
+    "edge computing",
+    "hyperscale",
+    "megawatts",
+    "battery storage",
+    "LM6000",
+    "Interior Alaska grid",
+    "data center proposals"
+   ],
+   "headline": "Fairbanks' grid had 15 MW to spare. This carousel is one gigawatt wide.",
+   "sources_lead": [
+    "https://www.gvea.com/news-releases/gveas-energy-emergency-alerts-why-theyre-needed-and-what-members-should-know/",
+    "https://www.gvea.com/energy-emergency-alert",
+    "https://fm.kuac.org/energy/2026-10-13/gvea-issues-first-alert-urging-members-to-conserve-electricity",
+    "https://www.alaskasnewssource.com/2026/10/15/gvea-asks-members-conserve-energy-amid-generator-failure/",
+    "https://alaskapublic.org/news/alaska-desk/2026-10-15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers",
+    "https://www.alaskasnewssource.com/2026/10/15/interior-secretary-pitches-fairbanks-amid-regional-power-emergency/",
+    "https://zenodo.org/records/23175112/files/Computing%20in%20Place%20-%202026.pdf",
+    "https://www.uaf.edu/news/new-guide-helps-alaskans-shape-data-center-conversations.php",
+    "https://zenodo.org/records/23175112",
+    "https://www.energy.gov/articles/energy-department-announces-alaska-railbelt-transmission-project-receive-defense",
+    "https://www.adn.com/alaska-news/2026/10/07/feds-approve-150-million-for-second-power-link-between-interior-and-southcentral-alaska/"
+   ],
+   "claims": 55,
+   "note": "Lead found by four of six scouts; No.86's runner-up now with primary sources. Runner-up the Senate Resources subpoena over the AIDEA transfer near Houston (hearing October 26th). Scored 8.66 at round 4 (art 7.0), craft cycle, 8.665 at round 5 (art 7.5).",
+   "beats": [
+    "power-and-the-grid",
+    "data-centers",
+    "research-and-science"
+   ]
   }
  ]
 }
