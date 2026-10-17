@@ -1032,6 +1032,11 @@
           "date": "2026-10-13"
         },
         {
+          "url": "https://alaskapublic.org/news/economy/energy/2026-10-16/state-favors-enstar-in-dueling-kenai-gas-storage-project-proposals",
+          "outlet": "Alaska Public Media",
+          "date": "2026-10-16"
+        },
+        {
           "url": "https://www.adn.com/business-economy/energy/2026/07/10/state-regulators-reject-enstar-gas-storage-plan-raising-questions-about-solution-to-cook-inlet-shortage/",
           "outlet": "Anchorage Daily News",
           "date": "2026-07-10"
@@ -1083,7 +1088,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-07-11",
@@ -1172,6 +1177,10 @@
         {
           "date": "2026-10-15",
           "note": "The Division of Oil and Gas issued a preliminary written finding on October 13th concluding that a Kenai Loop gas storage lease to ENSTAR would best serve the state's interest, and called Hilcorp's competing application insufficient. ENSTAR's proposal would hold about 20.5 billion cubic feet of working gas with about 8 billion cubic feet of cushion gas. Comments on the preliminary finding must be received by 5 p.m. on November 13th, per the state's public notice."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "Alaska Public Media reported on October 16th that the City of Kenai wrote to Natural Resources Commissioner John Crowther on October 7th asserting that the city owns the Kenai Loop reservoir pore space, citing an outside legal opinion, and that City Manager Terry Eubank called the preliminary finding's omission of that dispute misleading. Division of Oil and Gas director Haley Paine wrote the finding. Comments go to dog.bif@alaska.gov and remain due 5 p.m. November 13th, as the state's notice set out."
         }
       ]
     },
@@ -2477,7 +2486,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-08-06",
@@ -2574,6 +2583,10 @@
         {
           "date": "2026-10-14",
           "note": "Searched the Federal Register today for Alaska documents published October 8th to 15th. The only Eielson item is a correction to per diem rates, and no Air Force, Oklo or reactor notice was published. KUAC's newest Eielson report is still September 20th. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "Searched the Federal Register today for documents published October 8th to 16th naming Eielson or Oklo. The only Eielson item is a correction to per diem rates, and no Air Force, Oklo or reactor notice was published. Responses to the Army Corps request for information were due today, October 16th. No site decision has been published. Checked and unchanged."
         }
       ]
     },
@@ -3501,10 +3514,14 @@
         {
           "date": "2026-10-14",
           "note": "Searched the Federal Register today for Alaska documents published October 8th to 15th and found none for docket P-15423 or DeepGreen. No permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd at 5 p.m. Eastern. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "Searched the Federal Register today for documents naming docket P-15423 and found only the September 4th notice of the application. No permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd at 5 p.m. Eastern. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-14"
+      "last_updated": "2026-10-16"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3630,7 +3647,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-08-25",
@@ -3727,6 +3744,10 @@
         {
           "date": "2026-10-14",
           "note": "The Assembly's public safety page lists five amendments for the October 14th work session, Amendment 1 from Member McCormick to the S-1 version and Amendments 2 to 5 from Chair Brawley to both the S and S-1 versions. The Assembly postponed further action to its October 20th regular meeting, where the ordinance returns as unfinished business."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "Re-read the Assembly's public safety page today. It still lists the five amendments discussed at the October 14th work session and returns AO 2026-108 as unfinished business at the regular meeting on Tuesday, October 20th. No vote has been taken. Checked and unchanged."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3904,6 +3925,11 @@
           "date": "2026-10-22",
           "label": "Assembly certifies the October 6th election and swears in the newly elected members",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-26",
+          "label": "Terms of the three newly elected Assembly members begin",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -3958,7 +3984,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-09-01",
@@ -4015,6 +4041,10 @@
         {
           "date": "2026-10-14",
           "note": "The borough's unofficial results, updated October 13th after the questioned and absentee ballots were counted, show Alexis Howell ahead of Miguel Ramirez 7,759 to 7,542 for Seat D, Nick LaJiness ahead of Shelly Shupe 8,476 to 7,025 for Seat E, and Scott W. Crass ahead of Joshua Leaders 8,007 to 7,276 for Seat H. The Assembly certifies the election on October 22nd."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "Re-read the borough's election page today. The Assembly certifies the October 6th election and swears in the newly elected members on Thursday, October 22nd, and their terms begin Monday, October 26th. No Assembly action on the moratorium request itself is scheduled."
         }
       ]
     },
@@ -4621,6 +4651,11 @@
       },
       "sources": [
         {
+          "url": "https://kpb.legistar1.com/kpb/attachments/ea1f9931-4842-48c0-a27c-a4965709a2ab.pdf",
+          "outlet": "Kenai Peninsula Borough, Niesen amendment memo",
+          "date": "2026-10-08"
+        },
+        {
           "url": "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
           "outlet": "Kenai Peninsula Borough legislative record",
           "date": "2026-09-15"
@@ -4642,7 +4677,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-09-15",
@@ -4715,6 +4750,10 @@
         {
           "date": "2026-10-14",
           "note": "Re-read the borough's legislative record today. Ordinance 2026-35 now shows a status of Public Hearing in the Policies and Procedures Committee, last modified October 13th, with its agenda date set at October 20th, the night the Assembly hears the public on it."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "The borough posted an amendment memo to Ordinance 2026-35 on October 16th, dated October 8th, from Assembly Member Len Niesen and Mayor Peter Micciche. It would require an application to identify the intended outcome of any proposed weather modification or geoengineering activity, and it corrects the closeout clause to cite items 1 to 10 rather than 1 to 9. The ordinance remains set for public hearing on October 20th."
         }
       ]
     },
