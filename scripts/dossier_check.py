@@ -175,7 +175,7 @@ CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
 # bounded by the clause, not by a word count: "casting an attached shadow down and right onto
 # the lit bench" is a promise six words long (Codex, PR #438)
 CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+[^.;:\n(]{0,80}?\bonto\b", re.I)
-CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill)s?\b", re.I)
+CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?\b", re.I)
 
 
 def promised_cast(body):
@@ -187,7 +187,13 @@ def promised_cast(body):
         # only the coordinate clause that owns the verb: in "feet catching a rim light and casting onto
         # it" the light is what the feet catch, not what casts (Codex, PR #438)
         lead = re.split(r"\b(?:and|while|then|but)\b", lead)[-1]
-        if not CAST_LIGHT_RE.search(m.group(0)) and not CAST_LIGHT_RE.search(lead):
+        # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
+        # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)
+        words = [w for w in re.findall(r"[A-Za-z]+", lead)]
+        while words and words[-1].lower().endswith("ly"):
+            words.pop()
+        head = words[-1] if words else ""
+        if not CAST_LIGHT_RE.search(m.group(0)) and not CAST_LIGHT_RE.fullmatch(head):
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
             return " ".join((m.group(0) + tail).split())
     return None
