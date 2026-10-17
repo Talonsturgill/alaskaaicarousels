@@ -3657,7 +3657,7 @@ def canvas_cover_probe(page, width, height, nodes):
             if x1 <= x0 or y1 <= y0:
                 continue
             dh, ds = d_hidden[y0:y1, x0:x1], d_shown[y0:y1, x0:x1]
-            m = dh >= 96                       # this element's own glyph pixels, canvases hidden
+            m = dh >= 24                       # this element's own glyph pixels, canvases hidden; low so faint (down to about 10 percent opacity) marks still count (Codex, PR #438)
             n = int(m.sum())
             if n < 6:
                 continue
