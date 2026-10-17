@@ -2580,7 +2580,8 @@ IN_PAGE_QA_JS = """
       // ONLY A PLAINLY MAPPED CANVAS IS READ (Codex, PR #438, five review rounds on this mapping). Its bounding
       // box maps linearly onto its backing store only when nothing between them reshapes it: a CSS transform on
       // it or an ancestor, a mask or clip-path on it or an ancestor, or padding or a border on the canvas itself
-      // (the bitmap paints the content box). Any of those makes its pixel unverified, never covered, so the
+      // (the bitmap paints the content box), a filter other than opacity(), or a CSS background on the canvas
+      // element. Any of those makes its pixel unverified, never covered, so the
       // probe can't false-FAIL on a mapping it doesn't model; qa reports unverified lines as a WARN.
       const _xfCache = new Map();
       const _transformed = (cv) => {
@@ -2591,6 +2592,11 @@ IN_PAGE_QA_JS = """
           if ((cs.transform && cs.transform !== "none") || (cs.rotate && cs.rotate !== "none") || (cs.scale && cs.scale !== "none") || (cs.translate && cs.translate !== "none")) t = true;
           const mk = cs.maskImage || cs.webkitMaskImage || "none", cp = cs.clipPath || "none";
           if ((mk && mk !== "none") || (cp && cp !== "none")) t = true;
+          // any filter but opacity() reshapes the displayed alpha (blur, drop-shadow, url): unverified
+          const fl = (cs.filter || "none").replace(/opacity\([^)]*\)/g, "").trim();
+          if (fl && fl !== "none") t = true;
+          // a CSS background on the canvas element paints under its bitmap, which the bitmap read can't see
+          if (p === cv && ((cs.backgroundImage && cs.backgroundImage !== "none") || !/rgba\([^)]*,\s*0\)|transparent/.test(cs.backgroundColor || "transparent"))) t = true;
           if (p === cv) for (const k of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) if (parseFloat(cs[k]) > 0) t = true;
         }
         _xfCache.set(cv, t); return t;
