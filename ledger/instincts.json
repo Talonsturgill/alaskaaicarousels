@@ -2106,6 +2106,30 @@
    "confidence": 0.6,
    "run_date": "2026-10-15",
    "carousel_no": 87
+  },
+  {
+   "instinct": "A DOM-ONLY PASS IS NOT A PIXEL PASS: CHECK THE FIXTURES IN THE RENDER.",
+   "evidence": "No.88 shipped its first render with the wordmark, counter and site line painted under a z-index 1 canvas on all nine frames while render, qa and copy_sync all passed; five critics caught it.",
+   "act_on_it": "Give every overlay a z-index above the art layer and look at the first render's top and bottom bands before the critics do; the weekly pass added a canvas-over-text gate.",
+   "confidence": 0.7,
+   "run_date": "2026-10-16",
+   "carousel_no": 88
+  },
+  {
+   "instinct": "A PLATE ON A NEAR-BLACK DESK NEEDS A LIT POOL BEFORE IT CAN CAST.",
+   "evidence": "No.88 round 1 named no cast and no contact on five plate frames (02, 03, 05, 06, 08) set on L* 5 to 7; lit pools under each plate made the casts readable and the critics' scores rose by about a point.",
+   "act_on_it": "Plan a lit desk pool under every plate in the dossier, then the cast, then the bevel.",
+   "confidence": 0.6,
+   "run_date": "2026-10-16",
+   "carousel_no": 88
+  },
+  {
+   "instinct": "A TRAIL DRAWN AS TWO LIT RUTS READS AS RAILS; ONE WINDING PACKED TRACK READS AS A TRAIL.",
+   "evidence": "No.88 slide 07 went from rails (round 1) to a runway (round 2) to a trail once the centre wandered and the width narrowed unevenly (craft cycle, critic 7.2).",
+   "act_on_it": "Draw paths as a wandering centre line with an uneven half width, never as two converging straight edges.",
+   "confidence": 0.5,
+   "run_date": "2026-10-16",
+   "carousel_no": 88
   }
  ]
 }

@@ -2550,6 +2550,20 @@ IN_PAGE_QA_JS = """
       }
       if (worst) { delete worst._px; tn.occluded = worst; }
     }
+    /* TEXT UNDER CANVAS INK (2026-10-16, weekly pass; queue item 2026-10-16).
+       Run No.88's AKDOCKET.fixtures painted the wordmark, the counter and the
+       site line UNDER a z-index 1 art canvas on all nine frames; they were in
+       the DOM, so every DOM gate passed. The check is now PIXEL TRUTH, done in
+       Python after the screenshot (canvas_cover_probe): ten review rounds on
+       PR #438 showed that modelling CSS compositing in a hit-test probe
+       (opacity groups, blend modes, masks, filters, object-fit, pointer-events)
+       never converges. Here the page only tags every recorded text element so
+       the Python side can recolour exactly those elements. */
+    try {
+      for (const [tel, idx] of recorded) { try { tel.setAttribute("data-akt-idx", String(idx)); } catch (e) {} }
+    } catch (e) {
+      try { console.error("canvas-over-text tagging threw: " + e); } catch (e2) {}
+    }
   } catch (e) {
     // never fail the render over the probe itself; surface it as a console
     // error, which render.py records and qa.py reports as a WARN.
@@ -3590,6 +3604,152 @@ IN_PAGE_QA_JS = """
 """
 
 
+
+def canvas_cover_probe(page, width, height, nodes):
+    """TEXT UNDER CANVAS INK, by pixel truth (2026-10-16, PR #438). Every
+    recorded text element (tagged data-akt-idx in the page) is recoloured pure
+    magenta and then pure green, once with the canvases shown and once with
+    them hidden. Whatever lies UNDER the text is identical in both colours and
+    cancels; only what paints ABOVE it shrinks the difference. So, per line box,
+    a glyph pixel's coverage is 1 - diff(shown) / diff(hidden): exact for any
+    opacity, blend mode, mask, filter, object-fit or pointer-events, with no
+    CSS modelled. A pixel at 90 percent or more covered counts as covered.
+    Fills node["canvas_over"] in the schema qa.py reads (CANVAS_OVER_*)."""
+    try:
+        if not page.evaluate("() => document.querySelectorAll('canvas').length"):
+            return
+        import io
+        import numpy as np
+        from PIL import Image
+    except Exception:
+        return
+    clip = {"x": 0, "y": 0, "width": width, "height": height}
+
+    def shot():
+        return np.asarray(Image.open(io.BytesIO(page.screenshot(clip=clip, type="png"))).convert("RGB")).astype(np.int16)
+
+    # The probe styles go on INLINE with !important, saved and restored, so no author rule (an inline
+    # !important colour included) can outrank them. BLENDING IS NEVER TOUCHED: a blend mode changes paint
+    # order (it makes a stacking context) and makes a colour difference stop meaning coverage, so text that
+    # blends, sits under a blending ancestor, or overlaps a blending canvas is reported UNVERIFIED instead
+    # of measured (Codex, PR #438, rounds 12 to 16).
+    BLENDED = """() => {
+      // blending OR a filter on the text's branch, up to and including <html>: both make stacking contexts
+      // and reshape colour, so the probe never restyles them and the text abstains (Codex, PR #438)
+      const blends = (el) => { for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
+        const cs = getComputedStyle(p), b = cs.mixBlendMode; if (b && b !== 'normal') return true;
+        // a backdrop filter reshapes whatever lies beneath it, the text included (Codex, PR #438)
+        const bf = cs.backdropFilter || cs.webkitBackdropFilter; if (bf && bf !== 'none') return true;
+        if (el.tagName !== 'CANVAS' && cs.filter && cs.filter !== 'none') return true; } return false; };
+      const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
+      // a canvas paints only when it is visible, displayed and not faded to nothing anywhere up its chain
+      const paints = (c) => { const cs = getComputedStyle(c); if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+        let op = 1; for (let p = c; p && p.nodeType === 1; p = p.parentElement) { const s = getComputedStyle(p); if (s.display === 'none') return false; op *= parseFloat(s.opacity); }
+        return op > 0.01; };
+      const shownCv = [...document.querySelectorAll('canvas')].filter(paints);
+      const all = shownCv.map(c => c.getBoundingClientRect()), bc = shownCv.filter(blends).map(c => c.getBoundingClientRect());
+      const out = [], shared = [];
+      // the blending or filtering element on the text's branch; when it also holds an overlapping canvas
+      // (an <html> filter holds everything) it reshapes the canvas too, and the shown/hidden difference
+      // can't say whether that canvas paints (Codex, PR #438)
+      const fx = (el) => { const a = []; for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
+        const cs = getComputedStyle(p), bf = cs.backdropFilter || cs.webkitBackdropFilter;
+        if ((cs.mixBlendMode && cs.mixBlendMode !== 'normal') || (cs.filter && cs.filter !== 'none') || (bf && bf !== 'none')) a.push(p); } return a; };
+      for (const t of document.querySelectorAll('[data-akt-idx]')) {
+        const r = t.getBoundingClientRect();
+        // abstain only where a canvas actually shares pixels with the text (Codex, PR #438)
+        let bad = blends(t) && all.some(c => hit(c, r));
+        if (!bad) bad = bc.some(c => hit(c, r));
+        if (bad) out.push(+t.getAttribute('data-akt-idx'));
+        if (bad && fx(t).some(a => shownCv.some(c => a.contains(c) && hit(c.getBoundingClientRect(), r))))
+          shared.push(+t.getAttribute('data-akt-idx'));
+      }
+      return {out, shared, rects: all.map(c => [c.left, c.top, c.right, c.bottom])}; }"""
+    try:
+        _b = page.evaluate(BLENDED) or {}
+        blended, cv_rects = set(_b.get("out") or []), _b.get("rects") or []
+        fx_shared = set(_b.get("shared") or [])
+    except Exception:
+        blended, cv_rects, fx_shared = set(), [], set()
+    SET = """(a) => { const [c, hide] = a;
+      const keep = (el) => { if (!el.hasAttribute('data-akt-style')) el.setAttribute('data-akt-style', el.getAttribute('style') === null ? '\\u0000' : el.getAttribute('style')); };
+      for (const el of document.querySelectorAll('[data-akt-idx], [data-akt-idx] *')) {
+        if (el.tagName === 'CANVAS') continue;
+        keep(el); const st = el.style;
+        st.setProperty('color', c, 'important'); st.setProperty('-webkit-text-fill-color', c, 'important');
+        st.setProperty('text-shadow', 'none', 'important'); st.setProperty('-webkit-text-stroke', '0', 'important');
+
+        if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
+      }
+      if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
+      return true; }"""
+    RESTORE = """() => { for (const el of document.querySelectorAll('[data-akt-style]')) {
+        const v = el.getAttribute('data-akt-style'); el.removeAttribute('data-akt-style');
+        if (v === '\\u0000') el.removeAttribute('style'); else el.setAttribute('style', v); } return true; }"""
+    imgs = []
+    try:
+        for c, hide in (("#FF00FF", False), ("#00FF00", False), ("#FF00FF", True), ("#00FF00", True)):
+            page.evaluate(SET, [c, hide])
+            page.evaluate("() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))")
+            imgs.append(shot())
+    finally:
+        page.evaluate(RESTORE)
+    d_shown = np.abs(imgs[0] - imgs[1]).max(axis=2)
+    d_hidden = np.abs(imgs[2] - imgs[3]).max(axis=2)
+    k = d_shown.shape[1] / float(width)
+    H, W = d_shown.shape
+    # does a canvas actually PAINT in a box? pixel truth again: the shown and hidden shots of one colour differ
+    # there (Codex, PR #438: a full-frame transparent canvas paints nothing over a header)
+    # both probe colours: a canvas that paints the very colour of one probe hides from that pair alone (Codex, PR #438)
+    d_canvas = np.maximum(np.abs(imgs[0] - imgs[2]).max(axis=2), np.abs(imgs[1] - imgs[3]).max(axis=2))
+
+    def canvas_paints(ln):
+        x0, y0 = max(0, int(ln[0] * k)), max(0, int(ln[1] * k))
+        x1, y1 = min(W, int((ln[0] + ln[2]) * k) + 1), min(H, int((ln[1] + ln[3]) * k) + 1)
+        return x1 > x0 and y1 > y0 and int((d_canvas[y0:y1, x0:x1] > 8).sum()) >= 6
+
+    for i, tn in enumerate(nodes or []):
+        if i in blended:
+            # a blend or filter that also reshapes the canvas can hide its ink from the pixel test, so there
+            # the canvas's own box decides (Codex, PR #438)
+            def under_cv(ln):
+                return (canvas_paints(ln) or (i in fx_shared and any(
+                    c[0] < ln[0] + ln[2] and c[2] > ln[0] and c[1] < ln[1] + ln[3] and c[3] > ln[1] for c in cv_rects)))
+            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8 and under_cv(ln))
+            if nl:
+                tn["canvas_over"] = {"frac": 0.0, "worst_line": 0.0, "unverified": nl, "points": nl,
+                                     "worst_unverified_line": 1.0, "by": "blended canvas or text", "z": ""}
+            continue
+        tot = cov = unver = 0
+        worst = worst_unv = 0.0
+        for ln in (tn.get("lines") or []):
+            if not ln or ln[2] < 2 or ln[3] < 2:
+                continue
+            x0, y0 = max(0, int(ln[0] * k)), max(0, int(ln[1] * k))
+            x1, y1 = min(W, int((ln[0] + ln[2]) * k) + 1), min(H, int((ln[1] + ln[3]) * k) + 1)
+            if x1 <= x0 or y1 <= y0:
+                continue
+            dh, ds = d_hidden[y0:y1, x0:x1], d_shown[y0:y1, x0:x1]
+            m = dh >= 24                       # this element's own glyph pixels, canvases hidden; low so faint (down to about 10 percent opacity) marks still count (Codex, PR #438)
+            n = int(m.sum())
+            if n < 6:
+                # a line the probe could not recolour (ink under
+                # about 10 percent) is UNVERIFIED, never silently clean (Codex, PR #438)
+                # ...and only where a painting canvas actually overlaps the line (Codex, PR #438)
+                if ln[2] >= 8 and ln[3] >= 8 and canvas_paints(ln):
+                    unver += 1
+                    worst_unv = 1.0
+                continue
+            c = int(((ds[m] / dh[m]) < 0.1).sum())
+            tot += n
+            cov += c
+            worst = max(worst, c / n)
+        if (tot and cov) or unver:
+            tn["canvas_over"] = {"frac": round(cov / tot, 3) if tot else 0.0, "worst_line": round(worst, 3),
+                                 "unverified": unver, "points": max(tot, 1), "worst_unverified_line": worst_unv,
+                                 "by": "canvas", "z": ""}
+
+
 def _can_read_disk(browser):
     """Can this browser fetch() a committed asset over file://?
 
@@ -4613,6 +4773,11 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
+        # text under canvas ink, by pixel truth (recolours the text, so it runs after the frame is saved)
+        try:
+            canvas_cover_probe(page, width, height, rec.get("text_nodes"))
+        except Exception as e:
+            rec.setdefault("console_errors", []).append("canvas-over-text pixel probe: %s" % e)
         # the canvas layer on its own, for qa.py's canvas-over-text check
         try:
             cl = page.evaluate(CANVAS_LAYER_JS, [width, height])

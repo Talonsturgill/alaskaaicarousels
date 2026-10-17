@@ -1,0 +1,163 @@
+{
+ "round": "after craft cycle",
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat without update framing",
+   "status": "pass"
+  },
+  {
+   "rule": "hero structure identical to last 4",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3 or link in body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder or unfinished element",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8.0,
+   "weight": 0.14,
+   "notes": "An 11-word verbatim refusal set huge in Fraunces reads cleanly at 432px and is a real named tension; short of 9 because the cover isn't visibly Alaskan and the place and stakes live only in a 24px mono sub."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "The Q and A grammar is a real swipe engine; 02 pays 01, 06 is a genuine turn, 09 ends on a Q with no A. Junctions weak on 03>04 and 04>05 and none on 07>08; 03 to 06 four dense pages in one layout."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "Up from 7.0 after the craft cycle. 07's trail now bends and narrows unevenly and the spruce lean and vary, but the near field is still a graded wedge and the birch are straight sticks. 04's pit field sits beside its label and the big mark has a bevel, but it reads as a gridded chart panel. 02 still reads as a UI card. 09 gained its label but keeps a bright curled cast beside the mic and a flat chair back. 08 untouched. 01 and 09 are real PBR with thin lens and contacts; 05 and 06 are the best plates. Under the 8.5 floor with the one owed cycle spent."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.0,
+   "weight": 0.14,
+   "notes": "Measured calendar axis, area-true squares with a 100 acre grid, same-scale plates, the traced outline labelled, the answer line changing state, mic and chair carrying declined vs compelled. 02 and 08 are generic legal-paper props and 07 could illustrate any trail story."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Houston, Deception Creek, Port MacKenzie, the Haessler-Norris, Anchorage LIO Denali Room, AIDEA, DNR, real DEM terrain and DNR's map; the hearing room is generic by design and illustrated."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "Each content slide adds a new verified specific; the 19,950 figure repeats on four frames."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.0,
+   "weight": 0.08,
+   "notes": "New hook, palette, atmosphere and Q and A grammar, but the akthree room echoes No.85, the testimony mic No.79, an akengrave Houston parcel No.85's 06, akbench carbon 83 to 87, Fraunces 83 and 86."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8.5,
+   "weight": 0.07,
+   "notes": "32px body, 24px mono minimum, everything reads at 432px, vector PDF 9.27 MB with title, counters on every frame; 06's tablet small at thumb, 08's leader fan busy."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.5,
+   "weight": 0.05,
+   "notes": "The letter-address hook lands at exactly 140 chars and states the whole contrast; 892 characters; the deck-summary line reads as an inventory."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "All run-side parts present and consistent; showrunner_notes now accurate; Gmail draft and raw URLs come in Phases 11 to 13."
+  }
+ ],
+ "calculation": "(8.0x0.14)+(7.5x0.14)+(7.5x0.16)+(8.0x0.14)+(8.5x0.12)+(8.5x0.10)+(7.0x0.08)+(8.5x0.07)+(8.5x0.05)+(8.5x0.10) = 8.79",
+ "weighted_total": 8.79,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Variety vs ledger",
+ "one_sentence_fix": "On 09, the close and depth frame, re-light the curled cast from bright forget-me-not to a dark cord lying in the table's shadow, and model the chair back with a rolled top edge, a seam and graded curvature, so the last frame has no stray shape and no flat slab.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "bright curled cast right of the mic base reads as a stray shape; chair back a flat slab",
+   "fix": "darken the cast, model the chair back"
+  },
+  {
+   "slide": 7,
+   "problem": "near field a graded wedge, comb spruce, straight-stick birch",
+   "fix": "narrow two-track with broken berms, tapered birch with crowns"
+  },
+  {
+   "slide": 8,
+   "problem": "flat card, leader fan",
+   "fix": "orderly leader comb, graded sheen"
+  },
+  {
+   "slide": 2,
+   "problem": "UI card read, a clipped partial disk at the right edge",
+   "fix": "resolve the disk, raise relief"
+  },
+  {
+   "slide": 4,
+   "problem": "gridded chart panel, dead strip right of the mark",
+   "fix": "burnish the floor, close the strip"
+  }
+ ],
+ "editor_notes_for_email": "Re-scored after the CRAFT FLOOR cycle: 8.79 (was 8.66), no hard fails, ships with 4 of 5 rounds used. Artwork craft rose from 7.0 to 7.5 and stays under the 8.5 floor; the one owed cycle is spent, so it is a flagged shortfall, not a block. 09 keeps a bright curled cast beside the mic and a plain chair back; 08 was not touched. Post before October 26th (October 20th to 22nd suggested); the close goes stale once Crowther testifies. The caption hook is exactly 140 characters.",
+ "craft_cycle": {
+  "frames": [
+   7,
+   4,
+   2,
+   9
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ }
+}

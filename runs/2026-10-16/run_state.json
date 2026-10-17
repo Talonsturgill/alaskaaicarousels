@@ -1,0 +1,142 @@
+{
+  "run_date": "2026-10-16",
+  "carousel_no": 88,
+  "effort": "high",
+  "revision_rounds": 4,
+  "date_note": "Session woke at 22:14 AKDT on October 16th (06:14Z October 17th). Run date is the America/Anchorage date, 2026-10-16, which has no runs/ directory.",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/plan.md",
+        "out/2026-10-16/WORKLOG.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "two searches, nothing new to FIELD_NOTES"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/scout_merge.md",
+        "out/2026-10-16/scouts/"
+      ]
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/claims.json"
+      ],
+      "note": "86 claims (85 at the claims gate, C86 Houston coordinates added by the showrunner), claims_check PASS (60 primary)"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "6 worklist items + AIDEA Houston update; watch.json bills match (both closed), 0 hearings (interim), 31 candidates triaged, none on the AI beat newly decided; failed: none"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/gaswatch_health.json",
+        "out/2026-10-16/cron_health.json"
+      ],
+      "note": "cron_health PASS (7 workflows); gaswatch live FAIL at wake through 08:2xZ on CINGSA 17:11 AK reading, dispatch 403; PASS at 08:59Z after GitHub ran a late slot; site_signoff PASS 146 pages"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/storyboard.md"
+      ],
+      "note": "lenses editorial-essayist (winner), systems-illustrator, field-documentarian; dossier_check PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/caption.txt",
+        "out/2026-10-16/copy.json",
+        "out/2026-10-16/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/slides/",
+        "out/2026-10-16/render/",
+        "out/2026-10-16/aggregates.json"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/critics/"
+      ],
+      "note": "three pixel rounds plus a craft cycle re-review; final per-frame critic scores 7.1 to 8.1"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/flow_review.json"
+      ],
+      "note": "flow 7.3, predicted art 6.8; work order 04 grid, 08 pressed leaders, 07 near field, 09 lit close, 06 motif state"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/final/"
+      ],
+      "note": "vector PDF"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/score_report.json"
+      ],
+      "note": "8.66 then craft cycle on 07, 04, 02, 09: 8.79, art 7.0 to 7.5"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-16/",
+        "docs/"
+      ],
+      "note": "webp, shrink 14 percent, site 147 pages, no alerts due"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/automation_retro.md",
+        "ledger/upgrades.json"
+      ],
+      "note": "weekly pass ran, 5 fixes, upgrade 868297b1 + 0cd7e2b2; PR #438 open"
+    },
+    "gmail": "pending",
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md",
+        "out/2026-10-16/automation_retro.md"
+      ],
+      "note": "field notes and automation retro shipped with the run"
+    }
+  },
+  "gas_watch_attempts": [
+    "2026-10-17T06:19Z live audit FAIL: source reading 2026-10-16T17:11 Alaska posted after the last collection (22:07Z); workflow_dispatch via GitHub MCP returned 403 Resource not accessible by integration; waiting on the 04:40Z and 07:20Z scheduled slots"
+  ],
+  "score": 8.79,
+  "phase_3_6": {
+    "site_signoff": "PASS, 147 pages, 18 checks (re-run on the rebuilt site at ship)",
+    "gaswatch_live": "PASS at 08:59Z after FAIL from wake to about 08:25Z. CINGSA's 17:11 Alaska reading of October 16th posted after the 22:07Z collection; the routine's workflow_dispatch is 403; GitHub ran a late scheduled slot and the live audit passed, so no incident was filed. Escalated queue item, repeat 13: the owner's call on Actions write or a later audit time.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-17T08:59:31.642657Z, no failing job"
+  }
+}

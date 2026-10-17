@@ -756,13 +756,85 @@ def site_fresh_row(rows, run):
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
         rows.absent("site_fresh", "run dir %r is not a date, cannot pick --date" % date)
         return
+    # A LATER BUILD DATE IS RIGHT, AN EARLIER ONE IS THE ROLLBACK (2026-10-16, Codex on
+    # PR #438). A run that ships after midnight UTC meets a main whose docs/ a cron has
+    # already rebuilt for today; rebuilding at the run date would roll the published
+    # site back a day (an expired deadline as the homepage's next event). So the site may
+    # be built at a later date than the run, and this row checks the date the committed
+    # build RECORDS (the homepage's sitemap lastmod, which site_build stamps with its
+    # --date) when that is later than the run date, never one earlier. Reading the
+    # record rather than the clock keeps the row stable on later days (Codex, PR #438).
+    recorded = None
     try:
-        p = subprocess.run([sys.executable, str(script), "--date", date],
-                           capture_output=True, text=True, timeout=600)
-    except Exception as e:
+        sm = (REPO / "docs" / "sitemap.xml").read_text()
+        mm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", sm)
+        recorded = mm.group(1) if mm else None
+    except OSError:
+        pass
+    # ...and never behind what main already publishes: a stale build that is byte-exact at its own stale date
+    # is still a rollback when main's site records a later one (Codex, PR #438)
+    # read EVERY available main ref and keep the newest stamp: a stale origin/main must not hide a newer
+    # local main (Codex, PR #438)
+    base_recorded = None
+    for ref in ("origin/main", "main"):
+        try:
+            bs = subprocess.run(["git", "-C", str(REPO), "show", ref + ":docs/sitemap.xml"],
+                                capture_output=True, text=True, timeout=60)
+            bm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", bs.stdout or "")
+            if bs.returncode == 0 and bm and (base_recorded is None or bm.group(1) > base_recorded):
+                base_recorded = bm.group(1)
+        except Exception:
+            continue
+    # fail CLOSED: a row that can't see what main publishes can't rule out a rollback (Codex, PR #438)
+    if base_recorded is None:
         rows.add("site_fresh", "FAIL",
-                 "could not run site_fresh_check (%s)" % type(e).__name__)
+                 "can't read the published site's build date from origin/main or main "
+                 "(git fetch origin main), so a rollback can't be ruled out")
         return
+    if recorded and recorded < base_recorded:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ records a build for %s, behind main's %s: rebuild with site_build.py --date %s"
+                 % (recorded, base_recorded, base_recorded))
+        return
+    # a later stamp is accepted only up to an independent bound, the later of today's UTC date and main's own
+    # stamp, so a future-dated build can't vouch for itself (Codex, PR #438)
+    import datetime as _dt
+    bound = max(base_recorded, _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d"))
+    if recorded and recorded > bound:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ records a build for %s, later than today (UTC) and main's %s: rebuild with "
+                 "site_build.py --date %s" % (recorded, base_recorded, bound))
+        return
+    # the REQUESTED --date as well, off the homepage's run-date marker: site_build clamps the sitemap stamp
+    # to Anchorage's calendar, so a --date 2026-10-17 build made while Anchorage is still on the 16th records
+    # 10-16 in the sitemap and 10-17 in the marker, and only the marker rebuilds it (Codex, PR #438)
+    requested = None
+    try:
+        rm = re.search(r"<!-- run-date (\d{4}-\d{2}-\d{2}) -->", (REPO / "docs" / "index.html").read_text())
+        requested = rm.group(1) if rm else None
+    except OSError:
+        pass
+    if requested and requested > bound:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ was built for --date %s, later than today (UTC) and main's %s: rebuild with "
+                 "site_build.py --date %s" % (requested, base_recorded, bound))
+        return
+    dates = [date]
+    for d in (recorded, requested):
+        if d and d > date and d not in dates:
+            dates.append(d)
+    p, used = None, date
+    for d in dates:
+        try:
+            p = subprocess.run([sys.executable, str(script), "--date", d],
+                               capture_output=True, text=True, timeout=600)
+        except Exception as e:
+            rows.add("site_fresh", "FAIL",
+                     "could not run site_fresh_check (%s)" % type(e).__name__)
+            return
+        used = d
+        if p.returncode == 0:
+            break
     out = [ln for ln in (p.stdout + p.stderr).strip().splitlines()
            if ln.strip() and not ln.startswith("note:")] or [""]
     rows.add("site_fresh", "PASS" if p.returncode == 0 else "FAIL", out[-1 if p.returncode == 0 else 0][:140])

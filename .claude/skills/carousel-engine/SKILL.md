@@ -739,6 +739,26 @@ FAILs whatever it left stale.
   plate the text paints ABOVE is legible and never reported. `data-overlap-ok`
   demotes the FAIL to a WARN. The remedy is to move the plate or the type,
   never to declare the overlap away.
+- **No type may sit under canvas ink** (2026-10-16): the plate probe above
+  skips `<canvas>`, so render.py measures every text node, DECORATIVE ONES
+  INCLUDED, by PIXEL TRUTH: it recolours the text magenta and then green,
+  with the canvases shown and hidden, and a glyph pixel whose colour change
+  shrinks by 90 percent or more once the canvases show is covered. Whatever is
+  under the text cancels, so opacity groups, masks, object-fit and
+  pointer-events need no modelling (a hit-test model of them took ten Codex
+  rounds on PR #438 and never converged). Blending and filters on the text's
+  own branch are the exceptions: text that blends or carries a CSS filter, or
+  sits under an ancestor that does (`<html>` included), or overlaps a blending
+  canvas or one with a `backdrop-filter`, is reported UNVERIFIED (a WARN for the pixel critic) and never
+  restyled, because both change paint order and can collapse the probe's
+  colours, so a colour difference stops meaning coverage. A filter on the
+  canvas side needs no exception: it is part of the picture being measured. qa.py FAILS a reading line half covered (WARN from a fifth) and a
+  decorative mark 90 percent covered (WARN from half). Run No.88's wordmark,
+  counter and site line were appended after a `z-index:1` art canvas with no
+  z-index of their own and painted under it on all nine frames, in the DOM and
+  absent from the pixels, through every gate. **Any element appended after a
+  z-indexed art canvas needs `position` and a higher `z-index`.**
+  `tests/canvas_over_text_verify.py` holds the gate.
 - **An SVG label must sit inside its own plate** (2026-07-29): render.py
   measures every `<svg><text>` against the `<rect>` painted under it, against
   any opaque `<rect>` appended AFTER it (SVG has no z-index, document order IS

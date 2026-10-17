@@ -1355,7 +1355,13 @@ that argument was typed by hand.
    `python3 scripts/tonal_arc_check.py --run-dir out/<date>` measures each
    frame's mean L* at contact-sheet scale against the CRAFT PLAN's `Tonal arc:`
    line and WARNs when the declared peak or darkest frame measures elsewhere,
-   or when the sheet spans under 8 L*. The same reading is the `tonal_arc` row
+   or when the sheet spans under 8 L*, and (2026-10-16) when the frames left
+   after setting aside a SPIKE span under 12 L* (one tone under a spike). A
+   spike is the brightest or darkest frame only when it stands at least 12 L*
+   clear of its nearest neighbour, so a smooth ramp keeps its ends and is
+   never called a plateau. It also WARNs when an undeclared frame sits within
+   3 L* of the declared peak and the declared peak is the measured peak (the
+   peak ties). The same reading is the `tonal_arc` row
    of gate_status.py, PASS or WARN and never FAIL. Cause e was named on all six
    decks of that week, and on 2026-10-02 the declared lit peak measured fifth
    of nine. Mean lightness can't see warmth or one lit object on a dark frame,
@@ -1742,7 +1748,10 @@ JSON in its final message, which YOU persist to
 
 2d. LAST, after every other site step, run
    `python scripts/site_fresh_check.py --date <date>` with the SAME date you
-   passed to site_build.py. It rebuilds the whole site into a temp dir and
+   passed to site_build.py. When the run ships after midnight UTC and a cron has already rebuilt
+   main's docs/ for today, build (and check) at TODAY's UTC date instead: never
+   at a date earlier than main's build, which rolls the published site back
+   (Codex on PR #438). gate_status's site_fresh row accepts either date. It rebuilds the whole site into a temp dir and
    proves docs/ is byte-identical to what the generator makes from the data
    you just committed. The build is deterministic, so this is an exact test.
 

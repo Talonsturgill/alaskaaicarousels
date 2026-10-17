@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-16/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9289516,
+  "pdf_mb": 9.29,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-16/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-16/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Houston's 19,950 acres, and the answer owed October 26th",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "23e3c6cbfcca2ef7c9f33ad74df8cab4ff2774a9ae191809ddb082afe46cb7ca",
+        "bytes": 4394105
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "6f70606e851680fc31c1caae9243859e043d944f04e84a0601e600b2666285e0",
+        "bytes": 4759726
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "c34442d9235a544802bd35444a57f340365c8227767aed72260ffa7687329b41",
+        "bytes": 5872866
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "57f250b8705c54f2aead31c1065f91874ed869e35f68f4d95e993594f23adae0",
+        "bytes": 4583357
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "c887eb7c04645837ef605029c873287d9dc8b1694bc3cdb41902ca40fb325eed",
+        "bytes": 5828995
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "ef3727db9050e8aca63e76bab4572690a2f63c5ce25a62bf27a9e9925caac431",
+        "bytes": 4768382
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "48cc678c31a0eb8ef5552cc59b674976e1cdf76890b156e63d1b8d1b7ab1a7bb",
+        "bytes": 6468816
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "ba1aa2bb0f2e8d44ec86dc6423e0bb76dec57de2b50c8fd9249655211f153c05",
+        "bytes": 5644149
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "873ecc8cdb5c61348a7cab56e1b1d3496c03b7af88fcdea93bd6435c77f245be",
+        "bytes": 4839588
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "59f2bccc47354bec4252a1520eaaa378ee92b53e9faea028e9f1ab1f768ffb86",
+        "bytes": 4825
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "ecddbc8c11591e68f90f0d149a8ce2ba9c293075954c7efb99a0934f44069ced",
+        "bytes": 8733
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a1b8e67f02ecf1bf6bc376a7d15ab33bcc4f3b04e1d0bef0031468e3b52c8c87",
+        "bytes": 10618
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a5f11eae75b2533a97fadfb720d4e241ae2c7ce3e819315e8341ed8c39b8b5c4",
+        "bytes": 8626
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ac4aa455ebef71194277546cc098b7ebe60e8159068818984d0ff7b84e3694b0",
+        "bytes": 8505
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "23c98462a3d5fe1f0f72af6dcef8a8366dbd2754cba1ac3d1f2ab7ea857e90d6",
+        "bytes": 11582
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "5a962d8701db1f352e8267fa771705eeb248ef73addc15182f1fc9e538fee4a7",
+        "bytes": 13018
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "73c4234700a24ba0c8e98cf9a8f857fa50fc1a86f01a0a8e49fd4d3ce4744073",
+        "bytes": 8080
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "5c77834d8cc68320e03040858658130b7b1695af839824278b0045de0015a02c",
+        "bytes": 4572
+      }
+    ]
+  }
+}

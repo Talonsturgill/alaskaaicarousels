@@ -3495,6 +3495,58 @@
     "data-centers",
     "research-and-science"
    ]
+  },
+  {
+   "run_date": "2026-10-16",
+   "carousel_no": 88,
+   "topic": "Senate Resources voted on October 14th to subpoena Natural Resources Commissioner John Crowther, who will appear October 26th at 10 a.m. at the Anchorage LIO, after DNR wrote on September 22nd that 'The Governor's office has not given us permission to attend' an October 8th hearing on DNR's July 10th preliminary decision to convey about 19,950 acres (about 31 square miles) two miles north of Houston to AIDEA at no cost for the land under the public and charitable use statute, with the reverter waived; DNR's September 16th Port MacKenzie preliminary decision keeps a five year reverter on 885 acres; the committee's overview found 94 percent of other transfers under the statute were under 100 acres; Legislative Legal wrote on September 4th that the law sets no size limit and that without a reverter no legal mechanism after patent keeps the land serving a public purpose; the decision lists scalable data centers among possible uses and its scope excludes AIDEA's post-patent use; 41.8 miles of trail cross the parcel.",
+   "angle": "UPDATE of No.68 and No.85, THE TRANSCRIPT WITHOUT A WITNESS: a hearing transcript where the record answers each question in its own words and the one answer owed is the October 26th appearance; the reverter waived at Houston and kept at Port MacKenzie is the question. Never 'kept' for the Port MacKenzie draft, never a verdict on the data center.",
+   "entities": [
+    "Alaska Department of Natural Resources",
+    "DNR",
+    "John Crowther",
+    "AIDEA",
+    "Alaska Industrial Development and Export Authority",
+    "Senate Resources Committee",
+    "Sen. Cathy Giessel",
+    "Legislative Legal Services",
+    "Houston",
+    "Port MacKenzie",
+    "Mat-Su Borough",
+    "Deception Creek",
+    "Haessler-Norris trail",
+    "ADL 234762",
+    "Anchorage LIO"
+   ],
+   "keywords": [
+    "subpoena",
+    "land conveyance",
+    "no-cost transfer",
+    "reverter",
+    "reversionary clause",
+    "public and charitable use",
+    "AS 38.05.810",
+    "19,950 acres",
+    "data center",
+    "Houston",
+    "AIDEA",
+    "hearing October 26th"
+   ],
+   "headline": "\"The Governor's office has not given us permission to attend.\"",
+   "sources_lead": [
+    "https://www.akleg.gov/basis/get_documents.asp?session=34&docid=16978",
+    "https://www.akleg.gov/basis/get_documents.asp?session=34&docid=16966",
+    "https://www.akleg.gov/basis/get_documents.asp?session=34&docid=16996",
+    "https://www.alaskasnewssource.com/2026/10/15/senators-subpoena-dnr-commissioner-over-aidea-land-transfer/",
+    "https://alaskapublic.org/news/politics/alaska-legislature/2026-10-15/dnr-commissioner-will-appear-at-hearing-on-land-transfer-after-state-senate-subpoena"
+   ],
+   "claims": 86,
+   "note": "Lead from the BASIS hearing packet and the October 14th subpoena coverage. Runner-up the University of Alaska's five AI principles. Scored 8.66 at round 3 (art 7.0), craft cycle on 07, 04, 02, 09, 8.79 at round 4 (art 7.5).",
+   "beats": [
+    "land-and-permitting",
+    "state-policy",
+    "data-centers"
+   ]
   }
  ]
 }

@@ -3267,6 +3267,78 @@
    "verification": "No row step of 5 or more in slide 08's top 700 rows after the fix; the demo deck re-renders 4 of 4 clean; regression held by tests/akpost_verify.mjs from the weekly pass.",
    "commit": "02c6abf3",
    "rollback": "git revert 02c6abf3"
+  },
+  {
+   "run_date": "2026-10-16",
+   "kind": "fix",
+   "area": "engine",
+   "change": "render.py measures every text node (decorative fixtures included) by pixel truth after the frame is saved: canvas_cover_probe recolours the tagged text elements magenta and then green, with the canvases shown and with them hidden, and a glyph pixel whose colour change shrinks by 90 percent or more once the canvases show is covered, recorded per line in text_nodes[].canvas_over. Whatever lies under the text cancels, so opacity groups, blend modes, masks, filters, object-fit and pointer-events need no modelling (the first, hit-test version was replaced after ten Codex rounds on PR #438). qa.py FAILs 'text under canvas ink' when half of a reading line or 90 percent of a decorative mark is covered, WARNs from a fifth and from half, and data-overlap-ok demotes the FAIL.",
+   "trigger": "Queue item 2026-10-16 (No.88 round 1): AKDOCKET.fixtures appended the wordmark, the NN / 09 counter and alaskaaihq.com with no z-index after a z-index 1 art canvas, so all three were absent from the pixels on all nine frames while render.py, qa.py and copy_sync_check passed; five pixel critics caught it. The existing plate probe skips <canvas> by design.",
+   "files": [
+    ".claude/skills/carousel-engine/render.py",
+    ".claude/skills/carousel-engine/qa.py",
+    ".claude/skills/carousel-engine/SKILL.md",
+    "tests/canvas_over_text_verify.py"
+   ],
+   "verification": "tests/canvas_over_text_verify.py HOLDS over thirteen fixtures, all graded through the real render.py and qa.py: the No.88 shape FAILs 3 times (wordmark, counter, site); the z-index 9 fix and a 0.094 alpha grain canvas are silent; a screen-blended opaque canvas and difference-blended text are NOT MEASURED and report UNVERIFIED (a WARN, never a FAIL); a chip over a third of a headline line WARNs once; art over 60 percent of a decorative ghost numeral WARNs once; a pointer-events none band, two stacked opacity .7 bands and an inline !important line under an opaque band each FAIL once; a colour-collapsing filter on a line under an opaque band is never restyled by the probe, so that line abstains as UNVERIFIED and never FAILs. The No.88 shape under a colour-collapsing filter on <html> itself also abstains as UNVERIFIED, never silently clean. A near-transparent canvas carrying a backdrop filter above the type abstains as UNVERIFIED too, because a backdrop filter reshapes the text beneath it. Real-slide reconstruction: today's nine slides with the pre-fix akdocket.js (git show 273d3be6^) FAIL 27 times, 3 per frame; with the current akdocket.js, no canvas finding. examples/demo-deck: WARN before and after with identical findings.",
+   "rollback": "git revert the upgrade(2026-10-16) commit, or delete the 'TEXT UNDER CANVAS INK' blocks in render.py and qa.py and the CANVAS_OVER_* constants",
+   "commit": "868297b1"
+  },
+  {
+   "run_date": "2026-10-16",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/tonal_arc_check.py WARNs two more misses: one tone under a spike (an extreme frame is set aside only when it stands at least MID_SPAN 12 L* clear of the frame beside it, and the warn fires when, with the spikes set aside, the rest span under MID_SPAN, on sheets of 6 or more frames; a smooth ramp has no spike and no warn) and a peak that ties (an undeclared frame within PEAK_TOL 3 L* of the declared peak, counted only when the declared peak is itself within PEAK_TOL of the measured maximum); still WARN only, never FAIL.",
+   "trigger": "The week's cause e, the flow critic's cross-frame list: 4 of 5 runs, 24 frames (2026-10-11 'one bright spike over a flat dark plateau (16 to 20 L*)', 2026-10-12 'seven of nine frames in an L* 8 to 13 band', 2026-10-15 '04 and 08 tie at L* 36'); tonal_arc_check PASSED 10-11, 10-15 and the 10-12 peak, because one lit frame widens the span and a peak ahead by 1.7 L* is still first.",
+   "files": [
+    "scripts/tonal_arc_check.py",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "--self-test all passed (two new fixtures, 2026-10-12's spike shape and 2026-10-15's tie, plus the carrying-arc fixture asserted free of both). Calibrated on the 19 shipped decks with a Tonal arc line (2026-09-26 to 2026-10-15): the plateau WARN fires on 09-26, 09-30, 10-02, 10-04, 10-09, 10-12, 10-15 and the tie on 09-26, 09-27, 09-29, 10-01, 10-02, 10-05, 10-06, 10-08, 10-15; the critic named cause e on every reviewed deck either fires on, and both are silent on 10-07, the one reviewed deck it did not name; 10-11's plateau (middle span 15.6) is still missed. Today's render: WARN, one tone under a spike, the seven middle frames span L* 8.7 to 15.5.",
+   "rollback": "git revert the upgrade(2026-10-16) commit, or delete the two blocks after the FLAT_SPAN warn in judge()",
+   "commit": "868297b1"
+  },
+  {
+   "run_date": "2026-10-16",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/dossier_check.py WARNs a built slide whose dossier promises a cast onto a ground ('casts onto the base', light pools excluded) but declares no data-contacts, naming contact_probe and 'light the ground first'; knowledge/DESIGN_DOCTRINE.md section 3 names 'a plate on a near-black desk' as a model default with its remedy (a pool at L* 12 or more within 96 px of the foot, or a gloss desk's reflection), parameterised from the photographers' black-on-black rules found in this pass's scan (https://learn.zoner.com/black-on-black, https://www.talkphotography.co.uk/threads/lighting-challenge-9-black-on-black.773212/).",
+   "trigger": "Queue item 2026-10-16: No.88 round 1, five of nine frames (02, 03, 05, 06, 08) set a plate on a desk at L* 5 to 7 and the critics named 'no cast, floats' on each; only 06 declared a contact, so qa.py's contact gate (which already says 'light the ground first' on a near-black ground) never looked at the rest. The week's cause b (largest object least modelled) on 4 of 5 runs, 9 frames, and trend_check's contact-shadow warns on 3 runs.",
+   "files": [
+    "scripts/dossier_check.py",
+    "knowledge/DESIGN_DOCTRINE.md",
+    "tests/cast_promise_verify.py"
+   ],
+   "verification": "tests/cast_promise_verify.py HOLDS (8 checks: No.88 02 and 03 wordings WARN with the phrase quoted, a declared or runtime data-contacts is silent, a light pool is not a cast, nothing before the build, the strong 'contact shadow' promise keeps its FAIL with no second finding). dossier_check on out/2026-10-16: PASS 0/0 before, WARN 0 fails 2 warns after (slides 02 and 03). Over the shipped dossiers 2026-09-26 to 2026-10-15 the wording matches 1 to 4 slides a deck, which is why this is a WARN and not the FAIL the contact-shadow wording carries.",
+   "rollback": "git revert the upgrade(2026-10-16) commit, or delete CAST_ONTO_RE, promised_cast() and the elif branch in check_slide()",
+   "commit": "868297b1"
+  },
+  {
+   "run_date": "2026-10-16",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/plan_drift_check.py takes a claims-index row's claim ids from the run of ids the row OPENS with (LEAD_IDS_RE: 'C04', 'C07/C08', 'C04 to C08'), so a claim's own sentence naming an agenda code ('item C1') can't declare another claim's status; a row that opens with prose keeps the whole-cell read.",
+   "trigger": "Queue item 2026-10-14: No.86's row 'C74 The agenda item C1 at the meeting ...' NOT USED made plan_drift_check FAIL 'C01 is marked NOT USED' though C01's own row lists slides 01 and 03; the run reworded the row to pass.",
+   "files": [
+    "scripts/plan_drift_check.py"
+   ],
+   "verification": "--self-test PASS 0 failed, with the No.86 row as a fixture (C01 keeps {1, 3}, C74 is NOT USED) and a leading range and slash pair still expanding. All 28 parseable claims indexes in runs/*/storyboard.md plus today's parse identically to HEAD's parser (0 changed). plan_drift_check on out/2026-10-16: PASS, 85 claims indexed, 0 drifts, same as HEAD.",
+   "rollback": "git revert the upgrade(2026-10-16) commit, or restore `ids = ... CLAIM_RE.findall(left)`",
+   "commit": "868297b1"
+  },
+  {
+   "run_date": "2026-10-16",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/contact_probe.py matches a ground rect against a NEUTRAL object sample (C*ab under OBJ_NEUTRAL_C 6) on full-weight L*, keeping half-weight L* for chromatic objects, so a dark neutral foot no longer claims a lit neutral ground as 'the object's own colour'.",
+   "trigger": "Queue item 2026-10-15 (No.87, the note on all five declarations) reproduced today on No.88 slide 09: the chair foot sampled L* 2.5 and the carpet ground L* 25.6 read '78 percent the object's own colour', and auto took the down axis on the false note; half-weight L* matched any neutral ground within 24 L*.",
+   "files": [
+    "scripts/contact_probe.py",
+    "tests/contact_probe_verify.py"
+   ],
+   "verification": "tests/contact_probe_verify.py HOLDS with a new case 6 (a near-black pole on grey carpet), and case 6 FAILs on HEAD's probe ('carpet 100 px from the foot reads 100 percent the pole's own colour'); case 5 (the 2026-10-11 card, No.81 01 and No.83 09 from runs/) still holds. --verify on today's snapshot render: 01 and 06 unchanged, 09's declared dL 22.6 unchanged and the false note gone; the h-axis ground at x 301 was checked on a crop and sits on lit carpet, not the chair. qa.py's contact gate is untouched.",
+   "rollback": "git revert the upgrade(2026-10-16) commit, or set OBJ_NEUTRAL_C = 0",
+   "commit": "868297b1"
   }
  ],
  "scan_log": [
@@ -3773,6 +3845,13 @@
    "searches": "5 searches, 1 fetch (MDN getContextAttributes), 3 measurements in the engine's Chromium via render.launch_chromium",
    "found": "(1) Chromium 141.0.7390.37 honours getContext('2d', {colorType: 'float16'}) and getImageData(..., {pixelFormat: 'rgba-float16'}) returns a Float16Array (https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/getContextAttributes, https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/getImageData, ImageData.pixelFormat listed from Chrome 137). MEASURED: a dark sky gradient lifted two stops reaches 48 output levels from a float16 canvas and 27 from an 8-bit one. (2) beginLayer and CanvasFilter are not exposed in this Chromium. (3) createImageBitmap resizeQuality's Chromium filter is undocumented in what was found.",
    "outcome": "parked (knowledge/FIELD_NOTES.md, 'Parked, 2026-10-11 frontier scan, focus (e)'): a float16 art canvas read by AKPOST.grade is a redesign of every slide's canvas contract, unblocked when banding is named again after today's tone table fix. No frontier change applied; the five slots went to the week's recurring defects."
+  },
+  {
+   "run_date": "2026-10-16",
+   "focus": "(b) editorial dataviz and still-life craft, narrowed to how an object is seated on a dark ground and how a sequence keeps its light and value continuous. Legal and distinct from the last three logged foci: 2026-10-11 (e) headless Chromium, 2026-10-09 (d) typography, 2026-10-06 (c) procedural art (last (b) 2026-10-03). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: the week's cause b on 4 of 5 runs and No.88's five plates on a near-black desk.",
+   "searches": "6 searches, 3 fetches (Blender Studio lighting guide, Zoner black-on-black, the talkphotography black-on-black thread); news-desk 'how we made' searches for 2026 returned nothing substantive",
+   "found": "(1) Black-on-black product lighting: light the edge 'in the place where it blends', set the subject at a brightness transition, and a reflective surface bounces light up into the base and separates it from the surface (https://learn.zoner.com/black-on-black, https://www.talkphotography.co.uk/threads/lighting-challenge-9-black-on-black.773212/). (2) Blender Studio keeps a sequence continuous with a per-shot light direction chart and one value per light type per scene in a linked library (https://studio.blender.org/tools/artist-guide/shot-production/lighting).",
+   "outcome": "applied: (1) as the parameters of DESIGN_DOCTRINE section 3's 'plate on a near-black desk' entry, inside this pass's dossier_check cast-promise fix entry (kind fix, the scan supplied the remedy). PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-16 frontier scan, focus (b)'): (2) a deck-level light chart, unblocked when a flow critic names light direction crossing between frames on two decks in a week."
   }
  ]
 }

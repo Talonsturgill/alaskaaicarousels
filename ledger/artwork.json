@@ -3117,6 +3117,45 @@
     "NEW: one deck scale as the hero, the axis census guarding the art (TECHNIQUE_LIBRARY 125)"
    ],
    "note": "Rounds used 5 (4 rounds plus the craft cycle). Scored 8.665, art 7.5."
+  },
+  {
+   "run_date": "2026-10-16",
+   "carousel_no": 88,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE TRANSCRIPT WITHOUT A WITNESS, Q and A transcript pages where the record answers in its own words, three plate registers (MIC PBR room, PAPER carbon relief, LAND white-line intaglio over the real DEM) and one SNOW breather",
+   "atmosphere": "NEW: PANEL LIGHT ON SATIN, one ceiling can in a dark hearing room, a raking engraver's key on the land plates, flat overcast on the breather",
+   "depth_technique": "akthree PBR still life with thin lens focus (01, 09, one locked camera); akbench carbon relief with lifted corners over lit desk pools (02, 04, 08); akengrave white-line intaglio over a zoom 12 DEM of the parcel with bevel and cast (03, 05) and a cabinet-thick cut plate with cut-through inholdings beside a same-scale tablet (06); fogged tree planes over carved snow and a packed trail (07)",
+   "line_voice": "instrument",
+   "continuity_device": "motif: THE ANSWER LINE (gold only for the answer owed) plus THE PLEADING CALENDAR (a measured oxblood margin rule, 10 px per day)",
+   "continuity_devices": [
+    "motif: the gold answer line whose shape says what kind of answer the record holds",
+    "measured axis: the pleading calendar, July 10th at y 150 to October 26th at y 1230, notched per cited document, October 26th gold on every frame",
+    "bookend: one hearing room from one locked camera, mic folded and chair tucked on 01, mic raised and chair out on 09"
+   ],
+   "hook_archetype": "NEW: THE VERBATIM REFUSAL",
+   "palette_family": "NEW: carbon, oxblood rule and muskeg",
+   "type_pairing": "Fraunces display (opsz 144) + Space Grotesk text + JetBrains Mono",
+   "narrative_structure": "cross-examination: question chain 02 to 06, breather, keepable record, close on the owed answer",
+   "variance_dials": {
+    "design_variance": 3,
+    "visual_density": 4,
+    "type_temperature": 4
+   },
+   "techniques": [
+    "akthree + akhearing room module",
+    "AKSTROBE thin lens",
+    "akbench relief",
+    "akengrave white-line intaglio on a real DEM",
+    "akhouston projection and traced parcel",
+    "aksnow",
+    "akpost grade",
+    "AKDOCKET calendar and answer line"
+   ],
+   "new_techniques_logged": [
+    "NEW: the pleading calendar, a measured margin axis notched per cited document, 10 px per day",
+    "NEW: a pressed area grid at the small unit's own side inside the big unit's mark, so the ratio is countable"
+   ],
+   "note": "Rounds used 4 (three pixel rounds plus the craft cycle). Scored 8.79, art 7.5. Round 1 found the wordmark, counter and site fixture painted under the art canvas on all nine frames (fixed in akdocket, gated by the weekly pass)."
   }
  ]
 }

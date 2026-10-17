@@ -1,68 +1,68 @@
 {
-  "last_pass": "2026-10-11",
+  "last_pass": "2026-10-16",
   "themes": [
     {
-      "theme": "queue repeat offender: contact_probe proposes a ground rect on the object itself (made the pass due)",
-      "runs": 3,
-      "frames": 4,
+      "theme": "queue, today's material defect: wordmark, counter and site line painted under a z-index 1 art canvas on all nine frames, every gate green",
+      "runs": 1,
+      "frames": 9,
       "action": "fixed",
-      "what": "the probe samples the object's own colour just above the base and a ground rect 30 percent or more in it loses auto to the other axis; No.81 01, No.83 09 and No.84 09 now read v at dL 16.7, 11.1 and 13.0, and two more on No.84 (02, 07) moved off their objects"
+      "what": "render.py reads the pixel of every canvas stacked above each text line box, decorative fixtures included, and qa.py FAILs type under canvas ink; today's slides with the pre-fix akdocket.js FAIL 27 times, the current slides pass unchanged"
     },
     {
-      "theme": "d, a texture artifact (flow critic weakest frames 2 runs, 5 frames; scorer texture theme 2 runs; No.84's dot lattice and banding)",
+      "theme": "e, no tonal or density arc (flow critic cross-frame 4 of 5 runs, 24 frames)",
       "runs": 4,
-      "frames": 8,
+      "frames": 24,
       "action": "fixed",
-      "what": "three engine sources of it removed and held by tests: grain at one cell per device pixel (AK.grainOn, AKPOUR.grainOn, AKINLET.grain), AKSTROBE.focus's 4 px near-field cell steps, and akpost bloom's point-sampled blocks; akpost_verify.mjs also holds the run's own tone table fix"
+      "what": "tonal_arc_check WARNs one tone under a spike (middle frames under 12 L*) and a tied peak (an undeclared frame within 3 L*); it had passed 10-12's spike and 10-15's tie. Today's render WARNs, the middle seven span L* 8.7 to 15.5"
     },
     {
-      "theme": "b, the largest object least modelled (flow critic 2 runs, 3 frames; cross-frame 1 run, 3 frames; scorer flat-fill theme 2 runs)",
-      "runs": 2,
-      "frames": 3,
-      "action": "deferred",
-      "what": "No.84's stalls were scene modelling (crude cars, a flat facade, a flat luminaire, a stepped stencil wall) with no shared helper defect to fix in the engine this week; the critic's frame_causes question and the craft cycle stay the instrument. The art criterion was worked through the cause d fixes"
+      "theme": "b, the largest object least modelled (flow critic 4 of 5 runs, 9 frames; cross-frame 1 run, 4 frames), with No.88's five plates on a near-black desk and trend_check's contact-shadow warns on 3 runs",
+      "runs": 4,
+      "frames": 9,
+      "action": "fixed",
+      "what": "DESIGN_DOCTRINE section 3 names the plate on a near-black desk and its remedy; dossier_check WARNs a promised cast the slide never declares (02 and 03 today); contact_probe stops calling a lit neutral ground a dark neutral object's own colour (No.87 all five, No.88 09). Modelling itself stays the critic's and the craft cycle's; no shared helper defect was named"
     },
     {
-      "theme": "c, a dead or eventless region (flow critic 2 runs, 4 frames)",
-      "runs": 2,
-      "frames": 4,
-      "action": "deferred",
-      "what": "two runs, both early in the window (10-05, 10-06), not recurring at the week's end; no new measurable cause"
-    },
-    {
-      "theme": "a and e cross-frame (2 runs each, 7 frames each)",
-      "runs": 2,
+      "theme": "c, a dead or eventless region, the lower third above all (flow critic 4 of 5 runs, 7 frames)",
+      "runs": 4,
       "frames": 7,
       "action": "deferred",
-      "what": "the reuse census and tonal_arc_check are still inside their calibration windows; the critic's own notes called the a cases within the limit or borderline"
+      "what": "the planning gate (field 4a) and qa's frame balance already exist and the evidence names seven different fixes on seven frames (a booklet on a pane, an end stop, berth planks); no shared machine cause found this week"
     },
     {
-      "theme": "trend_check stale offender: Artwork craft and genuine detail, weakest 4 of 7, mean 6.97",
-      "runs": 4,
+      "theme": "d, a texture artifact (flow critic 3 of 5 runs, 7 frames; cross-frame 2 runs, 4 frames)",
+      "runs": 3,
+      "frames": 7,
+      "action": "deferred",
+      "what": "the queued akbench visBlur default and edge antialiasing need renders of past akbench decks, whose slide sources runs/ does not keep, and a default change would move pixels under today's deck mid-revision; held for a pass with no deck in flight"
+    },
+    {
+      "theme": "trend_check stale offender: Artwork craft and genuine detail, weakest 6 of 7, mean 6.83",
+      "runs": 6,
       "frames": 0,
       "action": "fixed",
-      "what": "worked through the cause d engine fixes and the contact probe, which is how a builder declares a seated object; Variety vs ledger (2 of 7) and Thumb-stop cover (1 of 7) deferred, not recurring"
+      "what": "worked through the canvas-over-text gate, the seating fixes and the tonal census; Variety vs ledger (1 of 7) deferred, not recurring"
     },
     {
-      "theme": "queue: noise2 alias (No.79), held at the 2026-10-06 pass",
+      "theme": "queue: plan_drift reads 'item C1' as claim C01 (No.86)",
       "runs": 1,
-      "frames": 1,
+      "frames": 0,
       "action": "fixed",
-      "what": "AK.noise2 and AK.noise3 alias simplex2 and simplex3"
+      "what": "claim ids come from the row's leading run only; all 28 shipped indexes parse identically"
     },
     {
-      "theme": "queue: gaswatch evening slots (repeat 9)",
-      "runs": 9,
+      "theme": "queue: gaswatch evening slots (repeat 13)",
+      "runs": 13,
       "frames": 0,
       "action": "escalated",
       "what": "owner decision on schedules and credentials, escalated 2026-10-06; untouched"
     },
     {
-      "theme": "queue: akhachure light ink, ragged-line numeral, dossier label floor, measure() default, runtime metal audit, axis census, docket pre-ship, site_build verified list",
+      "theme": "queue: incident field list, ragged-line numeral, akhachure light ink, dossier label floor, measure() default, runtime metal audit, axis census, aksdf ready budget, docket pre-ship, rubric weights, site_build verified list",
       "runs": 1,
       "frames": 0,
       "action": "deferred",
-      "what": "all at repeat 0 or 1; the five-change cap went to the defects that bit this week's art. site_build's verified list stays the maintainer's call (83 published pages)"
+      "what": "repeat 0 except the docket item at 2, fixed in-run each time; the five-change cap went to the defects that bit this week's art. The rubric weights and the site-wide verified list stay owner decisions; the incident field list touches CLAUDE.md, which this pass does not edit"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

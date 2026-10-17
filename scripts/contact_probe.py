@@ -97,6 +97,7 @@ OBJ_SAMPLE_GAP = 4     # ... ending this far above the base (skips the antialias
 OBJ_SPREAD = 10.0      # L* p90 minus p10 above which the sample is not one surface
 OBJ_DE = 12.0          # CIELAB distance, L* at HALF weight (shading moves L*, albedo moves a*b*)
 OBJ_FRAC = 0.30        # share of a ground rect's pixels that match: the rect is on the object
+OBJ_NEUTRAL_C = 6.0    # sample chroma (C*ab) under which L* counts at FULL weight
 # Measured on the defects and on No.84's nine good declarations: on-object
 # ground rects matched 0.35 to 0.72 of their pixels, every lit-ground rect a
 # probe kept matched 0.00 to 0.25 (tests/contact_probe_verify.py, case 5).
@@ -245,7 +246,14 @@ def on_object(fr, rect, sig):
     if sig is None or not px.shape[0]:
         return 0.0
     o = np.asarray(sig["lab"])
-    d = np.sqrt(((px[:, 0] - o[0]) / 2.0) ** 2 + (px[:, 1] - o[1]) ** 2
+    # L* at half weight lets a chromatic object's lit face match its shaded foot.
+    # A NEUTRAL object has no albedo in a*b* to be recognised by, so half-weight
+    # L* matched any neutral ground within 24 L* of it (2026-10-16 weekly pass).
+    # A neutral object that is itself shaded (its own sample spans lit and lee, spread 8 L* or more) keeps
+    # the half-weight tolerance, so its lit face still reads as the object (Codex, PR #438).
+    neutral_flat = float(np.hypot(o[1], o[2])) < OBJ_NEUTRAL_C and float(sig.get("spread") or 0) < 8
+    wl = 1.0 if neutral_flat else 0.5
+    d = np.sqrt(((px[:, 0] - o[0]) * wl) ** 2 + (px[:, 1] - o[1]) ** 2
                 + (px[:, 2] - o[2]) ** 2)
     return float((d <= OBJ_DE).mean())
 

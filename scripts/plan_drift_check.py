@@ -90,6 +90,9 @@ TOP_HEAD_RE = re.compile(r"^\s{0,3}#{1,2}\s+\S.*$", re.M)
 INDEX_HEAD_RE = re.compile(
     r"^(?:#{2,4}\s*|\*{0,2})claims index\b[^\n]*$", re.I | re.M)
 CLAIM_RE = re.compile(r"\bC\s?(\d{1,3})\b", re.I)
+# The run of claim ids a row OPENS with: "C04", "C04 C05", "c1/c2", "C04 to C08".
+LEAD_IDS_RE = re.compile(
+    r"^\s*((?:C\s?\d{1,3}\b\s*(?:(?:,\s*(?:and\b\s*)?|/|&|\+|to\b|and\b|–|-)\s*(?=C\s?\d))?)+)", re.I)   # Oxford comma: "C04, C05, and C06" (Codex, PR #438)
 SLIDE_NUM_RE = re.compile(r"\bS?(\d{1,2})\b")
 
 WORD_NUM = {
@@ -209,13 +212,23 @@ def parse_claims_index(text):
         else:
             continue
 
-        ids = ["C%02d" % int(n) for n in CLAIM_RE.findall(left)]
+        # THE IDS ARE THE ROW'S LEADING TOKENS, NOT EVERY C-NUMBER IN IT
+        # (2026-10-16 weekly pass). A claim-first row carries the claim's own
+        # sentence beside its id, and run No.86's "| C74 The agenda item C1 at
+        # the meeting ... | NOT USED |" was read as C74 AND C01, so C01 (on
+        # slides 01 and 03) was marked NOT USED and the gate FAILED a correct
+        # deck until the row was reworded. When the cell opens with ids, only
+        # that opening run counts; a cell that opens with prose keeps the old
+        # whole-cell read.
+        lead = LEAD_IDS_RE.match(re.sub(r"[*_`]", "", left))   # a bolded or coded leading id is still the lead (Codex, PR #438)
+        idtext = lead.group(1) if lead else left
+        ids = ["C%02d" % int(n) for n in CLAIM_RE.findall(idtext)]
         if not ids:
             continue
         slides = None if NOT_USED_RE.search(right) else _slides_of(right)
         # "C04 to C08" names a RANGE of claims; expand it so the row is not
         # read as two claims with a hole between them.
-        if len(ids) == 2 and re.search(r"\bto\b|–|-", left):
+        if len(ids) == 2 and re.search(r"\bto\b|–|-", idtext):
             a, b = int(ids[0][1:]), int(ids[1][1:])
             if b > a:
                 ids = ["C%02d" % n for n in range(a, b + 1)]
@@ -779,6 +792,18 @@ def self_test():
     check("  a claim keeps only its own slides", idx.get("C02") == {2}, idx.get("C02"))
     check("  the block ends at the prose under it (no slide 06 leak)",
           all(6 not in (v or set()) for v in idx.values()), idx)
+    # Run No.86 (2026-10-14): a claim's own sentence naming an agenda code.
+    n86 = parse_claims_index(
+        "## CLAIMS INDEX\n| claim | slides |\n|---|---|\n"
+        "| C01 In a motion dated October 9th, the Council said | 01, 03 |\n"
+        "| C04 to C06 the observer budget lines | 02 |\n"
+        "| C07/C08 the two letters | 04 |\n"
+        "| C74 The agenda item C1 at the meeting covered the plan | NOT USED |\n\nprose\n")
+    check("No.86: 'agenda item C1' inside C74's sentence does not mark C01 NOT USED",
+          n86 and n86.get("C01") == {1, 3} and "C74" in n86 and n86["C74"] is None, n86)
+    check("  a leading range and a slash pair still read as ids",
+          n86 and all(n86.get(c) == {2} for c in ("C04", "C05", "C06"))
+          and n86.get("C07") == {4} and n86.get("C08") == {4}, n86)
 
     # The fixture carries a pasted GATE STATUS block, exactly as --sync leaves
     # one; every check below reads the plan the way main() does, with the

@@ -103,6 +103,22 @@ pixel critics grade against this document. Companion: TECHNIQUE_LIBRARY.md
   display plus mono metadata is the house signature (section 2). When a deck
   falls into a default this list does not name, Phase 12 adds it here with
   the date and the slide.
+  - **A plate on a near-black desk** (2026-10-16, No.88 slides 02, 03, 05,
+    06 and 08). Read as dark-arctic-first, the model sets a plate or object
+    straight onto a desk at L* 5 to 7, where its cast and its bevel have
+    nothing to darken, and round 1's critics called every one printed or
+    floating. Light the ground first. Put a pool under the object's foot at
+    L* 12 or more within 96 px of it (qa.CONTACT_PAIR_SPAN), falling off into
+    the dark room, so the object sits on a brightness transition; or make the
+    desk gloss, so a reflection of the lit edge separates the base from the
+    surface. Then declare the cast in `data-contacts` so qa.py measures it;
+    dossier_check WARNs a dossier that promises a cast onto a ground the
+    slide never declares. The photographers' black-on-black rules say the
+    same thing, light the edge "in the place where it blends" and set the
+    subject at a brightness transition (https://learn.zoner.com/black-on-black),
+    and a reflective surface bounces light "back up into the object ...
+    separating it from the surface"
+    (https://www.talkphotography.co.uk/threads/lighting-challenge-9-black-on-black.773212/).
 - Text contrast ≥4.5:1 at the worst-case point; earn it with the art
   (composition routes quiet zones under text) before reaching for scrims;
   scrim/plate/backdrop-blur are the fallback tools, subtle and motivated.

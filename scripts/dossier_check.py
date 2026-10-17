@@ -163,6 +163,79 @@ F4A_RE = re.compile(
 # is never read), so a header sentence about the deck's depth language does not
 # put nine slides on the hook.
 CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
+# A CAST ONTO A GROUND, PROMISED IN OTHER WORDS (2026-10-16 weekly pass). Run No.88's
+# dossiers for 02 and 03 promised a plate that "casts onto the base", neither slide
+# declared data-contacts, and on a desk at L* 5 to 7 neither cast read: five of nine
+# frames set a plate on a near-black desk and the critics named "no cast, floats" on
+# every one in round 1. qa.py's contact gate already says "light the ground first"
+# for a declared cast on a near-black ground; it never looked at these. A WARN, not
+# the FAIL above: over 2026-09-26 to 2026-10-15 the wording also covers casts between
+# parts of one object ("each riser casts onto what is below it"), which a contact
+# pair can't always isolate. A light thrown onto a ground is not a cast.
+# bounded by the clause, not by a word count: "casting an attached shadow down and right onto
+# the lit bench" is a promise six words long (Codex, PR #438)
+CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+[^.;:\n(]{0,80}?\bonto\b", re.I)
+# the nouns that name emitted light, as whole words; a closed list so a physical "clamp" or "lampshade"
+# never reads as illumination (Codex, PR #438)
+LIGHT_NOUNS = {w + s for w in ("light", "sunlight", "spotlight", "floodlight", "lamplight", "moonlight", "daylight",
+                               "skylight", "backlight", "highlight", "rimlight", "keylight", "lamp", "floodlamp",
+                               "sun", "beam", "glow", "pool", "reflection", "spill", "flare", "ray", "shaft")
+               for s in ("", "s")}
+AUX_WORDS = {"will", "would", "shall", "should", "may", "might", "can", "could", "must", "does", "do", "did",
+             "also", "still", "then", "now", "always", "often", "just", "both", "each",
+             # the passive "be": "the light is cast onto the desk" is light (Codex, PR #438)
+             "is", "are", "was", "were", "be", "been", "being", "has", "have", "had"}
+CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?\b", re.I)
+
+
+def promised_cast(body):
+    """The first 'casts onto' phrase in a dossier body that is a shadow, not light."""
+    for m in CAST_ONTO_RE.finditer(body or ""):
+        # the subject sits before the verb ("the beam casts softly onto the desk"), so read the
+        # clause leading up to the match as well as the match itself (Codex, PR #438)
+        lead = re.split(r"[\n.;:,(]", body[max(0, m.start() - 48):m.start()])[-1]
+        # only the coordinate clause that owns the verb: in "feet catching a rim light and casting onto
+        # it" the light is what the feet catch, not what casts (Codex, PR #438)
+        parts = re.split(r"\b(?:and|while|then|but)\b", lead)
+        lead = parts[-1]
+        # "the lamp glows and softly casts", "...and will cast": a clause of only auxiliaries and adverbs
+        # still has no subject of its own (Codex, PR #438)
+        own = [w for w in re.findall(r"[A-Za-z]+", lead) if not (w.lower().endswith("ly") or w.lower() in AUX_WORDS)]
+        if not own and len(parts) > 1:
+            # a shared subject ("the lamp glows and casts onto the desk"): take the preceding clause's
+            # SUBJECT, not its object (Codex, PR #438)
+            prev = re.findall(r"[A-Za-z]+", parts[-2])
+            # the subject is the sentence's OPENING noun phrase: skip determiners and take the first two
+            # words, which cover "the lamps glow", "the plates catch the light", "glass feet catching"
+            # without guessing at verbs (Codex, PR #438)
+            dets = {"the", "a", "an", "its", "their", "this", "that", "these", "those", "each", "both", "his", "her", "our"}
+            np_ = [w for w in prev if w.lower() not in dets][:2]
+            lead = next((w for w in np_ if w.lower() in LIGHT_NOUNS), np_[-1] if np_ else "")
+        # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
+        # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)
+        # the subject's head sits before any prepositional modifier: "the plate under the light casts" is a
+        # plate, "the sun above the plate casts" is the sun (Codex, PR #438)
+        lead = re.split(r"\b(?:under|above|over|beneath|below|behind|beside|near|on|in|at|of|from|with|across|along|against)\b", lead)[0]
+        words = [w for w in re.findall(r"[A-Za-z]+", lead)]
+        # skip auxiliaries and adverbs back to the noun: "the lamp will softly cast" (Codex, PR #438)
+        while words and (words[-1].lower().endswith("ly") or words[-1].lower() in AUX_WORDS):
+            words.pop()
+        head = words[-1] if words else ""
+        # a light source by an exact, closed list of nouns, never by a suffix ("clamp" ends in "lamp")
+        light_head = head.lower() in LIGHT_NOUNS
+        # "casts a light shadow onto" is a shadow: a light word only exempts a cast that names no shadow
+        is_shadow = re.search(r"\bshadows?\b", m.group(0), re.I)
+        # a negated cast promises nothing: "casts no shadow onto", "does not cast onto" (Codex, PR #438)
+        # only a negation that governs the cast itself, right after the verb: "with no penumbra" or "without
+        # blur" qualifies the shadow and leaves the promise standing (Codex, PR #438)
+        negated = (re.match(r"cast\w*\s+(?:\w+ly\s+)?(?:no|not|never|without|nothing)\b", m.group(0), re.I)
+                   or re.search(r"\b(?:not|never|no longer|cannot|unable to)\s*$|n't\s*$", body[max(0, m.start() - 24):m.start()], re.I))
+        if not negated and (is_shadow or not CAST_LIGHT_RE.search(m.group(0))) and not light_head:
+            tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
+            return " ".join((m.group(0) + tail).split())
+    return None
+
+
 BODY_TAG_RE = re.compile(r"<body\b[^>]*>", re.I | re.S)
 DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S)
 
@@ -796,6 +869,16 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
                 f"{DECLARE_HOWTO}")
         # contacts == -2 (the declaration does not parse) is reported once, by
         # declaration_parse_fails(), with the byte the parser stopped on.
+    elif built and ((contacts is None and "data-contacts" not in (runtime or ())) or contacts == -1):   # an empty declaration measures nothing either (Codex, PR #438)
+        cast = promised_cast(body)
+        if cast:
+            warns.append(
+                f"slide {no:02d}: the dossier promises a cast ('{cast[:60]}') and the "
+                "slide body declares no data-contacts, so no gate measures whether it "
+                "reads. Declare it (scripts/contact_probe.py proposes the rects), and "
+                "light the ground under the object first: a cast on a ground under "
+                "about L* 12 has nothing to darken (DESIGN_DOCTRINE section 3, a plate "
+                "on a near-black desk)")
     return fails, warns
 
 
