@@ -3641,6 +3641,12 @@ def canvas_cover_probe(page, width, height, nodes):
         st.setProperty('mix-blend-mode', 'normal', 'important'); st.setProperty('filter', 'none', 'important');
         if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
       }
+      // the text's ANCESTORS blend too: normalise them for all four shots alike (Codex, PR #438)
+      for (const t of document.querySelectorAll('[data-akt-idx]')) for (let p = t.parentElement; p && p !== document.documentElement; p = p.parentElement) {
+        if (p.tagName === 'CANVAS') continue;
+        const bm = getComputedStyle(p).mixBlendMode;
+        if (bm && bm !== 'normal') { keep(p); p.style.setProperty('mix-blend-mode', 'normal', 'important'); }
+      }
       if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
       return true; }"""
     RESTORE = """() => { for (const el of document.querySelectorAll('[data-akt-style]')) {

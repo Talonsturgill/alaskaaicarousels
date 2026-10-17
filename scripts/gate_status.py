@@ -795,6 +795,15 @@ def site_fresh_row(rows, run):
                  "docs/ records a build for %s, behind main's %s: rebuild with site_build.py --date %s"
                  % (recorded, base_recorded, base_recorded))
         return
+    # a later stamp is accepted only up to an independent bound, the later of today's UTC date and main's own
+    # stamp, so a future-dated build can't vouch for itself (Codex, PR #438)
+    import datetime as _dt
+    bound = max(base_recorded, _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d"))
+    if recorded and recorded > bound:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ records a build for %s, later than today (UTC) and main's %s: rebuild with "
+                 "site_build.py --date %s" % (recorded, base_recorded, bound))
+        return
     dates = [date] + ([recorded] if recorded and recorded > date else [])
     p, used = None, date
     for d in dates:

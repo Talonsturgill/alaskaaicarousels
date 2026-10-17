@@ -207,7 +207,10 @@ def promised_cast(body):
         light_head = re.search(r"(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?$", head, re.I)
         # "casts a light shadow onto" is a shadow: a light word only exempts a cast that names no shadow
         is_shadow = re.search(r"\bshadows?\b", m.group(0), re.I)
-        if (is_shadow or not CAST_LIGHT_RE.search(m.group(0))) and not light_head:
+        # a negated cast promises nothing: "casts no shadow onto", "does not cast onto" (Codex, PR #438)
+        negated = (re.search(r"\b(?:no|not|never|without)\b|n't\b", m.group(0), re.I)
+                   or re.search(r"\b(?:not|never|no longer)\s*$|n't\s*$", body[max(0, m.start() - 24):m.start()], re.I))
+        if not negated and (is_shadow or not CAST_LIGHT_RE.search(m.group(0))) and not light_head:
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
             return " ".join((m.group(0) + tail).split())
     return None
