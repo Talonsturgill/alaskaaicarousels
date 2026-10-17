@@ -111,12 +111,32 @@
       ],
       "note": "webp, shrink 14 percent, site 147 pages, no alerts due"
     },
-    "upgrade": "pending",
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-16/automation_retro.md",
+        "ledger/upgrades.json"
+      ],
+      "note": "weekly pass ran, 5 fixes, upgrade 868297b1 + 0cd7e2b2; PR #438 open"
+    },
     "gmail": "pending",
-    "retro": "pending"
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md",
+        "out/2026-10-16/automation_retro.md"
+      ],
+      "note": "field notes and automation retro shipped with the run"
+    }
   },
   "gas_watch_attempts": [
     "2026-10-17T06:19Z live audit FAIL: source reading 2026-10-16T17:11 Alaska posted after the last collection (22:07Z); workflow_dispatch via GitHub MCP returned 403 Resource not accessible by integration; waiting on the 04:40Z and 07:20Z scheduled slots"
   ],
-  "score": 8.79
+  "score": 8.79,
+  "phase_3_6": {
+    "site_signoff": "PASS, 147 pages, 18 checks (re-run on the rebuilt site at ship)",
+    "gaswatch_live": "PASS at 08:59Z after FAIL from wake to about 08:25Z. CINGSA's 17:11 Alaska reading of October 16th posted after the 22:07Z collection; the routine's workflow_dispatch is 403; GitHub ran a late scheduled slot and the live audit passed, so no incident was filed. Escalated queue item, repeat 13: the owner's call on Actions write or a later audit time.",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-17T08:59:31.642657Z, no failing job"
+  }
 }
