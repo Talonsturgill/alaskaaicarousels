@@ -198,14 +198,14 @@ def promised_cast(body):
         lead = parts[-1]
         if not re.search(r"[A-Za-z]", lead) and len(parts) > 1:
             # a shared subject ("the lamp glows and casts onto the desk"): take the preceding clause's
-            # SUBJECT, the words before its first verb-like word, not its object (Codex, PR #438)
+            # SUBJECT, not its object (Codex, PR #438)
             prev = re.findall(r"[A-Za-z]+", parts[-2])
-            # a word is the verb when it ends -ing, or ends -s right after a noun (never after a determiner,
-            # never a light noun itself): "the lamps glow" keeps "lamps" (Codex, PR #438)
+            # the subject is the sentence's OPENING noun phrase: skip determiners and take the first two
+            # words, which cover "the lamps glow", "the plates catch the light", "glass feet catching"
+            # without guessing at verbs (Codex, PR #438)
             dets = {"the", "a", "an", "its", "their", "this", "that", "these", "those", "each", "both", "his", "her", "our"}
-            cut = next((i for i, w in enumerate(prev) if i and (w.lower().endswith("ing") or (
-                w.lower().endswith("s") and prev[i - 1].lower() not in dets and w.lower() not in LIGHT_NOUNS))), len(prev))
-            lead = " ".join(prev[:cut])
+            np_ = [w for w in prev if w.lower() not in dets][:2]
+            lead = next((w for w in np_ if w.lower() in LIGHT_NOUNS), np_[-1] if np_ else "")
         # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
         # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)
         # the subject's head sits before any prepositional modifier: "the plate under the light casts" is a

@@ -3634,8 +3634,11 @@ def canvas_cover_probe(page, width, height, nodes):
     # blends, sits under a blending ancestor, or overlaps a blending canvas is reported UNVERIFIED instead
     # of measured (Codex, PR #438, rounds 12 to 16).
     BLENDED = """() => {
+      // blending OR a filter on the text's branch: both make stacking contexts and reshape colour, so the
+      // probe never restyles them and the text abstains (Codex, PR #438)
       const blends = (el) => { for (let p = el; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
-        const b = getComputedStyle(p).mixBlendMode; if (b && b !== 'normal') return true; } return false; };
+        const cs = getComputedStyle(p), b = cs.mixBlendMode; if (b && b !== 'normal') return true;
+        if (el.tagName !== 'CANVAS' && cs.filter && cs.filter !== 'none') return true; } return false; };
       const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
       // a canvas paints only when it is visible, displayed and not faded to nothing anywhere up its chain
       const paints = (c) => { const cs = getComputedStyle(c); if (cs.visibility === 'hidden' || cs.display === 'none') return false;
@@ -3664,7 +3667,7 @@ def canvas_cover_probe(page, width, height, nodes):
         keep(el); const st = el.style;
         st.setProperty('color', c, 'important'); st.setProperty('-webkit-text-fill-color', c, 'important');
         st.setProperty('text-shadow', 'none', 'important'); st.setProperty('-webkit-text-stroke', '0', 'important');
-        st.setProperty('filter', 'none', 'important');
+
         if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
       }
       if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
@@ -3684,9 +3687,18 @@ def canvas_cover_probe(page, width, height, nodes):
     d_hidden = np.abs(imgs[2] - imgs[3]).max(axis=2)
     k = d_shown.shape[1] / float(width)
     H, W = d_shown.shape
+    # does a canvas actually PAINT in a box? pixel truth again: the shown and hidden shots of one colour differ
+    # there (Codex, PR #438: a full-frame transparent canvas paints nothing over a header)
+    d_canvas = np.abs(imgs[0] - imgs[2]).max(axis=2)
+
+    def canvas_paints(ln):
+        x0, y0 = max(0, int(ln[0] * k)), max(0, int(ln[1] * k))
+        x1, y1 = min(W, int((ln[0] + ln[2]) * k) + 1), min(H, int((ln[1] + ln[3]) * k) + 1)
+        return x1 > x0 and y1 > y0 and int((d_canvas[y0:y1, x0:x1] > 8).sum()) >= 6
+
     for i, tn in enumerate(nodes or []):
         if i in blended:
-            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8)
+            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8 and canvas_paints(ln))
             if nl:
                 tn["canvas_over"] = {"frac": 0.0, "worst_line": 0.0, "unverified": nl, "points": nl,
                                      "worst_unverified_line": 1.0, "by": "blended canvas or text", "z": ""}
@@ -3707,8 +3719,7 @@ def canvas_cover_probe(page, width, height, nodes):
                 # a line the probe could not recolour (a colour-collapsing filter above it, or ink under
                 # about 10 percent) is UNVERIFIED, never silently clean (Codex, PR #438)
                 # ...and only where a painting canvas actually overlaps the line (Codex, PR #438)
-                if ln[2] >= 8 and ln[3] >= 8 and any(r[0] < ln[0] + ln[2] and r[2] > ln[0] and r[1] < ln[1] + ln[3] and r[3] > ln[1]
-                                                     for r in cv_rects):
+                if ln[2] >= 8 and ln[3] >= 8 and canvas_paints(ln):
                     unver += 1
                     worst_unv = 1.0
                 continue

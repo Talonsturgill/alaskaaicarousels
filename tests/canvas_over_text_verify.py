@@ -37,7 +37,8 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-10  difference-blended text over a canvas UNDER it    -> no FAIL; blended, so
                                                                  any finding is UNVERIFIED
   slide-11  a colour-collapsing filter on a line under an
-            opaque band (the probe neutralises it)           -> one FAIL
+            opaque band (a filter is never restyled)          -> no FAIL; filtered, so
+                                                                 the line is UNVERIFIED
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
 modelling any CSS.
 """
@@ -162,7 +163,7 @@ CASES = [
     ("slide-10.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=BLEND),
      0, -1, []),
     ("slide-11.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=FILTERED),
-     1, 0, ["Filtered grey"]),
+     0, -1, []),
 ]
 MARK = "text under canvas ink"
 
