@@ -2577,7 +2577,20 @@ IN_PAGE_QA_JS = """
         sctx.imageSmoothingEnabled = false;
       };
       _fresh();
+      // a canvas transformed by CSS (itself or an ancestor) has an axis-aligned bounding box that no longer maps
+      // linearly onto its backing store, so its pixel is unverified, never covered (Codex, PR #438)
+      const _xfCache = new Map();
+      const _transformed = (cv) => {
+        if (_xfCache.has(cv)) return _xfCache.get(cv);
+        let t = false;
+        for (let p = cv; !t && p && p.nodeType === 1; p = p.parentElement) {
+          const cs = getComputedStyle(p);
+          if ((cs.transform && cs.transform !== "none") || (cs.rotate && cs.rotate !== "none") || (cs.scale && cs.scale !== "none") || (cs.translate && cs.translate !== "none")) t = true;
+        }
+        _xfCache.set(cv, t); return t;
+      };
       const _readA = (cv, x, y) => {
+        if (_transformed(cv)) return null;
         const rr = cv.getBoundingClientRect();
         if (rr.width < 1 || rr.height < 1 || !cv.width || !cv.height) return 0;
         const sx = Math.floor((x - rr.left) * cv.width / rr.width);

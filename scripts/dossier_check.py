@@ -818,7 +818,7 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
                 f"{DECLARE_HOWTO}")
         # contacts == -2 (the declaration does not parse) is reported once, by
         # declaration_parse_fails(), with the byte the parser stopped on.
-    elif built and contacts is None and "data-contacts" not in (runtime or ()):
+    elif built and ((contacts is None and "data-contacts" not in (runtime or ())) or contacts == -1):   # an empty declaration measures nothing either (Codex, PR #438)
         cast = promised_cast(body)
         if cast:
             warns.append(

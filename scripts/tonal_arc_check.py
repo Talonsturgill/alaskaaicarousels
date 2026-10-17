@@ -234,7 +234,7 @@ def judge(line, L):
     pk = sorted(n for n in peaks if n in L)
     if pk:
         top = max(pk, key=lambda n: L[n])
-        rivals = [n for n in order if n not in peaks and L[n] >= L[top] - PEAK_TOL]
+        rivals = [n for n in order if n not in peaks and abs(L[n] - L[top]) <= PEAK_TOL]   # both sides: a far brighter frame is the misplaced-peak warn, not a tie (Codex, PR #438)
         if rivals:
             warns += 1
             msgs.append("[WARN] the peak ties: %s within %.0f L* of the declared peak %02d (L* %.1f), "
