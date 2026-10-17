@@ -3282,7 +3282,7 @@
    ],
    "verification": "tests/canvas_over_text_verify.py HOLDS: the No.88 shape FAILs 3 times (wordmark, counter, site), the z-index 9 fix, a 0.094 alpha grain canvas above type and a screen-blended opaque canvas are silent, a chip over a third of a headline line WARNs once, art over 60 percent of a decorative ghost numeral WARNs once. Real-slide reconstruction: today's nine slides (snapshot) with the pre-fix akdocket.js (git show 273d3be6^) FAIL 27 times, 3 per frame. Today's nine slides with the current akdocket.js: qa PASS 0 fails 0 warns before and after, findings identical, PNGs pixel-identical (max diff 0). examples/demo-deck: WARN before and after with identical findings, pixel-identical. line_text, lit_edge, span_heading and motif_survives verifies hold.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or delete the 'TEXT UNDER CANVAS INK' blocks in render.py and qa.py and the CANVAS_OVER_* constants",
-   "commit": ""
+   "commit": "868297b1"
   },
   {
    "run_date": "2026-10-16",
@@ -3296,7 +3296,7 @@
    ],
    "verification": "--self-test all passed (two new fixtures, 2026-10-12's spike shape and 2026-10-15's tie, plus the carrying-arc fixture asserted free of both). Calibrated on the 19 shipped decks with a Tonal arc line (2026-09-26 to 2026-10-15): the plateau WARN fires on 09-26, 09-30, 10-02, 10-04, 10-09, 10-12, 10-15 and the tie on 09-26, 09-27, 09-29, 10-01, 10-02, 10-05, 10-06, 10-08, 10-15; the critic named cause e on every reviewed deck either fires on, and both are silent on 10-07, the one reviewed deck it did not name; 10-11's plateau (middle span 15.6) is still missed. Today's render: WARN, one tone under a spike, the seven middle frames span L* 8.7 to 15.5.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or delete the two blocks after the FLAT_SPAN warn in judge()",
-   "commit": ""
+   "commit": "868297b1"
   },
   {
    "run_date": "2026-10-16",
@@ -3311,7 +3311,7 @@
    ],
    "verification": "tests/cast_promise_verify.py HOLDS (8 checks: No.88 02 and 03 wordings WARN with the phrase quoted, a declared or runtime data-contacts is silent, a light pool is not a cast, nothing before the build, the strong 'contact shadow' promise keeps its FAIL with no second finding). dossier_check on out/2026-10-16: PASS 0/0 before, WARN 0 fails 2 warns after (slides 02 and 03). Over the shipped dossiers 2026-09-26 to 2026-10-15 the wording matches 1 to 4 slides a deck, which is why this is a WARN and not the FAIL the contact-shadow wording carries.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or delete CAST_ONTO_RE, promised_cast() and the elif branch in check_slide()",
-   "commit": ""
+   "commit": "868297b1"
   },
   {
    "run_date": "2026-10-16",
@@ -3324,7 +3324,7 @@
    ],
    "verification": "--self-test PASS 0 failed, with the No.86 row as a fixture (C01 keeps {1, 3}, C74 is NOT USED) and a leading range and slash pair still expanding. All 28 parseable claims indexes in runs/*/storyboard.md plus today's parse identically to HEAD's parser (0 changed). plan_drift_check on out/2026-10-16: PASS, 85 claims indexed, 0 drifts, same as HEAD.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or restore `ids = ... CLAIM_RE.findall(left)`",
-   "commit": ""
+   "commit": "868297b1"
   },
   {
    "run_date": "2026-10-16",
@@ -3338,7 +3338,7 @@
    ],
    "verification": "tests/contact_probe_verify.py HOLDS with a new case 6 (a near-black pole on grey carpet), and case 6 FAILs on HEAD's probe ('carpet 100 px from the foot reads 100 percent the pole's own colour'); case 5 (the 2026-10-11 card, No.81 01 and No.83 09 from runs/) still holds. --verify on today's snapshot render: 01 and 06 unchanged, 09's declared dL 22.6 unchanged and the false note gone; the h-axis ground at x 301 was checked on a crop and sits on lit carpet, not the chair. qa.py's contact gate is untouched.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or set OBJ_NEUTRAL_C = 0",
-   "commit": ""
+   "commit": "868297b1"
   }
  ],
  "scan_log": [
