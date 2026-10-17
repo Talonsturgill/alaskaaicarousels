@@ -2602,11 +2602,17 @@ IN_PAGE_QA_JS = """
           return sctx.getImageData(0, 0, 1, 1).data[3];
         } catch (e) { _fresh(); return null; }   // a tainted read poisons the scratch
       };
+      // Only the canvas's OWN branch counts: an ancestor it shares with the text fades or blends the
+      // finished group, after the canvas has already covered the text inside it (Codex, PR #438)
       const _opCache = new Map();
-      const _effOp = (cv) => {
-        if (_opCache.has(cv)) return _opCache.get(cv);
+      const _effOp = (cv, tel) => {
+        let ca = cv.parentElement;
+        while (ca && !ca.contains(tel)) ca = ca.parentElement;
+        let byCa = _opCache.get(cv);
+        if (!byCa) { byCa = new Map(); _opCache.set(cv, byCa); }
+        if (byCa.has(ca)) return byCa.get(ca);
         let op = 1, ok = true;
-        for (let p = cv; ok && p && p.nodeType === 1; p = p.parentElement) {
+        for (let p = cv; ok && p && p.nodeType === 1 && p !== ca; p = p.parentElement) {
           const cs = getComputedStyle(p);
           // a blend mode on the canvas OR any ancestor blends the group (Codex, PR #438)
           if (cs.mixBlendMode && cs.mixBlendMode !== "normal") { ok = false; break; }
@@ -2616,13 +2622,13 @@ IN_PAGE_QA_JS = """
           if (f !== "none") for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g)) op *= m[2] ? parseFloat(m[1]) / 100 : parseFloat(m[1]);
         }
         const v = (ok && op >= 0.9) ? op : null;
-        _opCache.set(cv, v);
+        byCa.set(ca, v);
         return v;
       };
       for (const [tel, idx] of recorded) {
         const tn = out.text_nodes[idx];
         let pts = 0, cov = 0, unk = 0, worstLine = 0, byEl = null;
-        for (const ln of (tn.lines || []).slice(0, 8)) {
+        for (const ln of (tn.lines || [])) {   // every line: a canvas over line 9 of a long body is still a cover (Codex, PR #438)
           if (!ln || ln[2] < 2 || ln[3] < 2) continue;
           let lp = 0, lc = 0;
           for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) for (const fy of [0.35, 0.65]) {
@@ -2639,7 +2645,7 @@ IN_PAGE_QA_JS = """
             for (let k = 0; k < ti && !hit; k++) {
               const nd = stack[k];
               if (nd.tagName !== "CANVAS" || nd.contains(tel)) continue;
-              const eo = _effOp(nd);
+              const eo = _effOp(nd, tel);
               if (eo === null) continue;
               const a = _readA(nd, x, y);
               if (a === null) { unknown = true; byEl = byEl || nd; continue; }

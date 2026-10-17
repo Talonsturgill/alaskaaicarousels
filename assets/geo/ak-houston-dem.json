@@ -1,7 +1,7 @@
 {
  "what": "Terrain ak-houston-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
  "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 12, 72 tiles, fetched 2026-10-17, bilinear resample; 117 tile-seam spike cells (|h| > 2,500 m or < -100 m) replaced by the median of their 5x5 neighbours",
- "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "projection": "plate carree, cell centres: column i is lon west + (i + 0.5) * dlon, row j is lat north - (j + 0.5) * dlat (as sampled by the fetch, and as AKHOUSTON.demAt reads it)",
  "cols": 700,
  "rows": 540,
  "west": -150.05,
