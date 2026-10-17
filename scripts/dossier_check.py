@@ -175,6 +175,14 @@ CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
 # bounded by the clause, not by a word count: "casting an attached shadow down and right onto
 # the lit bench" is a promise six words long (Codex, PR #438)
 CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+[^.;:\n(]{0,80}?\bonto\b", re.I)
+# the nouns that name emitted light, as whole words; a closed list so a physical "clamp" or "lampshade"
+# never reads as illumination (Codex, PR #438)
+LIGHT_NOUNS = {w + s for w in ("light", "sunlight", "spotlight", "floodlight", "lamplight", "moonlight", "daylight",
+                               "skylight", "backlight", "highlight", "rimlight", "keylight", "lamp", "floodlamp",
+                               "sun", "beam", "glow", "pool", "reflection", "spill", "flare", "ray", "shaft")
+               for s in ("", "s")}
+AUX_WORDS = {"will", "would", "shall", "should", "may", "might", "can", "could", "must", "does", "do", "did",
+             "also", "still", "then", "now", "always", "often", "just", "both", "each"}
 CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?\b", re.I)
 
 
@@ -200,11 +208,12 @@ def promised_cast(body):
         # plate, "the sun above the plate casts" is the sun (Codex, PR #438)
         lead = re.split(r"\b(?:under|above|over|beneath|below|behind|beside|near|on|in|at|of|from|with|across|along|against)\b", lead)[0]
         words = [w for w in re.findall(r"[A-Za-z]+", lead)]
-        while words and words[-1].lower().endswith("ly"):
+        # skip auxiliaries and adverbs back to the noun: "the lamp will softly cast" (Codex, PR #438)
+        while words and (words[-1].lower().endswith("ly") or words[-1].lower() in AUX_WORDS):
             words.pop()
         head = words[-1] if words else ""
-        # a compound light noun counts by its ending: spotlight, sunlight, floodlamp (Codex, PR #438)
-        light_head = re.search(r"(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?$", head, re.I)
+        # a light source by an exact, closed list of nouns, never by a suffix ("clamp" ends in "lamp")
+        light_head = head.lower() in LIGHT_NOUNS
         # "casts a light shadow onto" is a shadow: a light word only exempts a cast that names no shadow
         is_shadow = re.search(r"\bshadows?\b", m.group(0), re.I)
         # a negated cast promises nothing: "casts no shadow onto", "does not cast onto" (Codex, PR #438)

@@ -212,17 +212,22 @@ def judge(line, L):
     # those it reviewed (09-26 and 10-09 have no flow review on record), and it is
     # silent on 10-07, the one reviewed deck the critic did not name. It misses
     # 10-11's "16 to 20 L* plateau" (the middle seven span 15.6), which is honest.
-    mids = order[1:-1]
-    if span >= FLAT_SPAN and len(order) >= MID_MIN_FRAMES:
+    # set aside only an extreme that IS a spike, standing at least MID_SPAN clear of the frame beside it; a
+    # smooth ramp has no spike and no plateau to report (Codex, PR #438)
+    top_spike = len(order) > 2 and L[order[0]] - L[order[1]] >= MID_SPAN
+    bot_spike = len(order) > 2 and L[order[-2]] - L[order[-1]] >= MID_SPAN
+    mids = order[(1 if top_spike else 0):(len(order) - 1 if bot_spike else len(order))]
+    if span >= FLAT_SPAN and len(order) >= MID_MIN_FRAMES and (top_spike or bot_spike) and len(mids) >= 2:
         m_hi, m_lo = L[mids[0]], L[mids[-1]]
         if m_hi - m_lo < MID_SPAN:
             warns += 1
-            msgs.append("[WARN] one tone under a spike: set aside %02d (L* %.1f) and %02d (L* %.1f), "
-                        "and the other %d frames span L* %.1f to %.1f (%.1f, under %.1f), so the arc "
-                        "is two exceptions on a plateau. Step the middle frames apart (%02d is the "
-                        "brightest of them, %02d the darkest)"
-                        % (order[0], hi, order[-1], lo, len(mids), m_lo, m_hi, m_hi - m_lo,
-                           MID_SPAN, mids[0], mids[-1]))
+            aside = ([order[0]] if top_spike else []) + ([order[-1]] if bot_spike else [])
+            msgs.append("[WARN] one tone under a spike: set aside %s, and the other %d frames span "
+                        "L* %.1f to %.1f (%.1f, under %.1f), so the arc is %s on a plateau. Step the "
+                        "middle frames apart (%02d is the brightest of them, %02d the darkest)"
+                        % (" and ".join("%02d (L* %.1f)" % (n, L[n]) for n in aside), len(mids), m_lo, m_hi,
+                           m_hi - m_lo, MID_SPAN, "one exception" if len(aside) == 1 else "two exceptions",
+                           mids[0], mids[-1]))
     # A PEAK THAT TIES (2026-10-16 weekly pass). The peak census passes a declared
     # frame that is brightest by a hair; on 2026-10-15 the critic's cause e was
     # "04 and 08 tie at L* 36" on a sheet this check passed (04 36.0, 08 34.3). A
