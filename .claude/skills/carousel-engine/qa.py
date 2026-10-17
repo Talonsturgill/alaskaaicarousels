@@ -4667,11 +4667,14 @@ def main():
             elif soft:
                 res["warns"].append(msg + " -- pixel critic verify the covered glyphs are "
                                     "meant to be covered; a z-index above the canvas uncovers them")
-            elif int(co.get("unverified") or 0) * 2 >= int(co.get("points") or 1):
+            # judged per LINE like coverage: one wholly unreadable line of a long block is the warn (Codex, PR #438)
+            elif (float(co.get("worst_unverified_line") or 0) >= 0.5
+                  or int(co.get("unverified") or 0) * 2 >= int(co.get("points") or 1)):
                 res["warns"].append(
                     "canvas over text, unverified: '%s' has %s canvas stacked above "
                     "most of its sampled points and the canvas pixels could not be "
-                    "read (tainted or transferred), so whether it is covered is "
+                    "read (tainted, transferred, or mapped through a transform, mask, "
+                    "clip-path, padding or border), so whether it is covered is "
                     "unknown -- pixel critic verify" % (label, where))
 
         for node in rec.get("text_nodes", []):

@@ -2577,8 +2577,11 @@ IN_PAGE_QA_JS = """
         sctx.imageSmoothingEnabled = false;
       };
       _fresh();
-      // a canvas transformed by CSS (itself or an ancestor) has an axis-aligned bounding box that no longer maps
-      // linearly onto its backing store, so its pixel is unverified, never covered (Codex, PR #438)
+      // ONLY A PLAINLY MAPPED CANVAS IS READ (Codex, PR #438, five review rounds on this mapping). Its bounding
+      // box maps linearly onto its backing store only when nothing between them reshapes it: a CSS transform on
+      // it or an ancestor, a mask or clip-path on it or an ancestor, or padding or a border on the canvas itself
+      // (the bitmap paints the content box). Any of those makes its pixel unverified, never covered, so the
+      // probe can't false-FAIL on a mapping it doesn't model; qa reports unverified lines as a WARN.
       const _xfCache = new Map();
       const _transformed = (cv) => {
         if (_xfCache.has(cv)) return _xfCache.get(cv);
@@ -2586,6 +2589,9 @@ IN_PAGE_QA_JS = """
         for (let p = cv; !t && p && p.nodeType === 1; p = p.parentElement) {
           const cs = getComputedStyle(p);
           if ((cs.transform && cs.transform !== "none") || (cs.rotate && cs.rotate !== "none") || (cs.scale && cs.scale !== "none") || (cs.translate && cs.translate !== "none")) t = true;
+          const mk = cs.maskImage || cs.webkitMaskImage || "none", cp = cs.clipPath || "none";
+          if ((mk && mk !== "none") || (cp && cp !== "none")) t = true;
+          if (p === cv) for (const k of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) if (parseFloat(cs[k]) > 0) t = true;
         }
         _xfCache.set(cv, t); return t;
       };
@@ -2627,10 +2633,10 @@ IN_PAGE_QA_JS = """
       };
       for (const [tel, idx] of recorded) {
         const tn = out.text_nodes[idx];
-        let pts = 0, cov = 0, unk = 0, worstLine = 0, byEl = null;
+        let pts = 0, cov = 0, unk = 0, worstLine = 0, worstUnk = 0, byEl = null;
         for (const ln of (tn.lines || [])) {   // every line: a canvas over line 9 of a long body is still a cover (Codex, PR #438)
           if (!ln || ln[2] < 2 || ln[3] < 2) continue;
-          let lp = 0, lc = 0;
+          let lp = 0, lc = 0, lu = 0;
           for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) for (const fy of [0.35, 0.65]) {
             const x = ln[0] + ln[2] * fx, y = ln[1] + ln[3] * fy;
             if (x < 0 || y < 0 || x >= W || y >= H) continue;
@@ -2651,16 +2657,16 @@ IN_PAGE_QA_JS = """
               if (a === null) { unknown = true; byEl = byEl || nd; continue; }
               if ((a / 255) * eo >= 0.9) { hit = true; byEl = nd; }
             }
-            if (hit) lc++; else if (unknown) unk++;
+            if (hit) lc++; else if (unknown) { unk++; lu++; }
           }
           pts += lp; cov += lc;
-          if (lp) worstLine = Math.max(worstLine, lc / lp);
+          if (lp) { worstLine = Math.max(worstLine, lc / lp); worstUnk = Math.max(worstUnk, lu / lp); }
         }
         if (pts && (cov || unk)) {
           tn.canvas_over = {
             frac: Math.round(1000 * cov / pts) / 1000,
             worst_line: Math.round(1000 * worstLine) / 1000,
-            unverified: unk, points: pts,
+            unverified: unk, points: pts, worst_unverified_line: Math.round(1000 * worstUnk) / 1000,
             by: byEl ? (byEl.id ? "#" + byEl.id : ((byEl.getAttribute("class") || "canvas").slice(0, 40)))
                      : "canvas",
             z: byEl ? getComputedStyle(byEl).zIndex : ""
