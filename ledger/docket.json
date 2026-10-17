@@ -1325,10 +1325,25 @@
           "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-10-15/dnr-commissioner-will-appear-at-hearing-on-land-transfer-after-state-senate-subpoena",
           "outlet": "Alaska Public Media",
           "date": "2026-10-15"
+        },
+        {
+          "url": "https://www.akleg.gov/basis/get_documents.asp?session=34&docid=16996",
+          "outlet": "Alaska Senate Resources Committee, timeline of events",
+          "date": "2026-10-14"
+        },
+        {
+          "url": "https://www.akleg.gov/basis/get_documents.asp?session=34&docid=16978",
+          "outlet": "Alaska DNR Preliminary Decision ADL 234762, Senate Resources packet",
+          "date": "2026-07-10"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/15/senators-subpoena-dnr-commissioner-over-aidea-land-transfer/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-10-14"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-16",
       "history": [
         {
           "date": "2026-07-17",
@@ -1541,6 +1556,10 @@
         {
           "date": "2026-10-15",
           "note": "The Senate Resources Committee voted on October 14th to subpoena Natural Resources Commissioner John Crowther over the roughly 20,000-acre transfer, and the department confirmed he will appear at a hearing on October 26th, Alaska Public Media reported. The report says the governor's office had not allowed him to attend the committee's October 8th meeting. The state notice for ADL 234762 still posts no final finding and decision."
+        },
+        {
+          "date": "2026-10-16",
+          "note": "The Senate Resources Committee posted its hearing packet. In it, DNR's September 22nd reply declines the committee's invitation to the October 8th hearing because the governor's office had not given permission to attend, and AIDEA Executive Director Randy Ruaro's July 30th letter says no project has been approved or selected and that there is no committed data center tenant, developer, site plan or power source. Alaska's News Source reported that Ruaro told the October 8th hearing a data center there is implausible because there is no excess energy supply. DNR's separate preliminary decision to convey about 885 acres near Port MacKenzie to AIDEA keeps a reverter if the land is not used within five years, while the Houston decision waives it. The Legislature's schedule lists the Senate Resources meeting on October 26th at 10 a.m. in the Anchorage Legislative Information Office."
         }
       ]
     },
