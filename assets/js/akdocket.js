@@ -64,15 +64,16 @@
     else if (st === "solid" || st === "polaris") { el("line", { x1: x0, y1: y, x2: st === "polaris" ? x1 - 30 : x1, y2: y, stroke: D.GOLD, "stroke-width": w }, g); if (st === "polaris") D.polaris(g, x1 - 12, y, 20); }
     return g;
   };
-  // the fixed marks: wordmark, counter, site; all DOM so they stay vector and the gates can read them
+  // the fixed marks: wordmark, counter, site; all DOM so they stay vector and the gates can read them. z-index 9 because
+  // every plate is a z-index 1 canvas and an unstacked fixture paints UNDER it (No.88 round 1: present in the DOM, absent in pixels)
   D.fixtures = function (o) {
-    const css = "position:absolute;font-family:'JetBrains Mono';font-weight:500;letter-spacing:0.08em;";
+    const css = "position:absolute;z-index:9;font-family:'JetBrains Mono';font-weight:500;letter-spacing:0.08em;";
     const w = document.createElement("div"); w.textContent = "ALASKA.AI"; w.setAttribute("data-decorative", "");
     w.style.cssText = css + "left:80px;top:84px;font-size:22px;color:" + (o.ink || "#B9BDC2") + ";"; document.body.appendChild(w);
     const c = document.createElement("div"); c.textContent = String(o.n).padStart(2, "0") + " / " + String(o.total).padStart(2, "0");
     c.style.cssText = css + "right:80px;top:82px;font-size:24px;color:" + (o.ink || "#B9BDC2") + ";"; c.className = "counter"; document.body.appendChild(c);
     const f = document.createElement("div"); f.textContent = "alaskaaihq.com"; f.setAttribute("data-decorative", "");
-    f.style.cssText = "position:absolute;left:200px;top:1291px;font-family:'JetBrains Mono';font-weight:400;font-size:19px;letter-spacing:0.04em;color:" + (o.fix || D.FIX) + ";"; document.body.appendChild(f);
+    f.style.cssText = "position:absolute;z-index:9;left:200px;top:1291px;font-family:'JetBrains Mono';font-weight:400;font-size:19px;letter-spacing:0.04em;color:" + (o.fix || D.FIX) + ";"; document.body.appendChild(f);
     return { wordmark: w, counter: c, site: f };
   };
   global.AKDOCKET = D;

@@ -51,8 +51,10 @@ export function init(THREE, AKT) {
   function twill(seed) {
     const c = document.createElement('canvas'); c.width = 512; c.height = 512; const x = c.getContext('2d'); const r = rng(seed + 31);
     x.fillStyle = '#2b2f38'; x.fillRect(0, 0, 512, 512);
-    for (let i = -512; i < 1024; i += 4) { x.strokeStyle = `rgba(${r() < 0.5 ? '18,20,26' : '58,64,76'},${0.25 + r() * 0.2})`; x.lineWidth = 1.6; x.beginPath(); x.moveTo(i, 0); x.lineTo(i + 512, 512); x.stroke(); }
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 3); return t;
+    // a fine, low contrast weave with no single lay: one constant diagonal at 4 px read as scratches across the form (No.88 round 1)
+    for (let i = -512; i < 1024; i += 2) { x.strokeStyle = `rgba(${r() < 0.5 ? '30,33,40' : '50,55,66'},${0.06 + r() * 0.06})`; x.lineWidth = 1; x.beginPath(); x.moveTo(i, 0); x.lineTo(i + 512, 512); x.stroke(); }
+    for (let i = 0; i < 9000; i++) { const v = 34 + r() * 22; x.fillStyle = `rgba(${v},${v + 3},${v + 10},0.35)`; x.fillRect(r() * 512, r() * 512, 1.5, 1.5); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 6); return t;
   }
   function carpet(seed) {
     const c = document.createElement('canvas'); c.width = 512; c.height = 512; const x = c.getContext('2d'); const r = rng(seed + 47);
@@ -123,7 +125,7 @@ export function init(THREE, AKT) {
     capsule.rotation.x = Math.PI / 2; head.add(capsule);
     const cap = new THREE.Mesh(new THREE.SphereGeometry(0.019, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x24282d, metalness: 0.8, roughness: 0.46, bumpMap: bump, bumpScale: 1.4 }));
     cap.rotation.x = Math.PI / 2; cap.position.z = 0.0375; head.add(cap);
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0172, 0.0022, 10, 48), new THREE.MeshStandardMaterial({ color: 0x8a6a2c, metalness: 1, roughness: 0.3 }));
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0172, 0.0022, 10, 48), new THREE.MeshStandardMaterial({ color: 0x7d8590, metalness: 1, roughness: 0.3 }));   // steel: gold is spent only on the answer owed
     ring.position.z = -0.03; head.add(ring);
     head.position.copy(end).add(dir.clone().multiplyScalar(0.036)); head.lookAt(end.clone().add(dir.clone().multiplyScalar(2)));
     mic.add(head);
@@ -132,6 +134,7 @@ export function init(THREE, AKT) {
     mic.scale.setScalar(o.micScale || 1.6); AKT.add(R, mic); made.mic = mic; made.micHead = head;
     // the witness chair
     const fabric = new THREE.MeshPhysicalMaterial({ map: twill(seed), roughness: 0.86, sheen: 0.6, sheenRoughness: 0.5, sheenColor: new THREE.Color(0x56607a) });
+    if (o.chairTone != null) fabric.color.setScalar(o.chairTone);   // < 1 darkens the upholstery where the chair must stay secondary
     const frame = new THREE.MeshStandardMaterial({ color: 0x1b1e23, metalness: 0.7, roughness: 0.4, envMapIntensity: 1.2 });
     const chair = new THREE.Group();
     function cushion(w, h, d, r) {
