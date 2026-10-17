@@ -186,7 +186,14 @@ def promised_cast(body):
         lead = re.split(r"[\n.;:,(]", body[max(0, m.start() - 48):m.start()])[-1]
         # only the coordinate clause that owns the verb: in "feet catching a rim light and casting onto
         # it" the light is what the feet catch, not what casts (Codex, PR #438)
-        lead = re.split(r"\b(?:and|while|then|but)\b", lead)[-1]
+        parts = re.split(r"\b(?:and|while|then|but)\b", lead)
+        lead = parts[-1]
+        if not re.search(r"[A-Za-z]", lead) and len(parts) > 1:
+            # a shared subject ("the lamp glows and casts onto the desk"): take the preceding clause's
+            # SUBJECT, the words before its first verb-like word, not its object (Codex, PR #438)
+            prev = re.findall(r"[A-Za-z]+", parts[-2])
+            cut = next((i for i, w in enumerate(prev) if i and (w.lower().endswith("ing") or w.lower().endswith("s"))), len(prev))
+            lead = " ".join(prev[:cut])
         # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
         # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)
         # the subject's head sits before any prepositional modifier: "the plate under the light casts" is a

@@ -92,7 +92,7 @@ INDEX_HEAD_RE = re.compile(
 CLAIM_RE = re.compile(r"\bC\s?(\d{1,3})\b", re.I)
 # The run of claim ids a row OPENS with: "C04", "C04 C05", "c1/c2", "C04 to C08".
 LEAD_IDS_RE = re.compile(
-    r"^\s*((?:C\s?\d{1,3}\b\s*(?:(?:,|/|&|\+|to\b|and\b|–|-)\s*(?=C\s?\d))?)+)", re.I)
+    r"^\s*((?:C\s?\d{1,3}\b\s*(?:(?:,\s*(?:and\b\s*)?|/|&|\+|to\b|and\b|–|-)\s*(?=C\s?\d))?)+)", re.I)   # Oxford comma: "C04, C05, and C06" (Codex, PR #438)
 SLIDE_NUM_RE = re.compile(r"\bS?(\d{1,2})\b")
 
 WORD_NUM = {

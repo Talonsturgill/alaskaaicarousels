@@ -232,7 +232,9 @@ def judge(line, L):
     # and 10-15, the critic named cause e on all seven of those it reviewed, and it
     # is silent on 10-07.
     pk = sorted(n for n in peaks if n in L)
-    if pk:
+    # only when the declared peak IS the measured peak (within PEAK_TOL); a misplaced peak is the
+    # peak-location warn above, not a tie (Codex, PR #438)
+    if pk and max(L[n] for n in pk) >= L[order[0]] - PEAK_TOL:
         top = max(pk, key=lambda n: L[n])
         rivals = [n for n in order if n not in peaks and abs(L[n] - L[top]) <= PEAK_TOL]   # both sides: a far brighter frame is the misplaced-peak warn, not a tie (Codex, PR #438)
         if rivals:
