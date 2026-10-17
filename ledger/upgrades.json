@@ -3288,7 +3288,7 @@
    "run_date": "2026-10-16",
    "kind": "fix",
    "area": "scripts",
-   "change": "scripts/tonal_arc_check.py WARNs two more misses: one tone under a spike (with the brightest and darkest frame set aside, the rest span under MID_SPAN 12 L*, on sheets of 6 or more frames) and a peak that ties (an undeclared frame within PEAK_TOL 3 L* of the declared peak); still WARN only, never FAIL.",
+   "change": "scripts/tonal_arc_check.py WARNs two more misses: one tone under a spike (an extreme frame is set aside only when it stands at least MID_SPAN 12 L* clear of the frame beside it, and the warn fires when, with the spikes set aside, the rest span under MID_SPAN, on sheets of 6 or more frames; a smooth ramp has no spike and no warn) and a peak that ties (an undeclared frame within PEAK_TOL 3 L* of the declared peak, counted only when the declared peak is itself within PEAK_TOL of the measured maximum); still WARN only, never FAIL.",
    "trigger": "The week's cause e, the flow critic's cross-frame list: 4 of 5 runs, 24 frames (2026-10-11 'one bright spike over a flat dark plateau (16 to 20 L*)', 2026-10-12 'seven of nine frames in an L* 8 to 13 band', 2026-10-15 '04 and 08 tie at L* 36'); tonal_arc_check PASSED 10-11, 10-15 and the 10-12 peak, because one lit frame widens the span and a peak ahead by 1.7 L* is still first.",
    "files": [
     "scripts/tonal_arc_check.py",

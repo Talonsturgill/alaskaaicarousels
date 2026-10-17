@@ -3637,7 +3637,11 @@ def canvas_cover_probe(page, width, height, nodes):
       const blends = (el) => { for (let p = el; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
         const b = getComputedStyle(p).mixBlendMode; if (b && b !== 'normal') return true; } return false; };
       const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
-      const shownCv = [...document.querySelectorAll('canvas')].filter(c => getComputedStyle(c).visibility !== 'hidden');
+      // a canvas paints only when it is visible, displayed and not faded to nothing anywhere up its chain
+      const paints = (c) => { const cs = getComputedStyle(c); if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+        let op = 1; for (let p = c; p && p.nodeType === 1; p = p.parentElement) { const s = getComputedStyle(p); if (s.display === 'none') return false; op *= parseFloat(s.opacity); }
+        return op > 0.01; };
+      const shownCv = [...document.querySelectorAll('canvas')].filter(paints);
       const all = shownCv.map(c => c.getBoundingClientRect()), bc = shownCv.filter(blends).map(c => c.getBoundingClientRect());
       const out = [];
       for (const t of document.querySelectorAll('[data-akt-idx]')) {
@@ -3647,11 +3651,12 @@ def canvas_cover_probe(page, width, height, nodes):
         if (!bad) bad = bc.some(c => hit(c, r));
         if (bad) out.push(+t.getAttribute('data-akt-idx'));
       }
-      return out; }"""
+      return {out, rects: all.map(c => [c.left, c.top, c.right, c.bottom])}; }"""
     try:
-        blended = set(page.evaluate(BLENDED) or [])
+        _b = page.evaluate(BLENDED) or {}
+        blended, cv_rects = set(_b.get("out") or []), _b.get("rects") or []
     except Exception:
-        blended = set()
+        blended, cv_rects = set(), []
     SET = """(a) => { const [c, hide] = a;
       const keep = (el) => { if (!el.hasAttribute('data-akt-style')) el.setAttribute('data-akt-style', el.getAttribute('style') === null ? '\\u0000' : el.getAttribute('style')); };
       for (const el of document.querySelectorAll('[data-akt-idx], [data-akt-idx] *')) {
@@ -3701,7 +3706,9 @@ def canvas_cover_probe(page, width, height, nodes):
             if n < 6:
                 # a line the probe could not recolour (a colour-collapsing filter above it, or ink under
                 # about 10 percent) is UNVERIFIED, never silently clean (Codex, PR #438)
-                if ln[2] >= 8 and ln[3] >= 8:
+                # ...and only where a painting canvas actually overlaps the line (Codex, PR #438)
+                if ln[2] >= 8 and ln[3] >= 8 and any(r[0] < ln[0] + ln[2] and r[2] > ln[0] and r[1] < ln[1] + ln[3] and r[3] > ln[1]
+                                                     for r in cv_rects):
                     unver += 1
                     worst_unv = 1.0
                 continue
