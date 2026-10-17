@@ -774,14 +774,23 @@ def site_fresh_row(rows, run):
     # ...and never behind what main already publishes: a stale build that is byte-exact at its own stale date
     # is still a rollback when main's site records a later one (Codex, PR #438)
     base_recorded = None
-    try:
-        bs = subprocess.run(["git", "-C", str(REPO), "show", "origin/main:docs/sitemap.xml"],
-                            capture_output=True, text=True, timeout=60)
-        bm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", bs.stdout or "")
-        base_recorded = bm.group(1) if (bs.returncode == 0 and bm) else None
-    except Exception:
-        pass
-    if recorded and base_recorded and recorded < base_recorded:
+    for ref in ("origin/main", "main"):
+        try:
+            bs = subprocess.run(["git", "-C", str(REPO), "show", ref + ":docs/sitemap.xml"],
+                                capture_output=True, text=True, timeout=60)
+            bm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", bs.stdout or "")
+            if bs.returncode == 0 and bm:
+                base_recorded = bm.group(1)
+                break
+        except Exception:
+            continue
+    # fail CLOSED: a row that can't see what main publishes can't rule out a rollback (Codex, PR #438)
+    if base_recorded is None:
+        rows.add("site_fresh", "FAIL",
+                 "can't read the published site's build date from origin/main or main "
+                 "(git fetch origin main), so a rollback can't be ruled out")
+        return
+    if recorded and recorded < base_recorded:
         rows.add("site_fresh", "FAIL",
                  "docs/ records a build for %s, behind main's %s: rebuild with site_build.py --date %s"
                  % (recorded, base_recorded, base_recorded))

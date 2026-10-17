@@ -2584,13 +2584,23 @@ IN_PAGE_QA_JS = """
       // (the bitmap paints the content box), a filter other than opacity(), or a CSS background on the canvas
       // element. Any of those makes its pixel unverified, never covered, so the
       // probe can't false-FAIL on a mapping it doesn't model; qa reports unverified lines as a WARN.
+      // Transforms are checked up the WHOLE chain (they move the bounding box the mapping reads); masks,
+      // clip-paths and filters only on the canvas's private branch below its common ancestor with the
+      // text, because a wrapper they share acts on the finished group after the canvas covered the text
+      // (Codex, PR #438).
       const _xfCache = new Map();
-      const _transformed = (cv) => {
-        if (_xfCache.has(cv)) return _xfCache.get(cv);
-        let t = false;
+      const _transformed = (cv, tel) => {
+        let ca = cv.parentElement;
+        while (ca && tel && !ca.contains(tel)) ca = ca.parentElement;
+        let byCa = _xfCache.get(cv);
+        if (!byCa) { byCa = new Map(); _xfCache.set(cv, byCa); }
+        if (byCa.has(ca)) return byCa.get(ca);
+        let t = false, priv = true;
         for (let p = cv; !t && p && p.nodeType === 1; p = p.parentElement) {
+          if (p === ca) priv = false;
           const cs = getComputedStyle(p);
           if ((cs.transform && cs.transform !== "none") || (cs.rotate && cs.rotate !== "none") || (cs.scale && cs.scale !== "none") || (cs.translate && cs.translate !== "none")) t = true;
+          if (!priv) continue;
           const mk = cs.maskImage || cs.webkitMaskImage || "none", cp = cs.clipPath || "none";
           if ((mk && mk !== "none") || (cp && cp !== "none")) t = true;
           // any filter but opacity() reshapes the displayed alpha (blur, drop-shadow, url): unverified
@@ -2601,10 +2611,10 @@ IN_PAGE_QA_JS = """
           if (p === cv && cs.objectFit && cs.objectFit !== "fill") t = true;   // contain, cover, none, scale-down reshape the bitmap (Codex, PR #438)
           if (p === cv) for (const k of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) if (parseFloat(cs[k]) > 0) t = true;
         }
-        _xfCache.set(cv, t); return t;
+        byCa.set(ca, t); return t;
       };
-      const _readA = (cv, x, y) => {
-        if (_transformed(cv)) return null;
+      const _readA = (cv, x, y, tel) => {
+        if (_transformed(cv, tel)) return null;
         const rr = cv.getBoundingClientRect();
         if (rr.width < 1 || rr.height < 1 || !cv.width || !cv.height) return 0;
         const sx = Math.floor((x - rr.left) * cv.width / rr.width);
@@ -2651,7 +2661,7 @@ IN_PAGE_QA_JS = """
             const stack = document.elementsFromPoint(x, y);
             let ti = -1;
             for (let k = 0; k < stack.length; k++) {
-              if (stack[k] === tel || tel.contains(stack[k])) { ti = k; break; }
+              if (stack[k] === tel || (stack[k].tagName !== "CANVAS" && tel.contains(stack[k]))) { ti = k; break; }   // a descendant canvas is a layer, not the text (Codex, PR #438)
             }
             if (ti < 0) continue;
             lp++;
@@ -2659,13 +2669,16 @@ IN_PAGE_QA_JS = """
             let hit = false, unknown = false, clear = 1;
             for (let k = 0; k < ti && !hit; k++) {
               const nd = stack[k];
-              if (nd.tagName !== "CANVAS" || nd.contains(tel)) continue;
+              if (nd.tagName !== "CANVAS" || nd === tel) continue;
               const eo = _effOp(nd, tel);
               if (eo === null) continue;
-              const a = _readA(nd, x, y);
+              const a = _readA(nd, x, y, tel);
               if (a === null) { unknown = true; byEl = byEl || nd; continue; }
               const ca = (a / 255) * eo;
-              if (ca > 0.02) { clear *= (1 - ca); if (!byEl || ca > 0.5) byEl = nd; }
+              // layers on fully opaque branches composite; a canvas under a translucent wrapper is judged on
+              // its own, because the wrapper fades the finished group once, not each child (Codex, PR #438)
+              if (eo >= 0.999) { if (ca > 0.02) { clear *= (1 - ca); if (!byEl || ca > 0.5) byEl = nd; } }
+              else if (ca >= 0.9) { hit = true; byEl = nd; }
               if (1 - clear >= 0.9) hit = true;
             }
             if (hit) lc++; else if (unknown) { unk++; lu++; }

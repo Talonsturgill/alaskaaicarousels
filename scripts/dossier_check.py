@@ -195,7 +195,9 @@ def promised_cast(body):
         head = words[-1] if words else ""
         # a compound light noun counts by its ending: spotlight, sunlight, floodlamp (Codex, PR #438)
         light_head = re.search(r"(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?$", head, re.I)
-        if not CAST_LIGHT_RE.search(m.group(0)) and not light_head:
+        # "casts a light shadow onto" is a shadow: a light word only exempts a cast that names no shadow
+        is_shadow = re.search(r"\bshadows?\b", m.group(0), re.I)
+        if (is_shadow or not CAST_LIGHT_RE.search(m.group(0))) and not light_head:
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
             return " ".join((m.group(0) + tail).split())
     return None
