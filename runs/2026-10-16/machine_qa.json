@@ -1,0 +1,215 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the folded microphone base on the satin table': shadow L* 16.2 vs ground L* 36.1, dL 19.9 at 432w"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "q '\"The Governor's officehas not given us permi' fits 3/3 lines at 82.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the response groove, gold rimmed, blank': canvas 31.8 dE, page 110.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "a 'Senators votedto subpoena him.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the parcel outline after DNR vicinity map': canvas 84.5 dE, page 86.9 dE, 96% of its rect is clear of opaque DOM (div#lcreek.lab stands on the rest)"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the parcel outline on Deception Creek' lands 0.0px from its target",
+        "leader 'the parcel outline on Deception Creek' meets its label 3.9px away",
+        "leader 'the parcel outline on Deception Creek' is drawn 66 px at 31 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "a 'About 19,950 acres of state land,at no cost ' fits 2/2 lines at 70px"
+      ],
+      "asserts": [
+        "'the 2 mile bar at the plate scale' holds: 119.092 vs 119.092 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "a '94 percent of other transfersunder it were u' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'94 of 100 pits sunk, one pit per percent (C23)' holds: 94 vs 94 marks, counted over 94 declared marks (within 0)",
+        "'94 of 100 pits sunk, one pit per percent (C23)': 94 mark centres probed at r=11px, cohort median 31.3 dE, all present (weakest 26.9 dE)",
+        "'side ratio of the two plate marks, the square root of 19,950 over 100' holds: 14.12 vs 14.1244 ratio (within 0.02)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the uncut parcel, polished plate': canvas 51.1 dE, page 77.2 dE, 50% of its rect is clear of opaque DOM (div#lscope.lab stands on the rest)"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "a '\"The scope of this decisiondoes not include ' fits 3/3 lines at 71.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the Houston plate on the desk': shadow L* 11.4 vs ground L* 17.7, dL 6.3 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the Port MacKenzie tablet with its double edge': canvas 57.5 dE, page 76.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "a 'Port MacKenzie's draft keeps a reverter.Hous' fits 2/2 lines at 57.5px"
+      ],
+      "asserts": [
+        "'the Port MacKenzie tablet, 885 acres at the Houston plate scale' holds: 71.1 vs 71.1571 px (within 0.3)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "d '41.8 miles of trailalready cross it.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 8 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the JULY 10TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the SEPTEMBER 1ST notch on the calendar' lands 0.0px from its target",
+        "leader 'the SEPTEMBER 18TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the SEPTEMBER 22ND notch on the calendar' lands 0.0px from its target",
+        "leader 'the OCTOBER 8TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the OCTOBER 13TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the OCTOBER 14TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the OCTOBER 26TH notch on the calendar' lands 0.0px from its target",
+        "leader 'the JULY 10TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the SEPTEMBER 1ST notch on the calendar' meets its label 10.0px away",
+        "leader 'the SEPTEMBER 18TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the SEPTEMBER 22ND notch on the calendar' meets its label 10.0px away",
+        "leader 'the OCTOBER 8TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the OCTOBER 13TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the OCTOBER 14TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the OCTOBER 26TH notch on the calendar' meets its label 10.0px away",
+        "leader 'the JULY 10TH notch on the calendar' is drawn 250 px at 46 degrees, inside the pointer band",
+        "leader 'the SEPTEMBER 1ST notch on the calendar' is drawn 289 px at 53 degrees, inside the pointer band",
+        "leader 'the SEPTEMBER 18TH notch on the calendar' is drawn 333 px at 59 degrees, inside the pointer band",
+        "leader 'the SEPTEMBER 22ND notch on the calendar' is drawn 269 px at 50 degrees, inside the pointer band",
+        "leader 'the OCTOBER 8TH notch on the calendar' is drawn 302 px at 55 degrees, inside the pointer band",
+        "leader 'the OCTOBER 13TH notch on the calendar' is drawn 250 px at 46 degrees, inside the pointer band",
+        "leader 'the OCTOBER 14TH notch on the calendar' is drawn 187 px at 23 degrees, inside the pointer band",
+        "leader 'the OCTOBER 26TH notch on the calendar' is drawn 188 px at 23 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "t 'July 10th to October 26th' fits 1/1 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the witness chair front foot on the carpet': shadow L* 6.9 vs ground L* 55.5, dL 48.5 at 432w"
+      ],
+      "scales": [
+        "'the pleading calendar, days since July 10th' runs 0 days at 150 to 108 days at 1230; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "q 'Why waive the reverterat Houston and keepit ' fits 3/3 lines at 98.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKDOCKET.answerLine",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9
+        ]
+      },
+      {
+        "call": "AKDOCKET.chrome",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKDOCKET.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}
