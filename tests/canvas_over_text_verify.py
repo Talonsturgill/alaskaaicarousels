@@ -42,6 +42,8 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-12  the No.88 shape under a colour-collapsing filter
             on <html> itself                                 -> no FAIL, UNVERIFIED, never
                                                                  silently clean
+  slide-13  a near-transparent canvas with a backdrop filter
+            ABOVE the type                                   -> no FAIL, UNVERIFIED
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
 modelling any CSS.
 """
@@ -169,6 +171,9 @@ CASES = [
      0, -1, []),
     ("slide-12.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="").replace(
         "html, body {", "html { filter:grayscale(1) contrast(0); }\n  html, body {", 1),
+     0, -1, []),
+    ("slide-13.html", slide(ART.format(style="backdrop-filter:brightness(2);z-index:30;", alpha=0.004, rect=FULL),
+                            fixtures="z-index:9;"),
      0, -1, []),
 ]
 MARK = "text under canvas ink"

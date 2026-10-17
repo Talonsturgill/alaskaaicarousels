@@ -3638,6 +3638,8 @@ def canvas_cover_probe(page, width, height, nodes):
       // and reshape colour, so the probe never restyles them and the text abstains (Codex, PR #438)
       const blends = (el) => { for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
         const cs = getComputedStyle(p), b = cs.mixBlendMode; if (b && b !== 'normal') return true;
+        // a backdrop filter reshapes whatever lies beneath it, the text included (Codex, PR #438)
+        const bf = cs.backdropFilter || cs.webkitBackdropFilter; if (bf && bf !== 'none') return true;
         if (el.tagName !== 'CANVAS' && cs.filter && cs.filter !== 'none') return true; } return false; };
       const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
       // a canvas paints only when it is visible, displayed and not faded to nothing anywhere up its chain
@@ -3651,7 +3653,8 @@ def canvas_cover_probe(page, width, height, nodes):
       // (an <html> filter holds everything) it reshapes the canvas too, and the shown/hidden difference
       // can't say whether that canvas paints (Codex, PR #438)
       const fx = (el) => { const a = []; for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
-        const cs = getComputedStyle(p); if ((cs.mixBlendMode && cs.mixBlendMode !== 'normal') || (cs.filter && cs.filter !== 'none')) a.push(p); } return a; };
+        const cs = getComputedStyle(p), bf = cs.backdropFilter || cs.webkitBackdropFilter;
+        if ((cs.mixBlendMode && cs.mixBlendMode !== 'normal') || (cs.filter && cs.filter !== 'none') || (bf && bf !== 'none')) a.push(p); } return a; };
       for (const t of document.querySelectorAll('[data-akt-idx]')) {
         const r = t.getBoundingClientRect();
         // abstain only where a canvas actually shares pixels with the text (Codex, PR #438)
@@ -3697,7 +3700,8 @@ def canvas_cover_probe(page, width, height, nodes):
     H, W = d_shown.shape
     # does a canvas actually PAINT in a box? pixel truth again: the shown and hidden shots of one colour differ
     # there (Codex, PR #438: a full-frame transparent canvas paints nothing over a header)
-    d_canvas = np.abs(imgs[0] - imgs[2]).max(axis=2)
+    # both probe colours: a canvas that paints the very colour of one probe hides from that pair alone (Codex, PR #438)
+    d_canvas = np.maximum(np.abs(imgs[0] - imgs[2]).max(axis=2), np.abs(imgs[1] - imgs[3]).max(axis=2))
 
     def canvas_paints(ln):
         x0, y0 = max(0, int(ln[0] * k)), max(0, int(ln[1] * k))

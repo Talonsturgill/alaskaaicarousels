@@ -182,7 +182,9 @@ LIGHT_NOUNS = {w + s for w in ("light", "sunlight", "spotlight", "floodlight", "
                                "sun", "beam", "glow", "pool", "reflection", "spill", "flare", "ray", "shaft")
                for s in ("", "s")}
 AUX_WORDS = {"will", "would", "shall", "should", "may", "might", "can", "could", "must", "does", "do", "did",
-             "also", "still", "then", "now", "always", "often", "just", "both", "each"}
+             "also", "still", "then", "now", "always", "often", "just", "both", "each",
+             # the passive "be": "the light is cast onto the desk" is light (Codex, PR #438)
+             "is", "are", "was", "were", "be", "been", "being", "has", "have", "had"}
 CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?\b", re.I)
 
 

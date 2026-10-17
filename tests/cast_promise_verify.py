@@ -66,6 +66,12 @@ def main():
     for body in ("the lamp glows and softly casts onto the desk\n", "the lamp glows and will cast onto the desk\n"):
         f, w = run(body)
         ok("a shared light subject survives an adverb or auxiliary: " + body.strip(), not w, w)
+    for body in ("the light is cast onto the desk\n", "a beam was cast onto the floor\n",
+                 "the light will be cast onto the wall\n"):
+        f, w = run(body)
+        ok("a passive light subject is still light: " + body.strip(), not w, w)
+    f, w = run("the plate is cast onto the desk in shadow\n")
+    ok("...and a passive object is still a promise", len(w) == 1, w)
     f, w = run("the plates catch the light and cast onto the base\n")
     ok("a shared subject is the clause's subject, not its object", len(w) == 1, w)
     print("\ncast promise check: " + ("HOLDS" if not bad else "%d BROKEN" % bad))

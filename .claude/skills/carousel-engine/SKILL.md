@@ -749,7 +749,7 @@ FAILs whatever it left stale.
   rounds on PR #438 and never converged). Blending and filters on the text's
   own branch are the exceptions: text that blends or carries a CSS filter, or
   sits under an ancestor that does (`<html>` included), or overlaps a blending
-  canvas, is reported UNVERIFIED (a WARN for the pixel critic) and never
+  canvas or one with a `backdrop-filter`, is reported UNVERIFIED (a WARN for the pixel critic) and never
   restyled, because both change paint order and can collapse the probe's
   colours, so a colour difference stops meaning coverage. A filter on the
   canvas side needs no exception: it is part of the picture being measured. qa.py FAILS a reading line half covered (WARN from a fifth) and a
