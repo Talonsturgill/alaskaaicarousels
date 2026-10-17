@@ -2609,7 +2609,11 @@ IN_PAGE_QA_JS = """
         const c0 = getComputedStyle(cv);
         if (c0.mixBlendMode && c0.mixBlendMode !== "normal") ok = false;
         for (let p = cv; ok && p && p.nodeType === 1; p = p.parentElement) {
-          op *= parseFloat(getComputedStyle(p).opacity);
+          const cs = getComputedStyle(p);
+          op *= parseFloat(cs.opacity);
+          // a filter opacity() fades the canvas as CSS opacity does (Codex, PR #438)
+          const f = cs.filter || "none";
+          if (f !== "none") for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g)) op *= m[2] ? parseFloat(m[1]) / 100 : parseFloat(m[1]);
         }
         const v = (ok && op >= 0.9) ? op : null;
         _opCache.set(cv, v);

@@ -1745,7 +1745,10 @@ JSON in its final message, which YOU persist to
 
 2d. LAST, after every other site step, run
    `python scripts/site_fresh_check.py --date <date>` with the SAME date you
-   passed to site_build.py. It rebuilds the whole site into a temp dir and
+   passed to site_build.py. When the run ships after midnight UTC and a cron has already rebuilt
+   main's docs/ for today, build (and check) at TODAY's UTC date instead: never
+   at a date earlier than main's build, which rolls the published site back
+   (Codex on PR #438). gate_status's site_fresh row accepts either date. It rebuilds the whole site into a temp dir and
    proves docs/ is byte-identical to what the generator makes from the data
    you just committed. The build is deterministic, so this is an exact test.
 

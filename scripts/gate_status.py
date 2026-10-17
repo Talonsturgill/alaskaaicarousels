@@ -756,13 +756,27 @@ def site_fresh_row(rows, run):
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
         rows.absent("site_fresh", "run dir %r is not a date, cannot pick --date" % date)
         return
-    try:
-        p = subprocess.run([sys.executable, str(script), "--date", date],
-                           capture_output=True, text=True, timeout=600)
-    except Exception as e:
-        rows.add("site_fresh", "FAIL",
-                 "could not run site_fresh_check (%s)" % type(e).__name__)
-        return
+    # A LATER BUILD DATE IS RIGHT, AN EARLIER ONE IS THE ROLLBACK (2026-10-16, Codex on
+    # PR #438). A run that ships after midnight UTC meets a main whose docs/ a cron has
+    # already rebuilt for today; rebuilding at the run date would roll the published
+    # site back a day (an expired deadline as the homepage's next event). So the site is
+    # built at today's UTC date when that is later than the run date, and this row
+    # accepts a fresh build at either date, never at one earlier than the run.
+    import datetime as _dt
+    today = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d")
+    dates = [date] + ([today] if today > date else [])
+    p, used = None, date
+    for d in dates:
+        try:
+            p = subprocess.run([sys.executable, str(script), "--date", d],
+                               capture_output=True, text=True, timeout=600)
+        except Exception as e:
+            rows.add("site_fresh", "FAIL",
+                     "could not run site_fresh_check (%s)" % type(e).__name__)
+            return
+        used = d
+        if p.returncode == 0:
+            break
     out = [ln for ln in (p.stdout + p.stderr).strip().splitlines()
            if ln.strip() and not ln.startswith("note:")] or [""]
     rows.add("site_fresh", "PASS" if p.returncode == 0 else "FAIL", out[-1 if p.returncode == 0 else 0][:140])

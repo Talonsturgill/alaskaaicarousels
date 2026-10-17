@@ -179,7 +179,10 @@ CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill)s?\b", r
 def promised_cast(body):
     """The first 'casts onto' phrase in a dossier body that is a shadow, not light."""
     for m in CAST_ONTO_RE.finditer(body or ""):
-        if not CAST_LIGHT_RE.search(m.group(0)):
+        # the subject sits before the verb ("the beam casts softly onto the desk"), so read the
+        # clause leading up to the match as well as the match itself (Codex, PR #438)
+        lead = re.split(r"[\n.;:,(]", body[max(0, m.start() - 48):m.start()])[-1]
+        if not CAST_LIGHT_RE.search(m.group(0)) and not CAST_LIGHT_RE.search(lead):
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
             return " ".join((m.group(0) + tail).split())
     return None
