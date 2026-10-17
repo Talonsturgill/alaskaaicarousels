@@ -2551,154 +2551,18 @@ IN_PAGE_QA_JS = """
       if (worst) { delete worst._px; tn.occluded = worst; }
     }
     /* TEXT UNDER CANVAS INK (2026-10-16, weekly pass; queue item 2026-10-16).
-       The probe above skips <canvas> on purpose, because canvas ink is sparse
-       and an element box says nothing about which pixels are drawn. Run No.88
-       paid for that: AKDOCKET.fixtures appended the ALASKA.AI wordmark, the
-       NN / 09 counter and alaskaaihq.com with position:absolute and no
-       z-index AFTER a z-index:1 art canvas, so all three painted UNDER it on
-       all nine frames. They were in the DOM, so render.py, qa.py and
-       copy_sync_check passed, and five pixel critics found them missing.
-       So for EVERY recorded text node, decorative ones included (the
-       wordmark and the site line are data-decorative), sample its line boxes
-       on a 5 x 2 grid, ask elementsFromPoint which canvases stack ABOVE the
-       text at each point, and read that canvas's own pixel there. A point is
-       covered when the canvas layers above it COMPOSITE to 0.9 or more (each
-       layer's pixel alpha times its own branch's opacity, stacked as
-       1 - product of the clear shares). A canvas with a blend mode never
-       covers (a grain or glow layer is legal over type). A
-       pixel that can't be read (a tainted or transferred canvas) counts as
-       unverified, never as covered. A WebGL canvas without
-       preserveDrawingBuffer may read transparent here: that is a miss, never
-       a false FAIL. The verdict is qa.py's (CANVAS_OVER_*). */
+       Run No.88's AKDOCKET.fixtures painted the wordmark, the counter and the
+       site line UNDER a z-index 1 art canvas on all nine frames; they were in
+       the DOM, so every DOM gate passed. The check is now PIXEL TRUTH, done in
+       Python after the screenshot (canvas_cover_probe): ten review rounds on
+       PR #438 showed that modelling CSS compositing in a hit-test probe
+       (opacity groups, blend modes, masks, filters, object-fit, pointer-events)
+       never converges. Here the page only tags every recorded text element so
+       the Python side can recolour exactly those elements. */
     try {
-      let scratch = null, sctx = null;
-      const _fresh = () => {
-        scratch = document.createElement("canvas"); scratch.width = 1; scratch.height = 1;
-        sctx = scratch.getContext("2d", { willReadFrequently: true });
-        sctx.imageSmoothingEnabled = false;
-      };
-      _fresh();
-      // ONLY A PLAINLY MAPPED CANVAS IS READ (Codex, PR #438, five review rounds on this mapping). Its bounding
-      // box maps linearly onto its backing store only when nothing between them reshapes it: a CSS transform on
-      // it or an ancestor, a mask or clip-path on it or an ancestor, or padding or a border on the canvas itself
-      // (the bitmap paints the content box), a filter other than opacity(), or a CSS background on the canvas
-      // element. Any of those makes its pixel unverified, never covered, so the
-      // probe can't false-FAIL on a mapping it doesn't model; qa reports unverified lines as a WARN.
-      // Transforms are checked up the WHOLE chain (they move the bounding box the mapping reads); masks,
-      // clip-paths and filters only on the canvas's private branch below its common ancestor with the
-      // text, because a wrapper they share acts on the finished group after the canvas covered the text
-      // (Codex, PR #438).
-      const _xfCache = new Map();
-      const _transformed = (cv, tel) => {
-        let ca = cv.parentElement;
-        while (ca && tel && !ca.contains(tel)) ca = ca.parentElement;
-        let byCa = _xfCache.get(cv);
-        if (!byCa) { byCa = new Map(); _xfCache.set(cv, byCa); }
-        if (byCa.has(ca)) return byCa.get(ca);
-        let t = false, priv = true;
-        for (let p = cv; !t && p && p.nodeType === 1; p = p.parentElement) {
-          if (p === ca) priv = false;
-          const cs = getComputedStyle(p);
-          if ((cs.transform && cs.transform !== "none") || (cs.rotate && cs.rotate !== "none") || (cs.scale && cs.scale !== "none") || (cs.translate && cs.translate !== "none")) t = true;
-          if (!priv) continue;
-          const mk = cs.maskImage || cs.webkitMaskImage || "none", cp = cs.clipPath || "none";
-          if ((mk && mk !== "none") || (cp && cp !== "none")) t = true;
-          // any filter but opacity() reshapes the displayed alpha (blur, drop-shadow, url): unverified
-          const fl = (cs.filter || "none").replace(/opacity\([^)]*\)/g, "").trim();
-          if (fl && fl !== "none") t = true;
-          // a CSS background on the canvas element paints under its bitmap, which the bitmap read can't see
-          if (p === cv && ((cs.backgroundImage && cs.backgroundImage !== "none") || !/rgba\([^)]*,\s*0\)|transparent/.test(cs.backgroundColor || "transparent"))) t = true;
-          if (p === cv && cs.objectFit && cs.objectFit !== "fill") t = true;   // contain, cover, none, scale-down reshape the bitmap (Codex, PR #438)
-          if (p === cv) for (const k of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) if (parseFloat(cs[k]) > 0) t = true;
-        }
-        byCa.set(ca, t); return t;
-      };
-      const _readA = (cv, x, y, tel) => {
-        if (_transformed(cv, tel)) return null;
-        const rr = cv.getBoundingClientRect();
-        if (rr.width < 1 || rr.height < 1 || !cv.width || !cv.height) return 0;
-        const sx = Math.floor((x - rr.left) * cv.width / rr.width);
-        const sy = Math.floor((y - rr.top) * cv.height / rr.height);
-        if (sx < 0 || sy < 0 || sx >= cv.width || sy >= cv.height) return 0;
-        try {
-          sctx.clearRect(0, 0, 1, 1);
-          sctx.drawImage(cv, sx, sy, 1, 1, 0, 0, 1, 1);
-          return sctx.getImageData(0, 0, 1, 1).data[3];
-        } catch (e) { _fresh(); return null; }   // a tainted read poisons the scratch
-      };
-      // Only the canvas's OWN branch counts: an ancestor it shares with the text fades or blends the
-      // finished group, after the canvas has already covered the text inside it (Codex, PR #438)
-      const _opCache = new Map();
-      const _effOp = (cv, tel) => {
-        let ca = cv.parentElement;
-        while (ca && !ca.contains(tel)) ca = ca.parentElement;
-        let byCa = _opCache.get(cv);
-        if (!byCa) { byCa = new Map(); _opCache.set(cv, byCa); }
-        if (byCa.has(ca)) return byCa.get(ca);
-        let op = 1, ok = true;
-        for (let p = cv; ok && p && p.nodeType === 1 && p !== ca; p = p.parentElement) {
-          const cs = getComputedStyle(p);
-          // a blend mode on the canvas OR any ancestor blends the group (Codex, PR #438)
-          if (cs.mixBlendMode && cs.mixBlendMode !== "normal") { ok = false; break; }
-          op *= parseFloat(cs.opacity);
-          // a filter opacity() fades the canvas as CSS opacity does (Codex, PR #438)
-          const f = cs.filter || "none";
-          if (f !== "none") for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g)) op *= m[2] ? parseFloat(m[1]) / 100 : parseFloat(m[1]);
-        }
-        const v = ok ? op : null;
-        byCa.set(ca, v);
-        return v;
-      };
-      for (const [tel, idx] of recorded) {
-        const tn = out.text_nodes[idx];
-        let pts = 0, cov = 0, unk = 0, worstLine = 0, worstUnk = 0, byEl = null;
-        for (const ln of (tn.lines || [])) {   // every line: a canvas over line 9 of a long body is still a cover (Codex, PR #438)
-          if (!ln || ln[2] < 2 || ln[3] < 2) continue;
-          let lp = 0, lc = 0, lu = 0;
-          for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) for (const fy of [0.35, 0.65]) {
-            const x = ln[0] + ln[2] * fx, y = ln[1] + ln[3] * fy;
-            if (x < 0 || y < 0 || x >= W || y >= H) continue;
-            const stack = document.elementsFromPoint(x, y);
-            let ti = -1;
-            for (let k = 0; k < stack.length; k++) {
-              if (stack[k] === tel || (stack[k].tagName !== "CANVAS" && tel.contains(stack[k]))) { ti = k; break; }   // a descendant canvas is a layer, not the text (Codex, PR #438)
-            }
-            if (ti < 0) continue;
-            lp++;
-            // stacked canvases COMPOSITE: two 70 percent layers leave 9 percent of the text (Codex, PR #438)
-            let hit = false, unknown = false, clear = 1;
-            for (let k = 0; k < ti && !hit; k++) {
-              const nd = stack[k];
-              if (nd.tagName !== "CANVAS" || nd === tel) continue;
-              const eo = _effOp(nd, tel);
-              if (eo === null) continue;
-              const a = _readA(nd, x, y, tel);
-              if (a === null) { unknown = true; byEl = byEl || nd; continue; }
-              const ca = (a / 255) * eo;
-              // layers on fully opaque branches composite; a canvas under a translucent wrapper is judged on
-              // its own, because the wrapper fades the finished group once, not each child (Codex, PR #438)
-              if (eo >= 0.999) { if (ca > 0.02) { clear *= (1 - ca); if (!byEl || ca > 0.5) byEl = nd; } }
-              else if (ca >= 0.9) { hit = true; byEl = nd; }
-              if (1 - clear >= 0.9) hit = true;
-            }
-            if (hit) lc++; else if (unknown) { unk++; lu++; }
-          }
-          pts += lp; cov += lc;
-          if (lp) { worstLine = Math.max(worstLine, lc / lp); worstUnk = Math.max(worstUnk, lu / lp); }
-        }
-        if (pts && (cov || unk)) {
-          tn.canvas_over = {
-            frac: Math.round(1000 * cov / pts) / 1000,
-            worst_line: Math.round(1000 * worstLine) / 1000,
-            unverified: unk, points: pts, worst_unverified_line: Math.round(1000 * worstUnk) / 1000,
-            by: byEl ? (byEl.id ? "#" + byEl.id : ((byEl.getAttribute("class") || "canvas").slice(0, 40)))
-                     : "canvas",
-            z: byEl ? getComputedStyle(byEl).zIndex : ""
-          };
-        }
-      }
+      for (const [tel, idx] of recorded) { try { tel.setAttribute("data-akt-idx", String(idx)); } catch (e) {} }
     } catch (e) {
-      try { console.error("canvas-over-text probe threw: " + e); } catch (e2) {}
+      try { console.error("canvas-over-text tagging threw: " + e); } catch (e2) {}
     }
   } catch (e) {
     // never fail the render over the probe itself; surface it as a console
@@ -3740,6 +3604,73 @@ IN_PAGE_QA_JS = """
 """
 
 
+
+def canvas_cover_probe(page, width, height, nodes):
+    """TEXT UNDER CANVAS INK, by pixel truth (2026-10-16, PR #438). Every
+    recorded text element (tagged data-akt-idx in the page) is recoloured pure
+    magenta and then pure green, once with the canvases shown and once with
+    them hidden. Whatever lies UNDER the text is identical in both colours and
+    cancels; only what paints ABOVE it shrinks the difference. So, per line box,
+    a glyph pixel's coverage is 1 - diff(shown) / diff(hidden): exact for any
+    opacity, blend mode, mask, filter, object-fit or pointer-events, with no
+    CSS modelled. A pixel at 90 percent or more covered counts as covered.
+    Fills node["canvas_over"] in the schema qa.py reads (CANVAS_OVER_*)."""
+    try:
+        if not page.evaluate("() => document.querySelectorAll('canvas').length"):
+            return
+        import io
+        import numpy as np
+        from PIL import Image
+    except Exception:
+        return
+    clip = {"x": 0, "y": 0, "width": width, "height": height}
+
+    def shot():
+        return np.asarray(Image.open(io.BytesIO(page.screenshot(clip=clip, type="png"))).convert("RGB")).astype(np.int16)
+
+    def colour(c):
+        return ("[data-akt-idx], [data-akt-idx] * { color: %s !important; -webkit-text-fill-color: %s !important; "
+                "text-shadow: none !important; -webkit-text-stroke: 0 !important; caret-color: transparent !important; } "
+                "text[data-akt-idx], [data-akt-idx] text, [data-akt-idx] tspan { fill: %s !important; stroke: none !important; }" % (c, c, c))
+
+    hide = "canvas { visibility: hidden !important; }"
+    imgs = []
+    for css in (colour("#FF00FF"), colour("#00FF00"), colour("#FF00FF") + hide, colour("#00FF00") + hide):
+        h = page.add_style_tag(content=css)
+        try:
+            page.evaluate("() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))")
+            imgs.append(shot())
+        finally:
+            h.evaluate("e => e.remove()")
+    d_shown = np.abs(imgs[0] - imgs[1]).max(axis=2)
+    d_hidden = np.abs(imgs[2] - imgs[3]).max(axis=2)
+    k = d_shown.shape[1] / float(width)
+    H, W = d_shown.shape
+    for i, tn in enumerate(nodes or []):
+        tot = cov = 0
+        worst = 0.0
+        for ln in (tn.get("lines") or []):
+            if not ln or ln[2] < 2 or ln[3] < 2:
+                continue
+            x0, y0 = max(0, int(ln[0] * k)), max(0, int(ln[1] * k))
+            x1, y1 = min(W, int((ln[0] + ln[2]) * k) + 1), min(H, int((ln[1] + ln[3]) * k) + 1)
+            if x1 <= x0 or y1 <= y0:
+                continue
+            dh, ds = d_hidden[y0:y1, x0:x1], d_shown[y0:y1, x0:x1]
+            m = dh >= 96                       # this element's own glyph pixels, canvases hidden
+            n = int(m.sum())
+            if n < 6:
+                continue
+            c = int(((ds[m] / dh[m]) < 0.1).sum())
+            tot += n
+            cov += c
+            worst = max(worst, c / n)
+        if tot and cov:
+            tn["canvas_over"] = {"frac": round(cov / tot, 3), "worst_line": round(worst, 3),
+                                 "unverified": 0, "points": tot, "worst_unverified_line": 0.0,
+                                 "by": "canvas", "z": ""}
+
+
 def _can_read_disk(browser):
     """Can this browser fetch() a committed asset over file://?
 
@@ -4763,6 +4694,11 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "paint")})
         page.screenshot(path=str(out_png), clip={"x": 0, "y": 0, "width": width, "height": height})
         rec["ok"] = out_png.exists() and out_png.stat().st_size > 10_000
+        # text under canvas ink, by pixel truth (recolours the text, so it runs after the frame is saved)
+        try:
+            canvas_cover_probe(page, width, height, rec.get("text_nodes"))
+        except Exception as e:
+            rec.setdefault("console_errors", []).append("canvas-over-text pixel probe: %s" % e)
         # the canvas layer on its own, for qa.py's canvas-over-text check
         try:
             cl = page.evaluate(CANVAS_LAYER_JS, [width, height])

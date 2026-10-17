@@ -27,6 +27,12 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-05  an opaque canvas chip over the left third of a
             reading line                                      -> one WARN, no FAIL
   slide-06  art over 60 percent of a decorative ghost numeral -> one WARN, no FAIL
+  slide-07  an opaque band with pointer-events none over the
+            headline (hit testing can't see it)              -> one FAIL
+  slide-08  two sibling bands at opacity .7 over the headline
+            (they composite to 91 percent)                    -> one FAIL
+The probe is pixel truth (render.py canvas_cover_probe), so these hold without
+modelling any CSS.
 """
 
 import json
@@ -94,6 +100,15 @@ CHIP = ('<canvas id="chip" width="640" height="200" style="position:absolute;lef
         '  cx.fillStyle = "#C9A227"; cx.fillRect(0, 0, 640, 200);\n})();\n</script>\n')
 
 FULL = "0, 0, 1080, 1350"
+
+# Codex on PR #438: a canvas with pointer-events none is invisible to hit testing but still paints;
+# two sibling canvases at opacity .7 composite to 91 percent over the headline
+def _band(cid, style):
+    return ('<canvas id="%s" width="2160" height="400" style="position:absolute;left:0;top:480px;'
+            'width:1080px;height:200px;%s"></canvas>\n<script>(function(){var c=document.getElementById('
+            '"%s").getContext("2d");c.fillStyle="#0A121C";c.fillRect(0,0,2160,400);})();</script>\n' % (cid, style, cid))
+NOHIT = _band("nohit", "z-index:6;pointer-events:none;")
+STACK = _band("s1", "z-index:6;opacity:.7;") + _band("s2", "z-index:7;opacity:.7;")
 CASES = [
     # name, html, expected FAIL count, expected WARN count, labels that must be named
     ("slide-01.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures=""),
@@ -116,6 +131,10 @@ CASES = [
     ("slide-06.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;",
                             extra=GHOST),
      0, 1, ["88"]),
+    ("slide-07.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=NOHIT),
+     1, 0, ["The hearing room"]),
+    ("slide-08.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=STACK),
+     1, 0, ["The hearing room"]),
 ]
 MARK = "text under canvas ink"
 

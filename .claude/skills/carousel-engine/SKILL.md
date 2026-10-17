@@ -740,11 +740,13 @@ FAILs whatever it left stale.
   demotes the FAIL to a WARN. The remedy is to move the plate or the type,
   never to declare the overlap away.
 - **No type may sit under canvas ink** (2026-10-16): the plate probe above
-  skips `<canvas>`, so render.py also samples every text node's line boxes,
-  DECORATIVE ONES INCLUDED, asks `elementsFromPoint` which canvases stack
-  above the text, and reads that canvas's own pixel at each point (alpha x
-  opacity >= 0.9 is covered; a blended or sub-0.9-opacity canvas never
-  covers). qa.py FAILS a reading line half covered (WARN from a fifth) and a
+  skips `<canvas>`, so render.py measures every text node, DECORATIVE ONES
+  INCLUDED, by PIXEL TRUTH: it recolours the text magenta and then green,
+  with the canvases shown and hidden, and a glyph pixel whose colour change
+  shrinks by 90 percent or more once the canvases show is covered. Whatever is
+  under the text cancels, so opacity groups, blend modes, masks, filters,
+  object-fit and pointer-events need no modelling (a hit-test model of them
+  took ten Codex rounds on PR #438 and never converged). qa.py FAILS a reading line half covered (WARN from a fifth) and a
   decorative mark 90 percent covered (WARN from half). Run No.88's wordmark,
   counter and site line were appended after a `z-index:1` art canvas with no
   z-index of their own and painted under it on all nine frames, in the DOM and

@@ -41,9 +41,9 @@ Checks per slide (consuming render_report.json + the PNGs):
     consecutive hard fails while machine QA reported PASS, 0 fails, 0 warns:
     text_collisions() only compares GLYPH LINE BOXES, and a padded plate's
     background is not one.
-  - TEXT UNDER CANVAS INK (FAIL): consumes render.py's canvas_over probe (the
-    pixel of each <canvas> stacked above a text line box, read at 10 points per
-    line) and FAILS a reading line half covered or a decorative mark 90 percent
+  - TEXT UNDER CANVAS INK (FAIL): consumes render.py's canvas_over probe (pixel
+    truth: each text element recoloured with the canvases shown and hidden, so
+    only what paints ABOVE the glyphs counts) and FAILS a reading line half covered or a decorative mark 90 percent
     covered. Added 2026-10-16 after run No.88's wordmark, counter and site line
     painted under a z-index 1 art canvas on all nine frames with every gate
     green (tests/canvas_over_text_verify.py).
