@@ -3634,9 +3634,9 @@ def canvas_cover_probe(page, width, height, nodes):
     # blends, sits under a blending ancestor, or overlaps a blending canvas is reported UNVERIFIED instead
     # of measured (Codex, PR #438, rounds 12 to 16).
     BLENDED = """() => {
-      // blending OR a filter on the text's branch: both make stacking contexts and reshape colour, so the
-      // probe never restyles them and the text abstains (Codex, PR #438)
-      const blends = (el) => { for (let p = el; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
+      // blending OR a filter on the text's branch, up to and including <html>: both make stacking contexts
+      // and reshape colour, so the probe never restyles them and the text abstains (Codex, PR #438)
+      const blends = (el) => { for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
         const cs = getComputedStyle(p), b = cs.mixBlendMode; if (b && b !== 'normal') return true;
         if (el.tagName !== 'CANVAS' && cs.filter && cs.filter !== 'none') return true; } return false; };
       const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
@@ -3646,20 +3646,28 @@ def canvas_cover_probe(page, width, height, nodes):
         return op > 0.01; };
       const shownCv = [...document.querySelectorAll('canvas')].filter(paints);
       const all = shownCv.map(c => c.getBoundingClientRect()), bc = shownCv.filter(blends).map(c => c.getBoundingClientRect());
-      const out = [];
+      const out = [], shared = [];
+      // the blending or filtering element on the text's branch; when it also holds an overlapping canvas
+      // (an <html> filter holds everything) it reshapes the canvas too, and the shown/hidden difference
+      // can't say whether that canvas paints (Codex, PR #438)
+      const fx = (el) => { const a = []; for (let p = el; p && p.nodeType === 1; p = p.parentElement) {
+        const cs = getComputedStyle(p); if ((cs.mixBlendMode && cs.mixBlendMode !== 'normal') || (cs.filter && cs.filter !== 'none')) a.push(p); } return a; };
       for (const t of document.querySelectorAll('[data-akt-idx]')) {
         const r = t.getBoundingClientRect();
         // abstain only where a canvas actually shares pixels with the text (Codex, PR #438)
         let bad = blends(t) && all.some(c => hit(c, r));
         if (!bad) bad = bc.some(c => hit(c, r));
         if (bad) out.push(+t.getAttribute('data-akt-idx'));
+        if (bad && fx(t).some(a => shownCv.some(c => a.contains(c) && hit(c.getBoundingClientRect(), r))))
+          shared.push(+t.getAttribute('data-akt-idx'));
       }
-      return {out, rects: all.map(c => [c.left, c.top, c.right, c.bottom])}; }"""
+      return {out, shared, rects: all.map(c => [c.left, c.top, c.right, c.bottom])}; }"""
     try:
         _b = page.evaluate(BLENDED) or {}
         blended, cv_rects = set(_b.get("out") or []), _b.get("rects") or []
+        fx_shared = set(_b.get("shared") or [])
     except Exception:
-        blended, cv_rects = set(), []
+        blended, cv_rects, fx_shared = set(), [], set()
     SET = """(a) => { const [c, hide] = a;
       const keep = (el) => { if (!el.hasAttribute('data-akt-style')) el.setAttribute('data-akt-style', el.getAttribute('style') === null ? '\\u0000' : el.getAttribute('style')); };
       for (const el of document.querySelectorAll('[data-akt-idx], [data-akt-idx] *')) {
@@ -3698,7 +3706,12 @@ def canvas_cover_probe(page, width, height, nodes):
 
     for i, tn in enumerate(nodes or []):
         if i in blended:
-            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8 and canvas_paints(ln))
+            # a blend or filter that also reshapes the canvas can hide its ink from the pixel test, so there
+            # the canvas's own box decides (Codex, PR #438)
+            def under_cv(ln):
+                return (canvas_paints(ln) or (i in fx_shared and any(
+                    c[0] < ln[0] + ln[2] and c[2] > ln[0] and c[1] < ln[1] + ln[3] and c[3] > ln[1] for c in cv_rects)))
+            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8 and under_cv(ln))
             if nl:
                 tn["canvas_over"] = {"frac": 0.0, "worst_line": 0.0, "unverified": nl, "points": nl,
                                      "worst_unverified_line": 1.0, "by": "blended canvas or text", "z": ""}

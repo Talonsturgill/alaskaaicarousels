@@ -805,7 +805,24 @@ def site_fresh_row(rows, run):
                  "docs/ records a build for %s, later than today (UTC) and main's %s: rebuild with "
                  "site_build.py --date %s" % (recorded, base_recorded, bound))
         return
-    dates = [date] + ([recorded] if recorded and recorded > date else [])
+    # the REQUESTED --date as well, off the homepage's run-date marker: site_build clamps the sitemap stamp
+    # to Anchorage's calendar, so a --date 2026-10-17 build made while Anchorage is still on the 16th records
+    # 10-16 in the sitemap and 10-17 in the marker, and only the marker rebuilds it (Codex, PR #438)
+    requested = None
+    try:
+        rm = re.search(r"<!-- run-date (\d{4}-\d{2}-\d{2}) -->", (REPO / "docs" / "index.html").read_text())
+        requested = rm.group(1) if rm else None
+    except OSError:
+        pass
+    if requested and requested > bound:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ was built for --date %s, later than today (UTC) and main's %s: rebuild with "
+                 "site_build.py --date %s" % (requested, base_recorded, bound))
+        return
+    dates = [date]
+    for d in (recorded, requested):
+        if d and d > date and d not in dates:
+            dates.append(d)
     p, used = None, date
     for d in dates:
         try:

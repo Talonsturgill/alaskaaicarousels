@@ -59,7 +59,8 @@ def main():
                  "the plate casts a hard shape without blur onto the desk\n"):
         f, w = run(body)
         ok("'no'/'without' qualifying the shadow keeps the promise: " + body.strip(), len(w) == 1, w)
-    for body in ("the plate casts no shadow onto the desk\n", "the plate does not cast onto the desk\n"):
+    for body in ("the plate casts no shadow onto the desk\n", "the plate does not cast onto the desk\n",
+                 "the plate cannot cast onto the desk\n"):
         f, w = run(body)
         ok("a negated cast promises nothing: " + body.strip(), not w, w)
     for body in ("the lamp glows and softly casts onto the desk\n", "the lamp glows and will cast onto the desk\n"):

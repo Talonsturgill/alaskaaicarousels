@@ -39,6 +39,9 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-11  a colour-collapsing filter on a line under an
             opaque band (a filter is never restyled)          -> no FAIL; filtered, so
                                                                  the line is UNVERIFIED
+  slide-12  the No.88 shape under a colour-collapsing filter
+            on <html> itself                                 -> no FAIL, UNVERIFIED, never
+                                                                 silently clean
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
 modelling any CSS.
 """
@@ -163,6 +166,9 @@ CASES = [
     ("slide-10.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=BLEND),
      0, -1, []),
     ("slide-11.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=FILTERED),
+     0, -1, []),
+    ("slide-12.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="").replace(
+        "html, body {", "html { filter:grayscale(1) contrast(0); }\n  html, body {", 1),
      0, -1, []),
 ]
 MARK = "text under canvas ink"

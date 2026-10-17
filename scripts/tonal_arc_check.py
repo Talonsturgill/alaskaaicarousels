@@ -39,10 +39,11 @@ frame that actually holds the place. It fires when:
   - no declared darkest frame is in the darkest two, or within PEAK_TOL L* of the
     darkest frame;
   - the whole sheet spans less than FLAT_SPAN L* (one tone, whatever the line says);
-  - with the brightest and darkest frame set aside, the rest span less than MID_SPAN
-    L* (one tone under a spike, 2026-10-16);
-  - a frame the line did not name sits within PEAK_TOL L* of the declared peak (the
-    peak ties, 2026-10-16).
+  - with any SPIKE set aside (the brightest or darkest frame, only when it stands at
+    least MID_SPAN L* clear of its nearest neighbour), the rest span less than MID_SPAN
+    L* (one tone under a spike, 2026-10-16); a smooth ramp keeps its ends;
+  - a frame the line did not name sits within PEAK_TOL L* of the declared peak, when
+    the declared peak is the measured peak (the peak ties, 2026-10-16).
 Calibrated on the eight shipped decks that carry a Tonal arc line (2026-09-26 to
 2026-10-03): it warns on 09-26, 09-30, 10-01 and 10-02 and passes the other four.
 The flow critic named the same miss in words on 09-30, 10-01 and 10-02; 09-26 has
@@ -81,7 +82,7 @@ from PIL import Image
 PEAK_TOL = 3.0      # L* within which a declared frame shares the extreme
 TOP_N = 2           # a declared peak (or darkest) may sit this far from the extreme by rank
 FLAT_SPAN = 8.0     # a sheet whose frames span less than this many L* reads as one tone
-MID_SPAN = 12.0     # with the brightest and darkest frame set aside, the rest span under this
+MID_SPAN = 12.0     # with any spike set aside, the rest span under this; also the spike's own clearance
 MID_MIN_FRAMES = 6  # ... read only on a sheet of at least this many frames
 SHEET_W, SHEET_H = 216, 270
 

@@ -1356,9 +1356,12 @@ that argument was typed by hand.
    frame's mean L* at contact-sheet scale against the CRAFT PLAN's `Tonal arc:`
    line and WARNs when the declared peak or darkest frame measures elsewhere,
    or when the sheet spans under 8 L*, and (2026-10-16) when the frames left
-   after setting the brightest and darkest aside span under 12 L* (one tone
-   under a spike) or an undeclared frame sits within 3 L* of the declared peak
-   (the peak ties). The same reading is the `tonal_arc` row
+   after setting aside a SPIKE span under 12 L* (one tone under a spike). A
+   spike is the brightest or darkest frame only when it stands at least 12 L*
+   clear of its nearest neighbour, so a smooth ramp keeps its ends and is
+   never called a plateau. It also WARNs when an undeclared frame sits within
+   3 L* of the declared peak and the declared peak is the measured peak (the
+   peak ties). The same reading is the `tonal_arc` row
    of gate_status.py, PASS or WARN and never FAIL. Cause e was named on all six
    decks of that week, and on 2026-10-02 the declared lit peak measured fifth
    of nine. Mean lightness can't see warmth or one lit object on a dark frame,
