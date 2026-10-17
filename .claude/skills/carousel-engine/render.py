@@ -3716,7 +3716,7 @@ def canvas_cover_probe(page, width, height, nodes):
             m = dh >= 24                       # this element's own glyph pixels, canvases hidden; low so faint (down to about 10 percent opacity) marks still count (Codex, PR #438)
             n = int(m.sum())
             if n < 6:
-                # a line the probe could not recolour (a colour-collapsing filter above it, or ink under
+                # a line the probe could not recolour (ink under
                 # about 10 percent) is UNVERIFIED, never silently clean (Codex, PR #438)
                 # ...and only where a painting canvas actually overlaps the line (Codex, PR #438)
                 if ln[2] >= 8 and ln[3] >= 8 and canvas_paints(ln):

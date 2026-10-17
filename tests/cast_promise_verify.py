@@ -55,6 +55,18 @@ def main():
     f, w = run("a two-part contact shadow under the plate, which casts onto the desk\n")
     ok("the strong promise keeps its own FAIL and adds no second finding",
        not w and any("promises a contact shadow" in x for x in f), (f, w))
+    for body in ("the plate casts a sharp shadow with no penumbra onto the desk\n",
+                 "the plate casts a hard shape without blur onto the desk\n"):
+        f, w = run(body)
+        ok("'no'/'without' qualifying the shadow keeps the promise: " + body.strip(), len(w) == 1, w)
+    for body in ("the plate casts no shadow onto the desk\n", "the plate does not cast onto the desk\n"):
+        f, w = run(body)
+        ok("a negated cast promises nothing: " + body.strip(), not w, w)
+    for body in ("the lamp glows and softly casts onto the desk\n", "the lamp glows and will cast onto the desk\n"):
+        f, w = run(body)
+        ok("a shared light subject survives an adverb or auxiliary: " + body.strip(), not w, w)
+    f, w = run("the plates catch the light and cast onto the base\n")
+    ok("a shared subject is the clause's subject, not its object", len(w) == 1, w)
     print("\ncast promise check: " + ("HOLDS" if not bad else "%d BROKEN" % bad))
     return 1 if bad else 0
 

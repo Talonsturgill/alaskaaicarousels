@@ -196,7 +196,10 @@ def promised_cast(body):
         # it" the light is what the feet catch, not what casts (Codex, PR #438)
         parts = re.split(r"\b(?:and|while|then|but)\b", lead)
         lead = parts[-1]
-        if not re.search(r"[A-Za-z]", lead) and len(parts) > 1:
+        # "the lamp glows and softly casts", "...and will cast": a clause of only auxiliaries and adverbs
+        # still has no subject of its own (Codex, PR #438)
+        own = [w for w in re.findall(r"[A-Za-z]+", lead) if not (w.lower().endswith("ly") or w.lower() in AUX_WORDS)]
+        if not own and len(parts) > 1:
             # a shared subject ("the lamp glows and casts onto the desk"): take the preceding clause's
             # SUBJECT, not its object (Codex, PR #438)
             prev = re.findall(r"[A-Za-z]+", parts[-2])
@@ -221,7 +224,9 @@ def promised_cast(body):
         # "casts a light shadow onto" is a shadow: a light word only exempts a cast that names no shadow
         is_shadow = re.search(r"\bshadows?\b", m.group(0), re.I)
         # a negated cast promises nothing: "casts no shadow onto", "does not cast onto" (Codex, PR #438)
-        negated = (re.search(r"\b(?:no|not|never|without)\b|n't\b", m.group(0), re.I)
+        # only a negation that governs the cast itself, right after the verb: "with no penumbra" or "without
+        # blur" qualifies the shadow and leaves the promise standing (Codex, PR #438)
+        negated = (re.match(r"cast\w*\s+(?:\w+ly\s+)?(?:no|not|never|without|nothing)\b", m.group(0), re.I)
                    or re.search(r"\b(?:not|never|no longer)\s*$|n't\s*$", body[max(0, m.start() - 24):m.start()], re.I))
         if not negated and (is_shadow or not CAST_LIGHT_RE.search(m.group(0))) and not light_head:
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
