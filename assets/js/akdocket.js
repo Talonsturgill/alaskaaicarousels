@@ -43,6 +43,7 @@
     el("line", { x1: D.X_RULE + 6, y1: D.DAY0 - 6, x2: D.X_RULE + 6, y2: D.y("2026-10-26") + 6, stroke: o.ruleColor || D.OXBLOOD, "stroke-width": 0.9 }, s);
     (o.notches || []).forEach(iso => { const y = D.y(iso); el("line", { x1: D.TICK[0], y1: y, x2: D.TICK[1], y2: y, stroke: o.ruleColor || D.OXBLOOD, "stroke-width": 2.4 }, s); });
     const yg = D.y("2026-10-26");
+    if (o.notchCasing) el("line", { x1: 90, y1: yg, x2: D.X_RULE + 12, y2: yg, stroke: o.notchCasing, "stroke-width": 7 }, s);   // on a light ground the gold needs a dark bed to read
     el("line", { x1: 92, y1: yg, x2: D.X_RULE + 10, y2: yg, stroke: D.GOLD, "stroke-width": 3.2 }, s);
     if (o.polaris) D.polaris(s, 80, yg, 13);
     return s;
@@ -67,9 +68,9 @@
   D.fixtures = function (o) {
     const css = "position:absolute;font-family:'JetBrains Mono';font-weight:500;letter-spacing:0.08em;";
     const w = document.createElement("div"); w.textContent = "ALASKA.AI"; w.setAttribute("data-decorative", "");
-    w.style.cssText = css + "left:80px;top:56px;font-size:22px;color:" + (o.ink || "#B9BDC2") + ";"; document.body.appendChild(w);
+    w.style.cssText = css + "left:80px;top:84px;font-size:22px;color:" + (o.ink || "#B9BDC2") + ";"; document.body.appendChild(w);
     const c = document.createElement("div"); c.textContent = String(o.n).padStart(2, "0") + " / " + String(o.total).padStart(2, "0");
-    c.style.cssText = css + "right:80px;top:54px;font-size:24px;color:" + (o.ink || "#B9BDC2") + ";"; c.className = "counter"; document.body.appendChild(c);
+    c.style.cssText = css + "right:80px;top:82px;font-size:24px;color:" + (o.ink || "#B9BDC2") + ";"; c.className = "counter"; document.body.appendChild(c);
     const f = document.createElement("div"); f.textContent = "alaskaaihq.com"; f.setAttribute("data-decorative", "");
     f.style.cssText = "position:absolute;left:200px;top:1291px;font-family:'JetBrains Mono';font-weight:400;font-size:19px;letter-spacing:0.04em;color:" + (o.fix || D.FIX) + ";"; document.body.appendChild(f);
     return { wordmark: w, counter: c, site: f };
