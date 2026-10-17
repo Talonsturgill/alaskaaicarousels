@@ -771,6 +771,21 @@ def site_fresh_row(rows, run):
         recorded = mm.group(1) if mm else None
     except OSError:
         pass
+    # ...and never behind what main already publishes: a stale build that is byte-exact at its own stale date
+    # is still a rollback when main's site records a later one (Codex, PR #438)
+    base_recorded = None
+    try:
+        bs = subprocess.run(["git", "-C", str(REPO), "show", "origin/main:docs/sitemap.xml"],
+                            capture_output=True, text=True, timeout=60)
+        bm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", bs.stdout or "")
+        base_recorded = bm.group(1) if (bs.returncode == 0 and bm) else None
+    except Exception:
+        pass
+    if recorded and base_recorded and recorded < base_recorded:
+        rows.add("site_fresh", "FAIL",
+                 "docs/ records a build for %s, behind main's %s: rebuild with site_build.py --date %s"
+                 % (recorded, base_recorded, base_recorded))
+        return
     dates = [date] + ([recorded] if recorded and recorded > date else [])
     p, used = None, date
     for d in dates:

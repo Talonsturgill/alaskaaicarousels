@@ -249,7 +249,10 @@ def on_object(fr, rect, sig):
     # L* at half weight lets a chromatic object's lit face match its shaded foot.
     # A NEUTRAL object has no albedo in a*b* to be recognised by, so half-weight
     # L* matched any neutral ground within 24 L* of it (2026-10-16 weekly pass).
-    wl = 0.5 if float(np.hypot(o[1], o[2])) >= OBJ_NEUTRAL_C else 1.0
+    # A neutral object that is itself shaded (its own sample spans lit and lee, spread 8 L* or more) keeps
+    # the half-weight tolerance, so its lit face still reads as the object (Codex, PR #438).
+    neutral_flat = float(np.hypot(o[1], o[2])) < OBJ_NEUTRAL_C and float(sig.get("spread") or 0) < 8
+    wl = 1.0 if neutral_flat else 0.5
     d = np.sqrt(((px[:, 0] - o[0]) * wl) ** 2 + (px[:, 1] - o[1]) ** 2
                 + (px[:, 2] - o[2]) ** 2)
     return float((d <= OBJ_DE).mean())

@@ -193,7 +193,9 @@ def promised_cast(body):
         while words and words[-1].lower().endswith("ly"):
             words.pop()
         head = words[-1] if words else ""
-        if not CAST_LIGHT_RE.search(m.group(0)) and not CAST_LIGHT_RE.fullmatch(head):
+        # a compound light noun counts by its ending: spotlight, sunlight, floodlamp (Codex, PR #438)
+        light_head = re.search(r"(?:pool|light|glow|beam|reflection|spill|lamp|sun)s?$", head, re.I)
+        if not CAST_LIGHT_RE.search(m.group(0)) and not light_head:
             tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
             return " ".join((m.group(0) + tail).split())
     return None

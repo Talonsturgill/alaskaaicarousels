@@ -2562,9 +2562,10 @@ IN_PAGE_QA_JS = """
        wordmark and the site line are data-decorative), sample its line boxes
        on a 5 x 2 grid, ask elementsFromPoint which canvases stack ABOVE the
        text at each point, and read that canvas's own pixel there. A point is
-       covered when the canvas pixel's alpha times the canvas's opacity is
-       0.9 or more. A canvas with a blend mode, or under 0.9 effective
-       opacity, never covers (a grain or glow layer is legal over type). A
+       covered when the canvas layers above it COMPOSITE to 0.9 or more (each
+       layer's pixel alpha times its own branch's opacity, stacked as
+       1 - product of the clear shares). A canvas with a blend mode never
+       covers (a grain or glow layer is legal over type). A
        pixel that can't be read (a tainted or transferred canvas) counts as
        unverified, never as covered. A WebGL canvas without
        preserveDrawingBuffer may read transparent here: that is a miss, never
@@ -2597,6 +2598,7 @@ IN_PAGE_QA_JS = """
           if (fl && fl !== "none") t = true;
           // a CSS background on the canvas element paints under its bitmap, which the bitmap read can't see
           if (p === cv && ((cs.backgroundImage && cs.backgroundImage !== "none") || !/rgba\([^)]*,\s*0\)|transparent/.test(cs.backgroundColor || "transparent"))) t = true;
+          if (p === cv && cs.objectFit && cs.objectFit !== "fill") t = true;   // contain, cover, none, scale-down reshape the bitmap (Codex, PR #438)
           if (p === cv) for (const k of ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) if (parseFloat(cs[k]) > 0) t = true;
         }
         _xfCache.set(cv, t); return t;
@@ -2633,7 +2635,7 @@ IN_PAGE_QA_JS = """
           const f = cs.filter || "none";
           if (f !== "none") for (const m of f.matchAll(/opacity\(\s*([0-9.]+)(%?)\s*\)/g)) op *= m[2] ? parseFloat(m[1]) / 100 : parseFloat(m[1]);
         }
-        const v = (ok && op >= 0.9) ? op : null;
+        const v = ok ? op : null;
         byCa.set(ca, v);
         return v;
       };
@@ -2653,7 +2655,8 @@ IN_PAGE_QA_JS = """
             }
             if (ti < 0) continue;
             lp++;
-            let hit = false, unknown = false;
+            // stacked canvases COMPOSITE: two 70 percent layers leave 9 percent of the text (Codex, PR #438)
+            let hit = false, unknown = false, clear = 1;
             for (let k = 0; k < ti && !hit; k++) {
               const nd = stack[k];
               if (nd.tagName !== "CANVAS" || nd.contains(tel)) continue;
@@ -2661,7 +2664,9 @@ IN_PAGE_QA_JS = """
               if (eo === null) continue;
               const a = _readA(nd, x, y);
               if (a === null) { unknown = true; byEl = byEl || nd; continue; }
-              if ((a / 255) * eo >= 0.9) { hit = true; byEl = nd; }
+              const ca = (a / 255) * eo;
+              if (ca > 0.02) { clear *= (1 - ca); if (!byEl || ca > 0.5) byEl = nd; }
+              if (1 - clear >= 0.9) hit = true;
             }
             if (hit) lc++; else if (unknown) { unk++; lu++; }
           }
