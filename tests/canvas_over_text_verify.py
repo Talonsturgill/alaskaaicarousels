@@ -23,7 +23,8 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-03  a near-transparent grain canvas (alpha 24) stacked
             above every line of type                          -> silent
   slide-04  an opaque canvas above the type with
-            mix-blend-mode screen                             -> silent
+            mix-blend-mode screen                             -> no FAIL; blended, so
+                                                                 any finding is UNVERIFIED
   slide-05  an opaque canvas chip over the left third of a
             reading line                                      -> one WARN, no FAIL
   slide-06  art over 60 percent of a decorative ghost numeral -> one WARN, no FAIL
@@ -33,7 +34,8 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
             (they composite to 91 percent)                    -> one FAIL
   slide-09  a line inked with an inline !important colour
             under an opaque band                              -> one FAIL
-  slide-10  difference-blended text over a canvas UNDER it    -> silent
+  slide-10  difference-blended text over a canvas UNDER it    -> no FAIL; blended, so
+                                                                 any finding is UNVERIFIED
   slide-11  a colour-collapsing filter on a line under an
             opaque band (the probe neutralises it)           -> one FAIL
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
@@ -144,7 +146,7 @@ CASES = [
      0, 0, []),
     ("slide-04.html", slide(ART.format(style="mix-blend-mode:screen;z-index:30;", alpha=1, rect=FULL),
                             fixtures="z-index:9;"),
-     0, 0, []),
+     0, -1, []),
     ("slide-05.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;",
                             extra=CHIP),
      0, 1, ["The hearing room"]),
@@ -158,7 +160,7 @@ CASES = [
     ("slide-09.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=INLINE),
      1, 0, ["Inline important"]),
     ("slide-10.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=BLEND),
-     0, 0, []),
+     0, -1, []),
     ("slide-11.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=FILTERED),
      1, 0, ["Filtered grey"]),
 ]
@@ -190,7 +192,9 @@ def main():
         fails = [f for f in s.get("fails", []) if MARK in f]
         warns = [w for w in s.get("warns", []) if MARK in w]
         named = all(any(("'%s" % lb) in m for m in fails + warns) for lb in labels)
-        good = len(fails) == nf and len(warns) == nw and named
+        # nw == -1: a blended case, which must report UNVERIFIED (never measured, never a FAIL)
+        unv = [w for w in s.get("warns", []) if "canvas over text, unverified" in w]
+        good = len(fails) == nf and (len(warns) == nw if nw >= 0 else (len(unv) >= 1 and not warns)) and named
         ok &= good
         print("  %s  %s  %d FAIL, %d WARN (want %d, %d)" % ("ok  " if good else "BAD ", name,
                                                          len(fails), len(warns), nf, nw))

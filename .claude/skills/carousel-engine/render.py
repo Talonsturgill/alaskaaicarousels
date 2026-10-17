@@ -3629,8 +3629,26 @@ def canvas_cover_probe(page, width, height, nodes):
         return np.asarray(Image.open(io.BytesIO(page.screenshot(clip=clip, type="png"))).convert("RGB")).astype(np.int16)
 
     # The probe styles go on INLINE with !important, saved and restored, so no author rule (an inline
-    # !important colour included) can outrank them, and the text is forced to a normal blend so a canvas
-    # UNDER blended text can't change the comparison (Codex, PR #438).
+    # !important colour included) can outrank them. BLENDING IS NEVER TOUCHED: a blend mode changes paint
+    # order (it makes a stacking context) and makes a colour difference stop meaning coverage, so text that
+    # blends, sits under a blending ancestor, or overlaps a blending canvas is reported UNVERIFIED instead
+    # of measured (Codex, PR #438, rounds 12 to 16).
+    BLENDED = """() => {
+      const blends = (el) => { for (let p = el; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
+        const b = getComputedStyle(p).mixBlendMode; if (b && b !== 'normal') return true; } return false; };
+      const bc = [...document.querySelectorAll('canvas')].filter(blends).map(c => c.getBoundingClientRect());
+      const out = [];
+      for (const t of document.querySelectorAll('[data-akt-idx]')) {
+        let bad = blends(t);
+        if (!bad) { const r = t.getBoundingClientRect();
+          for (const c of bc) if (c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top) { bad = true; break; } }
+        if (bad) out.push(+t.getAttribute('data-akt-idx'));
+      }
+      return out; }"""
+    try:
+        blended = set(page.evaluate(BLENDED) or [])
+    except Exception:
+        blended = set()
     SET = """(a) => { const [c, hide] = a;
       const keep = (el) => { if (!el.hasAttribute('data-akt-style')) el.setAttribute('data-akt-style', el.getAttribute('style') === null ? '\\u0000' : el.getAttribute('style')); };
       for (const el of document.querySelectorAll('[data-akt-idx], [data-akt-idx] *')) {
@@ -3638,14 +3656,8 @@ def canvas_cover_probe(page, width, height, nodes):
         keep(el); const st = el.style;
         st.setProperty('color', c, 'important'); st.setProperty('-webkit-text-fill-color', c, 'important');
         st.setProperty('text-shadow', 'none', 'important'); st.setProperty('-webkit-text-stroke', '0', 'important');
-        st.setProperty('mix-blend-mode', 'normal', 'important'); st.setProperty('filter', 'none', 'important');
+        st.setProperty('filter', 'none', 'important');
         if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
-      }
-      // the text's ANCESTORS blend too: normalise them for all four shots alike (Codex, PR #438)
-      for (const t of document.querySelectorAll('[data-akt-idx]')) for (let p = t.parentElement; p && p !== document.documentElement; p = p.parentElement) {
-        if (p.tagName === 'CANVAS') continue;
-        const bm = getComputedStyle(p).mixBlendMode;
-        if (bm && bm !== 'normal') { keep(p); p.style.setProperty('mix-blend-mode', 'normal', 'important'); }
       }
       if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
       return true; }"""
@@ -3665,6 +3677,12 @@ def canvas_cover_probe(page, width, height, nodes):
     k = d_shown.shape[1] / float(width)
     H, W = d_shown.shape
     for i, tn in enumerate(nodes or []):
+        if i in blended:
+            nl = sum(1 for ln in (tn.get("lines") or []) if ln and ln[2] >= 8 and ln[3] >= 8)
+            if nl:
+                tn["canvas_over"] = {"frac": 0.0, "worst_line": 0.0, "unverified": nl, "points": nl,
+                                     "worst_unverified_line": 1.0, "by": "blended canvas or text", "z": ""}
+            continue
         tot = cov = unver = 0
         worst = worst_unv = 0.0
         for ln in (tn.get("lines") or []):

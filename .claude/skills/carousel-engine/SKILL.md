@@ -744,9 +744,12 @@ FAILs whatever it left stale.
   INCLUDED, by PIXEL TRUTH: it recolours the text magenta and then green,
   with the canvases shown and hidden, and a glyph pixel whose colour change
   shrinks by 90 percent or more once the canvases show is covered. Whatever is
-  under the text cancels, so opacity groups, blend modes, masks, filters,
-  object-fit and pointer-events need no modelling (a hit-test model of them
-  took ten Codex rounds on PR #438 and never converged). qa.py FAILS a reading line half covered (WARN from a fifth) and a
+  under the text cancels, so opacity groups, masks, filters, object-fit and
+  pointer-events need no modelling (a hit-test model of them took ten Codex
+  rounds on PR #438 and never converged). Blending is the one exception: text
+  that blends, sits under a blending ancestor, or overlaps a blending canvas
+  is reported UNVERIFIED (a WARN for the pixel critic), because a blend changes
+  paint order and makes a colour difference stop meaning coverage. qa.py FAILS a reading line half covered (WARN from a fifth) and a
   decorative mark 90 percent covered (WARN from half). Run No.88's wordmark,
   counter and site line were appended after a `z-index:1` art canvas with no
   z-index of their own and painted under it on all nine frames, in the DOM and
