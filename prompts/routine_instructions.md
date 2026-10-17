@@ -1355,7 +1355,10 @@ that argument was typed by hand.
    `python3 scripts/tonal_arc_check.py --run-dir out/<date>` measures each
    frame's mean L* at contact-sheet scale against the CRAFT PLAN's `Tonal arc:`
    line and WARNs when the declared peak or darkest frame measures elsewhere,
-   or when the sheet spans under 8 L*. The same reading is the `tonal_arc` row
+   or when the sheet spans under 8 L*, and (2026-10-16) when the frames left
+   after setting the brightest and darkest aside span under 12 L* (one tone
+   under a spike) or an undeclared frame sits within 3 L* of the declared peak
+   (the peak ties). The same reading is the `tonal_arc` row
    of gate_status.py, PASS or WARN and never FAIL. Cause e was named on all six
    decks of that week, and on 2026-10-02 the declared lit peak measured fifth
    of nine. Mean lightness can't see warmth or one lit object on a dark frame,

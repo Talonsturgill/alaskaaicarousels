@@ -163,6 +163,28 @@ F4A_RE = re.compile(
 # is never read), so a header sentence about the deck's depth language does not
 # put nine slides on the hook.
 CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
+# A CAST ONTO A GROUND, PROMISED IN OTHER WORDS (2026-10-16 weekly pass). Run No.88's
+# dossiers for 02 and 03 promised a plate that "casts onto the base", neither slide
+# declared data-contacts, and on a desk at L* 5 to 7 neither cast read: five of nine
+# frames set a plate on a near-black desk and the critics named "no cast, floats" on
+# every one in round 1. qa.py's contact gate already says "light the ground first"
+# for a declared cast on a near-black ground; it never looked at these. A WARN, not
+# the FAIL above: over 2026-09-26 to 2026-10-15 the wording also covers casts between
+# parts of one object ("each riser casts onto what is below it"), which a contact
+# pair can't always isolate. A light thrown onto a ground is not a cast.
+CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+(?:\w+\s+){0,3}?onto\b", re.I)
+CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill)s?\b", re.I)
+
+
+def promised_cast(body):
+    """The first 'casts onto' phrase in a dossier body that is a shadow, not light."""
+    for m in CAST_ONTO_RE.finditer(body or ""):
+        if not CAST_LIGHT_RE.search(m.group(0)):
+            tail = re.split(r"[\n.;,(]", body[m.end():m.end() + 40])[0]
+            return " ".join((m.group(0) + tail).split())
+    return None
+
+
 BODY_TAG_RE = re.compile(r"<body\b[^>]*>", re.I | re.S)
 DATA_CONTACTS_RE = re.compile(r"data-contacts\s*=\s*(['\"])(.*?)\1", re.I | re.S)
 
@@ -796,6 +818,16 @@ def check_slide(no, heading, body, breather_attr, contacts=None, built=False,
                 f"{DECLARE_HOWTO}")
         # contacts == -2 (the declaration does not parse) is reported once, by
         # declaration_parse_fails(), with the byte the parser stopped on.
+    elif built and contacts is None and "data-contacts" not in (runtime or ()):
+        cast = promised_cast(body)
+        if cast:
+            warns.append(
+                f"slide {no:02d}: the dossier promises a cast ('{cast[:60]}') and the "
+                "slide body declares no data-contacts, so no gate measures whether it "
+                "reads. Declare it (scripts/contact_probe.py proposes the rects), and "
+                "light the ground under the object first: a cast on a ground under "
+                "about L* 12 has nothing to darken (DESIGN_DOCTRINE section 3, a plate "
+                "on a near-black desk)")
     return fails, warns
 
 

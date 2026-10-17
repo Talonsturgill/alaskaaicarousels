@@ -41,6 +41,12 @@ Checks per slide (consuming render_report.json + the PNGs):
     consecutive hard fails while machine QA reported PASS, 0 fails, 0 warns:
     text_collisions() only compares GLYPH LINE BOXES, and a padded plate's
     background is not one.
+  - TEXT UNDER CANVAS INK (FAIL): consumes render.py's canvas_over probe (the
+    pixel of each <canvas> stacked above a text line box, read at 10 points per
+    line) and FAILS a reading line half covered or a decorative mark 90 percent
+    covered. Added 2026-10-16 after run No.88's wordmark, counter and site line
+    painted under a z-index 1 art canvas on all nine frames with every gate
+    green (tests/canvas_over_text_verify.py).
   - FRAME BALANCE / DEAD LOWER ZONE (FAIL): compares the bottom third's
     craft-density against the slide's own frame average and FAILS a top-loaded
     composition (<55%). Added 2026-07-26 after the SIXTH consecutive scorer
@@ -3051,6 +3057,15 @@ OCC_FAIL_W = 20     # px of a line box's WIDTH an opaque plate must cover to FAI
 OCC_FAIL_H = 6       # px of its HEIGHT (a quarter of the 24px mono floor)
 OCC_WARN_W = 12      # the tripwire band below the FAIL, for the critics' eyes
 OCC_WARN_H = 4
+# Text under canvas ink (2026-10-16, run No.88's fixtures under the art canvas).
+# Shares of render.py's sampled line-box points where a canvas stacked above the
+# text is opaque (alpha x opacity >= 0.9). A reading line: FAIL when half of one
+# line is covered, the same majority rule the plate probe above uses; WARN from
+# a fifth. A decorative mark: FAIL only when it is gone, WARN when half is.
+CANVAS_OVER_FAIL = 0.5
+CANVAS_OVER_WARN = 0.2
+CANVAS_OVER_DECOR_FAIL = 0.9
+CANVAS_OVER_DECOR_WARN = 0.5
 
 
 def text_collisions(nodes, min_overlap=0.30, min_px=8):
@@ -4616,6 +4631,48 @@ def main():
                 "%d stylesheet(s) on this slide could not be read, so the "
                 "unsized-type check is partially blind: an author font-size "
                 "rule may exist that this can't see" % blind)
+
+        # TEXT UNDER CANVAS INK (2026-10-16, weekly pass). render.py's
+        # canvas_over probe reads, at sample points on each line box, the
+        # pixel of every <canvas> stacked ABOVE the text. Run No.88 shipped the
+        # wordmark, the counter and the site line under a z-index 1 art canvas
+        # on all nine frames of round 1 with every gate green; see the
+        # render.py block. Decorative nodes are judged too, because a fixture
+        # is decorative to the type checks and still has to be in the picture,
+        # but only when the mark is GONE (CANVAS_OVER_DECOR_FAIL of its
+        # points), so art deliberately overlapping a ghost numeral stays legal.
+        for node in rec.get("text_nodes", []):
+            co = node.get("canvas_over")
+            if not co:
+                continue
+            frac, worst = float(co.get("frac") or 0), float(co.get("worst_line") or 0)
+            dec = bool(node.get("decorative"))
+            label = (node.get("full") or node.get("text") or "")[:40]
+            where = "<canvas %s>%s" % (co.get("by", "?"), (" at z-index %s" % co["z"])
+                                       if co.get("z") not in (None, "", "auto") else "")
+            msg = ("text under canvas ink: %s'%s' has %d%% of its sampled line box "
+                   "(worst line %d%%) under opaque pixels of %s stacked above it"
+                   % ("decorative fixture " if dec else "", label, round(100 * frac),
+                      round(100 * worst), where))
+            if dec:
+                hard, soft = frac >= CANVAS_OVER_DECOR_FAIL, frac >= CANVAS_OVER_DECOR_WARN
+            else:
+                hard, soft = worst >= CANVAS_OVER_FAIL, worst >= CANVAS_OVER_WARN
+            fix = (", so it is in the DOM and not in the picture -- give the text position "
+                   "and a z-index above the canvas, or lower the canvas")
+            if hard and not node.get("overlap_ok"):
+                res["fails"].append(msg + fix)
+            elif hard:
+                res["warns"].append(msg + fix + " [marked data-overlap-ok]")
+            elif soft:
+                res["warns"].append(msg + " -- pixel critic verify the covered glyphs are "
+                                    "meant to be covered; a z-index above the canvas uncovers them")
+            elif int(co.get("unverified") or 0) * 2 >= int(co.get("points") or 1):
+                res["warns"].append(
+                    "canvas over text, unverified: '%s' has %s canvas stacked above "
+                    "most of its sampled points and the canvas pixels could not be "
+                    "read (tainted or transferred), so whether it is covered is "
+                    "unknown -- pixel critic verify" % (label, where))
 
         for node in rec.get("text_nodes", []):
             if node.get("decorative"):

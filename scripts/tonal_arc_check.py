@@ -38,7 +38,11 @@ frame that actually holds the place. It fires when:
     brightest frame;
   - no declared darkest frame is in the darkest two, or within PEAK_TOL L* of the
     darkest frame;
-  - the whole sheet spans less than FLAT_SPAN L* (one tone, whatever the line says).
+  - the whole sheet spans less than FLAT_SPAN L* (one tone, whatever the line says);
+  - with the brightest and darkest frame set aside, the rest span less than MID_SPAN
+    L* (one tone under a spike, 2026-10-16);
+  - a frame the line did not name sits within PEAK_TOL L* of the declared peak (the
+    peak ties, 2026-10-16).
 Calibrated on the eight shipped decks that carry a Tonal arc line (2026-09-26 to
 2026-10-03): it warns on 09-26, 09-30, 10-01 and 10-02 and passes the other four.
 The flow critic named the same miss in words on 09-30, 10-01 and 10-02; 09-26 has
@@ -77,6 +81,8 @@ from PIL import Image
 PEAK_TOL = 3.0      # L* within which a declared frame shares the extreme
 TOP_N = 2           # a declared peak (or darkest) may sit this far from the extreme by rank
 FLAT_SPAN = 8.0     # a sheet whose frames span less than this many L* reads as one tone
+MID_SPAN = 12.0     # with the brightest and darkest frame set aside, the rest span under this
+MID_MIN_FRAMES = 6  # ... read only on a sheet of at least this many frames
 SHEET_W, SHEET_H = 216, 270
 
 ARC_RE = re.compile(r"^\s*[-*]?\s*Tonal arc:\s*(\S.*)$", re.M | re.I)
@@ -196,6 +202,45 @@ def judge(line, L):
         warns += 1
         msgs.append("[WARN] one tone: the sheet spans L* %.1f to %.1f (%.1f, under %.1f), so no "
                     "declared arc can read on it" % (lo, hi, span, FLAT_SPAN))
+    # ONE TONE UNDER A SPIKE (2026-10-16 weekly pass). The span above is the two
+    # extremes, so one lit frame hides a sheet that is otherwise a single tone: the
+    # flow critic named cause e on 2026-10-12 ("seven of nine frames in an L* 8 to 13
+    # band") over a 74 L* span, and on 2026-10-04 ("one navy value range") over 53.
+    # Calibrated over the 19 shipped decks with a Tonal arc line, 2026-09-26 to
+    # 2026-10-15: it fires on 09-26, 09-30, 10-02, 10-04, 10-09, 10-12 and 10-15
+    # (10-01 is already "one tone" above); the critic named cause e on all five of
+    # those it reviewed (09-26 and 10-09 have no flow review on record), and it is
+    # silent on 10-07, the one reviewed deck the critic did not name. It misses
+    # 10-11's "16 to 20 L* plateau" (the middle seven span 15.6), which is honest.
+    mids = order[1:-1]
+    if span >= FLAT_SPAN and len(order) >= MID_MIN_FRAMES:
+        m_hi, m_lo = L[mids[0]], L[mids[-1]]
+        if m_hi - m_lo < MID_SPAN:
+            warns += 1
+            msgs.append("[WARN] one tone under a spike: set aside %02d (L* %.1f) and %02d (L* %.1f), "
+                        "and the other %d frames span L* %.1f to %.1f (%.1f, under %.1f), so the arc "
+                        "is two exceptions on a plateau. Step the middle frames apart (%02d is the "
+                        "brightest of them, %02d the darkest)"
+                        % (order[0], hi, order[-1], lo, len(mids), m_lo, m_hi, m_hi - m_lo,
+                           MID_SPAN, mids[0], mids[-1]))
+    # A PEAK THAT TIES (2026-10-16 weekly pass). The peak census passes a declared
+    # frame that is brightest by a hair; on 2026-10-15 the critic's cause e was
+    # "04 and 08 tie at L* 36" on a sheet this check passed (04 36.0, 08 34.3). A
+    # frame the line did not name that sits within PEAK_TOL of the declared peak
+    # shares the peak, and the reader can't see which frame is the lit one. Same
+    # 19 decks: it fires on 09-26, 09-27, 09-29, 10-01, 10-02, 10-05, 10-06, 10-08
+    # and 10-15, the critic named cause e on all seven of those it reviewed, and it
+    # is silent on 10-07.
+    pk = sorted(n for n in peaks if n in L)
+    if pk:
+        top = max(pk, key=lambda n: L[n])
+        rivals = [n for n in order if n not in peaks and L[n] >= L[top] - PEAK_TOL]
+        if rivals:
+            warns += 1
+            msgs.append("[WARN] the peak ties: %s within %.0f L* of the declared peak %02d (L* %.1f), "
+                        "so no one frame reads as the lit one. Lift %02d or lower %s"
+                        % (", ".join("%02d (L* %.1f)" % (n, L[n]) for n in rivals[:3]), PEAK_TOL,
+                           top, L[top], top, ", ".join("%02d" % n for n in rivals[:3])))
     data = {"line": line, "peaks": sorted(peaks), "darkest": sorted(darks),
             "lstar": {"%02d" % k: round(v, 1) for k, v in sorted(L.items())},
             "brightest": "%02d" % order[0], "darkest_measured": "%02d" % order[-1],
@@ -303,6 +348,20 @@ def self_test():
         (v, msgs, data), err = run(flat)
         ok("a one-tone sheet WARNS whatever the line says",
            v == "WARN" and any("one tone" in m for m in msgs), msgs)
+        spike = deck("spike", [26, 30, 28, 31, 27, 200, 29, 26, 12],
+                     "dark open on 01, the lit peak on 06, the darkest close on 09")
+        (v, msgs, data), err = run(spike)
+        ok("2026-10-12: one lit frame over a one-tone sheet WARNS though the span is wide",
+           v == "WARN" and any("one tone under a spike" in m for m in msgs)
+           and not any("[WARN] peak" in m for m in msgs), msgs)
+        tie = deck("tie", [60, 80, 90, 120, 100, 70, 40, 117, 30],
+                   "mid open on 01, the lit peak on 04, the darkest close on 09")
+        (v, msgs, data), err = run(tie)
+        ok("2026-10-15: an undeclared frame within PEAK_TOL of the peak WARNS and is named",
+           v == "WARN" and any("peak ties" in m and "08 (L*" in m for m in msgs), msgs)
+        (v, msgs, data), err = run(good)
+        ok("a sheet that carries its arc still has no tie and no plateau",
+           v == "PASS" and not any("ties" in m or "under a spike" in m for m in msgs), msgs)
         nodark = deck("nodark", [30, 60, 90, 140, 120, 80, 40],
                       "quiet on 01, the lit peak on 04, a calm close on 07")
         (v, msgs, data), err = run(nodark)

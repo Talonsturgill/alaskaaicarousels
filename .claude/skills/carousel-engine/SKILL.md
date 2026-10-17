@@ -739,6 +739,18 @@ FAILs whatever it left stale.
   plate the text paints ABOVE is legible and never reported. `data-overlap-ok`
   demotes the FAIL to a WARN. The remedy is to move the plate or the type,
   never to declare the overlap away.
+- **No type may sit under canvas ink** (2026-10-16): the plate probe above
+  skips `<canvas>`, so render.py also samples every text node's line boxes,
+  DECORATIVE ONES INCLUDED, asks `elementsFromPoint` which canvases stack
+  above the text, and reads that canvas's own pixel at each point (alpha x
+  opacity >= 0.9 is covered; a blended or sub-0.9-opacity canvas never
+  covers). qa.py FAILS a reading line half covered (WARN from a fifth) and a
+  decorative mark 90 percent covered (WARN from half). Run No.88's wordmark,
+  counter and site line were appended after a `z-index:1` art canvas with no
+  z-index of their own and painted under it on all nine frames, in the DOM and
+  absent from the pixels, through every gate. **Any element appended after a
+  z-indexed art canvas needs `position` and a higher `z-index`.**
+  `tests/canvas_over_text_verify.py` holds the gate.
 - **An SVG label must sit inside its own plate** (2026-07-29): render.py
   measures every `<svg><text>` against the `<rect>` painted under it, against
   any opaque `<rect>` appended AFTER it (SVG has no z-index, document order IS

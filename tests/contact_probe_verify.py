@@ -17,6 +17,8 @@ x. Three things are held.
   3. THE PROPOSAL. Pointed at the object's base, the probe finds the cast
      within a few px of where it was actually drawn and pairs it with lit
      ground at the same y, and that pair clears qa.py's floor.
+  6. A NEUTRAL DARK OBJECT (2026-10-16, weekly machine pass). A black pole on
+     a grey carpet: the carpet beside the foot is not the pole's own colour.
   5. NOT ON THE OBJECT (2026-10-11, weekly machine pass). A pale card whose
      bottom edge slopes, on a dark plate: the base line runs INTO the card on
      one side, so the horizontal read's brightest window is the card's own
@@ -254,6 +256,28 @@ def main():
                        "(axis %s, ground L* %s, dL %s)" % (auto.get("axis"), gl, auto.get("dL")))
         elif auto.get("dL", 0) < cp.QA.CONTACT_WARN_DL:
             bad.append("5. card: the off-object read measures dL %s" % auto.get("dL"))
+    # 6. A NEUTRAL DARK OBJECT IS NOT ITS LIT GROUND (2026-10-16, weekly pass).
+    # No.87 carried the note on all five declarations and No.88 slide 09 on its
+    # chair foot (sample L* 2.5, carpet L* 25.6, "78 percent the object's own
+    # colour"): half-weight L* matched any neutral ground within 24 L*. A black
+    # pole on a grey carpet: the carpet beside the foot must not read as the pole.
+    with tempfile.TemporaryDirectory() as d:
+        rdir = Path(d)
+        h, w = DH * SCALE, DW * SCALE
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float64) / SCALE
+        v = np.full((h, w), 58.0)                                   # carpet, L* about 24
+        pole = (xx > 530) & (xx < 550) & (yy < 1000) & (yy > 600)
+        v = np.where(pole, 8.0, v)                                 # the foot, L* about 2
+        arr = np.stack([v, v, v], -1).astype(np.uint8)
+        Image.fromarray(arr).save(rdir / "slide-01.png")
+        fr = cp.Frame(rdir / "slide-01.png", DW, DH)
+        sig = cp.object_colour(fr, 540.0, 1000.0)
+        frac = cp.on_object(fr, [440, 1000, 26, 10], sig) if sig else None
+        if sig is None:
+            bad.append("6. pole: the object sample did not read as one surface")
+        elif frac >= cp.OBJ_FRAC:
+            bad.append("6. pole: carpet 100 px from the foot reads %.0f percent the "
+                       "pole's own colour (sample %s)" % (100 * frac, sig["lab"]))
     shipped = [("2026-10-08", 1, 500.0, 1045.0, "No.81 slide 01, the tag"),
                ("2026-10-10", 9, 300.0, 1168.0, "No.83 slide 09, the card")]
     for date, n, bx, by, name in shipped:

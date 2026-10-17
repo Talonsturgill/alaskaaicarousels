@@ -2550,6 +2550,103 @@ IN_PAGE_QA_JS = """
       }
       if (worst) { delete worst._px; tn.occluded = worst; }
     }
+    /* TEXT UNDER CANVAS INK (2026-10-16, weekly pass; queue item 2026-10-16).
+       The probe above skips <canvas> on purpose, because canvas ink is sparse
+       and an element box says nothing about which pixels are drawn. Run No.88
+       paid for that: AKDOCKET.fixtures appended the ALASKA.AI wordmark, the
+       NN / 09 counter and alaskaaihq.com with position:absolute and no
+       z-index AFTER a z-index:1 art canvas, so all three painted UNDER it on
+       all nine frames. They were in the DOM, so render.py, qa.py and
+       copy_sync_check passed, and five pixel critics found them missing.
+       So for EVERY recorded text node, decorative ones included (the
+       wordmark and the site line are data-decorative), sample its line boxes
+       on a 5 x 2 grid, ask elementsFromPoint which canvases stack ABOVE the
+       text at each point, and read that canvas's own pixel there. A point is
+       covered when the canvas pixel's alpha times the canvas's opacity is
+       0.9 or more. A canvas with a blend mode, or under 0.9 effective
+       opacity, never covers (a grain or glow layer is legal over type). A
+       pixel that can't be read (a tainted or transferred canvas) counts as
+       unverified, never as covered. A WebGL canvas without
+       preserveDrawingBuffer may read transparent here: that is a miss, never
+       a false FAIL. The verdict is qa.py's (CANVAS_OVER_*). */
+    try {
+      let scratch = null, sctx = null;
+      const _fresh = () => {
+        scratch = document.createElement("canvas"); scratch.width = 1; scratch.height = 1;
+        sctx = scratch.getContext("2d", { willReadFrequently: true });
+        sctx.imageSmoothingEnabled = false;
+      };
+      _fresh();
+      const _readA = (cv, x, y) => {
+        const rr = cv.getBoundingClientRect();
+        if (rr.width < 1 || rr.height < 1 || !cv.width || !cv.height) return 0;
+        const sx = Math.floor((x - rr.left) * cv.width / rr.width);
+        const sy = Math.floor((y - rr.top) * cv.height / rr.height);
+        if (sx < 0 || sy < 0 || sx >= cv.width || sy >= cv.height) return 0;
+        try {
+          sctx.clearRect(0, 0, 1, 1);
+          sctx.drawImage(cv, sx, sy, 1, 1, 0, 0, 1, 1);
+          return sctx.getImageData(0, 0, 1, 1).data[3];
+        } catch (e) { _fresh(); return null; }   // a tainted read poisons the scratch
+      };
+      const _opCache = new Map();
+      const _effOp = (cv) => {
+        if (_opCache.has(cv)) return _opCache.get(cv);
+        let op = 1, ok = true;
+        const c0 = getComputedStyle(cv);
+        if (c0.mixBlendMode && c0.mixBlendMode !== "normal") ok = false;
+        for (let p = cv; ok && p && p.nodeType === 1; p = p.parentElement) {
+          op *= parseFloat(getComputedStyle(p).opacity);
+        }
+        const v = (ok && op >= 0.9) ? op : null;
+        _opCache.set(cv, v);
+        return v;
+      };
+      for (const [tel, idx] of recorded) {
+        const tn = out.text_nodes[idx];
+        let pts = 0, cov = 0, unk = 0, worstLine = 0, byEl = null;
+        for (const ln of (tn.lines || []).slice(0, 8)) {
+          if (!ln || ln[2] < 2 || ln[3] < 2) continue;
+          let lp = 0, lc = 0;
+          for (const fx of [0.1, 0.3, 0.5, 0.7, 0.9]) for (const fy of [0.35, 0.65]) {
+            const x = ln[0] + ln[2] * fx, y = ln[1] + ln[3] * fy;
+            if (x < 0 || y < 0 || x >= W || y >= H) continue;
+            const stack = document.elementsFromPoint(x, y);
+            let ti = -1;
+            for (let k = 0; k < stack.length; k++) {
+              if (stack[k] === tel || tel.contains(stack[k])) { ti = k; break; }
+            }
+            if (ti < 0) continue;
+            lp++;
+            let hit = false, unknown = false;
+            for (let k = 0; k < ti && !hit; k++) {
+              const nd = stack[k];
+              if (nd.tagName !== "CANVAS" || nd.contains(tel)) continue;
+              const eo = _effOp(nd);
+              if (eo === null) continue;
+              const a = _readA(nd, x, y);
+              if (a === null) { unknown = true; byEl = byEl || nd; continue; }
+              if ((a / 255) * eo >= 0.9) { hit = true; byEl = nd; }
+            }
+            if (hit) lc++; else if (unknown) unk++;
+          }
+          pts += lp; cov += lc;
+          if (lp) worstLine = Math.max(worstLine, lc / lp);
+        }
+        if (pts && (cov || unk)) {
+          tn.canvas_over = {
+            frac: Math.round(1000 * cov / pts) / 1000,
+            worst_line: Math.round(1000 * worstLine) / 1000,
+            unverified: unk, points: pts,
+            by: byEl ? (byEl.id ? "#" + byEl.id : ((byEl.getAttribute("class") || "canvas").slice(0, 40)))
+                     : "canvas",
+            z: byEl ? getComputedStyle(byEl).zIndex : ""
+          };
+        }
+      }
+    } catch (e) {
+      try { console.error("canvas-over-text probe threw: " + e); } catch (e2) {}
+    }
   } catch (e) {
     // never fail the render over the probe itself; surface it as a console
     // error, which render.py records and qa.py reports as a WARN.
