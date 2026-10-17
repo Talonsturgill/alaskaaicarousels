@@ -3636,12 +3636,15 @@ def canvas_cover_probe(page, width, height, nodes):
     BLENDED = """() => {
       const blends = (el) => { for (let p = el; p && p.nodeType === 1 && p !== document.documentElement; p = p.parentElement) {
         const b = getComputedStyle(p).mixBlendMode; if (b && b !== 'normal') return true; } return false; };
-      const bc = [...document.querySelectorAll('canvas')].filter(blends).map(c => c.getBoundingClientRect());
+      const hit = (c, r) => c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top;
+      const shownCv = [...document.querySelectorAll('canvas')].filter(c => getComputedStyle(c).visibility !== 'hidden');
+      const all = shownCv.map(c => c.getBoundingClientRect()), bc = shownCv.filter(blends).map(c => c.getBoundingClientRect());
       const out = [];
       for (const t of document.querySelectorAll('[data-akt-idx]')) {
-        let bad = blends(t);
-        if (!bad) { const r = t.getBoundingClientRect();
-          for (const c of bc) if (c.left < r.right && c.right > r.left && c.top < r.bottom && c.bottom > r.top) { bad = true; break; } }
+        const r = t.getBoundingClientRect();
+        // abstain only where a canvas actually shares pixels with the text (Codex, PR #438)
+        let bad = blends(t) && all.some(c => hit(c, r));
+        if (!bad) bad = bc.some(c => hit(c, r));
         if (bad) out.push(+t.getAttribute('data-akt-idx'));
       }
       return out; }"""

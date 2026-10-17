@@ -200,7 +200,11 @@ def promised_cast(body):
             # a shared subject ("the lamp glows and casts onto the desk"): take the preceding clause's
             # SUBJECT, the words before its first verb-like word, not its object (Codex, PR #438)
             prev = re.findall(r"[A-Za-z]+", parts[-2])
-            cut = next((i for i, w in enumerate(prev) if i and (w.lower().endswith("ing") or w.lower().endswith("s"))), len(prev))
+            # a word is the verb when it ends -ing, or ends -s right after a noun (never after a determiner,
+            # never a light noun itself): "the lamps glow" keeps "lamps" (Codex, PR #438)
+            dets = {"the", "a", "an", "its", "their", "this", "that", "these", "those", "each", "both", "his", "her", "our"}
+            cut = next((i for i, w in enumerate(prev) if i and (w.lower().endswith("ing") or (
+                w.lower().endswith("s") and prev[i - 1].lower() not in dets and w.lower() not in LIGHT_NOUNS))), len(prev))
             lead = " ".join(prev[:cut])
         # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
         # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)

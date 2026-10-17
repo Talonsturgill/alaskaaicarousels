@@ -773,15 +773,16 @@ def site_fresh_row(rows, run):
         pass
     # ...and never behind what main already publishes: a stale build that is byte-exact at its own stale date
     # is still a rollback when main's site records a later one (Codex, PR #438)
+    # read EVERY available main ref and keep the newest stamp: a stale origin/main must not hide a newer
+    # local main (Codex, PR #438)
     base_recorded = None
     for ref in ("origin/main", "main"):
         try:
             bs = subprocess.run(["git", "-C", str(REPO), "show", ref + ":docs/sitemap.xml"],
                                 capture_output=True, text=True, timeout=60)
             bm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", bs.stdout or "")
-            if bs.returncode == 0 and bm:
+            if bs.returncode == 0 and bm and (base_recorded is None or bm.group(1) > base_recorded):
                 base_recorded = bm.group(1)
-                break
         except Exception:
             continue
     # fail CLOSED: a row that can't see what main publishes can't rule out a rollback (Codex, PR #438)
