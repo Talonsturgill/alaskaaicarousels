@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "ten-billion-how-many-megawatts",
+      "date": "2026-10-17",
+      "title": "Ten Billion, How Many Megawatts",
+      "caption": "Interior Secretary Burgum said people want to drop ten billion on a data center. Two days earlier Golden Valley Electric's reserve fell under 15 megawatts. The reports name no megawatts.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-17-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-17-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-17-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-17-poster_thumb.jpg"
+    },
+    {
       "id": "2026-10-16-the-forecast-that-shows-its-work",
       "date": "2026-10-16",
       "title": "The Forecast That Shows Its Work",
