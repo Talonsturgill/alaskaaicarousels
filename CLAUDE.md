@@ -147,6 +147,15 @@ Work its findings like a colleague's, not like a linter's:
   be reviewed.
 - It reviews your fixes too, and there is no round limit. Repeated findings on
   your own pushes mean fix the root cause rather than stop.
+- **BUT WATCH FOR DIMINISHING RETURNS** (2026-10-17, owner: Codex reviews "are
+  usually productive, but you need to be smart enough to see when you're getting
+  diminishing returns"). Run No.88 finished its deck at 10:09 and then spent 22
+  Codex rounds, five hours and a large token bill on edge cases in two new
+  WARN-only heuristics (a CSS pixel probe, an English-prose parser), inputs no
+  deck has ever produced, while the deck sat unmerged. When the findings stop
+  being about the deck, the data or a gate that can FAIL, and start being new
+  hypothetical inputs to a check that can only warn, decline them once on
+  proportion, write why, and merge.
 
 The rule exists because 2026-09-17 merged three PRs the instant CI went green
 and collected THIRTEEN findings on `main` afterwards, on published code rather

@@ -119,7 +119,13 @@
       ],
       "note": "weekly pass ran, 5 fixes, upgrade 868297b1 + 0cd7e2b2; PR #438 open"
     },
-    "gmail": "pending",
+    "gmail": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-16/gmail_draft_id.txt"
+      ],
+      "note": "draft r-3163629421649449928 to docket@alaskaaihq.com"
+    },
     "retro": {
       "status": "done",
       "artifacts": [
@@ -138,5 +144,6 @@
     "gaswatch_live": "PASS at 08:59Z after FAIL from wake to about 08:25Z. CINGSA's 17:11 Alaska reading of October 16th posted after the 22:07Z collection; the routine's workflow_dispatch is 403; GitHub ran a late scheduled slot and the live audit passed, so no incident was filed. Escalated queue item, repeat 13: the owner's call on Actions write or a later audit time.",
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-17T08:59:31.642657Z, no failing job"
-  }
+  },
+  "status": "complete"
 }
