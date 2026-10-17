@@ -759,12 +759,19 @@ def site_fresh_row(rows, run):
     # A LATER BUILD DATE IS RIGHT, AN EARLIER ONE IS THE ROLLBACK (2026-10-16, Codex on
     # PR #438). A run that ships after midnight UTC meets a main whose docs/ a cron has
     # already rebuilt for today; rebuilding at the run date would roll the published
-    # site back a day (an expired deadline as the homepage's next event). So the site is
-    # built at today's UTC date when that is later than the run date, and this row
-    # accepts a fresh build at either date, never at one earlier than the run.
-    import datetime as _dt
-    today = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d")
-    dates = [date] + ([today] if today > date else [])
+    # site back a day (an expired deadline as the homepage's next event). So the site may
+    # be built at a later date than the run, and this row checks the date the committed
+    # build RECORDS (the homepage's sitemap lastmod, which site_build stamps with its
+    # --date) when that is later than the run date, never one earlier. Reading the
+    # record rather than the clock keeps the row stable on later days (Codex, PR #438).
+    recorded = None
+    try:
+        sm = (REPO / "docs" / "sitemap.xml").read_text()
+        mm = re.search(r"<loc>https?://[^<]+?/</loc><lastmod>(\d{4}-\d{2}-\d{2})</lastmod>", sm)
+        recorded = mm.group(1) if mm else None
+    except OSError:
+        pass
+    dates = [date] + ([recorded] if recorded and recorded > date else [])
     p, used = None, date
     for d in dates:
         try:

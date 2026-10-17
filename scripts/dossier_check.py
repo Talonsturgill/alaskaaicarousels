@@ -172,7 +172,9 @@ CONTACT_PROMISE_RE = re.compile(r"contact[- ]shadow|two[- ]part shadow", re.I)
 # the FAIL above: over 2026-09-26 to 2026-10-15 the wording also covers casts between
 # parts of one object ("each riser casts onto what is below it"), which a contact
 # pair can't always isolate. A light thrown onto a ground is not a cast.
-CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+(?:\w+\s+){0,3}?onto\b", re.I)
+# bounded by the clause, not by a word count: "casting an attached shadow down and right onto
+# the lit bench" is a promise six words long (Codex, PR #438)
+CAST_ONTO_RE = re.compile(r"\bcast(?:s|ing)?\s+[^.;:\n(]{0,80}?\bonto\b", re.I)
 CAST_LIGHT_RE = re.compile(r"\b(?:pool|light|glow|beam|reflection|spill)s?\b", re.I)
 
 

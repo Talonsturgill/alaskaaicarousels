@@ -2606,10 +2606,10 @@ IN_PAGE_QA_JS = """
       const _effOp = (cv) => {
         if (_opCache.has(cv)) return _opCache.get(cv);
         let op = 1, ok = true;
-        const c0 = getComputedStyle(cv);
-        if (c0.mixBlendMode && c0.mixBlendMode !== "normal") ok = false;
         for (let p = cv; ok && p && p.nodeType === 1; p = p.parentElement) {
           const cs = getComputedStyle(p);
+          // a blend mode on the canvas OR any ancestor blends the group (Codex, PR #438)
+          if (cs.mixBlendMode && cs.mixBlendMode !== "normal") { ok = false; break; }
           op *= parseFloat(cs.opacity);
           // a filter opacity() fades the canvas as CSS opacity does (Codex, PR #438)
           const f = cs.filter || "none";

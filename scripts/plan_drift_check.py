@@ -220,7 +220,7 @@ def parse_claims_index(text):
         # deck until the row was reworded. When the cell opens with ids, only
         # that opening run counts; a cell that opens with prose keeps the old
         # whole-cell read.
-        lead = LEAD_IDS_RE.match(left)
+        lead = LEAD_IDS_RE.match(re.sub(r"[*_`]", "", left))   # a bolded or coded leading id is still the lead (Codex, PR #438)
         idtext = lead.group(1) if lead else left
         ids = ["C%02d" % int(n) for n in CLAIM_RE.findall(idtext)]
         if not ids:
