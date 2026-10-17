@@ -189,6 +189,9 @@ def promised_cast(body):
         lead = re.split(r"\b(?:and|while|then|but)\b", lead)[-1]
         # and only its HEAD noun, the last word before the verb past any -ly adverb: "the light-colored
         # plate casts" is a plate casting, "a pool of light casts" is light (Codex, PR #438)
+        # the subject's head sits before any prepositional modifier: "the plate under the light casts" is a
+        # plate, "the sun above the plate casts" is the sun (Codex, PR #438)
+        lead = re.split(r"\b(?:under|above|over|beneath|below|behind|beside|near|on|in|at|of|from|with|across|along|against)\b", lead)[0]
         words = [w for w in re.findall(r"[A-Za-z]+", lead)]
         while words and words[-1].lower().endswith("ly"):
             words.pop()

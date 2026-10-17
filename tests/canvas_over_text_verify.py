@@ -31,6 +31,9 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
             headline (hit testing can't see it)              -> one FAIL
   slide-08  two sibling bands at opacity .7 over the headline
             (they composite to 91 percent)                    -> one FAIL
+  slide-09  a line inked with an inline !important colour
+            under an opaque band                              -> one FAIL
+  slide-10  difference-blended text over a canvas UNDER it    -> silent
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
 modelling any CSS.
 """
@@ -109,6 +112,17 @@ def _band(cid, style):
             '"%s").getContext("2d");c.fillStyle="#0A121C";c.fillRect(0,0,2160,400);})();</script>\n' % (cid, style, cid))
 NOHIT = _band("nohit", "z-index:6;pointer-events:none;")
 STACK = _band("s1", "z-index:6;opacity:.7;") + _band("s2", "z-index:7;opacity:.7;")
+# an inline !important colour must not hide the line from the probe; blended text over a canvas UNDER it is not covered
+LINE = ('<div style="position:absolute;z-index:4;left:80px;top:820px;font-size:48px;font-weight:700;'
+        'color:#E8E2D4 !important;%s">%s</div>\n')
+INLINE = (LINE % ("", "Inline important ink line") +
+          '<canvas id="lid" width="2160" height="240" style="position:absolute;left:0;top:800px;width:1080px;'
+          'height:120px;z-index:5"></canvas>\n<script>(function(){var c=document.getElementById("lid")'
+          '.getContext("2d");c.fillStyle="#0A121C";c.fillRect(0,0,2160,240);})();</script>\n')
+BLEND = ('<canvas id="under" width="2160" height="240" style="position:absolute;left:0;top:800px;width:1080px;'
+         'height:120px;z-index:3"></canvas>\n<script>(function(){var c=document.getElementById("under")'
+         '.getContext("2d");c.fillStyle="#808080";c.fillRect(0,0,2160,240);})();</script>\n' +
+         LINE % ("mix-blend-mode:difference;", "Blended line over a lower canvas"))
 CASES = [
     # name, html, expected FAIL count, expected WARN count, labels that must be named
     ("slide-01.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures=""),
@@ -135,6 +149,10 @@ CASES = [
      1, 0, ["The hearing room"]),
     ("slide-08.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=STACK),
      1, 0, ["The hearing room"]),
+    ("slide-09.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=INLINE),
+     1, 0, ["Inline important"]),
+    ("slide-10.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=BLEND),
+     0, 0, []),
 ]
 MARK = "text under canvas ink"
 

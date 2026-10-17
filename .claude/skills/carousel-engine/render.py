@@ -3628,20 +3628,32 @@ def canvas_cover_probe(page, width, height, nodes):
     def shot():
         return np.asarray(Image.open(io.BytesIO(page.screenshot(clip=clip, type="png"))).convert("RGB")).astype(np.int16)
 
-    def colour(c):
-        return ("[data-akt-idx], [data-akt-idx] * { color: %s !important; -webkit-text-fill-color: %s !important; "
-                "text-shadow: none !important; -webkit-text-stroke: 0 !important; caret-color: transparent !important; } "
-                "text[data-akt-idx], [data-akt-idx] text, [data-akt-idx] tspan { fill: %s !important; stroke: none !important; }" % (c, c, c))
-
-    hide = "canvas { visibility: hidden !important; }"
+    # The probe styles go on INLINE with !important, saved and restored, so no author rule (an inline
+    # !important colour included) can outrank them, and the text is forced to a normal blend so a canvas
+    # UNDER blended text can't change the comparison (Codex, PR #438).
+    SET = """(a) => { const [c, hide] = a;
+      const keep = (el) => { if (!el.hasAttribute('data-akt-style')) el.setAttribute('data-akt-style', el.getAttribute('style') === null ? '\\u0000' : el.getAttribute('style')); };
+      for (const el of document.querySelectorAll('[data-akt-idx], [data-akt-idx] *')) {
+        if (el.tagName === 'CANVAS') continue;
+        keep(el); const st = el.style;
+        st.setProperty('color', c, 'important'); st.setProperty('-webkit-text-fill-color', c, 'important');
+        st.setProperty('text-shadow', 'none', 'important'); st.setProperty('-webkit-text-stroke', '0', 'important');
+        st.setProperty('mix-blend-mode', 'normal', 'important');
+        if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
+      }
+      if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
+      return true; }"""
+    RESTORE = """() => { for (const el of document.querySelectorAll('[data-akt-style]')) {
+        const v = el.getAttribute('data-akt-style'); el.removeAttribute('data-akt-style');
+        if (v === '\\u0000') el.removeAttribute('style'); else el.setAttribute('style', v); } return true; }"""
     imgs = []
-    for css in (colour("#FF00FF"), colour("#00FF00"), colour("#FF00FF") + hide, colour("#00FF00") + hide):
-        h = page.add_style_tag(content=css)
-        try:
+    try:
+        for c, hide in (("#FF00FF", False), ("#00FF00", False), ("#FF00FF", True), ("#00FF00", True)):
+            page.evaluate(SET, [c, hide])
             page.evaluate("() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))")
             imgs.append(shot())
-        finally:
-            h.evaluate("e => e.remove()")
+    finally:
+        page.evaluate(RESTORE)
     d_shown = np.abs(imgs[0] - imgs[1]).max(axis=2)
     d_hidden = np.abs(imgs[2] - imgs[3]).max(axis=2)
     k = d_shown.shape[1] / float(width)
