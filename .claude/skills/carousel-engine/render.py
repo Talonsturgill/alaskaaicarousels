@@ -3638,7 +3638,7 @@ def canvas_cover_probe(page, width, height, nodes):
         keep(el); const st = el.style;
         st.setProperty('color', c, 'important'); st.setProperty('-webkit-text-fill-color', c, 'important');
         st.setProperty('text-shadow', 'none', 'important'); st.setProperty('-webkit-text-stroke', '0', 'important');
-        st.setProperty('mix-blend-mode', 'normal', 'important');
+        st.setProperty('mix-blend-mode', 'normal', 'important'); st.setProperty('filter', 'none', 'important');
         if (el.tagName === 'text' || el.tagName === 'tspan') { st.setProperty('fill', c, 'important'); st.setProperty('stroke', 'none', 'important'); }
       }
       if (hide) for (const cv of document.querySelectorAll('canvas')) { keep(cv); cv.style.setProperty('visibility', 'hidden', 'important'); }
@@ -3659,8 +3659,8 @@ def canvas_cover_probe(page, width, height, nodes):
     k = d_shown.shape[1] / float(width)
     H, W = d_shown.shape
     for i, tn in enumerate(nodes or []):
-        tot = cov = 0
-        worst = 0.0
+        tot = cov = unver = 0
+        worst = worst_unv = 0.0
         for ln in (tn.get("lines") or []):
             if not ln or ln[2] < 2 or ln[3] < 2:
                 continue
@@ -3672,14 +3672,19 @@ def canvas_cover_probe(page, width, height, nodes):
             m = dh >= 24                       # this element's own glyph pixels, canvases hidden; low so faint (down to about 10 percent opacity) marks still count (Codex, PR #438)
             n = int(m.sum())
             if n < 6:
+                # a line the probe could not recolour (a colour-collapsing filter above it, or ink under
+                # about 10 percent) is UNVERIFIED, never silently clean (Codex, PR #438)
+                if ln[2] >= 8 and ln[3] >= 8:
+                    unver += 1
+                    worst_unv = 1.0
                 continue
             c = int(((ds[m] / dh[m]) < 0.1).sum())
             tot += n
             cov += c
             worst = max(worst, c / n)
-        if tot and cov:
-            tn["canvas_over"] = {"frac": round(cov / tot, 3), "worst_line": round(worst, 3),
-                                 "unverified": 0, "points": tot, "worst_unverified_line": 0.0,
+        if (tot and cov) or unver:
+            tn["canvas_over"] = {"frac": round(cov / tot, 3) if tot else 0.0, "worst_line": round(worst, 3),
+                                 "unverified": unver, "points": max(tot, 1), "worst_unverified_line": worst_unv,
                                  "by": "canvas", "z": ""}
 
 

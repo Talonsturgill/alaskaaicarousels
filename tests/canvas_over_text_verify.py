@@ -34,6 +34,8 @@ FIXTURES, all rendered and graded through the real render.py + qa.py:
   slide-09  a line inked with an inline !important colour
             under an opaque band                              -> one FAIL
   slide-10  difference-blended text over a canvas UNDER it    -> silent
+  slide-11  a colour-collapsing filter on a line under an
+            opaque band (the probe neutralises it)           -> one FAIL
 The probe is pixel truth (render.py canvas_cover_probe), so these hold without
 modelling any CSS.
 """
@@ -119,6 +121,10 @@ INLINE = (LINE % ("", "Inline important ink line") +
           '<canvas id="lid" width="2160" height="240" style="position:absolute;left:0;top:800px;width:1080px;'
           'height:120px;z-index:5"></canvas>\n<script>(function(){var c=document.getElementById("lid")'
           '.getContext("2d");c.fillStyle="#0A121C";c.fillRect(0,0,2160,240);})();</script>\n')
+FILTERED = (LINE % ("filter:grayscale(1) contrast(0);", "Filtered grey line") +
+            '<canvas id="lid2" width="2160" height="240" style="position:absolute;left:0;top:800px;width:1080px;'
+            'height:120px;z-index:5"></canvas>\n<script>(function(){var c=document.getElementById("lid2")'
+            '.getContext("2d");c.fillStyle="#0A121C";c.fillRect(0,0,2160,240);})();</script>\n')
 BLEND = ('<canvas id="under" width="2160" height="240" style="position:absolute;left:0;top:800px;width:1080px;'
          'height:120px;z-index:3"></canvas>\n<script>(function(){var c=document.getElementById("under")'
          '.getContext("2d");c.fillStyle="#808080";c.fillRect(0,0,2160,240);})();</script>\n' +
@@ -153,6 +159,8 @@ CASES = [
      1, 0, ["Inline important"]),
     ("slide-10.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=BLEND),
      0, 0, []),
+    ("slide-11.html", slide(ART.format(style="", alpha=1, rect=FULL), fixtures="z-index:9;", extra=FILTERED),
+     1, 0, ["Filtered grey"]),
 ]
 MARK = "text under canvas ink"
 
