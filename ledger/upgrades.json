@@ -3353,7 +3353,7 @@
    ],
    "verification": "browser_suites --self-test HOLDS. `browser_suites.py --date 2026-10-17 --suite mobile_docket_map` exits 1: iPhone 13 landscape, 1 pin behind the 70 px nav and Alaska at 23 by 48 percent of its 702 x 219 frame (speck floor 55). The SAME ledger built at 2026-07-25, CI's date, exits 0 (ALL PASS, 148 checks). main's published docs/ (sitemap 2026-10-17) and No.88's merge fad74184 fail the same two checks, and builds at 2026-10-10 and 2026-10-16 fail too, so the published map has been failing a check CI reports green. All five suites at the run date: ask_engine, home_ask, docket_ask, power_line PASS, mobile_docket_map FAIL as above. ask_answers --self-test clean, now printing '177,591 of 190,000 bytes, 12,409 bytes of headroom'.",
    "rollback": "git revert the upgrade(2026-10-17) commit, or drop 'mobile_docket_map' from SUITES in scripts/browser_suites.py",
-   "commit": ""
+   "commit": "50f11925"
   },
   {
    "run_date": "2026-10-17",
@@ -3368,7 +3368,7 @@
    ],
    "verification": "tests/gaswatch_incident_stamp_verify.py HOLDS: an unstamped record FAILs naming the field, a record stamped from the audit's checked_utc WARNs as before, a 40 hour stamp and a date-only stamp FAIL, an unopenable evidence URL FAILs, no record still FAILs, a passing audit ignores the record; all 7 unstamped shipped records FAIL as written and all 11 WARN once stamped. RECONSTRUCTION: HEAD's gate_status passes the same unstamped record as WARN. gate_status --self-test 27/27. Today's run (no incident filed yet) still reads FAIL, unchanged.",
    "rollback": "git revert the upgrade(2026-10-17) commit (the WARN branch returns to the four-field test)",
-   "commit": ""
+   "commit": "50f11925"
   },
   {
    "run_date": "2026-10-17",
@@ -3382,7 +3382,7 @@
    ],
    "verification": "Contract read end to end; no script parses critic output (grep for frame_causes and pixel_review finds only critic_brief.py's prose), so nothing downstream changes shape. Not machine-verifiable beyond that; the coverage check is the showrunner's step.",
    "rollback": "git revert the upgrade(2026-10-17) commit",
-   "commit": ""
+   "commit": "50f11925"
   },
   {
    "run_date": "2026-10-17",
@@ -3397,7 +3397,7 @@
    ],
    "verification": "tests/strobe_focal_region_verify.py HOLDS: on a receding-slab fixture at k 13, 5.1 percent of columns stay sharp without a region (the defect) and 100 percent of in-region columns with sharp [6, 10], contrast outside at 0.25 of source (fall-off kept); inFocus 0.012 to 0.508; depthRange returns the quantiles and leaves far-plane background out; HEAD and working write identical bytes without sharp (0 levels). tests/strobe_focus_cells_verify.py still HOLDS. On No.89 slide 01 (a copy in out/upgrade-verify): k 6 alone leaves 7.1 percent of the frame in focus, k 6 with sharp = depthRange(slab rect) 63.9 percent and matches the run's k 1.6 render on the slab (15k px differ, max 10 levels, against 406k px and 72 levels for k 6 alone). render.py + qa.py on this run's nine slides: 9/9 OK, WARN 0 fails 40 warns; examples/demo-deck: 4/4 OK, WARN 0 fails.",
    "rollback": "git revert the upgrade(2026-10-17) commit; no slide calls the new option yet",
-   "commit": ""
+   "commit": "50f11925"
   },
   {
    "run_date": "2026-10-17",
@@ -3410,7 +3410,7 @@
    ],
    "verification": "Measured in the engine's Chromium 141.0.7390.37 (out/upgrade-verify/probe/bead.py): a 2.4 px line at alpha 0.4 in 3.2 px segments peaks at alpha 163/255 at the joints with per-segment round caps, 102 with one stroke(), 102 per-segment with butt caps, 102 as opaque segments on a layer composited at 0.4.",
    "rollback": "git revert the upgrade(2026-10-17) commit",
-   "commit": ""
+   "commit": "50f11925"
   }
  ],
  "scan_log": [
