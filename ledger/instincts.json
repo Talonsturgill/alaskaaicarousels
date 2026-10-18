@@ -2130,6 +2130,30 @@
    "confidence": 0.5,
    "run_date": "2026-10-16",
    "carousel_no": 88
+  },
+  {
+   "instinct": "A THIN LENS ON A RECEDING SUBJECT BLURS THE SUBJECT; A SOFT RELIEF SLAB IS USUALLY MESH AND MASK, NOT FOCUS.",
+   "evidence": "No.89 01 stayed soft at AKSTROBE k 2 until the mesh went 560 to 900 columns and the coast mask blur 9 to 5 px; 09 sharpened only when the Delta DEM came in at full resolution.",
+   "act_on_it": "Before touching focus on a soft akthree slab, raise the mesh density and sharpen the mask; use AKSTROBE o.sharp for a receding subject.",
+   "confidence": 0.6,
+   "run_date": "2026-10-17",
+   "carousel_no": 89
+  },
+  {
+   "instinct": "A TRANSLUCENT LINE DRAWN PER SEGMENT WITH ROUND CAPS BEADS AT EVERY JOINT.",
+   "evidence": "No.89 04 vortex and 07 swell beaded through three critic rounds; butt caps on 04 and filled ribbons on an opaque layer on 07 cured it (technique 126, measured alpha 163 vs 102).",
+   "act_on_it": "Draw a variable line as one stroke, butt caps, or filled quads on an opaque layer; never per-segment round caps at partial alpha.",
+   "confidence": 0.7,
+   "run_date": "2026-10-17",
+   "carousel_no": 89
+  },
+  {
+   "instinct": "A TYPE VEIL IS AN ELLIPSE OR A WIDE FEATHER, NEVER A BLURRED BOX OVER LIT GROUND.",
+   "evidence": "No.89 03, 04 and 05: blurred rectangles left visible edges on the relief for three rounds; a radial ellipse on 03 and a two-layer feather on 04 and 05 passed; 08's body needed no veil at all.",
+   "act_on_it": "Ask first whether the text needs a veil; if it does, use a radial gradient or a 60 px feather and check the edge at 100 percent.",
+   "confidence": 0.6,
+   "run_date": "2026-10-17",
+   "carousel_no": 89
   }
  ]
 }

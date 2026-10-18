@@ -1,0 +1,181 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I read every string in copy.json (post_copy, first_comment, all 9 slides, labels, aftercare) and caption.txt and found no U+2014 or U+2013. The gold bar before the kickers on 01 and 05 is a drawn 14 px tick element (storyboard 01 type spec), not a character: copy.json kicker reads 'ONE YEAR AFTER HALONG' with no dash. copy_sync PASS on 66 strings. The claims verbatims that originally had dashes (C11, C59) are normalised and not used."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in the caption, the first comment or any render. The only non-ASCII characters are the middot separators, the degree signs in the coordinates footer, and the accented author names in the source block (François, Müller)."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide carries claim_ids, and all resolve to status 'verified' in claims.json (70/70 PASS). Caption facts map as follows: 40 minutes is C30; every airport since April is C01; fine-tuned on GDAS observations is C34/C38/C39; track and shift is C04/C05; 'may have played a role' is C06; December 2025 is C28. The honesty guards hold: no AI model is credited with forecasting Halong, 'may' is kept, and Kotzebue is dated February 2025 with no current status asserted."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "Transcribed from the renders. 01: 'Forecasts now run on AI. / The map under them / has holes.' 02: the 'NOAA fine-tuned its AI model, AIGFS, on its own Global Data Assimilation System analyses...' body, plus six labels. 03: 'Days or weeks / with no observations.' plus the body, the Kotzebue PAOT note, the rotated neatline label, and the Norton Sound, Kuskokwim Bay and Bering Sea names. 04, 05, 06, 07, 08 and 09 also transcribed against copy.json. All match exactly, with no misspellings. On 02 'three- / dimensional' breaks at the compound's own hyphen, which is legitimate."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "No text collides with text and nothing is clipped. Two near misses, both still legible: (1) 02 'SURFACE' sits on the block's NE coast and edge strokes (qa busy-art warn, edge density 0.11); (2) 08 footer 'alaskaaihq.com' sits over the globe's lower limb rings (decorative fixture). The 04 'FORECAST TRACK, SCHEMATIC' comma touches the coastline but reads."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Headlines and body are white on near-black or veiled ground, well above 10:1. The only sub-4.5 worst point machine QA reports is 4.2 on 01's 20 px leader label 'KUSKOKWIM DELTA' (box mean 6.7). That is a secondary annotation, not primary text. It is flagged under Legibility."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides: 9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN with 0 fails and 38 warns. assemble_report.json pdf_mode 'vector', 13.58 MB, titled 'A Year After Halong, the Map Under the AI Forecast'."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "selection.md dedupe gate found soft overlaps only (No.86 NOAA entity, No.63 Utqiagvik observers, No.64, No.62 FAA). No Halong or Y-K observation deck in the last 30 days. CLEAR."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last four are No.85 THE ROOM AND THREE ADDRESSES, No.86 THE EXHIBITS, No.87 THE FRAME IS THE RULER and No.88 THE TRANSCRIPT WITHOUT A WITNESS. This deck is THE ANALYSIS LATTICE (true-geography world, forecast grid, descending camera). bespoke_check PASS: median pairwise similarity 0.057, max 0.458."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS with 74 brand phrases loaded and 72 copy fields checked; word_ban PASS with 0 hits. My own read finds no 'gap', 'matters' or 'pattern' and no 'cannot' (the caption uses 'can't'). Quote marks: copy_sync reports 'no curl'. The quotes on 07, 08 and 09 render as straight U+0022 in Bricolage, and the apostrophes in 'Alaska's' and 'I'm' are straight. Nothing is flagged as drawn slanted."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly 3 hashtags: #YKDelta #AlaskaWeather #WeatherObservations. The post body has no URL; the links sit only in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholder text in the renders, copy, caption or claims. The pending rows in run_state (scoring, ship, gmail) and the missing score_report are expected at this phase and are not deck artifacts."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "At the 432 px thumb the 11-word headline is huge and reads in three lines, and the tension is real (AI forecasts against a map with holes). But it has no number, place or name. Halong is in the kicker only. Nothing in the art depicts a hole: the hollow Delta cell is a thin wire box that competes with the extruded slab and does not read as missing. The landmass reads as coastline but not clearly as Western Alaska or the Bering Strait from this oblique, because the slab walls look like cut card. Strong but slightly abstract, so the 7 band, top end."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Clear beats: mechanism, holes, storm, water, legend, breather, both poles, ask. The 03-04 and 04-05 seams pull hard, and the round 5 'A YEAR AGO' kicker fixes the flashback. The flow critic still rates 02-03, 05-06, 06-07 and 07-08 as weak junctions. 02 explains the mechanism but does not pay the cover's 'holes', which arrive on 03. 07 and 08 could swap with little loss. The contact sheet reads as one composed sequence."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "Real highs. 05 is a GPU PBR flood with a reflected break, fog and lit grass at the wrack line, a genuine masterful depth frame. 04's streamline vortex is excellent. 02's strata block with DEM lakes and six gold marks is good, and 08's lathe-ring globe has a soft terminator. 01 climbs the rendered ladder. Held down by: 06's tray, a uniform flat waffle panel whose lids and walls are invisible at thumb, with dead dark bands below and right of it; 07's crest ribbons at near-constant width, reading as op-art stripes; 01's extrusion walls, uniform cardboard thickness with flat olive interior lowlands; 09's slab, soft and muddy, with ghost relief blobs in the fog behind the quote; and 05's tussock tops, floating pancake discs in regular rows, with the cell's reflection drawn as a second box in a different perspective. Several strong frames, several defaults, so solidly 7 band."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.3,
+   "weight": 0.14,
+   "notes": "Art parameters encode the story. On 02, six gold marks stand for the six C39 observation types. On 03, a 100-tick neatline has 15 ticks not solid (C55, asserted 100/100 and 15/15). On 06, 1,000 cells with 3 gold encode 0.3% (C29). On 05, the dimension call spans the drawn sheet for 'more than 15 mi'. 04 draws the dashed forecast path against the hook east. The Delta cell motif threads every frame. A stranger would guess 'weather forecasting and observations over coastal Alaska'. 01, 07 and 09 carry no encoding, and the cover never draws the 'holes'."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 9.0,
+   "weight": 0.12,
+   "notes": "Kipnuk, Kotzebue (PAOT), the Y-K Delta region drawn from the Bethel and Kusilvak census areas, Kuskokwim Bay, Norton Sound, Nelson and Nunivak islands in the true-projection DEM, Rick Thoman, KYUK, and Halong's date. No station dots are invented at villages and no buildings are invented. 08 widens to both poles but stays anchored at the Bering Strait. Would make a Delta resident feel seen."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "Each content frame adds a new verified specific: 02 the GDAS mechanism and observation types; 03 the 'since April' outages, the Kotzebue suspension and 10-15 per 100; 04 track against shift plus the December 17th guard; 05 the 15 mi, 1,500 people and Kipnuk's 90%; 06 the 40 minutes, 0.3%, the v1.0 degradation and the 160 promised with no sites named; 08 the Eos decade-to-dozens point and 1978. The round-5 trim removed 06's repeats of 03. 07 is a deliberate breather."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8.0,
+   "weight": 0.08,
+   "notes": "New hero, atmosphere, palette (silt, stratus, sedge rust), type pairing (Bricolage plus JetBrains Mono plus Instrument Serif water names), hook (the blank on the map) and dials, all justified in the storyboard. Still, DEM hillshade Alaska maps and a camera-altitude continuity are well-worn house subsystems, so it is not fully divergent."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.0,
+   "weight": 0.07,
+   "notes": "Body type is 33-35 px and headlines are huge. Counters are on every frame, and the PDF is vector, 13.58 MB, titled. But 38 qa warns include a long run of 19-22 px fact-bearing labels. 03's C55 line, '10 TO 15 OF EVERY 100...', is an 18 px rotated decorative label, and since 06 dropped that row it is the only place the fact appears; it needs full-size viewing. Other undersized labels: 04's December 17th guard (22 px), 05's 'MORE THAN 15 MI' (22 px), 08's 1978 label (20 px), 02's six observation labels (20 px). The 01 leader label has a worst-point contrast of 4.2. 05 and 08 have hanging-preposition display breaks ('than', 'not')."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.5,
+   "weight": 0.05,
+   "notes": "The hook is 132 characters, a two-sentence contradiction. Total 889 characters, comma rate 0.83 per 100 words. The position line 'A faster model can't fill in a reading nobody took.' takes a stance. The deck-summary line is present and the closing trust question is debatable. One soft spot: 'NOAA fine-tuned that AI model on a grid of surface, balloon and satellite observations' compresses C34 and C38 (GDAS analyses are not literally a grid of raw observations)."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.0,
+   "weight": 0.1,
+   "notes": "This score is provisional, because the Gmail draft is not built yet (run_state gmail pending). The pieces are all in place: post copy, 3 hashtags, a dated first-comment source block with six sources (primary first), the document title, aftercare, and editor notes. I could not check the image and PDF URLs or the inline previews before the merge. site_fresh and gas_watch_live are FAIL pending the ship phase and must be resolved, or documented as an incident, in the draft."
+  }
+ ],
+ "calculation": "(7.5x0.14)+(7.5x0.14)+(7.5x0.16)+(8.3x0.14)+(9.0x0.12)+(8.5x0.10)+(8.0x0.08)+(7.0x0.07)+(8.5x0.05)+(8.0x0.10) = 1.050+1.050+1.200+1.162+1.080+0.850+0.640+0.490+0.425+0.800 = 8.747 (no hard fails, no cap; note the rubric's weights sum to 1.10, applied as written)",
+ "weighted_total": 8.74,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Legibility & platform fitness",
+ "one_sentence_fix": "Bring every fact-bearing label to the 24 px floor and onto the reading axis: set 03's C55 neatline line horizontally at 24 px or larger under the body, and raise 04's December 17th guard, 05's 'MORE THAN 15 MI', 02's six observation labels and 08's 1978 record label to 24 px.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The largest object, the 1,000-cell compute tray, reads as a flat uniform dark waffle. Lit lids and dark side walls are invisible at thumb, the tray is a near-frontal rectangle with a hairline side face, and there are dead dark bands below it (y about 1700 to 1900 of 2000) and to its right around the label.",
+   "fix": "Re-project the tray as a true oblique or three-quarter cabinet with a visibly lit top-face gradient and a darker, deeper front wall. Group the cells in 10x10 blocks with bevelled gutters so the scale reads, and enlarge and lower the tray to fill the lower third so the dead band goes."
+  },
+  {
+   "slide": 7,
+   "problem": "The engraved swell is near-constant-width white ribbons with regular spacing. It reads as op-art stripes rather than lit crests and lee troughs, and the glint wedge under the break barely registers.",
+   "fix": "Drive stroke width by Lambert against the west key (hairline in the lee, swelling on windward faces), break crests into broken segments with occasional whitecap flecks, and confine the bright ink to a glint path that widens toward the viewer."
+  },
+  {
+   "slide": 1,
+   "problem": "The hero slab's extrusion walls are a uniform cardboard thickness all round the coast, so the land reads as cut card. The Delta lowlands are flat olive with no thaw-lake texture, and the Bering Strait and Western Alaska geography is hard to read from this oblique. The hollow cell floats over open sea and does not read as a hole.",
+   "fix": "Cut the wall height to a thin bevelled shelf with a graded shelf-sea tone. Bring the full-resolution Delta DEM lakes in, tinted with the stratus as on 09. Pull the camera so the Bering Strait sits visibly at the top of the slab, and seat the cell on the Delta coast with the lattice around it."
+  },
+  {
+   "slide": 9,
+   "problem": "The Delta slab is soft and muddy at full size, with an olive interior and little modelling. Ghost relief blobs show through the fog in the upper right behind the quote, so the top half reads as smudge rather than deliberate fog.",
+   "fix": "Remove the residual focus blur on the slab top, deepen the west-bevel highlight and east lee, and fade the upper relief fully into a clean stratus gradient above y 900 so the ask sits on clean ground."
+  },
+  {
+   "slide": 5,
+   "problem": "The tussock tops on the flood render as identical flat dark pancake discs in near-regular rows. The Delta cell's reflection is drawn as a second box with its own perspective (top face visible) instead of a mirrored, rippled image.",
+   "fix": "Vary tussock size, outline and height, give each a lit west rim and a short reflection, and redraw the cell's reflection as a true vertical mirror at lower alpha, broken by the water's ripple."
+  }
+ ],
+ "art_themes": [
+  "Largest object least modelled on the data frames: 06 tray and the 01 and 09 slab interiors read flat",
+  "Repeated identical units reading as texture rather than form: 07 constant-width ribbons, 05 disc tussocks, 06 waffle cells",
+  "Dead regions: 06 below and right of the tray, 04 upper-right land, 09 upper fog band",
+  "Strength to keep: 05 PBR flood and 04 streamline vortex are best-in-deck and show the ladder working"
+ ],
+ "editor_notes_for_email": "1) Ships at 8.74 against the 7.7 threshold at round 5 of 5. Artwork craft scored 7.5, under the 8.5 craft floor; the craft cycle stood down at the five-round cap, so the art shortfall ships as is. Weakest frames per the scorer: 06 tray, 07 swell, 01 slab walls, 09 slab, 05 tussock discs. 2) Gate block at ship: 0 FAIL rows. The Gas Watch live audit passed at 09:16Z once the late collection ran (the 04:40Z slot had not started earlier and session dispatch returns 403), and docs/ was rebuilt at 2026-10-18 and verified fresh. No incident was filed. 3) Slide 06's MISSING row prints 'MORE THAN 160 FAA STATIONS PROMISED' (C53, from Alaska Public Media's body text; its headline says 'more than 100'). The first comment cites the article. 4) Slide 03's 10 to 15 per 100 figure (C55) is a small rotated label beside the neatline; on a phone it reads as the tick column, and the full figure needs a full-size view. 5) The caption's 'NOAA fine-tuned that AI model on a grid of surface, balloon and satellite observations' compresses NOAA's release (fine-tuned on GDAS analyses) and NCEI's GDAS page (observations put on a grid). 6) The rubric weights sum to 1.10; renormalised the total is 7.95, still above the 7.7 line. This is the open owner item in MACHINE_QUEUE from 2026-10-11. 7) The weekly machine pass ran today (five upgrades, Codex reviewed) and this run repaired the published docket map's iPhone 13 landscape fit.",
+ "run_date": "2026-10-17",
+ "carousel_no": 89,
+ "revision_rounds": 5,
+ "craft_cycle": {
+  "stood_down": true,
+  "reason": "five-round cap reached (4 pixel rounds plus the round-5 flow-critic sequence fixes); art scored 7.5 under the 8.5 floor",
+  "frames": [],
+  "art_before": 7.5,
+  "art_after": 7.5
+ }
+}

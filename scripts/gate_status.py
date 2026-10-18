@@ -705,6 +705,22 @@ def gas_watch_row(rows):
         rows.add("gas_watch", "PASS", note)
 
 
+def _incident_why(incident, ss):
+    """Name the one thing to change in an incident record site_signoff refuses."""
+    stamp = incident.get("audit_checked_utc")
+    if stamp is None:
+        return ("no audit_checked_utc; add it, copied from gaswatch_health.json's checked_utc "
+                "(ISO with Z)")
+    probe = dict(incident)
+    probe["audit_checked_utc"] = ss.datetime.now(ss.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    if ss.incident_allows(probe):
+        return ("audit_checked_utc %r is malformed (a string with a time and an offset) or over %dh "
+                "old; re-run the audit and copy its checked_utc (ISO with Z)"
+                % (stamp, ss.INCIDENT_MAX_AGE_H))
+    return ("a field is malformed (reason a nonempty string, attempts and evidence_urls nonempty "
+            "string lists, every URL an openable public http(s) address)")
+
+
 def gas_watch_live_row(rows, run):
     """A daily AI run must inspect production, not only its own built files."""
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", run.name) and run.name < "2026-09-16":
@@ -734,6 +750,26 @@ def gas_watch_live_row(rows, run):
     if (incident and incident.get("blocker") in ("upstream", "github", "credentials")
             and incident.get("reason") and incident.get("attempts")
             and incident.get("evidence_urls")):
+        # THE CI BAR, APPLIED HERE (2026-10-17, weekly machine pass). This row
+        # took any record with the four fields, while the PR's `checks` job runs
+        # site_signoff --ci, whose incident_allows() also wants audit_checked_utc
+        # (ISO, with a time and an offset, under 36 hours old) and openable
+        # evidence URLs. Seven of the eleven shipped incidents (2026-09-27 to
+        # 2026-10-12) carried no stamp, and No.86's PR #434 exited 2 on it after
+        # this row had said WARN. Same predicate, imported, so the two can't
+        # drift; it fails closed if it can't be loaded.
+        try:
+            sys.path.insert(0, str(REPO / "scripts"))
+            import site_signoff as _ss
+            allowed = bool(_ss.incident_allows(incident))
+        except Exception as e:
+            rows.add("gas_watch_live", "FAIL", "can't load site_signoff.incident_allows (%s), so the "
+                     "incident can't be checked against the CI bar" % type(e).__name__)
+            return
+        if not allowed:
+            rows.add("gas_watch_live", "FAIL", "gaswatch_incident.json would fail site_signoff --ci: "
+                     + _incident_why(incident, _ss))
+            return
         rows.add("gas_watch_live", "WARN", "UNRESOLVED %s: %s" %
                  (incident["blocker"], incident["reason"]))
     else:

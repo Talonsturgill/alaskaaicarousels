@@ -41,6 +41,30 @@
  *     max-dilated and blurred, so a defocused foreground bleeds over the sharp
  *     plane behind it instead of cutting out like a sticker (technique 99).
  *     `dst` is a 2D context at backing resolution with identity transform.
+ *
+ *     o.sharp = [dNear, dFar], A FOCAL REGION (2026-10-17, weekly machine pass).
+ *     Every distance inside it has zero circle of confusion and the thin-lens
+ *     falloff starts at its two ends: coc = k * (lo - d) / d nearer than lo,
+ *     k * (d - hi) / d past hi. A thin lens is sharp on ONE plane, so a subject
+ *     that runs away from the camera (a terrain slab seen obliquely, a table
+ *     top, a seat bank) is sharp only along one line of it: No.89's relief
+ *     frames 01 and 09 at k 5 to 7 put the largest object itself out of focus,
+ *     and critics named it soft, until k fell to about 2 and the background
+ *     lost its fall-off with it. With o.sharp the subject stays sharp and k is
+ *     free to separate the planes in front of and behind it. Without o.sharp,
+ *     lo = hi = o.focus and the output is unchanged to the byte.
+ *     Returns {focus, maxR, sharp, inFocus}: inFocus is the share of the frame
+ *     whose final blur radius is under half a device px.
+ *
+ *   AKSTROBE.depthRange(depth, rect, o)
+ *     The subject's depth span for o.sharp, read off the depth pass: the
+ *     o.lo and o.hi quantiles (default 0.05 and 0.95) of every depth sample
+ *     inside rect = [x, y, w, h] in design px (o.scale, default 2, backing px
+ *     per design px), the empty background at the far plane left out. Returns
+ *     [dNear, dFar] in the depth pass's units, or null when the rect holds no
+ *     geometry. Give it the largest object's rect from the CRAFT PLAN:
+ *       AKSTROBE.focus(cx, gl, depth, { focus: fd, k: 6, maxR: 6,
+ *         sharp: AKSTROBE.depthRange(depth, [80, 420, 920, 760]) });
  */
 (function (global) {
   "use strict";
@@ -246,13 +270,17 @@
         d[y * W + x] = near + t * (far - near);
       }
     }
-    return { w: W, h: H, d: d };
+    return { w: W, h: H, d: d, near: near, far: far };
   };
 
   S.focus = function (dst, src, depth, o) {
     o = o || {};
     var W = depth.w, H = depth.h, sc = o.scale == null ? 2 : o.scale;
     var maxR = (o.maxR == null ? 9 : o.maxR) * sc, k = (o.k == null ? 12 : o.k) * sc, f = o.focus;   // 0 is a real request
+    // the focal region: zero CoC from lo to hi; with no o.sharp both are the focus plane, as before
+    var band = Array.isArray(o.sharp) && o.sharp.length === 2 && isFinite(o.sharp[0]) && isFinite(o.sharp[1]) ? o.sharp : null;
+    var lo = band ? Math.min(band[0], band[1]) : f, hi = band ? Math.max(band[0], band[1]) : f;
+    if (band && f == null) f = (lo + hi) / 2;
     var levels = 6, radii = [];
     for (var i = 0; i < levels; i++) radii.push(maxR * i / (levels - 1));
     var imgs = [];
@@ -272,9 +300,9 @@
     for (var ai = 3; ai < nimg.data.length; ai += 4) nimg.data[ai] = 255;
     for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
       var dd = depth.d[y * W + x];
-      var cc = Math.min(maxR, k * Math.abs(dd - f) / Math.max(0.1, dd));
+      var cc = Math.min(maxR, k * (dd < lo ? lo - dd : dd > hi ? dd - hi : 0) / Math.max(0.1, dd));
       coc[y * W + x] = cc;
-      if (dd < f) {
+      if (dd < lo) {
         // max-pool the foreground CoC over each 4 x 4 cell (Codex, PR #407): a near feature thinner
         // than a cell must still bleed its blur over the in-focus background around it
         var q = ((y >> 2) * nearC.width + (x >> 2)) * 4;
@@ -310,10 +338,12 @@
       var c = nd[(y1 * nbw + x0) * 4], e = nd[(y1 * nbw + x1) * 4];
       return (a + (b - a) * tx) + ((c + (e - c) * tx) - (a + (b - a) * tx)) * ty;
     }
+    var sharpN = 0, halfPx = 0.5 * sc / 2;              // half a device px, in backing px (sc 2: backing = device)
     for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
       var idx = y * W + x;
       var nn = nearAt(x, y) / 255 * maxR;
       var r = Math.max(coc[idx], nn * 1.6);
+      if (r < halfPx) sharpN++;
       var t = maxR > 0 ? Math.min(levels - 1, r / maxR * (levels - 1)) : 0;   // maxR 0: the sharp level everywhere
       var l0 = Math.floor(t), l1 = Math.min(levels - 1, l0 + 1), fr = t - l0;
       var p = idx * 4, A = imgs[l0], B = imgs[l1];
@@ -323,7 +353,26 @@
       od[p + 3] = opaque ? 255 : A[p + 3] + (B[p + 3] - A[p + 3]) * fr;
     }
     dst.putImageData(out, 0, 0);
-    return { focus: f, maxR: maxR / sc };
+    return { focus: f, maxR: maxR / sc, sharp: band ? [lo, hi] : null, inFocus: W * H ? sharpN / (W * H) : 0 };
+  };
+
+  S.depthRange = function (depth, rect, o) {
+    o = o || {};
+    var sc = o.scale == null ? 2 : o.scale, W = depth.w, H = depth.h;
+    var qa = o.lo == null ? 0.05 : o.lo, qb = o.hi == null ? 0.95 : o.hi;
+    var x0 = Math.max(0, Math.floor(rect[0] * sc)), y0 = Math.max(0, Math.floor(rect[1] * sc));
+    var x1 = Math.min(W, Math.ceil((rect[0] + rect[2]) * sc)), y1 = Math.min(H, Math.ceil((rect[1] + rect[3]) * sc));
+    // the far plane is where depthPass writes the empty background; a depth object without one keeps every sample
+    var bg = depth.far == null ? Infinity : depth.far - 1e-4 * Math.max(1, Math.abs(depth.far));
+    var v = [];
+    for (var y = y0; y < y1; y++) for (var x = x0; x < x1; x++) {
+      var dd = depth.d[y * W + x];
+      if (dd < bg) v.push(dd);
+    }
+    if (!v.length) return null;
+    v.sort(function (a, b) { return a - b; });
+    function q(t) { return v[Math.min(v.length - 1, Math.max(0, Math.round(t * (v.length - 1))))]; }
+    return [q(qa), q(qb)];
   };
 
   global.AKSTROBE = S;

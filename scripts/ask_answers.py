@@ -1608,8 +1608,11 @@ def self_test():
           all(unship_hay(s) == r["hay"] for s, r in zip(shipped["index"], out["index"])),
           f"{sum(1 for s in shipped['index'] if s.get('h'))} of {len(shipped['index'])} rows trimmed")
     blob = json.dumps(shipped, separators=(",", ":"))
+    # the bytes and the headroom, not only KB (2026-10-17, weekly pass): Phase 3.5 reads this
+    # line before committing a docket edit, and a headroom figure is what says one more item fits
     check("the payload is small enough to inline", len(blob) < 190_000,
-          f"{len(blob) / 1024:.1f} KB, roughly {len(blob) // 3400} KB gzipped")
+          f"{len(blob) / 1024:.1f} KB, roughly {len(blob) // 3400} KB gzipped; "
+          f"{len(blob):,} of 190,000 bytes, {190_000 - len(blob):,} bytes of headroom")
 
     print()
     print("self-test clean" if ok[0] else "self-test FAILED")

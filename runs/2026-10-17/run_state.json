@@ -1,0 +1,28 @@
+{
+ "run_date": "2026-10-17",
+ "carousel_no": 89,
+ "effort": "high",
+ "date_note": "Anchorage date 2026-10-17 (woke 22:04 AKDT); run_guard CLEAR for 2026-10-17; UTC is already 2026-10-18.",
+ "branch": "tsturg/clever-mayer-3sgkac",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": "done: out/2026-10-17/plan.md (pending write), trend_check.txt",
+  "craft_refresh": "done: 2 searches, nothing new beyond CAROUSEL_CRAFT (vendor 2026 benchmarks agree docs lead); FIELD_NOTES untouched",
+  "research": "done: 6 scouts, out/2026-10-17/scout_merge.md (about 142 searches)",
+  "claims": "done: out/2026-10-17/claims.json, 70 verified, claims_check PASS 70/70, 36 primary",
+  "docket": "done: ledger/docket.json, 6 worklist items refreshed (all unchanged), no new item from this run claims; watch.json bills unchanged, failed []",
+  "gas_watch": "done: live audit PASS at 09:16Z after the late collection; cron_health re-run before ship; docket map landscape repaired (40e05e45)",
+  "selection": "done: out/2026-10-17/selection.md",
+  "directors_room": "done: 3 treatment directors (cartographer, cinematographer, historian-of-the-future), synthesis in selection.md, out/2026-10-17/storyboard.md, dossier_check PASS 9/9",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done: 4 rounds, holdouts 01 (7.0) and 03 (7.6) at the cap, final small fixes applied",
+  "flow_review": "done: out/2026-10-17/flow_review.json, 7.6 revise, sequence fixes applied in round 5 (04 lightened, 06 trimmed and rebuilt, 09 lakes, 03 isobaths)",
+  "assemble": "done: vector PDF 13.58 MB, 9 thumbs",
+  "scoring": "done: 8.74 vs 7.70, ship true; art 7.5 under the craft floor, cycle stood down at the 5-round cap",
+  "ship": "done: runs/2026-10-17, webp + og.jpg, PDF shrunk, site rebuilt at 2026-10-18, ledgers appended",
+  "upgrade": "done: weekly pass, 50f11925 + 5693ce02",
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

@@ -735,6 +735,26 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
     LEAD_MIN = 27.0
     # the highest a badge's centre may sit: the coast's top edge plus half a badge
     BADGE_TOP = min(T(p)[1] for ring in coast for p in ring) + 14.0
+    # LABELS PART SIDEWAYS BEFORE THEY PART UP OR DOWN (2026-10-18). Height is
+    # the scarce axis of the phone fit: a landscape phone gives the map a 702 by
+    # 219 px frame in which Alaska fills only about a third of the width, and the
+    # marks scale about four times faster than the map there, so every unit a
+    # badge is pushed above or below its dot costs the state height while width
+    # is spare. A push straight along the line between two labels made the
+    # settled layout depend on the order of the groups, which is the docket's
+    # numbering and so changes with the build date: the same ledger built at
+    # 2026-07-25 left Alaska at 65 percent of that frame and at 2026-10-18 at 48
+    # (Soldotna's badge 58 units under its dot, Fairbanks's 50 over it, no zoom
+    # above the 0.28 floor fitting both). So a collision is resolved along the
+    # separating direction with its vertical part damped by PUSH_Y. Distance is
+    # still measured as a true circle, so every badge still clears every other.
+    # Measured with the page's own fit over every build date July 25th to
+    # October 18th, and at three of them with each located item dropped in
+    # turn: at 0.1 the landscape height fill never fell below 65 percent (the
+    # floor is 55). At 1.0 it fell to 48 on 12 of 29 sampled dates, and at 0.3
+    # one dropped item still left it at 48. The portrait phones, which are bound
+    # by width, kept 93 to 97 percent of it.
+    PUSH_Y = 0.1
     labels = [[g[0], g[1]] for g in groups]
     for _ in range(12):
         for _ in range(40):                       # push labels off each other
@@ -746,7 +766,8 @@ def map_svg(ordered_items, today=None, w=1000, h=620):
                     dist = max(0.001, math.hypot(dx, dy))
                     if dist < need:
                         push = (need - dist) / 2.0
-                        ux, uy = dx / dist, dy / dist
+                        sep = max(0.001, math.hypot(dx, dy * PUSH_Y))
+                        ux, uy = dx / sep, dy * PUSH_Y / sep
                         if abs(dx) < 1 and abs(dy) < 1: ux, uy = 0.0, 1.0
                         labels[a][0] -= ux * push; labels[a][1] -= uy * push
                         labels[b][0] += ux * push; labels[b][1] += uy * push

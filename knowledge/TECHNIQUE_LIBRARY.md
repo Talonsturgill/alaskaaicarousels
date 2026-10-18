@@ -920,6 +920,17 @@ annotation is the strongest pair):
     plane IN the lower third when the frame's lower third would otherwise be
     blurred foreground (frame_balance fails a blurred bottom band). About 11 s at
     2160 x 2700 in SwiftShader. After any camera move, re-place `data-contacts`.
+    A SUBJECT THAT RUNS AWAY FROM THE CAMERA NEEDS A FOCAL REGION, not a plane
+    (2026-10-17, weekly pass): a terrain slab, table top or seat bank seen
+    obliquely is sharp along one line of it under a thin lens, and No.89's
+    relief frames went soft at k 5 to 7. Pass `sharp:
+    AKSTROBE.depthRange(depth, <the largest object's design-px rect>)` and the
+    CoC is zero across the subject's 5th to 95th percentile depth, falling off
+    only in front of and behind it, so k can stay high enough to separate the
+    planes. Measured on No.89 slide 01 at k 6: 7 percent of the frame within
+    half a device px of sharp without it, 64 percent with it (the run's own
+    round-2 cure, k 1.6, reached 26 percent by giving up the fall-off). `focus()`
+    returns that share as `inFocus`; read it at build, before a critic has to.
 
 100. **Digital Bas-Relief (height field, compressed gradient)** — added
     2026-09-26 for No.69. Paint letters and bevels as a height field on a
@@ -1145,3 +1156,5 @@ annotation is the strongest pair):
 124. **Window-light Plan Relief (the sun pane)**, added 2026-10-15 for No.87 (every frame). A plan-view still life lit by a low sun through a window rather than by a flat key: akbench's `keyMask` gates the key with panes sheared along the sun's own plan direction (u = X - (Y - y0) * 1.732 at az 300, el 20), so every mullion shadow runs parallel to every cast and the pane edge carries a penumbra of a window a few metres off; the key is warm [1.06, 0.90, 0.70] and the ambient sky cool [0.42, 0.58, 0.74], so shade reads blue and lit faces warm. Two traps it shipped past: a near-white board under a warm key and two tone curves lands at L* 74 grey (lift it cool, [1.50, 1.60, 1.74]), and a fine tooth belongs in the albedo as a bump along the sun's direction, not in the height buffer, where it only speckles the penumbra. Chassis in assets/js/akmat.js.
 
 125. **One Deck Scale as the Hero**, added 2026-10-15 for No.87. Every frame is the same width of one measured axis (10.8 px per MW, 100 MW a frame), with a ruler along the lower third whose grooves chain across the cut by global x, a tab printing the running total, and a `data-scale` per frame declaring every mark. Objects square to the ruler's zero carry a measured size; things with no figure lie loose and turned. The axis census then guards the art itself: anything drawn across the groove band is a quantity, so an end block that crosses it must carry the ruler's grooves through it, and grain or texture there must stop.
+
+126. **Stroke Opacity, Not Dab Flow (no beads at the joints)**, added 2026-10-17 by the weekly machine pass, after No.89's slides 04 (a streamline sea) and 07 (a burin swell) beaded at 100 percent. A line drawn as one `stroke()` per SEGMENT with round caps lays two translucent caps on every vertex, so the alpha compounds there: a painter's flow, per dab, where the line wanted opacity, per stroke (Krita's own definitions, https://docs.krita.org/en/reference_manual/brushes/brush_settings/opacity_and_flow.html). Measured in the engine's Chromium 141 on a 2.4 px line at alpha 0.4 with 3.2 px segments: per-segment round caps peak at alpha 163 of 255 at the joints, while ONE `stroke()` over the whole polyline, per-segment strokes with `lineCap = 'butt'`, and opaque per-segment strokes on a layer composited once at 0.4 all peak at 102, the line's own alpha. So: a constant-alpha line is one path and one `stroke()`; a line whose alpha or width varies along it is per-segment with BUTT caps (the notch they leave on the outer corner is invisible at streamline turning angles), or a filled ribbon polygon (technique 119's lay); a family of lines that must not darken where they cross is drawn opaque on a layer and the LAYER takes the alpha. Fading a beaded line toward the place it beads hides the beads and keeps them everywhere else.

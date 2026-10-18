@@ -1,54 +1,61 @@
 {
-  "last_pass": "2026-10-16",
+  "last_pass": "2026-10-17",
   "themes": [
     {
-      "theme": "queue, today's material defect: wordmark, counter and site line painted under a z-index 1 art canvas on all nine frames, every gate green",
-      "runs": 1,
+      "theme": "queue repeat offender: one docket item trips the ask ceiling and the iPhone 13 landscape map fit (repeat 2, the item that made this pass due)",
+      "runs": 3,
+      "frames": 0,
+      "action": "fixed",
+      "what": "browser_suites runs the eight-device map suite at the run date and Phase 3.5 step 5 runs it with the ask self-test (now printing headroom) before the docket is committed. Reproducing it found CI's mobile job builds at a fixed 2026-07-25 and passes a ledger whose run-date build fails; the published map fails iPhone 13 landscape on main today. CI date change queued to ride with the map repair"
+    },
+    {
+      "theme": "queue: gaswatch_incident.json omits audit_checked_utc, which site_signoff --ci requires (7 of 11 shipped records)",
+      "runs": 7,
+      "frames": 0,
+      "action": "fixed",
+      "what": "gate_status's gas_watch_live row applies site_signoff.incident_allows and names the missing field; Phase 3.6 lists five fields. CLAUDE.md's four-field list left for the owner"
+    },
+    {
+      "theme": "b, the largest object least modelled (flow critic 4 of 5 runs, 9 frames; cross-frame 1 run, 4 frames), with No.89's soft relief slab on 01 and 09 and the scorer's depth-frame theme (2 runs, both focus-pull frames)",
+      "runs": 4,
       "frames": 9,
       "action": "fixed",
-      "what": "render.py reads the pixel of every canvas stacked above each text line box, decorative fixtures included, and qa.py FAILs type under canvas ink; today's slides with the pre-fix akdocket.js FAIL 27 times, the current slides pass unchanged"
+      "what": "AKSTROBE.focus o.sharp, a focal region read off the depth pass by AKSTROBE.depthRange, so a receding subject stays sharp and k keeps the fall-off; inFocus returned. No.89 01 at k 6: 7.1 to 63.9 percent of the frame in focus. Default output byte-identical"
     },
     {
-      "theme": "e, no tonal or density arc (flow critic cross-frame 4 of 5 runs, 24 frames)",
-      "runs": 4,
-      "frames": 24,
-      "action": "fixed",
-      "what": "tonal_arc_check WARNs one tone under a spike (middle frames under 12 L*) and a tied peak (an undeclared frame within 3 L*); it had passed 10-12's spike and 10-15's tie. Today's render WARNs, the middle seven span L* 8.7 to 15.5"
-    },
-    {
-      "theme": "b, the largest object least modelled (flow critic 4 of 5 runs, 9 frames; cross-frame 1 run, 4 frames), with No.88's five plates on a near-black desk and trend_check's contact-shadow warns on 3 runs",
-      "runs": 4,
-      "frames": 9,
-      "action": "fixed",
-      "what": "DESIGN_DOCTRINE section 3 names the plate on a near-black desk and its remedy; dossier_check WARNs a promised cast the slide never declares (02 and 03 today); contact_probe stops calling a lit neutral ground a dark neutral object's own colour (No.87 all five, No.88 09). Modelling itself stays the critic's and the craft cycle's; no shared helper defect was named"
-    },
-    {
-      "theme": "c, a dead or eventless region, the lower third above all (flow critic 4 of 5 runs, 7 frames)",
-      "runs": 4,
-      "frames": 7,
-      "action": "deferred",
-      "what": "the planning gate (field 4a) and qa's frame balance already exist and the evidence names seven different fixes on seven frames (a booklet on a pane, an end stop, berth planks); no shared machine cause found this week"
-    },
-    {
-      "theme": "d, a texture artifact (flow critic 3 of 5 runs, 7 frames; cross-frame 2 runs, 4 frames)",
+      "theme": "d, a texture artifact (flow critic 3 of 5 runs, 7 frames; cross-frame 2 runs, 4 frames), with No.89's beaded strokes on 04 and 07",
       "runs": 3,
       "frames": 7,
-      "action": "deferred",
-      "what": "the queued akbench visBlur default and edge antialiasing need renders of past akbench decks, whose slide sources runs/ does not keep, and a default change would move pixels under today's deck mid-revision; held for a pass with no deck in flight"
-    },
-    {
-      "theme": "trend_check stale offender: Artwork craft and genuine detail, weakest 6 of 7, mean 6.83",
-      "runs": 6,
-      "frames": 0,
       "action": "fixed",
-      "what": "worked through the canvas-over-text gate, the seating fixes and the tonal census; Variety vs ledger (1 of 7) deferred, not recurring"
+      "what": "TECHNIQUE_LIBRARY 126 from the frontier scan with a measurement: per-segment round caps reach alpha 163 of 255 at joints on a 0.4 line, one stroke, butt caps or an opaque layer hold 102. The queued akbench visBlur default and edge antialiasing stay deferred: the contact shadow warn is the class that ships most (5 of 10 runs) and a default blur on the shadow term softens the contact line, which wants a measured render of past akbench decks this pass did not have"
     },
     {
-      "theme": "queue: plan_drift reads 'item C1' as claim C01 (No.86)",
+      "theme": "today's run: a pixel critic given 07 and 08 returned 07 only",
       "runs": 1,
+      "frames": 1,
+      "action": "fixed",
+      "what": "the agent returns an array, one object per assigned slide; Phase 9 step 2 matches the slide numbers before reading a fix"
+    },
+    {
+      "theme": "c, a dead or eventless region (flow critic 4 of 5 runs, 7 frames)",
+      "runs": 4,
+      "frames": 7,
+      "action": "deferred",
+      "what": "as on 2026-10-16: seven different fixes on seven frames, no shared machine cause; the planning gate and frame balance already exist"
+    },
+    {
+      "theme": "trend_check stale offenders: Artwork craft and genuine detail (weakest 5 of 7, mean 6.93), Variety vs ledger (2 of 7, mean 6.93)",
+      "runs": 5,
       "frames": 0,
       "action": "fixed",
-      "what": "claim ids come from the row's leading run only; all 28 shipped indexes parse identically"
+      "what": "artwork worked through the b and d items above; Variety vs ledger deferred, two runs in seven with no machine cause named by the scorer"
+    },
+    {
+      "theme": "today's run: qa's 'layer of light ends in mid-air' on an opaque ribbon layer composited with lighten (about 20 WARNs, 07)",
+      "runs": 1,
+      "frames": 1,
+      "action": "deferred",
+      "what": "queued for measurement; WARN-only, and narrowing it would loosen a check"
     },
     {
       "theme": "queue: gaswatch evening slots (repeat 13)",
@@ -56,13 +63,6 @@
       "frames": 0,
       "action": "escalated",
       "what": "owner decision on schedules and credentials, escalated 2026-10-06; untouched"
-    },
-    {
-      "theme": "queue: incident field list, ragged-line numeral, akhachure light ink, dossier label floor, measure() default, runtime metal audit, axis census, aksdf ready budget, docket pre-ship, rubric weights, site_build verified list",
-      "runs": 1,
-      "frames": 0,
-      "action": "deferred",
-      "what": "repeat 0 except the docket item at 2, fixed in-run each time; the five-change cap went to the defects that bit this week's art. The rubric weights and the site-wide verified list stay owner decisions; the incident field list touches CLAUDE.md, which this pass does not edit"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."
