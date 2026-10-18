@@ -9,10 +9,10 @@
   "base_f": 65,
   "source": "https://data.rcc-acis.org/StnData",
   "source_label": "Applied Climate Information System, NOAA regional climate centers",
-  "fetched_utc": "2026-10-03",
+  "fetched_utc": "2026-10-18",
   "start_date": "2014-01-01",
-  "end_date": "2026-10-02",
-  "days": 4658,
+  "end_date": "2026-10-17",
+  "days": 4673,
   "daily": [
     38,
     37,
@@ -4671,6 +4671,21 @@
     20,
     26,
     28,
-    28
+    28,
+    29,
+    25,
+    20,
+    21,
+    20,
+    22,
+    22,
+    19,
+    21,
+    22,
+    26,
+    29,
+    20,
+    24,
+    26
   ]
 }
