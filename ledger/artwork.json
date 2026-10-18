@@ -3156,6 +3156,49 @@
     "NEW: a pressed area grid at the small unit's own side inside the big unit's mark, so the ratio is countable"
    ],
    "note": "Rounds used 4 (three pixel rounds plus the craft cycle). Scored 8.79, art 7.5. Round 1 found the wordmark, counter and site fixture painted under the art canvas on all nine frames (fixed in akdocket, gated by the weekly pass)."
+  },
+  {
+   "run_date": "2026-10-17",
+   "carousel_no": 89,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE ANALYSIS LATTICE, one true-geography world (the Bering basin and the Delta) with a forecast grid over it and a camera that descends and climbs",
+   "atmosphere": "NEW: THE BREAK UNDER THE CEILING, low stratus over the Bering coast with one pale break to the west; the brightest thing in the deck is water on land (05)",
+   "depth_technique": "akthree PBR relief models with thin lens focus (01 Bering basin, 09 Delta from above with DEM thaw lakes); GPU PBR flood over instanced tussocks with a reflected break (05, masterful depth frame); white-line intaglio cut block with peat and silt strata (02); sky-model hillshade with engraved isobaths (03); streamline storm field (04); cabinet tray of 1,000 cells on a stipple pool (06); filled-ribbon burin swell drawn far to near (07); latitude-ring lathe globe with faded swaths (08)",
+   "line_voice": "cartographic",
+   "continuity_device": "camera descent and climb (ALT readout) plus THE DELTA CELL motif plus the break arc",
+   "continuity_devices": [
+    "camera: ALT readout per frame, 1,800 KM to 20 M and back up to 12,000 KM and 300 KM",
+    "motif: the Delta cell, one lattice cell over the Kuskokwim coast, hollow, phantom, solid or empty by frame",
+    "palette arc: a pale break under the stratus, closed 01 to 04, open on 05, a band on 07, closed on 08, faint on 09"
+   ],
+   "hook_archetype": "NEW: THE BLANK ON THE MAP",
+   "palette_family": "NEW: silt, stratus and sedge rust",
+   "type_pairing": "Bricolage Grotesque (display wdth 75, text) + JetBrains Mono + Instrument Serif italic for water names only",
+   "narrative_structure": "mechanism then holes then the storm then the water, a keepable legend, breather, widen to both poles, one ask",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 3,
+    "type_temperature": 1
+   },
+   "techniques": [
+    "akthree PBR relief from DEMs",
+    "AKSTROBE thin lens",
+    "AKPOST grade",
+    "akscribe DEM loading and smoothing",
+    "white-line intaglio cut block",
+    "sky-model hillshade",
+    "Rankine streamline field",
+    "cabinet extrusion tray",
+    "burin swell lay",
+    "lathe-ring orthographic globe",
+    "aklattice deck furniture"
+   ],
+   "new_techniques_logged": [
+    "NEW: the Delta cell, a 2D wireframe lattice cell drawn from eight projected corners so 3D scenes, maps and legends share one motif",
+    "NEW: a burin swell as filled ribbons on an opaque layer drawn far to near with its surface strip, so near crests hide the cuts behind them",
+    "NEW: a meniscus read off the render column by column at the water's edge"
+   ],
+   "note": "Rounds used 5 (four pixel rounds, one flow round). Scored 8.74, art 7.5. Round 1 named a soft largest object on 01 and 09 (AKSTROBE k 5 to 7), clipped lees, box veils and beading round caps; the weekly pass made the first and last into machinery."
   }
  ]
 }

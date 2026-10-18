@@ -3547,6 +3547,55 @@
     "state-policy",
     "data-centers"
    ]
+  },
+  {
+   "run_date": "2026-10-17",
+   "carousel_no": 89,
+   "topic": "One year after ex-Typhoon Halong flooded the Kuskokwim Delta coast on October 12th, 2025, NOAA's AI global models (AIGFS, operational December 17th, 2025) run a 16-day forecast in about 40 minutes at 0.3% of the operational GFS's computing, fine-tuned on GDAS analyses that grid surface, balloon, aircraft, buoy, radar and satellite observations; meanwhile, climatologist Rick Thoman told KYUK that since April every Y-K Delta airport weather station has gone days or weeks without observations, Kotzebue's balloon launches were suspended indefinitely in February 2025, 10 to 15 percent of Alaska aviation stations are down on a given day, and more than 160 promised FAA stations have no named sites; Eos (October 9th) says AI sea ice forecasts depend on observations that remain sparse at both poles.",
+   "angle": "THE ANALYSIS LATTICE: the medium under the AI forecast, a grid of measurements, and the holes in it over the Delta. Never says an AI model forecast Halong (it predated them); the balloon role is KYUK's 'may'; no station dots at villages; Kotzebue's current status not asserted.",
+   "entities": [
+    "NOAA",
+    "AIGFS",
+    "GFS",
+    "GDAS",
+    "National Weather Service",
+    "Rick Thoman",
+    "KYUK",
+    "Kipnuk",
+    "Y-K Delta",
+    "Bethel census area",
+    "Kusilvak census area",
+    "Kotzebue",
+    "FAA",
+    "Eos",
+    "Halong"
+   ],
+   "keywords": [
+    "AI weather model",
+    "AIGFS",
+    "data assimilation",
+    "weather observations",
+    "airport weather stations",
+    "upper air balloon launches",
+    "Halong anniversary",
+    "Y-K Delta",
+    "forecast skill",
+    "sea ice forecasts"
+   ],
+   "headline": "Forecasts now run on AI. The map under them has holes.",
+   "sources_lead": [
+    "https://www.kyuk.org/public-safety/2026-10-12/halong-1-year-after-the-storm",
+    "https://www.noaa.gov/news-release/noaa-deploys-new-generation-of-ai-driven-global-weather-models",
+    "https://www.ncei.noaa.gov/products/weather-climate-models/global-data-assimilation",
+    "https://weather.gov/media/notification/pdf_2025/pns25-08_kotzebue_ak_upper_air_suspension.pdf",
+    "https://eos.org/science-updates/reliable-ai-sea-ice-forecasts-depend-on-sustained-observations"
+   ],
+   "claims": 70,
+   "note": "Lead from KYUK's Halong anniversary piece joined to NOAA's AIGFS release and the GDAS page. Runner-up NOAA Fisheries uncrewed surface vehicles in Bering Sea surveys. Five rounds (four pixel, one flow); scored 8.74, art 7.5; the craft cycle stood down at the cap.",
+   "beats": [
+    "research-and-science",
+    "defense-and-federal"
+   ]
   }
  ]
 }

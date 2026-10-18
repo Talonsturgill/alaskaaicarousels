@@ -13,6 +13,72 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-10-17/",
+      "url": "https://alaskaaihq.com/archive/2026-10-17/",
+      "title": "A Year After Halong, the Map Under the AI Forecast",
+      "summary": "Maps show the grid NOAA's AI model learned from, the Delta's dark stations, Halong's turn east and its saltwater on the tundra.",
+      "content_html": "<p><em>NOAA's 16-day AI forecast now finishes in about 40 minutes. Y-K Delta airport stations have gone days or weeks with no observations.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-10-17/og.jpg\" alt=\"A Year After Halong, the Map Under the AI Forecast cover slide\" width=\"1080\" height=\"1350\"></p><p>Forecasts now run on AI. The map under them has holes.</p><p>An AI forecast starts from a map of measurements.</p><p>NOAA fine-tuned its AI model, AIGFS, on its own Global Data Assimilation System analyses. That system puts surface, balloon, aircraft, buoy, radar and satellite observations onto a three-dimensional grid.</p><p>Days or weeks with no observations.</p><p>Since April, every airport weather station in the Y-K Delta region has gone days or weeks without observations at times, climatologist Rick Thoman told KYUK.</p><p>The models had the track. They missed the shift east.</p><p>Global models forecast Halong's track into the Bering Sea well but failed to forecast its eastward shift, Thoman said. A lack of balloon launches across Western Alaska may have played a role, KYUK reported.</p><p>Saltwater ran more than 15 miles onto the tundra.</p><p>More than 1,500 people were forced from their homes. In Kipnuk, 90% of buildings were damaged or destroyed, KYUK reported.</p><p>What got faster. What went missing.</p><p>&quot;We need ocean observations.&quot;</p><p>&quot;Speed and skill are not the same as trustworthiness.&quot;</p><p>AI sea ice forecast systems barely existed a decade ago and now number in the dozens, researchers wrote in Eos on October 9th. The observations needed to build and test them remain sparse across both poles.</p><p>Where should Alaska's next observation go?</p><p>&quot;I'm not just talking more [FAA] weather stations.&quot;</p><h3>Sources</h3><ul><li><a href=\"https://www.fema.gov/disaster/4893\">FEMA</a>, primary document</li><li><a href=\"https://www.noaa.gov/news-release/noaa-deploys-new-generation-of-ai-driven-global-weather-models\">NOAA</a>, primary document</li><li><a href=\"https://www.ncei.noaa.gov/products/weather-climate-models/global-data-assimilation\">NOAA National Centers for Environmental Information</a>, primary document</li><li><a href=\"https://eos.org/science-updates/reliable-ai-sea-ice-forecasts-depend-on-sustained-observations\">Eos (AGU), Clare Eayrs, Zachary Labe, Fran\u00e7ois Massonnet, Tian Tian and Malte M\u00fcller</a>, primary document</li><li><a href=\"https://weather.gov/media/notification/pdf_2025/pns25-08_kotzebue_ak_upper_air_suspension.pdf\">National Weather Service, Public Information Statement 25-08</a>, primary document</li><li><a href=\"https://www.fisheries.noaa.gov/alaska/sustainable-fisheries/innovative-technologies-expand-research-capabilities-alaska-marine-ecosystems\">NOAA Fisheries Alaska Fisheries Science Center</a>, primary document</li><li><a href=\"https://www.kyuk.org/public-safety/2026-10-12/halong-1-year-after-the-storm\">KYUK (Evan Erickson)</a>, report</li><li><a href=\"https://alaskapublic.org/news/alaska-desk/2026-04-29/alaska-is-getting-more-than-100-new-weather-stations-but-its-not-clear-yet-where-they-will-be\">Alaska Public Media / KNBA (Alena Naiden)</a>, report</li><li><a href=\"https://alaskapublic.org/news/alaska-desk/2026-10-12/bering-sea-crabbers-buoyed-by-increased-catch-limits-this-season\">Alaska Public Media / KUCB (Katie Reuther)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-10-17/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Forecasts now run on AI. The map under them has holes.\n\nAn AI forecast starts from a map of measurements.\n\nNOAA fine-tuned its AI model, AIGFS, on its own Global Data Assimilation System analyses. That system puts surface, balloon, aircraft, buoy, radar and satellite observations onto a three-dimensional grid.\n\nDays or weeks with no observations.\n\nSince April, every airport weather station in the Y-K Delta region has gone days or weeks without observations at times, climatologist Rick Thoman told KYUK.\n\nThe models had the track. They missed the shift east.\n\nGlobal models forecast Halong's track into the Bering Sea well but failed to forecast its eastward shift, Thoman said. A lack of balloon launches across Western Alaska may have played a role, KYUK reported.\n\nSaltwater ran more than 15 miles onto the tundra.\n\nMore than 1,500 people were forced from their homes. In Kipnuk, 90% of buildings were damaged or destroyed, KYUK reported.\n\nWhat got faster. What went missing.\n\n\"We need ocean observations.\"\n\n\"Speed and skill are not the same as trustworthiness.\"\n\nAI sea ice forecast systems barely existed a decade ago and now number in the dozens, researchers wrote in Eos on October 9th. The observations needed to build and test them remain sparse across both poles.\n\nWhere should Alaska's next observation go?\n\n\"I'm not just talking more [FAA] weather stations.\"",
+      "date_published": "2026-10-17T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-10-17/og.jpg",
+      "tags": [
+        "YKDelta",
+        "AlaskaWeather",
+        "WeatherObservations"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 70,
+        "sources": [
+          {
+            "url": "https://www.fema.gov/disaster/4893",
+            "outlet": "FEMA",
+            "primary": true
+          },
+          {
+            "url": "https://www.noaa.gov/news-release/noaa-deploys-new-generation-of-ai-driven-global-weather-models",
+            "outlet": "NOAA",
+            "primary": true
+          },
+          {
+            "url": "https://www.ncei.noaa.gov/products/weather-climate-models/global-data-assimilation",
+            "outlet": "NOAA National Centers for Environmental Information",
+            "primary": true
+          },
+          {
+            "url": "https://eos.org/science-updates/reliable-ai-sea-ice-forecasts-depend-on-sustained-observations",
+            "outlet": "Eos (AGU), Clare Eayrs, Zachary Labe, Fran\u00e7ois Massonnet, Tian Tian and Malte M\u00fcller",
+            "primary": true
+          },
+          {
+            "url": "https://weather.gov/media/notification/pdf_2025/pns25-08_kotzebue_ak_upper_air_suspension.pdf",
+            "outlet": "National Weather Service, Public Information Statement 25-08",
+            "primary": true
+          },
+          {
+            "url": "https://www.fisheries.noaa.gov/alaska/sustainable-fisheries/innovative-technologies-expand-research-capabilities-alaska-marine-ecosystems",
+            "outlet": "NOAA Fisheries Alaska Fisheries Science Center",
+            "primary": true
+          },
+          {
+            "url": "https://www.kyuk.org/public-safety/2026-10-12/halong-1-year-after-the-storm",
+            "outlet": "KYUK (Evan Erickson)",
+            "primary": false
+          },
+          {
+            "url": "https://alaskapublic.org/news/alaska-desk/2026-04-29/alaska-is-getting-more-than-100-new-weather-stations-but-its-not-clear-yet-where-they-will-be",
+            "outlet": "Alaska Public Media / KNBA (Alena Naiden)",
+            "primary": false
+          },
+          {
+            "url": "https://alaskapublic.org/news/alaska-desk/2026-10-12/bering-sea-crabbers-buoyed-by-increased-catch-limits-this-season",
+            "outlet": "Alaska Public Media / KUCB (Katie Reuther)",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-10-16/",
       "url": "https://alaskaaihq.com/archive/2026-10-16/",
       "title": "Houston's 19,950 acres, and the answer owed October 26th",
@@ -3674,93 +3740,6 @@
           {
             "url": "https://www.alaskasnewssource.com/2026/08/05/anchorage-police-seeking-upgrades-real-time-crime-monitoring/",
             "outlet": "Alaska's News Source",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-08-21/",
-      "url": "https://alaskaaihq.com/archive/2026-08-21/",
-      "title": "1,650 Acres of Priority to Study",
-      "summary": "DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.",
-      "content_html": "<p><em>DeepGreen's filing names a Universal Docking Cradle. FERC's June letter said much of the underwater hardware lacked dimensions.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-21/og.jpg\" alt=\"1,650 Acres of Priority to Study cover slide\" width=\"1080\" height=\"1350\"></p><h3>Sources</h3><ul><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&amp;per_page=50&amp;order=newest\">Federal Register API, Office of the Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=Cook%20Inlet%20hydrokinetic&amp;per_page=20&amp;order=newest\">Federal Register API, Office of the Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents/2021-09927.json\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents/2025-06016.json\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=%22East%20Foreland%22&amp;per_page=20&amp;order=newest\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2021/05/11/2021-09927.txt\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://www.federalregister.gov/documents/full_text/text/2025/04/08/2025-06016.txt\">Federal Energy Regulatory Commission via Federal Register</a>, primary document</li><li><a href=\"https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project\">Alaska Energy Authority</a>, primary document</li><li><a href=\"https://www.peninsulaclarion.com/news/marine-energy-developer-pursues-cook-inlet-tidal-project/\">Peninsula Clarion and Homer News, Delcenia Cosman</a>, report</li><li><a href=\"https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/\">Anchorage Daily News, Bella Biondini</a>, report</li><li><a href=\"https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/\">The Maine Monitor, Melissa S. Razdrih</a>, report</li><li><a href=\"https://www.quoddytides.com/proposed-tidal-project-would-power-underwater-ai-data-center/\">The Quoddy Tides, Edward French</a>, report</li><li><a href=\"https://themainemonitor.org/deepgreen-preliminary-permit-application-deficient/\">The Maine Monitor, Melissa S. Razdrih</a>, report</li><li><a href=\"https://www.northeastoceandata.org/ferc-data-on-marine-hydrokinetic-projects/\">Northeast Ocean Data Portal</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-08-21/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "",
-      "date_published": "2026-08-21T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-08-21/og.jpg",
-      "tags": [],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 47,
-        "sources": [
-          {
-            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=DeepGreen&per_page=50&order=newest",
-            "outlet": "Federal Register API, Office of the Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=Cook%20Inlet%20hydrokinetic&per_page=20&order=newest",
-            "outlet": "Federal Register API, Office of the Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/api/v1/documents/2021-09927.json",
-            "outlet": "Federal Energy Regulatory Commission via Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/api/v1/documents/2025-06016.json",
-            "outlet": "Federal Energy Regulatory Commission via Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bterm%5D=%22East%20Foreland%22&per_page=20&order=newest",
-            "outlet": "Federal Energy Regulatory Commission via Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/documents/full_text/text/2021/05/11/2021-09927.txt",
-            "outlet": "Federal Energy Regulatory Commission via Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://www.federalregister.gov/documents/full_text/text/2025/04/08/2025-06016.txt",
-            "outlet": "Federal Energy Regulatory Commission via Federal Register",
-            "primary": true
-          },
-          {
-            "url": "https://akenergyauthority.org/What-We-Do/Railbelt-Energy/Cook-Inlet-PowerLink-Project",
-            "outlet": "Alaska Energy Authority",
-            "primary": true
-          },
-          {
-            "url": "https://www.peninsulaclarion.com/news/marine-energy-developer-pursues-cook-inlet-tidal-project/",
-            "outlet": "Peninsula Clarion and Homer News, Delcenia Cosman",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/business-economy/2026/08/19/underwater-data-center-proposed-for-alaskas-cook-inlet-by-east-coast-company/",
-            "outlet": "Anchorage Daily News, Bella Biondini",
-            "primary": false
-          },
-          {
-            "url": "https://themainemonitor.org/eastport-adopts-moratorium-underwater-data-center-proposal/",
-            "outlet": "The Maine Monitor, Melissa S. Razdrih",
-            "primary": false
-          },
-          {
-            "url": "https://www.quoddytides.com/proposed-tidal-project-would-power-underwater-ai-data-center/",
-            "outlet": "The Quoddy Tides, Edward French",
-            "primary": false
-          },
-          {
-            "url": "https://themainemonitor.org/deepgreen-preliminary-permit-application-deficient/",
-            "outlet": "The Maine Monitor, Melissa S. Razdrih",
-            "primary": false
-          },
-          {
-            "url": "https://www.northeastoceandata.org/ferc-data-on-marine-hydrokinetic-projects/",
-            "outlet": "Northeast Ocean Data Portal",
             "primary": false
           }
         ]

@@ -1,0 +1,246 @@
+{
+ "document_title": "A Year After Halong, the Map Under the AI Forecast",
+ "post_copy": "NOAA's 16-day AI forecast now finishes in about 40 minutes. Y-K Delta airport stations have gone days or weeks with no observations.\n\nClimatologist Rick Thoman told KYUK it has happened at every airport in the region since April.\n\nNOAA fine-tuned that AI model on a grid of surface, balloon and satellite observations.\n\nA year ago, global models had Halong's track and missed its shift east, Thoman said. A lack of balloon launches across Western Alaska may have played a role, KYUK reported.\n\nNOAA's AI models went operational later, in December 2025.\n\nA faster model can't fill in a reading nobody took.\n\nMaps show the grid NOAA's AI model learned from, the Delta's dark stations, Halong's turn east and its saltwater on the tundra.\n\nHow much should the Delta trust a faster forecast while its own airport stations go days without a reading?\n\n#YKDelta #AlaskaWeather #WeatherObservations",
+ "hook_chars": 132,
+ "total_chars": 889,
+ "hashtags": [
+  "#YKDelta",
+  "#AlaskaWeather",
+  "#WeatherObservations"
+ ],
+ "deck_summary_line": "Maps show the grid NOAA's AI model learned from, the Delta's dark stations, Halong's turn east and its saltwater on the tundra.",
+ "first_comment": "Sources, primary first\nNOAA, NOAA deploys new generation of AI-driven global weather models (December 17th, 2025, updated February 17th, 2026) https://www.noaa.gov/news-release/noaa-deploys-new-generation-of-ai-driven-global-weather-models\nNOAA National Centers for Environmental Information, Global Data Assimilation System (GDAS) (undated page, read October 18th, 2026) https://www.ncei.noaa.gov/products/weather-climate-models/global-data-assimilation\nNational Weather Service, Public Information Statement 25-08 on suspending upper air balloon launches at Kotzebue, Alaska (February 27th, 2025) https://weather.gov/media/notification/pdf_2025/pns25-08_kotzebue_ak_upper_air_suspension.pdf\nEos (AGU), Reliable AI sea ice forecasts depend on sustained observations, Clare Eayrs, Zachary Labe, François Massonnet, Tian Tian and Malte Müller (October 9th, 2026) https://eos.org/science-updates/reliable-ai-sea-ice-forecasts-depend-on-sustained-observations\nKYUK, Halong, 1 year after the storm, Evan Erickson (October 12th, 2026, editor's note October 16th, 2026) https://www.kyuk.org/public-safety/2026-10-12/halong-1-year-after-the-storm\nAlaska Public Media / KNBA, Alaska is getting more than 100 new weather stations, but it's not clear yet where they will be, Alena Naiden (April 29th, 2026) https://alaskapublic.org/news/alaska-desk/2026-04-29/alaska-is-getting-more-than-100-new-weather-stations-but-its-not-clear-yet-where-they-will-be\n\nThe Alaska AI Docket keeps every live Alaska AI decision beside its next date, at https://alaskaaihq.com\nIf you fly, forecast or keep a station running in the Y-K Delta, add what this record leaves out in the replies.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "ONE YEAR AFTER HALONG",
+   "kicker2": "",
+   "headline": "Forecasts now run on AI. The map under them has holes.",
+   "body": "",
+   "labels": [
+    "ILLUSTRATION · BERING SEA, LOOKING NORTH",
+    "KUSKOKWIM DELTA",
+    "ALT 1,800 KM"
+   ],
+   "claim_ids": [
+    "C24",
+    "C28",
+    "C01"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "HOW NOAA'S AI MODEL LEARNED",
+   "kicker2": "",
+   "headline": "An AI forecast starts from a map of measurements.",
+   "body": "NOAA fine-tuned its AI model, AIGFS, on its own Global Data Assimilation System analyses. That system puts surface, balloon, aircraft, buoy, radar and satellite observations onto a three-dimensional grid.",
+   "labels": [
+    "SURFACE",
+    "BALLOON",
+    "AIRCRAFT",
+    "BUOY",
+    "RADAR",
+    "SATELLITE",
+    "ILLUSTRATION · THE DELTA COAST NEAR KIPNUK · RELIEF 25X",
+    "ALT 40 KM",
+    "Bering Sea"
+   ],
+   "claim_ids": [
+    "C34",
+    "C38",
+    "C39"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "WESTERN ALASKA, SINCE APRIL",
+   "kicker2": "",
+   "headline": "Days or weeks with no observations.",
+   "body": "Since April, every airport weather station in the Y-K Delta region has gone days or weeks without observations at times, climatologist Rick Thoman told KYUK.",
+   "labels": [
+    "KOTZEBUE · PAOT",
+    "BALLOON LAUNCHES SUSPENDED INDEFINITELY, FEBRUARY 2025",
+    "Y-K DELTA REGION",
+    "10 TO 15 OF EVERY 100 ALASKA AVIATION STATIONS DOWN OR NOT FULLY WORKING ON A GIVEN DAY, EXPERTS SAID",
+    "Norton Sound",
+    "Kuskokwim Bay",
+    "Bering Sea",
+    "ALT 900 KM"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C49",
+    "C50",
+    "C55"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "A YEAR AGO · OCTOBER 12TH, 2025",
+   "kicker2": "",
+   "headline": "The models had the track. They missed the shift east.",
+   "body": "Global models forecast Halong's track into the Bering Sea well but failed to forecast its eastward shift, Thoman said. A lack of balloon launches across Western Alaska may have played a role, KYUK reported.",
+   "labels": [
+    "NOAA'S AI MODELS WENT OPERATIONAL LATER, DECEMBER 17TH, 2025",
+    "FORECAST TRACK, SCHEMATIC",
+    "KUSKOKWIM DELTA COAST",
+    "ALT 2,200 KM"
+   ],
+   "claim_ids": [
+    "C24",
+    "C04",
+    "C05",
+    "C06",
+    "C28"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "KUSKOKWIM DELTA COAST",
+   "kicker2": "",
+   "headline": "Saltwater ran more than 15 miles onto the tundra.",
+   "body": "More than 1,500 people were forced from their homes. In Kipnuk, 90% of buildings were damaged or destroyed, KYUK reported.",
+   "labels": [
+    "MORE THAN 15 MI",
+    "NASA SATELLITE IMAGES, VIA KYUK",
+    "SCHEMATIC EXTENT · ILLUSTRATION",
+    "ALT 20 M"
+   ],
+   "claim_ids": [
+    "C24",
+    "C14",
+    "C10",
+    "C12"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "THE YEAR SINCE HALONG, AS A MAP LEGEND",
+   "kicker2": "",
+   "headline": "What got faster. What went missing.",
+   "body": "",
+   "labels": [
+    "FASTER",
+    "16-DAY AI FORECAST IN ABOUT 40 MINUTES",
+    "0.3% OF THE OPERATIONAL GFS'S COMPUTING",
+    "NOAA SAYS V1.0 INTENSITY FORECASTS DEGRADED",
+    "MISSING",
+    "Y-K DELTA AIRPORT STATIONS, DAYS OR WEEKS WITH NO OBSERVATIONS SINCE APRIL",
+    "MORE THAN 160 FAA STATIONS PROMISED, NO SITES NAMED AS OF APRIL",
+    "1,000 CELLS = THE GFS'S COMPUTING · 3 GOLD = AIGFS"
+   ],
+   "claim_ids": [
+    "C30",
+    "C29",
+    "C32",
+    "C01",
+    "C53",
+    "C56"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "",
+   "kicker2": "",
+   "headline": "\"We need ocean observations.\"",
+   "body": "",
+   "labels": [
+    "RICK THOMAN, CLIMATOLOGIST, TO KYUK",
+    "ALT 0 KM"
+   ],
+   "claim_ids": [
+    "C07",
+    "C02"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "AT BOTH POLES",
+   "kicker2": "",
+   "headline": "\"Speed and skill are not the same as trustworthiness.\"",
+   "body": "AI sea ice forecast systems barely existed a decade ago and now number in the dozens, researchers wrote in Eos on October 9th. The observations needed to build and test them remain sparse across both poles.",
+   "labels": [
+    "PASSIVE MICROWAVE SEA ICE RECORD SINCE 1978 · SWATHS ILLUSTRATED",
+    "BERING STRAIT",
+    "ALT 12,000 KM"
+   ],
+   "claim_ids": [
+    "C43",
+    "C40",
+    "C41",
+    "C44",
+    "C45"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "Thoman wants more than airport stations.",
+   "kicker2": "",
+   "headline": "Where should Alaska's next observation go?",
+   "body": "\"I'm not just talking more [FAA] weather stations.\"",
+   "labels": [
+    "ALT 300 KM",
+    "ALASKA.AI"
+   ],
+   "claim_ids": [
+    "C09"
+   ]
+  }
+ ],
+ "showrunner_notes": [
+  "Copywriter flags applied by the showrunner: C55 labels read 'down or not fully working' as the source does; C32 row reads 'intensity forecasts degraded'; slide 08's label says the swaths are illustrated; first comment no longer says 'we track'.",
+  "Slide 09's quote shortens KYUK's bracket [Federal Aviation Administration] to [FAA], brackets kept."
+ ],
+ "aftercare": [
+  "Post when you choose. Tuesday to Thursday, 8 to 11 a.m. Alaska time, are the strongest slots; Tuesday October 20th to Thursday October 22nd keeps it close to KYUK's October 12th anniversary reporting.",
+  "Paste the sources comment within 60 seconds of posting, as plain text, so every raw URL stays a working link. Pin nothing.",
+  "Reply to every comment in the first 60 minutes and keep answering through the first 90, especially pilots, forecasters, Y-K Delta residents and anyone who keeps a weather station running.",
+  "Expect one question. Did an AI model miss Halong? No. Thoman was describing global models in October 2025, and NOAA's AI models went operational December 17th, 2025.",
+  "At 48 hours, note this post's saves and comments so the next run's ledger and instincts learn from it."
+ ],
+ "editor_notes_for_email": "The deck rests on one honesty guard. NOAA's AI models went operational December 17th, 2025, after Halong hit the Kuskokwim Delta coast on October 12th, 2025; slide 04's guard line and the caption both say 'later', and nothing claims an AI model forecast the storm. The station outages are Rick Thoman's account as KYUK paraphrased it, and the balloon line is KYUK's own 'may have played a role', attributed on slide 04 and in the caption.",
+ "caption_meta": {
+  "opening_move": "CONTRADICTION",
+  "structure": "BRAID",
+  "closing_move": "NEW: THE TRUST QUESTION",
+  "deck_summary_line": "Maps show the grid NOAA's AI model learned from, the Delta's dark stations, Halong's turn east and its saltwater on the tundra.",
+  "first_8_words": "NOAA's 16-day AI forecast now finishes in about",
+  "hook_type": "a two-sentence contradiction, the AI model's 40-minute speed against the Delta's stations going days or weeks without a reading",
+  "deck_summary_shape": "THE MEDIUM AS SUBJECT ('Maps show' and then the contents)",
+  "note": "Room: A (CONTRADICTION/BRAID/FORK) beat B (TIMELINE COLLAPSE/PUNCH THEN PROOF/WHO-DECIDES); critic fix replaced A's or-fork close and its 'The carousel maps' summary line. BURNED FOR THE NEXT ROOM: or-fork closes the caption answers itself, verb-slot deck summary openers ('The carousel maps', 'The slides map'), receipt-stack PUNCH THEN PROOF, who-gets-a-say closes."
+ },
+ "first_8_words": "NOAA's 16-day AI forecast now finishes in about",
+ "hook_type": "a two-sentence contradiction, the AI model's 40-minute speed against the Delta's stations going days or weeks without a reading",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C09",
+  "C10",
+  "C12",
+  "C14",
+  "C17",
+  "C24",
+  "C28",
+  "C29",
+  "C30",
+  "C32",
+  "C34",
+  "C38",
+  "C39",
+  "C40",
+  "C41",
+  "C43",
+  "C44",
+  "C45",
+  "C49",
+  "C50",
+  "C53",
+  "C55",
+  "C56"
+ ]
+}

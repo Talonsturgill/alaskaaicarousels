@@ -1,0 +1,19 @@
+{
+  "chars": 889,
+  "hook": "NOAA's 16-day AI forecast now finishes in about 40 minutes. Y-K Delta airport stations have gone days or weeks with no observations.",
+  "hook_len": 132,
+  "commas": 7,
+  "comma_per_100": 0.83,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#YKDelta",
+    "#AlaskaWeather",
+    "#WeatherObservations"
+  ],
+  "deck_summary": "Maps show the grid NOAA's AI model learned from, the Delta's dark stations, Halong's turn east and its saltwater on the tundra.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 72
+}

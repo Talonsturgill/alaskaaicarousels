@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-17/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 13577871,
+  "pdf_mb": 13.58,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-17/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-17/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "A Year After Halong, the Map Under the AI Forecast",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "7171d5913296d6c24d953f469956c0328e628294de798792ddc62623c4cfef93",
+        "bytes": 5674801
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d50f117b5dcc2ea5aa679f52f8047cce5bd1abf6b8f68239e5435fb341ff3a96",
+        "bytes": 4441162
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "aab5bbed497a309794e8c67c3ac24c99d4e032ea4cf282a8497609da2c81a57b",
+        "bytes": 5857559
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "bd63b30f66d6476df6ecfa57bb696c90fe0459cbbf8250598d2e1aeb76fbb21d",
+        "bytes": 6481707
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "86575ac5f2858a07d00ce58e3130dc61feb7f3caca395cc7108bc995456e83db",
+        "bytes": 5937798
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e813c812cc4599f41a18ee07fb1a84ae260acac1440a419ba4395cc082ed92bd",
+        "bytes": 3850427
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "7cf8e5a8b2f7c4e53aeff93eab72fe3858b3ec6f6d6ede738391deb7cee3e74a",
+        "bytes": 3609974
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "b7c34aa00d5e9030b985ccfe899c25b12681c09ffa098f1538f2b31b3aa2f098",
+        "bytes": 4924474
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b7c7f8d82ad33f2c392f65a723a360c42bef2b2f170abf69bdb63730f408fa17",
+        "bytes": 5142923
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "5ffea7a988c69888e195fa62a975ef8b18d24e29b0138fec664a68d58342103a",
+        "bytes": 14373
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "231a76f3ae8a977a65f53f331f3886a84c712d84d0fc3ccc5b1343d0afd95526",
+        "bytes": 26402
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "ee64d4eb7561a2a0d8f7c768c0e296ab2566b259d8eb26922b0423c0113ec76f",
+        "bytes": 17919
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "07fa2801e4ffde944c56388e6dac832544aed9462a4a94dec210910ed502d371",
+        "bytes": 14820
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "0fe443d2d157d5445ec22088bc73aebb8418b7772ba2ac4631e3e4fbc4ab9158",
+        "bytes": 20861
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "983180295ac200832ab472e2f8cb3807ec2364cfbdd2b981850f0a1c3dce8403",
+        "bytes": 14870
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e9b75997a31ad00f6a2c3749329d080d79d25b5dc83b874188c09218608c6a77",
+        "bytes": 11287
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ae97041b8cb0d84a72924640d1ae951f26c3813c76fb7dfde16815370294eeab",
+        "bytes": 12959
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "c0558eca357569723f38d536efb7443b61769f4587f45d98060dedeaad93c8d1",
+        "bytes": 15545
+      }
+    ]
+  }
+}

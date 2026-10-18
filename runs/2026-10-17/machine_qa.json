@@ -1,0 +1,285 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KUSKOKWIM DELTA' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "worst-point contrast 4.2 on 'KUSKOKWIM DELTA' (box mean 6.7) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: '01 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell over the Kuskokwim coast, hollow': canvas 102.1 dE, page 70.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the Delta cell's near lower corner\" lands 0.0px from its target",
+        "leader \"the Delta cell's near lower corner\" meets its label 8.4px away",
+        "leader \"the Delta cell's near lower corner\" is drawn 232 px at 21 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Forecasts now run on AI.The map under themha' fits 3/3 lines at 126.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SATELLITE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AIRCRAFT' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BALLOON' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'RADAR' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BUOY' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SURFACE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.11) beneath 'SURFACE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '02 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the Delta cut block on the lit pool': shadow L* 4.7 vs ground L* 28.7, dL 24.0 at 432w"
+      ],
+      "motifs": [
+        "'the Delta cell enlarged into the lattice column': canvas 112.3 dE, page 96.6 dE, 88% of its rect is clear of opaque DOM (div#body.body stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the satellite observation mark' lands 8.0px from its target",
+        "leader 'the aircraft observation mark' lands 8.0px from its target",
+        "leader 'the balloon observation mark' lands 8.0px from its target",
+        "leader 'the radar observation mark' lands 8.0px from its target",
+        "leader 'the buoy observation mark' lands 8.0px from its target",
+        "leader 'the surface observation mark' lands 8.0px from its target",
+        "leader 'the satellite observation mark' meets its label 10.0px away",
+        "leader 'the aircraft observation mark' meets its label 10.0px away",
+        "leader 'the balloon observation mark' meets its label 10.0px away",
+        "leader 'the radar observation mark' meets its label 10.0px away",
+        "leader 'the buoy observation mark' meets its label 10.0px away",
+        "leader 'the surface observation mark' meets its label 10.0px away",
+        "leader 'the satellite observation mark' is drawn 151 px at 12 degrees, inside the pointer band",
+        "leader 'the aircraft observation mark' is drawn 177 px at 1 degrees, inside the pointer band",
+        "leader 'the balloon observation mark' is drawn 150 px at 7 degrees, inside the pointer band",
+        "leader 'the radar observation mark' is drawn 164 px at 2 degrees, inside the pointer band",
+        "leader 'the buoy observation mark' is drawn 201 px at 0 degrees, inside the pointer band",
+        "leader 'the surface observation mark' is drawn 146 px at 10 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'An AI forecast startsfrom a map of measureme' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'six observation kinds, one gold mark each' holds: 6 vs 6 marks, counted over 6 declared marks (within 0)",
+        "'six observation kinds, one gold mark each': 6 mark centres probed at r=14px, cohort median 102.0 dE, all present (weakest 81.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KOTZEBUE \u00b7 PAOT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BALLOON LAUNCHES SUSPENDED INDEFINITELY, FEBRUARY ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FEBRUARY 2025' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Y-K DELTA REGION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '03 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell over the region, phantom, an empty ring': canvas 69.3 dE, page 46.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"Kotzebue's ring\" lands 9.1px from its target",
+        "leader \"Kotzebue's ring\" meets its label 6.4px away",
+        "leader \"Kotzebue's ring\" is drawn 31 px at 69 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Days or weekswith no observations.' fits 2/2 lines at 90.5px"
+      ],
+      "asserts": [
+        "'the neatline carries 100 ticks' holds: 100 vs 100 marks, counted over 100 declared marks (within 0)",
+        "'the neatline carries 100 ticks': 100 mark centres probed at r=5px, cohort median 27.7 dE, all present (weakest 21.4 dE)",
+        "'15 of the 100 are not solid' holds: 15 vs 15 ticks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KUSKOKWIM DELTA COAST' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOAA'S AI MODELS WENT OPERATIONAL LATER, DECEMBER ' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.06) beneath 'KUSKOKWIM DELTA COAST' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '04 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell at the coast, the ribbon through it': canvas 115.0 dE, page 98.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the observed hook east, a tapered ribbon': canvas 99.7 dE, page 83.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the landfall ring on the Kuskokwim Delta coast' lands 14.1px from its target",
+        "leader 'the landfall ring on the Kuskokwim Delta coast' meets its label 8.2px away",
+        "leader 'the landfall ring on the Kuskokwim Delta coast' is drawn 68 px at 78 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The models had the track.They missed the shi' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'MORE THAN 15 MI' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '15' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 2 in 'Saltwater ran more than 15 miles onto the tu' ends 'than' -- an article, conjunction or preposition left hanging at the line end. It reads at 103.5px, so the break is the first thing a feed sees. Author the break with <br> before '15' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: '05 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell over the water, hollow, with its reflection': canvas 106.0 dE, page 59.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Saltwater ran more than15 miles onto the tun' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'the dimension call spans the drawn sheet from the coast to the edge' holds: 445 vs 445 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '06 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the compute tray on the lit stipple pool': shadow L* 6.6 vs ground L* 23.1, dL 16.5 at 432w"
+      ],
+      "motifs": [
+        "'the Delta cell as the legend key, solid for faster and dashed for missing': canvas 77.8 dE, page 73.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the three gold cells' lands 7.2px from its target",
+        "leader 'the three gold cells' meets its label 10.0px away",
+        "leader 'the three gold cells' is drawn 76 px at 21 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'What got faster.What went missing.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'the tray, 1,000 cells, one mark each' holds: 1000 vs 1000 marks, counted over 1000 declared marks (within 0)",
+        "'the tray, 1,000 cells, one mark each': 200 mark centres probed at r=6px, sampled every 5 marks, cohort median 22.6 dE, all present (weakest 19.5 dE)",
+        "'AIGFS, 0.3 percent of the tray, three gold cells' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'RICK THOMAN, CLIMATOLOGIST, TO KYUK' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '\"We need ocean observations.\"' at 76,236 940x268 (margin 80px)",
+        "art touching glyphs (16% of the ring around '.', spanning 22%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: '07 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell, a hollow speck on the horizon': canvas 29.5 dE, page 30.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"We need oceanobservations.\"' fits 2/2 lines at 139.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'PASSIVE MICROWAVE SEA ICE RECORD SINCE 1978 \u00b7 SWAT' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '1978' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BERING STRAIT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 2 in '\"Speed and skill are not the same as trustwo' ends 'not' -- an article, conjunction or preposition left hanging at the line end. It reads at 87.5px, so the break is the first thing a feed sees. Author the break with <br> before 'the' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: '\"Speed and skill are not the same as tru' at 76,190 940x172 (margin 80px)",
+        "busy art under text (bg edge density 0.33) beneath 'BERING STRAIT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '08 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell as one graticule cell over the Y-K Delta': canvas 92.5 dE, page 55.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Bering Strait' lands 4.0px from its target",
+        "leader 'the Bering Strait' meets its label 8.0px away",
+        "leader 'the Bering Strait' is drawn 96 px at 31 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '\"Speed and skill are notthe same as trustwor' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Where should Alaska's next observation g' at 76,366 940x250 (margin 80px)",
+        "outside safe zone: '09 / 09' at 886,60 114x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Delta cell over the Kipnuk coast, empty': canvas 89.3 dE, page 64.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "quote '\"I'm not just talking more[FAA] weather stat' fits 2/2 lines at 53.5px",
+        "hl 'Where should Alaska'snext observation go?' fits 2/2 lines at 127.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 38,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKLAT.alaskaProjection",
+        "slides": [
+          1,
+          3,
+          4,
+          9
+        ]
+      },
+      {
+        "call": "AKLAT.cell",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9
+        ]
+      },
+      {
+        "call": "AKLAT.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKLAT.rgba",
+        "slides": [
+          1,
+          2,
+          6,
+          9
+        ]
+      },
+      {
+        "call": "AKS.loadDEM",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}
