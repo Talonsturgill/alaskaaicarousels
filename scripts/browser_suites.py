@@ -27,6 +27,19 @@ WHAT IT DOES INSTEAD. One command, allowlisted as `Bash(python3:*)`:
      tests/playwright_resolve.mjs (repo node_modules, NODE_PATH, then the
      running node's global root), so nothing is linked or installed.
 
+  4. (2026-10-17, weekly machine pass) Runs tests/mobile_docket_map.js too,
+     the eight-device docket map suite CI's `mobile` job runs, against the
+     same build served on a loopback port. It is the one suite that reads a
+     page over HTTP and the one that is CommonJS, so it gets BASE_URL and a
+     NODE_PATH pointing at the running node's global root. It is here because
+     it is the check that keeps going red on docket days (No.80, No.81, No.87
+     each fixed it by hand after the PR opened), and because CI's job builds
+     the site at a FIXED date, 2026-07-25, so it does not test the page a run
+     ships: on 2026-10-17 the docket built at the run date failed iPhone 13
+     landscape (a pin under the sticky nav, Alaska at 23 by 48 percent of its
+     frame) on the branch, on main's published docs/ and at No.88's merge,
+     while the 2026-07-25 build of the same ledger passed 148 of 148.
+
 Exit 0 every suite passed, 1 a suite failed or the build failed, 2 refused.
 `--self-test` checks the two refusals without building anything.
 """
@@ -34,14 +47,20 @@ Exit 0 every suite passed, 1 a suite failed or the build failed, 2 refused.
 import argparse
 import datetime as dt
 import os
+import shutil
+import socket
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "out"
-SUITES = ["ask_engine", "home_ask", "docket_ask", "power_line"]
+SUITES = ["ask_engine", "home_ask", "docket_ask", "power_line", "mobile_docket_map"]
+# the suites that read the page over HTTP, by file; every other suite is tests/<name>.mjs read off SITE
+SERVED = {"mobile_docket_map": "mobile_docket_map.js"}
 
 
 def today_anchorage():
@@ -76,6 +95,37 @@ def site_ok(site, out=OUT):
         return False
 
 
+def node_global_root():
+    """<prefix>/lib/node_modules of the node on PATH, where a global playwright lives
+    (the same rule tests/playwright_resolve.mjs uses for the ESM suites)."""
+    node = shutil.which("node")
+    if not node:
+        return None
+    root = Path(os.path.realpath(node)).parent.parent / "lib" / "node_modules"
+    return str(root) if root.is_dir() else None
+
+
+def serve(site):
+    """A loopback http.server over the build, and its base URL, or (None, reason)."""
+    s = socket.socket()
+    s.bind(("127.0.0.1", 0))
+    port = s.getsockname()[1]
+    s.close()
+    srv = subprocess.Popen([sys.executable, "-m", "http.server", str(port), "--bind", "127.0.0.1",
+                            "--directory", str(site)], stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL)
+    base = "http://127.0.0.1:%d" % port
+    for _ in range(80):
+        try:
+            with urllib.request.urlopen(base + "/docket/", timeout=2) as r:
+                if r.status == 200:
+                    return srv, base
+        except OSError:
+            time.sleep(0.25)
+    srv.terminate()
+    return None, "the loopback server never answered on %s" % base
+
+
 def self_test():
     ok = True
     with tempfile.TemporaryDirectory(dir=OUT if OUT.is_dir() else None) as t:
@@ -106,7 +156,7 @@ def main():
     ap.add_argument("--date", default=None, help="build date, default today in Anchorage")
     ap.add_argument("--site", default=None, help="default out/<date>/site; must be under out/")
     ap.add_argument("--suite", action="append", choices=SUITES,
-                    help="run only this suite (repeatable); default all four")
+                    help="run only this suite (repeatable); default all five")
     ap.add_argument("--no-build", action="store_true", help="reuse an existing build")
     ap.add_argument("--timeout", type=int, default=900, help="seconds per suite")
     ap.add_argument("--self-test", action="store_true")
@@ -141,13 +191,31 @@ def main():
     results = []
     for name in a.suite or SUITES:
         print("\n== %s" % name, flush=True)
+        srv, run_env = None, env
+        if name in SERVED:
+            srv, base = serve(site)
+            if srv is None:
+                print("FAIL: " + base)
+                results.append((name, 1))
+                continue
+            run_env = dict(env, BASE_URL=base)
+            groot = node_global_root()
+            if groot and not env.get("NODE_PATH"):
+                run_env["NODE_PATH"] = groot
         try:
-            r = subprocess.run(["node", str(ROOT / "tests" / (name + ".mjs"))],
-                               cwd=ROOT, env=env, timeout=a.timeout)
+            r = subprocess.run(["node", str(ROOT / "tests" / SERVED.get(name, name + ".mjs"))],
+                               cwd=ROOT, env=run_env, timeout=a.timeout)
             code = r.returncode
         except subprocess.TimeoutExpired:
             print("timed out after %d s" % a.timeout)
             code = 124
+        finally:
+            if srv is not None:
+                srv.terminate()
+                try:
+                    srv.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    srv.kill()
         results.append((name, code))
     print("\nBROWSER SUITES (site %s)" % site.relative_to(ROOT))
     for name, code in results:

@@ -3339,6 +3339,78 @@
    "verification": "tests/contact_probe_verify.py HOLDS with a new case 6 (a near-black pole on grey carpet), and case 6 FAILs on HEAD's probe ('carpet 100 px from the foot reads 100 percent the pole's own colour'); case 5 (the 2026-10-11 card, No.81 01 and No.83 09 from runs/) still holds. --verify on today's snapshot render: 01 and 06 unchanged, 09's declared dL 22.6 unchanged and the false note gone; the h-axis ground at x 301 was checked on a crop and sits on lit carpet, not the chair. qa.py's contact gate is untouched.",
    "rollback": "git revert the upgrade(2026-10-16) commit, or set OBJ_NEUTRAL_C = 0",
    "commit": "868297b1"
+  },
+  {
+   "run_date": "2026-10-17",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/browser_suites.py runs tests/mobile_docket_map.js (the eight-device docket map suite CI's `mobile` job runs) against its out/<date>/site build served on a loopback port, at the RUN date, and Phase 3.5 step 5 runs it with the ask payload self-test (which now prints bytes and headroom under the 190,000-byte ceiling) after any docket edit, before the docket is committed.",
+   "trigger": "Queue item 2026-10-08 at repeat 2, the item that made this pass due: one new or changed docket item turned the PR red on the ask ceiling and on iPhone 13 landscape fit on No.80, No.81 and No.87, each found from CI after the PR opened. Reproducing it today found the reason CI catches it late or not at all: docket-map-mobile.yml builds the site at a FIXED date, 2026-07-25.",
+   "files": [
+    "scripts/browser_suites.py",
+    "scripts/ask_answers.py",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "browser_suites --self-test HOLDS. `browser_suites.py --date 2026-10-17 --suite mobile_docket_map` exits 1: iPhone 13 landscape, 1 pin behind the 70 px nav and Alaska at 23 by 48 percent of its 702 x 219 frame (speck floor 55). The SAME ledger built at 2026-07-25, CI's date, exits 0 (ALL PASS, 148 checks). main's published docs/ (sitemap 2026-10-17) and No.88's merge fad74184 fail the same two checks, and builds at 2026-10-10 and 2026-10-16 fail too, so the published map has been failing a check CI reports green. All five suites at the run date: ask_engine, home_ask, docket_ask, power_line PASS, mobile_docket_map FAIL as above. ask_answers --self-test clean, now printing '177,591 of 190,000 bytes, 12,409 bytes of headroom'.",
+   "rollback": "git revert the upgrade(2026-10-17) commit, or drop 'mobile_docket_map' from SUITES in scripts/browser_suites.py",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-10-17",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "gate_status.py's gas_watch_live row holds a gaswatch_incident.json to site_signoff.incident_allows(), the predicate the PR's `checks` job runs under --ci, and FAILs a record without a valid audit_checked_utc (ISO with time and offset, under 36 hours) or with unopenable evidence URLs, naming the field to fix; Phase 3.6 lists the fifth field.",
+   "trigger": "Queue item 2026-10-14 (No.86, PR #434 exited 2 on an incident the run's own row had passed as WARN). Counted today: 7 of the 11 shipped incident records (2026-09-27, 09-30, 10-03, 10-04, 10-09, 10-11, 10-12) carry no audit_checked_utc.",
+   "files": [
+    "scripts/gate_status.py",
+    "prompts/routine_instructions.md",
+    "tests/gaswatch_incident_stamp_verify.py"
+   ],
+   "verification": "tests/gaswatch_incident_stamp_verify.py HOLDS: an unstamped record FAILs naming the field, a record stamped from the audit's checked_utc WARNs as before, a 40 hour stamp and a date-only stamp FAIL, an unopenable evidence URL FAILs, no record still FAILs, a passing audit ignores the record; all 7 unstamped shipped records FAIL as written and all 11 WARN once stamped. RECONSTRUCTION: HEAD's gate_status passes the same unstamped record as WARN. gate_status --self-test 27/27. Today's run (no incident filed yet) still reads FAIL, unchanged.",
+   "rollback": "git revert the upgrade(2026-10-17) commit (the WARN branch returns to the four-field test)",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-10-17",
+   "kind": "fix",
+   "area": "agents",
+   "change": "The pixel critic returns a JSON ARRAY with one complete object per assigned slide when given more than one (a slide it could not judge is an entry with verdict revise, never omitted), and Phase 9 step 2 has the showrunner match every hand-back's slide numbers against the assignment before reading a fix, treating a missing slide as unreviewed.",
+   "trigger": "No.89 round 1: the critic assigned slides 07 and 08 returned an object for 07 only and slide 08 went a round unreviewed until the showrunner noticed. Root cause: the agent's output contract showed one object with a singular `slide` and said the final message is 'this JSON', while the routine assigns 1 to 2 slides per critic.",
+   "files": [
+    ".claude/agents/pixel-critic.md",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "Contract read end to end; no script parses critic output (grep for frame_causes and pixel_review finds only critic_brief.py's prose), so nothing downstream changes shape. Not machine-verifiable beyond that; the coverage check is the showrunner's step.",
+   "rollback": "git revert the upgrade(2026-10-17) commit",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-10-17",
+   "kind": "fix",
+   "area": "assets",
+   "change": "AKSTROBE.focus takes `sharp: [dNear, dFar]`, a focal region with zero circle of confusion across a receding subject's depth and the thin-lens fall-off outside it, returns `inFocus` (the share of the frame within half a device px of sharp), and AKSTROBE.depthRange(depth, rect) reads a subject's 5th to 95th percentile depth off the depth pass; output without `sharp` is byte-identical.",
+   "trigger": "Flow critic cause b, the largest object least modelled (4 of 5 runs, 9 frames; cross-frame 1 run, 4 frames) and the scorer's 'depth frame does not deliver depth' theme (2 runs, both akstrobe focus-pull frames). No.89 round 1: the relief slab on 01 and 09 went soft at k 5 to 7 because a thin lens is sharp on one plane of a slab running 16 to 40 units from the camera; the in-run cure, k about 2, gave up the fall-off.",
+   "files": [
+    "assets/js/akstrobe.js",
+    "tests/strobe_focal_region_verify.py",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "verification": "tests/strobe_focal_region_verify.py HOLDS: on a receding-slab fixture at k 13, 5.1 percent of columns stay sharp without a region (the defect) and 100 percent of in-region columns with sharp [6, 10], contrast outside at 0.25 of source (fall-off kept); inFocus 0.012 to 0.508; depthRange returns the quantiles and leaves far-plane background out; HEAD and working write identical bytes without sharp (0 levels). tests/strobe_focus_cells_verify.py still HOLDS. On No.89 slide 01 (a copy in out/upgrade-verify): k 6 alone leaves 7.1 percent of the frame in focus, k 6 with sharp = depthRange(slab rect) 63.9 percent and matches the run's k 1.6 render on the slab (15k px differ, max 10 levels, against 406k px and 72 levels for k 6 alone). render.py + qa.py on this run's nine slides: 9/9 OK, WARN 0 fails 40 warns; examples/demo-deck: 4/4 OK, WARN 0 fails.",
+   "rollback": "git revert the upgrade(2026-10-17) commit; no slide calls the new option yet",
+   "commit": ""
+  },
+  {
+   "run_date": "2026-10-17",
+   "kind": "improvement",
+   "area": "knowledge",
+   "change": "TECHNIQUE_LIBRARY 126, stroke opacity not dab flow: a translucent line is one stroke() per polyline, per-segment with butt caps when its alpha or width varies, or opaque on a layer that takes the alpha, never per-segment with round caps, with the measured joint buildup.",
+   "trigger": "Flow critic cause d, a texture artifact (3 of 5 runs, 7 frames; cross-frame 2 runs) and No.89 round 1, where slides 04 (streamlines) and 07 (burin swell) beaded at 100 percent; 04 was cured by fading strokes near the eye, which hides the beads only there. Frontier source: Krita's definitions of opacity (per stroke) and flow (per dab), https://docs.krita.org/en/reference_manual/brushes/brush_settings/opacity_and_flow.html",
+   "files": [
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "verification": "Measured in the engine's Chromium 141.0.7390.37 (out/upgrade-verify/probe/bead.py): a 2.4 px line at alpha 0.4 in 3.2 px segments peaks at alpha 163/255 at the joints with per-segment round caps, 102 with one stroke(), 102 per-segment with butt caps, 102 as opaque segments on a layer composited at 0.4.",
+   "rollback": "git revert the upgrade(2026-10-17) commit",
+   "commit": ""
   }
  ],
  "scan_log": [
@@ -3852,6 +3924,13 @@
    "searches": "6 searches, 3 fetches (Blender Studio lighting guide, Zoner black-on-black, the talkphotography black-on-black thread); news-desk 'how we made' searches for 2026 returned nothing substantive",
    "found": "(1) Black-on-black product lighting: light the edge 'in the place where it blends', set the subject at a brightness transition, and a reflective surface bounces light up into the base and separates it from the surface (https://learn.zoner.com/black-on-black, https://www.talkphotography.co.uk/threads/lighting-challenge-9-black-on-black.773212/). (2) Blender Studio keeps a sequence continuous with a per-shot light direction chart and one value per light type per scene in a linked library (https://studio.blender.org/tools/artist-guide/shot-production/lighting).",
    "outcome": "applied: (1) as the parameters of DESIGN_DOCTRINE section 3's 'plate on a near-black desk' entry, inside this pass's dossier_check cast-promise fix entry (kind fix, the scan supplied the remedy). PARKED in knowledge/FIELD_NOTES.md ('Parked, 2026-10-16 frontier scan, focus (b)'): (2) a deck-level light chart, unblocked when a flow critic names light direction crossing between frames on two decks in a week."
+  },
+  {
+   "run_date": "2026-10-17",
+   "focus": "(c) generative and procedural art portable to offline Canvas/SVG, narrowed to translucent variable-width strokes that bead at their joints and to feathered type veils. Legal and distinct from the last three logged foci: 2026-10-16 (b) still life, 2026-10-11 (e) headless Chromium, 2026-10-09 (d) typography (last (c) 2026-10-06). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: cause d on 3 of 5 runs and No.89's beading on 04 and 07.",
+   "searches": "4 searches, 3 fetches (the WHATWG canvas spec twice, which did not surface the stroke union text in the excerpts read; Krita's opacity and flow page read in full), 1 measurement in the engine's Chromium",
+   "found": "(1) Opacity is per stroke and flow is per dab, so overlapping dabs build up inside one stroke while stroke opacity caps it (https://docs.krita.org/en/reference_manual/brushes/brush_settings/opacity_and_flow.html); a per-segment canvas line with round caps is flow. MEASURED in Chromium 141: per-segment round caps peak at alpha 163/255 for a 0.4 line, one stroke(), butt caps and an opaque layer at 0.4 all peak at 102. (2) Variable width is a filled offset polygon, since canvas strokes have one width (https://groups.google.com/g/paperjs/c/Q57gXcwHEEI, https://www.rdocumentation.org/packages/ggsketch/versions/2.0.0/topics/stroke_ribbon); the library already has it (technique 119, AKSECT.ribbon). (3) Scrims: design references prefer a feathered gradient to a hard box behind type over an image (https://smashingmagazine.com/2023/08/designing-accessible-text-over-images-part1, https://uxdesign.cc/techniques-to-display-text-over-background-images-b089de1cc8bc); nothing beyond the engine's AKNIGHT.veil and No.89's two-layer feather.",
+   "outcome": "applied: (1) as TECHNIQUE_LIBRARY 126 (this pass's improvement entry). Nothing parked: (2) and (3) are already in the machine."
   }
  ]
 }

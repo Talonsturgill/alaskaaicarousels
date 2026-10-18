@@ -582,6 +582,28 @@ Right after claims:
    never blocks on it (runs 2026-07-09 and 2026-07-10 each tripped this at
    ship twice). The ship gate is unchanged; this only catches it earlier.
 
+5. PRE-FLIGHT THE PAGE THE LEDGER WILL BUILD, before you commit the docket
+   (2026-10-17, weekly machine pass; queue item at repeat 2). One added item or
+   one changed status has turned the PR red twice over, on the ask box's inline
+   payload ceiling and on the iPhone 13 landscape map fit: No.80, No.81 and
+   No.87 each found out from CI after the PR opened and fixed it by hand. Run
+   both checks now, at the RUN date, after any edit to `ledger/docket.json`
+   (a `last_updated` stamp alone included, since it can reorder what the page
+   shows):
+
+       python3 scripts/ask_answers.py --self-test
+       python3 scripts/browser_suites.py --date <date> --suite mobile_docket_map --suite docket_ask
+
+   The self-test prints the payload's bytes and its headroom under the
+   190,000-byte ceiling; under 5,000 bytes of headroom, say so in the run record
+   so the next item isn't a surprise. The map suite is the eight-device check
+   CI's `mobile` job runs, but CI builds the site at a FIXED date (2026-07-25),
+   so its green does NOT prove the page a run ships: on 2026-10-17 the run-date
+   build failed iPhone 13 landscape while the 2026-07-25 build of the same ledger
+   passed. A red suite here is a presentation fix you make in this run
+   (`docket_build.map_svg`, `site_build.py`), never a reason to leave the item
+   out of the record.
+
 The site itself is rebuilt at ship time (Phase 11); this phase only
 maintains the data.
 
@@ -677,7 +699,15 @@ maintenance procedure for any diagnosed scheduled-job failure, not just Gas Watc
 
    A genuine upstream/GitHub/credential blocker follows the incident JSON
    procedure in CLAUDE.md. Keep the failed evidence and name the blocker in
-   the existing draft and completion report. An article may still ship with a
+   the existing draft and completion report. The record carries FIVE fields,
+   not the four CLAUDE.md lists: `blocker`, `reason`, `attempts`,
+   `evidence_urls` AND `audit_checked_utc`, copied from the failing
+   gaswatch_health.json's `checked_utc` (ISO with a Z, re-copied whenever you
+   re-run the audit). The PR's `checks` job runs `site_signoff.py --ci`, which
+   refuses a record without it or older than 36 hours; seven of the eleven
+   records shipped before 2026-10-17 had none, and No.86's PR #434 went red on
+   it. Since the 2026-10-17 weekly pass the `gas_watch_live` row applies the
+   same predicate and FAILs such a record, naming the field. An article may still ship with a
    documented external blocker; a fixable defect cannot be abandoned. No new
    email or social sends are authorized.
 
@@ -1295,7 +1325,12 @@ that argument was typed by hand.
 2. Spawn `pixel-critic` agents IN PARALLEL — one per 1-2 slides — each
    with the render PNG path, the thumb path, the slide's dossier, and the
    deck's doctrine excerpts. They transcribe, verify checklists, and
-   return fix lists. Paste each critic its slide's line of the quote-mark
+   return fix lists. A critic given two slides returns an ARRAY, one object
+   per slide (2026-10-17). Match every hand-back's `slide` numbers against
+   the slides you assigned it before you read a single fix: a slide with no
+   object of its own is UNREVIEWED, never "ship", and goes straight back out
+   to a fresh critic in the same round. No.89's critic for 07 and 08 returned
+   07 only, and 08 sat a round unreviewed. Paste each critic its slide's line of the quote-mark
    census `scripts/copy_sync_check.py` prints (2026-09-29): Space Grotesk and
    Manrope draw straight marks slanted, and on No.72 three critics and the
    scorer reported curly quotes the source never held.

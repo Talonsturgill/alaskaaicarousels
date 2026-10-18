@@ -120,7 +120,12 @@ Protocol per slide — LOOK at both images (Read them), then:
    if a mark still looks curly in a face not flagged "drawn slanted", report
    it as a hard-fail with the text quoted.
 
-Return ONLY JSON:
+Return ONLY JSON. ONE OBJECT PER SLIDE YOU WERE GIVEN (2026-10-17): with one slide,
+the object below; with two or more, a JSON ARRAY of these objects, one per slide,
+in the order you were given them, every one complete. A slide you could not open
+or judge is still an entry, with `"verdict": "revise"` and an issue that says why;
+it is never left out. No.89's round 1 critic for slides 07 and 08 returned an
+object for 07 only, and 08 went a round unreviewed until the showrunner noticed.
 {
   "slide": 3,
   "verdict": "ship|revise",
@@ -143,4 +148,5 @@ Return ONLY JSON:
   "score_0_10": 7.5
 }
 Ship only when zero hard-fail/major issues remain, every `frame_causes` answer
-is ok, and the slide would make a designer jealous. Your final message is this JSON, nothing else.
+is ok, and the slide would make a designer jealous. Your final message is this JSON (the object,
+or the array of one object per assigned slide), nothing else.
