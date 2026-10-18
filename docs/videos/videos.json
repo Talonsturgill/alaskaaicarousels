@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "what-norm-learns",
+      "date": "2026-10-18",
+      "title": "What Norm Learns",
+      "caption": "Three University of Alaska AI projects shown at a statewide symposium, per the Anchorage Daily News: a ski-video app, a senior-routine sensor and a compressor digital twin. The same story reports no users, no accuracy figures and no pilots.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-18-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-18-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-18-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-18-poster_thumb.jpg"
+    },
+    {
       "id": "ten-billion-how-many-megawatts",
       "date": "2026-10-17",
       "title": "Ten Billion, How Many Megawatts",
