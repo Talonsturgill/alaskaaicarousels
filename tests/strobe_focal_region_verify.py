@@ -16,8 +16,11 @@ The fixture is a slab that runs away from the camera across the frame (depth
 4 at the left edge to 12 at the right) under 1 px horizontal stripes, so each
 column's surviving stripe contrast reads its blur radius directly.
 
-  same      without o.sharp the working akstrobe.js and git HEAD's write the
-            same bytes (no shipped slide moves).
+  same      without o.sharp the working akstrobe.js and the PRE-CHANGE
+            implementation (pinned at BASE_REV, the commit before the focal
+            region landed, never HEAD, which would compare a file with itself)
+            write the same bytes (no shipped slide moves). A missing BASE_REV
+            (a shallow clone) is a FAIL, not a skip.
   thin      without o.sharp at k 13, the sharp columns (contrast within 10
             percent of the source) cover under 15 percent of the slab: the
             No.89 defect, a subject sharp along one line.
@@ -72,8 +75,11 @@ window.renderReady = (async () => {
 </script></body></html>"""
 
 
+BASE_REV = "8c75ad26"   # the last commit before 2026-10-17's upgrade added o.sharp
+
+
 def head_copy(rel, dest):
-    out = subprocess.run(["git", "-C", str(ROOT), "show", "HEAD:" + rel], capture_output=True, text=True)
+    out = subprocess.run(["git", "-C", str(ROOT), "show", BASE_REV + ":" + rel], capture_output=True, text=True)
     if out.returncode != 0:
         return None
     dest.write_text(out.stdout)
@@ -151,10 +157,12 @@ def main():
             if emp is not None and (emp[1] >= 100 or emp[0] >= 100):
                 bad.append("depthRange counted far-plane background: %s" % emp)
 
-            if old:
+            if not old:
+                bad.append("the pre-change baseline %s is not in this checkout (fetch full history)" % BASE_REV)
+            else:
                 head, e3 = run(b, tmp, old, False)
                 diff = int(np.abs(np.asarray(head["g"]) - np.asarray(plain["g"])).max())
-                print("same    without o.sharp, HEAD and working differ by at most %d levels" % diff)
+                print("same    without o.sharp, the %s baseline and working differ by at most %d levels" % (BASE_REV, diff))
                 if diff:
                     bad.append("the default output moved (%d levels)" % diff)
         finally:

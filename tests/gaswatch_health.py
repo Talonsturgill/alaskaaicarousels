@@ -242,10 +242,14 @@ class HealthTests(unittest.TestCase):
             report.update(site_url=health.SITE, verdict="FAIL")
             path.write_text(json.dumps(report))
             self.assertEqual(verdict(), "FAIL")
-            (run / "gaswatch_incident.json").write_text(json.dumps({
-                "blocker": "upstream", "reason": "Source unavailable after retries",
-                "attempts": ["retried source and read production job logs"],
-                "evidence_urls": [gc.CINGSA_URL]}))
+            incident = {"blocker": "upstream", "reason": "Source unavailable after retries",
+                        "attempts": ["retried source and read production job logs"],
+                        "evidence_urls": [gc.CINGSA_URL]}
+            (run / "gaswatch_incident.json").write_text(json.dumps(incident))
+            # an incident must carry the audit it answers (site_signoff --ci's rule since 2026-10-17)
+            self.assertEqual(verdict(), "FAIL")
+            incident["audit_checked_utc"] = report["checked_utc"]
+            (run / "gaswatch_incident.json").write_text(json.dumps(incident))
             self.assertEqual(verdict(), "WARN")
             report["checked_utc"] = gc.iso_z(datetime.now(timezone.utc) - timedelta(days=2))
             path.write_text(json.dumps(report))

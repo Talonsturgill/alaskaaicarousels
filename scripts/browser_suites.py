@@ -200,8 +200,11 @@ def main():
                 continue
             run_env = dict(env, BASE_URL=base)
             groot = node_global_root()
-            if groot and not env.get("NODE_PATH"):
-                run_env["NODE_PATH"] = groot
+            # append the global root rather than only filling an empty NODE_PATH: the CommonJS suite has no
+            # other fallback, so a caller's own NODE_PATH must not hide a globally installed playwright
+            parts = [q for q in env.get("NODE_PATH", "").split(os.pathsep) if q]
+            if groot and groot not in parts:
+                run_env["NODE_PATH"] = os.pathsep.join(parts + [groot])
         try:
             r = subprocess.run(["node", str(ROOT / "tests" / SERVED.get(name, name + ".mjs"))],
                                cwd=ROOT, env=run_env, timeout=a.timeout)
