@@ -3596,6 +3596,54 @@
     "research-and-science",
     "defense-and-federal"
    ]
+  },
+  {
+   "run_date": "2026-10-19",
+   "carousel_no": 90,
+   "topic": "Alaska DNR's October 13th preliminary written finding on the Kenai Loop gas storage lease favors ENSTAR over Hilcorp: both sought the same depleted reservoir (8,600 to 10,500 ft TVDSS, two sands 44 and 65 ft net, coal seals 20 to 30 ft); DNR found ENSTAR's 3.9 Bcf remaining-gas estimate more reliable than Hilcorp's 6.4, noting Hilcorp gave about one quarter of the requested data and no dynamic model; ENSTAR plans 20.5 Bcf working and 8 cushion at up to 150 MMscf/D on about 500 state acres with an AIX agreement; the finding asserts clear state authority over the pore space while Kenai's city manager, citing a Pioneer Law opinion, says the city owns it; comments due 5 p.m. November 13th.",
+   "angle": "THE SPLIT SPECIMEN: one rock read two ways, the state backing the reading that came with data, and the deed the model can't read. AI appears only as context (as many as 15 data center proposals, no source ties one to Kenai Loop).",
+   "entities": [
+    "Alaska DNR",
+    "Division of Oil and Gas",
+    "ENSTAR",
+    "Hilcorp",
+    "AIX Energy",
+    "City of Kenai",
+    "Terry Eubank",
+    "Pioneer Law",
+    "Kenai Loop",
+    "Kenai Municipal Airport",
+    "Cook Inlet",
+    "CINGSA",
+    "Kenai Pool 6",
+    "Haley Paine",
+    "Alaska Public Media",
+    "KDLL"
+   ],
+   "keywords": [
+    "gas storage lease",
+    "Kenai Loop",
+    "pore space",
+    "preliminary best interest finding",
+    "Cook Inlet gas shortage",
+    "reservoir model",
+    "working gas",
+    "cushion gas",
+    "public comment deadline",
+    "Railbelt winter gas"
+   ],
+   "headline": "One rock. Two readings.",
+   "sources_lead": [
+    "https://dog.dnr.alaska.gov/Document/Download/034A91BF914342ABB642C3F5B12DBC70/Kenai%20Loop%20Gas%20Storage%20Lease%20Preliminary%20Decision.pdf",
+    "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=225521",
+    "https://alaskapublic.org/news/economy/energy/2026-10-16/state-favors-enstar-in-dueling-kenai-gas-storage-project-proposals"
+   ],
+   "claims": 74,
+   "note": "Thin AI news day; the Kenai Loop decision was already a docket item. Runner-up Wilson (C74 to C76). 5 rounds; scored 8.6, art 7.5. Runner-up claims C74 to C76 kept outside the published claims container.",
+   "beats": [
+    "power-and-the-grid",
+    "land-and-permitting"
+   ]
   }
  ]
 }

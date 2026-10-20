@@ -38,6 +38,27 @@ if subprocess.run(probe, capture_output=True).returncode != 0:
         print("pypdf import: repaired")
 else:
     print("pypdf import: ok")
+
+# Pillow must IMPORT ITS C CORE, not just the package (2026-10-19, No.90).
+# This container's python3.11 found Debian's /usr/lib/python3/dist-packages
+# PIL, whose _imaging extension was built for another Python, so `import PIL`
+# passed the check above while `from PIL import Image` raised; site_build's
+# grain_data_uri() then returned "" and every site build FAILed as "Pillow
+# missing". Probe the core in a subprocess and repair with a wheel for this
+# interpreter.
+probe = [sys.executable, "-c", "from PIL import Image; Image.new('L', (2, 2))"]
+if subprocess.run(probe, capture_output=True).returncode != 0:
+    print("Pillow core import broken; repairing...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install",
+                           "--break-system-packages", "--ignore-installed",
+                           "-q", "pillow"])
+    if subprocess.run(probe, capture_output=True).returncode != 0:
+        print("WARNING: Pillow still broken after reinstall; site_build "
+              "will FAIL on the grain texture", file=sys.stderr)
+    else:
+        print("Pillow import: repaired")
+else:
+    print("Pillow import: ok")
 EOF
 
 # sanity: a launchable chromium must exist

@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-19/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11005478,
+  "pdf_mb": 11.01,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-19/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-19/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "One Rock, Two Readings of the Kenai Loop Gas Storage Lease",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "002e2e22c8bafe109dc6cae3e5f74f54c258ae68c97d016c59adbb038dc2551d",
+        "bytes": 6453294
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "a28a59d871f5136aa8be88f0674020220b7727715ce69ae17eed7294fb49f9ca",
+        "bytes": 6457822
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "3e91746b9025787ab3fe5e1cba4b2e10c2a2e25b6ca39db264effb284f60b70b",
+        "bytes": 2757544
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "c0dbee7c646fb9acc5f89cf6ffb21ed2e655ad299135372baa6c1512362d3c5b",
+        "bytes": 3158283
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "367e7bff04215f3ad9983a74dfd258acc3ffe16e6049191334f634eb67d81692",
+        "bytes": 4472881
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "e10055886a2da5a2ef67ce85e9fd1467effeac115d5b2ebff5db39fee6fdcb59",
+        "bytes": 3938240
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "03045cf4ea71bc38f2845260a102bd549ce5fede822eab59d37b1ae498e6b4e8",
+        "bytes": 4489967
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "59510efb9a450b8e5eb0fe1935c385e707b9f5c9a350c7980cec26ea1c81c00f",
+        "bytes": 6387154
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "5cc29f96dc393643b34a0b37b7bdd68bcc427beb63af18aa831f68d84c40c374",
+        "bytes": 4475990
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "ecb4b280c9715c3a6ef2e5f6f976248bdb778eef15efe642fb3ff54835153644",
+        "bytes": 36083
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "b410f2bc078011c2cbed337b5e7d48566f29f58a4e31345cd5037573b316948e",
+        "bytes": 28986
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "736baf5cc307b639bb068b34ee7fb79864f4f68ae617daee3b8bce9d51f7b833",
+        "bytes": 15039
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "4b3617044c7fee20af2e91922f7640d0037337ba48a0fb71506ce13592f1f218",
+        "bytes": 23349
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "0a09cee9e3cdc71fe15970d18cd87fccf9d2df77e9efc3f2def922aee17439e3",
+        "bytes": 10230
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "d722ab32041090715fd594a73cd92422142571788fcfe7caa7e5af4062733adf",
+        "bytes": 13369
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "4232a4fc96ed9d5a4cd3065dfdc777a1db720a1357bf803bc3b19f97fdedbb1f",
+        "bytes": 24939
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "58e1d3f3e366e3d2dd19aecfd80c1fb3a02a995235623eac231d15569c2a294c",
+        "bytes": 15949
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a862055d49bde6fe50204f80753eb6aeb444b34290565f1ca4ca124487534aac",
+        "bytes": 11635
+      }
+    ]
+  }
+}
