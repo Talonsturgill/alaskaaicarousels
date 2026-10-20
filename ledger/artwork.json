@@ -3199,6 +3199,48 @@
     "NEW: a meniscus read off the render column by column at the water's edge"
    ],
    "note": "Rounds used 5 (four pixel rounds, one flow round). Scored 8.74, art 7.5. Round 1 named a soft largest object on 01 and 09 (AKSTROBE k 5 to 7), clipped lees, box veils and beading round caps; the weekly pass made the first and last into machinery."
+  },
+  {
+   "run_date": "2026-10-19",
+   "carousel_no": 90,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE SPLIT SPECIMEN, one free-standing anatomical specimen of the reservoir, sawn, book-matched, exploded, nameplated and magnified",
+   "atmosphere": "NEW: RUNWAY NIGHT OVER THE CORE, a cold key over a dark core shed, runway edge lights the only warm practicals",
+   "depth_technique": "akthree PBR sawn column with a light-filled kerf slot and thin lens focus (01); orthographic PBR book-matched slabs with drawn sight glasses (02); white-line intaglio exploded stack in cabinet oblique (03); hand hatch halves against a phantom wireframe (04); akbench brushed-steel data plate relief (05); one-point 1/z stipple bore (06); cabinet storage vessels with glass fills (07); akthree grain macro with welded displaced spheres, VSM shadows and a projected pore throat (08, masterful depth frame); engraved far-side specimen (09)",
+   "line_voice": "drafting",
+   "continuity_device": "motif:the kerf, a gold cut that changes shape every frame",
+   "continuity_devices": [
+    "motif: the kerf, a lit slot, a spine, an axis, a divide, a centre rule, a seam, a vessel cut, a property line, a cross with the Polaris",
+    "camera: an orbit around one specimen with no readout",
+    "edge-tease: 01's right half cut by the frame edge, completed on 02"
+   ],
+   "hook_archetype": "NEW: THE TWO READINGS",
+   "palette_family": "NEW: core box, polished Tyonek sandstone, coal, laminated shale and methane ice on subsurface navy",
+   "type_pairing": "Archivo across its width axis + JetBrains Mono",
+   "narrative_structure": "hook, instant payoff with both numbers, anatomy, the evidence test, a keepable datasheet, breather, widen to the basin, the turn to the deed, one ask",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 5,
+    "type_temperature": 3
+   },
+   "techniques": [
+    "akthree PBR",
+    "AKSTROBE focus",
+    "AKPOST grade",
+    "akengrave intaglio",
+    "hand hatch",
+    "phantom wireframe",
+    "AKBENCH relief",
+    "Poisson-like stipple bore",
+    "cabinet vessels",
+    "contact occlusion decal"
+   ],
+   "new_techniques_logged": [
+    "NEW: a light-filled kerf, warm point lights inside a sawn gap lighting the stone wall at a grazing angle, with a dark film at the mouth and a depth-ramped additive glow, so a gold line reads as light in a cut and not a ribbon",
+    "NEW: welding a SphereGeometry before displacement so grains carry no meridian crease",
+    "NEW: projecting a pore throat at runtime so the 2D property line and its dot land in the 3D void"
+   ],
+   "note": "Rounds 5. Scored 8.6, art 7.5. Round 1 sent all nine frames back; the cover kerf read as a ribbon until round 2 rebuilt it as light in the slot."
   }
  ]
 }

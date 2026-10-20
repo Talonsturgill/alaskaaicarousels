@@ -2154,6 +2154,22 @@
    "confidence": 0.6,
    "run_date": "2026-10-17",
    "carousel_no": 89
+  },
+  {
+   "instinct": "A GOLD LINE IN A CUT IS LIGHT, NOT PAINT.",
+   "evidence": "No.90 01: an emissive plane in the kerf read as a gold ribbon laid on the column through two critic rounds; warm point lights inside the gap lighting the stone at a grazing angle, a dark mouth and a depth ramp made it read as a lit slot.",
+   "act_on_it": "Light the walls of a gap from inside and keep the source out of sight; never show the emissive surface itself at the mouth.",
+   "confidence": 0.6,
+   "run_date": "2026-10-19",
+   "carousel_no": 90
+  },
+  {
+   "instinct": "ENGRAVE A BEDDED SLAB WITH THE BEDDING.",
+   "evidence": "No.90 03: a front-face form of 0.55 dy + 0.18 dx plus a parabola fanned diagonal strokes across horizontal strata, and the crosshatch budget fired as a hard triangle where tone crossed 0.45; near-horizontal iso-lines and crosslines only on the lee fixed both.",
+   "act_on_it": "Write the engraving form from the layer's own bedding direction, and give planar lit faces a cross budget of 0.",
+   "confidence": 0.6,
+   "run_date": "2026-10-19",
+   "carousel_no": 90
   }
  ]
 }

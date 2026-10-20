@@ -1,0 +1,205 @@
+{
+ "run_date": "2026-10-19",
+ "carousel_no": 90,
+ "revision_rounds": 5,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "12 words, huge two-line headline, gold kerf focal point; abstract, no number, Alaska only in the kicker and runway lights"
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "instant payoff on 02, 03 plants the pore-space loop paid on 08, breather lands; 03 to 04 junction weak, 02 to 05 dense"
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "After the craft cycle: 07 now plated riveted steel tanks with one floor pool, 01's floor falls off into the dark and the shale carries partings; held down by 08's mottled nut-like grains and 04's mostly empty phantom. 06 kept at its pre-cycle version (the cycle's version added a text box); its lower third stays quiet."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "gauges, strata, quarter-solid and vessels all encode the claims at declared scales; the kerf changes meaning per frame"
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Kenai airport, Kenai Loop, Cook Inlet, ENSTAR, Hilcorp, CINGSA, Pool 6, City of Kenai, the DNR deadline; AI tie thin"
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "every content frame adds a verified specific; 05 runs long"
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08,
+   "notes": "hero, hook, palette, atmosphere new; intaglio, cabinet vessels, gauges and the type pairing reused"
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.0,
+   "weight": 0.07,
+   "notes": "data labels 20 to 22 px on 02, 03, 04, 07"
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.0,
+   "weight": 0.05,
+   "notes": "takes positions; hook makes the reader work"
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "all pieces present; gas_watch_live and site_fresh rows still red at scoring time"
+  }
+ ],
+ "calculation": "1.05+1.05+1.20+1.19+1.02+0.85+0.60+0.49+0.40+0.75 = 8.60 (weights sum to 1.10; normalised 7.818)",
+ "weighted_total": 8.6,
+ "threshold": 7.7,
+ "ship": true,
+ "hard_fails": [],
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Remake 08's focal grains as one buff quartz albedo with fine variance, translucency and lower-amplitude sub-angular displacement, and carry 06's shaded stipple wall through its lower third feathered per text line, never a rectangle.",
+ "artwork_weakest_frames": [
+  8,
+  6,
+  4,
+  7
+ ],
+ "artwork_weakest_detail": [
+  {
+   "slide": 8,
+   "fix": "one buff albedo family with fine per-grain variance, transmission 0.15 to 0.25 with thickness, half the displacement amplitude at lower frequency for sub-angular faces, cushion-blue fog in the pore throat"
+  },
+  {
+   "slide": 6,
+   "fix": "carry the shaded stipple wall and ring joints through the lower third, feathered per text line by signed distance, never a rectangle; light the lower arc of the near collar"
+  },
+  {
+   "slide": 4,
+   "fix": "dotted strata contacts to about 45 percent ink with a faint lit ghost at each contact plane"
+  },
+  {
+   "slide": 7,
+   "fix": "a 1 px lit upper edge on each weld course; a back-wall ellipse and refractive edge strip on the glass vessel"
+  }
+ ],
+ "editor_notes_for_email": [
+  "Raw 8.52 against the round 4 threshold 7.7; normalised 7.745 still clears. Shortfall against the base 8.3 flagged per the ladder.",
+  "Cover says 'backed'; the finding is preliminary (02 and 09 carry it). In replies say 'favors'.",
+  "08 joins the October 7th letter (C56) to the Pioneer Law opinion (C57) as Alaska Public Media relays them; neither was fetched.",
+  "Thin AI content by design; expect 'where's the AI' replies.",
+  "Data labels 20 to 22 px on 02, 03, 04, 07."
+ ],
+ "scorer": "scorer subagent, second scoring after the craft cycle, artwork re-judged with 06 reverted",
+ "craft_cycle": {
+  "frames": [
+   7,
+   6,
+   8,
+   1,
+   4
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5,
+  "note": "06 reverted to its pre-cycle version after the cycle's version added a visible text box (critic 7.9 vs 8.4); the scorer re-judged artwork at 7.5 with the revert"
+ },
+ "first_scoring": {
+  "weighted_total": 8.52,
+  "criteria": [
+   {
+    "name": "Thumb-stop cover",
+    "score": 7.5,
+    "weight": 0.14,
+    "notes": "12 words, huge two-line headline, gold kerf focal point; abstract, no number, Alaska only in the kicker and runway lights"
+   },
+   {
+    "name": "Story arc & swipe momentum",
+    "score": 7.5,
+    "weight": 0.14,
+    "notes": "instant payoff on 02, 03 plants the pore-space loop paid on 08, breather lands; 03 to 04 junction weak, 02 to 05 dense"
+   },
+   {
+    "name": "Artwork craft & genuine detail",
+    "score": 7.5,
+    "weight": 0.16,
+    "notes": "After the craft cycle: 07 now plated riveted steel tanks with one floor pool, 01's floor falls off into the dark and the shale carries partings; held down by 08's mottled nut-like grains and 04's mostly empty phantom. 06 kept at its pre-cycle version (the cycle's version added a text box); its lower third stays quiet."
+   },
+   {
+    "name": "Story-art fusion",
+    "score": 8.5,
+    "weight": 0.14,
+    "notes": "gauges, strata, quarter-solid and vessels all encode the claims at declared scales; the kerf changes meaning per frame"
+   },
+   {
+    "name": "Alaska authenticity & local relevance",
+    "score": 8.5,
+    "weight": 0.12,
+    "notes": "Kenai airport, Kenai Loop, Cook Inlet, ENSTAR, Hilcorp, CINGSA, Pool 6, City of Kenai, the DNR deadline; AI tie thin"
+   },
+   {
+    "name": "Insight density & factual weight",
+    "score": 8.5,
+    "weight": 0.1,
+    "notes": "every content frame adds a verified specific; 05 runs long"
+   },
+   {
+    "name": "Variety vs ledger",
+    "score": 7.5,
+    "weight": 0.08,
+    "notes": "hero, hook, palette, atmosphere new; intaglio, cabinet vessels, gauges and the type pairing reused"
+   },
+   {
+    "name": "Legibility & platform fitness",
+    "score": 7.0,
+    "weight": 0.07,
+    "notes": "data labels 20 to 22 px on 02, 03, 04, 07"
+   },
+   {
+    "name": "Copy: voice & hook",
+    "score": 8.0,
+    "weight": 0.05,
+    "notes": "takes positions; hook makes the reader work"
+   },
+   {
+    "name": "Deliverable completeness",
+    "score": 7.5,
+    "weight": 0.1,
+    "notes": "all pieces present; gas_watch_live and site_fresh rows still red at scoring time"
+   }
+  ],
+  "artwork_weakest_detail": [
+   {
+    "slide": 7,
+    "fix": "steel plate courses with lit weld seams, brushed albedo, specular strip, lit lid lips, one graded floor pool with two-part casts"
+   },
+   {
+    "slide": 6,
+    "fix": "carry the shaded stipple wall and ring joints through the lower third, feathered around the text; light the lower half of the near collar"
+   },
+   {
+    "slide": 8,
+    "fix": "quartz material for the focal grains, sharp key specular, sub-angular displacement, one buff tint, no near-black lithic in the focal zone"
+   },
+   {
+    "slide": 1,
+    "fix": "siltstone partings and per-band roughness on the shale; fog and darken the tile grid outside the lit pool"
+   },
+   {
+    "slide": 4,
+    "fix": "hidden edges at object-normalised weights falling with depth; dotted strata contacts continuing ENSTAR's bedding across the phantom"
+   }
+  ]
+ }
+}

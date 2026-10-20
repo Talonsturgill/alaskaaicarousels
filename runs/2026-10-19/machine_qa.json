@@ -1,0 +1,204 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in 'The state backed the one with the data.' ends 'one' -- a two or three letter word left at the line end. It reads at 40px, so the break is the first thing a feed sees. Author the break with <br> before 'with' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '01 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the sawn column, left half, on the core shed floor': shadow L* 4.2 vs ground L* 32.7, dL 28.6 at 432w"
+      ],
+      "fits": [
+        "hl 'One rock.Two readings.' fits 2/2 lines at 93.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ORIGINAL GAS IN PLACE, 32.5 BCF, PER DNR' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at x 560 (its left edge) within a pixel (up to 0.074 of full just inside, nothing just outside), and the final picture shows a straight 157.5-level step for 180 design px (y 714 to 895). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at x 250 (its left edge) within a pixel (up to 0.152 of full just inside, nothing just outside), and the final picture shows a straight 123.0-level step for 181 design px (y 932 to 1112). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at x 830 (its right edge) within a pixel (up to 0.024 of full just inside, nothing just outside), and the final picture shows a straight 10.1-level step for 54 design px (y 653 to 707). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at x 520 (its right edge) within a pixel (up to 0.155 of full just inside, nothing just outside), and the final picture shows a straight 23.9-level step for 180 design px (y 745 to 926). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at y 612 (its top edge) within a pixel (up to 0.083 of full just inside, nothing just outside), and the final picture shows a straight 174.9-level step for 125 design px (x 705 to 830). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '02 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'ENSTAR's 3.9 Bcf fill at 14 px per Bcf': canvas 60.0 dE, page 62.6 dE, 100% of its rect is clear of opaque DOM",
+        "'Hilcorp's 6.4 Bcf fill at 14 px per Bcf': canvas 60.4 dE, page 62.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"ENSTAR's fill level, 3.9 Bcf\" lands 5.0px from its target",
+        "leader \"Hilcorp's fill level, 6.4 Bcf\" lands 5.0px from its target",
+        "leader 'the 32.5 Bcf phantom top' lands 15.0px from its target",
+        "leader \"ENSTAR's fill level, 3.9 Bcf\" meets its label 4.0px away",
+        "leader \"Hilcorp's fill level, 6.4 Bcf\" meets its label 4.0px away",
+        "leader 'the 32.5 Bcf phantom top' meets its label 6.0px away",
+        "leader \"ENSTAR's fill level, 3.9 Bcf\" is drawn 149 px at 64 degrees, inside the pointer band",
+        "leader \"Hilcorp's fill level, 6.4 Bcf\" is drawn 173 px at 78 degrees, inside the pointer band",
+        "leader 'the 32.5 Bcf phantom top' is drawn 126 px at 10 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Same reservoir.Two estimates of the gas left' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "\"ENSTAR's 3.9 Bcf fill at 14 px per Bcf\" holds: 54.6 vs 54.6 px (within 0.5)",
+        "\"Hilcorp's 6.4 Bcf fill at 14 px per Bcf\" holds: 89.6 vs 89.6 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '9,700-FOOT SAND 44 FT NET' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '10,000-FOOT SAND 65 FT NET' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'COAL SEAL 20 TO 30 FT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '03 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the 9,700-foot sand 44 ft net layer side face' lands 0.0px from its target",
+        "leader 'the coal seal 20 to 30 ft layer side face' lands 0.0px from its target",
+        "leader 'the 10,000-foot sand 65 ft net layer side face' lands 0.0px from its target",
+        "leader 'the 9,700-foot sand 44 ft net layer side face' meets its label 10.0px away",
+        "leader 'the coal seal 20 to 30 ft layer side face' meets its label 10.0px away",
+        "leader 'the 10,000-foot sand 65 ft net layer side face' meets its label 10.0px away",
+        "leader 'the 9,700-foot sand 44 ft net layer side face' is drawn 60 px at 0 degrees, inside the pointer band",
+        "leader 'the coal seal 20 to 30 ft layer side face' is drawn 60 px at 0 degrees, inside the pointer band",
+        "leader 'the 10,000-foot sand 65 ft net layer side face' is drawn 60 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Two sands,sealed in coal.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'the 65 ft sand drawn 65/44 as thick as the 44 ft sand' holds: 1.47727 vs 1.47727 ratio (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ENSTAR DYNAMIC RESERVOIR MODEL' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DYNAMIC RESERVOIR MODEL' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'HILCORP \u00b7 ABOUT ONE QUARTER OF THE DATA, PER DNR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'OF THE DATA, PER DNR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '04 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader \"ENSTAR's half, its lower front face\" lands 0.0px from its target",
+        "leader \"Hilcorp's half, its resolved quarter\" lands 0.0px from its target",
+        "leader \"ENSTAR's half, its lower front face\" meets its label 8.0px away",
+        "leader \"Hilcorp's half, its resolved quarter\" meets its label 8.0px away",
+        "leader \"ENSTAR's half, its lower front face\" is drawn 38 px at 47 degrees, inside the pointer band",
+        "leader \"Hilcorp's half, its resolved quarter\" is drawn 38 px at 47 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The state judged what each company showed it' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "\"Hilcorp's half drawn solid for one quarter of its height\" holds: 0.25 vs 0.25 share (within 0.005)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '05 / 09' at 899,60 101x31 (margin 80px)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 36% of this slide's own average craft density (top 89% / mid 83% / bottom 23% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '06 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "fits": [
+        "bd 'ENSTAR says it could fall 18 daysshort of ga' fits 3/3 lines at 47.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'AS MANY AS 15 DATA CENTER PROPOSALS IN ALASKA, PER' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'POOL 6 38 BCF PERMITTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '38 BCF PERMITTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CINGSA 13 BCF PERMITTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '13 BCF PERMITTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KENAI LOOP PLAN 20.5 WORKING, 8 CUSHION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '20.5 WORKING, 8 CUSHION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ABOUT 30 BCF HELD, PER HILCORP TESTIMONY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PER HILCORP TESTIMONY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 3 in 'Cook Inlet peaked at 196 Bcf in 2006. In-sta' ends 'Bcf' -- a two or three letter word left at the line end. It reads at 69.5px, so the break is the first thing a feed sees. Author the break with <br> before 'in' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '07 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the 30 Bcf fill line inside Pool 6' lands 2.0px from its target",
+        "leader 'the 30 Bcf fill line inside Pool 6' meets its label 8.0px away",
+        "leader 'the 30 Bcf fill line inside Pool 6' is drawn 142 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Cook Inlet peaked at 196 Bcfin 2006. In-stat' fits 3/3 lines at 69.5px"
+      ],
+      "asserts": [
+        "'Pool 6 drawn at 38 Bcf, 12 px per Bcf' holds: 456 vs 456 px (within 0.5)",
+        "'CINGSA drawn at 13 Bcf, 12 px per Bcf' holds: 156 vs 156 px (within 0.5)",
+        "'Kenai Loop plan drawn at 28.5 Bcf, cushion plus working' holds: 342 vs 342 px (within 0.5)",
+        "'Pool 6 fill line at 30 Bcf' holds: 360 vs 360 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '08 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the pore throat on the property line, state side' lands 12.8px from its target",
+        "leader 'the pore throat on the property line, city side' lands 12.8px from its target",
+        "leader 'the pore throat on the property line, state side' meets its label 0.0px away",
+        "leader 'the pore throat on the property line, city side' meets its label 0.0px away",
+        "leader 'the pore throat on the property line, state side' is drawn 74 px at 47 degrees, inside the pointer band",
+        "leader 'the pore throat on the property line, city side' is drawn 88 px at 56 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The model reads the rock.It can't read the d' fits 2/2 lines at 88px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in 'Comment to DNR by 5 p.m. November 13th.' ends 'DNR' -- a two or three letter word left at the line end. It reads at 83.5px, so the break is the first thing a feed sees. Author the break with <br> before 'by' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,58 159x26 (margin 80px)",
+        "outside safe zone: '09 / 09' at 899,60 101x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the engraved specimen on its lit pool': shadow L* 3.3 vs ground L* 23.0, dL 19.7 at 432w"
+      ],
+      "fits": [
+        "hl 'Comment to DNRby 5 p.m. November 13th.' fits 2/2 lines at 83.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 44,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
