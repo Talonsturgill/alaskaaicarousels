@@ -109,11 +109,11 @@
     var seen = new Uint8Array(a.length), stack = [], comp = [];
     for (var k6 = 0; k6 < a.length; k6++) {
       if (seen[k6] || !(a[k6] > 0)) continue;
-      stack.length = 0; comp.length = 0; stack.push(k6); seen[k6] = 1;
-      while (stack.length && comp.length < 13) { var c6 = stack.pop(); comp.push(c6); var x6 = c6 % C, y6 = (c6 - x6) / C;
+      stack.length = 0; comp.length = 0; var big = false; stack.push(k6); seen[k6] = 1;
+      while (stack.length) { var c6 = stack.pop(); if (comp.length < 12) comp.push(c6); else big = true; var x6 = c6 % C, y6 = (c6 - x6) / C;   // walk the whole component, so a large landmass is never split into small 'flecks'
         for (var gy = -1; gy <= 1; gy++) for (var gx = -1; gx <= 1; gx++) { var x7 = x6 + gx, y7 = y6 + gy; if (x7 < 0 || y7 < 0 || x7 >= C || y7 >= R) continue;
           var k7 = y7 * C + x7; if (!seen[k7] && a[k7] > 0) { seen[k7] = 1; stack.push(k7); } } }
-      if (comp.length < 12 && !stack.length) comp.forEach(function (kk) { a[kk] = seaFill(kk); });
+      if (!big && comp.length < 12) comp.forEach(function (kk) { a[kk] = seaFill(kk); });
     }
     function sample(lon, lat) {
       var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;

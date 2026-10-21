@@ -29,7 +29,7 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "canvas mark near reserved text: line 1 of 2 at (559,1243) of 'ESU \u00b7 Yup'ik \u00b7 110' carries 61 px^2 of hard-edged canvas ink (densest 40px window 4.9%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "canvas mark near reserved text: line 1 of 2 at (559,1243) of 'ESU \u00b7 Yup'ik \u00b7 110' carries 71 px^2 of hard-edged canvas ink (densest 40px window 5.7%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
         "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
       ],
       "leaders": [
@@ -37,7 +37,7 @@
         "leader 'the 110 gold heads at Bethel' lands 0.0px from its target",
         "leader 'the 111 steel heads on St. Lawrence Island' meets its label 3.0px away",
         "leader 'the 110 gold heads at Bethel' meets its label 4.1px away",
-        "leader 'the 111 steel heads on St. Lawrence Island' is drawn 166 px at 64 degrees, inside the pointer band",
+        "leader 'the 111 steel heads on St. Lawrence Island' is drawn 167 px at 64 degrees, inside the pointer band",
         "leader 'the 110 gold heads at Bethel' is drawn 70 px at 55 degrees, inside the pointer band"
       ],
       "fits": [
@@ -45,7 +45,7 @@
       ],
       "asserts": [
         "'111 clips answered Central Siberian Yupik, one steel head each' holds: 111 vs 111 marks, counted over 111 declared marks (within 0)",
-        "'111 clips answered Central Siberian Yupik, one steel head each': 111 mark centres probed at r=5px, cohort median 43.9 dE, all present (weakest 34.8 dE)",
+        "'111 clips answered Central Siberian Yupik, one steel head each': 111 mark centres probed at r=5px, cohort median 43.8 dE, all present (weakest 34.8 dE)",
         "'110 clips answered Yupik, one gold head each' holds: 110 vs 110 marks, counted over 110 declared marks (within 0)",
         "'110 clips answered Yupik, one gold head each': 110 mark centres probed at r=5px, cohort median 72.5 dE, all present (weakest 59.6 dE)",
         "'16 clips answered Northwest Alaska Inupiatun' holds: 16 vs 16 marks, counted over 16 declared marks (within 0)",
@@ -139,7 +139,7 @@
         "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
       ],
       "motifs": [
-        "'the empty pinhole on St. Lawrence Island': canvas 37.8 dE, page 41.5 dE, 100% of its rect is clear of opaque DOM"
+        "'the empty pinhole on St. Lawrence Island': canvas 36.6 dE, page 40.4 dE, 100% of its rect is clear of opaque DOM"
       ],
       "leaders": [
         "leader 'the ring of 100 places at Bethel' lands 0.0px from its target",
@@ -209,7 +209,7 @@
         "leader \"Bethel's gold pin\" is drawn 74 px at 40 degrees, inside the pointer band"
       ],
       "fits": [
-        "hl 'AFN takes up 26-20.' fits 1/1 lines at 119px"
+        "hl 'AFN is set to take up 26-20.' fits 1/1 lines at 90.5px"
       ]
     },
     {

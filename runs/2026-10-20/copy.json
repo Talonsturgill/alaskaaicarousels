@@ -1,8 +1,8 @@
 {
  "document_title": "Played Bethel's Yup'ik, the Model Answered Across the Sea",
- "post_copy": "Meta's model card says \"This model supports 4017 languages.\" \"Supports\" for Yup'ik means one label in 4,017.\nThe model named KYUK's Yup'ik clips Central Siberian Yupik 111 times and Yup'ik 110.\n\nA four-label pilot trained on about 1,600 labeled clips across Yup'ik and Samoan lifted Yup'ik recall from 0.41 to 0.92.\n\nBethel's gold pin threads the slides past 111 pins on St. Lawrence Island, the label lists, KYUK's archive, the pilot, the speakers who label next and resolution 26-20.\n\nIn-house researchers wrote the pilot's labels. Community language fellows have begun labeling. Native-speaker annotators are planned.\n\nAFN takes up 26-20 on Saturday, October 24th. It seeks permanent and non-competitive federal language funding for Tribes, technology included. It never mentions AI.\n\nWhat does a model builder owe the speakers who write the next labels?\n\n#Yugtun #LanguageID #AFN2026",
+ "post_copy": "Meta's model card says \"This model supports 4017 languages.\" \"Supports\" for Yup'ik means one label in 4,017.\nThe model named KYUK's Yup'ik clips Central Siberian Yupik 111 times and Yup'ik 110.\n\nA four-label pilot trained on about 1,600 labeled clips across Yup'ik and Samoan lifted Yup'ik recall from 0.41 to 0.92.\n\nBethel's gold pin threads the slides past 111 pins on St. Lawrence Island, the label lists, KYUK's archive, the pilot, the speakers who label next and resolution 26-20.\n\nIn-house researchers wrote the pilot's labels. Community language fellows have begun labeling. Native-speaker annotators are planned.\n\nAFN is set to take up 26-20 Saturday, October 24th. It seeks permanent and non-competitive federal language funding for Tribes, technology included. It never mentions AI.\n\nWhat does a model builder owe the speakers who write the next labels?\n\n#Yugtun #LanguageID #AFN2026",
  "hook_chars": 108,
- "total_chars": 887,
+ "total_chars": 893,
  "hashtags": [
   "#Yugtun",
   "#LanguageID",
@@ -167,9 +167,9 @@
   },
   {
    "n": 8,
-   "kicker": "SATURDAY, OCTOBER 24TH · RESOLUTIONS AT 10:15 A.M.",
+   "kicker": "SATURDAY, OCTOBER 24TH · RESOLUTIONS SET FOR 10:15 A.M.",
    "kicker2": "",
-   "headline": "AFN takes up 26-20.",
+   "headline": "AFN is set to take up 26-20.",
    "body": "From the Metlakatla and Ketchikan Indian Communities, it seeks permanent, non-competitive federal language funding for every eligible Tribe. Technology and archives are among its uses. It never mentions AI. Committee and board say do pass.",
    "labels": [
     "METLAKATLA KETCHIKAN",
@@ -196,7 +196,7 @@
    "headline": "Whoever labels the hours draws the map.",
    "body": "What does a model builder owe the speakers who write the next labels?",
    "labels": [
-    "AFN TAKES UP 26-20 SATURDAY, OCTOBER 24TH"
+    "AFN SET TO TAKE UP 26-20 SATURDAY, OCTOBER 24TH"
    ],
    "claim_ids": [
     "C71"
@@ -264,5 +264,5 @@
   "C68",
   "C71"
  ],
- "showrunner_notes": "post_copy is caption.txt byte for byte. Slide strings are the BUILT strings. Corrections applied in the build: slide 02 drops the unattributed only-public-model phrase (C01), slide 04 softens the C51 speaker count to one count, slide 08 kicker names the resolutions item at 10:15 a.m. (C71) and slide 09 carries the caption question so the deck ends on one ask."
+ "showrunner_notes": "post_copy is caption.txt byte for byte. Slide strings are the BUILT strings. Corrections applied in the build: slide 02 drops the unattributed only-public-model phrase (C01), slide 04 softens the C51 speaker count to one count, slide 08 kicker names the resolutions item at 10:15 a.m. (C71) and slide 09 carries the caption question so the deck ends on one ask. Codex round 1 on #442: 08 and 09 and the caption now carry the scheduling qualifier C71 asks for ('set to take up', 'set for 10:15 a.m.')."
 }
