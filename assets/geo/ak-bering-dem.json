@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-bering-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 7, 72 tiles, fetched 2026-10-21, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 920,
+ "rows": 818,
+ "west": -180.0,
+ "east": -157.0,
+ "north": 67.5,
+ "south": 58.5,
+ "dlon": 0.025,
+ "dlat": 0.011,
+ "z": 7,
+ "min_m": -3713,
+ "max_m": 1323
+}
