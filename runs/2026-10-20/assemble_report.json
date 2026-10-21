@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-20/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 12418416,
+  "pdf_mb": 12.42,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-20/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-20/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Played Bethel's Yup'ik, the Model Answered Across the Sea",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "6dfe1cec4cecfe8fdc9c4d7bcc3901fe7cb4544dfdbc02d262415d03458df207",
+        "bytes": 7030939
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "f2cac2737f9b41314009752d35dbd2528d4fdb38062fa298f6c4210ef6ca8b8a",
+        "bytes": 6701994
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "f615728fe0d1f340f716c40f4b55895abef47489e306c9e261d324cec87f3e1f",
+        "bytes": 5661690
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "17577e4baf4a09c59986729418e639d93e7bd569f76aacfecfeb4174425ac15f",
+        "bytes": 5519388
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "7f832a7504a3b3bfb9270ab0a0320575a4d0da97e58a831861f9a7e934125f67",
+        "bytes": 7117895
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "822dc0cf8b283365c16abf35ccb93e80366892030afb42bd4839acfed5cfdc4f",
+        "bytes": 6904392
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "7b4669367d97e9789ae29ab83a450e7713dfaac04583f0cda1810495d5ae6053",
+        "bytes": 7258183
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "01aebdbef92c9a102f20b4ecd187493ccd353df108c1ac1b4435b58040034e8d",
+        "bytes": 6204337
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "831539d80d2b7303ab0e996a58ac0a6f7cc46878526d348f2fa45958049cc4b2",
+        "bytes": 6619335
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "4290f64271dd4a62313eaa122dca64fa5db37985b56d035c2911fc750d7cd1bc",
+        "bytes": 8116
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "cba191efa86926e54b3050607ed22a4e8b988b1f55996c270da28c30962d6c08",
+        "bytes": 9761
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "5abc43a2ba2176dd79ff2e3673391a9c2cec70ad590770bf50279394de1e70ff",
+        "bytes": 12374
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "692d8dd0954281b3ea99591b55d2f92076084c732d39d1ad7212d3c8482dddd9",
+        "bytes": 16806
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "36ed89d1a826348d64830fa9569a1cfa0668f8791366bc9dc3bedcf3c2fc7b4b",
+        "bytes": 18515
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "90b0d6aeede4bf9adf1a661a443493c8894ff114ca2c12c2843a44873030fb6f",
+        "bytes": 10930
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "7b2b034a77a346cca847c58d4a1a42b8ee6f9112d942085fc553f41204d27e20",
+        "bytes": 16241
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "5ee070d055f81ad551a63b7aa49583238e5ddd899667e2a9b3b8faeec11c3fca",
+        "bytes": 13363
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "bcf63a23a59e54c5878737b1f151ab092720ea966bb4232697bd982586a96860",
+        "bytes": 11578
+      }
+    ]
+  }
+}

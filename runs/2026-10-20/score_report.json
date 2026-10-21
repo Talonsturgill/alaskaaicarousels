@@ -1,0 +1,148 @@
+{
+ "run_date": "2026-10-20",
+ "carousel_no": 91,
+ "scoring_cycle": 1,
+ "revision_rounds": 5,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped or overlapping text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat within 30 days",
+   "status": "pass"
+  },
+  {
+   "rule": "hero structure repeat",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count or link in body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder or unfinished element",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.0,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 6.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.0x0.16)+(8x0.14)+(8.5x0.12)+(8x0.10)+(6.5x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 8.44",
+ "weighted_total": 8.44,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Variety vs ledger",
+ "one_sentence_fix": "Rebuild 05's Delta sheet so it has a real tonal hierarchy: lit uplands, a quiet flat plain carried by NW-rimmed thaw lakes, and no furry hachure. Move the nine gold video pins onto the river at Bethel, closing the dead band above the sheet.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "uniform crinkled plain, furry hachure on Nelson Island, nine pins placed without geographic meaning, dead band above the sheet"
+  },
+  {
+   "slide": 4,
+   "problem": "masterful depth frame reads as smooth CG dunes with flat black lake cut-outs and an empty foreground; plaster renders tan"
+  },
+  {
+   "slide": 8,
+   "problem": "stipple clumps into blotches; the wash remnant reads muddy"
+  },
+  {
+   "slide": 7,
+   "problem": "the approximate label runs onto washed Nunivak; glaze saturation does not follow the argument"
+  },
+  {
+   "slide": 6,
+   "problem": "the first glaze reads as a flat mauve tint"
+  }
+ ],
+ "craft_cycle": {
+  "status": "stood_down",
+  "reason": "run at the five-round cap (5 revision rounds used: four pixel rounds and the flow round)",
+  "art_before": 7.0,
+  "art_after": 7.0,
+  "frames": []
+ },
+ "editor_notes_for_email": "Ships at 8.44 against the round-cap threshold of 7.7 with zero hard fails. Artwork craft is 7.0, under the 8.5 craft floor, and the run is at the five-round cap, so the craft cycle stood down. The weakest frames are 05 and 04. Before posting: 08's kicker omits 'scheduled' (agendas slip, C71), and 26-20 is a draft with no vote yet (C62). Always pair 0.92 with four labels and pilot-scale; the pilot trained on about 1,600 Yup'ik and Samoan clips. The about 1,000 speakers count is one undated estimate (others run 400 to 750). 04 shows St. Lawrence Island on the horizon as artistic licence (about 600 km). 05's nine pins are a tally, not locations. The deck shares Bering and Delta geography with No.89, three days earlier. The 07 approximate label is the lowest-contrast text, at 4.0:1."
+}

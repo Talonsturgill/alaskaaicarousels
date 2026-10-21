@@ -1,0 +1,131 @@
+{
+ "run_date": "2026-10-20",
+ "carousel_no": 91,
+ "effort": "high",
+ "date_note": "Anchorage date 2026-10-20 (woke 22:05 AKDT); run_guard CLEAR for 2026-10-20; UTC is already 2026-10-21.",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/plan.md",
+    "out/2026-10-20/run_state.json"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "2 searches; nothing new (AuthoredUp 3M-post figures already in FIELD_NOTES); nothing written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/scout_merge.md"
+   ],
+   "note": "6 scouts, searches used A21 B25 C25 D25 E25 F25 = 146; plus 3 showrunner searches"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/claims.json",
+    "out/2026-10-20/claims_research.json"
+   ],
+   "note": "105 verified across 3 stories (Y 79, F 15, G 11); claims.json carries the selected story only; claims_check PASS 79/79, 71 primary"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "14 items refreshed (worklist 6 plus 8 deferred); GVEA Level 1 EEA October 20th added as a key date and source; preflight ask payload 12,780 bytes headroom, mobile_docket_map and docket_ask PASS at 2026-10-20"
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/cron_health.json",
+    "out/2026-10-20/gaswatch_health.json",
+    "out/2026-10-20/site_signoff.log",
+    "out/2026-10-20/gaswatch_pagecheck.log"
+   ],
+   "lines": [
+    "SITE SIGN-OFF: PASS, 149 pages, 18 checks",
+    "GAS WATCH: PASS, read October 20th, 77 days on record, chart present",
+    "GAS WATCH LIVE: PASS, checked 2026-10-21T06:14:34Z, after a dispatched collection at 06:11Z published the 16:35 Alaska reading the first audit (06:10Z) found missing",
+    "CRON HEALTH: PASS, 7 scheduled workflows checked (plus Pages), no repairs needed"
+   ],
+   "site_fixes": "none needed; the one live finding (the evening source reading not yet published) was repaired by dispatching gaswatch.yml on main (run 39553861172), verified by a second live audit"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/selection.md"
+   ],
+   "note": "Yup'ik speech AI + AFN 26-20; dedupe SOFT OVERLAP only (No.89)"
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/storyboard.md",
+    "out/2026-10-20/selection.md"
+   ],
+   "note": "cartographer winner; dossier_check PASS 9/9"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/caption.txt",
+    "out/2026-10-20/copy.json"
+   ],
+   "note": "room round 1 rejected both (critic: neither); one reassigned director (DEFINITION SUBVERSION / COLD OPEN, WARM CLOSE); caption_check PASS 887 chars with --deck-summary and --copy"
+  },
+  "art_build": "pending",
+  "pixel_review": {
+   "status": "done",
+   "note": "4 critic rounds; 01 02 03 06 07 08 09 ship; 04 7.3 and 05 6.9 held at the round cap"
+  },
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/score_report.json"
+   ],
+   "note": "8.44 vs 7.7, no hard fails; art 7.0; craft cycle stood down at the five-round cap"
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-10-20",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "knowledge/FIELD_NOTES.md",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "note": "site_build at 2026-10-20 (fresh), parsers/scanner/docket_dates PASS, no alerts due, prune freed 2.32M"
+  },
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending",
+  "build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/slides",
+    "out/2026-10-20/render",
+    "out/2026-10-20/aggregates.json"
+   ],
+   "note": "9 slides; qa.py PASS-with-warns, bespoke PASS, dossier_check WARN 0 fails, copy_sync PASS, aggregate PASS, plan_drift PASS. Claim ids renumbered Y to C (house CLAIM_RE)."
+  },
+  "flow": {
+   "status": "done",
+   "note": "flow critic round 1 revise 7.3; fixes applied as round 5 (re-key 04, 05 low-pass and pins, 06 glaze 1, copy cuts on 05 and 07, 03 key rake, 08 smoothing, 09 single reserve)"
+  },
+  "assembly": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/final/carousel.pdf"
+   ]
+  }
+ }
+}

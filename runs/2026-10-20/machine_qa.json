@@ -1,0 +1,307 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "contacts": [
+        "'the gold Bethel pin standing in the plaster sheet': shadow L* 50.3 vs ground L* 60.1, dL 9.8 at 432w"
+      ],
+      "motifs": [
+        "'the gold Bethel pin head': canvas 64.3 dE, page 70.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the steel thread at mid-span': canvas 71.3 dE, page 71.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"Bethel's pin\" lands 3.6px from its target",
+        "leader \"St. Lawrence Island's pin\" lands 3.6px from its target",
+        "leader \"Bethel's pin\" meets its label 4.5px away",
+        "leader \"St. Lawrence Island's pin\" meets its label 3.0px away",
+        "leader \"Bethel's pin\" is drawn 48 px at 47 degrees, inside the pointer band",
+        "leader \"St. Lawrence Island's pin\" is drawn 103 px at 56 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Played Bethel's Yup'ik,the model most oftena' fits 3/3 lines at 98.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 1 of 2 at (559,1243) of 'ESU \u00b7 Yup'ik \u00b7 110' carries 61 px^2 of hard-edged canvas ink (densest 40px window 4.9%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the 111 steel heads on St. Lawrence Island' lands 10.8px from its target",
+        "leader 'the 110 gold heads at Bethel' lands 0.0px from its target",
+        "leader 'the 111 steel heads on St. Lawrence Island' meets its label 3.0px away",
+        "leader 'the 110 gold heads at Bethel' meets its label 4.1px away",
+        "leader 'the 111 steel heads on St. Lawrence Island' is drawn 166 px at 64 degrees, inside the pointer band",
+        "leader 'the 110 gold heads at Bethel' is drawn 70 px at 55 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '111 to 110.' fits 1/1 lines at 139.5px"
+      ],
+      "asserts": [
+        "'111 clips answered Central Siberian Yupik, one steel head each' holds: 111 vs 111 marks, counted over 111 declared marks (within 0)",
+        "'111 clips answered Central Siberian Yupik, one steel head each': 111 mark centres probed at r=5px, cohort median 43.9 dE, all present (weakest 34.8 dE)",
+        "'110 clips answered Yupik, one gold head each' holds: 110 vs 110 marks, counted over 110 declared marks (within 0)",
+        "'110 clips answered Yupik, one gold head each': 110 mark centres probed at r=5px, cohort median 72.5 dE, all present (weakest 59.6 dE)",
+        "'16 clips answered Northwest Alaska Inupiatun' holds: 16 vs 16 marks, counted over 16 declared marks (within 0)",
+        "'16 clips answered Northwest Alaska Inupiatun': 16 mark centres probed at r=8px, cohort median 70.7 dE, all present (weakest 68.4 dE)",
+        "'7 clips answered North Alaskan Inupiatun' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'7 clips answered North Alaskan Inupiatun': 7 mark centres probed at r=8px, cohort median 68.9 dE, all present (weakest 68.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ESPNET OWSM V4 ABOUT 150 LANGUAGES' at 710,568 301x58 (margin 80px)",
+        "outside safe zone: 'ABOUT 150 LANGUAGES' at 710,595 301x31 (margin 80px)",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the gold esu tile in the 4,017': canvas 51.6 dE, page 52.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the steel ess tile in the 4,017': canvas 23.8 dE, page 33.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the gold esu tile' lands 5.0px from its target",
+        "leader 'the steel ess tile' lands 5.0px from its target",
+        "leader 'the gold esu tile' meets its label 2.0px away",
+        "leader 'the steel ess tile' meets its label 2.0px away",
+        "leader 'the gold esu tile' is drawn 160 px at 90 degrees, inside the pointer band",
+        "leader 'the steel ess tile' is drawn 280 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Three big open modelslist no Yupik at all.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'Whisper large-v3, 99 languages, one tile each' holds: 99 vs 99 marks, counted over 99 declared marks (within 0)",
+        "'Whisper large-v3, 99 languages, one tile each': 99 mark centres probed at r=4px, cohort median 39.4 dE, all present (weakest 35.4 dE)",
+        "'VoxLingua107, 107 languages, one tile each' holds: 107 vs 107 marks, counted over 107 declared marks (within 0)",
+        "'VoxLingua107, 107 languages, one tile each': 107 mark centres probed at r=4px, cohort median 40.5 dE, all present (weakest 36.4 dE)",
+        "'Meta MMS-LID, 4,017 labels, one tile each' holds: 4017 vs 4017 marks, counted over 4017 declared marks (within 0)",
+        "'Meta MMS-LID, 4,017 labels, one tile each': 237 mark centres probed at r=6px, sampled every 17 marks, cohort median 36.8 dE, all present (weakest 29.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 2 of 4 in 'Central Siberian Yupik is a living language.' ends 'about' -- an article, conjunction or preposition left hanging at the line end. It reads at 46px, so the break is the first thing a feed sees. Author the break with <br> before 'speakers' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the gold Bethel pin head': canvas 50.9 dE, page 52.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"Bethel's pin head\" lands 10.0px from its target",
+        "leader \"St. Lawrence Island's pin\" lands 8.0px from its target",
+        "leader \"Bethel's pin head\" meets its label 2.1px away",
+        "leader \"St. Lawrence Island's pin\" meets its label 1.9px away",
+        "leader \"Bethel's pin head\" is drawn 18 px at 5 degrees, inside the pointer band",
+        "leader \"St. Lawrence Island's pin\" is drawn 29 px at 90 degrees, inside the pointer band"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'BETHEL \u00b7 KYUK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath '9 VIDEOS \u00b7 5.1 HOURS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "contacts": [
+        "'the gold Bethel pin standing in the Delta sheet': shadow L* 21.5 vs ground L* 41.4, dL 19.9 at 432w"
+      ],
+      "leaders": [
+        "leader \"Bethel's pin head\" lands 15.0px from its target",
+        "leader \"Bethel's pin head\" meets its label 6.2px away",
+        "leader \"Bethel's pin head\" is drawn 17 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The test audio camefrom Bethel's own station' fits 2/2 lines at 87.5px"
+      ],
+      "asserts": [
+        "'9 KYUK videos labeled, one gold dash each' holds: 9 vs 9 marks, counted over 9 declared marks (within 0)",
+        "'9 KYUK videos labeled, one gold dash each': 9 mark centres probed at r=8px, cohort median 53.9 dE, all present (weakest 48.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'MODEL' at 58,1135 79x31 (margin 80px)",
+        "outside safe zone: 'META MMS-LID' at 58,1180 190x31 (margin 80px)",
+        "outside safe zone: 'PILOT HEAD' at 58,1219 158x31 (margin 80px)",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the empty pinhole on St. Lawrence Island': canvas 37.8 dE, page 41.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the ring of 100 places at Bethel' lands 0.0px from its target",
+        "leader \"the empty pinhole where 01's island pin stood\" lands 7.2px from its target",
+        "leader 'the ring of 100 places at Bethel' meets its label 3.0px away",
+        "leader \"the empty pinhole where 01's island pin stood\" meets its label 3.6px away",
+        "leader 'the ring of 100 places at Bethel' is drawn 203 px at 21 degrees, inside the pointer band",
+        "leader \"the empty pinhole where 01's island pin stood\" is drawn 105 px at 14 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The labeled hourslifted recall to 0.92.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'92 of 100 Yupik clips named right by the pilot head, one gold head each' holds: 92 vs 92 marks, counted over 92 declared marks (within 0)",
+        "'92 of 100 Yupik clips named right by the pilot head, one gold head each': 92 mark centres probed at r=7px, cohort median 85.4 dE, all present (weakest 74.1 dE)",
+        "'8 of 100 Yupik clips missed, one hollow ring each' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)",
+        "'8 of 100 Yupik clips missed, one hollow ring each': 8 mark centres probed at r=14px, cohort median 85.9 dE, all present (weakest 65.6 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'NATIVE-SPEAKER ANNOTATORS, PLANNED' at 770,963 253x90 (margin 80px)",
+        "worst-point contrast 4.0 on 'YUP'IK COUNTRY, APPROXIMATE' (box mean 9.1) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the wet edge of glaze 1, pooled darker': canvas 44.9 dE, page 45.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the inland edge of glaze 1' lands 0.0px from its target",
+        "leader 'the inland edge of glaze 2' lands 0.0px from its target",
+        "leader 'the inland edge of glaze 3' lands 0.0px from its target",
+        "leader 'the inland edge of glaze 1' meets its label 8.0px away",
+        "leader 'the inland edge of glaze 2' meets its label 8.0px away",
+        "leader 'the inland edge of glaze 3' meets its label 8.0px away",
+        "leader 'the inland edge of glaze 1' is drawn 59 px at 1 degrees, inside the pointer band",
+        "leader 'the inland edge of glaze 2' is drawn 203 px at 1 degrees, inside the pointer band",
+        "leader 'the inland edge of glaze 3' is drawn 52 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The next labelscome from speakers.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "motifs": [
+        "'the Alaska Range in stipple, lit and lee': canvas 66.8 dE, page 67.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Metlakatla pin' lands 6.4px from its target",
+        "leader 'the Ketchikan pin' lands 6.4px from its target",
+        "leader 'the Anchorage pin' lands 3.6px from its target",
+        "leader \"Bethel's gold pin\" lands 4.2px from its target",
+        "leader 'the Metlakatla pin' meets its label 6.6px away",
+        "leader 'the Ketchikan pin' meets its label 6.6px away",
+        "leader 'the Anchorage pin' meets its label 4.0px away",
+        "leader \"Bethel's gold pin\" meets its label 2.3px away",
+        "leader 'the Metlakatla pin' is drawn 113 px at 24 degrees, inside the pointer band",
+        "leader 'the Ketchikan pin' is drawn 127 px at 39 degrees, inside the pointer band",
+        "leader 'the Anchorage pin' is drawn 83 px at 76 degrees, inside the pointer band",
+        "leader \"Bethel's gold pin\" is drawn 74 px at 40 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'AFN takes up 26-20.' fits 1/1 lines at 119px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,52 130x29 (margin 80px)"
+      ],
+      "contacts": [
+        "'the cartouche plate standing on the lit desk': shadow L* 2.2 vs ground L* 34.1, dL 31.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold Polaris on the cartouche': canvas 94.9 dE, page 95.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Whoever labels the hoursdraws the map.' fits 2/2 lines at 71.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 20,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPIN.mergeDEM",
+        "slides": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "call": "AKPIN.pin",
+        "slides": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "call": "AKPIN.proj",
+        "slides": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "call": "AKPIN.sheet",
+        "slides": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      {
+        "call": "AKPIN.smoothSea",
+        "slides": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "call": "AKS.loadDEM",
+        "slides": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

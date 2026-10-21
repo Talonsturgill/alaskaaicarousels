@@ -1,0 +1,268 @@
+{
+ "document_title": "Played Bethel's Yup'ik, the Model Answered Across the Sea",
+ "post_copy": "Meta's model card says \"This model supports 4017 languages.\" \"Supports\" for Yup'ik means one label in 4,017.\nThe model named KYUK's Yup'ik clips Central Siberian Yupik 111 times and Yup'ik 110.\n\nA four-label pilot trained on about 1,600 labeled clips across Yup'ik and Samoan lifted Yup'ik recall from 0.41 to 0.92.\n\nBethel's gold pin threads the slides past 111 pins on St. Lawrence Island, the label lists, KYUK's archive, the pilot, the speakers who label next and resolution 26-20.\n\nIn-house researchers wrote the pilot's labels. Community language fellows have begun labeling. Native-speaker annotators are planned.\n\nAFN takes up 26-20 on Saturday, October 24th. It seeks permanent and non-competitive federal language funding for Tribes, technology included. It never mentions AI.\n\nWhat does a model builder owe the speakers who write the next labels?\n\n#Yugtun #LanguageID #AFN2026",
+ "hook_chars": 108,
+ "total_chars": 887,
+ "hashtags": [
+  "#Yugtun",
+  "#LanguageID",
+  "#AFN2026"
+ ],
+ "deck_summary_line": "Bethel's gold pin threads the slides past 111 pins on St. Lawrence Island, the label lists, KYUK's archive, the pilot, the speakers who label next and resolution 26-20.",
+ "first_comment": "Sources, primary first\nChen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings on the ACL Anthology, the paper on spoken language identification for Yup'ik and Samoan broadcast audio (model coverage, the 111 to 110 confusion counts, the four-label pilot and its pilot-scale caveat), July 3rd, 2026. https://aclanthology.org/2026.americasnlp-6.18.pdf\nMeta on HuggingFace, the facebook/mms-lid-4017 model card, \"This model supports 4017 languages\". https://huggingface.co/facebook/mms-lid-4017\nAlaska Federation of Natives, 2026 convention draft resolutions packet, resolution 26-20 on Indigenous language revitalization, Tribal self-governance and permanent federal funding (packet pages 51 to 53), September 27th, 2026. https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf\nAlaska Federation of Natives, 2026 Annual Convention agenda dated October 16th, 2026, with resolutions set for 10:15 a.m. Saturday, October 24th. https://nativefederation.org/wp-content/uploads/2026/10/2026-Annual-Convention-Agenda_10.16.26.pdf\nAlaska Federation of Natives, 2026 Annual Convention page, October 22nd to 24th in Anchorage. https://nativefederation.org/convention/\nKYUK (Bethel Broadcasting, Inc.), History and Mission, about an hour of Yup'ik news a day. https://www.kyuk.org/history-and-mission\nSIL International, ISO 639-3 Registration Authority, code ess, Central Siberian Yupik. https://iso639-3.sil.org/code/ess\nSIL International, ISO 639-3 Registration Authority, code esk, Northwest Alaska Inupiatun. https://iso639-3.sil.org/code/esk\nSIL International, ISO 639-3 Registration Authority, code esi, North Alaskan Inupiatun. https://iso639-3.sil.org/code/esi\nAlaska Native Languages, the Yugtun page, Central Alaskan Yup'ik spoken from Bristol Bay to Norton Sound. https://www.alaskanativelanguages.org/yugtun-yup-ik\nAlaska Native Languages, the St. Lawrence Island Yupik page, spoken on the island and in eastern Russia. https://www.alaskanativelanguages.org/yupigestun-sli-yupik\nOpen Alaska decisions, each with its live deadline, are tracked at https://alaskaaihq.com\nSpeak Yup'ik, work in KYUK's archive or follow 26-20 on the floor Saturday? Add that context below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "",
+   "kicker2": "",
+   "headline": "Played Bethel's Yup'ik, the model most often answered across the sea.",
+   "body": "",
+   "labels": [
+    "BETHEL",
+    "ST. LAWRENCE ISLAND",
+    "Bering Sea"
+   ],
+   "claim_ids": [
+    "C11",
+    "C18",
+    "C41"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "META MMS-LID, 4,017 LABELS · KYUK CLIPS",
+   "kicker2": "",
+   "headline": "111 to 110.",
+   "body": "Played Yup'ik clips from KYUK's broadcasts, Meta's MMS-LID answered Central Siberian Yupik 111 times and Yup'ik 110. That language is spoken on St. Lawrence Island and in eastern Russia.",
+   "labels": [
+    "ESS · Central Siberian Yupik · 111",
+    "ESU · Yup'ik · 110",
+    "ESK · 16 Northwest Alaska Inupiatun",
+    "ESI · 7 North Alaskan Inupiatun",
+    "LABELS ARE LANGUAGES, NOT PLACES"
+   ],
+   "claim_ids": [
+    "C06",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C51",
+    "C52"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "WHAT EACH MODEL CAN NAME",
+   "kicker2": "",
+   "headline": "Three big open models list no Yupik at all.",
+   "body": "Only Meta's largest model lists Yup'ik, one label in 4,017. The authors say a label space that big makes out-of-the-box results poor for languages with little data.",
+   "labels": [
+    "WHISPER LARGE-V3 99 LANGUAGES",
+    "VOXLINGUA107 107 LANGUAGES",
+    "ESPNET OWSM V4 ABOUT 150 LANGUAGES",
+    "META MMS-LID · 4,017 LABELS",
+    "ESU · Yup'ik",
+    "ESS · Central Siberian Yupik",
+    "ONE TILE = ONE LANGUAGE A MODEL CAN NAME"
+   ],
+   "claim_ids": [
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C15"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "NEIGHBORS ACROSS THE SHELF",
+   "kicker2": "",
+   "headline": "",
+   "body": "Central Siberian Yupik is a living language. One count puts about 1,000 speakers on St. Lawrence Island. The model's top miss was a near one.",
+   "labels": [
+    "BETHEL",
+    "ST. LAWRENCE ISLAND"
+   ],
+   "claim_ids": [
+    "C15",
+    "C51"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "KYUK · BETHEL",
+   "kicker2": "",
+   "headline": "The test audio came from Bethel's own station.",
+   "body": "KYUK airs about an hour of local news in Yup'ik a day. The researchers labeled 9 of its videos, 5.1 hours, through the American Archive of Public Broadcasting.",
+   "labels": [
+    "BETHEL · KYUK",
+    "9 VIDEOS · 5.1 HOURS",
+    "Kuskokwim River"
+   ],
+   "claim_ids": [
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C41",
+    "C44"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "A FOUR-LABEL PILOT",
+   "kicker2": "",
+   "headline": "The labeled hours lifted recall to 0.92.",
+   "body": "Trained on labeled Yup'ik and Samoan clips, a small classifier on a frozen Whisper encoder lifted Yup'ik recall from 0.41 to 0.92. It chooses among four labels, not 4,017. The authors call it pilot-scale.",
+   "labels": [
+    "MODEL",
+    "LABELS",
+    "RECALL",
+    "META MMS-LID",
+    "4,017",
+    "0.41",
+    "PILOT HEAD",
+    "4",
+    "0.92",
+    "PER 100 YUP'IK CLIPS",
+    "ST. LAWRENCE ISLAND"
+   ],
+   "claim_ids": [
+    "C29",
+    "C28",
+    "C24",
+    "C09",
+    "C06",
+    "C30"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "WHO LABELS THE NEXT HOURS",
+   "kicker2": "",
+   "headline": "The next labels come from speakers.",
+   "body": "The pilot's labels were written by in-house researchers, not native speakers. The authors plan to hand that work to trained native-speaker annotators, and community language fellows have begun, the paper says.",
+   "labels": [
+    "LABELED BY RESEARCHERS",
+    "FELLOWS HAVE BEGUN",
+    "NATIVE-SPEAKER ANNOTATORS, PLANNED",
+    "YUP'IK COUNTRY, APPROXIMATE",
+    "Bristol Bay",
+    "Norton Sound",
+    "BETHEL"
+   ],
+   "claim_ids": [
+    "C33",
+    "C31",
+    "C32",
+    "C50"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "SATURDAY, OCTOBER 24TH · RESOLUTIONS AT 10:15 A.M.",
+   "kicker2": "",
+   "headline": "AFN takes up 26-20.",
+   "body": "From the Metlakatla and Ketchikan Indian Communities, it seeks permanent, non-competitive federal language funding for every eligible Tribe. Technology and archives are among its uses. It never mentions AI. Committee and board say do pass.",
+   "labels": [
+    "METLAKATLA KETCHIKAN",
+    "ANCHORAGE · THE CONVENTION",
+    "BETHEL",
+    "YUP'IK COUNTRY, APPROXIMATE"
+   ],
+   "claim_ids": [
+    "C59",
+    "C55",
+    "C56",
+    "C58",
+    "C60",
+    "C61",
+    "C68",
+    "C71",
+    "C50"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "kicker2": "",
+   "headline": "Whoever labels the hours draws the map.",
+   "body": "What does a model builder owe the speakers who write the next labels?",
+   "labels": [
+    "AFN TAKES UP 26-20 SATURDAY, OCTOBER 24TH"
+   ],
+   "claim_ids": [
+    "C71"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post Wednesday October 21st or Thursday October 22nd between 8 and 11 a.m. AKT, so it lands before AFN takes up resolutions Saturday morning. Tuesday to Thursday 8 to 11 a.m. AKT is the strongest window, and cadence is the human's call.",
+  "Paste the sources block as the first comment within 60 seconds of posting, with every URL as plain text.",
+  "Reply to every comment in the first 90 minutes. Keep 0.92 tied to four labels and pilot scale, and describe 26-20 in its own words, which never mention AI.",
+  "After 48 hours, note saves and comments in the run ledger, along with how delegates acted on 26-20 Saturday."
+ ],
+ "editor_notes_for_email": [
+  "0.92 is a PILOT result (C24, C29, C30). It comes from a four-label head trained on about 1,600 clips across the Yup'ik and Samoan sets, English segments included. It is not apples to apples with MMS-LID's 0.41 over 4,017 labels, and the esu and ess confusion is absent by construction. In replies, always pair the two numbers with 'four labels'.",
+  "26-20 never mentions AI (C58). The link from it to speech AI is the deck's own framing, not AFN's. It is still a draft and the delegates have not voted (C62), so never imply passage.",
+  "The about 1,000 speakers count for St. Lawrence Island Yupik (C51) is one undated estimate from the Alaska Native Languages site. Other counts run lower, and slide 04 says 'One count puts'.",
+  "Resolution 26-47 on Native radio funding is NOT in the deck or the sources. It names no stations, so never imply KYUK is among its 36."
+ ],
+ "caption_meta": {
+  "opening_move": "DEFINITION SUBVERSION (the model card's own word 'supports', then what it means for Yup'ik)",
+  "structure": "COLD OPEN, WARM CLOSE",
+  "closing_move": "NEW: WHAT THE BUILDER OWES"
+ },
+ "first_8_words": "Meta's model card says \"This model supports 4017",
+ "hook_type": "definition subversion",
+ "claims_used": [
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C09",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C20",
+  "C21",
+  "C24",
+  "C28",
+  "C29",
+  "C30",
+  "C31",
+  "C32",
+  "C33",
+  "C40",
+  "C41",
+  "C44",
+  "C45",
+  "C50",
+  "C51",
+  "C52",
+  "C55",
+  "C56",
+  "C58",
+  "C59",
+  "C60",
+  "C61",
+  "C68",
+  "C71"
+ ],
+ "showrunner_notes": "post_copy is caption.txt byte for byte. Slide strings are the BUILT strings. Corrections applied in the build: slide 02 drops the unattributed only-public-model phrase (C01), slide 04 softens the C51 speaker count to one count, slide 08 kicker names the resolutions item at 10:15 a.m. (C71) and slide 09 carries the caption question so the deck ends on one ask."
+}

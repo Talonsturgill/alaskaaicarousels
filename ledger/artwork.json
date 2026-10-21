@@ -3241,6 +3241,51 @@
     "NEW: projecting a pore throat at runtime so the 2D property line and its dot land in the 3D void"
    ],
    "note": "Rounds 5. Scored 8.6, art 7.5. Round 1 sent all nine frames back; the cover kerf read as a ribbon until round 2 rebuilt it as light in the slot."
+  },
+  {
+   "run_date": "2026-10-20",
+   "carousel_no": 91,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE PINNED RELIEF SHEET, an operations-room pin map stood on a cast plaster relief model of the northern Bering Sea, registered across three frames",
+   "atmosphere": "NEW: THE MAP-TABLE LAMP, one raking northwest key (az 315, el 24) on plaster and poured resin, with a dusk version on the breather",
+   "depth_technique": "AKBENCH plaster and resin relief with chart-band risers (01, 02, 06); ISOTYPE legend plates as cabinet extrusions (03); akthree displaced DEM fan at dusk with a thin-lens focus (04, masterful depth frame); per-device-pixel delta sheet with a DEM-traced river and slope hachure (05); granulating three-glaze watercolour wash over a hillshaded plaster sheet (07); Lambert-driven stipple of the state (08); white-line engraved cartouche (09)",
+   "line_voice": "survey",
+   "continuity_device": "motif:the pin and the thread, gold at Bethel, steel at the model's answer",
+   "continuity_devices": [
+    "motif: the gold Bethel pin on every map frame, becoming the Polaris on 09",
+    "palette arc: a salmonberry wash meaning labeled by hand, laid glaze by glaze",
+    "registration: 01, 02 and 06 share one projection"
+   ],
+   "hook_archetype": "NEW: THE WRONG ADDRESS",
+   "palette_family": "NEW: chart night, plaster and salmonberry wash, gold and instrument steel",
+   "type_pairing": "Fraunces (opsz 144 display, opsz 24 body) + JetBrains Mono",
+   "narrative_structure": "hook, instant payoff with the counts, the legend that explains the miss, breather, the archive, the turn to the pilot, the people who label next, the vote, one ask",
+   "variance_dials": {
+    "design_variance": 3,
+    "visual_density": 3,
+    "type_temperature": 5
+   },
+   "techniques": [
+    "AKBENCH relief",
+    "akpinmap pinned sheet",
+    "chart-band resin risers",
+    "isotype tiles",
+    "akthree PBR terrain",
+    "AKSTROBE focus",
+    "slope hachure",
+    "least-cost river trace",
+    "granulating watercolour wash",
+    "AKSTIPPLE",
+    "akengrave intaglio",
+    "AKPOST grade"
+   ],
+   "new_techniques_logged": [
+    "NEW: akpinmap.js, a pinned relief sheet bench: azimuthal projection on a place, plaster and resin with chart-depth bands whose risers catch the key, rendered map pins with two-part casts",
+    "NEW: a granulating three-glaze watercolour wash laid by distance inland from the coast, with a wet edge from the glaze's own reach",
+    "NEW: a river traced as the least-cost path along the lowest ground of a DEM, cased like an engraved river",
+    "NEW: repairing a DEM tile join in place by measuring each column's step and ramping it out"
+   ],
+   "note": "Rounds 5. Scored 8.44, art None."
   }
  ]
 }
