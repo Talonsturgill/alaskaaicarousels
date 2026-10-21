@@ -94,11 +94,26 @@
       }
       a = b;
     }
+    // a removed fleck takes the depth of the sea round it, so it leaves no shoal for the chart bands to ring
+    function seaFill(k) { var cx0 = k % C, cy0 = (k - cx0) / C, s = 0, n = 0;
+      for (var yy = -3; yy <= 3; yy++) for (var xx = -3; xx <= 3; xx++) { var c8 = cx0 + xx, r8 = cy0 + yy; if (c8 < 0 || r8 < 0 || c8 >= C || r8 >= R) continue; var v8 = a[r8 * C + c8]; if (v8 < 0) { s += v8; n++; } }
+      return n ? s / n : -1; }
     // a lone land cell in open water is a speck of noise, not an islet
     for (var k4 = 0; k4 < a.length; k4++) {
       if (!(a[k4] > 0)) continue; var c4 = k4 % C, r4 = (k4 - c4) / C, nb = 0;
       for (var fy = -1; fy <= 1; fy++) for (var fx = -1; fx <= 1; fx++) { var c5 = c4 + fx, r5 = r4 + fy; if (c5 < 0 || r5 < 0 || c5 >= C || r5 >= R) continue; if (a[r5 * C + c5] > 0) nb++; }
-      if (nb <= 1) a[k4] = -1;
+      if (nb <= 1) a[k4] = seaFill(k4);
+    }
+    // and any land component under 12 cells is dropped the same way (a component, not a cell, so a
+    // two- or three-cell fleck goes too); real islets on this sheet are dozens of cells
+    var seen = new Uint8Array(a.length), stack = [], comp = [];
+    for (var k6 = 0; k6 < a.length; k6++) {
+      if (seen[k6] || !(a[k6] > 0)) continue;
+      stack.length = 0; comp.length = 0; stack.push(k6); seen[k6] = 1;
+      while (stack.length && comp.length < 13) { var c6 = stack.pop(); comp.push(c6); var x6 = c6 % C, y6 = (c6 - x6) / C;
+        for (var gy = -1; gy <= 1; gy++) for (var gx = -1; gx <= 1; gx++) { var x7 = x6 + gx, y7 = y6 + gy; if (x7 < 0 || y7 < 0 || x7 >= C || y7 >= R) continue;
+          var k7 = y7 * C + x7; if (!seen[k7] && a[k7] > 0) { seen[k7] = 1; stack.push(k7); } } }
+      if (comp.length < 12 && !stack.length) comp.forEach(function (kk) { a[kk] = seaFill(kk); });
     }
     function sample(lon, lat) {
       var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
@@ -135,7 +150,7 @@
   var TERR = [40, 200, 1000];
   AKPIN.heightFn = function (P, dem, o) {
     o = o || {};
-    var ex = o.exaggeration || 25, mpp = P.kmPerPx * 1000, lip = o.lip != null ? o.lip : 1.4;
+    var ex = o.exaggeration || 25, mpp = P.kmPerPx * 1000, lip = o.lip != null ? o.lip : 0.9;
     var step = o.terraceStep != null ? o.terraceStep : 0.55;
     return function (X, Y) {
       var ll = P.invert([X, Y]);
