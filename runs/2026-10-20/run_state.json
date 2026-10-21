@@ -75,15 +75,34 @@
     "out/2026-10-20/caption.txt",
     "out/2026-10-20/copy.json"
    ],
-   "note": "room round 1 rejected both (critic: neither); one reassigned director (DEFINITION SUBVERSION / COLD OPEN, WARM CLOSE); caption_check PASS 887 chars with --deck-summary and --copy"
+   "note": "room round 1 rejected both (critic: neither); one reassigned director (DEFINITION SUBVERSION / COLD OPEN, WARM CLOSE); caption_check PASS 893 chars (887 before Codex round 1 added the scheduling qualifier) with --deck-summary and --copy"
   },
-  "art_build": "pending",
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/slides",
+    "out/2026-10-20/render",
+    "out/2026-10-20/aggregates.json"
+   ],
+   "note": "9 slides; qa.py PASS-with-warns, bespoke PASS, dossier_check WARN 0 fails, copy_sync PASS, aggregate PASS, plan_drift PASS. Claim ids renumbered Y to C (house CLAIM_RE)."
+  },
   "pixel_review": {
    "status": "done",
    "note": "4 critic rounds; 01 02 03 06 07 08 09 ship; 04 7.3 and 05 6.9 held at the round cap"
   },
-  "flow_review": "pending",
-  "assemble": "pending",
+  "flow_review": {
+   "status": "done",
+   "note": "flow critic round 1 revise 7.3; fixes applied as round 5 (re-key 04, 05 low-pass and pins, 06 glaze 1, copy cuts on 05 and 07, 03 key rake, 08 smoothing, 09 single reserve)",
+   "artifacts": [
+    "out/2026-10-20/flow_review.json"
+   ]
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-20/final/carousel.pdf"
+   ]
+  },
   "scoring": {
    "status": "done",
    "artifacts": [
@@ -105,35 +124,15 @@
    ],
    "note": "site_build at 2026-10-21 after merging main (main's cron had built docs at 2026-10-21; never build earlier than main), site_fresh_check --date 2026-10-21 OK; parsers, scanner and docket_dates PASS; no alerts due; prune freed 2.32M"
   },
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending",
-  "build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-20/slides",
-    "out/2026-10-20/render",
-    "out/2026-10-20/aggregates.json"
-   ],
-   "note": "9 slides; qa.py PASS-with-warns, bespoke PASS, dossier_check WARN 0 fails, copy_sync PASS, aggregate PASS, plan_drift PASS. Claim ids renumbered Y to C (house CLAIM_RE)."
-  },
-  "flow": {
-   "status": "done",
-   "note": "flow critic round 1 revise 7.3; fixes applied as round 5 (re-key 04, 05 low-pass and pins, 06 glaze 1, copy cuts on 05 and 07, 03 key rake, 08 smoothing, 09 single reserve)"
-  },
-  "assembly": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-20/final/carousel.pdf"
-   ]
-  },
-  "automation_retro": {
+  "upgrade": {
    "status": "done",
    "artifacts": [
     "runs/2026-10-20/automation_retro.md",
     "knowledge/MACHINE_QUEUE.md"
    ],
-   "note": "weekly pass not due; 2 items queued, 2 repeats raised"
-  }
+   "note": "weekly machine pass not due (machine_due.py); automation retro written, 2 items queued, 2 repeats raised"
+  },
+  "gmail": "pending",
+  "retro": "pending"
  }
 }

@@ -9,13 +9,13 @@ Artwork craft and genuine detail again: 7.0 here, the weakest weighted shortfall
 - Phase 0: the run_guard default date was UTC 2026-10-21. Woke 22:05 AKDT, so the run used --run-date 2026-10-20, as prior runs have.
 - Phase 3.6: the first live Gas Watch audit at 06:10Z found CINGSA's 16:35 Alaska reading of October 20th missing. A gaswatch.yml dispatch on main returned 204 (the last runs got 403), the collection ran, and the re-audit passed at 06:14Z. cron_health PASS, site sign-off PASS.
 - Phase 3: claims were numbered Y01 and up. plan_drift's claim regex reads only C ids, so it could not look. FIXED IN RUN by renumbering the run's claims to C (house convention). Worth one line in the fact-checker's spec.
-- Phase 6: the caption room returned "neither". One reassigned director wrote the winner, which passed caption_check at 887 characters.
+- Phase 6: the caption room returned "neither". One reassigned director wrote the winner, which passed caption_check at 887 characters, then 893 after Codex asked for C71's scheduling qualifier.
 - Phase 7: qa FAILed present-ink promises on frames whose inks were written per pixel (07, 08, 09 washes) or by WebGL (04). Fixed with legend chips, masked source-in fills, and label text in the inks. QUEUED for the GPU case.
 - Phase 7: putImageData over a transparent desk punched a hole through the background on 05, which the critic saw as a seam. FIXED IN RUN (offscreen layer plus drawImage).
 - Phase 8: four pixel rounds plus a flow round. A seam on 05 that survived two render-side fixes was a terrain-tile join at 60.0 N in ak-ykdelta-dem. Repaired at load in the slide. QUEUED for the asset.
 - Phase 8: critics again could not find the thumbs (slide-NN-thumb.png). QUEUED: the critic_brief item's repeat was raised to 1.
 - Phase 10: scored 8.44 (threshold 7.7), art 7.0. The craft cycle stood down at the five-round cap.
-- Phase 11: site built at 2026-10-20 (main had no newer docs build). No subscriber alert was due. prune_runs freed 2.32M from 2026-09-20.
+- Phase 11: the site was first built at 2026-10-20. Main's gas watch cron then rebuilt docs at 2026-10-21, and the merge conflicted, so the site shipped built at 2026-10-21 (never earlier than main; site_fresh_check --date 2026-10-21 OK). No subscriber alert was due. prune_runs freed 2.32M from 2026-09-20.
 
 ## Queued in knowledge/MACHINE_QUEUE.md
 1. qa ink law: a GPU frame can't keep a present-ink promise.
