@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-10-21-the-count-and-the-calf",
+      "date": "2026-10-21",
+      "title": "The Count and the Calf",
+      "caption": "USGS says it is teaching deep neural networks to spot walruses from trail camera photos and is developing satellite methods to count carcasses. In mid-September near Point Lay, a college student photographing carcasses to count them found one living calf, and asked the community first.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/poster_thumb.jpg"
+    },
+    {
       "id": "adl-234762",
       "date": "2026-10-20",
       "title": "ADL 234762",
