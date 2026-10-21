@@ -377,7 +377,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-07-08",
@@ -510,6 +510,10 @@
         {
           "date": "2026-10-15",
           "note": "Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th response deadline as past due, a last update and archive date of July 14th, and no award, so no lease has been reported for any parcel at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's own announcement page refused an automated read. Checked and unchanged."
         }
       ]
     },
@@ -537,6 +541,11 @@
           "date": "2026-10-12",
           "label": "Golden Valley issues its first energy emergency alert, Level 2, about 15 MW of reserve",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-20",
+          "label": "Golden Valley issues a second energy emergency alert, Level 1, reserves below 38 MW",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -545,6 +554,11 @@
         "lat": 64.8378
       },
       "sources": [
+        {
+          "url": "https://www.gvea.com/energy-emergency-alert/",
+          "outlet": "Golden Valley Electric Association",
+          "date": "2026-10-20"
+        },
         {
           "url": "https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html",
           "outlet": "Fairbanks Daily News-Miner",
@@ -583,7 +597,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-07-08",
@@ -692,6 +706,10 @@
         {
           "date": "2026-10-15",
           "note": "Golden Valley's October 13th release explaining its first Energy Emergency Alert says a used LM6000 turbine, or an equivalent, is being evaluated for added baseload generation with a maximum project cost of $80 million. The same release describes a planned battery that would provide 70 megawatts for up to 2 hours at an estimated $130 million, about $18 million to members after loan forgiveness and tax credits, by the co-op's estimate. No purchase vote on the turbine has been reported."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Golden Valley issued an Energy Emergency Alert at Level 1 at 8:15 a.m. on October 20th, its second alert in eight days, saying available generation reserves are declining and asking members to conserve electricity where practical. Its alert page defines Level 1 as reserves below 38 megawatts that are not expected to recover within two hours. No purchase vote on the turbine has been reported."
         }
       ]
     },
@@ -1618,7 +1636,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-09-19",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-07-18",
@@ -1627,6 +1645,10 @@
         {
           "date": "2026-08-19",
           "note": "Checked and unchanged. AO 2026-27 stands as adopted on March 27th, 2026 by a 10 to 2 vote, amending Title 21 to create a data center land use category, subject those facilities to conditional use review and use-specific performance standards, and require utility statements on system capacity before a project proceeds. It remains the only enacted local framework of its kind in Alaska. The ordinance also directs further regulatory work on energy-intensive uses, so the framework is expected to keep developing."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Re-read the text of AO 2026-27 on the Assembly's site today. It still defines data centers and similar energy-intensive facilities for land use review, as adopted on March 27th. Checked and unchanged."
         }
       ]
     },
@@ -2189,7 +2211,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-04",
@@ -2278,6 +2300,10 @@
         {
           "date": "2026-10-14",
           "note": "Searched the Federal Register today for Alaska documents published October 8th to 15th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th and reply comments January 14th, 2027. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
         }
       ]
     },
@@ -2537,7 +2563,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-16",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -2638,6 +2664,10 @@
         {
           "date": "2026-10-16",
           "note": "Searched the Federal Register today for documents published October 8th to 16th naming Eielson or Oklo. The only Eielson item is a correction to per diem rates, and no Air Force, Oklo or reactor notice was published. Responses to the Army Corps request for information were due today, October 16th. No site decision has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force, Oklo or reactor notice. Checked and unchanged."
         }
       ]
     },
@@ -2926,7 +2956,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -2999,6 +3029,10 @@
         {
           "date": "2026-10-15",
           "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project, a 1,250 MW coal plant with carbon capture in the Matanuska-Susitna Borough, with no award or cancellation notice. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
         }
       ]
     },
@@ -3103,7 +3137,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-06",
@@ -3168,6 +3202,10 @@
         {
           "date": "2026-10-15",
           "note": "Searched the Federal Register today for documents published October 9th to 16th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application, and the commission's own carbon storage page refused an automated read. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
         }
       ]
     },
@@ -3585,10 +3623,14 @@
         {
           "date": "2026-10-19",
           "note": "Searched the Federal Register today for documents naming docket P-15423 published since September 5th and found none. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found none naming docket P-15423. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-19"
+      "last_updated": "2026-10-20"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3714,7 +3756,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-17",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-25",
@@ -3819,6 +3861,10 @@
         {
           "date": "2026-10-17",
           "note": "Re-read the Assembly's public safety page today. It still lists AO 2026-108 for unfinished business at the regular meeting on Tuesday, October 20th, with the five amendments from the October 14th work session. No vote has been taken. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Re-read the Assembly's public safety page today. It lists AO 2026-108 as unfinished business at the regular meeting of October 20th, with five amendments drafted for the October 14th work session, and reports no outcome yet. Checked and unchanged."
         }
       ],
       "cta_label": "TESTIFY",
@@ -3873,7 +3919,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-17",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-08-31",
@@ -3958,6 +4004,10 @@
         {
           "date": "2026-10-17",
           "note": "Searched the Federal Register today for any notice citing WC Docket No. 26-173 published since September 25th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for any notice citing WC Docket No. 26-173 published since September 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
     },
@@ -4356,7 +4406,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-09-13",
@@ -4405,6 +4455,10 @@
         {
           "date": "2026-10-14",
           "note": "GovInfo's bill collection and Congress.gov could not be read today, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Read the bill status record on GovInfo today. Its latest action is still September 30th, when cloture on the motion to proceed failed 57 to 43 in the Senate and the motion was withdrawn. Checked and unchanged."
         }
       ]
     },
@@ -4567,7 +4621,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-09-13",
@@ -4632,6 +4686,10 @@
         {
           "date": "2026-10-15",
           "note": "Searched the Federal Register today for any Department of Transportation corridors notice published October 9th to 16th and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ]
     },
@@ -4760,7 +4818,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-19",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-09-15",
@@ -4845,6 +4903,10 @@
         {
           "date": "2026-10-19",
           "note": "Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified October 19th. No vote has been recorded. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified that afternoon, and no passage date is recorded. Checked and unchanged."
         }
       ]
     },
@@ -5174,7 +5236,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-15",
+      "last_updated": "2026-10-20",
       "history": [
         {
           "date": "2026-10-07",
@@ -5187,6 +5249,10 @@
         {
           "date": "2026-10-15",
           "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding, about $418 million for roughly 223 miles of new line, and names no agreement, environmental review or construction schedule yet. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-20",
+          "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the roughly $418 million total a preliminary planning estimate, and reports no signed agreement. Checked and unchanged."
         }
       ]
     }

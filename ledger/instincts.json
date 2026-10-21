@@ -2170,6 +2170,30 @@
    "confidence": 0.6,
    "run_date": "2026-10-19",
    "carousel_no": 90
+  },
+  {
+   "instinct": "WHEN A SEAM SURVIVES TWO RENDER FIXES, LOOK FOR IT IN THE DATA.",
+   "evidence": "No.91 05: a ruled row across the plain survived lake blurring and DEM swaps for three critic rounds. It was a terrain-tile join at exactly 60.0 N (row 332 to 333, mean absolute step 2.4 m), and a per-column ramp correction removed it.",
+   "act_on_it": "Before a second render-side fix for a straight seam, scan the source raster's row and column diffs at the seam's latitude or longitude.",
+   "confidence": 0.6,
+   "run_date": "2026-10-20",
+   "carousel_no": 91
+  },
+  {
+   "instinct": "KEY A GPU FRAME INTO THE DECK'S MATERIAL, NOT ONLY ITS LIGHT.",
+   "evidence": "No.91 04: the dusk terrain shared the deck's key direction but rendered warm cream at exposure 1.05, became the brightest frame on a plan that wanted it darkest, and the flow critic read it as pasted from another deck. Cool plaster albedo and exposure 0.72 fixed both.",
+   "act_on_it": "Measure the GPU frame's mean L* against the CRAFT PLAN's tonal arc after its first render, and set its albedos from the deck's own palette tokens.",
+   "confidence": 0.6,
+   "run_date": "2026-10-20",
+   "carousel_no": 91
+  },
+  {
+   "instinct": "A DECK THAT CUTS A PLANNED COLOUR STAGE LOSES ITS ARC.",
+   "evidence": "No.91 dropped the 02, 05 and 06 glazes in the build, and the flow critic read the salmonberry arc as a switch at 07, not an accrual. One faint glaze on 06 restored it.",
+   "act_on_it": "When a build drops a continuity device's intermediate states, keep at least one before the peak frame.",
+   "confidence": 0.55,
+   "run_date": "2026-10-20",
+   "carousel_no": 91
   }
  ]
 }

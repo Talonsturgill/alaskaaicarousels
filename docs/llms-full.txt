@@ -1,7 +1,135 @@
 # Alaska AI, full text corpus
 
-Every article published by Alaska AI, newest first. Latest article 2026-10-19.
+Every article published by Alaska AI, newest first. Latest article 2026-10-20.
 Canonical pages live under https://alaskaaihq.com/archive/.
+# Played Bethel's Yup'ik, the Model Answered Across the Sea
+
+> Meta's model card says "This model supports 4017 languages." "Supports" for Yup'ik means one label in 4,017.
+
+Published 2026-10-20 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-10-20/
+
+## The story
+
+Played Bethel's Yup'ik, the model most often answered across the sea.
+
+111 to 110.
+
+Played Yup'ik clips from KYUK's broadcasts, Meta's MMS-LID answered Central Siberian Yupik 111 times and Yup'ik 110. That language is spoken on St. Lawrence Island and in eastern Russia.
+
+Three big open models list no Yupik at all.
+
+Only Meta's largest model lists Yup'ik, one label in 4,017. The authors say a label space that big makes out-of-the-box results poor for languages with little data.
+
+Central Siberian Yupik is a living language. One count puts about 1,000 speakers on St. Lawrence Island. The model's top miss was a near one.
+
+The test audio came from Bethel's own station.
+
+KYUK airs about an hour of local news in Yup'ik a day. The researchers labeled 9 of its videos, 5.1 hours, through the American Archive of Public Broadcasting.
+
+The labeled hours lifted recall to 0.92.
+
+Trained on labeled Yup'ik and Samoan clips, a small classifier on a frozen Whisper encoder lifted Yup'ik recall from 0.41 to 0.92. It chooses among four labels, not 4,017. The authors call it pilot-scale.
+
+The next labels come from speakers.
+
+The pilot's labels were written by in-house researchers, not native speakers. The authors plan to hand that work to trained native-speaker annotators, and community language fellows have begun, the paper says.
+
+AFN is set to take up 26-20.
+
+From the Metlakatla and Ketchikan Indian Communities, it seeks permanent, non-competitive federal language funding for every eligible Tribe. Technology and archives are among its uses. It never mentions AI. Committee and board say do pass.
+
+Whoever labels the hours draws the map.
+
+What does a model builder owe the speakers who write the next labels?
+
+## What we verified
+
+- A Brandeis University survey found no spoken language identification system on HuggingFace that covers Central Alaskan Yup'ik except the largest variant of Meta's MMS-LID family. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Whisper, VoxLingua107-based models and ESPnet OWSM include Hawaiian and Maori but neither Samoan nor any Yupik variety. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper's Table 1 lists Whisper large-v3 as covering 99 languages. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper's Table 1 lists VoxLingua107 as covering 107 languages. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper's Table 1 lists ESPnet OWSM v4 as covering about 150 languages. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Meta's MMS-LID family covers Yup'ik only at its largest variant, which has 4,017 labels. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- At 4,017 labels the per-class prior is about 2.5 x 10^-4, which the authors say makes zero-shot results on under-represented languages poor. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Zero-shot on the Yup'ik test clips, mms-lid-4017 reached a precision of 0.85 on the Yup'ik label. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Zero-shot on the Yup'ik test clips, mms-lid-4017 reached a recall of 0.41 on the Yup'ik label. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Zero-shot on the Yup'ik test clips, mms-lid-4017 reached an F1 score of 0.55 on the Yup'ik label. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- For gold Yup'ik clips, the most frequent label mms-lid-4017 predicted was ess, Central Siberian Yupik, with 111 clips. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- For gold Yup'ik clips, mms-lid-4017 predicted the correct label esu for 110 clips. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- For gold Yup'ik clips, mms-lid-4017 predicted esk, Northwest Alaska Inupiatun, for 16 clips. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- For gold Yup'ik clips, mms-lid-4017 predicted esi, North Alaskan Inupiatun, for 7 clips. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- ISO 639-3 code ess denotes Central Siberian Yupik, a living individual language. [SIL International, ISO 639-3 Registration Authority](https://iso639-3.sil.org/code/ess), primary document, 2026-10-21.
+- ISO 639-3 code esk denotes Northwest Alaska Inupiatun, part of the Inupiaq macrolanguage. [SIL International, ISO 639-3 Registration Authority](https://iso639-3.sil.org/code/esk), primary document, 2026-10-21.
+- ISO 639-3 code esi denotes North Alaskan Inupiatun, part of the Inupiaq macrolanguage. [SIL International, ISO 639-3 Registration Authority](https://iso639-3.sil.org/code/esi), primary document, 2026-10-21.
+- The study's Yup'ik audio comes from KYUK, a public broadcaster in western Alaska that has produced Yup'ik television news and programming since the 1970s. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The researchers took their audio from the American Archive of Public Broadcasting Online Reading Room, a collaboration between GBH and the Library of Congress. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The annotated Yup'ik set covers 9 videos. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The annotated Yup'ik set runs 5.1 hours. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The annotated Yup'ik set contains 589 segments. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- 283 of the Yup'ik set's segments are labeled as Yup'ik speech, esu. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- A small classifier head trained on a frozen Whisper-medium encoder raised Yup'ik recall to 0.92. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- With the frozen Whisper-medium encoder the Yup'ik F1 score reached 0.94. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The same classifier head on a frozen XLS-R-300M encoder raised Yup'ik recall to 0.85. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- With the frozen XLS-R-300M encoder the Yup'ik F1 score reached 0.82. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The prototype is a two-layer MLP trained on fixed features from a frozen pretrained speech encoder. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The prototype was trained on about 1,600 labeled clips across both Yup'ik and Samoan, in four coarse classes. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The authors say their prototype results should be treated as pilot-scale evidence. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The authors' next step is to move primary annotation to trained native-speaker annotators. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Since the paper's first submission, community language fellows have begun annotating Yup'ik and Samoan broadcast material. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The current annotated set was labeled by in-house researchers rather than native speakers. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper describes Yup'ik as having a four-vowel system with contrastive vowel length. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper's Table 2 puts the Yup'ik consonant inventory at about 25. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper says Yup'ik has acoustically distinctive sounds rare across languages, including velar and uvular consonants and voiceless nasals. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- The paper by Yangyang Chen, Kyeongmin Rim and James Pustejovsky of Brandeis University appeared in the AmericasNLP 2026 workshop proceedings on July 3rd. [ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18/), primary document, 2026-07-03.
+- The research was supported in part by the Andrew W. Mellon Foundation. [Chen, Rim and Pustejovsky (Brandeis University), AmericasNLP 2026 proceedings, ACL Anthology](https://aclanthology.org/2026.americasnlp-6.18.pdf), primary document, 2026-07-03.
+- Meta's Massively Multilingual Speech paper describes a language identification model for 4,017 languages. [Pratap et al. (Meta AI), arXiv](https://arxiv.org/abs/2305.13516), primary document, 2023-05-22.
+- Meta's mms-lid-4017 model card on HuggingFace says the model supports 4017 languages. [Meta (facebook) on HuggingFace](https://huggingface.co/facebook/mms-lid-4017), primary document, 2026-10-21.
+- KYUK's licensee operates public radio and television stations in Bethel, Alaska. [KYUK (Bethel Broadcasting, Inc.)](https://www.kyuk.org/history-and-mission), primary document, 2026-10-21.
+- KYUK radio has been on the air since 1971. [KYUK (Bethel Broadcasting, Inc.)](https://www.kyuk.org/history-and-mission), primary document, 2026-10-21.
+- KYUK television began broadcasting in 1972. [KYUK (Bethel Broadcasting, Inc.)](https://www.kyuk.org/history-and-mission), primary document, 2026-10-21.
+- KYUK broadcasts about one hour a day of local news in Yup'ik. [KYUK (Bethel Broadcasting, Inc.)](https://www.kyuk.org/history-and-mission), primary document, 2026-10-21.
+- KYUK describes itself as a bilingual station broadcasting in English and Yugtun. [American Archive of Public Broadcasting, KYUK participating-organization profile](https://americanarchive.org/participating-orgs/1703), primary document, 2026-10-21.
+- KYUK radio serves about 22,000 mostly Yup'ik and Cup'ik residents of the Yukon-Kuskokwim Delta. [American Archive of Public Broadcasting, KYUK participating-organization profile](https://americanarchive.org/participating-orgs/1703), primary document, 2026-10-21.
+- KYUK says it is digitizing more than 2,000 videos to make them public. [American Archive of Public Broadcasting, KYUK participating-organization profile](https://americanarchive.org/participating-orgs/1703), primary document, 2026-10-21.
+- AFN draft resolution 26-20 is titled a resolution supporting national Indigenous language revitalization, Tribal self-governance and permanent federal funding. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-20 calls on Congress and the Administration to establish permanent, non-competitive federal funding for all eligible Tribal Nations to revitalize their languages. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-20 lists technology among the uses Tribes could fund, alongside immersion schools, master-apprentice programs, curriculum, archives and community-based transmission. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-20 states that competitive, short-term grant funding has proven inadequate and inconsistent with Tribal self-determination. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- The full text of resolution 26-20 names technology as a fundable use but never mentions artificial intelligence. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-20 was submitted by the Metlakatla Indian Community and the Ketchikan Indian Community. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's resolutions committee recommended do pass on resolution 26-20. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's board recommended do pass on resolution 26-20. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- In the September 27th draft packet the convention action line for resolution 26-20 is blank, so delegates had not yet voted. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's resolutions state that its membership includes 192 federally recognized tribes. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's resolutions state that its membership includes 152 village corporations. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's resolutions state that its membership includes 11 regional corporations. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- AFN's resolutions state that its membership includes 11 regional nonprofit and tribal consortiums. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- The 2026 AFN Annual Convention runs October 22nd through October 24th. [Alaska Federation of Natives](https://nativefederation.org/convention/), primary document, 2026-10-21.
+- The 2026 AFN Annual Convention is in Anchorage. [Alaska Federation of Natives](https://nativefederation.org/convention/), primary document, 2026-10-21.
+- AFN delegates are scheduled to take up the 2026 convention resolutions on Saturday, October 24th, in a session set to start at a quarter past ten in the morning. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/10/2026-Annual-Convention-Agenda_10.16.26.pdf), primary document, 2026-10-16.
+- The resolutions session is moderated by Jodi Mitchell, chair of AFN's Resolutions Committee. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/10/2026-Annual-Convention-Agenda_10.16.26.pdf), primary document, 2026-10-16.
+- AFN's 2026 draft resolution packet contains 48 resolutions. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- None of the 48 resolution titles in AFN's 2026 draft packet names artificial intelligence, AI or data centers. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-21 asks the University of Alaska system to create academic credit and credential pathways for tribal training programs. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-21 was submitted by Tanana Chiefs Conference. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-47 urges Congress to appropriate 14.9 million dollars a year to the Bureau of Indian Affairs to sustain 36 Native radio stations and one Tribally licensed television station. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-47 was submitted by Cook Inlet Region, Inc. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Resolution 26-47 states that Alaska public media lost annual state funding in August 2019 and annual Corporation for Public Broadcasting funding in October 2025. [Alaska Federation of Natives](https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf), primary document, 2026-09-27.
+- Yup'ik has the largest body of speakers of any Alaska Native language, according to the Alaska Native Languages site. [Alaska Native Languages (alaskanativelanguages.org), maps credited to the Alaska Native Language Center](https://www.alaskanativelanguages.org/yugtun-yup-ik), report, 2026-10-21.
+- The Alaska Native Languages site puts the number of native Yup'ik speakers at 10,400. [Alaska Native Languages (alaskanativelanguages.org)](https://www.alaskanativelanguages.org/yugtun-yup-ik), report, 2026-10-21.
+- Central Alaskan Yup'ik is spoken in Southwest Alaska from Bristol Bay to Norton Sound. [Alaska Native Languages (alaskanativelanguages.org)](https://www.alaskanativelanguages.org/yugtun-yup-ik), report, 2026-10-21.
+- St. Lawrence Island Yupik is spoken by about 1,000 people on St. Lawrence Island, according to the Alaska Native Languages site. [Alaska Native Languages (alaskanativelanguages.org)](https://www.alaskanativelanguages.org/yupigestun-sli-yupik), report, 2026-10-21.
+- The same Yupik language is also spoken in eastern Russia. [Alaska Native Languages (alaskanativelanguages.org)](https://www.alaskanativelanguages.org/yupigestun-sli-yupik), report, 2026-10-21.
+- Glottolog lists St. Lawrence Island Yupik as an alternative name for Central Siberian Yupik and records it in Russia and the United States. [Glottolog (Max Planck Institute for Evolutionary Anthropology)](https://glottolog.org/resource/languoid/iso/ess), report, 2026-10-21.
+- The convention is being held at Anchorage's Dena'ina Civic and Convention Center. [Alaska Public Media (Alena Naiden, KNBA, Alaska Desk)](https://alaskapublic.org/news/alaska-desk/2026-10-19/alaska-federation-of-natives-convention-celebrates-60th-anniversary-this-week), report, 2026-10-19.
+- This year's AFN convention marks the organization's 60th anniversary. [Alaska Public Media (Alena Naiden, KNBA, Alaska Desk)](https://alaskapublic.org/news/alaska-desk/2026-10-19/alaska-federation-of-natives-convention-celebrates-60th-anniversary-this-week), report, 2026-10-19.
+
+Slides and the deck PDF are linked from the canonical page.
+
+
+---
+
 # One Rock, Two Readings of the Kenai Loop Gas Storage Lease
 
 > Under Kenai's airport, ownership changes once, then splits.
@@ -7385,6 +7513,7 @@ Canonical: https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center
 **2026-10-16** Searched the Federal Register today for documents naming docket P-15423 and found only the September 4th notice of the application. No permit has been issued or denied. Comments, motions to intervene and competing applications remain due November 2nd at 5 p.m. Eastern. Checked and unchanged.
 **2026-10-17** Searched the Federal Register today for documents naming docket P-15423 and found only the September 4th notice of the application. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged.
 **2026-10-19** Searched the Federal Register today for documents naming docket P-15423 published since September 5th and found none. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st and found none naming docket P-15423. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged.
 
 
 ---
@@ -7500,6 +7629,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 **2026-10-11** Searched the Federal Register today for any later notice in WC Docket No. 26-173 published since September 25th and found none, so reply comments remain due on or before October 30th. Checked and unchanged.
 **2026-10-14** Searched the Federal Register today for any notice citing WC Docket No. 26-173 published since September 25th and found none, so reply comments remain due on or before October 30th. Checked and unchanged.
 **2026-10-17** Searched the Federal Register today for any notice citing WC Docket No. 26-173 published since September 25th and found none, so reply comments remain due on or before October 30th. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for any notice citing WC Docket No. 26-173 published since September 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged.
 
 
 ---
@@ -7551,6 +7681,7 @@ Canonical: https://alaskaaihq.com/docket/kpb-weather-modification-code/
 **2026-10-16** The borough posted an amendment memo to Ordinance 2026-35 on October 16th, dated October 8th, from Assembly Member Len Niesen and Mayor Peter Micciche. It would require an application to identify the intended outcome of any proposed weather modification or geoengineering activity, and it corrects the closeout clause to cite items 1 to 10 rather than 1 to 9. The ordinance remains set for public hearing on October 20th.
 **2026-10-17** Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified October 16th. Checked and unchanged.
 **2026-10-19** Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified October 19th. No vote has been recorded. Checked and unchanged.
+**2026-10-20** Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified that afternoon, and no passage date is recorded. Checked and unchanged.
 
 
 ---
@@ -7791,6 +7922,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-10-07** Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th deadline as past due, a last update of July 14th and no award or amendment, so no lease has been reported for any of the 12 parcels at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged.
 **2026-10-11** Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th deadline as past due, a last update and archive date of July 14th, and no award, so no lease has been reported for any parcel at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged.
 **2026-10-15** Re-read the solicitation record for AFCEC-26-R-0006 on HigherGov today. It still shows the June 29th response deadline as past due, a last update and archive date of July 14th, and no award, so no lease has been reported for any parcel at Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's own announcement page refused an automated read. Checked and unchanged.
 
 
 ---
@@ -7959,6 +8091,7 @@ Canonical: https://alaskaaihq.com/docket/anchorage-rtcc-surveillance-ordinance/
 **2026-10-14** The Assembly's public safety page lists five amendments for the October 14th work session, Amendment 1 from Member McCormick to the S-1 version and Amendments 2 to 5 from Chair Brawley to both the S and S-1 versions. The Assembly postponed further action to its October 20th regular meeting, where the ordinance returns as unfinished business.
 **2026-10-16** Re-read the Assembly's public safety page today. It still lists the five amendments discussed at the October 14th work session and returns AO 2026-108 as unfinished business at the regular meeting on Tuesday, October 20th. No vote has been taken. Checked and unchanged.
 **2026-10-17** Re-read the Assembly's public safety page today. It still lists AO 2026-108 for unfinished business at the regular meeting on Tuesday, October 20th, with the five amendments from the October 14th work session. No vote has been taken. Checked and unchanged.
+**2026-10-20** Re-read the Assembly's public safety page today. It lists AO 2026-108 as unfinished business at the regular meeting of October 20th, with five amendments drafted for the October 14th work session, and reports no outcome yet. Checked and unchanged.
 
 
 ---
@@ -8000,6 +8133,7 @@ Canonical: https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/
 **2026-10-07** Searched the Federal Register today for any Environmental Protection Agency action on Alaska's Class VI application published since October 1st and found none. Checked and unchanged.
 **2026-10-11** Searched the Federal Register today for Alaska documents published since October 1st. None of the 37 concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged.
 **2026-10-15** Searched the Federal Register today for documents published October 9th to 16th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application, and the commission's own carbon storage page refused an automated read. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged.
 
 
 ---
@@ -8030,6 +8164,7 @@ Canonical: https://alaskaaihq.com/docket/beluga-healy-transmission-dpa/
 **2026-10-07** Tracked from today. The Department of Energy's October 5th release commits up to $150 million in Defense Production Act funding toward an estimated $418 million line of about 223 miles, and names military expansion and mining as the reasons. In late August the Alaska Energy Authority had listed the same line as under consideration in a presentation to Energy Secretary Chris Wright. AEA's executive director told the Alaska Beacon the federal money will likely go to engineering, planning and permitting.
 **2026-10-11** Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding, about $418 million in all, and names no agreement, environmental review or construction schedule yet. Checked and unchanged.
 **2026-10-15** Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding, about $418 million for roughly 223 miles of new line, and names no agreement, environmental review or construction schedule yet. Checked and unchanged.
+**2026-10-20** Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the roughly $418 million total a preliminary planning estimate, and reports no signed agreement. Checked and unchanged.
 
 
 ---
@@ -8085,6 +8220,7 @@ Canonical: https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/
 **2026-10-05** Searched the Federal Register today for notices on Bradley Lake. The August 3rd notice accepting the Alaska Energy Authority's amendment application is still the latest, and no FERC order on the Dixon Diversion has been published. Checked and unchanged.
 **2026-10-09** FERC published a new notice on October 6th, 91 FR 63543, in Project No. 8221-124. After reviewing the comments filed by August 28th, Commission staff now request recommendations, terms and conditions, and fishway prescriptions by November 30th, with reply comments due January 14th, 2027, both by 5 p.m. Eastern. No order on the amendment has been issued.
 **2026-10-14** Searched the Federal Register today for Alaska documents published October 8th to 15th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th and reply comments January 14th, 2027. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged.
 
 
 ---
@@ -8170,6 +8306,7 @@ Canonical: https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/
 **2026-10-08** Searched the Federal Register today for any Department of Transportation notice since September 12th on the corridors request and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged.
 **2026-10-11** Searched the Federal Register today for any Department of Transportation notice on the corridors request published since September 25th and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged.
 **2026-10-15** Searched the Federal Register today for any Department of Transportation corridors notice published October 9th to 16th and found none. The written comment period closed on October 2nd and the department has not said when it will act. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged.
 
 
 ---
@@ -8228,6 +8365,7 @@ Canonical: https://alaskaaihq.com/docket/eielson-oklo-microreactor/
 **2026-10-11** Searched the Federal Register today for Alaska documents published since October 1st and found no Air Force, Eielson or Oklo notice among the 37. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged.
 **2026-10-14** Searched the Federal Register today for Alaska documents published October 8th to 15th. The only Eielson item is a correction to per diem rates, and no Air Force, Oklo or reactor notice was published. KUAC's newest Eielson report is still September 20th. No site decision has been published, and responses to the Army Corps request for information remain due October 16th. Checked and unchanged.
 **2026-10-16** Searched the Federal Register today for documents published October 8th to 16th naming Eielson or Oklo. The only Eielson item is a correction to per diem rates, and no Air Force, Oklo or reactor notice was published. Responses to the Army Corps request for information were due today, October 16th. No site decision has been published. Checked and unchanged.
+**2026-10-20** Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force, Oklo or reactor notice. Checked and unchanged.
 
 
 ---
@@ -8297,9 +8435,11 @@ Canonical: https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/
 - 2026-07-13, Board weighs the purchase in executive session (vote)
 - 2026-08-25, Board votes 4 to 3 in Delta Junction to move ahead on a possible purchase and to keep studying alternatives (vote)
 - 2026-10-12, Golden Valley issues its first energy emergency alert, Level 2, about 15 MW of reserve (milestone)
+- 2026-10-20, Golden Valley issues a second energy emergency alert, Level 1, reserves below 38 MW (milestone)
 
 ## Sources
 
+- [Golden Valley Electric Association](https://www.gvea.com/energy-emergency-alert/), 2026-10-20
 - [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html), 2026-06-28
 - [KUAC](https://fm.kuac.org/energy-and-the-environment/2026-05-28/gvea-plans-extraordinarily-large-increase-in-co-op-fuel-charge), 2026-05-28
 - [Fairbanks Daily News-Miner](https://www.newsminer.com/news/local_news/gvea-board-to-weigh-heavy-purchase-decision-in-july-as-members-raise-concerns/article_c8b5ce9d-5c3a-46bf-b261-436ea4abe02b.html), 2026-07-06
@@ -8337,6 +8477,7 @@ Canonical: https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/
 **2026-10-10** Checked KUAC's energy coverage again today. Its newest Golden Valley story is still the August 27th report that the board voted to keep studying a used LM6000 at no more than $80 million, and no purchase vote has been reported or scheduled since. Checked and unchanged.
 **2026-10-14** Golden Valley issued its first energy emergency alert on October 12th, a Level 2 alert with about 15 megawatts of reserve generating capacity as members' demand neared what the co-op can generate, per KUAC. The co-op says it is working to acquire another large turbine generator and that new sources will take years. No purchase vote on the used LM6000 has been reported since the board's August 25th vote to keep studying it.
 **2026-10-15** Golden Valley's October 13th release explaining its first Energy Emergency Alert says a used LM6000 turbine, or an equivalent, is being evaluated for added baseload generation with a maximum project cost of $80 million. The same release describes a planned battery that would provide 70 megawatts for up to 2 hours at an estimated $130 million, about $18 million to members after loan forgiveness and tax credits, by the co-op's estimate. No purchase vote on the turbine has been reported.
+**2026-10-20** Golden Valley issued an Energy Emergency Alert at Level 1 at 8:15 a.m. on October 20th, its second alert in eight days, saying available generation reserves are declining and asking members to conserve electricity where practical. Its alert page defines Level 1 as reserves below 38 megawatts that are not expected to recover within two hours. No purchase vote on the turbine has been reported.
 
 
 ---
@@ -8392,6 +8533,7 @@ Canonical: https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/
 **2026-10-05** Checked GovInfo today. The engrossed House text of September 16th is still the latest published version, and no further Senate action has been published since the September 30th cloture vote. Checked and unchanged.
 **2026-10-09** Checked GovInfo today. The latest published versions are still the engrossed House text and the Senate calendar print, with no Senate-passed or enrolled version, so no further Senate action has been published. Checked and unchanged.
 **2026-10-14** GovInfo's bill collection and Congress.gov could not be read today, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th.
+**2026-10-20** Read the bill status record on GovInfo today. Its latest action is still September 30th, when cloture on the motion to proceed failed 57 to 43 in the Senate and the motion was withdrawn. Checked and unchanged.
 
 
 ---
@@ -8494,6 +8636,7 @@ Canonical: https://alaskaaihq.com/docket/terra-energy-center-doe-grant/
 **2026-10-08** New development on the ground side of this project. Terra Energy, an affiliate of Flatlands Energy, signed a 20 year lease in late May for 829 acres of University of Alaska land near Port MacKenzie for an industrial park tied to the coal plant, as reported by the Mat-Su Sentinel on October 6th and tracked here as its own entry. Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation for $89,000,000, and its description of the plant's loads names utilities, military installations, data centers and critical mineral operations.
 **2026-10-11** Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project, a 1,250 MW coal plant with carbon capture in the Matanuska-Susitna Borough, with no award or cancellation notice. Checked and unchanged.
 **2026-10-15** Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project, a 1,250 MW coal plant with carbon capture in the Matanuska-Susitna Borough, with no award or cancellation notice. Checked and unchanged.
+**2026-10-20** Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged.
 
 
 ---
@@ -8718,6 +8861,7 @@ Canonical: https://alaskaaihq.com/docket/anchorage-ao-2026-27-data-center-zoning
 
 **2026-07-18** Tracked from this run. Anchorage adopted the data center land use framework 10 to 2 on March 27, the first local guardrail of its kind in the state. Sponsored by Anna Brawley and Daniel Volland. Added because Carousel No. 10 turns on whether a Railbelt data center helps or hurts ratepayers, and this ordinance is the one enacted local guardrail while the state bill stalls.
 **2026-08-19** Checked and unchanged. AO 2026-27 stands as adopted on March 27th, 2026 by a 10 to 2 vote, amending Title 21 to create a data center land use category, subject those facilities to conditional use review and use-specific performance standards, and require utility statements on system capacity before a project proceeds. It remains the only enacted local framework of its kind in Alaska. The ordinance also directs further regulatory work on energy-intensive uses, so the framework is expected to keep developing.
+**2026-10-20** Re-read the text of AO 2026-27 on the Assembly's site today. It still defines data centers and similar energy-intensive facilities for land use review, as adopted on March 27th. Checked and unchanged.
 
 
 ---

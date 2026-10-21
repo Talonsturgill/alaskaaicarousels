@@ -3644,6 +3644,57 @@
     "power-and-the-grid",
     "land-and-permitting"
    ]
+  },
+  {
+   "run_date": "2026-10-20",
+   "carousel_no": 91,
+   "topic": "Open speech AI barely hears Central Alaskan Yup'ik: a Brandeis AmericasNLP 2026 paper played KYUK's Yup'ik clips (9 videos, 5.1 hours, via the American Archive of Public Broadcasting) to Meta's MMS-LID, the only one of the big open language-ID models whose label list includes Yup'ik (one label in 4,017); it answered Central Siberian Yupik (St. Lawrence Island and eastern Russia) 111 times and Yup'ik 110. A four-label pilot head on a frozen Whisper encoder, trained on about 1,600 labeled Yup'ik and Samoan clips by in-house researchers, lifted Yup'ik recall from 0.41 to 0.92 (pilot-scale). Community language fellows have begun labeling; native-speaker annotators are planned. AFN resolution 26-20 (Metlakatla and Ketchikan Indian Communities), permanent non-competitive federal language funding for Tribes with technology among its uses and no mention of AI, is set for the resolutions session Saturday, October 24th.",
+   "angle": "THE WRONG ADDRESS: the language heard in Bethel was answered with a place across the Bering Sea; labeled hours, not a bigger model, fixed most of it, so whoever labels the hours draws the map, and AFN takes up who pays for language work on Saturday.",
+   "entities": [
+    "Brandeis University",
+    "AmericasNLP 2026",
+    "Meta",
+    "MMS-LID",
+    "Whisper",
+    "VoxLingua107",
+    "ESPnet OWSM",
+    "KYUK",
+    "Bethel",
+    "American Archive of Public Broadcasting",
+    "St. Lawrence Island",
+    "Central Siberian Yupik",
+    "Central Alaskan Yup'ik",
+    "Alaska Federation of Natives",
+    "AFN resolution 26-20",
+    "Metlakatla Indian Community",
+    "Ketchikan Indian Community"
+   ],
+   "keywords": [
+    "spoken language identification",
+    "Yup'ik",
+    "low-resource languages",
+    "speech AI",
+    "labeled data",
+    "language revitalization funding",
+    "AFN convention",
+    "KYUK archive",
+    "Indigenous language technology",
+    "label space"
+   ],
+   "headline": "Played Bethel's Yup'ik, the model most often answered across the sea.",
+   "sources_lead": [
+    "https://aclanthology.org/2026.americasnlp-6.18.pdf",
+    "https://huggingface.co/facebook/mms-lid-4017",
+    "https://nativefederation.org/wp-content/uploads/2026/09/AFN-2026-Resolutions-9.27.26-final.pdf",
+    "https://nativefederation.org/wp-content/uploads/2026/10/2026-Annual-Convention-Agenda_10.16.26.pdf"
+   ],
+   "beats": [
+    "research-and-science",
+    "data-sovereignty",
+    "defense-and-federal"
+   ],
+   "claims": 79,
+   "note": "Picked over data-centre stories saturated in the 30-day window (governor race No.68, ACEP and GVEA No.87, AIDEA No.88). Rounds 5. Score 8.44, art 7.0."
   }
  ]
 }

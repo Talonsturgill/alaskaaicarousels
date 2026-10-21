@@ -1,0 +1,120 @@
+{
+ "round": 1,
+ "verdict": "revise",
+ "score_0_10": 7.3,
+ "arc_assessment": "The sequence keeps its promise: wrong-address cover, 111 to 110 payoff, legend, the turn 05 to 06 to 07, and the close lands on the caption's question. The middle sags: 04 plants no question, and 05 to 08 are four text-dense frames in a row with the weakest art at 04 and 05.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "weak"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "none"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "strong"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "weak"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 5,
+  "why": "04 closes its own loop and 05 opens on station history over the noisiest map"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 6.5,
+    "cause": "b",
+    "problem": "the Delta plain is a uniform embossed crinkle; lake rims lit both sides; hachure strands at the cut edge"
+   },
+   {
+    "slide": 4,
+    "score": 6.5,
+    "cause": "b",
+    "problem": "brightest frame (L* 23.3) with a smooth cream CG plain and flat black lakes, off the deck's material"
+   },
+   {
+    "slide": 9,
+    "score": 7.5,
+    "cause": "d",
+    "problem": "type reserve findable as vertical hatch bands; weak lower third"
+   },
+   {
+    "slide": 3,
+    "score": 7.5,
+    "cause": "b",
+    "problem": "the 4,017-tile field is one uniform value; the key never crosses it"
+   },
+   {
+    "slide": 8,
+    "score": 7.5,
+    "cause": "d",
+    "problem": "stipple clumps into blotches; wash remnant muddy at 26 percent"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     4,
+     7,
+     8
+    ],
+    "problem": "tonal arc: 04 brightest, peak ties 04/07/01"
+   },
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     6,
+     7
+    ],
+    "problem": "the same grey relief drawing carries four frames; 07's land substrate shares 01's plaster and chart bands"
+   }
+  ],
+  "masterful_depth_frame": 4
+ },
+ "fix_list_in_priority_order": [
+  "04 re-key down into the deck's material, drop the DOM key dots",
+  "05 low-pass the height before hillshade, NW-only rims, clip hachure, rendered pin heads for the nine",
+  "cut the 1971/1972 sentence from 05 and the 2,000-videos sentence from 07",
+  "lay a 20 to 25 percent salmonberry glaze over the Delta on 06",
+  "09 one smooth elliptical reserve with a wide feather",
+  "03 rake the key across the tile field",
+  "08 smooth the stipple shade driver and lift the wash to about 32 percent",
+  "refresh the recon tonal-arc line"
+ ]
+}
