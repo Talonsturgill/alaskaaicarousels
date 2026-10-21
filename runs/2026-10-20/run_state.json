@@ -126,6 +126,14 @@
    "artifacts": [
     "out/2026-10-20/final/carousel.pdf"
    ]
+  },
+  "automation_retro": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-10-20/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due; 2 items queued, 2 repeats raised"
   }
  }
 }
