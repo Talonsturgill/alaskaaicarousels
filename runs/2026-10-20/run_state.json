@@ -103,7 +103,7 @@
     "knowledge/FIELD_NOTES.md",
     "knowledge/TECHNIQUE_LIBRARY.md"
    ],
-   "note": "site_build at 2026-10-20 (fresh), parsers/scanner/docket_dates PASS, no alerts due, prune freed 2.32M"
+   "note": "site_build at 2026-10-21 after merging main (main's cron had built docs at 2026-10-21; never build earlier than main), site_fresh_check --date 2026-10-21 OK; parsers, scanner and docket_dates PASS; no alerts due; prune freed 2.32M"
   },
   "upgrade": "pending",
   "gmail": "pending",
