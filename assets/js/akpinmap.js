@@ -81,16 +81,25 @@
         var cc = kc + dx, rr = kr + dy; if (cc < 0 || rr < 0 || cc >= C || rr >= R) continue; sum += src[rr * C + cc]; n++; }
       a[k] = (sum / n > 1.5) ? 1 : Math.min(-1, a[k]);       // a one-cell pit inside land is DEM noise, not a lake
     }
-    // lowland cells (under 12 m) take their 3x3 mean, so a flat delta coast follows a curve and not the grid
-    var b = new Float32Array(a);
-    for (var k2 = 0; k2 < a.length; k2++) {
-      if (!(src[k2] > 0 && src[k2] < 12)) continue;
-      var c2 = k2 % C, r2 = (k2 - c2) / C, s3 = 0, n3 = 0;
-      for (var ey = -1; ey <= 1; ey++) for (var ex = -1; ex <= 1; ex++) {
-        var c3 = c2 + ex, r3 = r2 + ey; if (c3 < 0 || r3 < 0 || c3 >= C || r3 >= R) continue; s3 += a[r3 * C + c3]; n3++; }
-      b[k2] = s3 / n3;
+    // lowland cells (under 40 m) take two 5x5 means, so a flat delta coast follows a curve and the
+    // metre steps of the source do not print as terraces; uplands keep their measured height
+    for (var lp = 0; lp < 2; lp++) {
+      var b = new Float32Array(a);
+      for (var k2 = 0; k2 < a.length; k2++) {
+        if (!(src[k2] > -3 && src[k2] < 40)) continue;
+        var c2 = k2 % C, r2 = (k2 - c2) / C, s3 = 0, n3 = 0;
+        for (var ey = -2; ey <= 2; ey++) for (var ex = -2; ex <= 2; ex++) {
+          var c3 = c2 + ex, r3 = r2 + ey; if (c3 < 0 || r3 < 0 || c3 >= C || r3 >= R) continue; s3 += a[r3 * C + c3]; n3++; }
+        b[k2] = s3 / n3;
+      }
+      a = b;
     }
-    a = b;
+    // a lone land cell in open water is a speck of noise, not an islet
+    for (var k4 = 0; k4 < a.length; k4++) {
+      if (!(a[k4] > 0)) continue; var c4 = k4 % C, r4 = (k4 - c4) / C, nb = 0;
+      for (var fy = -1; fy <= 1; fy++) for (var fx = -1; fx <= 1; fx++) { var c5 = c4 + fx, r5 = r4 + fy; if (c5 < 0 || r5 < 0 || c5 >= C || r5 >= R) continue; if (a[r5 * C + c5] > 0) nb++; }
+      if (nb <= 1) a[k4] = -1;
+    }
     function sample(lon, lat) {
       var fi = (lon - m.west) / m.dlon, fj = (m.north - lat) / m.dlat;
       if (!(fi >= 0 && fj >= 0 && fi <= C - 1 && fj <= R - 1)) return NaN;
@@ -201,7 +210,7 @@
           a = [a[0] * bk, a[1] * bk, a[2] * bk];
           var bu = band(X - 1.3, Y - 1.3);                                 // toward the lamp
           if (bu !== b0) {
-            var lit = bu > b0 ? 2.3 : 0.45;                                // the riser faces the lamp, or falls away from it
+            var lit = bu > b0 ? 3.2 : 0.35;                                // the riser faces the lamp, or falls away from it
             a = [a[0] * lit, a[1] * lit, a[2] * lit];
           }
         }
@@ -209,12 +218,12 @@
       if (m !== 3) {
         // blend plaster and resin over the last few metres either side of the coast so the edge is antialiased
         var llc = P.invert([X, Y]), hc = llc ? dem.sampleCubic(llc[0], llc[1]) : -10;
-        if (hc === hc && hc > -3 && hc < 3) {
-          var f = (hc + 3) / 6; f = f * f * (3 - 2 * f);
+        if (hc === hc && hc > -6 && hc < 6) {
+          var f = (hc + 6) / 12; f = f * f * (3 - 2 * f);
           var land = [plaster[0] * 0.58, plaster[1] * 0.58, plaster[2] * 0.58];
           var sea = resin;
           var mixd = [sea[0] + (land[0] - sea[0]) * f, sea[1] + (land[1] - sea[1]) * f, sea[2] + (land[2] - sea[2]) * f];
-          var wgt = 1 - Math.abs(hc) / 3; a = [a[0] + (mixd[0] - a[0]) * wgt, a[1] + (mixd[1] - a[1]) * wgt, a[2] + (mixd[2] - a[2]) * wgt];
+          var wgt = 1 - Math.abs(hc) / 6; a = [a[0] + (mixd[0] - a[0]) * wgt, a[1] + (mixd[1] - a[1]) * wgt, a[2] + (mixd[2] - a[2]) * wgt];
         }
       }
       if (o.tint) { var tw = o.tint(X, Y, m); if (tw) a = [a[0] * (1 - tw[3]) + tw[0] * tw[3], a[1] * (1 - tw[3]) + tw[1] * tw[3], a[2] * (1 - tw[3]) + tw[2] * tw[3]]; }
