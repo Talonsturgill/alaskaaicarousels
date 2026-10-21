@@ -149,7 +149,7 @@
    * 3 desk outside the slab. Albedos are linear. */
   AKPIN.sheet = function (cx, P, dem, o) {
     contract("AKPIN.sheet", o, ["x", "y", "w", "h", "slabTop", "exaggeration", "key", "ambient",
-      "plaster", "resin", "deep", "desk", "tint", "softness", "castLength", "extraHeight", "lip", "albedoHook"]);
+      "plaster", "resin", "deep", "desk", "tint", "softness", "castLength", "extraHeight", "lip", "albedoHook", "bands", "bevel"]);
     var H0 = AKPIN.heightFn(P, dem, { exaggeration: o.exaggeration, lip: o.lip });
     var top = o.slabTop != null ? o.slabTop : -1e9;
     var plaster = o.plaster || [0.62, 0.67, 0.71], resin = o.resin || [0.030, 0.062, 0.105],
@@ -165,8 +165,18 @@
     function material(X, Y) {
       if (Y < top) return 3;
       var ll = P.invert([X, Y]); if (!ll) return 2;
-      var h = dem.sample(ll[0], ll[1]);
+      var h = dem.sampleCubic(ll[0], ll[1]);                  // cubic, so the coast follows a curve and not the grid
       return h > 0 ? 1 : 2;
+    }
+    /* chart bands: the resin is poured in steps at chart depths, each band a
+     * shade deeper, and each step's riser catches the lamp on the side facing
+     * the northwest and falls into lee on the side facing away */
+    var BANDS = [10, 20, 30, 50, 75, 100, 200, 1000];
+    function band(X, Y) {
+      var ll = P.invert([X, Y]); if (!ll) return BANDS.length;
+      var h = dem.sampleCubic(ll[0], ll[1]); if (!(h === h)) return BANDS.length;
+      var d = -h, n = 0; for (var i = 0; i < BANDS.length; i++) if (d > BANDS[i]) n++;
+      return n;
     }
     function albedo(X, Y, m) {
       var a;
@@ -186,6 +196,15 @@
         if (!(d === d)) d = 3000;
         var s = Math.max(0, Math.min(1, Math.log(1 + Math.max(0, d)) / Math.log(3000)));
         a = [resin[0] + (deep[0] - resin[0]) * s, resin[1] + (deep[1] - resin[1]) * s, resin[2] + (deep[2] - resin[2]) * s];
+        if (o.bands !== false) {
+          var b0 = band(X, Y), bk = 1 - 0.07 * b0;                       // each poured step a shade deeper
+          a = [a[0] * bk, a[1] * bk, a[2] * bk];
+          var bu = band(X - 1.3, Y - 1.3);                                 // toward the lamp
+          if (bu !== b0) {
+            var lit = bu > b0 ? 2.3 : 0.45;                                // the riser faces the lamp, or falls away from it
+            a = [a[0] * lit, a[1] * lit, a[2] * lit];
+          }
+        }
       }
       if (m !== 3) {
         // blend plaster and resin over the last few metres either side of the coast so the edge is antialiased
@@ -202,13 +221,23 @@
       if (o.albedoHook) a = o.albedoHook(X, Y, m, a) || a;
       return a;
     }
-    return AKBENCH.relief(cx, {
+    var out = AKBENCH.relief(cx, {
       x: o.x, y: o.y, w: o.w, h: o.h, scale: 2,
       height: height, material: material, albedo: albedo,
       spec: { 1: [0.10, 18], 2: [0.42, 46], 3: [0.05, 10] },
       light: o.key || KEY, ambient: o.ambient != null ? o.ambient : 0.24, diffuse: 0.95,
       ao: 0.8, shadow: 0.82, softness: o.softness || 9, castLength: o.castLength || 120, dither: true
     });
+    if (o.bevel !== false && o.slabTop != null) {
+      // the slab's top arris: a lit 2 px edge facing the lamp, then the edge falling into the sheet
+      cx.save();
+      cx.fillStyle = "rgba(201,210,217,0.55)"; cx.fillRect(o.x, top, o.w, 1.6);
+      var bg = cx.createLinearGradient(0, top + 1.6, 0, top + 7);
+      bg.addColorStop(0, "rgba(125,138,149,0.30)"); bg.addColorStop(1, "rgba(125,138,149,0)");
+      cx.fillStyle = bg; cx.fillRect(o.x, top + 1.6, o.w, 5.4);
+      cx.restore();
+    }
+    return out;
   };
 
   /* A map pin: steel needle, rendered spherical head, two-part cast to the
