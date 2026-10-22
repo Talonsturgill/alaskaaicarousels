@@ -1,0 +1,14 @@
+{
+ "what": "Ganes Creek airborne radiometrics for No.92: potassium percent, equivalent thorium, equivalent uranium, each uint8 row-major north up, 0 = nodata, 1 to 255 = linear between the layer 1st and 99th percentile, 500 m UTM zone 4N grid (block mean of the 100 m grids)",
+ "source": "Alaska DGGS Geophysical Report 2026-1 (doi 10.14509/31746) grids_tif ganes_creek_rad_pct_k, rad_equiv_th, rad_equiv_u; fetched 2026-10-22; open end-user license",
+ "layers": [
+  "pct_k",
+  "equiv_th",
+  "equiv_u"
+ ],
+ "cols": 415,
+ "rows": 239,
+ "x0": 529700.0,
+ "y1": 7025900.0,
+ "cell": 500.0
+}

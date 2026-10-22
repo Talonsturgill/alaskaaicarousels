@@ -1,0 +1,12 @@
+{
+ "what": "No.92 slide 05 view window: terrain (m, int16) then residual magnetic intensity (nT, int16, nodata -32768), 200 m UTM zone 4N grid, row-major north up",
+ "source": "DGGS GPR 2026-1 and 2026-2 grids_tif dtm and residualmag at 100 m, block-averaged to 200 m; terrain cells outside the surveys filled from assets/geo/ak-westcoast-dem (AWS Terrain Tiles) with a median bias match of -2.9 m; fetched 2026-10-22",
+ "x0": 500000.0,
+ "x1": 680000.0,
+ "y0": 6880000.0,
+ "y1": 7040000.0,
+ "cell": 200.0,
+ "cols": 900,
+ "rows": 800,
+ "survey_terrain_fraction": 0.741
+}

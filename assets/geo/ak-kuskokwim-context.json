@@ -1,0 +1,11 @@
+{
+ "what": "No.92 regional terrain shade for plan maps: uint8 row-major north up, 0 = sea or no land, 1 to 255 = soft shade from slope and local relief (no directional key), 1 km UTM zone 4N grid",
+ "source": "assets/geo/ak-westcoast-dem (AWS Terrain Tiles, terrarium) resampled to UTM 4N with pyproj, 2026-10-22",
+ "x0": 260000.0,
+ "x1": 960000.0,
+ "y0": 6600000.0,
+ "y1": 7260000.0,
+ "cell": 1000.0,
+ "cols": 700,
+ "rows": 660
+}
