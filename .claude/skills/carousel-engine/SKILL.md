@@ -307,6 +307,18 @@ FAILs whatever it left stale.
   fade the gradient was there to provide. `ctx.filter` applies PER DRAW OP, so
   punch once on the offscreen canvas and never inside a stroke loop.
   Reconstruction: `python tests/reserve_punch_verify.py`.
+
+  **A canvas blur is in BITMAP px, so that `blur: 9` is a 4.5 px feather**
+  (2026-10-21, weekly pass). Chromium applies `ctx.filter`'s blur (and
+  `shadowBlur`) without the transform, so on a 2x canvas every blur radius a
+  slide or helper types is half its width in design px. That was half the
+  cause of the slab reserves of No.89 to No.92, four decks in a row, each fixed
+  by hand at about a 20 design px sigma. For a reserve under type on textured
+  art use `AKPOST.reserve(cx, rects, {color: <ground>})` (or `{erase: true}`
+  on an offscreen field): its `feather` is a design px sigma, default 20, and
+  it pads the rects so the type sits at the 90 percent contour. Anywhere else
+  you write `ctx.filter = 'blur(Npx)'` on a scaled context, multiply N by the
+  scale. Measured: `python tests/akpost_reserve_verify.py`.
 - **A mark on a measured axis is a quantity, whatever it was drawn for**
   (2026-08-16). If a POSITION in the artwork carries a number (a money rail, a
   timeline, a bar baseline, a dated span), the slide declares the scale and
@@ -1041,6 +1053,12 @@ them or every archive page goes blank.
   -0.15 to +0.06. akpost.js now THROWS (a render hard fail) past 0.75 stops and
   akthree console.errors a multiplier under 0.25, so the trap is closed from
   both ends.
+  **The grade turns #FFC72C lemon** (2026-10-21): defaults take a flat gold to
+  rgb(236, 217, 0), 19.9 dE, hue 85 to 97 degrees. Draw the flag ink after the
+  grade, or end the art with `AKPOST.holdInk(cx, {hex: '#FFC72C'})`, which
+  turns the drifted family back to the ink's hue and keeps its light
+  (`python tests/akpost_holdink_verify.py`). `AKPOST.reserve` (above, under
+  the reserve punch) lives here too.
 - `assets/js/akcolor.js` — OKLCH engine (`AKC.*`): material ramps (chroma
   bell + warm-light/cool-shadow hue drift), OKLab gradient mixing,
   gradient-map LUT underpainting.

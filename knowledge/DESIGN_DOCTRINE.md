@@ -119,6 +119,32 @@ pixel critics grade against this document. Companion: TECHNIQUE_LIBRARY.md
     and a reflective surface bounces light "back up into the object ...
     separating it from the surface"
     (https://www.talkphotography.co.uk/threads/lighting-challenge-9-black-on-black.773212/).
+  - **A blurred box under the type** (2026-10-21; No.89 slides 03, 04 and
+    05, No.90 06, No.91's flow critic, No.92 02, 03 and 04). Asked for quiet
+    ground under a headline, the model fills the text's rectangle and blurs
+    it by 8 to 24 px, and on textured art every one printed as a slab or a
+    plate for two or three critic rounds. Half the cause is a unit:
+    `ctx.filter`'s blur is in BITMAP px and ignores the transform, so on the
+    house's 2x canvas `blur(14px)` is a 7 design px sigma (measured in the
+    engine's Chromium 141, tests/akpost_reserve_verify.py). The feather that
+    disappeared on all four decks was a 20 design px sigma or wider, a 10 to
+    90 percent edge of about 50 design px. Use `AKPOST.reserve(cx, rects,
+    {color: <the ground's own colour>})`, which takes its feather in design
+    px, defaults to that 20, pads each rect so the type sits at the 90
+    percent contour, and blurs one union; call it before the grade so the
+    reserve and its ground grade as one tone. Better still, route the art
+    around the type and reserve nothing.
+  - **The flag gold drawn under the grade** (2026-10-21, No.92 slides 04, 05
+    and 09). The model paints #FFC72C into the art and then grades the
+    frame. AKPOST.grade's defaults turn a flat #FFC72C into rgb(236, 217, 0),
+    19.9 dE away and 12 degrees of hue toward lemon, and a three.js material
+    under tone mapping and a darkening sill went lemon and then olive.
+    Critics named it on three frames for three rounds. Draw the deck's flag
+    ink AFTER the grade. Where it has to live inside the graded or rendered
+    picture, call `AKPOST.holdInk(cx, {hex: '#FFC72C'})` as the LAST art
+    op, which turns the drifted family back to the ink's hue and keeps its
+    light (tests/akpost_holdink_verify.py: the graded patch returns to
+    #FFC72C exactly; ground, snow, aurora, olive, copper and salmon untouched).
 - Text contrast ≥4.5:1 at the worst-case point; earn it with the art
   (composition routes quiet zones under text) before reaching for scrims;
   scrim/plate/backdrop-blur are the fallback tools, subtle and motivated.

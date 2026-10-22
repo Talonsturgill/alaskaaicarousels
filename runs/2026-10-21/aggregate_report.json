@@ -1,0 +1,79 @@
+{
+  "run_dir": "out/2026-10-21",
+  "render_report": "out/2026-10-21/render/render_report.json",
+  "aggregates_file": "out/2026-10-21/aggregates.json",
+  "detected": 7,
+  "declared": 7,
+  "detections": [
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "400 meters",
+      "at": 6,
+      "text": "Lines 400 meters apart, about 100 meters up.",
+      "n": 400,
+      "subject": "meters"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "100 meters",
+      "at": 30,
+      "text": "Lines 400 meters apart, about 100 meters up.",
+      "n": 100,
+      "subject": "meters"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "two summers",
+      "at": 43,
+      "text": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all. A cesium sensor read the rock's magnetism. Two gamma-ray spectrometers read its radiation.",
+      "n": 2,
+      "subject": "summers"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "86,319 line kilometers",
+      "at": 56,
+      "text": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all. A cesium sensor read the rock's magnetism. Two gamma-ray spectrometers read its radiation.",
+      "n": 86319,
+      "subject": "line kilometers"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Two gamma-ray spectrometers",
+      "at": 130,
+      "text": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all. A cesium sensor read the rock's magnetism. Two gamma-ray spectrometers read its radiation.",
+      "n": 2,
+      "subject": "gamma-ray spectrometers"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "400 meters",
+      "at": 30,
+      "text": "The McGrath block, read every 400 meters.",
+      "n": 400,
+      "subject": "meters"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "Five surveys",
+      "at": 0,
+      "text": "Five surveys, one scale.",
+      "n": 5,
+      "subject": "surveys"
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "S4 'Four fixed-wing aircraft flew McGrath over two s' [from_claim]: the noun 'summer' does not appear in claim C64; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

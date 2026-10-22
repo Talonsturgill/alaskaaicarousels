@@ -34,6 +34,12 @@ of each, so cause d is judged at native size; a tile set cut from an earlier
 render is reported stale and not listed. A missing or stale set never changes the
 exit code.
 
+Since 2026-10-21 the block also names the slide's FEED THUMB, the 432 px file
+render.py writes beside the tiles (render/crops/slide-NN-thumb.png) under the same
+staleness check, so the critic's THUMB TEST reads the feed size and not a downscale
+of the 1600 px view. No.90, No.91 and No.92 each lost a thumb to the final/thumbs
+naming or to assemble.py's thumbs not existing yet in a fix round.
+
     python3 scripts/critic_brief.py --run-dir out/2026-10-04 [--slide 5] [--json]
     python3 scripts/critic_brief.py --self-test
 
@@ -130,7 +136,18 @@ def native_crops(render_dir, slide):
     if lost or not tiles:
         return {"stale": "the crop set for slide %02d is incomplete (%s missing); re-render "
                          "it with render.py to cut every tile" % (slide, ", ".join(lost) or "all")}
-    return {"tiles": tiles}
+    out = {"tiles": tiles}
+    # THE FEED THUMB (2026-10-21): cut by render.py from the same frame, so the
+    # sha check above already vouches for it. A set cut before render.py wrote
+    # thumbs has none, and says so rather than sending the critic to look.
+    t = m.get("thumb") or {}
+    tp = (rd / "crops" / t["file"]).resolve() if t.get("file") else None
+    if tp and tp.exists():
+        out["thumb"] = {"path": str(tp), "px": t.get("px")}
+    else:
+        out["thumb_missing"] = ("no 432 px thumb in this crop set; re-render slide %02d with a "
+                                "current render.py, which cuts it beside the tiles" % slide)
+    return out
 
 
 def crop_lines(c):
@@ -140,6 +157,14 @@ def crop_lines(c):
         for t in c["tiles"]:
             d = t["design"] or [0, 0, 0, 0]
             out.append("    x %d to %d, y %d to %d: %s" % (d[0], d[2], d[1], d[3], t["path"]))
+        th = c.get("thumb")
+        if th:
+            px = th.get("px") or [432, 0]
+            out.append("  feed thumb, %d x %d px, the size a reader scrolls past (Read it for the "
+                       "THUMB TEST; never judge the feed read from a downscale): %s"
+                       % (px[0], px[1], th["path"]))
+        else:
+            out.append("  feed thumb: %s" % c.get("thumb_missing", "none listed"))
         return out
     return ["  native crops: %s" % (c.get("stale") or c.get("missing"))]
 
@@ -218,10 +243,23 @@ nothing
            len(c.get("tiles") or []) == 1 and c["tiles"][0]["design"] == [0, 0, 540, 450], c)
         ok("the printed block names the tile and its region",
            "x 0 to 540, y 0 to 450" in render_block(dict(b[0], native_crops=c)))
+        # 2026-10-21: a set cut before render.py wrote thumbs names no thumb and says why
+        ok("a crop set without a thumb says so instead of naming a path",
+           "thumb" not in c and "no 432 px thumb" in render_block(dict(b[0], native_crops=c)), c)
+        (rd / "crops" / "slide-01-thumb.png").write_bytes(b"thumb")
+        man1 = json.loads((rd / "crops" / "slide-01.json").read_text())
+        man1["thumb"] = {"file": "slide-01-thumb.png", "px": [432, 540]}
+        (rd / "crops" / "slide-01.json").write_text(json.dumps(man1))
+        c = native_crops(rd, 1)
+        blk = render_block(dict(b[0], native_crops=c))
+        ok("a fresh thumb is named with its size and absolute path",
+           (c.get("thumb") or {}).get("path", "").endswith("slide-01-thumb.png")
+           and "feed thumb, 432 x 540 px" in blk and str(rd.resolve()) in blk, blk)
         frame.write_bytes(b"frame two, re-rendered")
         c = native_crops(rd, 1)
         ok("crops cut from an earlier render read stale and list nothing",
            "stale" in c and not c.get("tiles"), c)
+        ok("a stale set lists no thumb either", not c.get("thumb"), c)
         ok("a slide with no crops reads missing", "missing" in native_crops(rd, 2))
         # Codex, PR #422: a manifest naming a tile that is gone is incomplete, not a partial view
         (rd / "slide-03.png").write_bytes(b"frame three")

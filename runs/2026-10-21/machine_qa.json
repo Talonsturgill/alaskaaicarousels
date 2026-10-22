@@ -1,0 +1,261 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold row of the flown line in the stack': canvas 111.2 dE, page 115.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 0 km at 0 to 21.72 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the flown line's rail crest\" lands 4.0px from its target",
+        "leader \"the flown line's rail crest\" meets its label 2.0px away",
+        "leader \"the flown line's rail crest\" is drawn 28 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h '86,319 km of publicsurvey lines.Now an AI pr' fits 3/3 lines at 90px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 31% / mid 62% / bottom 29% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "busy art under text (bg edge density 0.26) beneath 'GANES CREEK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold flown line in plan': canvas 110.7 dE, page 106.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 21.72 km at 0 to 43.44 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the candle hills survey block' lands 2.0px from its target",
+        "leader 'the granite mtn survey block' lands 2.0px from its target",
+        "leader 'the ganes creek survey block' lands 0.0px from its target",
+        "leader 'the candle hills survey block' meets its label 8.0px away",
+        "leader 'the granite mtn survey block' meets its label 8.0px away",
+        "leader 'the ganes creek survey block' meets its label 4.0px away",
+        "leader 'the candle hills survey block' is drawn 221 px at 0 degrees, inside the pointer band",
+        "leader 'the granite mtn survey block' is drawn 321 px at 12 degrees, inside the pointer band",
+        "leader 'the ganes creek survey block' is drawn 65 px at 13 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h 'On October 20th,an AI prospect generatorset ' fits 3/3 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the lifted square of the McGrath field, its south wall on the lit desk': shadow L* 7.3 vs ground L* 19.8, dL 12.5 at 432w"
+      ],
+      "motifs": [
+        "'the lifted square of the McGrath field': canvas 82.0 dE, page 82.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 43.44 km at 0 to 65.15 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the lifted square's south corner\" lands 0.0px from its target",
+        "leader \"the lifted square's south corner\" meets its label 10.0px away",
+        "leader \"the lifted square's south corner\" is drawn 267 px at 17 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h 'It packages the target,not the drill.' fits 2/2 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the flown line's gold crossing dot': canvas 119.7 dE, page 121.5 dE, 100% of its rect is clear of opaque DOM",
+        "'400 m line spacing at drawing scale, from the real crossings': canvas 1.2 dE, page 85.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 65.15 km at 0 to 86.87 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Lines 400 meters apart,about 100 meters up.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'400 m line spacing at drawing scale, from the real crossings' holds: 36 vs 35.955 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold flown line draped on the terrain': canvas 74.7 dE, page 90.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 86.87 km at 0 to 109 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'The McGrath block,read every 400 meters.' fits 2/2 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the flown line, km from its east end' runs 109 km at 0 to 130 km at 1080; 1 declared mark(s), and the band's census finds no others",
+        "'candle hills bar, line km' runs 0 line km at 660 to 88,000 line km at 1000; 2 declared mark(s), and the band's census finds no others",
+        "'granite mountain bar, line km' runs 0 line km at 660 to 88,000 line km at 1000; 2 declared mark(s), and the band's census finds no others",
+        "'aniak and little taylor mtns bar, line km' runs 0 line km at 660 to 88,000 line km at 1000; 2 declared mark(s), and the band's census finds no others",
+        "'ganes creek bar, line km' runs 0 line km at 660 to 88,000 line km at 1000; 2 declared mark(s), and the band's census finds no others",
+        "'mcgrath bar, line km' runs 0 line km at 660 to 88,000 line km at 1000; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Five surveys,one scale.' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the printed plate of the Ganes Creek radiometrics': canvas 85.2 dE, page 86.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 130 km at 0 to 152 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Paid for by Earth MRI.Free to download.' fits 2/2 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the milled pocket's lit north wall': canvas 18.6 dE, page 20.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the stipple field of the magnetic gradient': canvas 67.5 dE, page 68.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 152 km at 0 to 174 km at 1080; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Open input.Private output.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the hero ridge's gold crest': canvas 70.4 dE, page 85.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the flown line, km from its east end' runs 174 km at 0 to 195 km at 1056; 1 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Should a targetbuilt on public surveyssay wh' fits 3/3 lines at 83px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKK.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKK.grain",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKK.load",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKK.nt01",
+        "slides": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "call": "AKK.punch",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKK.rail",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "call": "AKK.ramp",
+        "slides": [
+          1,
+          2,
+          3,
+          5
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

@@ -23,6 +23,13 @@ critics said exactly that and could not confirm cause d. READ EVERY TILE before
 you answer step 4 or cause d, and cite the tile's region in `where`. If the
 lines say the crops are stale or missing, say so in `frame_causes.d.why`.
 
+The last of those lines is the FEED THUMB (2026-10-21): a 432 px file render.py
+cuts from the same frame, `render/crops/slide-NN-thumb.png`. That is the thumb
+step 7 judges. Do not go looking for one under final/thumbs (assemble.py names
+them slide-NN-thumb.png and writes them only after the review loop), and never
+judge the feed read from a downscale of the full render; if the line says there
+is no thumb, say so in your summary and judge step 7 as unverified.
+
 Protocol per slide — LOOK at both images (Read them), then:
 
 1. **TRANSCRIBE** every visible text string exactly as rendered. Diff

@@ -430,6 +430,218 @@
     return true;
   };
 
+  /* ---- RESERVE: a feathered quiet ground under type (2026-10-21, weekly pass) ----
+   *
+   *   AKPOST.reserve(cx, rects, {color: '#070B11', feather: 20, strength: 0.9});
+   *   AKPOST.reserve(off, rects, {erase: true});      // punch out of an offscreen field
+   *
+   * A BLURRED BOX IS STILL A BOX UNTIL ITS FEATHER IS WIDE, and four decks in a
+   * row learned that by hand: No.89 (03, 04, 05, "a blurred box is still a
+   * box"), No.90 (06, "a knockout is a box unless it is a feather"), No.91 (the
+   * flow critic: "type reserve findable as vertical hatch bands"), No.92 (02,
+   * 03, 04, slabs until the blur reached 40). Each wrote its own helper and each
+   * met the same root cause, measured on 2026-10-21 in the engine's Chromium
+   * 141: ctx.filter's blur radius is in BITMAP px and ignores the transform, so
+   * on the house's 2x canvas `blur(10px)` is a 5 design px sigma (10 to 90
+   * percent edge: 24 device px at scale 1 AND at scale 2). Every reserve helper
+   * in assets/js typed its blur as if it were design px and got half of it.
+   * The feather that stopped printing as a slab on textured art was 40 bitmap
+   * px on No.92, a 20 design px sigma, a 10-to-90 edge of about 51 design px;
+   * No.89's 60 px and No.90's 70 px smoothstep feathers sit on the same width.
+   *
+   * So here `feather` is the Gaussian sigma in DESIGN px (converted through the
+   * context's own scale), defaulting to that measured 20. `pad` (default 1.28
+   * sigma) grows each rect so the TYPE's own box sits at the 90 percent contour
+   * and the half-strength line lies outside it: the long fall-off with its
+   * centre toward the dark side that Material's scrim guidance asks for
+   * (https://css-tricks.com/easing-linear-gradients/). The rects are filled as
+   * ONE opaque union on an offscreen and blurred once, so overlapping line boxes
+   * do not stack into a darker seam. Paint mode needs the GROUND's own colour
+   * (`color`, required): a reserve in a different tone from the ground around
+   * it is a plate however soft its edge. Call it BEFORE AKPOST.grade so the
+   * reserve and the ground are graded as one tone (No.92, AKK.punch).
+   * `erase: true` punches with destination-out instead, for an offscreen field.
+   * A wrong option shape throws, as grade() does. Returns the bitmap px blur
+   * and the pad used. tests/akpost_reserve_verify.py holds the numbers. */
+  const RESERVE_FEATHER = 20;
+  const RESERVE_OPTS = ["feather", "color", "erase", "strength", "pad"];
+  function badR(where, got, want) {
+    throw new TypeError("AKPOST.reserve: " + where + " must be " + want + ", got " +
+      (Array.isArray(got) ? "array[" + got.length + "]" : typeof got) + " " + JSON.stringify(got));
+  }
+  P.reserve = function (ctx, rects, o) {
+    o = o || {};
+    for (const k of Object.keys(o)) {
+      if (RESERVE_OPTS.indexOf(k) === -1)
+        throw new TypeError("AKPOST.reserve: unknown option '" + k + "' (known: " +
+                            RESERVE_OPTS.join(", ") + ")");
+    }
+    if (!Array.isArray(rects)) badR("rects", rects, "an array of [x, y, w, h]");
+    for (const r of rects) {
+      if (!Array.isArray(r) || r.length < 4 || !r.slice(0, 4).every((n) => typeof n === "number" && isFinite(n)))
+        badR("rect", r, "[x, y, w, h] in design px");
+    }
+    const feather = o.feather != null ? o.feather : RESERVE_FEATHER;
+    if (typeof feather !== "number" || !isFinite(feather) || feather < 0)
+      badR("feather", feather, "a sigma in design px, 0 or more");
+    const strength = o.strength != null ? o.strength : 0.9;
+    if (typeof strength !== "number" || !(strength >= 0 && strength <= 1))
+      badR("strength", strength, "a number from 0 to 1");
+    const pad = o.pad != null ? o.pad : 1.28 * feather;
+    if (typeof pad !== "number" || !isFinite(pad)) badR("pad", pad, "design px");
+    if (!o.erase && typeof o.color !== "string")
+      badR("color", o.color, "the ground's own colour as a string (or erase: true)");
+    const t = ctx.getTransform();
+    const s = Math.hypot(t.a, t.b) || 1;
+    const cv = ctx.canvas, off = document.createElement("canvas");
+    off.width = cv.width; off.height = cv.height;
+    const g = off.getContext("2d");
+    g.setTransform(t);
+    g.fillStyle = o.erase ? "#000" : o.color;
+    for (const r of rects) g.fillRect(r[0] - pad, r[1] - pad, r[2] + 2 * pad, r[3] + 2 * pad);
+    const px = feather * s;
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = strength;
+    ctx.globalCompositeOperation = o.erase ? "destination-out" : "source-over";
+    ctx.filter = px > 0 ? "blur(" + px + "px)" : "none";
+    ctx.drawImage(off, 0, 0);
+    ctx.restore();
+    return { blurBitmapPx: px, pad: pad };
+  };
+
+  /* ---- HOLD INK: put a drifted brand ink back on its own hue (2026-10-21) ----
+   *
+   *   AKPOST.grade(cx, {...});      // and any sill, vignette or GPU snapshot
+   *   AKPOST.holdInk(cx, {hex: '#FFC72C'});            // LAST, on the art canvas
+   *
+   * THE HOUSE GRADE TURNS THE FLAG GOLD LEMON. Measured 2026-10-21 in the
+   * engine's Chromium: a flat #FFC72C patch through AKPOST.grade's defaults
+   * (no bloom, grain, dither, vignette or sharpen) comes out rgb(236, 217, 0),
+   * dE76 19.9, Lab hue 84.9 to 97.3 degrees; #FFDA6E goes 89.6 to 100.8. The
+   * per-channel ACES curve compresses red, which is already near the top, harder
+   * than green, and saturation drives blue to zero. No.92's critics called the
+   * gold lemon on 04, 05 and 09 for three rounds: 09 drew its crest before the
+   * grade, 05's line was a three.js tube under the renderer's own tone mapping,
+   * fog and a sill, which read lemon and then olive. Drawing the ink after the
+   * grade is the first cure; this is the one for gold that has to live inside
+   * the graded or rendered picture.
+   *
+   * Every pixel whose Lab hue lies in [ink - below, ink + above] degrees and
+   * whose chroma is at least `minChroma` (default 0.45 of the ink's own, so an
+   * olive ground or a grey edge is never touched) has its hue turned back to the
+   * ink's, keeping its own L* and chroma (the light and the shading stay; only
+   * the drift goes), with chroma reduced only as far as the sRGB gamut needs.
+   * Where the gamut can't hold that L* and chroma at the ink's hue (a lifted
+   * gold near the yellow cusp), the pixel gives up the difference toward the
+   * ink's own L* and chroma, by the least fraction that fits.
+   * The window (below 2, above 15 by default) is lopsided on purpose: the
+   * drift runs toward yellow, and an olive ground (graded hue about 104) or a
+   * salmon or copper below gold's hue stays where it is. A supporting amber
+   * that the grade has ALSO carried to within a few degrees of gold is in the
+   * family by then and moves with it; pass `rect` to keep it out.
+   * Both window edges and the chroma floor feather over `soft` degrees and
+   * chroma units, so nothing draws a seam. `rect` [x, y, w, h] in design px
+   * limits it to a region. Returns {px, meanShift}: the pixels moved and their
+   * mean hue turn in degrees. tests/akpost_holdink_verify.py holds the numbers. */
+  const HOLD_OPTS = ["hex", "below", "above", "minChroma", "soft", "rect"];
+  P.holdInk = function (ctx, o) {
+    o = o || {};
+    for (const k of Object.keys(o)) {
+      if (HOLD_OPTS.indexOf(k) === -1)
+        throw new TypeError("AKPOST.holdInk: unknown option '" + k + "' (known: " +
+                            HOLD_OPTS.join(", ") + ")");
+    }
+    const m = /^#?([0-9a-fA-F]{6})$/.exec(String(o.hex || ""));
+    if (!m) throw new TypeError("AKPOST.holdInk: hex must be a #RRGGBB string, got " + JSON.stringify(o.hex));
+    const lin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    const LT = new Float32Array(256);
+    for (let i = 0; i < 256; i++) LT[i] = lin(i);
+    const fx = (t) => (t > 0.008856451679 ? Math.cbrt(t) : t / 0.12841854934 + 4 / 29);
+    const fxi = (t) => (t > 6 / 29 ? t * t * t : 0.12841854934 * (t - 4 / 29));
+    const enc = (v) => (v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055);
+    const toLab = (r, g, b) => {
+      const X = (0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / 0.95047;
+      const Y = 0.2126729 * r + 0.7151522 * g + 0.0721750 * b;
+      const Z = (0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / 1.08883;
+      const fX = fx(X), fY = fx(Y), fZ = fx(Z);
+      return [116 * fY - 16, 500 * (fX - fY), 200 * (fY - fZ)];
+    };
+    const toRgb = (L, a, b) => {            // linear rgb, unclamped
+      const fY = (L + 16) / 116, X = 0.95047 * fxi(fY + a / 500), Y = fxi(fY), Z = 1.08883 * fxi(fY - b / 200);
+      return [3.2404542 * X - 1.5371385 * Y - 0.4985314 * Z,
+              -0.9692660 * X + 1.8760108 * Y + 0.0415560 * Z,
+              0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z];
+    };
+    const ink = toLab(LT[parseInt(m[1].slice(0, 2), 16)], LT[parseInt(m[1].slice(2, 4), 16)],
+                      LT[parseInt(m[1].slice(4, 6), 16)]);
+    const inkC = Math.hypot(ink[1], ink[2]);
+    const inkH = Math.atan2(ink[2], ink[1]) * 180 / Math.PI;
+    const below = o.below != null ? o.below : 2, above = o.above != null ? o.above : 15;
+    const minC = o.minChroma != null ? o.minChroma : 0.45 * inkC;
+    const soft = o.soft != null ? o.soft : 3;
+    for (const [k, v] of [["below", below], ["above", above], ["minChroma", minC], ["soft", soft]])
+      if (typeof v !== "number" || !isFinite(v) || v < 0)
+        throw new TypeError("AKPOST.holdInk: " + k + " must be a number 0 or more, got " + JSON.stringify(v));
+    const ramp = (x) => (soft > 0 ? Math.min(1, Math.max(0, x / soft)) : (x >= 0 ? 1 : 0));
+    const sc = getScale(ctx);
+    let x0 = 0, y0 = 0, x1 = ctx.canvas.width, y1 = ctx.canvas.height;
+    if (o.rect) {
+      const r = o.rect;
+      if (!Array.isArray(r) || r.length !== 4 || !r.every((n) => typeof n === "number" && isFinite(n)))
+        throw new TypeError("AKPOST.holdInk: rect must be [x, y, w, h] in design px");
+      x0 = Math.max(0, Math.floor(r[0] * sc)); y0 = Math.max(0, Math.floor(r[1] * sc));
+      x1 = Math.min(x1, Math.ceil((r[0] + r[2]) * sc)); y1 = Math.min(y1, Math.ceil((r[1] + r[3]) * sc));
+    }
+    if (x1 <= x0 || y1 <= y0) return { px: 0, meanShift: 0 };
+    const img = ctx.getImageData(x0, y0, x1 - x0, y1 - y0), d = img.data;
+    let n = 0, turn = 0;
+    for (let i = 0; i < d.length; i += 4) {
+      const R = d[i], G = d[i + 1], B = d[i + 2];
+      if (Math.max(R, G) - B < 24) continue;          // no warm chroma to speak of
+      const lab = toLab(LT[R], LT[G], LT[B]);
+      const C = Math.hypot(lab[1], lab[2]);
+      if (C < minC - soft) continue;
+      let dh = Math.atan2(lab[2], lab[1]) * 180 / Math.PI - inkH;
+      dh = ((dh + 540) % 360) - 180;
+      if (dh < -below - soft || dh > above + soft) continue;
+      const w = ramp(C - minC + soft) * ramp(dh + below + soft) * ramp(above + soft - dh);
+      if (w <= 0) continue;
+      const h = (inkH + dh * (1 - w)) * Math.PI / 180, ch = Math.cos(h), sh = Math.sin(h);
+      const inG = (q) => q[0] >= -1e-4 && q[1] >= -1e-4 && q[2] >= -1e-4 &&
+                         q[0] <= 1.0001 && q[1] <= 1.0001 && q[2] <= 1.0001;
+      // keep the pixel's own L* and chroma; where the gamut refuses them at the
+      // ink's hue, give up the difference TOWARD THE INK'S OWN (L*, C), which is
+      // in gamut by definition, by the least fraction that fits (bisection)
+      let rgb = toRgb(lab[0], C * ch, C * sh);
+      if (!inG(rgb)) {
+        let lo = 0, hi = 1;
+        for (let it = 0; it < 14; it++) {
+          const t = (lo + hi) / 2, L2 = lab[0] + (ink[0] - lab[0]) * t, C2 = C + (inkC - C) * t;
+          const q = toRgb(L2, C2 * ch, C2 * sh);
+          if (inG(q)) { hi = t; rgb = q; } else lo = t;
+        }
+        // no feasible point on that line (the ink's (L*, C) need not be in gamut at a partly
+        // turned hue): keep the pixel's own L* and give up chroma instead, which reaches the
+        // in-gamut grey at C = 0, so a shadow can never clamp to bright gold (Codex, PR #446)
+        if (!inG(rgb)) {
+          let cl = 0, chi = C;
+          for (let it = 0; it < 14; it++) {
+            const c2 = (cl + chi) / 2, q = toRgb(lab[0], c2 * ch, c2 * sh);
+            if (inG(q)) cl = c2; else chi = c2;
+          }
+          rgb = toRgb(lab[0], cl * ch, cl * sh);
+        }
+      }
+      d[i] = Math.round(255 * enc(Math.min(1, Math.max(0, rgb[0]))));
+      d[i + 1] = Math.round(255 * enc(Math.min(1, Math.max(0, rgb[1]))));
+      d[i + 2] = Math.round(255 * enc(Math.min(1, Math.max(0, rgb[2]))));
+      n++; turn += Math.abs(dh * w);
+    }
+    ctx.putImageData(img, x0, y0);
+    return { px: n, meanShift: n ? turn / n : 0 };
+  };
+
   /* Atmospheric-perspective depth grade for LAYERED 2D scenes: call per layer
    * BEFORE drawing it, with its depth d in [0,1]. Returns {fill hints}. This is
    * a recipe helper (math only), the layer code applies it:

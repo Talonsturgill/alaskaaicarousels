@@ -1,0 +1,62 @@
+{
+ "run_date": "2026-10-21",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Lines 400 meters apart, about 100 meters up.",
+   "fragment": "400 meters",
+   "member": "C65"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Lines 400 meters apart, about 100 meters up.",
+   "fragment": "100 meters",
+   "member": "C65"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all.",
+   "fragment": "two summers",
+   "member": "C64",
+   "note": "C64 dates the flying June 23rd to September 5th, 2024 and June 14th to July 26th, 2025: two summer seasons"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all.",
+   "fragment": "86,319 line kilometers",
+   "member": "C63"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Two gamma-ray spectrometers read its radiation.",
+   "fragment": "Two gamma-ray spectrometers",
+   "member": "C79"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "The McGrath block, read every 400 meters.",
+   "fragment": "400 meters",
+   "member": "C65"
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "Five surveys, one scale.",
+   "fragment": "Five surveys",
+   "subject": "state airborne surveys",
+   "members": [
+    "C14",
+    "C24",
+    "C63",
+    "C69",
+    "C71"
+   ]
+  }
+ ]
+}

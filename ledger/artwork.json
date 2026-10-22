@@ -3286,6 +3286,52 @@
     "NEW: repairing a DEM tile join in place by measuring each column's step and ramping it out"
    ],
    "note": "Rounds 5. Scored 8.44, art 7.0."
+  },
+  {
+   "run_date": "2026-10-21",
+   "carousel_no": 92,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE FLOWN LINE, one real McGrath flight line's magnetic profile as a panorama rail under nine readings of one public dataset",
+   "atmosphere": "NEW: THE OCTOBER NOON OVER MAGNETITE, one low southern key (az 180, el 16) and cold caesius haze",
+   "depth_technique": "stacked real-profile ridgelines with occluding bodies (01); plan map of every flown line over slope shade and a regional terrain shade (02); dimetric relit relief slab with engraved contours over the surrounding field engraved flat (03, contact declared); engraved terrain section with real crossings and bedding bands (04); akthree terrain with the field as albedo and the line draped in gold (05, masterful depth frame); index card of outlines and cabinet bars at one scale (06); three-screen halftone print on lifted paper (07); gradient stipple with a milled pocket (08); hero ridge with slope-lit faces ending at the line's west end (09)",
+   "line_voice": "survey",
+   "continuity_device": "panorama:the flown line's real magnetic profile, km 0 to 195.5 across nine frames",
+   "continuity_devices": [
+    "panorama rail: one real flight line's profile, a ninth per frame, gold aircraft tick at x 540",
+    "motif: gold means the flown line only (rail, plan trace, drape, section dot), plus the Polaris on 09",
+    "tonal arc: dark instrument 01 to 04, lit 05, darkest 08"
+   ],
+   "hook_archetype": "NEW: THE ODOMETER",
+   "palette_family": "NEW: CAESIUS AND MAGNETITE, one cold hue family with gold for the line",
+   "type_pairing": "Space Grotesk + JetBrains Mono",
+   "narrative_structure": "hook with the distance flown, instant payoff with the company, what it sells, the method, breather, the card, who paid, the turn, one ask",
+   "variance_dials": {
+    "design_variance": 5,
+    "visual_density": 2,
+    "type_temperature": 2
+   },
+   "techniques": [
+    "real-profile ridgeline stack",
+    "plan map of flown lines",
+    "regional terrain shade",
+    "dimetric relief slab",
+    "engraved section",
+    "akthree terrain",
+    "AKSTROBE focus",
+    "cabinet bars",
+    "three-screen halftone",
+    "gradient stipple",
+    "milled pocket",
+    "panorama rail",
+    "AKPOST grade"
+   ],
+   "new_techniques_logged": [
+    "NEW: akkusko.js, a survey bench: UTM grids of a real airborne survey, a flown-line profile sampled every 100 m, and a panorama rail that hands one ninth of the line to each frame",
+    "NEW: a three-screen halftone of real radiometrics (K, eTh, eU at 15, 45 and 75 degrees, dot area from the measured value) printed on lifted paper with registration crosses and a colour control strip",
+    "NEW: stipple density thinned by a blurred survey-coverage field, so a gridded dataset's straight outer edge never prints",
+    "NEW: slope-weighted lit and lee faces painted per segment on a blurred scratch layer under a profile crest"
+   ],
+   "note": "Rounds 5. Scored 8.665, art 7.0."
   }
  ]
 }

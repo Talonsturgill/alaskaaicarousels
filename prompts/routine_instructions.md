@@ -1354,6 +1354,14 @@ that argument was typed by hand.
    view. Run critic_brief AFTER the round's re-render: it reports tiles cut from
    an earlier render as stale and lists none of them.
 
+   The block's last line is the slide's FEED THUMB (2026-10-21, weekly pass),
+   `render/crops/slide-NN-thumb.png`, 432 px wide, cut by render.py from the
+   same frame and refused with the tiles when stale. That is "the thumb path"
+   above: do not write thumbs by hand, and do not point a critic at
+   final/thumbs, which assemble.py fills only after this loop. No.90 and No.91
+   critics judged the feed read from a downscale because they could not find a
+   thumb, and No.92 hand-made nine thumbs every round.
+
    If a dossier states field 11a, the WORDLESS CLAIM, pass it in the prompt
    and require the critic to answer `encoding_reads`. That judgement cannot be
    automated: it was tested on 2026-07-29 across 171 slides and 19 decks with
