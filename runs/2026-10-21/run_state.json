@@ -1,121 +1,141 @@
 {
- "run_date": "2026-10-21",
- "carousel_no": 92,
- "effort": "high",
- "revision_rounds": 5,
- "date_note": "Anchorage date at wake was October 21st 22:05 AKDT (2026-10-22 UTC); runs/2026-10-21 does not exist, so the run takes the Anchorage date.",
- "branch": "tsturg/clever-mayer-d3poy8",
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/plan.md",
-    "out/2026-10-21/run_state.json"
-   ]
+  "run_date": "2026-10-21",
+  "carousel_no": 92,
+  "effort": "high",
+  "revision_rounds": 5,
+  "date_note": "Anchorage date at wake was October 21st 22:05 AKDT (2026-10-22 UTC); runs/2026-10-21 does not exist, so the run takes the Anchorage date.",
+  "branch": "tsturg/clever-mayer-d3poy8",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/plan.md",
+        "out/2026-10-21/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "2 searches; nothing genuinely new (2026 vendor benchmarks repeat known document-post figures; still-life lighting results were generic). FIELD_NOTES unchanged by rule."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/scout_merge.md"
+      ]
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/claims.json"
+      ],
+      "note": "75 claims (62 fact-checker + 13 showrunner from DGGS report PDFs); claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "commit": "8063478d"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/cron_health.json",
+        "out/2026-10-21/gaswatch_health.json"
+      ],
+      "note": "gas watch live PASS; site sign-off PASS; cron_health re-run PASS 2026-10-22 before ship"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/storyboard.md",
+        "out/2026-10-21/treatments/"
+      ],
+      "note": "synthesis of data-journalist THE FLOWN LINE + field-documentarian survey-height terrain + systems-illustrator turn framing; dossier_check PASS"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/copy.json",
+        "out/2026-10-21/caption.txt",
+        "out/2026-10-21/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done"
+    },
+    "pixel_review": {
+      "status": "done"
+    },
+    "flow_review": {
+      "status": "done"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/final/carousel.pdf",
+        "out/2026-10-21/final/contact_sheet.png"
+      ]
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/score_report.json"
+      ],
+      "note": "8.665 (renormalised 7.88) vs 7.7 at the cap; art 7.0, craft cycle stood down at 5 rounds"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-21/"
+      ],
+      "commit": "285c9df1",
+      "pr": 446
+    },
+    "upgrade": {
+      "status": "done",
+      "commits": [
+        "6c49b642",
+        "64599d3b"
+      ],
+      "note": "weekly pass due (queue repeat 2): critic feed thumbs, AKPOST.reserve, AKPOST.holdInk; fixture contrast and rubric weights escalated"
+    },
+    "gmail": {
+      "status": "done",
+      "draft_id": "r2171372730984397622",
+      "note": "payload --preview-mode remote, to docket@alaskaaihq.com; connector viewUrl showed authuser talon.sturgill@gmail.com"
+    },
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-21/automation_retro.md",
+        "knowledge/FIELD_NOTES.md",
+        "ledger/instincts.json"
+      ]
+    },
+    "caption_room": {
+      "status": "done"
+    },
+    "merge": {
+      "status": "done",
+      "commit": "65ef6a44",
+      "pr": 446
+    }
   },
-  "craft_refresh": {
-   "status": "done",
-   "artifacts": [],
-   "note": "2 searches; nothing genuinely new (2026 vendor benchmarks repeat known document-post figures; still-life lighting results were generic). FIELD_NOTES unchanged by rule."
+  "status": "complete",
+  "phase_3_6": {
+    "site_signoff": "PASS, 151 pages, 18 of 18 checks clean (re-read on the merged build, 2026-10-22)",
+    "gaswatch_live": "PASS, live audit checked 2026-10-22T06:12:53Z after a 204 dispatch of the evening collection",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited 2026-10-22T08:10Z (first read WARN on a pending news.yml run)",
+    "site_fixes": "none. Nothing on the live site needed repair this run."
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/scout_merge.md"
-   ]
-  },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/claims.json"
-   ],
-   "note": "75 claims (62 fact-checker + 13 showrunner from DGGS report PDFs); claims_check PASS"
-  },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json"
-   ],
-   "commit": "8063478d"
-  },
-  "gas_watch": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/cron_health.json",
-    "out/2026-10-21/gaswatch_health.json"
-   ],
-   "note": "gas watch live PASS; site sign-off PASS; cron_health re-run PASS 2026-10-22 before ship"
-  },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/selection.md"
-   ]
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/storyboard.md",
-    "out/2026-10-21/treatments/"
-   ],
-   "note": "synthesis of data-journalist THE FLOWN LINE + field-documentarian survey-height terrain + systems-illustrator turn framing; dossier_check PASS"
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/copy.json",
-    "out/2026-10-21/caption.txt",
-    "out/2026-10-21/caption_report.json"
-   ]
-  },
-  "art_build": {
-   "status": "done"
-  },
-  "pixel_review": {
-   "status": "done"
-  },
-  "flow_review": {
-   "status": "done"
-  },
-  "assemble": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/final/carousel.pdf",
-    "out/2026-10-21/final/contact_sheet.png"
-   ]
-  },
-  "scoring": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-21/score_report.json"
-   ],
-   "note": "8.665 (renormalised 7.88) vs 7.7 at the cap; art 7.0, craft cycle stood down at 5 rounds"
-  },
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-10-21/"
-   ],
-   "commit": "285c9df1",
-   "pr": 446
-  },
-  "upgrade": {
-   "status": "done",
-   "commits": [
-    "6c49b642",
-    "64599d3b"
-   ],
-   "note": "weekly pass due (queue repeat 2): critic feed thumbs, AKPOST.reserve, AKPOST.holdInk; fixture contrast and rubric weights escalated"
-  },
-  "gmail": "pending",
-  "retro": "pending",
-  "caption_room": {
-   "status": "done"
-  },
-  "merge": {
-   "status": "pending",
-   "note": "after CI green and Codex Completed on head"
-  }
- },
- "status": "shipping"
+  "gmail_draft_id": "r2171372730984397622"
 }
