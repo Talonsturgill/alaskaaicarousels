@@ -105,24 +105,23 @@
     cx.save();
     // body: ground fill from the crest down to the band floor
     var g = cx.createLinearGradient(0, R.top, 0, R.bottom);
-    g.addColorStop(0, '#15212E'); g.addColorStop(0.6, '#0C141E'); g.addColorStop(1, '#070B11');
+    g.addColorStop(0, '#1C2B3C'); g.addColorStop(0.55, '#0E1722'); g.addColorStop(1, '#070B11');
     cx.beginPath(); cx.moveTo(P[0][0], R.bottom);
     P.forEach(function (p) { cx.lineTo(p[0], p[1]); });
     cx.lineTo(P[P.length - 1][0], R.bottom); cx.closePath();
     cx.fillStyle = g; cx.fill();
     // lit lip: the face just under the crest catches the key, brighter where it faces it
-    cx.lineJoin = 'round'; cx.lineCap = 'butt';
-    for (var i = 1; i < P.length; i++) {
-      var dy = P[i][1] - P[i - 1][1], dx = P[i][0] - P[i - 1][0] || 1;
-      var lit = 0.5 + 0.5 * Math.max(-1, Math.min(1, -dy / dx * 0.8));
-      cx.strokeStyle = 'rgba(191,217,238,' + (0.10 + 0.28 * lit).toFixed(3) + ')';
-      cx.lineWidth = 5;
-      cx.beginPath(); cx.moveTo(P[i - 1][0], P[i - 1][1] + 3); cx.lineTo(P[i][0], P[i][1] + 3); cx.stroke();
-    }
+    // ONE continuous path, round joins: a lip stroked segment by segment beads at every sample
+    cx.lineJoin = 'round'; cx.lineCap = 'round';
+    cx.beginPath(); cx.moveTo(P[0][0], P[0][1] + 3);
+    for (var i = 1; i < P.length; i++) cx.lineTo(P[i][0], P[i][1] + 3);
+    cx.strokeStyle = 'rgba(191,217,238,0.26)'; cx.lineWidth = 5; cx.stroke();
+    cx.strokeStyle = 'rgba(191,217,238,0.12)'; cx.lineWidth = 11; cx.stroke();
     // the gold crest, one path, one stroke
     cx.beginPath(); cx.moveTo(P[0][0], P[0][1]);
     for (var k = 1; k < P.length; k++) cx.lineTo(P[k][0], P[k][1]);
     cx.strokeStyle = '#FFC72C'; cx.lineWidth = o.crest || 2.2; cx.stroke();
+    cx.strokeStyle = '#FFDA6E'; cx.lineWidth = 0.8; cx.stroke();
     // the aircraft tick
     var tx = o.tickX != null ? o.tickX : 540;
     if (tx !== false) {
@@ -152,7 +151,8 @@
     var W = 1080, H = 1350, s = 2, off = document.createElement('canvas');
     off.width = W * s; off.height = H * s;
     var g = off.getContext('2d'); g.scale(s, s);
-    g.filter = 'blur(' + (o.blur || 28) + 'px)';
+    // never sharper than 40 px: a tighter falloff prints the reserve as a slab on textured art
+    g.filter = 'blur(' + Math.max(40, o.blur || 28) + 'px)';
     g.fillStyle = o.color || '#070B11';
     g.globalAlpha = o.strength != null ? o.strength : 0.92;
     rects.forEach(function (r) { g.fillRect(r[0], r[1], r[2], r[3]); });
