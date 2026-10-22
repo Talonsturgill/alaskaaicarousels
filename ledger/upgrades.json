@@ -3411,6 +3411,54 @@
    "verification": "Measured in the engine's Chromium 141.0.7390.37 (out/upgrade-verify/probe/bead.py): a 2.4 px line at alpha 0.4 in 3.2 px segments peaks at alpha 163/255 at the joints with per-segment round caps, 102 with one stroke(), 102 per-segment with butt caps, 102 as opaque segments on a layer composited at 0.4.",
    "rollback": "git revert the upgrade(2026-10-17) commit",
    "commit": "50f11925"
+  },
+  {
+   "run_date": "2026-10-21",
+   "kind": "fix",
+   "area": "engine",
+   "change": "render.py cuts a 432 px feed thumb, render/crops/slide-NN-thumb.png, from every frame it writes, beside the native tiles and recorded in the same manifest, by the same LANCZOS resize assemble.py uses; critic_brief.py prints its absolute path as the last line of each slide's block under the tiles' staleness check, and Phase 9 step 2 and the pixel critic name it as the thumb the THUMB TEST reads.",
+   "trigger": "Queue item 2026-10-19 at repeat 2, the item that made this pass due: No.90 round 4 and 5 critics and No.91's round 4 critic could not find a thumb (they looked for final/thumbs/slide-NN.png; assemble.py writes slide-NN-thumb.png, and only after Phase 9) and judged the feed read from a 1600 px downscale; No.92's showrunner wrote nine thumbs by hand every round for four rounds.",
+   "files": [
+    ".claude/skills/carousel-engine/render.py",
+    "scripts/critic_brief.py",
+    ".claude/agents/pixel-critic.md",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "critic_brief --self-test: all 15 passed (4 new: no thumb says so, a fresh thumb is named with size and absolute path, a stale set lists no thumb). render.py on examples/demo-deck: 4 OK, 0 errors, crops/slide-0N-thumb.png written, and each is pixel-identical (432x540) to assemble.py's final/thumbs/slide-0N-thumb.png; qa.py WARN 0 fails. render.py on No.92's nine slides into out/2026-10-21/machine/render: 9 OK, 0 errors; qa.py WARN 0 fails, 2 warns on 02, the same counts as the showrunner's own machine_qa.json. critic_brief --run-dir out/2026-10-21 --render-dir out/2026-10-21/machine/render --slide 5 prints the feed thumb line.",
+   "rollback": "git revert the upgrade(2026-10-21) commit (manifests without a thumb key read as 'no 432 px thumb in this crop set')",
+   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
+  },
+  {
+   "run_date": "2026-10-21",
+   "kind": "fix",
+   "area": "assets",
+   "change": "AKPOST.reserve(ctx, rects, {color | erase, feather, strength, pad}) lays a feathered quiet ground under type whose feather is a Gaussian sigma in DESIGN px (converted through the context's scale, default 20), pads each rect 1.28 sigma so the type sits at the 90 percent contour, blurs one opaque union so overlapping lines never stack, requires the ground's own colour, and throws on a bad shape; DESIGN_DOCTRINE section 3 names 'a blurred box under the type' as a model default and SKILL.md states that ctx.filter blur and shadowBlur are bitmap px.",
+   "trigger": "A recurring theme the digest under-counts: type reserves printing as slabs or plates on No.89 (03, 04, 05, three rounds, FIELD_NOTES 'a blurred box is still a box'), No.90 (06, 'a knockout is a box unless it is a feather'), No.91 (flow critic, 'type reserve findable as vertical hatch bands') and No.92 (02, 03, 04, rounds 1 and 2), 4 of the week's 5 runs, each fixed by hand. Root cause measured here: Chromium 141 applies ctx.filter's blur in bitmap px regardless of the transform (blur(10px) has a 24 device px 10-to-90 edge at scale 1 and at scale 2), so every reserve helper's typed radius was half its width on the house's 2x canvas; the feather that worked on all four decks was about a 20 design px sigma. Pad rule from Material's scrim guidance, a long fall-off centred toward the dark side (https://css-tricks.com/easing-linear-gradients/).",
+   "files": [
+    "assets/js/akpost.js",
+    "tests/akpost_reserve_verify.py",
+    "knowledge/DESIGN_DOCTRINE.md",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "python3 tests/akpost_reserve_verify.py: all 9 checks hold (raw blur(10px) 24 device px at both scales, 12 design px at scale 2; reserve feather 20 gives a 49 design px 10-to-90 edge at scale 2 and 51 at scale 1; type box edge at 0.91 of strength; half contour 25.5 px outside the box; union max 0.902 at strength 0.9; erase profile 49 px; three contract throws). AKPOST.grade output on a 2160x2700 test canvas is byte-identical between HEAD's akpost.js and this one (sha256 44d1e693...). No.92's slides (all nine load akpost.js) and the demo deck render and qa as before (see the thumb entry). tests/akpost_verify.mjs and tests/reserve_punch_verify.py still hold.",
+   "rollback": "git revert the upgrade(2026-10-21) commit (no slide calls AKPOST.reserve yet)",
+   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
+  },
+  {
+   "run_date": "2026-10-21",
+   "kind": "fix",
+   "area": "assets",
+   "change": "AKPOST.holdInk(ctx, {hex, below, above, minChroma, soft, rect}) turns every pixel in a lopsided hue window around a brand ink (2 degrees below, 15 above, chroma at least 0.45 of the ink's, feathered over 3) back to the ink's Lab hue, keeping its own L* and chroma and giving up the difference toward the ink's own L* and chroma only where the gamut refuses; DESIGN_DOCTRINE section 3 names 'the flag gold drawn under the grade' as a model default with the measurement, and SKILL.md's akpost entry says to draw the flag ink after the grade or end with holdInk.",
+   "trigger": "Queue item 2026-10-21 (No.92): critics named lemon gold on 04, 05 and 09 for three rounds; 09 drew its crest before AKPOST.grade, 05's line was a three.js tube under tone mapping, fog and a sill, cured by hand-pulling yellow pixels. Measured here: AKPOST.grade's defaults take a flat #FFC72C to rgb(236, 217, 0), 19.9 dE76, hue 84.9 to 97.3 degrees, and carry salmon #FF8C42 from 56 to 78 degrees.",
+   "files": [
+    "assets/js/akpost.js",
+    "tests/akpost_holdink_verify.py",
+    "knowledge/DESIGN_DOCTRINE.md",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "python3 tests/akpost_holdink_verify.py: all 8 checks hold (the reconstruction: graded gold 19.9 dE and 12.4 degrees off; after holdInk the patch is #FFC72C exactly, hue 84.9; a 30 to 100 percent gold ramp keeps its lightness order; ground, snow, aurora, olive (graded hue 104), copper and salmon byte-identical; rect confines it; bad hex and unknown option throw). On No.92's rendered 01, 04, 05 and 09 (read-only) it runs in 167 to 378 ms and moves 11,732 to 33,443 px by a mean 1.3 to 7.2 degrees. grade() is untouched (byte-identical, see the reserve entry).",
+   "rollback": "git revert the upgrade(2026-10-21) commit (no slide calls AKPOST.holdInk yet)",
+   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
   }
  ],
  "scan_log": [
@@ -3931,6 +3979,13 @@
    "searches": "4 searches, 3 fetches (the WHATWG canvas spec twice, which did not surface the stroke union text in the excerpts read; Krita's opacity and flow page read in full), 1 measurement in the engine's Chromium",
    "found": "(1) Opacity is per stroke and flow is per dab, so overlapping dabs build up inside one stroke while stroke opacity caps it (https://docs.krita.org/en/reference_manual/brushes/brush_settings/opacity_and_flow.html); a per-segment canvas line with round caps is flow. MEASURED in Chromium 141: per-segment round caps peak at alpha 163/255 for a 0.4 line, one stroke(), butt caps and an opaque layer at 0.4 all peak at 102. (2) Variable width is a filled offset polygon, since canvas strokes have one width (https://groups.google.com/g/paperjs/c/Q57gXcwHEEI, https://www.rdocumentation.org/packages/ggsketch/versions/2.0.0/topics/stroke_ribbon); the library already has it (technique 119, AKSECT.ribbon). (3) Scrims: design references prefer a feathered gradient to a hard box behind type over an image (https://smashingmagazine.com/2023/08/designing-accessible-text-over-images-part1, https://uxdesign.cc/techniques-to-display-text-over-background-images-b089de1cc8bc); nothing beyond the engine's AKNIGHT.veil and No.89's two-layer feather.",
    "outcome": "applied: (1) as TECHNIQUE_LIBRARY 126 (this pass's improvement entry). Nothing parked: (2) and (3) are already in the machine."
+  },
+  {
+   "run_date": "2026-10-21",
+   "focus": "(d) typography and layout craft, narrowed to type over textured imagery: reserves, scrims and halos. Legal and distinct from the last three logged foci: 2026-10-17 (c) procedural art, 2026-10-16 (b) still life, 2026-10-11 (e) headless Chromium (last (d) 2026-10-09). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: type reserves printed as slabs on 4 of the week's 5 runs, and the one accessibility item this week (the site fixture's 2.53:1) is a brand token for the owner, not a technique.",
+   "searches": "6 searches, 4 fetches (CSS-Tricks 'Easing Linear Gradients' read for the scrim recipe and Material's midpoint rule, Larsen's easing-gradients page, Esri's 'Polishing your halo' twice, both 403), 4 measurements in the engine's Chromium 141 (ctx.filter blur and shadowBlur under scale(2,2), AKPOST.grade on #FFC72C and #FFDA6E)",
+   "found": "(1) Material's scrim rule, quoted by CSS-Tricks: a long gradient with its centre about 3/10 toward the dark side 'avoids a sharp edge' (https://css-tricks.com/easing-linear-gradients/); Larsen: linear gradients show hard edges where they start and end without ease-in-out (http://larsenwork.com/easing-gradients/). (2) Cartographic halos: ground-coloured rather than white, no wider than about a quarter of the font size (Esri via search, https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/mapping/polishing-your-halo; https://goat.plan4better.de/docs/map/layer_style/labels). (3) No spec text found on whether ctx.filter's blur follows the transform; the old 2D spec says shadowBlur does not (https://bugs.webkit.org/show_bug.cgi?id=51161). Measured instead: neither does, in the engine's Chromium.",
+   "outcome": "applied: (1) as AKPOST.reserve's pad rule, with (3) as its unit conversion (the reserve entry of this pass). Parked: (2), a glyph-hugging paint-order halo for short labels, in FIELD_NOTES 2026-10-21, because qa's ring and contrast checks are unmeasured on stroked halos."
   }
  ]
 }

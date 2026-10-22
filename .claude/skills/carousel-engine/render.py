@@ -5008,6 +5008,18 @@ def scan_metal_env(html: str, name: str) -> list:
 # `render/slide-*.png` glob (assemble, ship_gate, the ship copy) ever sees them.
 # Pure bookkeeping: the frame PNG is untouched, and a failure here is recorded
 # and never fails a render.
+#
+# THE FEED THUMB GOES IN THE SAME SET (2026-10-21, weekly machine pass). The
+# pixel critic's THUMB TEST judges the 432 px feed read, and the only 432 px
+# file was assemble.py's final/thumbs/slide-NN-thumb.png, which exists after
+# Phase 9 and is stale for every fix round. No.90's round 4 and 5 critics and
+# No.91's round 4 critic said they could not find a thumb and judged the feed
+# read from a 1600 px downscale; No.92's showrunner wrote 432 px files by hand
+# every round. So the thumb is cut here, beside the tiles, from the frame just
+# written, by the same LANCZOS resize assemble.py uses (THUMB_W wide), and the
+# manifest records it so critic_brief.py lists it under the same staleness
+# check as the tiles.
+THUMB_W = 432
 NATIVE_TILE = (1080, 900)
 
 
@@ -5017,8 +5029,9 @@ def write_native_crops(png: Path, scale: float) -> dict:
         crops = png.parent / "crops"
         crops.mkdir(exist_ok=True)
         stem = png.stem
-        for old in crops.glob(stem + "-r*c*.png"):
-            old.unlink()
+        for old in list(crops.glob(stem + "-r*c*.png")) + [crops / (stem + "-thumb.png")]:
+            if old.exists():
+                old.unlink()
         im = Image.open(png)
         W, H = im.size
         tw, th = NATIVE_TILE
@@ -5030,11 +5043,15 @@ def write_native_crops(png: Path, scale: float) -> dict:
                 im.crop((x0, y0, x1, y1)).save(crops / name, compress_level=1)
                 tiles.append({"file": name, "px": [x0, y0, x1, y1],
                               "design": [round(v / scale) for v in (x0, y0, x1, y1)]})
+        th_h = int(H * THUMB_W / W)
+        thumb_name = stem + "-thumb.png"
+        im.resize((THUMB_W, th_h), Image.LANCZOS).save(crops / thumb_name)
         h = hashlib.sha256(png.read_bytes()).hexdigest()
         man = {"frame": png.name, "frame_sha256": h, "scale": scale,
-               "tile_px": [tw, th], "tiles": tiles}
+               "tile_px": [tw, th], "tiles": tiles,
+               "thumb": {"file": thumb_name, "px": [THUMB_W, th_h]}}
         (crops / (stem + ".json")).write_text(json.dumps(man, indent=1))
-        return {"ok": True, "dir": "crops", "tiles": len(tiles)}
+        return {"ok": True, "dir": "crops", "tiles": len(tiles), "thumb": thumb_name}
     except Exception as e:
         return {"ok": False, "reason": ("%s: %s" % (type(e).__name__, e))[:160]}
 
