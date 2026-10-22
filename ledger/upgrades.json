@@ -3426,7 +3426,7 @@
    ],
    "verification": "critic_brief --self-test: all 15 passed (4 new: no thumb says so, a fresh thumb is named with size and absolute path, a stale set lists no thumb). render.py on examples/demo-deck: 4 OK, 0 errors, crops/slide-0N-thumb.png written, and each is pixel-identical (432x540) to assemble.py's final/thumbs/slide-0N-thumb.png; qa.py WARN 0 fails. render.py on No.92's nine slides into out/2026-10-21/machine/render: 9 OK, 0 errors; qa.py WARN 0 fails, 2 warns on 02, the same counts as the showrunner's own machine_qa.json. critic_brief --run-dir out/2026-10-21 --render-dir out/2026-10-21/machine/render --slide 5 prints the feed thumb line.",
    "rollback": "git revert the upgrade(2026-10-21) commit (manifests without a thumb key read as 'no 432 px thumb in this crop set')",
-   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
+   "commit": "6c49b642"
   },
   {
    "run_date": "2026-10-21",
@@ -3442,7 +3442,7 @@
    ],
    "verification": "python3 tests/akpost_reserve_verify.py: all 9 checks hold (raw blur(10px) 24 device px at both scales, 12 design px at scale 2; reserve feather 20 gives a 49 design px 10-to-90 edge at scale 2 and 51 at scale 1; type box edge at 0.91 of strength; half contour 25.5 px outside the box; union max 0.902 at strength 0.9; erase profile 49 px; three contract throws). AKPOST.grade output on a 2160x2700 test canvas is byte-identical between HEAD's akpost.js and this one (sha256 44d1e693...). No.92's slides (all nine load akpost.js) and the demo deck render and qa as before (see the thumb entry). tests/akpost_verify.mjs and tests/reserve_punch_verify.py still hold.",
    "rollback": "git revert the upgrade(2026-10-21) commit (no slide calls AKPOST.reserve yet)",
-   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
+   "commit": "6c49b642"
   },
   {
    "run_date": "2026-10-21",
@@ -3458,7 +3458,7 @@
    ],
    "verification": "python3 tests/akpost_holdink_verify.py: all 8 checks hold (the reconstruction: graded gold 19.9 dE and 12.4 degrees off; after holdInk the patch is #FFC72C exactly, hue 84.9; a 30 to 100 percent gold ramp keeps its lightness order; ground, snow, aurora, olive (graded hue 104), copper and salmon byte-identical; rect confines it; bad hex and unknown option throw). On No.92's rendered 01, 04, 05 and 09 (read-only) it runs in 167 to 378 ms and moves 11,732 to 33,443 px by a mean 1.3 to 7.2 degrees. grade() is untouched (byte-identical, see the reserve entry).",
    "rollback": "git revert the upgrade(2026-10-21) commit (no slide calls AKPOST.holdInk yet)",
-   "commit": "pending: the showrunner's upgrade(2026-10-21) commit"
+   "commit": "6c49b642"
   }
  ],
  "scan_log": [
