@@ -1,0 +1,30 @@
+name: Unlisted Sourdough concept
+
+on:
+  pull_request:
+    paths:
+      - "docs/awesomeproposal/**"
+      - "tests/sourdough_preview_test.py"
+      - "scripts/site_build.py"
+      - "scripts/feeds_build.py"
+      - ".github/workflows/sourdough-preview.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/awesomeproposal/**"
+      - "tests/sourdough_preview_test.py"
+      - "scripts/site_build.py"
+      - "scripts/feeds_build.py"
+      - ".github/workflows/sourdough-preview.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exact synthetic artifact and no public discovery references
+        run: python3 tests/sourdough_preview_test.py
