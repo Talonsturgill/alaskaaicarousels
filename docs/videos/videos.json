@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-10-22",
+      "date": "2026-10-22",
+      "title": "The Map Is Public. Who Reads It First?",
+      "caption": "Two 2026 state airborne surveys add up to about 45,800 line kilometers, and the state offers both for download. A Portland company, Geomorphic AI, says its AI reads public data in Alaska but names no Alaska property yet, so who gets to act on the map first?",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-22-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-22-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-22-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-22-poster_thumb.jpg"
+    },
+    {
       "id": "2026-10-21-the-count-and-the-calf",
       "date": "2026-10-21",
       "title": "The Count and the Calf",
