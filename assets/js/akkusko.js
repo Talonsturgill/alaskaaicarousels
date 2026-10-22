@@ -174,16 +174,16 @@
     }
     add('ALASKA.AI', 'left:80px;top:76px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;letter-spacing:0.06em;color:#F4F8FF;');
     add((n < 10 ? '0' : '') + n + ' / 09', 'right:80px;top:78px;font-size:24px;letter-spacing:0.04em;color:#8C9DAB;font-variant-numeric:tabular-nums;');
-    add('alaskaaihq.com', 'left:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#46545F;', true);
+    add('alaskaaihq.com', 'left:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#66788A;', true);
     if (o.coords !== false)
-      add(AKK.COORDS, 'right:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#46545F;', true);
+      add(AKK.COORDS, 'right:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#66788A;', true);
   };
 
   /* Grain as a DOM tile, one cell per device pixel. */
   AKK.grain = function (o) {
     o = o || {};
     var d = document.createElement('div');
-    d.setAttribute('style', 'position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:' + (o.opacity || 0.08));
+    d.setAttribute('style', 'position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:' + (o.opacity || 0.05));
     document.body.appendChild(d);
     AK.grainOn(d, { size: 280, strength: o.strength || 44, seed: o.seed || 92 });
     return d;
