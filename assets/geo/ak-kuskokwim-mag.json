@@ -1,0 +1,40 @@
+{
+ "what": "Kuskokwim airborne survey mosaic for No.92: residual magnetic intensity (nT) then digital terrain (m), each little-endian int16 row-major north up, nodata -32768, on a 500 m UTM zone 4N grid",
+ "source": "Alaska DGGS Geophysical Reports 2026-1 (Ganes Creek, doi 10.14509/31746) and 2026-2 (McGrath, doi 10.14509/31804), grids_tif residual magnetic and DTM at 100 m, block-averaged to 500 m; fetched 2026-10-22 from dggs.alaska.gov/webpubs/data; open end-user license",
+ "projection": "WGS 84 / UTM zone 4N (EPSG 32604); column i is easting x0 + (i+0.5)*cell, row j is northing y1 - (j+0.5)*cell",
+ "x0": 440000.0,
+ "x1": 800000.0,
+ "y0": 6724000.0,
+ "y1": 7108000.0,
+ "cell": 500.0,
+ "cols": 720,
+ "rows": 768,
+ "layers": [
+  "residual_mag_nT",
+  "dtm_m"
+ ],
+ "mag_percentiles_1_50_99": [
+  -203.3,
+  -24.9,
+  501.7
+ ],
+ "corners_lonlat": {
+  "nw": [
+   -160.2309,
+   64.0934
+  ],
+  "ne": [
+   -152.8661,
+   63.9689
+  ],
+  "sw": [
+   -160.0972,
+   60.6473
+  ],
+  "se": [
+   -153.5279,
+   60.5396
+  ]
+ },
+ "note": "Aniak and Little Taylor Mountains (GPR 2026-5) publishes colour images only, so it is absent from this grid; its outline and flight lines are in ak-kuskokwim-surveys.geo.json"
+}
