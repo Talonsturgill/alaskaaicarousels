@@ -621,8 +621,17 @@
           const q = toRgb(L2, C2 * ch, C2 * sh);
           if (inG(q)) { hi = t; rgb = q; } else lo = t;
         }
-        if (!inG(rgb)) rgb = toRgb(lab[0] + (ink[0] - lab[0]) * hi, (C + (inkC - C) * hi) * ch,
-                                   (C + (inkC - C) * hi) * sh);
+        // no feasible point on that line (the ink's (L*, C) need not be in gamut at a partly
+        // turned hue): keep the pixel's own L* and give up chroma instead, which reaches the
+        // in-gamut grey at C = 0, so a shadow can never clamp to bright gold (Codex, PR #446)
+        if (!inG(rgb)) {
+          let cl = 0, chi = C;
+          for (let it = 0; it < 14; it++) {
+            const c2 = (cl + chi) / 2, q = toRgb(lab[0], c2 * ch, c2 * sh);
+            if (inG(q)) cl = c2; else chi = c2;
+          }
+          rgb = toRgb(lab[0], cl * ch, cl * sh);
+        }
       }
       d[i] = Math.round(255 * enc(Math.min(1, Math.max(0, rgb[0]))));
       d[i + 1] = Math.round(255 * enc(Math.min(1, Math.max(0, rgb[1]))));

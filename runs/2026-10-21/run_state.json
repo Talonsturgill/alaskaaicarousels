@@ -92,17 +92,30 @@
    "note": "8.665 (renormalised 7.88) vs 7.7 at the cap; art 7.0, craft cycle stood down at 5 rounds"
   },
   "ship": {
-   "status": "in_progress",
+   "status": "done",
    "artifacts": [
     "runs/2026-10-21/"
    ],
-   "note": "runs copied, webp, site built at 2026-10-21"
+   "commit": "285c9df1",
+   "pr": 446
   },
-  "upgrade": "pending",
+  "upgrade": {
+   "status": "done",
+   "commits": [
+    "6c49b642",
+    "64599d3b"
+   ],
+   "note": "weekly pass due (queue repeat 2): critic feed thumbs, AKPOST.reserve, AKPOST.holdInk; fixture contrast and rubric weights escalated"
+  },
   "gmail": "pending",
   "retro": "pending",
   "caption_room": {
    "status": "done"
+  },
+  "merge": {
+   "status": "pending",
+   "note": "after CI green and Codex Completed on head"
   }
- }
+ },
+ "status": "shipping"
 }

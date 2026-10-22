@@ -68,7 +68,13 @@ JS = r"""
   const throws = (f) => { try { f(); return false; } catch (e) { return e instanceof TypeError; } };
   const contract = { hex: throws(() => AKPOST.holdInk(g2, { hex: 'gold' })),
                      unknown: throws(() => AKPOST.holdInk(g2, { hex: '#FFC72C', tol: 9 })) };
-  return { before, after, ret, reg, contract };
+  // a dark shadow in the feathered edge of the hue window (Codex, PR #446): its endpoint at
+  // the partly turned hue has no in-gamut point, and it must stay dark, never clamp to gold
+  const sh = document.createElement('canvas'); sh.width = 40; sh.height = 40;
+  const sg = sh.getContext('2d'); sg.fillStyle = '#6C4C00'; sg.fillRect(0, 0, 40, 40);
+  AKPOST.holdInk(sg, { hex: '#FFC72C' });
+  const shadow = Array.from(sg.getImageData(20, 20, 1, 1).data.slice(0, 3));
+  return { before, after, ret, reg, contract, shadow };
 }
 """
 
@@ -137,6 +143,10 @@ def main():
     ok("region: rect moves the gold inside it and nothing outside it",
        r["reg"]["inGold"] == af["gold"] and r["reg"]["rampOutside"] == bf["ramp"][9],
        r["reg"])
+    SH = [0x6C, 0x4C, 0x00]
+    ok("shadow: a dark #6C4C00 in the window's edge keeps its own L* within 3 (no clamp to bright gold)",
+       abs(lab(r["shadow"])[0] - lab(SH)[0]) <= 3, {"in": SH, "out": r["shadow"],
+       "L": [round(lab(SH)[0], 1), round(lab(r["shadow"])[0], 1)]})
     ok("contract: a bad hex and an unknown option throw", all(r["contract"].values()), r["contract"])
     print("\nakpost_holdink_verify: " + ("all passed" if not bad else "%d FAILED" % bad))
     return 1 if bad else 0

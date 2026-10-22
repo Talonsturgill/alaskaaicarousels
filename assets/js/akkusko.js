@@ -151,14 +151,15 @@
     var W = 1080, H = 1350, s = 2, off = document.createElement('canvas');
     off.width = W * s; off.height = H * s;
     var g = off.getContext('2d'); g.scale(s, s);
-    // never sharper than 40 px: a tighter falloff prints the reserve as a slab on textured art
-    g.filter = 'blur(' + Math.max(40, o.blur || 28) + 'px)';
+    // ONE opaque union, blurred once and laid at the strength once: overlapping line boxes
+    // must not stack into a darker seam (Codex, PR #446)
     g.fillStyle = o.color || '#070B11';
-    g.globalAlpha = o.strength != null ? o.strength : 0.92;
     rects.forEach(function (r) { g.fillRect(r[0], r[1], r[2], r[3]); });
-    g.filter = 'none';
     cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0);
     cx.globalCompositeOperation = 'source-over';
+    // never sharper than 40 px: a tighter falloff prints the reserve as a slab on textured art
+    cx.filter = 'blur(' + Math.max(40, o.blur || 28) + 'px)';
+    cx.globalAlpha = o.strength != null ? o.strength : 0.92;
     cx.drawImage(off, 0, 0); cx.restore();
   };
 
