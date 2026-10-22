@@ -174,9 +174,9 @@
     }
     add('ALASKA.AI', 'left:80px;top:76px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;letter-spacing:0.06em;color:#F4F8FF;');
     add((n < 10 ? '0' : '') + n + ' / 09', 'right:80px;top:78px;font-size:24px;letter-spacing:0.04em;color:#8C9DAB;font-variant-numeric:tabular-nums;');
-    add('alaskaaihq.com', 'left:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#66788A;', true);
+    add('alaskaaihq.com', 'left:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#6F8294;', true);
     if (o.coords !== false)
-      add(AKK.COORDS, 'right:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#66788A;', true);
+      add(AKK.COORDS, 'right:80px;top:1281px;font-size:19px;letter-spacing:0.04em;color:#6F8294;', true);
   };
 
   /* Grain as a DOM tile, one cell per device pixel. */
