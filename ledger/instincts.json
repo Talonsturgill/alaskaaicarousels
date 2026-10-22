@@ -2194,6 +2194,22 @@
    "confidence": 0.55,
    "run_date": "2026-10-20",
    "carousel_no": 91
+  },
+  {
+   "instinct": "PLOT EVERY VIEW OF ONE LINE IN ONE DIRECTION.",
+   "evidence": "No.92 drew its flown line as a rail east to west and as the cover's gold row west to east; the flow critic read the cover as the rail mirrored.",
+   "act_on_it": "When a deck's continuity device is a real series, fix its direction in the storyboard and draw every other view of it in that direction.",
+   "confidence": 0.6,
+   "run_date": "2026-10-21",
+   "carousel_no": 92
+  },
+  {
+   "instinct": "THE FLAG INK GOES ON LAST.",
+   "evidence": "No.92's gold read lemon or olive for three critic rounds on 05 and 09 until it was drawn (or pulled back) after the grade and the sill.",
+   "act_on_it": "Draw the deck's one meaning-colour after AKPOST.grade, and on a WebGL frame pull its pixels back to the hex after every overlay.",
+   "confidence": 0.65,
+   "run_date": "2026-10-21",
+   "carousel_no": 92
   }
  ]
 }

@@ -3695,6 +3695,56 @@
    ],
    "claims": 79,
    "note": "Picked over data-centre stories saturated in the 30-day window (governor race No.68, ACEP and GVEA No.87, AIDEA No.88). Rounds 5. Score 8.44, art 7.0."
+  },
+  {
+   "run_date": "2026-10-21",
+   "carousel_no": 92,
+   "topic": "Geomorphic AI, a self-described AI-driven minerals prospect generator, formed Golden Dyke Exploration LLC, a wholly owned Alaska subsidiary, on October 20th (with Masi Resources in Peru), naming no Alaska property yet; its release says new state airborne surveys extend decades of USGS and state mapping. The Alaska DGGS published five 2026 airborne surveys around the middle Kuskokwim: McGrath (GPR 2026-2, 86,319 line km, four fixed-wing aircraft, lines 400 m apart about 100 m up), Ganes Creek (GPR 2026-1, 25,731 line km), Aniak and Little Taylor Mountains (GPR 2026-5, 20,090.5 line km), Granite Mountain (GPR 2026-4, 2,516 line km EM) and Candle Hills (GPR 2026-3, 1,060 line km EM), paid for by USGS Earth MRI grants G22AC00475, G23AC00408 and G24AC00629 and released as a free download under an open end-user license. Geomorphic hasn't said whether it uses them (North of 60 Mining News).",
+   "angle": "THE FLOWN LINE: public flying, public grids and an open license on one side; a target packaged for private deals with an interest kept on the other. Should a target built on public surveys say which ones it used?",
+   "entities": [
+    "Geomorphic AI",
+    "Golden Dyke Exploration LLC",
+    "Masi Resources",
+    "Alaska Division of Geological and Geophysical Surveys",
+    "USGS Earth MRI",
+    "EON Geosciences",
+    "Terraquest",
+    "McGrath",
+    "Ganes Creek",
+    "Aniak",
+    "Little Taylor Mountains",
+    "Granite Mountain",
+    "Candle Hills",
+    "Kuskokwim",
+    "North of 60 Mining News"
+   ],
+   "keywords": [
+    "airborne geophysics",
+    "aeromagnetic survey",
+    "radiometrics",
+    "Earth MRI",
+    "prospect generator",
+    "mineral exploration",
+    "open data license",
+    "critical minerals",
+    "AI targeting",
+    "Kuskokwim"
+   ],
+   "headline": "The State Flew the Kuskokwim. An AI Prospector Arrived.",
+   "sources_lead": [
+    "https://www.geomorphic.ai/news/establishes-subsidiaries-in-peru-and/",
+    "https://doi.org/10.14509/31804",
+    "https://doi.org/10.14509/31746",
+    "https://doi.org/10.14509/32087",
+    "https://www.usgs.gov/special-topics/earth-mri"
+   ],
+   "beats": [
+    "land-and-permitting",
+    "research-and-science",
+    "defense-and-federal"
+   ],
+   "claims": 82,
+   "note": "Picked over Burgum/GVEA (dup of No.87), Anchorage AO 2026-108 (dup of No.84) and FAA Part 108 (still unpublished, runner-up)."
   }
  ]
 }

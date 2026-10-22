@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-21/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9055967,
+  "pdf_mb": 9.06,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-21/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-21/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The State Flew the Kuskokwim. An AI Prospector Arrived.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "cce59d8ff46ad2b1e9a97a31d3142d51175fb2613900965182705c167f53ec0a",
+        "bytes": 4695188
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "90c0ac62b3bf171f773c621f19433bad2940b8da0352594d06b8811d74bfe479",
+        "bytes": 5389260
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "e1b0083b96573db64663e2452105064b4fb255c2ac72ee902cf0b39c04539790",
+        "bytes": 4523562
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "118492121a37c86d3bfcd3c24592106359410fb8ead203d02deda4021206526d",
+        "bytes": 5177795
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "4a25d9c6920e66cd4092958db024d53ab81be4813cd3fae47c12476940de4182",
+        "bytes": 5379826
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "c613338fff6f7033b13226aa90ef03240da9bbb50652ba6e6644fa7c8b88cb16",
+        "bytes": 4799925
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f0c9ebbf0416eabcb8f964e43427dc70d2b1d875f92236b70d47ef855ff92bf1",
+        "bytes": 4154362
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "bbf46afa3edaced6aa7e5029b8924db7ad70866a768a239ccd5bb73e9652a96a",
+        "bytes": 4355134
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "2ac59598c849ab04ec3ecfbbdf3d86c6ac5e01b322f65521283cdbfd4b3ac23a",
+        "bytes": 4566905
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "d04e69c5afce4d35f8085fcbd710efb36993bf6af19ddda657bfc2dda21d8d85",
+        "bytes": 9541
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "55b6699e208422247fbf7d7d6aee5677f0660ffbe3a9263da5b0ceb8c7e70067",
+        "bytes": 13901
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a9322bbdd9ebe707b54619bd627b4351f604218cb67252310b1f25a8db34f778",
+        "bytes": 14358
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "66526b0a09c041347f061b7cb735055a88fa3cff42bacba2cbf99eb36d941a07",
+        "bytes": 12037
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "be17586ed6099974b7291cd2910d8a0c4b5aa300b56ed3e7a2b68f7c6c2e19bc",
+        "bytes": 10334
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "9da4df1494f9c3885903a9ddd31b008af3d4da76887d47853ac3b6ab7f5061ee",
+        "bytes": 11876
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "b32cd9ba5ba0fb5be7b76c0c15d37d787bd3da5df322e1eec1af95a5344f1ca7",
+        "bytes": 9708
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "9a4b53509565d67ce27e2000d0247f6b42da4059205ad70ce7028c3d46b7e5c0",
+        "bytes": 9132
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "70ad8e433adfea0e54c9cab0f7b7cded49bc299a53d1915ce1319d71113ee168",
+        "bytes": 7843
+      }
+    ]
+  }
+}

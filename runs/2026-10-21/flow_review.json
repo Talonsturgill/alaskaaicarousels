@@ -1,0 +1,15 @@
+{"verdict":"revise","score_0_10":7.5,"round":"after per-slide round 4","predicted_bail_point":{"slide":6,"fix":"plant 07 on 06 with a mono line 'WHO PAID FOR THE FLYING?' and lift the card's art"},
+"craft":{"predicted_artwork_score":7.0,"masterful_depth_frame":5,
+"weakest_frames":[
+{"slide":6,"score":6.5,"cause":"b","problem":"the McGrath bar, the largest object, is a smooth gradient cuboid; outlines flat; dead right column in rows 1-2; lower band a plain glow","fix":"make the bar faces carry data texture"},
+{"slide":1,"score":7.0,"cause":"b","problem":"profile stack reads as wireframe, bodies barely register; three clusters with a gap; the cover's gold row is plotted west-left, mirror of the rail's order","fix":"visible graded bodies; mirror the stack to rail order"},
+{"slide":4,"score":7.5,"cause":"c","problem":"strata fade to near black from y 980 to 1208; skyline relight breaks into dashes","fix":"carry strata contrast and weight to the base"},
+{"slide":9,"score":7.5,"cause":"d","problem":"lit-face glow hangs below valley floors as drips; the body's echo strata share 04's mark","fix":"clamp the hang; draw the body as vertical drop strokes"},
+{"slide":7,"score":7.8,"cause":"c","problem":"footprint fills about 55 percent of the sheet, the right side blank paper","fix":"crop the sheet to the data footprint"}],
+"cross_frame":[
+{"cause":"a","slides":[1,4,9],"problem":"crest over stacked offset echoes on three frames","fix":"09 to vertical drop strokes"},
+{"cause":"e","slides":[1,2,3,4,5,6,7,8,9],"problem":"08 does not read as the darkest; seven frames inside L* 7 to 11","fix":"lift 06's ground, darken 08's dots"},
+{"cause":"c","slides":[1,2,3,4,5,6,7,8],"problem":"flat fixture strip under a near-flat rail on 01 to 06","fix":"a km scale in the strip"}]},
+"continuity":[{"severity":"major","problem":"rail near flat on 01 to 06 reads as a footer rule","fix":"km scale and readouts in the strip"},{"severity":"polish","problem":"01 gold row mirrored against the rail's order","fix":"mirror the stack"}],
+"rhythm":[{"severity":"major","problem":"dense runs 02-03-04 and 06-07-08","fix":"cut 07's plate caption and 03's first body sentence"}],
+"showrunner_disposition":"Round 5 (the last of five) applies: 01 mirrored to rail order with heavier bodies; 04 strata carried to the base; 06 bar faces engraved every 1,000 line km, ground lifted, and a mono line WHO PAID FOR THE FLYING? planted under the card; 07 sheet cropped to the data footprint; 08 dots darkened by density; 09 hang clamped and its body redrawn as vertical drop strokes. Declined: the km scale in the strip (its ticks and readouts would sit inside the measured band y 1238 to 1256 or under the safe zone, so it is a gate change, not a slide fix; queued), the 03 and 07 copy cuts (a sentence cut from a dossier body is plan drift late in the cap; rhythm shortfall disclosed), the 04 flag-1 kerning (font feature, polish)."}

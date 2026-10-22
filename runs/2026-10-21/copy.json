@@ -1,0 +1,265 @@
+{
+ "document_title": "The State Flew the Kuskokwim. An AI Prospector Arrived.",
+ "post_copy": "On June 23rd, 2024, four fixed-wing aircraft began flying the Kuskokwim for the state's McGrath survey.\nLines ran 400 meters apart and about 100 meters up.\n\nFederal Earth MRI grants paid for McGrath and its data is a free download. Four more state surveys came out this year.\n\nOn October 20th Geomorphic AI formed Golden Dyke Exploration in Alaska. Geomorphic calls itself an AI-driven minerals prospect generator that packages targets and keeps an interest. It hasn't said whether it uses these surveys.\n\nOne real McGrath flight line's magnetic profile, a map and a card of five state surveys, the Ganes Creek radiometrics printed with three grant numbers, and an empty pocket for a first Alaska property, none named yet.\n\nThe state says the data will promote resource exploration. Does packaging targets for others to drill count as that exploration?\n\n#EarthMRI #Geophysics #AlaskaMining",
+ "hook_chars": 103,
+ "total_chars": 889,
+ "hashtags": [
+  "#EarthMRI",
+  "#Geophysics",
+  "#AlaskaMining"
+ ],
+ "deck_summary_line": "One real McGrath flight line's magnetic profile, a map and a card of five state surveys, the Ganes Creek radiometrics printed with three grant numbers, and an empty pocket for a first Alaska property, none named yet.",
+ "first_comment": "Sources, primary first\nGeomorphic AI news release, establishes subsidiaries in Peru and Alaska, October 20th, 2026 https://www.geomorphic.ai/news/establishes-subsidiaries-in-peru-and/\nAlaska DGGS Geophysical Report 2026-2, McGrath airborne magnetic and radiometric survey, June 2026 https://doi.org/10.14509/31804\nAlaska DGGS Geophysical Report 2026-1, Kuskokwim airborne magnetic and radiometric survey, Ganes Creek, June 2026 https://doi.org/10.14509/31746\nAlaska DGGS Geophysical Report 2026-5, Kuskokwim airborne magnetic and radiometric survey, Aniak and the Little Taylor Mountains, July 2026 https://doi.org/10.14509/32087\nAlaska DGGS Geophysical Report 2026-4, Granite Mountain airborne electromagnetic survey, March 2026 https://doi.org/10.14509/31964\nAlaska DGGS Geophysical Report 2026-3, Candle Hills airborne electromagnetic survey, February 2026 https://doi.org/10.14509/31963\nU.S. Geological Survey, Earth Mapping Resources Initiative (Earth MRI) https://www.usgs.gov/special-topics/earth-mri\nNorth of 60 Mining News, Geomorphic AI targets Alaska minerals, October 21st, 2026 https://www.miningnewsnorth.com/story/2026/10/23/news/geomorphic-ai-targets-alaska-minerals/9920.html\n\nEvery past deck and the sources behind it sit in the archive at https://alaskaaihq.com\nFlown these blocks, worked the grids, or dealt with a prospect generator? Add the context a report can't carry in the replies.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "MCGRATH AIRBORNE SURVEY, CENTRAL KUSKOKWIM",
+   "headline": "86,319 km of public survey lines. Now an AI prospector.",
+   "body": "",
+   "labels": [
+    "ONE FLIGHT LINE, ITS PROFILE"
+   ],
+   "claim_ids": [
+    "C03",
+    "C63",
+    "C76"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "",
+   "headline": "On October 20th, an AI prospect generator set up in Alaska.",
+   "body": "Geomorphic AI formed Golden Dyke Exploration LLC, a wholly owned Alaska subsidiary. Its release says new state airborne surveys extend decades of USGS and state mapping. It names no Alaska property yet.",
+   "labels": [
+    "MCGRATH",
+    "GANES CREEK",
+    "ANIAK AND LITTLE TAYLOR MTS",
+    "CANDLE HILLS",
+    "GRANITE MTN",
+    "ALASKA"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C06",
+    "C08"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "",
+   "headline": "It packages the target, not the drill.",
+   "body": "Geomorphic says its role is to generate and package targets, then advance them through joint ventures and earn-ins while keeping an interest. It doesn't fund or operate drilling. It hasn't said whether it uses these surveys.",
+   "labels": [
+    "A 20 KM SQUARE OF THE PUBLIC MCGRATH FIELD. NOT A TARGET."
+   ],
+   "claim_ids": [
+    "C01",
+    "C04",
+    "C05",
+    "C10"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "",
+   "headline": "Lines 400 meters apart, about 100 meters up.",
+   "body": "Four fixed-wing aircraft flew McGrath over two summers, 86,319 line kilometers in all. A cesium sensor read the rock's magnetism. Two gamma-ray spectrometers read its radiation.",
+   "labels": [
+    "400 M",
+    "100 M",
+    "THE SURVEY GRID IN SECTION, 5X VERTICAL",
+    "SOUTH",
+    "NORTH"
+   ],
+   "claim_ids": [
+    "C25",
+    "C26",
+    "C34",
+    "C63",
+    "C64",
+    "C65",
+    "C79"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "",
+   "headline": "The McGrath block, read every 400 meters.",
+   "body": "",
+   "labels": [
+    "MAGNETIC FIELD AS COLOR ON THE SURVEY'S OWN TERRAIN. ILLUSTRATIVE VIEW, 2.5X RELIEF."
+   ],
+   "claim_ids": [
+    "C15",
+    "C65"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "",
+   "headline": "Five surveys, one scale.",
+   "body": "",
+   "labels": [
+    "CANDLE HILLS",
+    "1,060 KM",
+    "HELICOPTER EM",
+    "GRANITE MOUNTAIN",
+    "2,516 KM",
+    "HELICOPTER EM",
+    "ANIAK AND LITTLE TAYLOR MTS",
+    "20,090.5 KM",
+    "KING AIR C-90",
+    "GANES CREEK",
+    "25,731 KM",
+    "HELICOPTER",
+    "MCGRATH",
+    "86,319 KM",
+    "FOUR FIXED-WING",
+    "GPR 2026-3",
+    "GPR 2026-4",
+    "GPR 2026-5",
+    "GPR 2026-1",
+    "GPR 2026-2",
+    "OUTLINES AT ONE SCALE. BARS IN LINE KILOMETERS.",
+    "WHO PAID FOR THE FLYING?"
+   ],
+   "claim_ids": [
+    "C14",
+    "C17",
+    "C19",
+    "C22",
+    "C24",
+    "C27",
+    "C30",
+    "C63",
+    "C64",
+    "C69",
+    "C70",
+    "C71",
+    "C72",
+    "C80",
+    "C81"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "",
+   "headline": "Paid for by Earth MRI. Free to download.",
+   "body": "Federal Earth MRI grants paid for the flying. The state posts the data under an open end-user license. DGGS says it will promote resource exploration of the central Kuskokwim.",
+   "labels": [
+    "EARTH MRI GRANTS FOR MCGRATH, GANES CREEK AND ANIAK",
+    "G22AC00475 G23AC00408 G24AC00629",
+    "PRINTED AT RIGHT, GANES CREEK RADIOMETRICS, POTASSIUM, THORIUM, URANIUM"
+   ],
+   "claim_ids": [
+    "C20",
+    "C31",
+    "C67",
+    "C68",
+    "C76",
+    "C77",
+    "C78"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "",
+   "headline": "Open input. Private output.",
+   "body": "The flying, the grids and the license are public. A packaged target moves through private deals, with an interest kept. Geomorphic has named no Alaska property yet.",
+   "labels": [
+    "FIRST ALASKA PROPERTY NONE NAMED YET"
+   ],
+   "claim_ids": [
+    "C04",
+    "C05",
+    "C06",
+    "C76"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Should a target built on public surveys say which ones it used?",
+   "body": "",
+   "labels": [
+    "END OF LINE"
+   ],
+   "claim_ids": []
+  }
+ ],
+ "aftercare": [
+  "Post when it suits your cadence. The strongest slots are Tuesday to Thursday, 8 to 11 a.m. Alaska time, so today (Thursday October 22nd) or next Tuesday morning. The October 20th news gets older each day it waits.",
+  "Paste the sources block as the first comment within 60 seconds of posting. Paste it as plain text so every raw URL stays visible.",
+  "Reply to every comment in the first 90 minutes. If anyone asks whether Geomorphic used these surveys, the only sourced answer is that it hasn't said (North of 60 Mining News, October 21st).",
+  "After 48 hours, record saves, comments and reposts, and note which slide people quote (the card on 06 or the ask on 09) for the instincts ledger."
+ ],
+ "editor_notes_for_email": "Scored 8.665 against the 7.7 threshold at the five-round cap, zero hard fails. The rubric's ten weights sum to 1.10, so every total runs about 10 percent high; renormalised this deck is 7.88, still above 7.7 (queued for the machine pass, not changed here). Art scored 7.0, under the 8.5 craft floor; at the cap the craft cycle stands down, so 05, 01, 08, 06 and 03 are known shortfalls. Before posting: the caption opens on the June 2024 survey scene and the news (Golden Dyke Exploration, October 20th) arrives in paragraph three; move it up if you want the news inside the first 140 characters. The caption's question and slide 09's ask are different questions; pick one if you want a single thread. The North of 60 URL path reads 2026/10/23 while the page is dated October 21st (the path is the print-issue date). The cover stack mixes McGrath and Ganes Creek lines while the kicker names McGrath; the 86,319 figure is McGrath alone. Nothing says Geomorphic used these surveys; the only sourced answer is that it hasn't said (C10).",
+ "caption_meta": {
+  "opening_move": "SCENE",
+  "structure": "INVERTED PYRAMID",
+  "closing_move": "NEW: THE STATED PURPOSE"
+ },
+ "first_8_words": "On June 23rd, 2024, four fixed-wing aircraft began",
+ "hook_type": "scene, four survey aircraft over the Kuskokwim on a dated morning in 2024",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C08",
+  "C10",
+  "C14",
+  "C15",
+  "C17",
+  "C19",
+  "C20",
+  "C22",
+  "C24",
+  "C25",
+  "C26",
+  "C27",
+  "C30",
+  "C31",
+  "C34",
+  "C63",
+  "C64",
+  "C65",
+  "C67",
+  "C68",
+  "C69",
+  "C70",
+  "C71",
+  "C72",
+  "C76",
+  "C77",
+  "C78",
+  "C79",
+  "C80",
+  "C81"
+ ],
+ "caption_claim_ids": [
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C10",
+  "C19",
+  "C22",
+  "C30",
+  "C64",
+  "C65",
+  "C67",
+  "C68",
+  "C69",
+  "C71",
+  "C76",
+  "C77",
+  "C78",
+  "C80",
+  "C81"
+ ]
+}

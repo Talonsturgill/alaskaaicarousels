@@ -1168,3 +1168,12 @@ annotation is the strongest pair):
 130. **Least-cost River Trace**, added 2026-10-20 for No.91 (05). When the DEM is too coarse for a river to read as a depression, trace it as the least-cost path along the lowest ground between two known points (cost 1 + 25 h^1.5 per cell, 8-connected Dijkstra), smooth the path (window 9) and case it as an engraved river: a 7 px dark bed, then a 2.6 px white line, its name set along the tangent.
 
 131. **Glazes Laid by Reach (granulating wash)**, added 2026-10-20 for No.91 (07, 06, 09). A watercolour wash whose extent is a distance inland from the coast (chamfer distance from the sea plus soft latitude and longitude penalties), so every limit is a curve that follows the coast. Density = base x bloom x (1 + tooth + granulation) x (1 + wet), with wet = exp(-e/6) from the glaze's own edge. Glazes nest by reach, the last one only a dashed pencil line. Multiply it over the plaster so the relief shows through.
+
+
+132. **The Flown Line (survey panorama rail)**, added 2026-10-21 for No.92 (01 to 09). One real flight line of an airborne survey, sampled from the residual grid every 100 m, drawn as a filled ridge in a fixed band on every frame, frame n showing km (n - 1)L/9 to nL/9 at the same px per km so every seam matches, a gold aircraft tick at the frame's centre declared on data-scale, and the last ninth at hero scale on the close. Bench: assets/js/akkusko.js (AKK.rail, AKK.lineAt, AKK.profile).
+
+133. **Three-Screen Radiometric Halftone**, added 2026-10-21 for No.92 (07). Potassium, thorium and uranium as three dot screens at 15, 45 and 75 degrees, dot area from the measured value, multiplied on a lifted sheet of graded paper with tooth, registration crosses at the corners and a colour control strip of each ink at four tints along the foot; a north cast, an all-round contact and two desk pools under the low south key.
+
+134. **Coverage-Faded Stipple**, added 2026-10-21 for No.92 (08). A gradient-magnitude stipple whose density is multiplied by a blurred survey-coverage field (1 km cells, box blur about 6 km, read at a slowly wobbled point), so a gridded dataset's straight outer edge dissolves while isolated empty cells inside it do not thin the field.
+
+135. **Chart-Recorder Drop Strokes**, added 2026-10-21 for No.92 (09). The body under a profile crest drawn as one vertical hairline per sample, from just under the crest into the body, each with its own fading gradient and brighter on flanks that face the key, over slope-weighted lit and lee faces painted on a blurred scratch layer.

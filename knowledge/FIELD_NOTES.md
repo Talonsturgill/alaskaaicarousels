@@ -9356,3 +9356,16 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A GPU BREATHER HAS TO BE KEYED INTO THE DECK, NOT JUST LIT. 04 rendered its plain as warm cream CG at exposure 1.05 and read as pasted from another deck. It was the brightest frame on a plan that wanted it darkest. Cool plaster albedo, exposure 0.72 and a resin waterline brought it into the family.
 - AN INK BRUSHED ONLY BY PIXELS IS INVISIBLE TO THE INK LAW. The 07 and 08 washes and 09's corners were written per pixel, and qa failed their present-ink promises. A legend chip in the ink (07), or the mask filled with the ink through source-in (08, 09), makes the brush real without changing the picture.
 - THE GAS WATCH EVENING READING, SIXTEENTH TIME. The first live audit at 06:10Z found the 16:35 Alaska reading missing. A workflow dispatch on main returned 204, unlike the last three runs' 403. The collection ran, and the re-audit passed at 06:14Z.
+
+
+### Run 2026-10-21 (No.92), the flown line
+
+- A REAL SURVEY LINE IS A PANORAMA THAT CAN'T BE FAKED. One McGrath flight line, sampled every 100 m from the residual grid, ran a ninth per frame under all nine frames, and every seam matched. Its east end is near flat for 128 km, so on 01 to 06 it reads as a rule, not a profile. Do not add amplitude. Give the strip under a quiet rail its own events, and check the profile's shape before choosing which end the deck starts from.
+- PLOT EVERY VIEW OF ONE LINE IN THE SAME DIRECTION. The cover plotted the gold row by easting, west on the left; the rail ran east to west. The flow critic caught the mirror. Pick the rail's order and draw every other view of that line in it.
+- A RESERVE UNDER 40 PX OF FEATHER IS A SLAB. Blurred-rectangle reserves at 10 to 22 px printed as dark boxes on textured art on five frames. A feather of at least 40 px, painted in the ground colour before the grade, disappeared.
+- THE FLAG INK GOES ON AFTER THE GRADE. Gold drawn before AKPOST.grade read lemon; gold inside three.js read lemon, then olive where the sill darkened it. Drawing the crest after the grade (09), and pulling yellow pixels back to #FFC72C after the sill (05), held one gold.
+- A DISTANCE-TO-NODATA FADE NEEDS A BLURRED MASK. Marching to the nearest empty sample thinned the whole 08 field, because a gridded survey has isolated empty cells inside it. A 1 km coverage grid, box-blurred over about 6 km, finds only the true outer edge.
+- PER-SEGMENT LIGHT NEEDS A SMOOTH WEIGHT, NOT A THRESHOLD. Lit and lee faces gated on a slope of 0.08 printed as bricks with vertical walls. Alpha and hang that rise smoothly with slope, painted on a scratch layer and blurred, read as light.
+- TEXTURE PAINTED ON A GRAZING TERRAIN ALIASES. 400 m flight lines in the albedo of a low camera became a graph-paper lattice; measured with and without them, the lines were the cause. The field as albedo and one gold line carried the frame.
+- A FILLED BAR'S FACE COUNTS AS MARKS ON ITS OWN AXIS. qa's census read gradient and grain inside a bar as undeclared marks. Two declared ticks under each bar, with the band moved there, measured the bar honestly. Queued.
+- THE SITE FIXTURE NEEDS 4.5:1. #46545F on #070B11 is about 2.3:1 and eight critics named it. #6F8294 clears it.
