@@ -8023,13 +8023,24 @@ can't report unique visitors, only pages read. That is the honest cost of the
 design and we would rather publish a smaller true number than a larger invented
 one.</p>
 <h2 data-reveal>If you give us something on purpose</h2>
-<p class="prose" data-reveal>Two parts of the site accept something from you
-deliberately, and both are opt in. If you subscribe to deadline alerts, your
+<p class="prose" data-reveal>Subscriptions and the Bottleneck Scanner are opt in.
+If you subscribe to deadline alerts, your
 email address is held by our newsletter provider and used to send you those
 alerts and nothing else. If you run the Bottleneck Scanner, it reads the public
 pages of the address you give it, and any contact detail you choose to add is
 used to send you that result. Unsubscribing is one click and removal is on
 request.</p>
+<h2 data-reveal>Contact and services inquiries</h2>
+<p class="prose" data-reveal>The <a class="proselink" href="../contact/">contact
+form</a> sends your name, email, optional business or organization, and message.
+The <a class="proselink" href="../services/#apply">services form</a> sends your
+name, email, business, requested AI work and budget selection, plus any location
+or previous attempts you enter.</p>
+<p class="prose" data-reveal>FormSubmit is our form processor. It receives these
+fields and forwards your inquiry to Alaska AI's inbox so we can read it and
+reply. We do not sell your address or add you to a mailing list. Sending an
+inquiry does not subscribe you to the docket's deadline alerts or a drip
+campaign.</p>
 <h2 data-reveal>The counts are public</h2>
 <p class="prose" data-reveal>Since none of it describes a person, there is no
 reason to keep it. The aggregate figures are open at
@@ -8629,6 +8640,9 @@ on whether the Field Study fits, and a no costs you nothing.{talk_first}</p>
 </form>
 <p class="fineprint" data-reveal>No pitch deck, no drip campaign. One reply, from the same
 people who write the deck. Prefer email? docket@alaskaaihq.com reaches the same place.</p>
+<p class="fineprint" data-reveal>FormSubmit is our form processor. It forwards your inquiry
+to Alaska AI so we can reply. See the <a class="proselink" href="../privacy/">privacy
+page</a> for the fields this form sends.</p>
 <div class="about-line" data-reveal><p>Every engagement is scoped and priced with you before
 any work begins. The docket stays free. The deck ships daily either way.</p></div>"""
 
@@ -8726,8 +8740,10 @@ just email, we are at docket@alaskaaihq.com.</p>
     <a class="cta ghost" href="../services/">SEE WHAT WE BUILD</a>
   </div>
 </form>
-<div class="about-line" data-reveal><p>We do not sell or share your address, and there is no
-list to get put on. The docket's deadline alerts are a separate thing you opt into yourself.
+<div class="about-line" data-reveal><p>FormSubmit is our form processor. It receives your
+name, email, optional business or organization, and message and forwards your inquiry to
+Alaska AI so we can reply. We do not sell your address or add you to a mailing list.
+The docket's deadline alerts are a separate thing you opt into yourself.
 See the <a class="proselink" href="../privacy/">privacy page</a>.</p></div>"""
     ld = {"@context": "https://schema.org", "@type": "ContactPage",
           "url": f"{site_url}/contact/", "name": "Contact Alaska AI",
