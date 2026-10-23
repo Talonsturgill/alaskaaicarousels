@@ -1,0 +1,882 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "$4.7 million to Alaskafor a refinery thatisn't built yet",
+          "x": 76,
+          "y": 164,
+          "w": 880,
+          "h": 235,
+          "font_px": 80,
+          "weight": "620",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              154,
+              876,
+              98
+            ],
+            [
+              76,
+              232,
+              797,
+              98
+            ],
+            [
+              76,
+              311,
+              563,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF 2614749 + 2614751",
+          "x": 97,
+          "y": 1135,
+          "w": 706,
+          "h": 40,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              1136,
+              406,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OBLIGATED AUGUST 5TH \u00b7 USD 4,737,612",
+          "x": 97,
+          "y": 1175,
+          "w": 706,
+          "h": 40,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              1176,
+              696,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CAM THREE QUARTER / LENS 42",
+          "x": 97,
+          "y": 1215,
+          "w": 706,
+          "h": 40,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              1216,
+              522,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 10",
+          "x": 851,
+          "y": 92,
+          "w": 135,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              851,
+              92,
+              135,
+              37
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "fits": [
+        {
+          "id": "head",
+          "tag": "div",
+          "text": "$4.7 million to Alaskafor a refinery thatisn't built yet",
+          "min": 62,
+          "max": 104,
+          "maxLines": 3,
+          "size": 80,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "render_ms": 16760,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.9,
+          "variance": 1478.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The money landed August 5th. The work starts September 1st.",
+          "x": 76,
+          "y": 196,
+          "w": 844,
+          "h": 221,
+          "font_px": 73.5,
+          "weight": "620",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              187,
+              694,
+              91
+            ],
+            [
+              76,
+              261,
+              824,
+              91
+            ],
+            [
+              76,
+              334,
+              822,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three linked standard grants share one title and one project. NSF obligated all ",
+          "x": 76,
+          "y": 432,
+          "w": 900,
+          "h": 92,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              432,
+              828,
+              46
+            ],
+            [
+              76,
+              478,
+              807,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 10CAM PAN RIGHT / LENS 50",
+          "x": 556,
+          "y": 84,
+          "w": 444,
+          "h": 74,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              865,
+              84,
+              135,
+              37
+            ],
+            [
+              556,
+              121,
+              444,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ONE PI AND FOUR CO-PIS ON THE ANCHORAGE RECORD.",
+          "x": 103,
+          "y": 1169,
+          "w": 896,
+          "h": 38,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              1169,
+              869,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THREE ALASKA ADDRESSES, ONE WYOMING ADDRESS.",
+          "x": 103,
+          "y": 1207,
+          "w": 896,
+          "h": 38,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              1207,
+              813,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2614749 $3,824,575",
+          "x": 102,
+          "y": 579,
+          "w": 364,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              579,
+              364,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UNIV OF ALASKA ANCHORAGE \u00b7 PI BRIGGS",
+          "x": 102,
+          "y": 631,
+          "w": 684,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              631,
+              684,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2614750 $1,260,800",
+          "x": 102,
+          "y": 729,
+          "w": 364,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              729,
+              364,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MONTANA TECHNOLOGICAL UNIVERSITY, BUTTE",
+          "x": 102,
+          "y": 781,
+          "w": 741,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              781,
+              741,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2614751 $913,037",
+          "x": 102,
+          "y": 879,
+          "w": 323,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              879,
+              323,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UNIV OF ALASKA FAIRBANKS \u00b7 PI AGGARWAL",
+          "x": 102,
+          "y": 931,
+          "w": 722,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              931,
+              722,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO FOURTH RECORD POSTED",
+          "x": 308,
+          "y": 1029,
+          "w": 437,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              308,
+              1029,
+              437,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RAIL LENGTH 1 PX = $6,200",
+          "x": 102,
+          "y": 1079,
+          "w": 475,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              1079,
+              475,
+              37
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "fits": [
+        {
+          "id": "head",
+          "tag": "div",
+          "text": "The money landed August 5th. The work starts September 1st.",
+          "min": 50,
+          "max": 74,
+          "maxLines": 3,
+          "size": 73.5,
+          "lines": 3,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "render_ms": 5126,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.5,
+          "variance": 287.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "\"reinforcement-learning controllers within a bioprocess digital twin integrated ",
+          "x": 76,
+          "y": 152,
+          "w": 880,
+          "h": 261,
+          "font_px": 61.5,
+          "weight": "620",
+          "family": "Fraunces",
+          "color": "rgb(244, 248, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              146,
+              645,
+              76
+            ],
+            [
+              76,
+              211,
+              813,
+              76
+            ],
+            [
+              76,
+              276,
+              712,
+              76
+            ],
+            [
+              76,
+              342,
+              582,
+              76
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE ABSTRACT OF NSF AWARD 2614749",
+          "x": 78,
+          "y": 440,
+          "w": 628,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              440,
+              628,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The abstract names the organism whose extraction performance the project will ev",
+          "x": 76,
+          "y": 508,
+          "w": 900,
+          "h": 185,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              76,
+              508,
+              818,
+              46
+            ],
+            [
+              76,
+              554,
+              789,
+              46
+            ],
+            [
+              76,
+              600,
+              829,
+              46
+            ],
+            [
+              76,
+              647,
+              897,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 10CAM TILT DOWN / LENS 50",
+          "x": 556,
+          "y": 84,
+          "w": 444,
+          "h": 74,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              865,
+              84,
+              135,
+              37
+            ],
+            [
+              556,
+              121,
+              444,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOLID IS ON THE RECORD. DASHED IS NOT YET.",
+          "x": 93,
+          "y": 1160,
+          "w": 788,
+          "h": 37,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 216, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              93,
+              1160,
+              788,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO LARGE LANGUAGE MODEL IN THE ABSTRACT.",
+          "x": 93,
+          "y": 1223,
+          "w": 728,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              93,
+              1223,
+              728,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SURFACE = COAL REFUSE AND ASH",
+          "x": 96,
+          "y": 855,
+          "w": 545,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(169, 190, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              855,
+              545,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0 / 3 THRUSTS RUNNING",
+          "x": 96,
+          "y": 915,
+          "w": 395,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(126, 147, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              915,
+              395,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "VIRTUAL ASSAY",
+          "x": 578,
+          "y": 771,
+          "w": 244,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 200, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              771,
+              244,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RL CONTROLLER",
+          "x": 708,
+          "y": 1076,
+          "w": 244,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 200, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              708,
+              1076,
+              244,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PURIFICATION",
+          "x": 458,
+          "y": 1076,
+          "w": 226,
+          "h": 37,
+          "font_px": 28,
+          "weight": "300",
+          "family": "JetBrains Mono",
+          "color": "rgb(90, 200, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              458,
+              1076,
+              226,
+              37
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "fits": [
+        {
+          "id": "quote",
+          "tag": "div",
+          "text": "\"reinforcement-learning controllers within a bioprocess digi",
+          "min": 44,
+          "max": 62,
+          "maxLines": 5,
+          "size": 61.5,
+          "lines": 4,
+          "fit": true,
+          "overflow_x": false,
+          "overflow_y": true
+        }
+      ],
+      "asserts": [],
+      "render_ms": 4667,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 13.9,
+          "variance": 286.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

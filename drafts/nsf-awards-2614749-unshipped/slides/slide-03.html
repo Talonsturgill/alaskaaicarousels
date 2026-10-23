@@ -1,0 +1,174 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;inset:0;width:1080px;height:1350px}
+  .lay{position:absolute;inset:0}
+  #quote{position:absolute;left:76px;top:152px;width:880px;
+        font-family:"Fraunces";font-weight:620;font-variation-settings:"SOFT" 12,"WONK" 1,"opsz" 72;
+        color:#F4F8FF;line-height:1.06;letter-spacing:-0.018em}
+  #attrib{position:absolute;left:78px;top:440px;
+        font-family:"JetBrains Mono";font-weight:300;font-size:28px;letter-spacing:0.08em;color:#7E93A8}
+  #body{position:absolute;left:76px;top:508px;width:900px;
+        font-family:"Manrope";font-weight:500;font-size:34px;line-height:1.36;color:#A9BED4}
+  #rec{position:absolute;right:80px;top:84px;text-align:right}
+  #rec span{font-family:"JetBrains Mono";font-weight:300;font-size:28px;letter-spacing:0.09em;color:#7E93A8}
+  #pol{position:absolute;right:84px;top:178px}
+  #legend{position:absolute;left:76px;top:1148px;padding:11px 16px;background:#0B1A2A;border:1px solid #22384E}
+  #legend span{font-family:"JetBrains Mono";font-weight:500;font-size:28px;letter-spacing:0.07em;color:#C6D8E8}
+  #guard{position:absolute;left:76px;top:1212px;width:900px;padding:10px 16px;
+         border:1.25px dashed #5A6E82;background:rgba(5,10,18,0.86)}
+  #guard span{font-family:"JetBrains Mono";font-weight:300;font-size:28px;letter-spacing:0.05em;color:#A9BED4}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="lay">
+  <div id="quote">"reinforcement-learning controllers within a bioprocess digital twin integrated with microgrid simulators"</div>
+  <div id="attrib">THE ABSTRACT OF NSF AWARD 2614749</div>
+  <div id="body">The abstract names the organism whose extraction performance the project will evaluate, Shewanella oneidensis. It names the feedstock as domestic coal refuse and ash. NSF tags the award Artificial Intelligence.</div>
+  <div id="rec"><span>03 / 10<br>CAM TILT DOWN / LENS 50</span></div>
+  <svg id="pol" width="36" height="36" viewBox="0 0 46 46">
+    <path d="M23 0 L26.6 19.4 L46 23 L26.6 26.6 L23 46 L19.4 26.6 L0 23 L19.4 19.4 Z" fill="#FFC72C"/>
+  </svg>
+  <div id="legend"><span>SOLID IS ON THE RECORD. DASHED IS NOT YET.</span></div>
+  <div id="guard"><span>NO LARGE LANGUAGE MODEL IN THE ABSTRACT.</span></div>
+</div>
+<svg id="ann" class="lay" width="1080" height="1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350,SEED=20260814+3;
+  const cx=document.getElementById('art').getContext('2d'); cx.scale(2,2);
+  const rnd=AK.rng(SEED); AK.reseed(SEED);
+
+  /* Dark air above, an engraved ash bed below. Bed horizon at y=760. */
+  const air=cx.createLinearGradient(0,0,0,760);
+  air.addColorStop(0,'#050A12'); air.addColorStop(1,'#091420');
+  cx.fillStyle=air; cx.fillRect(0,0,W,760);
+
+  /* THE BED. A height field lit by a low raking key at azimuth 248, elevation
+     22, so ndotl spreads across its range and the swelled line reads as
+     engraving rather than as a uniform hatch. Precomputed into a lookup grid
+     because a per-sample form() call is four evaluations per normal. */
+  const GW=140, GH=90, X0=0, Y0=760, BW=W, BH=H-760;
+  const grid=new Float32Array(GW*GH);
+  for(let j=0;j<GH;j++) for(let i=0;i<GW;i++){
+    const u=i/GW, v=j/GH;
+    // one slow plane plus two broad smooth bumps: long bending parallels
+    let h = 0.34*u + 0.22*v;
+    h += 0.30*Math.exp(-((u-0.30)*(u-0.30)+(v-0.55)*(v-0.55))/0.055);
+    h += 0.22*Math.exp(-((u-0.74)*(u-0.74)+(v-0.32)*(v-0.32))/0.040);
+    h += 0.045*AK.fbm2(u*3.1, v*3.1, 3);
+    grid[j*GW+i]=h;
+  }
+  function form(u,v){
+    const x=Math.min(GW-1.001,Math.max(0,u*(GW-1))), y=Math.min(GH-1.001,Math.max(0,v*(GH-1)));
+    const i=x|0, j=y|0, fx=x-i, fy=y-j;
+    const a=grid[j*GW+i], b=grid[j*GW+i+1], c=grid[(j+1)*GW+i], d=grid[(j+1)*GW+i+1];
+    return a*(1-fx)*(1-fy)+b*fx*(1-fy)+c*(1-fx)*fy+d*fx*fy;
+  }
+  const AZ=248*Math.PI/180, EL=22*Math.PI/180;
+  const lx=Math.cos(AZ)*Math.cos(EL), ly=Math.sin(AZ)*Math.cos(EL), lz=Math.sin(EL);
+
+  // base tone
+  const bg=cx.createLinearGradient(0,Y0,0,H);
+  bg.addColorStop(0,'#131920'); bg.addColorStop(0.45,'#1E252E'); bg.addColorStop(1,'#080B10');
+  cx.fillStyle=bg; cx.fillRect(0,Y0,BW,BH);
+
+  // swelled-stroke lay: direction is the gradient of form, so the field's own
+  // shape IS the drawing
+  cx.save(); cx.beginPath(); cx.rect(0,Y0,BW,BH); cx.clip();
+  cx.lineCap='round';
+  const STEP=7;
+  for(let ry=0; ry<BH; ry+=STEP){
+    let px=null, py=null;
+    for(let rx=-8; rx<=BW+8; rx+=6){
+      const u=rx/BW, v=ry/BH;
+      const e=0.006;
+      const gx=(form(u+e,v)-form(u-e,v))/(2*e);
+      const gy=(form(u,v+e)-form(u,v-e))/(2*e);
+      // surface normal from the height gradient
+      let nx=-gx*0.26, ny=-gy*0.26, nz=1;
+      const n=Math.hypot(nx,ny,nz); nx/=n; ny/=n; nz/=n;
+      const ndotl=Math.max(0, nx*lx+ny*ly+nz*lz);
+      const wdt=0.40 + 4.2*Math.pow(1-ndotl,1.6);
+      const yy=Y0+ry + gy*7.5;
+      if(px!==null){
+        cx.beginPath(); cx.moveTo(px,py); cx.lineTo(rx,yy);
+        cx.lineWidth=wdt;
+        cx.strokeStyle = ndotl>0.52 ? 'rgba(150,166,184,0.55)' : 'rgba(3,5,8,0.92)';
+        cx.stroke();
+      }
+      px=rx; py=yy;
+    }
+  }
+  // a scattering of lit crumb faces so the bed is coal and not cloth
+  for(let i=0;i<420;i++){
+    const x=rnd()*BW, y=Y0+Math.pow(rnd(),0.7)*BH, s=1.6+rnd()*4.4;
+    const u=x/BW, v=(y-Y0)/BH;
+    const e=0.006, gx=(form(u+e,v)-form(u-e,v))/(2*e);
+    cx.globalAlpha=0.22+rnd()*0.55;
+    cx.fillStyle = gx<0 ? '#6E7883' : '#0B0E12';
+    cx.beginPath();
+    cx.moveTo(x,y); cx.lineTo(x+s,y+s*0.6); cx.lineTo(x+s*0.4,y+s*1.15); cx.closePath(); cx.fill();
+  }
+  cx.globalAlpha=1; cx.restore();
+
+  /* THE LOOP, three stations, every arrow dashed because nothing has run. */
+  const CX0=700, CY0=980, R=150;
+  const st=[-Math.PI/2, -Math.PI/2+2.094, -Math.PI/2+4.189];
+  cx.save();
+  cx.setLineDash([30,5,6,5,6,5]); cx.lineWidth=1.9; cx.strokeStyle='#5AC8F0';
+  for(let k=0;k<3;k++){
+    cx.beginPath(); cx.arc(CX0,CY0,R,st[k]+0.20,st[k]+1.90); cx.stroke();
+  }
+  cx.restore();
+  // filled junction dots at 2.5x stroke width, solid because the stations exist
+  st.forEach(a=>{
+    const x=CX0+Math.cos(a)*R, y=CY0+Math.sin(a)*R;
+    cx.beginPath(); cx.arc(x,y,4.8,0,Math.PI*2); cx.fillStyle='#C6D8E8'; cx.fill();
+  });
+  // meter, needle pinned at zero
+  cx.beginPath(); cx.arc(CX0,CY0,40,Math.PI*0.78,Math.PI*0.22,false);
+  cx.lineWidth=1.6; cx.strokeStyle='#7E93A8'; cx.stroke();
+  cx.beginPath(); cx.moveTo(CX0,CY0); cx.lineTo(CX0+Math.cos(Math.PI*0.78)*34, CY0+Math.sin(Math.PI*0.78)*34);
+  cx.lineWidth=2.6; cx.strokeStyle='#F4F8FF'; cx.stroke();
+  for(let t=0;t<=4;t++){
+    const a=Math.PI*0.78 + t*(Math.PI*0.44/4);
+    cx.beginPath();
+    cx.moveTo(CX0+Math.cos(a)*40, CY0+Math.sin(a)*40);
+    cx.lineTo(CX0+Math.cos(a)*47, CY0+Math.sin(a)*47);
+    cx.lineWidth=1.3; cx.strokeStyle='#7E93A8'; cx.stroke();
+  }
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.10,saturation:1.05,contrast:1.12,filmic:true,
+    lift:[0.008,0.012,0.026],gain:[1.020,1.000,0.968],vignette:0.24,
+    bloom:{threshold:0.68,strength:0.22,radius:10},
+    grain:{amount:0.05,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.22});
+
+  const svg=document.getElementById('ann'), NS='http://www.w3.org/2000/svg';
+  function lab(x,y,txt,fill,size){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y);
+    t.setAttribute('font-family','JetBrains Mono'); t.setAttribute('font-size',size||28);
+    t.setAttribute('font-weight','300'); t.setAttribute('letter-spacing','2.0');
+    t.setAttribute('fill',fill||'#A9BED4'); t.textContent=txt;
+    svg.appendChild(t); return t;
+  }
+  const L=[];
+  L.push(lab(96, 884,'SURFACE = COAL REFUSE AND ASH','#A9BED4',28));
+  L.push(lab(96, 944,'0 / 3 THRUSTS RUNNING','#7E93A8',28));
+  L.push(lab(578, 800,'VIRTUAL ASSAY','#5AC8F0',28));
+  L.push(lab(708,1105,'RL CONTROLLER','#5AC8F0',28));
+  L.push(lab(458,1105,'PURIFICATION','#5AC8F0',28));
+
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('quote'),{min:44,max:62,maxLines:5});
+  L.forEach(t=>AK.svgPlate(t,{padX:11,padY:5,fill:'#050A12',opacity:0.9}));
+  return true;
+})();
+</script>
+</body></html>
