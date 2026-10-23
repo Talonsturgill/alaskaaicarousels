@@ -1,0 +1,2 @@
+# Keep the captured response bytes, including CRLF, stable on every checkout.
+2026-10-23-malformed.html -text whitespace=cr-at-eol

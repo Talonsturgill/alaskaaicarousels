@@ -1,7 +1,7 @@
 {
   "name": "Cook Inlet Gas Watch",
   "description": "A daily numeric record of Southcentral Alaska's natural gas position. Measured storage inventory and deliverability from the CINGSA public dashboard, modeled regional demand from Anchorage degree days, and the derived non CINGSA supply that falls out of the mass balance. It publishes no safety verdict of any kind.",
-  "version": "1.0",
+  "version": "1.1",
   "updated": "2026-10-23",
   "canonical": "https://alaskaaihq.com/gas-watch.json",
   "documentation": "https://alaskaaihq.com/gas-watch/",
@@ -15,6 +15,8 @@
   "source_status": {
     "state": "unavailable",
     "last_verified_date": "2026-10-22",
+    "capacity_status": "unavailable",
+    "capacity_field_errors": {},
     "last_collection_utc": "2026-10-23T17:59:01Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"

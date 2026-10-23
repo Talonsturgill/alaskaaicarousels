@@ -1,0 +1,11 @@
+{
+  "name": "cingsa_dashboard",
+  "url": "https://cingsa.com/operations/PublicDashBoard.html",
+  "method": "GET",
+  "fetch_status": "parse_failed",
+  "fetched_utc": "2026-10-23T19:32:33Z",
+  "http_status": 200,
+  "attempts": 1,
+  "error": "ValueError: CINGSA layout changed, could not read 2 number(s) after row label 'Available Capacity'",
+  "sha256": "a36c4b616fb8a6670282d3f6770bb267abd6c0b15edac104cf9285b9aae4e905"
+}

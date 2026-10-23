@@ -9854,7 +9854,9 @@ GAS_WATCH_FIELD_DOCS = {
     "reconciliation.error": "Forecast heating degree days minus observed, the model's own daily accuracy check.",
     "model": "The demand coefficients that produced this record, carried per record so an old number stays reproducible.",
     "sources": "Provenance for every external fetch, with url, timestamp, http status and attempt count.",
-    "verified": "False when a fetch failed or the source was stale. An unverified record carries no number forward from the day before.",
+    "verified": "True for fresh, validated inventory, design volume and inventory change. Capacity fields are validated independently and may be null. An unverified record carries no number forward from the day before.",
+    "cingsa.data_status": "Complete or partial for validated inventory, unavailable for unverified storage. Partial means capacity fields could not be read; no replacement is inferred.",
+    "cingsa.field_errors": "Unavailable capacity fields and dependent rates, with the source row, raw cell when available, or missing dependencies. A null is not zero.",
 }
 
 

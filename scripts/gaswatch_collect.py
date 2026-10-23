@@ -34,6 +34,8 @@ Exit codes, so .github/workflows/gaswatch.yml can tell the cases apart:
      failed, so nothing was written
   4  source stale inside an explicitly announced shut-in window; warn, keep
      storage unverified and resume failures on the announced return date
+  5  storage verified, but some CINGSA capacity fields are unavailable; retain
+     the independent storage reading and surface the source error
 
 Run:
   python3 scripts/gaswatch_collect.py --self-test     # hermetic, no network
@@ -55,9 +57,10 @@ import traceback
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 
-COLLECTOR_VERSION = "1.2"
+COLLECTOR_VERSION = "1.3"
 
 UA = "AlaskaAI-GasWatch/1.1 (+https://alaskaaihq.com; docket@alaskaaihq.com)"
 
@@ -132,6 +135,8 @@ class Probe:
         self.fetched_utc = None
         self.error = None
         self.attempts = 0
+        self.sha256 = None
+        self.field_errors = None
 
     def as_dict(self):
         d = {
@@ -145,6 +150,10 @@ class Probe:
         }
         if self.error:
             d["error"] = self.error
+        if self.sha256:
+            d["sha256"] = self.sha256
+        if self.field_errors:
+            d["field_errors"] = self.field_errors
         return d
 
 
@@ -217,37 +226,73 @@ def cingsa_cells(raw):
 
 
 def _number(cell):
-    if not re.fullmatch(r"-?[\d,]+(?:\.\d+)?", cell):
+    # CINGSA publishes whole Mcf and Mcf/d. Validate the complete cell and
+    # comma grouping; stripping punctuation or truncating decimals invents data.
+    if not re.fullmatch(r"-?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)", cell):
         return None
-    return float(cell.replace(",", ""))
+    return int(cell.replace(",", ""))
 
 
-def row(cells, label, count, lo=0, hi=None):
-    """The `count` numbers that follow `label`, searched inside cells[lo:hi].
+class _CingsaTables(HTMLParser):
+    """Keep table and column boundaries, including empty numeric cells.
 
-    The window matters. Design Capacity and Maximum Contracted Capacity each
-    appear twice on the page, once in the injection and withdrawal table in
-    Mcf/d and once in the storage volume table in Mcf. A parser that takes the
-    first match reads a rate as a volume. The caller passes the section bounds.
+    Flattening drops empty cells and can shift a withdrawal into injection.
+    The source also closes one header th with /td, so either cell end closes
+    the current cell, without repairing or interpreting any cell's content.
     """
-    hi = len(cells) if hi is None else hi
-    for i in range(lo, min(hi, len(cells))):
-        if cells[i].lower() != label.lower():
-            continue
-        got = []
-        for cell in cells[i + 1:hi]:
-            val = _number(cell)
-            if val is None:
-                break
-            got.append(val)
-            if len(got) == count:
-                break
-        if len(got) == count:
-            return got if count > 1 else got[0]
-    raise ValueError(
-        f"CINGSA layout changed, could not read {count} number(s) after "
-        f"row label {label!r}"
-    )
+
+    def __init__(self, raw):
+        super().__init__()
+        self.tables, self.stack = [], []
+        self.feed(raw)
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "table":
+            table = {"rows": [], "row": None, "cell": None}
+            is_data = "data_table" in dict(attrs).get("class", "").split()
+            self.stack.append(table if is_data else None)
+            if is_data:
+                self.tables.append(table["rows"])
+        elif self.stack and self.stack[-1] is not None:
+            table = self.stack[-1]
+            if tag == "tr":
+                table["row"] = []
+            elif tag in ("td", "th") and table["row"] is not None:
+                table["cell"] = []
+
+    def handle_data(self, data):
+        if self.stack and self.stack[-1] is not None:
+            cell = self.stack[-1]["cell"]
+            if cell is not None:
+                cell.append(data)
+
+    def handle_endtag(self, tag):
+        if not self.stack:
+            return
+        table = self.stack[-1]
+        if table is not None:
+            if tag in ("td", "th") and table["cell"] is not None:
+                table["row"].append(" ".join("".join(table["cell"]).split()))
+                table["cell"] = None
+            elif tag == "tr" and table["row"] is not None:
+                table["rows"].append(table["row"])
+                table["row"] = None
+        if tag == "table":
+            self.stack.pop()
+
+
+def _labeled_rows(table, label):
+    return [r for r in table if r and r[0].lower() == label.lower()]
+
+
+def row(table, label):
+    """One required inventory value, scoped to its own table and whole row."""
+    matches = _labeled_rows(table, label)
+    if len(matches) == 1 and len(matches[0]) == 2:
+        value = _number(matches[0][1])
+        if value is not None:
+            return value
+    raise ValueError(f"CINGSA layout changed, unreadable inventory row {label!r}")
 
 
 def parse_cingsa(raw):
@@ -269,25 +314,52 @@ def parse_cingsa(raw):
         )
     stamp = stamp.replace(tzinfo=alaska_tz())
 
-    # The storage volume heading is the boundary between the two tables. Rate
-    # rows are before it, volume rows after it.
-    split = None
-    for i, cell in enumerate(cells):
-        if cell.lower().startswith("storage volume"):
-            split = i
-            break
-    if split is None:
-        raise ValueError("CINGSA layout changed, no Storage Volume heading")
+    # Headings establish column identity and units. Row labels alone recur in
+    # both tables and in the definitions. Unknown headings must fail closed.
+    tables = _CingsaTables(raw).tables
+    def table_with(headings):
+        matches = [t for t in tables if any(
+            [c.lower() for c in r if c] == headings for r in t)]
+        if len(matches) != 1:
+            raise ValueError(f"CINGSA layout changed, missing or ambiguous headings {headings!r}")
+        return matches[0]
 
-    inj_design, wd_design = row(cells, "Design Capacity", 2, hi=split)
-    inj_fac, wd_fac = row(cells, "Facility Capacity", 2, hi=split)
-    inj_res, wd_res = row(cells, "Physical Restrictions", 2, hi=split)
-    inj_op, wd_op = row(cells, "Operating Capacity", 2, hi=split)
-    inj_av, wd_av = row(cells, "Available Capacity", 2, hi=split)
+    rates = table_with(["injection (mcfpd)", "withdrawal (mcfpd)"])
+    storage = table_with(["storage volume (mcf)"])
+    design_volume = row(storage, "Design Capacity")
+    begin = row(storage, "Beginning Inventory")
+    end = row(storage, "Ending Inventory")
 
-    design_volume = row(cells, "Design Capacity", 1, lo=split)
-    begin = row(cells, "Beginning Inventory", 1, lo=split)
-    end = row(cells, "Ending Inventory", 1, lo=split)
+    # Inventory has its own source table and does not depend on rates. Keep
+    # valid capacity cells independently; null and describe every invalid one.
+    field_errors = {}
+    def capacity(label, suffix):
+        matches = _labeled_rows(rates, label)
+        cells_ = matches[0] if len(matches) == 1 else []
+        aligned = len(cells_) == 4 and not cells_[2]
+        out = []
+        for column, stream in ((1, "injection"), (3, "withdrawal")):
+            field = f"{stream}_{suffix}_mcfd"
+            raw_value = cells_[column] if aligned else None
+            value = _number(raw_value) if raw_value is not None else None
+            if value is None or not 0 <= value <= 10_000_000:
+                field_errors[field] = {
+                    "status": "unavailable", "row": label, "raw_value": raw_value,
+                    "error": "expected a whole Mcf/d value in its labeled column"}
+                value = None
+            out.append(value)
+        return out
+
+    inj_design, wd_design = capacity("Design Capacity", "design")
+    inj_fac, wd_fac = capacity("Facility Capacity", "facility")
+    inj_res, wd_res = capacity("Physical Restrictions", "restriction")
+    inj_op, wd_op = capacity("Operating Capacity", "operating")
+    inj_av, wd_av = capacity("Available Capacity", "available")
+    injection = None if inj_op is None or inj_av is None else inj_op - inj_av
+    if injection is None:
+        field_errors["injection_in_progress_mcfd"] = {
+            "status": "unavailable", "error": "required capacity input unavailable",
+            "depends_on": ["injection_operating_mcfd", "injection_available_mcfd"]}
 
     # CINGSA defines operating capacity as facility capacity less physical
     # restrictions. That identity was a useful structural guard until September
@@ -300,6 +372,8 @@ def parse_cingsa(raw):
     for stream, facility, restriction, operating in (
             ("injection", inj_fac, inj_res, inj_op),
             ("withdrawal", wd_fac, wd_res, wd_op)):
+        if any(v is None for v in (facility, restriction, operating)):
+            continue
         expected = facility - restriction
         if abs(expected - operating) > 1:
             identity_mismatches.append({
@@ -319,11 +393,11 @@ def parse_cingsa(raw):
         raise ValueError(
             f"CINGSA units changed, storage design volume reads {design_volume:,.0f} "
             f"which is outside the plausible band for Mcf")
-    if not 0 <= end <= design_volume * 1.05:
+    if not 0 <= begin <= design_volume * 1.05 or not 0 <= end <= design_volume * 1.05:
         raise ValueError(
             f"CINGSA units changed, ending inventory reads {end:,.0f} against a "
             f"design volume of {design_volume:,.0f}")
-    if not 1_000 <= wd_fac <= 10_000_000:
+    if wd_fac is not None and not 1_000 <= wd_fac <= 10_000_000:
         raise ValueError(
             f"CINGSA units changed, facility withdrawal capacity reads "
             f"{wd_fac:,.0f} which is outside the plausible band for Mcf/d")
@@ -341,25 +415,27 @@ def parse_cingsa(raw):
 
     return {
         "fetch_status": "ok",
+        "data_status": "partial" if field_errors else "complete",
+        "field_errors": field_errors,
         "source_timestamp": stamp.replace(tzinfo=None).isoformat(),
         "source_timestamp_utc": iso_z(stamp),
         "inventory_mcf": int(end),
         "inventory_delta_mcf": int(end - begin),
         "storage_design_mcf": int(design_volume),
         "inventory_pct_of_design": round(end / design_volume * 100, 1),
-        "withdrawal_design_mcfd": int(wd_design),
-        "withdrawal_facility_mcfd": int(wd_fac),
-        "withdrawal_operating_mcfd": int(wd_op),
-        "withdrawal_available_mcfd": int(wd_av),
-        "withdrawal_restriction_mcfd": int(wd_res),
-        "injection_design_mcfd": int(inj_design),
-        "injection_facility_mcfd": int(inj_fac),
-        "injection_operating_mcfd": int(inj_op),
-        "injection_available_mcfd": int(inj_av),
+        "withdrawal_design_mcfd": wd_design,
+        "withdrawal_facility_mcfd": wd_fac,
+        "withdrawal_operating_mcfd": wd_op,
+        "withdrawal_available_mcfd": wd_av,
+        "withdrawal_restriction_mcfd": wd_res,
+        "injection_design_mcfd": inj_design,
+        "injection_facility_mcfd": inj_fac,
+        "injection_operating_mcfd": inj_op,
+        "injection_available_mcfd": inj_av,
         # Available is operating less nominations, so the difference is the
         # nominated injection actually in progress for the day.
-        "injection_in_progress_mcfd": int(inj_op - inj_av),
-        "injection_restriction_mcfd": int(inj_res),
+        "injection_in_progress_mcfd": injection,
+        "injection_restriction_mcfd": inj_res,
         "capacity_identity_mismatches": identity_mismatches,
         "operational_note": note,
     }
@@ -609,7 +685,7 @@ def read_ledger(path):
 # nothing at one run a day and becomes ledger bloat the moment the schedule
 # gets tighter, which is exactly what happened when it did.
 MEASURED = ("inventory_mcf", "inventory_delta_mcf", "inventory_pct_of_design",
-            "withdrawal_facility_mcfd", "withdrawal_operating_mcfd",
+            "withdrawal_design_mcfd", "withdrawal_facility_mcfd", "withdrawal_operating_mcfd",
             "withdrawal_available_mcfd", "withdrawal_restriction_mcfd",
             "injection_facility_mcfd", "injection_operating_mcfd",
             "injection_available_mcfd", "injection_in_progress_mcfd",
@@ -654,7 +730,8 @@ def maintenance_pause(cingsa, flags, ak_today):
     stamp = (cingsa.get("source_timestamp") or "")[:10]
     earliest = ((datetime.fromisoformat(window["start_date"]) - timedelta(days=1))
                 .date().isoformat()) if window else None
-    return bool(cingsa.get("fetch_status") == "ok" and "cingsa_stale" in flags
+    return bool(cingsa.get("fetch_status") == "ok" and not cingsa.get("field_errors")
+                and "cingsa_stale" in flags
                 and window and earliest <= stamp <= ak_today
                 and window["start_date"] <= ak_today < window["end_date"])
 
@@ -743,6 +820,15 @@ def what_to_do(prior, verified, new_stamp, new_cingsa=None):
             return "skip", "a verified record stands and this attempt failed"
         if not (new_stamp and prior_stamp):
             return "skip", "a verified record stands and there is no stamp to compare"
+        if new_stamp == prior_stamp and new_cingsa is not None:
+            old = prior.get("cingsa") or {}
+            # An upstream correction can retain its timestamp. Admit only an
+            # improvement in unavailable fields with every prior good value
+            # unchanged, never a conflicting same-stamp measurement.
+            if (set(new_cingsa.get("field_errors") or {}) < set(old.get("field_errors") or {})
+                    and all(old.get(k) is None or old.get(k) == new_cingsa.get(k)
+                            for k in MEASURED)):
+                return "revision", prior_stamp
         if new_stamp <= prior_stamp:
             return "skip", f"the posting on file is {prior_stamp}, this is {new_stamp}"
         if new_cingsa is not None and same_reading(prior.get("cingsa"), new_cingsa):
@@ -936,6 +1022,10 @@ def build_record(model, records, now, ak_today, snapshot_dir=None):
         age = now - datetime.fromisoformat(cingsa["source_timestamp_utc"].replace("Z", "+00:00"))
         cingsa["source_age_hours"] = round(age.total_seconds() / 3600, 1)
         stale = age > timedelta(hours=STALE_HOURS)
+        if cingsa.get("field_errors"):
+            cingsa_probe.status = "partial"
+            cingsa_probe.field_errors = cingsa["field_errors"]
+            cingsa_probe.error = "CINGSA fields unavailable: " + ", ".join(cingsa["field_errors"])
     except Exception as exc:
         if cingsa_probe.status == "ok":
             # The fetch worked and the parse did not, which means the layout
@@ -948,6 +1038,8 @@ def build_record(model, records, now, ak_today, snapshot_dir=None):
             "source_timestamp": None,
         }
 
+    if raw is not None:
+        cingsa_probe.sha256 = hashlib.sha256(raw.encode("utf-8")).hexdigest()
     if snapshot_dir:
         dest = Path(snapshot_dir)
         dest.mkdir(parents=True, exist_ok=True)
@@ -955,7 +1047,6 @@ def build_record(model, records, now, ak_today, snapshot_dir=None):
         if raw is not None:
             body = raw.encode("utf-8")
             (dest / "cingsa.html").write_bytes(body)
-            evidence["sha256"] = hashlib.sha256(body).hexdigest()
         (dest / "source.json").write_text(json.dumps(evidence, indent=2) + "\n")
 
     verified = cingsa["fetch_status"] == "ok" and not stale
@@ -963,6 +1054,8 @@ def build_record(model, records, now, ak_today, snapshot_dir=None):
         flags.append("cingsa_fetch_failed")
     if cingsa.get("capacity_identity_mismatches"):
         flags.append("cingsa_capacity_identity_mismatch")
+    if cingsa.get("field_errors"):
+        flags.append("cingsa_fields_unavailable")
     if stale:
         flags.append("cingsa_stale")
 
@@ -1041,9 +1134,11 @@ def finish_record(date, cingsa, verified, flags, probes, model, records, now,
     # could not be computed is visible in flags rather than only as a null.
     recon = reconcile(records, recon_date, observed_hdd.get(recon_date), model)
     if verified:
-        if cingsa["withdrawal_restriction_mcfd"] > 0:
+        if (cingsa.get("withdrawal_restriction_mcfd") is not None
+                and cingsa["withdrawal_restriction_mcfd"] > 0):
             flags.append("withdrawal_restriction_active")
-        if cingsa["injection_restriction_mcfd"] > 0:
+        if (cingsa.get("injection_restriction_mcfd") is not None
+                and cingsa["injection_restriction_mcfd"] > 0):
             flags.append("injection_restriction_active")
         if cingsa["inventory_delta_mcf"] < 0:
             flags.append("inventory_declined")
@@ -1359,11 +1454,6 @@ def self_test(model_path):
                 .replace("6,388,680", "6,389")),
         ("deliverability restated in MMcf/d",
          FIXTURE.replace("132,117", "132").replace("206,320", "206")),
-        ("a labeled rate row stops being numeric",
-         FIXTURE.replace('<td class="data_item">0</td><td></td>'
-                         '<td class="data_item">0</td></tr>',
-                         '<td class="data_item">restricted</td><td></td>'
-                         '<td class="data_item">0</td></tr>', 1)),
     ]
     for label, mutated in broken:
         try:
@@ -1371,6 +1461,15 @@ def self_test(model_path):
             check(f"rejects a layout change, {label}", False, "parsed anyway")
         except ValueError:
             check(f"rejects a layout change, {label}", True)
+
+    partial = parse_cingsa(FIXTURE.replace('>171,428</td>', '>0]</td>'))
+    check("a malformed capacity never discards independent inventory",
+          partial["inventory_mcf"] == 6423571 and partial["data_status"] == "partial")
+    check("invalid capacity and dependent injection remain unavailable",
+          partial["injection_available_mcfd"] is None
+          and partial["injection_in_progress_mcfd"] is None
+          and partial["withdrawal_available_mcfd"] == 132117
+          and partial["field_errors"]["injection_available_mcfd"]["raw_value"] == "0]")
 
     print("forecast guards")
     celsius = json.dumps({"properties": {"periods": [
@@ -1439,6 +1538,10 @@ def main():
     date, cingsa, verified, stale, flags, probes = build_record(
         model, records, now, ak_today, args.snapshot_dir)
     paused = maintenance_pause(cingsa, flags, ak_today)
+    partial_status = 5 if verified and cingsa.get("field_errors") else 0
+    if cingsa.get("field_errors"):
+        print("CINGSA fields unavailable: " + ", ".join(cingsa["field_errors"]),
+              file=sys.stderr)
     if stale:
         print(f"CINGSA source unchanged since {cingsa['source_timestamp']} Alaska, "
               f"{cingsa['source_age_hours']} hours old.")
@@ -1458,7 +1561,7 @@ def main():
     pending_trueups = unresolved_reconciliation_dates(records, date)
     if action == "skip" and not pending_trueups:
         print(f"{date} needs nothing, {detail}.")
-        return 0
+        return partial_status
     if action == "refuse" and not pending_trueups:
         print(f"{date} already has an unverified record and this attempt "
               f"also failed. Not stacking a second failure.")
@@ -1480,7 +1583,7 @@ def main():
             if action == "skip":
                 print(f"{date} needs nothing, {detail}; unresolved balance "
                       f"dates are still awaiting observed weather.")
-                return 0
+                return partial_status
             print(f"{date} already has an unverified record and this attempt "
                   f"also failed. No older balance became resolvable.")
             for probe in probes:
@@ -1508,19 +1611,22 @@ def main():
 
     if args.dry_run:
         print(json.dumps(record, indent=2))
-        return 0 if verified else (4 if paused else 2)
+        return partial_status if verified else (4 if paused else 2)
 
     append_record(args.ledger, record)
 
     cin, der = record["cingsa"], record["derived"]
     print(f"{record['date']}  {'verified' if verified else 'UNVERIFIED'}")
     if verified:
+        withdrawal = cin.get("withdrawal_operating_mcfd")
+        capacity = (f"{withdrawal / 1000:.0f} MMcf/d" if withdrawal is not None
+                    else "unavailable")
         print(f"  CINGSA {cin['source_timestamp']} "
               f"({cin.get('source_age_hours')}h old)  "
               f"{cin['inventory_mcf'] / 1e6:.2f} Bcf "
               f"({cin['inventory_pct_of_design']} percent of design)  "
               f"withdrawal capacity "
-              f"{cin['withdrawal_operating_mcfd'] / 1000:.0f} MMcf/d")
+              f"{capacity}")
     else:
         print(f"  CINGSA storage unavailable; fetch {cin.get('fetch_status')}"
               + (f", {cin['error']}" if cin.get('error') else ""))
@@ -1544,7 +1650,7 @@ def main():
         print("  record written UNVERIFIED. No number was carried forward.",
               file=sys.stderr)
         return 4 if paused else 2
-    return 0
+    return partial_status
 
 
 if __name__ == "__main__":
