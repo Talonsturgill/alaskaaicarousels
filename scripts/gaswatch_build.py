@@ -37,7 +37,7 @@ import gaswatch_collect as gc  # noqa: E402  the model and its arithmetic live t
 LEDGER = os.path.join(REPO, "ledger", "gaswatch.jsonl")
 MODEL_CONFIG = os.path.join(REPO, "config", "gaswatch_model.json")
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 
 # How many days the day by day table shows. Read by display_numerals too, since
 # the caption counts the rows it renders rather than the whole series.
@@ -156,6 +156,9 @@ def source_status(series, today):
         if gc.maintenance_pause(cin, last.get("flags") or [], today.isoformat()):
             state = "announced_maintenance"
     return {"state": state, "last_verified_date": as_of,
+            "capacity_status": cin.get("data_status", "complete")
+                if last.get("verified") else "unavailable",
+            "capacity_field_errors": cin.get("field_errors") or {},
             "last_collection_utc": last.get("collected_utc"),
             "maintenance_window": window, "source_url": gc.CINGSA_URL}
 
@@ -264,10 +267,12 @@ def figures(series, model, figs=None):
             # beats a snapshot. Absolute value here; the direction is a word.
             "inventory_delta_mmcf": round(abs(cin["inventory_delta_mcf"]) / 1000, 1),
             "withdrawal_operating_mmcfd": round(
-                cin["withdrawal_operating_mcfd"] / 1000, 1),
+                cin["withdrawal_operating_mcfd"] / 1000, 1)
+                if cin.get("withdrawal_operating_mcfd") is not None else None,
             "withdrawal_restriction_mcfd": cin["withdrawal_restriction_mcfd"],
             "injection_in_progress_mmcfd": round(
-                cin["injection_in_progress_mcfd"] / 1000, 1),
+                cin["injection_in_progress_mcfd"] / 1000, 1)
+                if cin.get("injection_in_progress_mcfd") is not None else None,
             "source_timestamp": cin.get("source_timestamp"),
             "peak_forecast_date": der.get("peak_forecast_date"),
             "peak_forecast_hdd": der.get("peak_forecast_hdd"),
@@ -1684,8 +1689,14 @@ def page_body(today, site_url, series, model, meta, prefix="../", figs=None,
 
     source_note = ""
     latest = latest_verified(series)
-    if latest and (latest.get("cingsa") or {}).get("capacity_identity_mismatches"):
+    if latest and (latest.get("cingsa") or {}).get("field_errors"):
         source_note = (
+            '<p class="sub" id="gw-capacity-status" data-reveal>CINGSA published '
+            'unreadable capacity fields. Affected rates are unavailable. '
+            'The storage reading was validated independently from the inventory '
+            'table. No capacity value has been inferred.</p>')
+    if latest and (latest.get("cingsa") or {}).get("capacity_identity_mismatches"):
+        source_note += (
             '<p class="sub" data-reveal>CINGSA\'s last published capacity rows do not '
             'match the arithmetic in its own definitions. This page preserves '
             'the published Operating and Available values and does not choose a '
@@ -1732,8 +1743,10 @@ Measured storage, modeled demand, and the supply nobody publishes. Read
 </div>
 
 <div class="gw-stats" data-reveal>
-{stat("MMcf/d withdrawal capacity", f["withdrawal_operating_mmcfd"], "measured " + long_date(f["as_of"]))}
-{stat("MMcf/d injection rate", f["injection_in_progress_mmcfd"], "measured " + long_date(f["as_of"]))}
+{stat("MMcf/d withdrawal capacity", f.get("withdrawal_operating_mmcfd", "Unavailable"),
+      "measured " + long_date(f["as_of"]) if "withdrawal_operating_mmcfd" in f else "source field unreadable")}
+{stat("MMcf/d injection rate", f.get("injection_in_progress_mmcfd", "Unavailable"),
+      "measured " + long_date(f["as_of"]) if "injection_in_progress_mmcfd" in f else "source field unreadable")}
 {stat("MMcf/d modeled peak ahead", f.get("peak_modeled_demand_mmcfd", "n/a"),
       "model output", "blue")}
 {stat(noun(f["days_of_record"], "day") + " on record", f["days_of_record"],

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <style>
+
+        body {
+            font-family: Arial,Helvitica;
+        }
+
+        .page_table {
+            font-size: 12pt;
+            border: 2px solid #36454f;
+            border-radius: 10px;
+        }
+
+        .logo {
+            text-align: left;
+            width: 400px;
+        }
+
+        .logo_img {
+            width: 250px;
+        }
+
+        .page_title {
+            text-align: left;
+            padding-left: 0px;
+            font-weight: bold;
+            font-size: 18pt;
+            width: 450px;
+            color: #42a22a;
+        }
+
+        .date {
+            text-align: right;
+            font-size: 12px;
+            width: 300px;
+        }
+
+        .spacer {
+            width: 50px;
+        }
+
+        .large_spacer {
+            width: 200px;
+        }
+
+        .chart_title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #42a22a;
+            text-align: center;
+            border-bottom: 2px solid #333333;
+        }
+
+        .column_title {
+            text-decoration: underline
+        }
+
+        .row_item {
+        }
+
+        .data_outer_table {
+            border-collapse: collapse;
+        }
+
+        .aligntop {
+            vertical-align: top;
+        }
+
+        .data_table {
+            font-size: 10pt;
+            border-collapse: collapse;
+        }
+
+        .data_table_spacer {
+            width: 250px;
+        }
+
+        .data_item {
+            text-align: center;
+            padding: 2px 10px 2px 10px;
+        }
+
+        .restriction {
+            background-color: #fdd7e4
+        }
+
+            .restriction:hover {
+                background-color: #ffbcd9;
+                font-weight: bold;
+                font-size: 12pt;
+                overflow: hidden;
+                overflow-x: hidden;
+            }
+
+        .data_tabletr:hover {
+            background-color: #42a22a;
+            font-weight: bold;
+            font-size: 12pt;
+            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        .ofo_table {
+            margin-top: 12px;
+            border-collapse: collapse;
+            width =100%;
+        }
+
+        .ofo_title {
+            font-weight: bold;
+            color: #42a22a;
+            text-align: left;
+            border-bottom: 2px solid #333333;
+        }
+
+        .ofo_notes {
+            font-size: 10pt;
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .note_item {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            width: 80%
+        }
+
+        .definition_table {
+            border-collapse: collapse;
+            text-align: left;
+            width: 1100px;
+        }
+
+        .definition_title_left {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #42a22a;
+            text-align: left;
+            border-bottom: 2px solid #333333;
+            width: 400px;
+        }
+
+        .definition_title_center {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #42a22a;
+            text-align: left;
+            border-bottom: 2px solid #333333;
+            width: 650px;
+        }
+
+        .definition_title_right {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #42a22a;
+            text-align: left;
+            border-bottom: 2px solid #333333;
+        }
+
+        .definition_row {
+            font-size: 10pt;
+            padding-right: 40px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        .definition_data {
+            font-size: 10pt;
+            padding-left: 50px;
+            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        .definition_tabletr:hover {
+            background-color: #42a22a;
+            font-weight: bold;
+            font-size: 10pt;
+            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        .copyright {
+            font-size: 11px;
+            float: left;
+        }
+    </style>
+    <script language="javascript">
+        setInterval(function () {
+            window.location.reload(1);
+        }, 600000);
+    </script>
+</head>
+<body>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    <table class="page_table">
+                        <tr>
+                            <td class="logo"><span><img class="logo_img" src="https://cingsa.com/wp-content/uploads/2016/04/logo2.jpg" alt="CINGSA Logo"></span></td>
+                            <td class="page_title"><h1>CINGSA Dashboard</h1></td>
+                            <td class="date"><div>Last Updated:</div><span>10/23/2026 9:00</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <center>
+                                    <table class="data_outer_table">
+                                        <tr>
+                                            <th class="chart_title">Injection/Withdrawal</th>
+                                            <th class="large_spacer">&nbsp;</th>
+                                            <th class="chart_title">Working Inventory</th>
+                                        <tr>
+                                        <tr>
+                                            <td class="aligntop">
+                                                <table class="data_table">
+                                                    <tr>
+                                                        <th class="data_table_spacer"></th>
+                                                        <th class="column_title">Injection (MCFpd)</th>
+                                                        <th class="spacer">&nbsp;
+                                            </td>
+                                            <th class="column_title">Withdrawal (MCFpd)</th>
+                                        </tr>
+                                        <tr class="data_tabletr">
+                                            <td class="row_item">Design Capacity</td>
+                                            <td class="data_item">225,000</td>
+                                            <td></td>
+                                            <td class="data_item">215,000</td>
+                                        </tr>
+                                        <tr class="data_tabletr"><td class="row_item">Maximum Contracted Capacity</td><td class="data_item">225,000</td><td></td><td class="data_item">215,000</td></tr>
+                                        <tr class="data_tabletr"><td class="row_item">Facility Capacity</td><td class="data_item">200,400</td><td></td><td class="data_item">166,000</td></tr>
+                                        <tr class="data_tabletr"><td class="row_item">Physical Restrictions</td><td class="data_item">62,700</td><td></td><td class="data_item">0</td></tr>
+                                        <tr class="data_tabletr"><td class="row_item">Operating Capacity</td><td class="data_item">137,700</td><td></td><td class="data_item">166,000</td></tr>
+                                        <tr class="data_tabletr"><td class="row_item">Available Capacity</td><td class="data_item">0]</td><td></td><td class="data_item">123,033</td></tr>
+                                    </table>
+                            </td>
+                            <td><div>&nbsp;</div></td>
+                            <td class="aligntop">
+                                <table class="data_table">
+                                    <tr><th class="data_table_spacer"></th><th class="column_title">Storage Volume (Mcf)</th></tr>
+                                    <tr class="data_tabletr"><td class="row_item">Design Capacity</td><td class="data_item">13,000,000</td></tr>
+                                    <tr class="data_tabletr"><td class="row_item">Maximum Contracted Capacity</td><td class="data_item">13,000,000</td></tr>
+                                    <tr class="data_tabletr"><td class="row_item">Beginning Inventory</td><td class="data_item">7,725,313</td></tr>
+                                    <tr class="data_tabletr"><td class="row_item">Ending Inventory</td><td class="data_item">7,682,346</td></tr>
+                                    <tr class="data_tabletr"><td class="row_item">Available Inventory</td><td class="data_item">5,317,654</td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+    </center>
+    <table class="ofo_table"><tr><td class="ofo_title">Operational Notes</td></tr><tr><td><div class="ofo_notes"><ol><li>Injection</li><li>Compressor B is down for needed maintenance and checks.  This maintenance only effects initial/legacy injection customers only.</li></ol></div></td></tr></table>
+    <div class="note_item">NOTE TO USER: This data is provided informationally and does not supersede or replace the contractual terms and conditions contained in CINGSA's Tariff or FSS Agreements.</div>
+
+    <table class="definition_table">
+        <tr><th class="definition_title_left">Definitions</th><th class="definition_title_center"></th><th class="definition_title_right"></th></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Facility Injection Capacity</td><td class="definition_data">The sum of the MDIQ for all customers.</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Facility Withdrawal Capacity</td><td class="definition_data">The sum of the MDWQ for all customers.</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Physical Injection Capacity Restrictions</td><td class="definition_data">The injection quantity unavailable due to operational restriction.</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Physical Withdrawal Capacity Restrictions</td><td class="definition_data">The withdrawal quantity unavailable due to operational restriction.</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Operating Injection Capacity</td><td class="definition_data">Facility Injection Capacity less Physical Injection Restrictions</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Operating Withdrawal Capacity</td><td class="definition_data">Facility Withdrawal Capacity less Physical Withdrawal Restrictions</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Available Injection Capacity</td><td class="definition_data">Operating Injection Capacity less 24 HR Total Injection Nominations for all customers</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Available Withdrawal Capacity</td><td class="definition_data">Operating Withdrawal Capacity less 24 HR Total Withdrawal Nominations for all customers</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Beginning Inventory</td><td class="definition_data">The beginning inventory balance for the nomination day</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Ending Inventory</td><td class="definition_data">The ending inventory balance for the nomination day</td><td></td></tr>
+        <tr class="definition_tabletr"><td class="definition_row">Available Inventory</td><td class="definition_data">Maximum Contracted Capacity less Ending Inventory</td><td></td></tr>
+        <!--tr class="definition_tabletr"><td class="definition_row">Total Injection Nominations</td><td class="definition_data">The sum of FSS, ISS, and OSS injection nominations in a given nomination timeblock or 24 HR</td><td></td></tr-->
+        <!--tr class="definition_tabletr"><td class="definition_row">Total Withdrawal Nominations</td><td class="definition_data">The sum of FSS, ISS, and OSS withdrawal nominations in a given nomination timeblock, for all meters or 24 HR</td><td></td></tr-->
+    </table>
+    </td>
+    </tr>
+    </table>
+    <div class="copyright">&copy; 2026 by Cook Inlet Natural Gas Storage Alaska. All Rights Reserved</div></td></tr></table>
+    </td>
+    </tr>
+    </table>
+    </center>
+</body>
+</html>

@@ -91,6 +91,9 @@ def assess(feed, page, source, runs, now, unreachable=None):
 
     stale = maintenance = False
     if has_source:
+        add("source capacity fields valid", not source.get("field_errors"),
+            ", ".join(source.get("field_errors") or {}) or "all capacity fields readable",
+            "Inspect CINGSA's archived source. Keep affected rates unavailable; do not infer corrections.")
         source_age = (now - stamp(source["source_timestamp_utc"])).total_seconds() / 3600
         stale = source_age > gc.STALE_HOURS
         maintenance = gc.maintenance_pause(source, ["cingsa_stale"] if stale else [], today.isoformat())
