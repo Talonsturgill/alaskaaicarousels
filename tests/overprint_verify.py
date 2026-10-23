@@ -139,6 +139,39 @@ def mixed_slide(broken):
 """)
 
 
+def texture_slide(layer):
+    """A string drawn on an OFFSCREEN canvas (2026-10-22, run No.93).
+
+    No.93 drew wheel digits onto a 1280x160 texture for a 3D numbering machine
+    and failed four frames: with no element rect to place it, the texture's
+    pixels were read as page pixels and its digits "crossed" the wordmark. A
+    texture can't be placed, so it is not judged. A FULL-FRAME offscreen layer
+    is composited 1:1 and still is, which is the broken variant here.
+    """
+    if layer:
+        draw = """
+  const L = document.createElement('canvas'); L.width = 2160; L.height = 2700;
+  const lg = L.getContext('2d'); lg.scale(2, 2);
+  lg.font = '700 40px "JetBrains Mono", monospace'; lg.fillStyle = '#E7EFF8';
+  lg.fillText('7 7 0 2', 130, 1080);
+  cx.drawImage(L, 0, 0, 1080, 1350);"""
+    else:
+        draw = """
+  const T = document.createElement('canvas'); T.width = 1280; T.height = 160;
+  const tg = T.getContext('2d'); tg.fillStyle = '#C3CAD1'; tg.fillRect(0, 0, 1280, 160);
+  tg.font = '700 118px "JetBrains Mono", monospace'; tg.fillStyle = '#16191E';
+  for (let k = 0; k < 10; k++) tg.fillText(String(k), 40 + k * 128, 120);
+  cx.drawImage(T, 0, 0, 1280, 160, 300, 1200, 320, 40);"""
+    return (HEAD + TEXTURE + draw + """
+</script>
+<div class="row" style="left:120px; top:40px; font-size:24px; line-height:1.4;
+     white-space:normal; width:900px">A WORDMARK ROW ACROSS THE TOP OF THE FRAME</div>
+<div class="row" style="left:120px; top:1050px; font-size:24px; line-height:1.4;
+     white-space:normal; width:420px">COPY OVER THE LAYER STRING</div>
+</body></html>
+""")
+
+
 CASES = [("DOM register, value column at a constant", dom_slide(True), False,
           "LEISNOI PROFESSIONAL SERVICES"),
          ("DOM register, value column measured", dom_slide(False), True, None),
@@ -147,7 +180,10 @@ CASES = [("DOM register, value column at a constant", dom_slide(True), False,
          ("canvas register, value column measured", canvas_slide(False), True, None),
          ("rotated canvas label under a DOM block", mixed_slide(True), False,
           "100 MW"),
-         ("rotated canvas label, DOM block clear", mixed_slide(False), True, None)]
+         ("rotated canvas label, DOM block clear", mixed_slide(False), True, None),
+         ("full-frame offscreen layer under DOM copy", texture_slide(True), False,
+          "7 7 0 2"),
+         ("texture canvas digits, never on the page", texture_slide(False), True, None)]
 
 
 def main():

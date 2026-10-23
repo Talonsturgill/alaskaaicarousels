@@ -3242,6 +3242,19 @@ def canvas_ink_polys(cts, canvases, design_w, fallback_k):
             sx, sy = cv["w"] / float(cv["bw"]), cv["h"] / float(cv["bh"])
             ox, oy = cv.get("x", 0), cv.get("y", 0)
         else:
+            # NOT ON THE PAGE AND NOT FRAME SIZED (2026-10-22, run No.93). The
+            # backing-ratio fallback is right for a full-frame offscreen layer,
+            # which is composited 1:1, and wrong for a texture or glyph mask
+            # (a 1280x160 wheel band, a 1600x160 slug face) whose pixels map to
+            # a 3D surface or a rotated relief and never to page coordinates.
+            # No.93 failed four frames on wheel digits "crossing" the wordmark
+            # from a canvas that was only ever a texture. Such a string can't
+            # be placed, so it is not judged against DOM type.
+            # Judged on the frame's ASPECT, not its size: the caller's scale is
+            # read off the first drawn string's canvas, which may be the texture.
+            bw, bh = ct.get("canvas_w") or 0, ct.get("canvas_h") or 0
+            if bw and bh and abs(bw / float(bh) - 1080.0 / 1350.0) > 0.01:
+                continue
             sx = sy = 1.0 / max(1e-6, fallback_k)
             ox = oy = 0
         pts = [(ox + px * sx, oy + py * sy) for px, py in pts]
