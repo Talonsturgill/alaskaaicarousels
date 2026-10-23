@@ -168,7 +168,7 @@
     AK.reseed(o.seed || 9300);
     var ck = o.cockle != null ? o.cockle : 3, curl = o.curl != null ? o.curl : 2.5;
     var lift = o.lift, ramp = S.ramp([[0, o.low || '#8F918B'], [0.55, o.mid || '#C6C8C1'], [1, o.high || '#E9EAE4']]);
-    var quiet = o.quiet || [], tooth = o.tooth != null ? o.tooth : 0.035;
+    var quiet = o.quiet || [], tooth = o.tooth != null ? o.tooth : 0.035, wr = o.wrinkle || 0;
     function inQuiet(x, y) {
       for (var i = 0; i < quiet.length; i++) { var q = quiet[i];
         var dx = Math.max(q[0] - x, 0, x - q[0] - q[2]), dy = Math.max(q[1] - y, 0, y - q[1] - q[3]);
@@ -186,7 +186,7 @@
     S.relief(g, [x0 - 1, y0 - 1, w + 2, h + 2], function (x, y) {
       var inside = Math.min(1, Math.max(0, Math.min(x - x0, x0 + w - x, y - y0, y0 + h - y) + 0.5));
       var e = Math.min(x - x0, x0 + w - x, y - y0, y0 + h - y);
-      var hh = ck * AK.fbm2(x * 0.0032, y * 0.0032, { octaves: 2 }) + (e < 28 ? curl * (1 - e / 28) * (1 - e / 28) : 0) + liftH(x, y);
+      var hh = ck * AK.fbm2(x * 0.0032, y * 0.0032, { octaves: 2 }) + wr * AK.fbm2(x * 0.012 + 7.1, y * 0.012 + 3.3, { octaves: 2 }) + (e < 28 ? curl * (1 - e / 28) * (1 - e / 28) : 0) + liftH(x, y);
       return [hh, inside];
     }, function (x, y, lit) {
       var q = inQuiet(x, y), tt = tooth * (1 - q) * AK.simplex2(x * 0.9, y * 0.9);
