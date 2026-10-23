@@ -3332,6 +3332,44 @@
     "NEW: slope-weighted lit and lee faces painted per segment on a blurred scratch layer under a profile crest"
    ],
    "note": "Rounds 5. Scored 8.665, art 7.0."
+  },
+  {
+   "run_date": "2026-10-22",
+   "carousel_no": 93,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE COMPOSING STONE, a composing-room still life of the record: brass type in a stick, bond proofs, a locked forme, a clipping and a motion, an engraved copper plate, a galley, a docket sheet of stamps, a hatched slug galley, a numbering machine, all on steel imposing stone",
+   "atmosphere": "NEW: THE NORTH SKYLIGHT AT FOUR, one soft key from the upper right (az 35, el 26), a shutter to a shaft on the breather",
+   "depth_technique": "three.js PBR brass and steel (01, 09); relit paper heightfields (02, 04, 07); multi-material plan relief with a cast march (03); engraved copper plate of the committed DEM in three.js (05, masterful depth frame); mezzotint dot scrape of a GL tone study (06); cabinet-oblique density hatching (08)",
+   "line_voice": "letterpress: reversed metal type, press ink on bond, newsprint for what was said outside the record",
+   "continuity_device": "THE INK LAW (gold is only what DeepGreen filed) with THE BRASS LINE STRATEGIC PARTNER as the motif and a struck accession stamp per frame",
+   "continuity_devices": [
+    "D1 ink law, data-ink on every frame",
+    "D2 the brass line STRATEGIC PARTNER",
+    "D3 the accession stamp ticker",
+    "D4 one skylight",
+    "D5 edge tease 03 to 04"
+   ],
+   "hook_archetype": "NEW: THE NAMED PARTY ANSWERS",
+   "palette_family": "NEW: TYPE METAL, OAK FURNITURE AND PROOF BOND",
+   "type_pairing": "Instrument Serif + Archivo + JetBrains Mono",
+   "narrative_structure": "claim and answer, said and filed, silence and the public record, then one ask",
+   "variance_dials": {
+    "design_variance": 2,
+    "visual_density": 4,
+    "type_temperature": 3
+   },
+   "techniques": [
+    "akthree PBR",
+    "STONE.relief plan relief",
+    "STONE.paper relit heightfield",
+    "mezzotint threshold",
+    "cabinet-oblique hatch",
+    "STONE.inkTint"
+   ],
+   "new_techniques_logged": [
+    "STONE.inkTint, a declared ink laid through an object silhouette with a color blend"
+   ],
+   "note": "Three critic rounds. Round 1 found the brass on 01 inverted (a brass body coplanar with the type bed z-fought through it) and 03 cutting its own numbers at the frame edge."
   }
  ]
 }

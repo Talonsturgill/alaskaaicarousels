@@ -2210,6 +2210,30 @@
    "confidence": 0.65,
    "run_date": "2026-10-21",
    "carousel_no": 92
+  },
+  {
+   "instinct": "WHEN A SURFACE PATTERN LOOKS LIKE A BAD TEXTURE, CHECK FOR TWO MESHES AT ONE HEIGHT FIRST.",
+   "evidence": "No.93's cover brass read inverted with fingerprint speckle for two critic rounds; the cause was a brass body box whose top was coplanar with the displaced type bed, z-fighting through it.",
+   "act_on_it": "Before retuning a material or a height map, look for a coplanar face under it and drop it a hair below.",
+   "confidence": 0.6,
+   "run_date": "2026-10-22",
+   "carousel_no": 93
+  },
+  {
+   "instinct": "A REVERSED LINE LOSES ITS FIRST WORDS AT THE RIGHT EDGE.",
+   "evidence": "No.93's forme bled every mirrored line off the right edge, so '1,650 ACRES' read '50 ACRES' and two critics called it a misread number.",
+   "act_on_it": "Size each mirrored line so its first character lands inside the frame; let only the one designed line bleed.",
+   "confidence": 0.65,
+   "run_date": "2026-10-22",
+   "carousel_no": 93
+  },
+  {
+   "instinct": "LAY THE TYPE RESERVE BEFORE THE OBJECTS UNDER IT, NEVER AFTER.",
+   "evidence": "No.93's headline reserve feather darkened the tops of the bond sheets on 02 and 04 for two rounds, read by critics as a lighting error.",
+   "act_on_it": "Call AKPOST.reserve right after the ground and before drawing any sheet or object near the type.",
+   "confidence": 0.6,
+   "run_date": "2026-10-22",
+   "carousel_no": 93
   }
  ]
 }

@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-22/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8221800,
+  "pdf_mb": 8.22,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-22/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-22/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Named in Writing, Answered in Writing",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "5df84c6ac14599cbf7f7a32596501ef860a57aa6f46f4ec978232c7af0ab1155",
+        "bytes": 3724206
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "b0d87914d5401a774b3861f695edbafc0c432c68be8bab61c5d1f0e40a27a724",
+        "bytes": 5062058
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "3a44e17477ed8fc09f8c75a5e4de849c81565ce62f0973bfd5e2a793f70a6bd2",
+        "bytes": 5368856
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "a815a94db4fae96bd1d77432439f7e21e5f0cc2322c7f57d271f952e0b822477",
+        "bytes": 5281143
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "9e84845226aa7101d8d5dc94b1dac556dc115804d5ae3e365eb88467fd1977ef",
+        "bytes": 4508907
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "906afd529aacc0d9f90669c5ec7b56f9a0a41e1e63acba6241d80a86fa7a0bb2",
+        "bytes": 5963770
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "1ad14cbe0127e2298900103691b63f38aacc3924db203533fb21e43ced990ac1",
+        "bytes": 5518763
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "f45cbf04fc9202dd8d69e85b6cb3875200cc8c440556c2e2ed303f2dc8f58087",
+        "bytes": 1934782
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "30598c9e12ec344462849d1c46d9f2ab64414263875b82e6333493c3cc2278b9",
+        "bytes": 3188615
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "3e2b887dd95cd589c8e52480f17baa612322ab86d6ba06094cf58ae6b544b998",
+        "bytes": 11038
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "e4344374ae98245501d1a5aff9a2494d9b1eb134158c68292584d920c47aec4c",
+        "bytes": 7721
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "c0b489e30d83d86b7e6ac97294f0cf786505dbafaa985b71b0dc92c60954a4aa",
+        "bytes": 10043
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "eda1d9ccd745eca22672233c2557c5078c7cdcee65a6a72d827eb196657ba773",
+        "bytes": 9597
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "d5e92b71abb218a6e1f3b535bcf2dd9f53dba66369cf7f96b067a1fbb081c7e8",
+        "bytes": 16327
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "be6f4c7c3cc0542e207af6ed052416a0d94b1cc19cfacbb4321aec985ff084e7",
+        "bytes": 7183
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "35e6d676718804618c3b963f56d4af4d62cad4c62ba2ce9d1dcda75d177df864",
+        "bytes": 12656
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "27de8d87ef82e3064f5d8fa88cda62ae132fa6a5aa29650bbb7a3e1590622643",
+        "bytes": 12094
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "cbb6b4cfca94c290d7505918c1216d7c022c85f178daf7c13e4919ca41ff953f",
+        "bytes": 15245
+      }
+    ]
+  }
+}

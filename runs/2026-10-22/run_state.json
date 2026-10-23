@@ -1,0 +1,96 @@
+{
+ "run_date": "2026-10-22",
+ "carousel_no": 93,
+ "effort": "high",
+ "revision_rounds": 4,
+ "date_note": "Anchorage date at wake was October 22nd 22:04 AKDT (2026-10-23 UTC); runs/2026-10-22 does not exist, so the run takes the Anchorage date. run_guard --run-date 2026-10-22 CLEAR.",
+ "branch": "tsturg/clever-mayer-n7v35y",
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-22/plan.md",
+    "out/2026-10-22/run_state.json"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "2 searches; vendor carousel benchmarks repeat known document-post figures (Socialinsider 6.90 percent, conflicting definitions); engraving/raking-light search generic. FIELD_NOTES unchanged by rule."
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-22/scout_merge.md",
+    "out/2026-10-22/scouts/"
+   ],
+   "note": "6 scouts, 142 searches; plus the showrunner's FERC eLibrary pull of P-15423 (135 filings, 11 primary documents)"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-22/claims.json"
+   ],
+   "note": "109 claims (105 fact-checker + 4 showrunner), 97 primary; claims_check PASS; 14 killed"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "commits": [
+    "4b648d84",
+    "1e02820d"
+   ],
+   "note": "5 worklist items re-verified; KPB weather code enacted (decided); DeepGreen six movants from eLibrary; watch.json BASIS failed (Cloudflare), FR candidates triaged (SEAPA hydro dropped, others tracked)"
+  },
+  "gas_watch": {
+   "status": "pending"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-22/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-22/storyboard.md",
+    "out/2026-10-22/treatments/"
+   ],
+   "note": "essayist THE COMPOSING STONE wins, cinematographer's close, cartographer's real geography on the plate; dossier_check PASS"
+  },
+  "copy": {
+   "status": "pending"
+  },
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": {
+   "status": "pending"
+  },
+  "assemble": {
+   "status": "pending"
+  },
+  "scoring": "done",
+  "ship": "in_progress",
+  "upgrade": {
+   "status": "pending"
+  },
+  "gmail": {
+   "status": "pending"
+  },
+  "retro": {
+   "status": "pending"
+  },
+  "final_assembly": "done",
+  "automation_retro": "done"
+ },
+ "phase_3_6": {
+  "site_signoff": "SITE SIGN-OFF: PASS, 151 pages, 18 checks",
+  "gas_watch": "GAS WATCH: PASS, read 2026-10-22, 79 days on record, chart present",
+  "gas_watch_live": "PASS at 2026-10-23T06:37:54Z after a manual production collection (run 39912078537) picked up the 20:41 Alaska reading; CINGSA answered this network with a 307 on the first read (retried)",
+  "cron_health": "WARN, docket-watch BASIS 403 (akleg.gov Cloudflare challenge), cron_incidents.json filed"
+ },
+ "score": 8.42
+}

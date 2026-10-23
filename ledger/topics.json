@@ -3745,6 +3745,46 @@
    ],
    "claims": 82,
    "note": "Picked over Burgum/GVEA (dup of No.87), Anchorage AO 2026-108 (dup of No.84) and FAA Part 108 (still unpublished, runner-up)."
+  },
+  {
+   "run_date": "2026-10-22",
+   "carousel_no": 93,
+   "topic": "UPDATE of No.65 and No.68. DeepGreen's FERC preliminary permit application (P-15423) for a 100 MW tidal powered subsea AI data center off Nikiski named AEA's CIPLink its 'Strategic Partner' and said its platform interfaces with ORPC turbines; ORPC (September 14th) and AEA (October 7th motion) each told FERC they have no involvement or relationship with DeepGreen; AEA's chief told the Clarion it would intervene to oppose, its filed motion takes no position; DeepGreen's September 21st answer says the footprint will be substantially smaller with no new size; CIRI and the Kenaitze Indian Tribe, named as coordinating, have no filing; 134 filings, 117 public comments, six motions to intervene; comments, motions and competing applications close November 2nd.",
+   "angle": "Named parties answer in writing: what a filing claims about partners against what the partners filed.",
+   "entities": [
+    "DeepGreen Cook Inlet SPV LLC",
+    "Alaska Energy Authority",
+    "CIPLink",
+    "ORPC",
+    "FERC",
+    "CIRI",
+    "Kenaitze Indian Tribe",
+    "City of Kenai",
+    "Kenai Peninsula Borough",
+    "Center for Biological Diversity",
+    "GCI",
+    "Curtis W. Thayer"
+   ],
+   "keywords": [
+    "P-15423",
+    "preliminary permit",
+    "subsea data center",
+    "tidal",
+    "Cook Inlet",
+    "motion to intervene",
+    "Strategic Partner",
+    "Nikiski",
+    "East Foreland"
+   ],
+   "headline": "Cook Inlet's AI data center named AEA. AEA says they never spoke.",
+   "sources_lead": "https://elibrary.ferc.gov/eLibrary/search?docketNumber=P-15423",
+   "beats": [
+    "data-centers",
+    "power-and-the-grid",
+    "land-and-permitting"
+   ],
+   "claims": 112,
+   "note": "Update framed on the cover (UPDATE). Material new since No.68: AEA motion, City of Kenai motion, AEA said versus filed, the public record doubling, the footprint answer."
   }
  ]
 }

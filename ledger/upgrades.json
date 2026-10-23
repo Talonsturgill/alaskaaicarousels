@@ -3459,6 +3459,20 @@
    "verification": "python3 tests/akpost_holdink_verify.py: all 8 checks hold (the reconstruction: graded gold 19.9 dE and 12.4 degrees off; after holdInk the patch is #FFC72C exactly, hue 84.9; a 30 to 100 percent gold ramp keeps its lightness order; ground, snow, aurora, olive (graded hue 104), copper and salmon byte-identical; rect confines it; bad hex and unknown option throw). On No.92's rendered 01, 04, 05 and 09 (read-only) it runs in 167 to 378 ms and moves 11,732 to 33,443 px by a mean 1.3 to 7.2 degrees. grade() is untouched (byte-identical, see the reserve entry).",
    "rollback": "git revert the upgrade(2026-10-21) commit (no slide calls AKPOST.holdInk yet)",
    "commit": "6c49b642"
+  },
+  {
+   "run_date": "2026-10-22",
+   "kind": "fix",
+   "area": "engine",
+   "change": "qa.py's canvas-through-DOM overprint check no longer places strings drawn on a detached canvas that isn't frame shaped (a texture or glyph mask): with no element rect to map it, the backing-ratio fallback read texture pixels as page pixels. A full-frame offscreen layer, which is composited 1:1, is still judged.",
+   "trigger": "No.93 (2026-10-22) failed four frames on false evidence: the numbering machine's 1280x160 wheel-digit texture 'crossed' the wordmark and counter on 09, the slug glyph masks crossed headlines on 01 and 04, and 03's height-map type crossed its body copy.",
+   "files": [
+    ".claude/skills/carousel-engine/qa.py",
+    "tests/overprint_verify.py"
+   ],
+   "verification": "python3 tests/overprint_verify.py: ALL HOLD with two new cases (a full-frame offscreen layer under DOM copy still fails; texture-canvas digits never on the page pass); with the old qa.py the texture case BROKE.",
+   "rollback": "git revert of commit 0c0ffe8d restores the old fallback",
+   "commit": "0c0ffe8d"
   }
  ],
  "scan_log": [
