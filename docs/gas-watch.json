@@ -13,11 +13,26 @@
   "temporal_coverage": "2026-08-05/2026-10-23",
   "count": 80,
   "source_status": {
-    "state": "unavailable",
-    "last_verified_date": "2026-10-22",
-    "capacity_status": "unavailable",
-    "capacity_field_errors": {},
-    "last_collection_utc": "2026-10-23T17:59:01Z",
+    "state": "current",
+    "last_verified_date": "2026-10-23",
+    "capacity_status": "partial",
+    "capacity_field_errors": {
+      "injection_available_mcfd": {
+        "status": "unavailable",
+        "row": "Available Capacity",
+        "raw_value": "0]",
+        "error": "expected a whole Mcf/d value in its labeled column"
+      },
+      "injection_in_progress_mcfd": {
+        "status": "unavailable",
+        "error": "required capacity input unavailable",
+        "depends_on": [
+          "injection_operating_mcfd",
+          "injection_available_mcfd"
+        ]
+      }
+    },
+    "last_collection_utc": "2026-10-23T21:46:39Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -12863,13 +12878,48 @@
     },
     {
       "date": "2026-10-23",
-      "collected_utc": "2026-10-23T17:59:01Z",
-      "collector_version": "1.2",
-      "verified": false,
+      "collected_utc": "2026-10-23T21:46:39Z",
+      "collector_version": "1.3",
+      "verified": true,
       "cingsa": {
-        "fetch_status": "parse_failed",
-        "error": "ValueError: CINGSA layout changed, could not read 2 number(s) after row label 'Available Capacity'",
-        "source_timestamp": null
+        "fetch_status": "ok",
+        "data_status": "partial",
+        "field_errors": {
+          "injection_available_mcfd": {
+            "status": "unavailable",
+            "row": "Available Capacity",
+            "raw_value": "0]",
+            "error": "expected a whole Mcf/d value in its labeled column"
+          },
+          "injection_in_progress_mcfd": {
+            "status": "unavailable",
+            "error": "required capacity input unavailable",
+            "depends_on": [
+              "injection_operating_mcfd",
+              "injection_available_mcfd"
+            ]
+          }
+        },
+        "source_timestamp": "2026-10-23T12:55:00",
+        "source_timestamp_utc": "2026-10-23T20:55:00Z",
+        "inventory_mcf": 7684013,
+        "inventory_delta_mcf": -41300,
+        "storage_design_mcf": 13000000,
+        "inventory_pct_of_design": 59.1,
+        "withdrawal_design_mcfd": 215000,
+        "withdrawal_facility_mcfd": 166000,
+        "withdrawal_operating_mcfd": 166000,
+        "withdrawal_available_mcfd": 124700,
+        "withdrawal_restriction_mcfd": 0,
+        "injection_design_mcfd": 225000,
+        "injection_facility_mcfd": 200400,
+        "injection_operating_mcfd": 137700,
+        "injection_available_mcfd": null,
+        "injection_in_progress_mcfd": null,
+        "injection_restriction_mcfd": 62700,
+        "capacity_identity_mismatches": [],
+        "operational_note": "Injection Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
+        "source_age_hours": 0.9
       },
       "forecast": [
         {
@@ -12914,22 +12964,22 @@
         },
         {
           "date": "2026-10-29",
-          "hours": 21,
-          "mean_temp_f": 38.3,
+          "hours": 24,
+          "mean_temp_f": 38.5,
           "min_temp_f": 35,
-          "hdd65": 26.7,
-          "modeled_demand_mmcfd": 173
+          "hdd65": 26.5,
+          "modeled_demand_mmcfd": 172
         }
       ],
-      "forecast_source_updated": "2026-10-23T15:46:18+00:00",
+      "forecast_source_updated": "2026-10-23T21:23:46+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-24",
         "peak_forecast_hdd": 28.2,
         "peak_modeled_demand_mmcfd": 178,
         "forecast_window_demand_bcf": 1.03,
-        "storage_withdrawal_mmcfd": null,
+        "storage_withdrawal_mmcfd": 41.3,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": null,
+        "days_cover_at_peak": 43.2,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -12974,18 +13024,35 @@
           "name": "cingsa_dashboard",
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
-          "fetch_status": "parse_failed",
-          "fetched_utc": "2026-10-23T17:59:01Z",
+          "fetch_status": "partial",
+          "fetched_utc": "2026-10-23T21:46:39Z",
           "http_status": 200,
           "attempts": 1,
-          "error": "ValueError: CINGSA layout changed, could not read 2 number(s) after row label 'Available Capacity'"
+          "error": "CINGSA fields unavailable: injection_available_mcfd, injection_in_progress_mcfd",
+          "sha256": "ef379b19730775f5d879698cf04e4e6b079008ac7334acb4e6a90db5468adaf4",
+          "field_errors": {
+            "injection_available_mcfd": {
+              "status": "unavailable",
+              "row": "Available Capacity",
+              "raw_value": "0]",
+              "error": "expected a whole Mcf/d value in its labeled column"
+            },
+            "injection_in_progress_mcfd": {
+              "status": "unavailable",
+              "error": "required capacity input unavailable",
+              "depends_on": [
+                "injection_operating_mcfd",
+                "injection_available_mcfd"
+              ]
+            }
+          }
         },
         {
           "name": "nws_hourly_forecast",
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-23T17:59:01Z",
+          "fetched_utc": "2026-10-23T21:46:39Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -12994,14 +13061,17 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-23T17:59:02Z",
+          "fetched_utc": "2026-10-23T21:46:39Z",
           "http_status": 200,
           "attempts": 1
         }
       ],
       "flags": [
-        "cingsa_fetch_failed"
-      ]
+        "cingsa_fields_unavailable",
+        "injection_restriction_active",
+        "inventory_declined"
+      ],
+      "supersedes_unverified": "2026-10-23T17:59:01Z"
     }
   ]
 }
