@@ -1110,7 +1110,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-19",
+      "last_updated": "2026-10-22",
       "history": [
         {
           "date": "2026-07-11",
@@ -1215,6 +1215,10 @@
         {
           "date": "2026-10-19",
           "note": "Read the Division of Oil and Gas preliminary written finding of October 13th in full today. It weighs ENSTAR's May 7th application against Hilcorp's May 11th application for the same reservoir and favors ENSTAR, finding Hilcorp provided about one quarter of the requested data and did not present a dynamic reservoir model. ENSTAR plans about 20.5 billion cubic feet of working gas, about 8 billion of cushion gas and a peak of 150 million standard cubic feet a day with nine wells. The finding says the state has clear authority over the pore space, and the City of Kenai disputes that in an October 7th letter reported by KDLL. Comments remain due by 5 p.m. November 13th."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Re-read the Division of Oil and Gas public notice today. Comments on the preliminary finding for the Kenai Loop storage lease remain due by 5 p.m. November 13th, and the notice shows no change to that date. Checked and unchanged."
         }
       ]
     },
@@ -1377,7 +1381,7 @@
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-21",
+      "last_updated": "2026-10-22",
       "history": [
         {
           "date": "2026-07-17",
@@ -1598,6 +1602,10 @@
         {
           "date": "2026-10-21",
           "note": "Re-read the state notice for ADL 234762 today. It still carries the preliminary decision, the application and the vicinity map, was last modified August 19th, and posts no final finding and decision. Commissioner Crowther's subpoenaed appearance before Senate Resources remains set for October 26th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Re-read the DNR public notice for the Houston conveyance today. It still shows the preliminary decision stage, last modified August 19th, with no final finding posted. The Legislature's website did not answer today, so the October 26th Senate Resources appearance was not re-verified. Checked and unchanged."
         }
       ]
     },
@@ -3466,6 +3474,16 @@
           "date": "2026-09-21",
           "label": "DeepGreen files a response with the commission",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-08",
+          "label": "Alaska Energy Authority moves to intervene, taking no position for or against the permit",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-13",
+          "label": "City of Kenai moves to intervene",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -3474,6 +3492,21 @@
         "lat": 60.7
       },
       "sources": [
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261008-5007",
+          "outlet": "Alaska Energy Authority, motion to intervene, FERC eLibrary",
+          "date": "2026-10-08"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261013-5302",
+          "outlet": "City of Kenai, motion to intervene, FERC eLibrary",
+          "date": "2026-10-13"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/search?docketNumber=P-15423",
+          "outlet": "FERC eLibrary, docket P-15423",
+          "date": "2026-10-22"
+        },
         {
           "url": "https://ferconline.ferc.gov/QuickComment.aspx",
           "outlet": "Federal Energy Regulatory Commission, eComment",
@@ -3635,10 +3668,18 @@
         {
           "date": "2026-10-21",
           "note": "Searched the Federal Register today for documents naming docket P-15423 published since September 5th and found none. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Searched the Federal Register today for documents naming docket P-15423 and found only the September 4th notice, document 2026-18151. Comments, motions to intervene and competing applications remain due November 2nd. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Read the commission's own docket for P-15423 in eLibrary today. It lists 134 filings through October 22nd, 117 of them comments from individuals. Six parties have now moved to intervene, three more than reported here before. The Center for Biological Diversity filed on September 1st, the Kenai Peninsula Borough on September 14th, the Alaska Commercial Fisheries Conservation Alliance on September 14th and again with a protest on September 15th, Rebecca Long on October 5th, the Alaska Energy Authority on October 8th and the City of Kenai on October 13th. AEA's motion, dated October 7th, says AEA has had no communications or relationship with DeepGreen and does not presently take a position supporting or opposing the permit. Comments, motions to intervene and competing applications remain due by 5 p.m. Eastern on November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-21"
+      "last_updated": "2026-10-22"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -4117,7 +4158,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-21",
+      "last_updated": "2026-10-22",
       "history": [
         {
           "date": "2026-09-01",
@@ -4186,6 +4227,10 @@
         {
           "date": "2026-10-21",
           "note": "Re-read the borough's election page today. Results are still posted as unofficial, updated with questioned and absentee ballots counted October 13th. The Assembly certifies the election and swears in the newly elected members on Thursday, October 22nd, and their terms begin Monday, October 26th. No Assembly action on the moratorium request itself is scheduled. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Re-read the borough's election page today. Results are still posted as unofficial, and the page lists certification and the swearing in of newly elected members for Thursday, October 22nd, with terms beginning Monday, October 26th. No certified results were posted when checked. Checked and unchanged."
         }
       ]
     },
@@ -4253,7 +4298,7 @@
         }
       ],
       "first_seen": "2026-09-12",
-      "last_updated": "2026-09-21",
+      "last_updated": "2026-10-22",
       "history": [
         {
           "date": "2026-09-12",
@@ -4286,6 +4331,10 @@
         {
           "date": "2026-09-21",
           "note": "Re-verified today against the authorization text. It states that \"This authorization is effective from September 14, 2026, through September 13, 2027.\" The research cruise is described as planned for only 22 days in September and October. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Searched the Federal Register today for Office of Naval Research Arctic documents published since September 11th and found none, so the authorization published September 10th stands with no correction or withdrawal. Checked and unchanged."
         }
       ]
     },
@@ -4765,10 +4814,10 @@
       "id": "kpb-weather-modification-code",
       "title": "Kenai Peninsula Borough writes a weather modification code",
       "kind": "legislation",
-      "status": "open-for-comment",
+      "status": "decided",
       "decider": "Kenai Peninsula Borough Assembly",
-      "public_access": "open",
-      "access_note": "A public hearing on the ordinance is set for October 20th. Written comment to the Assembly is open until then.",
+      "public_access": "indirect",
+      "access_note": "The Assembly enacted the ordinance as amended on October 20th, after its public hearing, and the new code section is in effect. It reaches borough land only.",
       "summary": "Ordinance 2026-35, sponsored by the mayor, would amend borough code to enact a new section, KPB 17.10.165, related to weather modification and geoengineering activities on borough lands. It was introduced on September 3rd, carried a September 15th agenda date in the Policies and Procedures Committee, and is set for public hearing on October 20th. A companion measure, Resolution 2026-046, is on the same agenda. The borough took up the subject after a California company flew drone based cloud seeding over the Kenai Peninsula in August. The ordinance would require ten items in a borough lease or land use permit application, prohibit the activity on borough lands open for casual use, and carry a $1,000 per day fine and a five year application ban for a missing closeout summary. Its reach is borough land; the August flight that prompted it was over state land. The borough's record now carries an October 6th agenda date in the Policies and Procedures Committee.",
       "key_dates": [
         {
@@ -4795,6 +4844,11 @@
           "date": "2026-10-20",
           "label": "Public hearing on Ordinance 2026-35, the point at which the public can speak to it",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-10-20",
+          "label": "Assembly enacts Ordinance 2026-35 as amended",
+          "kind": "decision"
         }
       ],
       "location": {
@@ -4803,6 +4857,16 @@
         "lat": 60.4877
       },
       "sources": [
+        {
+          "url": "https://alaskapublic.org/news/environment/2026-10-22/kenai-peninsula-borough-adopts-new-rules-for-weather-modification",
+          "outlet": "KDLL via Alaska Public Media",
+          "date": "2026-10-22"
+        },
+        {
+          "url": "https://webapi.legistar.com/v1/kpb/matters/32039/histories",
+          "outlet": "Kenai Peninsula Borough legislative record, action history",
+          "date": "2026-10-20"
+        },
         {
           "url": "https://kpb.legistar1.com/kpb/attachments/ea1f9931-4842-48c0-a27c-a4965709a2ab.pdf",
           "outlet": "Kenai Peninsula Borough, Niesen amendment memo",
@@ -4830,7 +4894,7 @@
         }
       ],
       "first_seen": "2026-09-15",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-22",
       "history": [
         {
           "date": "2026-09-15",
@@ -4919,6 +4983,10 @@
         {
           "date": "2026-10-20",
           "note": "Re-read the borough's legislative record for Ordinance 2026-35 today. Its status is Public Hearing with an agenda date of October 20th, last modified that afternoon, and no passage date is recorded. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-22",
+          "note": "Enacted. The borough's legislative record shows two Assembly actions on October 20th, a motion by Niesen to amend the ordinance and a motion by Truesdell to enact it as amended, and both carried. KDLL reported that the amendments added a requirement to describe the intended outcome of the activity and a ban on geoengineering on borough land designated for casual use, and that the new section of code is effective immediately. Mayor Peter Micciche told KDLL the borough's ability to limit weather modification and geoengineering is limited to borough lands, and Alaska DNR has said state law does not address the activity."
         }
       ]
     },

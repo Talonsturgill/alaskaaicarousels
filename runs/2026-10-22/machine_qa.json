@@ -1,0 +1,250 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "wrap drift: 'Cook Inlet's AI data center named AEA. AEA s' declares 2 line(s) (<br> or preserved newline) and rendered 4. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch. A headline sized by AK.fitText takes `authored: true`, which sets it nowrap and shrinks until the longest authored line fits",
+        "canvas raster text 'STRATEGIC PARTNER' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "contact shadow: 'the composing stick on the stone': shadow L* 41.2 vs ground L* 48.5, dL 7.3 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '01 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the brass line STRATEGIC PARTNER in the stick': page 102.3 dE, 88% of its rect is clear of opaque DOM (h1#head stands on the rest)"
+      ],
+      "fits": [
+        "head 'Cook Inlet's AI data center named AEA.AEA sa' fits 4/4 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 3 in '\"ORPC has no involvement in Deep Green's pro' ends 'has' -- a two or three letter word left at the line end. It reads at 47.5px, so the break is the first thing a feed sees. Author the break with <br> before 'no' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 2 of 3 in '\"ORPC has no involvement in Deep Green's pro' ends 'in' -- an article, conjunction or preposition left hanging at the line end. It reads at 47.5px, so the break is the first thing a feed sees. Author the break with <br> before 'Deep' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 1 of 4 in '\"AEA has had no communications or relationsh' ends 'had' -- a two or three letter word left at the line end. It reads at 47.5px, so the break is the first thing a feed sees. Author the break with <br> before 'no' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 3 of 4 in '\"AEA has had no communications or relationsh' ends 'with' -- an article, conjunction or preposition left hanging at the line end. It reads at 47.5px, so the break is the first thing a feed sees. Author the break with <br> before 'DeepGreen.\"' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '02 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the left proof on the stone': shadow L* 7.4 vs ground L* 22.8, dL 15.4 at 432w",
+        "'the right proof on the stone': shadow L* 7.2 vs ground L* 25.7, dL 18.5 at 432w"
+      ],
+      "fits": [
+        "head 'Two names in the filing.Two letters back.' fits 2/2 lines at 69.5px",
+        "q1 '\"configured to interface with\" ORPC turbines' fits 3/6 lines at 47.5px",
+        "q2 '\"Strategic Partner\" CIPLink (Alaska Energy A' fits 3/6 lines at 47.5px",
+        "r1 '\"ORPC has no involvement in Deep Green's pro' fits 3/6 lines at 47.5px",
+        "r2 '\"AEA has had no communications or relationsh' fits 4/6 lines at 47.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "wrap drift: 'Priority to study, not permission to build.' declares 2 line(s) (<br> or preserved newline) and rendered 3. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch. A headline sized by AK.fitText takes `authored: true`, which sets it nowrap and shrinks until the longest authored line fits",
+        "canvas raster text 'TURBINES' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'STRATEGIC PARTNER' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '66 HIVES' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '1,650 ACRES' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text '48 MONTHS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '03 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the locked forme on the stone': shadow L* 7.5 vs ground L* 27.0, dL 19.5 at 432w"
+      ],
+      "motifs": [
+        "'the proud brass line STRATEGIC PARTNER, cut by the right edge': canvas 63.7 dE, page 63.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Priority to study, not permissionto build.' fits 3/4 lines at 81.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'STRATEGIC PARTNER' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '04 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the AEA motion proof on the stone': shadow L* 9.5 vs ground L* 27.7, dL 18.3 at 432w"
+      ],
+      "motifs": [
+        "'the brass slug STRATEGIC PARTNER across the motion foot': canvas 86.9 dE, page 86.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'AEA's chief said oppose.Its filing takes no ' fits 2/2 lines at 65.5px",
+        "cq '\"We're going to file to intervene and oppose' fits 3/5 lines at 49.5px",
+        "mq '\"AEA does not presently take a position supp' fits 4/5 lines at 43.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'AS FILED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.31) beneath 'EAST FORELAND' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.28) beneath 'NIKISKI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'NIKISKI', spanning 34%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.06) beneath 'WEST FORELAND' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'WEST FORELAND', spanning 74%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '05 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the copper plate on the stone': shadow L* 5.0 vs ground L* 13.7, dL 8.7 at 432w"
+      ],
+      "motifs": [
+        "'the four filed corners in gold': canvas 95.1 dE, page 95.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the box's NW corner, 60 44 45 N 151 31 00 W\" lands 5.0px from its target",
+        "leader \"the box's NW corner, 60 44 45 N 151 31 00 W\" meets its label 5.5px away",
+        "leader \"the box's NW corner, 60 44 45 N 151 31 00 W\" is drawn 96 px at 44 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The footprint \"will be substantially smaller' fits 2/2 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'ORPC' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'CIRI' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'KENAITZE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '06 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the four brass slugs at the galley far end': canvas 63.2 dE, page 74.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Two more names. Nothing filed.' fits 1/2 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '07 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the docket sheet lifted on the stone': shadow L* 11.2 vs ground L* 29.4, dL 18.2 at 432w"
+      ],
+      "motifs": [
+        "'the three gold DeepGreen filings': canvas 72.7 dE, page 72.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the filing date axis, September 1st to November 2nd' runs 0 days after September 1st at 250 to 62 days after September 1st at 960; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the top of the September 8th column, 25 comments' lands 4.0px from its target",
+        "leader 'the top of the October 13th column, 18 comments and a motion' lands 4.0px from its target",
+        "leader 'the top of the September 8th column, 25 comments' meets its label 2.0px away",
+        "leader 'the top of the October 13th column, 18 comments and a motion' meets its label 2.0px away",
+        "leader 'the top of the September 8th column, 25 comments' is drawn 16 px at 83 degrees, inside the pointer band",
+        "leader 'the top of the October 13th column, 18 comments and a motion' is drawn 16 px at 90 degrees, inside the pointer band"
+      ],
+      "asserts": [
+        "'134 filings, one stamp each' holds: 134 vs 134 marks, counted over 134 declared marks (within 0)",
+        "'134 filings, one stamp each': 134 mark centres probed at r=7px, cohort median 47.3 dE, all present (weakest 38.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'Center for Biological Diversity' at 420,316 590x36 (margin 80px)",
+        "outside safe zone: 'SEPTEMBER 1ST, OPPOSES THE PERMIT' at 420,358 590x31 (margin 80px)",
+        "outside safe zone: 'Kenai Peninsula Borough' at 420,425 590x36 (margin 80px)",
+        "outside safe zone: 'SEPTEMBER 14TH, NO POSITION YET' at 420,467 590x31 (margin 80px)",
+        "outside safe zone: 'Alaska Commercial Fisheries Conservation' at 420,534 590x72 (margin 80px)",
+        "outside safe zone: 'SEPTEMBER 14TH AND 15TH, WITH A PROTEST' at 420,612 590x31 (margin 80px)",
+        "outside safe zone: 'Rebecca Long, Talkeetna' at 420,679 590x36 (margin 80px)",
+        "outside safe zone: 'OCTOBER 5TH, OPPOSED' at 420,721 590x31 (margin 80px)",
+        "outside safe zone: 'Alaska Energy Authority' at 420,788 590x36 (margin 80px)",
+        "outside safe zone: 'FILED OCTOBER 8TH, NO POSITION' at 420,830 590x31 (margin 80px)",
+        "outside safe zone: 'City of Kenai' at 420,897 590x36 (margin 80px)",
+        "outside safe zone: 'OCTOBER 13TH' at 420,939 590x31 (margin 80px)",
+        "outside safe zone: 'CIRI and the Kenaitze Indian Tribe' at 420,1016 590x36 (margin 80px)",
+        "outside safe zone: 'NAMED IN THE APPLICATION, NO FILING' at 420,1058 590x31 (margin 80px)",
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '08 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the slug galley on the stone': shadow L* 1.3 vs ground L* 11.3, dL 10.0 at 432w"
+      ],
+      "motifs": [
+        "'the two gold slugs, the names with no filing': canvas 90.4 dE, page 89.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Six asked to become parties.' fits 1/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 80,60 128x39 (margin 80px)",
+        "outside safe zone: '09 / 09' at 889,66 111x31 (margin 80px)"
+      ],
+      "contacts": [
+        "'the numbering machine on the bond sheet': shadow L* 44.5 vs ground L* 76.1, dL 31.6 at 432w"
+      ],
+      "motifs": [
+        "'the numbering machine wheels reading 11 02': canvas 73.3 dE, page 72.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Should a filing name a partner without the p' fits 2/4 lines at 87.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 55,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "call": "AKPOST.reserve",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "akthree.environment",
+        "slides": [
+          1,
+          5,
+          6,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

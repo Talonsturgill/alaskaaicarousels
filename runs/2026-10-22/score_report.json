@@ -1,0 +1,184 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I re-read post_copy, deck_summary_line, first_comment and all 9 slide string sets in copy.json and found no U+2013 or U+2014. The only dash characters are ASCII hyphens: 48-month, 3.5-mile, would-be, and the accession numbers. The middot appears only in the coordinates fixture and the 02 stamp. caption_report shows 0 fails."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "There are no emoji codepoints in the copy, and none show in any of the 9 renders. The star on 09 is the DOM Polaris mark."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide in copy.json carries claim_ids that match the storyboard CLAIMS INDEX. plan_drift: 0 drifts. aggregate_check: 14 detected, 14 declared, PASS. The round-4 additions are the full alliance name on 08 (C64) and the slug names on 06 (C18, C23, C19, C21). Both are already-cited parties."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed all 9 current renders. 08 now reads 'Alaska Commercial Fisheries Conservation Alliance', so last round's truncation is fixed. 06's reversed slug faces read AEA, ORPC, CIRI, KENAITZE. 03's metal reads 100 MW / 330 TO 350 / TURBINES / [C] PARTNER / 66 HIVES / 1,650 ACRES / 48 MONTHS, mirrored. 03's body matches copy.json word for word ('66 hives', which is the filing's word). 'Deep Green's project' on 02 is ORPC's own spelling, quoted verbatim (C22)."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "qa.py: 0 overflow, and every fit is inside maxLines. The 03 ghost glyphs are gone. I checked the full render and the 432 px thumb, and no small mirrored text remains on any slab. The '1' of 1,650 and the '4' of 48 now land whole. Two art lines run off the frame edge by design: the proud STRATEGIC PARTNER on 03, and the brass line on 01. Both are declared bleeds of reversed display metal, not reading copy. 08's pool strokes now stop above the alaskaaihq.com fixture."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Headlines #F4F8FF on the dark room measure about 17:1. Ink on the proofs and the docket sheet (02, 04, 07) is about 15:1, and the newsprint quote on 04 about 9:1. The 05 labels over copper hatch read with their halo at full size and at thumb size."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "assemble_report.slides = 9."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json: verdict WARN, 0 fails, 55 warns. assemble_report: pdf_mode 'vector', 8.22 MB, title 'Named in Writing, Answered in Writing', 9 thumbs, sources verified."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "This is the same project as No.68 (September 25th) and No.65. The cover kicker reads UPDATE. The material developments are on record: AEA's motion (signed October 7th, filed October 8th), the City of Kenai's motion (October 13th), AEA's no position against its chief's 'oppose', and public filings rising from 59 to 117."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last 4 are THE ANALYSIS LATTICE, THE SPLIT SPECIMEN, THE PINNED RELIEF SHEET and THE FLOWN LINE. This deck is THE COMPOSING STONE. bespoke_check median pairwise similarity is 0.067 (fail at 0.60)."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "word_ban: 0, and caption_check loaded 74 phrases with 0 fails. My own read found no gap, matters, pattern or cannot, and no bare or year-stamped date in reader copy. Years appear only in the first-comment citations, which the rule allows."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly 3 hashtags: #CookInlet #FERC #SubseaDataCenters. post_copy holds no URL; the links are only in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholder or TODO in the copy, the renders or the PDF title. The stale editor note about 08 (see editor_notes_for_email) is an inaccuracy to correct, not a placeholder."
+  },
+  {
+   "rule": "quote marks (codepoint census)",
+   "status": "pass",
+   "evidence": "copy_sync: PASS, 'no curl'. Every quote and apostrophe in copy.json is U+0022 or U+0027. Instrument Serif and Archivo draw them straight on 01, 02, 04, 05 and 09."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Unchanged and still strong. The hook is a named tension in 11 words plus UPDATE, set in huge serif that reads at the 432 px thumb. The PBR reversed brass STRATEGIC PARTNER is the deck's best object and is the filing's own phrase. Two things hold it below 9. 'AEA' is never expanded on the cover. And the four-line headline and the brass line compete as two focal points. Nothing on the cover reads as Alaskan apart from the words 'Cook Inlet'."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "The craft cycle didn't touch the arc. 01 to 02, 06 to 07 and 08 to 09 land. The flow critic's weak junctions (02 to 03, 03 to 04, 04 to 05, 05 to 06) remain, with no text plants. 03 is still the third dense frame in a row before the 04 turn, and it is still the predicted bail point. The D5 tease still doesn't complete: 03 cuts the mirrored C of STRATEGIC at mid frame, while 04 brings in the whole STRATEGIC at y 0.88 under the motion's foot. 03 and 05 could be reordered with little loss."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16,
+   "notes": "Up from 6.5. Most of the gain is removing the 03 defect. 03's ghost glyphs are gone and every brass line lands whole, but the forme is still flat CG. The seven slabs are uniform ochre, and the glyphs carry a default bevel emboss. The oak is near-flat tan, the chase a flat grey frame, and the quoins still read as three grey boxes with dots. The proud line drops no visible cast onto 66 HIVES. 06's slugs now carry reversed names (AEA, ORPC, CIRI, KENAITZE) that read at full size and blur at thumb. The galley floor is still one bright rectangle of uniform static, the brightest and largest object on the breather, so it reads as TV snow, not a graded mezzotint. 08 has its full name and the pool is clear of the fixture. Its seven lead slugs are still white wireframe outlines that cast nothing under the key, the only white-line-on-black frame in a rendered deck. 09 is improved: the sheet has a key falloff, and the housing reads as dark painted steel with lit bevels. It still reads as a product mock: the ink pad is a flat, saturated plastic-blue slab with no felt, and the sheet is a clean card. 07's sheet is trimmed with no blank foot, but it is still a near-flat card with a soft drop shadow. The chart on it is excellent information design. Strengths hold: 01 is genuinely rendered (PBR brass, brushed steel, a lit pool), and 05's copper DEM plate is real engraving. The deck is strong in places, but four frames still lean on defaults or flat regions, so 7.0, not higher."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The art encodes the story. The reversed STRATEGIC PARTNER is the filing's phrase, and the forme sets the ask's numbers in metal. 05 has the four filed corners and a 3.5-mile cable on the real Upper Cook Inlet DEM. 07 is a 134-mark census with 3 gold DeepGreen marks. 08 has 7 slugs for the motions plus 2 gold for the silent names. 09's wheels read 11 02. 06's slugs now carry the application's four names, which restores the motif. A stranger would guess 'a filing and who answered it' more readily than 'a Cook Inlet data center'."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Named throughout: AEA, CIPLink, Curtis W. Thayer, the Peninsula Clarion, Nikiski, East and West Foreland, CIRI, the Kenaitze Indian Tribe, the Kenai Peninsula Borough, the City of Kenai, Rebecca Long of Talkeetna, GCI, and now the Alaska Commercial Fisheries Conservation Alliance by its full name. 05's geography sits on the real DEM, with the box in the narrows. The honesty guards hold. The one imported beat is that the letterpress world carries no Alaskan material."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Every content slide adds a new verified primary specific. The deck has two verbatim replies, the permit's legal effect, said against filed, 'substantially smaller' with no new size, the 134 and 117 census with its 59 and 58 split, and six movants in filing order with positions. 06 is thin by design. On 07, '59 BY SEPTEMBER 25TH  58 SINCE' still doesn't say it counts public comments rather than all 134 filings."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08,
+   "notes": "The hero, atmosphere, palette, hook and type trio are new against the last 4, and the dials are justified. Some subsystems recur. Pale proof cards with register crosses on lit stone recur across 02, 04 and 07, and echo No.88. Cabinet-hatched bars recur from No.89 and No.92. Instrument Serif roman display was used on No.85."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Floors are met, and counters are on all 9. The PDF is vector, 8.22 MB, titled. The thumbs read. Squeakers: 08's text column ends about x 1010 (a 70 px right margin, flagged by qa), and 03's body still breaks '100 / MW' across a line. The 05 labels sit on busy hatch and read with a halo. 06's slug names don't read at thumb, but they are art, not copy."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05,
+   "notes": "Unchanged. The hook lands at 137 characters with a verbatim quote, the total is 883 characters, and the deck-summary line is present. The voice is reportorial; the thesis (a filing should need the partner's word) appears on slide 09 but never in the caption. The close, 'What will AEA's filed position say by then?', is a prediction prompt, weaker than the slide 09 question. The deck-summary line still reads mechanically."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "As built, the run has the post copy, 3 hashtags, a 13-source dated first comment, the PDF title in metadata, 5 aftercare items, 9 thumbs, a contact sheet and a vector PDF. Docked half a point: copy.json editor_notes_for_email still says 'Slide 08 prints the fishing alliance without its leading \"Alaska\", as rendered'. Round 4 fixed that, so the email would describe a defect that no longer exists. The Gmail draft, raw URLs and inline previews depend on the merge and can't be verified yet."
+  }
+ ],
+ "calculation": "(8x0.14)+(7x0.14)+(7x0.16)+(8x0.14)+(8.5x0.12)+(8x0.10)+(7.5x0.08)+(8x0.07)+(7x0.05)+(7.5x0.10) = 1.12+0.98+1.12+1.12+1.02+0.80+0.60+0.56+0.35+0.75 = 8.42",
+ "weighted_total": 8.42,
+ "artwork_score": 7.0,
+ "threshold": 7.7,
+ "ship": true,
+ "ship_note": "8.42 clears the round-4 threshold of 7.7 with no hard fail. Artwork is 7.0, still under the 8.5 CRAFT FLOOR, but the one owed craft cycle has now been run. Record score_report.craft_cycle = {frames: [3, 9, 8, 6, 7], art_before: 6.5, art_after: 7.0}. The floor requires one cycle, not a pass, so the deck ships.",
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Re-shade slide 03's forme from its height field under the az 35 / el 26 key, so the slab bodies go to lee brass, only the glyph faces hold #FFC72C, the proud line drops a hard two-part cast onto 66 HIVES, and the oak and quoins get figure and cavity shade instead of flat fills; it is the deck's largest flat object and sits at the predicted bail point.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "With the bug fixed, the forme reads as flat CG. The seven slabs are uniform ochre with a default bevel emboss on the glyphs. The oak is near-flat tan and the chase a flat grey frame. The three quoins are grey boxes with dots. The proud STRATEGIC PARTNER line stands no visibly higher than its neighbours and casts nothing.",
+   "fix": "Shade the forme from one height field under the az 35 / el 26 key. Slab bodies and shoulders go to lee brass #8A6A22, with only the raised faces at #FFC72C. Give the proud line a hard contact plus a soft cast down and to the left onto 66 HIVES and TURBINES. Add cavity shade in the lead spacing, warped figure in the oak, and wedge-shaped quoins with a lit upper-right face."
+  },
+  {
+   "slide": 6,
+   "problem": "The galley floor, the largest and brightest object on the breather, is one rectangle of uniform white-noise static at a single value. It reads as TV snow, not a mezzotint. The slug names read at full size but are mush at thumb.",
+   "fix": "Threshold the floor dots against a graded tone study: brightest at the far lip beside the slugs, falling smoothly to near black at the near end, with a scraped lit far lip, a lee near wall and a contact cast. This also makes 06 the true tonal trough, below 08."
+  },
+  {
+   "slide": 8,
+   "problem": "The seven lead slugs are still white wireframe outlines with uniform line weight and no cast under the skylight. It is the only white-line-on-black frame in an otherwise rendered deck.",
+   "fix": "Ramp each slug's front hatch from dense at the foot (lee) to sparse at the top (lit). Cross-hatch the tops at a lower value. Drop a hatched cast down and to the left from each slug onto the galley floor, so the one-key physics reads."
+  },
+  {
+   "slide": 9,
+   "problem": "It still reads as a product mock, not a still life. The ink pad is a flat, saturated plastic-blue slab with no felt texture or inked centre, and the sheet is a clean card with only a broad gradient.",
+   "fix": "Give the pad a felt bump and roughness variation with a darker, wetter inked centre and a lit tin rim. Add fibre and a faint printed margin to the sheet, so the lower third carries surface detail."
+  },
+  {
+   "slide": 7,
+   "problem": "The docket sheet is trimmed, but it is still a near-flat pale card with a soft drop shadow, and it echoes 02 and 04's proof cards at contact-sheet scale.",
+   "fix": "Run the sheet through 02's relit paper heightfield with a key falloff from the upper right. Add a lifted lower-left corner with a lit lip and cast, and faint ledger rules so it reads as a clerk's sheet, not a card."
+  }
+ ],
+ "editor_notes_for_email": "Score: 8.42 against the round-4 threshold of 7.7, with no hard fails. Artwork scored 7.0 after the craft cycle (6.5 before), still below the 8.5 craft floor, but the one required cycle is done. The 03 ghost-glyph bug is fixed. Facts to know before posting: AEA's motion is dated October 7th (02, 04, caption) and filed October 8th (08, labelled FILED). The 117 public filings come from 115 distinct names, and October 13th's 18 are a weekend and Columbus Day backlog, not a one-day surge. The CIRI and Kenaitze line means only that no filing was listed when the docket was pulled late on October 22nd. ORPC's 'configured to interface with' is ORPC quoting a DeepGreen filing the run didn't read, probably the June 26th supplement. Thayer's 'oppose' is a newspaper quote, not a filing. The deck leaves out DeepGreen's line that it never claimed a formal binding partnership with AEA; expect it in the comments. Visual caveats a careful reader may notice: 06's galley floor reads as static, 08's slugs as wireframe, and 09's ink pad as plastic.",
+ "craft_cycle": {
+  "frames": [
+   3,
+   9,
+   8,
+   6,
+   7
+  ],
+  "art_before": 6.5,
+  "art_after": 7.0
+ },
+ "revision_rounds": 4
+}
