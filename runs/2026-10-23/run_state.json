@@ -1,0 +1,151 @@
+{
+  "run_date": "2026-10-23",
+  "carousel_no": 94,
+  "effort": "high",
+  "revision_rounds": 5,
+  "date_note": "Anchorage date at wake was October 23rd 22:06 AKDT (2026-10-24 06:06 UTC); runs/2026-10-23 does not exist, so the run takes the Anchorage date. run_guard --run-date 2026-10-23 CLEAR.",
+  "branch": "tsturg/clever-mayer-x89nrt",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/plan.md",
+        "out/2026-10-23/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "2 searches; carousel benchmarks repeat known figures (6.6 to 7 percent document ER, conflicting link-penalty claims, no October 2026 change found); still-life rim light search generic and already covered by the 2026-10-16 black-on-black doctrine entry. FIELD_NOTES unchanged by rule."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/scout_merge.md",
+        "out/2026-10-23/scouts/"
+      ],
+      "note": "6 scouts, 149 searches (E over cap at 27); thin window for AI deployments; lead found by A, E and F; showrunner pulled the ordinance text from the 339 MB packet and the borough zoning layer"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/claims.json"
+      ],
+      "note": "69 claims (62 fact-checker + 7 showrunner zoning claims C63 to C69), 46 primary; claims_check PASS; 14 killed incl. the referral as an act (minutes unposted)"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json",
+        "scripts/ask_answers.py"
+      ],
+      "commits": [
+        "4483a6b7",
+        "455d870b"
+      ],
+      "note": "budget raised to 12, all 12 worklist items re-verified (pledge now 325 signatories, 46 developers; KPBSD agenda 503); new item fnsb-ordinance-2026-42-data-center-moratorium; ask_answers AGENCY_RULES gains the FNSB; ask payload headroom 6,290 bytes; mobile_docket_map and docket_ask PASS at run date; watch.json bills unchanged, 0 hearings (out of session), failed []"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/cron_health.json",
+        "out/2026-10-23/gaswatch_health.json",
+        "out/2026-10-23/sitecheck/"
+      ],
+      "note": "First audits FAIL: gaswatch.yml run 40032908119 exited 5 by design (verified storage, CINGSA Available Capacity cell read '0]', injection fields unavailable) and the live audit found CINGSA's 16:00 posting unpublished. Diagnosis: transient upstream cell, not a parser defect (the parser correctly isolated the bad field). Repair: workflow_dispatch of gaswatch.yml on main (run 40069362311, success), which appended a revision record for 2026-10-23 (16:00 posting, 7,672,626 Mcf, data_status complete, supersedes 12:55) and redeployed Pages. Re-audit: GAS WATCH LIVE PASS, CRON HEALTH PASS. site_signoff PASS 152 pages 18 checks; gaswatch_pagecheck PASS; home/docket/gas-watch inspected at 1280 and 390 px, no horizontal scroll."
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/storyboard.md",
+        "out/2026-10-23/directors_brief.md",
+        "out/2026-10-23/selection.md"
+      ],
+      "note": "lenses data-journalist (THE REGISTERED LAYER), field-documentarian (THE DESCENT TO GRADE), historian-of-the-future (THE FREEZE-UP RECORD); synthesis on the registered layer with the documentarian's gold line, true-scale square, linear gauge and depth frame; dossier_check PASS pre-build"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/caption.txt",
+        "out/2026-10-23/copy.json",
+        "out/2026-10-23/caption_report.json"
+      ],
+      "note": "caption room winner B with three attribution corrections from the copywriter and two craft-cycle clarity fixes; caption_check PASS 897 chars"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/slides/",
+        "assets/js/akborough.js",
+        "out/2026-10-23/render/"
+      ],
+      "note": "nine slides built; qa.py PASS 0 fails 0 warns; bespoke_check PASS (median 0.092, drawn share 69%); tonal_arc PASS (peak 05 L* 79, darkest 09 L* 8.5). Deviations: 04 horizon near y 650; 05 scale bar moved to lower left; 07 gauge x 700 to 790 with labels right as two-line stacks; 08 stipple box arity bug found and fixed (box is [x0,y0,x1,y1])"
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "4 rounds. Ship: 06 (r2 8.2), 08 (r2 8.4), 09 (r2 8.3). Holdouts after round 3, fixed again in round 4 without a fifth per-slide review (per-slide cap): 01 7.8, 02 7.8, 03 7.0, 04 7.1, 05 7.2, 07 6.4. Round 4: 01 outside film lifted (dark boundary line), 02 contour at 4x, 03 smoothstep fade and zoom, 04 fog quantised to 1/32 and nearer ridges, 05 cast blur 5.5, 07 collar, cast, lead and bounce."
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/flow_review.json"
+      ],
+      "note": "flow critic 7.4 revise: 09 gold line closing into the Polaris, 04 body too long, weak junctions 3-4, 4-5, 6-7, 7-8; worked in the craft cycle (round 5)"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/final/"
+      ],
+      "note": "vector PDF 10.21 MB, 9 slides"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/score_report.json",
+        "out/2026-10-23/score_report_round1.json"
+      ],
+      "note": "8.535 then 8.633 after the craft cycle (art 7.0 to 7.3); threshold 7.7; ship; five-round cap reached"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-23/",
+        "docs/",
+        "ledger/topics.json",
+        "ledger/artwork.json",
+        "ledger/captions.json",
+        "ledger/instincts.json",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "note": "ship_images 2.3x (42.0 to 18.4 MB), PNGs dropped, shrink_pdfs left the PDF untouched (safe outcome); site_build 154 pages, 94 decks; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts none due; prune_runs freed 0.83 MB from 2026-09-23"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "machine_due exit 1 (last pass 2026-10-21); five items queued; trend_check top offender Artwork craft (7 of 10) queued for the weekly pass and attacked in-deck; PR #453 opened ready"
+    },
+    "gmail": {
+      "status": "pending"
+    },
+    "retro": {
+      "status": "pending"
+    }
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 152 pages, 18 checks (site_signoff.py, 2026-10-24 06:2x UTC); home, docket and gas watch eye-checked at 1280 and 390 px, no horizontal scroll",
+    "gaswatch_live": "PASS after repair, checked 2026-10-24T06:17:13Z. First audit FAILED: gaswatch.yml run 40032908119 exited 5 by design (CINGSA Available Capacity cell read '0]') and the 16:00 posting was unpublished",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-24T06:17:26Z (after the repair)",
+    "site_fixes": "Gas Watch: re-ran gaswatch.yml on main by workflow_dispatch (run 40069362311, success), which appended a revision record for 2026-10-23 (16:00 posting, 7,672,626 Mcf, complete, supersedes 12:55) and redeployed Pages; both audits re-run PASS. Separately, main later merged PR #452 (fix(gaswatch): retain inventory when capacity cells are malformed), so the collector now keeps inventory on a malformed capacity cell."
+  }
+}

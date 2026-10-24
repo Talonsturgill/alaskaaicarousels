@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-23/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10211804,
+  "pdf_mb": 10.21,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-23/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-23/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Only Two Zones, 97 Percent of the Map",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "a1f78e1244ddc1e65fe8273c76b4528f2831498c524bbc92a42fd371a54d0295",
+        "bytes": 5709053
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "1dcb91cb872b7d924bedbcfc5421857140b50f934b8408f278817a47363eb60c",
+        "bytes": 4223146
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "6096a1215f3608e88a75709f4752cf415fc3ccfcd3305f534d8b754c0401905e",
+        "bytes": 6419209
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "df08553434e029e992f3a7ed545772a15d4c6a4a8a489fcea660a64e35600d65",
+        "bytes": 4967490
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "06a24125cb61d25d6bcbd5a42158910222e506fb43644c823c0af6d1eea87f6a",
+        "bytes": 5346738
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "25aedb6369b0634ebfaa72ad82126d06e817536cbbc236d46d23e2c802649af8",
+        "bytes": 4551967
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "666ac2cfd3d3886858560ad07a2f05836313f84a2a95b2995b31bd53aaea8fe5",
+        "bytes": 2988459
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "9bab4e5cd15a6688858d0a120a71f1b52489aa127b10ed8bd4f7a36c459e8611",
+        "bytes": 3382374
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6ea5d0705db29225b5aaadbb437406dab8d1877ec8982d8854543224546605ab",
+        "bytes": 2874334
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "1f37225107fd09fe2cc771d5603c8448a54ba6764cb87f5f829232e93a87e8b9",
+        "bytes": 11117
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "d9c99fbe3c2e656b6b2c2ec561ab3ab5716a875eb9fd389cac0c13c945b54a5f",
+        "bytes": 12873
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d854fa353372e8b24edeb86510dce53b083369c403017cb77e6f3d5fc1d4e315",
+        "bytes": 13302
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "d67ccf3f97ee627ba9b1af1f63273fbe772ce7bf87043aa91d45e3bed480fe67",
+        "bytes": 17976
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "09e187c3f3c99cc9318df9ff87747b04da1d552b11f6574efe25077b23488449",
+        "bytes": 11680
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "82572ccc61d21f4898c369f1cb97c7d8deef7e7fc8878aa5fee1aa941d57e0dd",
+        "bytes": 13697
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1454c7e70be920c85ecd96c807379fe287b4fe217cc35f11ffcfe7ce55c9c5a3",
+        "bytes": 23435
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "67d5da9d70936a2c77704f7f7a3d4992d26c53e09bd3e8f3c08d35b4d5c16b03",
+        "bytes": 10423
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1cc60e19eb31faedb6c47878f6b5a6471b7438d10d12e3d83afeba22dd16dc9b",
+        "bytes": 7589
+      }
+    ]
+  }
+}

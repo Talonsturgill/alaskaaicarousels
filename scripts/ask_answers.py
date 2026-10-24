@@ -202,6 +202,15 @@ AGENCY_RULES = [
     (r"North Slope Borough", "the North Slope Borough",
      ("north slope borough", "nsb", "borough mayor", "north slope assembly",
       "north slope borough assembly")),
+    # Added 2026-10-23 with the first item the Fairbanks North Star Borough
+    # itself decides, the mayor's Ordinance 2026-42, and the self-test caught it
+    # in the Phase 3.5 pre-flight the same way it caught the Petersburg and
+    # North Slope ones: an item with no recognised agency. The Planning
+    # Commission is in the vocabulary because it recommends before the Assembly
+    # votes, and a reader may type either body.
+    (r"Fairbanks North Star Borough", "the Fairbanks North Star Borough Assembly",
+     ("fairbanks assembly", "fnsb", "fnsb assembly", "fairbanks north star borough",
+      "fairbanks borough", "fairbanks planning commission", "planning commission")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",

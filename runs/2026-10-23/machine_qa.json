@@ -1,0 +1,247 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold hairline around the 3 percent cluster': page 106.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 '\"Only\" two zones.' fits 1/1 lines at 145.5px",
+        "h2 '97 percent of the map.' fits 1/1 lines at 113.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold edge of the non General Use districts': canvas 90.2 dE, page 90.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'GU-1 \u00b7 4,420,232 ACRES' lands 0.0px from its target",
+        "leader 'GU-5 \u00b7 197,540 ACRES' lands 0.0px from its target",
+        "leader 'GU-1 \u00b7 4,420,232 ACRES' meets its label 4.0px away",
+        "leader 'GU-5 \u00b7 197,540 ACRES' meets its label 6.0px away",
+        "leader 'GU-1 \u00b7 4,420,232 ACRES' is drawn 197 px at 73 degrees, inside the pointer band",
+        "leader 'GU-5 \u00b7 197,540 ACRES' is drawn 168 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 'The draft says \"only\" GU-1 and GU-5.They are' fits 2/2 lines at 68.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'FAIRBANKS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the largest Heavy Industrial inlay': canvas 34.1 dE, page 80.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'HEAVY INDUSTRIAL' lands 0.0px from its target",
+        "leader 'LIGHT INDUSTRIAL' lands 0.0px from its target",
+        "leader 'HEAVY INDUSTRIAL' meets its label 5.5px away",
+        "leader 'LIGHT INDUSTRIAL' meets its label 6.0px away",
+        "leader 'HEAVY INDUSTRIAL' is drawn 65 px at 8 degrees, inside the pointer band",
+        "leader 'LIGHT INDUSTRIAL' is drawn 163 px at 32 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 'Everything else fits in 3 percent.' fits 1/1 lines at 79px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the blank survey staff standing in the near snow': shadow L* 57.4 vs ground L* 75.8, dL 18.4 at 432w"
+      ],
+      "motifs": [
+        "'the blank survey staff': canvas 71.5 dE, page 78.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 'Written in 2005, before AI demand.' fits 1/1 lines at 69px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold square, upper left corner': canvas 76.6 dE, page 82.7 dE, 76% of its rect is clear of opaque DOM (div#dim.lab stands on the rest)"
+      ],
+      "scales": [
+        "'the 50 m scale bar, 7.6 px per metre, the square drawn at the same scale' runs 0 metres at 80 to 50 metres at 460; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h1 'The pause makes news.The definition decides.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'the 50,000 square foot square, 68.15 m at 7.6 px per metre' holds: 518 vs 517.981 px (within 2)",
+        "'the 50 m scale bar' holds: 380 vs 380 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold footprint at true size': canvas 104.3 dE, page 104.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the 50,000 square foot footprint on the bench' lands 9.0px from its target",
+        "leader 'the 50,000 square foot footprint on the bench' meets its label 6.2px away",
+        "leader 'the 50,000 square foot footprint on the bench' is drawn 104 px at 90 degrees, inside the pointer band"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 4.3 on 'DRAFT LINE' (box mean 6.3) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the gauge frozen into the shelf ice, its meltwater seat': shadow L* 30.2 vs ground L* 53.7, dL 23.5 at 432w"
+      ],
+      "motifs": [
+        "'the gold 5 MW bar on the gauge': canvas 82.2 dE, page 83.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the staff gauge, 22 px per MW, one tick per MW' runs 0 MW at 1200 to 40 MW at 320; 41 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader '38 MWLEVEL 1' lands 0.0px from its target",
+        "leader '15 MWLEVEL 2' lands 0.0px from its target",
+        "leader '5 MWDRAFT LINE' lands 0.0px from its target",
+        "leader '38 MWLEVEL 1' meets its label 6.0px away",
+        "leader '15 MWLEVEL 2' meets its label 6.0px away",
+        "leader '5 MWDRAFT LINE' meets its label 6.0px away",
+        "leader '38 MWLEVEL 1' is drawn 28 px at 0 degrees, inside the pointer band",
+        "leader '15 MWLEVEL 2' is drawn 28 px at 0 degrees, inside the pointer band",
+        "leader '5 MWDRAFT LINE' is drawn 16 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 'Is 5 MW large? Ask the reserve.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'38 MW mark, GVEA Level 1' holds: 364 vs 364.782 px (within 1.5)",
+        "'15 MW mark, GVEA Level 2' holds: 870 vs 870.782 px (within 1.5)",
+        "'5 MW mark, the draft line' holds: 1090 vs 1090.78 px (within 1.5)",
+        "'zero at the ice' holds: 1200 vs 1200.78 px (within 1.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the dashed gold borough edge at its southern point': canvas 105.0 dE, page 113.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'TEMPORARY, NOT CODIFIED' lands 0.0px from its target",
+        "leader 'TEMPORARY, NOT CODIFIED' meets its label 6.5px away",
+        "leader 'TEMPORARY, NOT CODIFIED' is drawn 17 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h1 'The line gets argued now.' fits 1/1 lines at 83.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold Polaris over the borough': canvas 113.2 dE, page 113.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 'Is 5 MW the rightline for \"large\"in Fairbank' fits 3/3 lines at 109.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKB.canvas",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKB.cls",
+        "slides": [
+          2,
+          3,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKB.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKB.grain",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKB.loadDEM",
+        "slides": [
+          1,
+          2,
+          4,
+          6,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKB.loadZoning",
+        "slides": [
+          1,
+          2,
+          3,
+          6,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

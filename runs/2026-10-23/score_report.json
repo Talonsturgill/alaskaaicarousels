@@ -1,0 +1,110 @@
+{
+ "round": 2,
+ "weighted_total": 8.633,
+ "threshold": 7.7,
+ "ship": true,
+ "hard_fails": [],
+ "hard_fail_rules_checked": 13,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Headline names a specific tension in 8 words and reads at 432 px; the art half is held back by about 40 gold outline fragments that scatter the eye, decal-like pale districts and generic hills below y 1100."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "02 pays off at once, 05 turns, 06 rests, 09 asks; cutting 04's body broke the run of dense frames. 05's 'The pause makes news' precedes the pause on 06; 01-04 never say what the ordinance does; junctions 3-4, 4-5, 6-7, 7-8 weak."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.3,
+   "weight": 0.16,
+   "notes": "Strong: 06 masterful PBR thin-lens, 02 DEM hachure, 08 stipple, 01 PBR oblique. 05 better (anchored casts) but clover crowns; 09 closes in gold but the engraving reads as a fingerprint swirl; 03 a floating terrace, a dead band and seam, flat rust, fixture on a parcel; 07 gauge still a gradient cylinder, rime specks, empty left sky, outlined ice; 04 cut-paper near spruce, cloned mid rows, fog stripes. Frame estimates 03 6.7, 07 6.7, 04 6.8, 09 7.2, 05 7.5; mean about 7.36."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "Equal-area projection makes area equal acreage share; the square and the gauge asserted; the gold line migrates and now closes into the Polaris. 04 encodes the least."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "FNSB, 2026-42, acreage from the borough GIS, HI/LI, Fairbanks and North Pole placed, GVEA levels, real DEM, black spruce, ice fog."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "A verified specific per content slide; 04's body now 21 words and partly restates 02; 07's GVEA facts repeat No.87; 08's session is on the Comprehensive Plan."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08,
+   "notes": "New hero, palette, atmosphere and hook; type pairing, key light and registered projection as No.91; fourth Fairbanks data center deck in 20 days."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07,
+   "notes": "Floors met, counters on every frame, vector PDF 10.21 MB titled; 03 coordinates fixture unreadable at thumb; 07 DRAFT LINE 4.3:1."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "Hook 118, total 897, 0.82 commas per 100 words; takes a position; both round 1 soft lines fixed; paragraph 4 sets the pause beside the alert without linking them."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Provisional before the Gmail draft; every component ready; URLs resolve after the merge."
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.3x0.16)+(8.5x0.14)+(8.5x0.12)+(8x0.10)+(7x0.08)+(7.5x0.07)+(8x0.05)+(8x0.10) = 8.633",
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "On slide 03, draw the jade ground lit with its paper tooth all the way up to the text band so no terrace floats on black, fill the empty y 700-910 band with the cluster's northern run, give the rust inlays a visible specular, and move the coordinates fixture off every parcel.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "a terrace floats on black, dead band and seam, flat rust, coordinates fixture on a parcel"
+  },
+  {
+   "slide": 7,
+   "problem": "gradient-cylinder gauge, rime reads as specks, empty left sky, outlined ice, DRAFT LINE 4.3:1"
+  },
+  {
+   "slide": 4,
+   "problem": "cut-paper near spruce, cloned mid rows, fog stripes, flat lower-left snow"
+  },
+  {
+   "slide": 9,
+   "problem": "fingerprint swirl, the lit/lee swell barely reads"
+  },
+  {
+   "slide": 5,
+   "problem": "clover crowns; flat snow inside the square"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   3,
+   7,
+   4,
+   5,
+   9
+  ],
+  "art_before": 7.0,
+  "art_after": 7.3
+ },
+ "scoring_cycles": 2,
+ "revision_rounds": 5,
+ "score_round1": 8.535,
+ "editor_notes_for_email": "Ships at 8.633 against a threshold of 7.7 with zero hard fails. Artwork craft 7.3 is under the 8.5 craft floor; the one owed craft cycle was spent (7.0 to 7.3) and the run is at the five-round cap, so no further art repair was possible. Visible residuals: slide 03's coordinates fixture can't be read over the North Pole parcel at thumb size, and slide 07's DRAFT LINE label is 4.3:1 at its worst point. Slide 05's 'The pause makes news' comes before the pause is introduced on 06. Slide 07's GVEA facts repeat No.87 (October 15th). 97 percent is 96.94 rounded, from mapped acreage only. No October 22nd minutes were posted, so the copy says 'the agenda sends'. The October 27th work session is on the Comprehensive Plan, not the ordinance. 'Neither one qualifies' is the deck's reading of the ordinance's own GU-1/GU-5 finding; Title 18's use tables were never read (403)."
+}
