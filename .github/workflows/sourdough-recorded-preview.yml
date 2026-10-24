@@ -29,7 +29,10 @@ jobs:
       - name: Exact recorded artifact, provenance and discovery boundary
         run: python3 tests/sourdough_recorded_preview_test.py
       - name: Existing site renderer dependency (CI only)
-        run: python3 -m pip --isolated install --quiet --no-deps --only-binary=:all: --index-url https://pypi.org/simple Pillow==12.3.0
+        run: >-
+          python3 -m pip --isolated install
+          --quiet --no-deps --only-binary=:all:
+          --index-url https://pypi.org/simple Pillow==12.3.0
       - name: Fresh ordinary site build, with no preview link in its outputs
         run: |
           python3 scripts/site_build.py --date "$(date -u +%F)" --out "$RUNNER_TEMP/sourdough-recorded-build"
