@@ -284,7 +284,9 @@
     var drnd = AK.rng(o.seed || 2026102361);
     for (var t = 0; t < 26000; t++) {
       var X = drnd() * DT, Y = drnd() * DT;
-      if (drnd() > Math.pow(Math.max(0, standAt(X, Y) - 0.30) / 0.62, 1.6)) continue;
+      // near uniform within the tile: a periodic stand field printed as a
+      // lattice across 150 repeats (No.94 round 1, slides 01 and 06)
+      if (drnd() > 0.42 + 0.25 * (standAt(X, Y) - 0.5)) continue;
       var rr = 0.9 + drnd() * 1.9, aa = 0.38 + drnd() * 0.34;
       dg.fillStyle = 'rgba(28,40,44,' + aa.toFixed(3) + ')';
       [-DT, 0, DT].forEach(function (ox) { [-DT, 0, DT].forEach(function (oy) {
@@ -299,8 +301,12 @@
     mat.onBeforeCompile = function (sh) {
       sh.uniforms.detail = { value: detTex };
       sh.fragmentShader = 'uniform sampler2D detail;\n' + sh.fragmentShader.replace('#include <map_fragment>',
-        '#include <map_fragment>\n  diffuseColor.rgb *= mix(vec3(1.0), texture2D(detail, vMapUv * vec2(' +
-        rep[0].toFixed(1) + ', ' + rep[1].toFixed(1) + ')).rgb, ' + mix.toFixed(2) + ');');
+        '#include <map_fragment>\n  vec2 duv = vMapUv * vec2(' + rep[0].toFixed(1) + ', ' + rep[1].toFixed(1) + ');\n' +
+        // two layers at a non-commensurate scale and a 36 degree turn, so the
+        // product never repeats on screen
+        '  vec2 duv2 = mat2(0.809, -0.588, 0.588, 0.809) * duv * 0.713 + vec2(0.37, 0.61);\n' +
+        '  vec3 dd = sqrt(texture2D(detail, duv).rgb * texture2D(detail, duv2).rgb);\n' +
+        '  diffuseColor.rgb *= mix(vec3(1.0), dd, ' + mix.toFixed(2) + ');');
     };
     var mesh = new THREE.Mesh(geo, mat);
     return { mesh: mesh, LON0: LON0, LAT0: LAT0, KX: KX, KZ: KZ, VE: VE, zr: zr,
