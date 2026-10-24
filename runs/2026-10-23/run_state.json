@@ -135,10 +135,12 @@
       "note": "machine_due exit 1 (last pass 2026-10-21); five items queued; trend_check top offender Artwork craft (7 of 10) queued for the weekly pass and attacked in-deck; PR #453 opened ready"
     },
     "gmail": {
-      "status": "pending"
+      "status": "done",
+      "note": "draft r-3846260161206463712 created via the Gmail connector, to docket@alaskaaihq.com, payload from gmail_draft.py --preview-mode remote (23 KB), sign-off table read before creation (verdicts, not filenames). The connector viewUrl names authuser talon.sturgill@gmail.com, so the draft may sit in that mailbox rather than docket@"
     },
     "retro": {
-      "status": "pending"
+      "status": "done",
+      "note": "FIELD_NOTES section, two instincts, five machine queue items, automation_retro.md; PR #453 merged at 928adde7 after CI green and Codex Completed on 22434ce with no findings"
     }
   },
   "phase_3_6": {
@@ -147,5 +149,7 @@
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-24T06:17:26Z (after the repair)",
     "site_fixes": "Gas Watch: re-ran gaswatch.yml on main by workflow_dispatch (run 40069362311, success), which appended a revision record for 2026-10-23 (16:00 posting, 7,672,626 Mcf, complete, supersedes 12:55) and redeployed Pages; both audits re-run PASS. Separately, main later merged PR #452 (fix(gaswatch): retain inventory when capacity cells are malformed), so the collector now keeps inventory on a malformed capacity cell."
-  }
+  },
+  "gmail_draft_id": "r-3846260161206463712",
+  "status": "complete"
 }
