@@ -30,5 +30,16 @@ jobs:
         run: python3 tests/sourdough_recorded_preview_test.py
       - name: Fresh ordinary site build, with no preview link in its outputs
         run: |
-          python3 scripts/site_build.py --date "$(date -u +%F)" --out "$RUNNER_TEMP/sourdough-recorded-build"
+          BUILD_PYTHON=""
+          for candidate in /usr/bin/python3 python3; do
+            if "$candidate" -c 'from PIL import Image' 2>/dev/null; then
+              BUILD_PYTHON="$candidate"
+              break
+            fi
+          done
+          if [ -z "$BUILD_PYTHON" ]; then
+            echo "No installed Python with Pillow; full build check remains blocked. No package was installed."
+            exit 1
+          fi
+          "$BUILD_PYTHON" scripts/site_build.py --date "$(date -u +%F)" --out "$RUNNER_TEMP/sourdough-recorded-build"
           SOURDOUGH_BUILT_SITE="$RUNNER_TEMP/sourdough-recorded-build" python3 tests/sourdough_recorded_preview_test.py
