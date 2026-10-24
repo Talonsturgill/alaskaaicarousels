@@ -4280,6 +4280,68 @@
       ]
     },
     {
+      "id": "fnsb-ordinance-2026-42-data-center-moratorium",
+      "title": "Fairbanks proposes its own pause on large data center permits",
+      "kind": "legislation",
+      "status": "pending-decision",
+      "decider": "Fairbanks North Star Borough Assembly, after a Planning Commission recommendation",
+      "public_access": "indirect",
+      "access_note": "The ordinance goes to the Planning Commission for a recommendation due in 90 days and then back to the elected Assembly, which adopts or rejects it.",
+      "summary": "Mayor Grier Hopkins's Ordinance No. 2026-42 would accept no land use permit applications for large-scale data centers, and approve no pending ones, through December 31st, 2027. It defines large-scale as 5 MW or more of peak demand, more than 50,000 square feet of data center floor area, or 5 MW or more of onsite generation, and orders a study of energy, air, water and noise within six months.",
+      "key_dates": [
+        {
+          "date": "2026-10-22",
+          "label": "On the Assembly agenda for referral to the Planning Commission, recommendation due back in 90 days",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-27",
+          "label": "Planning Commission work session on the final Comprehensive Plan the moratorium waits for",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-12-31",
+          "label": "Moratorium would end unless the Assembly ends it sooner or extends it",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Fairbanks North Star Borough",
+        "lon": -147.72,
+        "lat": 64.84
+      },
+      "sources": [
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13333,plainText=true)",
+          "outlet": "Fairbanks North Star Borough Assembly, October 22nd agenda",
+          "date": "2026-10-22"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13344,plainText=false)",
+          "outlet": "Fairbanks North Star Borough, October 22nd agenda packet, Ordinance No. 2026-42",
+          "date": "2026-10-22"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/24/fairbanks-borough-mayor-proposes-temporary-data-center-moratorium/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-10-23"
+        },
+        {
+          "url": "https://www.fnsb.gov/1169/Comprehensive-Plan-Update",
+          "outlet": "Fairbanks North Star Borough Community Planning",
+          "date": "2026-10-24"
+        }
+      ],
+      "first_seen": "2026-10-23",
+      "last_updated": "2026-10-23",
+      "history": [
+        {
+          "date": "2026-10-23",
+          "note": "Tracked. Read against the ordinance text in the October 22nd agenda packet and the agenda itself, which lists it as item 17.a for referral to the Planning Commission. The ordinance says the borough's Comprehensive Plan was last updated in 2005 and that under the present zoning code large-scale data centers would be permitted only in the GU-1 and GU-5 General Use Districts. The borough's own zoning map layer puts those two districts at 4,617,772 of 4,763,599 zoned acres, about 97 percent. Minutes confirming the referral were not yet posted."
+        }
+      ]
+    },
+    {
       "id": "onr-arctic-iha-year-9",
       "title": "The Navy's permit for an under-ice robot navigation grid",
       "kind": "regulatory-docket",

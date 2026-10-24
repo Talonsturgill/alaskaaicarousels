@@ -1,0 +1,16 @@
+{
+ "what": "Terrain over the Fairbanks North Star Borough, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 176 tiles, fetched 2026-10-24 UTC, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 1200,
+ "rows": 640,
+ "west": -148.9,
+ "east": -143.6,
+ "north": 65.55,
+ "south": 64.15,
+ "dlon": 0.0044203502919099346,
+ "dlat": 0.002190923317683868,
+ "z": 10,
+ "min_m": 93,
+ "max_m": 1877
+}
