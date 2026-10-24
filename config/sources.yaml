@@ -106,6 +106,9 @@ keyless_primary_routes:
     - {what: "any Legistar borough's legislative record, by file number or by date",
        url: "https://webapi.legistar.com/v1/kpb/matters?$filter=MatterFile%20eq%20%272026-35%27",
        note: "swap kpb for another client code. Returns the stored title, intro date, agenda date, status, body and type as clean JSON. This is how the Kenai weather modification ordinance was verified, and it is the shape of route that would partly answer the standing muni.org and anchorage.legistar.com hole above"}
+    - {what: "the Fairbanks North Star Borough zoning map, every district with its published acreage",
+       url: "https://gisportal.fnsb.gov/referenced/rest/services/_/Zoning_Districts/MapServer/1/query?where=1%3D1&outFields=ZONE,ACRES,ZONE_DESC&returnGeometry=false&f=json",
+       note: "added 2026-10-23 (run No.94). ArcGIS REST, keyless, 1,129 polygons; set returnGeometry=true&outSR=4326&f=geojson for shapes, which arrive in RFC 7946 winding and must be rewound before d3 draws them. The borough's civicclerk agenda packets run to 300 MB and can't pass WebFetch; pull them with curl and read with pypdf"}
     - {what: "the date and authorship of a paywalled paper",
        url: "https://api.crossref.org/works/<DOI>",
        note: "answers when the publisher 403s"}
