@@ -1,0 +1,39 @@
+name: Recorded Sourdough preview
+
+on:
+  pull_request:
+    paths:
+      - "docs/awesomeproposal/**"
+      - "tests/sourdough_recorded_preview_test.py"
+      - "scripts/site_build.py"
+      - "scripts/feeds_build.py"
+      - ".github/workflows/sourdough-recorded-preview.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/awesomeproposal/**"
+      - "tests/sourdough_recorded_preview_test.py"
+      - "scripts/site_build.py"
+      - "scripts/feeds_build.py"
+      - ".github/workflows/sourdough-recorded-preview.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  recorded-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exact recorded artifact, provenance and discovery boundary
+        run: python3 tests/sourdough_recorded_preview_test.py
+      - name: Existing site renderer dependency (CI only)
+        run: >-
+          python3 -m pip --isolated install
+          --quiet --no-deps --only-binary=:all:
+          --index-url https://pypi.org/simple Pillow==12.3.0
+      - name: Fresh ordinary site build, with no preview link in its outputs
+        run: |
+          python3 scripts/site_build.py --date "$(date -u +%F)" --out "$RUNNER_TEMP/sourdough-recorded-build"
+          SOURDOUGH_BUILT_SITE="$RUNNER_TEMP/sourdough-recorded-build" python3 tests/sourdough_recorded_preview_test.py
