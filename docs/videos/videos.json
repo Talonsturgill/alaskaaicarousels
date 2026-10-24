@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-10-24-seeing-is-the-easy-part",
+      "date": "2026-10-24",
+      "title": "Seeing Is the Easy Part",
+      "caption": "MIT Technology Review reported on October 19th that Alaska makes about half of America's wildfire emissions on around 4 percent of federal firefighting money. Satellites can now catch Alaska fires in one image, but deciding which fire to fight is still a human rule, and a thaw probe shows the loss may be the ground, not only the acres.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-24-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-24-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-24-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-24-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-23-the-rule-that-stops-at-the-fence",
       "date": "2026-10-23",
       "title": "The Rule That Stops at the Fence",
