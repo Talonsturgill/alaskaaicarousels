@@ -127,7 +127,12 @@
       "note": "ship_images 2.3x (42.0 to 18.4 MB), PNGs dropped, shrink_pdfs left the PDF untouched (safe outcome); site_build 154 pages, 94 decks; parsers, scanner_sync, docket_dates, site_fresh PASS; docket_alerts none due; prune_runs freed 0.83 MB from 2026-09-23"
     },
     "upgrade": {
-      "status": "pending"
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-23/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "machine_due exit 1 (last pass 2026-10-21); five items queued; trend_check top offender Artwork craft (7 of 10) queued for the weekly pass and attacked in-deck; PR #453 opened ready"
     },
     "gmail": {
       "status": "pending"
@@ -135,5 +140,12 @@
     "retro": {
       "status": "pending"
     }
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 152 pages, 18 checks (site_signoff.py, 2026-10-24 06:2x UTC); home, docket and gas watch eye-checked at 1280 and 390 px, no horizontal scroll",
+    "gaswatch_live": "PASS after repair, checked 2026-10-24T06:17:13Z. First audit FAILED: gaswatch.yml run 40032908119 exited 5 by design (CINGSA Available Capacity cell read '0]') and the 16:00 posting was unpublished",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 2026-10-24T06:17:26Z (after the repair)",
+    "site_fixes": "Gas Watch: re-ran gaswatch.yml on main by workflow_dispatch (run 40069362311, success), which appended a revision record for 2026-10-23 (16:00 posting, 7,672,626 Mcf, complete, supersedes 12:55) and redeployed Pages; both audits re-run PASS. Separately, main later merged PR #452 (fix(gaswatch): retain inventory when capacity cells are malformed), so the collector now keeps inventory on a malformed capacity cell."
   }
 }
