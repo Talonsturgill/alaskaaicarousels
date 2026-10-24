@@ -3370,6 +3370,45 @@
     "STONE.inkTint, a declared ink laid through an object silhouette with a color blend"
    ],
    "note": "Three critic rounds. Round 1 found the brass on 01 inverted (a brass body coplanar with the type bed z-fought through it) and 03 cutting its own numbers at the frame edge."
+  },
+  {
+   "run_date": "2026-10-23",
+   "carousel_no": 94,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE REGISTERED LAYER, the borough's zoning map registered to its real terrain and reprinted in nine media: an oblique PBR flight (01), a hachured plan (02), a bench relief closeup (03), a ridgeline view at grade (04), a sunlit plan at 7.6 px per metre (05), a thin-lens oblique (06), an orthographic gauge (07), a stipple plan (08), an engraved plan (09)",
+   "atmosphere": "NEW: THE FIRST ICE FOG, inversion season dusk to night, a low October sun from the south west, frost smoke off an open lead",
+   "depth_technique": "three.js PBR DEM terrain with draped zoning film (01, 06 thin-lens masterful depth frame); slope hachure (02); multi-material bench relief (03, 05 with an explicit per-crown cast layer); DEM ridgeline stack with perspective spruce (04); orthographic three.js gauge in ice (07); weighted stipple (08); white-line engraving (09)",
+   "line_voice": "survey and planning sheet: mono labels, a scale bar, acreage stamps",
+   "continuity_device": "D1 the registered layer camera move; D2 the gold line migrates, from the fence around the 3 percent to the square at true size to the 5 MW bar to the dashed borough edge closing solid into the Polaris",
+   "continuity_devices": [
+    "D1 registered layer camera move",
+    "D2 gold line migration",
+    "the survey staff planted on 04, graduated on 07"
+   ],
+   "hook_archetype": "NEW: THE ONE-WORD AUDIT",
+   "palette_family": "NEW: INVERSION SEASON (night slate, jade, hoarfrost, rust, alpenglow)",
+   "type_pairing": "Fraunces + JetBrains Mono",
+   "narrative_structure": "a word audited against a map, a size measured against land and grid, then one ask",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 2,
+    "type_temperature": 4
+   },
+   "techniques": [
+    "akthree PBR terrain",
+    "AKSTROBE thin-lens focus",
+    "AK.hachureField",
+    "AKBENCH.relief",
+    "ridgeline stack",
+    "AKSTIPPLE",
+    "AKENGRAVE",
+    "orthographic three.js"
+   ],
+   "new_techniques_logged": [
+    "AKB.terrain two-layer non-commensurate detail (assets/js/akborough.js)",
+    "explicit per-crown cast layer with darken union over a bench relief"
+   ],
+   "note": "Five rounds. Round 1 nine of nine revise; round 2 shipped 06, 08, 09; rounds 3 and 4 worked seams, fades and the gauge; round 5 was the craft cycle on 03, 07, 04, 05, 09."
   }
  ]
 }

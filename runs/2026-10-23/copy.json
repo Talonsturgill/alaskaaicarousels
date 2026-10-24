@@ -1,0 +1,210 @@
+{
+ "document_title": "Only Two Zones, 97 Percent of the Map",
+ "post_copy": "A proposed Fairbanks ordinance says today's code permits a large data center in only two zones. Neither is industrial.\n\nHeavy Industrial is 3,555 mapped acres. Light Industrial is 5,929.\n\nThe two zones it names are General Use districts GU-1 and GU-5. That is about 97 percent of the zoned acres. The code names no data center use.\n\nThe draft would pause large data center permits through December 31st, 2027. Its first test is 5 MW of peak demand. GVEA's first alert came October 12th and reached Level 2. Level 2 means reserves below 15 MW. Two units were in maintenance, a third went offline.\n\nArgue the 5 MW now. The agenda gives the Planning Commission 90 days to recommend.\n\nThe zoning map by acre, the industrial sliver, the floor test drawn to scale and 5 MW against GVEA's alert lines.\n\nIf you pay a GVEA bill, how many megawatts is large?\n\n#FairbanksAlaska #LandUsePlanning #AlaskaEnergy",
+ "deck_summary_line": "The zoning map by acre, the industrial sliver, the floor test drawn to scale and 5 MW against GVEA's alert lines.",
+ "hashtags": "#FairbanksAlaska #LandUsePlanning #AlaskaEnergy",
+ "first_comment": "Sources, primary first\nFairbanks North Star Borough, October 22nd, 2026 Regular Assembly Meeting agenda, item 17.a, Ordinance No. 2026-42 for referral to the Planning Commission with a recommendation due back in 90 days, https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13333,plainText=true)\nFairbanks North Star Borough, October 22nd, 2026 Assembly agenda packet, text of Ordinance No. 2026-42 (the GU-1 and GU-5 finding, the 2005 plan, the three-test definition, the pause through December 31st, 2027, the six-month study), packet pages 520 to 522, https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13344,plainText=false)\nFairbanks North Star Borough GIS portal, Zoning_Districts layer, ZONE and ACRES for all 1,129 polygons, retrieved October 24th, 2026, https://gisportal.fnsb.gov/referenced/rest/services/_/Zoning_Districts/MapServer/1/query?where=1%3D1&outFields=ZONE,ACRES,ZONE_DESC&returnGeometry=false&f=json\nFairbanks North Star Borough Community Planning, Comprehensive Plan Update page, schedule listing the October 27th, 2026 Planning Commission work session on the final plan, retrieved October 24th, 2026, https://www.fnsb.gov/1169/Comprehensive-Plan-Update\nGolden Valley Electric Association, news release on its Energy Emergency Alerts and why they're needed, October 13th, 2026, https://www.gvea.com/news-releases/gveas-energy-emergency-alerts-why-theyre-needed-and-what-members-should-know/\nGolden Valley Electric Association, Energy Emergency Alert levels page (Level 1 below 38 MW, Level 2 below 15 MW), as read October 20th, 2026, https://www.gvea.com/safety/energy-emergency-alert/\nAlaska's News Source (Alex Bengel), Fairbanks borough mayor proposes temporary data center moratorium, October 23rd, 2026, https://www.alaskasnewssource.com/2026/10/24/fairbanks-borough-mayor-proposes-temporary-data-center-moratorium/\nAlaska's News Source (Alex Bengel), GVEA asks members to conserve energy amid generator failure, October 14th, 2026, https://www.alaskasnewssource.com/2026/10/15/gvea-asks-members-conserve-energy-amid-generator-failure/\n\nThe acreage figures are Alaska.Ai's sum of the ACRES value the borough publishes on each polygon of that layer, grouped by base district. They are acres on the zoning map, not surveyed land, and the borough's own disclaimer says the layer may not be fully current. That no industrial district qualifies is Alaska.Ai's reading of the ordinance's own finding that large data centers would be permitted only in GU-1 and GU-5.\nThe open Alaska AI decisions, each with its next date on the calendar, are kept at https://alaskaaihq.com\nIf you know the borough's use tables or GVEA's reserve history better than this, add it below.",
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "UPDATE · FAIRBANKS DATA CENTERS",
+   "headline": "\"Only\" two zones.",
+   "body": "97 percent of the map.",
+   "labels": [],
+   "claim_ids": [
+    "C18",
+    "C66"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "ORDINANCE NO. 2026-42",
+   "headline": "The draft says \"only\" GU-1 and GU-5. They are nearly all of it.",
+   "body": "Under today's code, the ordinance says, a large data center would be permitted only in these two General Use districts.",
+   "labels": [
+    "GU-1 · 4,420,232 ACRES",
+    "GU-5 · 197,540 ACRES",
+    "ACRES AS THE BOROUGH PUBLISHES THEM, SUMMED"
+   ],
+   "claim_ids": [
+    "C01",
+    "C18",
+    "C63",
+    "C64",
+    "C66"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "EVERY OTHER DISTRICT",
+   "headline": "Everything else fits in 3 percent.",
+   "body": "Every district besides GU-1 and GU-5 covers 145,827 acres. Heavy Industrial is 3,555 of them, Light Industrial 5,929. By the draft's own reading of today's code, neither one qualifies.",
+   "labels": [
+    "HEAVY INDUSTRIAL",
+    "LIGHT INDUSTRIAL",
+    "FAIRBANKS",
+    "NORTH POLE"
+   ],
+   "claim_ids": [
+    "C18",
+    "C67",
+    "C68",
+    "C69"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "THE OLD MAP",
+   "headline": "Written in 2005, before AI demand.",
+   "body": "The draft says the code doesn't address data centers as a use. General Use, the widest zone, is where they fall.",
+   "labels": [],
+   "claim_ids": [
+    "C15",
+    "C16",
+    "C18",
+    "C19"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "THE DEFINITION",
+   "headline": "The pause makes news. The definition decides.",
+   "body": "Under the draft, a data center is large at 5 MW of peak demand, more than 50,000 square feet of data center floor, or 5 MW of onsite generation. Any one test is enough.",
+   "labels": [
+    "50,000 SQUARE FEET, DRAWN TO SCALE",
+    "50 M"
+   ],
+   "claim_ids": [
+    "C05",
+    "C06",
+    "C07"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "",
+   "headline": "If adopted, no applications accepted and none approved through December 31st, 2027.",
+   "body": "",
+   "labels": [
+    "50,000 SQUARE FEET, TRUE SIZE"
+   ],
+   "claim_ids": [
+    "C06",
+    "C08",
+    "C09"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "THE GRID",
+   "headline": "Is 5 MW large? Ask the reserve.",
+   "body": "GVEA's Level 1 alert starts below 38 MW of reserve, Level 2 below 15 MW. Its first alert, October 12th, reached Level 2, with two units in maintenance and a third offline.",
+   "labels": [
+    "38 MW LEVEL 1",
+    "15 MW LEVEL 2",
+    "5 MW DRAFT LINE"
+   ],
+   "claim_ids": [
+    "C05",
+    "C34",
+    "C35",
+    "C36",
+    "C37",
+    "C40"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "NEXT",
+   "headline": "The line gets argued now.",
+   "body": "The agenda sends the draft to the Planning Commission, recommendation due in 90 days. A commission work session on the final Comprehensive Plan is set for October 27th. If adopted, a study of energy, air, water and noise follows within six months.",
+   "labels": [
+    "TEMPORARY, NOT CODIFIED"
+   ],
+   "claim_ids": [
+    "C03",
+    "C04",
+    "C11",
+    "C12",
+    "C14",
+    "C32"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Is 5 MW the right line for \"large\" in Fairbanks?",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C05"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Post in a Tuesday to Thursday slot, 8 to 11 a.m. Alaska time. Tuesday, October 27th morning lands the same day as the Planning Commission work session. When to post is the owner's call.",
+  "Paste the sources comment within 60 seconds of posting and pin it. The two civicclerk links contain parentheses and a comma, which LinkedIn's auto-linker may cut short. Click both after posting, and if one is truncated the full raw text is still there to copy.",
+  "Before publishing, check that the PDF document title reads \"Only Two Zones, 97 Percent of the Map\".",
+  "Reply to every comment in the first 90 minutes. If someone asks whether a data center has applied in the borough, or whether borough zoning reaches Eielson or Fort Wainwright, don't answer either way. No source covers it.",
+  "On October 27th, watch the work session (it is on the Comprehensive Plan, not the ordinance) and check civicclerk for October 22nd minutes or an action memo that confirms the referral. If the Assembly did anything other than refer it, add a correcting comment.",
+  "After 48 hours, note saves, comments and reposts for the ledger."
+ ],
+ "editor_notes_for_email": "The copywriter queried three attributions and all three were changed before render. (1) The ordinance never names industrial land; it says large data centers would be permitted only in GU-1 and GU-5 (C18). The hook now says the code permits a large data center in only two zones and neither is industrial, and slide 03 says 'by the draft's own reading of today's code, neither one qualifies'. Title 18's use tables returned 403 and were never read, so a planner could still argue the reading. (2) GVEA's release says the event 'required us to issue a Level 2 alert sooner', which could describe a Level 1 that escalated. Caption and slide 07 now say the first alert 'reached Level 2'. (3) Slide 08 now names the October 27th session as one on the final Comprehensive Plan, not the moratorium. Still worth knowing. No October 22nd minutes or action memo were posted as of October 24th, so all copy says the agenda sends or gives, never that the Assembly referred. 97 percent is 96.94 rounded. All acreage is mapped acreage from the layer's ACRES field. The caption's 'the real fence is 5 MW of peak demand' is the deck's framing, since the floor-area and onsite tests also count, and slide 05 says so. The caption and slide 06 leave out that the Assembly could end the pause early or extend it (C09). In the craft cycle the caption's 'The two are General Use districts' became 'The two zones it names are General Use districts', and 'the real fence is 5 MW of peak demand' became 'its first test is 5 MW of peak demand', both on the scorer's reading. Slide 04's body was cut to one sentence pair to break a run of four text-dense frames.",
+ "caption_meta": {
+  "opening_move": "THE ABSURD DETAIL",
+  "structure": "ZOOM",
+  "closing_move": "STAKE (the GVEA bill payer is asked to name the megawatt line that makes a facility large)"
+ },
+ "first_8_words": "A proposed Fairbanks ordinance says today's code permits",
+ "hook_type": "THE ABSURD DETAIL",
+ "claims_used": [
+  "C01",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C11",
+  "C12",
+  "C14",
+  "C15",
+  "C16",
+  "C18",
+  "C19",
+  "C32",
+  "C34",
+  "C35",
+  "C36",
+  "C37",
+  "C40",
+  "C63",
+  "C64",
+  "C65",
+  "C66",
+  "C67",
+  "C68",
+  "C69"
+ ],
+ "caption_claim_ids": [
+  "C01",
+  "C03",
+  "C04",
+  "C05",
+  "C08",
+  "C09",
+  "C16",
+  "C18",
+  "C34",
+  "C35",
+  "C37",
+  "C40",
+  "C65",
+  "C66",
+  "C68",
+  "C69"
+ ],
+ "total_chars": 897,
+ "hook_chars": 118
+}

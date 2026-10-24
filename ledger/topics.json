@@ -3785,6 +3785,42 @@
    ],
    "claims": 112,
    "note": "Update framed on the cover (UPDATE). Material new since No.68: AEA motion, City of Kenai motion, AEA said versus filed, the public record doubling, the footprint answer."
+  },
+  {
+   "run_date": "2026-10-23",
+   "carousel_no": 94,
+   "topic": "UPDATE of No.76. Fairbanks North Star Borough Ordinance No. 2026-42, sponsored by Mayor Hopkins and on the October 22nd Assembly agenda (item 17.a) for referral to the Planning Commission with a recommendation due in 90 days: a temporary pause on large data center permits through December 31st, 2027, large meaning 5 MW of peak demand, more than 50,000 square feet of data center floor, or 5 MW of onsite generation; a six month study of energy, air, water and noise; not codified. Its own finding that today's code would permit large data centers only in GU-1 and GU-5, which the borough's zoning layer shows cover about 97 percent of mapped acres while Heavy (3,555) and Light Industrial (5,929) qualify for neither. GVEA's first Energy Emergency Alert, October 12th, reached Level 2 (reserves below 15 MW).",
+   "angle": "The one word in a draft ordinance ('only') measured against the borough's own zoning map, and the definition of large measured against GVEA's alert lines.",
+   "entities": [
+    "Fairbanks North Star Borough",
+    "Mayor Grier Hopkins",
+    "FNSB Assembly",
+    "FNSB Planning Commission",
+    "GVEA",
+    "Department of Community Planning"
+   ],
+   "keywords": [
+    "Ordinance 2026-42",
+    "data center moratorium",
+    "GU-1",
+    "GU-5",
+    "General Use",
+    "Heavy Industrial",
+    "Light Industrial",
+    "5 MW",
+    "50,000 square feet",
+    "Energy Emergency Alert",
+    "Comprehensive Plan"
+   ],
+   "headline": "\"Only\" two zones. 97 percent of the map.",
+   "sources_lead": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13344,plainText=false)",
+   "beats": [
+    "data-centers",
+    "power-and-the-grid",
+    "land-and-permitting"
+   ],
+   "claims": 69,
+   "note": "Update framed on the cover (UPDATE). Material new since No.76, No.83 and No.87: the ordinance text and its definition, and the zoning acreage summed from the borough GIS. The referral is described as what the agenda does; no October 22nd minutes were posted by October 24th."
   }
  ]
 }
