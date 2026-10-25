@@ -1,0 +1,129 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;inset:0;width:1080px;height:1350px}
+  .lay{position:absolute;inset:0}
+  #head{position:absolute;left:76px;top:196px;width:844px;
+        font-family:"Fraunces";font-weight:620;font-variation-settings:"SOFT" 12,"WONK" 1,"opsz" 96;
+        color:#F4F8FF;line-height:1.0;letter-spacing:-0.02em;text-transform:uppercase}
+  #body{position:absolute;left:76px;top:432px;width:900px;
+        font-family:"Manrope";font-weight:500;font-size:34px;line-height:1.36;color:#A9BED4}
+  #rec{position:absolute;right:80px;top:84px;text-align:right}
+  #rec span{font-family:"JetBrains Mono";font-weight:300;font-size:28px;letter-spacing:0.09em;color:#7E93A8;
+            font-variant-numeric:tabular-nums lining-nums}
+  #pol{position:absolute;right:82px;top:180px}
+  .guard{position:absolute;left:84px;top:1156px;width:896px;padding:12px 18px;
+         border:1.25px dashed #5A6E82;background:rgba(5,10,18,0.86)}
+  .guard span{display:block;font-family:"JetBrains Mono";font-weight:300;font-size:28px;
+              letter-spacing:0.06em;line-height:1.34;color:#A9BED4}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="lay">
+  <div id="head">The money landed August 5th. The work starts September 1st.</div>
+  <div id="body">Three linked standard grants share one title and one project. NSF obligated all three in full in fiscal 2026.</div>
+  <div id="rec"><span>02 / 10<br>CAM PAN RIGHT / LENS 50</span></div>
+  <svg id="pol" width="36" height="36" viewBox="0 0 46 46">
+    <path d="M23 0 L26.6 19.4 L46 23 L26.6 26.6 L23 46 L19.4 26.6 L0 23 L19.4 19.4 Z" fill="#FFC72C"/>
+  </svg>
+  <div class="guard"><span>ONE PI AND FOUR CO-PIS ON THE ANCHORAGE RECORD.</span><span>THREE ALASKA ADDRESSES, ONE WYOMING ADDRESS.</span></div>
+</div>
+<svg id="rails" class="lay" width="1080" height="1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350,SEED=20260814+2;
+  const cx=document.getElementById('art').getContext('2d'); cx.scale(2,2);
+  const rnd=AK.rng(SEED);
+
+  const wall=cx.createLinearGradient(0,0,0,548);
+  wall.addColorStop(0,'#050A12'); wall.addColorStop(1,'#0A1725');
+  cx.fillStyle=wall; cx.fillRect(0,0,W,548);
+  const bench=cx.createLinearGradient(0,548,0,H);
+  bench.addColorStop(0,'#14212D'); bench.addColorStop(0.36,'#1E2C39'); bench.addColorStop(1,'#0B141D');
+  cx.fillStyle=bench; cx.fillRect(0,548,W,H-548);
+
+  // Lamp off-frame left on this station, so amber dies toward the right edge.
+  const pool=cx.createRadialGradient(80,1020,30,80,1020,900);
+  pool.addColorStop(0,'rgba(122,82,48,0.40)'); pool.addColorStop(0.42,'rgba(88,62,42,0.18)');
+  pool.addColorStop(1,'rgba(34,48,63,0)');
+  cx.fillStyle=pool; cx.fillRect(0,548,W,H-548);
+
+  /* THE SHEET, a printed record with real thickness lying on the bench. */
+  const SX=62, SY=560, SW=956, SH=584;
+  cx.fillStyle='rgba(4,8,14,0.60)';
+  cx.beginPath(); cx.moveTo(SX+14,SY+SH+3); cx.lineTo(SX+SW+26,SY+SH+3);
+  cx.lineTo(SX+SW+42,SY+SH+24); cx.lineTo(SX+28,SY+SH+24); cx.closePath(); cx.fill();
+  cx.save(); cx.filter='blur(15px)'; cx.fillStyle='rgba(4,8,14,0.38)';
+  cx.fillRect(SX+22,SY+SH-6,SW+32,56); cx.restore();
+  const pg=cx.createLinearGradient(SX,SY,SX+SW,SY+SH);
+  pg.addColorStop(0,'rgba(232,220,196,0.125)'); pg.addColorStop(0.55,'rgba(232,220,196,0.072)');
+  pg.addColorStop(1,'rgba(232,220,196,0.036)');
+  cx.fillStyle=pg; cx.fillRect(SX,SY,SW,SH);
+  cx.fillStyle='rgba(232,220,196,0.20)'; cx.fillRect(SX,SY+SH,SW,6);
+  cx.fillStyle='rgba(4,8,14,0.5)';       cx.fillRect(SX,SY+SH+6,SW,3);
+  for(let i=0;i<2400;i++){
+    const x=SX+rnd()*SW, y=SY+rnd()*SH;
+    cx.globalAlpha=0.010+rnd()*0.026;
+    cx.fillStyle=rnd()>0.5?'#E8DCC4':'#0A121B';
+    cx.fillRect(x,y,1.1,1.1);
+  }
+  cx.globalAlpha=1;
+
+  /* THE RAILS. Length IS the dollars, deck-locked at 1 px = $6,200.
+     Each rail sits BELOW its own label band, so no plate ever covers a bar. */
+  const SCALE=6200, X0=SX+40;
+  const ROWS=[{ry:SY+130,v:3824575,gold:true},
+              {ry:SY+280,v:1260800,gold:false},
+              {ry:SY+430,v: 913037,gold:false}];
+  ROWS.forEach(r=>{
+    const px=r.v/SCALE;
+    const g=cx.createLinearGradient(0,r.ry-11,0,r.ry+11);
+    g.addColorStop(0,'#6B7F94'); g.addColorStop(0.44,'#3B4E63'); g.addColorStop(1,'#1A2734');
+    cx.fillStyle=g; cx.fillRect(X0,r.ry-11,px,22);
+    cx.fillStyle='rgba(206,224,242,0.36)'; cx.fillRect(X0,r.ry-11,px,1.8);
+    cx.fillStyle='rgba(4,8,14,0.58)';      cx.fillRect(X0,r.ry+10,px,2.8);
+    for(let d=500000; d<r.v; d+=500000){
+      cx.fillStyle='rgba(9,16,24,0.72)'; cx.fillRect(X0+d/SCALE,r.ry-11,1.2,22);
+    }
+    if(r.gold){ cx.fillStyle='#FFC72C'; cx.fillRect(X0+px-8,r.ry-16,8,32); }
+  });
+  // the empty fourth slot, dashed, paid off on slide 04
+  cx.save(); cx.setLineDash([30,5,6,5,6,5]); cx.lineWidth=1.25; cx.strokeStyle='#5A6E82';
+  cx.strokeRect(X0,SY+478,190,22); cx.restore();
+
+  AKPOST.grade(cx,{w:W,h:H,exposure:-0.10,saturation:1.05,contrast:1.12,filmic:true,
+    lift:[0.008,0.012,0.026],gain:[1.020,1.000,0.968],vignette:0.24,
+    bloom:{threshold:0.68,strength:0.22,radius:10},
+    grain:{amount:0.05,size:2,seed:SEED},aberration:0,dither:true,sharpen:0.22});
+
+  const svg=document.getElementById('rails'), NS='http://www.w3.org/2000/svg';
+  function lab(x,y,txt,fill,size,weight){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y);
+    t.setAttribute('font-family','JetBrains Mono'); t.setAttribute('font-size',size||30);
+    t.setAttribute('font-weight',weight||'500'); t.setAttribute('letter-spacing','2.2');
+    t.setAttribute('fill',fill||'#F4F8FF'); t.textContent=txt;
+    svg.appendChild(t); return t;
+  }
+  const L=[];
+  L.push(lab(X0, SY+50, '2614749   $3,824,575'));
+  L.push(lab(X0, SY+100,'UNIV OF ALASKA ANCHORAGE · PI BRIGGS','#A9BED4',28,'300'));
+  L.push(lab(X0, SY+200,'2614750   $1,260,800'));
+  L.push(lab(X0, SY+250,'MONTANA TECHNOLOGICAL UNIVERSITY, BUTTE','#A9BED4',28,'300'));
+  L.push(lab(X0, SY+350,'2614751   $913,037'));
+  L.push(lab(X0, SY+400,'UNIV OF ALASKA FAIRBANKS · PI AGGARWAL','#A9BED4',28,'300'));
+  L.push(lab(X0+206, SY+498,'NO FOURTH RECORD POSTED','#7E93A8',28,'300'));
+  L.push(lab(X0, SY+548,'RAIL LENGTH  1 PX = $6,200','#7E93A8',28,'300'));
+
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('head'),{min:50,max:74,maxLines:3});
+  L.forEach(t=>AK.svgPlate(t,{padX:11,padY:5,fill:'#050A12',opacity:0.9}));
+  return true;
+})();
+</script>
+</body></html>
