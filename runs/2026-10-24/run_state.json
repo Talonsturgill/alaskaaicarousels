@@ -82,8 +82,13 @@
       "note": "runs/2026-10-24 copied, images converted (9.8x), site rebuilt at 2026-10-24 (155 pages), sign-off PASS 18/18, alerts none due, prune freed 1.86M"
     },
     "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending",
+    "gmail": {
+      "status": "done",
+      "draft_id": "r-8710867070572657463"
+    },
+    "retro": {
+      "status": "done"
+    },
     "art": {
       "status": "done",
       "note": "nine bespoke frames; qa WARN (06 breather lower third only); bespoke 0.097; aggregates, copy_sync, plan_drift, dossier PASS",
@@ -97,7 +102,19 @@
     },
     "ledgers": {
       "status": "done"
+    },
+    "merge": {
+      "status": "done",
+      "note": "PR #457 merged 9cd1023e after CI 6/6 and Codex Completed with no findings on f1bf694; raw URLs verified 200"
     }
   },
-  "score": 8.563
+  "score": 8.563,
+  "phase_3_6": {
+    "site_signoff": "PASS, 155 pages, 18 checks (re-run after the final rebuild at 2026-10-25)",
+    "gaswatch_live": "PASS after two dispatch repairs: the 06:15Z audit failed on CINGSA's 19:10 Alaska reading (standing evening-slot item, repeat 15) and a dispatch on main fixed it by 06:20Z; at 09:26Z the scheduled collection wrote 2026-10-25 UNVERIFIED (cingsa_fetch_failed), a second dispatch verified it (7.66 Bcf, 58.9 percent of design) and the live audit re-ran PASS",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited (re-run after the repair)",
+    "site_fixes": "Gas Watch collection re-dispatched twice on main (no code change; both were upstream timing or transient fetch failures). Site rebuilt at 2026-10-25, the UTC date main's cron had already built."
+  },
+  "status": "complete"
 }
