@@ -1,0 +1,21 @@
+name: Proposal pricing contract
+on:
+  pull_request:
+    paths:
+      - 'docs/awesomeproposal/**'
+      - 'config/pricing*'
+      - 'scripts/pricing*'
+      - 'tests/test_pricing*'
+      - '.github/workflows/pages.yml'
+      - '.github/workflows/pricing.yml'
+permissions:
+  contents: read
+jobs:
+  pricing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pricing regressions (no dependencies or provider calls)
+        run: python3 -m unittest discover -s tests -p 'test_pricing*.py' -v
+      - name: Validate exact proposal artifacts
+        run: python3 scripts/pricing_release_gate.py

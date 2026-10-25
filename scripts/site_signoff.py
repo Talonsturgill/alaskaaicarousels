@@ -164,6 +164,8 @@ VOICE = [
 #                     CLAUDE.md makes it a HARD GUARD. Confirmed present, read
 #                     never.
 #   awesomeproposal/  client field studies, published by their own process.
+#                     Pricing is independently enforced by
+#                     pricing_release_gate.py immediately before Pages upload.
 #
 # The count of what was skipped is printed, so the exclusion is a stated fact
 # rather than a silent hole.

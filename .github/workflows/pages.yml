@@ -6,7 +6,7 @@ on:
     # The workflow file itself is a path worth republishing on. A change to the
     # publisher is a change to what gets published, and without this a fix to
     # this file could only take effect on whatever unrelated push came next.
-    paths: ["docs/**", ".github/workflows/pages.yml"]
+    paths: ["docs/**", ".github/workflows/pages.yml", "config/pricing*", "scripts/pricing*"]
   # GitHub does not start workflow runs for pushes made with GITHUB_TOKEN, and
   # the gas watch collector pushes its nightly page rebuild with exactly that.
   # So the push trigger above never fired for it and the rebuilt page sat on
@@ -45,6 +45,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce proposal pricing on the exact upload tree
+        run: python3 scripts/pricing_release_gate.py
       - uses: actions/configure-pages@v5
         with:
           enablement: true
