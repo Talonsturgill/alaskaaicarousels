@@ -1,0 +1,142 @@
+{
+ "run_date": "2026-10-24",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 2,
+   "fragment": "Two drones",
+   "text": "Two drones seeded the clouds. The borough answered.",
+   "subject": "drones",
+   "members": [
+    "C44"
+   ],
+   "items": [
+    "EL-151",
+    "EL-153"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "fragment": "two drones it calls",
+   "text": "On August 23rd Rainmaker flew two drones it calls autonomous",
+   "subject": "drones",
+   "members": [
+    "C44"
+   ],
+   "items": [
+    "EL-151",
+    "EL-153"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "fragment": "7 to 0",
+   "text": "voted 7 to 0, two absent",
+   "member": "C02"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "19 flares",
+   "text": "19 flares. 374 grams of silver iodide.",
+   "member": "C44"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "374 grams",
+   "text": "19 flares. 374 grams of silver iodide.",
+   "member": "C45"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "fragment": "7 grams",
+   "text": "Each red flare dispersed about 19.7 grams.",
+   "member": "C45"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "4 minutes",
+   "text": "Rainmaker's report puts the first radar signature 40.4 minutes after release",
+   "member": "C50"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "fragment": "seven seeding missions",
+   "text": "during seven seeding missions between 0618 and 0954 UTC",
+   "member": "C43"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "19 million gallons",
+   "text": "19 million gallons. About 0.01 inches.",
+   "member": "C51"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "70 to 89",
+   "text": "with a range of 41.70 to 89.35",
+   "member": "C47"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "fragment": "53 square kilometers",
+   "text": "across 249.53 square kilometers",
+   "member": "C49"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "fragment": "7 TO 0",
+   "text": "KPB 17.10.165, ENACTED 7 TO 0, OCTOBER 20TH",
+   "member": "C02"
+  },
+  {
+   "kind": "count",
+   "slide": 8,
+   "fragment": "ten things",
+   "text": "Before seeding from borough land, name the outcome. Then list ten things.",
+   "subject": "application items",
+   "members": [
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C71",
+    "C72"
+   ],
+   "items": [
+    "Type of chemicals",
+    "Quantity of chemicals",
+    "Quantity, type, manufacturer, serial number, and total weight of flares",
+    "Total pyrotechnic material used",
+    "MSDS for any chemicals or materials to be released",
+    "Frequency of weather modification activities",
+    "Duration and altitude of individual flights",
+    "Total duration of all flights",
+    "Maximum total flights",
+    "Release coordinates, including predicted impacted areas"
+   ]
+  },
+  {
+   "kind": "design",
+   "slide": 5,
+   "text": "the gauge's inch scale, 0.00 to 0.05 in over 460 px",
+   "note": "the drawn scale on the gauge, declared in data-scale; the estimate tick at 0.011 in is 71,072 m3 (C46) over 249.53 km2 (C49) = 0.285 mm"
+  },
+  {
+   "kind": "design",
+   "slide": 3,
+   "text": "nineteen cartridges in a row",
+   "note": "the drawn row of 19 cartridges is the count C44, asserted with __akAssert points"
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+  "run_date": "2026-10-24",
+  "date_note": "Anchorage date at wake (22:04 AKDT October 24th, 06:04Z October 25th). runs/2026-10-24 did not exist; run_guard --run-date 2026-10-24 CLEAR.",
+  "carousel_no": 95,
+  "effort": "high",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/plan.md",
+        "out/2026-10-24/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; nothing new (compact carousel display already in FIELD_NOTES)"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/scout_merge.md",
+        "out/2026-10-24/primary/"
+      ],
+      "note": "6 scouts, 148 searches (A 25, B 25, C 25, D 25, E 25, F 23); thin window for AI news; lead from C (KPB Ordinance 2026-35); showrunner pulled the KPB Legistar record, five PDFs and both Rainmaker reports"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/claims.json"
+      ],
+      "note": "fact-checker returned 70 claims (56 primary), 17 killed; 3 stories surviving; claims_check PASS 70/70 usable"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "10 items refreshed (budget raised from 6 to cover 4 deferred over-limit items); AO 2026-108 continued to November 4th added as a key date; watch.json failed [] , bills unchanged, 0 hearings (out of session); ask payload 5,706 bytes headroom; mobile_docket_map and docket_ask PASS at run date; no new item added from this run: Ordinance 2026-35 is an enacted weather modification rule, not an open AI-infrastructure decision"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/gaswatch_health.json",
+        "out/2026-10-24/cron_health.json"
+      ],
+      "note": "live audit FAIL at 06:15Z (CINGSA 19:10 Alaska reading posted after the 21:39Z collection); workflow_dispatch on main returned 204, run 40168488901 succeeded 06:17Z; re-audit GAS WATCH LIVE PASS and CRON HEALTH PASS; site sign-off at ship"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/selection.md"
+      ],
+      "note": "KPB Ordinance 2026-35 (weather modification on borough land) after Rainmaker autonomous drone seeding; runner-up Anchorage AO 2026-108 continuance; dedupe soft overlaps only"
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/storyboard.md"
+      ]
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-24/copy.json",
+        "out/2026-10-24/caption.txt"
+      ]
+    },
+    "art_build": "pending",
+    "pixel_review": {
+      "status": "done",
+      "note": "4 rounds: 3 per-slide rounds plus one flow round (04 headline to its takeaway, 08 afterglow band, 05 shaft into the left field); flow_review.json saved"
+    },
+    "flow_review": "pending",
+    "assemble": "pending",
+    "scoring": {
+      "status": "done",
+      "note": "2 cycles: 8.515 then 8.563 (threshold 7.7); art 7.0 then 7.3 after the craft cycle; at the five-round cap"
+    },
+    "ship": {
+      "status": "done",
+      "note": "runs/2026-10-24 copied, images converted (9.8x), site rebuilt at 2026-10-24 (155 pages), sign-off PASS 18/18, alerts none due, prune freed 1.86M"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "art": {
+      "status": "done",
+      "note": "nine bespoke frames; qa WARN (06 breather lower third only); bespoke 0.097; aggregates, copy_sync, plan_drift, dossier PASS",
+      "artifacts": [
+        "out/2026-10-24/slides/",
+        "assets/js/akkachemak.js"
+      ]
+    },
+    "assembly": {
+      "status": "done"
+    },
+    "ledgers": {
+      "status": "done"
+    }
+  },
+  "score": 8.563
+}

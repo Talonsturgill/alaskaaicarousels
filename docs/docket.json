@@ -395,7 +395,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-07-08",
@@ -532,6 +532,10 @@
         {
           "date": "2026-10-20",
           "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's own announcement page refused an automated read. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's announcement page refused an automated read today. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -616,7 +620,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-07-08",
@@ -729,6 +733,10 @@
         {
           "date": "2026-10-20",
           "note": "Golden Valley issued an Energy Emergency Alert at Level 1 at 8:15 a.m. on October 20th, its second alert in eight days, saying available generation reserves are declining and asking members to conserve electricity where practical. Its alert page defines Level 1 as reserves below 38 megawatts that are not expected to recover within two hours. No purchase vote on the turbine has been reported."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Golden Valley's alert page reports a return to Energy Emergency Alert Level 0, normal operations, at 7 p.m. on October 24th, and says one of two generation units that were under scheduled maintenance has returned to service. The page reports no board decision on the turbine purchase."
         }
       ],
       "url": "https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/"
@@ -2269,7 +2277,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-08-04",
@@ -2362,6 +2370,10 @@
         {
           "date": "2026-10-20",
           "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -2627,7 +2639,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -2732,6 +2744,10 @@
         {
           "date": "2026-10-20",
           "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Air Force, Oklo or reactor notice. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read today. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eielson-oklo-microreactor/"
@@ -3028,7 +3044,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -3104,6 +3120,10 @@
         },
         {
           "date": "2026-10-20",
+          "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
           "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
         }
       ],
@@ -3211,7 +3231,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -3280,6 +3300,10 @@
         {
           "date": "2026-10-20",
           "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
@@ -3799,6 +3823,11 @@
           "date": "2026-10-20",
           "label": "The Assembly takes the surveillance ordinance up again at its regular meeting",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Regular Assembly meeting, where debate on AO 2026-108(S) resumes as unfinished business",
+          "kind": "vote"
         }
       ],
       "location": {
@@ -3874,7 +3903,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-08-25",
@@ -3983,6 +4012,10 @@
         {
           "date": "2026-10-20",
           "note": "Re-read the Assembly's public safety page today. It lists AO 2026-108 as unfinished business at the regular meeting of October 20th, with five amendments drafted for the October 14th work session, and reports no outcome yet. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Re-read the Assembly's public safety page today. It says the Assembly continued debate on AO 2026-108(S), the mayor's substitute, during the October 20th regular meeting until the end of the meeting, and that debate is scheduled to continue at the November 4th regular meeting as unfinished business, with proposed amendments posted. No vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4616,7 +4649,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-09-13",
@@ -4669,6 +4702,10 @@
         {
           "date": "2026-10-20",
           "note": "Read the bill status record on GovInfo today. Its latest action is still September 30th, when cloture on the motion to proceed failed 57 to 43 in the Senate and the motion was withdrawn. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "GovInfo's record today showed only the House reported text, and Congress.gov refused an automated read, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -4837,7 +4874,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-09-13",
@@ -4906,6 +4943,10 @@
         {
           "date": "2026-10-20",
           "note": "Searched the Federal Register today for Alaska documents published October 14th to 21st and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/"
@@ -5486,7 +5527,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-10-24",
       "history": [
         {
           "date": "2026-10-07",
@@ -5503,6 +5544,10 @@
         {
           "date": "2026-10-20",
           "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the roughly $418 million total a preliminary planning estimate, and reports no signed agreement. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-24",
+          "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/beluga-healy-transmission-dpa/"

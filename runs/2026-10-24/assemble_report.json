@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-24/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 17347290,
+  "pdf_mb": 17.35,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-24/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-24/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The Sky Has No State Rule. The Ground Does Now.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "76114c9c62a217a172088031d7ba296b7ebb92c9e1cd8b0768bc2d7e81879f65",
+        "bytes": 4539993
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "1190420d645542f7e3aa16aa6121b096609257653e31815617333b7ce4a22699",
+        "bytes": 3625206
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "90792a70eaada2d258b00abbe63652f384dfca3762cc9b4cb30f83d8c0b1d024",
+        "bytes": 3018585
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "9b109403a5650361594c21231d5964f8fe63308cf5614a992b83f5fe6e1343db",
+        "bytes": 4433594
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "fa648f453ddcfc989f805ea8eb91ae555cafcfdd203c4fbb436c5edfd703db7d",
+        "bytes": 3963811
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "24a681408f106069e9c69c366c4639f944ea9f0627504e7da89420f764697505",
+        "bytes": 3302436
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f448a991307e70475d46fa345f527c3c431f1616fb4f897b4eb0f4b4294c8d94",
+        "bytes": 2961759
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "3795284859b9c8712ca34cf44b52fe96a9c69eb28ffc7d8751249704d0735362",
+        "bytes": 3757690
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "0cc2113e5c20c8f45bcde2c1bad6b36ae410cec745e3bceb10d674c87833e2a5",
+        "bytes": 4538442
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "b3ebe38b3695932bad7c4bcbec1b32d555097918d6d482390d7431c05ccf5298",
+        "bytes": 11071
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "95202ebeb1d2b7a77ceb04e02341dc98de0a313566433fc41c17885feb636acd",
+        "bytes": 10194
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "1a34d49705da7822c02efc35e6471eb14e7db1428e5c5695f9a4969a47422a96",
+        "bytes": 13097
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "05ce9afd3c2a80f13ce4b77670a77c21cbea360a0baa10e5f5ec0d869c448cc1",
+        "bytes": 20320
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "08561cf3c82625e45d1dfdbd53277c33e3e7e4cbcff1331bee79377e37faa50f",
+        "bytes": 13202
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "3d17d705cd6f90ad4754881c1392629cd3f9df61499bbfa8d7c513ba496ce653",
+        "bytes": 6489
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1d7d50704e1708e1ad80cad45451d969ec49c22be035779966178e6ac668b259",
+        "bytes": 9128
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "00f8cca44b1e037a7291a8166e66fb25285958ab59c58d3ad4aee014d91c038b",
+        "bytes": 10436
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "929c9db6c26ba0ebf9ca3d263a10338f8feb11c28d2774700e9a3139ada60d4a",
+        "bytes": 12805
+      }
+    ]
+  }
+}
