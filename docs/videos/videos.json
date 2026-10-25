@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "one-word-every-size",
+      "date": "2026-10-25",
+      "title": "One Word, Every Size",
+      "caption": "Sitka's planning commission recommended banning data centers in every zone, per KCAW, though the city's draft sets no size line. The film asks where a size line should go.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-25-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-25-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-25-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-25-poster_thumb.jpg"
+    },
+    {
       "id": "2026-10-24-seeing-is-the-easy-part",
       "date": "2026-10-24",
       "title": "Seeing Is the Easy Part",
