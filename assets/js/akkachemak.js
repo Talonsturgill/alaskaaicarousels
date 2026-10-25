@@ -115,17 +115,19 @@
     K.polaris(92, 97, 22);
     add('ALASKA.AI', 'left:112px;top:80px;font-family:"Archivo",sans-serif;font-stretch:112%;font-weight:640;font-size:30px;letter-spacing:0.06em;color:' + (o.ink || K.PAL.snow) + ';');
     add((n < 10 ? '0' : '') + n + ' / 09', 'right:80px;top:84px;font-size:24px;letter-spacing:0.06em;color:' + (o.counter || K.PAL.label) + ';font-variant-numeric:tabular-nums;');
-    if (o.tag) add('RECONSTRUCTION · POSITIONS ILLUSTRATIVE', 'right:80px;top:120px;font-size:19px;letter-spacing:0.06em;color:' + (o.site || K.PAL.fixture) + ';', true);
+    if (o.tag) add('RECONSTRUCTION · POSITIONS ILLUSTRATIVE', 'right:80px;top:120px;font-size:19px;letter-spacing:0.06em;color:' + (o.site || '#A9B8C6') + ';', true);
     add('alaskaaihq.com', 'left:80px;top:1294px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || K.PAL.fixture) + ';', true);
     if (o.readout) add(o.readout, 'right:80px;top:1266px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || K.PAL.fixture) + ';', true);
     add(K.COORDS, 'right:80px;top:1294px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || K.PAL.fixture) + ';', true);
   };
   K.grain = function (o) {
     o = o || {};
+    // the engine's device-ratio grain on a DOM layer (qa.py measures canvases, so the
+    // grain stays a div); a 540 px tile repeats too far apart to read as a lattice
     var d = document.createElement('div');
     d.setAttribute('style', 'position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:' + (o.opacity || 0.07));
     document.body.appendChild(d);
-    AK.grainOn(d, { size: 280, strength: o.strength || 44, seed: o.seed || 95 });
+    AK.grainOn(d, { size: 540, strength: o.strength || 44, seed: o.seed || 95 });
     return d;
   };
   K.boxes = function (sel, pad) {
@@ -314,7 +316,9 @@
    * column}. */
   K.terrain = function (g, dem, cam, shade, o) {
     o = o || {};
-    var SC = o.scale || 2, Wd = Math.round(cam.W * SC), Hd = Math.round(cam.H * SC);
+    // AA march columns per device column, averaged on the way out: one column per
+    // device px printed the crests as a comb wherever the DEM steps (No.95 critics)
+    var SC = o.scale || 2, AA = o.aa || 2, Wd = Math.round(cam.W * SC * AA), Hd = Math.round(cam.H * SC);
     var off = document.createElement('canvas'); off.width = Wd; off.height = Hd;
     var og = off.getContext('2d'), img = og.createImageData(Wd, Hd), px = img.data;
     var kx = 111320 * Math.cos(cam.lat * D2R), ky = 110570, ex = o.normalStep || 45;
@@ -322,7 +326,7 @@
     var top = new Float32Array(cam.W).fill(1e9);
     var yBottom = o.yBottom != null ? o.yBottom * SC : Hd;
     for (var c = 0; c < Wd; c++) {
-      var xd = (c + 0.5) / SC;
+      var xd = (c + 0.5) / (SC * AA);
       var az = cam.azOf(xd) * D2R, sa = Math.sin(az), ca = Math.cos(az);
       // the horizontal distance in the pinhole model is along the column ray
       var kcol = Math.cos(Math.atan2(xd - cam.W / 2, cam.f));
@@ -356,8 +360,11 @@
       if (ymin / SC < top[dc]) top[dc] = ymin / SC;
     }
     og.putImageData(img, 0, 0);
-    g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(off, 0, 0); g.restore();
-    return { top: top, canvas: off };
+    var outc = document.createElement('canvas'); outc.width = Wd / AA; outc.height = Hd;
+    var oc = outc.getContext('2d'); oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = 'high';
+    oc.drawImage(off, 0, 0, Wd, Hd, 0, 0, Wd / AA, Hd);
+    g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(outc, 0, 0); g.restore();
+    return { top: top, canvas: outc };
   };
 
   /* cellular lumps (Worley F1, seeded hash) for stratocumulus cells */
