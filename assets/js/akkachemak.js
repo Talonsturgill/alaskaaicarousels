@@ -362,7 +362,12 @@
     og.putImageData(img, 0, 0);
     var outc = document.createElement('canvas'); outc.width = Wd / AA; outc.height = Hd;
     var oc = outc.getContext('2d'); oc.imageSmoothingEnabled = true; oc.imageSmoothingQuality = 'high';
-    oc.drawImage(off, 0, 0, Wd, Hd, 0, 0, Wd / AA, Hd);
+    // a horizontal-only three-tap filter on the way down: the crest teeth are column to column
+    // steps, so averaging neighbouring columns removes them without softening the vertical form
+    oc.globalAlpha = 1; oc.drawImage(off, 0, 0, Wd, Hd, 0, 0, Wd / AA, Hd);
+    oc.globalAlpha = 0.5; oc.drawImage(off, 0, 0, Wd, Hd, -1, 0, Wd / AA, Hd);
+    oc.globalAlpha = 0.34; oc.drawImage(off, 0, 0, Wd, Hd, 1, 0, Wd / AA, Hd);
+    oc.globalAlpha = 1;
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(outc, 0, 0); g.restore();
     return { top: top, canvas: outc };
   };
