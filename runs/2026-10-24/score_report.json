@@ -1,0 +1,114 @@
+{
+  "round": 2,
+  "weighted_total": 8.563,
+  "threshold": 7.7,
+  "ship": true,
+  "hard_fails": [],
+  "hard_fail_rules_checked": 13,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.3,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.0,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.0,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8.5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8.0,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.5x0.14)+(7.3x0.16)+(8.0x0.14)+(8.5x0.12)+(8.0x0.10)+(7.0x0.08)+(8.5x0.07)+(8.0x0.05)+(8.0x0.10) = 8.563; no hard fail, no cap",
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Give slide 04 the lit tide channel its dossier promised: a sharp water body across the dead lower band mirroring the mountain wall and one dark fallstreak, with the blurred sedge repoussoir at the bottom left, so the declared depth frame actually has a near, mid and far plane.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 4,
+      "problem": "everything below the horizon is a dim band; no visible tide-channel reflection or repoussoir; QA bottom third 38%"
+    },
+    {
+      "slide": 7,
+      "problem": "clouds a swirled stretched texture; skyline rim torn-paper edge"
+    },
+    {
+      "slide": 1,
+      "problem": "plasticky snowfields with comb edges; horizon smear; flat sedge"
+    },
+    {
+      "slide": 2,
+      "problem": "ridge smooth and featureless; dead band under it"
+    },
+    {
+      "slide": 8,
+      "problem": "art in the bottom 30%; strata uniform; thin afterglow"
+    }
+  ],
+  "frame_estimates": {
+    "1": 7.5,
+    "2": 7.3,
+    "3": 8,
+    "4": 6.5,
+    "5": 7.5,
+    "6": 7,
+    "7": 6.8,
+    "8": 7,
+    "9": 8
+  },
+  "craft_cycle": {
+    "frames": [
+      4,
+      7,
+      2,
+      5,
+      1
+    ],
+    "art_before": 7.0,
+    "art_after": 7.3
+  },
+  "scoring_cycles": 2,
+  "revision_rounds": 5,
+  "score_round1": {
+    "weighted_total": 8.515,
+    "artwork": 7.0
+  },
+  "editor_notes_for_email": "1) This is a declared UPDATE of No.64 (September 20th), which covered Ordinance 2026-35 as a draft; the caption calls it the borough's pending seeding rule, passed; the topics.json entry is marked UPDATE of No.64. 2) Shortfall: art 7.3, under the 8.5 craft floor, at the five-round cap with the craft cycle spent; ships on 8.563 against 7.7. 04's foreground (no lit channel or repoussoir) and 07's sky disc (stretched cloud, rough skyline rim) hold the art down. 3) Slide 09 asks ban or permit; the caption asks whether a state permit should stop at the ten disclosures or also need the borough's yes. Choose one for the comments. 4) 57.62 acre-feet and 19 million gallons are Rainmaker's modeled estimate (C46, C51, C73), labelled that way throughout. 5) Slide 07's FEDERAL line quotes DEC exactly (C36)."
+}
