@@ -1416,6 +1416,118 @@ LIT_EDGE_HOOK_JS = """
 })();
 """
 
+# --- A PER-PIXEL LAYER DRAWN UP TO THE 2x CANVAS (2026-10-25) ---------------
+# Run No.96 spent pixel rounds 1 to 3 on "upscale blur", "stair-steps" and "a
+# cell lattice" on every terrain frame (01, 02, 05, 06, 07, 09 at 5.0 to 6.4).
+# One cause of the three was a hillshade computed per pixel into a 1080 x 1350
+# ImageData, put on a 1x offscreen canvas and drawImage'd into the 2x frame
+# canvas at (0, 0, 1080, 1350): every computed pixel printed as a 2 x 2 block,
+# smoothed. qa.py already FAILs a canvas ELEMENT whose backing is under 1.5x
+# (the three.js setSize trap); a 1x LAYER drawn into a 2x element is the same
+# defect one level down and nothing saw it.
+#
+# So: a canvas that received a putImageData covering a quarter of it or more is
+# a per-pixel layer. When one is drawn with a device magnification of 1.05 or
+# more onto a tenth of the destination or more, the draw is recorded with the
+# source's own detail (mean absolute neighbour step in luminance, 0 to 255,
+# sampled on a stride), because a smooth field (a fog ramp) loses nothing to
+# magnification and a hillshade loses its whole point (premultiplied, so a black
+# alpha mask measures zero). A draw under destination-in or destination-out is a
+# mask and is not recorded. A per-pixel layer copied 1:1 into another canvas
+# passes the mark on. Stack-free, wraps only
+# drawImage and putImageData, reads with the original getImageData.
+UPSCALE_HOOK_JS = """
+(() => {
+  try {
+    window.__akUpscale = [];
+    const proto = window.CanvasRenderingContext2D && window.CanvasRenderingContext2D.prototype;
+    if (!proto || typeof proto.drawImage !== 'function' || typeof proto.putImageData !== 'function') return;
+    const origPut = proto.putImageData, origDraw = proto.drawImage, origGet = proto.getImageData;
+    const marked = new WeakMap();          /* canvas -> covered fraction */
+    let measured = 0;
+    const MEASURE_CAP = 16, REC_CAP = 24;
+    const isCanvas = (c) => c && ((window.HTMLCanvasElement && c instanceof HTMLCanvasElement) ||
+                                  (window.OffscreenCanvas && c instanceof OffscreenCanvas));
+    proto.putImageData = function (img) {
+      const res = origPut.apply(this, arguments);
+      try {
+        const cv = this.canvas;
+        if (cv && img && cv.width && cv.height) {
+          let w = img.width, h = img.height;
+          if (arguments.length >= 7) { w = Math.min(w, Math.abs(+arguments[5])); h = Math.min(h, Math.abs(+arguments[6])); }
+          const f = Math.min(1, (w * h) / (cv.width * cv.height));
+          if (f >= 0.25 && f > (marked.get(cv) || 0)) marked.set(cv, f);
+        }
+      } catch (e) {}
+      return res;
+    };
+    function detail(src, sx, sy, sw, sh) {
+      /* mean |step| between horizontal and vertical neighbours, luminance */
+      try {
+        const x0 = Math.max(0, Math.floor(sx)), y0 = Math.max(0, Math.floor(sy));
+        const w = Math.min(src.width - x0, Math.ceil(sw)), h = Math.min(src.height - y0, Math.ceil(sh));
+        if (w < 4 || h < 4) return -1;
+        const g = src.getContext('2d');
+        if (!g) return -1;
+        const d = origGet.call(g, x0, y0, w, h).data;
+        const stride = Math.max(1, Math.round(Math.sqrt(w * h / 250000)));
+        /* premultiplied, so a black alpha mask reads as no detail at all */
+        let sum = 0, n = 0;
+        const L = (i) => (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) * d[i + 3] / 255;
+        for (let y = 0; y < h - 1; y += stride) {
+          for (let x = 0; x < w - 1; x += stride) {
+            const i = (y * w + x) * 4, l = L(i);
+            sum += Math.abs(L(i + 4) - l) + Math.abs(L(i + w * 4) - l); n += 2;
+          }
+        }
+        return n ? sum / n : -1;
+      } catch (e) { return -1; }
+    }
+    proto.drawImage = function () {
+      const res = origDraw.apply(this, arguments);
+      try {
+        const a = arguments, src = a[0], cv = this.canvas, n = a.length;
+        if (!isCanvas(src) || !cv || !marked.has(src)) return res;
+        /* a mask: these two ops read only the source's alpha, and a soft mask
+           magnified is still a soft mask (No.96's land and stroke masks) */
+        const op = this.globalCompositeOperation;
+        if (op === 'destination-in' || op === 'destination-out') return res;
+        const sx = n >= 9 ? +a[1] : 0, sy = n >= 9 ? +a[2] : 0;
+        const sw = n >= 9 ? Math.abs(+a[3]) : src.width, sh = n >= 9 ? Math.abs(+a[4]) : src.height;
+        const dw = n >= 9 ? Math.abs(+a[7]) : n >= 5 ? Math.abs(+a[3]) : src.width;
+        const dh = n >= 9 ? Math.abs(+a[8]) : n >= 5 ? Math.abs(+a[4]) : src.height;
+        if (!(sw > 0 && sh > 0 && dw > 0 && dh > 0)) return res;
+        const t = this.getTransform ? this.getTransform() : { a: 1, b: 0, c: 0, d: 1 };
+        const kx = Math.hypot(t.a, t.b), ky = Math.hypot(t.c, t.d);
+        const devW = dw * kx, devH = dh * ky;
+        const mag = Math.min(devW / sw, devH / sh);
+        const share = Math.min(1, (devW * devH) / (cv.width * cv.height));
+        if (mag < 1.05) {
+          /* a 1:1 copy keeps the layer a per-pixel layer */
+          if (mag > 0.95 && share >= 0.25 && share > (marked.get(cv) || 0)) marked.set(cv, share);
+          return res;
+        }
+        if (share < 0.10) return res;
+        let det = -2;
+        if (measured < MEASURE_CAP) { measured++; det = detail(src, sx, sy, sw, sh); }
+        if (window.__akUpscale.length < REC_CAP) {
+          window.__akUpscale.push({
+            src_w: Math.round(sw), src_h: Math.round(sh),
+            dev_w: Math.round(devW), dev_h: Math.round(devH),
+            mag: +mag.toFixed(2), share: +share.toFixed(3),
+            dest_w: cv.width, dest_h: cv.height,
+            dest_id: (cv.id || ''), onscreen: !!(cv.isConnected),
+            smoothing: this.imageSmoothingEnabled !== false, op: op,
+            detail: +(+det).toFixed(2)
+          });
+        }
+      } catch (e) {}
+      return res;
+    };
+  } catch (e) {}
+})();
+"""
+
 # --- A DRAWING ROUTINE THAT PAINTED NOTHING (2026-09-01) ---------------------
 # Run No.47's slide 07 solved nine analytic shadow tips and drew none of them.
 # A clip test asked whether each cast point was left of a surveyed cut and broke
@@ -3599,6 +3711,9 @@ IN_PAGE_QA_JS = """
   out.discard_count = window.__akDiscardCount || 0;
   out.evenodd_ops = (Array.isArray(window.__akEvenOdd)
                      ? window.__akEvenOdd : []).slice(0, 24);
+  /* Per-pixel layers drawn magnified, from UPSCALE_HOOK_JS. qa.py judges. */
+  out.upscaled_layers = (Array.isArray(window.__akUpscale)
+                         ? window.__akUpscale : []).slice(0, 24);
   return out;
 }
 """
@@ -3837,6 +3952,9 @@ def launch_chromium(p):
     what it is getting either way.
     """
     pats = ["/opt/pw-browsers/chromium-*/chrome-linux/chrome",
+            # the chromium-1243 layout (2026-10-23): reached before only
+            # through the /opt/pw-browsers/chromium symlink below
+            "/opt/pw-browsers/chromium-*/chrome-linux64/chrome",
             # Chrome for Testing layouts, for after the 1.57 rename lands here
             "/opt/pw-browsers/chrome-*/chrome-linux64/chrome",
             "/opt/pw-browsers/chrome-*/chrome-linux/chrome"]
@@ -4689,7 +4807,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
            "declaration_misses": [],
            "ink_law": [], "inks": [], "ink_cap": False,
            "canvas_layer": {"ok": False, "reason": "not attempted"},
-           "akthree_audit": [],
+           "akthree_audit": [], "upscaled_layers": [],
            "render_ms": 0, "ok": False}
     t0 = time.time()
     page = browser.new_page(viewport={"width": width, "height": height},
@@ -4712,6 +4830,9 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
     # no other hook here wraps, and reads the canvas with the original
     # getImageData, so the order among the rest does not matter to it.
     page.add_init_script(LIT_EDGE_HOOK_JS)
+    # Outermost and stack-free, like the two above: drawImage and putImageData
+    # only, read back with the original getImageData.
+    page.add_init_script(UPSCALE_HOOK_JS)
     page.on("console", lambda m: rec["console_errors"].append(m.text)
             if m.type in ("error",) else None)
     page.on("pageerror", lambda e: rec["page_errors"].append(str(e)))
@@ -4767,7 +4888,7 @@ def render_slide(browser, path: Path, out_png: Path, width: int, height: int,
                                        "lit_edges_unplaced", "lit_edges_readback",
                                        "lit_edges_frames",
                                        "path_discards", "discard_count",
-                                       "evenodd_ops",
+                                       "evenodd_ops", "upscaled_layers",
                                        "declaration_misses",
                                        "ink_law", "inks", "ink_cap",
                                        "paint")})

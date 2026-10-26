@@ -1,0 +1,173 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I read every string in copy.json (post_copy, first_comment, 56 slide strings) and caption.txt. The only joining marks are hyphens in compounds and IDs: 50-year, 800-mile, gas-powered, high-performance, south-up, 2026-3031. The dashes inside the C02, C40, C54 and C55 source passages are never quoted. caption_check PASS. copy_sync PASS with no banned slide string. The slide 02 re-render changed no copy."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "There are none in the caption, the first comment or any of the nine renders. The Polaris is an SVG fixture."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide fact maps to a fetched claim. 02 quotes C09 exactly. On 03 the bars are C02, C03 and C64, the mean is C01, and the slips are C11, C12 and C60. I measured the bars on the render: zero at x148, then 17.3 at 226, 66.4 at 446, the mean 96.1 at 580, and 276.7 at 1392. The 35, 25 and 8 slips end at 305, 260 and 184. That is about 4.50 px per tcf throughout, so the bars are true to scale. 04 is C10. 06 is C18 to C21, C23 and C24, with the gigawatt credited to the Anchorage Press. 07 is C27 to C30. 08 is C32 and C35. Every caption claim appears in caption_claim_ids. plan_drift PASS."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed all nine frames, including the new 02. Every frame matches copy.json, and the counters run 01 / 09 to 09 / 09. On 02 the body reads 'The USGS mean is 96 trillion cubic feet of / gas not yet discovered. The same page / says \"there is no method for bringing / natural gas to markets at large / commercial scales.\"' One note only: 'UTQIAGVIK' drops the official \u0121."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "The render reports 0 overflow warnings and every fit is 1/1 or 2/2. No glyph is clipped. Art touches some labels without cutting them off: a river crosses COLVILLE RIVER on 02, the coast meets the N arrow on 09, and art sits under DEADHORSE on 06. qa.py flags all three as WARN."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "I re-checked the new slide-02.png and render/crops/slide-02-thumb.png. Body lines 4 and 5 ('natural gas to markets at large', 'commercial scales.\"') now sit fully on 02's own dark scrim. Their starts at display x110 to 300, y790 to 900, where the lit marks were, now show only faint dark relief with no apricot marks under any glyph. Lit hachure starts below the body, at about display y970. The worst point under the body is now a dark navy relief highlight, roughly L* 20 or less, against #C9D3DA ink. That is well above 4.5:1, and the thumb reads cleanly. The headline is #F4F8FF over dim tan hachure, which is also comfortably above 4.5:1. I judged this from the render. It is not a probe measurement. Elsewhere, the 07 build note says pans run under body line 4 at 0.62 strength. On the render the pans sit below the glyphs, and the round 5 pixel critic passed 07 at 8.0."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa is WARN with 0 fails. The coordinator reports the 02 re-render also gave WARN with 0 fails. assemble_report shows pdf_mode 'vector'."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "No.78 (October 5th) is 20 days back. The October 21st USGS Fact Sheet 2026-3031 is the material new development (C01, C09, C13). The cover kicker reads UPDATE, and selection.md records the dedupe."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "THE SOUTH-UP SHEET differs from THE FLOWN LINE, THE COMPOSING STONE, THE REGISTERED LAYER and THE TRIPOD ON THE FLATS. bespoke median is 0.093."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS (74 phrases) and word_ban PASS. My own scan found no gap, matters, pattern or cannot. Dates are ordinal and carry no year outside the first-comment citations."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "The hashtags are #NorthSlope #AlaskaLNG #AlaskaGas. post_copy has no URL."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "There are none on the slides or in the copy. The 2026-07-01 date on C39 in claims.json is a disclosed month-only date for an unused claim, not a template stub."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Seven words plus the kicker: a specific number beside the agency's own two-word caveat, in huge type, and it reads at 432 px. Charged: the lit Brooks Range hachure competes with the headline as a second bright mass. The gold crosshair is small. South-up hides the coastline, so the frame isn't recognisably Alaska at thumb size. 'UPDATE' means nothing to a new reader. AI doesn't appear on the cover."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "Plant and payoff hold: 'No method' on 01 is paid verbatim on 02, 05 is a clean turn, then two buyers, the pipe, and one ask. Charged: the 02 to 03, 04 to 05 and 07 to 08 junctions are weak, and 06 and 07 can swap without loss. AI first appears on frame 6. The caption asks a different question from slide 09."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 6.5,
+   "weight": 0.16,
+   "notes": "The deck has real DEM relief under one declared sun. 05's Lambert wall and 01's hachure range are handsome, and 02's body ground is now clean. The declared depth frame, 04, fails. It has dash 'ridges', a blown ice wedge, a flat black cast, a hard horizon seam, and a pale loop that sticks up like a handle. No frame uses depth masterfully. 09 is soft, and its comb patch pulls focus. 06's sheet is sparse, with worm tangles and a sun-like inset. 01's ice is a cobblestone mosaic with fur wisps and corner stripes. 07's leads are parallel sine bands, and it has a stray outlined pan. Bringing 02's scrim back to its own column also brings back a scrim-depth step at the 01/02 seam."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Fractile bars are to scale (measured), stipple density stands for exceedance probability, and known gas sits on the same axis. The ring is a true 26 miles. The STAK parcel is drawn at true area. The ring shows 3 solid segments of 10. The route is dashed because there is no FID. The province takes three swipes to cross, and gold means only reach. 01, 05 and 09 are fine relief, but a cousin story could use them. On 04 the loop doesn't visibly enter the lens."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "Named throughout: Prudhoe Bay, Deadhorse, the Dalton, Utqiagvik, Colville, Point Thomson, Cook Inlet, ADL 422741, the North Slope Borough, DNR and STAK. The real DEM is correctly rotated south-up, and 08's Panhandle, Aleutians and 141W line all check out. Charged: the 07 'Prudhoe Bay' label sits on land, and Utqiagvik is printed without its \u0121."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "02, 03, 06, 07 and 08 each add new, verified, honestly hedged specifics. 04 carries a single 17-word mechanism sentence, the thinnest beat. 09 is the close and adds no fact."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "Hero, atmosphere, palette, type pairing and hook are all new against the forbids, and the dials are justified. It still runs on the house's familiar dark-navy North Slope chassis."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07,
+   "notes": "02's body is fixed. Body is 32 to 34 px and labels 22 to 24 px, with counters on all nine. Still charged: on 02, BROOKS RANGE FRONT, APPROXIMATE sits on the lit hachure band and COLVILLE RIVER is crossed by a river. Labels on 06 and 08 sit on busy art. The PDF is 30.93 MB, over the 25 MB spec until shrink_pdfs runs."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05,
+   "notes": "Hook is 139 of 140 chars and the total is 882 chars. The voice takes a position, and the question is debatable. Charged: 'Nearest is the reservoir.' is opaque. The deck-summary line is a fragment list. The closing question differs from slide 09's."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "Present: post copy, 3 hashtags, primary-first sources, the document title, aftercare and honest editor notes. Pending: the Gmail draft, image URLs (they resolve only after merge), the site_fresh rebuild, and the PDF shrink."
+  }
+ ],
+ "calculation": "(7.5x0.14)+(7x0.14)+(6.5x0.16)+(8x0.14)+(8x0.12)+(7.5x0.10)+(8x0.08)+(7x0.07)+(7x0.05)+(7.5x0.10) = 1.05+0.98+1.04+1.12+0.96+0.75+0.64+0.49+0.35+0.75 = 8.13. No hard fail, so no cap. Computed as the rubric is written; its weights sum to 1.10.",
+ "weighted_total": 8.13,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild slide 04's lower 40 percent: replace the blue dash slabs and blown ice wedge with instanced rubble ridges lit on the sun side and casting toward the lens, and route a true #FFC72C loop from wellheads on the block top down into the gas cap lens.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The declared depth frame fails. A flat black cast is crossed by evenly spaced blue dashes that read as map dashes, not ridges. A blown pale ice wedge sits at left. The horizon is a hard seam at about display y905, and the repoussoir is a vague blob. The loop renders pale cream, flat on the section face, poking above the block top like a handle and never entering the lens.",
+   "fix": "Instanced rubble ridges, lit on the sun flank, casting toward the lens and shrinking with distance. Lit ice clamped to #C9D6DC with glare fading into the cast. The loop held at #FFC72C, running from top-surface wellheads down into the lens and back."
+  },
+  {
+   "slide": 9,
+   "problem": "The relief band is soft, blurred and eventless. A clipped comb-like lit patch at upper left (display x0 to 300, y1030 to 1190) is the brightest art and pulls focus from the Polaris. The ice is a flat dark band, and the N arrow sits on the coastline.",
+   "fix": "Re-shade with 05's macro-plus-micro Lambert at 40 percent exposure, panned so the comb patch leaves frame, and move the N arrow off the coast."
+  },
+  {
+   "slide": 6,
+   "problem": "The largest object is a near-black field of faint contours where the valley and Franklin Bluffs don't read. Lit Tanaka lines at right clump into worm tangles. The flat 5x gold inset out-lights everything and reads as a sun.",
+   "fix": "Lay low-key Lambert tone under the contours, cap lit-line width at right, and give the inset a lip and soft cast instead of a flat fill."
+  },
+  {
+   "slide": 1,
+   "problem": "The lower 27 percent is a cobblestone floe mosaic with ink-blot leads. Hachure fur wisps sit at the range foot (display x60 to 700, y1150 to 1260), and vertical stripe artifacts sit top left (x30 to 150, y0 to 170).",
+   "fix": "Quiet the crack network and let streak lay and offshore grading carry the ice. Gate hachure off the range foot and clamp the DEM edge sample behind the corner stripes."
+  },
+  {
+   "slide": 7,
+   "problem": "Leads are evenly spaced parallel sine bands, so the ice reads as a printed pattern. A stray outlined pan sits near display (1530,1570), and the 'Prudhoe Bay' label sits on land.",
+   "fix": "Make the leads branch irregularly with varied widths, cull the outline pan, and move the italic label onto the bay water."
+  },
+  {
+   "slide": 2,
+   "problem": "Body ground is now clean. With the seam blend limited to x0 to 70, 02's scrim now ends near display y950 while 01's ends near y720, so the panorama steps in depth at the cut. BROOKS RANGE FRONT, APPROXIMATE sits on the lit hachure band.",
+   "fix": "Ramp 01's scrim bottom down toward 02's depth over 01's last 200 px, so the seam matches without raising 02's scrim. Give the range-front label a glyph halo or lift it above the lit band."
+  }
+ ],
+ "editor_notes_for_email": "Five rounds used, plus the slide 02 hard-fail fix, which is allowed past the cap. Re-scored at 8.13 against a 7.7 threshold: ships, with no hard fail. The 02 body now sits wholly on its own scrim with no lit relief under the glyphs. That was judged from the render, not probed. Weakest by far is slide 04, the planned depth frame (dash ridges, blown ice wedge, pale loop). Art scores 6.5, so the CRAFT FLOOR owes one cycle unless the cap exempts it. Before posting: (1) the PDF is 30.93 MB and must come under 25 MB via shrink_pdfs. (2) The caption asks whether STAK's lease should be signed before Alaska LNG's FID; slide 09 asks whether the Legislature should decide. Pick one for replies. (3) Utqiagvik is printed without its \u0121, and the 07 'Prudhoe Bay' label sits on land. (4) 08's footer coordinates are Cook Inlet's on purpose, and every map is south-up on purpose, with the gold north arrow pointing down. (5) STAK holds a preliminary decision only, and its gigawatt figure comes from the Anchorage Press. (6) The 01/02 scrim seam steps again after the 02 fix, a continuity blemish rather than a defect. MACHINE QUEUE: the criterion weights in config/scoring_rubric.yaml sum to 1.10, not 1.00, which inflates every raw total by 10 percent. This deck normalises to 8.13/1.10 = 7.39, under the 7.7 threshold, so the rubric's arithmetic is what carries it over the line. Fix the weights or the thresholds.",
+ "revision_rounds": 5,
+ "scoring_rounds": 2,
+ "note": "First scoring capped at 6.9 by a slide 02 contrast hard fail introduced in round 5 (score_report.r1.json); fixed (allowed past the cap) and re-scored. Craft floor stands down at the five-round cap."
+}

@@ -347,7 +347,11 @@ files during a run.
 
 Spawn SIX `scout` subagents in parallel via the Task tool, one per beat,
 each with: the window, the audience summary from brand.yaml, seasonal
-notes, and its beat:
+notes, the ALREADY COVERED block printed by
+`python3 scripts/dedupe_check.py --scout-brief --date <date>` pasted verbatim
+(never a hand-cut list: No.96's cut each topic at 230 characters, lost No.87's
+Burgum clause, and three scouts returned No.87's story; the block prints every
+entry's entities and keywords in full), and its beat:
 
 - **Beat A — Power & compute:** data centers, grid, gas supply, AI energy
   footprint in AK, broadband/fiber/satellite tied to AI workloads.

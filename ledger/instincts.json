@@ -2274,6 +2274,14 @@
       "confidence": 0.55,
       "run_date": "2026-10-24",
       "carousel_no": 95
+    },
+    {
+      "instinct": "SHADE AT THE PIXEL YOU PRINT.",
+      "evidence": "No.96's first pixel round scored every terrain frame 5.0 to 6.4 for 'upscale blur', 'stair-steps' and 'a DEM cell lattice'. Three causes, all in the shading: a 1x ImageData drawn to the 2x canvas, bilinear DEM sampling whose gradient kinks at every cell, and finite differences taken on a bilinear field. Cubic B-spline sampling, per-device-pixel shading and interpolated gradient fields cleared all three.",
+      "act_on_it": "Compute relief per device pixel from a cubic-sampled DEM, take gradients on the 1x grid and interpolate them, and never drawImage a 1x art field up to 2x.",
+      "confidence": 0.7,
+      "run_date": "2026-10-25",
+      "carousel_no": 96
     }
   ]
 }

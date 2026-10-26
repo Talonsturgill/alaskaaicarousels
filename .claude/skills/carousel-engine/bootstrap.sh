@@ -62,7 +62,11 @@ else:
 EOF
 
 # sanity: a launchable chromium must exist
+# chrome-linux64 is the layout since chromium-1243 (No.94 to No.96 printed a
+# false "no chromium found" with /opt/pw-browsers/chromium-1243/chrome-linux64/chrome
+# present, 2026-10-23 to 2026-10-25); chrome-linux is the older one.
 if ls /opt/pw-browsers/chromium*/chrome-linux/chrome >/dev/null 2>&1 || \
+   ls /opt/pw-browsers/chromium*/chrome-linux64/chrome >/dev/null 2>&1 || \
    command -v chromium >/dev/null 2>&1; then
   echo "chromium: ok"
 else

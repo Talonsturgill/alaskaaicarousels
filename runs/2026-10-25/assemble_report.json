@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-25/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 30406773,
+  "pdf_mb": 30.41,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-25/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-25/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "96 Trillion Cubic Feet, No Way to Market",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "ad7c6bfebc4ba6bc2581171dfb96773fa1d6b13aaa5dfb4c5033f7094444a69b",
+        "bytes": 7423343
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "67991bcd20c613e9c6891d8c51abcccd4d5feeb06bf66e3541ad9685bc5a70c4",
+        "bytes": 7723415
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "22e2c5992a9af785b333de4e55df071b0e9082567d9330e7c25fa549af4692aa",
+        "bytes": 5557400
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "e68e1400143df48df05b433375522aba9811695a060cefc475a58dc6bbfdab6a",
+        "bytes": 4272672
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "114d161c63522f28226973bfeeadc0ba5bea9c3f5f2877b284005b3ee71363e2",
+        "bytes": 6586409
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "b2360659b0f82f8fd42aae358fb8cf54904943f4e2b88a7014a7bf95e67e93cf",
+        "bytes": 4514533
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "7b41f37fbb16760c9555e2f623ae86667e20fc446fd29380898944d46628b4de",
+        "bytes": 5372400
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "fd234f10202de285e731cf4118aa8c6c11bdd414eef255a36beb8a9ace214822",
+        "bytes": 2752931
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "bd7531e44219c08bdd6bbd91f441acb62fc8c45a5bc503d1493e40b529cb45a0",
+        "bytes": 2817755
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "eedd98f63f1aa103c03d49526886582f75ca0aab841a5467f52ee152dd5de981",
+        "bytes": 3165
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "5d9c7ff3cc02089e206c765f69e7cb162d55adfae1eb22f58618dc39c83c7452",
+        "bytes": 9616
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "ebf0400649a2dc79ff8b22b1ded35b1ff909ffc679ea77f3a09dc7b5102f94b6",
+        "bytes": 7488
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "73322fe9fb67e574688cb74703138cc3c538dd310afb9c9ce2d5b4d466770a8f",
+        "bytes": 20372
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "15c276c0efe1a10be587ef6bfebcfacef0c74be47a6cb243b835013531707651",
+        "bytes": 7825
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "fa7b4e93a28d966b67d01342e970648efeac9c412f215cbb98c925ca33ebcf39",
+        "bytes": 13234
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "9728320cbf4dd3242c7e1d6a82522d3d691b611446d2ed7d58a25170e954c442",
+        "bytes": 11902
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ff1ff477f5c6fa1989fd4824623976e0e442fb13aebeda5977d844e5217df110",
+        "bytes": 9603
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "9f20a10376eceb014b0e3f291d82e5ed5e2b6a0fe6b9a6f878e3523d53e155fd",
+        "bytes": 6552
+      }
+    ]
+  }
+}

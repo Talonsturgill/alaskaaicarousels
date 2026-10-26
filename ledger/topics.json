@@ -3856,6 +3856,45 @@
       ],
       "claims": 73,
       "note": "Score 8.563. A who-decides story with a keepable artifact (the ten-line form). Never say AI did the seeding; 'autonomous' is Rainmaker's word."
+    },
+    {
+      "run_date": "2026-10-25",
+      "carousel_no": 96,
+      "topic": "UPDATE of No.78 (October 5th, North Slope Power's 3 to 10 gigawatts for AI data centers near Prudhoe Bay). USGS Fact Sheet 2026-3031 (October 21st): a mean 96.1 trillion cubic feet of undiscovered, technically recoverable conventional gas in the Northern Alaska Province (F95 17.3, F50 66.4, F5 276.7), from the Brooks Range front to about 3 miles offshore, and the same page: 'there is no method for bringing natural gas to markets at large commercial scales.' Most gas produced with oil is reinjected; Prudhoe Bay's gas cap about 25 tcf, Point Thomson 8, 35 tcf proven per Interior. The buyers planned on the Slope come to the gas: STAK Energy's ADL 422741, 715.4 acres beside the Dalton 26 miles south of Deadhorse, DNR preliminary decision for a 50 year lease for a gas-powered facility with modular high-performance computing units (a gigawatt or more per the Anchorage Press, more than 500 comments); North Slope Power (North Slope Borough and Twenty First Century Utilities), 3 gigawatts first, up to 10, for colocated AI data centers. Alaska LNG's 800 mile pipe to Cook Inlet still has no final investment decision.",
+      "angle": "The agency's own caveat: the count and the no-route sentence on one page, then the order of signatures. Until a pipe exists, first claim on North Slope gas goes to whoever builds beside it.",
+      "entities": [
+        "USGS",
+        "Department of the Interior",
+        "STAK Energy",
+        "Alaska DNR",
+        "North Slope Borough",
+        "Twenty First Century Utilities",
+        "North Slope Power",
+        "Alaska LNG",
+        "Alaska Legislature"
+      ],
+      "keywords": [
+        "North Slope gas",
+        "USGS assessment",
+        "Northern Alaska Province",
+        "stranded gas",
+        "reinjection",
+        "Prudhoe Bay",
+        "Deadhorse",
+        "ADL 422741",
+        "data centers",
+        "Alaska LNG",
+        "final investment decision"
+      ],
+      "headline": "96 trillion cubic feet. \"No method\" to market it.",
+      "sources_lead": "USGS Fact Sheet 2026-3031 (October 21st); DNR preliminary decision ADL 422741; Anchorage Press; North Slope Borough",
+      "beats": [
+        "power-and-the-grid",
+        "data-centers",
+        "land-and-permitting"
+      ],
+      "claims": 66,
+      "note": "Burgum's Slope remarks avoided (No.87). Framed as UPDATE of No.78."
     }
   ]
 }

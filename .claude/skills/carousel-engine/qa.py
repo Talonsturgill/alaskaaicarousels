@@ -192,6 +192,17 @@ from PIL import Image
 
 SAFE_MARGIN = 80  # px at 1080-wide design size
 
+# A per-pixel layer drawn up into a 2x canvas (2026-10-25, render.py
+# UPSCALE_HOOK_JS). Magnification at which a computed pixel visibly spans more
+# than one device pixel; the share of the destination canvas it must cover; and
+# the layer's mean neighbour step in luminance (0..255) under which it is a
+# smooth field that magnification can't hurt. Calibration in the upgrades
+# ledger entry of that date (tests/upscale_layer_verify.py: hillshade 19.0,
+# fog ramp 0.04).
+UPSCALE_MAG = 1.25
+UPSCALE_SHARE = 0.10
+UPSCALE_DETAIL = 1.5
+
 # Where a repo-relative asset path in a render report resolves from. Slide
 # paths are recorded absolute; asset paths are recorded repo-relative so a
 # report stays readable after a checkout moves.
@@ -3730,6 +3741,14 @@ def main():
                     "near-black albedo, with the read carried by envMapIntensity"
                     % (fa.get("name"), fa.get("albedo"), fa.get("luminance"),
                        fa.get("floor"), fa.get("opacity")))
+            elif k == "far_clip":
+                res["warns"].append(
+                    "far plane cuts a mesh: %s reaches %s scene units along the view "
+                    "and camera.far is %s, so the background shows through where it is "
+                    "cut (No.96 04's 'tan wedge' below the horizon, three rounds). Set "
+                    "R.camera.far past the reach and call "
+                    "R.camera.updateProjectionMatrix() before AKT.snapshot"
+                    % (fa.get("name"), fa.get("reach"), fa.get("far")))
 
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually
@@ -3805,6 +3824,43 @@ def main():
                 res["warns"].append(
                     f"unsampleable canvas on {tag} (GL without preserveDrawingBuffer?) — "
                     "verify visually; akthree sets preserveDrawingBuffer for the gate")
+
+        # A PER-PIXEL LAYER DRAWN UP TO THE 2x CANVAS (2026-10-25, WARN). The
+        # backing check above sees a canvas ELEMENT under 1.5x; this is the same
+        # defect one level down, a layer computed per pixel at 1x (putImageData)
+        # and drawImage'd magnified into a 2x element, which No.96 shipped into
+        # three pixel rounds as upscale blur on six terrain frames. render.py's
+        # UPSCALE_HOOK_JS records the draw and the layer's own detail (mean
+        # neighbour step in luminance); a smooth field loses nothing to
+        # magnification, so it is held to UPSCALE_DETAIL. Fixture:
+        # tests/upscale_layer_verify.py.
+        for ul in rec.get("upscaled_layers") or []:
+            try:
+                det, mag = float(ul.get("detail", -1)), float(ul.get("mag", 1))
+                if mag < UPSCALE_MAG or float(ul.get("share", 0)) < UPSCALE_SHARE:
+                    continue
+                if 0 <= det < UPSCALE_DETAIL:
+                    continue
+                # -1 is an empty read; -2 is a draw past the hook's measuring cap
+                if det == -1 or (det < 0 and mag < 1.5):
+                    continue
+                res["warns"].append(
+                    "per-pixel layer drawn up %.2fx: a %dx%d putImageData layer covers "
+                    "%d%% of the %dx%d canvas%s at %dx%d device px (%s, detail %s), so "
+                    "every computed pixel prints as a %s block. Compute it at the "
+                    "device pixel: size the ImageData to the destination's backing and "
+                    "draw it 1:1 under setTransform(1,0,0,1,0,0), and sample a DEM with "
+                    "a cubic (AKS.cubicSampler, AKBLOCK.sampler 'cubic') where it is shaded"
+                    % (mag, ul.get("src_w", 0), ul.get("src_h", 0),
+                       round(100 * float(ul.get("share", 0))), ul.get("dest_w", 0),
+                       ul.get("dest_h", 0),
+                       (" #" + ul["dest_id"]) if ul.get("dest_id") else "",
+                       ul.get("dev_w", 0), ul.get("dev_h", 0),
+                       "smoothed" if ul.get("smoothing", True) else "unsmoothed",
+                       ("%.1f" % det) if det >= 0 else "unmeasured",
+                       "blurred" if ul.get("smoothing", True) else "stair-stepped"))
+            except Exception as e:  # a malformed record must never stop QA
+                res["warns"].append("upscaled-layer record unreadable (%s)" % e)
 
         # CANVAS RASTER TEXT (2026-07-19, WARN only). Text drawn via canvas
         # fillText/strokeText is a raster bitmap: invisible to render.py's DOM

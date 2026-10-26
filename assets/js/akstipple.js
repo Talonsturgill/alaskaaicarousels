@@ -234,6 +234,18 @@
      * frame, so every existing caller is unchanged. */
     var bx = o.box || [0, 0, W, H];
     var bw = bx[2] - bx[0], bh = bx[3] - bx[1];
+    /* `box` is CORNERS, [x0, y0, x1, y1]. No.94's slide 08 passed a size,
+     * [x, y, w, h], whose x1 or y1 fell short of x0 or y0: the throws landed
+     * on a strip outside the region, the borough came out empty, and nothing
+     * said so (2026-10-23, weekly pass 2026-10-25). An empty box can never be
+     * meant, so it is refused the way an unknown option is. */
+    if (!(bw > 0 && bh > 0)) {
+      var bm = "AK CONTRACT: AKSTIPPLE.field: `box` is [x0, y0, x1, y1] (corners), got [" +
+        bx.join(", ") + "], which has width " + bw + " and height " + bh + ". If you " +
+        "meant [x, y, w, h], pass [x, y, x + w, y + h].";
+      try { console.error(bm); } catch (e) {}
+      throw new Error(bm);
+    }
 
     while (placed < want && tries < cap) {
       tries++;

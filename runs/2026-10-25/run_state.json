@@ -1,0 +1,110 @@
+{
+ "run_date": "2026-10-25",
+ "carousel_no": 96,
+ "effort": "high",
+ "branch": "tsturg/clever-mayer-2ielkz",
+ "date_note": "Anchorage date at wake (22:04 AKDT October 25th, 06:04Z October 26th). runs/2026-10-25 did not exist; run_guard --run-date 2026-10-25 CLEAR.",
+ "woke_utc": "2026-10-26T06:04:40Z",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/run_state.json",
+    "out/2026-10-25/WORKLOG.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "2 searches (LinkedIn document reach 2026, riso/halftone editorial technique); nothing new beyond CAROUSEL_CRAFT, FIELD_NOTES unchanged"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/scout_merge.md",
+    "out/2026-10-25/scouts/"
+   ],
+   "note": "6 scouts, 134 searches total"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/claims.json"
+   ],
+   "note": "54 claims, 27 primary, 15 killed; claims_check PASS"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "9 items (6 + 3 deferred, budget raised to 9). ask payload headroom 5,622 bytes. watch.json: 2 bills unchanged, 0 hearings (out of session), candidates triaged as prior (none new AI items), failed []."
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/cron_health.json",
+    "out/2026-10-25/gaswatch_health.json"
+   ],
+   "note": "CRON HEALTH PASS (7 workflows). GAS WATCH LIVE: WARN at 06:16Z then FAIL at 07:38Z (CINGSA 21:00 reading unpublished; the 04:40Z and 07:20Z scheduled collections had not been dispatched by GitHub). Repaired: manual workflow_dispatch of gaswatch.yml on main at 07:39Z, collected 07:40:46Z (7.66 Bcf, 58.9 percent), page rebuilt and deployed; live audit PASS at 07:47:38Z. SITE SIGN-OFF PASS 155 pages 18 checks. pagecheck PASS."
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/selection.md"
+   ],
+   "note": "UPDATE of No.78: USGS North Slope gas assessment + North Slope AI data centers"
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/storyboard.md",
+    "out/2026-10-25/selection.md"
+   ],
+   "note": "3 directors; winner cartographer + historian 03/cover + cinematographer ONE SUN; dossier_check PASS"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/caption.txt",
+    "out/2026-10-25/copy.json",
+    "out/2026-10-25/caption_report.json"
+   ],
+   "note": "room: 2 directors, critic neither, one reassigned director wrote the winner (CONTRADICTION / NEW: THE LINE BY DISTANCE / NEW: THE ORDER OF SIGNATURES)"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/slides/",
+    "out/2026-10-25/render/"
+   ],
+   "note": "9 slides, qa WARN 0 fails, bespoke 0.121"
+  },
+  "pixel_review": {
+   "status": "done",
+   "note": "round 1: all 9 revise (5.0-6.4); fixes: device-px cubic DEM shading, streak-lay ice, scrims, 04 block rebuilt, 06 illuminated contours, 07 leads+ring, 08 mainland fit, 09 reframed; round 2: all revise (6.3-7.4); fixes: glyph halos, foot grounds, DEM to 66.8N, gradient-field shading (no lattice), 04 AO+glare+ridges, 06 5x inset, 07 ring arcs, 08 Yukon+ice; round 3: 05 ship 8.0, others revise 5.8-7.2; fixes: ice as Worley floes, smoothed range front, slip pools, 04 far plane + diffuse ice, 06 adaptive contour interval, 08 stipple culled around labels; round 4: revise 5.6-7.2 (ice mosaic seams, 04 cast, 08 knockouts); fixes: quiet cracks + streak lay, DEM south clamp, 04 D 22 sun az 212 diffuse ice, 06 flat inlay + bar under plate, 08 feathered culling; round 5 verdicts: 05 and 07 ship 8.0, others 6.0-7.1; final (5th) edit round applied with the flow critic: plain-nilas ice on 03/06/09, quieter floe cracks on 01/02, matched 01/02 seam scrim, copy trims on 02/04/08, 04 regraded with hatch and repoussoir; cap reached"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/flow_review.json"
+   ],
+   "note": "revise 6.8; predicted art 6.5; fixes folded into round 5"
+  },
+  "assemble": {
+   "status": "done",
+   "note": "vector, 9 slides"
+  },
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-25/score_report.json"
+   ],
+   "note": "8.13 vs 7.7, ship; art 6.5 (craft floor stands down at round cap); first pass capped 6.9 by a 02 contrast hard fail, fixed"
+  },
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

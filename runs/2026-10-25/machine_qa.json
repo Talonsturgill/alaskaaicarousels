@@ -1,0 +1,141 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'Prudhoe Bay' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath 'N' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold crosshair on Prudhoe Bay, the reach at radius zero': canvas 115.6 dE, page 115.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 '96 trillion cubic feet.' fits 1/1 lines at 135px",
+        "h2 '\"No method\" to market it.' fits 1/1 lines at 105.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "leader declaration unusable: leader 'the approximate range front, dashed' declares no numeric 'to' point (both `to`, where the leader ends, and `at`, the target's own coordinates, are required)",
+        "busy art under text (bg edge density 0.04) beneath 'UTQIAGVIK' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (2% of the ring around 'COLVILLE RIVER', spanning 53%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.03) beneath 'Beaufort Sea' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.03) beneath 'N' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "leaders": [
+        "leader 'the province edge about 3 miles offshore' lands 0.0px from its target",
+        "leader 'the province edge about 3 miles offshore' meets its label 14.0px away",
+        "leader 'the approximate range front, dashed' meets its label 8.3px away",
+        "leader 'the province edge about 3 miles offshore' is drawn 82 px at 76 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'Counted from the mountainsto 3 miles offshor' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'undiscovered and known gas, trillion cubic feet' runs 0 tcf at 100 to 277 tcf at 940; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "head 'A risked range, not reserves.' fits 1/1 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold reinjection loop at Prudhoe': canvas 55.3 dE, page 55.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the schematic gas cap lens in the section' lands 0.0px from its target",
+        "leader 'the down leg of the gold reinjection loop' lands 0.0px from its target",
+        "leader 'a Brooks Range crest' lands 0.0px from its target",
+        "leader 'the schematic gas cap lens in the section' meets its label 8.0px away",
+        "leader 'the down leg of the gold reinjection loop' meets its label 7.8px away",
+        "leader 'a Brooks Range crest' meets its label 9.6px away",
+        "leader 'the schematic gas cap lens in the section' is drawn 111 px at 81 degrees, inside the pointer band",
+        "leader 'the down leg of the gold reinjection loop' is drawn 154 px at 58 degrees, inside the pointer band",
+        "leader 'a Brooks Range crest' is drawn 44 px at 90 degrees, inside the pointer band"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "h1 'The count stops at the mountains.' fits 1/1 lines at 82px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'DEADHORSE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the raised 5x inset of the parcel on the engraved sheet': shadow L* 7.2 vs ground L* 22.3, dL 15.2 at 432w"
+      ],
+      "motifs": [
+        "'the true-area parcel on the 26 mile ring': canvas 111.7 dE, page 110.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the 5x inset of the parcel': canvas 115.3 dE, page 115.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head '715.4 acres beside the Dalton,26 miles south' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "ink law: forbidden ink #5AC8F0 (the offshore edge of the province): this frame's paint census hit its entry cap, so absence is unproven here. Reduce the number of distinct colour literals, or accept that this one is unchecked on this frame",
+        "busy art under text (bg edge density 0.08) beneath 'N' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the ten-segment gold ring, three solid': canvas 121.5 dE, page 121.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Pitched as the world's largestgas power plan' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.05) beneath 'PRUDHOE BAY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the dashed gold route, schematic': canvas 108.0 dE, page 109.6 dE, 98% of its rect is clear of opaque DOM (div.t stands on the rest)"
+      ],
+      "fits": [
+        "head '800 miles of pipe, still no decision.' fits 1/1 lines at 84px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the Polaris on Prudhoe Bay, where the reach collapses': canvas 17.1 dE, page 112.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'Until a pipe exists, first claim on North Sl' fits 2/2 lines at 64.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
