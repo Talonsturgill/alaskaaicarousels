@@ -243,23 +243,23 @@
     var b1 = 1e9, b2 = 1e9, p1x = 0, p1y = 0, p2x = 0, p2y = 0, id1 = 0;
     for (var j = -1; j <= 1; j++) for (var i = -1; i <= 1; i++) {
       var ci = cx0 + i, cj = cy0 + j;
-      var fx = ci + 0.15 + 0.7 * hh(ci, cj), fy = cj + 0.2 + 0.6 * hh(cj + 0.37, ci + 1.3);
+      var fx = ci + 0.02 + 0.96 * hh(ci, cj), fy = cj + 0.05 + 0.9 * hh(cj + 0.37, ci + 1.3);
       var dx = (X - fx) * SX, dy = (Y - fy) * ky, d2 = dx * dx + dy * dy;
       if (d2 < b1) { b2 = b1; p2x = p1x; p2y = p1y; b1 = d2; p1x = fx * SX; p1y = fy * ky; id1 = ci * 7.13 + cj * 3.71; }
       else if (d2 < b2) { b2 = d2; p2x = fx * SX; p2y = fy * ky; }
     }
     var sep = Math.hypot(p2x - p1x, p2y - p1y) || 1, dB = (b2 - b1) / (2 * sep);   // px to the floe boundary
     var hv = hh(id1, 0.5), pLead = 0.02 + Math.min(0.025, u / 12000);
-    var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.32 ? ICE.greaseSoft : hv > 0.9 ? ICE.young : ICE.nilas;
+    var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.24 ? ICE.greaseSoft : hv > 0.94 ? ICE.young : ICE.nilas;
     var gp = Math.max(0, Math.min(1, AK.fbm2(gx * 0.003, y * 0.008, { octaves: 3 }) * 1.8 + 0.15));
     var c = [base[0] + (ICE.grease[0] - base[0]) * gp * 0.3, base[1] + (ICE.grease[1] - base[1]) * gp * 0.3, base[2] + (ICE.grease[2] - base[2]) * gp * 0.3];
-    var tv = AK.fbm2(gx * 0.006, uu * 0.09, { octaves: 2 }) * 3 + (hh(id1, 2.1) - 0.5) * 6;
+    var tv = AK.fbm2(gx * 0.004, uu * 0.22, { octaves: 2 }) * 5 + (hh(id1, 2.1) - 0.5) * 4;
     c[0] += tv; c[1] += tv; c[2] += tv;
     if (base === ICE.leadSoft) return c;
     var lit = (o.lit == null ? 0.42 : o.lit) * (1 - Math.min(0.45, u / 900));
     var coastSide = p2y < p1y;                                   // the neighbour across this rim is nearer the coast
-    var cw = 0.55 + Math.min(0.9, u / 500);
-    if (dB < cw) { var t = 0.7; return [c[0] + (ICE.lead[0] - c[0]) * t, c[1] + (ICE.lead[1] - c[1]) * t, c[2] + (ICE.lead[2] - c[2]) * t]; }
+    var cw = 0.3 + Math.min(0.6, u / 600);
+    if (dB < cw) { var t = 0.38; return [c[0] + (ICE.lead[0] - c[0]) * t, c[1] + (ICE.lead[1] - c[1]) * t, c[2] + (ICE.lead[2] - c[2]) * t]; }
     if (coastSide && dB < cw + 1.3 && hh(id1, 4.4) > 0.25) {
       var la = lit * (1 - (dB - cw) / 1.3);
       c = [c[0] + (ICE.floe[0] - c[0]) * la, c[1] + (ICE.floe[1] - c[1]) * la, c[2] + (ICE.floe[2] - c[2]) * la];
@@ -293,7 +293,7 @@
     function sample(x, y) {
       var ll = proj.invert([x, y]);
       var inside = ll[0] > m.west && ll[0] < m.east && ll[1] > m.south && ll[1] < m.north;
-      return [inside ? dem.atS(ll[0], ll[1]) : (ll[1] < m.south ? 900 : -40), ll[1]];
+      return [inside ? dem.atS(ll[0], ll[1]) : (ll[1] <= m.south && ll[0] > m.west && ll[0] < m.east ? dem.atS(ll[0], m.south + 0.006) : -40), ll[1]];
     }
     for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
       var sv = sample(x + 0.5, y + 0.5), i = y * W + x;
@@ -443,7 +443,7 @@
     for (var y4 = 1; y4 < H - 1; y4++) for (var x4 = 1; x4 < W - 1; x4++) {
       var q = y4 * W + x4;
       var sl = land[q] ? Math.hypot(h[q + 1] - h[q - 1], h[q + W] - h[q - W]) : 0;
-      mv[q] = Math.min(1, Math.max(0, (sl - 14) / 44)) * (1 - outside[q] * 0.7);
+      mv[q] = Math.min(1, Math.max(0, (sl - 22) / 40)) * (1 - outside[q] * 0.92);
     }
     boxBlur(mv, W, H, 6, 2);
     var mi = mk.getContext('2d').createImageData(W, H);
@@ -461,7 +461,9 @@
     ctx.strokeStyle = 'rgba(201,214,220,0.6)'; ctx.lineWidth = 1.1; ctx.beginPath(); gp(coast[0]); ctx.stroke();
     ctx.restore();
     var buf = 4.83 / P.kmPerPx;
-    var edge = d3.contours().size([W, H]).thresholds([buf])(Array.from(dist, function (v) { return Math.min(v, 60); }))[0];
+    var edge = d3.contours().size([W, H]).thresholds([buf])(Array.from(boxBlur(Float32Array.from(dist, function (v) { return Math.min(v, 60); }), W, H, 4, 2)))[0];
+    // drop the small closed rings (lagoons, islets) so the 3 mile line is one run along the coast
+    edge.coordinates = edge.coordinates.map(function (poly) { return poly.filter(function (r) { return Math.abs(d3.polygonArea(r)) > 600; }); }).filter(function (poly) { return poly.length; });
 
     return { proj: proj, land: land, dist: dist, outside: outside, outsideE: outsideE, edge: edge, h: h,
              xy: function (lon, lat) { return proj([lon, lat]); },
