@@ -1,11 +1,11 @@
 {
-  "checked_utc": "2026-10-26T07:47:38Z",
+  "checked_utc": "2026-10-26T10:25:58Z",
   "verdict": "PASS",
   "checks": [
     {
       "name": "live dataset",
       "status": "PASS",
-      "detail": "82 daily records",
+      "detail": "83 daily records",
       "remedy": ""
     },
     {
@@ -29,19 +29,19 @@
     {
       "name": "source freshness",
       "status": "PASS",
-      "detail": "source 2026-10-25T21:00:00 Alaska, 2.8 hours old",
+      "detail": "source 2026-10-26T01:00:00 Alaska, 1.4 hours old",
       "remedy": ""
     },
     {
       "name": "live headline agrees",
       "status": "PASS",
-      "detail": "last verified 2026-10-25, 58.9 percent",
+      "detail": "last verified 2026-10-26, 58.9 percent",
       "remedy": ""
     },
     {
       "name": "source reading published",
       "status": "PASS",
-      "detail": "published 2026-10-25; source 2026-10-25T21:00:00",
+      "detail": "published 2026-10-26; source 2026-10-26T01:00:00",
       "remedy": ""
     },
     {
@@ -59,7 +59,7 @@
     {
       "name": "weather forecast current",
       "status": "PASS",
-      "detail": "forecast age 2.2 hours",
+      "detail": "forecast age 4.9 hours",
       "remedy": ""
     },
     {
@@ -83,11 +83,11 @@
     {
       "name": "cron completed successfully",
       "status": "PASS",
-      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/40287128785",
+      "detail": "success: https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/40306928815",
       "remedy": ""
     }
   ],
-  "last_verified_date": "2026-10-25",
+  "last_verified_date": "2026-10-26",
   "maintenance_window": null,
   "site_url": "https://alaskaaihq.com"
 }
