@@ -1,0 +1,16 @@
+{
+ "what": "Terrain ak-northslope-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 8, 220 tiles, fetched 2026-10-26, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 1500,
+ "rows": 400,
+ "west": -170.0,
+ "east": -140.0,
+ "north": 71.6,
+ "south": 67.6,
+ "dlon": 0.02,
+ "dlat": 0.01,
+ "z": 8,
+ "min_m": -3236,
+ "max_m": 2408
+}
