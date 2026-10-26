@@ -192,6 +192,14 @@
   }
   S.bil = bil;
 
+  /* Central-difference gradient of a 1x field, per design px. Read it back with
+   * bil(): differencing a bilinear field prints its cell lattice as a grid. */
+  S.grad = function (a, W, H) {
+    var gx = new Float32Array(W * H), gy = new Float32Array(W * H);
+    for (var y = 1; y < H - 1; y++) for (var x = 1; x < W - 1; x++) { var i = y * W + x; gx[i] = (a[i + 1] - a[i - 1]) / 2; gy[i] = (a[i + W] - a[i - W]) / 2; }
+    return [gx, gy];
+  };
+
   /* Chamfer distance in design px from every 0 cell of `src` (land) to the rest. */
   function chamfer(land, W, H) {
     var dist = new Float32Array(W * H);
@@ -235,10 +243,13 @@
     var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.34 ? ICE.greaseSoft : hv > 0.93 ? ICE.young : ICE.nilas;
     var gp = Math.max(0, Math.min(1, AK.fbm2(gx * 0.003, y * 0.008, { octaves: 3 }) * 1.8 + 0.15));
     var c = [base[0] + (ICE.grease[0] - base[0]) * gp * 0.35, base[1] + (ICE.grease[1] - base[1]) * gp * 0.35, base[2] + (ICE.grease[2] - base[2]) * gp * 0.35];
-    var tv = AK.fbm2(gx * 0.015 + n * 0.1, y * 0.03, { octaves: 2 }) * 4;
+    var tv = AK.fbm2(gx * 0.015 + n * 0.1, y * 0.03, { octaves: 2 }) * 4 + (hh(sid + 0.1, n) - 0.5) * 9;
     c[0] += tv; c[1] += tv; c[2] += tv;
+    // floes end: a short open crack of lead tone between one floe and the next along the band
+    var gapW = (5 + hh(n, sid + 7.7) * 11) / segL;
+    if (sf < gapW && hh(sid, n + 2.2) > 0.15) { var gt = 0.75; c = [c[0] + (ICE.lead[0] - c[0]) * gt, c[1] + (ICE.lead[1] - c[1]) * gt, c[2] + (ICE.lead[2] - c[2]) * gt]; return c; }
     var lead = base === ICE.leadSoft, ftop = f * wpx, fbot = (1 - f) * wpx;
-    var taper = Math.pow(Math.sin(Math.PI * Math.max(0, Math.min(1, sf))), 0.6);
+    var taper = Math.pow(Math.sin(Math.PI * Math.max(0, Math.min(1, (sf - gapW) / (1 - gapW)))), 0.6);
     var litA = (o.lit == null ? 0.42 : o.lit) * (1 - Math.min(0.5, u / 900)) * taper;
     if (!lead && ftop < 0.9 && hh(n + 0.3, sid) > 0.55) {
       c = [c[0] + (ICE.floe[0] - c[0]) * litA, c[1] + (ICE.floe[1] - c[1]) * litA, c[2] + (ICE.floe[2] - c[2]) * litA];
@@ -280,9 +291,10 @@
     }
     // smoothed elevation decides the study area: the Brooks Range proper is outside the province
     var sm = boxBlur(Float32Array.from(h), W, H, 9, 1);
-    var outside = new Float32Array(N);
+    var outside = new Float32Array(N), outsideE = new Float32Array(N);
     for (var k = 0; k < N; k++) {
       var t = Math.max(0, Math.min(1, (sm[k] - 560) / 260));
+      outsideE[k] = land[k] ? t * t * (3 - 2 * t) : 0;
       var tl = Math.max(0, Math.min(1, (68.2 - latA[k]) / 0.3));          // a soft southern limit, never a ruled line
       t = Math.max(t, tl);
       outside[k] = land[k] ? t * t * (3 - 2 * t) : 0;
@@ -423,7 +435,7 @@
     for (var y4 = 1; y4 < H - 1; y4++) for (var x4 = 1; x4 < W - 1; x4++) {
       var q = y4 * W + x4;
       var sl = land[q] ? Math.hypot(h[q + 1] - h[q - 1], h[q + W] - h[q - W]) : 0;
-      mv[q] = Math.min(1, Math.max(0, (sl - 8) / 46)) * (1 - outside[q] * 0.7);
+      mv[q] = Math.min(1, Math.max(0, (sl - 14) / 44)) * (1 - outside[q] * 0.7);
     }
     boxBlur(mv, W, H, 6, 2);
     var mi = mk.getContext('2d').createImageData(W, H);
@@ -443,7 +455,7 @@
     var buf = 4.83 / P.kmPerPx;
     var edge = d3.contours().size([W, H]).thresholds([buf])(Array.from(dist, function (v) { return Math.min(v, 60); }))[0];
 
-    return { proj: proj, land: land, dist: dist, outside: outside, edge: edge, h: h,
+    return { proj: proj, land: land, dist: dist, outside: outside, outsideE: outsideE, edge: edge, h: h,
              xy: function (lon, lat) { return proj([lon, lat]); },
              inProvince: function (x, y) { var q = Math.round(y) * W + Math.round(x); return land[q] && outside[q] < 0.5; } };
   };
@@ -476,14 +488,23 @@
     return [x - 13, y - 19, 26, 66];
   };
 
-  /* A soft halo under every label matching `sel`, in the ground's own colour,
-   * laid on the art canvas after the labels exist so their boxes are measured.
-   * A tight 6 px feather reads as a cartographic halo, not a plate. */
+  /* A halo under every label matching `sel`, in the ground's own colour. It is
+   * GLYPH-SHAPED (stacked text-shadows), not a canvas box: a feathered rect still
+   * printed as a plate on flat ground and erased the stipple on 08 (No.96 round 2).
+   * `o.extra` rects (non-text marks) still get a small feathered canvas reserve. */
   S.halo = function (ctx, sel, color, o) {
     o = o || {};
-    var rects = S.boxes(sel, o.pad == null ? 3 : o.pad);
-    if (o.extra) rects = rects.concat(o.extra);
-    if (rects.length) AKPOST.reserve(ctx, rects, { color: color, feather: o.feather || 6, strength: o.strength || 0.92 });
+    var c = hex2(color), rgba = function (a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; };
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.style.textShadow = '0 0 2px ' + rgba(0.95) + ', 0 0 4px ' + rgba(0.9) + ', 0 0 8px ' + rgba(0.8) + ', 0 0 14px ' + rgba(0.55);
+    });
+    if (o.extra && o.extra.length) AKPOST.reserve(ctx, o.extra, { color: color, feather: o.feather || 6, strength: o.strength || 0.92 });
+  };
+
+  /* A quiet ground under the two footer fixtures (site line and coordinates),
+   * for frames whose art runs under them. */
+  S.footGround = function (ctx, color, strength) {
+    AKPOST.reserve(ctx, [[80, 1286, 176, 24], [780, 1286, 220, 24]], { color: color, feather: 9, strength: strength == null ? 0.85 : strength });
   };
 
   /* A full-width scrim under a type band: holds `strength` of `color` from y0
