@@ -1,75 +1,82 @@
 {
-  "last_pass": "2026-10-21",
+  "last_pass": "2026-10-25",
   "themes": [
     {
-      "theme": "queue repeat offender: the critic brief never names a 432 px thumb (repeat 2, the item that made this pass due)",
+      "theme": "queue repeat offender: bootstrap's chromium glob misses chrome-linux64 (repeat 2, the item that made this pass due)",
       "runs": 3,
       "frames": 0,
       "action": "fixed",
-      "what": "render.py cuts render/crops/slide-NN-thumb.png beside the native tiles from the same frame (pixel-identical to assemble.py's thumbs on the demo deck); critic_brief lists it under the tiles' staleness check; Phase 9 step 2 and the pixel critic name it"
+      "what": "bootstrap.sh, render.py's launcher and tests/chromium_fileread_verify.py glob chromium-*/chrome-linux64/chrome; bootstrap prints 'chromium: ok'"
     },
     {
-      "theme": "d, a texture artifact, as type reserves printing as slabs: 4 of 5 runs by the week's field notes and critic rounds (No.89 03/04/05, No.90 06, No.91 flow critic, No.92 02/03/04), though the digest counts cause d on 1 run, 2 frames, because the critics' rounds named it before the flow critic did",
+      "theme": "d, a texture artifact: flow critic 3 of 6 runs, 4 frames (2026-10-20 9,8; 2026-10-21 9; 2026-10-24 2), scorer's texture theme 1 more, and No.96 rounds 1 to 3 on six terrain frames",
       "runs": 4,
-      "frames": 8,
+      "frames": 10,
       "action": "fixed",
-      "what": "measured the root cause: ctx.filter blur and shadowBlur are bitmap px and ignore the transform, so every 2x reserve was half its typed feather. AKPOST.reserve takes a design px sigma (default 20, the width that worked on all four decks) with a scrim-style pad; DESIGN_DOCTRINE section 3 names the default; SKILL.md states the unit"
+      "what": "render.py UPSCALE_HOOK_JS plus a qa.py WARN for a per-pixel (putImageData) layer drawn magnified into the 2x canvas, the No.96 cause nothing measured; SKILL.md names the existing cubic DEM samplers. akhachure's bilinear sampling still unaudited (queue item stays open)"
     },
     {
-      "theme": "the flag gold drifting lemon under the grade or in WebGL (No.92 04, 05, 09, three rounds; queued 2026-10-21)",
+      "theme": "No.96 slide 04: a three.js far plane cut the ground plane, three rounds",
       "runs": 1,
-      "frames": 3,
+      "frames": 1,
       "action": "fixed",
-      "what": "measured AKPOST.grade's defaults taking #FFC72C to rgb(236, 217, 0), 19.9 dE; AKPOST.holdInk returns the drifted family to the ink hue as the last art op; doctrine names it. Worked though it is one run because the cause is the house grade every deck calls"
+      "what": "AKT.audit far_clip finding and its qa.py WARN; worked though one run because it is a scene-graph fact the helper can read and AKT.setup's default far is 200 units"
     },
     {
-      "theme": "queue: the site fixture at #46545F, 2.53:1 on #070B11 (No.92, eight critics)",
-      "runs": 1,
-      "frames": 9,
-      "action": "escalated",
-      "what": "config/brand.yaml asks for a low-contrast watermark around #46545F and six shared helpers carry it, so a 4.5:1 WARN would fire on every deck that follows the brand; raising the token (No.92 used #6F8294, 4.97:1) is the owner's call"
-    },
-    {
-      "theme": "queue: rubric weights sum to 1.10 (No.84, and No.92 filed it again as a new item)",
+      "theme": "topic dedupe misses in two straight runs (No.95 missed No.64 at selection; No.96's scout list truncated No.87's Burgum clause)",
       "runs": 2,
       "frames": 0,
-      "action": "escalated",
-      "what": "folded the duplicate into the 2026-10-11 item at repeat 1 and escalated: the weights and the ladder are the ship bar"
+      "action": "fixed",
+      "what": "dedupe_check.py --scout-brief prints the scouts' ALREADY COVERED block with full entities and keywords; Phase 2 pastes it. The 30 vs 90 day window disagreement (routine and CLAUDE.md say 30, topics.json _spec 90) is left to the owner"
     },
     {
-      "theme": "b, the largest object least modelled (flow critic 2 of 5 runs, 5 frames) and the scorer's depth-frame theme (3 runs)",
+      "theme": "queue: akstipple's corner box fails silently when given a size (No.94)",
+      "runs": 1,
+      "frames": 1,
+      "action": "fixed",
+      "what": "an empty box is an AK CONTRACT error, which qa FAILs"
+    },
+    {
+      "theme": "c, a dead lower third: flow critic 2 runs, 5 frames; cross-frame 1 run, 8 frames; the scorer's word-match theme 6 of 6 runs; trend 'top-loaded composition' warns on 3 runs",
+      "runs": 6,
+      "frames": 13,
+      "action": "deferred",
+      "what": "qa.py's frame_balance already FAILs under 0.60 and WARNs under 0.80 of the frame's own craft density, and the week's frames name different fixes (a tide channel, sedge, a fixture strip); tightening FB_WARN would need a recalibration against scored slides that this pass did not have time to do honestly"
+    },
+    {
+      "theme": "cross-frame a (3 runs, 11 frames) and e (3 runs, 16 frames)",
+      "runs": 3,
+      "frames": 27,
+      "action": "deferred",
+      "what": "render.py's reuse census and tonal_arc_check already measure both and named them; no new machine cause"
+    },
+    {
+      "theme": "b, the largest object least modelled (2 runs, 5 frames) and the scorer's depth-frame theme (3 runs)",
       "runs": 3,
       "frames": 5,
       "action": "deferred",
-      "what": "the 2026-10-17 pass added AKSTROBE o.sharp for the focus-pull depth frames; this week's frames name different materials (a crinkled plain, CG dunes, a flat waffle tray), no shared machine cause"
+      "what": "different objects and materials on each frame (a crinkled plain, CG dunes, a tide channel); no shared machine cause"
     },
     {
-      "theme": "c, a dead lower third (flow critic 1 run, 2 frames; scorer theme 3 runs)",
-      "runs": 3,
-      "frames": 2,
-      "action": "deferred",
-      "what": "as on 2026-10-16 and 10-17: different fixes on different frames; field 4a and the critic brief already carry it"
-    },
-    {
-      "theme": "cross-frame a (same drawing on more than three frames, 2 runs, 9 frames) and e (no tonal arc, 2 runs, 14 frames)",
-      "runs": 2,
-      "frames": 23,
-      "action": "deferred",
-      "what": "render.py's reuse census and tonal_arc_check's peak-tie warn (2026-10-16) already measure both; no new cause named"
-    },
-    {
-      "theme": "trend_check stale offenders: Artwork craft (weakest 4 of 7, mean 7.21), Variety vs ledger (2 of 7), Legibility (1 of 7, never worked)",
+      "theme": "trend_check stale offenders: Artwork craft (weakest 5 of 7), Variety vs ledger (1 of 7), Legibility and platform fitness (1 of 7, never worked)",
       "runs": 7,
       "frames": 0,
       "action": "fixed",
-      "what": "artwork worked through the reserve and gold items; legibility through the feed thumb now in front of every critic and the fixture escalation; Variety vs ledger deferred, no machine cause named by the scorer"
+      "what": "artwork worked through the upscale-layer and far-plane checks; legibility scanned (frontier focus a): LinkedIn publishes nothing new to check against and the PDF's own rules hold, PDF growth parked; Variety deferred, no machine cause named"
     },
     {
-      "theme": "today's run: a gridded stipple printed its dataset's straight edge (No.92 08); a filled bar's face read as axis marks (No.92 06)",
-      "runs": 1,
-      "frames": 2,
-      "action": "deferred",
-      "what": "one run each; the stipple is now TECHNIQUE_LIBRARY 134 from the run itself, the axis census item stays open at repeat 0"
+      "theme": "queue: rubric weights sum to 1.10 (No.96 filed it a third time)",
+      "runs": 3,
+      "frames": 0,
+      "action": "escalated",
+      "what": "folded into the escalated 2026-10-11 item at repeat 2; weights and threshold are the ship bar, the owner's to move"
+    },
+    {
+      "theme": "queue: run_guard defaults to the UTC date (repeat 1)",
+      "runs": 2,
+      "frames": 0,
+      "action": "escalated",
+      "what": "an Anchorage default would make a late wake that finds today's deck shipped stop as ALREADY_SHIPPED, against the routine's take-the-next-date rule; which wins is a run-date policy call"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

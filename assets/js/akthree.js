@@ -340,6 +340,13 @@ export function init(THREE) {
    *  - glass_shadow / glass_milk: a transparent mesh under opacity 0.5 that
    *    still casts a shadow, or whose lit albedo is pale enough to wash what is
    *    behind it (see AKT.mat.glass).
+   *  - far_clip (2026-10-25, weekly pass): a visible mesh that reaches past
+   *    camera.far along the view is cut by the far plane, and the background
+   *    shows through the cut. No.96 slide 04 printed its sky as a "tan wedge"
+   *    below the horizon for three critic rounds: far was 2000 km and the ice
+   *    plane 6000 km. AKT.setup's camera starts at far 200 scene units, so a
+   *    scene built in km or metres meets this the first time it frames wide.
+   *    Read from R.camera, so it needs R, not a bare scene.
    * snapshot() runs it on every frame and pushes the findings onto
    * window.__aktAudit, which render.py records and qa.py WARNs on. It only
    * reads the scene: no pixel changes. Returns the list. */
@@ -354,8 +361,44 @@ export function init(THREE) {
     const seen = new Set();
     // three.js draws nothing under an invisible ancestor, so neither does the audit (Codex, PR #422)
     const shown = o => { for (let p = o; p; p = p.parent) if (!p.visible) return false; return true; };
+    const cam = (R && !R.isScene && R.camera && R.camera.isCamera) ? R.camera : null;
+    let camPos = null, camFwd = null, frustum = null;
+    if (cam) {
+      try {
+        cam.updateMatrixWorld(true);
+        camPos = new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+        camFwd = new THREE.Vector3(); cam.getWorldDirection(camFwd);
+        frustum = new THREE.Frustum().setFromProjectionMatrix(
+          new THREE.Matrix4().multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse));
+      } catch (e) { camPos = null; }
+    }
+    const farClip = m => {
+      if (!camPos || !m.geometry) return;
+      try {
+        if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere();
+        const bs = m.geometry.boundingSphere;
+        if (!bs || !isFinite(bs.radius)) return;
+        m.updateMatrixWorld(true);
+        const sph = bs.clone().applyMatrix4(m.matrixWorld);
+        if (frustum && !frustum.intersectsSphere(sph)) return;   // not in the picture
+        // the deepest corner of the world-space box, tighter than the sphere for a plane
+        if (!m.geometry.boundingBox) m.geometry.computeBoundingBox();
+        const bb = m.geometry.boundingBox, v = new THREE.Vector3();
+        let reach = -Infinity;
+        for (let k = 0; k < 8; k++) {
+          v.set(k & 1 ? bb.max.x : bb.min.x, k & 2 ? bb.max.y : bb.min.y, k & 4 ? bb.max.z : bb.min.z)
+            .applyMatrix4(m.matrixWorld);
+          reach = Math.max(reach, v.sub(camPos).dot(camFwd));
+        }
+        if (reach > cam.far * 1.001) {
+          found.push({ kind: 'far_clip', name: m.name || (m.material && m.material.name) || ('mesh ' + m.id),
+            reach: +reach.toFixed(2), far: +cam.far.toFixed(2) });
+        }
+      } catch (e) { /* never stops the audit */ }
+    };
     scene.traverse(m => {
       if (!m.isMesh || !shown(m)) return;
+      farClip(m);
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mt of mats) {
         // an invisible material is never drawn, so it is never audited (Codex, PR #422)

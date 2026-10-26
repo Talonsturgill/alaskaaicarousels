@@ -867,6 +867,17 @@ them or every archive page goes blank.
 ## Art libraries (committed, offline)
 
 - `assets/js/noise.js` — seeded simplex 2D/3D, fbm, domain warp (`AK.*`)
+- SHADING A DEM OR ANY PER-PIXEL FIELD (2026-10-25, No.96 rounds 1 to 3 on six
+  terrain frames). Three causes printed as upscale blur, stair-steps and a cell
+  lattice, and the house already had the cure for two of them: (1) compute at the
+  DEVICE pixel, an ImageData the size of the destination's backing drawn 1:1 under
+  `setTransform(1,0,0,1,0,0)`, never a 1x ImageData drawn up to the 2x canvas
+  (qa.py WARNs "per-pixel layer drawn up", render.py UPSCALE_HOOK_JS); (2) sample
+  heights with a C1 cubic wherever a slope, normal or hillshade is taken
+  (`AKS.loadDEM(base).sampleCubic` in akscribe.js, `AKBLOCK.sampler(dem, 'cubic')`),
+  bilinear only for masks; (3) never take finite differences on a bilinear field.
+  Use `AKS.loadDEM` rather than a deck-local loader: it also refuses a truncated
+  .bin. A soft MASK magnified under destination-in/out is fine and is not flagged.
 - `assets/js/akrelief.js` — 2.5D relit-heightfield FORM-shading (`AK.reliefShade`),
   the offline/CPU analogue of `AKT.objectHero`'s rim-carve. A flat filled region
   reads as a shaded dimensional SOLID: builds a heightfield (noise.js fbm/warp by

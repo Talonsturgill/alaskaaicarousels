@@ -193,6 +193,46 @@ def run(cand, entries, ref_date, window, exclude_date):
     return results
 
 
+def scout_brief(args):
+    """The ALREADY COVERED block every scout brief carries, from the full ledger
+    fields. The topic is the one field that is cut (it runs to 1,500 characters);
+    entities and keywords, the fields a scout matches a lead against, never are."""
+    try:
+        with open(args.topics, encoding="utf-8") as fh:
+            ledger = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        print("dedupe_check: cannot read %s: %s" % (args.topics, exc), file=sys.stderr)
+        return 2
+    ref = _parse_date(args.date) if args.date else _dt.date.today()
+    lo = ref - _dt.timedelta(days=args.window)
+    rows = []
+    for e in ledger.get("entries", []):
+        try:
+            rd = _parse_date(e.get("run_date", ""))
+        except ValueError:
+            continue
+        if lo <= rd <= ref:
+            rows.append((rd, e))
+    rows.sort(key=lambda r: r[0])
+    print("ALREADY COVERED in the last %d days to %s (a new URL for the same story is the "
+          "same story; only bring one back with a MATERIAL new development since its date, "
+          "and say what it is). Match a lead against the ENTITIES and KEYWORDS, which are "
+          "complete; the topic line is cut." % (args.window, ref.isoformat()))
+    for rd, e in rows:
+        topic = " ".join(str(e.get("topic", "")).split())
+        if len(topic) > 230:
+            topic = topic[:230].rsplit(" ", 1)[0] + " ..."
+        print("- %s No.%s: %s" % (rd.isoformat(), e.get("carousel_no", "?"),
+                                  e.get("headline") or topic))
+        if e.get("headline"):
+            print("  topic: %s" % topic)
+        for f in ("entities", "keywords"):
+            v = e.get(f) or []
+            if isinstance(v, list) and v:
+                print("  %s: %s" % (f, "; ".join(str(x) for x in v)))
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Phase 4 pre-flight dedupe signal.")
     ap.add_argument("--entities", default="", help="comma-separated candidate entities")
@@ -211,7 +251,16 @@ def main(argv=None):
                          "that described a story the run was no longer making. A gate you "
                          "can answer about the wrong question is not a gate.")
     ap.add_argument("--json", action="store_true", help="emit JSON instead of text")
+    ap.add_argument("--scout-brief", action="store_true",
+                    help="print the ALREADY COVERED block for the Phase 2 scout briefs: "
+                         "every entry in the window with its headline and its entities "
+                         "and keywords IN FULL, and no candidate needed. Added 2026-10-25 "
+                         "after run No.96's hand-built list cut each topic at 230 "
+                         "characters, lost No.87's Burgum clause, and three of six "
+                         "scouts brought back the story No.87 had covered.")
     args = ap.parse_args(argv)
+    if args.scout_brief:
+        return scout_brief(args)
 
     def _split(s):
         return [x.strip() for x in s.split(",") if x.strip()]

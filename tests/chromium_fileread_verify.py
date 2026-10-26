@@ -41,6 +41,7 @@ SHELL_PATS = ["/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_
               "/opt/pw-browsers/chrome-headless-shell-*/chrome-headless-shell-linux64/"
               "chrome-headless-shell"]
 FULL_PATS = ["/opt/pw-browsers/chromium-*/chrome-linux/chrome",
+             "/opt/pw-browsers/chromium-*/chrome-linux64/chrome",
              "/opt/pw-browsers/chrome-*/chrome-linux64/chrome"]
 
 
