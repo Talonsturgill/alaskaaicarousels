@@ -3488,7 +3488,7 @@
    ],
    "verification": "python3 tests/upscale_layer_verify.py: ALL HOLD (hillshade at 1x drawn up WARNs at detail 19.0; the same computed per device pixel, a smooth fog ramp at detail 0.04, and a 6 percent inset are clean; a layer copied 1:1 and then drawn up WARNs). No.96's own round-0 helper (git 2f56affe akslope.js under today's slide 01) WARNs at detail 7.4; the shipped deck (out/2026-10-25/slides) renders 9 of 9 with qa 0 fails and 11 warns, the same as the shipped machine_qa, and no new warn (its land and stroke masks under destination-in are excluded); examples/demo-deck 0 fails, 14 warns, no new warn; five September decks under runs/*/slides (46 slides) raise nothing new (one record at detail 0.86, below the floor). On HEAD's engine the defect fixtures pass silently.",
    "rollback": "revert the upgrade(2026-10-25) commit, or delete UPSCALE_HOOK_JS and its add_init_script line in render.py and the 'PER-PIXEL LAYER' block plus UPSCALE_* constants in qa.py",
-   "commit": "pending: the showrunner's upgrade(2026-10-25) commit"
+   "commit": "14b04fb7"
   },
   {
    "run_date": "2026-10-25",
@@ -3503,7 +3503,7 @@
    ],
    "verification": "python3 tests/akthree_far_clip_verify.py: ALL HOLD (6000-unit plane with far 2000 WARNs, reach 3316; far 9000 clean; AKT.ground's default stage clean). python3 tests/akthree_material_audit_verify.py: 25/25 hold, including its pixel parity check. No.96's shipped slide 04 (far 9000) and every corpus deck: no far_clip.",
    "rollback": "revert the upgrade(2026-10-25) commit, or delete the farClip closure and its call in AKT.audit and the far_clip branch in qa.py",
-   "commit": "pending: the showrunner's upgrade(2026-10-25) commit"
+   "commit": "14b04fb7"
   },
   {
    "run_date": "2026-10-25",
@@ -3518,7 +3518,7 @@
    ],
    "verification": "bash .claude/skills/carousel-engine/bootstrap.sh exits 0 and prints 'chromium: ok' on this container (it printed the WARNING before); render.py rendered the run deck, the demo deck and every fixture through the same launcher.",
    "rollback": "revert the upgrade(2026-10-25) commit, or drop the chrome-linux64 lines from the three files",
-   "commit": "pending: the showrunner's upgrade(2026-10-25) commit"
+   "commit": "14b04fb7"
   },
   {
    "run_date": "2026-10-25",
@@ -3532,7 +3532,7 @@
    ],
    "verification": "python3 scripts/dedupe_check.py --scout-brief --date 2026-10-25 prints 29 entries (the hand list had 28) and No.87's entities line carries 'Doug Burgum'; the existing candidate mode is unchanged (python3 scripts/dedupe_check.py --entities Burgum --date 2026-10-25 still names No.87 as its strongest match). Block is about 22 KB against the hand list's 7 KB.",
    "rollback": "revert the upgrade(2026-10-25) commit, or delete scout_brief() and the --scout-brief flag and the sentence in Phase 2",
-   "commit": "pending: the showrunner's upgrade(2026-10-25) commit"
+   "commit": "14b04fb7"
   },
   {
    "run_date": "2026-10-25",
@@ -3546,7 +3546,7 @@
    ],
    "verification": "python3 tests/akstipple_box_verify.py: ALL HOLD ([120, 420, 840, 300] FAILs as a library contract with the throw swallowed; the same region as corners and no box are clean). The only box in any committed caller, runs/2026-09-11 '[fx, fy, fx + FW, fy + FH]', is corners.",
    "rollback": "revert the upgrade(2026-10-25) commit, or delete the empty-box block in AKS.field",
-   "commit": "pending: the showrunner's upgrade(2026-10-25) commit"
+   "commit": "14b04fb7"
   }
  ],
  "scan_log": [
