@@ -1,16 +1,16 @@
 {
  "what": "Terrain ak-prudhoe-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
- "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 117 tiles, fetched 2026-10-26, bilinear resample",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 225 tiles, fetched 2026-10-26, bilinear resample",
  "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
- "cols": 900,
- "rows": 500,
+ "cols": 1000,
+ "rows": 850,
  "west": -151.5,
- "east": -147.0,
+ "east": -146.5,
  "north": 70.6,
- "south": 69.6,
+ "south": 68.9,
  "dlon": 0.005,
  "dlat": 0.002,
  "z": 10,
- "min_m": -39,
- "max_m": 324
+ "min_m": -41,
+ "max_m": 2019
 }

@@ -1,0 +1,89 @@
+{
+ "run_date": "2026-10-25",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "Counted from the mountains to 3 miles offshore.",
+   "fragment": "3 miles",
+   "member": "C07"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "ABOUT 3 MILES OFFSHORE",
+   "fragment": "3 MILES",
+   "member": "C07"
+  },
+  {
+   "kind": "design",
+   "slide": 3,
+   "text": "WHAT 96 MEANS",
+   "fragment": "96 MEANS",
+   "note": "the kicker names the 96 trillion cubic feet of C01; it counts nothing"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "715.4 acres beside the Dalton, 26 miles south of Deadhorse.",
+   "fragment": "4 acres",
+   "member": "C19"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "715.4 acres beside the Dalton, 26 miles south of Deadhorse.",
+   "fragment": "26 miles",
+   "member": "C20"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "DNR's preliminary decision would lease it to STAK Energy for 50 years,",
+   "fragment": "50 years",
+   "member": "C18"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "DNR's preliminary decision would lease it to STAK Energy for 50 years,",
+   "fragment": "500 comments",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "26 MILES",
+   "fragment": "26 MILES",
+   "member": "C20"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "North Slope Power, from the North Slope Borough and Twenty First Century Utilities",
+   "fragment": "Twenty First Century Utilities",
+   "member": "C27"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "North Slope Power, from the North Slope Borough and Twenty First Century Utilities",
+   "fragment": "3 gigawatts",
+   "member": "C28"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "3 OF 10 GIGAWATTS",
+   "fragment": "3 OF 10",
+   "member": "C28"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "800 miles of pipe, still no decision.",
+   "fragment": "800 miles",
+   "member": "C32"
+  }
+ ]
+}

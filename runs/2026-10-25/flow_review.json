@@ -1,0 +1,217 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The spine holds. The cover's quoted 'No method' is paid on 02 with the full verbatim sentence, 05 turns the deck cleanly, 06 and 07 bring the two buyers, 08 shows the pipe still has no decision, and 09 asks one real question. The middle sags in two places. 02's last sentence ('Most gas pumped up with oil goes back underground') takes 04's payoff before 04 arrives, and 04's body then repeats 03's 25 and 8, so 02 to 04 reads as three passes over the same number. AI, the hook for an Alaska.Ai reader, doesn't appear until 06 ('computing units') and 07 ('AI data centers').",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "The quoted fragment 'No method' asks for its full sentence, and the coast, the 3 mile line and the plain run off 01's right edge.",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "Only the word 'mean' in the body, plus the coast rising off the right edge. Nothing asks 'how sure?'.",
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "The ALREADY KNOWN slips (35, 25, 8) raise the question of the gas already found, which 04 answers.",
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "04 ends on 'Point Thomson adds 8.', a flat number already printed on 03. Nothing points at the mountains or a buyer.",
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "'the buyer comes to the gas' asks who, and 06's kicker BUYER ONE answers.",
+   "strength": "strong"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "BUYER ONE implies a buyer two.",
+   "strength": "strong"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "Nothing on 07 points at the pipe. '3 OF 10 GIGAWATTS' closes on itself, and the turn back to supply is unannounced.",
+   "strength": "weak"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "'still no decision' asks who decides, and 09 asks it.",
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slides 1-2 seam, design y 0 to 720",
+   "problem": "Each slide has its own type scrim (SLOPE.scrim), so the panorama breaks at the top of the cut. 01's scrim darkens y 0 to about 520 all the way to its right edge. 02 leaves y 0 to about 90 unscrimmed, so bright apricot hachure in 02's top left corner butts against 01's dark top right, and 02's scrim then runs down to about y 710 against 01's lit foothills. On the contact sheet the two frames read as two maps, not one panorama.",
+   "fix": "Make the scrim depth a single function of global x across 01 to 03. Ramp the bottom edge from about y 520 at gx 900 to about y 710 at gx 1260, and extend 02's scrim to y 0 for gx 1080 to 1300, so the band is identical on both sides of x 1080."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 2-3 seam",
+   "problem": "03's map is at 40 percent, so the panorama drops from L* 21 to L* 10 at the cut. Coast and ice line up, but the cut reads as a hard step, not a continuation.",
+   "fix": "Feather 03's dimming from 100 percent at x 0 to 40 percent by x 90, under the zero rule at x 100, so the coast and ice carry over the seam before they dim."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 2, motif state table",
+   "problem": "The table puts a small gold crosshair at 02's east seam. 02 has no reach mark, and Prudhoe (gx about 908) isn't in 02's extent, so the drawn state is 'absent' and the table is wrong.",
+   "fix": "Amend the state table row for 02 to 'absent (Prudhoe sits on 01)'. Don't draw a crosshair off its true place."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 2, design x 330 to 1080, y 30 to 545",
+   "problem": "The range front is drawn as three separate dashed polylines (top centre, and two at right under the body). They read as three routes and borrow the dash grammar that means 'no decision' on 08.",
+   "fix": "Keep one continuous run, clear of the body at x 755 to 1080, y 400 to 545, and drop the top centre fragment at y 30 to 150."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 2, 3, 4",
+   "problem": "Three dense frames in a row: a 41-word body on 02, an eight-label fractile chart on 03, and a 32-word body on 04 that repeats 03's 25 and 8 and 02's reinjection sentence.",
+   "fix": "Cut 02's last sentence ('Most gas pumped up with oil goes back underground.'). Cut 04's body to its first sentence (17 words, C10) and replace the two dropped numeric sentences with a one-line plant toward the buyer, for example 'It stays down there until something on the Slope can burn it.' That line is position wording and needs a pass from the copywriter and the fact-checker."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 6, 7, 8",
+   "problem": "Three medium-dense frames in a row (bodies of 37, 26 and 33 words plus labelled maps) after the breather.",
+   "fix": "On 08, drop the undated, cryptic 'whatever the president now calls it' clause (C31) so the body lands on 'still hasn't been made'."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 5",
+   "problem": "The breather lands where planned and works: one display block, no body, the lit wall. No change."
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "slide 8, bottom right fixture",
+   "problem": "The coordinates fixture reads 61\u00b013'N \u00b7 149\u00b054'W. Every other frame reads 70\u00b015'N \u00b7 148\u00b020'W, and the dossier defines one constant fixture.",
+   "fix": "Restore 70\u00b015'N \u00b7 148\u00b020'W, or reconcile it as deliberate (the pipe's Cook Inlet end) in BUILD RECONCILIATION."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 9",
+   "problem": "09 is a south-up map with no down-pointing north arrow. The Polaris sits on Prudhoe as the reach, so the flip cue is gone on the last frame. 03 also drops it, which is acceptable at 40 percent.",
+   "fix": "Add the N arrow fixture at (1000, 1180) as on 01, 02 and 05 to 08."
+  },
+  {
+   "severity": "major",
+   "where": "slide 4",
+   "problem": "04 looks pasted in from a different deck. Smooth, glossy CG terrain, a blown pure-white ice wedge, a brown #5E4C35 section band found nowhere else, and no hachure, stipple or engraved mark-making anywhere, against eight sheets drawn in a printmaker's line voice.",
+   "fix": "Grade 04 into the LOW NOON ramp: clamp highlights to #F6E6D3, warm the block top toward #E9CDB0, cool the lees to #1C2E4D. Give the section face an engraved hatch texture so the same hand appears."
+  },
+  {
+   "severity": "polish",
+   "where": "counters and constellation",
+   "problem": "Transcribed: 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09. All correct and all in the same top-right position. ALASKA.AI with the Polaris top left and alaskaaihq.com bottom left hold on all nine. Light holds top-down, casts running down, on 01, 02, 05, 06, 07 and 09. Gold appears only on the reach and the Polaris. No action needed."
+  },
+  {
+   "severity": "polish",
+   "where": "build artifacts",
+   "problem": "gate_status reports assemble STALE BUILD (slide-01 to 04 PNGs changed after assemble). Its tonal_arc row (02 23.6, 01 21.1, 05 18.9, 04 21.3) disagrees with tonal_arc.txt (01 20, 02 21, 04 23, 05 23). The contact sheet and thumbs reviewed here may lag the renders.",
+   "fix": "Re-run assemble.py and tonal_arc_check.py after the final round, before scoring."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "By 04 the reader has had three frames on the same USGS number. 04's body repeats 03's 25 and 8 and 02's reinjection line, 04 is the deck's weakest picture (a glossy block over a flat dark wedge), and an AI-curious Alaskan still hasn't been told why Alaska.Ai is covering a gas assessment. Nothing on 04 pulls toward 05.",
+  "fix": "Make the rhythm cut above (02 last sentence out, 04 body down to the C10 sentence plus a buyer plant). Optionally extend the cover kicker from 'UPDATE' to 'UPDATE \u00b7 WHO BUYS IT FIRST' so the buyer question is planted from frame one."
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 4,
+    "score": 6.0,
+    "cause": "c",
+    "problem": "The declared depth frame fails. The lower 40 percent is a dead zone: a flat dark cast trapezoid (design x 70 to 1080, y 1010 to 1350) crossed by evenly spaced dashed 'pressure ridges' that read as map dashes (cause d), beside a blown, featureless white ice wedge (x 0 to 175, y 675 to 1315). The block top, the largest object (y 660 to 845), is washed grey with soft blur bumps and no visible contre-jour rims (cause b). The section bands are flat. No repoussoir and no depth of field. It also doesn't read as the lit peak (see e).",
+    "fix": "Rebuild the ice plane in the lower 40 percent. Replace the dash slabs with instanced rubble ridges that are lit on their sun-facing flanks, cast toward the lens and shrink with distance. Clamp the 'lit ice' to #C9D6DC with glare fading toward the cast. Add the planned defocused near ridge bleeding off the lower left at about y 1200 to 1350."
+   },
+   {
+    "slide": 9,
+    "score": 6.3,
+    "cause": "c",
+    "problem": "The relief band is soft and eventless (design x 610 to 1080, y 845 to 980 is blur with no edges). A clipped, comb-like lit patch at the upper left (x 0 to 210, y 690 to 805) is the brightest art in the frame and pulls the eye from the Polaris (cause d). Below the coast the lower 28 percent (y 965 to 1350) is the shared Worley cell mosaic (cause a).",
+    "fix": "Re-shade the land band (y 680 to 1000) with 05's macro-plus-micro Lambert and el 9 casts at 40 percent exposure, panned so the comb patch leaves the frame, which gives the close crisp low-key relief and leaves the Polaris as the only bright point."
+   },
+   {
+    "slide": 2,
+    "score": 6.5,
+    "cause": "d",
+    "problem": "The hachure under the body scrim (design x 0 to 1080, y 90 to 700) prints as a fingerprint or worm moire behind 41 words of body copy. The ice at the lower left and lower right is the shared cell mosaic.",
+    "fix": "Under the scrim, drop the hachure strokes to tone only (Lambert at 30 percent contrast, no strokes), so the strokes appear only on the unscrimmed land below y 710."
+   },
+   {
+    "slide": 6,
+    "score": 6.8,
+    "cause": "b",
+    "problem": "The sheet, the frame's largest object, is its least modelled. Below y 650 it's a near-black field of faint contours where neither the Sagavanirktok valley nor Franklin Bluffs reads. The lit Tanaka lines at the right (x 880 to 1080, y 740 to 980) clump into white hair-like tangles (cause d). The flat 5x gold inset disc (about 85 px across) out-lights everything and reads as a sun or a button.",
+    "fix": "Lay a low-key Lambert tone (#0E1A2A to #2E4670, el 22 from the top) under the contours so the valley and bluffs read as relief, and cap the lit-line width at the right so the tangles stop combing."
+   },
+   {
+    "slide": 8,
+    "score": 6.9,
+    "cause": "d",
+    "problem": "A rectangular stipple void around 'Cook Inlet' (design x 525 to 660, y 742 to 778) is a findable reserve edge, and the same goes for ROUTE SCHEMATIC. Stipple density barely separates the Alaska Range and Brooks Range from the interior, so the state reads as a uniform dot fill. Empty black ocean at the right (x 810 to 1080, y 595 to 1150) is an eventless region (cause c).",
+    "fix": "Raise the hillshade contrast that drives the stipple (k up, lit dots denser on the ranges, the lee nearly empty) so both ranges read as dense lit bands, and replace the rectangular voids with the glyph-shaped halos used elsewhere."
+   },
+   {
+    "slide": 1,
+    "score": 6.9,
+    "cause": "a",
+    "problem": "The lower 27 percent (design y 980 to 1350) is the Worley cell mosaic, reading as cobblestone or crazy paving, not sea ice. Hachure 'fur' wisps sit at the foot of the lit range (x 0 to 515, y 855 to 940).",
+    "fix": "Keep the floes, but cut the crack network to near-invisible and let the in-floe streak lay plus shore-to-offshore tone grading carry the ice, so cells stop reading as tiles."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     3,
+     6,
+     9
+    ],
+    "problem": "One drawing, SLOPE.iceAt's anisotropic Worley floe mosaic, carries five frames and reads on the contact sheet as the same crazy-paving texture in the lower third of each. The reuse census is empty because this lives inside the deck helper's single field, but by eye it's the scorers' 'five of nine frames are the same drawing'. It is also a texture artifact (cause d): stained-glass cells with findable crack edges.",
+    "fix": "Bring it under the three-frame limit with different mark-making: keep floes only on 01 and 02 (panorama continuity), with cracks quieted. Draw 03's ice as dimmed nilas tone with a fine streak lay and no cells. Crop 06's ice out under the ring, or draw it as plain nilas. Draw 09's as a dark nilas plane with a few lit floe edges along the coast only."
+   },
+   {
+    "cause": "e",
+    "slides": [
+     4,
+     5,
+     1,
+     2
+    ],
+    "problem": "Tonal census, measured: 01 20, 02 21, 03 10, 04 23, 05 23, 06 10, 07 18, 08 7, 09 8 (span 15.7). WARN: the peak ties, 05 at 23.0 against the declared peak 04 at 22.8, with 02 at 20.9 and 01 at 20.4 within 3 L*. The miss it flags is the one I see. 04's top half is flat navy sky and its light is a blown white wedge, while 05's apricot lit faces make it read as the deck's lit frame, so the planned peak doesn't land. The darkest close passes (09 at 7.8, second to 08's black ocean at 7). The sequence zigzags (03 and 06 both drop to 10) rather than building.",
+    "fix": "Lift 04 by warming the lower sky band (y 560 to 700) into an apricot glow off the right edge and warming the block top. Bring 05 down about 3 L* (exposure -0.05) so 04 stands alone by at least 4 L*."
+   },
+   {
+    "cause": "b",
+    "slides": [
+     4
+    ],
+    "problem": "No frame uses real depth masterfully. 04 was planned for it and ships as a flat CG block with no repoussoir, no depth of field and no atmospheric recession beyond a thin far strip. 07's pancake scale gradient is the best depth on the deck and it's planar.",
+    "fix": "The 04 lower-40-percent rebuild above, with the near defocused ridge, is the deck's one chance at the 10-point depth test."
+   }
+  ],
+  "masterful_depth_frame": null
+ },
+ "score_0_10": 6.8
+}

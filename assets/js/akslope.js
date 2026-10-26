@@ -238,32 +238,47 @@
     // plate faces the noon sun and is lit, its offshore rim is in lee; a few plates are open leads.
     o = o || {};
     var uu = Math.max(0, u + AK.fbm2(gx * 0.004 + 3.1, u * 0.01 + 5.7, { octaves: 2 }) * 10);
+    if (o.plain) {
+      // PLAIN NILAS (No.96 flow critic: one floe drawing on five frames). Young ice as one sheet: a fine
+      // shore-parallel streak lay, broad grease patches, and a few lit floe edges only along the coast
+      var st = AK.fbm2(gx * 0.0035, uu * 0.16, { octaves: 3 }), gq = Math.max(0, Math.min(1, AK.fbm2(gx * 0.0025, y * 0.007, { octaves: 3 }) * 1.6 + 0.2));
+      var cP = [ICE.nilas[0] + st * 9 + (ICE.grease[0] - ICE.nilas[0]) * gq * 0.35, ICE.nilas[1] + st * 10 + (ICE.grease[1] - ICE.nilas[1]) * gq * 0.35, ICE.nilas[2] + st * 10 + (ICE.grease[2] - ICE.nilas[2]) * gq * 0.35];
+      var ed = Math.abs(AK.fbm2(gx * 0.006 + 2, uu * 0.03, { octaves: 2 }) - 0.05);
+      if (u < 90 && ed < 0.006) { var ea = (o.lit == null ? 0.4 : o.lit) * (1 - u / 90) * (1 - ed / 0.006); cP = [cP[0] + (ICE.floe[0] - cP[0]) * ea, cP[1] + (ICE.floe[1] - cP[1]) * ea, cP[2] + (ICE.floe[2] - cP[2]) * ea]; }
+      return cP;
+    }
     var SX = 52, SY = 6.5, vp = 60 * Math.log(1 + uu / 80), ky = SY / (60 / (80 + uu));
-    var X = gx / SX, Y = vp / SY, cx0 = Math.floor(X), cy0 = Math.floor(Y);
-    var b1 = 1e9, b2 = 1e9, p1x = 0, p1y = 0, p2x = 0, p2y = 0, id1 = 0;
+    // domain-warped, so floe edges are bent and never straight chords
+    var X = gx / SX + AK.fbm2(gx * 0.021, uu * 0.05 + 1.3, { octaves: 2 }) * 0.22, Y = vp / SY + AK.fbm2(gx * 0.017 + 7.7, uu * 0.06, { octaves: 2 }) * 0.22;
+    var cx0 = Math.floor(X), cy0 = Math.floor(Y);
+    var b1 = 1e9, b2 = 1e9, p1x = 0, p1y = 0, p2x = 0, p2y = 0, id1 = 0, id2 = 0;
     for (var j = -1; j <= 1; j++) for (var i = -1; i <= 1; i++) {
       var ci = cx0 + i, cj = cy0 + j;
       var fx = ci + 0.02 + 0.96 * hh(ci, cj), fy = cj + 0.05 + 0.9 * hh(cj + 0.37, ci + 1.3);
       var dx = (X - fx) * SX, dy = (Y - fy) * ky, d2 = dx * dx + dy * dy;
-      if (d2 < b1) { b2 = b1; p2x = p1x; p2y = p1y; b1 = d2; p1x = fx * SX; p1y = fy * ky; id1 = ci * 7.13 + cj * 3.71; }
-      else if (d2 < b2) { b2 = d2; p2x = fx * SX; p2y = fy * ky; }
+      if (d2 < b1) { b2 = b1; p2x = p1x; p2y = p1y; id2 = id1; b1 = d2; p1x = fx * SX; p1y = fy * ky; id1 = ci * 7.13 + cj * 3.71; }
+      else if (d2 < b2) { b2 = d2; p2x = fx * SX; p2y = fy * ky; id2 = ci * 7.13 + cj * 3.71; }
     }
     var sep = Math.hypot(p2x - p1x, p2y - p1y) || 1, dB = (b2 - b1) / (2 * sep);   // px to the floe boundary
     var hv = hh(id1, 0.5), pLead = 0.02 + Math.min(0.025, u / 12000);
     var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.24 ? ICE.greaseSoft : hv > 0.94 ? ICE.young : ICE.nilas;
     var gp = Math.max(0, Math.min(1, AK.fbm2(gx * 0.003, y * 0.008, { octaves: 3 }) * 1.8 + 0.15));
+    // neighbouring plates differ by a few levels only: one sheet of young ice, not a mosaic of tiles
+    if (base !== ICE.leadSoft) base = [(base[0] + ICE.nilas[0]) / 2, (base[1] + ICE.nilas[1]) / 2, (base[2] + ICE.nilas[2]) / 2];
     var c = [base[0] + (ICE.grease[0] - base[0]) * gp * 0.3, base[1] + (ICE.grease[1] - base[1]) * gp * 0.3, base[2] + (ICE.grease[2] - base[2]) * gp * 0.3];
-    var tv = AK.fbm2(gx * 0.004, uu * 0.22, { octaves: 2 }) * 5 + (hh(id1, 2.1) - 0.5) * 4;
+    var tv = AK.fbm2(gx * 0.004, uu * 0.22, { octaves: 2 }) * 5 + (hh(id1, 2.1) - 0.5) * 2.5;
     c[0] += tv; c[1] += tv; c[2] += tv;
-    if (base === ICE.leadSoft) return c;
+    if (hv < pLead) return c;
+    // only some boundaries are open cracks; the rest are closed seams the eye reads as one sheet
+    var pair = hh(Math.min(id1, id2), Math.max(id1, id2)), openCrack = pair < 0.3;
     var lit = (o.lit == null ? 0.42 : o.lit) * (1 - Math.min(0.45, u / 900));
     var coastSide = p2y < p1y;                                   // the neighbour across this rim is nearer the coast
     var cw = 0.3 + Math.min(0.6, u / 600);
-    if (dB < cw) { var t = 0.38; return [c[0] + (ICE.lead[0] - c[0]) * t, c[1] + (ICE.lead[1] - c[1]) * t, c[2] + (ICE.lead[2] - c[2]) * t]; }
-    if (coastSide && dB < cw + 1.3 && hh(id1, 4.4) > 0.25) {
+    if (openCrack && dB < cw) { var t = 0.26; return [c[0] + (ICE.lead[0] - c[0]) * t, c[1] + (ICE.lead[1] - c[1]) * t, c[2] + (ICE.lead[2] - c[2]) * t]; }
+    if (coastSide && dB < cw + 1.3 && pair < 0.55) {
       var la = lit * (1 - (dB - cw) / 1.3);
       c = [c[0] + (ICE.floe[0] - c[0]) * la, c[1] + (ICE.floe[1] - c[1]) * la, c[2] + (ICE.floe[2] - c[2]) * la];
-    } else if (!coastSide && dB < cw + 1.6) {
+    } else if (!coastSide && openCrack && dB < cw + 1.6) {
       var le = 0.32 * (1 - (dB - cw) / 1.6);
       c = [c[0] + (ICE.lead[0] - c[0]) * le, c[1] + (ICE.lead[1] - c[1]) * le, c[2] + (ICE.lead[2] - c[2]) * le];
     }
@@ -339,7 +354,7 @@
         var ot = bil(outside, W, H, xd, yd) * 0.26;                         // the land outside the province, held back
         r = c[0] + (mask[0] - c[0]) * ot; g = c[1] + (mask[1] - c[1]) * ot; b = c[2] + (mask[2] - c[2]) * ot;
       } else {
-        var ci = S.iceAt(bil(distS, W, H, xd, yd), gxv, yd);
+        var ci = S.iceAt(bil(distS, W, H, xd, yd), gxv, yd, o.ice);
         r = ci[0]; g = ci[1]; b = ci[2];
       }
       d[j * 4] = r; d[j * 4 + 1] = g; d[j * 4 + 2] = b; d[j * 4 + 3] = 255;
@@ -443,7 +458,9 @@
     for (var y4 = 1; y4 < H - 1; y4++) for (var x4 = 1; x4 < W - 1; x4++) {
       var q = y4 * W + x4;
       var sl = land[q] ? Math.hypot(h[q + 1] - h[q - 1], h[q + W] - h[q - W]) : 0;
-      mv[q] = Math.min(1, Math.max(0, (sl - 22) / 40)) * (1 - outside[q] * 0.92);
+      var lowG = Math.min(1, Math.max(0, (h[q] - 150) / 150));                       // no strokes on the low plain: they read as fur
+      var below = o.strokesBelow == null ? 1 : Math.min(1, Math.max(0, (y4 - o.strokesBelow) / 80));   // no strokes under a type scrim
+      mv[q] = Math.min(1, Math.max(0, (sl - 22) / 40)) * (1 - outside[q] * 0.92) * lowG * below;
     }
     boxBlur(mv, W, H, 6, 2);
     var mi = mk.getContext('2d').createImageData(W, H);

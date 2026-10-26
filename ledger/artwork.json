@@ -3451,6 +3451,50 @@
         "angular terrain march for an all-sky skyline ring (each azimuth's revealed elevation spans shaded by DEM normal), with declared vertical exaggeration"
       ],
       "note": "Score 8.563. 04, the planned depth frame, was the weakest for three rounds: a lens that frames only 25 m onward puts the water band where the mirror shows dark foothills, and veils read only where they hang in front of lit snow."
+    },
+    {
+      "run_date": "2026-10-25",
+      "carousel_no": 96,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE SOUTH-UP SHEET, every map turned so south is up, the way the gas sees the Slope: a 3240 px province panorama over 01 to 03, a rendered province block on edge (04), the range front wall (05), the Sagavanirktok quadrangle (06), the Prudhoe Bay ice (07), Alaska south up (08), the central Slope at small scale (09)",
+      "atmosphere": "NEW: LOW NOON, the October 21st noon sun 9 degrees above the Brooks Range, apricot south faces, cobalt lees, casts streaming down the frame toward the ice",
+      "depth_technique": "per-device-pixel cubic-sampled DEM Lambert relief with column-marched casts (01, 02, 05, 07, 09); slope and aspect hachure (01, 02); three.js PBR block with section skirts, occlusion decal and instanced ridges (04); illuminated contours (06); blue-noise stipple hillshade (08); raised paper slips (03)",
+      "line_voice": "cartographic: mono place labels with leaders, italic hydrography, honesty tags (APPROXIMATE, SCHEMATIC, TRUE AREA), a gold Polaris north arrow pointing down",
+      "continuity_device": "D1 a south-up panorama spine sliced across 01 to 03; D2 the reach, one gold mark changing shape (crosshair, loop, arc, ring, segmented ring, route, Polaris); D3 one sun",
+      "continuity_devices": [
+        "panorama spine 01 to 03",
+        "gold reach motif by shape",
+        "one sun light constancy"
+      ],
+      "hook_archetype": "NEW: THE AGENCY'S OWN CAVEAT",
+      "palette_family": "NEW: LOW NOON SNOW (apricot, cobalt, pewter nilas, one aurora-ice line, flag gold for the reach)",
+      "type_pairing": "Instrument Serif + Manrope + JetBrains Mono",
+      "narrative_structure": "count, caveat, odds, known gas, wall (turn), buyer one, buyer two, the pipe, the ask",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "south-up conic projection",
+        "cubic B-spline DEM sampling",
+        "device-pixel Lambert relief",
+        "column-marched cast shadows",
+        "priority-flood drainage traced as smoothed polylines",
+        "slope and aspect hachure",
+        "shore-parallel streak-lay sea ice",
+        "illuminated contours (Tanaka)",
+        "pancake ice population with leads",
+        "blue-noise stipple hillshade",
+        "three.js PBR block with section skirts",
+        "stipple density as exceedance probability"
+      ],
+      "new_techniques_logged": [
+        "SLOPE.iceAt shore-parallel streak-lay ice",
+        "illuminated contours per device pixel",
+        "pancake ice population"
+      ],
+      "note": "Pixel critics drove three rounds on texture artifacts: a 1x field drawn to 2x, bilinear-gradient lattices and boxed halos. All three were fixed at their root in assets/js/akslope.js."
     }
   ]
 }
