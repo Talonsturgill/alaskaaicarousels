@@ -101,7 +101,7 @@
     var css = 'position:absolute;z-index:9;font-family:"JetBrains Mono",monospace;white-space:nowrap;';
     function add(txt, style, deco) {
       var d = document.createElement('div');
-      d.setAttribute('style', css + style); d.textContent = txt;
+      d.setAttribute('style', css + style); d.textContent = txt; d.className = 'fx';
       if (deco) d.setAttribute('data-decorative', '');
       document.body.appendChild(d); return d;
     }
@@ -232,30 +232,40 @@
               greaseSoft: [47, 64, 69], leadSoft: [25, 38, 45] };
   S.ICE = ICE;
   S.iceAt = function (u, gx, y, o) {
+    // FLOES, not bands (No.96 round 3: shore-parallel bands read as folded rock strata on four frames).
+    // Anisotropic Worley cells in (along-shore, log cross-shore): plates about 70 px long, 12 px deep at
+    // the coast growing to about 70 px offshore, split by thin open cracks; the coast-side rim of each
+    // plate faces the noon sun and is lit, its offshore rim is in lee; a few plates are open leads.
     o = o || {};
-    var warp = AK.fbm2(gx * 0.0035 + 3.1, u * 0.008 + 5.7, { octaves: 3 }) * 14;
-    var uu = Math.max(0, u + warp);
-    var up = 60 * Math.log(1 + uu / 150), B = 2;
-    var n = Math.floor(up / B), f = up / B - n, wpx = (150 + uu) / 30;
-    var a = gx + hh(n, 1.7) * 900, segL = 70 + hh(n, 2.3) * 90;
-    var s = (a + (f - 0.5) * wpx * (hh(n, 4.1) > 0.5 ? 2.2 : -2.2) + AK.fbm2(gx * 0.008, n * 0.37 + f * 0.6, { octaves: 2 }) * 50) / segL, sid = Math.floor(s), sf = s - sid;
-    var hv = hh(n, sid + 0.5), pLead = 0.025 + Math.min(0.06, u / 7000);
-    var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.34 ? ICE.greaseSoft : hv > 0.93 ? ICE.young : ICE.nilas;
+    var uu = Math.max(0, u + AK.fbm2(gx * 0.004 + 3.1, u * 0.01 + 5.7, { octaves: 2 }) * 10);
+    var SX = 52, SY = 6.5, vp = 60 * Math.log(1 + uu / 80), ky = SY / (60 / (80 + uu));
+    var X = gx / SX, Y = vp / SY, cx0 = Math.floor(X), cy0 = Math.floor(Y);
+    var b1 = 1e9, b2 = 1e9, p1x = 0, p1y = 0, p2x = 0, p2y = 0, id1 = 0;
+    for (var j = -1; j <= 1; j++) for (var i = -1; i <= 1; i++) {
+      var ci = cx0 + i, cj = cy0 + j;
+      var fx = ci + 0.15 + 0.7 * hh(ci, cj), fy = cj + 0.2 + 0.6 * hh(cj + 0.37, ci + 1.3);
+      var dx = (X - fx) * SX, dy = (Y - fy) * ky, d2 = dx * dx + dy * dy;
+      if (d2 < b1) { b2 = b1; p2x = p1x; p2y = p1y; b1 = d2; p1x = fx * SX; p1y = fy * ky; id1 = ci * 7.13 + cj * 3.71; }
+      else if (d2 < b2) { b2 = d2; p2x = fx * SX; p2y = fy * ky; }
+    }
+    var sep = Math.hypot(p2x - p1x, p2y - p1y) || 1, dB = (b2 - b1) / (2 * sep);   // px to the floe boundary
+    var hv = hh(id1, 0.5), pLead = 0.02 + Math.min(0.025, u / 12000);
+    var base = hv < pLead ? ICE.leadSoft : hv < pLead + 0.32 ? ICE.greaseSoft : hv > 0.9 ? ICE.young : ICE.nilas;
     var gp = Math.max(0, Math.min(1, AK.fbm2(gx * 0.003, y * 0.008, { octaves: 3 }) * 1.8 + 0.15));
-    var c = [base[0] + (ICE.grease[0] - base[0]) * gp * 0.35, base[1] + (ICE.grease[1] - base[1]) * gp * 0.35, base[2] + (ICE.grease[2] - base[2]) * gp * 0.35];
-    var tv = AK.fbm2(gx * 0.015 + n * 0.1, y * 0.03, { octaves: 2 }) * 4 + (hh(sid + 0.1, n) - 0.5) * 9;
+    var c = [base[0] + (ICE.grease[0] - base[0]) * gp * 0.3, base[1] + (ICE.grease[1] - base[1]) * gp * 0.3, base[2] + (ICE.grease[2] - base[2]) * gp * 0.3];
+    var tv = AK.fbm2(gx * 0.006, uu * 0.09, { octaves: 2 }) * 3 + (hh(id1, 2.1) - 0.5) * 6;
     c[0] += tv; c[1] += tv; c[2] += tv;
-    // floes end: a short open crack of lead tone between one floe and the next along the band
-    var gapW = (5 + hh(n, sid + 7.7) * 11) / segL;
-    if (sf < gapW && hh(sid, n + 2.2) > 0.15) { var gt = 0.75; c = [c[0] + (ICE.lead[0] - c[0]) * gt, c[1] + (ICE.lead[1] - c[1]) * gt, c[2] + (ICE.lead[2] - c[2]) * gt]; return c; }
-    var lead = base === ICE.leadSoft, ftop = f * wpx, fbot = (1 - f) * wpx;
-    var taper = Math.pow(Math.sin(Math.PI * Math.max(0, Math.min(1, (sf - gapW) / (1 - gapW)))), 0.6);
-    var litA = (o.lit == null ? 0.42 : o.lit) * (1 - Math.min(0.5, u / 900)) * taper;
-    if (!lead && ftop < 0.9 && hh(n + 0.3, sid) > 0.55) {
-      c = [c[0] + (ICE.floe[0] - c[0]) * litA, c[1] + (ICE.floe[1] - c[1]) * litA, c[2] + (ICE.floe[2] - c[2]) * litA];
-    } else if (fbot < 0.9 + Math.min(1.0, u / 400)) {
-      var la = 0.3 * taper;
-      c = [c[0] + (ICE.lead[0] - c[0]) * la, c[1] + (ICE.lead[1] - c[1]) * la, c[2] + (ICE.lead[2] - c[2]) * la];
+    if (base === ICE.leadSoft) return c;
+    var lit = (o.lit == null ? 0.42 : o.lit) * (1 - Math.min(0.45, u / 900));
+    var coastSide = p2y < p1y;                                   // the neighbour across this rim is nearer the coast
+    var cw = 0.55 + Math.min(0.9, u / 500);
+    if (dB < cw) { var t = 0.7; return [c[0] + (ICE.lead[0] - c[0]) * t, c[1] + (ICE.lead[1] - c[1]) * t, c[2] + (ICE.lead[2] - c[2]) * t]; }
+    if (coastSide && dB < cw + 1.3 && hh(id1, 4.4) > 0.25) {
+      var la = lit * (1 - (dB - cw) / 1.3);
+      c = [c[0] + (ICE.floe[0] - c[0]) * la, c[1] + (ICE.floe[1] - c[1]) * la, c[2] + (ICE.floe[2] - c[2]) * la];
+    } else if (!coastSide && dB < cw + 1.6) {
+      var le = 0.32 * (1 - (dB - cw) / 1.6);
+      c = [c[0] + (ICE.lead[0] - c[0]) * le, c[1] + (ICE.lead[1] - c[1]) * le, c[2] + (ICE.lead[2] - c[2]) * le];
     }
     return c;
   };
@@ -295,11 +305,9 @@
     for (var k = 0; k < N; k++) {
       var t = Math.max(0, Math.min(1, (sm[k] - 560) / 260));
       outsideE[k] = land[k] ? t * t * (3 - 2 * t) : 0;
-      var tl = Math.max(0, Math.min(1, (68.2 - latA[k]) / 0.3));          // a soft southern limit, never a ruled line
-      t = Math.max(t, tl);
       outside[k] = land[k] ? t * t * (3 - 2 * t) : 0;
     }
-    var dist = chamfer(land, W, H);
+    var dist = chamfer(land, W, H), distS = boxBlur(Float32Array.from(dist), W, H, 6, 2);
     await new Promise(function (r) { setTimeout(r, 0); });
 
     // ---- shading, per DEVICE pixel (a 1x field drawn up to 2x printed as upscale blur and stair-steps)
@@ -331,7 +339,7 @@
         var ot = bil(outside, W, H, xd, yd) * 0.26;                         // the land outside the province, held back
         r = c[0] + (mask[0] - c[0]) * ot; g = c[1] + (mask[1] - c[1]) * ot; b = c[2] + (mask[2] - c[2]) * ot;
       } else {
-        var ci = S.iceAt(bil(dist, W, H, xd, yd), gxv, yd);
+        var ci = S.iceAt(bil(distS, W, H, xd, yd), gxv, yd);
         r = ci[0]; g = ci[1]; b = ci[2];
       }
       d[j * 4] = r; d[j * 4 + 1] = g; d[j * 4 + 2] = b; d[j * 4 + 3] = 255;
