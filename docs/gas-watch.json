@@ -17,7 +17,7 @@
     "last_verified_date": "2026-10-26",
     "capacity_status": "complete",
     "capacity_field_errors": {},
-    "last_collection_utc": "2026-10-26T14:24:15Z",
+    "last_collection_utc": "2026-10-26T19:36:47Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -13355,33 +13355,33 @@
     },
     {
       "date": "2026-10-26",
-      "collected_utc": "2026-10-26T14:24:15Z",
+      "collected_utc": "2026-10-26T19:36:47Z",
       "collector_version": "1.3",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
         "data_status": "complete",
         "field_errors": {},
-        "source_timestamp": "2026-10-26T05:00:00",
-        "source_timestamp_utc": "2026-10-26T13:00:00Z",
-        "inventory_mcf": 7661550,
-        "inventory_delta_mcf": -6760,
+        "source_timestamp": "2026-10-26T09:00:00",
+        "source_timestamp_utc": "2026-10-26T17:00:00Z",
+        "inventory_mcf": 7659542,
+        "inventory_delta_mcf": -8768,
         "storage_design_mcf": 13000000,
         "inventory_pct_of_design": 58.9,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 153500,
+        "withdrawal_available_mcfd": 151000,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 200400,
         "injection_operating_mcfd": 137700,
-        "injection_available_mcfd": 131960,
-        "injection_in_progress_mcfd": 5740,
+        "injection_available_mcfd": 131468,
+        "injection_in_progress_mcfd": 6232,
         "injection_restriction_mcfd": 62700,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 1.4
+        "source_age_hours": 2.6
       },
       "forecast": [
         {
@@ -13423,17 +13423,25 @@
           "min_temp_f": 36,
           "hdd65": 27.0,
           "modeled_demand_mmcfd": 174
+        },
+        {
+          "date": "2026-11-01",
+          "hours": 23,
+          "mean_temp_f": 34.8,
+          "min_temp_f": 32,
+          "hdd65": 30.2,
+          "modeled_demand_mmcfd": 185
         }
       ],
       "forecast_source_updated": "2026-10-26T10:57:50+00:00",
       "derived": {
-        "peak_forecast_date": "2026-10-28",
-        "peak_forecast_hdd": 29.4,
-        "peak_modeled_demand_mmcfd": 182,
-        "forecast_window_demand_bcf": 0.87,
-        "storage_withdrawal_mmcfd": 6.8,
+        "peak_forecast_date": "2026-11-01",
+        "peak_forecast_hdd": 30.2,
+        "peak_modeled_demand_mmcfd": 185,
+        "forecast_window_demand_bcf": 1.05,
+        "storage_withdrawal_mmcfd": 8.8,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 42.1,
+        "days_cover_at_peak": 41.4,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -13479,17 +13487,17 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T14:24:15Z",
+          "fetched_utc": "2026-10-26T19:36:47Z",
           "http_status": 200,
           "attempts": 1,
-          "sha256": "f539dc4a50739716d37378b01fdeedad4d4f1d8aa50a418716c669cb00e0c379"
+          "sha256": "3bbe3ff690c22d698972319ccefa734a44c6d2d3e59d4fd097777b76754d444a"
         },
         {
           "name": "nws_hourly_forecast",
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T14:24:15Z",
+          "fetched_utc": "2026-10-26T19:36:47Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -13498,7 +13506,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T14:24:16Z",
+          "fetched_utc": "2026-10-26T19:36:47Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -13507,7 +13515,7 @@
         "injection_restriction_active",
         "inventory_declined"
       ],
-      "supersedes_posting": "2026-10-26T01:00:00"
+      "supersedes_posting": "2026-10-26T05:00:00"
     }
   ]
 }
