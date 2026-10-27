@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-27T13:20:09Z",
+  "checked_at": "2026-10-27T18:48:51Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "dc364211d3fdcf0516af2818761f1e8f2040d69bc32ec218a6ebd271a9fbf34b",
+  "response_sha256": "45b8c47885407d929bc71b6345291497f92c067efac1532ac40869c1db6b5d45",
   "articles": [
     {
       "title": "New guide helps Alaskans shape data center conversations",
@@ -62,113 +62,20 @@
     }
   ],
   "selected": {
-    "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
-    "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
-    "first_seen_at": "2026-10-16T13:00:52Z",
-    "summary": "The nation's economic ministry said the terms and size of any investment will be subject to further negotiations.",
+    "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
+    "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
+    "first_seen_at": "2026-10-16T20:36:48Z",
+    "summary": "Republican Sen. Dan Sullivan and his Democratic challenger, Mary Peltola, traded barbs over affordability, Alaska's energy future and accused each other of lying.",
     "feed": "https://www.ktoo.org/feed/?paged=3",
     "publisher": "KTOO",
     "coverage": 1,
-    "score": 0.000484,
+    "score": 0.000514,
     "priority": 4
   },
-  "expires_at": "2026-10-30T13:00:52Z",
+  "expires_at": "2026-10-30T20:36:48Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-27T07:23:00Z",
-      "selected": {
-        "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
-        "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
-        "first_seen_at": "2026-10-16T13:00:52Z",
-        "summary": "The nation's economic ministry said the terms and size of any investment will be subject to further negotiations.",
-        "feed": "https://www.ktoo.org/feed/?paged=3",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.000484,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
-          "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
-          "first_seen_at": "2026-10-16T13:00:52Z",
-          "summary": "The nation's economic ministry said the terms and size of any investment will be subject to further negotiations.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000484,
-          "priority": 4
-        },
-        {
-          "title": "AI 101: Business Uses for Frontier Technology",
-          "url": "https://www.akbizmag.com/industry/small-business/ai101/",
-          "first_seen_at": "2026-10-19T14:30:08Z",
-          "summary": "To help Alaska businesses leverage AI’s potential, local experts have been staying abreast of the cutting edge of new technology. In simple terms, how can companies use the newest technology?",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.00404,
-          "priority": 3
-        },
-        {
-          "title": "New guide helps Alaskans shape data center conversations",
-          "url": "https://alaska-native-news.com/new-guide-helps-alaskans-shape-data-center-conversations/86731/",
-          "first_seen_at": "2026-10-15T14:05:45Z",
-          "summary": "As data centers and artificial intelligence raise new questions about energy, water, land, infrastructure, jobs and community priorities across Alaska, a new report from the University of Alaska Fairbanks offers a different way to approach the conversation. “Computing in Place: A Conversation Guide on Data Centers for Alaskans, by Alaskans” was developed by the Alaska Center […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 0.00025,
-          "priority": 3
-        },
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.06736,
-          "priority": 4
-        },
-        {
-          "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
-          "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
-          "first_seen_at": "2026-10-16T20:36:48Z",
-          "summary": "Republican Sen. Dan Sullivan and his Democratic challenger, Mary Peltola, traded barbs over affordability, Alaska's energy future and accused each other of lying.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000602,
-          "priority": 4
-        },
-        {
-          "title": "New book highlights Alaska's rural energy innovators",
-          "url": "https://www.uaf.edu/news/new-book-highlights-alaskas-rural-energy-innovators.php",
-          "first_seen_at": "2026-10-21T08:00:00Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of \"Alaska's Microgrid Innovators,\" a new book about the people and communities shaping Alaska's energy future.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.013393,
-          "priority": 4
-        },
-        {
-          "title": "In Fairbanks, Interior Secretary Burgum touts deregulation and data centers",
-          "url": "https://www.ktoo.org/2026/10/15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers/",
-          "first_seen_at": "2026-10-16T01:11:47Z",
-          "summary": "Alaska has attracted proposals for as many as 15 data centers, but concerns about how to power them have fueled calls for caution.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.000344,
-          "priority": 5
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-27T13:23:00Z",
       "selected": {
@@ -179,7 +86,7 @@
         "feed": "https://www.ktoo.org/feed/?paged=3",
         "publisher": "KTOO",
         "coverage": 1,
-        "score": 0.000602,
+        "score": 0.000514,
         "priority": 4
       },
       "stories": [
@@ -191,7 +98,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000602,
+          "score": 0.000514,
           "priority": 4
         },
         {
@@ -202,7 +109,7 @@
           "feed": "https://www.akbizmag.com/feed/",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.004035,
+          "score": 0.003449,
           "priority": 3
         },
         {
@@ -213,7 +120,7 @@
           "feed": "https://alaska-native-news.com/feed/",
           "publisher": "Alaska Native News",
           "coverage": 1,
-          "score": 0.000249,
+          "score": 0.000213,
           "priority": 3
         },
         {
@@ -224,7 +131,7 @@
           "feed": "https://www.akbizmag.com/feed/",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.067268,
+          "score": 0.057503,
           "priority": 4
         },
         {
@@ -235,7 +142,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000483,
+          "score": 0.000413,
           "priority": 4
         },
         {
@@ -246,7 +153,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.013375,
+          "score": 0.011433,
           "priority": 4
         },
         {
@@ -257,7 +164,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000343,
+          "score": 0.000294,
           "priority": 5
         }
       ]
@@ -447,14 +354,102 @@
           "priority": 5
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-28T07:23:00Z",
+      "selected": {
+        "title": "AI 101: Business Uses for Frontier Technology",
+        "url": "https://www.akbizmag.com/industry/small-business/ai101/",
+        "first_seen_at": "2026-10-19T14:30:08Z",
+        "summary": "To help Alaska businesses leverage AI’s potential, local experts have been staying abreast of the cutting edge of new technology. In simple terms, how can companies use the newest technology?",
+        "feed": "https://www.akbizmag.com/feed/",
+        "publisher": "Alaska Business",
+        "coverage": 1,
+        "score": 0.002399,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "AI 101: Business Uses for Frontier Technology",
+          "url": "https://www.akbizmag.com/industry/small-business/ai101/",
+          "first_seen_at": "2026-10-19T14:30:08Z",
+          "summary": "To help Alaska businesses leverage AI’s potential, local experts have been staying abreast of the cutting edge of new technology. In simple terms, how can companies use the newest technology?",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.002399,
+          "priority": 3
+        },
+        {
+          "title": "New guide helps Alaskans shape data center conversations",
+          "url": "https://alaska-native-news.com/new-guide-helps-alaskans-shape-data-center-conversations/86731/",
+          "first_seen_at": "2026-10-15T14:05:45Z",
+          "summary": "As data centers and artificial intelligence raise new questions about energy, water, land, infrastructure, jobs and community priorities across Alaska, a new report from the University of Alaska Fairbanks offers a different way to approach the conversation. “Computing in Place: A Conversation Guide on Data Centers for Alaskans, by Alaskans” was developed by the Alaska Center […]",
+          "feed": "https://alaska-native-news.com/feed/",
+          "publisher": "Alaska Native News",
+          "coverage": 1,
+          "score": 0.000148,
+          "priority": 3
+        },
+        {
+          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
+          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
+          "first_seen_at": "2026-10-23T15:55:44Z",
+          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.039998,
+          "priority": 4
+        },
+        {
+          "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
+          "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
+          "first_seen_at": "2026-10-16T20:36:48Z",
+          "summary": "Republican Sen. Dan Sullivan and his Democratic challenger, Mary Peltola, traded barbs over affordability, Alaska's energy future and accused each other of lying.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.000358,
+          "priority": 4
+        },
+        {
+          "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
+          "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
+          "first_seen_at": "2026-10-16T13:00:52Z",
+          "summary": "The nation's economic ministry said the terms and size of any investment will be subject to further negotiations.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.000287,
+          "priority": 4
+        },
+        {
+          "title": "New book highlights Alaska's rural energy innovators",
+          "url": "https://www.uaf.edu/news/new-book-highlights-alaskas-rural-energy-innovators.php",
+          "first_seen_at": "2026-10-21T08:00:00Z",
+          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of \"Alaska's Microgrid Innovators,\" a new book about the people and communities shaping Alaska's energy future.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.007953,
+          "priority": 4
+        },
+        {
+          "title": "In Fairbanks, Interior Secretary Burgum touts deregulation and data centers",
+          "url": "https://www.ktoo.org/2026/10/15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers/",
+          "first_seen_at": "2026-10-16T01:11:47Z",
+          "summary": "Alaska has attracted proposals for as many as 15 data centers, but concerns about how to power them have fueled calls for caution.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.000204,
+          "priority": 5
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.akbizmag.com/industry/energy/150m-in-federal-funds-for-beluga-healy-electrical-intertie/",
-      "title": "$150M in Federal Funds for Beluga-Healy Electrical Intertie",
-      "shown_at": "2026-10-19T13:23:00Z"
-    },
     {
       "url": "https://www.akbizmag.com/industry/small-business/ai101/",
       "title": "AI 101: Business Uses for Frontier Technology",
@@ -609,6 +604,11 @@
       "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
       "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
       "shown_at": "2026-10-27T07:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
+      "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
+      "shown_at": "2026-10-27T13:23:00Z"
     }
   ],
   "feeds": [
@@ -616,19 +616,19 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "fa65fafc10d2d86d1422b4d799fd653b5f68bf2e49c071ae488f19dfbe75ad50"
+      "sha256": "1931c26d3dfbbb93c63ae49d21cc6aa25a1c5454d1d13daa484a75b9b1e8520f"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "7905d4914ad96c83212ec2fe1005164f0d82bc0821af26e40c6b4375fea45daa"
+      "sha256": "e602ffc58db8e0f1ac9a059bcf662e561ef99f86c276f9c65d53742415e06f69"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "0645d08e3ceb73d16fef1be4bfaa9a3f5882044a611043011801907eddc4b5b0"
+      "sha256": "823ff9eb9df1263437f749704393924346d745490902c1e13ae8465cb19d008b"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
@@ -654,13 +654,11 @@
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "cbf7678bd2dd1d249a33e2c9ddde796c9e53940238ab359b45c48362554a7876"
+      "sha256": "c0b5c0583e70313103ba8854e7b02fd4bcd75b0b6b54b9ab8c0ce813d2048d26"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "328c030093a5ae002e829e2cfafd313d5c8a20d304772a2b98aa749b61bceb09"
+      "status": "not_modified"
     },
     {
       "url": "https://www.uaf.edu/news/",
@@ -671,34 +669,34 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fa65fafc10d2d86d1422b4d799fd653b5f68bf2e49c071ae488f19dfbe75ad50",
-      "etag": "\"041b8e9069ecc667be0217522bc9ae66\"",
-      "last_modified": "Tue, 27 Oct 2026 07:02:36 GMT"
+      "sha256": "1931c26d3dfbbb93c63ae49d21cc6aa25a1c5454d1d13daa484a75b9b1e8520f",
+      "etag": "\"54e371a981edfdb3377d33f44d5f06e7\"",
+      "last_modified": "Tue, 27 Oct 2026 17:37:48 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7905d4914ad96c83212ec2fe1005164f0d82bc0821af26e40c6b4375fea45daa",
-      "etag": "\"041b8e9069ecc667be0217522bc9ae66\"",
-      "last_modified": "Tue, 27 Oct 2026 07:02:36 GMT"
+      "sha256": "e602ffc58db8e0f1ac9a059bcf662e561ef99f86c276f9c65d53742415e06f69",
+      "etag": "\"54e371a981edfdb3377d33f44d5f06e7\"",
+      "last_modified": "Tue, 27 Oct 2026 17:37:48 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0645d08e3ceb73d16fef1be4bfaa9a3f5882044a611043011801907eddc4b5b0",
-      "etag": "\"041b8e9069ecc667be0217522bc9ae66\"",
-      "last_modified": "Tue, 27 Oct 2026 07:02:36 GMT"
+      "sha256": "823ff9eb9df1263437f749704393924346d745490902c1e13ae8465cb19d008b",
+      "etag": "\"54e371a981edfdb3377d33f44d5f06e7\"",
+      "last_modified": "Tue, 27 Oct 2026 17:37:48 GMT"
     },
     "https://www.akbizmag.com/feed/": {
       "etag": "W/\"35561d442a2c765034e7668cf75ffb37\"",
       "last_modified": "Mon, 26 Oct 2026 15:43:38 GMT",
       "failures": 0,
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "sha256": "137d30aaa3305217dd41f9e29c2d353efb655ff584a0749f4c5efd64c271a362",
       "parser_version": 2
     },
@@ -706,38 +704,38 @@
       "etag": "W/\"35561d442a2c765034e7668cf75ffb37\"",
       "last_modified": "Mon, 26 Oct 2026 15:43:38 GMT",
       "failures": 0,
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "sha256": "b24deac5ea17e6160972228fffce71139e05141557aabf8a70415dfcbabda6de",
       "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "e9ab6449bd77b117277edc436ff340bcbaacd8bd3441f9b38ed38d8f61f18889"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "c5b59fe327855bfe552ae847ff32c954260f6dcb16af443c09a26c9a29acd22c"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "cbf7678bd2dd1d249a33e2c9ddde796c9e53940238ab359b45c48362554a7876",
-      "last_modified": "Tue, 27 Oct 2026 12:33:32 GMT"
+      "sha256": "c0b5c0583e70313103ba8854e7b02fd4bcd75b0b6b54b9ab8c0ce813d2048d26",
+      "last_modified": "Tue, 27 Oct 2026 17:57:17 GMT"
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "last_modified": "Tue, 27 Oct 2026 11:59:09 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-27T18:48:49Z",
       "sha256": "328c030093a5ae002e829e2cfafd313d5c8a20d304772a2b98aa749b61bceb09",
-      "last_modified": "Tue, 27 Oct 2026 11:59:09 GMT"
+      "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-10-27T13:20:07Z",
+      "ok_at": "2026-10-27T18:48:49Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "107c9daec4e36642f89eefd684845e27d9a29e75a4b9647e1f109a1963e83e5c"
