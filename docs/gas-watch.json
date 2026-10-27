@@ -2,7 +2,7 @@
   "name": "Cook Inlet Gas Watch",
   "description": "A daily numeric record of Southcentral Alaska's natural gas position. Measured storage inventory and deliverability from the CINGSA public dashboard, modeled regional demand from Anchorage degree days, and the derived non CINGSA supply that falls out of the mass balance. It publishes no safety verdict of any kind.",
   "version": "1.1",
-  "updated": "2026-10-26",
+  "updated": "2026-10-27",
   "canonical": "https://alaskaaihq.com/gas-watch.json",
   "documentation": "https://alaskaaihq.com/gas-watch/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -17,7 +17,7 @@
     "last_verified_date": "2026-10-26",
     "capacity_status": "complete",
     "capacity_field_errors": {},
-    "last_collection_utc": "2026-10-26T23:11:38Z",
+    "last_collection_utc": "2026-10-27T10:02:42Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -13355,41 +13355,41 @@
     },
     {
       "date": "2026-10-26",
-      "collected_utc": "2026-10-26T23:11:38Z",
+      "collected_utc": "2026-10-27T10:02:42Z",
       "collector_version": "1.3",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
         "data_status": "complete",
         "field_errors": {},
-        "source_timestamp": "2026-10-26T13:00:00",
-        "source_timestamp_utc": "2026-10-26T21:00:00Z",
-        "inventory_mcf": 7661209,
-        "inventory_delta_mcf": -7101,
+        "source_timestamp": "2026-10-26T19:50:00",
+        "source_timestamp_utc": "2026-10-27T03:50:00Z",
+        "inventory_mcf": 7649475,
+        "inventory_delta_mcf": -10900,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 58.9,
+        "inventory_pct_of_design": 58.8,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 152667,
+        "withdrawal_available_mcfd": 151000,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 200400,
         "injection_operating_mcfd": 137700,
-        "injection_available_mcfd": 131468,
-        "injection_in_progress_mcfd": 6232,
+        "injection_available_mcfd": 127368,
+        "injection_in_progress_mcfd": 10332,
         "injection_restriction_mcfd": 62700,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 2.2
+        "source_age_hours": 6.2
       },
       "forecast": [
         {
           "date": "2026-10-27",
-          "hours": 24,
-          "mean_temp_f": 35.4,
+          "hours": 23,
+          "mean_temp_f": 35.3,
           "min_temp_f": 33,
-          "hdd65": 29.6,
+          "hdd65": 29.7,
           "modeled_demand_mmcfd": 183
         },
         {
@@ -13411,37 +13411,37 @@
         {
           "date": "2026-10-30",
           "hours": 24,
-          "mean_temp_f": 41.3,
+          "mean_temp_f": 40.8,
           "min_temp_f": 39,
-          "hdd65": 23.7,
-          "modeled_demand_mmcfd": 162
+          "hdd65": 24.2,
+          "modeled_demand_mmcfd": 164
         },
         {
           "date": "2026-10-31",
           "hours": 24,
-          "mean_temp_f": 38.0,
+          "mean_temp_f": 38.1,
           "min_temp_f": 36,
-          "hdd65": 27.0,
-          "modeled_demand_mmcfd": 174
+          "hdd65": 26.9,
+          "modeled_demand_mmcfd": 173
         },
         {
           "date": "2026-11-01",
           "hours": 25,
-          "mean_temp_f": 35.2,
+          "mean_temp_f": 34.8,
           "min_temp_f": 32,
-          "hdd65": 29.8,
-          "modeled_demand_mmcfd": 183
+          "hdd65": 30.2,
+          "modeled_demand_mmcfd": 185
         }
       ],
-      "forecast_source_updated": "2026-10-26T20:51:37+00:00",
+      "forecast_source_updated": "2026-10-27T04:33:13+00:00",
       "derived": {
         "peak_forecast_date": "2026-10-28",
         "peak_forecast_hdd": 30.6,
         "peak_modeled_demand_mmcfd": 186,
         "forecast_window_demand_bcf": 1.06,
-        "storage_withdrawal_mmcfd": 7.1,
+        "storage_withdrawal_mmcfd": 10.9,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 41.2,
+        "days_cover_at_peak": 41.1,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -13487,17 +13487,17 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T23:11:38Z",
+          "fetched_utc": "2026-10-27T10:02:43Z",
           "http_status": 200,
           "attempts": 1,
-          "sha256": "86a183752dc3c92fe57b69a2d8dbe806392e76839541f814db2b223b8a99364e"
+          "sha256": "99d5e01c5fc6d3a4670d91e3b91f6da797433c1d4b650c1550e8ceb6caf55d31"
         },
         {
           "name": "nws_hourly_forecast",
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T23:11:38Z",
+          "fetched_utc": "2026-10-27T10:02:43Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -13506,7 +13506,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-10-26T23:11:38Z",
+          "fetched_utc": "2026-10-27T10:02:43Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -13515,7 +13515,7 @@
         "injection_restriction_active",
         "inventory_declined"
       ],
-      "supersedes_posting": "2026-10-26T09:00:00"
+      "supersedes_posting": "2026-10-26T13:00:00"
     }
   ]
 }
