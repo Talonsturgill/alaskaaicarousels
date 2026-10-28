@@ -1,0 +1,218 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the kraft tag lying on the birch litter': shadow L* 0.8 vs ground L* 43.4, dL 42.6 at 432w"
+      ],
+      "motifs": [
+        "'the blank kraft tag on the lath's far end': canvas 64.7 dE, page 65.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'The decision couldbeat December 7th.The hand' fits 4/4 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold tape between day 0 and day 42': canvas 75.9 dE, page 74.8 dE, 93% of its rect is clear of opaque DOM (div#lk.t stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'day 0 on the tape, October 26th' lands 0.0px from its target",
+        "leader 'day 42 on the tape, December 7th' lands 0.0px from its target",
+        "leader 'day 0 on the tape, October 26th' meets its label 1.0px away",
+        "leader 'day 42 on the tape, December 7th' meets its label 3.0px away",
+        "leader 'day 0 on the tape, October 26th' is drawn 74 px at 90 degrees, inside the pointer band",
+        "leader 'day 42 on the tape, December 7th' is drawn 148 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head '\"Certainly possible.\"' fits 1/1 lines at 111.5px"
+      ],
+      "asserts": [
+        "'43 graduations, day 0 to day 42' holds: 43 vs 43 marks, counted over 43 declared marks (within 0)",
+        "'43 graduations, day 0 to day 42': 43 mark centres probed at r=9px, cohort median 96.4 dE, all present (weakest 82.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'FILED' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'TRIAL COURTS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'FIRST DISTRICT AT JUNEAU' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "worst-point contrast 2.3 on '1JU-26-01019 CIVIL' (box mean 4.3) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the complaint lying on the litter': shadow L* 7.5 vs ground L* 44.7, dL 37.2 at 432w"
+      ],
+      "motifs": [
+        "'the clerk's stamp on the complaint': canvas 44.4 dE, page 45.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the index flag for section I.7' lands 4.0px from its target",
+        "leader 'the index flag for section VIII.2' lands 4.0px from its target",
+        "leader 'the index flag for section VIII.9' lands 4.0px from its target",
+        "leader 'the index flag for section VIII.10' lands 4.0px from its target",
+        "leader 'the index flag for section VIII.17' lands 4.0px from its target",
+        "leader 'the index flag for section IX.6' lands 4.0px from its target",
+        "leader 'the index flag for section IX.7' lands 4.0px from its target",
+        "leader 'the index flag for section I.7' meets its label 1.0px away",
+        "leader 'the index flag for section VIII.2' meets its label 1.0px away",
+        "leader 'the index flag for section VIII.9' meets its label 1.0px away",
+        "leader 'the index flag for section VIII.10' meets its label 1.0px away",
+        "leader 'the index flag for section VIII.17' meets its label 1.0px away",
+        "leader 'the index flag for section IX.6' meets its label 1.0px away",
+        "leader 'the index flag for section IX.7' meets its label 1.0px away",
+        "leader 'the index flag for section I.7' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section VIII.2' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section VIII.9' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section VIII.10' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section VIII.17' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section IX.6' is drawn 40 px at 90 degrees, inside the pointer band",
+        "leader 'the index flag for section IX.7' is drawn 40 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'A lawsuit cites sevensections of the constit' fits 2/2 lines at 89.5px"
+      ],
+      "asserts": [
+        "'seven flags, one per section the complaint cites' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven flags, one per section the complaint cites': 7 mark centres probed at r=14px, cohort median 17.2 dE, all present (weakest 10.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "per-pixel layer drawn up 1.50x: a 1440x1013 putImageData layer covers 56% of the 2160x2700 canvas #art at 2160x1520 device px (smoothed, detail 8.2), so every computed pixel prints as a blurred block. Compute it at the device pixel: size the ImageData to the destination's backing and draw it 1:1 under setTransform(1,0,0,1,0,0), and sample a DEM with a cubic (AKS.cubicSampler, AKBLOCK.sampler 'cubic') where it is shaded"
+      ],
+      "motifs": [
+        "'the tented summons on needle ice': canvas 43.5 dE, page 43.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the tag's forty boxes\" lands 0.0px from its target",
+        "leader \"the tag's forty boxes\" meets its label 8.0px away",
+        "leader \"the tag's forty boxes\" is drawn 167 px at 9 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The State's 40 daysstart only at service.' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "\"40 printed boxes, one per day of the State's answer window\" holds: 40 vs 40 marks, counted over 40 declared marks (within 0)",
+        "'40 printed boxes, one per day of the State's answer window': 40 mark centres probed at r=11px, cohort median 42.9 dE, all present (weakest 31.5 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the lath bundle on the sphagnum': shadow L* 1.5 vs ground L* 14.9, dL 13.5 at 432w"
+      ],
+      "motifs": [
+        "'the banded lath bundle': canvas 47.7 dE, page 55.5 dE, 99% of its rect is clear of opaque DOM (div#g1.t stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the blank tag marked SURVEY' lands 0.0px from its target",
+        "leader 'the blank tag marked PLAT' lands 0.0px from its target",
+        "leader 'the blank tag marked TITLE' lands 0.0px from its target",
+        "leader 'the blank tag marked CLOSING' lands 0.0px from its target",
+        "leader 'the blank tag marked SURVEY' meets its label 1.0px away",
+        "leader 'the blank tag marked PLAT' meets its label 1.0px away",
+        "leader 'the blank tag marked TITLE' meets its label 1.0px away",
+        "leader 'the blank tag marked CLOSING' meets its label 1.0px away",
+        "leader 'the blank tag marked SURVEY' is drawn 25 px at 76 degrees, inside the pointer band",
+        "leader 'the blank tag marked PLAT' is drawn 25 px at 76 degrees, inside the pointer band",
+        "leader 'the blank tag marked TITLE' is drawn 25 px at 76 degrees, inside the pointer band",
+        "leader 'the blank tag marked CLOSING' is drawn 25 px at 76 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'A decision isn't a deed.' fits 1/1 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "canvas mark near reserved text: line 2 of 2 at (80,1187) of 'ABOUT 30 SQUARE MILES \u00b7 MORE THAN 2,000 ' carries 80 px^2 of hard-edged canvas ink (densest 40px window 3.8%) while this block's other lines sit on clean paper (0.0%) -- the art is crossing type the layout reserved space for; move the mark, move the line, or mark the element data-overlap-ok if the overlap is intended"
+      ],
+      "motifs": [
+        "'the nearest birch trunk under the flash': canvas 64.4 dE, page 68.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head '19,950 acres.' fits 1/1 lines at 123.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the card stack on the sleet skiff': shadow L* 8.6 vs ground L* 17.2, dL 8.7 at 432w"
+      ],
+      "motifs": [
+        "'the 2,000-card stack': canvas 65.3 dE, page 66.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the top of the card stack' lands 0.0px from its target",
+        "leader 'a steel tab on the stack' lands 0.0px from its target",
+        "leader 'the top of the card stack' meets its label 8.0px away",
+        "leader 'a steel tab on the stack' meets its label 8.0px away",
+        "leader 'the top of the card stack' is drawn 94 px at 39 degrees, inside the pointer band",
+        "leader 'a steel tab on the stack' is drawn 62 px at 21 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'More than 2,000 peoplecan ask DNR to reconsi' fits 2/2 lines at 93.5px"
+      ],
+      "asserts": [
+        "'twenty steel tabs, one per hundred cards' holds: 20 vs 20 marks, counted over 20 declared marks (within 0)",
+        "'twenty steel tabs, one per hundred cards': 20 mark centres probed at r=14px, cohort median 41.3 dE, all present (weakest 25.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold ribbon at the December 7th row': canvas 75.6 dE, page 75.6 dE, 58% of its rect is clear of opaque DOM (span.tx stands on the rest)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the field book resting across the lath': shadow L* 5.9 vs ground L* 66.2, dL 60.2 at 432w"
+      ],
+      "motifs": [
+        "'the blank kraft tag on the lath's far end, still blank': canvas 51.7 dE, page 52.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the closed field book resting across the lath': canvas 34.6 dE, page 35.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "head 'December 7thends a term.It doesn't survey19,' fits 4/4 lines at 103.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 6,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKSTROBE.snow",
+        "slides": [
+          1,
+          6,
+          7,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

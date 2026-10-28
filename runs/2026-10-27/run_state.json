@@ -1,0 +1,99 @@
+{
+ "run_date": "2026-10-27",
+ "carousel_no": 97,
+ "effort": "high",
+ "branch": "tsturg/clever-mayer-kyigv3",
+ "date_note": "Anchorage date at wake (22:05 AKDT October 27th, 06:05Z October 28th). runs/2026-10-27 did not exist; run_guard --run-date 2026-10-27 CLEAR. No run shipped for October 26th.",
+ "woke_utc": "2026-10-28T06:05:41Z",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/run_state.json",
+    "out/2026-10-27/WORKLOG.md",
+    "out/2026-10-27/plan.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "2 searches (LinkedIn document reach October 2026; editorial cutaway technique); nothing new beyond CAROUSEL_CRAFT, FIELD_NOTES unchanged"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/scout_merge.md",
+    "out/2026-10-27/scouts/"
+   ],
+   "note": "6 scouts, 150 searches total (E used 26). Three beats converged on the AIDEA Houston transfer update."
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/claims.json"
+   ],
+   "note": "79 claims (S1 64, S2 8, S3 7), 32 primary, 15 killed; claims_check PASS"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "15 items refreshed (worklist budget raised to 14 to clear the deferred list, plus AIDEA Houston from claims). watch.json: 2 bills unchanged, 0 hearings (out of session), candidates triaged (no new AI items), failed []. ask payload headroom 4,500 bytes (under 5,000, noted). mobile_docket_map FAILED on Galaxy S9+ 320 wide (reset re-centred with clampT); fixed in site_build.py MAP_JS reset handler, both suites PASS."
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/cron_health.json",
+    "out/2026-10-27/gaswatch_health.json"
+   ],
+   "note": "CRON HEALTH PASS (7 scheduled workflows + Pages). GAS WATCH LIVE WARN at 06:11Z (CINGSA 20:36 reading not yet collected); repaired by workflow_dispatch of gaswatch.yml on main (run 40642505421), collected 7.62 Bcf 58.6 percent, page deployed; live audit PASS on re-run. SITE SIGN-OFF PASS 156 pages 18 checks. pagecheck PASS. Looked at home, docket, gas watch at 1366 and 390 px: no overflow, figures agree."
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/selection.md"
+   ],
+   "note": "UPDATE of No.88: Forrer/Eastman suit + Crowther's October 26th testimony, the clock angle"
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-27/storyboard.md",
+    "out/2026-10-27/selection.md",
+    "out/2026-10-27/treatments/"
+   ],
+   "note": "3 directors (data-journalist, field-documentarian, editorial-essayist); winner field-documentarian with essayist's weight rule and tape; dossier_check PASS 9/9"
+  },
+  "copy": {
+   "status": "done"
+  },
+  "art_build": {
+   "status": "done"
+  },
+  "pixel_review": {
+   "status": "done"
+  },
+  "flow_review": {
+   "status": "done"
+  },
+  "assemble": {
+   "status": "done"
+  },
+  "scoring": {
+   "status": "done"
+  },
+  "ship": {
+   "status": "done"
+  },
+  "upgrade": {
+   "status": "pending"
+  },
+  "gmail": {
+   "status": "pending"
+  },
+  "retro": {
+   "status": "pending"
+  }
+ }
+}

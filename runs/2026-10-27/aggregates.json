@@ -1,0 +1,82 @@
+{
+ "run_date": "2026-10-27",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "19,950 ACRES, TWO MILES NORTH OF HOUSTON",
+   "fragment": "19,950 ACRES",
+   "member": "C07"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "19,950 ACRES, TWO MILES NORTH OF HOUSTON",
+   "fragment": "TWO MILES",
+   "member": "C08"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "A lawsuit cites seven sections of the constitution.",
+   "fragment": "seven sections",
+   "member": "C06"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "The State's 40 days start only at service.",
+   "fragment": "40 days",
+   "member": "C15"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "40 DAYS FROM SERVICE",
+   "fragment": "40 DAYS",
+   "member": "C15"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "19,950 acres.",
+   "fragment": "19,950 acres",
+   "member": "C07"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "ABOUT 30 SQUARE MILES · MORE THAN 2,000 PUBLIC COMMENTS",
+   "fragment": "30 SQUARE MILES",
+   "member": "C25"
+  },
+  {
+   "kind": "design",
+   "slide": 7,
+   "text": "DRAWN AT 2,000 CARDS, ONE PER COMMENTER",
+   "fragment": "2,000 CARDS",
+   "note": "the drawing's scale, one card per commenter, set at the floor of C34's more than 2,000 commenters; the label says drawn at"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "State's answer, 40 days after service",
+   "fragment": "40 days",
+   "member": "C15"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "It doesn't survey 19,950 acres.",
+   "fragment": "19,950 acres",
+   "member": "C07"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "ABOUT 30 SQUARE MILES · MORE THAN 2,000 PUBLIC COMMENTS",
+   "fragment": "2,000 PUBLIC COMMENTS",
+   "member": "C33"
+  }
+ ]
+}

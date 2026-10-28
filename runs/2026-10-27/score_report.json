@@ -1,0 +1,178 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I read post_copy, first_comment, document_title, the aftercare list and all 68 slide strings in out/2026-10-27/copy.json and found no U+2014 or U+2013. The kicker separators are middle dots (U+00B7). The only hyphens are in Mat-Su, 1JU-26-01019, 40-day (aftercare) and the URLs. In the renders, every separator I transcribed is a dot."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in copy.json or in any of the nine renders. The four-point gold star on 09 is the SVG Polaris brand mark, not an emoji."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide carries claim_ids that match the storyboard CLAIMS INDEX: 01 C07/C08/C28-C30/C54; 02 C26-C32/C35; 03 C01-C04/C06/C17/C23; 04 C15/C22; 05 C53/C57; 06 C07/C25/C33; 07 C33/C34/C54/C55; 08 C01/C02/C15/C27/C29/C53-C57; 09 C07/C29/C31/C53. plan_drift PASS (27 claims, 0 drift). aggregate_report PASS (11 detected, 11 declared), and the 2,000-card scale is declared as 'drawn at'. Round 5 changed no copy."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed all nine current renders against copy.json. Examples: 01 'The decision could beat December 7th. The handoff likely won't.' / '19,950 ACRES, TWO MILES NORTH OF HOUSTON'; 03 flags 'I.7 VIII.2 VIII.9 VIII.10 VIII.17 IX.6 IX.7', stamp 'FILED / TRIAL COURTS / FIRST DISTRICT AT JUNEAU', '1JU-26-01019 CIVIL'; 04 '40 DAYS FROM SERVICE / SERVICE DATE NOT ON THE RECORD'; 05 '...Randy Ruaro told lawmakers no developer, tenant, power source or site plan exists, KTUU reported.'; 08 all seven dated and seven undated rows plus 'SPACING IS NOT TIME'; 09 'Save this for the day DNR's Final Finding lands.' Counters run 01 / 09 through 09 / 09. copy_sync PASS, 68 of 68."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "render: 0 overflow warnings. Every fitText fits (01 4/4 at 103.5px, 02 1/1, 03 2/2, 04 2/2, 05 1/1, 06 1/1, 07 2/2, 09 4/4). On 03, 'VIII.10' and 'VIII.17' are the tightest pair, about 18 design px apart, and they don't touch. On 02, 'DECEMBER 7TH · DAY 42' ends inside the right margin. qa still warns that the engraved ground band sits behind mono line 2 on 06 ('MORE THAN 2,000 PUBLIC COMMENTS'). In the render the band is thin hairlines and the line reads cleanly."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Every headline, body and kicker sits on the far-field night (L* under 10), and 08's ink sits on lit paper. The one qa contrast warn is '1JU-26-01019 CIVIL' on 03: worst point 2.3, box mean 4.3 (it was 4.6 before round 5 moved the pool centre). That string is a small art label printed on the illustrated complaint, not primary text, and it reads cleanly in navy on paper in the full render. I'm logging it under Legibility, not as a hard fail, the same call as round 1."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "assemble_report slides: 9."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa verdict WARN, 0 fails, 6 warns: three canvas fillText stamp strings on 03, the case-number contrast on 03, the 1.5x per-pixel upscale on 04, and the hatch near mono line 2 on 06. assemble_report pdf_mode 'vector', 18.25 MB, title_source copy.json. The render sha256s match the current frames, and the gate block reads 'assemble PASS ... sources verified'."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "No.88 (2026-10-16) covered the same ADL 234762 transfer, 11 days earlier. Two developments are new since then: the October 22nd complaint (C01) and Crowther's October 26th testimony (C27/C28). The cover kicker opens 'UPDATE'. The last topics.json entry is No.96 (2026-10-25, North Slope gas), so the deck after this one isn't on the topic."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last four artwork.json heroes are No.93 (zoning layer over terrain), No.94 THE REGISTERED LAYER, No.95 THE TRIPOD ON THE FLATS and No.96 THE SOUTH-UP SHEET, plus the composing stone cited in the storyboard. This deck is THE RECORD SET DOWN ON THE LAND: one flash-lit object per frame on the parcel floor, with no terrain, map or sky. It isn't identical to any of them. bespoke_check PASS, median pairwise similarity 0.093."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS (74 phrases, 72 fields, 0 fails). word_ban PASS, and by eye I found no 'gap', 'matters' or 'pattern' and no 'cannot'. Dates are month-first ordinals throughout. The year 2026 appears only in first-comment citations and URLs, where it is allowed."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "#MatSu #AIDEA #AlaskaLands (3). post_copy has no URL. Every link is in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "There is no TODO, lorem or placeholder text in copy.json, the renders or the reports. The greeked lines on 03 are the declared illustration convention. The summons on 04 is drawn blank by design (an unserved paper). It reads as under-modelled, which I charge to Artwork, but it isn't a placeholder. flow_review.json is stale (round 3, revise), but it is an internal critic file, not a shipped artifact."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Unchanged in round 5. It states a named tension in 10 words, split by weight: the dated half in 600 snow with a gold 'December 7th.', the undated half in 300 frost. It reads perfectly on the 432px thumb. Three things hold it at 8. The art focal point (lath and blank tag) is small, low right and secondary to a carpet of near-uniform leaf discs that read as confetti at thumb. Nothing on the frame is visibly Alaskan except the kicker. 'The decision' only resolves through the mono kicker."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Clear beats. 02 pays the cover at once ('Certainly possible.' plus the 42-tick gold tape). 05 to 06 and 07 to 08 pull hard. 08 is a real keepable. The bookend now partly lands: 09's blank tag is visible again at upper right on the thumb, and a small gold ribbon tail shows at the book's near corner, a quiet payoff of 08's tease. Still weak: 03 to 04 has no plant, and 04 is a 9-word frame whose object is still a blank card, so it stays the likely bail point. Seven of nine frames share one template (type on top, object below)."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "Round 5 fixed real defects. The full-width seam is gone from 03, 04 and 05: on 03 the litter now falls smoothly into the night under the body. 03's flags now print as lit paper with tooth and short casts. 05's strips carry a lit arris and lee edge, and the sphagnum falls off with the pool. 09's tag is visible again, and a gold ribbon tail exists. The strong frames are still strong: 01 (GPU PBR, thin lens, contact-probed lath), 02 (cupped gold tape, riveted hook, rimed moss), 08 (gutter valley, page stacks, satin ribbon with its cast) and 03. What holds the score under 8: 04's largest object is a blank, untextured grey gradient with no paper tooth and no crease highlight, over a dead dark band (about design y 330 to 520). Its needle ice shows diagonal moire in the far field and stair-stepped dark streaks from the 1.5x upscale. 06's litter is still bean-like ovals with no serration or midrib, each with a misregistered outline ring, and the ground hatch overprints the far trunk bases. 09's book is still a near-uniform slate slab: its page block reads as a grey board edge, not cream, and the ribbon tail is a flat pale-yellow sliver. 07's stack still reads as a white block with a seam at thumb (a refrigerator)."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "The art encodes the record and the counts are asserted: 43 ticks for days 0 to 42 (43/43), 40 unticked boxes (40/40), 7 flags for 7 cited sections (7/7), 4 blank tags for survey, plat, title and closing, 20 steel tabs on 2,000 cards (20/20), and the gold ribbon turning at the December 7th row. Dated versus undated is carried by type weight, string colour and tag state. A stranger would guess land, survey and court papers. The 04 summons still says 'paper' only by its tent shape, which is why this isn't a 9."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Named throughout: Houston, Mat-Su, Superior Court in Juneau, ADL 234762, Crowther, Forrer, Eastman, Dunleavy, Ruaro, Senate Resources, the Mat-Su Sentinel, ADN, KTUU, and the parcel-centroid coordinates on every frame. The freeze-up ground sequence is the parcel's own season. It stays neutral eight days before an election. It falls short of 10 because the birch litter and the woods could be anywhere in the boreal forest."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Each content frame adds a new verified specific: the quote and Crowther's steps (02); plaintiffs, defendants, AIDEA not a party, case number and section cites (03); the service rule and unserved status (04); four steps plus Ruaro's four absences (05); appeal standing plus the August 19th close (07); 14 ledger rows (08). Bodies run 26 to 34 words, except 04 at 9 words. 19,950 acres appears three times and December 7th on five frames."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08,
+   "notes": "The hero, the atmosphere (flash in freeze-up sleet), the palette, the type pairing (Bricolage Grotesque plus JetBrains Mono) and the hook (two finish lines) are all new and justified in the dossier against Nos.93 to 96. Against that, this is the fourth deck on the Houston transfer in about seven weeks (68, 85, 88, 97), the object still life under one light is a cousin of the composing stone, and type-on-top over object-below is the house default on seven frames."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Body 32px, mono 22 to 24px, counters on every frame, safe zones held, vector PDF 18.25 MB with its title, and every frame reads on its 432px thumb. Squeakers: the 03 case number's worst-point contrast is 2.3 (box mean 4.3), 06's mono line 2 sits over the engraved ground hatch, and 08's undated rows are the faintest text in the deck, though they pass."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "The hook lands at 125 characters and the caption runs 895, just under the 900 ceiling, at 0.81 commas per 100 words. The Dated/Not dated structure is analytical and takes a position on the clock only. The deck-summary line is present. The closing question is real but wordy. The soft spot: the caption carries Crowther's paraphrase without the 'ADN reported' the slides use."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8.5,
+   "weight": 0.1,
+   "notes": "copy.json carries the post copy, exactly 3 hashtags, a dated primary-first source block with sourcing caveats, the document title (which assemble used), five aftercare items and editor notes. assemble produced the vector PDF, 9 thumbs and the contact sheet, and the source sha256s are verified against the current renders. The round 5 reconciliation is now honest that 09's ribbon is small. Two gaps: flow_review.json is still the round 3 review, and the Gmail draft and raw URLs can't be verified until after the merge."
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8.5x0.14)+(8.5x0.12)+(8x0.10)+(7.5x0.08)+(8x0.07)+(8x0.05)+(8.5x0.10) = 1.12+1.05+1.20+1.19+1.02+0.80+0.60+0.56+0.40+0.85 = 8.79",
+ "weighted_total": 8.79,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Give 04's summons real paper: a fibre-tooth albedo, a lit crease fillet along the ridge and greeked caption lines on the lit face, and fade the needle ice to black beyond about 1.2 m so its moire band goes and the object can be raymarched 1:1 at device resolution with no 1.5x upscale.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "The largest object is a blank, untextured grey A-frame: a smooth airbrushed gradient with no paper tooth, no crease highlight at the ridge and no printed lines, so it reads as a tent card or a plastic sign, not a summons. A dead dark band sits between the body and the ridge (about design y 330 to 520). The far needle-ice field resolves into diagonal stripe moire, and the near columns carry stair-stepped dark streaks from the 1.5x upscale qa flags.",
+   "fix": "Shade the two planes with a paper height field (fbm tooth at about 0.3 mm), a 1 device-px lit fillet along the ridge and three greeked caption lines plus a court-seal ring on the lit face. Fade the needle ice to black beyond about 1.2 m and raymarch only the art rect at full 2160 width, drawn 1:1."
+  },
+  {
+   "slide": 6,
+   "problem": "The litter is still a pile of smooth pointed ovals, bean- or seed-like, with no serration or midrib. Each has a thin outline offset from its fill, so it prints like a misregistered double image, and it doesn't match the serrated birch leaves on 01, 03 and 09. The engraved ground hatch also draws over the bases of the far trunks instead of passing behind them.",
+   "fix": "Swap the ellipse path for a serrated ovate birch-leaf path with a midrib stroke, in the same white-line hatch voice, with the outline drawn on the fill's own path (no offset). Clip the ground-band hatch with each trunk's silhouette so the trunks stand in front of the ground."
+  },
+  {
+   "slide": 9,
+   "problem": "The closed field book, the largest object, is still a near-uniform slate slab with one elastic band. Its page block reads as a grey board edge, not cream paper, and the gold ribbon tail is a flat pale-yellow sliver with no satin sheen, so the payoff of 08's ribbon is easy to miss.",
+   "fix": "Give the fore edge and tail a 3 to 4 mm cream (#ECEDE7) page-block band with fine leaf striations. Render the ribbon tail at 08's saturated #FFC72C with a satin specular, about 2x longer, lying across the snow toward the camera with its own cast."
+  },
+  {
+   "slide": 7,
+   "problem": "At thumb the 2,000-card stack reads as a refrigerator: a near-uniform white front face, a cotton band that splits it like a door seam, and steel tabs that read as hinges.",
+   "fix": "Offset each 100-card sheaf 1 to 3 device px laterally with a hairline shadow at each sheaf boundary beside its tab, and wrap the band over the top face so it reads as a band, not a seam."
+  },
+  {
+   "slide": 5,
+   "problem": "Better since round 5 (arris, pool falloff), but it is still the flattest register in the deck. The strips are single-tone grain fills with ruled seams and no end grain at the cut ends, and the tags are flat kraft cards with no fibre tooth.",
+   "fix": "Add end-grain rings and a darker cut face at each strip's exposed end, and give the four tags fibre tooth plus a 1 px lit top edge and lee bottom edge to match the PBR tag on 01 and 09."
+  }
+ ],
+ "editor_notes_for_email": "This is an update of No.88 (October 16th) and the fourth deck on the Houston land transfer, after Nos.68, 85 and 88. The news since No.88 is the October 22nd lawsuit and Crowther's October 26th testimony. Everything Crowther said on October 26th comes from ADN's account, because no legislative video or minutes could be reached, and only 'certainly possible' and 'the governor's priority' are his own words. The slides say 'per ADN' and the caption doesn't, so credit ADN if a reply quotes him. The October 8th 'AIDEA names no tenant' row on slide 08 is KTUU's paraphrase of Ruaro, not a direct quote. The case number on slide 03 was hand-filled on a scanned filing posted on plaintiff David Eastman's own website, so it is printed small, and its faintest point measures below 4.5 to 1 even though it reads at full size. The deck takes no side on the transfer, the suit or the candidates, eight days before the election. The run used all five revision rounds, and the fifth was the craft cycle. That cycle removed the horizontal seam on slides 03 to 05, made the flags on 03 read as paper and put an edge highlight on the strips on 05. On 09 it made the blank tag visible again and added a small gold ribbon. Artwork still scores 7.5, under the 8.5 craft floor, and because the cap is reached it ships as a known shortfall. The weakest frame is slide 04, whose summons is a blank grey folded card with no paper texture. The others are the bean-shaped leaves on 06 and the plain slate book on 09, whose ribbon is easy to miss at feed size. The deck scores 8.79 against this round's threshold of 7.7.",
+ "craft_cycle": {
+  "frames": [
+   4,
+   3,
+   9,
+   6,
+   5
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ },
+ "revision_rounds": 5,
+ "scoring_cycles": 2
+}

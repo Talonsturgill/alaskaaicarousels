@@ -3895,6 +3895,58 @@
       ],
       "claims": 66,
       "note": "Burgum's Slope remarks avoided (No.87). Framed as UPDATE of No.78."
+    },
+    {
+      "run_date": "2026-10-27",
+      "carousel_no": 97,
+      "topic": "UPDATE of No.88 (October 16th) on the AIDEA Houston land transfer, ADL 234762, about 19,950 acres two miles north of Houston. Two new developments: Eric Forrer and David Eastman filed suit in Superior Court at Juneau on October 22nd (1JU-26-01019 CI) against the State, DNR and Governor Dunleavy, citing seven sections of the Alaska Constitution (AIDEA not a named party; the summons gives the State 40 days from service; DNR hadn't been served as of October 23rd per the Mat-Su Sentinel), and DNR Commissioner John Crowther told Senate Resources under subpoena on October 26th that approval before December 7th is \"certainly possible\" while surveying, the appeal period and the lawsuit would likely carry the handoff into the next term (ADN). More than 2,000 comments closed August 19th and are still under review; only timely commenters can appeal a Final Finding and Decision; survey, plat, title and closing must follow any approval.",
+      "angle": "The decision and the handoff are two different finish lines: the decision could beat the December 7th inauguration, the steps that move the land have no date on the record. A ledger of dated and undated steps.",
+      "entities": [
+        "AIDEA",
+        "Alaska DNR",
+        "John Crowther",
+        "Eric Forrer",
+        "David Eastman",
+        "Mike Dunleavy",
+        "Randy Ruaro",
+        "Senate Resources Committee",
+        "Houston",
+        "Mat-Su Borough",
+        "ADL 234762",
+        "Superior Court Juneau",
+        "Anchorage Daily News",
+        "Mat-Su Sentinel",
+        "KTUU"
+      ],
+      "keywords": [
+        "Houston industrial park",
+        "land transfer",
+        "lawsuit",
+        "constitution",
+        "summons",
+        "40 days",
+        "Final Finding and Decision",
+        "appeal",
+        "survey plat title closing",
+        "December 7th",
+        "inauguration",
+        "subpoena",
+        "19,950 acres",
+        "data center site"
+      ],
+      "headline": "The decision could beat December 7th. The handoff likely won't.",
+      "sources_lead": [
+        "https://davideastman.org/wp-content/uploads/2026/10/COMPLAINT-Eastman-Forrer-v.-State-of-Alaska-et-al-DNR-Land-Transfer-to-AIDEA-October-22-2026.pdf",
+        "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
+        "https://www.adn.com/alaska-news/mat-su/2026/10/26/decision-on-land-transfer-for-mat-su-industrial-park-could-come-before-new-governor-is-sworn-in/"
+      ],
+      "beats": [
+        "land-and-permitting",
+        "state-policy",
+        "data-centers"
+      ],
+      "claims": 79,
+      "note": "Fourth deck on the Houston transfer (Nos.68, 85, 88, 97); the next one needs a new decision on the record (the Final Finding, service of the suit, or a ruling)."
     }
   ]
 }

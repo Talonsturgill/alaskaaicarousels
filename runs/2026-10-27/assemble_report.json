@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-27/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 18246818,
+  "pdf_mb": 18.25,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-27/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-27/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "What's Dated in the Houston Land Transfer and What Isn't",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "9abb4e1ae330923b4d7f0c5cbc8c662c584a815d0108b55e4dcdfea77554b4e4",
+        "bytes": 4303439
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "f8b5c83e663a8563c55f0650b1e4ef371a2e5b67ff7916b98cb4e931b85cb87c",
+        "bytes": 5986583
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "9e29ed089ca2ed14a3b96695a3ae3dc8831438331e103d47bb04cda316d87526",
+        "bytes": 6084603
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "fcde3651c264c9a81c051444cb431f805eb9f17c2c14052bb79e01b4abb22002",
+        "bytes": 4050186
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "c621a8ab7d8a2495fb9b895e7ba8d327d386de2cd847291d70060ee9bde41810",
+        "bytes": 5465669
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "b3734e4eeecf05703f9ceca22fcd9d5b101b70f07a20becf319f6934081fac7d",
+        "bytes": 4157521
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "fda59ef84fd23ffa6173c995b838e1fe26208e91544d11f31900906a0e2500aa",
+        "bytes": 4736236
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "97ec29528b64d34e2aff16be813c331521b236030f7cd270f995b992c98a095c",
+        "bytes": 8040602
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "4378b8610daa31b166ed2b8a9090c9a0a613b0c4823956c9b967bc4aed2c7185",
+        "bytes": 5216074
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "7f01b32a0ac74118aea41a19ca375b2a45aef841094689e369fcc488ee83c4fe",
+        "bytes": 5968
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "29c460faad116c2055f65b8f5ac5bf2c93ba00f7c7ab158af4fc21d88f6048f4",
+        "bytes": 15646
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d43df26991fec5a4cf411830e497ae6152f14464bebee65abc2e2207c247e40b",
+        "bytes": 15834
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "aba5f0a06a4b09159340c3216c54ce50b629264fdba1c7f9d234e63783ef012c",
+        "bytes": 13116
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "4deb91073828af9a31e074ef7e03e979fd8a85973b38d147f030f2f051dc5ba4",
+        "bytes": 15526
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "679a5ea5d2160ba9f8378ea78bd0a366547482bb65fc1b48e7e20e80f35f166f",
+        "bytes": 10475
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "8c1ab0269bf9fc86f148a2164d4346e6f704706d329a6ab4e81489bed65bafa3",
+        "bytes": 14385
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "26d62db7e3c5f6562831d97ed91dda3ddb08ce6fc91ce1907099b0c5e43a546c",
+        "bytes": 12506
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a4fd6a7f1e04ae28857cea2dc4a3e450b3a6fd86a88568ff1e9ef494f2ae5ec7",
+        "bytes": 7289
+      }
+    ]
+  }
+}

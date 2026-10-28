@@ -3495,6 +3495,47 @@
         "pancake ice population"
       ],
       "note": "Pixel critics drove three rounds on texture artifacts: a 1x field drawn to 2x, bilinear-gradient lattices and boxed halos. All three were fixed at their root in assets/js/akslope.js."
+    },
+    {
+      "run_date": "2026-10-27",
+      "carousel_no": 97,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE RECORD SET DOWN ON THE LAND, a forensic night field shoot, one object per frame lying on the parcel's forest floor under one off-camera flash: the undriven survey lath and blank tag (01, 09), a gold steel tape on rimed moss (02), the complaint with seven flags (03), the tented summons on needle ice (04), a banded lath bundle with four blank tags (05), the birch stand (06), 2,000 index cards (07), the open field book (08)",
+      "atmosphere": "NEW: FLASH AFTER DARK IN FREEZE-UP SLEET, one off-camera flash, inverse-square falloff to black, near sleet discs",
+      "depth_technique": "akthree PBR with a thin-lens focal region and 4096 shadow maps (01, 02, 09); AKBENCH plan relief with casts (03, 05); AKSDF raymarch with soft shadow and AO (04); AKENGRAVE lathe engraving with inverse-square ink (06); Canvas 2D 2,000-line card population in cabinet projection (07); device-pixel paper relief with cylindrical gutter shading (08)",
+      "line_voice": "instrument: mono labels with hairline leaders, a 43-tick tape, a 40-day grid",
+      "continuity_device": "motif:the kraft tag by state (blank, dated, half-printed)",
+      "continuity_devices": [
+        "tag state, blank versus dated",
+        "freeze-up ground season arc",
+        "locked-camera bookend 01 and 09",
+        "type weight is datedness"
+      ],
+      "hook_archetype": "NEW: THE TWO FINISH LINES",
+      "palette_family": "NEW: FLASH ON FREEZE-UP (amber birch litter, maroon and sage sphagnum, rime, kraft, flash-lit paper, record gold)",
+      "type_pairing": "Bricolage Grotesque + JetBrains Mono",
+      "narrative_structure": "two finish lines, the testimony, the complaint, the summons, decision is not a deed, breather, the commenters, the ledger, the close",
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 3,
+        "type_temperature": 1
+      },
+      "techniques": [
+        "akthree PBR flash still life",
+        "AKSTROBE thin lens and sleet",
+        "AKBENCH multi-material plan relief",
+        "AKSDF raymarched needle ice and tri-fold paper",
+        "AKENGRAVE lathe ring engraving with a 36-stop ramp",
+        "2,000-card line population in cabinet projection",
+        "device-pixel paper relief with a mirrored gutter term",
+        "instanced birch litter",
+        "displaced snow skiff with sparkle roughness"
+      ],
+      "new_techniques_logged": [
+        "aklath.js locked-camera flash scene module",
+        "needle-ice SDF with a rotated jittered cell grid"
+      ],
+      "note": "Five rounds, the cap. Critics drove fixes on modelling the largest object (lath sheen and lee, a cast for the bundle, a paper A-frame, a book that reads as 08's book closed), one regression I introduced (a flash-pool multiply started at y 560 that printed a full-width seam), and AKENGRAVE's eight-stop ink quantisation, now indexed by ramp length. Art 7.0 to 7.5 in the craft cycle; 04's summons remains the weakest frame."
     }
   ]
 }
