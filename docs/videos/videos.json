@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-10-28-held-out-sonar",
+      "date": "2026-10-28",
+      "title": "Can AI count a river it has never seen",
+      "caption": "A Caltech and MIT preprint tests AI that counts salmon in sonar video on rivers held out of training. Most Alaska sites held up, the Kenai channel and California's Mad River did not, and the preprint reports no agency use.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-28-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-28-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-28-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-28-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-10-26-not-yes-or-no",
       "date": "2026-10-26",
       "title": "Not Yes or No",
