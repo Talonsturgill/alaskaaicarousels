@@ -127,8 +127,12 @@ export function init(THREE, AKT) {
       const w = f(x / 260, y / 30, 3);
       const kx = x - 1320, ky = y - 40, kd = Math.hypot(kx * 0.6, ky);
       const swirl = kd < 60 ? Math.sin(kd * 0.5) * (1 - kd / 60) * 3 : 0;
-      const grain = 0.5 + 0.5 * Math.sin((y + w * 26 + swirl * 6) * 0.95);
-      let col = mix(lit, dark, Math.pow(grain, 5) * 0.65 + (f(x / 40, y / 8, 2) - 0.5) * 0.25);
+      // growth rings run the length; the warp stays small so they never close into a fingerprint
+      // ring pitch wanders and each ring has its own strength, so the board never reads as ruled
+      const rc = y + w * 5 + swirl * 6 + f(x / 900, y / 18, 2) * 22;
+      const grain = 0.5 + 0.5 * Math.sin(rc * 0.62), amp = 0.3 + 0.7 * f(x / 320, rc / 9, 2);
+      const streak = f(x / 520, y / 2.5, 2) - 0.5, resin = Math.max(0, f(x / 1400, y / 5, 1) - 0.72) * 2.2;
+      let col = mix(lit, dark, Math.pow(grain, 3) * 0.26 * amp + streak * 0.24 + resin * 0.5 + (f(x / 60, y / 6, 2) - 0.5) * 0.10);
       if (kd < 9) col = mix(col, hex(0x5b3c1e), 1 - kd / 9);
       const k = (y * W + x) * 4;
       d[k] = col[0] * 255; d[k + 1] = col[1] * 255; d[k + 2] = col[2] * 255; d[k + 3] = 255;
@@ -168,11 +172,13 @@ export function init(THREE, AKT) {
     flash.position.set(...L.FLASH.pos);
     flash.target.position.set(...L.FLASH.aim);
     flash.castShadow = true;
-    flash.shadow.mapSize.set(2048, 2048);
+    flash.shadow.mapSize.set(4096, 4096);
     flash.shadow.camera.near = 0.3; flash.shadow.camera.far = 6;
-    flash.shadow.bias = -0.00025; flash.shadow.radius = 3.5;
+    flash.shadow.bias = -0.00025; flash.shadow.radius = 5;
     R.scene.add(flash); R.scene.add(flash.target);
-    R.scene.add(new THREE.HemisphereLight(0x1a2433, 0x07090c, 0.10));
+    R.scene.add(snow ? new THREE.HemisphereLight(0x8a9cb2, 0x2a3240, 0.34) : new THREE.HemisphereLight(0x1a2433, 0x07090c, 0.10));   // snow throws cool fill into its own casts
+    // a faint bounce from the camera's right so a lee face sits two steps down, not in black
+    const bounce = new THREE.DirectionalLight(0x9fb0c4, 0.34); bounce.position.set(1.4, 0.7, 1.6); R.scene.add(bounce);
     R.scene.fog = new THREE.FogExp2(0x030508, 0.34);
 
     /* the ground */
@@ -184,7 +190,7 @@ export function init(THREE, AKT) {
 
     /* the litter: three curl variants of one birch leaf, instanced */
     const ltex = leafTexture(seed + 11);
-    const leafMat = new THREE.MeshStandardMaterial({ map: ltex, alphaTest: 0.5, side: THREE.DoubleSide,
+    const leafMat = new THREE.MeshStandardMaterial({ map: ltex, alphaTest: 0.5, alphaToCoverage: true, side: THREE.DoubleSide,   // MSAA feathers the serrations
       roughness: snow ? 0.7 : 0.48, metalness: 0 });
     const amber = hex(0xc98a3e), mid = hex(0x8e5a2b), lee = hex(0x5a3a20), gold2 = hex(0xb07a30), snowc = hex(0xe8edf0);
     const curls = [0.10, 0.22, 0.34];
@@ -192,7 +198,8 @@ export function init(THREE, AKT) {
     const inLath = (x, z) => {                          // keep leaves from poking up through the lath
       const ax = -0.52, az = 0.56, bx = 0.36, bz = -0.22;
       const vx = bx - ax, vz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * vx + (z - az) * vz) / (vx * vx + vz * vz)));
-      return Math.hypot(x - (ax + vx * t), z - (az + vz * t)) < 0.026;
+      return Math.hypot(x - (ax + vx * t), z - (az + vz * t)) < 0.026
+        || Math.hypot(x - 0.40, z + 0.25) < 0.085;        // and off the tag, so the bookend's blank tag always reads
     };
     curls.forEach((cu, ci) => {
       const geo = new THREE.PlaneGeometry(1, 1, 8, 8);
@@ -213,12 +220,12 @@ export function init(THREE, AKT) {
         const x = 0.12 + Math.cos(th) * rr * 1.2, z = -0.18 + Math.sin(th) * rr;
         if (inLath(x, z)) continue;
         const s = 0.03 + r() * 0.024;
-        e.set((r() - 0.5) * 0.35, r() * Math.PI * 2, (r() - 0.5) * 0.35);
+        e.set((r() - 0.5) * 0.24, r() * Math.PI * 2, (r() - 0.5) * 0.24);
         q.setFromEuler(e); sc.set(s, s * (0.8 + r() * 0.5), s);
-        ps.set(x, 0.0015 + r() * 0.006 + n / PER * 0.004, z);
+        ps.set(x, 0.0015 + s * 0.07 + r() * 0.006 + n / PER * 0.004, z);   // a tilted leaf's low edge stays above the ground
         m4.compose(ps, q, sc); mesh.setMatrixAt(n, m4);
         const u = r(); let c = u < 0.18 ? mix(lee, hex(0x2c1c10), r()) : u < 0.42 ? mix(mid, lee, r() * 0.7) : mix(mix(amber, mid, r() * 0.8), gold2, r() * 0.5);
-        if (snow && r() < 0.12) c = mix(c, snowc, 0.35 + r() * 0.25);
+        if (snow && r() < 0.4) c = mix(c, snowc, 0.3 + r() * 0.3);   // first snow dusts the litter
         col.setRGB(c[0], c[1], c[2], THREE.SRGBColorSpace); mesh.setColorAt(n, col);
         n++;
       }
@@ -244,7 +251,7 @@ export function init(THREE, AKT) {
     const dir = B.clone().sub(A), len = dir.length(); dir.normalize();
     const yaw = Math.atan2(-dir.z, dir.x);
     const pine = pineTexture(seed + 21);
-    const wood = new THREE.MeshStandardMaterial({ map: pine, roughness: 0.5, metalness: 0 });
+    const wood = new THREE.MeshPhysicalMaterial({ map: pine, roughness: 0.38, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.3 });
     const endGrain = new THREE.MeshStandardMaterial({ color: 0xb08a5c, roughness: 0.8 });
     const body = new THREE.Mesh(new THREE.BoxGeometry(len - 0.07, 0.009, 0.038),
       [endGrain, endGrain, wood, wood, wood, wood]);
@@ -338,25 +345,31 @@ export function init(THREE, AKT) {
         const px = ax + vx * tt, pz = az + vz * tt, dd = Math.hypot(x - px, z - pz);
         const sideSign = Math.sign((x - px) * (-vz) + (z - pz) * vx);
         const lee = sideSign > 0 && dd > 0.019 && dd < 0.07 ? (1 - (dd - 0.019) / 0.051) * 0.008 : 0;
-        const h = Math.max(0, (n - 0.40) * 0.034) + fine * 0.0012 + lee;
-        sp.setY(i, h > 0.0016 ? h : -0.002);
+        const mid = sn(x * 28 + 7, z * 28 + 3, 2);
+        const h = Math.max(0, (n - 0.40) * 0.034) + mid * 0.0045 + fine * 0.0015 + lee;
+        sp.setY(i, h - 0.0014);                       // continuous, so the skiff's edge is a smooth line where it meets the litter
         sp.setX(i, x); sp.setZ(i, z);
       }
       sg.computeVertexNormals();
-      const skiff = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0xe9eef1, roughness: 0.72, metalness: 0 }));
+      // crystal sparkle: a speckled roughness map so a few grains catch the flash
+      const rc = document.createElement('canvas'); rc.width = rc.height = 1024;
+      const rg = rc.getContext('2d'); rg.fillStyle = '#c4c4c4'; rg.fillRect(0, 0, 1024, 1024);
+      const rr = rng(seed + 43); for (let i = 0; i < 26000; i++) { rg.fillStyle = rr() < 0.08 ? '#1a1a1a' : '#a0a0a0'; rg.fillRect(rr() * 1024, rr() * 1024, 1.2, 1.2); }
+      const rtex = new THREE.CanvasTexture(rc); rtex.wrapS = rtex.wrapT = THREE.RepeatWrapping; rtex.repeat.set(10, 10);
+      const skiff = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: 0xdce6ee, roughness: 1.0, roughnessMap: rtex, bumpMap: rtex, bumpScale: 2.5, metalness: 0 }));
       AKT.add(R, skiff);
     }
 
     /* the closed field book, resting across the lath on 09 */
     if (o.book) {
       const book = new THREE.Group();
-      const bw = 0.12, bh = 0.188, bd = 0.012, rad = 0.007;
+      const bw = 0.095, bh = 0.15, bd = 0.011, rad = 0.004;   // 08's book, closed: a pocket field book
       // linen boards: a slate weave with paler scuffs toward the edges
       const cc = document.createElement('canvas'); cc.width = 512; cc.height = 800;
       const cg = cc.getContext('2d'), ci = cg.createImageData(512, 800), cd = ci.data, cf = vnoise(seed + 51);
-      const slate = hex(0x3a4652), slateLo = hex(0x232b33), scuff = hex(0x6a7682);
+      const slate = hex(0x4a5764), slateLo = hex(0x26303a), scuff = hex(0x6f7c88);   // 08's slate cover
       for (let y = 0; y < 800; y++) for (let x = 0; x < 512; x++) {
-        const weave = 0.62 + 0.10 * Math.sin(x * 1.9) * Math.sin(y * 1.9) + 0.18 * Math.sin((x + y) * 0.21);
+        const weave = 0.62 + 0.20 * (cf(x / 1.6, y / 1.6, 1) - 0.5) + 0.06 * (cf(x / 4, y / 4, 1) - 0.5);   // pebbled, like 08's board
         const edge = Math.min(x, 511 - x, y, 799 - y) / 40;
         let col = mix(slateLo, slate, Math.min(1, weave * 0.7 + cf(x / 30, y / 30, 3) * 0.5));
         col = mix(col, scuff, Math.max(0, (1 - Math.min(1, edge)) * 0.35 * cf(x / 6, y / 6, 2)));
@@ -364,9 +377,9 @@ export function init(THREE, AKT) {
       }
       cg.putImageData(ci, 0, 0);
       const ctex = new THREE.CanvasTexture(cc); ctex.colorSpace = THREE.SRGBColorSpace; ctex.anisotropy = 8;
-      const cloth = new THREE.MeshStandardMaterial({ map: ctex, roughness: 0.78 });
+      const cloth = new THREE.MeshPhysicalMaterial({ map: ctex, roughness: 0.55, sheen: 0.5, sheenColor: new THREE.Color(0x8a96a2), sheenRoughness: 0.6 });
       const pc = document.createElement('canvas'); pc.width = 64; pc.height = 256;
-      const pg = pc.getContext('2d'); pg.fillStyle = '#e4e6e1'; pg.fillRect(0, 0, 64, 256);
+      const pg = pc.getContext('2d'); pg.fillStyle = '#ecede7'; pg.fillRect(0, 0, 64, 256);
       for (let i = 0; i < 256; i += 2) { pg.fillStyle = 'rgba(120,124,122,' + (0.10 + (i % 6 === 0 ? 0.12 : 0)).toFixed(2) + ')'; pg.fillRect(0, i, 64, 1); }
       const ptex = new THREE.CanvasTexture(pc); ptex.colorSpace = THREE.SRGBColorSpace;
       const block = new THREE.MeshStandardMaterial({ map: ptex, roughness: 0.92 });
@@ -381,14 +394,24 @@ export function init(THREE, AKT) {
         const uvb = g.attributes.uv; for (let i = 0; i < uvb.count; i++) uvb.setXY(i, uvb.getX(i) / bw + 0.5, uvb.getY(i) / bh + 0.5);
         const m = new THREE.Mesh(g, cloth); m.position.y = y; return m; };
       book.add(board(-bd / 2), board(bd / 2 - 0.0022));
-      const pages = new THREE.Mesh(new THREE.BoxGeometry(bw - 0.006, bd - 0.0044, bh - 0.006), block);
-      pages.position.x = 0.002; book.add(pages);
+      const pages = new THREE.Mesh(new THREE.BoxGeometry(bw - 0.002, bd - 0.0044, bh - 0.004), block);
+      pages.position.x = 0.0012; book.add(pages);                      // the cream block shows at the fore edge
+      // 08's gold ribbon: out of the tail edge, down onto the snow
+      { const rp = new THREE.CatmullRomCurve3([new THREE.Vector3(0.012, 0.0, bh / 2 - 0.006), new THREE.Vector3(0.013, -0.003, bh / 2 + 0.006),
+          new THREE.Vector3(0.016, -0.016, bh / 2 + 0.02), new THREE.Vector3(0.022, -0.021, bh / 2 + 0.045), new THREE.Vector3(0.032, -0.0205, bh / 2 + 0.072)]);
+        const RW = 0.0095, RS = 60, rpos = [], ridx = [];
+        for (let i = 0; i <= RS; i++) { const t = i / RS, q = rp.getPointAt(t), tg = rp.getTangentAt(t);
+          const sx = new THREE.Vector3(1, 0, 0).addScaledVector(tg, -tg.x).normalize().multiplyScalar(RW / 2);   // the ribbon's width lies across the book
+          rpos.push(q.x - sx.x, q.y - sx.y, q.z - sx.z, q.x + sx.x, q.y + sx.y, q.z + sx.z); }
+        for (let i = 0; i < RS; i++) { const a = i * 2; ridx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); }
+        const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.Float32BufferAttribute(rpos, 3)); rg.setIndex(ridx); rg.computeVertexNormals();
+        book.add(new THREE.Mesh(rg, new THREE.MeshPhysicalMaterial({ color: 0xffc72c, roughness: 0.38, sheen: 0.6, sheenColor: new THREE.Color(0xfff0c0), side: THREE.DoubleSide }))); }
       const spine = new THREE.Mesh(new THREE.CylinderGeometry(bd / 2, bd / 2, bh - 0.002, 16, 1, false, 0, Math.PI), cloth);
       void spine;
       const elastic = new THREE.Mesh(new THREE.BoxGeometry(0.0045, bd + 0.0018, bh + 0.001),
         new THREE.MeshStandardMaterial({ color: 0x15191e, roughness: 0.42 }));
       elastic.position.x = bw * 0.36; book.add(elastic);
-      const at = A.clone().lerp(B, 0.80).add(side.clone().multiplyScalar(-0.03));
+      const at = A.clone().lerp(B, 0.78).add(side.clone().multiplyScalar(-0.07));   // beside the lath, clear of the tag at the far end
       book.position.set(at.x, lathY + 0.009 + bd / 2 - 0.0015, at.z);
       book.rotation.y = yaw + 1.18; book.rotation.z = 0.035;
       AKT.add(R, book);
