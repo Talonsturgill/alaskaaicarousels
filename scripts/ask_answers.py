@@ -399,6 +399,9 @@ SYNONYMS = {
     "participate": ["comment", "public"],
     "involved": ["comment", "public"],
     "protest": ["comment"],
+    # a reader who wants to complain is asking where to be heard; left as a bare word it prefix-matched
+    # "complaint", the record's word for a lawsuit, and narrowed a data centre question to one docket item
+    "complain": ["comment"],
     "oppose": ["comment"],
     "support": ["comment"],
     "due": ["deadline", "closes"],

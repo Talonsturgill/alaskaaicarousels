@@ -777,7 +777,8 @@
         var yy = y + ell * r * Math.cos(th);
         w *= maskAt(axis + x, yy);
         up.push([axis + x, yy - w / 2]); dn.push([axis + x, yy + w / 2]);
-        cols.push(inks[clamp(Math.round(lam * 7), 0, 7)]);
+        /* index the ramp by its own length: a longer ramp rolls the terminator instead of stepping it */
+        cols.push(inks[clamp(Math.round(lam * (inks.length - 1)), 0, inks.length - 1)]);
       }
       for (var q = 0; q < n; q++) {
         cx.fillStyle = cols[q];

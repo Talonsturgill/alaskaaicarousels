@@ -5177,8 +5177,11 @@ if (mapsvg && mapsvg.querySelector('#mzoom')) {
   if (zin) zin.addEventListener('click', function(){ step(1.6); });
   if (zout) zout.addEventListener('click', function(){ step(1 / 1.6); });
   if (reset) {
+    /* Home is already a placement fit() solved, centred on the ink every badge
+       throws. clampT() would re-centre it on the bare drawing whenever that is
+       narrower than the frame, which pushed a wide badge off a 320px phone. */
     reset.addEventListener('click', function(){
-      k = home.k; tx = home.tx; ty = home.ty; clampT(); apply();
+      k = home.k; tx = home.tx; ty = home.ty; apply();
     });
   }
   var rt = null;

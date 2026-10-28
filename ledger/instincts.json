@@ -2282,6 +2282,38 @@
       "confidence": 0.7,
       "run_date": "2026-10-25",
       "carousel_no": 96
+    },
+    {
+      "instinct": "A LIGHTING LAYER COVERS THE WHOLE CANVAS.",
+      "evidence": "No.97's round 4 flash-pool multiply started at y 560 on three frames and printed a full-width seam that the scorer named the deck's most visible artifact; filling the whole canvas removed it.",
+      "act_on_it": "Any multiply, screen or veil meant as light or falloff fills the whole canvas, or its gradient reaches zero before its own edge. Never start a lighting rect mid-frame.",
+      "confidence": 0.7,
+      "run_date": "2026-10-27",
+      "carousel_no": 97
+    },
+    {
+      "instinct": "IN A RELIEF, AN OBJECT CASTS ONLY ABOVE THE GROUND'S OWN RELIEF.",
+      "evidence": "No.97's 05 lath strips sat below the moss heads' height and cast nothing for two critic rounds.",
+      "act_on_it": "Set an object's height buffer clearly above the ground's maximum, measure the cast with contact_probe, and bake a blurred offset footprint into the ground albedo when the key is high.",
+      "confidence": 0.6,
+      "run_date": "2026-10-27",
+      "carousel_no": 97
+    },
+    {
+      "instinct": "CHECK WHICH SIDE FACES THE LENS BEFORE ADDING A DETAIL.",
+      "evidence": "No.97's 09 book got a page block and a gold ribbon on its far side; neither rendered, and the run record claimed both.",
+      "act_on_it": "For a rotated group, transform the local axes once (or project a test point) to find the lens-facing side before placing small details; verify in the render before writing them into the reconciliation.",
+      "confidence": 0.6,
+      "run_date": "2026-10-27",
+      "carousel_no": 97
+    },
+    {
+      "instinct": "A NOTICE WITH AN EXTENSION IS CITED BY ITS OPERATIVE NOTICE.",
+      "evidence": "No.97 printed DNR's original August 19th comment close on two slides; DNR's extension notice (id 224879) had moved it to September 14th, and the docket item already said so. Codex caught it on the PR.",
+      "act_on_it": "Before a claim takes a deadline from a public notice, check the docket item and the notice list for an amendment or extension notice on the same ADL or case, and cite the operative one with its own verbatim.",
+      "confidence": 0.8,
+      "run_date": "2026-10-27",
+      "carousel_no": 97
     }
   ]
 }

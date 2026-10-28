@@ -1,0 +1,217 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The sequence keeps the cover's promise. 01 says two finish lines, 02 names who says so ('Certainly possible.' with the gold tape counting 42 days to December 7th), 03 to 05 lay out the undated machinery, 06 rests on the 19,950 acres, 07 and 08 land the ledger and 09 closes on the same lath. The logic is sound and 08 is a real keepable. What's weak is the middle: 02 to 05 are four dense procedural frames in a row with no tonal or density relief, the 06 to 07 plant is missing, and the bookend's two payoffs on 09 (the still-blank tag and the closed field book) don't read on the frame.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "The split-weight headline leaves 'who says it could beat December 7th?' open. 02 answers at once with the quote and the gold DECEMBER 7TH, and the gold date words on 01 carry straight into the gold tape.",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "02's body ends on 'and the lawsuit would likely carry the transfer past December 7th'. Naming the lawsuit without explaining it pulls to 03.",
+   "strength": "strong"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "The case number and the clerk's stamp make it real, but nothing on 03 asks 'when must the State answer?'. Only the general topic of the suit carries over.",
+   "strength": "weak"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "04 ends on the injunction 'if necessary', which half-opens 'so what actually stops the land moving?'. The pull is implicit, and the frame's object (which reads as an open laptop) adds nothing.",
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "Four blank tags for survey, plat, title and closing, then 'no developer, tenant, power source or site plan', which raises 'on how much land?'. 06's full-bleed woods answer it.",
+   "strength": "strong"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "None. The breather plants nothing, and its mono line repeats the cover's 'TWO MILES NORTH OF HOUSTON'. The planned loop 'who else can still slow it?' is not on the frame.",
+   "strength": "none"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "07 names 'DNR's Final Finding and Decision' and the appeal, both undated. The reader wants the whole list, and 08 delivers it.",
+   "strength": "strong"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "The gold ribbon turns under December 7th and drops off the bottom edge of the book, a real edge-tease. 09 never completes it: the closed book shows no ribbon.",
+   "strength": "weak"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slide 09, D1 tag",
+   "problem": "The deck's closing payoff, 'same tag as 01, still blank', is not visible. In the full render and the thumb, the tag at about (1590-1875, 1675-1755) is buried under, or lost among, pale leaf instances. Only the cotton string squiggle shows. The D1 state table ends on a frame where nobody can see it.",
+   "fix": "In assets/js/aklath.js with season 'snow', cull leaf instances whose centre falls within about 7 cm of the tag's position. Lift the tag about 2 mm above the snow sheet so it gets its own contact shadow. Add a visible-pixel assertion on the tag rect in __akAssert. Use the same cull on 01 so the tag reads at thumb on both frames."
+  },
+  {
+   "severity": "major",
+   "where": "slides 08-09, ribbon and book",
+   "problem": "08's gold ribbon tail runs off the lower edge as a tease, but 09's closed book is a dark charcoal slab with an elastic line. No ribbon, no page block, and a different cover from 08's slate board. It reads as a tablet, not as 08's book closed.",
+   "fix": "Build 09's book from 08's look: the same #3A4652 pebbled cover with a specular rim, a cream page block visible on its fore edge and tail, and a 14 mm gold ribbon tail coming out of the tail edge and lying across the snow with a satin sheen and a cast. Declare the ribbon in 09's ink law as the December 7th marker, as on 08."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 09, D2 first snow",
+   "problem": "The season reads backwards. Bare, unsnowed leaves lie on top of a clean white sheet like confetti on a tablecloth. First snow dusts the litter; it doesn't slide under it.",
+   "fix": "In aklath.js snow mode, mix each leaf's albedo toward #EEF3F6 by its up-facing normal times an fbm mask (about 0.4 to 0.8), and drop leaf instances 2 to 4 mm so the displaced sheet partly buries the lower ones."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 06 vs 01, 03, 09 litter",
+   "problem": "The same birch litter is drawn as serrated, veined birch leaves on 01, 03 and 09 but as plain brown ovals like coffee beans on 06. On the sheet it reads as a different hand.",
+   "fix": "Draw 06's litter with the birch leaf silhouette (a serrated ovate path with a midrib) in the AKENGRAVE hatch voice, seated on a ground band (see the 06 weak-frame fix)."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 03, D1 'dated tag'",
+   "problem": "The stamp is the dated tag, but its date line was dropped under the house date rule, and the table's 'gold flags' rule' isn't drawn. The device reads only through the gold kicker.",
+   "fix": "Acceptable as built. If anything, run a 2 px gold rule under the seven flag labels so the dated state shows in the art."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 02-05",
+   "problem": "Four dense frames in a row: headline plus a 28 to 35 word body on each, with seven flag labels on 03 and four tag labels on 05. That breaks the no-three-dense-in-a-row rule, and it lands exactly where the procedural content is driest.",
+   "fix": "Cut 04's body to one sentence ('DNR hadn't been served when the Mat-Su Sentinel asked.'), since its headline already states the 40-day rule, and move 'if necessary' to the caption or first comment. 04 then becomes a medium frame and breaks the run."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 01, 02, 03, 04, 05, 07, 09",
+   "problem": "Seven of nine frames use the same layout: type block in the top 40 percent, one object on a dark ground in the bottom 55 percent. Only 06 and 08 break it, so the sheet reads as a stack of one template.",
+   "fix": "Let one middle frame break it. For example, set 05's bundle as a full-height diagonal from the bottom left to the top right, with the type in the dark upper-left triangle."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 04-06 tonal",
+   "problem": "The breather barely lands tonally. 04, 05 and 06 measure L* 15, 13 and 12, so the 'darkest woods' sit only 1 L* below 05 and the pause is carried by layout alone.",
+   "fix": "Lift 04 and 05 to about L* 20 with a legible flash pool (the shared pool fix under craft.cross_frame). 06 at 12 then reads as the drop."
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "counters and fixtures, all slides",
+   "problem": "None. Counters as transcribed: 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09, all top right at the same position. ALASKA.AI is top left on every frame. alaskaaihq.com and 61°38'N · 149°49'W are bottom left and right on every frame. D4 weight holds: 600 snow on 01A, 02, 03, 06 and 09A; 300 frost on 01B, 04, 05, 07 and 09B; 08 uses ink 600, then 500 for dated rows and 300 for undated rows. Light comes from the upper left on every frame.",
+   "fix": "None needed."
+  },
+  {
+   "severity": "major",
+   "where": "slides 04, 05 (and 06's ground)",
+   "problem": "The deck's one physics is one off-camera flash with an inverse-square pool. It reads on 01, 02, 07 and 09, but 05 is evenly lit edge to edge (the sphagnum speckle is as bright at x 0 as at the bundle) and 04's ice is uniformly dim. Those frames look studio-lit, not flash-lit.",
+   "fix": "Use one shared post step, as in craft.cross_frame."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 05",
+   "problem": "Its register is a flat vector illustration: planks with single-tone fills and ruled seams, uniform speckle, flat tags. It sits between the SDF 04 and the engraved 06 and reads as pasted from a different deck next to the PBR 01, 02 and 09.",
+   "fix": "See craft.weakest_frames, slide 5."
+  },
+  {
+   "severity": "polish",
+   "where": "build state",
+   "problem": "gate_status reports assemble STALE, with slide-01 to slide-04 and 14 more changed since assemble. The contact sheet and thumbs I was handed may predate the renders. They matched the full renders on every point I checked.",
+   "fix": "Re-run assemble.py before the scorer sees the sheet."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "A reader who swiped three slides has the hook, the quote and the lawsuit. 04 is the fourth dense frame in a row, it carries the most procedural fact in the deck (a 40-day clock that hasn't started), and at thumb its object reads as an open laptop on a bed of nails rather than a court paper. Nothing on 04 promises a payoff on 05.",
+  "fix": "Cut 04's body to one sentence, and make the 40-box blank tag the frame's large, close, lit hero with the summons behind it, so the frame is visibly about 'nothing ticked'. That also gives 04 to 05 a pull: from an empty clock to four more empty tags."
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 4,
+    "score": 6.0,
+    "cause": "b",
+    "problem": "The largest object is the least convincing. The tri-fold reads at thumb as an open laptop: a tall back panel of greeked lines over a low blank front panel, flat grey with no paper tooth. The greeked dashes are visibly stair-stepped from the 1.5x upscale of the 1440 pass. There's also a dead dark band between the body and the object (about y 1150 to 1485, cause c), and the far needle-ice field resolves into diagonal stripe moire at the upper right (cause d).",
+    "fix": "Rebuild the summons as a true A-frame tent: two near-equal planes meeting at a lit ridge, with the ridge raised to about y 1350 so the object fills the dead band. Fade the needle ice to black beyond about 1.2 m, which removes the moire band and saves enough samples to raymarch only the art rect at full 2160 width with no upscale."
+   },
+   {
+    "slide": 9,
+    "score": 6.5,
+    "cause": "b",
+    "problem": "The closed field book is now the largest object and the least modelled: a uniform charcoal slab with one elastic line, no page block and no wear, reading as a tablet. It covers the lath, and the blank tag is lost in the litter. The snow is a clean white sheet with bare leaves lying on top of it.",
+    "fix": "Remodel the book as 08's book closed: slate pebbled cover, rim specular, visible cream page block, gold ribbon tail out onto the snow. Shrink it about 30 percent and move it off the tag's footprint so the lath and blank tag read again (see continuity)."
+   },
+   {
+    "slide": 6,
+    "score": 6.5,
+    "cause": "d",
+    "problem": "The breather has no ground. The far trunks stop in black at about y 1950, and the litter is a heap of bean-shaped ovals floating at the lower right (about x 1550-2160, y 1960-2430). Dark ellipse smudges (the 'base patches') on the near trunk at about (1240-1485, 2000-2470) read as stains or holes in the engraving.",
+    "fix": "Add an engraved ground band from about y 2000 to the bottom, receding to the far trunk bases with the same 1/d^2 ink falloff, seat birch-silhouette leaves on it, and delete the base-patch ellipses."
+   },
+   {
+    "slide": 5,
+    "score": 6.5,
+    "cause": "c",
+    "problem": "The lower half is uniformly lit. The sphagnum is a constant-amplitude red and green speckle with no flash pool and no falloff, so the ground is an eventless carpet. The bundle's strips are single-tone planks with ruled seams and stepped ends, with no arris highlight and no end grain, so the largest object is drawn flat.",
+    "fix": "After the relief, multiply the final colour by the inverse-square pool centred on the band (about (756, 1270) at 2160 width, floor 0.12), so the sphagnum falls to near black at the frame edges. Give each strip a 1 px lit arris on its upper-left edge and a darker lee edge."
+   },
+   {
+    "slide": 7,
+    "score": 7.0,
+    "cause": "b",
+    "problem": "At thumb the stack reads as a refrigerator. The front face is a near-uniform white block, the cotton band at about y 1930 splits it like a door seam, and the tabs read as hinges. Cutting per-card variance to a third in round 1 erased the paper.",
+    "fix": "Offset each 100-card sheaf laterally by 1 to 3 px, with a hairline shadow at each sheaf boundary where its tab sits, so the face steps like stacked paper. Wrap the band over the top face so it reads as a band and not a seam."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "c",
+    "slides": [
+     3,
+     4,
+     5,
+     6
+    ],
+    "problem": "The flash-pool physics that sells 01, 02, 07 and 09 is missing or weak on the relief, SDF and engraving frames. Their lower thirds are evenly lit, so they read as studio plates and the deck loses one physics.",
+    "fix": "Add one shared post helper, for example AKPOST.pool(ctx, cx, cy, r, floor), that multiplies the art layer by a 1/(1+(d/r)^2) falloff centred on each frame's focal object, with the same r as a fraction of frame width as 01's pool. Call it last on 03, 04, 05 and 06's ground band. This changes the cause once instead of four times."
+   },
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     2,
+     4,
+     5,
+     6,
+     9
+    ],
+    "problem": "Census figures: 01 15, 02 16, 03 34, 04 15, 05 13, 06 12, 07 26, 08 60, 09 19. The census PASS is correct on its declared peak (08) and trough (06), and I agree with it. But six of nine frames sit between L* 12 and 19, so the felt arc is a dark plateau with lifts at 03, 07 and 08, and the trough is only 1 L* below 05. The miss I see is the one the numbers show: no step down into the breather.",
+    "fix": "The pool fix above lifts 04 and 05 toward L* 20 to 22 at their focal objects. That makes 06 the clear drop and gives the middle a shape. Re-run tonal_arc_check afterwards."
+   },
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     6,
+     7,
+     9
+    ],
+    "problem": "Reuse census: AKSTROBE.snow on four frames. On the sheet it doesn't read as the same drawing. It's a faint accent of a few discs on 01, 07 and 09, and the main texture only on 06, so it isn't cause a. The inline 2D kraft tag on 04, 05 and 07 is the same flat fill with an eyelet circle on three frames: at the limit, invisible to the census, and flatter than the 3D tag on 01 and 09.",
+    "fix": "No action on the snow helper. Give the shared 2D tag fibre tooth plus a 1 px lit top edge and a lee bottom edge, so it matches the PBR tag of the bookend."
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "score_0_10": 7.0,
+ "revision_rounds_at_review": 3
+}

@@ -106,7 +106,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-07-08",
@@ -259,6 +259,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read the DNR notice for ADL 422741 today. It still carries the May 12th preliminary decision and its attachments with an archive date of July 18th, and no final finding and decision is posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Re-read the DNR notice for ADL 422741 today. It still carries the May 12th preliminary decision and its five attachments, last modified May 18th, and no final finding and decision is posted. Checked and unchanged."
         }
       ]
     },
@@ -874,7 +878,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-09-26",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-07-08",
@@ -995,6 +999,10 @@
         {
           "date": "2026-09-26",
           "note": "Re-read the Legislature's bill record today. HJR 18, a separate resolution urging the federal government to expedite the state natural gas pipeline project, became Legislative Resolve 56 on September 22nd. It changes no tax. The tax break itself still waits on the governor and Legislature seated after the November election."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Checked for news of the tax bill today. Nothing has moved since the third special session ended on August 25th; the next vehicle remains the Legislature seated in January under the governor elected November 3rd."
         }
       ]
     },
@@ -1245,7 +1253,7 @@
       "status": "pending-decision",
       "decider": "Alaska DNR, Commissioner John Crowther",
       "public_access": "indirect",
-      "access_note": "The comment room is closed. Written comment on ADL 234762 ran from July 10th through September 14th, the state's notice archived the day after, and Alaska DNR received more than 2,100 comments. Only people from whom the division received timely written comment during that period may appeal the Final Finding and Decision, so the appeal stays open to those who wrote in and is shut to everyone else. No final finding and decision has been published. Houston's city council heard a two-year moratorium on new data center construction on October 8th, and no outcome could be found as of October 11th. The Senate Resources Committee has scheduled Natural Resources Commissioner John Crowther to appear on October 26th after voting to subpoena him.",
+      "access_note": "The comment room is closed. Written comment on ADL 234762 closed in September and DNR is still reviewing more than 2,000 comments. Only people who sent timely written comment may appeal the Final Finding and Decision, so the appeal stays open to those who wrote in and is shut to everyone else. No final finding and decision has been published. Commissioner John Crowther told the Senate Resources Committee on October 26th that approval before the December 7th inauguration is certainly possible. A lawsuit filed October 22nd in Superior Court at Juneau asks the court to bar the transfer without a finding of legitimate public purpose and legislative authorization.",
       "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th, DNR extended it to September 14th, and it is now closed. The decision sits with the department.",
       "key_dates": [
         {
@@ -1304,8 +1312,18 @@
           "kind": "vote"
         },
         {
+          "date": "2026-10-22",
+          "label": "Eric Forrer and David Eastman sue the State, DNR and the governor in Superior Court at Juneau, case 1JU-26-01019",
+          "kind": "milestone"
+        },
+        {
           "date": "2026-10-26",
-          "label": "Senate Resources hears Natural Resources Commissioner John Crowther and AHFC chief executive Brian Butcher on public and charitable use land conveyances, 10 a.m., Anchorage LIO",
+          "label": "Crowther testifies to Senate Resources under subpoena and says approval before the inauguration is certainly possible",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-07",
+          "label": "The next governor is sworn in",
           "kind": "milestone"
         }
       ],
@@ -1399,10 +1417,25 @@
           "url": "https://www.akleg.gov/basis/Meeting/Detail?Meeting=SRES%202026-10-26%2010:00:00",
           "outlet": "Alaska Legislature (BASIS)",
           "date": "2026-10-25"
+        },
+        {
+          "url": "https://davideastman.org/wp-content/uploads/2026/10/COMPLAINT-Eastman-Forrer-v.-State-of-Alaska-et-al-DNR-Land-Transfer-to-AIDEA-October-22-2026.pdf",
+          "outlet": "Forrer and Eastman v. State of Alaska, complaint, Superior Court at Juneau",
+          "date": "2026-10-22"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/mat-su/2026/10/26/decision-on-land-transfer-for-mat-su-industrial-park-could-come-before-new-governor-is-sworn-in/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-10-26"
+        },
+        {
+          "url": "https://www.matsusentinel.com/lawsuit-argues-houston-area-land-transfer-violates-state-constitution/",
+          "outlet": "Mat-Su Sentinel",
+          "date": "2026-10-26"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-07-17",
@@ -1629,12 +1662,20 @@
           "note": "Re-read the DNR public notice for the Houston conveyance today. It still shows the preliminary decision stage, last modified August 19th, with no final finding posted. The Legislature's website did not answer today, so the October 26th Senate Resources appearance was not re-verified. Checked and unchanged."
         },
         {
+          "date": "2026-10-22",
+          "note": "Eric Forrer, a former University of Alaska regent, and former Rep. David Eastman sued the State, DNR and Governor Dunleavy in Superior Court at Juneau, case 1JU-26-01019. The complaint says the no-cost transfer violates seven sections of the Alaska Constitution and asks the court to bar it without a finding of legitimate public purpose and legislative authorization. AIDEA is not a named party."
+        },
+        {
           "date": "2026-10-23",
           "note": "Re-read the DNR public notice for the Houston conveyance, ADL 234762, today. It still shows the preliminary decision with three attachments, last modified August 19th, and no final finding and decision is posted. Checked and unchanged."
         },
         {
           "date": "2026-10-25",
           "note": "The Legislature's schedule for Monday, October 26th lists the Senate Resources Committee at 10 a.m. in the Denali Room of the Anchorage Legislative Information Office, marked with a time and location change, for a presentation on public and charitable use land conveyances by Natural Resources Commissioner John Crowther and Brian Butcher, chief executive of the Alaska Housing Finance Corporation. The DNR public notice for ADL 234762 did not load today, so its preliminary decision stage was not re-read."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Commissioner John Crowther appeared before the Senate Resources Committee on October 26th after its subpoena. The Anchorage Daily News reports he said approval before the December 7th inauguration is certainly possible, while surveying, the appeal period and the lawsuit would likely carry the process into the next governor's term. DNR is still reviewing more than 2,000 comments. Re-read the DNR notice for ADL 234762 today and no final finding and decision is posted."
         }
       ]
     },
@@ -1846,7 +1887,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-07-26",
@@ -1927,6 +1968,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read the White House signatory list today. It now counts 325 signatories, 207 cooperatives, 72 utilities and 46 data center developers, one developer more than on October 19th. Cordova Electric Cooperative is still the only Alaska entity on it."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Re-read the White House signatory list today. It now counts 326 signatories, 207 cooperatives, 72 utilities and 47 data center developers, one developer more than on October 23rd. Cordova Electric Cooperative is still the only Alaska entity on it."
         }
       ]
     },
@@ -1959,7 +2004,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-02",
@@ -2052,6 +2097,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read the state's public notice for RFP 2026-0200-0064 today. Proposals were due August 28th, Amendment 1 is posted, the notice archived August 31st and was last modified August 17th, and no notice of intent to award has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Re-read the state's public notice for RFP 2026-0200-0064 today. It still archives August 31st, was last modified August 17th, and no notice of intent to award has been posted. Checked and unchanged."
         }
       ]
     },
@@ -2084,7 +2133,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-02",
@@ -2177,6 +2226,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One with an archive date of August 21st, and no solicitation or intent to award has followed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, last modified August 7th, and no solicitation or intent to award has followed. Checked and unchanged."
         }
       ]
     },
@@ -2428,7 +2481,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-05",
@@ -2537,6 +2590,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read both Grants.gov listings today. HHS-2026-ACF-ANA-NAI-0035, the AI3 Action Institute, is still archived as of September 26th with one award expected between $2,500,000 and $3,500,000 and no recipient named. EAGLE, HHS-2026-ACF-ANA-NEG-0120, is still closed with 31 expected awards and no recipients listed. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Re-read both Grants.gov listings today. The AI3 Action Institute, HHS-2026-ACF-ANA-NAI-0035, is still archived as of September 26th with one award expected and no recipient named. EAGLE, HHS-2026-ACF-ANA-NEG-0120, is still closed with 31 expected awards and no recipients listed. Checked and unchanged."
         }
       ]
     },
@@ -2913,7 +2970,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-06",
@@ -2978,6 +3035,10 @@
         {
           "date": "2026-10-23",
           "note": "Searched the Federal Register today for any document citing Executive Order 14318 published since October 15th and found none. The order stands unamended. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Searched the Federal Register today for any document citing Executive Order 14318 published since October 20th and found none. The order stands unamended. Checked and unchanged."
         }
       ]
     },
@@ -3377,10 +3438,15 @@
           "url": "https://egov.kpbsd.org/agenda/673?item=10145",
           "outlet": "KPBSD E-Governance",
           "date": "2026-09-14"
+        },
+        {
+          "url": "https://egov.kpbsd.org/agenda/681",
+          "outlet": "KPBSD E-Governance, November 2nd board meeting agenda",
+          "date": "2026-10-27"
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-09",
@@ -3481,6 +3547,10 @@
         {
           "date": "2026-10-23",
           "note": "The district's agenda index returned a 503 service error today, though one older agenda page loaded. Nothing newer than the board's September 14th adoption of BP 5131.9 and AR 5131.9 could be confirmed."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "The district's agenda pages loaded today. The November 2nd board meeting, the November 2nd Policy Review Committee and the October 26th and November 2nd work sessions list no item on BP 5131.9, AR 5131.9 or artificial intelligence. Nothing has followed the board's September 14th adoption. Checked and unchanged."
         }
       ]
     },
@@ -3635,6 +3705,16 @@
           "url": "https://www.adn.com/alaska-journal/news/2026/10/04/alaska-fishing-and-wildlife-groups-raise-alarm-over-proposal-for-underwater-cook-inlet-data-center/",
           "outlet": "Alaska Journal of Commerce, via Anchorage Daily News",
           "date": "2026-10-04"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261026-5031",
+          "outlet": "Cook Inletkeeper, motion to intervene, FERC eLibrary",
+          "date": "2026-10-26"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+          "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
+          "date": "2026-10-27"
         }
       ],
       "history": [
@@ -3749,10 +3829,14 @@
         {
           "date": "2026-10-25",
           "note": "Read the commission's docket for P-15423 again today. It lists 141 filings, 124 of them comments from individuals, seven more comments than on October 22nd. No motion to intervene has been filed since the City of Kenai's on October 13th. Comments, motions to intervene and competing applications remain due November 2nd."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Read the commission's docket for P-15423 again today. It now lists 152 filings, 131 of them comments from individuals. Cook Inletkeeper filed a motion to intervene on October 26th, and on October 27th DeepGreen filed a consolidated answer to the timely motions to intervene and comments, including the City of Kenai's. Comments, motions to intervene and competing applications remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-25"
+      "last_updated": "2026-10-27"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -4050,7 +4134,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-08-31",
@@ -4147,6 +4231,10 @@
         {
           "date": "2026-10-25",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 15th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
     },
@@ -4349,7 +4437,7 @@
       "key_dates": [
         {
           "date": "2026-10-22",
-          "label": "On the Assembly agenda for referral to the Planning Commission, recommendation due back in 90 days",
+          "label": "Assembly refers it to the Planning Commission, recommendation due back in 90 days",
           "kind": "milestone"
         },
         {
@@ -4388,10 +4476,15 @@
           "url": "https://www.fnsb.gov/1169/Comprehensive-Plan-Update",
           "outlet": "Fairbanks North Star Borough Community Planning",
           "date": "2026-10-24"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13379,plainText=false)",
+          "outlet": "Fairbanks North Star Borough Clerk, action memo for the October 22nd Assembly meeting",
+          "date": "2026-10-26"
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-10-23",
@@ -4400,6 +4493,10 @@
         {
           "date": "2026-10-25",
           "note": "The Planning Commission's October 27th meeting packet does not list Ordinance No. 2026-42. Its work session the same day covers only the final draft of the Regional Comprehensive Plan, and the plan page still sets the commission's public hearing on that plan for November. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "The borough clerk's action memo for the October 22nd Assembly meeting, dated October 26th, records Ordinance No. 2026-42 as referred to the Planning Commission with a recommendation due back in 90 days. The commission's October 27th agenda and work session cover only the final draft of the Regional Comprehensive Plan and do not list the ordinance."
         }
       ]
     },
@@ -4745,7 +4842,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-09-13",
@@ -4822,6 +4919,10 @@
         {
           "date": "2026-10-23",
           "note": "Searched the Federal Register today for Energy Department documents on the bulk-power system published since October 15th. The only matches were two FERC notices on reliability, neither a follow-on to this request. Written responses were due October 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "Searched the Federal Register today for Energy Department documents on the bulk-power system published since October 20th. The only match was a FERC notice for its reliability technical conference, which is not a follow-on to this request. Written responses were due October 9th. Checked and unchanged."
         }
       ]
     },
@@ -5269,7 +5370,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-09-17",
@@ -5309,6 +5410,10 @@
         },
         {
           "date": "2026-10-25",
+          "note": "The university's Board of Regents agenda page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
+        },
+        {
+          "date": "2026-10-27",
           "note": "The university's Board of Regents agenda page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
         }
       ]
@@ -5439,7 +5544,7 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-10-23",
+      "last_updated": "2026-10-27",
       "history": [
         {
           "date": "2026-10-05",
@@ -5460,6 +5565,10 @@
         {
           "date": "2026-10-23",
           "note": "Re-read The Alaska Current's October 3rd report today. It still describes a plant starting at 3 gigawatts with plans to reach 10, a $1.2 million no-bid feasibility contract and $5 million more under Resolution 13-2026, and says the financial structure is not public. A news search found no newer borough action. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-27",
+          "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant, which still describes 3 gigawatts growing to 10 and a financial structure that is not public. Checked and unchanged."
         }
       ]
     },
