@@ -395,10 +395,11 @@ export function init(THREE, AKT) {
         const m = new THREE.Mesh(g, cloth); m.position.y = y; return m; };
       book.add(board(-bd / 2), board(bd / 2 - 0.0022));
       const pages = new THREE.Mesh(new THREE.BoxGeometry(bw - 0.002, bd - 0.0044, bh - 0.004), block);
-      pages.position.x = 0.0012; book.add(pages);                      // the cream block shows at the fore edge
+      pages.position.x = -0.0012; book.add(pages);                     // the cream block shows at the fore edge, which faces the lens (local -x)
       // 08's gold ribbon: out of the tail edge, down onto the snow
-      { const rp = new THREE.CatmullRomCurve3([new THREE.Vector3(0.012, 0.0, bh / 2 - 0.006), new THREE.Vector3(0.013, -0.003, bh / 2 + 0.006),
-          new THREE.Vector3(0.016, -0.016, bh / 2 + 0.02), new THREE.Vector3(0.022, -0.021, bh / 2 + 0.045), new THREE.Vector3(0.032, -0.0205, bh / 2 + 0.072)]);
+      // out of the tail edge on the lens side (local -z leans toward the camera), lying on top of the snow
+      { const rp = new THREE.CatmullRomCurve3([new THREE.Vector3(-0.012, 0.0, -bh / 2 + 0.006), new THREE.Vector3(-0.014, -0.002, -bh / 2 - 0.006),
+          new THREE.Vector3(-0.02, -0.010, -bh / 2 - 0.018), new THREE.Vector3(-0.034, -0.0125, -bh / 2 - 0.038), new THREE.Vector3(-0.05, -0.012, -bh / 2 - 0.06)]);
         const RW = 0.0095, RS = 60, rpos = [], ridx = [];
         for (let i = 0; i <= RS; i++) { const t = i / RS, q = rp.getPointAt(t), tg = rp.getTangentAt(t);
           const sx = new THREE.Vector3(1, 0, 0).addScaledVector(tg, -tg.x).normalize().multiplyScalar(RW / 2);   // the ribbon's width lies across the book
