@@ -2306,6 +2306,14 @@
       "confidence": 0.6,
       "run_date": "2026-10-27",
       "carousel_no": 97
+    },
+    {
+      "instinct": "A NOTICE WITH AN EXTENSION IS CITED BY ITS OPERATIVE NOTICE.",
+      "evidence": "No.97 printed DNR's original August 19th comment close on two slides; DNR's extension notice (id 224879) had moved it to September 14th, and the docket item already said so. Codex caught it on the PR.",
+      "act_on_it": "Before a claim takes a deadline from a public notice, check the docket item and the notice list for an amendment or extension notice on the same ADL or case, and cite the operative one with its own verbatim.",
+      "confidence": 0.8,
+      "run_date": "2026-10-27",
+      "carousel_no": 97
     }
   ]
 }

@@ -154,7 +154,7 @@
         "'the card stack on the sleet skiff': shadow L* 8.6 vs ground L* 17.2, dL 8.7 at 432w"
       ],
       "motifs": [
-        "'the 2,000-card stack': canvas 65.3 dE, page 66.1 dE, 100% of its rect is clear of opaque DOM"
+        "'the 2,000-card stack': canvas 65.3 dE, page 66.1 dE, 94% of its rect is clear of opaque DOM (div.t stands on the rest)"
       ],
       "leaders": [
         "leader 'the top of the card stack' lands 0.0px from its target",

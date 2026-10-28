@@ -29,7 +29,7 @@ If DNR approves, survey, plat, title and closing must be completed before any co
 
 More than 2,000 people can ask DNR to reconsider.
 
-Only people who sent timely written comment can appeal DNR's Final Finding and Decision. Comments closed August 19th, and DNR is still reviewing them, ADN reported.
+Only people who sent timely written comment can appeal DNR's Final Finding and Decision. Comments closed September 14th, and DNR is still reviewing them, ADN reported.
 
 What has a date, and what doesn't.
 
@@ -62,7 +62,7 @@ Save this for the day DNR's Final Finding lands.
 - AIDEA's fact sheet says no specific end use has been definitively selected for the land. [Alaska Industrial Development and Export Authority (AIDEA)](https://www.aidea.org/Portals/0/AIDEA_Houston_Land_Fact_Sheet.pdf), primary document, 2026-07-01.
 - The fact sheet lists illustrative uses including rail-served logistics, utility, energy and technology infrastructure, advanced manufacturing and workforce housing. [Alaska Industrial Development and Export Authority (AIDEA)](https://www.aidea.org/Portals/0/AIDEA_Houston_Land_Fact_Sheet.pdf), primary document, 2026-07-01.
 - DNR must issue a Final Finding and Decision, and if it approves, survey, plat, title and closing steps must be completed before any conveyance. [Alaska Industrial Development and Export Authority (AIDEA)](https://www.aidea.org/Portals/0/AIDEA_Houston_Land_Fact_Sheet.pdf), primary document, 2026-07-01.
-- DNR published the public notice on July 10th, 2026, and the comment period closed August 19th, 2026. [Alaska Department of Natural Resources, Online Public Notices](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
+- DNR published the public notice on July 10th, 2026; written comment, first due August 19th, was extended to September 14th, 2026. [Alaska DNR Online Public Notices, extension notice, ADL 234762](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879), primary document, 2026-08-19.
 - Only people who sent DNR timely written comment during the comment period can appeal the Final Finding and Decision. [Alaska Department of Natural Resources, Online Public Notices](https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431), primary document, 2026-07-10.
 - NOAA's Alaska Fisheries Science Center holds an archive of 2.5 million otolith pairs dating back to the 1960s. [NOAA Fisheries](https://www.fisheries.noaa.gov/feature-story/25-million-perfect-little-time-capsules-ocean-chemistry), primary document, 2026-09-28.
 - The otoliths in the archive come from 83 species. [NOAA Fisheries](https://www.fisheries.noaa.gov/feature-story/25-million-perfect-little-time-capsules-ocean-chemistry), primary document, 2026-09-28.

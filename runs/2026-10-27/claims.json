@@ -825,16 +825,16 @@
    "id": "C54",
    "story": "S1",
    "background": true,
-   "claim": "DNR published the public notice on July 10th, 2026, and the comment period closed August 19th, 2026.",
-   "value": "August 19th",
-   "verbatim": "Comment Period Ends 5:00PM, Wednesday, August 19, 2026",
-   "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
-   "source_outlet": "Alaska Department of Natural Resources, Online Public Notices",
+   "claim": "DNR published the public notice on July 10th, 2026; written comment, first due August 19th, was extended to September 14th, 2026.",
+   "value": "September 14th",
+   "verbatim": "EXTENDED COMMENT PERIOD ENDS 5:00PM, MONDAY, SEPTEMBER14, 2026",
+   "source_url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224879",
+   "source_outlet": "Alaska DNR Online Public Notices, extension notice, ADL 234762",
    "source_is_primary": true,
-   "date_of_source": "2026-07-10",
+   "date_of_source": "2026-08-19",
    "fetched": true,
    "confidence": 0.97,
-   "notes": "Notice 'Proposed Land Conveyance to Alaska Industrial Development Export Authority near the city of Houston', Publish Date '7/10/2026', Department 'Natural Resources', case ADL 234762, approximately 19,950 acres. The fact sheet gives the same deadline. The notice states NO comment count. Year is in the claim because the period ended before this deck's frame; drop it in slide copy if the house date rule requires."
+   "notes": "Notice 'Proposed Land Conveyance to Alaska Industrial Development Export Authority near the city of Houston', Publish Date '7/10/2026', Department 'Natural Resources', case ADL 234762, approximately 19,950 acres. The fact sheet gives the same deadline. The notice states NO comment count. Year is in the claim because the period ended before this deck's frame; drop it in slide copy if the house date rule requires. Corrected 2026-10-28 after the Codex review on PR #461: the original notice (id 224431) still prints the superseded August 19th close; the extension notice (id 224879, published 2026-08-19, re-fetched 2026-10-28) carries the operative September 14th close. The July 10th publication date stands from notice 224431."
   },
   {
    "id": "C55",
