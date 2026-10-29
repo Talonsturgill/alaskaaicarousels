@@ -9444,3 +9444,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AKT supersample 3 cured 02's tick moire and aliased edges. It is NOT safe with AKSTROBE.depthPass, which reads the drawing-buffer size (3x) against a 2x colour frame; 01 and 09 used `alphaToCoverage` on the instanced leaves instead.
 - BEFORE ADDING A DETAIL TO A ROTATED GROUP, CHECK WHICH LOCAL AXIS FACES THE LENS. 09's page block and gold ribbon tail were built on the book's far side and the scorer read the run record as overstating the frame.
 - DRAW A COUNTED THING AT ITS TRUE PROPORTION. 2,000 index cards at about 0.19 mm stand near 38 cm on a 12.7 cm card; the first build was a squat block that its own label contradicted.
+
+### 2026-10-28, No.98, THE EXPLODED SECTION (manufactured instruments cut open in a studio cove)
+
+- A VERTICAL METAL SEEN FROM ABOVE REFLECTS THE FLOOR. 06's reactor drums read as tan clay or black rubber through two rounds of raising envMapIntensity and adding key strips, because a high camera's view rays bounce off vertical faces downward into the environment's dark floor. A per-frame PMREM studio with a lit floor panel (grey-blue, about the cove pool's tone) made them steel in one render; lathe-turned profiles with rolled edges then gave each drum a key-side specular line.
+- A FOG COLOUR THAT DIFFERS FROM THE BACKGROUND DRAWS A HORIZON. 06's 12 m floor under fog 0x070D16 on a 0x050A12 background left a straight diagonal seam behind the body copy; an 80 m floor and fog set to the background removed it.
+- RING DROPOUT IS CUT ALONG THE RING. Per-cell random gaps on 09's scribed rings printed as a grid mosaic; runs of 4 to 30 px along each ring, kept with a smooth probability that falls toward the lee, read as a burin lifting.
+- A ROTATED SCREEN CLIPPED BY A RECTANGLE STAIR-STEPS. 08's 15 degree halftone ended in a ragged dot column at the plate's edge; crisp bevel strips drawn over the boundary hid it, and a steeper raking-light tone map made the screen describe the plate.
+- A FIBER THAT DIPS BELOW THE FLOOR TAKES ITS TIP GLOW WITH IT. 01's gold glows floated 30 to 45 px off the visible ends because the fiber splines ended under the floor plane; lifting the end points onto the floor put the glow on the tips.
+- A KICKER THAT NAMES A BODY CLAIMS THAT BODY ACTED. "AIDEA BOARD" over the NuCube line and "ONE BOARD, ONE DAY" on the comparison passed every gate because they came from the storyboard; the copywriter caught them from the claim's notes (no board resolution for the stake is on the record).

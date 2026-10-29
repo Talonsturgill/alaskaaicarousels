@@ -1,0 +1,169 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around '$25 million at $9.25 a share.', spanning 19%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the stripped cable on the lit cove floor': shadow L* 3.4 vs ground L* 16.6, dL 13.2 at 432w"
+      ],
+      "motifs": [
+        "'the landing pair's two gold tips': canvas 86.6 dE, page 87.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl '$75 million behindeight locks.$25 millionat ' fits 4/4 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the landing pair at the core, gold': canvas 74.7 dE, page 75.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'armour bundle (i)' lands 0.0px from its target",
+        "leader 'armour bundle (ii)' lands 0.0px from its target",
+        "leader 'armour bundle (iii)' lands 0.0px from its target",
+        "leader 'armour bundle (iv)' lands 0.0px from its target",
+        "leader 'armour bundle (v)' lands 0.0px from its target",
+        "leader 'armour bundle (vi)' lands 0.0px from its target",
+        "leader 'armour bundle (vii)' lands 0.0px from its target",
+        "leader 'armour bundle (viii)' lands 0.0px from its target",
+        "leader 'armour bundle (i)' meets its label 10.0px away",
+        "leader 'armour bundle (ii)' meets its label 10.0px away",
+        "leader 'armour bundle (iii)' meets its label 10.0px away",
+        "leader 'armour bundle (iv)' meets its label 10.0px away",
+        "leader 'armour bundle (v)' meets its label 10.0px away",
+        "leader 'armour bundle (vi)' meets its label 10.0px away",
+        "leader 'armour bundle (vii)' meets its label 10.0px away",
+        "leader 'armour bundle (viii)' meets its label 10.0px away",
+        "leader 'armour bundle (i)' is drawn 215 px at 24 degrees, inside the pointer band",
+        "leader 'armour bundle (ii)' is drawn 106 px at 28 degrees, inside the pointer band",
+        "leader 'armour bundle (iii)' is drawn 109 px at 30 degrees, inside the pointer band",
+        "leader 'armour bundle (iv)' is drawn 199 px at 9 degrees, inside the pointer band",
+        "leader 'armour bundle (v)' is drawn 199 px at 9 degrees, inside the pointer band",
+        "leader 'armour bundle (vi)' is drawn 111 px at 32 degrees, inside the pointer band",
+        "leader 'armour bundle (vii)' is drawn 117 px at 36 degrees, inside the pointer band",
+        "leader 'armour bundle (viii)' is drawn 220 px at 26 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Eight conditions wrapany deal.' fits 2/2 lines at 97.5px"
+      ],
+      "asserts": [
+        "'eight armour bundles, one per binding condition' holds: 8 vs 8 marks, counted over 8 declared marks (within 0)",
+        "'eight armour bundles, one per binding condition': 8 mark centres probed at r=14px, cohort median 91.2 dE, all present (weakest 91.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the landing pair in focus, gold': canvas 104.3 dE, page 105.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the landing pair' lands 7.0px from its target",
+        "leader 'the landing pair' meets its label 6.0px away",
+        "leader 'the landing pair' is drawn 213 px at 54 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'At the core, glassthat has to come ashore.' fits 2/2 lines at 97.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'gold core of section 1': canvas 114.5 dE, page 114.4 dE, 100% of its rect is clear of opaque DOM",
+        "'gold core of section 2': canvas 114.4 dE, page 114.1 dE, 100% of its rect is clear of opaque DOM",
+        "'gold core of section 3': canvas 114.4 dE, page 114.1 dE, 100% of its rect is clear of opaque DOM",
+        "'gold core of section 4': canvas 114.5 dE, page 114.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Alaska has four subseacables to the Lower 48' fits 3/3 lines at 89.5px"
+      ],
+      "asserts": [
+        "'four real cable sections' holds: 4 vs 4 marks, counted over 4 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the landing pair rising through the vault': canvas 113.3 dE, page 113.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"The routes chosenin the next few yearswill ' fits 3/3 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the empty plinth outline, gold dashes': canvas 102.0 dE, page 102.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the empty site plinth' lands 4.0px from its target",
+        "leader 'the empty site plinth' meets its label 10.0px away",
+        "leader 'the empty site plinth' is drawn 291 px at 5 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Same day, $25 millionfor a reactor company.' fits 2/2 lines at 93.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the certificate lying on the lit cove': shadow L* 8.5 vs ground L* 20.5, dL 12.0 at 432w"
+      ],
+      "motifs": [
+        "'the torn warrant coupon half': canvas 74.5 dE, page 74.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the share price axis, a detail from $8 to $12' runs 8 dollars per share at 100 to 12 dollars per share at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The $25 million buysshares, not a reactor.' fits 2/2 lines at 93.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'gold core in the cable medallion': canvas 102.5 dE, page 110.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The two checks, side by side.' fits 1/1 lines at 85.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the warm glow at the sealed core under the Polaris': canvas 50.4 dE, page 109.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Should AIDEA's next equity check carry locks' fits 3/3 lines at 95.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-28/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7221620,
+  "pdf_mb": 7.22,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-28/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-28/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "AIDEA's Fiber Tool and NuCube Stake, Cut Open",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "9a8af6c9f76fad1f1254449a0e6597706fc74743e1892918a38e7567d5468413",
+        "bytes": 3133730
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "0d5438c7c34a60755a691187beb8c2c93adb47029ab2e1599f78edf61890ab51",
+        "bytes": 4207445
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "76e63c98a3cd6a8d022b8d1b4df16eaf7525ea15b2d8624ff6b5d02306b21cab",
+        "bytes": 3031862
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "94ccf48734251643751d47461b66a76cc8c1659de7668a7e67076726abbc645a",
+        "bytes": 3402456
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "2a59d88cbcf323f59ff5b19d0dacfb08ef90a1f6447b51319d038a4c698df84b",
+        "bytes": 3043597
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "98e54f0da9e9bc303125462db77e41bad770d51d579b308e3febe49420ce0aa6",
+        "bytes": 3546190
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "4d891a9d0cd3e7bf1125d521cb8e1c756470af785733c51214b0d42bf210c575",
+        "bytes": 3877444
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "c7b73a3f987aea727adbc3284ef4548f6bff636ef659709873060c43ed69ecb5",
+        "bytes": 3429675
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "236ff6e26dceeb540b4c91bcd4ebdccc4fcc968a76219fda4ee2cd29fef2611d",
+        "bytes": 3328681
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "43a94aa6767497f84c3ed886dd732ff413536d5f2a52e9531fe44d5da4ec09a4",
+        "bytes": 13508
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "13690f879a525166d45bcaf1c98d9dff7299b87da3871e0d97a52b5ce6b824a8",
+        "bytes": 13939
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "0a042bfb42305bfbabc6f8f55fb33c4c2bed529c188d0672f48c0eec8b24a6b3",
+        "bytes": 12909
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "e62bd228dd1971d1cd53fb782246218aa011f227743055accd6f8ab52d9edde4",
+        "bytes": 11900
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ced0bd51eb9c2dd609113355bb9067994790a42fe5ed57cad29099a72626e9b2",
+        "bytes": 14519
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c21dff46ebd7109b22acf845fe554b55a09670578a332b91fa37409423a88034",
+        "bytes": 14656
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "60d3ce4f1c55ddbca1e91343dc4151bdfa3ef899ec7e2ba80867eccc1dabfded",
+        "bytes": 13151
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "936c816fd19cf0ec5dc45f811799c3746b406d2777ca0b92ccc93cb079ee4514",
+        "bytes": 11460
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "3bdcd9b42d65b07002dd3f28674f222d06178ec8d9b07fd57e26856fee296f59",
+        "bytes": 7466
+      }
+    ]
+  }
+}

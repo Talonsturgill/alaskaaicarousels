@@ -385,7 +385,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-08",
@@ -526,6 +526,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's announcement page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
         }
       ]
     },
@@ -609,7 +613,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-08",
@@ -726,6 +730,10 @@
         {
           "date": "2026-10-24",
           "note": "Golden Valley's alert page reports a return to Energy Emergency Alert Level 0, normal operations, at 7 p.m. on October 24th, and says one of two generation units that were under scheduled maintenance has returned to service. The page reports no board decision on the turbine purchase."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, with one of two units under scheduled maintenance back in service. The page reports no board decision on the turbine purchase. Checked and unchanged."
         }
       ]
     },
@@ -1130,7 +1138,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-11",
@@ -1243,6 +1251,10 @@
         {
           "date": "2026-10-25",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding remain due by 5 p.m. November 13th. The notice was last modified October 14th and still carries one attachment, the director's signed preliminary decision. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The Division of Oil and Gas public notice returned a server error today and could not be re-read. Comments on the Kenai Loop storage lease preliminary finding stand as last published, due by 5 p.m. November 13th."
         }
       ]
     },
@@ -1251,7 +1263,7 @@
       "title": "AIDEA's free state land for a Mat-Su data center park",
       "kind": "state-land-lease",
       "status": "pending-decision",
-      "decider": "Alaska DNR, Commissioner John Crowther",
+      "decider": "Alaska DNR, Commissioner John Crowther, on AIDEA's application",
       "public_access": "indirect",
       "access_note": "The comment room is closed. Written comment on ADL 234762 closed in September and DNR is still reviewing more than 2,000 comments. Only people who sent timely written comment may appeal the Final Finding and Decision, so the appeal stays open to those who wrote in and is shut to everyone else. No final finding and decision has been published. Commissioner John Crowther told the Senate Resources Committee on October 26th that approval before the December 7th inauguration is certainly possible. A lawsuit filed October 22nd in Superior Court at Juneau asks the court to bar the transfer without a finding of legitimate public purpose and legislative authorization.",
       "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th, DNR extended it to September 14th, and it is now closed. The decision sits with the department.",
@@ -1788,7 +1800,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-18",
@@ -1824,6 +1836,10 @@
         },
         {
           "date": "2026-10-14",
+          "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th, the referral, so nothing has moved. The bill died in committee at sine die on May 20th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th, the referral, so nothing has moved. The bill died in committee at sine die on May 20th. Checked and unchanged."
         }
       ]
@@ -2272,6 +2288,11 @@
           "date": "2027-01-14",
           "label": "Reply comments due at FERC, 5:00 p.m. Eastern",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-21",
+          "label": "Alaska Energy Authority holds a virtual industry day for the project",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2317,7 +2338,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-04",
@@ -2414,6 +2435,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read the Alaska Energy Authority's Dixon Diversion page today. It lists a virtual industry day held October 21st, still gives the construction cost as about $400 million with its funding source to be determined, and reports no commission action on the June 30th amendment application. Recommendations remain due November 30th."
         }
       ]
     },
@@ -2681,7 +2706,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -2790,6 +2815,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read again today. Checked and unchanged."
         }
       ]
     },
@@ -3086,7 +3115,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -3166,6 +3195,10 @@
         },
         {
           "date": "2026-10-24",
+          "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
         }
       ]
@@ -3271,7 +3304,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -3344,6 +3377,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application, and the commission's carbon storage page refused an automated read today. Checked and unchanged."
         }
       ]
     },
@@ -3623,6 +3660,11 @@
           "date": "2026-10-13",
           "label": "City of Kenai moves to intervene",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-28",
+          "label": "Kenai Peninsula Borough mayor says the company has not contacted him",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -3631,6 +3673,11 @@
         "lat": 60.7
       },
       "sources": [
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/28/sloppy-is-way-i-would-describe-this-approach-unknown-plans-an-underwater-data-center-cook-inlet/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-10-28"
+        },
         {
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261008-5007",
           "outlet": "Alaska Energy Authority, motion to intervene, FERC eLibrary",
@@ -3833,10 +3880,14 @@
         {
           "date": "2026-10-27",
           "note": "Read the commission's docket for P-15423 again today. It now lists 152 filings, 131 of them comments from individuals. Cook Inletkeeper filed a motion to intervene on October 26th, and on October 27th DeepGreen filed a consolidated answer to the timely motions to intervene and comments, including the City of Kenai's. Comments, motions to intervene and competing applications remain due November 2nd."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Alaska's News Source reported on October 28th that Kenai Peninsula Borough Mayor Peter Micciche says he has received no email, letter or call from DeepGreen about the proposal. Comments, motions to intervene and competing applications remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-27"
+      "last_updated": "2026-10-28"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3967,7 +4018,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-25",
@@ -4080,6 +4131,10 @@
         {
           "date": "2026-10-24",
           "note": "Re-read the Assembly's public safety page today. It says the Assembly continued debate on AO 2026-108(S), the mayor's substitute, during the October 20th regular meeting until the end of the meeting, and that debate is scheduled to continue at the November 4th regular meeting as unfinished business, with proposed amendments posted. No vote has been recorded."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read the Assembly's home page today. It posts no action on AO 2026-108(S) after October 20th, and debate remains scheduled to resume as unfinished business at the November 4th regular meeting. No vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4134,7 +4189,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-27",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-31",
@@ -4234,6 +4289,10 @@
         },
         {
           "date": "2026-10-27",
+          "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
@@ -4733,7 +4792,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-13",
@@ -4790,6 +4849,10 @@
         {
           "date": "2026-10-24",
           "note": "GovInfo's record today showed only the House reported text, and Congress.gov refused an automated read, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "GovInfo's record today still shows only the House reported text, dated September 10th, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
         }
       ]
     },
@@ -4960,7 +5023,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-13",
@@ -5033,6 +5096,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ]
     },
@@ -5370,7 +5437,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-27",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-17",
@@ -5415,6 +5482,10 @@
         {
           "date": "2026-10-27",
           "note": "The university's Board of Regents agenda page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The Board of Regents page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
         }
       ]
     },
@@ -5467,7 +5538,7 @@
         }
       ],
       "first_seen": "2026-09-24",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-24",
@@ -5476,6 +5547,10 @@
         {
           "date": "2026-10-25",
           "note": "Read the Legislature's bill record today. The status line still reads House Community and Regional Affairs, dated May 17th, with no later action. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The morning sweep of the Legislature's BASIS record still reports SB 250 in House Community and Regional Affairs with a status date of May 17th and no later action. Checked and unchanged."
         }
       ]
     },
@@ -5626,7 +5701,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-10-07",
@@ -5647,6 +5722,109 @@
         {
           "date": "2026-10-24",
           "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
+        }
+      ]
+    },
+    {
+      "id": "aidea-northstar-fiber-subsidiary",
+      "title": "AIDEA's $75 million fiber investment subsidiary",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "AIDEA's executive director, reporting each commitment to the AIDEA board",
+      "public_access": "indirect",
+      "access_note": "The board adopted the resolution on October 21st. Any project the executive director approves under it is reported to the board at its next meeting, and the board's public meetings are the place to be heard. The next are listed for November 4th and December 4th.",
+      "summary": "AIDEA's board adopted Resolution G26-11 forming Northstar Fiber Development LLC, a wholly owned subsidiary that may invest up to $75 million in subsea and terrestrial fiber, landing stations and middle-mile networks, with Pacific connectivity first. The resolution picks no project, route or partner, and the executive director's power to commit funds under it expires December 31st, 2028.",
+      "key_dates": [
+        {
+          "date": "2026-10-21",
+          "label": "AIDEA board adopts Resolution G26-11",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Next AIDEA board meeting",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-04",
+          "label": "AIDEA board meeting",
+          "kind": "milestone"
+        },
+        {
+          "date": "2028-12-31",
+          "label": "Executive director's commitment authority under the resolution expires unless extended",
+          "kind": "milestone"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/102126/Signed_Resolution_G26-11_Fiber_Development_10212026.pdf?ver=V4Q7HnmpQvAhYXmlSR_5pw%3d%3d",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-21"
+        },
+        {
+          "url": "https://www.aidea.org/Portals/0/PressReleases/20-2026%20PRESS%20RELEASE%20AIDEA%20Board%20Approves%20Investment%20Tool%20to%20Transform%20Alaska%20into%20a%20Global%20Digital%20Hub.pdf?ver=b9pjcH06Wqj8J7ilu3gyZw%3d%3d",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-23"
+        },
+        {
+          "url": "https://www.aidea.org/About/Board-Members/Board-Meeting-Schedule",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-28"
+        }
+      ],
+      "first_seen": "2026-10-28",
+      "last_updated": "2026-10-28",
+      "history": [
+        {
+          "date": "2026-10-28",
+          "note": "Read the signed resolution in full. It caps all transfers and commitments at $75 million, requires a finance plan, outside counsel's confirmation and fiber that physically lands in Alaska before any binding commitment, and does not mention artificial intelligence or data centers. AIDEA's release says the board vote on October 21st was unanimous."
+        }
+      ]
+    },
+    {
+      "id": "aidea-nucube-equity-investment",
+      "title": "AIDEA's $25 million stake in microreactor maker NuCube",
+      "kind": "other",
+      "status": "decided",
+      "decider": "Alaska Industrial Development and Export Authority",
+      "public_access": "closed",
+      "access_note": "AIDEA announced the investment as made on October 21st. The company's merger filing describes AIDEA as its anchor investor. No public comment step was announced.",
+      "summary": "AIDEA agreed to buy $25 million of NuCube Energy's Class A shares at $9.25 each, which NuCube's filing calls about a 14.5 percent discount, with half a warrant per share at $11.50. AIDEA's release names data centers among the industries cheaper power could serve and names no Alaska site, utility, customer or date.",
+      "key_dates": [
+        {
+          "date": "2026-10-19",
+          "label": "NuCube files its announcement naming AIDEA as anchor investor",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-21",
+          "label": "AIDEA announces the $25 million equity investment",
+          "kind": "decision"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aidea.org/LinkClick.aspx?fileticket=E7LXDrzoAyc%3d&portalid=0",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-21"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/0002023676/000121390026110814/ea0309104-425_nucube.htm",
+          "outlet": "NuCube Energy, filed with the SEC",
+          "date": "2026-10-19"
+        }
+      ],
+      "first_seen": "2026-10-28",
+      "last_updated": "2026-10-28",
+      "history": [
+        {
+          "date": "2026-10-28",
+          "note": "Read AIDEA's release and NuCube's SEC filing. The $25 million counts toward the $75 million minimum cash condition for NuCube's merger with Launch Two Acquisition Corp. AIDEA says project costs and energy savings will be determined as projects are developed."
         }
       ]
     }
