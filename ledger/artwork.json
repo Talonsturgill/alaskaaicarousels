@@ -3536,6 +3536,47 @@
         "needle-ice SDF with a rotated jittered cell grid"
       ],
       "note": "Five rounds, the cap. Critics drove fixes on modelling the largest object (lath sheen and lee, a cast for the bundle, a paper A-frame, a book that reads as 08's book closed), one regression I introduced (a flash-pool multiply started at y 560 that printed a full-width seam), and AKENGRAVE's eight-stop ink quantisation, now indexed by ramp length. Art 7.0 to 7.5 in the craft cycle; 04's summons remains the weakest frame."
+    },
+    {
+      "run_date": "2026-10-28",
+      "carousel_no": 98,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE EXPLODED SECTION, manufactured instruments cut open and pulled apart along one axis and annotated as anatomy drawings: the stripped subsea cable (01), its engraved cross-section with the eight conditions as armour bundles (02), the fiber core at macro (03), four cable sections by age (04), the beach landing in stippled cutaway (05), an exploded heat-pipe reactor over an empty site plinth (06), a guilloche share certificate with a torn warrant coupon (07), a halftone comparison plaque (08), the sealed scribed section (09)",
+      "atmosphere": "NEW: THE CYCLORAMA VOID, a studio infinity cove, one softbox key from the upper left, lit floor in the lower third",
+      "depth_technique": "akthree PBR with a per-frame reflection studio (01, 06); lathe-ring burin engraving with Lambert-swelled lines (02); darkfield fibers with depth-layered blur and soft casts (03); cabinet-oblique extrusions with drafting hatch codes (04); stippled cutaway strata (05); guilloche epitrochoid security engraving (07); tone-mapped halftone screen with bevels and wells (08); scribed ring runs thinning toward the lee (09)",
+      "line_voice": "anatomy drawing: mono labels with hairline leaders, drafting hatch codes, a dimensioned price axis",
+      "continuity_device": "motif:the landing pair in gold (fiber tips, core, sections, vault, empty plinth, Polaris)",
+      "continuity_devices": [
+        "the cut rotates (camera grammar)",
+        "the landing pair, gold means lands in Alaska",
+        "edge tease 01 to 02",
+        "palette arc galvanized to warm to paper to split"
+      ],
+      "hook_archetype": "NEW: THE PRICE AND THE LOCK",
+      "palette_family": "NEW: ARMOUR WIRE AND FIBER CODE (galvanized steel ramp, copper, bitumen yarn, PE black, fiber colour code, flag gold)",
+      "type_pairing": "Fraunces + JetBrains Mono",
+      "narrative_structure": "cover, the conditions as armour, the core, the reason by age, breather at the landing, the second check, the price drawing, side by side, the close",
+      "variance_dials": {
+        "design_variance": 2,
+        "visual_density": 5,
+        "type_temperature": 5
+      },
+      "techniques": [
+        "akthree PBR cable cutaway with hatched end caps",
+        "per-frame PMREM reflection studio with a lit floor panel",
+        "lathe-ring burin engraving",
+        "darkfield depth-layered fibers",
+        "cabinet-oblique hatch-coded sections",
+        "stippled geological cutaway",
+        "guilloche epitrochoid rosette",
+        "tone-mapped halftone plaque",
+        "scribed arc-length ring runs"
+      ],
+      "new_techniques_logged": [
+        "scribed arc-length ring runs (replaces per-cell dropout)",
+        "per-frame PMREM studio with a lit floor panel for vertical metal seen from above"
+      ],
+      "note": "Three critic rounds: all nine frames revise in round 1, then fixes aimed at the largest object (05 block, 06 steel, 07 paper, 08 plaque), the lower third (01, 05, 06) and texture artifacts (02 lip stub, 03 hard offset shadow, 06 horizon seam, 07 hard rectangle, 08 stair-stepped screen, 09 grid dropout). Score 8.695, art 8."
     }
   ]
 }

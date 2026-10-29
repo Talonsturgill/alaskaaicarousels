@@ -107,10 +107,32 @@
    ],
    "note": "cycle 1 8.615 (art 7.5, under the 8.5 craft floor); craft cycle on 06, 08, 05, 03, 04 as round 5; cycle 2 8.695 (art 8.0), threshold 7.7, ship; at the five-round cap."
   },
-  "ship": "pending",
-  "upgrade": "pending",
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-10-28/",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "knowledge/FIELD_NOTES.md"
+   ],
+   "note": "WebP 4.69 MB (6.9x), PDF left as is by shrink_pdfs (safe outcome), site rebuilt at 2026-10-28 (160 pages, 98 decks), sign-off PASS 18/18, site_fresh OK, parsers PASS, scanner_sync PASS, docket_dates clean, docket_alerts sent 1 (FCC USF AI comment deadline in 2 days), prune freed 0.92 MB."
+  },
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-28/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due (last 2026-10-25); 3 items queued; trend top offender (Artwork craft) queued for the pass, answered in-run with critic rounds and the craft cycle."
+  },
   "gmail": "pending",
-  "retro": "pending"
+  "retro": {
+   "status": "done",
+   "note": "FIELD_NOTES No.98 section, 2 instincts"
+  }
  },
  "phase_3_6": {
   "site_signoff": "PASS, 159 pages, 18 checks, after the docket rebuild at 2026-10-28",

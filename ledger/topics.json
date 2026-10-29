@@ -3947,6 +3947,55 @@
       ],
       "claims": 79,
       "note": "Fourth deck on the Houston transfer (Nos.68, 85, 88, 97); the next one needs a new decision on the record (the Final Finding, service of the suit, or a ruling)."
+    },
+    {
+      "run_date": "2026-10-28",
+      "carousel_no": 98,
+      "topic": "AIDEA's October 21st board: Resolution G26-11 creates Northstar Fiber Development LLC, a wholly owned subsidiary authorised to invest up to $75 million all-in (aggregate, including capital calls and cost overruns) in subsea and terrestrial fiber, landing stations and capacity, staged transfers, at least eight binding conditions on any commitment ((i) to (viii)), fiber pairs that must physically land in Alaska, Section 9 approvals, and signing authority that ends December 31st, 2028 unless extended; the resolution never mentions AI or data centers. The same day AIDEA announced a $25 million equity stake in NuCube Energy (Class A shares at $9.25, about 14.5 percent under the $10.82 reference price, half a warrant each at $11.50 within five years), counting toward the $75 million minimum cash condition of NuCube's merger with Launch Two Acquisition Corp.; NuCube's SEC filing cites AI data center energy demand and no Alaska site, utility, customer or date is named.",
+      "angle": "Two very different things called an investment by one agency on one day: the fiber money is mostly armour (ceiling, conditions, landing rule, expiry), the equity stake is a share price. Cut both open; ask whether the landing rule should travel to the next equity check.",
+      "entities": [
+        "AIDEA",
+        "Northstar Fiber Development LLC",
+        "Resolution G26-11",
+        "NuCube Energy",
+        "NuSun",
+        "Launch Two Acquisition Corp.",
+        "Randy Ruaro",
+        "Alaska United East",
+        "NorthStar",
+        "Alaska United West",
+        "AKORN",
+        "AlCan ONE",
+        "TeleGeography",
+        "SEC Form 425"
+      ],
+      "keywords": [
+        "subsea fiber",
+        "fiber subsidiary",
+        "$75 million",
+        "eight conditions",
+        "landing in Alaska",
+        "December 31st, 2028",
+        "microreactor",
+        "heat pipe",
+        "equity investment",
+        "SPAC merger",
+        "minimum cash condition",
+        "warrant",
+        "AI data center demand"
+      ],
+      "headline": "$75 million behind eight locks. $25 million at $9.25 a share.",
+      "sources_lead": [
+        "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/102126/Signed_Resolution_G26-11_Fiber_Development_10212026.pdf?ver=V4Q7HnmpQvAhYXmlSR_5pw%3d%3d",
+        "https://www.sec.gov/Archives/edgar/data/0002023676/000121390026110814/ea0309104-425_nucube.htm"
+      ],
+      "beats": [
+        "state-policy",
+        "power-and-the-grid",
+        "data-centers"
+      ],
+      "claims": 108,
+      "note": "First deck on the Northstar fiber subsidiary and the NuCube stake. An update needs a new decision on the record: a qualifying fiber investment, a NuCube Alaska site, or the merger closing."
     }
   ]
 }
