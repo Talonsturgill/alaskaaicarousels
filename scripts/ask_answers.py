@@ -1397,6 +1397,9 @@ def ship(out):
     # (2026-10-28, No.98, when two new items took the payload over the
     # ceiling). The shipped route says `#n` for the row at position n of the
     # index and the page puts the id back (site_build.py, where it builds CAT).
+    # A payload built without a catalogue (an older fixture) ships its rows only.
+    if "q" not in out:
+        return dict(out, index=rows)
     pos = {r["id"]: n for n, r in enumerate(out["index"])}
     return dict(out, index=rows, q=[ship_route(e, pos) for e in out["q"]])
 
