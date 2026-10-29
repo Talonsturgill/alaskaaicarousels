@@ -1144,7 +1144,14 @@ def label_for(route, by_id, fac, places=()):
 def expand(entry, by_id, fac, places=()):
     """One catalogue line, written back out in full."""
     q, route = entry.split("|", 1)
-    return q.replace("~", label_for(route, by_id, fac, places)) if "~" in q else q
+    if "~" not in q:
+        return q
+    label = label_for(route, by_id, fac, places)
+    # A title that opens "The" is a headline; inside a question it is a noun
+    # phrase and takes a lower-case article. The page's catalogue does the same.
+    if q.index("~") > 0 and label.startswith("The "):
+        label = "t" + label[1:]
+    return q.replace("~", label)
 
 
 

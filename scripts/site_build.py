@@ -3672,7 +3672,13 @@ ASK_JS = r"""
     for (var i = 0; i < DATA.q.length; i++) {
       var bar = DATA.q[i].indexOf('|');
       var q = DATA.q[i].slice(0, bar), route = DATA.q[i].slice(bar + 1);
-      if (q.indexOf('~') !== -1) q = q.split('~').join(labelFor(route));
+      // A title that opens "The" is a headline; inside a question it is a
+      // noun phrase and takes a lower-case article. expand() does the same.
+      if (q.indexOf('~') !== -1) {
+        var lab = labelFor(route);
+        if (q.indexOf('~') > 0 && lab.slice(0, 4) === 'The ') lab = 't' + lab.slice(1);
+        q = q.split('~').join(lab);
+      }
       var n = norm(q);
       CAT.push({q: q, route: route, n: n});
       if (!CATMAP[n]) CATMAP[n] = route;
