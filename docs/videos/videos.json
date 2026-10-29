@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-10-29",
+      "date": "2026-10-29",
+      "title": "Alaska put $25 million into a reactor that is still a dotted line",
+      "caption": "AIDEA announced on October 19th that it agreed to buy $25 million of shares in NuCube Energy. The filings give no size, site, price or date for a NuCube reactor in Alaska, and AI appears once in the company's forward-looking boilerplate.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-29-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-29-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-29-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-10-29-poster_thumb.jpg"
+    },
+    {
       "id": "2026-10-28-held-out-sonar",
       "date": "2026-10-28",
       "title": "Can AI count a river it has never seen",
