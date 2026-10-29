@@ -1,0 +1,79 @@
+{
+ "run_date": "2026-10-28",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "$75 million behind eight locks. $25 million at $9.25 a share.",
+   "fragment": "eight locks",
+   "member": "C92",
+   "note": "the eight binding conditions (i) to (viii), drawn as locks"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "Eight conditions wrap any deal.",
+   "fragment": "Eight conditions",
+   "member": "C92"
+  },
+  {
+   "kind": "design",
+   "slide": 3,
+   "text": "TWELVE FIBERS, SCHEMATIC",
+   "fragment": "TWELVE FIBERS",
+   "note": "a schematic fiber count drawn for the artwork and labelled SCHEMATIC on the slide; the resolution states no fiber count"
+  },
+  {
+   "kind": "count",
+   "slide": 4,
+   "text": "Alaska has four subsea cables to the Lower 48. Two date from 1999.",
+   "fragment": "four subsea cables",
+   "subject": "subsea cables",
+   "members": [
+    "C104",
+    "C105",
+    "C106",
+    "C107"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "The resolution puts a subsea system's typical design life at about 25 years. None of the systems landing in Alaska connects directly to Asia.",
+   "fragment": "25 years",
+   "member": "C29"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "The $25 million buys shares, not a reactor.",
+   "fragment": "25 million buys shares",
+   "member": "C54"
+  },
+  {
+   "kind": "count",
+   "slide": 8,
+   "text": "The two checks, side by side.",
+   "fragment": "two checks",
+   "subject": "checks",
+   "members": [
+    "C03",
+    "C50"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "A finance plan and eight conditions",
+   "fragment": "eight conditions",
+   "member": "C92"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "Warrants run five years",
+   "fragment": "five years",
+   "member": "C56"
+  }
+ ]
+}

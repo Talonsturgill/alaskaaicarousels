@@ -1,0 +1,178 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I re-read caption.txt, copy.json (post_copy, first_comment and the strings of all 9 slides) and every render. The only joiners are hyphens: 'all-in', 'heat-pipe-cooled', 'G26-11', '25-YEAR'. There is no U+2013 or U+2014. caption_report.json fails=[]. The craft cycle changed no copy."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in the copy or the renders. The gold four-point counter star and 09's Polaris are drawn brand marks, not emoji codepoints."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide's claim_ids in copy.json resolve to claims indexed in the storyboard's CLAIMS INDEX (C01 to C107, all slide-bound). plan_drift PASS (38 claims indexed, 0 drift). aggregate PASS (9 of 9 declared). The craft cycle touched art only, so no claim surface moved since cycle 1's per-claim check (C92 'at a minimum' backs 'at least eight', C58 sits in the forward-looking statements, C44 covers the resolution text only)."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed the post-craft renders and diffed them against copy.json. 01 'AIDEA, OCTOBER 21ST / $75 million behind eight locks. $25 million at $9.25 a share. / ILLUSTRATION, NOT TO SCALE'. 02: all eight tags, for example '(ii) DEBT CAN'T REACH AIDEA' and '(vii) INVESTMENT DECISION BY A SET DATE', plus the JACKET and SERVING legend. 03 'SECTION 9, ITEM (E) / LANDS IN ALASKA / TWELVE FIBERS, SCHEMATIC'. 04 'ALASKA UNITED EAST, 1999 / NORTHSTAR 1999 / ALASKA UNITED WEST, 2004 / AKORN 2009 / TO ASIA, NONE / RUST ARC, YEARS IN SERVICE AGAINST A 25-YEAR DESIGN LIFE'. 05: the quote plus 'RANDY RUARO, AIDEA EXECUTIVE DIRECTOR'. 06 'SECOND CHECK, NUCUBE ENERGY / ALASKA SITE, NOT NAMED / GENERIC HEAT-PIPE ANATOMY, NOT NUCUBE'S DRAWING'. 07 '$9.25 AGREED / $10.82 REFERENCE / $11.50 WARRANT STRIKE / 14.5% / $8 / $12'. 08: all 12 cells after re-centring. 09 'AIDEA'S BOARD MEETS NEXT ON NOVEMBER 4TH'. No errors. copy_sync PASS, 68 strings."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "No text clips or collides after the craft cycle. On 08 the re-centred cells all sit inside their wells, two-line cells included ('Authority ends / December 31st, 2028'). On 06 the wider explosion keeps the torus (design x about 750 to 1010) clear of the body column, which ends at about x 620. On 05 the lowest bedding line passes just above the alaskaaihq.com fixture without crossing it. 03's fibers and 07's coupon leave the frame edge on purpose (declared). The machine_qa warn on 01 (4% of the ring) is clean at full size: the cable sits well below the headline. Render: 0 overflow warnings."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "The worst point is still 06's honesty line (#D3DBE1) and plinth label (#FFE7A3) over the lit floor pool, which samples at about #3A4D66. That estimates to about 6:1. 08's NuCube column (#E8C8A0) sits on near-black wells, and the finer, darker screen (#6A7884) lies outside the wells. 05's attribution (#A9B7C6) is on near-black."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides=9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN, fails 0, warns 1 (the 01 glyph-ring warn, verified above). assemble_report.json pdf_mode 'vector', 7.22 MB, 9 slides, 9 thumbs, title 'AIDEA's Fiber Tool and NuCube Stake, Cut Open', sources hashed from the post-craft renders."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "The AIDEA entries within 30 days (Nos.85, 88, 97) concern the Houston land transfer. This deck covers Resolution G26-11 and the NuCube stake, two different decisions from October 21st. The ledgers are unchanged since cycle 1."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "The last four heroes are THE REGISTERED LAYER (No.94), THE TRIPOD ON THE FLATS (No.95), THE SOUTH-UP SHEET (No.96) and THE RECORD SET DOWN ON THE LAND (No.97). THE EXPLODED SECTION, manufactured instruments cut open in a studio cove with no terrain or map, shares no structure with them. bespoke PASS, median pairwise similarity 0.102."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS (74 phrases, 72 fields). word_ban PASS (0). On a fresh read I found no 'gap', 'matters', 'pattern' or 'cannot', and 'can't' is used throughout. Dates are ordinal. The year appears only in 'December 31st, 2028' (a different year) and in the first-comment source block. On quote marks: copy.json carries U+0022 on 05's quote and in the caption hook, and U+0027 in every apostrophe. copy_sync reports 'no curl', so the slanted-looking marks in Fraunces display are drawn shapes, not curly codepoints."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "#AIDEA #SubseaFiber #Microreactors, exactly 3. The post body has no URL; all links are in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "None in copy.json, caption.txt, the storyboard copy blocks or the renders. The score and ship_gate rows in GATE STATUS read missing only because this report is that artifact."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Unchanged by the craft cycle. An 11-word named tension in about 111 px Fraunces, with the snow/secondary split doing the comparison. It reads cleanly at 432 px, and the GPU PBR cable carries the lower half. Three things hold it at 8. The cover has nothing visibly Alaskan except the AIDEA kicker. There is an eventless band of cove between the headline's last line and the cable (design y about 690 to 850). And the gold tips, the true focal point, are small at thumb."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "No copy moved, so cycle 1's reading stands. 02 pays 'eight locks' at once, 06 is a hard turn, 08 is the keepable synthesis and 09 asks one question. The contact sheet reads as one sequence through the rotating cut and the gold landing pair. The costs remain. The 05 to 06 junction has nothing on 05 that points to a second check. 07's closing AI sentence pre-spends 08's SAYS AI row. And 03 restates condition (iv), already tagged on 02."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 8,
+   "weight": 0.16,
+   "notes": "All five targeted frames visibly improved, and none regressed. 06 now shows bores in the top plate, a dark absorber band facing the reader on each drum with a rolled key-side edge, a readable explosion (torus clearly lifted, base plate dropped, drums pushed out), and softer casts. 08's screen is finer and calmer, with cells centred in their wells. 05's deep bedding planes carry lit lips. 03's tube end is a hatched annulus with a lit lip, and bloom is reduced. 04's side walls step from a key band into an opaque mid tone, with contact cores. Hero quality holds on 01 (PBR stripped cable), 02 (burin section) and 09 (scribed seal), and 07's guilloche with its cartouche is fine-line. The deck still sits at 8, not 8.5: 06's drums are still plain extruded cylinders with a painted stripe, its floor casts are lumpy blobs offset to the right that read detached, and its lower-left quadrant is empty pool. 08's border still reads as perforated pegboard rather than light on steel, and its wells are flat black. 05's bottom fifth (design y about 1180 to 1360) and its water body stay dark, flat fields. 03's off-focus strands at the right edge still read as stock light streaks."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "Eight armour bundles for eight conditions, each leadered to its condition (machine_qa: 8 of 8 at 0 px). One seamless jacket for the all-in ceiling. Rust arcs sweep years over 25, with ember laps on the two 1999 cables, and the Asia section is drawn empty. The coupon is torn at half for the half warrant. The price axis sits at true positions. The empty gold-dashed plinth stands for no site, and gold consistently means 'lands in Alaska'. Not a 9: 06's anatomy is generic by necessity (honestly labelled), and 08's art carries none of the comparison."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "AIDEA, Randy Ruaro, four real subsea systems by name and year, 'Lower 48', the November 4th board date, the Anchorage office coordinates, and 'fiber pairs must land here' as the spine. Holding it back: no Alaska place appears on any frame (no landing town or route), and nothing on the cover is Alaskan beyond the kicker."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "The specifics are dense and verified: eight named conditions, the all-in exposure, four cables with years, the 25-year design life, none to Asia, $9.25 against $10.82 (14.5%), the $11.50 strike, the merger cash condition and the absence claims. Three beats still repeat. 'Lands in Alaska' appears on 02, 03 and 08. The AI contrast is on 07 and 08. And 03's new content is only the minimum-pairs clause."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.5,
+   "weight": 0.08,
+   "notes": "New hero, cyclorama atmosphere, palette and hook archetype, with the dials justified. The reused subsystems: Fraunces + JetBrains Mono (No.94 and No.91), lathe-ring engraving (Nos.95 and 97), the gold Polaris close on 09 (Nos.91, 92, 94 and 96), and the caption's Q AND A structure (burned on No.88)."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8.5,
+   "weight": 0.07,
+   "notes": "Body 32 px or more, labels and kickers 24 px. At the 432 px thumb, 06's honesty line and plinth label read, and 08's re-centred cells read on the contact sheet. Counters 01/09 to 09/09 with the star are present. Vector PDF is 7.22 MB with a title. One squeaker remains: 02's four-line tags and 04's two-line labels are small at thumb but legible."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05,
+   "notes": "Unchanged. The 71-character hook lands and takes a position. 888 characters, comma rate 0.82 per 100, deck-summary line present. Three soft spots: 'What does it mean for fiber/NuCube?' is consultant cadence, the Q AND A shape was burned on No.88, and the caption's closing question (should the next stake name an Alaska site?) differs from 09's (should it carry locks like the fiber money?), which splits the comment prompt."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "copy.json has post copy, exactly 3 hashtags, a primary-first source block with five URLs, a document title, four aftercare items and editor notes. The PDF is vector, there are 9 thumbs and a contact sheet, and assemble rehashed the sources from the post-craft renders. The Gmail draft, raw image URLs and inline previews can't be verified until after the merge."
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(8x0.16)+(8.5x0.14)+(8x0.12)+(7.5x0.10)+(7.5x0.08)+(8.5x0.07)+(7x0.05)+(8x0.10) = 1.12+1.05+1.28+1.19+0.96+0.75+0.60+0.595+0.35+0.80 = 8.695. No hard fails, so no 6.9 cap.",
+ "weighted_total": 8.695,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Copy: voice & hook",
+ "one_sentence_fix": "Rewrite the caption's two 'What does it mean for...?' lead-ins as plain declaratives, and end the caption on slide 09's own question ('Should AIDEA's next equity check carry locks like the fiber money?') so the post and the deck ask readers one thing.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Still the deck's least modelled hero after the craft pass. The drums are plain extruded cylinders with a painted dark stripe and no cap bevel or turned detail on the top faces. The floor casts are lumpy, offset blobs to the right of the assembly that read detached, with no contact darkening under the base plate. The base plate's top face is a flat salmon fill. And the lower-left quadrant (design x 80 to 560, y 840 to 1200) is empty floor pool.",
+   "fix": "Ground the assembly: put a tight, dark contact core directly under the base plate and drums, pull the VSM casts in so they meet the parts that throw them, and give the drum tops a chamfer ring with a key-side specular."
+  },
+  {
+   "slide": 8,
+   "problem": "The finer screen is calmer, but the plate border still reads as perforated pegboard rather than light on bevelled steel, because dot size barely changes across the plate. The twelve wells are flat black fields with no inner wall light. The medallions are too small to carry modelling.",
+   "fix": "Replace the dot rows on the bevel strips with continuous light-to-lee ramps, and give each well a 2 px lit lower-left inner wall and a dark upper-right lip, so the plate reads as machined steel."
+  },
+  {
+   "slide": 5,
+   "problem": "The bottom fifth of the block (design y about 1180 to 1360) is still near-black silt with faint lines and a few clasts. The water body under its stippled top face is a flat navy gradient box.",
+   "fix": "Raise the block about 80 design px so the dark base sinks under the footer, and add a sparse depth-graded stipple with suspended particles to the water's front face."
+  },
+  {
+   "slide": 3,
+   "problem": "The tube end is now modelled, but the off-focus orange, blue, white and rose strands at the right edge are broad uniform glow bars that still read as stock 'fiber optic light streak' imagery rather than defocused glass.",
+   "fix": "Render the defocused strands as soft bokeh tubes with a brighter rim on both edges and a darker core, and taper their glow so it falls off along their length."
+  },
+  {
+   "slide": 4,
+   "problem": "The Lambert-stepped walls are better but still semi-translucent grey shells behind well-hatched faces, and the far end caps dissolve into the cove.",
+   "fix": "Close each extrusion with an opaque, dimly lit far rim and raise the wall's mid-tone opacity, so each section reads as a solid cylinder resting on the floor."
+  }
+ ],
+ "revision_rounds": 5,
+ "scoring_cycles": 2,
+ "editor_notes_for_email": "Cycle 2 scored 8.695 against the round-5 threshold of 7.7, with no hard fails, so it ships. Artwork craft rose from 7.5 to 8.0 after the craft cycle but is still under the 8.5 CRAFT FLOOR. The run is at the five-round cap, so the floor's one cycle is spent and it doesn't block shipping. Say so in the email. Before posting: (1) Slide 07's body ends with the AI contrast that 08's SAYS AI row repeats almost word for word (deliberate, from the flow critic's bail-point fix). (2) The caption's closing question (should the next equity stake name an Alaska site?) is not slide 09's (should it carry locks like the fiber money?). Pick one to pin in replies. (3) 'The filing cites AI data center demand' rests on NuCube's forward-looking statements (C58). If challenged, say exactly that. (4) 'Never mentions AI or data centers' (C44) covers the resolution text only, not the board packet it incorporates. (5) 'Eight' conditions is the resolution's minimum ('at a minimum'), and the caption says 'at least eight'. (6) No board resolution for the NuCube stake is on the record, so don't say in comments that the board voted on it. (7) This is the third AIDEA deck in 12 days (Nos.88, 97, 98), on a different decision, so some followers may feel agency fatigue. (8) Confirm the image and PDF URLs resolve after the merge. Files: /home/user/alaskaaicarousels/out/2026-10-28/render/, /home/user/alaskaaicarousels/out/2026-10-28/final/carousel.pdf, /home/user/alaskaaicarousels/out/2026-10-28/final/contact_sheet.png, /home/user/alaskaaicarousels/out/2026-10-28/copy.json, /home/user/alaskaaicarousels/out/2026-10-28/caption.txt.",
+ "craft_cycle": {
+  "frames": [
+   6,
+   8,
+   5,
+   3,
+   4
+  ],
+  "art_before": 7.5,
+  "art_after": 8.0
+ }
+}

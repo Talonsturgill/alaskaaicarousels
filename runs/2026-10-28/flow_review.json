@@ -1,0 +1,184 @@
+{
+  "verdict": "revise",
+  "arc_assessment": "The sequence does what the cover promises. 02 pays 'eight locks' straight away, 03 to 05 explain why the fiber money is locked, 06 turns hard to the second check, 07 pays the cover's '$9.25 a share' half, 08 puts both side by side and 09 lands one real ask, so there is a clear rise at 06 and a proper ending. The weak links are inside the deck, not at its ends: 05 to 06 and 07 to 08 have no visual pull, and 07 is the one frame that leaves the cable-anatomy world without planting the AI question 08 answers.",
+  "junction_pulls": [
+    {
+      "from": 1,
+      "to": 2,
+      "pull": "The intact jacket leaves 01's right edge at about design y 780 and 02 opens on the full section centred at y 872, close enough to read as the same cable cut open. 'eight locks' becomes 'Eight conditions'.",
+      "strength": "strong"
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "pull": "The haloed gold pair at the dead centre of 02's engraved section, answered by 03's 'At the core'.",
+      "strength": "strong"
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "pull": "Fibers run off 03's right edge and the gold pair is labelled LANDS IN ALASKA, but nothing on the frame asks 'why now'. The planted question exists only in the storyboard.",
+      "strength": "weak"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "pull": "The two 1999 sections with their ember overrun laps and the empty dashed Asia core set up Ruaro's 'will last for decades'.",
+      "strength": "strong"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "pull": "Only the mono line 'PICKS NO PROJECT, ROUTE OR PARTNER'. The gold pair finishes inside the vault, which closes the fiber story, and nothing on 05 teases a second check.",
+      "strength": "weak"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "pull": "The empty gold-dashed plinth under a reactor that names no site raises 'so what did it buy?', and 07's 'buys shares, not a reactor' answers it.",
+      "strength": "strong"
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "pull": "None on the frame. The certificate and price axis close their own loop, and AI, which 08's last row turns on, is never mentioned on 07.",
+      "strength": "weak"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "pull": "The SAYS AI row on its warm floor (locked money never mentions AI, unlocked money cites AI demand) sets up 09's question about locks.",
+      "strength": "strong"
+    }
+  ],
+  "continuity_findings": [
+    {
+      "severity": "polish",
+      "where": "slides 1-2 seam (D3)",
+      "problem": "The tease reads as a cut to the section, not a physical continuation. The jacket leaves 01 at design y about 780 (declared after the reframe) and 02's section sits mid-frame at (540, 872), not entering from the left edge. The heights nearly agree, so the cut works.",
+      "fix": "None required. If 02 is touched again, a faint jacket stub entering at its left edge near y 800 to 870 would make the tease literal."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 3 (D2 state 'gold pair in focus, ten fibers cool')",
+      "problem": "The gold pair is not the sharpest or brightest element. The white and blue strands glow as bright as the gold or brighter, and the eased blurs (2.5 and 4.5 design px) leave the near and far strands almost as crisp as the focal pair, so the focus hierarchy the state table promises is shared.",
+      "fix": "Bring the white and blue strands' glow down about 30 percent and raise the near-layer blur, so the pair is the one sharp, warm thing in the fan."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 5 (D2 state 'the gold pair rising')",
+      "problem": "The landing pair is drawn as ONE gold stroke from the trench into the vault, where 01 to 04 all count two.",
+      "fix": "Split the stroke into two parallel hairlines about 3 px apart."
+    },
+    {
+      "severity": "polish",
+      "where": "slides 1 and 6 (D1 rhyme)",
+      "problem": "The rhyme reads: both elevated three-quarter oblique on a lit floor pool. 06's assembly hovers well above its own plinth and floor, so its contact cue is weaker than 01's.",
+      "fix": "Covered by the 06 craft fix below (contact and modelling)."
+    }
+  ],
+  "rhythm_findings": [
+    {
+      "severity": "polish",
+      "where": "slides 2-4",
+      "problem": "Three dense frames in a row. 02 has a 3-line body and eight 2- to 4-line armour tags, 03 a 5-line 45-word body, 04 a 3-line headline, 4-line body, five labels and a key. 03 is calmer in its art but not in its copy.",
+      "fix": "Make 03 the visual beat: cut its body to the first sentence (C20) and move the minimum-pairs sentence (C95) to the caption, or cut 04's body to the design-life sentence only."
+    },
+    {
+      "severity": "polish",
+      "where": "slides 6-8",
+      "problem": "A second run of three dense frames before the close: 06 has an 8-line body in a narrow column, 07 a 4-line 41-word body plus a labelled axis, 08 a 12-cell table. The breather at 05 lands where planned, but the back half has no rest until 09.",
+      "fix": "Trim 06's body to two sentences, since the plinth label already carries 'no site'. That also opens the frame's dead lower left (see craft)."
+    }
+  ],
+  "consistency_findings": [
+    {
+      "severity": "polish",
+      "where": "all slides, counters",
+      "problem": "Counters transcribed: 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09, each with the gold four-point star before it. They all increment correctly. ALASKA.AI top left, alaskaaihq.com bottom left and 61°12'N · 149°54'W left of the counter hold the same positions on every frame. No defect.",
+      "fix": "None."
+    },
+    {
+      "severity": "polish",
+      "where": "slides 1 and 6 footer",
+      "problem": "The site fixture is visibly brighter on 01 and 06 (#7F90A0, lifted over the lit floor) than on the other seven frames. It is declared and defensible, but it shows on the sheet.",
+      "fix": "Optional: lift the other frames' footer ink to match, or leave it."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 7 axis labels",
+      "problem": "The $8 end label sits below the axis and the $12 end label above it, so the two ends of one scale are labelled inconsistently. The lifted coupon is also the only art in the deck that breaks the right margin (to about design x 1024). That one is declared and reads as intended.",
+      "fix": "Set $12 below the axis end like $8."
+    },
+    {
+      "severity": "polish",
+      "where": "deck physics",
+      "problem": "One key from the upper left holds on every frame: 01's cast, 02's lit upper-left crowns, 04's casts down and right, 06's shadows down and right, 09's lit crown upper left. The palette holds from cove to steel to gold. Nothing reads as pasted from another deck. 07's pale paper is the planned tonal peak, not a foreign object.",
+      "fix": "None."
+    }
+  ],
+  "predicted_bail_point": {
+    "slide": 7,
+    "why": "An Alaskan who swiped three slides is carried by 04 (named cables they know), the 05 breather and the hard turn at 06. 07 is the first frame that leaves the cable-anatomy world for financial jargon: reference price, warrant strike, minimum cash to close a merger. Its art is a mostly blank certificate and a price axis with nothing Alaskan in it, and it plants nothing visible toward 08, so a reader who already 'got it' at 06 stops here and never reaches the keepable comparison.",
+    "fix": "Spend 07's words on the plant. The axis already shows $11.50 and five years is on 08, so cut the half-warrant sentence from the body and replace it with C58 phrased as the open loop (NuCube's filing cites AI data center demand; AIDEA's fiber resolution never does). That gives 07 to 08 a pull and puts AI in front of the reader one frame early."
+  },
+  "craft": {
+    "predicted_artwork_score": 7.2,
+    "weakest_frames": [
+      {
+        "slide": 6,
+        "score": 7.0,
+        "cause": "b",
+        "problem": "The frame's largest object is the least modelled hero in the deck. The six control drums are plain matte blue-grey cylinders with only a vertical gradient: no graphite absorber band reads, and there are no bevels, brushed streaks or edge highlights. The hex monolith is a dark slab with one vague shading arch and no visible bores. The hex plates are flat light faces. Floor shadows are hard, blocky silhouettes. Beside 01's armour wires it reads as a default primitive render; only the torus and the heat pipes carry material. Secondary c: the lower-left floor between the body's end (design y about 820) and the plinth label (y about 1250) is soft pool and nothing else, about 600 by 400 design px with no event.",
+        "fix": "One material pass on the drums and monolith: bevelled edges with a specular line on the key side, a dark graphite absorber band and anisotropic brushed roughness on each drum, the 19 bores cut into the monolith's top face, and a soft contact darkening where the assembly's shadow meets the floor. That brings the largest object up to 01's level."
+      },
+      {
+        "slide": 8,
+        "score": 7.4,
+        "cause": "d",
+        "problem": "The halftone screen doesn't read as raking light on a bevelled steel plate. The dots sit at near-uniform size and density around every well, so at full size the borders read as stitched or perforated fabric, or pegboard, and the planned upper-left to lower-right tonal gradient barely shows. The odd large-dot patch in the empty top-left header cell reads as a mistake. The wells are flat dark fields, intended under type, which leaves the plate's character entirely to that dotted texture. The medallions are too small to carry modelling.",
+        "fix": "Drive dot SIZE from the raking-light tone map, large and bright on the upper-left bevel and rivet side and shrinking toward the lower right, with bevel strips as clean ramps rather than dot rows, so the screen reads as light on steel instead of a uniform texture."
+      },
+      {
+        "slide": 7,
+        "score": 7.8,
+        "cause": "c",
+        "problem": "On the brightest frame the main sheet's right two thirds (design x about 470 to 830) is a near-blank field of faint wavy tint lines. The rosette and border are fine-line and survive zoom, but the paper's curl shading and tooth barely read, and the lifted coupon's two-part cast is small. Most of the sheet is pale and eventless.",
+        "fix": "Fill the blank field with a second guilloche element, e.g. a lathe-work denomination panel or a microline band, at lower density, and deepen the curl shading toward the sheet's lower edge."
+      },
+      {
+        "slide": 4,
+        "score": 7.9,
+        "cause": "b",
+        "problem": "The section faces are well hatched, but the extruded side walls, the largest area of each object, are a flat dark gradient with two or three sparse lines, and the casts on the floor are faint.",
+        "fix": "Lambert-step the side walls with a lit band at the upper left and a ramp into the lee, as planned, and darken the contact under each section."
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "a",
+        "slides": [
+          2,
+          4,
+          8,
+          9
+        ],
+        "problem": "Census clean (no helper or copied function shape on more than three frames). On the sheet, a head-on ringed cable section appears on four frames, but each is drawn with distinct mark-making: burin engraving (02), cabinet hatch (04), halftone (08 medallion, tiny), scribed runs (09). It reads as the deck's motif, not the same drawing, so it is NOT cause a. A scorer skimming the sheet could still count 'four circles'.",
+        "fix": "None required. Keep the 08 medallions small so the family stays at three prominent frames."
+      },
+      {
+        "cause": "e",
+        "slides": [
+          5,
+          6,
+          7,
+          9
+        ],
+        "problem": "Tonal census PASS: brightest 07 at L* 24.1, darkest 09 at L* 7.6, span 16.6 L*, as declared, 0 warns. The lightness arc is real and I see it: 07 lifts, 09 closes darkest. What the census can't see is that the 'warm turn on 06' is warm only in five heat pipes. The frame's mass is the same cool navy and blue-grey steel as 01 to 05, so the planned temperature arc reads weakly on the sheet.",
+        "fix": "Optional, folded into the 06 pass: let the heat-ramp light the inner faces of the near drums and the hex plates with a warm bounce, so 06 reads as the warm frame at contact-sheet scale."
+      }
+    ],
+    "masterful_depth_frame": 1
+  },
+  "score_0_10": 7.8
+}
