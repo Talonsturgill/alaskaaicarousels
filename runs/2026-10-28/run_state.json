@@ -1,145 +1,163 @@
 {
- "run_date": "2026-10-28",
- "carousel_no": 98,
- "effort": "high",
- "branch": "tsturg/clever-mayer-ry4g5y",
- "date_note": "Anchorage date at wake (22:05 AKDT October 28th, 06:05Z October 29th). runs/2026-10-28 did not exist; run_guard --run-date 2026-10-28 CLEAR.",
- "woke_utc": "2026-10-29T06:05:38Z",
- "revision_rounds": 5,
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/run_state.json",
-    "out/2026-10-28/plan.md",
-    "out/2026-10-28/WORKLOG.md"
-   ]
+  "run_date": "2026-10-28",
+  "carousel_no": 98,
+  "effort": "high",
+  "branch": "tsturg/clever-mayer-ry4g5y",
+  "date_note": "Anchorage date at wake (22:05 AKDT October 28th, 06:05Z October 29th). runs/2026-10-28 did not exist; run_guard --run-date 2026-10-28 CLEAR.",
+  "woke_utc": "2026-10-29T06:05:38Z",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/run_state.json",
+        "out/2026-10-28/plan.md",
+        "out/2026-10-28/WORKLOG.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches (LinkedIn document reach October 2026; editorial cutaway technique). Compact-carousel redesign already in FIELD_NOTES; nothing new, FIELD_NOTES unchanged."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/scout_merge.md",
+        "out/2026-10-28/scouts/"
+      ],
+      "note": "6 scouts, 146 searches (A 25, B 25, C 25, D 25, E 25, F 21). Four beats converged on AIDEA's October 21st board (fiber subsidiary G26-11, NuCube $25M); D found the signed resolution and the SEC Form 425."
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/claims.json",
+        "out/2026-10-28/factcheck_brief.md"
+      ],
+      "note": "90 claims (S1 66, S2 14, S3 9), 73 primary, 8 killed; claims_check PASS 90/90 usable"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "16 items refreshed (worklist budget 6 plus the 8 deferred, plus HB259/SB250 from watch.json). watch.json: 2 bills match the docket (HB259 Jan 20, SB250 May 17), 0 hearings (out of session), 26 BASIS + 4 FR candidates triaged, none new AI items (all already tracked or off-beat), failed []. Unreadable today: UA regents (503), DNR notice 225521 (503), AOGCC CCUS (403), Eielson microreactor (403). ask payload headroom 4,011 bytes (UNDER 5,000, noted). mobile_docket_map and docket_ask PASS at run date. Will add new items from this run's claims after Phase 3. After claims: added aidea-northstar-fiber-subsidiary (pending-decision) and aidea-nucube-equity-investment (decided), no map location (neither names a site, per docket_build.fake_location). Pre-flight then failed twice: ask payload -3,141 bytes over the 190,000 ceiling, and no recognised agency. Fixed: ship() sends catalogue routes as #row positions (599 of 892 shortened, 13,845 bytes headroom), AIDEA agency rule, Houston decider names AIDEA's application so 'aidea' still finds it (ask_engine expectation updated). All 5 browser suites PASS."
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/cron_health.json",
+        "out/2026-10-28/gaswatch_health.json"
+      ],
+      "note": "CRON HEALTH PASS (all scheduled workflows + Pages). GAS WATCH LIVE FAIL at first audit 06:1xZ (CINGSA 16:00 Oct 28 reading not yet collected; scheduled run 23:18Z preceded it); repaired by workflow_dispatch of gaswatch.yml on main (run 40827697195), collected 7.60 Bcf 58.5 percent, page rebuilt and deployed; live audit PASS on re-run. Site sign-off pending the build. SITE SIGN-OFF PASS 157 pages 18 checks; pagecheck PASS. Looked at home, docket, gas watch at 1366 and 390 px: no horizontal overflow, figures agree. SITE FIX: ask-box questions printed a docket title's capital 'The' mid-sentence ('Can I comment on The University of Alaska's AI policy?') on 12 titles; ask_answers.expand and the page catalogue now lower-case it; all 5 browser suites PASS."
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/selection.md"
+      ],
+      "note": "S1 AIDEA's October 21st board (fiber subsidiary G26-11 + NuCube stake). Runner-up DeepGreen update. Dedupe soft overlaps only."
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/treatments/",
+        "out/2026-10-28/storyboard.md"
+      ],
+      "note": "3 directors; systems-illustrator EXPLODED SECTION won, berth-board comparison from cinematographer, honest-blank discipline from historian. dossier_check PASS."
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/caption.txt",
+        "out/2026-10-28/copy.json"
+      ],
+      "note": "caption room B + critic fix, 888 chars. Copywriter corrected four factual slide strings (no board vote on NuCube in kickers 01/08 and doc title; four SUBSEA cables; $9.25 AGREED not PAID; (iii) COMMITTED not FUNDED). Declined its $0-origin ask: 07 is a position axis with printed $8 and $12 ends."
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/slides/",
+        "out/2026-10-28/render/"
+      ],
+      "note": "qa.py WARN (01 glyph ring, 06 top-loaded); contacts re-measured with contact_probe on 01 and declared on 07; bespoke PASS median 0.129; aggregates PASS 10/10; plan_drift PASS."
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "3 rounds. R1 all nine revise (6.4-7.6); R2 02,03,04,07,08,09 ship; R3 01 8.3, 05 8.2 ship; 06 fixed after R3 (reserve, rim tint, footer), carried to the flow critic."
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/flow_review.json"
+      ],
+      "note": "revise, predicted art 7.2; weakest 06 (b), 08 (d), 07 (c), 04 (b); bail point 07. Round 4 fixed 06 materials and warm bounce, 08 tone-mapped screen, 07 AI plant and cartouche, 03 focus, 05 pair."
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/final/"
+      ],
+      "note": "vector PDF 7.22 MB, 9 thumbs, contact sheet"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/score_report.json",
+        "out/2026-10-28/score_report_cycle1.json"
+      ],
+      "note": "cycle 1 8.615 (art 7.5, under the 8.5 craft floor); craft cycle on 06, 08, 05, 03, 04 as round 5; cycle 2 8.695 (art 8.0), threshold 7.7, ship; at the five-round cap."
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-28/",
+        "docs/",
+        "ledger/topics.json",
+        "ledger/artwork.json",
+        "ledger/captions.json",
+        "ledger/instincts.json",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "note": "WebP 4.69 MB (6.9x), PDF left as is by shrink_pdfs (safe outcome), site rebuilt at 2026-10-28 (160 pages, 98 decks), sign-off PASS 18/18, site_fresh OK, parsers PASS, scanner_sync PASS, docket_dates clean, docket_alerts sent 1 (FCC USF AI comment deadline in 2 days), prune freed 0.92 MB."
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "weekly pass not due (last 2026-10-25); 3 items queued; trend top offender (Artwork craft) queued for the pass, answered in-run with critic rounds and the craft cycle."
+    },
+    "gmail": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-28/gmail_payload.json",
+        "runs/2026-10-28/gmail_draft_id.txt"
+      ],
+      "note": "Draft r8001339078374828572 created via Gmail MCP, to docket@alaskaaihq.com, body verbatim from gmail_draft.py --preview-mode remote (21 KB). DRAFT ONLY."
+    },
+    "retro": {
+      "status": "done",
+      "note": "FIELD_NOTES No.98 section, 2 instincts"
+    },
+    "merge": {
+      "status": "done",
+      "note": "PR #465 merged at a7b49430 after CI green (news re-run once, timing race) and Codex Completed on 9172029c with no findings; raw URLs verified 200."
+    },
+    "wrap": {
+      "status": "done"
+    }
   },
-  "craft_refresh": {
-   "status": "done",
-   "note": "2 searches (LinkedIn document reach October 2026; editorial cutaway technique). Compact-carousel redesign already in FIELD_NOTES; nothing new, FIELD_NOTES unchanged."
+  "phase_3_6": {
+    "site_signoff": "PASS, 160 pages, 18 checks, on the final build at 2026-10-28",
+    "gaswatch_live": "PASS after repair: the first live audit FAILED because the scheduled collection ran before CINGSA published its October 28th 16:00 reading; a workflow_dispatch of gaswatch.yml on main (run 40827697195) collected 7.60 Bcf, 58.5 percent, redeployed the page, and the re-run audit PASSED",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited, Pages healthy",
+    "site_fixes": "Ask box printed a docket title's capital 'The' mid-question on 12 titles; ask_answers.expand and the page catalogue now lower-case it. The ask payload went 3,141 bytes over its ceiling when the two AIDEA items were added; catalogue routes now ship as row positions (headroom 13,845 bytes) and an AIDEA agency rule was added. All 5 browser suites PASS."
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/scout_merge.md",
-    "out/2026-10-28/scouts/"
-   ],
-   "note": "6 scouts, 146 searches (A 25, B 25, C 25, D 25, E 25, F 21). Four beats converged on AIDEA's October 21st board (fiber subsidiary G26-11, NuCube $25M); D found the signed resolution and the SEC Form 425."
-  },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/claims.json",
-    "out/2026-10-28/factcheck_brief.md"
-   ],
-   "note": "90 claims (S1 66, S2 14, S3 9), 73 primary, 8 killed; claims_check PASS 90/90 usable"
-  },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json"
-   ],
-   "note": "16 items refreshed (worklist budget 6 plus the 8 deferred, plus HB259/SB250 from watch.json). watch.json: 2 bills match the docket (HB259 Jan 20, SB250 May 17), 0 hearings (out of session), 26 BASIS + 4 FR candidates triaged, none new AI items (all already tracked or off-beat), failed []. Unreadable today: UA regents (503), DNR notice 225521 (503), AOGCC CCUS (403), Eielson microreactor (403). ask payload headroom 4,011 bytes (UNDER 5,000, noted). mobile_docket_map and docket_ask PASS at run date. Will add new items from this run's claims after Phase 3. After claims: added aidea-northstar-fiber-subsidiary (pending-decision) and aidea-nucube-equity-investment (decided), no map location (neither names a site, per docket_build.fake_location). Pre-flight then failed twice: ask payload -3,141 bytes over the 190,000 ceiling, and no recognised agency. Fixed: ship() sends catalogue routes as #row positions (599 of 892 shortened, 13,845 bytes headroom), AIDEA agency rule, Houston decider names AIDEA's application so 'aidea' still finds it (ask_engine expectation updated). All 5 browser suites PASS."
-  },
-  "gas_watch": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/cron_health.json",
-    "out/2026-10-28/gaswatch_health.json"
-   ],
-   "note": "CRON HEALTH PASS (all scheduled workflows + Pages). GAS WATCH LIVE FAIL at first audit 06:1xZ (CINGSA 16:00 Oct 28 reading not yet collected; scheduled run 23:18Z preceded it); repaired by workflow_dispatch of gaswatch.yml on main (run 40827697195), collected 7.60 Bcf 58.5 percent, page rebuilt and deployed; live audit PASS on re-run. Site sign-off pending the build. SITE SIGN-OFF PASS 157 pages 18 checks; pagecheck PASS. Looked at home, docket, gas watch at 1366 and 390 px: no horizontal overflow, figures agree. SITE FIX: ask-box questions printed a docket title's capital 'The' mid-sentence ('Can I comment on The University of Alaska's AI policy?') on 12 titles; ask_answers.expand and the page catalogue now lower-case it; all 5 browser suites PASS."
-  },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/selection.md"
-   ],
-   "note": "S1 AIDEA's October 21st board (fiber subsidiary G26-11 + NuCube stake). Runner-up DeepGreen update. Dedupe soft overlaps only."
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/treatments/",
-    "out/2026-10-28/storyboard.md"
-   ],
-   "note": "3 directors; systems-illustrator EXPLODED SECTION won, berth-board comparison from cinematographer, honest-blank discipline from historian. dossier_check PASS."
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/caption.txt",
-    "out/2026-10-28/copy.json"
-   ],
-   "note": "caption room B + critic fix, 888 chars. Copywriter corrected four factual slide strings (no board vote on NuCube in kickers 01/08 and doc title; four SUBSEA cables; $9.25 AGREED not PAID; (iii) COMMITTED not FUNDED). Declined its $0-origin ask: 07 is a position axis with printed $8 and $12 ends."
-  },
-  "art_build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/slides/",
-    "out/2026-10-28/render/"
-   ],
-   "note": "qa.py WARN (01 glyph ring, 06 top-loaded); contacts re-measured with contact_probe on 01 and declared on 07; bespoke PASS median 0.129; aggregates PASS 10/10; plan_drift PASS."
-  },
-  "pixel_review": {
-   "status": "done",
-   "note": "3 rounds. R1 all nine revise (6.4-7.6); R2 02,03,04,07,08,09 ship; R3 01 8.3, 05 8.2 ship; 06 fixed after R3 (reserve, rim tint, footer), carried to the flow critic."
-  },
-  "flow_review": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/flow_review.json"
-   ],
-   "note": "revise, predicted art 7.2; weakest 06 (b), 08 (d), 07 (c), 04 (b); bail point 07. Round 4 fixed 06 materials and warm bounce, 08 tone-mapped screen, 07 AI plant and cartouche, 03 focus, 05 pair."
-  },
-  "assemble": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/final/"
-   ],
-   "note": "vector PDF 7.22 MB, 9 thumbs, contact sheet"
-  },
-  "scoring": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/score_report.json",
-    "out/2026-10-28/score_report_cycle1.json"
-   ],
-   "note": "cycle 1 8.615 (art 7.5, under the 8.5 craft floor); craft cycle on 06, 08, 05, 03, 04 as round 5; cycle 2 8.695 (art 8.0), threshold 7.7, ship; at the five-round cap."
-  },
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-10-28/",
-    "docs/",
-    "ledger/topics.json",
-    "ledger/artwork.json",
-    "ledger/captions.json",
-    "ledger/instincts.json",
-    "knowledge/FIELD_NOTES.md"
-   ],
-   "note": "WebP 4.69 MB (6.9x), PDF left as is by shrink_pdfs (safe outcome), site rebuilt at 2026-10-28 (160 pages, 98 decks), sign-off PASS 18/18, site_fresh OK, parsers PASS, scanner_sync PASS, docket_dates clean, docket_alerts sent 1 (FCC USF AI comment deadline in 2 days), prune freed 0.92 MB."
-  },
-  "upgrade": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-10-28/automation_retro.md",
-    "knowledge/MACHINE_QUEUE.md"
-   ],
-   "note": "weekly pass not due (last 2026-10-25); 3 items queued; trend top offender (Artwork craft) queued for the pass, answered in-run with critic rounds and the craft cycle."
-  },
-  "gmail": "pending",
-  "retro": {
-   "status": "done",
-   "note": "FIELD_NOTES No.98 section, 2 instincts"
-  }
- },
- "phase_3_6": {
-  "site_signoff": "PASS, 159 pages, 18 checks, after the docket rebuild at 2026-10-28",
-  "gaswatch_live": "PASS after repair: the first live audit FAILED because the scheduled collection ran before CINGSA published its October 28th 16:00 reading; a workflow_dispatch of gaswatch.yml on main (run 40827697195) collected 7.60 Bcf, 58.5 percent, redeployed the page, and the re-run audit PASSED",
-  "gaswatch_pagecheck": "PASS",
-  "cron_health": "PASS, 7 scheduled workflows audited, Pages healthy",
-  "site_fixes": "Ask box printed a docket title's capital 'The' mid-question on 12 titles; ask_answers.expand and the page catalogue now lower-case it. The ask payload went 3,141 bytes over its ceiling when the two AIDEA items were added; catalogue routes now ship as row positions (headroom 13,845 bytes) and an AIDEA agency rule was added. All 5 browser suites PASS."
- },
- "score": 8.695
+  "score": 8.695,
+  "status": "complete",
+  "gmail_draft_id": "r8001339078374828572",
+  "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/465",
+  "merge_sha": "a7b4943027209f1c2fb4ec0aa5086f7d3df2ace2"
 }
