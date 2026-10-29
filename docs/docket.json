@@ -10,8 +10,8 @@
   "attribution": "Alaska AI, https://alaskaaihq.com",
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
-  "temporal_coverage": "2022-02-02/2027-12-31",
-  "count": 37,
+  "temporal_coverage": "2022-02-02/2028-12-31",
+  "count": 39,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -1283,7 +1283,7 @@
       "title": "AIDEA's free state land for a Mat-Su data center park",
       "kind": "state-land-lease",
       "status": "pending-decision",
-      "decider": "Alaska DNR, Commissioner John Crowther",
+      "decider": "Alaska DNR, Commissioner John Crowther, on AIDEA's application",
       "public_access": "indirect",
       "access_note": "The comment room is closed. Written comment on ADL 234762 closed in September and DNR is still reviewing more than 2,000 comments. Only people who sent timely written comment may appeal the Final Finding and Decision, so the appeal stays open to those who wrote in and is shut to everyone else. No final finding and decision has been published. Commissioner John Crowther told the Senate Resources Committee on October 26th that approval before the December 7th inauguration is certainly possible. A lawsuit filed October 22nd in Superior Court at Juneau asks the court to bar the transfer without a finding of legitimate public purpose and legislative authorization.",
       "summary": "A DNR preliminary decision would transfer about 19,950 acres, roughly 31 square miles, of state land about two miles north of Houston in the Mat-Su to the Alaska Industrial Development and Export Authority at no charge, a state subsidy meant to seed a multi-use industrial and energy district that AIDEA's own development plan describes as including scalable data centers, advanced manufacturing pads and a logistics hub on the Parks Highway and the Alaska Railroad, about 60 road miles north of Anchorage. Written public comment was to close August 19th, DNR extended it to September 14th, and it is now closed. The decision sits with the department.",
@@ -5780,6 +5780,107 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/beluga-healy-transmission-dpa/"
+    },
+    {
+      "id": "aidea-northstar-fiber-subsidiary",
+      "title": "AIDEA's $75 million fiber investment subsidiary",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "AIDEA's executive director, reporting each commitment to the AIDEA board",
+      "public_access": "indirect",
+      "access_note": "The board adopted the resolution on October 21st. Any project the executive director approves under it is reported to the board at its next meeting, and the board's public meetings are the place to be heard. The next are listed for November 4th and December 4th.",
+      "summary": "AIDEA's board adopted Resolution G26-11 forming Northstar Fiber Development LLC, a wholly owned subsidiary that may invest up to $75 million in subsea and terrestrial fiber, landing stations and middle-mile networks, with Pacific connectivity first. The resolution picks no project, route or partner, and the executive director's power to commit funds under it expires December 31st, 2028.",
+      "key_dates": [
+        {
+          "date": "2026-10-21",
+          "label": "AIDEA board adopts Resolution G26-11",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Next AIDEA board meeting",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-04",
+          "label": "AIDEA board meeting",
+          "kind": "milestone"
+        },
+        {
+          "date": "2028-12-31",
+          "label": "Executive director's commitment authority under the resolution expires unless extended",
+          "kind": "milestone"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/102126/Signed_Resolution_G26-11_Fiber_Development_10212026.pdf?ver=V4Q7HnmpQvAhYXmlSR_5pw%3d%3d",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-21"
+        },
+        {
+          "url": "https://www.aidea.org/Portals/0/PressReleases/20-2026%20PRESS%20RELEASE%20AIDEA%20Board%20Approves%20Investment%20Tool%20to%20Transform%20Alaska%20into%20a%20Global%20Digital%20Hub.pdf?ver=b9pjcH06Wqj8J7ilu3gyZw%3d%3d",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-23"
+        },
+        {
+          "url": "https://www.aidea.org/About/Board-Members/Board-Meeting-Schedule",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-28"
+        }
+      ],
+      "first_seen": "2026-10-28",
+      "last_updated": "2026-10-28",
+      "history": [
+        {
+          "date": "2026-10-28",
+          "note": "Read the signed resolution in full. It caps all transfers and commitments at $75 million, requires a finance plan, outside counsel's confirmation and fiber that physically lands in Alaska before any binding commitment, and does not mention artificial intelligence or data centers. AIDEA's release says the board vote on October 21st was unanimous."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"
+    },
+    {
+      "id": "aidea-nucube-equity-investment",
+      "title": "AIDEA's $25 million stake in microreactor maker NuCube",
+      "kind": "other",
+      "status": "decided",
+      "decider": "Alaska Industrial Development and Export Authority",
+      "public_access": "closed",
+      "access_note": "AIDEA announced the investment as made on October 21st. The company's merger filing describes AIDEA as its anchor investor. No public comment step was announced.",
+      "summary": "AIDEA agreed to buy $25 million of NuCube Energy's Class A shares at $9.25 each, which NuCube's filing calls about a 14.5 percent discount, with half a warrant per share at $11.50. AIDEA's release names data centers among the industries cheaper power could serve and names no Alaska site, utility, customer or date.",
+      "key_dates": [
+        {
+          "date": "2026-10-19",
+          "label": "NuCube files its announcement naming AIDEA as anchor investor",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-21",
+          "label": "AIDEA announces the $25 million equity investment",
+          "kind": "decision"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.aidea.org/LinkClick.aspx?fileticket=E7LXDrzoAyc%3d&portalid=0",
+          "outlet": "Alaska Industrial Development and Export Authority",
+          "date": "2026-10-21"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/0002023676/000121390026110814/ea0309104-425_nucube.htm",
+          "outlet": "NuCube Energy, filed with the SEC",
+          "date": "2026-10-19"
+        }
+      ],
+      "first_seen": "2026-10-28",
+      "last_updated": "2026-10-28",
+      "history": [
+        {
+          "date": "2026-10-28",
+          "note": "Read AIDEA's release and NuCube's SEC filing. The $25 million counts toward the $75 million minimum cash condition for NuCube's merger with Launch Two Acquisition Corp. AIDEA says project costs and energy savings will be determined as projects are developed."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/aidea-nucube-equity-investment/"
     }
   ]
 }

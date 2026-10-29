@@ -3672,6 +3672,12 @@ ASK_JS = r"""
     for (var i = 0; i < DATA.q.length; i++) {
       var bar = DATA.q[i].indexOf('|');
       var q = DATA.q[i].slice(0, bar), route = DATA.q[i].slice(bar + 1);
+      // A shipped route names its decision as #n, the row at position n of
+      // the index, and the id goes back here (ask_answers.ship_route).
+      var hash = route.indexOf(':#');
+      if (hash !== -1 && DATA.index[+route.slice(hash + 2)]) {
+        route = route.slice(0, hash + 1) + DATA.index[+route.slice(hash + 2)].id;
+      }
       // A title that opens "The" is a headline; inside a question it is a
       // noun phrase and takes a lower-case article. expand() does the same.
       if (q.indexOf('~') !== -1) {

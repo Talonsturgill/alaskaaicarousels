@@ -149,7 +149,10 @@ head(`A. all ${DATA.q.length} catalogued questions`);
 const expand = (entry) => {
   const bar = entry.indexOf('|');
   let q = entry.slice(0, bar);
-  const route = entry.slice(bar + 1);
+  let route = entry.slice(bar + 1);
+  // The page ships a decision's route as #n, its row in the index.
+  const hash = route.indexOf(':#');
+  if (hash !== -1) route = route.slice(0, hash + 1) + DATA.index[+route.slice(hash + 2)].id;
   if (q.includes('~')) {
     const c = route.indexOf(':'), kind = route.slice(0, c), target = route.slice(c + 1);
     let label = '';
@@ -376,7 +379,10 @@ const Q = [
   ['eo 14318', { top: ID('eo-14318-data-center-permitting') }],
   ['ao 2026-27', { top: ID('anchorage-ao-2026-27-data-center-zoning') }],
   ['stak', { top: ID('adl-422741-stak-north-slope-lease') }],
-  ['aidea', { top: ID('aidea-houston-industrial-park') }],
+  // AIDEA decides its own fiber and NuCube items and is the applicant on the
+  // Houston land, so the name reaches all three (2026-10-28).
+  ['aidea', { min: 3, lead: /3 decisions match AIDEA/ }],
+  ['aidea houston', { top: ID('aidea-houston-industrial-park') }],
   ['aklng', { top: ID('aklng-tax-bill-second-special-session') }],
   ['dmv', { top: ID('dmv-automated-compliance-rfi') }],
   ['jber', { min: 1 }],

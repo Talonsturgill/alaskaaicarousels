@@ -211,6 +211,14 @@ AGENCY_RULES = [
     (r"Fairbanks North Star Borough", "the Fairbanks North Star Borough Assembly",
      ("fairbanks assembly", "fnsb", "fnsb assembly", "fairbanks north star borough",
       "fairbanks borough", "fairbanks planning commission", "planning commission")),
+    # Added 2026-10-28 with the first items AIDEA itself decides, its fiber
+    # subsidiary and its NuCube stake, and the self-test caught them in the
+    # Phase 3.5 pre-flight the same way it caught the Fairbanks one: an item
+    # with no recognised agency. AIDEA had been on the record for months as the
+    # applicant on the Houston land, where DNR decides, so no rule existed.
+    (r"\bAIDEA\b|Industrial Development and Export", "AIDEA",
+     ("aidea", "industrial development", "development authority",
+      "alaska industrial development and export authority")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",
@@ -1384,7 +1392,30 @@ def ship(out):
         if seed and (hay == seed or hay.startswith(seed + " ")):
             r = dict(r, hay=hay[len(seed) + 1:], h=1)
         rows.append(r)
-    return dict(out, index=rows)
+    # A catalogued question names its decision by id, and every decision
+    # carries about seventeen of them, so each id went out seventeen times
+    # (2026-10-28, No.98, when two new items took the payload over the
+    # ceiling). The shipped route says `#n` for the row at position n of the
+    # index and the page puts the id back (site_build.py, where it builds CAT).
+    pos = {r["id"]: n for n, r in enumerate(out["index"])}
+    return dict(out, index=rows, q=[ship_route(e, pos) for e in out["q"]])
+
+
+def ship_route(entry, pos):
+    q, route = entry.split("|", 1)
+    kind, sep, target = route.partition(":")
+    if sep and target in pos:
+        return f"{q}|{kind}:#{pos[target]}"
+    return entry
+
+
+def unship_route(entry, index):
+    """What the page does with a shipped catalogue line, for the self test."""
+    q, route = entry.split("|", 1)
+    kind, sep, target = route.partition(":")
+    if sep and target.startswith("#") and target[1:].isdigit():
+        return f"{q}|{kind}:{index[int(target[1:])]['id']}"
+    return entry
 
 
 def unship_hay(r):
@@ -1626,6 +1657,10 @@ def self_test():
     check("the shipped hay rebuilds byte for byte",
           all(unship_hay(s) == r["hay"] for s, r in zip(shipped["index"], out["index"])),
           f"{sum(1 for s in shipped['index'] if s.get('h'))} of {len(shipped['index'])} rows trimmed")
+    check("the shipped catalogue rebuilds line for line",
+          [unship_route(e, shipped["index"]) for e in shipped["q"]] == out["q"],
+          f"{sum(1 for a, b in zip(shipped['q'], out['q']) if a != b)} of {len(out['q'])} routes shortened")
+    check("no decision id is a bare row number", not any(r["id"].startswith("#") for r in rows))
     blob = json.dumps(shipped, separators=(",", ":"))
     # the bytes and the headroom, not only KB (2026-10-17, weekly pass): Phase 3.5 reads this
     # line before committing a docket edit, and a headroom figure is what says one more item fits
