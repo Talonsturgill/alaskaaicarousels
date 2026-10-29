@@ -385,7 +385,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-08",
@@ -526,6 +526,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's announcement page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
         }
       ]
     },
@@ -609,7 +613,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-08",
@@ -726,6 +730,10 @@
         {
           "date": "2026-10-24",
           "note": "Golden Valley's alert page reports a return to Energy Emergency Alert Level 0, normal operations, at 7 p.m. on October 24th, and says one of two generation units that were under scheduled maintenance has returned to service. The page reports no board decision on the turbine purchase."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, with one of two units under scheduled maintenance back in service. The page reports no board decision on the turbine purchase. Checked and unchanged."
         }
       ]
     },
@@ -1130,7 +1138,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-11",
@@ -1243,6 +1251,10 @@
         {
           "date": "2026-10-25",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding remain due by 5 p.m. November 13th. The notice was last modified October 14th and still carries one attachment, the director's signed preliminary decision. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The Division of Oil and Gas public notice returned a server error today and could not be re-read. Comments on the Kenai Loop storage lease preliminary finding stand as last published, due by 5 p.m. November 13th."
         }
       ]
     },
@@ -1788,7 +1800,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-10-14",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-07-18",
@@ -1824,6 +1836,10 @@
         },
         {
           "date": "2026-10-14",
+          "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th, the referral, so nothing has moved. The bill died in committee at sine die on May 20th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th, the referral, so nothing has moved. The bill died in committee at sine die on May 20th. Checked and unchanged."
         }
       ]
@@ -2272,6 +2288,11 @@
           "date": "2027-01-14",
           "label": "Reply comments due at FERC, 5:00 p.m. Eastern",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-21",
+          "label": "Alaska Energy Authority holds a virtual industry day for the project",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -2317,7 +2338,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-04",
@@ -2414,6 +2435,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read the Alaska Energy Authority's Dixon Diversion page today. It lists a virtual industry day held October 21st, still gives the construction cost as about $400 million with its funding source to be determined, and reports no commission action on the June 30th amendment application. Recommendations remain due November 30th."
         }
       ]
     },
@@ -2681,7 +2706,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -2790,6 +2815,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read again today. Checked and unchanged."
         }
       ]
     },
@@ -3086,7 +3115,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -3166,6 +3195,10 @@
         },
         {
           "date": "2026-10-24",
+          "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
         }
       ]
@@ -3271,7 +3304,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-06",
@@ -3344,6 +3377,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application, and the commission's carbon storage page refused an automated read today. Checked and unchanged."
         }
       ]
     },
@@ -3623,6 +3660,11 @@
           "date": "2026-10-13",
           "label": "City of Kenai moves to intervene",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-10-28",
+          "label": "Kenai Peninsula Borough mayor says the company has not contacted him",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -3631,6 +3673,11 @@
         "lat": 60.7
       },
       "sources": [
+        {
+          "url": "https://www.alaskasnewssource.com/2026/10/28/sloppy-is-way-i-would-describe-this-approach-unknown-plans-an-underwater-data-center-cook-inlet/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-10-28"
+        },
         {
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261008-5007",
           "outlet": "Alaska Energy Authority, motion to intervene, FERC eLibrary",
@@ -3833,10 +3880,14 @@
         {
           "date": "2026-10-27",
           "note": "Read the commission's docket for P-15423 again today. It now lists 152 filings, 131 of them comments from individuals. Cook Inletkeeper filed a motion to intervene on October 26th, and on October 27th DeepGreen filed a consolidated answer to the timely motions to intervene and comments, including the City of Kenai's. Comments, motions to intervene and competing applications remain due November 2nd."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Alaska's News Source reported on October 28th that Kenai Peninsula Borough Mayor Peter Micciche says he has received no email, letter or call from DeepGreen about the proposal. Comments, motions to intervene and competing applications remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-27"
+      "last_updated": "2026-10-28"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -3967,7 +4018,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-25",
@@ -4080,6 +4131,10 @@
         {
           "date": "2026-10-24",
           "note": "Re-read the Assembly's public safety page today. It says the Assembly continued debate on AO 2026-108(S), the mayor's substitute, during the October 20th regular meeting until the end of the meeting, and that debate is scheduled to continue at the November 4th regular meeting as unfinished business, with proposed amendments posted. No vote has been recorded."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Re-read the Assembly's home page today. It posts no action on AO 2026-108(S) after October 20th, and debate remains scheduled to resume as unfinished business at the November 4th regular meeting. No vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4134,7 +4189,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-27",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-08-31",
@@ -4234,6 +4289,10 @@
         },
         {
           "date": "2026-10-27",
+          "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
@@ -4733,7 +4792,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-13",
@@ -4790,6 +4849,10 @@
         {
           "date": "2026-10-24",
           "note": "GovInfo's record today showed only the House reported text, and Congress.gov refused an automated read, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "GovInfo's record today still shows only the House reported text, dated September 10th, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
         }
       ]
     },
@@ -4960,7 +5023,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-13",
@@ -5033,6 +5096,10 @@
         {
           "date": "2026-10-24",
           "note": "Searched the Federal Register today for Alaska documents published October 20th to 26th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ]
     },
@@ -5370,7 +5437,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-27",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-17",
@@ -5415,6 +5482,10 @@
         {
           "date": "2026-10-27",
           "note": "The university's Board of Regents agenda page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The Board of Regents page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
         }
       ]
     },
@@ -5467,7 +5538,7 @@
         }
       ],
       "first_seen": "2026-09-24",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-09-24",
@@ -5476,6 +5547,10 @@
         {
           "date": "2026-10-25",
           "note": "Read the Legislature's bill record today. The status line still reads House Community and Regional Affairs, dated May 17th, with no later action. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
+          "note": "The morning sweep of the Legislature's BASIS record still reports SB 250 in House Community and Regional Affairs with a status date of May 17th and no later action. Checked and unchanged."
         }
       ]
     },
@@ -5626,7 +5701,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-24",
+      "last_updated": "2026-10-28",
       "history": [
         {
           "date": "2026-10-07",
@@ -5646,6 +5721,10 @@
         },
         {
           "date": "2026-10-24",
+          "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-28",
           "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
         }
       ]
