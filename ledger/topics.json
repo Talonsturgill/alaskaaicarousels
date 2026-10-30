@@ -3996,6 +3996,46 @@
       ],
       "claims": 108,
       "note": "First deck on the Northstar fiber subsidiary and the NuCube stake. An update needs a new decision on the record: a qualifying fiber investment, a NuCube Alaska site, or the merger closing."
+    },
+    {
+      "run_date": "2026-10-29",
+      "carousel_no": 99,
+      "topic": "USFWS final incidental take regulations for polar bears and Pacific walruses in the Beaufort Sea and adjacent northern coast of Alaska (91 FR 66204, October 19th, effective to October 19th, 2031): two errors found in the denning simulation's code while it was streamlined, one a line that counted only dens 'specifically marked undisturbed' and skipped dens with missing values; the fix took harassed denning bears (Level B) from 6 in the March proposal to 22 and cubs (Level A) from 4 to 13, while dens near the work stayed 6.5 a year and the total moved 422 to 432 with a separate vessel double-count fix; FWS concedes the model exceeds historical data and AOGA's estimate and weighs it no higher than AOGA's; aerial infrared den surveys Nov 25 to Dec 25 and Dec 15 to Jan 15, a third dropped.",
+      "angle": "Computation sets a number inside a federal permit: one line of simulation code moved a polar bear take estimate nearly fourfold, and the rule then declined to give the corrected model more weight. Never called AI.",
+      "entities": [
+        "U.S. Fish and Wildlife Service",
+        "Alaska Oil and Gas Association",
+        "Beaufort Sea ITR",
+        "Arctic National Wildlife Refuge",
+        "Prudhoe Bay",
+        "Canning River",
+        "regulations.gov FWS-R7-ES-2026-0694",
+        "FWS-R7-ES-2025-1628"
+      ],
+      "keywords": [
+        "polar bear",
+        "denning",
+        "incidental take",
+        "Level B harassment",
+        "Level A",
+        "simulation code",
+        "10,000 iterations",
+        "aerial infrared survey",
+        "North Slope oil and gas",
+        "Federal Register"
+      ],
+      "headline": "One line of code. Harassed denning bears went 6 to 22.",
+      "sources_lead": [
+        "https://www.govinfo.gov/content/pkg/FR-2026-10-19/html/2026-21371.htm",
+        "https://www.govinfo.gov/content/pkg/FR-2026-03-09/html/2026-04558.htm"
+      ],
+      "beats": [
+        "land-and-permitting",
+        "research-and-science",
+        "defense-and-federal"
+      ],
+      "claims": 80,
+      "note": "First deck on the Beaufort ITR denning model. An update needs a new record: a challenge to the rule, a Letter of Authorization reporting den survey results, or a revision to the model."
     }
   ]
 }

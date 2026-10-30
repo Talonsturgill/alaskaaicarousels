@@ -2330,6 +2330,30 @@
       "confidence": 0.7,
       "run_date": "2026-10-28",
       "carousel_no": 98
+    },
+    {
+      "instinct": "A NORTH-FACING LEE UNDER A NORTHERN KEY IS FRONT-LIT, SO MOVE THE CAMERA, NOT THE MOON.",
+      "evidence": "No.99's drift faced north and the deck's moon sat at az 330; 01 and 04 read as flat planes for a whole critic round because the face took the light head on. Moving both cameras east of the drift put its east flank in shade and the form appeared at once, with the deck-wide key untouched.",
+      "act_on_it": "Before tuning exposure or relief on a landform frame, compute the key against the largest face's normal; if they nearly align, frame from the side whose flank turns away from the key.",
+      "confidence": 0.75,
+      "run_date": "2026-10-29",
+      "carousel_no": 99
+    },
+    {
+      "instinct": "A COARSE FAR MESH JUST UNDER A FINE NEAR MESH Z-FIGHTS INTO FLAT PLATES.",
+      "evidence": "No.99's far snow mesh sat 0.02 to 0.03 m under the near one; its 1 m facets poked through every sastrugi trough, which critics read as low-poly plates on 05 and torn flat patches on 01. Dropping it 0.4 m removed both.",
+      "act_on_it": "Put a far context mesh well under the near mesh (more than the near relief's amplitude) and extend the near mesh over everything in focus.",
+      "confidence": 0.8,
+      "run_date": "2026-10-29",
+      "carousel_no": 99
+    },
+    {
+      "instinct": "FLAT EXTRUDED STRIPS ARE NOT PRESSURE RIDGES; PROJECT REAL SLABS.",
+      "evidence": "No.99's close drew ridges as 2D crest polylines with a lit fill and scored 5.6 as 'a bar chart of floes'; projecting tilted 3D slab boxes in perspective with Lambert faces and cast shadows on the level ice took it to a modelled foreground in one pass.",
+      "act_on_it": "For rubble, ice or rock fields on a 2D canvas, build boxes in world space, cull back faces, shade by the key and draw far to near.",
+      "confidence": 0.65,
+      "run_date": "2026-10-29",
+      "carousel_no": 99
     }
   ]
 }

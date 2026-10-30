@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-29/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9202983,
+  "pdf_mb": 9.2,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-29/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-29/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "One Line of Code in a Polar Bear Rule",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "68ad99dbfac9acfcbcc5b26e74b1d61cda9852eca1ecab88db214d0b5642cce1",
+        "bytes": 5507083
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "d07b96ab8bae2c8a5a2b25af189b65bdfaea471f79d3a9b9ac6e88aaf052166d",
+        "bytes": 5783025
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "67e0cb3602886233c37380d7996b92f2ccf6ad21edf7624c2e72e5698bec2fb9",
+        "bytes": 5811726
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "7da4b05a1ae9c43141aa1f4c8b02f2de9697df410e2e6379b6c44a974f2c2e5d",
+        "bytes": 5615908
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "02df2130912be3c67d5ff3dc46b427e053d387c81183a8615ff819294e8dc643",
+        "bytes": 5475115
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "4712b26617e50bce2890a03470b756ec199af563db37316eadc8154ecf02bf66",
+        "bytes": 5228742
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "c21b3b0812c1b6267920361982d0e9097749041a92e3e0229edf6f0b62756a9f",
+        "bytes": 5184594
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "ce4395a064084c42dc0c643ec615341538da4194a9cd7e69e84bdbe3b4c7a22a",
+        "bytes": 5600396
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "32acc652e76bf6e1d7e4d42eb050f7b8237846037868793e43daa35a83b9df12",
+        "bytes": 6260337
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "5da23b61b5546b7474af6c8767c222edbada30557859841db1f2700ba2b4235e",
+        "bytes": 9420
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "b60efdb3c05e728a64761d8fa8214684dc8fc7a787bc0ba92fa6c9fd18918931",
+        "bytes": 14340
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "5b96175e18c79d410cf2c7faccac614ae8e2432962ce9edf2cde0c6c986b4af5",
+        "bytes": 13711
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "2a43cc1a8b440fd266b7e5ca4e1f80e7716036aaec23de893065ccc5ccd66e10",
+        "bytes": 12058
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ca9580a7e3585dfdf22553b73f5d38a4685db8c00a3b1494ea269f3573cbec72",
+        "bytes": 6726
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "709a7d519b39f32ef3e882811594b5e7c51c853d3aea4e7779b77f44583ec85f",
+        "bytes": 11113
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "868c67eee8851ee87c54c3e651313a9a22daa1dcd0b5638f1dbd3a6f6644c91f",
+        "bytes": 14746
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "6de509bbfa5387deba882aac54e5170be8b46860075eb38f38c0ed3777d3f084",
+        "bytes": 12227
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "2bddf26ce76bcbb70b3ed2b01ab62d01d9d71ac482ff4822588ecee05bc21007",
+        "bytes": 16400
+      }
+    ]
+  }
+}

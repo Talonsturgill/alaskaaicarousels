@@ -1,0 +1,159 @@
+{
+ "run_date": "2026-10-29",
+ "carousel_no": 99,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without an update frame",
+   "status": "pass"
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass"
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Hook is specific and fast, 11 words in large Instrument Serif wholly on the night sky, readable at 432 px, one gold dashed ring as the focal point. Held down by: the word polar appears on no slide, so the most thumb-stopping noun is spent only in the caption; the art reads as a brushed snow plane with blue ellipses rather than a moonlit drift, with no horizon, fog or sky depth behind the crest; the bottom fixtures, including the 01 / 09 counter, nearly vanish on the bright snow at thumb size."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "01 to 03 is excellent: slide 2 pays the promise with the verbatim line and 03 shows what the skipped dens were worth. The 05 to 06 eye-to-thermal match cut is real craft and 07 to 09 lands the turn and the ask. The middle sags: 04 is now a thin transit frame, 06 answers how a den is found rather than how much the code should count, so 06 to 07 relies on the kicker bridge, and 09 repeats 06's November 25th. Flow critic revise 7.3."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.0,
+   "weight": 0.16,
+   "notes": "Strong: 05 is a convincing PBR drift with real sastrugi relief; 04's 10,000 streaks off the cornice are striking though partly combed hair over a soft body; 07's carved cabinet blocks have lit tops, wind texture and casts; the hero climbs the rendered ladder. Weak: 09's rubble is flat-shaded prisms that read as boxes or a skyline, with no snow load or legible bluff, the gold point reading as a setting sun; 08's stipple reads as static over a dead navy plain; 06's thermal plan is soft with hard bright bands at the side margins and a flat band under the rail, its hatch fix applied at the cap without a critic re-look; 03 is flat illustration with halo smudges under its labels; 01's snow is brushed rather than modelled."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.0,
+   "weight": 0.14,
+   "notes": "Real encoding: 10,000 streaks for 10,000 runs (asserted), 03's arc sweeps at 72 and 28 percent of a turn beside a dotted 0 percent ring (asserted), 07's blocks at 14 px per take with gold +16 and +9 (asserted), 06's windows at true day positions, 02's three-state token, gold means counted, and 08's line stops at the Canning while honestly running off toward Point Barrow. Held from higher: the cover's rings are decorative, 09's art carries no story figure, and with text hidden a stranger would guess snow science before polar bear permit."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.5,
+   "weight": 0.12,
+   "notes": "Named throughout: FWS, AOGA, Beaufort Sea, Prudhoe Bay, Colville, Canning, Brooks Range, ANWR excluded, 70 15 N 148 20 W, the November 25th survey window, polar twilight. The boundary decline is measured against the rule text. No slide names polar bears, the Southern Beaufort population, or any North Slope community or subsistence stake."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "02, 03, 06, 07 and 08 are dense and new. 04 is thin after the round-5 cut (one 16-word sentence) and 09's line repeats 06's date. The 05 breather is earned."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7.0,
+   "weight": 0.08,
+   "notes": "New hero structure, atmosphere, hook archetype and palette name, dials justified. Subsystems are recent reuse: Instrument Serif (No.96) plus Archivo (No.95); akthree thin lens, AKENGRAVE, stipple hillshade, hachure and cabinet oblique all from 94 to 98; 08 is a close cousin of No.96's North Slope frames; night navy plus flag gold is a house constant."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07,
+   "notes": "Body type 32 px or more, kickers 24 px, safe zones held, vector PDF 9.2 MB with title, counters on every slide. Squeakers: 01 and 05 footer fixtures on bright snow at thumb; 03 label halos read as smudges; 07 contact shadow under the comfort band (qa WARN)."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8.0,
+   "weight": 0.05,
+   "notes": "Hook lands at 117 chars, 880 chars total, a clear position, the deck summary line, a debatable close. 'Industry's request says 3' needed 'denning bears' (fixed after scoring: 'The model says 22 denning bears. Industry's request says 3.'); the caption's question differs from slide 09's, so the deck carries two asks."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "Post copy, 3 hashtags, primary-first sources comment with an illustration disclaimer, document title, six-point aftercare, thumbs, contact sheet and vector PDF are in place. The two regulations.gov docket links were not opened this run; the Gmail draft was still pending at scoring."
+  }
+ ],
+ "calculation": "(7.5x0.14)+(7.5x0.14)+(7.0x0.16)+(8.0x0.14)+(7.5x0.12)+(7.5x0.10)+(7.0x0.08)+(7.5x0.07)+(8.0x0.05)+(7.5x0.10) = 8.225; no hard fail, no cap",
+ "weighted_total": 8.225,
+ "threshold": 7.7,
+ "ship": true,
+ "revision_rounds": 5,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild 09's pressure-ridge rubble as snow-loaded, moonlit slabs that recede into fog toward a lit coastal bluff, so the gold point reads as a den on the coast and not a setting sun over cardboard boxes.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Flat-shaded prisms read as boxes or a skyline; no snow load or fog falloff; bluff not legible; gold point reads as a setting sun.",
+   "fix": "Snow-capped rounded tops, lit-to-lee ratios under the one moon, exp2 fog toward the band, a visible lit bluff face with the point seated on it."
+  },
+  {
+   "slide": 8,
+   "problem": "Stipple reads as static; coastal plain eventless; Brooks relief barely registers at thumb.",
+   "fix": "Harder hillshade curve so lit foothill faces form ridges and lees go empty; a faint tonal lay with lakes or drainage on the plain."
+  },
+  {
+   "slide": 6,
+   "problem": "Soft plan; hard bright bands at the side margins; flat band under the rail; hatch removal not re-reviewed.",
+   "fix": "Feather the side bands, sharpen troughs and scarp, carry relief under the rail; one critic look at 100 percent."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat vector snow, white-blob hood, label halos print as smudges.",
+   "fix": "Lit ridge and lee pairs and a real cast under the hood; labels on dark lee pockets or a thin solid reserve."
+  },
+  {
+   "slide": 1,
+   "problem": "Brushed sastrugi, no horizon or far bank, footer fixtures vanish on bright snow.",
+   "fix": "Sharpen sastrugi in the focal band, fogged far-bank depth, darken the foot for the fixtures."
+  }
+ ],
+ "craft_floor": {
+  "status": "stood down",
+  "reason": "Artwork craft 7.0 is under the 8.5 floor, and the run is at the five-round cap (revision_rounds 5), so no craft cycle could run; the shortfall is flagged in the email."
+ },
+ "editor_notes_for_email": "Score 8.225 against the round-5 ladder threshold of 7.7, below the base 8.3, so the shortfall is flagged. Artwork craft scored 7.0, under the 8.5 craft floor; the run was at the five-round cap, so no craft cycle could run. Weakest frames 09, 08, 06. 06's diagonal hatch was removed after its last critic verdict (revise 7.0) and was not re-reviewed. No slide says polar bear; only the caption and document title do. Crediting the whole 6 to 22 Level B rise to the one line is a fair reading of C25 and C13, not a sentence the rule states. The two regulations.gov docket URLs were not opened; click them before pasting."
+}

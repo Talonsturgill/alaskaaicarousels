@@ -3577,6 +3577,47 @@
         "per-frame PMREM studio with a lit floor panel for vertical metal seen from above"
       ],
       "note": "Three critic rounds: all nine frames revise in round 1, then fixes aimed at the largest object (05 block, 06 steel, 07 paper, 08 plaque), the lower third (01, 05, 06) and texture artifacts (02 lip stub, 03 hard offset shadow, 06 horizon seam, 07 hard rectangle, 08 stair-stepped screen, 09 grid dropout). Score 8.695, art 8."
+    },
+    {
+      "run_date": "2026-10-29",
+      "carousel_no": 99,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE NIGHT CRANE, one illustrative den drift on a Beaufort cutbank read through three instruments (EYE, MODEL, THERMAL): PBR snow from east of the drift (01, 05), an engraved plan (02), a carved snow face with gauges (03), a column-marched drift with 10,000 spindrift streaks (04), a white-hot thermal plan (06), cabinet blocks of the corrected counts (07), a DEM stipple of the rule's coast (08), perspective slab rubble at twilight (09)",
+      "atmosphere": "NEW: BLUE NOON AT SEVENTY NORTH, moon key az 330 el 22, rose twilight band low in the south",
+      "depth_technique": "akthree PBR with thin-lens focus (01, 05); white-line engraving masked by slope (02); column march per device pixel (04); per-pixel thermal radiance relief (06); cabinet oblique with two-part casts (07); Lambert stipple of a DEM (08); projected slab boxes with cast shadows (09)",
+      "line_voice": "survey instrument: mono labels on halos, hairline leaders, a calendar rail at true day positions",
+      "continuity_device": "motif:THE WARM DRIFT, gold means den heat and what the fix counted",
+      "continuity_devices": [
+        "one world module (akbluff) under every frame",
+        "lens slate EYE / MODEL / THERMAL on each frame",
+        "the warm drift in gold",
+        "one moon key at az 330"
+      ],
+      "hook_archetype": "NEW: THE CORRECTED COUNT",
+      "palette_family": "NEW: MOON SNOW AND WHITE-HOT (moonlit snow ramp, night navy, thermal greys, flag gold)",
+      "type_pairing": "Instrument Serif + Archivo + JetBrains Mono",
+      "narrative_structure": "cover, the line in FWS's words, the dens it skipped, the 10,000 runs, breather at snow level, how real dens are found, March against October, the weight and the region, the close",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 3
+      },
+      "techniques": [
+        "akbluff world module",
+        "column-march drift",
+        "thermal radiance relief",
+        "spindrift streak count",
+        "slab rubble in perspective",
+        "slope-masked engraving with a level-line lay",
+        "DEM Lambert stipple with feathered knockouts"
+      ],
+      "new_techniques_logged": [
+        "139 One Drift, Three Instruments",
+        "140 Column-March Drift",
+        "141 Thermal Radiance Relief",
+        "142 Spindrift as a Count"
+      ],
+      "note": "Critic rounds: 5. Round 1 failed all nine frames, mostly on head-on moonlight flattening the drift (fixed by moving cameras east so the drift's east flank falls in shade) and on a far snow mesh z-fighting into flat plates. Score 8.225."
     }
   ]
 }

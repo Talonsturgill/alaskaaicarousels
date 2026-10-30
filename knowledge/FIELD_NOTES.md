@@ -9453,3 +9453,18 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A ROTATED SCREEN CLIPPED BY A RECTANGLE STAIR-STEPS. 08's 15 degree halftone ended in a ragged dot column at the plate's edge; crisp bevel strips drawn over the boundary hid it, and a steeper raking-light tone map made the screen describe the plate.
 - A FIBER THAT DIPS BELOW THE FLOOR TAKES ITS TIP GLOW WITH IT. 01's gold glows floated 30 to 45 px off the visible ends because the fiber splines ended under the floor plane; lifting the end points onto the floor put the glow on the tips.
 - A KICKER THAT NAMES A BODY CLAIMS THAT BODY ACTED. "AIDEA BOARD" over the NuCube line and "ONE BOARD, ONE DAY" on the comparison passed every gate because they came from the storyboard; the copywriter caught them from the claim's notes (no board resolution for the stake is on the record).
+
+## 2026-10-29, No.99, craft refresh (two searches)
+
+- A DISSENTING REACH NUMBER, RECORDED AND NOT ACTED ON. Tryordinal's carousel study (https://www.tryordinal.com/blog/carousel-posts, via search summary) has PDF document posts matching single images on engagement rate (2.11 percent) but at the LOWEST mean impressions of any format (2,233), and native multi-image carousels beating PDFs on both. AuthoredUp's 3 million post set (March 2025 to February 2026) and Socialinsider's 2026 benchmark still put documents first on reach and engagement rate. Methods are undisclosed on all sides. Nothing in CAROUSEL_CRAFT changes; if the owner's own analytics ever show the deck's reach below a single image of the same cover, this is the study to re-read.
+- No new visual-craft source this run worth a technique entry.
+
+### 2026-10-29, No.99, THE NIGHT CRANE (one den drift read through three instruments)
+
+- A NORTH-FACING LEE UNDER A NORTHERN KEY IS FRONT-LIT. The drift faced north and the deck's moon sat at az 330, so 01 and 04 read as flat cloth for a whole critic round. Moving both cameras east of the drift put its east flank in shade and the form appeared at once, with the deck-wide key untouched. Check the key against the hero face's normal before tuning exposure.
+- A COARSE FAR MESH JUST UNDER A FINE NEAR ONE Z-FIGHTS INTO PLATES. The far context mesh sat 0.02 m under the near drift; its 1 m facets poked through every sastrugi trough and the critics called it low-poly on 05 and torn patches on 01. Dropping it 0.4 m cured both in one render, and 05 went from 7.6 to 8.1.
+- IBL FILL KILLS A LEE. On 01 the environment light at 0.3 lit the shaded flank nearly as bright as the face; 0.08 with ambient 0.16 gave the lit-to-lee step the critics had asked for over three rounds.
+- FLAT STRIPS ARE NOT PRESSURE RIDGES. 09's crest polylines with a lit fill scored 5.6 as "a bar chart of floes"; tilted 3D slab boxes projected in perspective, back faces culled, shaded by the key and casting onto the level ice, carried the frame. A gold point set on the skyline then read as a setting sun; seated on a lit bluff face below the crest, with a warm stain and no dark knockout, it read as heat.
+- A MODULAR PIXEL HASH IS A HATCH. The "sensor noise" on 06, ((px * 7919 + py * 104729) % 997), printed as a 45 degree twill; use a noise function, never a linear hash, for grain.
+- THE RULE TEXT WINS OVER THE DOSSIER. 08's dossier drew the rule line "from the Colville delta east"; the critic asked for that, and the rule's own region definition runs from Point Barrow, west of the frame. Declined on the text, written into the reconciliation.
+- FLOW: a side-issue sentence on a middle frame is where readers bail. 04's 45-word body about the other code error was named the bail point; one sentence carried the frame.

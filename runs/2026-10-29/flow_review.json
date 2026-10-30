@@ -1,0 +1,33 @@
+{
+ "verdict": "revise",
+ "score_0_10": 7.3,
+ "arc_assessment": "The sequence keeps the cover's promise (01 one line, 02 the line verbatim, 03 what the skipped dens were worth, 07 the 6 to 22 in blocks, 08 the turn: weighed no higher than industry's estimate). The middle sags: 04 carried a second, side-issue error in a 45-word body and 06 answers how a den is found, not how much the code should count.",
+ "junction_pulls": [
+  {"from": 1, "to": 2, "strength": "strong"}, {"from": 2, "to": 3, "strength": "strong"},
+  {"from": 3, "to": 4, "strength": "weak"}, {"from": 4, "to": 5, "strength": "weak"},
+  {"from": 5, "to": 6, "strength": "strong"}, {"from": 6, "to": 7, "strength": "none"},
+  {"from": 7, "to": 8, "strength": "strong"}, {"from": 8, "to": 9, "strength": "strong"}],
+ "predicted_bail_point": {"slide": 4, "why": "a 45-word body about a different error after two explainer frames"},
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "masterful_depth_frame": 5,
+  "weakest_frames": [
+   {"slide": 9, "score": 6.0, "cause": "b", "problem": "rubble least modelled, bluff missing, gold point read as a setting sun"},
+   {"slide": 8, "score": 6.5, "cause": "b", "problem": "stipple relief reads as static, plain eventless"},
+   {"slide": 3, "score": 7.0, "cause": "d", "problem": "label halos read as smudges"},
+   {"slide": 4, "score": 7.0, "cause": "d", "problem": "streaks read as combed hair; body soft"},
+   {"slide": 6, "score": 7.0, "cause": "c", "problem": "plan ends on a hard edge; the white-hot flash measures 6th of 9 by lightness"},
+   {"slide": 1, "score": 7.5, "cause": "d", "problem": "sastrugi partly brushed; foot soft"}],
+  "cross_frame": [
+   {"cause": "e", "slides": [1,2,3,4,5,6,7,8,9], "problem": "tonal arc moved from the plan (declared and reconciled); 06 not a tonal peak; 06 to 08 three dark dense frames"},
+   {"cause": "a", "slides": [3, 7], "problem": "none; reuse census empty"}]},
+ "applied_in_round_5": [
+  "04 body cut to one sentence (bail point)",
+  "07 kicker 'The model's estimates, March 9th and October 19th' bridges 06 to 07",
+  "06 thermal ground lifted toward white (L* 19 to 23); later its sensor hash, which printed a diagonal hatch, was removed and the reserve edge feathered over 200 px",
+  "09 lit bluff face with crest line, gold point seated on the face with a warm stain, no knockout; nearest rubble row at 4.9 m"],
+ "declined": [
+  {"finding": "final/ sheet stale", "why": "assemble ran after the round 3 renders; gate_status assemble row PASS at the time of the review"},
+  {"finding": "03 labels in dark ink with no halo", "why": "the 72 PERCENT label is gold, which can't hold contrast on lit snow without a dark ground; the round 3 pixel critic shipped 03 with the feathered reserves"},
+  {"finding": "08 stipple from a harder hillshade curve", "why": "the round 4 pixel critic shipped 08 at 7.8 with relief reading at the thumb; the five-round cap was reached"}]
+}

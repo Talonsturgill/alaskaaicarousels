@@ -1,0 +1,262 @@
+{
+ "document_title": "One Line of Code in a Polar Bear Rule",
+ "post_copy": "6 to 22. Fixing one line of code moved a Fish and Wildlife Service estimate of harassed denning polar bears that far.\n\nThe line sits in the den simulation behind the October 19th rule for North Slope oil and gas. The old code counted only dens \"specifically marked undisturbed\" and skipped any den with a missing value. The line and another code fix together took cubs from 4 to 13.\n\nFWS concedes the model's figures significantly exceed historical data and industry's. So the rule weighs the model no higher than industry's estimate.\n\nCode that moves a count this far is part of the rule.\n\nBoth versions of the line, the dens it skipped, the infrared survey and the March and October numbers.\n\nFWS says the code is public. The model says 22 denning bears. Industry's request says 3. What's the honest den number for a rule that runs to October 19th, 2031?\n\n#PolarBears #NorthSlope #BeaufortSea",
+ "deck_summary_line": "Both versions of the line, the dens it skipped, the infrared survey and the March and October numbers.",
+ "hashtags": [
+  "#PolarBears",
+  "#NorthSlope",
+  "#BeaufortSea"
+ ],
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "FWS den model, five-year estimate",
+   "headline": "One line of code. Harassed denning bears went 6 to 22.",
+   "labels": [
+    "March draft to October final"
+   ],
+   "claim_ids": [
+    "C15",
+    "C35",
+    "C69"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "The fix, in FWS's own words",
+   "headline": "It counted only the dens marked undisturbed.",
+   "labels": [
+    "MARCH DRAFT",
+    "\"count all the dens",
+    "specifically marked undisturbed\"",
+    "OCTOBER FINAL",
+    "\"count all dens except for those",
+    "that were marked disturbed\"",
+    "UNDISTURBED",
+    "DISTURBED",
+    "MISSING VALUE"
+   ],
+   "claim_ids": [
+    "C15",
+    "C16",
+    "C17",
+    "C18"
+   ],
+   "body": "A den with a missing value matched neither, so the old line skipped it. The new one counts it."
+  },
+  {
+   "n": 3,
+   "kicker": "The dens the old line skipped",
+   "headline": "Quiet all winter. Disturbed after emergence.",
+   "labels": [
+    "CUBS, LEVEL A 72 PERCENT",
+    "72 PERCENT",
+    "SOW, LEVEL B 28 PERCENT",
+    "28 PERCENT",
+    "BEFORE THE FIX 0 PERCENT",
+    "0 PERCENT"
+   ],
+   "claim_ids": [
+    "C16",
+    "C22",
+    "C23"
+   ],
+   "body": "The faulty output gave them 0 percent take. Fixed, each carries a 28 percent chance of Level B harassment for the sow and 72 percent of Level A for the cubs."
+  },
+  {
+   "n": 4,
+   "kicker": "10,000 runs",
+   "headline": "FWS's den take figures come from a simulation run 10,000 times.",
+   "labels": [],
+   "claim_ids": [
+    "C21",
+    "C27",
+    "C72"
+   ],
+   "body": "About 6.5 dens a year sit within a mile of the work, the same in March and October."
+  },
+  {
+   "n": 5,
+   "headline": "To the eye, a den is one more drift.",
+   "claim_ids": [],
+   "labels": []
+  },
+  {
+   "n": 6,
+   "kicker": "Aerial infrared, the rule's den survey",
+   "headline": "From the air, the survey looks for heat.",
+   "labels": [
+    "WITHIN 1 MILE OF WINTER WORK",
+    "FIRST SURVEY, NOVEMBER 25TH TO DECEMBER 25TH",
+    "SECOND, DECEMBER 15TH TO JANUARY 15TH",
+    "A THIRD SURVEY WAS DROPPED AS NOT PRACTICABLE"
+   ],
+   "claim_ids": [
+    "C47",
+    "C48",
+    "C49",
+    "C51",
+    "C52",
+    "C53"
+   ],
+   "body": "Cameras on fixed-wing aircraft read a denning female's body heat through the snow, four times likelier to find a den than infrared from the ground, FWS says."
+  },
+  {
+   "n": 7,
+   "kicker": "The model's estimates, March 9th and October 19th",
+   "headline": "What the fixes changed, and what they didn't.",
+   "labels": [
+    "MARCH",
+    "OCTOBER",
+    "Denning bears, Level B",
+    "6",
+    "22",
+    "Denning cubs, Level A",
+    "4",
+    "13",
+    "Dens a year near the work",
+    "6.5",
+    "All Level B takes",
+    "422",
+    "432",
+    "DENNING BEARS",
+    "DENNING CUBS",
+    "+16",
+    "+9"
+   ],
+   "claim_ids": [
+    "C64",
+    "C05",
+    "C69",
+    "C35",
+    "C70",
+    "C36",
+    "C72",
+    "C27",
+    "C66",
+    "C32",
+    "C34",
+    "C26",
+    "C37"
+   ],
+   "body": "Vessel takes fell 16 to 10 in a separate fix to routes counted twice. Industry's own estimate is 123 bears, Level B only."
+  },
+  {
+   "n": 8,
+   "kicker": "The rule's coast, through October 19th, 2031",
+   "headline": "Fixed, then weighed no higher than industry's estimate.",
+   "labels": [
+    "BEAUFORT SEA",
+    "PRUDHOE BAY",
+    "COLVILLE RIVER",
+    "CANNING RIVER",
+    "BROOKS RANGE",
+    "ARCTIC NATIONAL WILDLIFE REFUGE, NOT IN THE RULE"
+   ],
+   "claim_ids": [
+    "C06",
+    "C40",
+    "C37",
+    "C41",
+    "C45",
+    "C46",
+    "C44",
+    "C04"
+   ],
+   "body": "FWS concedes the model's figures significantly exceed historical data and AOGA's. AOGA and one other commenter call it seriously flawed and not validated. FWS says the code and inputs are public."
+  },
+  {
+   "n": 9,
+   "headline": "FWS says the code is public. Should the model count for more?",
+   "body": "The first den survey window opens November 25th.",
+   "labels": [
+    "ALASKA.AI"
+   ],
+   "claim_ids": [
+    "C44",
+    "C51"
+   ]
+  }
+ ],
+ "caption_meta": {
+  "opening_move": "COLD NUMBER",
+  "structure": "INVERTED PYRAMID",
+  "closing_move": "PRICE (the honest den number, the public model's 22 against the industry request's 3, for a rule that runs to October 19th, 2031)"
+ },
+ "first_8_words": "6 to 22. Fixing one line of code",
+ "hook_type": "cold number, a corrected count pinned to its one-line cause",
+ "caption_claim_ids": [
+  "C69",
+  "C35",
+  "C15",
+  "C25",
+  "C21",
+  "C05",
+  "C02",
+  "C17",
+  "C18",
+  "C12",
+  "C13",
+  "C70",
+  "C36",
+  "C41",
+  "C40",
+  "C37",
+  "C44",
+  "C06"
+ ],
+ "total_chars": 894,
+ "hook_chars": 117,
+ "first_comment": "Sources, primary first\nU.S. Fish and Wildlife Service, Federal Register, final rule on incidental take of polar bears and Pacific walruses in the Beaufort Sea and adjacent northern coast of Alaska, 91 FR 66204, October 19th, 2026 https://www.govinfo.gov/content/pkg/FR-2026-10-19/html/2026-21371.htm\nU.S. Fish and Wildlife Service, Federal Register, proposed rule for the same regulations, 91 FR 11240, March 9th, 2026 https://www.govinfo.gov/content/pkg/FR-2026-03-09/html/2026-04558.htm\nRegulations.gov, rulemaking docket FWS-R7-ES-2026-0694, shared by the proposed and final rule https://www.regulations.gov/docket/FWS-R7-ES-2026-0694\nRegulations.gov, docket FWS-R7-ES-2025-1628, where the final rule says the denning model code and most recent data inputs are posted https://www.regulations.gov/docket/FWS-R7-ES-2025-1628\nThe den drift, the den marks and the thermal view in the slides are illustrations, not survey imagery or real den locations, and the rule line on the map is approximate.\nOther Alaska decisions with live deadlines are tracked at https://alaskaaihq.com\nRead the posted model code or flown the den surveys? Add context in the replies.",
+ "aftercare": [
+  "Post in a Tuesday to Thursday 8 to 11 a.m. AKT slot. Tuesday November 3rd is Election Day and feeds will be crowded, so Wednesday November 4th or Thursday November 5th is the better pick. The story stays timely until the first den survey window opens November 25th.",
+  "Paste the sources comment within 60 seconds of posting. Click both regulations.gov docket links first to confirm they resolve.",
+  "Reply to every comment in the first 90 minutes and point each question to its slide. The code change is slide 2, why the skipped dens carry 28 and 72 percent is slide 3, the 10,000 runs and the 6.5 dens are slide 4, how real dens are found is slide 6, March against October is slide 7, and the weight FWS gives the model and AOGA's criticism are slide 8.",
+  "If someone asks whether the model is AI, say no. It's a computer simulation the rule describes as 10,000 iterations of simulated dens, and the deck never calls it AI. Alaska.Ai covers it because a computation sets a number inside a federal permit.",
+  "If someone says bears or cubs were killed, or that the code fix explains the whole total, correct it gently. Level A is potential injury of cubs and not lethal take, the rule says the lethal-take probability went down slightly, and the 422 to 432 total also carries a separate vessel double-count fix (slide 7 foot).",
+  "After 48 hours, note saves, comments and reposts against this draft for the ledger."
+ ],
+ "editor_notes_for_email": "This is a computation-governs-a-decision story, not an AI story. The deck calls the model a statistical simulation run 10,000 times (C21) and never AI. Copy review fixes already applied before the critics: slide 04 no longer misnumbers the zero-cub error (the rule numbers the line of code second), and in the flow round that error left slide 04 entirely so the frame carries one fact, slides 06 and 09 now attribute the four-times and code-public claims to FWS, slide 07 says fixes (plural) because the 422 to 432 total also carries the vessel double-count fix, and the caption says another code fix rather than a second one. Crediting the whole 6 to 22 Level B denning rise to the one line is a fair reading rather than a quoted fact: the rule credits the increase to the repairs and to the post-emergence category the line dropped (C25, C16), and the other error touched only Level A and lethal counts (C13). The two regulations.gov docket URLs follow the standard docket URL format but weren't opened in this run.",
+ "claims_used": [
+  "C04",
+  "C05",
+  "C06",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C21",
+  "C22",
+  "C23",
+  "C24",
+  "C25",
+  "C26",
+  "C27",
+  "C32",
+  "C34",
+  "C35",
+  "C36",
+  "C37",
+  "C40",
+  "C41",
+  "C44",
+  "C45",
+  "C46",
+  "C47",
+  "C48",
+  "C49",
+  "C51",
+  "C52",
+  "C53",
+  "C64",
+  "C65",
+  "C66",
+  "C69",
+  "C70",
+  "C72"
+ ]
+}
