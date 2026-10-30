@@ -1,0 +1,145 @@
+{
+ "run_date": "2026-10-29",
+ "carousel_no": 99,
+ "effort": "high",
+ "wake_utc": "2026-10-30T06:06:06Z",
+ "date_note": "Anchorage date at wake (22:05 AKDT October 29th, 06:05Z October 30th). runs/2026-10-29 did not exist; run_guard --run-date 2026-10-29 CLEAR.",
+ "branch": "tsturg/clever-mayer-w6i0ru",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/plan.md",
+    "out/2026-10-29/run_state.json",
+    "out/2026-10-29/already_covered.txt"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [
+    "knowledge/FIELD_NOTES.md"
+   ],
+   "searches": 2
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/scout_merge.md",
+    "out/2026-10-29/scouts/"
+   ],
+   "searches_used": 139
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/claims.json",
+    "out/2026-10-29/factcheck_brief.md"
+   ],
+   "claims_check": "PASS 72/72 usable, 72 primary"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json",
+    "out/2026-10-29/docket_notes.json"
+   ],
+   "note": "6 worklist items refreshed; watch.json bills unchanged (HB 259, SB 250 match), 0 hearings (out of session), failed sources none; ask payload headroom 13,739 bytes; mobile_docket_map and docket_ask PASS at run date"
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/cron_health.json",
+    "out/2026-10-29/gaswatch_health.json"
+   ],
+   "lines": [
+    "SITE SIGN-OFF: PASS, 160 pages, 18 checks",
+    "GAS WATCH: PASS, read October 29th, 86 days on record, chart present",
+    "GAS WATCH LIVE: PASS, checked 2026-10-30T06:15:48Z, first audit at 06:10Z FAILED on the evening slot (published 2026-10-28 vs CINGSA 2026-10-29T16:00 reading); workflow_dispatch of gaswatch.yml on main (run 41012615703) collected 7.59 Bcf, Pages deployed, re-audit PASS",
+    "CRON HEALTH: PASS, 7 scheduled workflows checked plus Pages and live output (40 checks), no repairs needed"
+   ],
+   "look": "Looked at home, docket and gas watch at 1280 and 390 px (out/2026-10-29/sitelook). Gas watch meter reads 58.4 percent, 7.59 of 13.0 Bcf, matching its tiles; no cut-off or overlap on phone. The home phone shot shows a tall empty band under Ask the Record, measured as the hero min-height filling a 1800 px tall test viewport, not a defect at real phone heights."
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/selection.md",
+    "out/2026-10-29/dedupe_check.txt"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/storyboard.md",
+    "out/2026-10-29/treatments/notes.md"
+   ],
+   "dossier_check": "PASS 9/9"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/copy.json",
+    "out/2026-10-29/caption.txt",
+    "out/2026-10-29/caption_report.json"
+   ],
+   "note": "copywriter fixes applied to 04/06/07/09 and caption ('another code fix'); caption_check PASS 880 chars; style_lint clean; copy_sync PASS"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/storyboard.md",
+    "out/2026-10-29/slides/",
+    "assets/js/akbluff.js"
+   ],
+   "note": "9 bespoke slides; qa PASS after copy fixes"
+  },
+  "pixel_review": {
+   "status": "done",
+   "note": "4 rounds; final scores 01 7.4, 02 7.6, 03 7.4, 04 8.0, 05 8.1, 06 7.6, 07 7.5, 08 7.8, 09 7.3; all ship"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/flow_review.json"
+   ],
+   "note": "revise 7.3; round 5 applied 04, 06, 07, 09; touched frames re-reviewed (04, 07, 09 ship; 06 hatch fixed in place at the cap)"
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/final/"
+   ]
+  },
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/score_report.json"
+   ],
+   "note": "8.225 vs 7.7 (round 5 ladder); art 7.0, craft floor stood down at the round cap"
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-10-29/",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "knowledge/FIELD_NOTES.md",
+    "knowledge/TECHNIQUE_LIBRARY.md"
+   ],
+   "note": "site built at 2026-10-29 (main's build date); site_fresh OK; no alerts due; prune freed 2.7M"
+  },
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-10-29/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due; 3 new queue items, 1 repeat raised"
+  },
+  "gmail": "pending",
+  "retro": "pending"
+ }
+}

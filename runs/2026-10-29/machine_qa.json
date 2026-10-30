@@ -1,0 +1,159 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the hollow den mark, its heat through the snow': canvas 77.4 dE, page 78.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h1 'One line of code.Harassed denning bearswent ' fits 3/3 lines at 117px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the missing-value token outlined in gold': canvas 99.9 dE, page 106.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the undisturbed token' lands 20.0px from its target",
+        "leader 'the disturbed token' lands 20.0px from its target",
+        "leader 'the missing-value token' lands 20.0px from its target",
+        "leader 'the undisturbed token' meets its label 6.0px away",
+        "leader 'the disturbed token' meets its label 6.0px away",
+        "leader 'the missing-value token' meets its label 6.0px away",
+        "leader 'the undisturbed token' is drawn 148 px at 87 degrees, inside the pointer band",
+        "leader 'the disturbed token' is drawn 133 px at 85 degrees, inside the pointer band",
+        "leader 'the missing-value token' is drawn 154 px at 83 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h2 'It counted only the densmarked undisturbed.' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the open den mouth': canvas 91.4 dE, page 91.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the 72 percent arc end' lands 0.0px from its target",
+        "leader 'the 28 percent arc end' lands 0.0px from its target",
+        "leader 'the 0 percent ring' lands 0.0px from its target",
+        "leader 'the 72 percent arc end' meets its label 4.0px away",
+        "leader 'the 28 percent arc end' meets its label 10.0px away",
+        "leader 'the 0 percent ring' meets its label 10.0px away",
+        "leader 'the 72 percent arc end' is drawn 235 px at 86 degrees, inside the pointer band",
+        "leader 'the 28 percent arc end' is drawn 165 px at 4 degrees, inside the pointer band",
+        "leader 'the 0 percent ring' is drawn 145 px at 27 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h3 'Quiet all winter.Disturbed after emergence.' fits 2/2 lines at 81.5px"
+      ],
+      "asserts": [
+        "'cubs, Level A arc sweep, 72 percent of a turn' holds: 259.2 vs 259 deg (within 1)",
+        "'sow, Level B arc sweep, 28 percent of a turn' holds: 100.8 vs 101 deg (within 1)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the den's faint heat in the drift': canvas 58.7 dE, page 58.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h4 'FWS's den take figures comefrom a simulation' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'10,000 simulated runs, one spindrift streak each' holds: 10000 vs 10000 streaks, counted over 10000 declared marks (within 0)",
+        "'10,000 simulated runs, one spindrift streak each': 239 mark centres probed at r=4px, sampled every 42 marks, cohort median 3.3 dE, all present (weakest 1.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the den drift face, sharp': canvas 22.0 dE, page 23.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "line 'To the eye,a den is one more drift.' fits 2/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the den's heat bloom with a gold core': canvas 76.2 dE, page 76.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h6 'From the air, the surveylooks for heat.' fits 2/2 lines at 77.5px"
+      ],
+      "asserts": [
+        "'first survey window, 30 days at 18.04 px a day' holds: 541.176 vs 541.176 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the March bears block on the plain': shadow L* 8.2 vs ground L* 15.9, dL 7.7 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "contacts": [
+        "'the October bears block on the plain': shadow L* 14.5 vs ground L* 28.8, dL 14.3 at 432w",
+        "'the March cubs block on the plain': shadow L* 17.9 vs ground L* 33.4, dL 15.5 at 432w",
+        "'the October cubs block on the plain': shadow L* 8.9 vs ground L* 18.2, dL 9.3 at 432w"
+      ],
+      "motifs": [
+        "'the gold increment on the 22 block': canvas 13.9 dE, page 15.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the block height key' runs 0 takes at 1196 to 22 takes at 888; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h7 'What the fixes changed,and what they didn't.' fits 2/2 lines at 69.5px"
+      ],
+      "asserts": [
+        "'22 denning bears at 14 px per take' holds: 308 vs 308 px (within 0.5)",
+        "'13 denning cubs at 14 px per take' holds: 182 vs 182 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold rule line ending at the Canning': canvas 116.1 dE, page 116.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h8 'Fixed, then weighed no higherthan industry's' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the one gold point on the bank': canvas 66.5 dE, page 66.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q9 'FWS says the code is public.Should the model' fits 3/3 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
