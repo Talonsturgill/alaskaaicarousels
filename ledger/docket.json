@@ -3762,6 +3762,11 @@
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
           "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
           "date": "2026-10-27"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261030-5004",
+          "outlet": "Chugach Regional Resources Commission, comment, FERC eLibrary",
+          "date": "2026-10-29"
         }
       ],
       "history": [
@@ -3884,10 +3889,14 @@
         {
           "date": "2026-10-28",
           "note": "Alaska's News Source reported on October 28th that Kenai Peninsula Borough Mayor Peter Micciche says he has received no email, letter or call from DeepGreen about the proposal. Comments, motions to intervene and competing applications remain due November 2nd."
+        },
+        {
+          "date": "2026-10-29",
+          "note": "Read the commission's eLibrary record for P-15423 again today. It now holds 186 filings, up from 152 on October 27th, almost all of them comments from individuals, and a comment from the Chugach Regional Resources Commission was submitted on October 29th. No new motion to intervene has been entered since Cook Inletkeeper's on October 26th. Comments, motions to intervene and competing applications remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-28"
+      "last_updated": "2026-10-29"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -4018,7 +4027,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-29",
       "history": [
         {
           "date": "2026-08-25",
@@ -4135,6 +4144,10 @@
         {
           "date": "2026-10-28",
           "note": "Re-read the Assembly's home page today. It posts no action on AO 2026-108(S) after October 20th, and debate remains scheduled to resume as unfinished business at the November 4th regular meeting. No vote has been recorded."
+        },
+        {
+          "date": "2026-10-29",
+          "note": "The Assembly's public safety page now returns not found, and the Assembly home page posts no action on AO 2026-108(S) after October 20th. Debate remains scheduled to resume as unfinished business at the November 4th regular meeting. No vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4189,7 +4202,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-29",
       "history": [
         {
           "date": "2026-08-31",
@@ -4293,6 +4306,10 @@
         },
         {
           "date": "2026-10-28",
+          "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-29",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
         }
       ]
@@ -4400,7 +4417,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-25",
+      "last_updated": "2026-10-29",
       "history": [
         {
           "date": "2026-09-01",
@@ -4481,6 +4498,10 @@
         {
           "date": "2026-10-25",
           "note": "The borough's meeting calendar for October 23rd through November 6th lists no regular Assembly meeting. The next Assembly session on it is a Committee of the Whole work session on November 5th. Terms of the three newly elected members begin Monday, October 26th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-29",
+          "note": "The borough's meeting calendar for October 26th through November 9th lists no regular Assembly meeting. The next Assembly session is a Committee of the Whole work session on November 5th, and the Legislature that would act on the request convenes January 19th. Checked and unchanged."
         }
       ]
     },
@@ -5437,7 +5458,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-29",
       "history": [
         {
           "date": "2026-09-17",
@@ -5486,6 +5507,10 @@
         {
           "date": "2026-10-28",
           "note": "The Board of Regents page returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
+        },
+        {
+          "date": "2026-10-29",
+          "note": "The Board of Regents meetings and schedule pages both returned a service-unavailable error today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks and the November 2nd testimony hour stand as last published."
         }
       ]
     },
@@ -5778,11 +5803,15 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-29",
       "history": [
         {
           "date": "2026-10-28",
           "note": "Read the signed resolution in full. It caps all transfers and commitments at $75 million, requires a finance plan, outside counsel's confirmation and fiber that physically lands in Alaska before any binding commitment, and does not mention artificial intelligence or data centers. AIDEA's release says the board vote on October 21st was unanimous."
+        },
+        {
+          "date": "2026-10-29",
+          "note": "AIDEA's board meeting schedule, read today, lists the next meetings on November 4th at 813 W Northern Lights Blvd in Anchorage and on December 4th, with no agenda yet linked for either. Checked and unchanged."
         }
       ]
     },

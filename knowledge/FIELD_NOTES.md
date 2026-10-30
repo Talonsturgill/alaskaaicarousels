@@ -9453,3 +9453,8 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A ROTATED SCREEN CLIPPED BY A RECTANGLE STAIR-STEPS. 08's 15 degree halftone ended in a ragged dot column at the plate's edge; crisp bevel strips drawn over the boundary hid it, and a steeper raking-light tone map made the screen describe the plate.
 - A FIBER THAT DIPS BELOW THE FLOOR TAKES ITS TIP GLOW WITH IT. 01's gold glows floated 30 to 45 px off the visible ends because the fiber splines ended under the floor plane; lifting the end points onto the floor put the glow on the tips.
 - A KICKER THAT NAMES A BODY CLAIMS THAT BODY ACTED. "AIDEA BOARD" over the NuCube line and "ONE BOARD, ONE DAY" on the comparison passed every gate because they came from the storyboard; the copywriter caught them from the claim's notes (no board resolution for the stake is on the record).
+
+## 2026-10-29, No.99, craft refresh (two searches)
+
+- A DISSENTING REACH NUMBER, RECORDED AND NOT ACTED ON. Tryordinal's carousel study (https://www.tryordinal.com/blog/carousel-posts, via search summary) has PDF document posts matching single images on engagement rate (2.11 percent) but at the LOWEST mean impressions of any format (2,233), and native multi-image carousels beating PDFs on both. AuthoredUp's 3 million post set (March 2025 to February 2026) and Socialinsider's 2026 benchmark still put documents first on reach and engagement rate. Methods are undisclosed on all sides. Nothing in CAROUSEL_CRAFT changes; if the owner's own analytics ever show the deck's reach below a single image of the same cover, this is the study to re-read.
+- No new visual-craft source this run worth a technique entry.
