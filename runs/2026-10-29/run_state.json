@@ -141,5 +141,12 @@
   },
   "gmail": "pending",
   "retro": "pending"
+ },
+ "phase_3_6": {
+  "site_signoff": "SITE SIGN-OFF: PASS, 160 pages, 18 checks",
+  "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-10-30T06:15:48Z, first audit at 06:10Z FAILED on the evening slot (published 2026-10-28 vs CINGSA 2026-10-29T16:00 reading); workflow_dispatch of gaswatch.yml on main (run 41012615703) collected 7.59 Bcf, Pages deployed, re-audit PASS",
+  "gaswatch_pagecheck": "GAS WATCH: PASS, read October 29th, 86 days on record, chart present",
+  "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows checked plus Pages and live output (40 checks), no repairs needed",
+  "site_fixes": "none needed; the gas watch evening slot was stale on the first live audit and a production rerun of gaswatch.yml on main (run 41012615703) refreshed it, re-audit PASS"
  }
 }
