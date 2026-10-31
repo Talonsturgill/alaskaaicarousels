@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-30T23:01:43Z",
+  "checked_at": "2026-10-31T07:05:08Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "7f6ac145297225c8813d8cd4ca149b48a4988ed6eef5530e934d5851e017f10a",
+  "response_sha256": "11c773dd897dbb085a3da805854540c5537a21a421e3a3dbff2c9a4be622bf9a",
   "articles": [
     {
       "title": "New book highlights Alaska’s rural energy innovators",
@@ -34,69 +34,20 @@
     }
   ],
   "selected": {
-    "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-    "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-    "first_seen_at": "2026-10-23T15:55:44Z",
-    "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-    "feed": "https://www.akbizmag.com/feed/",
-    "publisher": "Alaska Business",
+    "title": "New book highlights Alaska’s rural energy innovators",
+    "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+    "first_seen_at": "2026-10-23T14:03:35Z",
+    "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+    "feed": "https://alaska-native-news.com/feed/",
+    "publisher": "Alaska Native News",
     "coverage": 1,
-    "score": 0.006364,
+    "score": 0.004778,
     "priority": 4
   },
-  "expires_at": "2026-11-06T15:55:44Z",
+  "expires_at": "2026-11-06T14:03:35Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-30T19:23:00Z",
-      "selected": {
-        "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-        "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-        "first_seen_at": "2026-10-23T15:55:44Z",
-        "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-        "feed": "https://www.akbizmag.com/feed/",
-        "publisher": "Alaska Business",
-        "coverage": 1,
-        "score": 0.006364,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.006364,
-          "priority": 4
-        },
-        {
-          "title": "AI 101: Business Uses for Frontier Technology",
-          "url": "https://www.akbizmag.com/industry/small-business/ai101/",
-          "first_seen_at": "2026-10-19T14:30:08Z",
-          "summary": "To help Alaska businesses leverage AI’s potential, local experts have been staying abreast of the cutting edge of new technology. In simple terms, how can companies use the newest technology?",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.000382,
-          "priority": 3
-        },
-        {
-          "title": "New book highlights Alaska’s rural energy innovators",
-          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-          "first_seen_at": "2026-10-23T14:03:35Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 0.00603,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-31T01:23:00Z",
       "selected": {
@@ -107,7 +58,7 @@
         "feed": "https://alaska-native-news.com/feed/",
         "publisher": "Alaska Native News",
         "coverage": 1,
-        "score": 0.005633,
+        "score": 0.004778,
         "priority": 4
       },
       "stories": [
@@ -119,7 +70,7 @@
           "feed": "https://alaska-native-news.com/feed/",
           "publisher": "Alaska Native News",
           "coverage": 1,
-          "score": 0.005633,
+          "score": 0.004778,
           "priority": 4
         },
         {
@@ -130,7 +81,7 @@
           "feed": "https://www.akbizmag.com/feed/?paged=2",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.000357,
+          "score": 0.000302,
           "priority": 3
         },
         {
@@ -141,7 +92,7 @@
           "feed": "https://www.akbizmag.com/feed/",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.005946,
+          "score": 0.005043,
           "priority": 4
         }
       ]
@@ -243,14 +194,58 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-31T19:23:00Z",
+      "selected": {
+        "title": "New book highlights Alaska’s rural energy innovators",
+        "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+        "first_seen_at": "2026-10-23T14:03:35Z",
+        "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+        "feed": "https://alaska-native-news.com/feed/",
+        "publisher": "Alaska Native News",
+        "coverage": 1,
+        "score": 0.00335,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "New book highlights Alaska’s rural energy innovators",
+          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+          "first_seen_at": "2026-10-23T14:03:35Z",
+          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+          "feed": "https://alaska-native-news.com/feed/",
+          "publisher": "Alaska Native News",
+          "coverage": 1,
+          "score": 0.00335,
+          "priority": 4
+        },
+        {
+          "title": "AI 101: Business Uses for Frontier Technology",
+          "url": "https://www.akbizmag.com/industry/small-business/ai101/",
+          "first_seen_at": "2026-10-19T14:30:08Z",
+          "summary": "To help Alaska businesses leverage AI’s potential, local experts have been staying abreast of the cutting edge of new technology. In simple terms, how can companies use the newest technology?",
+          "feed": "https://www.akbizmag.com/feed/?paged=2",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.000212,
+          "priority": 3
+        },
+        {
+          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
+          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
+          "first_seen_at": "2026-10-23T15:55:44Z",
+          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.003535,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.ktoo.org/2026/10/15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers/",
-      "title": "In Fairbanks, Interior Secretary Burgum touts deregulation and data centers",
-      "shown_at": "2026-10-22T19:23:00Z"
-    },
     {
       "url": "https://alaska-native-news.com/new-guide-helps-alaskans-shape-data-center-conversations/86731/",
       "title": "New guide helps Alaskans shape data center conversations",
@@ -405,6 +400,11 @@
       "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
       "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
       "shown_at": "2026-10-30T19:23:00Z"
+    },
+    {
+      "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+      "title": "New book highlights Alaska’s rural energy innovators",
+      "shown_at": "2026-10-31T01:23:00Z"
     }
   ],
   "feeds": [
@@ -412,31 +412,27 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "4e43b1236c1116f5d5842d6fcc57a7fedac35b7dc829747bbbab4b71ab54028a"
+      "sha256": "c05a39d8bb70aede8ae264291b4007a519a2bd941026cf8576d2edde75b8e9ed"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "cc54f05a2db905bfa54c05cb299ff7b0d922a128a6be0d8539d418ca6d841900"
+      "sha256": "39d36b39e2cf523095bec5fdf545426ea926868d9c16e9da44cb4e778e6ad8f8"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "d3a2223ef5653c821245e8e89befe0ba3c5a8df9b412c317d693d506f8b851ef"
+      "sha256": "173db2f62b4fdd5c3e4973be83eb83e2174250613f3bf7592ea4d7c52837067e"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "7f86fe7dfcd48400f19133c1d6baa6fd1f1ca179144746532a9c3b0b177d5e6e"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
-      "status": "ok",
-      "items": 10,
-      "sha256": "0e68ebfb3757605d16e03aa6b11f10b513f61a1f951477eaddaa01da83a4dab1"
+      "status": "not_modified"
     },
     {
       "url": "https://alaska-native-news.com/feed/",
@@ -452,9 +448,7 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "ef23636fbb46a12ae5fd659bbb496aa0f83f7f797e5353b48a1084e98330c288"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
@@ -469,73 +463,73 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4e43b1236c1116f5d5842d6fcc57a7fedac35b7dc829747bbbab4b71ab54028a",
-      "etag": "\"bc6143e355f71450ad9b7e34b6207fb6\"",
-      "last_modified": "Fri, 30 Oct 2026 21:43:37 GMT"
+      "sha256": "c05a39d8bb70aede8ae264291b4007a519a2bd941026cf8576d2edde75b8e9ed",
+      "etag": "\"f1cf1cc86b6c007bd41e937860d5b909\"",
+      "last_modified": "Sat, 31 Oct 2026 01:10:05 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "cc54f05a2db905bfa54c05cb299ff7b0d922a128a6be0d8539d418ca6d841900",
-      "etag": "\"bc6143e355f71450ad9b7e34b6207fb6\"",
-      "last_modified": "Fri, 30 Oct 2026 21:43:37 GMT"
+      "sha256": "39d36b39e2cf523095bec5fdf545426ea926868d9c16e9da44cb4e778e6ad8f8",
+      "etag": "\"f1cf1cc86b6c007bd41e937860d5b909\"",
+      "last_modified": "Sat, 31 Oct 2026 01:10:05 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d3a2223ef5653c821245e8e89befe0ba3c5a8df9b412c317d693d506f8b851ef",
-      "etag": "\"bc6143e355f71450ad9b7e34b6207fb6\"",
-      "last_modified": "Fri, 30 Oct 2026 21:43:37 GMT"
+      "sha256": "173db2f62b4fdd5c3e4973be83eb83e2174250613f3bf7592ea4d7c52837067e",
+      "etag": "\"f1cf1cc86b6c007bd41e937860d5b909\"",
+      "last_modified": "Sat, 31 Oct 2026 01:10:05 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-10-30T23:01:37Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "7f86fe7dfcd48400f19133c1d6baa6fd1f1ca179144746532a9c3b0b177d5e6e",
       "etag": "W/\"660414a923f507c6cf06b0c206eb19e9\"",
-      "last_modified": "Fri, 30 Oct 2026 20:51:19 GMT"
+      "last_modified": "Fri, 30 Oct 2026 20:51:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-31T07:05:06Z",
+      "sha256": "7f86fe7dfcd48400f19133c1d6baa6fd1f1ca179144746532a9c3b0b177d5e6e",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-10-30T23:01:37Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "0e68ebfb3757605d16e03aa6b11f10b513f61a1f951477eaddaa01da83a4dab1",
       "etag": "W/\"660414a923f507c6cf06b0c206eb19e9\"",
-      "last_modified": "Fri, 30 Oct 2026 20:51:19 GMT"
+      "last_modified": "Fri, 30 Oct 2026 20:51:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-31T07:05:06Z",
+      "sha256": "0e68ebfb3757605d16e03aa6b11f10b513f61a1f951477eaddaa01da83a4dab1",
+      "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "8bcbba21a41cff986d3a084c2cc363ec01d1aa87b4ff5a613b9f132e58f9839c"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "cbaaa20b98b139449360052343c920d4ed2e5cd8c7426ddbd5abd03c84d8bc3e"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "last_modified": "Fri, 30 Oct 2026 17:59:06 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-31T07:05:06Z",
       "sha256": "ef23636fbb46a12ae5fd659bbb496aa0f83f7f797e5353b48a1084e98330c288",
-      "last_modified": "Fri, 30 Oct 2026 17:59:06 GMT"
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
       "last_modified": "Fri, 30 Oct 2026 12:13:47 GMT",
       "failures": 0,
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "sha256": "6affbdda33c65d9c25aaac2be7f9396e5dfbb2b2b1db428b7a5a3b3148f63022",
       "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-10-30T23:01:37Z",
+      "ok_at": "2026-10-31T07:05:06Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "5934a151846621b2794f05686765029991975ad16983685464f7a4facf9b7952"
