@@ -1,0 +1,78 @@
+{
+  "verdict": "revise",
+  "round": 4,
+  "score_0_10": 7.0,
+  "single_most_valuable_fix": "Slide 07: a Lambert hillshade tone plate under the stipple, density tied to it by a steep gamma, dark braided Sagavanirktok channels.",
+  "craft": {
+    "predicted_artwork_score": 6.5,
+    "weakest_frames": [
+      {
+        "slide": 7,
+        "score": 6.0,
+        "cause": "b",
+        "fix": "hillshade tone plate under the stipple, steep density gamma, braided channels"
+      },
+      {
+        "slide": 2,
+        "score": 6.5,
+        "cause": "c",
+        "fix": "lit pool across the lower left, a clearly visible tapered cast wedge"
+      },
+      {
+        "slide": 8,
+        "score": 6.5,
+        "cause": "c",
+        "fix": "pebble-scale near gravel with a sun-path streak, dithered sky"
+      },
+      {
+        "slide": 5,
+        "score": 6.5,
+        "cause": "d",
+        "fix": "halve the hillshade blur, hachure on lee slopes only, shorter and thinner"
+      },
+      {
+        "slide": 4,
+        "score": 7.0,
+        "cause": "d",
+        "fix": "replace the dash pool lay with a soft ellipse and fine stipple"
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "a",
+        "slides": [
+          2,
+          6,
+          9,
+          10
+        ],
+        "problem": "the same lit-dust pool under each object",
+        "fix": "a different pool mark per frame"
+      },
+      {
+        "cause": "e",
+        "slides": [
+          4,
+          6,
+          7,
+          9
+        ],
+        "problem": "a navy trough between 04 and 09; declared warm land 05 to 07 true only of 05",
+        "fix": "warm and lift 07, a warm horizon band on 06"
+      }
+    ],
+    "masterful_depth_frame": 3
+  },
+  "junction_weak": [
+    "02>03",
+    "04>05",
+    "05>06",
+    "08>09"
+  ],
+  "continuity_major": "04 and 06 drop the pad and sky for a navy void, so D1 reads as four pictures",
+  "rhythm_major": "02, 03, 04 carry 41 to 46 word bodies in a row",
+  "predicted_bail_point": {
+    "slide": 5
+  },
+  "disposition": "Round 5 is spent as the Phase 10 craft cycle on the scorer's weakest frames, which this list informs. Copy trims to 03 and 04 are declined this run: each body carries claims that the caption and verification record depend on, and the five-round cap leaves no re-review for a copy change."
+}

@@ -1,0 +1,159 @@
+{
+  "run_date": "2026-10-30",
+  "carousel_no": 100,
+  "effort": "high",
+  "wake_utc": "2026-10-31T06:06:01Z",
+  "date_note": "Anchorage date at wake (22:06 AKDT October 30th, 06:06Z October 31st). runs/2026-10-30 did not exist; run_guard --run-date 2026-10-30 CLEAR.",
+  "branch": "tsturg/clever-mayer-cbcdll",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/plan.md",
+        "out/2026-10-30/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md (2026-10-30 entry)"
+      ]
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/scout_merge.md",
+        "out/2026-10-30/scout_common.md",
+        "out/2026-10-30/scout_dedupe_brief.txt"
+      ],
+      "searches": {
+        "A": 25,
+        "B": 25,
+        "C": 24,
+        "D": 25,
+        "E": 25,
+        "F": 19,
+        "craft": 2
+      }
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/claims.json"
+      ],
+      "note": "78 claims, 31 primary, claims_check PASS; stories S1 to S4 survive"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "5 worklist items + 2 watch.json bill observations refreshed; ask payload 13,800 bytes headroom; mobile_docket_map and docket_ask suites PASS at run date; watch.json failed=[]; 4 federal-register candidates (hydro FERC notices) dropped, not AI infrastructure; 30 BASIS candidates are interim bills, no action"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/cron_health.json",
+        "out/2026-10-30/gaswatch_health.json"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/storyboard.md",
+        "out/2026-10-30/selection.md",
+        "out/2026-10-30/directors_brief.md"
+      ],
+      "note": "dossier_check PASS 10/10"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/caption.txt",
+        "out/2026-10-30/caption_report.json",
+        "out/2026-10-30/copy.json",
+        "out/2026-10-30/caption_room/A.txt",
+        "out/2026-10-30/caption_room/B.txt"
+      ],
+      "note": "room B won (MAP MOVE / COUNTDOWN / STAKE) with the critic one fix; caption_check PASS with --copy"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/slides/",
+        "out/2026-10-30/render/",
+        "assets/js/akladder.js"
+      ],
+      "note": "qa WARN 0 fails; bespoke median 0.103"
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/pixel_review_r1.md",
+        "out/2026-10-30/pixel_review_r2.md"
+      ],
+      "note": "rounds 1 to 4 plus the round-5 craft re-review"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/flow_review.json"
+      ],
+      "note": "revise 7.0; its work order fed the craft cycle"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/final/carousel.pdf",
+        "out/2026-10-30/final/contact_sheet.png",
+        "out/2026-10-30/final/assemble_report.json"
+      ]
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/score_report.json"
+      ],
+      "note": "8.11 then 8.165 after the craft cycle (art 6.5 to 7.0), threshold 7.7, at the five-round cap"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-30/",
+        "docs/ (site_build --date 2026-10-31, main was already built at that date)",
+        "ledger/topics.json",
+        "ledger/artwork.json",
+        "ledger/captions.json",
+        "ledger/instincts.json",
+        "knowledge/FIELD_NOTES.md",
+        "knowledge/TECHNIQUE_LIBRARY.md"
+      ],
+      "note": "docket_alerts: no alerts due; prune freed 1.88M from runs/2026-09-30"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-30/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "weekly pass not due (machine_due exit 1); 1 item raised, 1 queued"
+    },
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 161 pages, 18 checks",
+    "gaswatch_pagecheck": "GAS WATCH: PASS, read October 30th, 87 days on record, chart present",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-10-31T06:14:20Z, first audit at 06:08Z FAILED on the evening slot (published reading behind CINGSA 2026-10-30T18:51 restatement, the 20:40 AKDT cron not yet fired); workflow_dispatch of gaswatch.yml on main (run 41175507088) collected the restatement, Pages deployed, re-audit PASS",
+    "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows checked plus Pages and live output (40 checks), no repairs needed",
+    "site_fixes": "none needed in the pages; the gas watch evening slot was stale on the first live audit and a production rerun of gaswatch.yml on main refreshed it, re-audit PASS",
+    "site_look": "home, docket and gas watch read at 1280 and 390 px; nothing cut off, the meter agrees with its tiles"
+  }
+}

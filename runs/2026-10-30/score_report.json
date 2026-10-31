@@ -1,0 +1,96 @@
+{
+  "run_date": "2026-10-30",
+  "carousel_no": 100,
+  "revision_rounds": 5,
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.0,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 7.5,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 6.5,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 6.5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.0,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.0x0.14)+(7.0x0.16)+(8.0x0.14)+(8.5x0.12)+(7.5x0.10)+(6.5x0.08)+(6.5x0.07)+(7.0x0.05)+(8.0x0.10) = 8.165",
+  "weighted_total": 8.165,
+  "threshold": 7.7,
+  "ship": true,
+  "scoring_cycles": [
+    {
+      "cycle": 1,
+      "weighted_total": 8.11,
+      "artwork": 6.5
+    },
+    {
+      "cycle": 2,
+      "weighted_total": 8.165,
+      "artwork": 7.0
+    }
+  ],
+  "craft_cycle": {
+    "frames": [
+      7,
+      8,
+      2,
+      6,
+      4,
+      3
+    ],
+    "art_before": 6.5,
+    "art_after": 7.0
+  },
+  "weakest_criterion": "Legibility & platform fitness",
+  "one_sentence_fix": "Lift the four sub-4.5 labels (01 and 02 scale keys, 02 '100 MW', 05 'LOWER HILLSIDE') onto measured halos or a quieter ground, and pull 07's unit note and 09's decade labels inside the 80 px safe zone.",
+  "artwork_weakest_frames": [
+    8,
+    7,
+    4,
+    3,
+    2
+  ],
+  "editor_notes_for_email": "Re-scored after the one craft cycle (round 5, the cap): 8.165 against 7.7, no hard fails. Artwork rose 6.5 to 7.0 (07 and 02 improved, 04 and 06 gained a horizon; 08 still shows sky banding at display scale), still under the 8.5 craft floor with the run at the cap. Before posting: (1) the cover never says 'data center'; (2) slide 07's lease facts ran in No.96 five days ago and the dedupe step did not flag No.96's shared STAK Energy and DNR entities; slide 08's state-capacity comparison echoes No.78 (the HD9 race itself is new); (3) neutrality holds; (4) primary turnout is ADN-only; (5) open the elections.alaska.gov and akleg.gov source links by hand; (6) slide 04's 'Alaska has drawn lines' is generous, as its body says; (7) post by Monday, November 2nd, ahead of the November 3rd vote."
+}

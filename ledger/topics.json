@@ -4036,6 +4036,50 @@
       ],
       "claims": 80,
       "note": "First deck on the Beaufort ITR denning model. An update needs a new record: a challenge to the rule, a Letter of Authorization reporting den survey results, or a revision to the model."
+    },
+    {
+      "run_date": "2026-10-30",
+      "carousel_no": 100,
+      "topic": "South Anchorage House District 9 on November 3rd as the data center scale question: Rep. Ky Holland (independent, House Energy co-chair) wants Alaska data centers of 50 to 100 MW and calls hyperscale 'a fantasy idea'; Republican John Boyle, former DNR commissioner, is chief strategy officer at STAK Energy, whose North Slope project ADN describes as 3 gigawatts on a proposed 50-year, 715.4-acre lease 26 miles south of Deadhorse (preliminary decision May 12th). Set against the lines Alaska has drawn: UAF's 100 kW AURORA-AI units, Fairbanks' proposed 5 MW permit pause, SB 250's 15 MW (passed the Senate 14 to 5, held in a House committee), and EIA's 2,853 MW of statewide net summer capacity.",
+      "angle": "One unit counted up: every size on the record drawn in the same 100 kW cabinet, so 3 GW reads as thirty of Holland's largest and slightly more than the state's whole net summer capacity.",
+      "entities": [
+        "Ky Holland",
+        "John Boyle",
+        "STAK Energy",
+        "House District 9",
+        "Alaska DNR",
+        "ADL 422741",
+        "SB 250",
+        "Fairbanks North Star Borough",
+        "Grier Hopkins",
+        "UAF AURORA-AI",
+        "Cordova Electric Cooperative",
+        "EIA"
+      ],
+      "keywords": [
+        "data center scale",
+        "megawatts",
+        "hyperscale",
+        "North Slope lease",
+        "moratorium",
+        "SB 250",
+        "net summer capacity",
+        "House race",
+        "South Anchorage",
+        "Whittier"
+      ],
+      "headline": "50 to 100 MW, or 3 gigawatts.",
+      "sources_lead": [
+        "https://www.adn.com/politics/alaska-legislature/2026/10/21/energy-takes-center-stage-in-race-to-represent-south-anchorage-house-district/"
+      ],
+      "beats": [
+        "data-centers",
+        "power-and-the-grid",
+        "state-policy",
+        "land-and-permitting"
+      ],
+      "claims": 78,
+      "note": "First deck on the HD9 data center scale contrast. An update needs a new record: the November 3rd result, a final DNR decision on the STAK lease, or a refiled SB 250."
     }
   ]
 }

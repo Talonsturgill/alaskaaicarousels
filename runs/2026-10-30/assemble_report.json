@@ -1,0 +1,128 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-30/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11667814,
+  "pdf_mb": 11.67,
+  "slides": 10,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-30/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-09-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-30/final/thumbs/slide-10-thumb.png"
+  ],
+  "title": "One Unit, Counted Up. Alaska's Data Center Scale Ladder",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "da6b7ce5d5ef66fc96b49dfa05768a8106b4277e832607e8e466aa8a87e9463a",
+        "bytes": 7924723
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "32bb7a1983cba5c72d4938cc2ab5d4fb6b40633600157dc00d6f33b26a717455",
+        "bytes": 6003772
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "a358dcd99e8cad25b8c6772e4bcfa477f3990a62782ed8949ecec82299c2ae95",
+        "bytes": 5317564
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "5c56a4a6d852a4dae2e7b2d0b1438f856a6cbd3bc43ec7d1bb231a164b16075c",
+        "bytes": 4765974
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d6b49618f6a2428e18335a57193f3e3b4c5a6ce3ebc1ed8f8440dd96fad8bac0",
+        "bytes": 6403649
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "d3a8c6c26bd5d0e626d1e25b2c526be3d2f83ad51353386073072314692d930c",
+        "bytes": 5503453
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "69f20608d0e318395dad9d0a5c9fe6f1afe058c355ba69e630e243bc68bb62d7",
+        "bytes": 6154237
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "f5a1480e288da197ea7dbb40c2296f4f06128dc1ae169676038b1efe26c4ae75",
+        "bytes": 7055882
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "cd2bf2eaf12ce132041a68fd515e8b4bdeab5e365620873907cf0ceee4c62649",
+        "bytes": 4768243
+      },
+      {
+        "name": "slide-10.png",
+        "sha256": "1f6db117c4b5e3cb2ad6c79bf51b70838f3c2cbc35f82e7b43723c17265b309d",
+        "bytes": 4207296
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "0c61bca8c1e40c8cca42e2dd367d4009afbcd7e6d27292fd4c382b90953e486b",
+        "bytes": 11630
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "80269c1ee648356babff7c4ae96b8a660485c64300ef977142fae15e409473bd",
+        "bytes": 15761
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "9200fe95430c91a480236aa2ceb812fad8ab975f18ae562c51a47aa6004c2398",
+        "bytes": 12099
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "04987fc569c6802ccac4b6ca9823d27c4ed382a42315e9876e3a1b7dbc6420f0",
+        "bytes": 11947
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "79d6457df18cb974877f69501839cb2a15fe6e00c6e6d02cf49e45b5743acd21",
+        "bytes": 12547
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "f271749a0588f16ae417d33438006a733f2f62f818caef515887653888002238",
+        "bytes": 12333
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "18cc3940d3f99acd55dee07d2ae74ad09c0069876846110613ede33ca9325d1e",
+        "bytes": 18070
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "8d5bfe5f277c4a5d875348a9388a66d65640d7e14e6f25097d20dbf24db167d5",
+        "bytes": 15287
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "64fa05f1b3e5a8bce9be2946595176e834ff20829d9f7393221fc5d6d097f1ac",
+        "bytes": 10286
+      },
+      {
+        "name": "slide-10.html",
+        "sha256": "bfe1c05448b8fdab1bfa9135122b366c8209edf60ce8a0eead6f3c97b967aee8",
+        "bytes": 9474
+      }
+    ]
+  }
+}

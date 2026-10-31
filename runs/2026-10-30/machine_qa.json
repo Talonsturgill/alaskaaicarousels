@@ -1,0 +1,290 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'Hollands block on the frost gravel pad': shadow L* 30.3 vs ground L* 38.1, dL 7.8 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "worst-point contrast 3.5 on '1 CABINET = 100 KW \u00b7 1 COURSE = 10 MW' (box mean 6.1) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'the first unit's gold band': canvas 81.6 dE, page 83.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the top of Holland's 100 MW block\" lands 0.0px from its target",
+        "leader \"STAK's column\" lands 0.0px from its target",
+        "leader \"the top of Holland's 100 MW block\" meets its label 0.0px away",
+        "leader \"STAK's column\" meets its label 4.1px away",
+        "leader \"the top of Holland's 100 MW block\" is drawn 48 px at 83 degrees, inside the pointer band",
+        "leader \"STAK's column\" is drawn 16 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '50 to 100 MW,or 3 gigawatts.' fits 2/2 lines at 123px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.4 on '100 MW' (box mean 7.1) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.4 on '1 COURSE = 10 MW \u00b7 BOLD SEAM EVERY 100 M' (box mean 9.9) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'the gold ring at the first unit': canvas 65.7 dE, page 65.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others",
+        "'the dimension call, 1 GW to 3 GW' runs 1,000 MW at 866.9 to 3,000 MW at 172.6; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Stack Holland's top size30 times. That's 3 G' fits 2/2 lines at 80.5px"
+      ],
+      "asserts": [
+        "'300 courses drawn as 3 GW on the dimension call' holds: 1043 vs 1041.44 px (within 3)",
+        "\"Holland's 10-course block equals one bold-seam segment\" holds: 34.7147 vs 34.7147 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the cabinet on its slot plate': shadow L* 46.5 vs ground L* 58.9, dL 12.4 at 432w"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Start with one box.About 100 kilowatts.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Alaska has drawn linesat 5 MW and 15 MW.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "\"SB 250's block holds three times Fairbanks' cabinets\" holds: 150 vs 150 cabinets (within 0)",
+        "\"Fairbanks' block holds 50 cabinets\" holds: 50 vs 50 cabinets (within 0)",
+        "'the tally draws 14, 5 and 1 marks' holds: 20 vs 20 marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.3 on 'LOWER HILLSIDE' (box mean 9.6) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'the Chugach front above Turnagain Arm': canvas 38.2 dE, page 40.1 dE, 98% of its rect is clear of opaque DOM (div#pLH.type stands on the rest)"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'From South Anchorageto Whittier, one seat.' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the first unit's gold band': canvas 97.3 dE, page 105.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Holland's line sitsat 50 to 100 MW.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'five solid and five ghost courses, 100 cabinets each' holds: 1000 vs 1000 cabinets (within 0)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ONE UNIT HERE IS UNDER A PIXEL' at 563,1167 446x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the dashed parcel': canvas 95.8 dE, page 98.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the gold ring at the first unit': canvas 86.3 dE, page 86.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 6 declared mark(s), and the band's census finds no others",
+        "'the 5 km scale bar' runs 0 km at 880 to 5 km at 924.2; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the parcel's north edge\" lands 0.0px from its target",
+        "leader \"the parcel's north edge\" meets its label 0.6px away",
+        "leader \"the parcel's north edge\" is drawn 5 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'STAK's lease ground,26 miles south of Deadho' fits 2/2 lines at 89.5px"
+      ],
+      "asserts": [
+        "'the parcel square is 1.70 km on a side at 8.85 px per km' holds: 15.0909 vs 15.0555 px (within 0.5)",
+        "'Deadhorse to the parcel is about 26 miles north to south' holds: 41.8 vs 40.6986 km (within 2.5)",
+        "'the scale bar is 5 km' holds: 44.24 vs 44.2418 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold ring at the first unit': canvas 72.9 dE, page 73.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the top of the chalk column, 2,853 MW' lands 0.0px from its target",
+        "leader \"the top of STAK's ghost, 3 GW\" lands 0.0px from its target",
+        "leader 'course 100, where solid ends' lands 0.0px from its target",
+        "leader 'the top of the chalk column, 2,853 MW' meets its label 5.2px away",
+        "leader \"the top of STAK's ghost, 3 GW\" meets its label 6.0px away",
+        "leader 'course 100, where solid ends' meets its label 6.0px away",
+        "leader 'the top of the chalk column, 2,853 MW' is drawn 16 px at 0 degrees, inside the pointer band",
+        "leader \"the top of STAK's ghost, 3 GW\" is drawn 16 px at 0 degrees, inside the pointer band",
+        "leader 'course 100, where solid ends' is drawn 16 px at 50 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '3 GW tops Alaska'snet summer capacity.' fits 2/2 lines at 78px"
+      ],
+      "asserts": [
+        "\"STAK's drawn height over the chalk column's, 147 MW (14.7 courses of 2 m) at 1.25 px per m\" holds: 36.3924 vs 36.3924 px (within 2)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '1 MW' at 66,995 100x31 (margin 80px)",
+        "outside safe zone: '10 MW' at 66,825 100x31 (margin 80px)",
+        "outside safe zone: '100 MW' at 66,656 100x31 (margin 80px)",
+        "outside safe zone: '1 GW' at 66,486 100x31 (margin 80px)",
+        "worst-point contrast 4.0 on 'LOG SCALE \u00b7 EACH BAND IS 10 TIMES THE ON' (box mean 10.6) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the staff foot in its lit pool': shadow L* 9.7 vs ground L* 50.1, dL 40.4 at 432w"
+      ],
+      "motifs": [
+        "'the gold notch at 100 kW': canvas 84.9 dE, page 85.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others",
+        "'the log staff' runs -1 log10 MW at 1180 to 3.48 log10 MW at 420; 10 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Every size on the record,on one ladder.' fits 2/2 lines at 89.5px"
+      ],
+      "asserts": [
+        "'the staff spans 100 kW to 3,000 MW, 4.477 decades at 169.8 px' holds: 760 vs 760.215 px (within 1)",
+        "'2,853 MW sits 3.6 px under 3,000 MW on this staff' holds: 3.7 vs 3.70495 px (within 0.3)"
+      ]
+    },
+    {
+      "file": "slide-10.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the first unit's gold band': canvas 81.5 dE, page 81.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the ladder ticker' runs -1 log10 MW at 824 to 3.48 log10 MW at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Where should Alaska's line sit,in megawatts?' fits 2/2 lines at 88px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 11,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 10,
+    "helpers": [
+      {
+        "call": "AKL.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "call": "AKL.grain",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "call": "AKL.keyDir",
+        "slides": [
+          1,
+          2,
+          3,
+          8,
+          10
+        ]
+      },
+      {
+        "call": "AKL.ticker",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          9,
+          10
+        ]
+      }
+    ],
+    "functions": []
+  }
+}
