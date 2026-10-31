@@ -9468,3 +9468,8 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A MODULAR PIXEL HASH IS A HATCH. The "sensor noise" on 06, ((px * 7919 + py * 104729) % 997), printed as a 45 degree twill; use a noise function, never a linear hash, for grain.
 - THE RULE TEXT WINS OVER THE DOSSIER. 08's dossier drew the rule line "from the Colville delta east"; the critic asked for that, and the rule's own region definition runs from Point Barrow, west of the frame. Declined on the text, written into the reconciliation.
 - FLOW: a side-issue sentence on a middle frame is where readers bail. 04's 45-word body about the other code error was named the bail point; one sentence carried the frame.
+
+## 2026-10-30, No.100, craft refresh (two searches)
+
+- Nothing new on document-post reach; the AuthoredUp and Tryordinal figures were recorded on October 29th and nothing since contradicts or extends them.
+- SMALL MULTIPLES TAKE THE SIMPLEST MAP. Esri's thematic mapping guidance (https://downloads.esri.com/esripress/books/Thematic-Mapping/files/basic-html/page4.html) says small multiples compare change over time or across variables, need an invisible shared grid, and work better with simple map types than visually complex ones. If a deck tiles one place several times, the tile carries one variable and one tone ramp, and the detail goes into the one hero frame.
