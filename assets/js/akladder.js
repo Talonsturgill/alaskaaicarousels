@@ -275,9 +275,9 @@
       cache.front = L.doorFace(THREE, 10, { px: o.px || 160, seed: 11 });
       cache.side = L.doorFace(THREE, 10, { px: o.px || 160, unitW: U.d, seed: 12 });
       var c = document.createElement('canvas'); c.width = 512; c.height = 256;
-      var q = c.getContext('2d'); q.fillStyle = '#2E3640'; q.fillRect(0, 0, 512, 256);
+      var q = c.getContext('2d'); q.fillStyle = '#4E5A6C'; q.fillRect(0, 0, 512, 256);   // a sky-lit roof reads lighter than the doors
       for (var i = 0; i < 10; i++) for (var s = 0; s < 8; s++) {
-        q.fillStyle = 'rgba(12,16,22,0.9)'; q.fillRect(i * 51.2 + 6 + s * 5.2, 30, 2.6, 196);
+        q.fillStyle = 'rgba(16,22,30,0.75)'; q.fillRect(i * 51.2 + 6 + s * 5.2, 30, 2.6, 196);
       }
       q.strokeStyle = 'rgba(10,14,20,1)'; q.lineWidth = 2;
       for (var k = 0; k <= 10; k++) { q.beginPath(); q.moveTo(k * 51.2, 0); q.lineTo(k * 51.2, 256); q.stroke(); }
