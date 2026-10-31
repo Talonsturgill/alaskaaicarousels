@@ -143,10 +143,23 @@
         "out/2026-10-30/automation_retro.md",
         "knowledge/MACHINE_QUEUE.md"
       ],
-      "note": "weekly pass not due (machine_due exit 1); 1 item raised, 1 queued"
+      "note": "weekly pass not due (machine_due exit 1); 1 item raised, 1 queued; PR #469 merged (CI 7/7 green; Codex posted nothing within 15 minutes, merged per policy); raw .webp and PDF URLs 200"
     },
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-10-30/gmail_draft_id.txt",
+        "runs/2026-10-30/gmail_payload.json"
+      ],
+      "note": "draft r1413286698659070491, to docket@alaskaaihq.com, preview remote"
+    },
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md",
+        "out/2026-10-30/automation_retro.md"
+      ]
+    }
   },
   "phase_3_6": {
     "site_signoff": "SITE SIGN-OFF: PASS, 161 pages, 18 checks",
@@ -155,5 +168,6 @@
     "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows checked plus Pages and live output (40 checks), no repairs needed",
     "site_fixes": "none needed in the pages; the gas watch evening slot was stale on the first live audit and a production rerun of gaswatch.yml on main refreshed it, re-audit PASS",
     "site_look": "home, docket and gas watch read at 1280 and 390 px; nothing cut off, the meter agrees with its tiles"
-  }
+  },
+  "status": "complete"
 }
