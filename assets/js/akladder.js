@@ -77,8 +77,10 @@
     }
     add('ALASKA.AI', 'left:80px;top:80px;font-family:"Archivo",sans-serif;font-stretch:75%;font-weight:700;font-size:30px;letter-spacing:0.10em;color:' + (o.ink || L.PAL.type) + ';');
     add((n < 10 ? '0' : '') + n + ' / 10', 'right:80px;top:84px;font-size:24px;letter-spacing:0.06em;color:' + (o.counter || L.PAL.type2) + ';font-variant-numeric:tabular-nums;');
-    add('alaskaaihq.com', 'left:80px;top:1288px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || L.PAL.fixture) + ';', true);
-    if (o.coords) add(o.coords, 'right:80px;top:1288px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || L.PAL.fixture) + ';', true);
+    // a watermark, low contrast on the dark register; a tight dark halo keeps it findable where the art under it is light
+    var halo = 'text-shadow:0 0 2px #060C18,0 0 5px #060C18,0 0 9px #060C18;';
+    add('alaskaaihq.com', 'left:80px;top:1288px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || '#7A8898') + ';' + halo, true);
+    if (o.coords) add(o.coords, 'right:80px;top:1288px;font-size:19px;letter-spacing:0.04em;color:' + (o.site || '#7A8898') + ';' + halo, true);
   };
 
   /* ---- the ladder ticker ---------------------------------------------- */
@@ -159,14 +161,14 @@
       var x0 = i * uw;
       // two doors per cabinet, a slim frame, perforation field, a grille band
       var t = Math.max(1, uw * 0.03);
-      var tone = 118 + Math.floor(rnd() * 10);
-      g.fillStyle = 'rgb(' + tone + ',' + (tone + 8) + ',' + (tone + 18) + ')';
+      var tone = 122 + Math.floor(rnd() * 10);
+      g.fillStyle = 'rgb(' + tone + ',' + (tone + 12) + ',' + (tone + 28) + ')';     // cool painted steel
       g.fillRect(x0 + t, H * 0.07, uw - 2 * t, H * 0.86);
       if (uw > 10) {
         g.fillStyle = 'rgba(16,22,32,0.55)';
         g.fillRect(x0 + uw / 2 - t * 0.5, H * 0.07, t, H * 0.86);       // door split
         if (uw > 24) {
-          g.fillStyle = 'rgba(20,26,36,0.32)';
+          g.fillStyle = 'rgba(20,26,36,' + (uw < 200 ? 0.12 : 0.32) + ')';   // faint at course scale, where a dense field strobes
           var step = Math.max(3, uw / 26);
           for (var py = H * 0.16; py < H * 0.86; py += step)
             for (var px = x0 + t * 3; px < x0 + uw - t * 3; px += step) {
