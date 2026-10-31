@@ -1,0 +1,271 @@
+{
+ "document_title": "One Unit, Counted Up. Alaska's Data Center Scale Ladder",
+ "post_copy": "House District 9 runs from South Anchorage to Whittier. Its data center debate reaches a proposed lease 26 miles south of Deadhorse.\n\nIndependent Rep. Ky Holland wants data centers of 50 to 100 MW. Republican John Boyle, STAK Energy's chief strategy officer, is open to big ones on the North Slope. ADN describes STAK's project as 3 gigawatts, 30 times Holland's top size.\n\nAlaska's own lines sit far lower. On May 16th the Senate passed SB 250's 15 MW line. On May 18th a House committee held it. Fairbanks' borough mayor now proposes a 5 MW permit pause. District 9 votes Tuesday, November 3rd.\n\nA box of about 100 kW is the unit, stacked to every size on record, with maps of District 9 and the Slope lease.\n\nBoth candidates say a big customer could spread energy costs among more users. Would you want one on your grid at 100 MW, and at a gigawatt?\n\n#AKleg #AlaskaEnergy #DataCenters",
+ "deck_summary_line": "A box of about 100 kW is the unit, stacked to every size on record, with maps of District 9 and the Slope lease.",
+ "hashtags": [
+  "#AKleg",
+  "#AlaskaEnergy",
+  "#DataCenters"
+ ],
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "HOUSE DISTRICT 9 · NOVEMBER 3RD",
+   "headline": "50 to 100 MW, or 3 gigawatts.",
+   "body": "One South Anchorage seat.",
+   "labels": [
+    "HOLLAND · 50 TO 100 MW",
+    "STAK · 3 GW, AS ADN DESCRIBES IT",
+    "1 CABINET = 100 KW · 1 COURSE = 10 MW"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C05",
+    "C12",
+    "C13"
+   ]
+  },
+  {
+   "n": 2,
+   "headline": "Stack Holland's top size 30 times. That's 3 GW.",
+   "body": "Rep. Ky Holland, an independent who co-chairs House Energy, wants data centers of 50 to 100 MW. Republican John Boyle, a former DNR commissioner, is chief strategy officer at STAK Energy, whose North Slope project ADN describes as 3 gigawatts.",
+   "labels": [
+    "30 TIMES",
+    "1 GW OR MORE",
+    "3 GW, PER ADN",
+    "100 MW",
+    "1 COURSE = 10 MW · BOLD SEAM EVERY 100 MW"
+   ],
+   "claim_ids": [
+    "C01",
+    "C04",
+    "C09",
+    "C12",
+    "C13",
+    "C18",
+    "C36"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "THE UNIT · ABOUT 100 KW",
+   "headline": "Start with one box. About 100 kilowatts.",
+   "body": "UAF's AURORA-AI project with Cordova Electric Cooperative uses modular data centers of about 100 kilowatts each, \"about the size of\" two large refrigerators, UAF professor Richard Wies told Alaska's News Source. Every block in this deck is built from it.",
+   "labels": [
+    "UNITS COUNT POWER, NOT FLOOR SPACE"
+   ],
+   "claim_ids": [
+    "C44",
+    "C45"
+   ]
+  },
+  {
+   "n": 4,
+   "headline": "Alaska has drawn lines at 5 MW and 15 MW.",
+   "body": "Fairbanks Borough Mayor Grier Hopkins proposes pausing permits for data centers of 5 MW or more until December 31st, 2027. SB 250 would have exempted those under 15 MW. It passed the Senate 14 to 5 on May 16th, then was held in a House committee.",
+   "labels": [
+    "5 MW · 50 UNITS · PROPOSED",
+    "15 MW · 150 UNITS · PASSED THE SENATE",
+    "HELD IN A HOUSE COMMITTEE, MAY 18TH",
+    "Y 14 · N 5 · E 1"
+   ],
+   "claim_ids": [
+    "C37",
+    "C38",
+    "C39",
+    "C46",
+    "C48",
+    "C49"
+   ]
+  },
+  {
+   "n": 5,
+   "headline": "From South Anchorage to Whittier, one seat.",
+   "body": "House District 9 spans South Anchorage, the Lower Hillside, Girdwood and Whittier. Nearly 44 percent of its registered voters cast an August primary ballot, 16 points above the state average, ADN reported.",
+   "labels": [
+    "SOUTH ANCHORAGE",
+    "LOWER HILLSIDE",
+    "GIRDWOOD",
+    "WHITTIER",
+    "TURNAGAIN ARM"
+   ],
+   "claim_ids": [
+    "C05",
+    "C07",
+    "C08"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "REP. KY HOLLAND · INDEPENDENT",
+   "headline": "Holland's line sits at 50 to 100 MW.",
+   "body": "Holland, who worked on building data centers in the Lower 48, calls hyperscale in Alaska \"a fantasy idea.\" He wants \"purpose-built, strategic, modest-sized\" facilities and cites limited bandwidth, distance from markets and infrastructure challenges.",
+   "labels": [
+    "50 MW",
+    "100 MW",
+    "A NUMBER OF FACILITIES IN THIS RANGE"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C10",
+    "C11",
+    "C12",
+    "C14",
+    "C17"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "JOHN BOYLE · REPUBLICAN",
+   "headline": "STAK's lease ground, 26 miles south of Deadhorse.",
+   "body": "Boyle, STAK Energy's chief strategy officer, is open to large North Slope data centers, where gas could ease power generation. He says they must avoid \"the negative externalities that we see in the Lower 48.\"",
+   "labels": [
+    "715.4 ACRES · TRUE SIZE · PLACE APPROXIMATE",
+    "50-YEAR LEASE · PRELIMINARY DECISION MAY 12TH",
+    "DEADHORSE",
+    "MORE THAN 500 COMMENTS · FEWER THAN A DOZEN IN FAVOR",
+    "ONE UNIT HERE IS UNDER A PIXEL"
+   ],
+   "claim_ids": [
+    "C01",
+    "C18",
+    "C20",
+    "C22",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C33",
+    "C34"
+   ]
+  },
+  {
+   "n": 8,
+   "headline": "3 GW tops Alaska's net summer capacity.",
+   "body": "EIA counted 2,853 MW of net summer generating capacity statewide in 2024. ADN describes STAK's project as 3 gigawatts.",
+   "labels": [
+    "ALASKA, 2,853 MW · EIA 2024",
+    "STAK · 3 GW, PER ADN",
+    "1 GW OR MORE"
+   ],
+   "claim_ids": [
+    "C13",
+    "C36",
+    "C50"
+   ]
+  },
+  {
+   "n": 9,
+   "headline": "Every size on the record, on one ladder.",
+   "labels": [
+    "100 KW · UAF AURORA-AI UNIT · CORDOVA",
+    "5 MW · FAIRBANKS MORATORIUM · PROPOSED",
+    "15 MW · SB 250 · PASSED SENATE, HELD IN HOUSE",
+    "50 TO 100 MW · HOLLAND · CAMPAIGN POSITION",
+    "1 TO 3 GW · STAK · PRELIMINARY LEASE",
+    "2,853 MW · NET SUMMER CAPACITY, 2024 · EIA",
+    "1 MW",
+    "10 MW",
+    "100 MW",
+    "1 GW",
+    "LOG SCALE · EACH BAND IS 10 TIMES THE ONE BELOW"
+   ],
+   "claim_ids": [
+    "C12",
+    "C13",
+    "C26",
+    "C36",
+    "C37",
+    "C38",
+    "C39",
+    "C44",
+    "C45",
+    "C46",
+    "C49",
+    "C50"
+   ]
+  },
+  {
+   "n": 10,
+   "headline": "Where should Alaska's line sit, in megawatts?",
+   "body": "SB 250's sponsor returns next year. District 9 votes November 3rd.",
+   "labels": [],
+   "claim_ids": [
+    "C01",
+    "C40"
+   ]
+  }
+ ],
+ "caption_meta": {
+  "opening_move": "MAP MOVE",
+  "structure": "COUNTDOWN",
+  "closing_move": "STAKE (the reader's own grid at both candidates' sizes, 100 MW and a gigawatt, on the cost-sharing argument both make)"
+ },
+ "first_8_words": "House District 9 runs from South Anchorage to",
+ "hook_type": "map move, a district's two ends against a lease far to the north",
+ "caption_claim_ids": [
+  "C01",
+  "C02",
+  "C05",
+  "C12",
+  "C13",
+  "C18",
+  "C20",
+  "C24",
+  "C29",
+  "C37",
+  "C38",
+  "C39",
+  "C44",
+  "C46",
+  "C49"
+ ],
+ "total_chars": 887,
+ "hook_chars": 132,
+ "first_comment": "Sources, primary first\nAlaska Division of Elections, 2026 general election precinct file listing the House District 9 contest, 2026-10-30, https://www.elections.alaska.gov/results/26GENR/GA_ENR_Precinct_State_of_Alaska.csv\nAlaska Legislature, CS for SB 250(CRA) bill text with the 15 MW threshold, 2026-05-16, https://www.akleg.gov/PDF/34/Bills/SB0250B.PDF\nAlaska Legislature BASIS, SB 250 bill history, Senate vote 14 to 5 and House committee hold, 2026-05-18, https://www.akleg.gov/basis/Bill/Detail/34?Root=SB%20250\nAlaska Legislature BASIS, House Energy committee roster, 2026-10-30, https://www.akleg.gov/basis/Committee/Details/34?code=HENE\nAlaska DNR Division of Oil and Gas, preliminary decision on ADL 422741 land lease application, STAK Energy Corporation, 2026-05-12, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817\nAlaska DNR Division of Oil and Gas, ADL 422741 comment extension and site description, 2026-06-17, https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224\nU.S. Energy Information Administration, Alaska Electricity Profile 2024, 2025-11-10, https://www.eia.gov/electricity/state/alaska/\nMari Kanagy, Anchorage Daily News, energy takes center stage in race to represent South Anchorage House district, 2026-10-22, https://www.adn.com/politics/alaska-legislature/2026/10/21/energy-takes-center-stage-in-race-to-represent-south-anchorage-house-district/\nNathaniel Herz, Anchorage Press (Northern Journal), data center critics flood Alaska land managers with opposition to North Slope project, 2026-07-03, https://anchoragepress.com/data-center-critics-flood-alaska-land-managers-with-opposition-to-north-slope-project/\nAlex Bengel, Alaska's News Source, UAF study of AI use on rural power grids, 2026-08-27, https://www.alaskasnewssource.com/2026/08/28/uaf-study-ai-use-rural-power-grids/\nAlex Bengel, Alaska's News Source, Fairbanks borough mayor proposes temporary data center moratorium, 2026-10-23, https://www.alaskasnewssource.com/2026/10/24/fairbanks-borough-mayor-proposes-temporary-data-center-moratorium/\nJames Brooks, Alaska Beacon via Alaska Public Media, where Alaska's four governor candidates stand on data centers, 2026-09-21, https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers\nThe stacks, the cabinets and the pad are illustrations. A cabinet counts power, not floor space, and the lease parcel is drawn at true size in an approximate position.\nThe docket follows every Alaska data center decision to its next deadline at https://alaskaaihq.com\nKnow District 9, the Slope lease file or the SB 250 hearings? Add context in the replies.",
+ "aftercare": [
+  "Post before Election Day. Tuesday to Thursday 8 to 11 a.m. Alaska time is normally the strongest slot, but District 9 votes Tuesday, November 3rd, so Monday November 2nd, 8 to 11 a.m. AKT is the best fit. Tuesday morning before 11 a.m. is the last useful slot. Posting cadence is your call.",
+  "Paste the sources comment within 60 seconds of posting. First click the elections.alaska.gov and akleg.gov links to confirm they open, because both sites blocked or failed automated fetches in this run.",
+  "Reply to every comment in the first 60 to 90 minutes and point each question to its slide (the unit is slide 3, the 5 MW and 15 MW lines slide 4, Holland slide 6, Boyle and the lease slide 7, the state's capacity slide 8, the ladder slide 9). After 48 hours, note saves and comments for the ledger.",
+  "Keep replies fair to both candidates. The deck ranks and endorses neither, so answer with what each said in his own words, keep STAK's size as '3 GW as ADN describes it' or 'a gigawatt or more', and don't argue the race or the primary result."
+ ],
+ "editor_notes_for_email": "The deck never endorses or ranks either candidate. Each gets one frame of equal weight in his own words, and Boyle's former DNR post appears only as an identifier on slide 2, never on the lease frame. The primary turnout (nearly 44 percent, 16 points above the state average) is attributed to ADN on slide 5 because the Division of Elections primary PDF couldn't be read (503 directly, 401 through a reader). The ADN-only primary split (59.9 to 40.1) is used nowhere. The general election precinct CSV places both candidates in House District 9 and is the file cited. STAK's 3 GW is ADN's figure, since the DNR notice gives no megawatts. Anchorage Press says a gigawatt or more, and ADN's $500 million figure was killed. The caption ships byte for byte.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C04",
+  "C05",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C17",
+  "C18",
+  "C20",
+  "C22",
+  "C24",
+  "C26",
+  "C27",
+  "C28",
+  "C29",
+  "C33",
+  "C34",
+  "C36",
+  "C37",
+  "C38",
+  "C39",
+  "C40",
+  "C44",
+  "C45",
+  "C46",
+  "C48",
+  "C49",
+  "C50"
+ ]
+}

@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1822,7 +1822,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-07-18",
@@ -1863,6 +1863,10 @@
         {
           "date": "2026-10-28",
           "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th, the referral, so nothing has moved. The bill died in committee at sine die on May 20th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "The morning sweep of the Legislature's BASIS record still reports HB 259 in House Energy with a status date of January 20th. The bill died in committee at sine die on May 20th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hb-259-data-center-utility-standards/"
@@ -3803,6 +3807,11 @@
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261030-5004",
           "outlet": "Chugach Regional Resources Commission, comment, FERC eLibrary",
           "date": "2026-10-29"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261029-5224",
+          "outlet": "FERC eLibrary, Oceana comments, P-15423",
+          "date": "2026-10-29"
         }
       ],
       "history": [
@@ -3929,10 +3938,14 @@
         {
           "date": "2026-10-29",
           "note": "Read the commission's eLibrary record for P-15423 again today. It now holds 186 filings, up from 152 on October 27th, almost all of them comments from individuals, and a comment from the Chugach Regional Resources Commission was submitted on October 29th. No new motion to intervene has been entered since Cook Inletkeeper's on October 26th. Comments, motions to intervene and competing applications remain due November 2nd."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "Read the commission's eLibrary record for P-15423 again today. It now holds 193 filings, up from 186 yesterday, almost all of them comments from individuals. Oceana, the ocean conservation group, filed comments on the application on October 29th. No new motion to intervene has been entered since Cook Inletkeeper's on October 26th. Comments, motions to intervene and competing applications remain due November 2nd."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-10-30",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -4064,7 +4077,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-08-25",
@@ -4185,6 +4198,10 @@
         {
           "date": "2026-10-29",
           "note": "The Assembly's public safety page now returns not found, and the Assembly home page posts no action on AO 2026-108(S) after October 20th. Debate remains scheduled to resume as unfinished business at the November 4th regular meeting. No vote has been recorded."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "The Assembly's meetings page, read today, does not yet link an agenda for the November 4th regular meeting. Debate on AO 2026-108(S) remains scheduled to resume there as unfinished business, and no vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4240,7 +4257,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-08-31",
@@ -4349,6 +4366,10 @@
         {
           "date": "2026-10-29",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so reply comments remain due on or before October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so no extension has been published and reply comments are due today, October 30th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -5505,7 +5526,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-09-17",
@@ -5558,6 +5579,10 @@
         {
           "date": "2026-10-29",
           "note": "The Board of Regents meetings and schedule pages both returned a service-unavailable error today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks and the November 2nd testimony hour stand as last published."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "The Board of Regents schedule page could not be read again today, so the November agenda has not been checked. The November 5th and 6th meeting in Fairbanks and the November 2nd testimony hour stand as last published."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
@@ -5611,7 +5636,7 @@
         }
       ],
       "first_seen": "2026-09-24",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-09-24",
@@ -5623,6 +5648,10 @@
         },
         {
           "date": "2026-10-28",
+          "note": "The morning sweep of the Legislature's BASIS record still reports SB 250 in House Community and Regional Affairs with a status date of May 17th and no later action. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-30",
           "note": "The morning sweep of the Legislature's BASIS record still reports SB 250 in House Community and Regional Affairs with a status date of May 17th and no later action. Checked and unchanged."
         }
       ],
@@ -5852,10 +5881,15 @@
           "url": "https://www.aidea.org/About/Board-Members/Board-Meeting-Schedule",
           "outlet": "Alaska Industrial Development and Export Authority",
           "date": "2026-10-28"
+        },
+        {
+          "url": "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/110426/11.4.26%20AIDEA-Agenda%20Public%20Linked%2011042026.pdf?ver=4DJH0kwhv4ev3WcoqjNE4w%3d%3d",
+          "outlet": "AIDEA, November 4th board meeting agenda",
+          "date": "2026-10-30"
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-10-30",
       "history": [
         {
           "date": "2026-10-28",
@@ -5864,6 +5898,10 @@
         {
           "date": "2026-10-29",
           "note": "AIDEA's board meeting schedule, read today, lists the next meetings on November 4th at 813 W Northern Lights Blvd in Anchorage and on December 4th, with no agenda yet linked for either. Checked and unchanged."
+        },
+        {
+          "date": "2026-10-30",
+          "note": "AIDEA has posted the agenda for its November 4th board meeting. It carries resolutions on GeoAlaska and the Wrangell shipyard, the audited 2026 financial statements and a draft FY28 dividend, and no item on Northstar Fiber Development LLC. The December 4th meeting will be held in the Alaska Housing Finance Corporation board room at 4300 Boniface Parkway in Anchorage."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"

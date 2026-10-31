@@ -2354,6 +2354,36 @@
       "confidence": 0.65,
       "run_date": "2026-10-29",
       "carousel_no": 99
+    },
+    {
+      "id": "dem-sampler-must-be-c1",
+      "learned": "2026-10-30",
+      "instinct": "Sample a DEM with Catmull-Rom and low-pass it about one cell before taking any slope; never shade from smoothstep-bilinear.",
+      "evidence": "No.100 slide 07: smoothstep-bilinear has zero slope at every cell centre, and three critic rounds named cell-aligned N-S stripes in the Lambert stipple until Catmull-Rom plus a 1.2-cell Gaussian went in; 05 needed the same low-pass for stair-stepped lee polygons.",
+      "confidence": 0.7,
+      "last_confirmed": "2026-10-30",
+      "run_date": "2026-10-30",
+      "carousel_no": 100
+    },
+    {
+      "id": "ortho-needs-linear-fog",
+      "learned": "2026-10-30",
+      "instinct": "Under an orthographic camera use linear fog offset by the camera's stand-off, never FogExp2.",
+      "evidence": "No.100 slide 01 rendered as uniform haze because FogExp2 counted the 400 m ortho stand-off; linear Fog(dist+5, dist+50) with fog:false on near objects fixed it, and 08 used the same.",
+      "confidence": 0.65,
+      "last_confirmed": "2026-10-30",
+      "run_date": "2026-10-30",
+      "carousel_no": 100
+    },
+    {
+      "id": "map-plate-under-stipple",
+      "learned": "2026-10-30",
+      "instinct": "Give a stippled terrain a Lambert tone plate underneath; dots alone on a flat plain read as static.",
+      "evidence": "No.100 slide 07 sat at 6.0 to 7.3 for four rounds as 'uniform TV static'; the flow critic's fix was a warm hillshade plate under the stipple plus traced drainage threads.",
+      "confidence": 0.6,
+      "last_confirmed": "2026-10-30",
+      "run_date": "2026-10-30",
+      "carousel_no": 100
     }
   ]
 }

@@ -3618,6 +3618,42 @@
         "142 Spindrift as a Count"
       ],
       "note": "Critic rounds: 5. Round 1 failed all nine frames, mostly on head-on moonlight flattening the drift (fixed by moving cameras east so the drift's east flank falls in shade) and on a far snow mesh z-fighting into flat plates. Score 8.225."
+    },
+    {
+      "run_date": "2026-10-30",
+      "carousel_no": 100,
+      "slide_count": 10,
+      "hero_structure": "NEW: THE UNIT LADDER, one 100 kW cabinet stacked to every size on the record in parallel projection on a frosted gravel pad: an ortho cover with a block and a column (01), an isometric drafted column with a dimension call (02), the unit alone in perspective PBR with thin-lens focus (03), hatched cabinet-oblique blocks (04, 06), two real-terrain frames (Cook Inlet hachure 05, North Slope stipple 07), an ortho sunset comparison column (08), a log staff (09), a blue-noise stipple pad (10)",
+      "atmosphere": "NEW: EMBER HAZE ON A FROSTED GRAVEL PAD, one low key at az 248 el 22, a sunset variant on 08",
+      "depth_technique": "orthographic akthree with linear fog (01, 08); isometric Canvas drafting (02); perspective PBR with depthPass focus (03); cabinet-oblique hatch (04, 06); device-resolution hillshade with flowline hachure (05); Lambert stipple of a low-passed DEM (07); log staff with a two-part cast (09); Bridson stipple (10)",
+      "line_voice": "survey instrument: mono labels on halos, hairline leaders, a log ladder ticker on every frame",
+      "continuity_device": "motif:THE FIRST UNIT, gold means the 100 kW unit and nothing else",
+      "continuity_devices": [
+        "the ladder ticker with a gold 100 kW notch",
+        "the first unit's gold band or ring locator on every frame",
+        "one key at az 248"
+      ],
+      "hook_archetype": "NEW: THE THIRTY-FOLD STACK",
+      "palette_family": "NEW: EMBER HAZE AND SURVEY GRAVEL (night navy, ember horizon, cool steel cabinets, ghost blue, flag gold)",
+      "type_pairing": "Archivo two widths + JetBrains Mono",
+      "narrative_structure": "cover, the 30 times, the unit, the lines Alaska drew, the seat's ground, Holland's line, STAK's ground, the state on the same scale, the ladder, the close",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "akladder course stacking",
+        "ortho camera with linear fog",
+        "hatched cabinet oblique",
+        "flowline hachure on a device-resolution hillshade",
+        "DEM low-pass before Lambert stipple",
+        "feathered stipple clearings round labels",
+        "log staff with decade labels"
+      ],
+      "new_techniques_logged": [
+        "143 Traced Drainage Threads"
+      ]
     }
   ]
 }

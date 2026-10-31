@@ -9468,3 +9468,17 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A MODULAR PIXEL HASH IS A HATCH. The "sensor noise" on 06, ((px * 7919 + py * 104729) % 997), printed as a 45 degree twill; use a noise function, never a linear hash, for grain.
 - THE RULE TEXT WINS OVER THE DOSSIER. 08's dossier drew the rule line "from the Colville delta east"; the critic asked for that, and the rule's own region definition runs from Point Barrow, west of the frame. Declined on the text, written into the reconciliation.
 - FLOW: a side-issue sentence on a middle frame is where readers bail. 04's 45-word body about the other code error was named the bail point; one sentence carried the frame.
+
+## 2026-10-30, No.100, craft refresh (two searches)
+
+- Nothing new on document-post reach; the AuthoredUp and Tryordinal figures were recorded on October 29th and nothing since contradicts or extends them.
+- SMALL MULTIPLES TAKE THE SIMPLEST MAP. Esri's thematic mapping guidance (https://downloads.esri.com/esripress/books/Thematic-Mapping/files/basic-html/page4.html) says small multiples compare change over time or across variables, need an invisible shared grid, and work better with simple map types than visually complex ones. If a deck tiles one place several times, the tile carries one variable and one tone ramp, and the detail goes into the one hero frame.
+
+## 2026-10-30, No.100, retro (THE UNIT LADDER, 8.165 after one craft cycle, art 6.5 to 7.0)
+
+- SAMPLE A DEM C1 AND LOW-PASS IT BEFORE ANY SLOPE. 07's smoothstep-bilinear h() has zero slope at every cell centre and printed cell-aligned N-S stripes for three critic rounds; Catmull-Rom plus a 1.2-cell separable Gaussian removed them, and 05 needed the same for stair-stepped lee polygons.
+- A STIPPLE ALONE ON A FLAT PLAIN IS STATIC. 07 sat at 6.0 to 7.3 until a Lambert tone plate went under the dots and traced drainage threads gave the plain structure (technique 143). The plate's lee term on a 20x relief then printed soft blobs, so keep exaggeration low on the plate even where the stipple uses it.
+- ORTHO CAMERAS TAKE LINEAR FOG. FogExp2 counts the ortho stand-off and fogs the whole frame; Fog(dist + a, dist + b) with fog:false on near objects.
+- A HALF-SIZE SKY TEXTURE PRINTS BANDS. 08's 540 by 675 sky canvas stepped at display scale; build skies at device resolution and dither before the 8-bit write.
+- CHECK THE RENDER DIFF AFTER EVERY SCRIPTED EDIT. A Python replace appended code after a // comment on the same line and the "fix" did nothing for a whole critic round on 02.
+- MASK A 2D POST PASS WITH A FEATHERED ERASE ON A LAYER, NOT A CLIP. 08's horizon blend clipped round the columns left pale notches at each flank; drawing to a layer and erasing the columns with a 6 px feather left no edge.
