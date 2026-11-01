@@ -1,0 +1,200 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "I re-read caption.txt, copy.json post_copy, all slide strings, first_comment and aftercare character by character. The only joining marks are ASCII hyphens: 'DA 26-1124' on 01 and 02, 'SEVEN-PLUS, PER GCI' on 05, and the ISO dates in the source block. No render shows a long dash. caption_report verdict PASS with 0 fails."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "No emoji codepoints anywhere in the caption, slides, first comment or aftercare. The only non-alphabetic glyphs are the U+00B7 middle dots in mono labels and the gold Polaris wordmark, which is drawn art."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "All 36 claims_used and the caption's 16 claim ids resolve in claims.json, each with fetched true and confidence 0.85 to 0.99. The new slide 7 row 3, 'Then only if Anchorage inflation tops 5 percent, capped at that rate, once a year', now matches C26 ('exceeded 5%') and C28 ('will not exceed the inflation rate of the preceding 12-month period', 'not more than one inflation adjustment per year') exactly, which removes the r1 ambiguity. The honesty guards still hold: C18/C19 (Starlink never said to sell wholesale middle mile), C22 range, C11 enterprise value, C34 'planned', C42/C44 proponents' figures, C37 'never mentions AI'. Gate status shows plan_drift PASS and aggregate PASS (13 of 13)."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "I transcribed all nine current renders and diffed them against copy.json. Everything matches, including the new 07 row 3 above, 'Under seal. The public won't see the prices.', 'CLOSING HASN'T HAPPENED YET', 'UTQIAGVIK', 'KOTZEBUE', 'EMMONAK', 'NAKNEK', 'RINGED, SERVED OR TO BE SERVED BY GCI', 'NEAR NINE, / PER BROADBAND BREAKFAST', 'PLANNED, NOT BUILT \u00b7 SITE APPROXIMATE', the 02 quote with both ellipses, and the counters 01 / 09 through 09 / 09. copy_sync PASS on 49 strings."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "machine_qa has 0 fails, and every fit is within maxLines (07 headline 1/1, 05 headline 2/2, 09 ask 3/4). On 04, contours now run under 'QUINTILLION, PER ACS' and 'GCI, PER ACS', and the 04 / 09 counter sits on a bright raster patch (crop slide-04-r3c2). All glyphs are whole and readable behind their knockouts, so I charge this under legibility, not as a hard fail. The 07 life-of-the-system bar runs off the frame by design, and its label is fully inside."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "All headlines, bodies and quotes sit on sky, space or near-black ground. On 05 the type is on the upper navy sky with a halo. The r1 squeaker is gone: slide 7's foot label is now 24px #E6EDF1 with a halo, and machine_qa no longer reports a contrast warning for it, only an edge-density note. The 04 counter on the raster patch is a fixture, not primary text."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "9 slides: assemble_report says slides 9, and there are 9 thumbs."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json verdict WARN, with 0 fails and 27 warns. assemble_report.json shows pdf_mode 'vector', 10.85 MB, and the title 'Regardless of Whether, the FCC's Check on Arctic Fiber'. The render PNG sha256 values in assemble_report match the crop manifests (slide-04 d1b05bd6...), so the PDF and thumbs come from the current renders."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "Nothing changed since r1. The nearest neighbour is No.98 (October 28th, AIDEA Northstar Fiber), with a selection dedupe jaccard of 0.019 and 0 shared entities. Today's event is the FCC's October 20th order on GCI and Quintillion. It is a second fiber deck in four runs, which I charge under variety, not here."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "The last four heroes are No.97 THE RECORD SET DOWN ON THE LAND, No.98 THE EXPLODED SECTION, No.99 THE NIGHT CRANE and No.100 THE UNIT LADDER. This deck is THE ORDER'S SENTENCE OVER THE FREEZE-UP COAST. Gate status shows bespoke PASS, with median pairwise art similarity 0.091 and max pair 0.146."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "caption_check PASS (74 brand phrases over 53 copy fields) and word_ban PASS with 0 hits. My own scan of the caption, the new 07 row 3 and the trimmed first comment found no 'gap', 'matters', 'pattern' or 'cannot'. The only 'could not' and 'we find' are inside the straight-quoted order text on 02, which is exempt. Dates: 'OCTOBER 20TH' and 'November 4th' are ordinal, and 'January 2025' / 'JAN 2025' carry a different year, so the year is doing work."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "Exactly 3 hashtags (#AlaskaBroadband #SubseaFiber #MiddleMile) and no URL in post_copy or caption.txt. All URLs are in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "No placeholder text in copy.json, the caption, the storyboard copy blocks or the renders. The stale first-comment disclaimer was removed, and editor_notes_for_email in copy.json is now self-consistent. The storyboard GATE STATUS block still shows score 8.355 and ship_gate FAIL. That is the pending state this re-score resolves, not an unfinished element."
+    },
+    {
+      "rule": "quote marks by codepoint (straight quotes house rule)",
+      "status": "pass",
+      "evidence": "copy.json carries only U+0022 and U+0027, and the copy_sync row reads 'no curl'. The comma-shaped apostrophe in 'won't' on 07 is Manrope's drawing of U+0027. The slanted quotes on 02, 04 and 09 are Fraunces display forms of U+0022, and the census flags neither."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Unchanged since r1. It is a real named tension in 12 words, 'The FCC cleared GCI's Arctic fiber deal citing Starlink, / regardless of whether', with the hero at about 140px, and it reads cleanly in the 432px contact sheet. Freeze-up pancake ice is Alaskan without cliche. It is held below 9 for three reasons: there is no number or stake on the cover, the high-contrast pancake rims in the lower 40 percent compete with the type, and the pancakes still read somewhat as uniform cookies."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.0,
+      "weight": 0.14,
+      "notes": "Unchanged, because round 4 was craft only. The 01 to 02 sentence seam is excellent, and 05 to 06 and 08 to 09 are strong. The flow critic's MAJOR rhythm finding is still open: 02, 03 and 04 are three dense, dark, text-led frames in a row, and 02 and 04 share one quote-over-dark-Alaska grammar. 03 plants nothing, 04 closes its own loop with 'The FCC denied the petition.', and 06 to 07 and 07 to 08 are weak junctions. 04 is still the predicted bail point."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16,
+      "notes": "The craft cycle landed about half of what it was aimed at. Real gains: 04's horizontal bare band is gone and contours now cover the whole land, so both lettered regions are modelled. 07's bars have a bright top-front arris and a top-face sweep, so they read as lit objects rather than flat bone. 08's window is recessed, with a mullion and bloom, there is a lit roof-edge line, and the piles have dark contacts. On 05 the upward faces of the near rubble take snow and the edges read teal, so the ridge now reads as ice more than stone. What did not land: 03's stray teal arc is still drawn across the top edge (crop slide-03-r1c2, a clean arc from about design y 80 at left to y 40 at right over a dark band), so the basin ramp didn't remove it. 06 still has a dark vertical fin rising above the cable's far bend (crop slide-06-r2c2, at about tile x 170 to 215, y 80 to 170), so ending the path at z 24 didn't kill the stub, and the lower 35 percent is still eventless olive. 04's blocky, stair-stepped white raster patches at lower right are still there behind the counter (crop slide-04-r3c2). 07's hoarfrost 'point sparkles' still read as short diagonal dashes or rain at 2x zoom (crop slide-07-r3c1). 05's large slabs are still dark, opaque, low-poly navy, with the snow mostly on the small rubble, and the near snow is a soft blotchy plane. 08's station end face is still a flat blue-grey panel. The rendered ladder is still climbed on 05 and 06, with ray-cast fields on 01, 08 and 09 and a globe raymarch on 02. This is strong overall, with four frames that still carry findable artifacts. It is above r1's 7.0 but well under the 8.5 floor."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.0,
+      "weight": 0.14,
+      "notes": "Unchanged. The gold line is the physical fiber on every frame. The dotted ice-blue train is the disputed Starlink check and is never joined into a line (C18). The 05 strip shows 7 solid plus 2 hatched cells. The 07 bars land at exactly 368, 560 and 752 px on the declared 96 px per year scale, which machine_qa asserts. 03 has 13 ticks and 10 rings with three unringed points, and 06 has two lit hairlines and one dim. Short of 10 because the 04 relief and 09 water are mood rather than data."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12,
+      "notes": "Unchanged. Named places are dense and accurate: Prudhoe Bay, Utqiagvik, Wainwright, Point Hope, Kotzebue, Nome, Emmonak, Hooper Bay, Naknek, Oliktok Point and the Chukchi floor, plus Anchorage CPI. The named orgs are GCI, Quintillion, ACS, the USF, the North Slope Borough and North Slope Power. The landings are at true coordinates, and the schematic route is tagged as such. Deducted for the Prudhoe frame resting on proponents' pitch figures, and for the absence of any community voice or price a village school or clinic actually pays."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.0,
+      "weight": 0.1,
+      "notes": "07 row 3 is now precise: it carries both the 5 percent trigger and the cap at that rate (C26, C28), which removes the r1 ambiguity. 02, 03, 04, 05, 07 and 08 each add new verified specifics. It is still held at 8 because 06 is a breather that partly repeats 03's 'three fiber pairs', and 03 runs above 50 words with 13 labels."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08,
+      "notes": "Unchanged. The hero, atmosphere, palette, hook archetype (the unfinished sentence) and narrative structure are new against No.97 to No.100, and the dials are justified. Two subsystems are reused: a subsea cable is again a featured object three days after No.98's cable cutaway (a second fiber deck in four runs), and Fraunces repeats No.98's display face within the house's original Fraunces, Manrope and Mono pairing."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.0,
+      "weight": 0.07,
+      "notes": "One squeaker is fixed: 07's foot label is now 24px with a halo, and its contrast warning is gone. Body type is at or above 32px everywhere, everything reads in the 432px contact sheet, the vector PDF is 10.85 MB with a title, and counters are on all nine frames. Several squeakers remain. 03 has 13 labels at 20 to 21px, and its legend crosses coastline hairlines. 04's attribution and 08's label are 22px. 04's counter now sits on the blocky bright raster patch at lower right, and its region labels sit on contour strokes, which machine_qa flags as art touching glyphs."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "Unchanged. The hook is 136 characters, the caption 898, and there are 0.7 commas per 100 words. The voice is analytical and takes positions ('The check is a hedge.', 'The real check is on paper.'), the deck-summary line is present, and the closing question is a real, debatable prediction tied to the seven-year filing window. The soft spot is the knotted hook clause 'a rival the record can't agree sells wholesale middle mile in Alaska', which needs a second read."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.5,
+      "weight": 0.1,
+      "notes": "Both rough elements from r1 are fixed. The first comment no longer disclaims a claim the deck doesn't make, and copy.json's editor_notes are now consistent. Present: post copy, exactly 3 hashtags, a source block with primary first and dated URLs plus illustration disclosures, a document title, and aftercare with the Election Day note and the November 19th arithmetic. The vector PDF, thumbs and contact sheet hash-match the current renders, and every gate row except ship_gate is green. The Gmail draft and image URL resolution can't be verified until merge, and the storyboard GATE STATUS block needs re-syncing after this score."
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.0x0.14)+(7.5x0.16)+(8.0x0.14)+(8.5x0.12)+(8.0x0.10)+(7.5x0.08)+(7.0x0.07)+(7.5x0.05)+(8.5x0.10) = 1.050+0.980+1.200+1.120+1.020+0.800+0.600+0.490+0.375+0.850 = 8.485",
+  "weighted_total": 8.485,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Story arc & swipe momentum",
+  "one_sentence_fix": "Break the dense 02-03-04 run by lightening 04: trim the ACS quote to its verbatim core with an ellipsis, cut the body to 'The FCC denied the petition.', give the map the top 55 percent, and end 04 on a forward mono tag on the gold seam (for example 'ONE LINE'), so the frame points at the 05 cut instead of closing its own loop.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 3,
+      "problem": "The stray teal arc the round 4 ramp was meant to remove is still drawn across the top edge, a clean leaked isobath or ring from about design (540, 80) to (1080, 40) over a dark wavy band (crop slide-03-r1c2). Round 4 added a basin ramp, but the arc path itself is still emitted, so the same defect has now gone unfixed for three rounds.",
+      "fix": "Find and delete the arc's source path (the basin fallback's shelf-break contour or a ring drawn in the projected frame), and clip every isobath and fallback contour to the DEM-covered water mask below design y 110. Then confirm in slide-03-r1c2 that the top 110 px holds only the night ramp."
+    },
+    {
+      "slide": 6,
+      "problem": "On the masterful depth frame, a dark vertical fin still rises above the cable's far bend where it meets the fog (crop slide-06-r2c2, at about tile x 170 to 215, y 80 to 170). Ending the path at z 24 left the silt-mound strip or the far tube cap standing up against the murk. The lower 35 percent is still an eventless olive blur with no near form.",
+      "fix": "Clip the silt-mound strip and the tube to the same z limit and fade both into the exp2 fog over the last 3 m, so nothing stands above the far silt horizon. Then add a defocused near silt ridge at lower left with lit ripple crests and a sparse pebble scatter."
+    },
+    {
+      "slide": 4,
+      "problem": "Blocky, stair-stepped white raster patches still sit in the lower-right Alaska Range and Kenai area, directly behind the 04 / 09 counter (crop slide-04-r3c2, tile y 520 to 860). They read as an upscaled low-resolution layer, not contours, and they make the counter the weakest fixture in the deck.",
+      "fix": "The patches are the AKS.glow lit-face pass sampled at a coarse cell, so render that pass at device resolution with bilinear sampling (or drop it below 0.4 alpha south of 62 N), and extend the footer scrim to a 300 x 110 px zone behind the counter."
+    },
+    {
+      "slide": 7,
+      "problem": "The hoarfrost 'point sparkles' still read as short diagonal dashes or rain streaks at 2x zoom across the whole frost plane (crop slide-07-r3c1), so the lower 40 percent remains a texture artifact under otherwise improved bevelled bars.",
+      "fix": "Draw each glint as a radially symmetric 1 to 2.5 px dot (or a tiny 4-point star for the brightest 2 percent) with no directional stretch. Remove the 2.3:1 warp from the glint layer only, and scale size and density with perspective depth."
+    },
+    {
+      "slide": 5,
+      "problem": "The snow blend mostly caught the small near rubble. The large crest slabs are still dark, opaque, low-poly navy with flat facets, so the frame's largest object still reads partly as stone. The near snow below the strip is a soft, blotchy plane with no micro-shadow.",
+      "fix": "Lower the snow-blend threshold to smoothstep 0.35 to 0.6 on the large slabs, add a thin snow cap on every crest top face, and lift the slab base value about 15 L* toward #A8C8CF so they sit closer to the sky. Then add a sastrugi normal map to the near snow."
+    },
+    {
+      "slide": 8,
+      "problem": "The window, roof line and pile contacts improved, but the station's end face is still one flat blue-grey panel with a cream outline, and the long face has no key-side light variation, so it still reads as a pasted vector box beside the ray-cast tundra.",
+      "fix": "Shade the end face with the apricot key falloff from the bottom right plus a warm rim along its key edge, and add a soft vertical gradient and an eave shadow band under the roof snow on the long face."
+    }
+  ],
+  "editor_notes_for_email": "Re-score after the CRAFT FLOOR cycle (rounds used: 4 of 5). The weighted total is 8.485 against the round 4 threshold of 7.7, with no hard fails, so it ships. Artwork craft rose from 7.0 to 7.5, still under the 8.5 craft floor. The one owed craft cycle has now been spent, so record score_report.craft_cycle {frames: [5, 4, 7, 3, 6, 8], art_before: 7.0, art_after: 7.5} and re-sync the storyboard GATE STATUS block, which still shows score 8.355 and ship_gate FAIL. Flag the art shortfall honestly in the email. Things the human should know before posting. (1) Three of the six round 4 repairs didn't land in the pixels: 03's stray teal arc at the top edge, 06's dark fin where the cable meets the fog, and 07's frost glints, which still look like rain dashes. 04's lower-right raster blocks behind the counter also remain. None of these affects reading, but a close zoomer will find them. (2) Slide 7 row 3 now reads 'Then only if Anchorage inflation tops 5 percent, capped at that rate, once a year', which matches C26 and C28 exactly. The first comment's stale disclaimer is gone. (3) This is the second fiber story in four runs (No.98 was AIDEA's Northstar Fiber), so the subject may feel repeated even though the event is new. (4) Post Wednesday November 4th or Thursday November 5th, not Tuesday November 3rd, which is Election Day. Reconsideration petitions run to November 19th by arithmetic, and that date isn't printed in the order. (5) The deck never says Starlink sells wholesale middle mile in Alaska. If a commenter asserts it, ask for the contract, as the aftercare advises. (6) The weakest criterion is now the arc (02, 03 and 04 are dense and dark in a row, and 04 is the likely bail point). That is a copy and layout change for a future deck, not a defect blocking this one. Files: /home/user/alaskaaicarousels/out/2026-10-31/storyboard.md, /home/user/alaskaaicarousels/out/2026-10-31/copy.json, /home/user/alaskaaicarousels/out/2026-10-31/render/machine_qa.json, /home/user/alaskaaicarousels/out/2026-10-31/final/assemble_report.json, /home/user/alaskaaicarousels/out/2026-10-31/render/crops/slide-03-r1c2.png, /home/user/alaskaaicarousels/out/2026-10-31/render/crops/slide-06-r2c2.png, /home/user/alaskaaicarousels/out/2026-10-31/render/crops/slide-04-r3c2.png, /home/user/alaskaaicarousels/out/2026-10-31/render/crops/slide-07-r3c1.png. Note: I did not re-open the ledgers (artwork.json, captions.json, topics.json) this round. The topic-repeat and hero-structure checks rest on r1's ledger evidence, the storyboard's variety ledger check and today's bespoke gate row, because nothing in round 4 touched them.",
+  "revision_rounds": 4,
+  "craft_cycle": {
+    "frames": [
+      5,
+      4,
+      7,
+      3,
+      6,
+      8
+    ],
+    "art_before": 7.0,
+    "art_after": 7.5
+  },
+  "scoring_cycles": [
+    {
+      "weighted_total": 8.355,
+      "art": 7.0,
+      "rounds": 3
+    },
+    {
+      "weighted_total": 8.485,
+      "art": 7.5,
+      "rounds": 4
+    }
+  ]
+}

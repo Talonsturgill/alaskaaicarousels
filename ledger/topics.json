@@ -4080,6 +4080,52 @@
       ],
       "claims": 78,
       "note": "First deck on the HD9 data center scale contrast. An update needs a new record: the November 3rd result, a final DNR decision on the STAK lease, or a refiled SB 250."
+    },
+    {
+      "run_date": "2026-10-31",
+      "carousel_no": 101,
+      "topic": "FCC order DA 26-1124 (October 20th) approving with conditions the transfer of Quintillion's subsea cable landing license to GCI: 1,176 miles of Arctic fiber from Prudhoe Bay to Nome, $310 million enterprise value. The competitive check the order leans on is Starlink, which the record disagrees on as a wholesale middle mile seller today, and the FCC found nothing to suggest it couldn't sell 'regardless of whether' it does. ACS's petition to deny (GCI and Quintillion the only middle mile providers for Western and Northern Alaska, respectively) was denied. Conditions: contracts honored for the life of the system, no inflation increase for three years, then only above 5 percent Anchorage CPI and capped, contracts over $5,000 a month per circuit filed under seal for 7 years wholesale. The January 2025 sea-ice cut near Oliktok Point ran seven to nine months. The eastern landing is Prudhoe Bay, where North Slope Power plans a gas plant for colocated AI data centers the order never mentions.",
+      "angle": "The order's own hedge as an unfinished sentence: the check on Arctic fiber prices is a satellite rival the record can't confirm, while the binding check is a set of sealed filings.",
+      "entities": [
+        "FCC",
+        "GCI",
+        "Quintillion",
+        "Alaska Communications",
+        "Starlink",
+        "SpaceX",
+        "Universal Service Fund",
+        "North Slope Power",
+        "North Slope Borough",
+        "Prudhoe Bay",
+        "Oliktok Point",
+        "Nome",
+        "Utqiagvik",
+        "Kotzebue",
+        "Nome to Homer Express"
+      ],
+      "keywords": [
+        "subsea fiber",
+        "middle mile",
+        "cable landing license",
+        "license transfer",
+        "LEO competition",
+        "Starlink",
+        "price conditions",
+        "sea ice outage",
+        "Arctic",
+        "AI data centers"
+      ],
+      "headline": "The FCC cleared GCI's Arctic fiber deal citing Starlink, regardless of whether",
+      "sources_lead": [
+        "https://docs.fcc.gov/public/attachments/DA-26-1124A1.txt"
+      ],
+      "beats": [
+        "defense-and-federal",
+        "data-centers",
+        "land-and-permitting"
+      ],
+      "claims": 52,
+      "note": "First deck on the GCI acquisition of Quintillion. Second fiber deck in four runs (No.98 was AIDEA's Northstar Fiber, a different event). An update needs a new record: closing, a petition for reconsideration by November 19th, a Starlink wholesale contract in Alaska, or the first sealed filings."
     }
   ]
 }

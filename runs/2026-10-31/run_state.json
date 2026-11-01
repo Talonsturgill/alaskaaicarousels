@@ -1,0 +1,114 @@
+{
+  "run_date": "2026-10-31",
+  "carousel_no": 101,
+  "effort": "high",
+  "wake_utc": "2026-11-01T06:04:14Z",
+  "date_note": "Anchorage date at wake (22:04 AKDT October 31st, 06:04Z November 1st). runs/2026-10-31 did not exist; run_guard --run-date 2026-10-31 CLEAR.",
+  "branch": "tsturg/clever-mayer-juptq7",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/plan.md",
+        "out/2026-10-31/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "two searches; nothing new on document-post reach beyond the October 29th entry (AuthoredUp vs Tryordinal) and no new visual-craft source; per Phase 1, nothing written"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/scout_merge.md",
+        "out/2026-10-31/scout_common.md",
+        "out/2026-10-31/scout_dedupe_brief.txt",
+        "out/2026-10-31/scouts/"
+      ],
+      "searches": {
+        "A": 23,
+        "B": 25,
+        "C": 25,
+        "D": 18,
+        "E": 25,
+        "F": 21,
+        "craft": 2
+      },
+      "note": "dedupe block delivered as the full dedupe_check --scout-brief file read by each scout first"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/claims.json"
+      ],
+      "note": "fact-checker returned 52 claims (46 lead incl. 6 compute thread, 6 runner-up), 8 killed; claims_check PASS 52/52 usable, 42 primary"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "docket_staleness --budget 6 deferred 12; raised to cover all 18 overdue items (17 refreshed with dated notes, Petersburg updated to pending-decision from KFSK October 16th). Unreadable today: FERC eLibrary P-15423 (script page), UA regents (503), KPBSD agendas (503), muni.org Nov 4 agenda not posted. watch.json bills match closed docket status (session over), 0 hearings, failed []. ask payload 176,503 of 190,000 bytes (13,497 headroom); mobile_docket_map and docket_ask PASS at the run date."
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/cron_health.json",
+        "out/2026-10-31/gaswatch_health.json",
+        "docs/"
+      ],
+      "cron_health": "CRON HEALTH: PASS, 9 scheduled workflows checked (plus Pages and live output), no repairs needed",
+      "gaswatch_live": "GAS WATCH LIVE: PASS, re-checked after repair; first audit at 06:07Z FAILED on \"source reading published\" (ledger at CINGSA 09:00, source at 16:00 AKDT, the 20:40 AKDT cron not yet fired); workflow_dispatch of gaswatch.yml on main (run 41279655464) collected the 16:00 reading (7.60 Bcf, 58.5 percent), Pages redeployed, re-audit PASS",
+      "site_signoff": "SITE SIGN-OFF: PASS, 162 pages, 18 checks",
+      "gaswatch_page": "GAS WATCH: PASS, read October 31st, 88 days on record, chart present",
+      "site_fixes": "none needed in the pages; the gas watch evening reading was behind the source and a production rerun of gaswatch.yml refreshed it",
+      "site_look": "home, docket, gas watch and the updated Petersburg item read at 1280 and 390 px; no horizontal scroll, nothing cut off, meter agrees with its tiles"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/selection.md",
+        "out/2026-10-31/dedupe_preflight.txt"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/storyboard.md",
+        "out/2026-10-31/treatment_cartographer.md",
+        "out/2026-10-31/treatment_cinematographer.md",
+        "out/2026-10-31/selection.md"
+      ],
+      "note": "dossier_check PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-10-31/caption.txt",
+        "out/2026-10-31/copy.json",
+        "out/2026-10-31/caption_report.json",
+        "out/2026-10-31/caption_room/"
+      ],
+      "note": "room A QUOTE FIRST/PUNCH THEN PROOF/FORK vs B THE ABSURD DETAIL/BRAID/PREDICTION; critic picked B with one fix ($5,000 a month per circuit); caption_check PASS 898 chars hook 136 with --copy"
+    },
+    "art_build": "done",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "done",
+    "ship": "done",
+    "upgrade": "in_progress",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "score": 8.485,
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 164 pages, 18 checks (re-run on the final build; 162 pages at Phase 3.6)",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-11-01T06:14:32Z. The first audit at about 06:10Z FAILED 'source reading published' (the evening CINGSA slot was not yet collected); repaired by workflow_dispatch of gaswatch.yml on main, run 41279655464, then re-audited PASS. No incident.",
+    "gaswatch_pagecheck": "GAS WATCH: PASS (page check)",
+    "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows audited at 2026-11-01T06:07Z",
+    "site_fixes": "Gas Watch evening reading re-collected by workflow_dispatch (run 41279655464) and verified live; docs/ rebuilt after the docket commit when site_fresh caught it (3f43deca)."
+  }
+}

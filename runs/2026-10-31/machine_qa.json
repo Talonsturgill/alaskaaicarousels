@@ -1,0 +1,211 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'regardless of whether' at 80,372 940x273 (margin 80px)"
+      ],
+      "motifs": [
+        "'the fiber line laid on the ice': canvas 100.2 dE, page 102.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the satellite train, dotted': canvas 39.6 dE, page 39.3 dE, 94% of its rect is clear of opaque DOM (div#hero.fx stands on the rest)"
+      ],
+      "fits": [
+        "lead 'The FCC cleared GCI's Arctic fiber deal citi' fits 2/2 lines at 63.5px",
+        "hero 'regardlessof whether' fits 2/2 lines at 139.5px"
+      ],
+      "asserts": [
+        "'11 satellite points in the train' holds: 11 vs 11 marks, counted over 11 declared marks (within 0)",
+        "'11 satellite points in the train': 11 mark centres probed at r=14px, cohort median 45.4 dE, all present (weakest 38.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 3 of 5 in '\"... Starlink is currently providing wholesa' ends 'it' -- an article, conjunction or preposition left hanging at the line end. It reads at 45.5px, so the break is the first thing a feed sees. Author the break with <br> before 'or' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'the fiber line along the Arctic coast': canvas 103.5 dE, page 103.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"... Starlink is currently providing wholesa' fits 5/8 lines at 45.5px"
+      ],
+      "asserts": [
+        "'11 satellite points above the limb' holds: 11 vs 11 marks, counted over 11 declared marks (within 0)",
+        "'11 satellite points above the limb': 11 mark centres probed at r=14px, cohort median 64.8 dE, all present (weakest 49.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'PRUDHOE BAY' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'UTQIAGVIK' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WAINWRIGHT' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'POINT HOPE' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'KOTZEBUE' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOME' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'EMMONAK' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'HOOPER BAY' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NAKNEK' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '13 PLANNED POINTS ON THE RURAL NETWORK' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'RINGED, SERVED OR TO BE SERVED BY GCI' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOME TO HOMER EXPRESS, UNDER CONSTRUCTION' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ROUTE SCHEMATIC, LANDINGS TRUE' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.04) beneath 'NOME' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.06) beneath 'HOOPER BAY' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.03) beneath 'NOME TO HOMER EXPRESS, UNDER CONSTRUCTIO' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the fiber route along the Arctic coast': canvas 86.1 dE, page 93.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'PRUDHOE BAY landing' lands 0.0px from its target",
+        "leader 'UTQIAGVIK landing' lands 0.0px from its target",
+        "leader 'WAINWRIGHT landing' lands 0.0px from its target",
+        "leader 'POINT HOPE landing' lands 0.0px from its target",
+        "leader 'KOTZEBUE landing' lands 0.0px from its target",
+        "leader 'NOME landing' lands 0.0px from its target",
+        "leader 'EMMONAK landing' lands 0.0px from its target",
+        "leader 'HOOPER BAY landing' lands 0.0px from its target",
+        "leader 'NAKNEK landing' lands 0.0px from its target",
+        "leader 'PRUDHOE BAY landing' meets its label 1.0px away",
+        "leader 'UTQIAGVIK landing' meets its label 1.0px away",
+        "leader 'WAINWRIGHT landing' meets its label 3.0px away",
+        "leader 'POINT HOPE landing' meets its label 3.0px away",
+        "leader 'KOTZEBUE landing' meets its label 4.0px away",
+        "leader 'NOME landing' meets its label 4.0px away",
+        "leader 'EMMONAK landing' meets its label 4.0px away",
+        "leader 'HOOPER BAY landing' meets its label 1.0px away",
+        "leader 'NAKNEK landing' meets its label 4.0px away",
+        "leader 'PRUDHOE BAY landing' is drawn 16 px at 75 degrees, inside the pointer band",
+        "leader 'UTQIAGVIK landing' is drawn 15 px at 90 degrees, inside the pointer band",
+        "leader 'WAINWRIGHT landing' is drawn 29 px at 70 degrees, inside the pointer band",
+        "leader 'POINT HOPE landing' is drawn 14 px at 4 degrees, inside the pointer band",
+        "leader 'KOTZEBUE landing' is drawn 79 px at 31 degrees, inside the pointer band",
+        "leader 'NOME landing' is drawn 20 px at 3 degrees, inside the pointer band",
+        "leader 'EMMONAK landing' is drawn 29 px at 25 degrees, inside the pointer band",
+        "leader 'HOOPER BAY landing' is drawn 41 px at 90 degrees, inside the pointer band",
+        "leader 'NAKNEK landing' is drawn 25 px at 45 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'GCI is buying controlof 1,176 milesof Arctic' fits 3/3 lines at 65.5px"
+      ],
+      "asserts": [
+        "'13 planned points on the rural network' holds: 13 vs 13 marks, counted over 13 declared marks (within 0)",
+        "'13 planned points on the rural network': 13 mark centres probed at r=14px, cohort median 97.5 dE, all present (weakest 86.8 dE)",
+        "'10 rings, served or to be served by GCI' holds: 10 vs 10 marks, counted over 10 declared marks (within 0)",
+        "'10 rings, served or to be served by GCI': 10 mark centres probed at r=12px, cohort median 93.4 dE, all present (weakest 85.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ALASKA COMMUNICATIONS, PETITION TO DENY, AS QUOTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.03) beneath 'WESTERN ALASKA' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (5% of the ring around 'WESTERN ALASKA', spanning 38%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.04) beneath 'GCI, PER ACS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "art touching glyphs (4% of the ring around 'GCI, PER ACS', spanning 26%) -- pixel critic verify the label is not crossed"
+      ],
+      "motifs": [
+        "'the gold seam of the route between the two regions': canvas 114.3 dE, page 114.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "q '\"GCI and Quintillion currently are the only ' fits 4/6 lines at 55.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "declared marks: '7 solid months, the seven-plus floor': 7 mark centres probed at r=14px, cohort median 0.0 dE -- the whole cohort is under the 1.5 dE existence floor, so the probe cannot establish a baseline and says nothing about these marks. If they are drawn in the DOM rather than on the canvas that is expected; if they are canvas art, none of them painted.",
+        "ragged display line: line 1 of 2 in 'In January 2025, sea ice cut the line near O' ends 'ice' -- a two or three letter word left at the line end. It reads at 75.5px, so the break is the first thing a feed sees. Author the break with <br> before 'cut' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'the pressure ridge, rim lit by the low sun': canvas 71.5 dE, page 71.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the gold line ending blunt at the ridge foot': canvas 81.0 dE, page 80.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'In January 2025, sea icecut the line near Ol' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'7 solid months, the seven-plus floor' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the cable on the silt, the deck's one line': canvas 56.2 dE, page 55.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Under the ice, one line.' fits 1/1 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'CLOSING HASN'T HAPPENED YET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold time axis, the fiber line flattened': canvas 95.0 dE, page 94.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the life of the system bar running off the frame': canvas 10.2 dE, page 72.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'What GCI is actually held to' fits 1/1 lines at 71.5px"
+      ],
+      "asserts": [
+        "'3 YEARS bar ends at 3 years on the 96 px scale' holds: 368 vs 368 px (within 1)",
+        "'5 YEARS bar ends at 5 years on the 96 px scale' holds: 560 vs 560 px (within 1)",
+        "'7 YEARS bar ends at 7 years on the 96 px scale' holds: 752 vs 752 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'PLANNED, NOT BUILT \u00b7 SITE APPROXIMATE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the landing station where the gold line ends': canvas 79.7 dE, page 84.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the planned plant ring' lands 0.0px from its target",
+        "leader 'the planned plant ring' meets its label 6.0px away",
+        "leader 'the planned plant ring' is drawn 92 px at 79 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'The order never mentions AI.Its eastern land' fits 2/2 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the Polaris above the water': canvas 66.1 dE, page 66.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the Polaris reflection broken by the ripples': canvas 96.0 dE, page 94.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Is \"regardless of whether\" enough of a check' fits 3/4 lines at 85.5px"
+      ],
+      "asserts": [
+        "'11 satellite points, still dotted' holds: 11 vs 11 marks, counted over 11 declared marks (within 0)",
+        "'11 satellite points, still dotted': 11 mark centres probed at r=14px, cohort median 42.5 dE, all present (weakest 35.8 dE)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 27,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "document_title": "Regardless of Whether, the FCC's Check on Arctic Fiber",
+  "post_copy": "The FCC cleared GCI's Arctic fiber deal partly by citing Starlink, a rival the record can't agree sells wholesale middle mile in Alaska.\n\nThe line is 1,176 miles of subsea fiber from Prudhoe Bay to Nome.\n\nThe check is a hedge. The FCC found nothing to suggest Starlink couldn't sell wholesale service \"regardless of whether\" it does today.\n\nSea ice cut the line near Oliktok Point in January 2025. The outage ran seven to nine months by differing accounts.\n\nThe real check is on paper. Contracts over $5,000 a month per circuit go to the FCC under seal.\n\nPictured are the route, ACS's objection, the 2025 cut and GCI's conditions. The line ends at Prudhoe Bay, where a gas plant is pitched for AI data centers the order never mentions.\n\nGCI's wholesale filings end seven years after closing. Will Starlink sell wholesale middle mile on that coast by then?\n\n#AlaskaBroadband #SubseaFiber #MiddleMile",
+  "deck_summary_line": "Pictured are the route, ACS's objection, the 2025 cut and GCI's conditions. The line ends at Prudhoe Bay, where a gas plant is pitched for AI data centers the order never mentions.",
+  "hashtags": [
+    "#AlaskaBroadband",
+    "#SubseaFiber",
+    "#MiddleMile"
+  ],
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "FCC ORDER DA 26-1124 · OCTOBER 20TH",
+      "headline": "regardless of whether",
+      "body": "The FCC cleared GCI's Arctic fiber deal citing Starlink,",
+      "labels": [],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C17",
+        "C19"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "FCC ORDER DA 26-1124",
+      "headline": "\"... Starlink is currently providing wholesale middle mile transport service in Alaska, we find nothing in the record to suggest that it or another LEO could not provide such wholesale service ...\"",
+      "body": "The record disagrees on whether Starlink sells it here today. The FCC approved anyway, with conditions.",
+      "labels": [],
+      "claim_ids": [
+        "C01",
+        "C18",
+        "C19"
+      ]
+    },
+    {
+      "n": 3,
+      "headline": "GCI is buying control of 1,176 miles of Arctic seabed fiber.",
+      "body": "Six landings, Prudhoe Bay to Nome. Three fiber pairs, each designed for 10 Tbps. The Nome to Homer Express, under construction, adds Emmonak, Hooper Bay and Naknek. Enterprise value, $310 million.",
+      "labels": [
+        "PRUDHOE BAY",
+        "UTQIAGVIK",
+        "WAINWRIGHT",
+        "POINT HOPE",
+        "KOTZEBUE",
+        "NOME",
+        "EMMONAK",
+        "HOOPER BAY",
+        "NAKNEK",
+        "NOME TO HOMER EXPRESS, UNDER CONSTRUCTION",
+        "13 PLANNED POINTS ON THE RURAL NETWORK",
+        "RINGED, SERVED OR TO BE SERVED BY GCI",
+        "ROUTE SCHEMATIC, LANDINGS TRUE"
+      ],
+      "claim_ids": [
+        "C04",
+        "C05",
+        "C06",
+        "C08",
+        "C10",
+        "C11",
+        "C14",
+        "C34",
+        "C35"
+      ]
+    },
+    {
+      "n": 4,
+      "headline": "\"GCI and Quintillion currently are the only providers of middle mile transport for substantial portions of Western and Northern Alaska, respectively.\"",
+      "body": "ACS also said the Universal Service Fund would bear the cost. The FCC denied the petition.",
+      "labels": [
+        "ALASKA COMMUNICATIONS, PETITION TO DENY, AS QUOTED IN THE ORDER",
+        "NORTHERN ALASKA",
+        "QUINTILLION, PER ACS",
+        "WESTERN ALASKA",
+        "GCI, PER ACS"
+      ],
+      "claim_ids": [
+        "C03",
+        "C15",
+        "C16"
+      ]
+    },
+    {
+      "n": 5,
+      "headline": "In January 2025, sea ice cut the line near Oliktok Point.",
+      "body": "The outage ran seven to nine months, by differing accounts. GCI told the FCC it moved traffic to its microwave system and had to drastically limit speeds.",
+      "labels": [
+        "JAN 2025",
+        "SEVEN-PLUS, PER GCI",
+        "NEAR NINE,",
+        "PER BROADBAND BREAKFAST",
+        "ONE CELL, ONE MONTH"
+      ],
+      "claim_ids": [
+        "C21",
+        "C22",
+        "C39"
+      ]
+    },
+    {
+      "n": 6,
+      "headline": "Under the ice, one line.",
+      "body": "Two fiber pairs carry traffic, the companies say. One is held in reserve.",
+      "labels": [
+        "CHUKCHI SEA FLOOR · ILLUSTRATIVE"
+      ],
+      "claim_ids": [
+        "C06"
+      ]
+    },
+    {
+      "n": 7,
+      "headline": "What GCI is actually held to",
+      "body": "Contracts in force at closing, honored for the life of the system\nNo inflation increase for three years after closing\nThen only if Anchorage inflation tops 5 percent, capped at that rate, once a year\nContracts over $5,000 a month per circuit or $10,000 total filed with the FCC, 7 years wholesale, 5 other\nUnder seal. The public won't see the prices.",
+      "labels": [
+        "3 YEARS",
+        "5 YEARS",
+        "7 YEARS",
+        "LIFE OF THE SYSTEM",
+        "CLOSING HASN'T HAPPENED YET"
+      ],
+      "claim_ids": [
+        "C24",
+        "C26",
+        "C27",
+        "C28",
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "C33",
+        "C38"
+      ]
+    },
+    {
+      "n": 8,
+      "headline": "The order never mentions AI. Its eastern landing is Prudhoe Bay.",
+      "body": "North Slope Power, a North Slope Borough venture, plans a gas plant near Prudhoe Bay designed, it says, to power colocated AI data centers. Proponents describe 3 GW at first, possibly 10.",
+      "labels": [
+        "PLANNED, NOT BUILT · SITE APPROXIMATE"
+      ],
+      "claim_ids": [
+        "C04",
+        "C37",
+        "C41",
+        "C42",
+        "C43",
+        "C44",
+        "C45"
+      ]
+    },
+    {
+      "n": 9,
+      "headline": "Is \"regardless of whether\" enough of a check on Arctic fiber prices?",
+      "labels": [],
+      "claim_ids": [
+        "C19"
+      ]
+    }
+  ],
+  "caption_meta": {
+    "opening_move": "THE ABSURD DETAIL",
+    "structure": "BRAID",
+    "closing_move": "PREDICTION (whether Starlink sells wholesale middle mile on that coast before GCI's seven-year wholesale filing duty ends)"
+  },
+  "first_8_words": "The FCC cleared GCI's Arctic fiber deal partly",
+  "hook_type": "the absurd detail, the FCC leaning on a rival whose wholesale middle mile service in Alaska the record itself disputes",
+  "caption_claim_ids": [
+    "C01",
+    "C04",
+    "C05",
+    "C15",
+    "C17",
+    "C18",
+    "C19",
+    "C22",
+    "C24",
+    "C29",
+    "C31",
+    "C33",
+    "C37",
+    "C39",
+    "C41",
+    "C43"
+  ],
+  "total_chars": 898,
+  "hook_chars": 136,
+  "first_comment": "Sources, primary first\nFCC Office of International Affairs, Memorandum Opinion and Order DA 26-1124 approving with conditions the transfer of Quintillion's cable landing license to GCI, 2026-10-20, https://docs.fcc.gov/public/attachments/DA-26-1124A1.txt\nGCI Newsroom, GCI strengthens network resiliency across Alaska with Starlink, cited in the order, 2026-06-11, https://news.gci.com/news-releases/gci-strengthens-network-resiliency-across-alaska-with-starlink\nAkshaya Krishnan, Broadband Breakfast, FCC approves GCI Quintillion submarine cable deal to strengthen Alaska broadband, 2026-10-26, https://broadbandbreakfast.com/fcc-approves-gci-quintillion-submarine-cable-deal-to-strengthen-alaska-broadband/\nJericho Casper, Broadband Breakfast, Quintillion completes Arctic cable burial, restores connectivity after 9 months, 2025-10-22, https://broadbandbreakfast.com/quintillion-completes-arctic-cable-burial-restores-connectivity-after-9-months/\nDermot Cole, Reporting from Alaska, North Slope maps plan for largest natural gas power plant in the world, 2026-05-12, https://www.dermotcole.com/reportingfromalaska/2026/5/12/north-slope-maps-plan-for-largest-natural-gas-power-plant-in-the-world\nThe route between landings is schematic, the cable on the seabed is an illustration, and the plant site on slide 8 is approximate.\n\nAlaska's open AI and infrastructure decisions, each with its next deadline, are tracked at https://alaskaaihq.com\nKnow the Quintillion route, the 2025 repair or a Starlink wholesale contract in Alaska? Add context in the replies.",
+  "aftercare": [
+    "Post Wednesday November 4th or Thursday November 5th, 8 to 11 a.m. Alaska time. Tuesday to Thursday 8 to 11 a.m. is normally the strongest slot, but Tuesday November 3rd is Election Day and results will crowd feeds that morning. Drafts arrive daily, and posting cadence is your call.",
+    "Paste the sources comment within 60 seconds of posting, with every URL as plain text so LinkedIn keeps the links.",
+    "Reply to every comment in the first 60 to 90 minutes and point each question to its slide (the Starlink hedge slide 2, the route and the $310 million enterprise value slide 3, ACS's objection slide 4, the 2025 cut slide 5, the cable slide 6, the conditions slide 7, Prudhoe Bay and the gas plant slide 8). If someone says Starlink already sells wholesale middle mile in Alaska, ask for the contract rather than agreeing, because the order records disagreement and finds only that nothing suggests it couldn't.",
+    "The reconsideration window is open. Petitions may be filed within thirty days of the October 20th release, which counts to November 19th (that date is arithmetic and isn't printed in the order). A filing in that window is a natural follow-up.",
+    "After 48 hours, note saves and comments for the ledger."
+  ],
+  "editor_notes_for_email": "The caption ships byte for byte from caption.txt (898 characters with hashtags, hook 136). Copywriter flags applied: slide 7 reads $5,000 a month per circuit, slide 3 labels the rings RINGED, SERVED OR TO BE SERVED BY GCI, slide 3 calls the Nome to Homer Express under construction, and the slide 2 quote ends on an ellipsis. During review, slide 7 row 3 was rewritten to carry both halves of the inflation condition (C26, C28): an increase only if 12-month Anchorage CPI tops 5 percent, capped at that rate, once a year. The first comment no longer carries a disclaimer for a claim the deck stopped making. The only \"we find\" and \"could not\" are inside the straight-quoted order text on slide 2, which is exempt.",
+  "claims_used": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C08",
+    "C10",
+    "C11",
+    "C14",
+    "C15",
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C21",
+    "C22",
+    "C24",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C31",
+    "C32",
+    "C33",
+    "C34",
+    "C35",
+    "C37",
+    "C38",
+    "C39",
+    "C41",
+    "C42",
+    "C43",
+    "C44",
+    "C45"
+  ]
+}

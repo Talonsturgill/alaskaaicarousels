@@ -2384,6 +2384,36 @@
       "last_confirmed": "2026-10-30",
       "run_date": "2026-10-30",
       "carousel_no": 100
+    },
+    {
+      "id": "tanaka-over-hachure-at-state-scale",
+      "learned": "2026-10-31",
+      "instinct": "At state scale on a coarse DEM, draw relief as Tanaka illuminated contours, not slope hachure; hachure strokes read as fur.",
+      "evidence": "No.101 slide 04 sat at 5.8 to 6.2 for two rounds as scribed hachure (critics: fur, no flank and lee); Tanaka contours from the same DEM read as terrain at once and cleared the round.",
+      "confidence": 0.6,
+      "last_confirmed": "2026-10-31",
+      "run_date": "2026-10-31",
+      "carousel_no": 101
+    },
+    {
+      "id": "wave-sum-fade-by-footprint",
+      "learned": "2026-10-31",
+      "instinct": "Fade every summed ripple or ridge term by its wavelength in pixel footprints, and spread the wave directions evenly; a coarse mesh or a sine past Nyquist prints moire and wood grain.",
+      "evidence": "No.101 slides 06 and 09 showed ribbed segments and fingerprint rings until ripples were killed past mesh Nyquist (06) and each sine faded at under 6 footprints (09).",
+      "confidence": 0.6,
+      "last_confirmed": "2026-10-31",
+      "run_date": "2026-10-31",
+      "carousel_no": 101
+    },
+    {
+      "id": "contre-jour-low-sun-floods-shadow",
+      "learned": "2026-10-31",
+      "instinct": "A sun at 4 degrees behind a 2.6 m ridge puts the whole foreground in shadow; raise it to about 8 degrees so long shadows fall in strips with lit snow between them.",
+      "evidence": "No.101 slide 05's foreground was a flat uniform blue-grey at el 4; at el 8 with hemi lowered the ridge cast readable long shadows toward the lens.",
+      "confidence": 0.55,
+      "last_confirmed": "2026-10-31",
+      "run_date": "2026-10-31",
+      "carousel_no": 101
     }
   ]
 }

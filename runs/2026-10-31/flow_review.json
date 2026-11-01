@@ -1,0 +1,209 @@
+{
+  "verdict": "revise",
+  "arc_assessment": "The sequence keeps its promise. 01's comma and 02's opening ellipsis read as one sentence (\"citing Starlink, regardless of whether ... Starlink is currently providing ...\"), the stakes come in 03 to 05, 06 is a rest, 07 is the commitment, 08 turns to Prudhoe and AI, and 09 lands one ask that echoes the cover in the softer weight. Two things weaken it. The middle sags: 02, 03 and 04 are three text-led dark frames in a row, 03 plants nothing, and 04 ends on the closure \"The FCC denied the petition.\" Also, 02's \"approved anyway, with conditions\" isn't paid until 07, and the AI thread the brand promises only arrives on 08.",
+  "junction_pulls": [
+    {
+      "from": 1,
+      "to": 2,
+      "pull": "The lead stops on a comma after \"Starlink,\" and the hero \"regardless / of whether\" hangs with no object. 02 opens on the ellipsis that completes it. The dotted train also carries over from the dusk sky to above the limb.",
+      "strength": "strong"
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "pull": "A camera move: the gold Nome to Prudhoe Bay route seen from orbit on 02 becomes the full-bleed route map on 03, the same line zoomed in. The copy hook \"with conditions\" is not paid here, so the pull is visual only.",
+      "strength": "strong"
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "pull": "Nothing on 03 plants the planned \"who else carries this traffic\". Its last words are the mono legend \"ROUTE SCHEMATIC, LANDINGS TRUE\", and 04 opens on a second dark map.",
+      "strength": "weak"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "pull": "04 closes its own loop (\"The FCC denied the petition.\"). The only forward cue is the gold seam stopping short at Nome, and nothing says the line can break.",
+      "strength": "weak"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "pull": "The gold stub runs into the ridge and leaves the right edge as a hidden-line dash at about y 1495 (display scale). 06's cable comes in from the left edge with \"Under the ice, one line.\" It works as a panorama cut.",
+      "strength": "strong"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "pull": "Only a word echo, \"held in reserve\" to \"What GCI is actually held to\". 06 is a breather and opens no question.",
+      "strength": "weak"
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "pull": "\"Under seal. The public won't see the prices.\" closes the beat. The gold axis runs off the right edge, but 08's line comes in at the lower right, not at the axis height, so the line doesn't carry the cut.",
+      "strength": "weak"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "pull": "\"3 GW at first, possibly 10\" next to \"The order never mentions AI\" raises a so-what that 09's ask answers. The three faint dots on 08 become the full train on 09.",
+      "strength": "strong"
+    }
+  ],
+  "continuity_findings": [
+    {
+      "severity": "polish",
+      "where": "slides 1-2 seam (D3)",
+      "problem": "The planned gold edge tease doesn't happen. 01's line leaves the right edge near y 2050 (2160 px canvas), but 02's coast line starts mid-frame at Nome and nothing enters at the left. The sentence tease was dropped in Round 2 and is reconciled; the line tease isn't mentioned anywhere.",
+      "fix": "Extend 02's gold line from Nome off the left edge along the Bering coast, entering near y 1650 to 1750 at 1600-display scale (the same band 01 exits in), or record in the reconciliation that the line tease didn't ship."
+    },
+    {
+      "severity": "polish",
+      "where": "D1 state table, slide 05",
+      "problem": "The planned dashed microwave arc isn't drawn (reconciled). Here gold is the two stubs plus a dashed hidden line, so D1 holds. The lower stub, though, runs straight through the data strip, crossing cells 6 and 7 at x 720 to 760 (display scale), so the fiber and the outage chart collide.",
+      "fix": "Route the near stub to finish above the strip (enter from the bottom right, below the strip, or clip it at y 1640 display), so the strip cells stay clear of gold."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 01 vs 05, 08, 09 (shared light)",
+      "problem": "On the cover the key sun is off the left edge, glowing at left. On 05, 08 and 09 the low warm key sits at right. The deck reads as two suns.",
+      "fix": "Mirror the cover's sun to the right (az about 160, glow off the right edge). The hero type sits left, so the glow still stays off the type. Then one key direction holds across all the outdoor frames."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 06 far end of the cable",
+      "problem": "Where the cable meets the fog line, about (935, 730) to (980, 800) at display scale, it kinks upward into a short dark vertical stub that rises above the silt horizon. It's a findable geometry artifact on the masterful-depth frame.",
+      "fix": "Clamp the cable spline's far control points to the seabed height field (y = silt(z) + radius) beyond z 8, or fade the cable into the exp2 fog before the kink."
+    }
+  ],
+  "rhythm_findings": [
+    {
+      "severity": "major",
+      "where": "slides 2-3-4",
+      "problem": "Three dense frames in a row. 02 has about 50 words (quote plus hard line), 03 about 60 words plus 11 labels and a 4-row legend, 04 about 40 words of quote, attribution and body. 02 and 04 also share one layout grammar: serif quote at top, mono line, Manrope line, then a dark Alaska below the midline. The doctrine bans three dense slides in a row.",
+      "fix": "Lighten 04. Trim the ACS quote with an ellipsis to its verbatim core (\"... the only providers of middle mile transport for substantial portions of Western and Northern Alaska, respectively.\"), cut the body to \"The FCC denied the petition.\" with the Universal Service Fund line moved to the caption, and give the map the top 55 percent of the frame, so 04 reads as a map with a quote rather than a quote with a map."
+    },
+    {
+      "severity": "polish",
+      "where": "slides 7-8-9",
+      "problem": "07, 08 and 09 all have a near-black upper half with the type on it and the art in the lower half, so the last three frames run together tonally. The planned pewter lift on 07 doesn't read: 07's upper 55 percent is as dark as 04.",
+      "fix": "Give 07 the planned pewter lift: the frost plane rises to L* about 28 to 32 and its upper edge feathers up behind the list's last two rows (see craft fix for 07)."
+    },
+    {
+      "severity": "polish",
+      "where": "slide 6 breather",
+      "problem": "The breather lands where it was planned and works: one line, 14 words, a big depth field. No change needed beyond the craft notes.",
+      "fix": "None."
+    }
+  ],
+  "consistency_findings": [
+    {
+      "severity": "polish",
+      "where": "counters, all slides",
+      "problem": "Transcribed counters: 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09, all incrementing correctly. 04's counter is nearly illegible because the bright hachure strokes at the lower right run through it. 01's site line and counter sit on bright pancake rims and lose contrast.",
+      "fix": "On 04, mask the relief strokes out of a 260 x 90 px (2160 scale) zone behind the counter, or end the relief box at y 2500. On 01, apply the dark text halo already used on the other frames to the site line and counter."
+    },
+    {
+      "severity": "polish",
+      "where": "constellation marks",
+      "problem": "The wordmark and Polaris sit top left at the same position on 02 to 09 and top right on the cover, as specified. The site line and counter share a baseline on every frame. The dotted train has 11 points on 01, 02 and 09 and 3 on 08, exactly per the D1 table. Gold appears only on the fiber, its ticks and the Polaris, and ring blue only on 03. All of that holds.",
+      "fix": "None."
+    },
+    {
+      "severity": "major",
+      "where": "slide 08 landing station",
+      "problem": "The station is a flat-filled slate rectangle with one flat side panel, a flat cream square for a window and stick legs. Next to the ray-cast polygon tundra it looks pasted in from a vector deck, the one object on the sheet that doesn't share the deck's physics.",
+      "fix": "See craft: model the station's cladding, lit end face and cast shadow."
+    },
+    {
+      "severity": "major",
+      "where": "gate state",
+      "problem": "The contact sheet and thumbs are stale: assemble reports STALE BUILD on slides 01 to 04 and more, so the sheet a scorer reads may not match the renders judged here. The aggregate row FAILs on the undeclared 'ONE MONTH' in 05's strip label.",
+      "fix": "Declare the S5 duration 'ONE CELL, ONE MONTH' in the aggregates, or reword the label so it asserts no duration (for example 'EACH CELL A MONTH, PER GCI ACCOUNT' only if that is sourced; otherwise declare it). Then re-run assemble.py so the contact sheet and thumbs are rebuilt from the current renders."
+    }
+  ],
+  "predicted_bail_point": {
+    "slide": 4,
+    "why": "Someone who swiped 01 to 03 has read two legal-register frames and a dense map. 04 gives them a second quoted filing, a lawyerly \"respectively\" and a dark map whose relief reads as fur and whose \"Western Alaska\" region is an empty outline, and it ends on a closed loop (\"The FCC denied the petition.\"). Nothing there promises the outage on 05 or the AI turn on 08.",
+    "fix": "Lighten 04 as in the rhythm fix (trimmed verbatim quote, a one-sentence body, a bigger map). End 04 on a forward line that is true and sourced, for example a mono tag on the gold seam reading \"ONE LINE\" in place of the closed body. Give 03 a plant in its legend area that points at the single route (copy to be checked against the claims, no new facts)."
+  },
+  "craft": {
+    "predicted_artwork_score": 6.9,
+    "weakest_frames": [
+      {
+        "slide": 4,
+        "score": 6.0,
+        "cause": "d",
+        "problem": "AKS.scribeRelief draws the Interior and Brooks Range as feathery fur: short, bright, same-length tufts with no line-weight hierarchy, densest at the lower right where they wash out the counter. The region the quote names first, \"Western Alaska\", has no relief or tone at all, only a coastline outline (a cause b bare outline inside the frame's largest object). The left 40 percent below the body is black. One weak frame caps the deck at 7, and this is it.",
+        "fix": "Replace the scribed hachure with Tanaka illuminated contours on the light-table film: 100 m contours from the smoothed state DEM, stroke brightness cos(aspect - key az), width 0.8 to 2.2 px by slope, all on a land tint about L* 12 against sea at about L* 6, drawn across the whole land mask including the Y-K delta and Seward Peninsula. Both lettered regions are then modelled, the fur goes, and the drawing stays distinct from 03's hillshade."
+      },
+      {
+        "slide": 7,
+        "score": 6.5,
+        "cause": "b",
+        "problem": "The largest object, the life-of-the-system bar, is a three-face extrusion in flat bone enamel with no specular, bevel or material response. The 'frost plane' under it is a smoky, featureless cloud rather than modelled frost. With the list taking the top 55 percent, the image half is the least made-looking art on the sheet, and the planned pewter lift doesn't happen.",
+        "fix": "Build the frost plane as a per-pixel rime field at device resolution: hoarfrost crystal glints from a jittered cell field, a raking key from the right (matching 08 and 09), and perspective density falloff, lifted to L* about 30. The bars get soft contact shadows and a thin specular on their top faces, so they sit on a real surface."
+      },
+      {
+        "slide": 5,
+        "score": 7.0,
+        "cause": "b",
+        "problem": "The pressure ridge is the largest object and is modelled, but the slabs read as faceted blue-grey rock or crumpled low-poly paper: uniform opaque colour, no snow on the upward faces, no translucent edges. The near snow is a soft blotchy plane, and the gold stub crosses the data strip.",
+        "fix": "Change the slab material: snow albedo on faces with world normal.y above 0.55 (a blend by normal, not a texture), plus transmission and thickness with teal attenuation on the slab edges, so the ridge reads as sea ice lit contre-jour rather than stone."
+      },
+      {
+        "slide": 8,
+        "score": 7.0,
+        "cause": "b",
+        "problem": "The polygon tundra is well shaded, but the landing station, the frame's focal object, is a flat vector box with a flat window square and no visible cast shadow. It is the deck's one pasted-looking object. The dusk sky between the body and the horizon (y 760 to 1250, display scale) is carried only by the label and three dots.",
+        "fix": "Model the station: vertical corrugation as a per-column cosine shade on the long face, the end face taking the apricot key with a warm rim, piles with short shadows, a long cast shadow across the polygons toward the lens, and a window that spills a soft glow onto the snow below."
+      },
+      {
+        "slide": 6,
+        "score": 7.8,
+        "cause": "c",
+        "problem": "This is the deck's best depth frame (extinction, shafts, marine snow, sharp middle ground), but the lower 35 percent is an eventless dark olive blur. The planned 'blurred near silt ridge bleeding off the bottom left' reads as a gradient, not a form. The ripple crests read slightly as mesh lines, and the cable kinks at the far end.",
+        "fix": "Put a real near form in the lower left: a defocused silt ridge with lit ripple crests and a sparse pebble or shell scatter, blurred by the 0.3 m focus but with visible highlights. Also clamp the cable's far spline to the bed."
+      },
+      {
+        "slide": 9,
+        "score": 7.5,
+        "cause": "d",
+        "problem": "The mid-right water shows swirling contour moire, concentric wood-grain loops at about (1250 to 1600, 1480 to 1660) display scale, from the 0.6 domain warp on the ripple normals. The gold line rising vertically from the horizon into the Polaris reads as a lamp post, and the lower 12 percent is a dark band with a thin lip.",
+        "fix": "Lower the domain warp to about 0.25 and low-pass the ripple normal field by pixel footprint in the middle distance, so the reflection breaks into horizontal glints rather than loops."
+      },
+      {
+        "slide": 3,
+        "score": 7.0,
+        "cause": "d",
+        "problem": "Along the top edge, the basin fallback draws dark wavy blobs, and a stray teal arc runs from about (900, 110) to (1600, 40) at display scale. The arc looks like an isobath or a ring leaking past the clip. KOTZEBUE's label sits about 200 px from its point, and the Emmonak rings pile up.",
+        "fix": "Clip the isobaths and the fallback basin tint below y 150 (2160 scale) and drop the stray arc. Move the KOTZEBUE label next to its landing tick."
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "e",
+        "slides": [
+          2,
+          3,
+          4,
+          7,
+          8,
+          9
+        ],
+        "problem": "Tonal census: brightest 05 at L* 51.9, darkest 04 at L* 9.6, span 42.3, PASS as declared, and the census miss isn't the one I see. What I see is that six of nine frames have a near-black upper half with the type on it, and the planned pewter lift on 07 doesn't land, so the arc reads as dark, dark, dark, BRIGHT, green, dark, dark, dark. Warmth does arc (apricot on 01, 05, 08 and 09), and 09's Polaris is a good lit object on a dark frame.",
+        "fix": "Lift 07 to about L* 28 to 32 with the rime plane, so the run after the breather goes green dark (06), pewter (07), dusk (08), night with the Polaris (09)."
+      },
+      {
+        "cause": "a",
+        "slides": [],
+        "problem": "None. The reuse census is clean (no helper or copied function shape on more than three frames). On the sheet every frame uses distinct mark-making: ray-cast ice, globe raymarch, Lambert hillshade, scribed relief, PBR ridge, PBR seabed, extruded bars, Voronoi tundra, ripple reflection. No inline texture repeats either. The nearest thing to a repeat is layout: 02 and 04 share the quote-over-dark-Alaska composition. That is a rhythm issue, not a drawing reuse.",
+        "fix": "None for cause a. See rhythm 02-03-04."
+      }
+    ],
+    "masterful_depth_frame": 6
+  },
+  "score_0_10": 7.2,
+  "revision_rounds_at_review": 2
+}
