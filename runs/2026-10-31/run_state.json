@@ -103,5 +103,12 @@
     "gmail": "pending",
     "retro": "pending"
   },
-  "score": 8.485
+  "score": 8.485,
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 164 pages, 18 checks (re-run on the final build; 162 pages at Phase 3.6)",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-11-01T06:14:32Z. The first audit at about 06:10Z FAILED 'source reading published' (the evening CINGSA slot was not yet collected); repaired by workflow_dispatch of gaswatch.yml on main, run 41279655464, then re-audited PASS. No incident.",
+    "gaswatch_pagecheck": "GAS WATCH: PASS (page check)",
+    "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows audited at 2026-11-01T06:07Z",
+    "site_fixes": "Gas Watch evening reading re-collected by workflow_dispatch (run 41279655464) and verified live; docs/ rebuilt after the docket commit when site_fresh caught it (3f43deca)."
+  }
 }
