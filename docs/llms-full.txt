@@ -8630,7 +8630,7 @@ Slides and the deck PDF are linked from the canonical page.
 
 # The Alaska AI Docket
 
-Every AI infrastructure decision tracked in Alaska, 39 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
+Every AI infrastructure decision tracked in Alaska, 40 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
 
 ---
 
@@ -10249,6 +10249,31 @@ Canonical: https://alaskaaihq.com/docket/army-janus-fort-wainwright/
 **2026-08-30** Decided, and Fort Wainwright is not in it. The Army named its first five Janus installations on August 26th, 2026, Fort Bragg with Antares Nuclear, Fort Campbell with BWXT Advanced Technologies, Fort Hood with General Atomics Electromagnetic Systems, Fort Benning with Radiant Industries and Fort Drum with Westinghouse Government Services, against roughly $2.2 billion running across fiscal years 2027 through 2031 on milestone based payments. Fort Wainwright was short listed and not chosen, alongside Holston Army Ammunition Plant, Joint Base Lewis-McChord and Redstone Arsenal. The program itself continues, so a later round could still reach Alaska, and nothing published says it will.
 **2026-09-30** Re-read the DefenseScoop report today. The five Janus installations named on August 26th are Fort Bragg, Fort Campbell, Fort Hood, Fort Benning and Fort Drum, and Fort Wainwright is listed among the short-listed sites that were not chosen. Checked and unchanged.
 **2026-10-31** Re-read the DefenseScoop report today. The five Janus installations named on August 26th are Fort Bragg, Fort Campbell, Fort Hood, Fort Benning and Fort Drum, and Fort Wainwright is among the short-listed sites not chosen. Checked and unchanged.
+
+
+---
+
+# FCC lets GCI buy Quintillion's Arctic subsea fiber
+
+> On October 20th the FCC approved, with conditions, the transfer of control of Quintillion's submarine cable landing license to GCI and denied Alaska Communications' petition to deny. The 1,176-mile Quintillion System connects Prudhoe Bay, Utqiagvik, Wainwright, Point Hope, Kotzebue and Nome, and its Nome to Homer Express extension adds landings at Emmonak, Hooper Bay and Naknek. Alaska Communications argued that GCI and Quintillion are the only middle mile providers for substantial portions of Western and Northern Alaska. The FCC found the concerns largely mitigated, citing the growing presence of low Earth orbit satellite providers, particularly Starlink, while acknowledging disagreement in the record over whether Starlink sells wholesale middle mile service in Alaska today. As conditions, GCI must honor Quintillion's existing contracts and pricing for the life of the system, may adjust prices for inflation only when Anchorage inflation tops 5 percent and no sooner than three years after closing, and must file larger contracts with the FCC for five to seven years. The deal carries a $310 million enterprise value. The order does not mention artificial intelligence or data centers.
+
+Status: decided. Decided by Federal Communications Commission, Office of International Affairs.
+Public access: indirect. The order is decided. Petitions for reconsideration or applications for review may be filed within thirty days of its October 20th release, under the FCC's own rules. GCI must give the FCC its larger wholesale and enterprise contracts on the Quintillion network under seal, so the prices stay out of public view.
+Canonical: https://alaskaaihq.com/docket/fcc-gci-quintillion-transfer/
+
+## Dates
+
+- 2026-10-20, FCC approves the transfer with conditions and denies Alaska Communications' petition (decision)
+- 2026-11-19, Thirty days from release, the window for petitions for reconsideration (milestone)
+
+## Sources
+
+- [FCC Office of International Affairs, DA 26-1124](https://docs.fcc.gov/public/attachments/DA-26-1124A1.txt), 2026-10-20
+- [Broadband Breakfast](https://broadbandbreakfast.com/fcc-approves-gci-quintillion-submarine-cable-deal-to-strengthen-alaska-broadband/), 2026-10-26
+
+## How this decision moved
+
+**2026-10-31** Added. Read today against the FCC's order DA 26-1124, released October 20th, including its conditions in Appendix A. Broadband Breakfast reported GCI's statement on October 26th that the approval is an important step to completing the transaction, which has not yet closed.
 
 
 ---
