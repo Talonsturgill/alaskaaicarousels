@@ -3654,6 +3654,45 @@
       "new_techniques_logged": [
         "143 Traced Drainage Threads"
       ]
+    },
+    {
+      "run_date": "2026-10-31",
+      "carousel_no": 101,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE ORDER'S SENTENCE OVER THE FREEZE-UP COAST, one modelled Arctic place per frame from orbit to seabed under the order's own words: ray-cast pancake ice at the last low sun (01), an orthographic globe with DEM relief (02), a per-pixel conic shelf map with isobaths (03), Tanaka illuminated contours on a light-table film (04), a PBR pressure ridge of rafted slabs (05), a PBR seabed with per-channel water extinction (06), extruded bars on a rime plane (07), ray-cast ice-wedge polygon tundra with a modelled station (08), ripple water reflecting the Polaris (09)",
+      "atmosphere": "NEW: LAST LOW SUN AT FREEZE-UP, one apricot key low on the right (az about 50 right of view, el 4 to 8) on every outdoor frame, the green dark under the ice on 06",
+      "depth_technique": "per-pixel ray casts with footprint filtering (01, 08, 09); orthographic globe raymarch (02); per-pixel conic DEM blend with Chaikin isobaths (03); Tanaka contours (04); akthree PBR with shadows, DOF and an ice shader (05); akthree seabed with per-channel extinction and thin-lens focus (06); cabinet-oblique bars on a hoarfrost cell field (07)",
+      "line_voice": "court record: Fraunces SOFT axis for how binding a sentence is, mono labels on halos, a gold chart line that is the physical fiber",
+      "continuity_device": "motif:THE TWO LINES, gold is the fiber, the ice-blue dotted train is the disputed satellite check and is never joined",
+      "continuity_devices": [
+        "the gold fiber line on every frame",
+        "the 11-point dotted satellite train (01, 02, 09; three dots on 08)",
+        "one low sun on the right",
+        "the unfinished sentence across 01 and 02"
+      ],
+      "hook_archetype": "NEW: THE UNFINISHED SENTENCE",
+      "palette_family": "NEW: FREEZE-UP LEAD AND LAST SUN (night teal, frost pewter, apricot key, flag gold for the fiber and the Polaris only, ice blue #8FC6E0 dots, ring blue #6EA5FF on 03)",
+      "type_pairing": "Fraunces (opsz, SOFT axis) + Manrope + JetBrains Mono",
+      "narrative_structure": "hedge (01, 02), stake (03, 04), failure (05), rest (06), commitment (07), context (08), ask (09)",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "per-pixel ray-cast pancake ice with sun-side rims and far-field slush averaging",
+        "orthographic globe with multiplied terminator",
+        "Chaikin-smoothed isobaths after a Gaussian pass",
+        "Tanaka illuminated contours",
+        "akthree ice shader: snow by world normal, teal edge emissive",
+        "per-channel water extinction from a depth pass",
+        "hoarfrost jittered cell field",
+        "warped Voronoi ice-wedge troughs",
+        "ripple reflection with footprint-faded sines"
+      ],
+      "new_techniques_logged": [
+        "144 Tanaka Illuminated Contours (bucketed by aspect)"
+      ]
     }
   ]
 }

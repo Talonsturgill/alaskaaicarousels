@@ -9482,3 +9482,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A HALF-SIZE SKY TEXTURE PRINTS BANDS. 08's 540 by 675 sky canvas stepped at display scale; build skies at device resolution and dither before the 8-bit write.
 - CHECK THE RENDER DIFF AFTER EVERY SCRIPTED EDIT. A Python replace appended code after a // comment on the same line and the "fix" did nothing for a whole critic round on 02.
 - MASK A 2D POST PASS WITH A FEATHERED ERASE ON A LAYER, NOT A CLIP. 08's horizon blend clipped round the columns left pale notches at each flank; drawing to a layer and erasing the columns with a 6 px feather left no edge.
+
+## 2026-10-31, No.101, retro (THE ORDER'S SENTENCE OVER THE FREEZE-UP COAST, 8.485 after one craft cycle, art 7.0 to 7.5)
+
+- HACHURE AT STATE SCALE IS FUR. 04 sat at 5.8 to 6.2 for two rounds as scribed slope hachure, and a lit-face glow under it only made bright blotches. Tanaka illuminated contours from the same DEM read as terrain on the first render (technique 144). Fill the land from the DEM's own shoreline contour: the state polygon's fill stopped on a straight line mid-Interior.
+- TWO DEMS MEET AT A MERIDIAN, AND A MERIDIAN IS A SLANTED LINE IN A CONIC. 04's critic-named "diagonal coat seam" was the west-coast DEM's east edge blended against the state DEM. One elevation source per sheet.
+- SUMMED SINES NEED A FOOTPRINT FADE AND SPREAD DIRECTIONS. 09 printed wood grain and fingerprint rings, and 06's far mesh printed ribbed segments, until each term faded below about 6 pixel footprints and ripples were killed past the mesh's Nyquist.
+- A CONTRE-JOUR SUN TOO LOW SHADOWS THE WHOLE FOREGROUND. At el 4 the 2.6 m ridge put all of 05's snow in one flat blue shadow. At el 8 with the hemisphere halved, long shadows fell toward the lens in strips.
+- RIPPLE CRESTS MUST RUN ACROSS THE KEY. 06's ripples ran into the distance with the key from beyond, so they read only as soft vertical bands. Crests across the view lit from beyond gave every ripple a flank and a lee.
+- A RIM TERM IN A VORONOI TROUGH DRAWS FACETS. 08's rim bump peaked where the second-nearest centre switches and printed planar wedges at every junction; a softly bottomed trough with no rim was clean.
+- AN EYE AT HUMAN HEIGHT SEES ONE ICE-WEDGE POLYGON. At 1.7 m the 12 m cells were bigger than the frame and the tundra read as water; at 9 m (on the pad berm) with 9 m cells they read at once.
+- A NEW LABEL ON A SLIDE IS A NEW AGGREGATE. "ONE CELL, ONE MONTH" failed aggregate_check until declared as `design`; split SVG tspans render as separate strings, so copy.json takes them separately.

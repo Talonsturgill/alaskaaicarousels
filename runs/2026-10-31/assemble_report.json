@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-10-31/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10848644,
+  "pdf_mb": 10.85,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-10-31/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-10-31/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Regardless of Whether, the FCC's Check on Arctic Fiber",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "27767b5b59ca9887aeec48f8dcfe0569b3c08e84d2e48d79e364e552184d9078",
+        "bytes": 6813006
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "8ecd1776bb4fbe01e89e99c59167a5b816dbf658e7e25caae290209f3fb6f6c2",
+        "bytes": 5359641
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "818e23dc0b4d324c96403440f525e8ee03bf0a6d0cb303efdd80b32d18005078",
+        "bytes": 6810810
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "d1b05bd6c19a5a7c8d6c33a8ae2c285862cd21842fcc5b155de177bba30a55a1",
+        "bytes": 6857098
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "61689b244e401be736a21b4a30bf6084d49ba14d028c95b1e95af7011cbfb3e4",
+        "bytes": 5690008
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "3150e028e66986a696f25f597c6b352b4905f36e2dd4da663a044c30f88f23ff",
+        "bytes": 5323094
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "6f4895f62e0b0e29882a7ca7fb1ed3543f179f581b0179724aba996ff762b30b",
+        "bytes": 5213491
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "bce3c8e53822bca39416b08bbb8ad4fc9c01576b82726bab54dc7fd1a092e9ff",
+        "bytes": 5604732
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "0a92b7cb971e83e9215753ae87fef99642acb530a2532822adbbbe6a935d0dff",
+        "bytes": 5087104
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "f85f3678ba474f6b223dc54e1a878ba948a91e3867f0d83db9d32b80122e2439",
+        "bytes": 14011
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "503d6ac20407a7786ddf130a7b895adbcf5be5c41f2eb0864fae33122dcedc13",
+        "bytes": 17345
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "800ae1ff439d76e7c4aa35f29aaa875dde0fa171e31b2c8be426cee55b443c59",
+        "bytes": 17991
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "af186c98ad4d8d95e9e6ab3caaebeb49b7f7bea7fc9fe190353e45a22fd0b1c6",
+        "bytes": 13955
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "0c595ff0404260f623279ec1800162ef8e594ba5e051948dbac295a7ae3296a8",
+        "bytes": 17395
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "a418d035d8ca3e1f611b45b310b15177089f69b716f96066a3871c834385c822",
+        "bytes": 15617
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "fd04b3a49cb0af7842fb0801e85f887b582193a16245127370704ebf7f0e997c",
+        "bytes": 11837
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "80aac4ae44b1862b6380ca5472d687d514076513e93aef0d74d2a4afce32e363",
+        "bytes": 16039
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "2b411d171e5992a85bf23cad3d36fd61cd5688e1a9bf1f69f603c6a29af41ebf",
+        "bytes": 10741
+      }
+    ]
+  }
+}
