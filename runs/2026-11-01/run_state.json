@@ -95,8 +95,26 @@
       "status": "done",
       "note": "runs/2026-11-01 copied, webp 10.5x, site built at 2026-11-01 (165 pages), alerts sent 1, prune freed 1.14M"
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
-  }
+    "upgrade": {
+      "status": "done",
+      "note": "weekly pass 88097ad4 (five changes, tests pass); PR #471 merged as 96c68ec6 after CI green; Codex never posted in 16 minutes, merged under the stalled-bot rule"
+    },
+    "gmail": {
+      "status": "done",
+      "note": "draft r4577073337522868684 created; the connector viewUrl names authuser talon.sturgill@gmail.com, not docket@alaskaaihq.com"
+    },
+    "retro": {
+      "status": "done",
+      "note": "FIELD_NOTES retro and three instincts committed in the run commit"
+    }
+  },
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 165 pages, 18 checks (re-run on the final build; 164 pages at Phase 3.6)",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-11-02T06:15:24Z. The first audit FAILED 'source reading published' (CINGSA posted the November 1st reading at 20:53 Alaska time, after the evening collection slots); repaired by workflow_dispatch of gaswatch.yml on main, run 41398362893, which collected 7.62 Bcf (58.6 percent of design), then re-audited PASS after Pages deployed. No incident.",
+    "gaswatch_pagecheck": "GAS WATCH: PASS (page check, re-run on the final build)",
+    "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows audited at 2026-11-02T06:10Z (the first attempt died on a TLS reset in git fetch and passed on retry; the weekly pass added a bounded retry)",
+    "site_fixes": "Gas Watch November 1st reading re-collected by workflow_dispatch (run 41398362893) and verified live."
+  },
+  "gmail_draft_id": "r4577073337522868684",
+  "status": "complete"
 }
