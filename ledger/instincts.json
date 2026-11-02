@@ -2414,6 +2414,36 @@
       "last_confirmed": "2026-10-31",
       "run_date": "2026-10-31",
       "carousel_no": 101
+    },
+    {
+      "id": "fog-colour-equals-horizon-sky",
+      "learned": "2026-11-01",
+      "instinct": "In any three.js scene with exp2 fog and a vertex-coloured sky dome, make the sky's horizon colour exactly the fog colour (fade any bright band to zero at the horizon), or the fully fogged ground meets the sky on a ruled line.",
+      "evidence": "No.102 slide 05: the bright stratus band lerped into the horizon row while the sea fogged to the plain fog colour, and three critic rounds found a ruled step at y 772 until the band was faded out below 7 degrees of elevation and the row softened.",
+      "confidence": 0.6,
+      "last_confirmed": "2026-11-01",
+      "run_date": "2026-11-01",
+      "carousel_no": 102
+    },
+    {
+      "id": "incised-groove-light-the-walls-from-the-mask",
+      "learned": "2026-11-01",
+      "instinct": "For an incised line in a per-pixel relief, light the groove walls straight off the blurred stroke mask (mask upstream of the lamp minus mask downstream), with a shallow height term; deep height plus a dark floor reads as printed ink.",
+      "evidence": "No.102 slide 09 read as flat black ink at depth 1.0 with floors sunk to shadow ink across two rounds, and read incised in one render once the walls were lit from the mask difference at depth 0.3.",
+      "confidence": 0.6,
+      "last_confirmed": "2026-11-01",
+      "run_date": "2026-11-01",
+      "carousel_no": 102
+    },
+    {
+      "id": "level-overlay-on-a-yawed-plane-shows-its-edge",
+      "learned": "2026-11-01",
+      "instinct": "Never fog a perspective ground plane with a level 2D gradient rectangle when the camera is yawed; the plane's far edge tilts and the overlay's edge does not. Fog each tile by its own camera distance.",
+      "evidence": "No.102 slide 03's far dock carried a dark wedge with a level lower edge through two rounds until the overlay was removed and each board fogged by its own distance.",
+      "confidence": 0.55,
+      "last_confirmed": "2026-11-01",
+      "run_date": "2026-11-01",
+      "carousel_no": 102
     }
   ]
 }

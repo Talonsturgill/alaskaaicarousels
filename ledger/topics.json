@@ -4126,6 +4126,54 @@
       ],
       "claims": 52,
       "note": "First deck on the GCI acquisition of Quintillion. Second fiber deck in four runs (No.98 was AIDEA's Northstar Fiber, a different event). An update needs a new record: closing, a petition for reconsideration by November 19th, a Starlink wholesale contract in Alaska, or the first sealed filings."
+    },
+    {
+      "run_date": "2026-11-01",
+      "carousel_no": 102,
+      "topic": "Petersburg Borough's draft data center rules (October 5th): the Assembly unanimously told staff to draft a nine-month moratorium on data centers that make their own power or skip closed-loop cooling, plus Title 19 zoning changes, after a year-long Planning Commission moratorium tied 3 to 3 on September 21st. Grid-tied projects could still apply. The case on the table: Andrew Mazzella's former Ocean Beauty cannery (closed 2016, bought 2024) and its 2 MW transformer, where Greensparc planned a small closed-loop data center that didn't finalize; the utility projected in May that selling a full 2 MW would cut 2028's 5 percent rate increase to 0 and yearly increases from about 4 to about 2 percent, with $1 to 2 million a year in revenue. The draft would cover 3,829 square miles, all of the borough except Kupreanof. Petersburg buys most of its power from SEAPA, which also supplies Wrangell and Ketchikan.",
+      "angle": "The reversed question: every other Alaska data center fight is about size, and Petersburg's draft asks what a project plugs into.",
+      "entities": [
+        "Petersburg Borough Assembly",
+        "Petersburg Planning Commission",
+        "Petersburg Municipal Power and Light",
+        "Southeast Alaska Power Agency",
+        "Greensparc",
+        "Andrew Mazzella",
+        "Ocean Beauty",
+        "Jeigh Stanton Gregor",
+        "Jeff Meucci",
+        "Bob Martin",
+        "KFSK",
+        "Kupreanof",
+        "Wrangell",
+        "Ketchikan",
+        "Mitkof Island",
+        "Wrangell Narrows"
+      ],
+      "keywords": [
+        "data center moratorium",
+        "zoning",
+        "Title 19",
+        "on-site power",
+        "closed-loop cooling",
+        "grid-tied",
+        "hydropower",
+        "rate increase",
+        "transformer",
+        "small data center",
+        "Southeast Alaska"
+      ],
+      "headline": "Not how big. What it plugs into.",
+      "sources_lead": [
+        "https://www.kfsk.org/2026/10/16/petersburg-assembly-initiates-work-on-potential-moratorium-zoning-rules-for-data-centers/"
+      ],
+      "beats": [
+        "data-centers",
+        "power-and-the-grid",
+        "land-and-permitting"
+      ],
+      "claims": 56,
+      "note": "First Petersburg deck and first deck on a Southeast Alaska data center ordinance. Window broadened to 21 days (thin week). KFSK is the only outlet; the Greensparc deal didn't finalize. An update needs a new record: the drafted moratorium text, the public hearings, a vote, or the utility's own large-load rules."
     }
   ]
 }

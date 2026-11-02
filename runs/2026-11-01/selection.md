@@ -1,0 +1,21 @@
+# Selection, run 2026-11-01 (No.102)
+
+## Decision
+STORY: Petersburg writes data center rules. On October 5th the Petersburg Borough Assembly unanimously directed staff to draft a nine-month moratorium aimed at data centers with on-site power generation or without closed-loop cooling (grid-connected projects could still apply for permits), and Title 19 zoning rules, after a September 21st 3 to 3 tie killed a year-long moratorium. The one real proposal, Greensparc at the defunct Ocean Beauty cannery, would have plugged a 2 MW data center into the cannery's idle transformer on hydropower, with the utility projecting its 2028 rate increase falling from 5 percent to 0. That deal did not finalize; the developer is still pursuing a small data center.
+
+WHY: (1) Concrete Alaska impact, a named town, named votes, a named transformer, a rate projection; (2) visual potential, a waterfront cannery, a 2 MW transformer, hydropower lines from SEAPA, the borough's 3,829 square miles; (3) tangibility, the scale is a room not a gigawatt; (4) an Alaskan would forward it, because every other data center fight in the state is about gigawatts and this one asks the question in reverse: what does it plug into?
+
+WINDOW: all six beats were thin for October 22nd to November 1st (scouts/*.md). Per Phase 3 the window was broadened to 21 days (from October 11th). The lead story's newest reporting is KFSK October 16th (in the broadened window); the votes are October 5th and September 21st. Disclosed in the email.
+
+DEDUPE: dedupe_check returned no LIKELY DUPLICATE. Soft overlaps No.94 and No.76 (Fairbanks moratorium), different borough, different mechanism (a moratorium that exempts grid power), different scale. Petersburg, Greensparc, Mazzella and SEAPA appear in no prior entry.
+
+RUNNER-UP: Railbelt transmission, the money still to find (CIPLink $413 million with $142 million unidentified; AEA's $32.8 million grid resilience allocation; Beluga-Healy). Rejected because No.80 (October 7th) already carried Beluga-Healy's $418 million and $268 million non-federal, and the CIPLink release is dated October 15th.
+Also considered: EPA proposes Alaska Class VI primacy (October 29th, primary, but no AI link in the text); Enstar/MEA gas exchange (Petroleum News, paywalled past the lede, unverifiable); governor candidates on data centers (September 21st source, overlaps No.97, No.100, No.85, No.76); Anchorage surveillance ordinance (third deck in two months, AI hook thin).
+
+## Directors room (lenses: systems-illustrator, field-documentarian, data-journalist; last run's were cartographer, cinematographer, editorial-essayist)
+
+- Systems-illustrator, THE ONE-LINE, BUILT: the strongest device in the room, a single-line diagram locator that changes state by shape, and the rule drawn as a double-throw knife switch (blades seated in GRID, the on-site throw barred). Weakest: seven mark-making families across nine frames, and a cover headline ("What does it plug into?") that reads as naive before it reads as policy.
+- Field-documentarian, WHAT IT PLUGS INTO: the sharpest thesis and cover, "Not how big. What it plugs into.", and the right atmosphere (Southeast November stratus and rain on Wrangell Narrows, form from wet speculars). Weakest: six separate benches, an invented place drawn as documentary.
+- Data-journalist, THE EXHIBIT DOCK: the sharpest position (the pause fences a case its own sponsor called "probably far-fetched"; the rules that shape the real case are the utility's large power user ordinance and Title 19), the honest data tray (separate lanes, zero drawn as absence, a printed never-add guard) and the ghost generator that casts nothing. Weakest: a dock on every frame risks "the same drawing on more than three frames".
+
+SYNTHESIS: the field-documentarian's thesis, cover and atmosphere; the systems-illustrator's knife switch for slide 02 and its locator as the motif; the data-journalist's ghost generator (03), data tray (06) and closing turn toward the rules still being drafted (09). Real terrain added for the source frame (05) from a new Petersburg DEM (AWS terrain tiles, zoom 12), which gives the deck one true place. Families held to PBR three (01, 02, 05), relief two (04, 09), one each for wireframe, cabinet extrusion, stipple and engraving.
