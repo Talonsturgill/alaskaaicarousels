@@ -389,7 +389,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-07-08",
@@ -534,6 +534,10 @@
         {
           "date": "2026-10-28",
           "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Searched the Federal Register today for Alaska documents published October 27th to November 2nd and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. The Air Force's announcement page refused an automated read again today. Checked and unchanged."
         }
       ]
     },
@@ -617,7 +621,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-07-08",
@@ -738,6 +742,10 @@
         {
           "date": "2026-10-28",
           "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, with one of two units under scheduled maintenance back in service. The page reports no board decision on the turbine purchase. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, with maintenance continuing on a second generation unit. The page reports no board decision on the turbine purchase. Checked and unchanged."
         }
       ]
     },
@@ -2366,7 +2374,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-08-04",
@@ -2467,6 +2475,10 @@
         {
           "date": "2026-10-28",
           "note": "Re-read the Alaska Energy Authority's Dixon Diversion page today. It lists a virtual industry day held October 21st, still gives the construction cost as about $400 million with its funding source to be determined, and reports no commission action on the June 30th amendment application. Recommendations remain due November 30th."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Searched the Federal Register today for Alaska documents published October 27th to November 2nd and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
         }
       ]
     },
@@ -2738,7 +2750,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-08-06",
@@ -2851,6 +2863,10 @@
         {
           "date": "2026-10-28",
           "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read again today. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Searched the Federal Register today for Alaska documents published October 27th to November 2nd and found no Air Force, Oklo or reactor notice. Checked and unchanged."
         }
       ]
     },
@@ -3155,7 +3171,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-08-06",
@@ -3240,6 +3256,10 @@
         {
           "date": "2026-10-28",
           "note": "Re-read the Department of Energy's selection page today. It still lists Terra Energy Center Corporation of Anchorage for $89,000,000 in federal funding toward a $190,375,155 project and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "The Department of Energy's Arctic Energy Office funding page returned not found today, so the selection could not be re-read at its source. No federal notice of a signed award or a cancellation appears in the Federal Register for October 27th to November 2nd. Checked and unchanged."
         }
       ]
     },
@@ -3309,10 +3329,10 @@
       "id": "aogcc-class-vi-carbon-storage",
       "title": "Alaska's bid to run its own carbon storage permits",
       "kind": "regulatory-docket",
-      "status": "pending-decision",
+      "status": "open-for-comment",
       "decider": "Alaska Oil and Gas Conservation Commission applies; the U.S. Environmental Protection Agency decides",
-      "public_access": "closed",
-      "access_note": "The state comment window closed at the end of the May 14th, 2026 hearing. The federal review of the application carries its own comment period, which has not opened.",
+      "public_access": "open",
+      "access_note": "The Environmental Protection Agency is taking written comments on its proposed approval until December 14th, under docket EPA-HQ-OW-2026-4588, and will hold one virtual public hearing during that period. The state's own comment window closed at its May 14th hearing.",
       "summary": "The Alaska Oil and Gas Conservation Commission is applying to the Environmental Protection Agency for primary enforcement authority over Class VI wells, the wells used to inject carbon dioxide for permanent underground storage. If the application succeeds the state, not the federal government, would permit and police every carbon storage well in Alaska.",
       "key_dates": [
         {
@@ -3323,6 +3343,16 @@
         {
           "date": "2026-05-14",
           "label": "State hearing, and the close of written and oral comment",
+          "kind": "deadline"
+        },
+        {
+          "date": "2026-10-29",
+          "label": "EPA proposes to approve Alaska's application and opens comment",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-14",
+          "label": "Comments on EPA's proposed approval due, docket EPA-HQ-OW-2026-4588",
           "kind": "deadline"
         }
       ],
@@ -3341,10 +3371,15 @@
           "url": "https://www.commerce.alaska.gov/web/Portals/18/pub/Events/Public%20Hearings/2026/2026-05-14/Alaska%20Class%20VI%20UIC%20Primacy%20Application.pdf",
           "outlet": "State of Alaska, draft primacy application",
           "date": "2026-04-09"
+        },
+        {
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-29/html/2026-22085.htm",
+          "outlet": "Federal Register, EPA proposed rule 2026-22085",
+          "date": "2026-10-29"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-08-06",
@@ -3421,6 +3456,10 @@
         {
           "date": "2026-10-28",
           "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th. None concerns the Environmental Protection Agency's review of Alaska's Class VI application, and the commission's carbon storage page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "The Environmental Protection Agency published a proposed rule on October 29th, Federal Register document 2026-22085, saying it received a complete application from Alaska and proposes to approve state primary enforcement authority for Class VI wells, except in Indian country and areas of exclusive federal jurisdiction. Comments are due December 14th under docket EPA-HQ-OW-2026-4588, with one virtual public hearing during the period. Read today in the GovInfo text of the notice."
         }
       ]
     },
@@ -4886,7 +4925,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-09-13",
@@ -4947,6 +4986,10 @@
         {
           "date": "2026-10-28",
           "note": "GovInfo's record today still shows only the House reported text, dated September 10th, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "GovInfo's record today still shows only the House reported text, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th. Checked and unchanged."
         }
       ]
     },
@@ -5121,7 +5164,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-09-13",
@@ -5198,6 +5241,10 @@
         {
           "date": "2026-10-28",
           "note": "Searched the Federal Register today for Alaska documents published October 24th to 28th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Searched the Federal Register today for Alaska documents published October 27th to November 2nd and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
         }
       ]
     },
@@ -5833,7 +5880,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-10-28",
+      "last_updated": "2026-11-01",
       "history": [
         {
           "date": "2026-10-07",
@@ -5858,6 +5905,10 @@
         {
           "date": "2026-10-28",
           "note": "Re-read the Department of Energy's October 5th release today. It still states an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of new line, calls the $418 million total a preliminary planning estimate, and reports no signed award. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-01",
+          "note": "Re-read the Department of Energy's October 5th release today. It still describes up to $150 million in Defense Production Act funding combined with $268 million in non-federal funding, and reports no signed agreement. Checked and unchanged."
         }
       ]
     },
