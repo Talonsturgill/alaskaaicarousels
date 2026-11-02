@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "the-door-is-yours",
+      "date": "2026-11-02",
+      "title": "The Door Is Yours",
+      "caption": "Thirty-six attorneys general settled with GM for $220 million over its Smart Driver program. The complaint alleges it tracked driving and sold it to data brokers, and GM admitted no violation of law. The fix is consent, a driver's clear yes, and the settlement sets up no claims process for drivers.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-02-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-02-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-02-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-02-poster_thumb.jpg"
+    },
+    {
       "id": "2026-11-01-the-stand-in",
       "date": "2026-11-01",
       "title": "The Stand-In",
