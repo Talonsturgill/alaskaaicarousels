@@ -225,6 +225,9 @@ FAILs whatever it left stale.
   trough and the lit-pool peak, and prints the entry to paste:
   `--render-dir <render> --slide N --base cx,cy` to propose one,
   `--slides-dir <slides> --verify` to read back what a built deck declares.
+  It reads render_report.json's text line boxes and never proposes a rect on
+  the slide's own type (2026-11-01: No.102 slide 06's ground landed in a
+  numeral twice).
 
   **The pair has to sit on the same piece of ground** (2026-09-06). There is
   no upper bound on dL and there will not be one, but the two rects must be
@@ -1055,6 +1058,11 @@ them or every archive page goes blank.
   IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before
   the grain tile (or use akpost's own grain and skip the tile). DOM text is
   never affected.
+  **grade() reads `{w, h}` times the context's CURRENT scale** (2026-11-01):
+  after a GPU draw-down or a `setTransform(1,0,0,1,0,0)` the scale is 1, and
+  `{w: 1080, h: 1350}` on the 2160 x 2700 backing grades the top-left quarter
+  with a seam (No.102 slide 01). That shape is an `AK CONTRACT` error, a qa
+  FAIL; set `cx.setTransform(2,0,0,2,0,0)` first.
   **`exposure` HERE IS STOPS. `AKT.setup({exposure})` ABOVE IS A MULTIPLIER.**
   One word, two meanings, two libraries used side by side on the same slide:
   runs No.30 and No.31 both authored `exposure: 1.02`-`1.06` meaning "about

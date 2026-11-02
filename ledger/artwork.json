@@ -3693,6 +3693,43 @@
       "new_techniques_logged": [
         "144 Tanaka Illuminated Contours (bucketed by aspect)"
       ]
+    },
+    {
+      "run_date": "2026-11-01",
+      "carousel_no": 102,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE IDLE TRANSFORMER ON THE NARROWS, one 2 MW box and the circuit it would close, one modelled component or place per frame: a PBR pad-mount transformer on a wet dock (01), a PBR double-throw knife switch on slate (02), a ghost wireframe genset on a lit dock (03), a per-pixel bas-relief nameplate (04), a DEM flyover of Mitkof Island and the Narrows (05), a cabinet-oblique gauge tray (06), a hillshade-driven stipple borough map (07), engraved month blocks on a bench (08), the locator incised full frame in slate (09)",
+      "atmosphere": "NEW: SOUTHEAST NOVEMBER STRATUS, RAIN ON WRANGELL NARROWS, a soft bright band to the southwest (az 220, el 25), no sun disc, wet speculars, stratus noon peak on 05",
+      "depth_technique": "akthree PBR with VSM and PCF-soft shadows and thin-lens focus (01, 02); a pinhole wireframe with depth-weighted edges and glass faces (03); per-pixel bas-relief at device resolution (04); akthree DEM terrain with exp2 fog and a bump-mapped sea (05); cabinet oblique with two-part casts (06, 08); per-pixel hillshade with blue-noise stipple (07); per-pixel incised slate with mask-lit groove walls (09)",
+      "line_voice": "drafting: a one-line electrical diagram in mono labels, energized ice hairline and phantom dash",
+      "continuity_device": "motif:THE ONE-LINE LOCATOR, a single-line diagram top left that changes state by shape on 01 to 08 and becomes the incised hero on 09",
+      "continuity_devices": [
+        "the one-line locator changing by shape",
+        "the service cable from 01's gland to 02's lug",
+        "one light from the stratus band to the southwest",
+        "a short November day as the palette arc"
+      ],
+      "hook_archetype": "NEW: THE REVERSED QUESTION",
+      "palette_family": "NEW: STRATUS SLATE, PAD-MOUNT GREEN AND COPPER (night #050D16, stratus #6F8494 and #A9B8C4, pad green #45604F, galvanized #8E9BA3, energized ice #5AC8F0 hairline, flag gold for the plug point and the Polaris only)",
+      "type_pairing": "Space Grotesk + JetBrains Mono",
+      "narrative_structure": "NEW: THE TEST AND ITS TWO CASES: rule (01, 02), paused case (03), real case (04), source (05), money (06), reach (07), history (08), ask (09)",
+      "variance_dials": {
+        "design_variance": 2,
+        "visual_density": 2,
+        "type_temperature": 1
+      },
+      "techniques": [
+        "akthree PBR pad-mount transformer with a rust CanvasTexture and a flipped, blurred clear-coat smear clipped to the pad",
+        "akthree knife switch with lathe porcelain and flattened-cylinder copper blades against strip-light environment",
+        "pinhole wireframe genset with depth-weighted edges, dashed hidden lines and key-facing glass fills",
+        "per-pixel bas-relief nameplate with bead border, domed rivets and cavity-occluded pockets",
+        "akthree DEM terrain from AWS terrarium tiles with smoothstep land bands and a horizon-matched fog colour",
+        "cabinet-oblique ingots with a gold-rimmed empty socket for zero",
+        "hillshade-modulated blue-noise stipple with an elliptical sheet vignette",
+        "engraved month blocks with tone-weighted line width and visible lee faces",
+        "incised slate with groove walls lit straight off the blurred stroke mask"
+      ],
+      "new_techniques_logged": []
     }
   ]
 }

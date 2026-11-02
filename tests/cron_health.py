@@ -205,6 +205,40 @@ class CronHealthTests(unittest.TestCase):
                 gate_status.cron_health_row(rows, run)
                 self.assertEqual([r["status"] for r in rows.rows], expected)
 
+    def test_fetch_retries_a_transient_drop_and_stays_bounded(self):
+        """2026-11-01: No.102's first audit died on a TLS reset inside
+        `git fetch --unshallow`; a re-run succeeded. Two re-fetches, then the
+        failure propagates exactly as before."""
+        calls, waited = [], []
+        script = iter([b"true\n", subprocess.CalledProcessError(128, "git fetch"),
+                       b"true\n", subprocess.CalledProcessError(128, "git fetch"),
+                       b"false\n", b""])
+
+        def fake_git(*args):
+            calls.append(args)
+            step = next(script)
+            if isinstance(step, Exception):
+                raise step
+            return step
+
+        with patch.object(health, "git", fake_git):
+            self.assertEqual(health.fetch_main(sleep=waited.append), 2)
+        self.assertEqual(waited, list(health.FETCH_WAITS))
+        fetches = [a for a in calls if a[0] == "fetch"]
+        self.assertIn("--unshallow", fetches[0])
+        self.assertNotIn("--unshallow", fetches[-1], "shallowness is re-read before each try")
+
+        def always_fails(*args):
+            if args[0] == "fetch":
+                raise subprocess.CalledProcessError(128, "git fetch")
+            return b"false\n"
+
+        waited.clear()
+        with patch.object(health, "git", always_fails):
+            with self.assertRaises(subprocess.CalledProcessError):
+                health.fetch_main(sleep=waited.append)
+        self.assertEqual(len(waited), len(health.FETCH_WAITS), "bounded: no fourth try")
+
 
 if __name__ == "__main__":
     unittest.main()

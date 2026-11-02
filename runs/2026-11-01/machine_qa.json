@@ -1,0 +1,178 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the transformer sill on the wet pad': shadow L* 19.8 vs ground L* 34.4, dL 14.6 at 432w"
+      ],
+      "motifs": [
+        "'the pad-mount transformer': canvas 30.7 dE, page 34.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Not how big.What it plugs into.' fits 2/2 lines at 108.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the slate panel on the lit wall': shadow L* 6.5 vs ground L* 18.0, dL 11.5 at 432w"
+      ],
+      "motifs": [
+        "'the double-throw knife switch': canvas 65.9 dE, page 65.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the seated grid jaws' lands 0.0px from its target",
+        "leader 'the empty on-site jaws' lands 0.0px from its target",
+        "leader 'the seated grid jaws' meets its label 13.8px away",
+        "leader 'the empty on-site jaws' meets its label 14.2px away",
+        "leader 'the seated grid jaws' is drawn 280 px at 3 degrees, inside the pointer band",
+        "leader 'the empty on-site jaws' is drawn 314 px at 3 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'It pauses on-site power,not the grid.' fits 2/2 lines at 82.5px",
+        "bd 'The Assembly unanimously told staff to draft' fits 5/5 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the ghost diesel generator set': canvas 53.8 dE, page 55.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader \"the ghost generator's skid\" lands 0.0px from its target",
+        "leader \"the ghost generator's skid\" meets its label 15.7px away",
+        "leader \"the ghost generator's skid\" is drawn 137 px at 74 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '\"Probably far-fetched.\"' fits 1/1 lines at 83.5px",
+        "bd 'Vice Mayor Jeigh Stanton Gregor, who propose' fits 4/5 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the stainless nameplate on the cabinet door': shadow L* 23.7 vs ground L* 36.6, dL 12.9 at 432w"
+      ],
+      "motifs": [
+        "'the stainless nameplate': canvas 58.8 dE, page 83.1 dE, 82% of its rect is clear of opaque DOM (div.v stands on the rest)"
+      ],
+      "fits": [
+        "hl 'A shut cannery.A 2 MW transformer.' fits 2/2 lines at 95.5px",
+        "bd 'Andrew Mazzella bought the old Ocean Beauty ' fits 5/5 lines at 33px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 4.2 on 'WRANGELL NARROWS' (box mean 10.3) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'Mitkof Island and Wrangell Narrows terrain': canvas 43.4 dE, page 45.6 dE, 97% of its rect is clear of opaque DOM (div#pN.place stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Mostly falling water' fits 1/1 lines at 99.5px",
+        "bd 'Petersburg runs on hydropower, from its own ' fits 4/5 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the lane bar on the steel floor': shadow L* 5.0 vs ground L* 17.7, dL 12.8 at 432w"
+      ],
+      "motifs": [
+        "'the three-lane gauge tray': canvas 57.3 dE, page 86.9 dE, 81% of its rect is clear of opaque DOM (div.note stands on the rest)"
+      ],
+      "scales": [
+        "'the revenue lane, utility revenue a year' runs 0 million dollars at 120 to 2 million dollars at 580; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'What selling 2 MWwas projected to do' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the Petersburg Borough landmass': canvas 66.6 dE, page 83.1 dE, 95% of its rect is clear of opaque DOM (div#lK.lab stands on the rest)"
+      ],
+      "leaders": [
+        "leader 'the City of Kupreanof across the Narrows' lands 0.0px from its target",
+        "leader 'the City of Kupreanof across the Narrows' meets its label 5.9px away",
+        "leader 'the City of Kupreanof across the Narrows' is drawn 71 px at 38 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '3,829 square miles' fits 1/1 lines at 105.5px",
+        "bd 'October's draft would cover the whole boroug' fits 3/3 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the first month block on the bench': shadow L* 18.0 vs ground L* 26.9, dL 9.0 at 432w"
+      ],
+      "motifs": [
+        "'the row of twelve month blocks': canvas 74.1 dE, page 72.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Tied 3 to 3 in September.Unanimous in Octobe' fits 2/2 lines at 80px",
+        "bd 'The Assembly split on the Planning Commissio' fits 4/5 lines at 33.5px"
+      ],
+      "asserts": [
+        "'nine solid month blocks' holds: 9 vs 9 blocks, counted over 9 declared marks (within 0)",
+        "'nine solid month blocks': 9 mark centres probed at r=14px, cohort median 58.4 dE, all present (weakest 57.0 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the slate panel on the wet ledge': shadow L* 4.5 vs ground L* 23.7, dL 19.2 at 432w"
+      ],
+      "motifs": [
+        "'the incised slate panel': canvas 44.7 dE, page 62.5 dE, 95% of its rect is clear of opaque DOM (div.dg stands on the rest)"
+      ],
+      "fits": [
+        "hl 'The test is the plug.' fits 1/1 lines at 99.5px",
+        "bd 'Petersburg's utility is drafting its own rul' fits 3/4 lines at 33.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKLOC.mount",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

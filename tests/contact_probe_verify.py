@@ -25,6 +25,9 @@ x. Three things are held.
      face. Auto must not propose it, and on the two shipped frames that showed
      the defect (No.81 slide 01, the tag; No.83 slide 09, the card, both under
      runs/) the proposed ground must be the dark ground, not the object.
+  7. NOT ON THE TYPE (2026-11-01, weekly machine pass). A bright numeral
+     below a foot (No.102 slide 06): with render_report's text line boxes the
+     probe proposes no rect on the type, and without them it does.
 
     python3 tests/contact_probe_verify.py
 
@@ -292,6 +295,60 @@ def main():
             bad.append("5. %s: auto proposed a ground rect on the object (axis %s, "
                        "ground L* %s, dL %s)" % (name, auto.get("axis"), gl, auto.get("dL")))
 
+    # 7. NOT ON THE TYPE (2026-11-01, weekly pass; No.102 slide 06). A foot on
+    # a dim floor with a bright readout just below it: the vertical read's
+    # brightest window is the numeral. With the slide's text line boxes the
+    # probe must propose ground clear of the type; without them (the old
+    # probe) it lands on the numeral, which is the reconstruction.
+    with tempfile.TemporaryDirectory() as d:
+        rdir = Path(d)
+        h, w = DH * SCALE, DW * SCALE
+        yy, xx = np.mgrid[0:h, 0:w].astype(np.float64) / SCALE
+        foot = 596.0
+        v = np.where(yy < foot, 60.0, 52.0)                                  # bar above, dim floor
+        v -= 34.0 * np.clip(1.0 - (yy - foot) / 12.0, 0, 1) * (yy >= foot)   # attached cast
+        v += 16.0 * np.clip(1.0 - np.abs(yy - 632.0) / 10.0, 0, 1) * (yy >= foot)  # faint lit band
+        text = [596.0, 648.0, 190.0, 51.0]                                   # "ABOUT 2%"
+        tx, ty, tw, th = text
+        glyphs = (xx >= tx) & (xx < tx + tw) & (yy >= ty + 8) & (yy < ty + th - 8)
+        v = np.where(glyphs, 200.0, v)
+        arr = np.stack([v, v, v], -1).astype(np.uint8)
+        Image.fromarray(arr).save(rdir / "slide-01.png")
+        (rdir / "render_report.json").write_text(json.dumps(
+            {"canvas": {"width": DW, "height": DH, "scale": SCALE},
+             "slides": [{"file": "slide-01.html", "text_nodes": [
+                 {"full": "ABOUT 2%", "x": tx, "y": ty, "w": tw, "h": th,
+                  "lines": [text]}]}]}))
+        old_fr = cp.Frame(rdir / "slide-01.png", DW, DH)
+        old = cp.propose_v(old_fr, 760.0, foot)
+        if "ground" not in old or not cp.Frame.on_text(
+                type("F", (), {"text_rects": [text]})(), old["ground"][0]):
+            bad.append("7. type: the reconstruction did not land on the numeral without "
+                       "text boxes (%s)" % old.get("ground"))
+        fr = cp.Frame(rdir / "slide-01.png", DW, DH)
+        fr.text_rects = cp.text_boxes(rdir / "render_report.json").get(1, [])
+        new = cp.best_axis(fr, 760.0, foot)
+        if "ground" not in new:
+            bad.append("7. type: no proposal with text boxes: %s" % new.get("error"))
+        elif fr.on_text(new["ground"][0]) or fr.on_text(new["shadow"][0]):
+            bad.append("7. type: a proposed rect sits on the text: %s %s"
+                       % (new["shadow"], new["ground"]))
+        elif not new.get("text_skipped") and not (new.get("alternative") or {}):
+            bad.append("7. type: the read did not report the skipped text positions")
+        out = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "contact_probe.py"),
+             "--render-dir", str(rdir), "--slide", "1", "--base", "760,%d" % foot,
+             "--axis", "v", "--json"], capture_output=True, text=True)
+        if out.returncode != 0:
+            bad.append("7. type: the CLI exited %d: %s" % (out.returncode, out.stderr[:300]))
+        else:
+            rec = json.loads(out.stdout)["slides"][0]
+            g = (rec.get("ground") or [[0, 0, 0, 0]])[0]
+            if fr.on_text(g):
+                bad.append("7. type: the CLI proposed ground on the text: %s" % g)
+            if not any("slide's own text" in n for n in rec.get("notes", [])):
+                bad.append("7. type: the CLI did not say it skipped text: %s" % rec.get("notes"))
+
     if bad:
         print("BROKEN")
         for b in bad:
@@ -301,7 +358,7 @@ def main():
           "defect measures negative and is named, a pair proposed from the "
           "object's base alone lands on the drawn cast and clears the gate, and "
           "a long foot is read DOWN from its base instead of floating, and a ground "
-          "rect on the object's own face is never the one proposed.")
+          "rect on the object's own face is never the one proposed, nor one on the slide's text.")
     return 0
 
 

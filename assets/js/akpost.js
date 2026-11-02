@@ -180,10 +180,39 @@
     }
   }
 
+  /* ---- A GRADE THAT READS A QUARTER OF THE FRAME (2026-11-01, weekly pass) ----
+   * grade() sizes its read as (o.w, o.h) times the context's CURRENT scale.
+   * No.102 slide 01 called it with {w: 1080, h: 1350} on a 2160 x 2700 backing
+   * whose transform had been reset to identity (by a GPU draw-down), so the
+   * scale read 1 and the grade covered the top-left 1080 x 1350 device px: a
+   * quarter of the picture graded, three quarters not, and a seam down the
+   * middle and across it. Every gate passed; the critics found the seam. The
+   * signature is exact and has no legitimate use: an identity transform while
+   * the backing is a whole multiple (2x or more) of BOTH declared design
+   * sides. It is an AK CONTRACT error (a qa.py FAIL) and the grade still runs
+   * as asked, so nothing that rendered before renders differently.
+   * tests/akpost_grade_scale_verify.py rebuilds the defect and the cures. */
+  function quarterGrade(ctx, o, scale) {
+    if (scale !== 1 || !(o.w > 0) || !(o.h > 0) || !ctx.canvas) return null;
+    const rx = ctx.canvas.width / o.w, ry = ctx.canvas.height / o.h;
+    if (rx < 1.9 || ry < 1.9 || Math.abs(rx - ry) > 0.05) return null;
+    return Math.round(rx);
+  }
+
   P.grade = function (ctx, o) {
     o = o || {};
     validate(o);
     const scale = getScale(ctx);
+    const dpr = quarterGrade(ctx, o, scale);
+    if (dpr) {
+      console.error("AK CONTRACT: AKPOST.grade({w: " + o.w + ", h: " + o.h + "}) on a " +
+        ctx.canvas.width + " x " + ctx.canvas.height + " backing with an IDENTITY " +
+        "transform grades only the top-left " + o.w + " x " + o.h + " device px, 1/" +
+        (dpr * dpr) + " of the frame, and leaves a seam where the grade stops. Call " +
+        "ctx.setTransform(" + dpr + ", 0, 0, " + dpr + ", 0, 0) before grade() (a GPU " +
+        "draw-down or a putImageData path often resets it), or pass w: " +
+        ctx.canvas.width + ", h: " + ctx.canvas.height + " to grade the whole backing.");
+    }
     const W = Math.round((o.w || ctx.canvas.width / scale) * scale);
     const H = Math.round((o.h || ctx.canvas.height / scale) * scale);
     const img = ctx.getImageData(0, 0, W, H);

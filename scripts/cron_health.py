@@ -11,6 +11,7 @@ import html
 import json
 import re
 import subprocess
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
@@ -257,9 +258,33 @@ def power_published(page, residential):
     return ok, detail
 
 
+# A BOUNDED RE-FETCH FOR A TRANSIENT NETWORK DROP (2026-11-01, weekly pass).
+# No.102's first audit died in `git fetch --unshallow` on a TLS reset in the
+# sandbox, and a manual re-run seconds later succeeded. The fetch is now tried
+# three times, 5 s and 15 s apart, and shallowness is re-read before each try
+# (a half-finished unshallow can leave either state). A fetch that fails all
+# three times raises exactly as before, so the audit still can't run on a
+# stale main, and every retried failure is printed, so a pass after a retry is
+# disclosed rather than silent.
+FETCH_WAITS = (5, 15)
+
+
+def fetch_main(waits=FETCH_WAITS, sleep=time.sleep):
+    for attempt in range(len(waits) + 1):
+        try:
+            shallow = git("rev-parse", "--is-shallow-repository").decode().strip() == "true"
+            git("fetch", "--quiet", *(["--unshallow"] if shallow else []), "origin", "main")
+            return attempt
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
+            if attempt >= len(waits):
+                raise
+            print(f"[RETRIED] git fetch origin main, attempt {attempt + 1} failed "
+                  f"({type(exc).__name__}); retrying in {waits[attempt]} s")
+            sleep(waits[attempt])
+
+
 def audit(now):
-    shallow = git("rev-parse", "--is-shallow-repository").decode().strip() == "true"
-    git("fetch", "--quiet", *( ["--unshallow"] if shallow else []), "origin", "main")
+    fetch_main()
     main_sha = git("rev-parse", "origin/main").decode().strip()
     workflows = inventory(main_sha)
     checks, last_runs = [], {}

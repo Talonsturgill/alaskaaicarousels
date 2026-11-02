@@ -1,0 +1,17 @@
+{
+ "what": "Terrain ak-petersburgborough-dem, heights in metres as little-endian int16, row-major, north up, regular lon/lat grid (cell centres)",
+ "source": "AWS Terrain Tiles (Mapzen terrarium encoding, public dataset s3://elevation-tiles-prod), zoom 10, 88 tiles, fetched 2026-11-02, bilinear resample",
+ "projection": "plate carree: column i is lon west + i*dlon, row j is lat north - j*dlat",
+ "cols": 1000,
+ "rows": 900,
+ "west": -134.6,
+ "east": -131.9,
+ "north": 57.55,
+ "south": 55.7,
+ "dlon": 0.0027,
+ "dlat": 0.002056,
+ "z": 10,
+ "min_m": -911,
+ "max_m": 2952,
+ "repair": "8 terrarium nodata cells filled with the mean of valid neighbours in a 5x5 window"
+}

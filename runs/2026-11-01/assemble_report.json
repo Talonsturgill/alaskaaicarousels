@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-01/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7423927,
+  "pdf_mb": 7.42,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-01/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-01/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Not how big. What it plugs into. Petersburg's draft rules",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "b9fff9773898b656219bc8659b1ef5dc8ddde79bce69d234b73be90aeb8f5192",
+        "bytes": 8051588
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "4dbd1e4a7c417234f6ad61e8cdae3ae2ddfb9f4c202eabb08d0962fcffcf0b05",
+        "bytes": 7300817
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "87d300253e6a749dc28f6153bd09c1f99cfdf09468b313d2191b8082b301fd61",
+        "bytes": 7457301
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "a44f3c64247eff430d488f5e3f753276a0813d9f03f1bd3942c0de164b579d47",
+        "bytes": 7360291
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "280d0efb96670100f1e475c38dd52912eb332101ddd2b70fd35a6ba512106746",
+        "bytes": 8033789
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "feba100d54c32768ee926d3b4276a551e85bbea9b4764bb127df050dd274836e",
+        "bytes": 7054986
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b3e6cdafbd22dbc8e37dab3285d4a779cfa3bd2008d9253c542a153cdd7c441f",
+        "bytes": 5588795
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "1c24cf0ed9cd54437ba95a3a8f9f5b89f748191a5682832eec0afe0217ddbb41",
+        "bytes": 6814722
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "f1d2d90cac681550d3e28e8f98606ed92e04a6c3d875fcfa60774cbdb480acdb",
+        "bytes": 6509151
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "5fb8f1de095ac000cefaf245b651ca5980ba41aa84416014b9327af0c72d7bf0",
+        "bytes": 25360
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "3fe12d36926687af0fda24cbfc03250c388c9a6f351d5b09b829fd60e5496408",
+        "bytes": 14084
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "a3a0c04b921b5d1c1a9a2e6b3068a4d581c8091c91a8d13ddcf2de88c0120cca",
+        "bytes": 16668
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "37ddd584f2c173c2a9d7411558c4df6420339fa96fd2d90669c933237c7c6df8",
+        "bytes": 12598
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "b0887e0790e1d13f12013c2d79a71b9cd77ee3f693d593557973aac1fe125303",
+        "bytes": 16634
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "43cbca9d8e5a40f47e61412afe47b0fabfe207561562119934021c3b4f9a3def",
+        "bytes": 15234
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e66ea23d5c8174727d701ab8f491855bf6d7f0f0643b8be0bca2fd727d57ba3a",
+        "bytes": 12769
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "4214467fe01c0e514dc564114bdcf7d0df5bddfd1b43aa8315c1fbcc4606064c",
+        "bytes": 13492
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "e670ceede2a3c9a91d8c3ce78101ec58249be9d321bd0381880e10389eebbc0a",
+        "bytes": 12735
+      }
+    ]
+  }
+}

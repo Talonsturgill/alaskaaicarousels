@@ -1,0 +1,170 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat within 30 days",
+   "status": "pass"
+  },
+  {
+   "rule": "hero structure identical to last 4",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3 or link in body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder or unfinished element",
+   "status": "pass"
+  },
+  {
+   "rule": "quote marks by codepoint",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(7x0.14)+(7x0.14)+(7.5x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(7.5x0.07)+(7x0.05)+(8x0.10) = 0.98+0.98+1.20+1.12+0.96+0.80+0.56+0.525+0.35+0.80 = 8.275",
+ "weighted_total": 8.275,
+ "threshold": 8.0,
+ "ship": true,
+ "weakest_criterion": "Thumb-stop cover",
+ "one_sentence_fix": "Make the transformer the cover's single focal point at 432 px: lift its lit southwest face and fin edges well above the slate behind them so the box and the gold lockout tag read in one glance under the headline.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "smooth relief, no spruce texture, a dead fog band"
+  },
+  {
+   "slide": 6,
+   "problem": "ingots still read as default extruded boxes at thumb"
+  },
+  {
+   "slide": 8,
+   "problem": "engraving reads as scanlines"
+  },
+  {
+   "slide": 4,
+   "problem": "bead border and rivets too small"
+  },
+  {
+   "slide": 1,
+   "problem": "radiator flank murky"
+  },
+  {
+   "slide": 7,
+   "problem": "lee stipple reads as salt; square Kupreanof knockout"
+  }
+ ],
+ "editor_notes_for_email": "Scoring cycle 2, after the one owed CRAFT FLOOR cycle: 8.275 against the round-3 threshold of 8.0. Artwork craft went from 7 to 7.5, still under the 8.5 floor, with the single required cycle spent. 04, 07, 08 and 09 visibly improved; 06 and 01 marginally; 05 untouched. WRANGELL NARROWS on slide 5 measures 4.2:1 at its worst point. Every Petersburg fact rests on KFSK reporting (the borough site refused automated reads). Nothing is in effect: both measures direct staff to draft and return for public hearings. The Greensparc deal didn't finalize. Slide 6's figures are separate May projections, never to be added. Slide 3's NO PROPOSAL ON RECORD is an inference from KFSK reporting no on-site-power proposal. Slide 7's 3,829 square miles is the borough's incorporated area, Kupreanof included, so the draft's reach is slightly smaller. The transformer, switch, generator, nameplate, terrain and dock are renders, not the real site. Post Wednesday or Thursday, not on Election Day, Tuesday November 3rd.",
+ "revision_rounds": 4,
+ "scoring_cycles": [
+  {
+   "weighted_total": 8.195,
+   "art": 7.0,
+   "rounds": 3
+  },
+  {
+   "weighted_total": 8.275,
+   "art": 7.5,
+   "rounds": 4
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   4,
+   8,
+   7,
+   6,
+   1,
+   9
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ }
+}

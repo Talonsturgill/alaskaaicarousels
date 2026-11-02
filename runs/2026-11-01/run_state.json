@@ -1,0 +1,102 @@
+{
+  "run_date": "2026-11-01",
+  "carousel_no": 102,
+  "effort": "high",
+  "date_note": "Anchorage date at wake (21:05 AKST Nov 1st); UTC already Nov 2nd. runs/2026-11-01 did not exist.",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "two searches, nothing new beyond the 2026-10-29 note; FIELD_NOTES untouched"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/scout_merge.md",
+        "out/2026-11-01/scouts/"
+      ],
+      "note": "six scouts, all thin; window broadened to 21 days for candidates"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/claims.json"
+      ],
+      "note": "56 claims, 17 primary; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "13 worklist items refreshed; aogcc-class-vi-carbon-storage to open-for-comment; watch.json failed=[]; bills unchanged; 0 hearings"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/gaswatch_health.json",
+        "out/2026-11-01/cron_health.json"
+      ],
+      "note": "live FAIL then PASS after re-dispatching gaswatch.yml (run 41398362893); cron PASS; site sign-off PASS 164 pages"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/storyboard.md"
+      ],
+      "note": "dossier_check PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/caption.txt",
+        "out/2026-11-01/copy.json",
+        "out/2026-11-01/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-01/slides/",
+        "out/2026-11-01/render/machine_qa.json"
+      ],
+      "note": "qa WARN 0 fails; bespoke 0.077 median, 83% drawn"
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "three critic rounds plus one CRAFT FLOOR cycle"
+    },
+    "flow_review": {
+      "status": "done"
+    },
+    "assemble": {
+      "status": "done"
+    },
+    "scoring": {
+      "status": "done",
+      "note": "cycle 1 8.195 art 7; cycle 2 8.275 art 7.5 after the craft cycle",
+      "artifacts": [
+        "out/2026-11-01/score_report.json"
+      ]
+    },
+    "ship": {
+      "status": "done",
+      "note": "runs/2026-11-01 copied, webp 10.5x, site built at 2026-11-01 (165 pages), alerts sent 1, prune freed 1.14M"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  }
+}
