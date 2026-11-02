@@ -3561,7 +3561,7 @@
    ],
    "verification": "python3 tests/akpost_grade_scale_verify.py: ALL HOLD (identity on 2x with design w/h FAILs as a library contract; scale(2) first, a backing-sized call and a 1x offscreen at its own size are clean; fixture 01's pixels show the seam, top-left mean 103.3 vs bottom-right 80.7). The same test against the pre-change akpost.js: BROKEN, the seam renders and no finding is raised. tests/akpost_verify.mjs, tests/akpost_holdink_verify.py and tests/reuse_census_verify.py hold. render.py + qa.py on examples/demo-deck: 4 slides, 0 fails, verdict WARN as before; on No.102's nine current slides: 0 console or page errors and no grade contract finding on any slide.",
    "rollback": "revert the upgrade(2026-11-01) commit, or delete quarterGrade() and its call in AKPOST.grade",
-   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+   "commit": "88097ad4"
   },
   {
    "run_date": "2026-11-01",
@@ -3576,7 +3576,7 @@
    ],
    "verification": "python3 tests/contact_probe_verify.py: HOLDS, cases 1 to 6 unchanged and new case 7 (a bright numeral below a foot: without text boxes the read lands on the numeral, with them the CLI and best_axis propose rects clear of it and name the skip). On No.102's real render, --verify on slide 06 moved the measured ground from [747, 664] (in the numeral) to [747, 626], dL 7.9, and --base 760,596 reports 11 skipped positions; slides 01, 02, 04, 08 and 09 read the same as before.",
    "rollback": "revert the upgrade(2026-11-01) commit",
-   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+   "commit": "88097ad4"
   },
   {
    "run_date": "2026-11-01",
@@ -3591,7 +3591,7 @@
    ],
    "verification": "python3 tests/gaswatch_health.py: 10 tests OK, including the new test_late_post_is_named_and_still_fails (every status and the FAIL verdict identical with and without the diagnosis; late_post names the dispatch; a collection after the post gives collected_after_post with that run's URL and no dispatch; a healthy audit carries none; a stale source with a missing day carries none). python3 scripts/gaswatch_collect.py --self-test: clean. The module imports nothing new, so the collector workflow's pre-collection test step needs nothing it lacks.",
    "rollback": "revert the upgrade(2026-11-01) commit, or delete timing_diagnosis() and its two call sites",
-   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+   "commit": "88097ad4"
   },
   {
    "run_date": "2026-11-01",
@@ -3606,7 +3606,7 @@
    ],
    "verification": "python3 tests/topics_beats_check_verify.py: ALL HOLD (the committed ledger passes; No.99's and No.101's slugs and an empty list exit 1 naming the entry; an absent beats and known slugs pass; site_build.topic_index refuses exactly the same fixtures; --date confines the check and a date with no entry exits 1).",
    "rollback": "revert the upgrade(2026-11-01) commit",
-   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+   "commit": "88097ad4"
   },
   {
    "run_date": "2026-11-01",
@@ -3620,7 +3620,7 @@
    ],
    "verification": "python3 tests/cron_health.py: 15 tests OK, including test_fetch_retries_a_transient_drop_and_stays_bounded (two failures then success returns on the third try with waits [5, 15] and drops --unshallow once the repo reads unshallow; three failures raise CalledProcessError after exactly two waits).",
    "rollback": "revert the upgrade(2026-11-01) commit",
-   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+   "commit": "88097ad4"
   }
  ],
  "scan_log": [
