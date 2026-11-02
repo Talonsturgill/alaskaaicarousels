@@ -695,6 +695,12 @@ maintenance procedure for any diagnosed scheduled-job failure, not just Gas Watc
    the audit to the dated run artifacts and include its actual verdict in the
    draft. `gate_status.py --require` enforces evidence dated within a day.
    The ordinary local page checker is still required, but cannot substitute.
+   A `[DIAGNOSIS] late_post` line (2026-11-01) means CINGSA posted after the
+   newest production collection: dispatch gaswatch.yml on main, wait for the
+   run and Pages, and re-audit. `collected_after_post` means a collection ran
+   after the post and the reading is still missing, which is a real collector,
+   parser or deploy fault. Neither changes a status; the FAIL stands until the
+   live page has the reading.
 
    MAINTENANCE means the announced window is active, missing storage stays
    unverified and the cron is working. It does not mean current storage exists.
@@ -1838,6 +1844,10 @@ JSON in its final message, which YOU persist to
 4. Append this run's entries to ledger/topics.json and ledger/artwork.json
    (full schemas), and 1-3 new instincts to ledger/instincts.json
    (confidence-scored; also bump/decay confirmed/contradicted ones).
+   If the topics entry carries `beats`, run `python3 scripts/topics_beats_check.py
+   --date <date>` straight after the append: it prints the known slugs (they
+   live in `scripts/site_build.py` TOPICS) and exits 1 on one site_build would
+   refuse at the final build (No.99, No.101).
    Append the retro bullets to knowledge/FIELD_NOTES.md. If a NEW technique
    was invented, add it to knowledge/TECHNIQUE_LIBRARY.md with a dated note.
 5. COMPLETION GATE: verify run_state.json shows every prior phase done and

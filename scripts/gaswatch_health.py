@@ -173,6 +173,7 @@ def assess(feed, page, source, runs, now, unreachable=None):
         add("cron completed successfully", bool(completed) and completed.get("conclusion") == "success",
             f"{completed.get('conclusion')}: {completed.get('html_url')}" if completed else "no completed run",
             "Read the failed job logs and fix the cause. A maintenance notice does not excuse a failed job.")
+    diagnosis = timing_diagnosis(source if has_source else None, runs if has_runs else None, checks)
     verdict = "FAIL" if any(c["status"] == "FAIL" for c in checks) else ("MAINTENANCE" if maintenance else
               ("WARN" if any(c["status"] == "WARN" for c in checks) else "PASS"))
     report = {"checked_utc": gc.iso_z(now), "verdict": verdict, "checks": checks,
@@ -180,7 +181,72 @@ def assess(feed, page, source, runs, now, unreachable=None):
               "maintenance_window": gc.maintenance_window(source.get("operational_note") or "") if has_source else None}
     if unreachable:
         report["unreachable"] = sorted(unreachable)
+    if diagnosis:
+        report["diagnosis"] = diagnosis
     return report
+
+
+# LATE POST OR BROKEN COLLECTOR (2026-11-01, weekly machine pass). Queue item
+# 2026-09-30 reached repeat 17: on run after run the first audit FAILed because
+# CINGSA posted the day's reading in the Alaska evening, after the last
+# collection that had run, and the showrunner re-derived that from timestamps
+# by hand each time before dispatching gaswatch.yml (204 on every try since
+# October 20th). The audit already holds both timestamps, so it now says which
+# shape it is looking at. It changes NO status and NO verdict: a reading the
+# live page lacks is still a FAIL until it is collected and deployed. It only
+# names the cause and the remedy on the checks that the late post explains.
+LATE_CHECKS = ("source reading published", "recent calendar days")
+DISPATCH = "gh workflow run gaswatch.yml --ref main"
+
+
+def timing_diagnosis(source, runs, checks):
+    """{'kind': 'late_post' | 'collected_after_post', ...} when a LATE_CHECKS
+    row is not PASS and both the source and the cron runs were read, else None.
+    late_post: no production collection has started since CINGSA posted the
+    reading. collected_after_post: one has, and the reading is still missing,
+    so the collector or the deployment is at fault, not the timing."""
+    hit = [c for c in checks if c["name"] in LATE_CHECKS and c["status"] != "PASS"]
+    # Anchored on the source's own reading being unpublished: a stale source
+    # (CINGSA not posting) passes that row, and a missing day then is not a
+    # late post, whatever the timestamps say.
+    if not any(c["name"] == LATE_CHECKS[0] for c in hit):
+        return None
+    if source is None or runs is None or not source.get("source_timestamp_utc"):
+        return None
+    posted = stamp(source["source_timestamp_utc"])
+    production = sorted([r for r in runs.get("workflow_runs", [])
+                         if r.get("head_branch") == "main" and r.get("event") != "pull_request"
+                         and r.get("created_at")],
+                        key=lambda r: r["created_at"], reverse=True)
+    newest = production[0] if production else None
+    out = {"source_posted_utc": gc.iso_z(posted),
+           "newest_collection_utc": newest["created_at"] if newest else None,
+           "checks": [c["name"] for c in hit]}
+    if newest is None or stamp(newest["created_at"]) < posted:
+        out["kind"] = "late_post"
+        out["remedy"] = (
+            "LATE POST, not a stopped collector: CINGSA posted this reading at "
+            f"{out['source_posted_utc']}, after the newest production collection "
+            f"({out['newest_collection_utc'] or 'none found'}). Dispatch the collector on main "
+            f"({DISPATCH}, or the Actions API workflow_dispatch), wait for the run and the "
+            "Pages deployment, then rerun this audit. An incident is for a dispatch that "
+            "can't run (403) or a run that fails.")
+    else:
+        first = [r for r in production if stamp(r["created_at"]) >= posted][-1]
+        out["kind"] = "collected_after_post"
+        out["first_run_after_post"] = {k: first.get(k) for k in
+                                       ("created_at", "status", "conclusion", "html_url")}
+        out["remedy"] = (
+            f"NOT a timing problem: a production collection started at {first['created_at']} "
+            f"({first.get('status')}, {first.get('conclusion')}), after CINGSA posted at "
+            f"{out['source_posted_utc']}, and the reading is still not live. "
+            + ("It is still running: wait for it and the Pages deployment, then rerun this audit."
+               if first.get("status") != "completed" else
+               f"Read that run's log ({first.get('html_url')}) and the deployment; the collector, "
+               "the parser or Pages is at fault."))
+    for c in hit:
+        c["remedy"] = (c["remedy"] + " " if c["remedy"] else "") + out["remedy"]
+    return out
 
 
 # A BOUNDED RE-READ FOR A TRANSIENT REFUSAL (2026-10-01, run No.74). CINGSA's
@@ -258,6 +324,8 @@ def main():
         print(f"[{check['status']}] {check['name']}: {check['detail']}")
         if check["remedy"]:
             print(f"  Next: {check['remedy']}")
+    if report.get("diagnosis"):
+        print(f"[DIAGNOSIS] {report['diagnosis']['kind']}: {report['diagnosis']['remedy']}")
     for url, errs in report.get("transient_retries", {}).items():
         print(f"[RETRIED] {url}: {len(errs)} transient failure(s) before the read that counted: "
               + "; ".join(errs))

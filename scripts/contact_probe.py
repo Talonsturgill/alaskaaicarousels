@@ -101,6 +101,15 @@ OBJ_NEUTRAL_C = 6.0    # sample chroma (C*ab) under which L* counts at FULL weig
 # Measured on the defects and on No.84's nine good declarations: on-object
 # ground rects matched 0.35 to 0.72 of their pixels, every lit-ground rect a
 # probe kept matched 0.00 to 0.25 (tests/contact_probe_verify.py, case 5).
+# NOT ON THE TYPE (2026-11-01, weekly machine pass). Both reads take the
+# brightest window as lit ground and the darkest as the cast, and on a
+# text-heavy data slide the brightest thing beside a foot is often a numeral.
+# No.102 slide 06 proposed a ground rect at [747, 664, 26, 10] inside the
+# "ABOUT 2%" readout (L* 59.8 against a cast at 9.9, dL 49.9) twice. So a
+# candidate rect that overlaps any DOM text line box render.py recorded for the
+# slide, padded by TEXT_PAD design px, is never proposed, for the cast or the
+# ground, and the read says how many candidates it skipped.
+TEXT_PAD = 2
 
 
 def load_qa():
@@ -125,6 +134,16 @@ class Frame:
         self.lab = QA._srgb_to_lab(self.rgb)
         self.L = self.lab[..., 0]
         self.design_w, self.design_h = design_w, design_h
+        self.text_rects = []   # design-px [x, y, w, h] line boxes, from render_report
+
+    def on_text(self, rect):
+        """True when a design-px rect overlaps a recorded text line box."""
+        x, y, w, h = rect
+        for tx, ty, tw, th in self.text_rects:
+            if (x < tx + tw + TEXT_PAD and x + w > tx - TEXT_PAD and
+                    y < ty + th + TEXT_PAD and y + h > ty - TEXT_PAD):
+                return True
+        return False
 
     def median_L(self, rect):
         """Median L* of a design-px rect, exactly as qa.contact_reads takes it."""
@@ -195,16 +214,18 @@ def propose_v(fr, base_x, base_y, span=VSPAN, rect=(RECT_W, RECT_H),
     ys, ls = vprofile(fr, base_x, w, base_y, span + h)
     if ys.size < 8:
         return {"error": "the base line falls outside the frame"}
-    near = np.where(ys - base_y <= max(cast_span, h))[0]
+    x = int(round(base_x - w / 2.0))
+    clear = np.array([not fr.on_text([x, int(round(yy - h / 2.0)), w, h]) for yy in ys])
+    near = np.where((ys - base_y <= max(cast_span, h)) & clear)[0]
     if not near.size:
-        return {"error": "no ground within the cast window"}
+        return {"error": "no ground within the cast window" + (
+            " clear of the slide's text" if (ys - base_y <= max(cast_span, h)).any() else "")}
     i_dark = int(near[int(np.argmin(ls[near]))])
-    idx = np.where(ys - ys[i_dark] >= h)[0]
+    idx = np.where((ys - ys[i_dark] >= h) & clear)[0]
     if not idx.size:
-        return {"error": "no ground clear of the cast within the span"}
+        return {"error": "no ground clear of the cast (and of the slide's text) within the span"}
     i_lit = int(idx[int(np.argmax(ls[idx]))])
     sy, gy = float(ys[i_dark]), float(ys[i_lit])
-    x = int(round(base_x - w / 2.0))
     # the rect never climbs above the foot onto the object's own face
     shadow = [x, int(round(max(float(base_y), sy - h / 2.0))), w, h]
     ground = [x, int(round(gy - h / 2.0)), w, h]
@@ -218,6 +239,8 @@ def propose_v(fr, base_x, base_y, span=VSPAN, rect=(RECT_W, RECT_H),
         "trough_y": round(sy, 1), "peak_y": round(gy, 1),
         "detach_px": round(max(0.0, sy - base_y), 1),
     }
+    if not clear.all():
+        out["text_skipped"] = int((~clear).sum())
     if ls_med is not None and lg_med is not None:
         out["dL"] = round(lg_med - ls_med, 1)
     return out
@@ -314,19 +337,21 @@ def propose(fr, base_x, base_y, span=SPAN, rect=(RECT_W, RECT_H),
     xs, ls = fr.profile(base_y, h, base_x, span)
     if xs.size < 8:
         return {"error": "the base line falls outside the frame"}
-    near = np.where(np.abs(xs - base_x) <= max(cast_span, w))[0]
+    y = float(base_y)
+    clear = np.array([not fr.on_text([int(round(xx - w / 2.0)), int(round(y)), w, h]) for xx in xs])
+    near = np.where((np.abs(xs - base_x) <= max(cast_span, w)) & clear)[0]
     if not near.size:
-        return {"error": "no ground within the cast window"}
+        return {"error": "no ground within the cast window" + (
+            " clear of the slide's text" if (np.abs(xs - base_x) <= max(cast_span, w)).any() else "")}
     i_dark = int(near[int(np.argmin(ls[near]))])
     # The pool peak must be clear of the shadow rect, or the two declarations
     # overlap and the gate measures the same pixels twice.
-    keep = np.abs(xs - xs[i_dark]) >= w
+    keep = (np.abs(xs - xs[i_dark]) >= w) & clear
     if not keep.any():
-        return {"error": "no ground clear of the cast within the span"}
+        return {"error": "no ground clear of the cast (and of the slide's text) within the span"}
     idx = np.where(keep)[0]
     i_lit = int(idx[int(np.argmax(ls[idx]))])
     sx, gx = float(xs[i_dark]), float(xs[i_lit])
-    y = float(base_y)
     shadow = [int(round(sx - w / 2.0)), int(round(y)), w, h]
     ground = [int(round(gx - w / 2.0)), int(round(y)), w, h]
     ls_med, ns = fr.median_L(shadow)
@@ -339,6 +364,8 @@ def propose(fr, base_x, base_y, span=SPAN, rect=(RECT_W, RECT_H),
         "trough_x": round(sx, 1), "peak_x": round(gx, 1),
         "detach_px": round(abs(sx - base_x), 1),
     }
+    if not clear.all():
+        out["text_skipped"] = int((~clear).sum())
     if ls_med is not None and lg_med is not None:
         out["dL"] = round(lg_med - ls_med, 1)
     return out
@@ -383,6 +410,9 @@ def notes(rec):
     n = min(rec.get("px", [99, 99]) or [99, 99])
     if n < 12:
         out.append("a rect this small measures %d feed pixels; qa.py needs 12" % n)
+    if rec.get("text_skipped"):
+        out.append("%d candidate position(s) on this read overlap the slide's own text "
+                   "and were not proposed (a numeral is not lit ground)" % rec["text_skipped"])
     fb = rec.get("object_fallback")
     if fb:
         out.append("axis %s read dL %s, but %d percent of its ground rect is the "
@@ -397,6 +427,29 @@ def notes(rec):
                    "rather than on lit ground. Look at it before declaring it, and "
                    "move --base to the foot itself if the base line crosses the "
                    "object" % round(100 * rec["ground_on_object"]))
+    return out
+
+
+def text_boxes(rep):
+    """{slide number: [design-px line boxes]} from render_report.json's
+    text_nodes, decorative fixtures included (a fixture is type too). A record
+    without line boxes contributes its own box. Missing or unreadable -> {}."""
+    out = {}
+    try:
+        slides = json.loads(Path(rep).read_text()).get("slides", [])
+    except Exception:
+        return out
+    for s in slides:
+        m = re.search(r"slide-(\d+)", str(s.get("file") or s.get("png") or ""))
+        if not m:
+            continue
+        boxes = []
+        for t in s.get("text_nodes") or []:
+            lines = [l for l in (t.get("lines") or []) if isinstance(l, list) and len(l) == 4]
+            if not lines and all(isinstance(t.get(k), (int, float)) for k in "xywh"):
+                lines = [[t["x"], t["y"], t["w"], t["h"]]]
+            boxes += [[float(v) for v in l] for l in lines]
+        out[int(m.group(1))] = boxes
     return out
 
 
@@ -432,12 +485,16 @@ def main():
         except Exception:
             pass
 
+    texts = text_boxes(rep)
+
     def frame(n):
         p = rdir / ("slide-%02d.png" % n)
         if not p.exists():
             print("FAIL: %s missing" % p, file=sys.stderr)
             sys.exit(1)
-        return Frame(p, dw, dh)
+        fr = Frame(p, dw, dh)
+        fr.text_rects = texts.get(n, [])
+        return fr
 
     out = {"design": [dw, dh], "slides": []}
 
@@ -521,7 +578,8 @@ def main():
                         "itself rather than against lit ground"
                         % (round(100 * on_object(fr, rg, sig)), sig["lab"]))
                 rec["notes"] = (notes(rec) + rec.get("structure", [])
-                                + [n for n in notes(best) if "object's own colour" in n])
+                                + [n for n in notes(best) if "object's own colour" in n
+                                   or "slide's own text" in n])
                 out["slides"].append(rec)
     else:
         print("FAIL: give either --slide N --base cx,cy or --verify", file=sys.stderr)

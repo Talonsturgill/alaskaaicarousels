@@ -3547,6 +3547,80 @@
    "verification": "python3 tests/akstipple_box_verify.py: ALL HOLD ([120, 420, 840, 300] FAILs as a library contract with the throw swallowed; the same region as corners and no box are clean). The only box in any committed caller, runs/2026-09-11 '[fx, fy, fx + FW, fy + FH]', is corners.",
    "rollback": "revert the upgrade(2026-10-25) commit, or delete the empty-box block in AKS.field",
    "commit": "14b04fb7"
+  },
+  {
+   "run_date": "2026-11-01",
+   "kind": "fix",
+   "area": "assets",
+   "change": "AKPOST.grade console.errors an 'AK CONTRACT:' message (a qa.py FAIL) when it is called under an identity transform on a backing that is a whole multiple (2x or more) of both declared {w, h} sides, the exact shape that grades only the top-left quarter of the frame; the grade itself runs as before.",
+   "trigger": "No.102 (2026-11-01) slide 01: AKPOST.grade(cx, {w: 1080, h: 1350}) after a transform reset graded the top-left 1080 x 1350 device px of the 2160 x 2700 backing and left a visible quarter-frame seam until the slide set scale(2); every gate passed. Showrunner incident note 4.",
+   "files": [
+    "assets/js/akpost.js",
+    "tests/akpost_grade_scale_verify.py",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "python3 tests/akpost_grade_scale_verify.py: ALL HOLD (identity on 2x with design w/h FAILs as a library contract; scale(2) first, a backing-sized call and a 1x offscreen at its own size are clean; fixture 01's pixels show the seam, top-left mean 103.3 vs bottom-right 80.7). The same test against the pre-change akpost.js: BROKEN, the seam renders and no finding is raised. tests/akpost_verify.mjs, tests/akpost_holdink_verify.py and tests/reuse_census_verify.py hold. render.py + qa.py on examples/demo-deck: 4 slides, 0 fails, verdict WARN as before; on No.102's nine current slides: 0 console or page errors and no grade contract finding on any slide.",
+   "rollback": "revert the upgrade(2026-11-01) commit, or delete quarterGrade() and its call in AKPOST.grade",
+   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+  },
+  {
+   "run_date": "2026-11-01",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "contact_probe.py reads the slide's text line boxes from render_report.json and never proposes a shadow or ground rect that overlaps one (pad 2 design px), on either axis, and says how many candidate positions it skipped.",
+   "trigger": "No.102 (2026-11-01) slide 06: the probe proposed a ground rect at [747, 664, 26, 10] inside the 'ABOUT 2%' readout (ground L* 59.8 against a cast at 9.9, dL 49.9) twice on a text-heavy data slide. Showrunner incident note 3.",
+   "files": [
+    "scripts/contact_probe.py",
+    "tests/contact_probe_verify.py",
+    ".claude/skills/carousel-engine/SKILL.md"
+   ],
+   "verification": "python3 tests/contact_probe_verify.py: HOLDS, cases 1 to 6 unchanged and new case 7 (a bright numeral below a foot: without text boxes the read lands on the numeral, with them the CLI and best_axis propose rects clear of it and name the skip). On No.102's real render, --verify on slide 06 moved the measured ground from [747, 664] (in the numeral) to [747, 626], dL 7.9, and --base 760,596 reports 11 skipped positions; slides 01, 02, 04, 08 and 09 read the same as before.",
+   "rollback": "revert the upgrade(2026-11-01) commit",
+   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+  },
+  {
+   "run_date": "2026-11-01",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "gaswatch_health.py adds a `diagnosis` when the source's own reading is unpublished: late_post when no production collection has started since CINGSA posted it (remedy: dispatch gaswatch.yml on main, wait for Pages, re-audit), collected_after_post when one has and the reading is still missing (remedy: that run's log); it changes no check status and no verdict.",
+   "trigger": "Queue item 2026-09-30 at repeat 17 (escalated), and No.102's wake: CINGSA posted November 1st's reading at 20:53 AKST after the day's last collection that had run, and the first audit FAILed until a manual dispatch. Each of the last eighteen runs re-derived the cause by hand. Showrunner incident note 2. Checker only: the collector, its schedule and the ledgers are untouched.",
+   "files": [
+    "scripts/gaswatch_health.py",
+    "tests/gaswatch_health.py",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "python3 tests/gaswatch_health.py: 10 tests OK, including the new test_late_post_is_named_and_still_fails (every status and the FAIL verdict identical with and without the diagnosis; late_post names the dispatch; a collection after the post gives collected_after_post with that run's URL and no dispatch; a healthy audit carries none; a stale source with a missing day carries none). python3 scripts/gaswatch_collect.py --self-test: clean. The module imports nothing new, so the collector workflow's pre-collection test step needs nothing it lacks.",
+   "rollback": "revert the upgrade(2026-11-01) commit, or delete timing_diagnosis() and its two call sites",
+   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+  },
+  {
+   "run_date": "2026-11-01",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "scripts/topics_beats_check.py checks ledger/topics.json's `beats` against site_build.TOPICS with topic_index's own rule at the Phase 11 append (--date for the run's entry), prints the known slugs and exits 1 on an unknown or empty list, so the defect stops reaching the final site build.",
+   "trigger": "Queue item 2026-10-29 at repeat 1: No.99 wrote federal-policy, models-and-public-numbers and north-slope and site_build raised 'beats must name known beat slugs' after the runs/ copy; No.101 wrote broadband-and-connectivity and federal-policy and caught them by hand.",
+   "files": [
+    "scripts/topics_beats_check.py",
+    "tests/topics_beats_check_verify.py",
+    "prompts/routine_instructions.md"
+   ],
+   "verification": "python3 tests/topics_beats_check_verify.py: ALL HOLD (the committed ledger passes; No.99's and No.101's slugs and an empty list exit 1 naming the entry; an absent beats and known slugs pass; site_build.topic_index refuses exactly the same fixtures; --date confines the check and a date with no entry exits 1).",
+   "rollback": "revert the upgrade(2026-11-01) commit",
+   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
+  },
+  {
+   "run_date": "2026-11-01",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "cron_health.py's fetch of origin/main retries a failed git fetch twice (5 s, then 15 s), re-reading shallowness before each try and printing each retry; a third failure raises exactly as before.",
+   "trigger": "No.102 wake: the first cron_health call died when `git fetch --unshallow` hit a transient TLS reset in the sandbox, and a manual re-run succeeded. Showrunner incident note 1.",
+   "files": [
+    "scripts/cron_health.py",
+    "tests/cron_health.py"
+   ],
+   "verification": "python3 tests/cron_health.py: 15 tests OK, including test_fetch_retries_a_transient_drop_and_stays_bounded (two failures then success returns on the third try with waits [5, 15] and drops --unshallow once the repo reads unshallow; three failures raise CalledProcessError after exactly two waits).",
+   "rollback": "revert the upgrade(2026-11-01) commit",
+   "commit": "upgrade(2026-11-01); SHA recorded by the showrunner's follow-up commit"
   }
  ],
  "scan_log": [
@@ -4081,6 +4155,13 @@
    "searches": "3 searches, 2 fetches (ContentIn's 2026 carousel size guide, LinkedIn's Document Ads specs page), 1 measurement (page sizes, /OCProperties and file size of runs/2026-10-24/carousel.pdf, and carousel.pdf sizes across runs/2026-10-10 to 2026-10-25)",
    "found": "(1) LinkedIn documents only file rules for documents: 100 MB, 300 pages, one page size, flattened layers (https://business.linkedin.com/advertise/ads/sponsored-content/document-ads/specs); it publishes no pixel size, safe zone, type floor or render resolution, and the 2026 guides' 60/32 px type floors and 60 to 80 px margins are authors' conventions (https://contentin.io/blog/linkedin-carousel-size/), already at or under knowledge/CAROUSEL_CRAFT.md's floors. (2) The algorithm posts found (dwell time leads, link penalties disputed) are vendor blogs with no primary data (https://dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now, https://www.oktopost.com/blog/linkedin-carousel-pdf-best-practices/). (3) Measured: the shipped PDF holds one page size and no layers, and has grown from 5.0 MB (October 10th) to 30.4 MB (October 25th) against gate_status's 90 MB FAIL.",
    "outcome": "nothing applied; parked (3), the PDF's growth toward the cap, in FIELD_NOTES 2026-10-25 with an unblock condition (about 60 MB, or a slow or refused upload). The legibility offender is otherwise deferred: the platform publishes nothing new to build a check on, and no legibility defect recurred this week."
+  },
+  {
+   "run_date": "2026-11-01",
+   "focus": "(b) editorial dataviz and still-life craft, narrowed to how a hero object is made to read as a modelled form (edge light, material response) rather than a flat fill. Legal and distinct from the last three logged foci: 2026-10-25 (a) LinkedIn, 2026-10-21 (d) typography, 2026-10-17 (c) procedural art (last (b) 2026-10-16). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: cause b on 5 of 5 runs, 11 frames.",
+   "searches": "6 searches (news-desk 3D hero modelling; canvas bevel and height-map lighting; procedural matcaps; Reuters relief shading; newsroom 'how we made' 3D pieces; stylized rim light and Fresnel), 1 fetch (the TF2 paper, read in full through pdftotext); the other sources were judged from their search abstracts only",
+   "found": "(1) Mitchell, Francke and Eng, Illustrative Rendering in Team Fortress 2, SIGGRAPH 2007 (https://www.cs.princeton.edu/courses/archive/fall07/cos597B/papers/mitchell-team-fortress.pdf): broad low-exponent rim lobes masked by (1 - n.v)^4, a dedicated up-facing rim term, and a half-Lambert (0.5 n.l + 0.5) diffuse through a warp ramp, aimed at reading form independent of the scene's lights. (2) Procedural matcaps from a small canvas into MeshMatcapMaterial (https://dustinpfister.github.io/2023/08/10/threejs-matcap-material) bake one lighting look and ignore the scene's lights, which is wrong for a deck whose key direction is planned per frame. (3) No 2026 news-desk write-up on hero modelling turned up; relief-shading results restate methods the knowledge base already holds (Jenny, Imhof, sky models). (4) Height-to-normal canvas lighting (https://29a.ch/2010/3/24/normal-mapping-with-javascript-and-canvas-tag) is what AKBENCH already does.",
+   "outcome": "nothing applied; parked (1) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-01 frontier scan, focus (b)' as an opt-in AKT rim and wrap term with an unblock condition (a digest naming a three.js largest object matte or flat on two runs, then an A/B on No.98 06 and No.101 07 before a critic)."
   }
  ]
 }

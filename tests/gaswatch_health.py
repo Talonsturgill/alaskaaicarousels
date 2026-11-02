@@ -220,6 +220,46 @@ class HealthTests(unittest.TestCase):
         self.assertIn(gc.CINGSA_URL, report["transient_retries"])
         self.assertNotIn("source reachable", {c["name"] for c in report["checks"]})
 
+    def test_late_post_is_named_and_still_fails(self):
+        """2026-11-01 weekly pass (queue item 2026-09-30, repeat 17): CINGSA
+        posted after the newest collection. The audit names that shape and the
+        dispatch remedy, and changes no status and no verdict."""
+        posted = self.now - timedelta(hours=3)
+        self.source = dict(self.source, inventory_mcf=(self.source.get("inventory_mcf") or 0) + 1000,
+                           source_timestamp_utc=gc.iso_z(posted),
+                           source_timestamp=posted.astimezone(gc.alaska_tz()).strftime("%Y-%m-%dT%H:%M:%S"))
+        self.runs["workflow_runs"][0]["created_at"] = gc.iso_z(posted - timedelta(hours=1))
+        real = health.timing_diagnosis
+        health.timing_diagnosis = lambda *a: None
+        try:
+            bare = self.audit()
+        finally:
+            health.timing_diagnosis = real
+        report = self.audit()
+        status = lambda r: {c["name"]: c["status"] for c in r["checks"]}
+        self.assertEqual(status(report), status(bare), "a diagnosis must not move any status")
+        self.assertEqual(report["verdict"], bare["verdict"])
+        self.assertEqual(report["verdict"], "FAIL")
+        self.assertEqual(report["diagnosis"]["kind"], "late_post")
+        row = next(c for c in report["checks"] if c["name"] == "source reading published")
+        self.assertIn(health.DISPATCH, row["remedy"])
+        self.assertIn("Inspect collector logs", row["remedy"], "the original remedy is kept")
+
+        # a collection that started AFTER the post and still left the page
+        # without the reading is the collector's fault, not the timing
+        self.runs["workflow_runs"].insert(0, {"head_branch": "main", "event": "schedule",
+            "created_at": gc.iso_z(posted + timedelta(minutes=30)), "status": "completed",
+            "conclusion": "success", "html_url": "https://github.com/example/run/2"})
+        report = self.audit()
+        self.assertEqual(report["verdict"], "FAIL")
+        self.assertEqual(report["diagnosis"]["kind"], "collected_after_post")
+        self.assertIn("example/run/2", report["diagnosis"]["remedy"])
+        self.assertNotIn(health.DISPATCH, report["diagnosis"]["remedy"])
+
+        # a healthy audit carries no diagnosis at all
+        self.setUp()
+        self.assertNotIn("diagnosis", self.audit())
+
     def test_daily_gate_requires_live_evidence_and_diagnosis(self):
         with tempfile.TemporaryDirectory() as td:
             run = Path(td) / "2026-09-16"
