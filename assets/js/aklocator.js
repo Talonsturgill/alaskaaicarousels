@@ -30,11 +30,11 @@
 
   function ring(x, y, r) {
     return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="none" stroke="' + GOLD +
-      '" stroke-width="1.6"/>';
+      '" stroke-width="2.4"/>';
   }
   function label(x, y, t, anchor) {
     return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor || "middle") +
-      '" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" ' +
+      '" font-family="JetBrains Mono, monospace" font-size="13" font-weight="500" ' +
       'letter-spacing="0.9" fill="#7F909B">' + t + '</text>';
   }
   function line(x1, y1, x2, y2, live) {
@@ -47,11 +47,11 @@
     s = s || {};
     var o = [], y = 20;
     // source(s)
-    var sx = s.twoSources ? 30 : 14;
+    var sx = s.twoSources ? 36 : 14;
     if (s.twoSources) {
-      o.push('<circle cx="10" cy="' + y + '" r="7" fill="none" stroke="' + ND + '" stroke-width="1.2"/>');
-      o.push('<path d="M5 ' + y + ' q2.5 -4 5 0 t5 0" fill="none" stroke="' + ND + '" stroke-width="1"/>');
-      o.push(line(17, y, sx - 8, y, true));
+      o.push('<circle cx="6" cy="' + y + '" r="6" fill="none" stroke="' + ND + '" stroke-width="1.2"/>');
+      o.push('<path d="M2 ' + y + ' q2 -3.5 4 0 t4 0" fill="none" stroke="' + ND + '" stroke-width="1"/>');
+      o.push(line(12, y, sx - 8, y, true));
     }
     o.push('<circle cx="' + sx + '" cy="' + y + '" r="8" fill="none" stroke="' + ND + '" stroke-width="1.3"/>');
     o.push('<path d="M' + (sx - 5) + ' ' + y + ' q2.5 -4.5 5 0 t5 0" fill="none" stroke="' + ND + '" stroke-width="1.1"/>');
@@ -75,7 +75,7 @@
     o.push(line(bx, y, 196, y, true));
     o.push('<circle cx="204" cy="' + y + '" r="8" fill="none" stroke="' + ND + '" stroke-width="1.3"/>');
     o.push('<circle cx="216" cy="' + y + '" r="8" fill="none" stroke="' + ND + '" stroke-width="1.3"/>');
-    if (s.gold === "xfmr") o.push('<ellipse cx="210" cy="' + y + '" rx="18" ry="12" fill="none" stroke="' + GOLD + '" stroke-width="1.6"/>');
+    if (s.gold === "xfmr") o.push('<ellipse cx="210" cy="' + y + '" rx="18" ry="12" fill="none" stroke="' + GOLD + '" stroke-width="2.4"/>');
     o.push(label(210, 44, "2 MW"));
     // idle: everything past the transformer is phantom
     o.push(line(224, y, 254, y, false));
@@ -102,12 +102,12 @@
     o.push(label(384, 38, "ON-SITE", "start"));
     if (s.genStop) o.push('<line x1="326" y1="27" x2="326" y2="41" stroke="' + ND + '" stroke-width="2.2"/>');
     if (s.tick) {
-      o.push('<line x1="216" y1="44" x2="352" y2="44" stroke="' + GOLD + '" stroke-width="1.2"/>');
-      o.push('<line x1="216" y1="40" x2="216" y2="48" stroke="' + GOLD + '" stroke-width="1.2"/>');
-      o.push('<line x1="352" y1="40" x2="352" y2="48" stroke="' + GOLD + '" stroke-width="1.2"/>');
+      o.push('<line x1="216" y1="52" x2="352" y2="52" stroke="' + GOLD + '" stroke-width="1.2"/>');
+      o.push('<line x1="216" y1="48" x2="216" y2="56" stroke="' + GOLD + '" stroke-width="1.2"/>');
+      o.push('<line x1="352" y1="48" x2="352" y2="56" stroke="' + GOLD + '" stroke-width="1.2"/>');
     }
     var op = s.dim != null ? s.dim : 1;
-    return '<svg xmlns="http://www.w3.org/2000/svg" width="460" height="48" viewBox="0 0 460 48" ' +
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="48" viewBox="0 0 500 48" ' +
       'style="overflow:visible;opacity:' + op + '"><g transform="translate(10,0)">' + o.join("") + '</g></svg>';
   }
 
