@@ -144,7 +144,7 @@
       var ll = P.ll(x0 + x + 0.5, y0 + y + 0.5); f[y * W + x] = samp(ll[0], ll[1]);
     }
     var cs = d3.contours().size([W, H]).thresholds([lvl])(Array.from(f));
-    var rings = [], minPts = o.minPts || 24, passes = o.passes != null ? o.passes : 2;
+    var rings = [], minPts = o.minPts || 40, passes = o.passes != null ? o.passes : 2;
     cs[0].coordinates.forEach(function (poly) { poly.forEach(function (ring) {
       if (ring.length < minPts) return;
       var r = ring.map(function (q) { return [q[0] + x0, q[1] + y0]; });

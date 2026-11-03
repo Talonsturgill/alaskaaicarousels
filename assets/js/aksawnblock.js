@@ -37,7 +37,9 @@ function paintSection(seabed, o) {
   const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
   const bands = []; let yy = -base;
   const tones = ['#3A3B35', '#4D4538', '#3F3B33', '#6A5D4B', '#36352F', '#584D3E', '#4A453B', '#7A6C57'];
-  while (yy < 3) { const h = 0.12 + rnd() * 0.42; bands.push([yy, yy + h, tones[Math.floor(rnd() * tones.length)], rnd() * 6.28]); yy += h; }
+  /* bed thickness over a 6:1 range: runs of thin laminae broken by massive units */
+  while (yy < 3) { const massive = rnd() < 0.18, h = massive ? 0.9 + rnd() * 0.9 : 0.08 + rnd() * 0.22;
+    bands.push([yy, yy + h, tones[Math.floor(rnd() * tones.length)], rnd() * 6.28]); yy += h; }
   const warp = (s, ph) => 0.05 * Math.sin(s * 23 + ph) + 0.03 * Math.sin(s * 71 + ph * 1.7) + 0.015 * Math.sin(s * 191 + ph * 0.3);
   for (let x = 0; x < W; x++) {
     const s = x / (W - 1), q = Math.min(n - 1, Math.round(s * (n - 1)));
@@ -105,6 +107,21 @@ function poolTexture(THREE) {
 export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
   const B = BLOCK;
   const dem = await AKBLOCK.loadDEM(assets + '/geo/ak-cookinlet-dem');
+  /* land only: a 3x3 median then a 3x3 mean, so 12x exaggeration prints no single-cell pyramids */
+  (function smoothLand() {
+    const C = dem.meta.cols, Rr = dem.meta.rows, z = dem.z, src = Float32Array.from(z), w = new Float32Array(9);
+    const med = new Float32Array(z.length);
+    for (let j = 1; j < Rr - 1; j++) for (let i = 1; i < C - 1; i++) {
+      const k = j * C + i; if (!(src[k] > 0.5)) { med[k] = src[k]; continue; }
+      let n = 0; for (let b = -1; b <= 1; b++) for (let a = -1; a <= 1; a++) w[n++] = src[k + b * C + a];
+      med[k] = Array.from(w).sort((p, q) => p - q)[4];
+    }
+    for (let j = 1; j < Rr - 1; j++) for (let i = 1; i < C - 1; i++) {
+      const k = j * C + i; if (!(src[k] > 0.5)) continue;
+      let s = 0, n = 0; for (let b = -1; b <= 1; b++) for (let a = -1; a <= 1; a++) { const v = med[k + b * C + a]; if (v > 0.5) { s += v; n++; } }
+      z[k] = Math.max(0.6, s / n);
+    }
+  })();
   /* the seabed profile along the cut, before building, to paint the wall */
   const F = AKBLOCK.frame(B.origin, B.bearing), S = AKBLOCK.sampler(dem);
   const seabed = [];
@@ -116,6 +133,8 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
   const secTex = new THREE.CanvasTexture(secCanvas); secTex.colorSpace = THREE.SRGBColorSpace;
   secTex.anisotropy = 8;
   const sectionMaterial = new THREE.MeshStandardMaterial({ map: secTex, roughness: 0.86, metalness: 0 });
+  /* a far camera sees the wall small and dark: let the painted albedo carry itself (its key falloff is painted in) */
+  if (cam.wallGlow) { sectionMaterial.emissiveMap = secTex; sectionMaterial.emissive = new THREE.Color(0xffffff); sectionMaterial.emissiveIntensity = cam.wallGlow; }
   const seaMaterial = new THREE.MeshPhysicalMaterial({ color: 0x4f5149, roughness: 0.34, metalness: 0,
     clearcoat: 0.55, clearcoatRoughness: 0.22, envMapIntensity: 0.9 });
   /* land ramp in the deck palette: mudflat at the shore, spruce, then snow */
@@ -164,7 +183,7 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
     new THREE.MeshStandardMaterial({ color: 0x060d13, roughness: 0.95, metalness: 0 }));
   table.rotation.x = -Math.PI / 2;
   table.position.set(cx0, -B.base - 0.03, -(B.v[0] + B.v[1]) / 2);
-  table.receiveShadow = true; R.scene.add(table);
+  table.receiveShadow = false; R.scene.add(table);   /* the key's cast falls behind the block as a hard map polygon; the painted seam is the contact */
   /* the lit pool under the block's foot, wider than the block so its foot sits
    * on a brightness transition and the cast has light to subtract from */
   const pool = new THREE.Mesh(new THREE.PlaneGeometry(B.u[1] - B.u[0] + 30, B.v[1] - B.v[0] + 22),
@@ -172,7 +191,7 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
   pool.rotation.x = -Math.PI / 2;
   /* centred toward the near foot, so the brightest table sits where the wall meets it */
   pool.position.set(cx0, -B.base + 0.02, -(B.v[0] + B.v[1]) / 2 + 14);
-  pool.receiveShadow = true; R.scene.add(pool);
+  pool.receiveShadow = false; R.scene.add(pool);
   /* the occlusion seam: the key sits in front of the section wall, so its cast
    * falls behind the block and the near foot needs its own attached darkening,
    * strongest at the foot and gone within about 3 km of table */
