@@ -64,8 +64,9 @@ function paintSection(seabed, o) {
       const ySurf = Y(o.seaLevel);
       const r0 = row(ySurf), r1 = row(top);
       const grd = g.createLinearGradient(0, r0, 0, r1);
-      grd.addColorStop(0, '#8E8A76'); grd.addColorStop(0.08, '#6F7064');
-      grd.addColorStop(0.5, '#4C5550'); grd.addColorStop(1, '#2B3330');
+      /* glacial flour: a moonlit skin, then exponential extinction toward the seabed */
+      grd.addColorStop(0, '#B6B098'); grd.addColorStop(0.03, '#8E8A76'); grd.addColorStop(0.12, '#77786A');
+      grd.addColorStop(0.35, '#566058'); grd.addColorStop(0.7, '#3A4440'); grd.addColorStop(1, '#262E2C');
       g.fillStyle = grd; g.fillRect(x, r0, 1, r1 - r0);
     }
   }
@@ -82,13 +83,14 @@ function paintSection(seabed, o) {
   g.restore();
   /* suspended flour motes in the water, a few hundred, deterministic */
   seed = 103077;
-  for (let i = 0; i < 2600; i++) {
+  for (let i = 0; i < 6000; i++) {
     const x = rnd() * W, s = x / (W - 1), q = Math.min(n - 1, Math.round(s * (n - 1))), m = seabed[q][1];
     if (m > 0.5) continue;
     const yS = Y(o.seaLevel), yB = Y(Math.min(m, 0));
     const y = yB + (yS - yB) * Math.pow(rnd(), 0.7);
-    g.fillStyle = 'rgba(189,182,160,' + (0.10 + rnd() * 0.25).toFixed(3) + ')';
-    g.fillRect(x, row(y), 2 + rnd() * 2, 2);
+    const up = (y - yB) / Math.max(1e-6, yS - yB);   /* motes thicker and brighter near the lit surface */
+    g.fillStyle = 'rgba(196,190,166,' + (0.12 + up * 0.22 + rnd() * 0.14).toFixed(2) + ')';
+    const ms = 2 + rnd() * 3; g.fillRect(x, row(y), ms, ms * 0.8);
   }
   return c;
 }
