@@ -169,9 +169,9 @@
       "geography": "EIA reports Alaska statewide. Residential and commercial gas is overwhelmingly Enstar in Southcentral and gas fired power is overwhelmingly Railbelt, so statewide heating and power deliveries stand in for the region. Industrial load is excluded, because Kenai plant demand does not track the weather.",
       "refit_by": "scripts/gaswatch_fit.py, on the monthly EIA workflow"
     },
-    "hdd_history_days": 4673,
+    "hdd_history_days": 4689,
     "hdd_history_start": "2014-01-01",
-    "hdd_history_end": "2026-10-17"
+    "hdd_history_end": "2026-11-02"
   },
   "model_history": [
     {
@@ -215,14 +215,15 @@
     }
   ],
   "crosscheck": {
-    "eia_latest_month": "202607",
-    "eia_months_checked": 131,
-    "eia_model_ratio": 1.0,
-    "eia_model_gap_pct": 0,
-    "eia_model_runs": "high",
-    "eia_ak_working_gas_bcf": 35.0,
+    "eia_latest_month": "202608",
+    "eia_months_checked": 132,
+    "eia_model_ratio": 0.99,
+    "eia_model_gap_pct": 1,
+    "eia_model_runs": "low",
+    "eia_ak_working_gas_bcf": 37.5,
     "eia_ak_capacity_bcf": 69.9,
-    "eia_storage_fields": 5
+    "eia_storage_fields": 5,
+    "eia_non_cingsa_storage_bcf": 30.0
   },
   "crosscheck_source": {
     "publisher": "US Energy Information Administration",
