@@ -3730,6 +3730,46 @@
         "incised slate with groove walls lit straight off the blurred stroke mask"
       ],
       "new_techniques_logged": []
+    },
+    {
+      "run_date": "2026-11-02",
+      "carousel_no": 103,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE SAWN INLET AND ITS SHEETS, upper Cook Inlet sawn along the CIPLink corridor as a physiographic block with the cable on its section wall (01, 09), framed by chart sheets of the same water: streamline white-line lay (02), a blue-noise stipple cable section (03), a per-pixel hillshade plan (04), GPU terrain of the Kenai Mountains (05), a specular glitter breather (06), waterlining with 262 soundings (07), a cabinet-oblique calendar slab on drafting film (08)",
+      "atmosphere": "NEW: CLEAR NOVEMBER MOON OVER GLACIAL FLOUR, one key from the upper left (az 315, el 28), flour-toned water with depth extinction, sodium lights on the far shore of the breather",
+      "depth_technique": "akthree PBR block with differential exaggeration (depth 200x, land 12x), painted lit-to-lee albedo, flour water column and a lit plinth pool (01, 09); akthree DEM terrain with exp2 fog and a raking key (05); per-pixel cubic hillshade (02, 04, 07); stipple section with buried trench (03); cabinet oblique with two-part casts (08)",
+      "line_voice": "drafting: mono labels on knockout plates, cased steel for built lines, dashed magenta for the proposed cable",
+      "continuity_device": "motif:THE CORRIDOR, CIPLink's dashed magenta line changing state per frame (seabed dash, plan line, end-on cable pair, stopped at landfall, absent, faint, lid dash, section dash)",
+      "continuity_devices": [
+        "the status ink law on every frame (magenta proposed, forget-me-not DeepGreen, gold written record, steel built)",
+        "the corridor motif",
+        "edge tease 04 to 05 on the Soldotna to Sterling line",
+        "one moon key from the upper left",
+        "a measured tonal arc peaking on the drafting-film calendar"
+      ],
+      "hook_archetype": "NEW: THE PARTNER, AS DRAWN",
+      "palette_family": "NEW: GLACIAL FLOUR, CHART MAGENTA AND MOONLIT SNOW (night #050B10, flour #8E8A76 to #262E2C, strata browns, chart magenta #D0458A dashed, forget-me-not #6EA5FF for DeepGreen, gold #FFC72C for the written record, steel #8D99A3 for built lines)",
+      "type_pairing": "Fraunces (opsz 144, SOFT 0, WONK 0) + Bricolage Grotesque + JetBrains Mono",
+      "narrative_structure": "NEW: CLAIM AGAINST RECORD, THEN SYSTEM, THEN CALENDAR: claim (01, 02), what the partner physically is (03 to 05), who spoke (06, 07), when it could exist (08), the ask (09)",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 5
+      },
+      "techniques": [
+        "akthree sawn DEM block with separate sea exaggeration (akblock veSea) and a painted section albedo with variable bed thickness, lit-to-lee falloff and occlusion into the foot",
+        "flour water column with exponential extinction and a surface-weighted mote field",
+        "streamline white-line lay along a channel-axis direction field with a turning limit, so no whorls",
+        "blue-noise stipple section with asymmetric lit-stoss ripples, a backfilled trapezoid trench, dipping laminae and a gravel lens",
+        "DEM-contoured, Chaikin-smoothed coast rings with the pen lifted along the window frame (SAWN.coastRings)",
+        "kettle lakes contoured from a blurred DEM flatness field, filled as sky mirrors with lit north rims",
+        "flour water toned per pixel from DEM depth with a moon sheen",
+        "akthree Kenai terrain with a raking north-northwest key and raycast-occluded cased steel lines",
+        "soft-cored slanted specular facets in light columns that grow toward the lens",
+        "waterlining offset from the coast with value falling by depth, 262 Poisson soundings asserted as points",
+        "cabinet-oblique calendar slab on drafting film with status-coded segments and a measured month axis"
+      ],
+      "new_techniques_logged": []
     }
   ]
 }

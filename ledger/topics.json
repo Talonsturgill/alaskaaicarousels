@@ -4174,6 +4174,59 @@
       ],
       "claims": 56,
       "note": "First Petersburg deck and first deck on a Southeast Alaska data center ordinance. Window broadened to 21 days (thin week). KFSK is the only outlet; the Greensparc deal didn't finalize. An update needs a new record: the drafted moratorium text, the public hearings, a vote, or the utility's own large-load rules."
+    },
+    {
+      "run_date": "2026-11-02",
+      "carousel_no": 103,
+      "topic": "UPDATE of No.93. DeepGreen's FERC preliminary permit application (P-15423, a 100 MW tidal powered subsea AI data center off Nikiski) named AEA's Cook Inlet PowerLink (CIPLink) its 'Strategic Partner'; DeepGreen's own October 27th answer concedes it has not entered into and does not claim any formal binding partnership, co-sponsorship or executed interconnection agreement with AEA, and calls its CIPLink references 'conceptual engineering alignments'. AEA's October 15th RFI 27025 shows the partner is a request for information: prequalification only, not an invitation to bid, a 100 MW base pole with a second pole as an additive option, about 40 miles of subsea cable Beluga to Nikiski, the southern converter at Soldotna about 28 miles by land from the landfall, procurement expected mid-2027, award end of 2027, service targeted December 2031, DOE grant deadline August 31st, 2032; AEA lists $413M estimated, $206.5M DOE grant, $62.5M secured, $142.5M still required. The comment window closed November 2nd with 262 filings (134 by October 22nd, 72 on the final day), seven movants and no competing application. Mayor Micciche: 'in the dark'.",
+      "angle": "The claim faces the record: the 'Strategic Partner' drawn as what it physically is today, an unbought cable on AEA's own calendar.",
+      "entities": [
+        "DeepGreen Cook Inlet SPV LLC",
+        "Alaska Energy Authority",
+        "CIPLink",
+        "Cook Inlet PowerLink",
+        "FERC",
+        "Kenai Peninsula Borough",
+        "Peter Micciche",
+        "Cook Inletkeeper",
+        "City of Kenai",
+        "Center for Biological Diversity",
+        "Soldotna",
+        "Nikiski",
+        "Beluga",
+        "Sterling",
+        "Quartz Creek",
+        "US Department of Energy",
+        "GRIP"
+      ],
+      "keywords": [
+        "P-15423",
+        "preliminary permit",
+        "subsea data center",
+        "Strategic Partner",
+        "conceptual engineering alignments",
+        "RFI 27025",
+        "HVDC submarine cable",
+        "prequalification",
+        "converter station",
+        "single point of failure",
+        "comment window closed",
+        "motion to intervene",
+        "Railbelt transmission"
+      ],
+      "headline": "Its \"Strategic Partner\" is a cable still on paper.",
+      "sources_lead": [
+        "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+        "https://www.aideaaeaprocurement.org/Home/File/10618",
+        "https://elibrary.ferc.gov/eLibrary/search?docketNumber=P-15423"
+      ],
+      "beats": [
+        "data-centers",
+        "power-and-the-grid",
+        "land-and-permitting"
+      ],
+      "claims": 76,
+      "note": "Third DeepGreen deck (No.93 before it). The material new record: DeepGreen's October 27th answer conceding no partnership, AEA's October 15th RFI, and the window's close. An update needs another new record: a Commission order on the permit, the December 15th RFI responses or a procurement award, or a filing from DeepGreen naming a real interconnection path."
     }
   ]
 }

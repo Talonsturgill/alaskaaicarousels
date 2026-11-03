@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-02/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 21872369,
+  "pdf_mb": 21.87,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-02/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-02/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Its \"Strategic Partner\" is a cable still on paper",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "dc919c025cfa8634c09ea6e541cee2cffaf2a53ef83f46fd4b227208bf0864c0",
+        "bytes": 3202482
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "43d1f11770b8f33b3368eef37c0b7aff9109673e47819fa27037ca94c39bcf01",
+        "bytes": 3887320
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "738e7e7863a2b1b9b1e2d45d3708707698237d217e8f2a70b9fbf9fa620c8c9c",
+        "bytes": 3138134
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "bd4bef0b2239f1cf7fac72da3dda3a9ccda67b0a6c4810c17de04593a2f295ce",
+        "bytes": 3619163
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "97e0f9c68a866f06a0744c55ded35e07fc1d33ac197edf94c847bc737a0679f5",
+        "bytes": 3423157
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "0dfd5c850a267f9922c4b4d2f152c25cad693c62792cb754be61b5f584a0beda",
+        "bytes": 2365948
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "d415058f5bc310a4453f045591bfd8cb1bd6c94a464f9434b501e4637b1da302",
+        "bytes": 3946952
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "0caf05131abb5d7e79ad55ee190a8ee561b9dacf2e7632219928987a8a3dc81d",
+        "bytes": 4729689
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "ebd38f5ec6cf39570922322ceff6c37dabbe36d04c57fa059dd0309918838de4",
+        "bytes": 2342301
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "8157cb116760cb97b322e6e733c2cea58122d498c8dbf0ce95d192a5f2c95eb4",
+        "bytes": 7152
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "41aa961d3b629a861d8db5663d3c99df682a4519ddbb7f617fc30f58f90e5d66",
+        "bytes": 13526
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "736a07e341f92d2dcf2e5c39568476907eefcbdfad724f289927c3f86c281d01",
+        "bytes": 17028
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "8d37588ca30e391833a4ffb827d008f844249f950c75e9e362bfe57b474a24ee",
+        "bytes": 15345
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "186bcf9b859160678772aea0aa82397cb6fa0cf4549e06d8b582184c474cf403",
+        "bytes": 10203
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "1c7a42dfa526387196ae157843d9f3bd185a548a25cd625972eaed8fca408044",
+        "bytes": 8032
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "0bc3de26fb2aff180002cf0912747ec6fe337f7443080788f4fd68319f499448",
+        "bytes": 11432
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "21fa8f017f4c1446389d02542ae5b04247108e5e7e53e6660ce9a1041e10b293",
+        "bytes": 15439
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "3d0639f6e4f1dde7795b78ab8b5a4dc1546364f0ef8f1c23112e1bb4b989e7e6",
+        "bytes": 4400
+      }
+    ]
+  }
+}

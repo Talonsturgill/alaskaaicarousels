@@ -1,0 +1,119 @@
+{
+  "run_date": "2026-11-02",
+  "carousel_no": 103,
+  "effort": "high",
+  "date_note": "Anchorage date at wake (21:04 AKST Nov 2nd); UTC already Nov 3rd. runs/2026-11-02 did not exist; run_guard CLEAR for both dates.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/plan.md"
+      ],
+      "note": "run_guard CLEAR; bootstrap ok after pinning python playwright to 1.63.0"
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "one search, nothing new; FIELD_NOTES untouched"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/scout_merge.md"
+      ],
+      "note": "six scouts, all thin (election eve); showrunner read the CIPLink RFI, FERC eLibrary census and DeepGreen's Oct 27th answer directly"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/claims.json"
+      ],
+      "note": "68 claims, 60 primary, 9 killed; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "7 worklist items refreshed (budget raised to 7 to cover the deferred FNSB item); FCC USF and DeepGreen moved to pending-decision as their windows closed; watch.json failed=[]; bills unchanged; 0 hearings; ask payload headroom 9,888 bytes; mobile_docket_map and docket_ask PASS"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/gaswatch_health.json",
+        "out/2026-11-02/cron_health.json"
+      ],
+      "note": "GAS WATCH LIVE PASS; CRON HEALTH PASS 7 workflows; SITE SIGN-OFF PASS 165 pages 18 checks; gas watch page check PASS"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/selection.md"
+      ],
+      "note": "UPDATE of No.93; dedupe LIKELY DUPLICATE read in full and reframed"
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-02/storyboard.md"
+      ],
+      "note": "lenses cartographer, systems-illustrator, historian-of-the-future; synthesis recorded in selection.md; dossier_check PASS 9/9"
+    },
+    "copy": "pending",
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "slides/",
+        "render/",
+        "storyboard.md"
+      ],
+      "note": "qa.py exit 0 (4 justified warns), bespoke 0.114, contacts measured on 5 frames, slide 05 rebuilt as akthree terrain"
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "critic/round1.md"
+      ],
+      "note": "4_pixel_rounds,qa_exit_0"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "flow_review.json"
+      ],
+      "note": "round_5_applied"
+    },
+    "assemble": "pending",
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "score_report.json"
+      ],
+      "note": "8.49_vs_7.7_ship_craft_floor_capped"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-02"
+      ],
+      "note": "artifacts copied, webp, site built 2026-11-02, gates 0 FAIL"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "final_assembly": {
+      "status": "done",
+      "artifacts": [
+        "final/assemble_report.json"
+      ],
+      "note": "vector_9_slides_21.87MB"
+    }
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 167 pages, 18 checks (re-run on the shipped build)",
+    "gaswatch_live": "PASS, checked 2026-11-03T06:19:46Z, last verified 2026-11-02",
+    "gaswatch_pagecheck": "PASS",
+    "cron_health": "PASS, 7 scheduled workflows audited at 2026-11-03T06:19:29Z",
+    "site_fixes": "none needed"
+  }
+}

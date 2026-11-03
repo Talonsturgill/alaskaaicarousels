@@ -3678,10 +3678,10 @@
       "id": "deepgreen-cook-inlet-subsea-data-center",
       "title": "DeepGreen's underwater data center in Cook Inlet",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Federal Energy Regulatory Commission",
-      "public_access": "open",
-      "access_note": "The comment room is open. FERC accepted DeepGreen Cook Inlet SPV, LLC's preliminary permit application for filing and published notice in the Federal Register on September 4th, 2026, opening the record on Project No. P-15423-000. Comments, motions to intervene, competing applications and notices of intent to file competing applications are due by 5:00 p.m. Eastern Time on November 2nd, 2026, which is 1:00 p.m. Alaska time. Filing runs through FERC's eFiling system and the docket is readable through eLibrary. A preliminary permit grants study and site priority rather than authority to build, so what is open here is the record on whether the applicant gets up to four years of priority to study the site.",
+      "public_access": "closed",
+      "access_note": "The comment room has closed. Comments, motions to intervene and competing applications on Project No. P-15423-000 were due by 5:00 p.m. Eastern Time on November 2nd, 2026, which was 1:00 p.m. Alaska time. FERC now decides whether to grant DeepGreen Cook Inlet SPV, LLC up to four years of study and site priority. A preliminary permit is not authority to build, and any license application would open a new record.",
       "summary": "DeepGreen Cook Inlet SPV LLC, a Delaware company whose parent formed in January 2026, applied to FERC in February for a preliminary permit over an initial operational envelope of 1,650 acres of Cook Inlet seabed west of Nikiski, proposing a 100 megawatt data center of 66 hives of AI servers powered and cooled by approximately 330 to 350 tidal turbines in water 45 to 166 feet deep. A preliminary permit authorizes study rather than construction, for up to four years, and FERC's Northwest branch found the application incomplete in a June 18th letter.",
       "key_dates": [
         {
@@ -3855,6 +3855,11 @@
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261029-5224",
           "outlet": "FERC eLibrary, Oceana comments, P-15423",
           "date": "2026-10-29"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+          "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
+          "date": "2026-10-27"
         }
       ],
       "history": [
@@ -3989,10 +3994,18 @@
         {
           "date": "2026-10-31",
           "note": "The commission's eLibrary docket sheet for P-15423 could not be read by the fetch today. Comments, motions to intervene and competing applications remain due November 2nd as published in the commission's notice."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The window for comments, motions to intervene and competing applications on Project No. P-15423 closed at 5:00 p.m. Eastern Time today, November 2nd, as published in the commission's notice. The eLibrary docket sheet could not be read by the fetch today, so the final count of filings is not confirmed here. The commission now decides whether to issue the preliminary permit, with no date announced."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The commission's eLibrary record for P-15423, read tonight, holds 262 filings dated on or before November 2nd, up from 134 on October 22nd, with 72 filed on the closing day. Seven parties moved to intervene, the newest Cook Inletkeeper on October 26th, and no competing application was filed. DeepGreen's October 27th answer says it holds no binding partnership or executed interconnection agreement with AEA and calls its Cook Inlet PowerLink references conceptual engineering alignments."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-10-31"
+      "last_updated": "2026-11-02"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -4123,7 +4136,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-08-25",
@@ -4252,6 +4265,10 @@
         {
           "date": "2026-10-31",
           "note": "The Assembly clerk's pages, read today, do not yet carry an agenda for the November 4th regular meeting. Debate on AO 2026-108(S) remains scheduled to resume there, and no vote has been recorded."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "No reporting or municipal notice published since the Anchorage Daily News account of October 26th shows a change. Debate on AO 2026-108 remains set to resume at the Assembly's November 4th regular meeting, and no vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4261,10 +4278,10 @@
       "id": "fcc-usf-ai-administration",
       "title": "The FCC asks whether AI should help run the Universal Service Fund",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Federal Communications Commission",
-      "public_access": "open",
-      "access_note": "Anyone may file. Initial comments closed on September 30th, and reply comments are due on or before October 30th in WC Docket No. 26-173, through the Commission's electronic filing system under 47 CFR 1.415 and 1.419. The notice gives Alaska no separate deadline and no separate route, so an Alaska clinic, school district, library or carrier files on the same clock as everyone else.",
+      "public_access": "closed",
+      "access_note": "The comment room has closed. Initial comments closed on September 30th and reply comments on October 30th in WC Docket No. 26-173. The Commission now weighs the record, and an Alaska clinic, school district, library or carrier that did not file reaches the decision only through the delegation or an ex parte meeting under the Commission's rules.",
       "summary": "The FCC published a notice on August 31st, 2026 seeking comment on how the Universal Service Fund is administered, and nine of its sentences name artificial intelligence. It asks whether AI tools used to review applications, audits and appeal review processes would reduce delays while maintaining accurate results, and whether the fund's administrator should expand use of AI in document review for audits and program compliance. One paragraph poses eight consecutive questions about AI. The Commission is asking rather than proposing, and every AI sentence in the notice is phrased as a question. The same notice seeks comment on cutting the administrator's board from 20 members to 13. Alaska is not named anywhere in it. Alaska's stake is in a companion notice published the same day, WC Docket No. 17-310, which reports that only 34 of 340 approved Telecom Program requests in Alaska in funding year 2025 relied on the Commission's preferred Methods 1 or 2, so the great majority of Alaska's rural health connectivity requests are justified the longer way. That is the paperwork an automated reviewer would read.",
       "key_dates": [
         {
@@ -4306,7 +4323,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-10-30",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-08-31",
@@ -4419,6 +4436,10 @@
         {
           "date": "2026-10-30",
           "note": "Searched the Federal Register today for any document citing WC Docket No. 26-173 published since October 20th and found none, so no extension has been published and reply comments are due today, October 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "Reply comments in WC Docket No. 26-173 closed on October 30th. A Federal Register search today for any document citing the docket since October 20th returned none, so no extension or further notice has been published. The Commission now weighs the record, and no date for an order has been announced."
         }
       ]
     },
@@ -4525,7 +4546,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-10-29",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-09-01",
@@ -4610,6 +4631,10 @@
         {
           "date": "2026-10-29",
           "note": "The borough's meeting calendar for October 26th through November 9th lists no regular Assembly meeting. The next Assembly session is a Committee of the Whole work session on November 5th, and the Legislature that would act on the request convenes January 19th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The borough's meeting calendar for November 1st through 20th lists a Committee of the Whole work session on November 5th and the next regular Assembly meeting on November 12th, and no event title on it names data centers or the moratorium request. The Legislature that would act on the state half convenes January 19th. Checked and unchanged."
         }
       ]
     },
@@ -4925,7 +4950,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-01",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-09-13",
@@ -4990,6 +5015,10 @@
         {
           "date": "2026-11-01",
           "note": "GovInfo's record today still shows only the House reported text, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The GovInfo collection page for the bill could not be read today, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th. Checked and unchanged."
         }
       ]
     },
@@ -5582,7 +5611,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-09-17",
@@ -5643,6 +5672,10 @@
         {
           "date": "2026-10-31",
           "note": "The Board of Regents pages returned a server error again today, so the November agenda has not been checked. The November 5th and 6th meeting in Fairbanks and the November 2nd testimony hour stand as last published."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The Board of Regents pages returned a server error again today, so the November agenda has not been checked. The public testimony hour on November 2nd and the November 5th and 6th meeting in Fairbanks stand as last published."
         }
       ]
     },
@@ -5966,7 +5999,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-02",
       "history": [
         {
           "date": "2026-10-28",
@@ -5983,6 +6016,10 @@
         {
           "date": "2026-10-31",
           "note": "AIDEA's board schedule, read today, lists the November 4th meeting in Anchorage with its agenda posted and the December 4th meeting with no agenda yet. The only fiber item on the page is Resolution G26-11 under October 21st. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "AIDEA's board meeting schedule, read today, lists the November 4th meeting at 813 West Northern Lights Boulevard in Anchorage with its agenda posted and the December 4th meeting with no agenda yet. Neither entry mentions Northstar Fiber Development LLC. Checked and unchanged."
         }
       ]
     },
@@ -6072,6 +6109,88 @@
         {
           "date": "2026-10-31",
           "note": "Added. Read today against the FCC's order DA 26-1124, released October 20th, including its conditions in Appendix A. Broadband Breakfast reported GCI's statement on October 26th that the approval is an important step to completing the transaction, which has not yet closed."
+        }
+      ]
+    },
+    {
+      "id": "aea-ciplink-submarine-cable-rfi",
+      "title": "AEA shops for the cable under Cook Inlet",
+      "kind": "procurement",
+      "status": "pending-decision",
+      "decider": "Alaska Energy Authority",
+      "public_access": "indirect",
+      "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Responses are due 2:00 p.m. Alaska time December 15th. The public reaches the decision through AEA's board meetings and the project's later environmental review, expected to finish in early 2029.",
+      "summary": "The Alaska Energy Authority is asking submarine cable makers and installers to prequalify for the Cook Inlet PowerLink, a direct current link between Beluga and Nikiski that AEA says would remove the single point of failure between the Kenai Peninsula and Anchorage. The base bid is a 100 MW cable, procurement is expected about June 2027 and service in December 2031. AEA lists $142.5 million of a $413 million cost as still required. DeepGreen, an AI data center applicant at FERC, named the line its strategic partner and later said it holds no agreement with AEA.",
+      "key_dates": [
+        {
+          "date": "2026-10-15",
+          "label": "Prequalification and request for information 27025 released",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Pre-response conference for cable makers and installers, 10:30 a.m. Alaska time",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-15",
+          "label": "Responses due, 2:00 p.m. Alaska time",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-06-01",
+          "label": "Competitive cable procurement expected to begin, about June 2027 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2031-12-01",
+          "label": "Targeted in-service date for the whole link, December 2031 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2032-08-31",
+          "label": "Federal grant deadline for full completion",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Cook Inlet, Beluga to Nikiski",
+        "lat": 60.93,
+        "lon": -151.17
+      },
+      "sources": [
+        {
+          "url": "https://www.aideaaeaprocurement.org/Home/File/10618",
+          "outlet": "Alaska Energy Authority, PQ and RFI 27025",
+          "date": "2026-10-15"
+        },
+        {
+          "url": "https://www.aideaaeaprocurement.org/",
+          "outlet": "AIDEA and AEA procurement portal",
+          "date": "2026-10-15"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/CIPLink",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/10/25/utilities/cook-inlet-transmission-line-project-seeks-rfis/50465.html",
+          "outlet": "Petroleum News",
+          "date": "2026-10-25"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+          "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
+          "date": "2026-10-27"
+        }
+      ],
+      "first_seen": "2026-11-02",
+      "last_updated": "2026-11-02",
+      "history": [
+        {
+          "date": "2026-11-02",
+          "note": "Tracked. Read AEA's prequalification and request for information 27025, released October 15th, and the project page. The base bid is a 100 MW monopole with a second 100 MW pole as an option, about 40 miles of cable landfall to landfall, service targeted for December 2031, and the federal grant requires completion by August 31st, 2032. The page lists $413 million estimated and $142.5 million still required."
         }
       ]
     }

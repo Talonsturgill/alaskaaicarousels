@@ -1,0 +1,215 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the sawn block near foot on the lit plinth': shadow L* 6.1 vs ground L* 27.2, dL 21.0 at 432w"
+      ],
+      "leaders": [
+        "leader 'beluga shore at the cut' lands 0.0px from its target",
+        "leader 'nikiski shore at the cut' lands 0.0px from its target",
+        "leader 'beluga shore at the cut' meets its label 7.9px away",
+        "leader 'nikiski shore at the cut' meets its label 8.2px away",
+        "leader 'beluga shore at the cut' is drawn 73 px at 61 degrees, inside the pointer band",
+        "leader 'nikiski shore at the cut' is drawn 72 px at 56 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Its \"Strategic Partner\"is a cable still on p' fits 2/2 lines at 109px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'beluga' lands 0.0px from its target",
+        "leader 'nikiski' lands 0.0px from its target",
+        "leader 'cip' lands 0.0px from its target",
+        "leader 'land' lands 0.0px from its target",
+        "leader 'beluga' meets its label 3.9px away",
+        "leader 'nikiski' meets its label 4.6px away",
+        "leader 'cip' meets its label 3.8px away",
+        "leader 'land' meets its label 4.4px away",
+        "leader 'beluga' is drawn 65 px at 45 degrees, inside the pointer band",
+        "leader 'nikiski' is drawn 78 px at 40 degrees, inside the pointer band",
+        "leader 'cip' is drawn 50 px at 85 degrees, inside the pointer band",
+        "leader 'land' is drawn 50 px at 54 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'In February, a \"Strategic Partner.\"Now, conc' fits 2/2 lines at 74.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the cable pair on the trench floor': shadow L* 25.6 vs ground L* 35.2, dL 9.6 at 432w"
+      ],
+      "leaders": [
+        "leader 'fib' lands 0.0px from its target",
+        "leader 'kv' lands 0.0px from its target",
+        "leader 'mm' lands 0.0px from its target",
+        "leader 'pole' lands 0.0px from its target",
+        "leader 'cover' lands 0.0px from its target",
+        "leader 'fib' meets its label 8.0px away",
+        "leader 'kv' meets its label 8.0px away",
+        "leader 'mm' meets its label 8.0px away",
+        "leader 'pole' meets its label 8.0px away",
+        "leader 'cover' meets its label 8.0px away",
+        "leader 'fib' is drawn 106 px at 51 degrees, inside the pointer band",
+        "leader 'kv' is drawn 120 px at 26 degrees, inside the pointer band",
+        "leader 'mm' is drawn 34 px at 21 degrees, inside the pointer band",
+        "leader 'pole' is drawn 78 px at 51 degrees, inside the pointer band",
+        "leader 'cover' is drawn 108 px at 55 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Today the partneris a request for informatio' fits 2/2 lines at 91.5px",
+        "bd 'AEA asks cable makers to prequalify and says' fits 5/8 lines at 32.5px"
+      ],
+      "asserts": [
+        "'48 monitoring fibers, one dot each' holds: 48 vs 48 marks, counted over 48 declared marks (within 0)",
+        "'48 monitoring fibers, one dot each': 48 mark centres probed at r=5px, cohort median 93.0 dE, all present (weakest 65.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Soldotna converter glyph on its lit pool': shadow L* 38.1 vs ground L* 47.3, dL 9.3 at 432w"
+      ],
+      "leaders": [
+        "leader 'fall' lands 0.0px from its target",
+        "leader 'land' lands 0.0px from its target",
+        "leader 'conv' lands 0.0px from its target",
+        "leader 'line' lands 0.0px from its target",
+        "leader 'fall' meets its label 7.8px away",
+        "leader 'land' meets its label 8.4px away",
+        "leader 'conv' meets its label 7.2px away",
+        "leader 'line' meets its label 8.0px away",
+        "leader 'fall' is drawn 96 px at 54 degrees, inside the pointer band",
+        "leader 'land' is drawn 80 px at 33 degrees, inside the pointer band",
+        "leader 'conv' is drawn 55 px at 57 degrees, inside the pointer band",
+        "leader 'line' is drawn 114 px at 79 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'DeepGreen wrote of \"co-locatingwith the CIPL' fits 2/2 lines at 68px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the existing line' lands 0.0px from its target",
+        "leader 'the existing line' meets its label 7.7px away",
+        "leader 'the existing line' is drawn 117 px at 70 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'AEA calls today's Kenai to Anchoragelink a s' fits 2/2 lines at 67px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "qt '\"My complaint today is beingin the dark abou' fits 4/4 lines at 61px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "declared scatter: '262 filings, one mark each' declares `dispersed: true` over 262 marks, more than the 240 the frame exports, so the centres are sampled every 2 and a sample of a scatter is not the scatter. Not measured."
+      ],
+      "leaders": [
+        "leader 'the inlet' lands 0.0px from its target",
+        "leader 'the inlet' meets its label 1.7px away",
+        "leader 'the inlet' is drawn 80 px at 16 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '262 filings by the close.No competing applic' fits 2/2 lines at 95.5px"
+      ],
+      "asserts": [
+        "'262 filings, one mark each' holds: 262 vs 262 marks, counted over 262 declared marks (within 0)",
+        "'262 filings, one mark each': 131 mark centres probed at r=9px, sampled every 2 marks, cohort median 72.6 dE, all present (weakest 29.4 dE)",
+        "'72 filed November 2nd, ringed' holds: 72 vs 72 marks, counted over 72 declared marks (within 0)",
+        "'72 filed November 2nd, ringed': 72 mark centres probed at r=10px, cohort median 88.0 dE, all present (weakest 47.1 dE)",
+        "'134 filed by October 22nd' holds: 134 vs 134 marks, counted over 134 declared marks (within 0)",
+        "'134 filed by October 22nd': 134 mark centres probed at r=10px, cohort median 50.2 dE, all present (weakest 29.4 dE)",
+        "'seven parties, one fix each' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven parties, one fix each': 7 mark centres probed at r=14px, cohort median 73.0 dE, all present (weakest 41.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the calendar slab on the drafting film': shadow L* 71.2 vs ground L* 92.4, dL 21.2 at 432w"
+      ],
+      "scales": [
+        "'AEA calendar, one month per step' runs 0 months from October 2026 at 96 to 71 months from October 2026 at 1000; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'm-proc' lands 0.0px from its target",
+        "leader 'm-made' lands 0.0px from its target",
+        "leader 'm-tgt' lands 0.0px from its target",
+        "leader 'm-lay' lands 0.0px from its target",
+        "leader 'm-gr' lands 0.0px from its target",
+        "leader 'm-resp' lands 0.0px from its target",
+        "leader 'm-now' lands 0.0px from its target",
+        "leader 'm-rfi' lands 0.0px from its target",
+        "leader 'm-award' lands 0.0px from its target",
+        "leader 'm-proc' meets its label 4.0px away",
+        "leader 'm-made' meets its label 4.0px away",
+        "leader 'm-tgt' meets its label 4.0px away",
+        "leader 'm-lay' meets its label 4.0px away",
+        "leader 'm-gr' meets its label 4.0px away",
+        "leader 'm-resp' meets its label 6.0px away",
+        "leader 'm-now' meets its label 6.0px away",
+        "leader 'm-rfi' meets its label 6.0px away",
+        "leader 'm-award' meets its label 4.0px away",
+        "leader 'm-proc' is drawn 81 px at 80 degrees, inside the pointer band",
+        "leader 'm-made' is drawn 42 px at 90 degrees, inside the pointer band",
+        "leader 'm-tgt' is drawn 116 px at 90 degrees, inside the pointer band",
+        "leader 'm-lay' is drawn 44 px at 90 degrees, inside the pointer band",
+        "leader 'm-gr' is drawn 90 px at 90 degrees, inside the pointer band",
+        "leader 'm-resp' is drawn 215 px at 8 degrees, inside the pointer band",
+        "leader 'm-now' is drawn 240 px at 16 degrees, inside the pointer band",
+        "leader 'm-rfi' is drawn 259 px at 23 degrees, inside the pointer band",
+        "leader 'm-award' is drawn 21 px at 49 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Contract planned for the end of 2027.Service' fits 2/2 lines at 66.5px"
+      ],
+      "asserts": [
+        "'the $206.5 million bar against the $413 million bar' holds: 0.5 vs 0.5 ratio (within 0.01)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the whole block near foot on the lit plinth': shadow L* 9.8 vs ground L* 21.9, dL 12.0 at 432w"
+      ],
+      "fits": [
+        "hl 'Should FERC rule on DeepGreenbefore CIPLink'' fits 3/3 lines at 72.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
