@@ -44,7 +44,9 @@ function paintSection(seabed, o) {
     const m = seabed[q][1];
     const top = m <= 0.5 ? Y(Math.min(m, 0)) : Y(m);
     const sea = m <= 0.5;
-    /* sediment below the surface */
+    /* sediment below the surface: a ground tone first, so the warped band
+     * edges never open onto black (the slivers No.103's critics read as grain) */
+    g.fillStyle = '#433F36'; g.fillRect(x, row(top), 1, row(-base) - row(top) + 1);
     for (const b of bands) {
       const y0 = b[0] + warp(s, b[3]), y1 = b[1] + warp(s, b[3] + 1.3);
       const yt = Math.min(y1, top);
@@ -65,6 +67,17 @@ function paintSection(seabed, o) {
       g.fillStyle = grd; g.fillRect(x, r0, 1, r1 - r0);
     }
   }
+  /* the moon key on the wall: lit toward the Beluga end, lee toward Nikiski,
+   * and an occlusion darkening into the foot (the wall is a plane, so its
+   * modelling is painted into the albedo once, from the deck's one light) */
+  g.save(); g.globalCompositeOperation = 'multiply';
+  const lh = g.createLinearGradient(0, 0, W, 0);
+  lh.addColorStop(0, '#FFFFFF'); lh.addColorStop(0.55, '#E2E2E2'); lh.addColorStop(1, '#9C9C9C');
+  g.fillStyle = lh; g.fillRect(0, 0, W, H);
+  const lv = g.createLinearGradient(0, row(-base * 0.55), 0, H);
+  lv.addColorStop(0, '#FFFFFF'); lv.addColorStop(1, '#8A8A8A');
+  g.fillStyle = lv; g.fillRect(0, row(-base * 0.55), W, H - row(-base * 0.55));
+  g.restore();
   /* suspended flour motes in the water, a few hundred, deterministic */
   seed = 103077;
   for (let i = 0; i < 2600; i++) {
@@ -120,7 +133,7 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
     rock: [0.22, 0.24, 0.24], wallMaterial: new THREE.MeshStandardMaterial({ color: 0x2a2c28, roughness: 0.95 }) }));
 
   const R = AKT.setup(cam.canvas, { w: 1080, h: 1350, bg: 0x050b10, exposure: cam.exposure || 1.05 });
-  R.scene.fog = new THREE.FogExp2(0x060d14, cam.fog != null ? cam.fog : 0.0062);
+  R.scene.fog = new THREE.FogExp2(0x050b10, cam.fog != null ? cam.fog : 0.0062);
   AKT.environment(R, { intensity: 0.42 });
   /* the moon key from camera left and above (the deck's az 315, el 28) */
   const cx0 = (B.u[0] + B.u[1]) / 2;
@@ -150,14 +163,15 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
   const table = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1400),
     new THREE.MeshStandardMaterial({ color: 0x060d13, roughness: 0.95, metalness: 0 }));
   table.rotation.x = -Math.PI / 2;
-  table.position.set(cx0, -B.base - 0.004, -(B.v[0] + B.v[1]) / 2);
+  table.position.set(cx0, -B.base - 0.03, -(B.v[0] + B.v[1]) / 2);
   table.receiveShadow = true; R.scene.add(table);
   /* the lit pool under the block's foot, wider than the block so its foot sits
    * on a brightness transition and the cast has light to subtract from */
-  const pool = new THREE.Mesh(new THREE.PlaneGeometry(B.u[1] - B.u[0] + 46, B.v[1] - B.v[0] + 46),
+  const pool = new THREE.Mesh(new THREE.PlaneGeometry(B.u[1] - B.u[0] + 30, B.v[1] - B.v[0] + 22),
     new THREE.MeshStandardMaterial({ map: poolTexture(THREE), roughness: 0.9, metalness: 0, transparent: true, opacity: 1 }));
   pool.rotation.x = -Math.PI / 2;
-  pool.position.set(cx0, -B.base - 0.002, -(B.v[0] + B.v[1]) / 2);
+  /* centred toward the near foot, so the brightest table sits where the wall meets it */
+  pool.position.set(cx0, -B.base + 0.02, -(B.v[0] + B.v[1]) / 2 + 14);
   pool.receiveShadow = true; R.scene.add(pool);
   /* the occlusion seam: the key sits in front of the section wall, so its cast
    * falls behind the block and the near foot needs its own attached darkening,
@@ -170,10 +184,10 @@ export async function sawnScene(THREE, AKT, AKBLOCK, assets, cam) {
   const seam = new THREE.Mesh(new THREE.PlaneGeometry(B.u[1] - B.u[0] + 1.2, 3.2),
     new THREE.MeshBasicMaterial({ map: seamTex, transparent: true, depthWrite: false }));
   seam.rotation.x = -Math.PI / 2;
-  seam.position.set(cx0, -B.base - 0.001, 1.6);
+  seam.position.set(cx0, -B.base + 0.04, 1.6);
   R.scene.add(seam);
   AKT.frame(R, { from: cam.from, look: cam.look, fov: cam.fov });
-  R.camera.near = 1; R.camera.far = 2400; R.camera.updateProjectionMatrix();
+  R.camera.near = 3; R.camera.far = 2400; R.camera.updateProjectionMatrix();
   const Yw = (m) => m / 1000 * (m < 0 ? B.veSea : B.ve);
   return {
     R, blk, seabed, dem, B,

@@ -132,6 +132,48 @@
                return (i < 0 || j < 0 || i >= W || j >= H) ? 0 : m[j * W + i]; } };
   };
 
+  /* Smooth coast rings over rect, contoured from the DEM's B-spline heights at
+   * the shoreline level (linear-interpolated by d3.contours, then two Chaikin
+   * passes), so a coast never steps on the pixel grid. Rings shorter than
+   * minPts are dropped (sub-pixel islands and spurs). Needs d3. Design px. */
+  S.coastRings = function (P, dem, rect, o) {
+    o = o || {};
+    var x0 = rect[0], y0 = rect[1], W = rect[2], H = rect[3], lvl = o.level != null ? o.level : 0.5;
+    var f = new Float64Array(W * H), samp = dem.atS || dem.at;
+    for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
+      var ll = P.ll(x0 + x + 0.5, y0 + y + 0.5); f[y * W + x] = samp(ll[0], ll[1]);
+    }
+    var cs = d3.contours().size([W, H]).thresholds([lvl])(Array.from(f));
+    var rings = [], minPts = o.minPts || 24, passes = o.passes != null ? o.passes : 2;
+    cs[0].coordinates.forEach(function (poly) { poly.forEach(function (ring) {
+      if (ring.length < minPts) return;
+      var r = ring.map(function (q) { return [q[0] + x0, q[1] + y0]; });
+      for (var k = 0; k < passes; k++) {
+        var n = [];
+        for (var i = 0; i < r.length - 1; i++) {
+          var a = r[i], c = r[i + 1];
+          n.push([a[0] * 0.75 + c[0] * 0.25, a[1] * 0.75 + c[1] * 0.25], [a[0] * 0.25 + c[0] * 0.75, a[1] * 0.25 + c[1] * 0.75]);
+        }
+        n.push(n[0]); r = n;
+      }
+      rings.push(r);
+    }); });
+    return rings;
+  };
+  /* Stroke rings as a cased line, casing then core, round joins. */
+  S.strokeRings = function (cx, rings, o) {
+    o = o || {};
+    cx.save(); cx.lineJoin = 'round'; cx.lineCap = 'round';
+    var R = o.rect, e = 2;
+    function edge(q) { return R && (q[0] <= R[0] + e || q[0] >= R[0] + R[2] - e || q[1] <= R[1] + e || q[1] >= R[1] + R[3] - e); }
+    /* a ring closed along the window frame is not coast: lift the pen there */
+    function trace() { cx.beginPath(); rings.forEach(function (r) { r.forEach(function (q, i) {
+      if (i && !(edge(q) && edge(r[i - 1]))) cx.lineTo(q[0], q[1]); else cx.moveTo(q[0], q[1]); }); }); }
+    if (o.casing !== false) { trace(); cx.strokeStyle = o.casing || '#0A0F12'; cx.lineWidth = o.casingWidth || 3.4; cx.stroke(); }
+    trace(); cx.strokeStyle = o.color || '#BDB6A0'; cx.lineWidth = o.width || 1.2; cx.stroke();
+    cx.restore();
+  };
+
   function hex(hx) { return [parseInt(hx.slice(1, 3), 16), parseInt(hx.slice(3, 5), 16), parseInt(hx.slice(5, 7), 16)]; }
   S.hex = hex;
   function rampAt(stops, t) {
@@ -245,7 +287,7 @@
     var d = document.createElement('div');
     d.setAttribute('style', 'position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;opacity:' + (o.opacity || 0.08));
     document.body.appendChild(d);
-    AK.grainOn(d, { size: 280, strength: o.strength || 40, seed: o.seed || 103 });
+    AK.grainOn(d, { size: 640, strength: o.strength || 40, seed: o.seed || 103 });
     return d;
   };
 
