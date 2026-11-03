@@ -177,6 +177,14 @@ export function init(THREE) {
     const u0 = o.u[0], u1 = o.u[1], v0 = o.v[0], v1 = o.v[1];
     const step = o.step || 0.04, ve = o.ve || 2, base = o.base != null ? o.base : 0.6;
     const seaLevel = o.seaLevel != null ? o.seaLevel : 0.5;
+    /* o.veSea (2026-11-02, No.103): a SEPARATE exaggeration for depths below 0 m,
+     * so a shallow inlet's water column reads in a sawn section (Cook Inlet's
+     * crossing is about 25 m deep under 100 m bluffs). With it set, the seabed is
+     * drawn at its DEM depth (floored at o.seaFloorMin, default -300 m) instead of
+     * the fixed 25 m drop below sea level that keeps a single-ve block's water
+     * visible. Differential exaggeration is a drawing property the slide prints.
+     * Omit it and nothing changes. */
+    const veSea = o.veSea != null ? o.veSea : null;
     /* at least two posts per axis: one post divides the grid position by NU - 1 = 0 */
     const NU = Math.max(2, Math.round((u1 - u0) / step) + 1), NV = Math.max(2, Math.round((v1 - v0) / step) + 1);
     const hm = new Float32Array(NU * NV);           // metres
@@ -192,7 +200,7 @@ export function init(THREE) {
         if (!isFinite(e)) throw new RangeError('AKBLOCK.build: the block extent reaches outside the DEM at ' +
           ll[0].toFixed(4) + ', ' + ll[1].toFixed(4) + '; crop the u/v range to the grid');
         const k = j * NU + i;
-        if (e <= seaLevel) { kind[k] = 1; e = Math.max(e, -30); }
+        if (e <= seaLevel) { kind[k] = 1; e = Math.max(e, veSea != null ? (o.seaFloorMin != null ? o.seaFloorMin : -300) : -30); }
         for (let li = 0; li < lakes.length; li++) {
           const L = lakes[li];
           const b = L.bbox;
@@ -202,7 +210,7 @@ export function init(THREE) {
         hm[k] = e;
       }
     }
-    const Y = (m) => m / 1000 * ve;
+    const Y = (m) => m / 1000 * (veSea != null && m < 0 ? veSea : ve);
     const X = (i) => u0 + (u1 - u0) * i / (NU - 1);
     const Zc = (j) => -(v0 + (v1 - v0) * j / (NV - 1));
 
@@ -210,7 +218,7 @@ export function init(THREE) {
     const pos = new Float32Array(NU * NV * 3), col = new Float32Array(NU * NV * 3);
     for (let j = 0; j < NV; j++) for (let i = 0; i < NU; i++) {
       const k = j * NU + i;
-      pos[k * 3] = X(i); pos[k * 3 + 1] = Y(kind[k] === 1 ? Math.min(hm[k], seaLevel) - 25 : hm[k]);
+      pos[k * 3] = X(i); pos[k * 3 + 1] = Y(kind[k] === 1 ? (veSea != null ? Math.min(hm[k], 0) : Math.min(hm[k], seaLevel) - 25) : hm[k]);
       pos[k * 3 + 2] = Zc(j);
       const c = (o.ramp || ramp)(hm[k]);
       col[k * 3] = c[0]; col[k * 3 + 1] = c[1]; col[k * 3 + 2] = c[2];
