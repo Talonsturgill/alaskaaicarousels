@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-02T22:23:19Z",
+  "checked_at": "2026-11-03T07:59:51Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "1b17d78edf9ab174700865f8cc31d467bff67777107319dc110ac2fe2ff37f64",
+  "response_sha256": "066d1d61a30173a0b624dfee4f861e406b6ad9d3646ffc51999ad2c0480382af",
   "articles": [
     {
       "title": "New book highlights Alaska’s rural energy innovators",
@@ -34,118 +34,20 @@
     }
   ],
   "selected": {
-    "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-    "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-    "first_seen_at": "2026-10-23T15:55:44Z",
-    "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-    "feed": "https://www.akbizmag.com/feed/?paged=2",
-    "publisher": "Alaska Business",
+    "title": "New book highlights Alaska’s rural energy innovators",
+    "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+    "first_seen_at": "2026-10-23T14:03:35Z",
+    "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+    "feed": "https://alaska-native-news.com/feed/",
+    "publisher": "Alaska Native News",
     "coverage": 1,
-    "score": 0.00081,
+    "score": 0.000582,
     "priority": 4
   },
-  "expires_at": "2026-11-06T15:55:44Z",
+  "expires_at": "2026-11-06T14:03:35Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-02T19:23:00Z",
-      "selected": {
-        "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-        "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-        "first_seen_at": "2026-10-23T15:55:44Z",
-        "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-        "feed": "https://www.akbizmag.com/feed/?paged=2",
-        "publisher": "Alaska Business",
-        "coverage": 1,
-        "score": 0.00081,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.00081,
-          "priority": 4
-        },
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.67931,
-          "priority": 1
-        },
-        {
-          "title": "New book highlights Alaska’s rural energy innovators",
-          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-          "first_seen_at": "2026-10-23T14:03:35Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 0.000768,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-03T01:23:00Z",
-      "selected": {
-        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-        "first_seen_at": "2026-11-02T09:00:00Z",
-        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-        "feed": "https://www.uaf.edu/news/",
-        "publisher": "UAF",
-        "coverage": 1,
-        "score": 0.623025,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.623025,
-          "priority": 1
-        },
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.000743,
-          "priority": 4
-        },
-        {
-          "title": "New book highlights Alaska’s rural energy innovators",
-          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-          "first_seen_at": "2026-10-23T14:03:35Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 0.000704,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-03T07:23:00Z",
       "selected": {
@@ -156,7 +58,7 @@
         "feed": "https://alaska-native-news.com/feed/",
         "publisher": "Alaska Native News",
         "coverage": 1,
-        "score": 0.000592,
+        "score": 0.000582,
         "priority": 4
       },
       "stories": [
@@ -168,7 +70,7 @@
           "feed": "https://alaska-native-news.com/feed/",
           "publisher": "Alaska Native News",
           "coverage": 1,
-          "score": 0.000592,
+          "score": 0.000582,
           "priority": 4
         },
         {
@@ -179,7 +81,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.523899,
+          "score": 0.514688,
           "priority": 1
         },
         {
@@ -190,7 +92,7 @@
           "feed": "https://www.akbizmag.com/feed/?paged=2",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.000625,
+          "score": 0.000614,
           "priority": 4
         }
       ]
@@ -243,19 +145,107 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-03T19:23:00Z",
+      "selected": {
+        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+        "first_seen_at": "2026-11-02T09:00:00Z",
+        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.370453,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.370453,
+          "priority": 1
+        },
+        {
+          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
+          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
+          "first_seen_at": "2026-10-23T15:55:44Z",
+          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
+          "feed": "https://www.akbizmag.com/feed/?paged=2",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.000442,
+          "priority": 4
+        },
+        {
+          "title": "New book highlights Alaska’s rural energy innovators",
+          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+          "first_seen_at": "2026-10-23T14:03:35Z",
+          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+          "feed": "https://alaska-native-news.com/feed/",
+          "publisher": "Alaska Native News",
+          "coverage": 1,
+          "score": 0.000419,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-04T01:23:00Z",
+      "selected": {
+        "title": "New book highlights Alaska’s rural energy innovators",
+        "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+        "first_seen_at": "2026-10-23T14:03:35Z",
+        "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+        "feed": "https://alaska-native-news.com/feed/",
+        "publisher": "Alaska Native News",
+        "coverage": 1,
+        "score": 0.000352,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "New book highlights Alaska’s rural energy innovators",
+          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+          "first_seen_at": "2026-10-23T14:03:35Z",
+          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
+          "feed": "https://alaska-native-news.com/feed/",
+          "publisher": "Alaska Native News",
+          "coverage": 1,
+          "score": 0.000352,
+          "priority": 4
+        },
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.311512,
+          "priority": 1
+        },
+        {
+          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
+          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
+          "first_seen_at": "2026-10-23T15:55:44Z",
+          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
+          "feed": "https://www.akbizmag.com/feed/?paged=2",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.000372,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
-      "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
-      "shown_at": "2026-10-25T13:23:00Z"
-    },
-    {
-      "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-      "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-      "shown_at": "2026-10-25T19:23:00Z"
-    },
     {
       "url": "https://www.uaf.edu/news/new-book-highlights-alaskas-rural-energy-innovators.php",
       "title": "New book highlights Alaska's rural energy innovators",
@@ -405,6 +395,16 @@
       "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
       "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
       "shown_at": "2026-11-02T19:23:00Z"
+    },
+    {
+      "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+      "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+      "shown_at": "2026-11-03T01:23:00Z"
+    },
+    {
+      "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
+      "title": "New book highlights Alaska’s rural energy innovators",
+      "shown_at": "2026-11-03T07:23:00Z"
     }
   ],
   "feeds": [
@@ -412,31 +412,27 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "bfae85a60219d8de0ccfaca38d5e73045df8b88e16404fa3fbd9bcedabfa0d67"
+      "sha256": "2777a177d95157315999d2d7a24c1b140d078cb46d01ed4c29d0adc16348d345"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "83e5c665bc67777f2f953a46c75448221b64220252517ec1f9598a1696b2fc99"
+      "sha256": "9eba6eee1875691ed770c4bb433874d1d4c3c03a6a45af1f0dfae527d42e5666"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "4efcc3e2e51fd28cae90f353d0a3a87c2c67a3866b82b064278e3b48bbf5b624"
+      "sha256": "b2afd0e067720f5bf269c243ef573ebf7ee433eb8201d2a4ce1ee05b87a83a8c"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "18418912ea4e9be0124ec223f3b09ec4aac963ac2c7aac72d2d974aeb95ab179"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
-      "status": "ok",
-      "items": 10,
-      "sha256": "f6ff76db0f43196a46faefde86791bf5221fd01aaf691ba228532802bad18ac2"
+      "status": "not_modified"
     },
     {
       "url": "https://alaska-native-news.com/feed/",
@@ -452,15 +448,13 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "b8e092816c95f51ae52d6befe5d48acb811c95a4b1912fe8f8196782cf0d7462"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "313aaaedc415a34cb6f83d0fe1d9eacbbe5de3f1a3857cf2eaf6359eadbe3e22"
+      "sha256": "0ad8e4525ed174197e2287ea758276238ffb9b9f0badfdbbfd72ceffcf174f1b"
     },
     {
       "url": "https://www.uaf.edu/news/",
@@ -471,73 +465,73 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "bfae85a60219d8de0ccfaca38d5e73045df8b88e16404fa3fbd9bcedabfa0d67",
-      "etag": "\"9c14af1514bc2a752787488c65e35af1\"",
-      "last_modified": "Mon, 02 Nov 2026 21:55:16 GMT"
+      "sha256": "2777a177d95157315999d2d7a24c1b140d078cb46d01ed4c29d0adc16348d345",
+      "etag": "\"8640e1dad16399c871cf9b677bfd746d\"",
+      "last_modified": "Tue, 03 Nov 2026 03:51:16 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "83e5c665bc67777f2f953a46c75448221b64220252517ec1f9598a1696b2fc99",
-      "etag": "\"9c14af1514bc2a752787488c65e35af1\"",
-      "last_modified": "Mon, 02 Nov 2026 21:55:16 GMT"
+      "sha256": "9eba6eee1875691ed770c4bb433874d1d4c3c03a6a45af1f0dfae527d42e5666",
+      "etag": "\"8640e1dad16399c871cf9b677bfd746d\"",
+      "last_modified": "Tue, 03 Nov 2026 03:51:16 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4efcc3e2e51fd28cae90f353d0a3a87c2c67a3866b82b064278e3b48bbf5b624",
-      "etag": "\"9c14af1514bc2a752787488c65e35af1\"",
-      "last_modified": "Mon, 02 Nov 2026 21:55:16 GMT"
+      "sha256": "b2afd0e067720f5bf269c243ef573ebf7ee433eb8201d2a4ce1ee05b87a83a8c",
+      "etag": "\"8640e1dad16399c871cf9b677bfd746d\"",
+      "last_modified": "Tue, 03 Nov 2026 03:51:16 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-11-02T22:23:17Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "18418912ea4e9be0124ec223f3b09ec4aac963ac2c7aac72d2d974aeb95ab179",
       "etag": "W/\"9f7d95502c790dacd5ebcc70bfda5653\"",
-      "last_modified": "Mon, 02 Nov 2026 18:39:00 GMT"
+      "last_modified": "Mon, 02 Nov 2026 18:39:00 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-03T07:59:48Z",
+      "sha256": "18418912ea4e9be0124ec223f3b09ec4aac963ac2c7aac72d2d974aeb95ab179",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-11-02T22:23:17Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "f6ff76db0f43196a46faefde86791bf5221fd01aaf691ba228532802bad18ac2",
       "etag": "W/\"9f7d95502c790dacd5ebcc70bfda5653\"",
-      "last_modified": "Mon, 02 Nov 2026 18:39:00 GMT"
+      "last_modified": "Mon, 02 Nov 2026 18:39:00 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-03T07:59:48Z",
+      "sha256": "f6ff76db0f43196a46faefde86791bf5221fd01aaf691ba228532802bad18ac2",
+      "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "9ee1b50e2d2997f90ac2545d014c38a2134a2e7791dafd333b1ee01defe467f9"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "cbaaa20b98b139449360052343c920d4ed2e5cd8c7426ddbd5abd03c84d8bc3e"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "last_modified": "Mon, 02 Nov 2026 17:24:43 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-03T07:59:48Z",
       "sha256": "b8e092816c95f51ae52d6befe5d48acb811c95a4b1912fe8f8196782cf0d7462",
-      "last_modified": "Mon, 02 Nov 2026 17:24:43 GMT"
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "313aaaedc415a34cb6f83d0fe1d9eacbbe5de3f1a3857cf2eaf6359eadbe3e22",
-      "last_modified": "Mon, 02 Nov 2026 13:55:14 GMT"
+      "sha256": "0ad8e4525ed174197e2287ea758276238ffb9b9f0badfdbbfd72ceffcf174f1b",
+      "last_modified": "Tue, 03 Nov 2026 04:12:29 GMT"
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-02T22:23:17Z",
+      "ok_at": "2026-11-03T07:59:48Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "19c6692486c0d064d51af13343fa0604519d87266c09edd9ab7b8ea2bb0ff494"
