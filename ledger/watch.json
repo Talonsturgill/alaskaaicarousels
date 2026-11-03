@@ -1,14 +1,14 @@
 {
- "generated": "2026-11-02T22:50:57Z",
- "for_date": "2026-11-02",
+ "generated": "2026-11-03T20:46:06Z",
+ "for_date": "2026-11-03",
  "session": "34",
  "counted": {
   "basis_bills": 856,
   "basis_meetings": 2862,
-  "fedreg_federal-energy-regulatory-commission": 5,
+  "fedreg_federal-energy-regulatory-commission": 4,
   "fedreg_land-management-bureau": 0,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 5,
+  "fedreg_energy-department": 4,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -296,6 +296,20 @@
   {
    "source": "federal-register",
    "why": "FERC notice on beat, the US DOE notice on beat",
+   "doc": "2026-22358",
+   "title": "Alaska Power Company; Notice of Application To Amend Road Management Plan Accepted for Filing, Soliciting Comments, Motions To Intervene, and Protests",
+   "type": "Notice",
+   "published": "2026-11-03",
+   "comments_close_on": null,
+   "url": "https://www.federalregister.gov/documents/2026/11/03/2026-22358/alaska-power-company-notice-of-application-to-amend-road-management-plan-accepted-for-filing",
+   "agencies": [
+    "Energy Department",
+    "Federal Energy Regulatory Commission"
+   ]
+  },
+  {
+   "source": "federal-register",
+   "why": "FERC notice on beat, the US DOE notice on beat",
    "doc": "2026-20451",
    "title": "Alaska Energy Authority Notice Soliciting Recommendations, Terms and Conditions, and Fishway Prescriptions for Application for Non-Capacity Amendment of License",
    "type": "Notice",
@@ -316,34 +330,6 @@
    "published": "2026-09-29",
    "comments_close_on": null,
    "url": "https://www.federalregister.gov/documents/2026/09/29/2026-19818/copper-valley-electric-association-inc-notice-of-application-accepted-for-filing-and-soliciting",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-19197",
-   "title": "Southeast Alaska Power Agency; Notice of Application Accepted for Filing and Soliciting Comments, Motions To Intervene, and Protests",
-   "type": "Notice",
-   "published": "2026-09-18",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/09/18/2026-19197/southeast-alaska-power-agency-notice-of-application-accepted-for-filing-and-soliciting-comments",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-19196",
-   "title": "Southeast Alaska Power Agency; Notice of Application Accepted for Filing and Soliciting Comments, Motions To Intervene, and Protests",
-   "type": "Notice",
-   "published": "2026-09-18",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/09/18/2026-19196/southeast-alaska-power-agency-notice-of-application-accepted-for-filing-and-soliciting-comments",
    "agencies": [
     "Energy Department",
     "Federal Energy Regulatory Commission"
