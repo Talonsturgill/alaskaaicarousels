@@ -100,13 +100,30 @@
     },
     "upgrade": "pending",
     "gmail": "pending",
-    "retro": "pending",
+    "retro": {
+      "status": "done",
+      "note": "run complete"
+    },
     "final_assembly": {
       "status": "done",
       "artifacts": [
         "final/assemble_report.json"
       ],
       "note": "vector_9_slides_21.87MB"
+    },
+    "gmail_draft": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-02/gmail_draft_id.txt"
+      ],
+      "note": "draft r5119244328280828530 created"
+    },
+    "merge": {
+      "status": "done",
+      "artifacts": [
+        "PR #472"
+      ],
+      "note": "squash 2a6eb0d after CI 6/6 green and Codex Completed on 90cd41e, no findings"
     }
   },
   "phase_3_6": {
@@ -115,5 +132,7 @@
     "gaswatch_pagecheck": "PASS",
     "cron_health": "PASS, 7 scheduled workflows audited at 2026-11-03T06:19:29Z",
     "site_fixes": "none needed"
-  }
+  },
+  "status": "complete",
+  "gmail_draft_id": "r5119244328280828530"
 }
