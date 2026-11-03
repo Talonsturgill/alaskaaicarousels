@@ -3855,6 +3855,11 @@
           "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261029-5224",
           "outlet": "FERC eLibrary, Oceana comments, P-15423",
           "date": "2026-10-29"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+          "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
+          "date": "2026-10-27"
         }
       ],
       "history": [
@@ -3993,6 +3998,10 @@
         {
           "date": "2026-11-02",
           "note": "The window for comments, motions to intervene and competing applications on Project No. P-15423 closed at 5:00 p.m. Eastern Time today, November 2nd, as published in the commission's notice. The eLibrary docket sheet could not be read by the fetch today, so the final count of filings is not confirmed here. The commission now decides whether to issue the preliminary permit, with no date announced."
+        },
+        {
+          "date": "2026-11-02",
+          "note": "The commission's eLibrary record for P-15423, read tonight, holds 262 filings dated on or before November 2nd, up from 134 on October 22nd, with 72 filed on the closing day. Seven parties moved to intervene, the newest Cook Inletkeeper on October 26th, and no competing application was filed. DeepGreen's October 27th answer says it holds no binding partnership or executed interconnection agreement with AEA and calls its Cook Inlet PowerLink references conceptual engineering alignments."
         }
       ],
       "first_seen": "2026-08-21",
@@ -6100,6 +6109,88 @@
         {
           "date": "2026-10-31",
           "note": "Added. Read today against the FCC's order DA 26-1124, released October 20th, including its conditions in Appendix A. Broadband Breakfast reported GCI's statement on October 26th that the approval is an important step to completing the transaction, which has not yet closed."
+        }
+      ]
+    },
+    {
+      "id": "aea-ciplink-submarine-cable-rfi",
+      "title": "AEA shops for the cable under Cook Inlet",
+      "kind": "procurement",
+      "status": "pending-decision",
+      "decider": "Alaska Energy Authority",
+      "public_access": "indirect",
+      "access_note": "A vendor solicitation, not a rulemaking, so no public comment period exists. Responses are due 2:00 p.m. Alaska time December 15th. The public reaches the decision through AEA's board meetings and the project's later environmental review, expected to finish in early 2029.",
+      "summary": "The Alaska Energy Authority is asking submarine cable makers and installers to prequalify for the Cook Inlet PowerLink, a direct current link between Beluga and Nikiski that AEA says would remove the single point of failure between the Kenai Peninsula and Anchorage. The base bid is a 100 MW cable, procurement is expected about June 2027 and service in December 2031. AEA lists $142.5 million of a $413 million cost as still required. DeepGreen, an AI data center applicant at FERC, named the line its strategic partner and later said it holds no agreement with AEA.",
+      "key_dates": [
+        {
+          "date": "2026-10-15",
+          "label": "Prequalification and request for information 27025 released",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Pre-response conference for cable makers and installers, 10:30 a.m. Alaska time",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-12-15",
+          "label": "Responses due, 2:00 p.m. Alaska time",
+          "kind": "milestone"
+        },
+        {
+          "date": "2027-06-01",
+          "label": "Competitive cable procurement expected to begin, about June 2027 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2031-12-01",
+          "label": "Targeted in-service date for the whole link, December 2031 with no day given",
+          "kind": "milestone"
+        },
+        {
+          "date": "2032-08-31",
+          "label": "Federal grant deadline for full completion",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Cook Inlet, Beluga to Nikiski",
+        "lat": 60.93,
+        "lon": -151.17
+      },
+      "sources": [
+        {
+          "url": "https://www.aideaaeaprocurement.org/Home/File/10618",
+          "outlet": "Alaska Energy Authority, PQ and RFI 27025",
+          "date": "2026-10-15"
+        },
+        {
+          "url": "https://www.aideaaeaprocurement.org/",
+          "outlet": "AIDEA and AEA procurement portal",
+          "date": "2026-10-15"
+        },
+        {
+          "url": "https://www.akenergyauthority.org/CIPLink",
+          "outlet": "Alaska Energy Authority",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://www.petroleumnews.com/story/2026/10/25/utilities/cook-inlet-transmission-line-project-seeks-rfis/50465.html",
+          "outlet": "Petroleum News",
+          "date": "2026-10-25"
+        },
+        {
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_number=20261027-5049",
+          "outlet": "DeepGreen Cook Inlet SPV LLC, consolidated answer, FERC eLibrary",
+          "date": "2026-10-27"
+        }
+      ],
+      "first_seen": "2026-11-02",
+      "last_updated": "2026-11-02",
+      "history": [
+        {
+          "date": "2026-11-02",
+          "note": "Tracked. Read AEA's prequalification and request for information 27025, released October 15th, and the project page. The base bid is a 100 MW monopole with a second 100 MW pole as an option, about 40 miles of cable landfall to landfall, service targeted for December 2031, and the federal grant requires completion by August 31st, 2032. The page lists $413 million estimated and $142.5 million still required."
         }
       ]
     }
