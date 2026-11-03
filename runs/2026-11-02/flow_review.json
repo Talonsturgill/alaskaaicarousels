@@ -1,0 +1,13 @@
+{"round": 1, "verdict": "revise", "score_0_10": 7.4,
+ "junctions": {"1-2": "strong", "2-3": "strong", "3-4": "weak", "4-5": "weak", "5-6": "none", "6-7": "weak", "7-8": "weak", "8-9": "strong"},
+ "predicted_bail_point": {"slide": 5, "why": "three dense explanatory frames, then 05 with DeepGreen absent, an infrastructure body and an empty lower plain"},
+ "rhythm": "02-05 are four dense frames in a row; 04's body repeats its own labels",
+ "consistency": ["05 looks pasted from another deck: clay terrain with no snow reading", "05 gold on an attribution stretches D1", "02 COOK INLET straddles the coast"],
+ "continuity": ["04 to 05 steel-line tease does not complete", "05 line reads as fragments", "09 left wall clipped as a sliver"],
+ "craft": {"predicted_artwork_score": 6.8,
+  "weakest_frames": [{"slide": 5, "score": 6.0, "cause": "b"}, {"slide": 4, "score": 6.8, "cause": "c"}, {"slide": 1, "score": 7.4, "cause": "c"}],
+  "cross_frame": [{"cause": "e", "slides": [1,2,3,4,5,6,7,9], "fix": "make 05 the lit frame of the dark run; water fixes lift the mid frames"},
+                  {"cause": "c", "slides": [1,4,9], "fix": "one flour-water treatment: depth-toned silt ramp plus moon sheen in aksawnblock and as 04's water"},
+                  {"cause": "a", "slides": [2,4,7], "fix": "none beyond the 04 water fix"}],
+  "masterful_depth_frame": 1},
+ "applied": "round 5: 05 camera pushed in onto the lit ridges with snow that reads and a short body; 04 water toned from DEM depth with a moon sheen and a one-sentence body; aksawnblock water column with extinction, denser flour motes and a sheen; 02 inlet name on a plate on the water; 09 look shifted so the left end clears"}

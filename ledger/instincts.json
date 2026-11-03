@@ -2444,6 +2444,36 @@
       "last_confirmed": "2026-11-01",
       "run_date": "2026-11-01",
       "carousel_no": 102
+    },
+    {
+      "id": "key-behind-camera-flattens-gpu-terrain",
+      "instinct": "On a GPU terrain frame, place the key so it rakes across the view (60 degrees or more off the view direction), never behind the camera; front light erases lit and lee faces however good the mesh is.",
+      "evidence": "No.103 slide 05 scored 5.8 as clay with the NW key behind an east-looking camera, and modelled at once when the key moved to rake from the NNW.",
+      "confidence": 0.6,
+      "learned": "2026-11-02",
+      "last_confirmed": "2026-11-02",
+      "run_date": "2026-11-02",
+      "carousel_no": 103
+    },
+    {
+      "id": "contour-the-dem-not-the-mask",
+      "instinct": "Draw coasts and lake edges as contours of the continuous DEM (or a blurred mask), Chaikin smoothed, with the pen lifted along the window frame; a binary mask always prints stair steps and frame hairlines.",
+      "evidence": "No.103 round 1 critics named stair-stepped coasts on 02, 04 and 07 and window-edge hairlines on 07; one helper (SAWN.coastRings) cleared all of them in round 2.",
+      "confidence": 0.65,
+      "learned": "2026-11-02",
+      "last_confirmed": "2026-11-02",
+      "run_date": "2026-11-02",
+      "carousel_no": 103
+    },
+    {
+      "id": "streamlines-need-a-turning-limit",
+      "instinct": "A streamline lay along isobaths closes into fingerprint whorls around every basin; weight the direction field toward the channel axis and stop any line that turns more than about 100 degrees.",
+      "evidence": "No.103 slide 02 carried whorls through two rounds (6.8, 7.0, 6.9) until the axis-weighted field and turning limit landed in round 4 (7.4, ship).",
+      "confidence": 0.55,
+      "learned": "2026-11-02",
+      "last_confirmed": "2026-11-02",
+      "run_date": "2026-11-02",
+      "carousel_no": 103
     }
   ]
 }

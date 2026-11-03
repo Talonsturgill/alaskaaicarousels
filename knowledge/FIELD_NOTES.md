@@ -9515,3 +9515,13 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - The incised close read as printed ink for two rounds because a deep height field with a dark floor puts every groove pixel on a steep wall in lee or on the floor. Lighting the walls from the mask difference fixed it in one render.
 - The flow critic's rhythm note (05's 39-word body on the bright peak frame) was right and cheap: cut to 27 words with the same claims.
 - What the scorer still wants: a cover whose object separates from its ground at 432 px, terrain with surface texture (05 is dough), and data trays that read as machined steel rather than default extrusions.
+
+## 2026-11-02, No.103, retro (THE SAWN INLET AND ITS SHEETS)
+
+- Story: an update of No.93. DeepGreen's own October 27th answer concedes it has no partnership with AEA, while its February application called CIPLink its "Strategic Partner". AEA's October 15th RFI shows the cable is a request for information. The record that made the update was primary: two FERC filings and the RFI document, read through the keyless eLibrary API (AdvancedSearch plus DownloadP8File).
+- Five editing rounds. Round 1 came back with all nine frames on revise, and three of the causes repeated across frames: stair-stepped coasts, flat largest objects, dead lower thirds. Fixing the coast once in a shared helper cleared it on three frames in one round. Fixing each frame's own flatness took the remaining rounds.
+- A KEY BEHIND THE CAMERA FLATTENS GPU TERRAIN. 05 read as clay at 5.8 until the key raked from the north-northwest across the eastward view.
+- A STREAMLINE LAY ALONG ISOBATHS DRAWS FINGERPRINTS. Stopping a line on its own trace was not enough. Weighting the field toward the channel axis and capping each line's turning at about 100 degrees cleared it.
+- A FAR CAMERA Z-FIGHTS A LIT POOL INTO BLACK. With near 1 and far 2400, 09's pool vanished while 01's was fine. Separating the planes and raising near to 3 fixed it.
+- AN APOSTROPHE IN A SINGLE-QUOTED data-* ATTRIBUTE truncates the JSON. This happened three times in one run. Write declarations without possessives.
+- What the flow critic caught that per-slide critics could not: three dense explanatory frames in a row, then a frame with DeepGreen absent (05), the predicted bail point. Cutting 04's and 05's bodies to one sentence each and making 05 the lit snow frame was the sequence fix.

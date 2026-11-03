@@ -3621,6 +3621,47 @@
    "verification": "python3 tests/cron_health.py: 15 tests OK, including test_fetch_retries_a_transient_drop_and_stays_bounded (two failures then success returns on the third try with waits [5, 15] and drops --unshallow once the repo reads unshallow; three failures raise CalledProcessError after exactly two waits).",
    "rollback": "revert the upgrade(2026-11-01) commit",
    "commit": "88097ad4"
+  },
+  {
+   "run_date": "2026-11-02",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "ask_pack.py renders a settled docket item (status decided or closed) with only its first and newest history note (SETTLED_HISTORY=1 via window_history), while open items keep RECENT_HISTORY; the measurements are in the code comment.",
+   "trigger": "No.103 Phase 3.5: the docket refresh pushed the written-answer pack over its 32,000-token hard ceiling and site_build failed the build. Raising the ceiling is a decision for the maintainer, so the pack was made leaner instead.",
+   "files": [
+    "scripts/ask_pack.py"
+   ],
+   "verification": "site_build.py --date 2026-11-02 PASS with the ask pack under its ceiling; ask engine browser suite (tests/ask_engine.mjs) PASS; site_signoff PASS.",
+   "rollback": "revert commit 06441e76",
+   "commit": "06441e76"
+  },
+  {
+   "run_date": "2026-11-02",
+   "kind": "fix",
+   "area": "scripts",
+   "change": "ask_answers.py AGENCY_RULES gains the Alaska Energy Authority (AEA, CIPLink, Cook Inlet PowerLink) ahead of AOGCC, so docket items owned by AEA route to an agency view.",
+   "trigger": "No.103: the new docket item aea-ciplink-submarine-cable-rfi failed the ask engine self-test with an agency that no rule matched.",
+   "files": [
+    "scripts/ask_answers.py"
+   ],
+   "verification": "ask_answers self-test PASS; tests/ask_engine.mjs PASS over every catalogued question.",
+   "rollback": "revert commit 06441e76",
+   "commit": "06441e76"
+  },
+  {
+   "run_date": "2026-11-02",
+   "kind": "improvement",
+   "area": "assets/js",
+   "change": "akblock.js gains an opt-in o.veSea, a separate vertical exaggeration for the seabed (floored at o.seaFloorMin, default -300 m), so a shallow inlet's water column reads under land at a different exaggeration; default behaviour unchanged. aksawn.js adds SAWN.coastRings and SAWN.strokeRings: DEM-contoured, Chaikin-smoothed coasts with the pen lifted along the window frame.",
+   "trigger": "No.103: Cook Inlet is about 25 m deep under 100 m bluffs, so one exaggeration hid the water column; round 1 pixel critics named stair-stepped coasts on three map frames.",
+   "files": [
+    "assets/js/akblock.js",
+    "assets/js/aksawn.js",
+    "assets/js/aksawnblock.js"
+   ],
+   "verification": "No.103 rendered 9/9 with qa.py exit 0; examples/demo-deck unaffected (veSea is opt-in, the coast helpers are new functions).",
+   "rollback": "revert commits 415c1ea4, e003287e, 15412d4b, 7a2bb0ab for the helpers; akblock's veSea is inert unless passed",
+   "commit": "415c1ea4"
   }
  ],
  "scan_log": [

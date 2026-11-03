@@ -1,0 +1,19 @@
+{
+  "chars": 880,
+  "hook": "In February, DeepGreen's FERC filing for a Cook Inlet AI data center named AEA's planned undersea cable its \"Strategic Partner.\"",
+  "hook_len": 128,
+  "commas": 7,
+  "comma_per_100": 0.82,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#CookInlet",
+    "#Railbelt",
+    "#HVDC"
+  ],
+  "deck_summary": "DeepGreen's filings face AEA's cable, its Soldotna converter, the docket and AEA's calendar.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 76
+}

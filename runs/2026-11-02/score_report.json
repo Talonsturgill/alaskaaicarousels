@@ -1,0 +1,149 @@
+{
+  "run_date": "2026-11-02",
+  "carousel_no": 103,
+  "revision_rounds": 5,
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "factual claim without a claim-id",
+      "status": "pass"
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass"
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text",
+      "status": "pass"
+    },
+    {
+      "rule": "primary text contrast below 4.5:1",
+      "status": "pass"
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass"
+    },
+    {
+      "rule": "machine_qa FAIL or pdf_mode != vector",
+      "status": "pass"
+    },
+    {
+      "rule": "topic repeat within 30 days without an update frame",
+      "status": "pass"
+    },
+    {
+      "rule": "hero visual structure identical to the last 4 decks",
+      "status": "pass"
+    },
+    {
+      "rule": "banned phrase",
+      "status": "pass"
+    },
+    {
+      "rule": "hashtag count != 3 or link in post body",
+      "status": "pass"
+    },
+    {
+      "rule": "placeholder or unfinished element",
+      "status": "pass"
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.0,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.5,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.0,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.0,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.5x0.14)+(7.0x0.16)+(8.5x0.14)+(8.5x0.12)+(8.0x0.10)+(7.0x0.08)+(7.5x0.07)+(7.5x0.05)+(8.0x0.10) = 8.49",
+  "weighted_total": 8.49,
+  "threshold": 7.7,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Rebuild slide 05's terrain so it reads as the Kenai Mountains, not plaster dunes: the unsmoothed DEM at a finer mesh step, snow by altitude and slope with exposed dark rock on steep faces, crisp lit ridgelines, and a sharp modelled foreground carrying the steel line.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 5,
+      "problem": "smooth rounded white mounds with no rock or slope albedo; murky lower 40 percent; a right-edge smear; rebuilt in round 5 with no per-slide re-review"
+    },
+    {
+      "slide": 4,
+      "problem": "dead night band between body and map; flat olive water"
+    },
+    {
+      "slide": 2,
+      "problem": "hard-edged tan DEM patches on the lower-left land; olive lowland"
+    },
+    {
+      "slide": 1,
+      "problem": "empty plinth gradient lower right; no thin-lens plane"
+    },
+    {
+      "slide": 9,
+      "problem": "darker smaller repeat of 01 with empty night above the block"
+    },
+    {
+      "slide": 6,
+      "problem": "bluff barely separates from the sky"
+    }
+  ],
+  "craft_floor": {
+    "art": 7.0,
+    "floor": 8.5,
+    "status": "stood down at the five-round cap (revision_rounds 5)"
+  },
+  "editor_notes_for_email": "Scored 8.49 against the round-5 threshold of 7.7, so it ships. Artwork craft is 7.0, under the 8.5 craft floor, and the craft cycle stood down at the five-round cap. Slide 05 was rebuilt in round 5 on the flow critic's order and never re-reviewed per slide; read it before posting (terrain reads as smooth white mounds). Slides 01, 04 and 09 changed in round 5 after their round 3 ship verdicts. December 2031 is AEA's target; the funding lines on 08 are proportional bars never summed; the 262, 134 and 72 counts are an eLibrary count from the evening of November 2nd."
+}
