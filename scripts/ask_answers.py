@@ -219,6 +219,16 @@ AGENCY_RULES = [
     (r"\bAIDEA\b|Industrial Development and Export", "AIDEA",
      ("aidea", "industrial development", "development authority",
       "alaska industrial development and export authority")),
+    # Added 2026-11-02 with the first item AEA itself decides, its solicitation
+    # for the Cook Inlet PowerLink submarine cable, and the self-test caught it
+    # in the Phase 3.5 pre-flight the same way it caught the AIDEA ones: an item
+    # with no recognised agency. AEA had been on the record as an intervenor on
+    # the DeepGreen permit, where FERC decides, so no rule existed. Ordered
+    # after AIDEA, whose name it does not share, and before the US DOE rule,
+    # because "Alaska Energy Authority" is not "Department of Energy".
+    (r"Alaska Energy Authority|\bAEA\b", "AEA",
+     ("aea", "energy authority", "alaska energy authority", "ciplink",
+      "cook inlet powerlink")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",

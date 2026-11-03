@@ -108,6 +108,30 @@ MAX_TOKENS = 32_000
 # point.
 RECENT_HISTORY = 4
 
+# A SETTLED ITEM CARRIES ITS FIRST NOTE AND ITS NEWEST ONE (2026-11-02, run No.103).
+#
+# The collapse below and the window above both scale with how much an item
+# moves. Neither scales with the ITEM COUNT, and the count is what grew: on
+# 2026-11-02 main's record measured 31,983 tokens against the 32,000 ceiling
+# with nothing wrong in it, so the ordinary daily refresh or any one new
+# decision would turn the build red, and that run's one new item (the CIPLink
+# cable solicitation) took it to 32,758.
+#
+# Where the waste is, measured that day: the 12 items whose status is decided
+# or closed spent about 3,590 tokens on history, and their recent notes are
+# daily confirmations that a finished decision is still finished. A reader
+# asking about a settled item wants how it entered the record and where it
+# ended, which are the first note and the newest. So a settled item renders
+# those two with the elision line between them, and a live item keeps all
+# four. Nothing is dropped that a reader can't reach: the citation points at
+# the item's own page, which prints every note. MAX_TOKENS is untouched.
+# Measured on main's record the same day: 31,983 tokens before, 30,856 after,
+# 1,127 saved. That is room for about one more item, not a cure; the durable
+# move is the two-hop index this header already names, queued for the weekly
+# pass in knowledge/MACHINE_QUEUE.md.
+SETTLED_STATUSES = {"decided", "closed"}
+SETTLED_HISTORY = 1
+
 # COLLAPSING A RUN OF "CHECKED AND UNCHANGED" NOTES (2026-09-14).
 #
 # The window above stopped history growing with an item's AGE. It does not stop
@@ -229,17 +253,18 @@ def wrap_fields(it):
     return " | ".join(bits)
 
 
-def window_history(hist):
-    """The first note, the most recent RECENT_HISTORY, and a hole between them.
+def window_history(hist, recent=RECENT_HISTORY):
+    """The first note, the most recent `recent`, and a hole between them.
 
     Returns (entries, elided). A None inside entries marks where the elision
     line goes. A history short enough to fit comes back whole with elided 0, so
-    an item nobody has had to revisit reads exactly as it always did.
+    an item nobody has had to revisit reads exactly as it always did. `recent`
+    is RECENT_HISTORY for a live item and SETTLED_HISTORY for a settled one.
     """
-    if len(hist) <= RECENT_HISTORY + 1:
+    if len(hist) <= recent + 1:
         return list(hist), 0
-    elided = len(hist) - RECENT_HISTORY - 1
-    return [hist[0], None] + list(hist[-RECENT_HISTORY:]), elided
+    elided = len(hist) - recent - 1
+    return [hist[0], None] + list(hist[-recent:]), elided
 
 
 def render_item(it):
@@ -270,7 +295,9 @@ def render_item(it):
     hist = it.get("history") or []
     if hist:
         lines.append("History, oldest first:")
-        shown, elided = window_history(hist)
+        recent = (SETTLED_HISTORY if it.get("status") in SETTLED_STATUSES
+                  else RECENT_HISTORY)
+        shown, elided = window_history(hist, recent)
         for h in collapse_unchanged(shown):
             if h is None:
                 lines.append(f"  ... {elided} earlier note(s) not shown here. "

@@ -12,7 +12,9 @@ fixed based on the recurring themes that it saw during the week ... based on act
 
 One line per item, in this exact shape, so the due check can read it:
 
-    - [ ] <date found> | repeat: <runs it has bitten beyond the first> | <signature> | evidence: <what showed it, with frames and rounds> | fix: <the proposed change>
+    - [ ] 2026-11-02 | repeat: 0 | ask pack: the record outgrew the 32,000-token ceiling on count alone | evidence: No.103 Phase 3.5, main's record measured 31,983 tokens with nothing wrong in it, so any daily refresh or new item turned site_build red (the CIPLink item took it to 32,758); fixed in-run by rendering settled (decided, closed) items with their first and newest note only, 1,127 tokens saved, pack at 31,435 | fix: the two-hop design ask_pack.py's header already names (an index of items first, the full item on demand), because one more tracked decision or two will reach the ceiling again
+- [ ] 2026-11-02 | repeat: 0 | bootstrap: pip installs an unpinned python playwright when the module is missing | evidence: No.103 wake, bootstrap installed playwright 1.64.1 against the image's chromium-1243 (built for 1.63.0), so any p.chromium.launch() without executable_path failed; render.py and browser_suites pass executable_path and were spared; fixed in-run with pip install playwright==1.63.0 to match the global node playwright | fix: bootstrap.sh pins python playwright to the version of the node playwright on PATH (or of the chromium-NNNN directory), and verifies a bare launch
+- [ ] <date found> | repeat: <runs it has bitten beyond the first> | <signature> | evidence: <what showed it, with frames and rounds> | fix: <the proposed change>
 
 **A defect already open is never added twice.** The run that meets it again raises its `repeat`
 count in place and appends its date to the evidence. An item at `repeat: 2` makes the pass due the
