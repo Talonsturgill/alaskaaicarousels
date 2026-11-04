@@ -60,7 +60,9 @@
     for (let y = 0; y < h; y++) {
       for (let x = 0; x < w; x++) {
         const X = ox + x / s, Y = oy + y / s;             // metres on the desk
-        const t = D.walnutT(X, Y);
+        // `contrast` widens the figure about its mean, for the GPU frames where the
+        // lamp's tone mapping compresses it (No.104 flow critic: a grainless plane)
+        const t0 = D.walnutT(X, Y), t = o.contrast ? 0.47 + (t0 - 0.47) * o.contrast : t0;
         const col = ramp(D.INK.walnut, t);
         const i = (y * w + x) * 4;
         d[i] = col[0]; d[i + 1] = col[1]; d[i + 2] = col[2]; d[i + 3] = 255;
@@ -338,12 +340,12 @@
   D.desk3 = function (THREE, R, o) {
     o = o || {};
     const S = o.texScale || 1100;                  // texture px per metre
-    const wc = D.walnut(Math.round(1.8 * S), Math.round(1.2 * S), { scale: S, seed: 2026110300 });
+    const wc = D.walnut(Math.round(1.8 * S), Math.round(1.2 * S), { scale: S, seed: 2026110300, contrast: o.contrast != null ? o.contrast : 2.5 });
     const wt = new THREE.CanvasTexture(wc);
     wt.colorSpace = THREE.SRGBColorSpace; wt.anisotropy = 8;
     const top = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.04, 1.2, 1, 1, 1),
       // the grain is also the bump, so the lamp rakes it on the GPU frames (No.104 round 4: a smooth gradient plane)
-      new THREE.MeshPhysicalMaterial({ map: wt, bumpMap: wt, bumpScale: 1.4, roughness: 0.55, clearcoat: 0.35, clearcoatRoughness: 0.38 }));
+      new THREE.MeshPhysicalMaterial({ map: wt, bumpMap: wt, bumpScale: 1.4, roughness: 0.6, clearcoat: 0.35, clearcoatRoughness: 0.38 }));
     top.position.set(0, -0.02, 0);
     top.receiveShadow = true; top.castShadow = true;
     R.scene.add(top);
