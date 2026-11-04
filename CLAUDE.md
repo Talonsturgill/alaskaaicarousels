@@ -262,6 +262,16 @@ Claude Code CLI itself rather than from memory.
 
 ## Scope guard
 
+New proposal releases must pass scripts/pricing_release_gate.py before Pages
+upload. config/pricing_policy.json is the canonical versioned contract: project
+minimum USD 8,000; optional business retainer minimum USD 8,000/month; third-party
+hosting/pass-through separate. Reject/rescope below-minimum work, never inflate
+a fee to pass. Each new offer needs its typed offer, visible matching pricing
+and exact artifact/policy-bound pricing-release.json. The fixed historical hash
+baseline preserves old artifacts only; it never certifies their pricing or
+allows a new path or changed offer to inherit old approval. Keep historical
+proposals and existing email untouched. No other publication permissions change.
+
 If a sibling checkout of `alaska-ai-weekly` exists in the workspace, it is
 REFERENCE ONLY (brand lineage, prior art). Never write to it from sessions
 working in this repo; its CLAUDE.md policies govern its own routine, not
