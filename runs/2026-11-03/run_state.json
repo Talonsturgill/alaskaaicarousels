@@ -118,9 +118,24 @@
       ],
       "note": "artifacts copied, images to WebP (63.2 MB to 8.7 MB), PDF left untouched by shrink_pdfs (safe outcome), site built at 2026-11-04 (UTC today; a cron rebuilt docs/ at 06:09Z), site_fresh OK, parsers/scanner/docket dates PASS, no alerts due, prune freed 1.47 MB, ledgers appended (topics, artwork, captions, 3 instincts), FIELD_NOTES retro."
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/automation_retro.md"
+      ],
+      "note": "weekly pass not due (machine_due exit 1); 3 items queued; PR #473 CI green, Codex completed on cc2db7d with no findings, merged 10:16Z"
+    },
+    "gmail": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-03/gmail_draft_id.txt"
+      ],
+      "note": "draft r3006425417378160813, preview-mode remote, to docket@alaskaaihq.com"
+    },
+    "retro": {
+      "status": "done",
+      "note": "FIELD_NOTES retro appended; 3 instincts"
+    }
   },
   "phase_3_6": {
     "site_signoff": "SITE SIGN-OFF: PASS, 167 pages, 18 checks",
@@ -128,5 +143,7 @@
     "gaswatch_pagecheck": "GAS WATCH: PASS, read November 3rd, 91 days on record, chart present",
     "cron_health": "CRON HEALTH: PASS, all scheduled workflows checked after the gas watch repair (earlier FAIL was the pending Pages deploy), 7 workflows",
     "site_fixes": "none needed on pages; repaired the live Gas Watch by dispatching the collector after CINGSA's late post"
-  }
+  },
+  "status": "complete",
+  "completed_utc": "2026-11-04T10:20:00Z"
 }
