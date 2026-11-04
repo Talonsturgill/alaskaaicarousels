@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "the-ears-did-the-work",
+      "date": "2026-11-04",
+      "title": "The Ears Did the Work",
+      "caption": "A fine-tuned AI picker found roughly three times as many earthquakes along the Alaska Peninsula than the analyst-checked catalog, per the authors' abstract. No training strategy was substantially better, local data improved it, and the result covers one 2018 to 2019 catalog.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-04-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-04-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-04-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-04-poster_thumb.jpg"
+    },
+    {
       "id": "the-door-is-yours",
       "date": "2026-11-02",
       "title": "The Door Is Yours",
