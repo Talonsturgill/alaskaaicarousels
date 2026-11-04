@@ -176,7 +176,9 @@
         const X = (dx - map.o[0]) / map.s, Z = (dy - map.o[1]) / map.s;
         const Lt = light(dx, dy, 0);
         let col, nx = 0, ny = 0, nz = 1, spec = 0, shade = 1;
-        const inB = X > B.x0 && X < B.x1 && Z > B.z0 && Z < B.z1;
+        // the far edge is cut by hand: a hair off square and not ruler straight (round 3: a ruled seam)
+        const zf = B.z0 + 0.006 * X + 0.0009 * AK.simplex2(X * 30, 7.3);
+        const inB = X > B.x0 && X < B.x1 && Z > zf && Z < B.z1;
         if (inB) {
           const h0 = D.leatherH(X, Z), hx = D.leatherH(X + eps, Z), hy = D.leatherH(X, Z + eps);
           nx = -(hx - h0) * 0.35; ny = -(hy - h0) * 0.35;
@@ -188,7 +190,8 @@
           // a 3 mm bevel on every edge of the leather: the arrises facing the lamp
           // (far and right) catch it, the near and left ones fall into lee (round 2)
           const bw = 0.003, tl = 0.75;
-          if (Z - B.z0 < bw) { ny -= tl * (1 - (Z - B.z0) / bw); }
+          if (Z - zf < bw) { ny -= tl * (1 - (Z - zf) / bw); }
+          if (Z - zf < 0.0014) spec = 0.55;   // the lit arris along the far edge
           if (B.z1 - Z < bw) { ny += tl * (1 - (B.z1 - Z) / bw); }
           if (X - B.x0 < bw) { nx -= tl * (1 - (X - B.x0) / bw); }
           if (B.x1 - X < bw) { nx += tl * (1 - (B.x1 - X) / bw); }
