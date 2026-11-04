@@ -32,7 +32,7 @@
   D.INK = {
     room: "#05080F", wall: "#0C1320", moulding: "#1A2230",
     walnut: ["#140C08", "#24160F", "#3A2418", "#58371F", "#8A5C35"],
-    oxblood: ["#2A0F0F", "#3E1717", "#552020", "#6E2A24"],
+    oxblood: ["#220D0D", "#371616", "#4D1F1D", "#672B25"],
   };
 
   function hex(h) { const n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
@@ -60,13 +60,7 @@
     for (let y = 0; y < h; y++) {
       for (let x = 0; x < w; x++) {
         const X = ox + x / s, Y = oy + y / s;             // metres on the desk
-        const warp = AK.fbm2(X * 1.1, Y * 2.4, { octaves: 3 }) * 0.035;
-        const v = (Y + warp) * 140;                      // ~140 growth lines per metre
-        const band = 0.5 + 0.5 * Math.sin(v * Math.PI * 2 + AK.fbm2(X * 0.6, Y * 14, { octaves: 2 }) * 1.6);
-        const pores = AK.simplex2(X * 1400, Y * 60) * 0.5 + 0.5;
-        const slow = AK.fbm2(X * 0.8, Y * 1.6, { octaves: 3 }) * 0.5 + 0.5;
-        const fleck = Math.pow(Math.max(0, AK.simplex2(X * 40, Y * 400)), 8);
-        let t = 0.32 + 0.06 * Math.pow(band, 1.4) + 0.20 * slow - 0.10 * Math.pow(pores, 5) + 0.05 * fleck;
+        const t = D.walnutT(X, Y);
         const col = ramp(D.INK.walnut, t);
         const i = (y * w + x) * 4;
         d[i] = col[0]; d[i + 1] = col[1]; d[i + 2] = col[2]; d[i + 3] = 255;
@@ -144,15 +138,17 @@
   /* ---- the desk at a point, for Canvas 2D frames --------------------------- */
   // The same figure as D.walnut / D.leather, evaluated at one point (metres),
   // so a 2D frame can light it per DEVICE pixel without a texture lookup.
-  D.walnutAt = function (X, Y) {
-    const warp = AK.fbm2(X * 1.1, Y * 2.4, { octaves: 3 }) * 0.035;
-    const v = (Y + warp) * 140;
-    const band = 0.5 + 0.5 * Math.sin(v * Math.PI * 2 + AK.fbm2(X * 0.6, Y * 14, { octaves: 2 }) * 1.6);
-    const pores = AK.simplex2(X * 1400, Y * 60) * 0.5 + 0.5;
+  // Quarter-sawn walnut as long irregular streaks along x: no periodic term, so
+  // no frame can print it as scan lines or ripples (No.104 round 1 critics).
+  D.walnutT = function (X, Y) {
+    const w = AK.fbm2(X * 0.9, Y * 2.2, { octaves: 3 }) * 0.02;
+    const streak = AK.fbm2(X * 3.2, (Y + w) * 150, { octaves: 4 });
+    const fine = AK.fbm2(X * 9, (Y + w) * 520, { octaves: 2 });
     const slow = AK.fbm2(X * 0.8, Y * 1.6, { octaves: 3 }) * 0.5 + 0.5;
     const fleck = Math.pow(Math.max(0, AK.simplex2(X * 40, Y * 400)), 8);
-    return ramp(D.INK.walnut, 0.32 + 0.06 * Math.pow(band, 1.4) + 0.20 * slow - 0.10 * Math.pow(pores, 5) + 0.05 * fleck);
+    return 0.33 + 0.14 * streak + 0.05 * fine + 0.18 * slow + 0.05 * fleck;
   };
+  D.walnutAt = function (X, Y) { return ramp(D.INK.walnut, D.walnutT(X, Y)); };
   D.leatherH = function (X, Y) {
     const p1 = 1 - Math.abs(AK.simplex2(X * 820, Y * 820));
     const p2 = 1 - Math.abs(AK.simplex2(X * 1900 + 7.1, Y * 1900 - 3.3));
@@ -170,7 +166,7 @@
     o = o || {};
     const W = cx.canvas.width, H = cx.canvas.height, k = W / 1080;
     const img = cx.createImageData(W, H), d = img.data;
-    const light = D.light2d(map);
+    const light = D.light2d(o.lightMap || map);
     const B = D.BLOTTER, gain = o.gain != null ? o.gain : 1.0, amb = o.ambient != null ? o.ambient : 0.10;
     AK.reseed(o.seed || 2026110300);
     const eps = 0.25 / (map.s * k);
@@ -183,11 +179,11 @@
         const inB = X > B.x0 && X < B.x1 && Z > B.z0 && Z < B.z1;
         if (inB) {
           const h0 = D.leatherH(X, Z), hx = D.leatherH(X + eps, Z), hy = D.leatherH(X, Z + eps);
-          nx = -(hx - h0) * 0.9; ny = -(hy - h0) * 0.9;
+          nx = -(hx - h0) * 0.35; ny = -(hy - h0) * 0.35;
           const nl = Math.hypot(nx, ny, 1); nx /= nl; ny /= nl; nz = 1 / nl;
           const mot = AK.fbm2(X * 4, Z * 4, { octaves: 4 }) * 0.5 + 0.5;
           const e = Math.min(X - B.x0, B.x1 - X, Z - B.z0, B.z1 - Z) / B.edge;
-          col = ramp(D.INK.oxblood, (0.30 + 0.30 * mot + 0.18 * h0) * (e < 1 ? 0.62 + 0.38 * e : 1));
+          col = ramp(D.INK.oxblood, (0.32 + 0.30 * mot + 0.07 * h0) * (e < 1 ? 0.62 + 0.38 * e : 1));
           spec = 0.10;
         } else {
           col = D.walnutAt(X, Z);
@@ -201,11 +197,16 @@
         const hxv = L[0], hyv = L[1], hzv = L[2] + 1, hl = Math.hypot(hxv, hyv, hzv);
         const nh = Math.max(0, (nx * hxv + ny * hyv + nz * hzv) / hl);
         const sp = spec * Math.pow(nh, inB ? 18 : 60) * Lt.E;
-        const e = Lt.E * gain * shade;
+        let e = Lt.E * gain * shade;
+        // a frame's own pool: the lamp's light falls off round the subject, so a
+        // close frame is not lit edge to edge like a stage (No.104 round 1)
+        if (o.pool) { const q = Math.hypot(dx - o.pool[0], dy - o.pool[1]) / o.pool[2]; e *= 0.16 + 0.84 * Math.exp(-q * q); }
+        // soft clip: the pool brightens the ground and never pushes oxblood to vermilion
+        const lit = 1.35 * (1 - Math.exp(-(e * diff * 1.35) / 1.35));
         const i = (y * W + x) * 4;
-        d[i]     = Math.min(255, col[0] * (amb + 0.169 * 0.35 + e * diff * 1.0 * 1.35) + 255 * sp * 1.0);
-        d[i + 1] = Math.min(255, col[1] * (amb + 0.290 * 0.35 + e * diff * 0.84 * 1.35) + 255 * sp * 0.84);
-        d[i + 2] = Math.min(255, col[2] * (amb + 0.400 * 0.35 + e * diff * 0.66 * 1.35) + 255 * sp * 0.66);
+        d[i]     = Math.min(255, col[0] * (amb + 0.169 * 0.35 + lit * 1.0) + 255 * sp * 1.0);
+        d[i + 1] = Math.min(255, col[1] * (amb + 0.290 * 0.35 + lit * 0.90) + 255 * sp * 0.84);
+        d[i + 2] = Math.min(255, col[2] * (amb + 0.400 * 0.35 + lit * 0.80) + 255 * sp * 0.66);
         d[i + 3] = 255;
       }
     }
