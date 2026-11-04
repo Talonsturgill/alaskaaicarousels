@@ -146,7 +146,7 @@
     const fine = AK.fbm2(X * 9, (Y + w) * 520, { octaves: 2 });
     const slow = AK.fbm2(X * 0.8, Y * 1.6, { octaves: 3 }) * 0.5 + 0.5;
     const fleck = Math.pow(Math.max(0, AK.simplex2(X * 40, Y * 400)), 8);
-    return 0.33 + 0.14 * streak + 0.05 * fine + 0.18 * slow + 0.05 * fleck;
+    return 0.33 + 0.07 * streak + 0.03 * fine + 0.14 * slow + 0.03 * fleck;
   };
   D.walnutAt = function (X, Y) { return ramp(D.INK.walnut, D.walnutT(X, Y)); };
   D.leatherH = function (X, Y) {
@@ -183,13 +183,22 @@
           const nl = Math.hypot(nx, ny, 1); nx /= nl; ny /= nl; nz = 1 / nl;
           const mot = AK.fbm2(X * 4, Z * 4, { octaves: 4 }) * 0.5 + 0.5;
           const e = Math.min(X - B.x0, B.x1 - X, Z - B.z0, B.z1 - Z) / B.edge;
-          col = ramp(D.INK.oxblood, (0.32 + 0.30 * mot + 0.07 * h0) * (e < 1 ? 0.62 + 0.38 * e : 1));
+          col = ramp(D.INK.oxblood, (0.32 + 0.30 * mot + 0.07 * h0) * (e < 1 ? 0.86 + 0.14 * e : 1));
           spec = 0.10;
+          // a 3 mm bevel on every edge of the leather: the arrises facing the lamp
+          // (far and right) catch it, the near and left ones fall into lee (round 2)
+          const bw = 0.003, tl = 0.75;
+          if (Z - B.z0 < bw) { ny -= tl * (1 - (Z - B.z0) / bw); }
+          if (B.z1 - Z < bw) { ny += tl * (1 - (B.z1 - Z) / bw); }
+          if (X - B.x0 < bw) { nx -= tl * (1 - (X - B.x0) / bw); }
+          if (B.x1 - X < bw) { nx += tl * (1 - (B.x1 - X) / bw); }
+          { const n2 = Math.hypot(nx, ny, nz); nx /= n2; ny /= n2; nz /= n2; }
         } else {
           col = D.walnutAt(X, Z);
           // the blotter's thickness casts a hairline onto the walnut, down-left of it
-          const sx = X + 0.0035, sz = Z - 0.0025;
-          if (sx > B.x0 && sx < B.x1 && sz > B.z0 && sz < B.z1) shade = 0.55;
+          const sx = X + 0.0040, sz = Z - 0.0030;
+          const ddx = Math.max(B.x0 - sx, 0, sx - B.x1), ddz = Math.max(B.z0 - sz, 0, sz - B.z1);
+          shade = 1 - 0.5 * Math.exp(-Math.hypot(ddx, ddz) / 0.004);
           spec = 0.30;
         }
         const L = Lt.L;
@@ -223,8 +232,8 @@
     const W = cx.canvas.width, H = cx.canvas.height, k = W / 1080;
     const dir = o.dir || [-0.80, 0.60], lift = o.lift || 4;
     const parts = o.parts || [
-      { off: lift * 0.6, blur: 2.0, alpha: 0.78 },
-      { off: lift * 2.2, blur: Math.max(8, lift * 3), alpha: 0.45 }];
+      { off: lift * 0.6, blur: 2.0, alpha: 0.82 },
+      { off: lift * 2.2, blur: Math.max(8, lift * 3), alpha: 0.6 }];
     const tmp = document.createElement("canvas"); tmp.width = W; tmp.height = H;
     const tg = tmp.getContext("2d");
     for (const p of parts) {
