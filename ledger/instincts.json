@@ -2474,6 +2474,36 @@
       "last_confirmed": "2026-11-02",
       "run_date": "2026-11-02",
       "carousel_no": 103
+    },
+    {
+      "id": "flat-mirror-prints-as-slab",
+      "instinct": "A flat metal face in PBR mirrors one direction and prints as an emissive slab; strike it with a faint bow (a few millimetres) so it sweeps a graded environment and reads as metal.",
+      "evidence": "No.104 slides 01 and 09: the gilt nameplate read as a flat yellow slab in round 1; a 3 mm parabolic bow with a graded warm wall gave a lit band and falloff.",
+      "confidence": 0.6,
+      "learned": "2026-11-03",
+      "last_confirmed": "2026-11-03",
+      "run_date": "2026-11-03",
+      "carousel_no": 104
+    },
+    {
+      "id": "pool-falloff-per-frame",
+      "instinct": "A top-down close frame inside the lamp's cone is lit edge to edge unless the frame carries its own pool falloff round its subject; give every 2D desk frame a pool centre and radius.",
+      "evidence": "No.104 round 1: five 2D frames read as stage-lit vermilion leather; a per-frame pool with a 0.16 floor fixed all five at once.",
+      "confidence": 0.55,
+      "learned": "2026-11-03",
+      "last_confirmed": "2026-11-03",
+      "run_date": "2026-11-03",
+      "carousel_no": 104
+    },
+    {
+      "id": "long-object-cast-runs-along-it",
+      "instinct": "A long thin object laid parallel to the light direction casts along its own length and shows no contact; lay it square to the lamp so its cast falls beside it.",
+      "evidence": "No.104 slide 06: the pencil's cast hid under it until the pencil was turned square to the lamp, then read at dL 53.",
+      "confidence": 0.5,
+      "learned": "2026-11-03",
+      "last_confirmed": "2026-11-03",
+      "run_date": "2026-11-03",
+      "carousel_no": 104
     }
   ]
 }

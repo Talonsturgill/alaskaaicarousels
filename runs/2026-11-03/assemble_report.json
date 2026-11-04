@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-03/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10271678,
+  "pdf_mb": 10.27,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-03/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-03/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Four candidates, three answers. No law yet.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "872f38fc778a155331091d4cc5896a09c37ad1f2ff0453341b76eb422c8a4a5f",
+        "bytes": 5592590
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "97c4edd09e8ecec8f4aba2a078ea68db0e8f257555d788f5a6f994210e2553d1",
+        "bytes": 7678863
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "76f2e3f20d14d608fe459e8e1152cbcb36ed046f7d79f76358ddb652fdeb0178",
+        "bytes": 6952599
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "3a7a22e650d3c8b222caaf5a19e9485bf63cdfe5253b62cb0dce9bb74d2c40ad",
+        "bytes": 5701510
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "15ad6798bb5c3613b37323df1d7256090f540ca13feb7f37821a2460c3502609",
+        "bytes": 8122930
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "461ca838ae36c7d150f5c1e66c7ece3fc52cd4aa5884d34a3a8349663f403902",
+        "bytes": 9116642
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "47810d5e46af28ffc6f11b6200af93b3880d99d1938a57a0abdb77a4ecf87673",
+        "bytes": 7433450
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "4de7d6243e27583962dc8e5bd69297a49bb1f186a1fe12327fc22cf34a1c2158",
+        "bytes": 7207729
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "498637f871c9796af44059db2953ee97ef9197b83aaf2e88117f5d00a9e28078",
+        "bytes": 5215529
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "bf05f2c1333b05d4eab1ab940bd31c3d03369951ee3f16d3325550969c9866a7",
+        "bytes": 9016
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "07b15f19e8c3f7dc3b38417c82954e922d0ba4c4737171550b66ab0a8afbb2b6",
+        "bytes": 9094
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "df5fde94a07a07c3672ba77edb44c22367423cbff7358a20ca505dd1a71d4b79",
+        "bytes": 13377
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "9e7c1c25bd54549f343ebda86bb9ca3d10968b26718156607c7abd47c19f6079",
+        "bytes": 10327
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "4ee028b1abff0f545be43bc628aa9931eb6805bfe9da83da2645aa5a96176c62",
+        "bytes": 13505
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "7c270aec3360577c9a0ad01ce7a904d7bac4ae4c7c8e2e35ae6ce4684a1568f6",
+        "bytes": 13193
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e690ae8ec5b6afa0bb9742e3a4c62e4a94d8481a0cde89507ec32887913b8c5b",
+        "bytes": 12352
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "e89e98473335cf9e57ecbef951abfae957f1226aa55939be3c6fb6a8f9167c83",
+        "bytes": 11834
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "42196aceafbb918bdbc6aa3e76a91b19c51393ab8ddcbe5b56030043ce4d9608",
+        "bytes": 12308
+      }
+    ]
+  }
+}

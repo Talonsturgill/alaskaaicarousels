@@ -1,0 +1,19 @@
+{
+  "chars": 897,
+  "hook": "Four candidates for Alaska governor gave three answers on data centers. A 20,000-acre land decision may not wait for the winner.",
+  "hook_len": 128,
+  "commas": 6,
+  "comma_per_100": 0.7,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaGovernor",
+    "#DataCenterPolicy",
+    "#MatSu"
+  ],
+  "deck_summary": "Two frames hold the candidates' words. One each holds the early count, the DNR hearing, the Pentagon offer, a Fairbanks town hall of about 150 and the Senate vote.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 59
+}

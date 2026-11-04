@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1167,7 +1167,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-07-11",
@@ -1288,6 +1288,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding are due by 5 p.m. November 13th; the notice was last modified October 14th and lists no hearing date of its own."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding are due by 5 p.m. November 13th, and the notice, last modified October 14th, still lists no hearing date."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -1480,10 +1484,15 @@
           "url": "https://www.matsusentinel.com/lawsuit-argues-houston-area-land-transfer-violates-state-constitution/",
           "outlet": "Mat-Su Sentinel",
           "date": "2026-10-26"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-10-28/alaska-legislators-press-natural-resources-commissioner-on-no-cost-state-land-transfers",
+          "outlet": "Alaska Beacon, republished by Alaska Public Media",
+          "date": "2026-10-28"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-07-17",
@@ -1728,6 +1737,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read DNR's public notice for ADL 234762 today. It was last modified August 19th and carries the application, the preliminary decision and a vicinity map; no final finding and decision is posted."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "The Alaska Beacon reports that DNR is reviewing more than 2,100 public comments before a final decision, and that AIDEA officials have maintained data centers are unlikely in the development for lack of a reliable energy source."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -4173,7 +4186,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-08-25",
@@ -4306,6 +4319,10 @@
         {
           "date": "2026-11-02",
           "note": "No reporting or municipal notice published since the Anchorage Daily News account of October 26th shows a change. Debate on AO 2026-108 remains set to resume at the Assembly's November 4th regular meeting, and no vote has been recorded."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "The Assembly clerk's page, read today, carries no agenda yet for the November 4th regular meeting. Debate on AO 2026-108 remains set to resume there, and no vote has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4992,7 +5009,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-09-13",
@@ -5061,6 +5078,10 @@
         {
           "date": "2026-11-02",
           "note": "The GovInfo collection page for the bill could not be read today, so no Senate action after the September 30th cloture vote could be confirmed. The Senate's lame-duck session begins November 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "GovInfo's bill status record, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn after cloture failed 57 to 43. No Senate action since. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -5655,10 +5676,15 @@
           "url": "https://www.adn.com/alaska-news/education/2026/10/04/ai-policy-coming-to-university-of-alaska-as-student-misuse-increases/",
           "outlet": "Anchorage Daily News",
           "date": "2026-10-04"
+        },
+        {
+          "url": "https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting",
+          "outlet": "University of Alaska (news release via EIN Presswire)",
+          "date": "2026-11-03"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-09-17",
@@ -5723,6 +5749,10 @@
         {
           "date": "2026-11-02",
           "note": "The Board of Regents pages returned a server error again today, so the November agenda has not been checked. The public testimony hour on November 2nd and the November 5th and 6th meeting in Fairbanks stand as last published."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "The University of Alaska's own release, issued today, says the regents meet November 4th to 6th on the UAF campus, where Chief Information Technology Officer Ben Shier will present the latest version of \"AI Engaged\". The release says the statement sets six guiding principles, four investment priorities and five system-wide expectations, and leaves curriculum, academic integrity and faculty instructional judgment with UAA, UAF and UAS. The Board of Regents pages still returned a server error."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
@@ -6051,7 +6081,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-10-28",
@@ -6072,6 +6102,10 @@
         {
           "date": "2026-11-02",
           "note": "AIDEA's board meeting schedule, read today, lists the November 4th meeting at 813 West Northern Lights Boulevard in Anchorage with its agenda posted and the December 4th meeting with no agenda yet. Neither entry mentions Northstar Fiber Development LLC. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "AIDEA's posted agenda for its November 4th board meeting, read today, covers GeoAlaska, the Wrangell shipyard, the FY 2026 audit, an FY28 dividend and the Ambler road memorandum. No item concerns Northstar Fiber Development LLC or Resolution G26-11. The next regular meeting is December 4th in Anchorage."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"
@@ -6241,11 +6275,15 @@
         }
       ],
       "first_seen": "2026-11-02",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-11-02",
           "note": "Tracked. Read AEA's prequalification and request for information 27025, released October 15th, and the project page. The base bid is a 100 MW monopole with a second 100 MW pole as an option, about 40 miles of cable landfall to landfall, service targeted for December 2031, and the federal grant requires completion by August 31st, 2032. The page lists $413 million estimated and $142.5 million still required."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "AEA's project page, read today, still lists the link as in development, with a $413 million estimate, $142.5 million still required and completion targeted for 2032. The November 4th pre-response conference for cable makers stands as published. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aea-ciplink-submarine-cable-rfi/"

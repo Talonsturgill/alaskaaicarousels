@@ -1,0 +1,172 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass"
+    },
+    {
+      "rule": "factual claim without a claim-id",
+      "status": "pass"
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide",
+      "status": "pass"
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render (previous fail on slide 03 fixed: folder ends about y 1217, fixture from y 1252)",
+      "status": "pass"
+    },
+    {
+      "rule": "primary text contrast below 4.5:1",
+      "status": "pass"
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass"
+    },
+    {
+      "rule": "machine_qa FAIL or pdf_mode != vector",
+      "status": "pass"
+    },
+    {
+      "rule": "topic repeat within 30 days without a material development",
+      "status": "pass"
+    },
+    {
+      "rule": "hero visual structure identical to the last 4 decks",
+      "status": "pass"
+    },
+    {
+      "rule": "banned phrase",
+      "status": "pass"
+    },
+    {
+      "rule": "hashtag count != 3 or link in body",
+      "status": "pass"
+    },
+    {
+      "rule": "placeholder or unfinished element",
+      "status": "pass"
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Five words in huge Archivo, reads instantly at 432 px; cryptic until the kicker explains it; the gilt nameplate prints as a glowing yellow bar; not visibly Alaskan except through the kicker."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7,
+      "weight": 0.14,
+      "notes": "02 pays the cover, 03 to 04 edge tease is a real handoff, 08 keeper into 09 reveal is clean; 04 to 08 reads as an inventory, five of eight junctions weak."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 6.5,
+      "weight": 0.16,
+      "notes": "Best frames 06 and 07; 01 gilt reads emissive, 03 blotter a pasted rectangle and the rule a flat bar, 04 lacks a defocused lip and has a flat folder, 08 strip a comb with a white-block curl, 09 lamp spindly with glitter for a cone; six 2D frames share one red field."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "400 graduations with 45 filled, 12 uncut blanks, 150 tally strokes, 19 squares with 14 inked and an empty House frame, 35 day cells, four cards with two overlapping; the empty nameplate and the lamp left on anchor the handoff."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Named people, places and agencies, Alaska ranked choice and the noon handoff; the art is a placeless interior."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 7.5,
+      "weight": 0.1,
+      "notes": "Specifics on every content slide with careful hedging; the new beat is the 8:51 p.m. count; Houston, the military acres and 14 to 5 are recent re-runs."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "Hero, atmosphere, palette, hook and structure diverge from Nos.100 to 103; type pairing and dials match No.99."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7,
+      "weight": 0.07,
+      "notes": "Body 33 px, vector PDF 10.27 MB; labels under the 24 px floor on seven frames."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "Hook 128 chars lands; caption 897 chars; the caption's question differs from slide 9's ask."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 7.5,
+      "weight": 0.1,
+      "notes": "All deliverables present; site_fresh must clear before merge; Gmail and raw URLs not verifiable at scoring time."
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7x0.14)+(6.5x0.16)+(8x0.14)+(8x0.12)+(7.5x0.10)+(8x0.08)+(7x0.07)+(7.5x0.05)+(7.5x0.10) = 1.05+0.98+1.04+1.12+0.96+0.75+0.64+0.49+0.375+0.75 = 8.155",
+  "weighted_total": 8.155,
+  "threshold": 7.7,
+  "ship": true,
+  "revision_rounds": 5,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Recompose slide 04 with a lower camera so a defocused walnut lip bleeds off the bottom left and the folder shows a lit fold and tooth, and re-light slide 01's nameplate so the gilt reads as a bevelled reflecting plate on a visible walnut base.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 1,
+      "problem": "gilt face reads as an emissive bar on a black slab, hard stepped cast, little walnut grain",
+      "fix": "bevelled gilt border with an edge specular, lower environment on the face, walnut base with grain, contact seam"
+    },
+    {
+      "slide": 4,
+      "problem": "declared depth frame lacks a defocused foreground lip; flat folder; cap reads as a dish",
+      "fix": "lower, closer camera with a thin-lens-blurred walnut lip, folder fold and tooth, stronger stamped cross"
+    },
+    {
+      "slide": 3,
+      "problem": "blotter a pasted rectangle; rule a flat bar of regular ticks; empty lower third",
+      "fix": "blotter edges off frame, rule bevel and streak, deeper cast, pool falloff in the lower third"
+    },
+    {
+      "slide": 8,
+      "problem": "strip reads as a comb; curl a white block; rings are ovals",
+      "fix": "closed embossed day boxes, true-circle rings, curl shaded as paper with a soft cast"
+    },
+    {
+      "slide": 9,
+      "problem": "lamp spindly; cone as glitter; nameplate floats",
+      "fix": "thicker shaded stem, feathered additive cone, seated nameplate"
+    },
+    {
+      "slide": 5,
+      "problem": "blanks read as two materials; eventless leather",
+      "fix": "compress falloff, leather tooth behind the ring"
+    }
+  ],
+  "craft_floor": "artwork craft 6.5 is under the 8.5 floor; the run is at the five-round cap, so the craft cycle stands down and the shortfall ships flagged",
+  "scoring_history": [
+    {
+      "pass": 1,
+      "weighted_total": 6.9,
+      "raw": 8.12,
+      "hard_fail": "slide 03 coordinates fixture over the round 5 folder corner"
+    },
+    {
+      "pass": 2,
+      "weighted_total": 8.155,
+      "hard_fail": null
+    }
+  ],
+  "editor_notes_for_email": "Artwork craft 6.5 ships under the 8.5 craft floor at the five-round cap. The vote count on slide 3 is the 8:51 p.m. count at 11 percent of precincts; check the Division of Elections before posting. No.68 (September 25th) put the Anthropic-model disclosure in the first comment; this deck carries it only in the editor notes, so consider one line in the first comment. No.68 covered the four candidates' positions 39 days ago; Houston 'certainly possible' ran on No.97, the military acres on No.80, 14 to 5 on Nos.85 and 100. The town hall date of October 29th is inferred from 'Thursday night'. Labels on slide 8 are 20 px; check on a phone."
+}

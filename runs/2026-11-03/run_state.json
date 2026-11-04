@@ -1,0 +1,132 @@
+{
+  "run_date": "2026-11-03",
+  "carousel_no": 104,
+  "effort": "high",
+  "revision_rounds": 5,
+  "date_note": "Anchorage date at wake (21:04 AKST Nov 3rd); UTC already Nov 4th. runs/2026-11-03 did not exist; run_guard CLEAR for 2026-11-03.",
+  "branch": "tsturg/clever-mayer-pyms26",
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "2 searches; nothing new beyond FIELD_NOTES (AuthoredUp/Socialinsider figures already recorded), so nothing written."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/scout_merge.md",
+        "out/2026-11-03/already_covered.txt"
+      ],
+      "note": "6 scouts, 139 searches; ALREADY COVERED block given to scouts as the full file to Read (not a cut list). One showrunner curl to eScribe denied by the auto-mode classifier (bot check), not retried."
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/claims.json"
+      ],
+      "note": "50 verified (42 lead, 8 runner-up), 12 killed; claims_check PASS 50/50, 7 primary."
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "6 worklist items re-verified (enstar, ciplink, aidea fiber, hr-9340, ua regents, rtcc). watch.json read: 2 bills match closed docket items, 0 hearings (out of session), 29 candidates all prior-session bills with no new action, failed []. Ask payload headroom 5,310 bytes (just above the 5,000 warn line). mobile_docket_map + docket_ask PASS at run date. New items from claims added after Phase 3 if any. After claims: ua-regents-ai-policy note updated with UA's November 3rd release; aidea-houston-industrial-park note on 2,100+ comments."
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/cron_health.json",
+        "out/2026-11-03/gaswatch_health.json"
+      ],
+      "lines": {
+        "SITE SIGN-OFF": "PASS, 167 pages, 18 checks",
+        "GAS WATCH": "PASS, read November 3rd, 91 days on record, chart present",
+        "GAS WATCH LIVE": "PASS, checked after repair; first audit FAIL late_post (CINGSA posted 01:00Z after the 00:01Z scheduled collection); dispatched gaswatch.yml on main (run 41783509032, success, 7.63 Bcf), Pages run 41783725495 deployed, re-audit PASS",
+        "CRON HEALTH": "PASS, all scheduled workflows checked after the gas watch repair (earlier FAIL was the pending Pages deploy)",
+        "SITE FIXES": "none needed on pages; repaired the live Gas Watch by dispatching the collector after CINGSA's late post"
+      }
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/storyboard.md",
+        "out/2026-11-03/selection.md"
+      ],
+      "note": "3 treatment directors; dossier_check PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/caption.txt",
+        "out/2026-11-03/copy.json",
+        "out/2026-11-03/caption_report.json",
+        "out/2026-11-03/caption_room/verdict.md"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/slides",
+        "out/2026-11-03/render/machine_qa.json",
+        "assets/js/akdesk.js",
+        "out/2026-11-03/aggregates.json"
+      ],
+      "note": "qa.py WARN 0 fails; bespoke 0.146; aggregate, plan_drift, tonal_arc, dossier PASS"
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "Round 1: all nine revise (5.5,4.5,5.0,5.5,6.0,6.5,5.9,5.7,6.0). Fixed causes once in AKDESK (walnut as irregular streaks, oxblood darkened, per-frame pool falloff, soft-clipped light) plus per-slide fixes; round 2 critics out. Round 2: all revise (6.0,7.0,6.4,6.8,6.0,6.8,6.8,6.5,6.4); fixed blotter edges, paper albedo, casts, grain size, per-slide; round 3 critics out. Round 3: all revise (5.8,6.9,6.2,6.4,6.6,7.3,7.0,6.9,6.3); fixed blotter far edge, brighter pools, casts, per-slide; round 4 (last pixel round) out. Round 4 (last pixel round): all revise (6.0,7.0,6.6,6.0,6.9,7.4,7.3,7.2,7.0); a final targeted batch applied (GPU walnut bump, 03 streak ramp and cast, 02 casts, 05 hot lobe, 04 folder under the cap, 07 jacket clear of the copy and a longer cast, 08 upper ticks dropped). Holdouts logged in critics/round4.json."
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/flow_review.json"
+      ],
+      "note": "Flow critic 6.9 revise (predicted art 6.5). Round 5 (the cap) applied GPU walnut contrast, 03 folder corner under the dome, 04 body trim and darker inner sheets, 05 falloff, 06 cedar, pool lifts on 02, 03, 06. 04 recomposition, 01 gilt bevel, 08 day boxes and 07 weave jitter not applied: no round remains to review them."
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/final/carousel.pdf"
+      ],
+      "note": "vector PDF 10.27 MB, 9 slides"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-03/score_report.json"
+      ],
+      "note": "pass 1 6.9 (hard fail, slide 03 fixture over the folder; raw 8.12); fixed; pass 2 8.155 vs 7.7, ship. Art 6.5 under the craft floor, capped at 5 rounds."
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-03/"
+      ],
+      "note": "artifacts copied, images to WebP (63.2 MB to 8.7 MB), PDF left untouched by shrink_pdfs (safe outcome), site built at 2026-11-04 (UTC today; a cron rebuilt docs/ at 06:09Z), site_fresh OK, parsers/scanner/docket dates PASS, no alerts due, prune freed 1.47 MB, ledgers appended (topics, artwork, captions, 3 instincts), FIELD_NOTES retro."
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 167 pages, 18 checks",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked after repair; first audit FAIL late_post (CINGSA posted 01:00Z after the 00:01Z scheduled collection); dispatched gaswatch.yml on main (run 41783509032, success, 7.63 Bcf), Pages run 41783725495 deployed, re-audit PASS (checked 2026-11-04T06:12:52Z)",
+    "gaswatch_pagecheck": "GAS WATCH: PASS, read November 3rd, 91 days on record, chart present",
+    "cron_health": "CRON HEALTH: PASS, all scheduled workflows checked after the gas watch repair (earlier FAIL was the pending Pages deploy), 7 workflows",
+    "site_fixes": "none needed on pages; repaired the live Gas Watch by dispatching the collector after CINGSA's late post"
+  }
+}

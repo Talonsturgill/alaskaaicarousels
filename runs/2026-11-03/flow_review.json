@@ -1,0 +1,212 @@
+{
+  "verdict": "revise",
+  "score": 6.9,
+  "arc": "Cover promise paid on 02, the 03 to 04 tease is the one strong visual handoff, 08 to 09 lands a clean single ask under the revealed lamp. Mid-deck (04 to 08) reads as an inventory without on-frame plants.",
+  "consistency": {
+    "counter_transcription": {
+      "01": "01 / 09",
+      "02": "02 / 09",
+      "03": "03 / 09",
+      "04": "04 / 09",
+      "05": "05 / 09",
+      "06": "06 / 09",
+      "07": "07 / 09",
+      "08": "08 / 09",
+      "09": "09 / 09"
+    },
+    "counters_correct": true,
+    "dateline": "NOON · DECEMBER 7TH in gold on all nine, same position",
+    "light_direction": "key from the upper or back right on every frame; casts lower left"
+  },
+  "continuity": [
+    {
+      "severity": "major",
+      "where": "01, 04, 09 vs the 2D frames",
+      "problem": "two desk materials: the GPU walnut shows no grain",
+      "fix": "walnut contrast about 2.5x with a roughness map from the same canvas"
+    },
+    {
+      "severity": "polish",
+      "where": "03 to 04 tease",
+      "problem": "the dome sits on bare walnut on 03 but on manila on 04",
+      "fix": "run the folder corner under 03's dome"
+    },
+    {
+      "severity": "polish",
+      "where": "05",
+      "problem": "blank tone runs near-black to cream",
+      "fix": "compress the falloff"
+    },
+    {
+      "severity": "polish",
+      "where": "04, 06 gold law",
+      "problem": "04 folder edge strips and 06 cedar print near flag gold",
+      "fix": "darken the inner sheets, desaturate the cedar"
+    }
+  ],
+  "rhythm": [
+    {
+      "severity": "major",
+      "where": "02 to 05",
+      "problem": "four dense frames in a row",
+      "fix": "trim 04 and 05 bodies to about 24 words"
+    }
+  ],
+  "junctions": [
+    {
+      "from": 1,
+      "to": 2,
+      "strength": "strong"
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "strength": "weak"
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "strength": "strong"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "strength": "weak"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "strength": "weak"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "strength": "weak"
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "strength": "weak"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "strength": "weak"
+    }
+  ],
+  "bail_point": {
+    "slide": 5,
+    "why": "two text walls in a row at 04 and 05"
+  },
+  "craft": {
+    "predicted_artwork_score": 6.5,
+    "masterful_depth_frame": null,
+    "weakest_frames": [
+      {
+        "rank": 1,
+        "slide": 4,
+        "score": 6.0,
+        "cause": "c",
+        "fix": "recompose for depth with a defocused near-plane lip; triple the cross normal; remove cream edge strips"
+      },
+      {
+        "rank": 2,
+        "slide": 1,
+        "score": 6.0,
+        "cause": "b",
+        "fix": "bevelled gilt frame with an edge specular; walnut base as wood; GPU walnut grain"
+      },
+      {
+        "rank": 3,
+        "slide": 3,
+        "score": 6.5,
+        "cause": "c",
+        "fix": "folder corner under the dome; blotter edges off frame; deeper rule cast"
+      },
+      {
+        "rank": 4,
+        "slide": 8,
+        "score": 6.8,
+        "cause": "b",
+        "fix": "closed embossed day boxes, true-circle rings, curl in the strip's paper"
+      },
+      {
+        "rank": 5,
+        "slide": 5,
+        "score": 6.9,
+        "cause": "c",
+        "fix": "desk signal behind the ring; compress the blank falloff"
+      },
+      {
+        "rank": 6,
+        "slide": 7,
+        "score": 7.0,
+        "cause": "d",
+        "fix": "jitter the weave per thread, one raking sheen"
+      }
+    ],
+    "cross_frame": [
+      {
+        "cause": "a",
+        "slides": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "problem": "shared ground reads as one red field; objects are distinct"
+      },
+      {
+        "cause": "b",
+        "slides": [
+          1,
+          4,
+          9
+        ],
+        "problem": "GPU desk has no visible walnut grain"
+      },
+      {
+        "cause": "e",
+        "slides": [
+          2,
+          3,
+          4,
+          5,
+          7,
+          8
+        ],
+        "problem": "census passes but seven frames sit in L* 12 to 18"
+      },
+      {
+        "cause": "d",
+        "slides": [
+          3,
+          7
+        ],
+        "problem": "regular lattices: graduations and weave"
+      }
+    ],
+    "tonal_arc": "01 15, 02 18, 03 14, 04 12, 05 15, 06 23, 07 16, 08 17, 09 9; peak 06 and darkest 09 PASS, span 14.8 L*"
+  },
+  "fixes": [
+    "04 recompose for depth",
+    "GPU walnut contrast and roughness; 01 gilt bevel",
+    "03 folder corner under the dome",
+    "trim 04 and 05 bodies",
+    "08 closed day boxes",
+    "07 weave jitter",
+    "tonal lift 02, 03, 06; 05 falloff; 06 cedar"
+  ],
+  "applied_round5": [
+    "GPU walnut contrast 2.5x plus roughness map (01, 04, 09)",
+    "03 manila folder corner under the dome, pool lifted",
+    "04 body trimmed 38 to 31 words; inner sheets darkened",
+    "05 blank falloff compressed",
+    "06 cedar desaturated, pool lifted",
+    "02 pool lifted"
+  ],
+  "not_applied": "04 camera recomposition and 01 gilt bevel frame: no rounds remain to review a recomposed frame; 08 day boxes and 07 weave jitter deferred for the same reason.",
+  "summary": "Sequence sound; art under the bar (predicted 6.5). Round 5, the last at the cap, applied the cheapest high-value fixes."
+}
