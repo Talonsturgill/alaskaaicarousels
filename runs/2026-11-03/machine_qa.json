@@ -1,0 +1,224 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the nameplate holder on the walnut': shadow L* 4.2 vs ground L* 50.7, dL 46.5 at 432w"
+      ],
+      "fits": [
+        "hl 'Pause.Never hyperscale.Believer. Embrace.' fits 3/3 lines at 117.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KREISS-TOMKINS (D)' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'WILSON (R)' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'BRONSON (R)' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TAYLOR (R)' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 2 of 3 in '\"I will never allow Alaska to be littered wi' ends 'with' -- an article, conjunction or preposition left hanging at the line end. It reads at 42px, so the break is the first thing a feed sees. Author the break with <br> before 'hyperscale' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'index card 1': canvas 78.5 dE, page 79.7 dE, 100% of its rect is clear of opaque DOM",
+        "'index card 2': canvas 31.4 dE, page 35.2 dE, 100% of its rect is clear of opaque DOM",
+        "'index card 3': canvas 70.6 dE, page 70.9 dE, 100% of its rect is clear of opaque DOM",
+        "'index card 4': canvas 73.9 dE, page 76.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Four candidates.Three answers.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '45 OF 400 PRECINCTS AT 8:40 P.M.' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the steel rule on the leather': shadow L* 5.3 vs ground L* 18.4, dL 13.1 at 432w"
+      ],
+      "leaders": [
+        "leader 'the 45th graduation, the last precinct reported at 8:40 p.m.' lands 0.0px from its target",
+        "leader 'the 45th graduation, the last precinct reported at 8:40 p.m.' meets its label 6.0px away",
+        "leader 'the 45th graduation, the last precinct reported at 8:40 p.m.' is drawn 60 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'An early count.Not a result.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'45 filled graduations for 45 precincts reporting' holds: 45 vs 45 marks, counted over 45 declared marks (within 0)",
+        "'45 filled graduations for 45 precincts reporting': 45 mark centres probed at r=4px, cohort median 38.1 dE, all present (weakest 20.2 dE)",
+        "'400 graduations for 400 precincts' holds: 400 vs 400 marks, counted over 400 declared marks (within 0)",
+        "'400 graduations for 400 precincts': 200 mark centres probed at r=9px, sampled every 2 marks, cohort median 50.4 dE, all present (weakest 21.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '20,000 ACRES NEAR HOUSTON' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the survey cap on the folder': shadow L* 2.0 vs ground L* 42.3, dL 40.4 at 432w"
+      ],
+      "leaders": [
+        "leader 'the folder tab' lands 0.0px from its target",
+        "leader 'the folder tab' meets its label 5.8px away",
+        "leader 'the folder tab' is drawn 27 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '\"It's certainly possible.\"' fits 1/1 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ABOUT 4,700 ACRES' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'a key blank on the leather': shadow L* 10.5 vs ground L* 23.3, dL 12.8 at 432w"
+      ],
+      "leaders": [
+        "leader 'the aluminium tag on the ring' lands 0.0px from its target",
+        "leader 'the aluminium tag on the ring' meets its label 9.6px away",
+        "leader 'the aluminium tag on the ring' is drawn 271 px at 5 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Up to a dozen.None awardedas of September 15' fits 3/3 lines at 75.5px"
+      ],
+      "asserts": [
+        "'twelve uncut blanks for up to a dozen data centers' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'twelve uncut blanks for up to a dozen data centers': 12 mark centres probed at r=8px, cohort median 22.0 dE, all present (weakest 8.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SARAH HOLLISTER, ORGANIZER FAIRBANKS DATA CENTER T' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ABOUT 150 CAME' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.34) beneath 'ABOUT 150 CAME' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "contacts": [
+        "'the pencil on the card': shadow L* 7.3 vs ground L* 69.6, dL 62.2 at 432w"
+      ],
+      "fits": [
+        "hl '\"Our largest concernis that nobody asked us.' fits 2/4 lines at 103.5px"
+      ],
+      "asserts": [
+        "'150 tally strokes for about 150 who came' holds: 150 vs 150 marks, counted over 150 declared marks (within 0)",
+        "'150 tally strokes for about 150 who came': 150 mark centres probed at r=4px, cohort median 42.9 dE, all present (weakest 31.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SENATE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'HOUSE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the bill jacket on the leather': shadow L* 3.9 vs ground L* 11.8, dL 7.8 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "leaders": [
+        "leader 'the Senate field, 19 squares' lands 0.0px from its target",
+        "leader 'the empty House frame' lands 0.0px from its target",
+        "leader 'the Senate field, 19 squares' meets its label 10.5px away",
+        "leader 'the empty House frame' meets its label 9.7px away",
+        "leader 'the Senate field, 19 squares' is drawn 284 px at 0 degrees, inside the pointer band",
+        "leader 'the empty House frame' is drawn 306 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The Senate passed it 14 to 5.The House never' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'14 inked squares for 14 Senate yeas' holds: 14 vs 14 marks, counted over 14 declared marks (within 0)",
+        "'14 inked squares for 14 Senate yeas': 14 mark centres probed at r=12px, cohort median 62.7 dE, all present (weakest 60.2 dE)",
+        "'19 squares for 19 Senate votes' holds: 19 vs 19 marks, counted over 19 declared marks (within 0)",
+        "'19 squares for 19 Senate votes': 19 mark centres probed at r=12px, cohort median 61.6 dE, all present (weakest 51.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'STATE LAND' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MILITARY LAND' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE LAW' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 3RD EARLY COUNT' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 18TH RANKED CHOICE, IF NEEDED' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 25TH CERTIFICATION TARGET' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DECEMBER 7TH TAKES OFFICE AT NOON' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "axis census: 'the 35-day calendar strip': the weakest declared mark (at 462, ink 2.4) is no stronger than the band's own texture (4.7), and the strongest declared mark reads 11.5, so no census can separate marks from art here. Per mark: 90 (-0.02 days after November 3rd): ink 11.5, 462 (15.02 days after November 3rd): ink 2.4, 635 (22.01 days after November 3rd): ink 4.5, 932 (34.02 days after November 3rd): ink 4.0. Narrow the band to the strip the marks occupy, or draw the marks so a reader can tell them from the ground."
+      ],
+      "contacts": [
+        "'the calendar strip on the leather': shadow L* 9.8 vs ground L* 21.4, dL 11.5 at 432w"
+      ],
+      "motifs": [
+        "'the 35-day calendar strip': canvas 66.3 dE, page 69.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'On the desk at noon,December 7th.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'35 day cells, November 3rd to December 7th' holds: 35 vs 35 marks, counted over 35 declared marks (within 0)",
+        "'35 day cells, November 3rd to December 7th': 35 mark centres probed at r=12px, cohort median 66.5 dE, all present (weakest 46.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the nameplate holder on the blotter': shadow L* 8.8 vs ground L* 19.8, dL 11.0 at 432w -- and the two rects are 114 design px apart, past the 96 px window a contact pool spans: at that reach the difference between them is as easily the scene's own lighting falloff, or a second surface, as it is this object's shadow, and dL can't tell you which. Pair the shadow against lit ground on the object's OWN plate, within 96 px of the foot. If there is no lit ground that close, the pool was drawn no wider than the object and the fix is to widen the pool, never to reach further for something bright. `python3 scripts/contact_probe.py --render-dir <dir> --slides-dir <dir> --verify` prints the profile this pair was read off."
+      ],
+      "fits": [
+        "hl 'Law first,or land first?' fits 2/2 lines at 111.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 23,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKDESK.cast2d",
+        "slides": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "call": "AKDESK.desk2d",
+        "slides": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "call": "AKDESK.light2d",
+        "slides": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

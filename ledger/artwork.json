@@ -3770,6 +3770,43 @@
         "cabinet-oblique calendar slab on drafting film with status-coded segments and a measured month axis"
       ],
       "new_techniques_logged": []
+    },
+    {
+      "run_date": "2026-11-03",
+      "carousel_no": 104,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE LAMP LEFT ON, one walnut desk with an oxblood blotter under one brass lamp, nine camera positions and nine objects set down on it: a blank gilt nameplate (01), fanned index cards (02), an engraved steel rule (03), a bronze survey cap on a manila folder at macro (04), a ring of twelve uncut key blanks (05), a graphite tally card with a pencil (06), a cloth bill jacket with inked stamps (07), an embossed desk-pad calendar strip (08), the lamp itself pulled back (09)",
+      "atmosphere": "NEW: ONE LAMP AFTER THE POLLS CLOSE, a tungsten practical from the back right (world 0.70, 0.62, -0.42), cool night-window fill about 1 to 6, room night #05080F, no sky, no weather",
+      "depth_technique": "akthree PBR with a lamp-matched PMREM room (graded warm wall behind the visitor) and AKSTROBE thin-lens focus (01, 04, 09); per-pixel Canvas 2D height-field shading against the same lamp vector with a per-frame pool falloff and two-part multiply casts (02, 03, 05 to 08)",
+      "line_voice": "editorial still life: mono labels with hairline leaders landing on objects, no chart furniture",
+      "continuity_device": "camera move over one desk under one fixed lamp, the gold NOON · DECEMBER 7TH dateline on every frame",
+      "continuity_devices": [
+        "one desk, one shared seeded walnut and leather module (assets/js/akdesk.js) for GPU and 2D frames",
+        "one lamp key from the back right, casts to the lower left",
+        "edge tease 03 to 04 on the survey cap's dome",
+        "the gold dateline on every frame",
+        "the lamp revealed only on 09"
+      ],
+      "hook_archetype": "NEW: THE FOUR-WORD BALLOT",
+      "palette_family": "NEW: LAMPLIT WALNUT, OXBLOOD AND GILT (room night #05080F, walnut #2E1B12 to #A8703F, oxblood #220D0D to #672B25, tungsten #FFB45A, bronze #8A6234, nickel #8C96A0, card #E8E2D2, cloth #2C3A4A, flag gold #FFC72C for the noon December 7th handoff)",
+      "type_pairing": "Archivo (two widths) + Instrument Serif (people's own words only) + JetBrains Mono",
+      "narrative_structure": "NEW: STANCES, COUNT, INVENTORY, MISSING LAW: what they said (01, 02), what the count can and can't say (03), what is already on the desk (04, 05), who was not asked (06), the law that isn't there (07), the desk with dates (08), the ask (09)",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 3
+      },
+      "techniques": [
+        "AKDESK shared desk module: one seeded walnut and oxblood leather painted per device pixel for 2D frames and used as textures and a PMREM room for GPU frames, so nine camera positions sit on one desk",
+        "per-frame lamp pool falloff and soft-clipped tungsten light in 2D so a close frame is never lit edge to edge",
+        "gilt plate struck with a 3 mm bow so a mirror face sweeps a graded wall instead of printing as a flat slab",
+        "Kajiya-Kay brushed nickel per pixel with a brushing streak term so every blade reads whatever its angle to the lamp",
+        "graphite tallies broken by the card's tooth, a hex pencil laid square to the lamp so its cast falls beside it",
+        "woven cloth relief with inked stamp plateaus and lit rims on a skewed bill jacket with a page block",
+        "embossed day cells with lit upper rims, a curl cylinder and two-part casts on a desk-pad strip",
+        "45 of 400 engraved graduations filled column by column so the fill reads as 11 percent of the rule"
+      ],
+      "new_techniques_logged": []
     }
   ]
 }

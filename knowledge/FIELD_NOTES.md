@@ -9525,3 +9525,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A FAR CAMERA Z-FIGHTS A LIT POOL INTO BLACK. With near 1 and far 2400, 09's pool vanished while 01's was fine. Separating the planes and raising near to 3 fixed it.
 - AN APOSTROPHE IN A SINGLE-QUOTED data-* ATTRIBUTE truncates the JSON. This happened three times in one run. Write declarations without possessives.
 - What the flow critic caught that per-slide critics could not: three dense explanatory frames in a row, then a frame with DeepGreen absent (05), the predicted bail point. Cutting 04's and 05's bodies to one sentence each and making 05 the lit snow frame was the sequence fix.
+
+## 2026-11-03, No.104, retro (THE LAMP LEFT ON)
+
+- Story: election night. Four governor candidates gave three answers on data centers in their own words, against an inventory already on the next governor's desk with no statute (the Houston transfer, the Pentagon's lease offer, a Senate-passed bill the House never took up). The count was partial at the time of the run, so every number from it carries "early" and its 8:51 p.m. stamp, and no frame orders the candidates by vote share.
+- A SHARED 2D GROUND IS A SHARED FAILURE. One desk module painted the walnut and leather for six frames, and all three of its first faults (periodic walnut that printed as stripes, leather lit edge to edge into vermilion, a blotter that read as a pasted rectangle with a ruled far edge) showed on every frame at once. Fixing the module fixed six frames per change, but it took three rounds to find all three faults. Next time, review the ground alone on one frame before building the other five on it.
+- A FLAT MIRROR PRINTS AS AN EMISSIVE SLAB. A gilt plate mirrors one direction of the room. A 3 mm bow top to bottom made it sweep the graded wall and read as metal.
+- A LONG THIN OBJECT LAID ALONG THE LIGHT HIDES ITS OWN CAST. The pencil's shadow ran under its length until it was turned square to the lamp.
+- CASTS NEED LIT GROUND. Every critic round named "hairline casts" until the pools under the objects were raised. A shadow on near-black leather can't be seen at any opacity.
+- AKPOST.grade grain at size 2 reads as a square lattice in near-black at 100 percent. Size 1 cleared it.
+- A tube along a vertical path twists its frames and pinched 09's lamp stem. A plain cylinder fixed it.
+- What the flow critic caught that the per-slide critics could not: the GPU frames and the 2D frames rendered the one desk as two materials, and 02 to 05 were four dense frames in a row with the bail at 05.

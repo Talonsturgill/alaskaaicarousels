@@ -1,0 +1,98 @@
+{
+ "run_date": "2026-11-03",
+ "aggregates": [
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Four candidates. Three answers.",
+   "fragment": "Four candidates",
+   "subject": "governor candidates",
+   "members": [
+    "C01",
+    "C02",
+    "C03",
+    "C04"
+   ]
+  },
+  {
+   "kind": "count",
+   "slide": 2,
+   "text": "Four candidates. Three answers.",
+   "fragment": "Three answers",
+   "subject": "positions on data centers",
+   "members": [
+    "C18",
+    "C14",
+    "C16"
+   ],
+   "items": [
+    "pause",
+    "never",
+    "embrace"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 3,
+   "text": "45 OF 400 PRECINCTS AT 8:40 P.M.",
+   "fragment": "45 OF 400",
+   "member": "C05"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "20,000 ACRES NEAR HOUSTON",
+   "fragment": "20,000 ACRES",
+   "member": "C28"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "The Pentagon wants up to a dozen data centers near Anchorage, Healy and Fairbanks and has offered to lease about 4,700 acres to private companies.",
+   "fragment": "4,700 acres",
+   "member": "C22"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "ABOUT 4,700 ACRES",
+   "fragment": "4,700 ACRES",
+   "member": "C22"
+  },
+  {
+   "kind": "design",
+   "slide": 5,
+   "text": "TWELVE BLANKS, NONE CUT",
+   "fragment": "TWELVE BLANKS",
+   "note": "the drawing's twelve key blanks stand for C23's up to a dozen data centers, none cut for C24's none awarded; a property of the still life"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "The Senate passed it 14 to 5. The House never took it up.",
+   "fragment": "14 to 5",
+   "member": "C20"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "20,000 acres near Houston to AIDEA. A decision is \"certainly possible\" before the handoff.",
+   "fragment": "20,000 acres",
+   "member": "C28"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "About 4,700 acres offered for lease by the Pentagon. None awarded as of September 15th.",
+   "fragment": "4,700 acres",
+   "member": "C22"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "A data center bill passed the Senate 14 to 5. No House vote.",
+   "fragment": "14 to 5",
+   "member": "C20"
+  }
+ ]
+}

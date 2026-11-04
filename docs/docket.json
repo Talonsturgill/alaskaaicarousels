@@ -2,7 +2,7 @@
   "name": "The Alaska AI Docket",
   "description": "Every AI-infrastructure decision in Alaska. Land leases, comment windows, utility votes, legislation and federal solicitations, with the deciding body, the dates that matter, whether the public has a way in, and a fetched source for every fact.",
   "version": "1.0",
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "canonical": "https://alaskaaihq.com/docket.json",
   "documentation": "https://alaskaaihq.com/data/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -1484,10 +1484,15 @@
           "url": "https://www.matsusentinel.com/lawsuit-argues-houston-area-land-transfer-violates-state-constitution/",
           "outlet": "Mat-Su Sentinel",
           "date": "2026-10-26"
+        },
+        {
+          "url": "https://alaskapublic.org/news/politics/alaska-legislature/2026-10-28/alaska-legislators-press-natural-resources-commissioner-on-no-cost-state-land-transfers",
+          "outlet": "Alaska Beacon, republished by Alaska Public Media",
+          "date": "2026-10-28"
         }
       ],
       "first_seen": "2026-07-17",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-03",
       "history": [
         {
           "date": "2026-07-17",
@@ -1732,6 +1737,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read DNR's public notice for ADL 234762 today. It was last modified August 19th and carries the application, the preliminary decision and a vicinity map; no final finding and decision is posted."
+        },
+        {
+          "date": "2026-11-03",
+          "note": "The Alaska Beacon reports that DNR is reviewing more than 2,100 public comments before a final decision, and that AIDEA officials have maintained data centers are unlikely in the development for lack of a reliable energy source."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-houston-industrial-park/"
@@ -5667,6 +5676,11 @@
           "url": "https://www.adn.com/alaska-news/education/2026/10/04/ai-policy-coming-to-university-of-alaska-as-student-misuse-increases/",
           "outlet": "Anchorage Daily News",
           "date": "2026-10-04"
+        },
+        {
+          "url": "https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting",
+          "outlet": "University of Alaska (news release via EIN Presswire)",
+          "date": "2026-11-03"
         }
       ],
       "first_seen": "2026-09-17",
@@ -5738,7 +5752,7 @@
         },
         {
           "date": "2026-11-03",
-          "note": "The Board of Regents pages returned a server error again today, so the November agenda could not be read. The November 5th and 6th meeting in Fairbanks stands as last published."
+          "note": "The University of Alaska's own release, issued today, says the regents meet November 4th to 6th on the UAF campus, where Chief Information Technology Officer Ben Shier will present the latest version of \"AI Engaged\". The release says the statement sets six guiding principles, four investment priorities and five system-wide expectations, and leaves curriculum, academic integrity and faculty instructional judgment with UAA, UAF and UAS. The Board of Regents pages still returned a server error."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"

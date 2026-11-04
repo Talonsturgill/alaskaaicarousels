@@ -4227,6 +4227,57 @@
       ],
       "claims": 76,
       "note": "Third DeepGreen deck (No.93 before it). The material new record: DeepGreen's October 27th answer conceding no partnership, AEA's October 15th RFI, and the window's close. An update needs another new record: a Commission order on the permit, the December 15th RFI responses or a procurement award, or a filing from DeepGreen naming a real interconnection path."
+    },
+    {
+      "run_date": "2026-11-03",
+      "carousel_no": 104,
+      "topic": "Alaska's November 3rd governor's race as the state's one statewide vote on data centers: four candidates, three answers in their own words (Kreiss-Tomkins (D) 'I think we should pause' and backs a moratorium until the Legislature passes a framework; Wilson (R) 'I will never allow Alaska to be littered with hyperscale data centers'; Bronson (R) 'a big believer in data centers'; Taylor (R) 'I think we need to embrace it'). Early first-round count at 8:51 p.m. with 11 percent of precincts in: Kreiss-Tomkins 55, Wilson 28, Bronson 11, Taylor 6; ranked choice November 18th if nobody tops 50, certification target November 25th, the winner takes office at noon December 7th. Already on the desk with no data center statute: DNR's 20,000-acre Houston transfer to AIDEA (Commissioner Crowther under a legislative subpoena called a decision before December 7th 'certainly possible'; the district could include data centers, AIDEA has maintained they're unlikely), the Pentagon's offer to lease about 4,700 acres near Anchorage, Healy and Fairbanks for up to a dozen data centers (none awarded as of September 15th; Murkowski 'not a proponent'), a Fairbanks town hall of about 150 ('Our largest concern is that nobody asked us'), and a data center bill that passed the Senate 14 to 5 and the House never took up.",
+      "angle": "The vote against the desk: the four answers as a ballot of stances, then what is already sitting on the next governor's desk without a law.",
+      "entities": [
+        "Jonathan Kreiss-Tomkins",
+        "Bernadette Wilson",
+        "Dave Bronson",
+        "Treg Taylor",
+        "Alaska Department of Natural Resources",
+        "John Crowther",
+        "AIDEA",
+        "Houston",
+        "Pentagon",
+        "Department of Defense",
+        "Lisa Murkowski",
+        "Fairbanks",
+        "Sarah Hollister",
+        "Alaska Senate",
+        "Alaska House"
+      ],
+      "keywords": [
+        "governor's race",
+        "data centers",
+        "hyperscale",
+        "moratorium",
+        "ranked choice",
+        "certification",
+        "December 7th",
+        "Houston transfer",
+        "enhanced use lease",
+        "data center bill",
+        "town hall"
+      ],
+      "headline": "Pause. Never hyperscale. Believer. Embrace.",
+      "sources_lead": [
+        "https://alaskabeacon.com/2026/11/03/alaskas-u-s-senate-race-draws-significant-donations-from-ai-company-employees/",
+        "https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors",
+        "https://alaskapublic.org/news/alaska-desk/2026-10-15/in-fairbanks-interior-secretary-burgum-touts-deregulation-and-data-centers",
+        "https://alaskapublic.org/news/politics/alaska-legislature/2026-10-28/alaska-legislators-press-natural-resources-commissioner-on-no-cost-state-land-transfers"
+      ],
+      "beats": [
+        "data-centers",
+        "state-policy",
+        "land-and-permitting",
+        "defense-and-federal"
+      ],
+      "claims": 50,
+      "note": "Election-night deck. No.97 covered the Houston transfer's December 7th framing as decision vs handoff; this deck is the vote vs the desk, with the Houston item as one inherited object among three. AI-company employee contributions (C33 to C39) held off the slides and caption and disclosed to the maintainer (the studio's production model is Anthropic's)."
     }
   ]
 }
