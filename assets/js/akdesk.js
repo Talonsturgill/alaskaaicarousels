@@ -342,7 +342,8 @@
     const wt = new THREE.CanvasTexture(wc);
     wt.colorSpace = THREE.SRGBColorSpace; wt.anisotropy = 8;
     const top = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.04, 1.2, 1, 1, 1),
-      new THREE.MeshPhysicalMaterial({ map: wt, roughness: 0.55, clearcoat: 0.35, clearcoatRoughness: 0.38 }));
+      // the grain is also the bump, so the lamp rakes it on the GPU frames (No.104 round 4: a smooth gradient plane)
+      new THREE.MeshPhysicalMaterial({ map: wt, bumpMap: wt, bumpScale: 1.4, roughness: 0.55, clearcoat: 0.35, clearcoatRoughness: 0.38 }));
     top.position.set(0, -0.02, 0);
     top.receiveShadow = true; top.castShadow = true;
     R.scene.add(top);
