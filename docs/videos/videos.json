@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-05-who-held-the-pen",
+      "date": "2026-11-05",
+      "title": "Who Held the Pen",
+      "caption": "Two UAA professors say Anthropic's Claude wrote the first draft of the University of Alaska's AI plan. A university technology chief says he drafted it over the summer. We found no university response, and the film asks who was consulted.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-05-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-05-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-05-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-05-poster_thumb.jpg"
+    },
+    {
       "id": "the-ears-did-the-work",
       "date": "2026-11-04",
       "title": "The Ears Did the Work",
