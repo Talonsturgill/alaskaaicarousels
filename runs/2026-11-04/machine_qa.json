@@ -1,0 +1,162 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath '1' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'WEIGHT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '2' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath '3' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "worst-point contrast 2.2 on 'PAYLOAD MASS NOT PUBLISHED' (box mean 7.2) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.05) beneath 'PAYLOAD MASS NOT PUBLISHED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "worst-point contrast 4.2 on '11TH AIRBORNE DIVISION, FROM THE ARMY'S ' (box mean 10.9) -- below the rubric's 4.5 line somewhere along the run of the text -- and the two ENDS of this 864px line are the worst of it (4.4) while its middle reads 7.5, which is the fingerprint of a RADIAL destination-out reserve: the outer radius is half the box's longest side, so the circle fades out before the ends of a long run of type and the field stays over the first and last words. Punch a BLURRED RECTANGLE instead (AKENGRAVE.punchReserves, or ctx.filter='blur(9px)' then fillRect per box); it follows the shape of the box, so a wide headline and a small mono stamp are both covered end to end"
+      ],
+      "leaders": [
+        "leader 'WEIGHT' lands 0.0px from its target",
+        "leader 'COLD' lands 0.0px from its target",
+        "leader 'MOUNTAINS' lands 0.0px from its target",
+        "leader 'WEIGHT' meets its label 28.2px away",
+        "leader 'COLD' meets its label 28.3px away",
+        "leader 'MOUNTAINS' meets its label 28.1px away",
+        "leader 'WEIGHT' is drawn 303 px at 8 degrees, inside the pointer band",
+        "leader 'COLD' is drawn 233 px at 10 degrees, inside the pointer band",
+        "leader 'MOUNTAINS' is drawn 210 px at 3 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Weight. Cold.Mountains.The Army's Alaskadron' fits 4/4 lines at 80.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the machined range-log bar on the lit floor': shadow L* 3.4 vs ground L* 12.4, dL 9.0 at 432w"
+      ],
+      "scales": [
+        "'the range-log bar, one groove per live-fire day' runs 0 days after September 29th at 230 to 21 days after September 29th at 860; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'September 29th groove' lands 4.0px from its target",
+        "leader 'October 19th groove' lands 4.0px from its target",
+        "leader 'October 20th groove' lands 4.0px from its target",
+        "leader 'September 29th groove' meets its label 9.0px away",
+        "leader 'October 19th groove' meets its label 13.5px away",
+        "leader 'October 20th groove' meets its label 4.0px away",
+        "leader 'September 29th groove' is drawn 24 px at 90 degrees, inside the pointer band",
+        "leader 'October 19th groove' is drawn 24 px at 90 degrees, inside the pointer band",
+        "leader 'October 20th groove' is drawn 38 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'The first kinetic drone strike in the Richar' fits 3/3 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "transparent shell washes what is behind it: mesh 70 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.26, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 71 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.48, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 86 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.26, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 87 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.48, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 102 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.26, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 103 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.48, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 118 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.26, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "transparent shell washes what is behind it: mesh 119 has a pale albedo #8fa3b8 (linear luminance 0.355, over 0.2) at opacity 0.48, and its lit diffuse term is blended over the contents as milk (No.82: region mean 107 with the shells, 52 without). Use AKT.mat.glass(): a near-black albedo, with the read carried by envMapIntensity",
+        "busy art under text (bg edge density 0.05) beneath 'THRUST' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "worst-point contrast 3.1 on 'ADDED WEIGHT' (box mean 12.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.08) beneath 'ADDED WEIGHT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "worst-point contrast 2.5 on 'PAYLOAD MASS NOT PUBLISHED' (box mean 11.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.07) beneath 'PAYLOAD MASS NOT PUBLISHED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'Operators first flew unarmed explosive p' at 80,404 930x182 (margin 80px)"
+      ],
+      "fits": [
+        "hd 'Before the strike, they flew the weight.' fits 2/2 lines at 74px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the riveted data plate on the lit bench': shadow L* 1.7 vs ground L* 18.0, dL 16.3 at 432w"
+      ],
+      "fits": [
+        "hd 'What the Army left blank.' fits 1/1 lines at 60px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the battery core' lands 0.0px from its target",
+        "leader 'the body-side heat' lands 0.0px from its target",
+        "leader 'the battery core' meets its label 3.0px away",
+        "leader 'the body-side heat' meets its label 0.0px away",
+        "leader 'the battery core' is drawn 334 px at 17 degrees, inside the pointer band",
+        "leader 'the body-side heat' is drawn 190 px at 4 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'A private hand-sewed a battery vault.' fits 2/2 lines at 70px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'RADIO SHADOW, DRAWN' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DISTANCE NOT PUBLISHED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'A CHUGACH PROFILE, DRAWN TO SHOW LINE OF SIGHT. NO' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'VERTICAL EXAGGERATION 6X' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.10) beneath 'DRONE' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'NO LINE OF SIGHT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.09) beneath 'RADIO SHADOW, DRAWN' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "fits": [
+        "hd 'First place wentto a relay over the ridge.' fits 2/2 lines at 64.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the steel hatch on the lit roof plate': shadow L* 3.9 vs ground L* 16.0, dL 12.1 at 432w"
+      ],
+      "fits": [
+        "hd 'Not every fix flies.About $300 in materials.' fits 2/2 lines at 61.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd 'The entriesthe Army named.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'15 minute ticks, 10 to brief and five of questions' holds: 15 vs 15 marks, counted over 15 declared marks (within 0)",
+        "'15 minute ticks, 10 to brief and five of questions': 15 mark centres probed at r=8px, cohort median 68.1 dE, all present (weakest 66.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd 'What Alaska problemshould soldiers bringto t' fits 4/4 lines at 70.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 28,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

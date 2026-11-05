@@ -2504,6 +2504,36 @@
       "last_confirmed": "2026-11-03",
       "run_date": "2026-11-03",
       "carousel_no": 104
+    },
+    {
+      "id": "cast-term-must-cover-its-own-interior",
+      "instinct": "A soft cast written as exp(-d) outside an offset shape must also apply INSIDE that shape; gating it to d > 0 leaves a lit slab with a hard edge between the object and its shadow.",
+      "evidence": "No.105 slide 05: a lighter slab under the pouch survived two rounds until the cast was made continuous.",
+      "confidence": 0.6,
+      "learned": "2026-11-04",
+      "last_confirmed": "2026-11-04",
+      "run_date": "2026-11-04",
+      "carousel_no": 105
+    },
+    {
+      "id": "anchor-overlays-to-world-positions",
+      "instinct": "SVG overlays on a GPU frame project the parts' own world positions (getWorldPosition after updateMatrixWorld), never positions re-derived from the builder's constants and a scale guess.",
+      "evidence": "No.105 slide 03: thrust arrows computed from armReach floated away from the motors once the model was scaled; reading each motor group's world position fixed it in one render.",
+      "confidence": 0.6,
+      "learned": "2026-11-04",
+      "last_confirmed": "2026-11-04",
+      "run_date": "2026-11-04",
+      "carousel_no": 105
+    },
+    {
+      "id": "a-shallow-dome-reads-flat",
+      "instinct": "A height-field dome needs an edge slope near 0.7 to read as a dome under a raking key; a 38 px rise over a 250 px radius shaded as a flat disc.",
+      "evidence": "No.105 slide 07: raising the dome to 92 px and adding an inner weld bead turned a flat disc into domed steel.",
+      "confidence": 0.5,
+      "learned": "2026-11-04",
+      "last_confirmed": "2026-11-04",
+      "run_date": "2026-11-04",
+      "carousel_no": 105
     }
   ]
 }

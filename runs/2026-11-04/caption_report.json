@@ -1,0 +1,19 @@
+{
+  "chars": 883,
+  "hook": "\"Soldiers across the 11th Airborne Division continue to demonstrate that many of the best ideas come from the bottom up.\"",
+  "hook_len": 121,
+  "commas": 5,
+  "comma_per_100": 0.6,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#11thAirborne",
+    "#ArcticDrones",
+    "#AlaskaDefense"
+  ],
+  "deck_summary": "Inside, the first kinetic drone strike within the Richardson Training Area, four soldier fixes and five drone specs left blank.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 78
+}

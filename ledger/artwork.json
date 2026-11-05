@@ -3807,6 +3807,42 @@
         "45 of 400 engraved graduations filled column by column so the fill reads as 11 percent of the rule"
       ],
       "new_techniques_logged": []
+    },
+    {
+      "run_date": "2026-11-04",
+      "carousel_no": 105,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE ALASKA DRONE TAKEN APART, a technical-manual teardown of one generic quad with each figure drawn by a different instrument: GPU exploded view (01), machined range-log bar with hand-cut engraving (02), orthographic force diagram over the hovering quad (03), riveted bas-relief data plate with five empty fields (04), ironbow thermal image of a quilted battery vault (05), drafted Chugach line-of-sight section (06), plan relief of a domed steel hatch under snow (07), wireframe parts sheet on drafting film (08), the quad at rest on a frosted floor (09)",
+      "atmosphere": "NEW: COLD BAY SOFTBOX, one cool overhead softbox (screen azimuth 300, elevation 34) in a dark maintenance bay at sub-zero, frost on the floor, no warm light except the battery's own heat on 05",
+      "depth_technique": "akthree PBR with VSM soft shadows on the shared akdrone model (01, 03, 09); per-device-pixel height fields shaded against the same key with lit pools and two-part casts (02, 04, 07); SDF thermal field (05); DEM profile with depth-faded hatch lays (06); 2D film sheet with projected wireframes (08)",
+      "line_voice": "technical manual: drafting balloons, filled 3 to 1 arrowheads, mono callouts with leaders, dashed phantoms for anything unpublished",
+      "continuity_device": "camera move on one quad (01, 03, 09) and a four-balloon progress strip under the counter",
+      "continuity_devices": [
+        "one shared seeded quad module (assets/js/akdrone.js) for every GPU frame",
+        "the balloon strip: gold fill means answered on the record by a soldier",
+        "one cold key, casts to the lower right on every frame",
+        "palette arc to kept heat on 05"
+      ],
+      "hook_archetype": "NEW: THE THREE-PART TEARDOWN",
+      "palette_family": "NEW: CARBON, FOIL AND IRONBOW (bay night #060A10, floor #18222D, pool #26323F, carbon #1A1D22, steel #B8C2CC, frost ink #8CC9E3, ironbow #2A0B4A to #FFF6D6 on 05 only, flag gold #FFC72C)",
+      "type_pairing": "Unbounded + Manrope + JetBrains Mono",
+      "narrative_structure": "NEW: TEARDOWN AND REASSEMBLY: the machine apart (01), the record (02), weight (03), the blank plate (04), cold (05), mountains (06), a fix that does not fly (07), the parts list (08), the machine together again (09)",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 1
+      },
+      "techniques": [
+        "AKDRONE shared quad module with an explode() pass and per-part tags for leaders",
+        "hand-cut swelled-line engraving weighted by the light on a bar's crown",
+        "grazing-ray line of sight: the blocked cap at the steepest rise seen from the operator, the radio shadow wedge on the same ray",
+        "SDF quilted pouch in ironbow with relative heat only and a DOM legend",
+        "plan-relief steel hatch with a quadratic dome, inner weld bead and turned brushing"
+      ],
+      "new_techniques_logged": [
+        "145. Shared Exploded Model (akdrone)",
+        "146. Grazing-Ray Radio Shadow"
+      ]
     }
   ]
 }

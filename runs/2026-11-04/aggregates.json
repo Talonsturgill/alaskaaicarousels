@@ -1,0 +1,33 @@
+{
+ "run_date": "2026-11-04",
+ "aggregates": [
+  {
+   "kind": "design",
+   "slide": 6,
+   "text": "PROBLEM 3, MOUNTAINS",
+   "fragment": "3, MOUNTAINS",
+   "note": "the deck's own numbering of the four problems, matching the cover's balloons 1 to 3 and balloon 4 on 07; a property of the artwork, not a count from the record"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "Not every fix flies. About $300 in materials.",
+   "fragment": "300 in materials",
+   "member": "C30"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "10 MINUTES TO BRIEF, FIVE OF QUESTIONS",
+   "fragment": "10 MINUTES",
+   "member": "C20"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "10 MINUTES TO BRIEF, FIVE OF QUESTIONS",
+   "fragment": "FIVE OF QUESTIONS",
+   "member": "C20"
+  }
+ ]
+}
