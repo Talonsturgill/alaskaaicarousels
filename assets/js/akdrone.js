@@ -30,12 +30,15 @@ export function build(THREE, AKT, opts) {
     return tex;
   }
   const weave = opts.weave === false ? null : twill();
+  // the top plate is a small box: give it its own twill at a matched world repeat, or the box UVs stretch the weave into stripes
+  const weaveTop = weave ? (() => { const t = weave.clone(); t.needsUpdate = true; t.repeat.set(9, 12); return t; })() : null;
+  const carbonTop = new THREE.MeshStandardMaterial({ color: 0xffffff, map: weaveTop, roughness: 0.34, metalness: 0.3 });
   const carbon = opts.carbon || new THREE.MeshStandardMaterial({ color: 0xffffff, map: weave, roughness: 0.38, metalness: 0.3 });
   const carbonEdge = new THREE.MeshStandardMaterial({ color: 0x2a2f36, roughness: 0.5, metalness: 0.4 });
   const alu = opts.alu || new THREE.MeshStandardMaterial({ color: opts.aluColor || 0xb8c2cc, roughness: 0.28, metalness: 0.92 });
-  const bell = opts.bell || new THREE.MeshStandardMaterial({ color: opts.bellColor || 0x3c4651, roughness: 0.3, metalness: 0.85 });
+  const bell = opts.bell || new THREE.MeshStandardMaterial({ color: opts.bellColor || 0x9aa6b2, roughness: 0.32, metalness: 0.9 });
   const copper = new THREE.MeshStandardMaterial({ color: 0xb06a3a, roughness: 0.35, metalness: 0.9 });
-  const wrap = opts.wrap || new THREE.MeshStandardMaterial({ color: opts.packColor || 0x1d2a36, roughness: 0.62, metalness: 0.05 });
+  const wrap = opts.wrap || new THREE.MeshPhysicalMaterial({ color: opts.packColor || 0x34465a, roughness: 0.5, metalness: 0.05, clearcoat: 0.55, clearcoatRoughness: 0.3 });
   const strap = new THREE.MeshStandardMaterial({ color: opts.strapColor || 0x0d0f12, roughness: 0.85 });
   const lens = new THREE.MeshStandardMaterial({ color: 0x05070a, roughness: 0.06, metalness: 0.2 });
   const tag = (m, part) => { m.userData.part = part; return m; };
@@ -67,6 +70,8 @@ export function build(THREE, AKT, opts) {
     const stator = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0115 * S, 0.0115 * S, 0.004 * S, 36), copper), 'stator');
     stator.position.y = 0.002 * S; mg.add(stator);
     const bellM = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0128 * S, 0.0138 * S, 0.012 * S, 48, 1, false), bell), 'bell');
+    const band = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0141 * S, 0.0141 * S, 0.0026 * S, 48, 1, true), copper), 'band');
+    band.position.y = 0.0058 * S; mg.add(band);
     bellM.position.y = 0.0105 * S; mg.add(bellM);
     // cooling slots on the bell top: six small dark wedges
     for (let s = 0; s < 6; s++) {
@@ -81,8 +86,8 @@ export function build(THREE, AKT, opts) {
     /* a motion disc is a glass-like shell: near-black albedo so it does not
      * milk what is behind it, read carried by the environment, and out of the
      * shadow pass both ways (the AKT.mat.glass rules, No.82). */
-    const discMat = (op) => { const m = new THREE.MeshStandardMaterial({ color: opts.propColor || 0x161c22,
-      roughness: 0.25, metalness: 0.2, transparent: true, opacity: op, side: THREE.DoubleSide, depthWrite: false, envMapIntensity: 1.6 });
+    const discMat = (op) => { const m = new THREE.MeshStandardMaterial({ color: opts.propColor || 0x10161c,
+      roughness: 0.18, metalness: 0.4, transparent: true, opacity: op * 1.6, side: THREE.DoubleSide, depthWrite: false, envMapIntensity: 2.4 });
       m.userData.aktNoShadow = true; return m; };
     if (opts.spin) {
       const disc = new THREE.Mesh(new THREE.RingGeometry(0.008 * S, R, 64, 1),
@@ -92,13 +97,15 @@ export function build(THREE, AKT, opts) {
         discMat(0.3));
       rim.rotation.x = -Math.PI / 2; rim.position.y = 0.0002 * S; pg.add(rim);
     } else {
-      const bladeMat = new THREE.MeshStandardMaterial({ color: opts.propColor || 0x4a5866, roughness: 0.3, metalness: 0.1 });
+      const bladeMat = new THREE.MeshPhysicalMaterial({ color: opts.propColor || 0x1a2027, roughness: 0.5, metalness: 0.05, clearcoat: 0.35, clearcoatRoughness: 0.4, envMapIntensity: 0.45 });
       for (let b = 0; b < 3; b++) {
         const sh = new THREE.Shape();
         sh.moveTo(0, -0.004 * S);
         sh.bezierCurveTo(R * 0.35, -0.011 * S, R * 0.8, -0.009 * S, R, -0.002 * S);
         sh.bezierCurveTo(R * 0.98, 0.006 * S, R * 0.6, 0.007 * S, 0, 0.004 * S);
-        const bg = new THREE.ExtrudeGeometry(sh, { depth: 0.0012 * S, bevelEnabled: false });
+        const bg = new THREE.ExtrudeGeometry(sh, { depth: 0.0016 * S, bevelEnabled: true, bevelThickness: 0.0004 * S, bevelSize: 0.0004 * S, bevelSegments: 2, curveSegments: 16 });
+        // blade twist: pitch falls from root to tip, so the key and fill differ along a blade
+        { const pa = bg.attributes.position; for (let q = 0; q < pa.count; q++) { const bx = pa.getX(q), bz = pa.getZ(q), tw = 0.32 * (1 - bx / R); pa.setZ(q, bz + pa.getY(q) * Math.sin(tw)); } bg.computeVertexNormals(); }
         const bm = tag(new THREE.Mesh(bg, bladeMat), 'blade');
         bm.rotation.x = -Math.PI / 2 + 0.16; bm.rotation.z = 0;
         const holder = new THREE.Group(); holder.rotation.y = b * 2 * Math.PI / 3 + k * 0.7; holder.add(bm); pg.add(holder);
@@ -111,12 +118,12 @@ export function build(THREE, AKT, opts) {
     const so = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0022 * S, 0.0022 * S, 0.026 * S, 12), alu), 'standoff');
     so.position.set(sx * bw * 0.8, plate + 0.013 * S, sz * bl * 0.8); g.add(so);
   }
-  const top = tag(new THREE.Mesh(new THREE.BoxGeometry(bw * 2, plate * 0.8, bl * 2.05), carbon), 'top');
+  const top = tag(new THREE.Mesh(new THREE.BoxGeometry(bw * 2, plate * 0.8, bl * 2.05), carbonTop), 'top');
   top.position.y = plate + 0.026 * S; g.add(top);
   // flight stack between the plates: two boards on nylon posts, gold pads, and
   // motor leads running along each arm (so the frame reads as wired, not toy)
   const pcb = new THREE.MeshStandardMaterial({ color: 0x0c1410, roughness: 0.55, metalness: 0.2 });
-  const pad = new THREE.MeshStandardMaterial({ color: 0xc9a24a, roughness: 0.3, metalness: 0.95 });
+  const pad = new THREE.MeshStandardMaterial({ color: 0x7a4a2a, roughness: 0.4, metalness: 0.8 });   // tinned copper, never flag gold
   for (let b = 0; b < 2; b++) {
     const board = tag(new THREE.Mesh(new THREE.BoxGeometry(0.03 * S, 0.0016 * S, 0.03 * S), pcb), 'board');
     board.position.y = plate + 0.007 * S + b * 0.009 * S; g.add(board);
@@ -149,7 +156,7 @@ export function build(THREE, AKT, opts) {
   // soften the pack: a bevel is faked by a slightly larger rounded cap
   const st = tag(new THREE.Mesh(new THREE.BoxGeometry(packW + 0.0045 * S, packH + 0.0045 * S, 0.01 * S), strap), 'strap');
   st.position.copy(pack.position); g.add(st);
-  const lead = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0022 * S, 0.0022 * S, 0.05 * S, 10), new THREE.MeshStandardMaterial({ color: 0x8a1b1b, roughness: 0.5 })), 'lead');
+  const lead = tag(new THREE.Mesh(new THREE.CylinderGeometry(0.0022 * S, 0.0022 * S, 0.05 * S, 10), new THREE.MeshStandardMaterial({ color: 0x2a2f36, roughness: 0.5 })), 'lead');
   lead.rotation.x = Math.PI / 2.4; lead.position.set(0.008 * S, pack.position.y - 0.004 * S, -packL / 2 - 0.012 * S); g.add(lead);
   // camera pod at the front, tilted up 25 degrees, with a lens
   const cam = new THREE.Group(); cam.position.set(0, plate + 0.013 * S, bl * 0.92); cam.rotation.x = -0.44;
