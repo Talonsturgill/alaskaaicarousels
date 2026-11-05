@@ -4278,6 +4278,52 @@
       ],
       "claims": 50,
       "note": "Election-night deck. No.97 covered the Houston transfer's December 7th framing as decision vs handoff; this deck is the vote vs the desk, with the Houston item as one inherited object among three. AI-company employee contributions (C33 to C39) held off the slides and caption and disclosed to the maintainer (the studio's production model is Anthropic's)."
+    },
+    {
+      "run_date": "2026-11-04",
+      "carousel_no": 105,
+      "topic": "The 11th Airborne Division's fall drone record: the first kinetic drone strike within the Richardson Training Area (2nd Mobile Brigade Combat Team, armed first-person view drones, September 29th and October 19th to 20th, after unarmed payload flights enabled by Sgt. 1st Class Devin McNamara), and Angel Ascent at Fort Wainwright on October 28th, where Spc. Leighton Keilen's Skydio drone relay and modular payload system won first place and a Meritorious Service Medal, Pfc. Michael Pereira entered a hand-sewn passive battery vault warmed by body heat, and the 725th Light Support Battalion showed a metal gunner hatch cover for about $300 in materials. The Army named the soldiers and did not publish the drone's model, payload mass, endurance, engagement range or measured accuracy.",
+      "angle": "The Army's Alaska drone taken apart: three Alaska problems (weight, cold, mountains) plus snow, each answered by a named soldier by hand, against five specifications the record left blank.",
+      "entities": [
+        "11th Airborne Division",
+        "2nd Mobile Brigade Combat Team",
+        "Richardson Training Area",
+        "Fort Wainwright",
+        "Angel Ascent",
+        "Devin McNamara",
+        "Leighton Keilen",
+        "Michael Pereira",
+        "Daniel Woodard",
+        "725th Light Support Battalion",
+        "Robert Baddeley",
+        "Matthew Adamczyk",
+        "Skydio",
+        "Army Recognition"
+      ],
+      "keywords": [
+        "FPV drones",
+        "kinetic drone strike",
+        "live fire",
+        "innovation competition",
+        "drone relay",
+        "battery vault",
+        "cold weather batteries",
+        "gunner hatch",
+        "Arctic drones",
+        "sUAS"
+      ],
+      "headline": "Weight. Cold. Mountains. The Army's Alaska drone, taken apart.",
+      "sources_lead": [
+        "https://www.army.mil/article/296380",
+        "https://www.army.mil/article/296502",
+        "https://www.army.mil/article/296265",
+        "https://www.armyrecognition.com/news/army-news/2026/us-army-paratroopers-integrate-armed-fpv-drones-in-alaska-first-live-fire-exercises"
+      ],
+      "beats": [
+        "defense-and-federal"
+      ],
+      "claims": 43,
+      "note": "Robotics beat; none of the three Army articles mentions AI or autonomy and no frame implies either. 'First' scoped to the Richardson Training Area (Army Recognition says not to read it as the Army's first explosive FPV use). Runner-up was the Enstar and MEA gas exchange before the RCA."
     }
   ]
 }

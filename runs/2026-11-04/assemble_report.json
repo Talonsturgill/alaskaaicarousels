@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-04/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 6581739,
+  "pdf_mb": 6.58,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-04/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-04/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Weight, Cold, Mountains. The Army's Alaska Drone Taken Apart",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "564a99678d373e85abcb3caad7158ccf463f139d817672c147301ac1b5959bf7",
+        "bytes": 6242373
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "5de97874084890816792921daf81a54a3eb2e6a32e1a716cc4c83ed07107dc5d",
+        "bytes": 5491547
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "39b365b9a18532d0744cc85e312fe151928a7ab5f1373d69a3e94397af4f6c45",
+        "bytes": 5532507
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "f2c4cf714428e9764fd56ea52721fec7a75311be712fdd56cbde558ddb303a6e",
+        "bytes": 6203939
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d7bfc3c89094aec6ddc162c641a7860e727121a35a97e05a68f26858484abde7",
+        "bytes": 4197096
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "fb7371fd80e8318ace970fd90e4e4db2f13cb954ebb8cc4b80b80e784d2bfe83",
+        "bytes": 7172690
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "c46569c5931f4d0dd2f8e51e05d98e94e3a4fdd4b93805e6bd91b30bba40fd25",
+        "bytes": 5946411
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "69bf3e07758e3f304083b0ce77d387a6253b6f3052098ed711aa47f9346b5d81",
+        "bytes": 7850161
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "8ca014da1874f05780762be05ea5d67562238271a43355fe4615f1968213cfb5",
+        "bytes": 5279101
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "0ace2ee0f91cd97c2b9915acf1c2b67f35dd44d04bcdcd1b522f26885e1a6147",
+        "bytes": 10782
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "7e326ee251b5d384c366bb1bfd57287f941ee9a0924647b4fe5ad3a69a97a438",
+        "bytes": 10957
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "e495eece396f5e3997d55560d11cc3314aad409899804901f11490668cd88127",
+        "bytes": 10813
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a57f3122027fda51ff6c8bbbd1e8884ef66212bd5b6428e760f3b8b3f19032e7",
+        "bytes": 7958
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "3f512f980406e88f1cba4ac490e6e1f52221f8f9cb239a0527e984239b2629b7",
+        "bytes": 11552
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "e16fe9f35397cdd44884151e10c285479821fa88aae330ecceb0cf267b277bbe",
+        "bytes": 13753
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "2abebf1cbf25212ac076e436bcbe258172b7119ba4fdf840da25cdddf9fc5c48",
+        "bytes": 9550
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "dfa7c0aef96b435ac2eea977f979e2f4b4ffce51db6914b05323ca9929e50e07",
+        "bytes": 12939
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "7af5f7b1aca390115c5154e4a33afee0f164ba5576e613540d291192d10bbfa6",
+        "bytes": 8364
+      }
+    ]
+  }
+}

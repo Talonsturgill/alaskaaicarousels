@@ -9536,3 +9536,17 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AKPOST.grade grain at size 2 reads as a square lattice in near-black at 100 percent. Size 1 cleared it.
 - A tube along a vertical path twists its frames and pinched 09's lamp stem. A plain cylinder fixed it.
 - What the flow critic caught that the per-slide critics could not: the GPU frames and the 2D frames rendered the one desk as two materials, and 02 to 05 were four dense frames in a row with the bail at 05.
+
+## 2026-11-04, No.105, craft refresh (two searches)
+
+- Nothing new on document-post reach. The search returned the same AuthoredUp (39 percent more reach) and Ordinal (PDFs lowest mean impressions) figures recorded on October 29th, with no newer measurement.
+- PLAN OBLIQUE RELIEF IS NOT IN THE LIBRARY. Jenny and Patterson (2007) shift each shaded-relief pixel north (up the sheet) in proportion to its elevation, so a map keeps its planimetric x while the mountains "stand up" in an oblique read (https://en.wikipedia.org/wiki/Terrain_cartography). It is a per-pixel pass over an existing hillshade, portable to offline Canvas, and an alternative to a GPU flyover when a frame needs a map that is also a landscape. Candidate only; not yet built.
+
+## 2026-11-04, No.105, retro
+
+- PROJECT THE PART, NOT THE CONSTANT. Overlay arrows built from the module's arm length missed the motors once the model was scaled. Reading each motor group's world position put every arrow on its motor.
+- A SOFT CAST GATED TO d > 0 LEAVES A SLAB. The pouch's cast skipped the offset shape's own interior, so a lighter band with a hard edge sat between the pouch and its shadow for two rounds.
+- A DOME NEEDS SLOPE. A 38 px rise over a 250 px radius shaded flat; 92 px with an inner weld bead read as steel.
+- A RADIAL GRADIENT FILLED THROUGH A SMALLER ARC CONTOURS. The 08 pool was cut at r 760 inside a 900 gradient and showed a curved step in the near-black. Fill the rect and dither.
+- THE DECLARED LIT PEAK MOVED. The hatch on 07 reads as a lit object on a dark roof, so the softbox frames 01 and 03 measured brightest; the arc was re-declared and 03 lifted to lead rather than dimming the cover.
+- A TWISTED EXTRUDED BLADE CREASES. Twisting a triangulated ExtrudeGeometry face by vertex split each blade into two flat tones on a near frame; untwisted matte blades read cleaner at that distance.

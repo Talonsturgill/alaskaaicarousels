@@ -1,0 +1,47 @@
+{
+  "verdict": "revise",
+  "arc_assessment": "The teardown promise holds. The cover names three problems over the exploded quad, 02 pays it with the scoped record, and 03, 05 and 06 pay weight, cold and mountains in the cover's order. The blank plate sits between them as the analytical turn, and the quad is back together and at rest on 09 under the ask. The one weak link is 06: all three of the cover's balloons fill there, so the deck feels finished two frames early, and 07's fourth problem arrives unannounced instead of escalating.",
+  "junction_pulls": [
+    {"from": 1, "to": 2, "pull": "The three hollow gold balloons and 'taken apart' set up an open three-part promise, and the leaders point at parts the reader hasn't been told about yet.", "strength": "strong"},
+    {"from": 2, "to": 3, "pull": "Only the still-hollow balloon 1 pulls. Nothing on the frame sets up the 'they flew the weight first' plant from the dossier; the scope line and rail close the frame rather than open the next one.", "strength": "weak"},
+    {"from": 3, "to": 4, "pull": "'PAYLOAD MASS NOT PUBLISHED' under the phantom box hands straight to 'What the Army left blank.'", "strength": "strong"},
+    {"from": 4, "to": 5, "pull": "The balloons switch to dashed, so the reader feels the reset, but 04 ends on 'NOT IDENTIFIED BY THE ARMY...' with no turn toward what soldiers built (the dossier's plant isn't on the frame). The colour jump to ironbow does the work instead.", "strength": "weak"},
+    {"from": 5, "to": 6, "pull": "Balloon 3 is still hollow and the cover's third word, 'Mountains', is still unpaid.", "strength": "strong"},
+    {"from": 6, "to": 7, "pull": "None on the frame. All three cover balloons are now gold and nothing announces a fourth.", "strength": "none"},
+    {"from": 7, "to": 8, "pull": "The strip is full and the $300 closes the beat. Only the counter and curiosity about the full entry list pull.", "strength": "weak"},
+    {"from": 8, "to": 9, "pull": "The 08 / 09 counter and the gold first-place rule; one frame left is reason enough.", "strength": "strong"}
+  ],
+  "continuity_findings": [
+    {"severity": "major", "where": "slides 06-07 balloon strip (D2)", "problem": "The strip shows three balloons on 01 to 06, and they all fill on 06. A fourth balloon appears from nowhere on 07. So the progress device tells the reader the deck is done at 06, and 07's 'PROBLEM 4, SNOW' reads as outside the promise rather than as escalation.", "fix": "Draw balloon 4 from 01 as a dashed phantom-ink ring (#5B6977, the deck's 'not on the record yet' ink), so it waits alongside 1 to 3 and fills gold on 07. The cover headline stays three words; the phantom fourth becomes the tease that pulls 06 to 07."},
+    {"severity": "polish", "where": "slide 03, phantom payload", "problem": "The dashed phantom cube projects onto the near motor bell, so it reads as hanging under one motor rather than under the frame's centre.", "fix": "Move the phantom 0.03 m back along the view axis, or hang it lower, so its silhouette clears the near motor."},
+    {"severity": "polish", "where": "slides 01, 03, 09 (D1 camera move)", "problem": "Works as one model: same twill, battery, antenna ball and props, with exploded, hovering and resting states. 09's exposure is much darker than 01 and 03, and that's intended (night close). No change needed.", "fix": "None."}
+  ],
+  "rhythm_findings": [
+    {"severity": "polish", "where": "slides 05-08", "problem": "Four text-heavy frames in a row: 05 has about 41 words, 06 about 45 plus four art labels, 07 about 45, 08 about 90 in the keeper. The reading load never drops between the breather (04) and the close.", "fix": "Trim 06's body. Cut 'It published no distance.', since the 'DISTANCE NOT PUBLISHED' dimension call already says it on the art. Also cut 'and modular payload delivery system', which 08's first row repeats."},
+    {"severity": "polish", "where": "slide 04 breather", "problem": "The breather lands where planned and reads as rest: one object, few words. It works.", "fix": "None."}
+  ],
+  "consistency_findings": [
+    {"severity": "polish", "where": "counter transcription, all slides", "problem": "Counters 01/09 to 09/09 all correct with a gold slash. Balloons match D2. Wordmark, Polaris and alaskaaihq.com sit in the same place on every frame.", "fix": "None."},
+    {"severity": "polish", "where": "balloon strip position, 06 to 07", "problem": "Adding the fourth balloon at 07 shifts balloon 1 left, so a constellation mark moves mid-deck.", "fix": "Reserve slot 4 from 01 as a dashed phantom, so no mark ever moves."},
+    {"severity": "polish", "where": "slide 06, radio-shadow wedge", "problem": "The counter-hatched wedge continues the grazing ray to the top right corner and runs behind the body copy. It thins the copy's contrast and pulls the art up into the text block.", "fix": "Clip or fade the wedge's hatch above the art band, so the shadow stays in the art band."},
+    {"severity": "polish", "where": "coordinate footer, 05 to 08", "problem": "The Fairbanks coordinate appears on 05, 07 and 08 but not on 06. The reconciliation explains why.", "fix": "Accept as built; the honesty reason outranks the run."},
+    {"severity": "polish", "where": "shared physics", "problem": "The key falls from the upper left with casts to the lower right on 01, 03, 04, 07 and 09, and the lit skin is on the left flanks on 06. 08's mottled cloud film is the one surface whose texture belongs to no other frame.", "fix": "See the craft entry for 08."}
+  ],
+  "predicted_bail_point": {"slide": 6, "why": "The cover promised three problems and 06 fills the third gold balloon. A reader tracking the strip has been paid in full and has nothing pulling them to 07.", "fix": "Draw a dashed phantom balloon 4 from 01 that fills on 07. Optionally put one mono line under 06's art to plant 07's headline."},
+  "craft": {
+    "predicted_artwork_score": 7.5,
+    "weakest_frames": [
+      {"slide": 8, "score": 7.0, "cause": "d", "problem": "The film sheet is textured with low-frequency mottled cloud noise. At 100 percent this reads as smudged blotches, not drafting-film tooth. The frame still reads as a dark UI card more than a lit physical sheet.", "fix": "Replace the cloud mottle with fine grain-scale tooth (1 to 2 device px) under one smooth key gradient across the film, bright upper left to lee lower right, plus a clear lit top edge."},
+      {"slide": 2, "score": 7.0, "cause": "d", "problem": "The engraved bar's white-line intaglio is evenly spaced horizontal lines that run straight across the bevels and rounded ends, so at zoom it reads as scanlines rather than engraving. The floor pool and cast are faint.", "fix": "Make the engraving follow form: swell in the light, taper to nothing in the lee, bend around the rounded ends and bevel."},
+      {"slide": 4, "score": 7.5, "cause": "b", "problem": "The plate's five recessed fields are flat near-black fills with only a thin lip; at zoom they read as UI input boxes.", "fix": "Give each recess floor dark brushed anodising, a cavity gradient under the key-side top lip and a thin lit lower lip."},
+      {"slide": 5, "score": 7.5, "cause": "d", "problem": "The diamond quilt is a perfectly regular lattice and the isolines are inset rounded trapezoids that don't follow the field.", "fix": "Draw the isolines as real d3 contours of the emission field and drop the inset rounded rectangles."},
+      {"slide": 6, "score": 7.5, "cause": "c", "problem": "Hatch spacing looks constant; the wedge's lay runs at nearly the same angle as the ridge-body hatch, and the wedge runs up behind the body copy.", "fix": "Clip the wedge's hatch above the art band and set its lay perpendicular to the ridge-body hatch."}
+    ],
+    "cross_frame": [
+      {"cause": "a", "slides": [1, 3, 9], "problem": "The akdrone quad carries exactly three frames, the planned D1 camera move and within the limit. The reuse census lists no helper or function shape on more than three frames. Not a cause-a finding.", "fix": "None."},
+      {"cause": "e", "slides": [4, 5, 6, 7, 8, 9], "problem": "The tonal census passes (peak 03 at 39.6, darkest 06 at 10.6, span 28.9). The arc is front-loaded: both lit frames sit in the first three. 05's warmth and 07's snow carry the back half adequately. A mild concern, not a miss. The storyboard's GATE STATUS block showed a stale tonal_arc WARN.", "fix": "No art change needed for e. Re-run gate_status.py --sync."}
+    ],
+    "masterful_depth_frame": 1
+  },
+  "score_0_10": 7.6
+}
