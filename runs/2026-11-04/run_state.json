@@ -21,9 +21,9 @@
     "assemble": "done: out/2026-11-04/final (vector PDF, 9 slides)",
     "scoring": "done: out/2026-11-04/score_report.json (8.225 vs 7.7 at the round cap; normalised 7.48 disclosed; ship_gate PASS)",
     "ship": "done: runs/2026-11-04 (webp frames, og.jpg, PDF), docs/ rebuilt at 2026-11-04 (169 pages), ledgers appended, prune freed 0.47M, alerts none due",
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": "done: no upgrades (weekly pass not due); PR #474 CI green, Codex Completed on c9b528c with no findings (needed a manual @codex review), merged as 91ce7d92; raw URLs 200",
+    "gmail": "done: draft r-1524626695582658600 to docket@alaskaaihq.com, runs/2026-11-04/gmail_draft_id.txt on main (2484cd58)",
+    "retro": "done"
   },
   "gas_watch_notes": "LIVE FAIL late_post at 06:06Z; dispatched gaswatch.yml run 41978585382 (success); re-audit PASS",
   "signoff_lines": [
@@ -33,5 +33,15 @@
     "CRON HEALTH: PASS, every scheduled workflow checked, no failures",
     "SITE FIXES: dispatched the Gas Watch collector for CINGSA's late November 4th post; no page edits needed"
   ],
-  "score": 8.225
+  "score": 8.225,
+  "pr": "https://github.com/Talonsturgill/alaskaaicarousels/pull/474",
+  "merge_sha": "91ce7d922ca8cac872f167cfa4f3eb78c91f3a63",
+  "phase_3_6": {
+    "site_signoff": "PASS, 168 pages, 18 checks",
+    "gaswatch_live": "PASS, checked after repair (first audit FAIL late_post at 06:06 UTC; dispatched gaswatch.yml on main, run 41978585382 succeeded, 7.68 Bcf reading published)",
+    "gaswatch_pagecheck": "PASS, read November 4th, 92 days on record, chart present",
+    "cron_health": "PASS, every scheduled workflow checked, no failures",
+    "site_fixes": "dispatched the Gas Watch collector for CINGSA's late November 4th post (run 41978585382, success); no page edits needed"
+  },
+  "status": "complete"
 }
