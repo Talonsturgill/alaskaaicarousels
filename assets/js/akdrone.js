@@ -97,7 +97,7 @@ export function build(THREE, AKT, opts) {
         discMat(0.3));
       rim.rotation.x = -Math.PI / 2; rim.position.y = 0.0002 * S; pg.add(rim);
     } else {
-      const bladeMat = new THREE.MeshPhysicalMaterial({ color: opts.propColor || 0x1a2027, roughness: 0.5, metalness: 0.05, clearcoat: 0.35, clearcoatRoughness: 0.4, envMapIntensity: 0.45 });
+      const bladeMat = new THREE.MeshPhysicalMaterial({ color: opts.propColor || 0x1a2027, roughness: opts.bladeRoughness || 0.5, metalness: 0.05, clearcoat: 0.35, clearcoatRoughness: 0.4, envMapIntensity: 0.45 });
       for (let b = 0; b < 3; b++) {
         const sh = new THREE.Shape();
         sh.moveTo(0, -0.004 * S);
@@ -105,7 +105,7 @@ export function build(THREE, AKT, opts) {
         sh.bezierCurveTo(R * 0.98, 0.006 * S, R * 0.6, 0.007 * S, 0, 0.004 * S);
         const bg = new THREE.ExtrudeGeometry(sh, { depth: 0.0016 * S, bevelEnabled: true, bevelThickness: 0.0004 * S, bevelSize: 0.0004 * S, bevelSegments: 2, curveSegments: 16 });
         // blade twist: pitch falls from root to tip, so the key and fill differ along a blade
-        { const pa = bg.attributes.position; for (let q = 0; q < pa.count; q++) { const bx = pa.getX(q), bz = pa.getZ(q), tw = 0.32 * (1 - bx / R); pa.setZ(q, bz + pa.getY(q) * Math.sin(tw)); } bg.computeVertexNormals(); }
+        if (opts.twist !== false) { const pa = bg.attributes.position; for (let q = 0; q < pa.count; q++) { const bx = pa.getX(q), bz = pa.getZ(q), tw = 0.32 * (1 - bx / R); pa.setZ(q, bz + pa.getY(q) * Math.sin(tw)); } bg.computeVertexNormals(); }
         const bm = tag(new THREE.Mesh(bg, bladeMat), 'blade');
         bm.rotation.x = -Math.PI / 2 + 0.16; bm.rotation.z = 0;
         const holder = new THREE.Group(); holder.rotation.y = b * 2 * Math.PI / 3 + k * 0.7; holder.add(bm); pg.add(holder);
