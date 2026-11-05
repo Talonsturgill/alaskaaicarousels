@@ -11,7 +11,26 @@ export function build(THREE, AKT, opts) {
   opts = opts || {};
   const g = new THREE.Group();
   const S = opts.scale || 1;
-  const carbon = opts.carbon || new THREE.MeshStandardMaterial({ color: 0x14171b, roughness: 0.42, metalness: 0.35 });
+  /* carbon twill: a 2x2 twill drawn once into a canvas, used as the albedo and
+   * the roughness map, so the plates read as woven fibre under a raking key and
+   * not as black plastic. Deterministic: no randomness. */
+  function twill() {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const x = c.getContext('2d');
+    x.fillStyle = '#1a1d22'; x.fillRect(0, 0, 256, 256);
+    const t = 16;
+    for (let j = 0; j < 256 / t; j++) for (let i = 0; i < 256 / t; i++) {
+      const warp = ((i + j) >> 1) % 2 === 0;
+      const gx = x.createLinearGradient(i * t, j * t, warp ? i * t + t : i * t, warp ? j * t : j * t + t);
+      gx.addColorStop(0, warp ? '#2b3038' : '#121418'); gx.addColorStop(0.5, warp ? '#3a414b' : '#1c2026'); gx.addColorStop(1, warp ? '#22262c' : '#0e1013');
+      x.fillStyle = gx; x.fillRect(i * t + 0.5, j * t + 0.5, t - 1, t - 1);
+    }
+    const tex = new THREE.CanvasTexture(c); tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(opts.weaveRepeat || 40, opts.weaveRepeat || 40);
+    tex.anisotropy = 8; tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  }
+  const weave = opts.weave === false ? null : twill();
+  const carbon = opts.carbon || new THREE.MeshStandardMaterial({ color: 0xffffff, map: weave, roughness: 0.38, metalness: 0.3 });
   const carbonEdge = new THREE.MeshStandardMaterial({ color: 0x2a2f36, roughness: 0.5, metalness: 0.4 });
   const alu = opts.alu || new THREE.MeshStandardMaterial({ color: opts.aluColor || 0xb8c2cc, roughness: 0.28, metalness: 0.92 });
   const bell = opts.bell || new THREE.MeshStandardMaterial({ color: opts.bellColor || 0x3c4651, roughness: 0.3, metalness: 0.85 });
