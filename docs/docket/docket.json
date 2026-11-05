@@ -119,7 +119,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-07-08",
@@ -280,6 +280,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the DNR notice for ADL 422741 today. It still carries the May 12th preliminary decision and its five attachments, and no final finding and decision is posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Re-read the DNR notice for ADL 422741 today. It still carries the May 12th preliminary decision and its five attachments, last modified June 17th, and no final finding and decision is posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -1963,7 +1967,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-07-26",
@@ -2052,6 +2056,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the White House signatory list today. It now counts 327 signatories, 207 cooperatives, 72 utilities and 48 data center developers, one developer more than on October 27th. Cordova Electric Cooperative is still the only Alaska entity on it."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Re-read the White House signatory list today. It still counts 327 signatories, 207 cooperatives, 72 utilities and 48 data center developers, the same as on October 31st, with Cordova Electric Cooperative the only Alaska entity. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ratepayer-protection-pledge-alaska-utilities/"
@@ -2085,7 +2093,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-02",
@@ -2186,6 +2194,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the state's public notice for RFP 2026-0200-0064 today. It still archives August 31st, was last modified August 17th, and no notice of intent to award has been posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "The state's online public notice system rejected the request for RFP 2026-0200-0064 today, so the notice could not be re-read. It stands as last published, with no notice of intent to award recorded here."
         }
       ],
       "url": "https://alaskaaihq.com/docket/alaska-statewide-transcription-rfp/"
@@ -2219,7 +2231,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-02",
@@ -2320,6 +2332,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. It still carries the request and Amendment One, last modified August 7th, and no solicitation or intent to award has followed. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "The state's online public notice system rejected the request for RFI 02-101-27 today, so the notice could not be re-read. It stands as last published, with no solicitation recorded here."
         }
       ],
       "url": "https://alaskaaihq.com/docket/dmv-automated-compliance-rfi/"
@@ -2586,7 +2602,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-05",
@@ -2703,6 +2719,10 @@
         {
           "date": "2026-10-31",
           "note": "Re-read the Grants.gov listing for the AI3 Action Institute today. It is still archived as of September 26th with one award of $2.5 million to $3.5 million expected and no recipient named. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Re-read the Grants.gov listing today. It is still archived as of September 26th, with one award of $2.5 million to $3.5 million expected under HHS-2026-ACF-ANA-NAI-0035 and no recipient named. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ana-ai3-action-institute/"
@@ -3095,7 +3115,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-06",
@@ -3168,6 +3188,10 @@
         {
           "date": "2026-10-31",
           "note": "Searched the Federal Register today for any document citing Executive Order 14318 published since October 20th and found none. The order stands unamended. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Searched the Federal Register today for documents citing Executive Order 14318 published since October 28th and found none. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/eo-14318-data-center-permitting/"
@@ -3423,10 +3447,15 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-2026-10-29/html/2026-22085.htm",
           "outlet": "Federal Register, EPA proposed rule 2026-22085",
           "date": "2026-10-29"
+        },
+        {
+          "url": "https://www.federalregister.gov/api/v1/documents/2026-22085.json",
+          "outlet": "Federal Register",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-01",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-06",
@@ -3507,6 +3536,10 @@
         {
           "date": "2026-11-01",
           "note": "The Environmental Protection Agency published a proposed rule on October 29th, Federal Register document 2026-22085, saying it received a complete application from Alaska and proposes to approve state primary enforcement authority for Class VI wells, except in Indian country and areas of exclusive federal jurisdiction. Comments are due December 14th under docket EPA-HQ-OW-2026-4588, with one virtual public hearing during the period. Read today in the GovInfo text of the notice."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Re-read EPA's proposed rule, Federal Register document 2026-22085, today. Comments on the proposed approval of Alaska's Class VI program are still due December 14th under docket EPA-HQ-OW-2026-4588. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
@@ -3610,7 +3643,7 @@
         }
       ],
       "first_seen": "2026-08-09",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-09",
@@ -3719,6 +3752,10 @@
         {
           "date": "2026-10-31",
           "note": "The district's agenda site returned a server error today and could not be re-read. Nothing on BP 5131.9 or AR 5131.9 stands as last published."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "The district's agenda site returned a server error again today and could not be re-read. BP 5131.9 and AR 5131.9 stand as last published."
         }
       ],
       "url": "https://alaskaaihq.com/docket/kpbsd-ai-policy-package/"
@@ -4183,10 +4220,15 @@
           "url": "https://www.adn.com/alaska-news/anchorage/2026/10/06/flock-cameras-arrive-in-anchorage-while-assembly-duels-over-surveillance-policies/",
           "outlet": "Anchorage Daily News",
           "date": "2026-10-07"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/anchorage/2026/10/26/anchorage-assembly-delays-vote-on-reformed-surveillance-rules/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-08-25",
@@ -4323,6 +4365,10 @@
         {
           "date": "2026-11-03",
           "note": "The Assembly clerk's page, read today, carries no agenda yet for the November 4th regular meeting. Debate on AO 2026-108 remains set to resume there, and no vote has been recorded."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "A news search this evening found no report yet from the November 4th regular Assembly meeting. The Anchorage Daily News reported on October 26th that the Assembly had delayed its vote on the rewrite. No vote on AO 2026-108 has been recorded."
         }
       ],
       "cta_label": "TESTIFY",
@@ -4716,6 +4762,11 @@
           "kind": "milestone"
         },
         {
+          "date": "2026-11-10",
+          "kind": "vote",
+          "label": "Planning Commission public hearing and recommendation on Ordinance No. 2026-42, 6 p.m."
+        },
+        {
           "date": "2027-12-31",
           "label": "Moratorium would end unless the Assembly ends it sooner or extends it",
           "kind": "milestone"
@@ -4751,10 +4802,15 @@
           "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13379,plainText=false)",
           "outlet": "Fairbanks North Star Borough Clerk, action memo for the October 22nd Assembly meeting",
           "date": "2026-10-26"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13383,plainText=true)",
+          "outlet": "Fairbanks North Star Borough (CivicClerk)",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-10-23",
@@ -4771,6 +4827,10 @@
         {
           "date": "2026-10-31",
           "note": "The borough's meeting calendar, read today, lists a Planning Commission meeting on November 10th and the next regular Assembly meeting on November 12th. Neither listing yet shows Ordinance No. 2026-42, which is due back from the commission within 90 days of October 22nd."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Updated. The Planning Commission's agenda for November 10th, published October 29th and read today, lists Ordinance No. 2026-42 under public and legislative hearings, so the commission takes testimony on the moratorium that evening before making its recommendation to the Assembly."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-ordinance-2026-42-data-center-moratorium/"
@@ -5009,7 +5069,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-09-13",
@@ -5082,6 +5142,10 @@
         {
           "date": "2026-11-03",
           "note": "GovInfo's bill status record, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn after cloture failed 57 to 43. No Senate action since. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "GovInfo's record, read today, shows no Senate action after the failed cloture vote of September 30th. The Senate's lame-duck session begins November 9th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -5135,7 +5199,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-09-13",
@@ -5220,6 +5284,10 @@
         {
           "date": "2026-10-31",
           "note": "Searched the Federal Register today for Energy Department documents on the bulk-power system published since October 24th and found none. No follow-on to this request has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Searched the Federal Register today for Energy Department documents on the bulk-power system published since October 28th and found none. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/doe-bulk-power-rfi-2026/"
@@ -5684,7 +5752,7 @@
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-09-17",
@@ -5753,6 +5821,10 @@
         {
           "date": "2026-11-03",
           "note": "The University of Alaska's own release, issued today, says the regents meet November 4th to 6th on the UAF campus, where Chief Information Technology Officer Ben Shier will present the latest version of \"AI Engaged\". The release says the statement sets six guiding principles, four investment priorities and five system-wide expectations, and leaves curriculum, academic integrity and faculty instructional judgment with UAA, UAF and UAS. The Board of Regents pages still returned a server error."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "The regents' meetings page returned a server error today and could not be re-read. The November 4th to 6th meeting in Fairbanks stands as the university announced it on November 3rd, and no action on \"AI Engaged\" has been reported."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
@@ -5846,6 +5918,11 @@
           "date": "2026-10-05",
           "label": "Assembly votes unanimously to have staff draft a nine-month moratorium and data center zoning rules",
           "kind": "vote"
+        },
+        {
+          "date": "2026-11-02",
+          "kind": "milestone",
+          "label": "Moratorium ordinance taken up at first reading; two more readings needed"
         }
       ],
       "location": {
@@ -5863,10 +5940,15 @@
           "url": "https://www.kfsk.org/2026/10/16/petersburg-assembly-initiates-work-on-potential-moratorium-zoning-rules-for-data-centers/",
           "outlet": "KFSK",
           "date": "2026-10-16"
+        },
+        {
+          "url": "https://www.kfsk.org/2026/11/02/petersburg-borough-assembly-to-discuss-data-center-moratorium-on-monday/",
+          "outlet": "KFSK",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-09-30",
@@ -5875,6 +5957,10 @@
         {
           "date": "2026-10-31",
           "note": "Updated. KFSK reported on October 16th that the Assembly voted unanimously on October 5th to have staff draft a nine-month moratorium on data centers that rely on on-site generation or lack closed-loop cooling, and amendments to the zoning code. Both must return for Assembly consideration and public hearings. Read today against the KFSK report."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "Updated. KFSK reported on November 2nd that the Assembly would take up the moratorium ordinance at first reading that day. As drafted it would last through September 2027 and stop the borough issuing permits to new data centers, and to expansions that would exceed Petersburg's grid capacity, rely on generators or use uncontained cooling. It needs two more readings to become law."
         }
       ],
       "url": "https://alaskaaihq.com/docket/petersburg-data-center-moratorium/"
@@ -5907,7 +5993,7 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-10-05",
@@ -5936,6 +6022,10 @@
         {
           "date": "2026-10-31",
           "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant, which describes 3 gigawatts growing to 10 and a financial structure that is not public. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/north-slope-power-borough-gas-plant/"
@@ -6081,7 +6171,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-10-28",
@@ -6106,6 +6196,10 @@
         {
           "date": "2026-11-03",
           "note": "AIDEA's posted agenda for its November 4th board meeting, read today, covers GeoAlaska, the Wrangell shipyard, the FY 2026 audit, an FY28 dividend and the Ambler road memorandum. No item concerns Northstar Fiber Development LLC or Resolution G26-11. The next regular meeting is December 4th in Anchorage."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "AIDEA's meeting schedule, read today, lists resolutions for GeoAlaska, the Wrangell shipyard and an FY28 dividend at the November 4th board meeting and no item on Northstar Fiber Development or Resolution G26-11. Minutes are not yet posted. The next regular meeting is December 4th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"
@@ -6275,7 +6369,7 @@
         }
       ],
       "first_seen": "2026-11-02",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-04",
       "history": [
         {
           "date": "2026-11-02",
@@ -6284,6 +6378,10 @@
         {
           "date": "2026-11-03",
           "note": "AEA's project page, read today, still lists the link as in development, with a $413 million estimate, $142.5 million still required and completion targeted for 2032. The November 4th pre-response conference for cable makers stands as published. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-04",
+          "note": "AEA's project page, read today, still lists the link as in development at an estimated $413 million, with $142.5 million still required and completion targeted for 2032. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aea-ciplink-submarine-cable-rfi/"
