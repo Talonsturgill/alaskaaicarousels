@@ -31,7 +31,7 @@ export function build(THREE, AKT, opts) {
   }
   const weave = opts.weave === false ? null : twill();
   // the top plate is a small box: give it its own twill at a matched world repeat, or the box UVs stretch the weave into stripes
-  const weaveTop = weave ? (() => { const t = weave.clone(); t.needsUpdate = true; t.repeat.set(9, 12); return t; })() : null;
+  const weaveTop = weave ? (() => { const t = weave.clone(); t.needsUpdate = true; t.repeat.set(4.5, 6); t.anisotropy = 8; return t; })() : null;
   const carbonTop = new THREE.MeshStandardMaterial({ color: 0xffffff, map: weaveTop, roughness: 0.34, metalness: 0.3 });
   const carbon = opts.carbon || new THREE.MeshStandardMaterial({ color: 0xffffff, map: weave, roughness: 0.38, metalness: 0.3 });
   const carbonEdge = new THREE.MeshStandardMaterial({ color: 0x2a2f36, roughness: 0.5, metalness: 0.4 });
