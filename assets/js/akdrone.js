@@ -78,12 +78,18 @@ export function build(THREE, AKT, opts) {
     // propeller
     const pg = new THREE.Group(); pg.position.y = 0.0195 * S; pg.userData.part = 'prop';
     const R = 0.064 * S;
+    /* a motion disc is a glass-like shell: near-black albedo so it does not
+     * milk what is behind it, read carried by the environment, and out of the
+     * shadow pass both ways (the AKT.mat.glass rules, No.82). */
+    const discMat = (op) => { const m = new THREE.MeshStandardMaterial({ color: opts.propColor || 0x161c22,
+      roughness: 0.25, metalness: 0.2, transparent: true, opacity: op, side: THREE.DoubleSide, depthWrite: false, envMapIntensity: 1.6 });
+      m.userData.aktNoShadow = true; return m; };
     if (opts.spin) {
       const disc = new THREE.Mesh(new THREE.RingGeometry(0.008 * S, R, 64, 1),
-        new THREE.MeshStandardMaterial({ color: opts.propColor || 0x8fa6b8, roughness: 0.4, metalness: 0.1, transparent: true, opacity: 0.13, side: THREE.DoubleSide, depthWrite: false }));
+        discMat(0.16));
       disc.rotation.x = -Math.PI / 2; pg.add(disc);
       const rim = new THREE.Mesh(new THREE.RingGeometry(R * 0.93, R, 64, 1),
-        new THREE.MeshStandardMaterial({ color: opts.propColor || 0x8fa6b8, roughness: 0.4, transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false }));
+        discMat(0.3));
       rim.rotation.x = -Math.PI / 2; rim.position.y = 0.0002 * S; pg.add(rim);
     } else {
       const bladeMat = new THREE.MeshStandardMaterial({ color: opts.propColor || 0x4a5866, roughness: 0.3, metalness: 0.1 });
@@ -107,6 +113,29 @@ export function build(THREE, AKT, opts) {
   }
   const top = tag(new THREE.Mesh(new THREE.BoxGeometry(bw * 2, plate * 0.8, bl * 2.05), carbon), 'top');
   top.position.y = plate + 0.026 * S; g.add(top);
+  // flight stack between the plates: two boards on nylon posts, gold pads, and
+  // motor leads running along each arm (so the frame reads as wired, not toy)
+  const pcb = new THREE.MeshStandardMaterial({ color: 0x0c1410, roughness: 0.55, metalness: 0.2 });
+  const pad = new THREE.MeshStandardMaterial({ color: 0xc9a24a, roughness: 0.3, metalness: 0.95 });
+  for (let b = 0; b < 2; b++) {
+    const board = tag(new THREE.Mesh(new THREE.BoxGeometry(0.03 * S, 0.0016 * S, 0.03 * S), pcb), 'board');
+    board.position.y = plate + 0.007 * S + b * 0.009 * S; g.add(board);
+    for (let q = 0; q < 8; q++) {
+      const pd = new THREE.Mesh(new THREE.BoxGeometry(0.0028 * S, 0.0006 * S, 0.0018 * S), pad);
+      const side = q < 4 ? -1 : 1; pd.position.set(side * 0.0128 * S, board.position.y + 0.001 * S, (-0.0105 + (q % 4) * 0.007) * S); g.add(pd);
+    }
+  }
+  const wireMat = new THREE.MeshStandardMaterial({ color: 0x101214, roughness: 0.7 });
+  for (let k = 0; k < 4; k++) {
+    const a = Math.PI / 4 + k * Math.PI / 2;
+    for (let w = -1; w <= 1; w++) {
+      const off = w * 0.0022 * S, ox = Math.cos(a) * off, oz = -Math.sin(a) * off;
+      const p0 = new THREE.Vector3(Math.sin(a) * 0.02 * S + ox, plate * 1.6, Math.cos(a) * 0.02 * S + oz);
+      const p1 = new THREE.Vector3(Math.sin(a) * (L - 0.016 * S) + ox, plate * 1.6, Math.cos(a) * (L - 0.016 * S) + oz);
+      const wire = tag(new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(p0, p1), 4, 0.0007 * S, 6, false), wireMat), 'wire');
+      g.add(wire);
+    }
+  }
   // battery pack on top with a strap
   const packH = 0.026 * S, packW = 0.036 * S, packL = 0.075 * S;
   const ps = new THREE.Shape(); const pr = 0.005 * S, hw = packW / 2, hh = packH / 2;
@@ -143,4 +172,39 @@ export function build(THREE, AKT, opts) {
   g.userData.motors = motors;
   g.userData.armReach = L;
   return g;
+}
+
+/* explode(group, e, opts): move each named part along the build axis by its
+ * assembly layer times e (0 = assembled, 1 = fully exploded). Layers are the
+ * order a builder stacks a quad: bottom plate and arms (0), motor mounts and
+ * motors (1, outward along the arm as well), propellers (2.2), flight boards
+ * (1.1), standoffs (1.6), top plate (2.4), battery and strap (3.4), antenna
+ * (2.9, and back), camera (1.2, and forward). `gap` is metres per layer at
+ * e = 1. Base positions are recorded on first call, so explode can be called
+ * again with any e. Returns the group. */
+export function explode(group, e, opts) {
+  opts = opts || {};
+  const gap = (opts.gap != null ? opts.gap : 0.05);
+  const out = (opts.outward != null ? opts.outward : 0.25);
+  const LAYER = { frame: 0, arm: 0, mount: 1, board: 1.1, wire: 0.4, camera: 1.2, lens: 0, glass: 0,
+    standoff: 1.6, top: 2.4, battery: 3.4, strap: 3.4, lead: 3.4, antenna: 2.9, antenna_cap: 2.9 };
+  group.traverse(m => {
+    if (!m.isMesh && !(m.isGroup && m.userData.part === 'prop')) return;
+    if (!m.userData.base) m.userData.base = m.position.clone();
+    const p = m.userData.part;
+    if (p === 'prop') { m.position.copy(m.userData.base); m.position.y += 1.2 * gap * e; return; }
+    if (m.parent && m.parent !== group) return;   // children of motor or camera groups move with them
+    const L = LAYER[p]; if (L == null) return;
+    m.position.copy(m.userData.base); m.position.y += L * gap * e;
+    if (p === 'antenna' || p === 'antenna_cap') m.position.z -= 0.6 * gap * e;
+  });
+  (group.userData.motors || []).forEach(mg => {
+    if (!mg.userData.base) mg.userData.base = mg.position.clone();
+    const b = mg.userData.base; mg.position.copy(b);
+    mg.position.y += 1 * gap * e; mg.position.x += b.x * out * e; mg.position.z += b.z * out * e;
+  });
+  group.children.forEach(c => { if (c.isGroup && c.userData.motors == null && c !== group && !(group.userData.motors || []).includes(c)) {
+    if (!c.userData.base) c.userData.base = c.position.clone();
+    c.position.copy(c.userData.base); c.position.y += 1.2 * gap * e; c.position.z += 0.5 * gap * e; } });
+  return group;
 }
