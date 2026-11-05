@@ -9536,3 +9536,8 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AKPOST.grade grain at size 2 reads as a square lattice in near-black at 100 percent. Size 1 cleared it.
 - A tube along a vertical path twists its frames and pinched 09's lamp stem. A plain cylinder fixed it.
 - What the flow critic caught that the per-slide critics could not: the GPU frames and the 2D frames rendered the one desk as two materials, and 02 to 05 were four dense frames in a row with the bail at 05.
+
+## 2026-11-04, No.105, craft refresh (two searches)
+
+- Nothing new on document-post reach. The search returned the same AuthoredUp (39 percent more reach) and Ordinal (PDFs lowest mean impressions) figures recorded on October 29th, with no newer measurement.
+- PLAN OBLIQUE RELIEF IS NOT IN THE LIBRARY. Jenny and Patterson (2007) shift each shaded-relief pixel north (up the sheet) in proportion to its elevation, so a map keeps its planimetric x while the mountains "stand up" in an oblique read (https://en.wikipedia.org/wiki/Terrain_cartography). It is a per-pixel pass over an existing hillshade, portable to offline Canvas, and an alternative to a GPU flyover when a frame needs a map that is also a landscape. Candidate only; not yet built.
