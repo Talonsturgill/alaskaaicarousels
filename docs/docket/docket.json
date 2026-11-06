@@ -4118,10 +4118,10 @@
       "id": "anchorage-rtcc-surveillance-ordinance",
       "title": "Anchorage's surveillance rules for its police crime center",
       "kind": "legislation",
-      "status": "pending-decision",
+      "status": "decided",
       "decider": "Anchorage Assembly",
-      "public_access": "indirect",
-      "access_note": "The Assembly took public testimony on September 15th and then held the ordinance without voting, so the next opportunity is the regular meeting on October 20th. Anyone relying on that date should confirm the item is on the published agenda before showing up, because the municipality's agenda system refuses an automated request and the ordinance text is still not readable anywhere this record can reach.",
+      "public_access": "closed",
+      "access_note": "The Assembly passed the ordinance on November 4th, so the vote is over. The new temporary oversight committee will meet publicly at least once a month for a year, which is the next public room where these rules get reviewed, and an Assembly member is the route to any change.",
       "summary": "Three Anchorage Assembly members, Keith McCormick, Sydney Scout and Vice Chair Daniel Volland, introduced an ordinance on August 18th, reported as AO-2026-108, that would write surveillance rules into Anchorage code, among them a case number for every search of surveillance data, deletion of individuals' data after two weeks unless it is evidence in an active investigation, a warrant before footage goes to out of state or federal agencies, limits on automatic license plate readers, and, in co-sponsor Scout's own words, Assembly approval before adding new surveillance capabilities including AI powered tracking or identification technology. It moves alongside a roughly $600,000 contract with ThunderCat Technology for equipment at the Real Time Crime Center, the system the Assembly funded with $11.8 million last year and which is designed to stream up to 750 camera feeds. The center opened in September 2025 with one employee and about 15 cameras.",
       "key_dates": [
         {
@@ -4166,7 +4166,12 @@
         },
         {
           "date": "2026-11-04",
-          "label": "Regular Assembly meeting, where debate on AO 2026-108(S) resumes as unfinished business",
+          "label": "Assembly passes AO 2026-108(S) as amended, 11 to 1",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-04",
+          "label": "Assembly creates a temporary APD oversight committee, 10 to 1",
           "kind": "vote"
         }
       ],
@@ -4176,6 +4181,16 @@
         "lat": 61.22
       },
       "sources": [
+        {
+          "url": "https://www.alaskasnewssource.com/2026/11/05/anchorage-assembly-passes-police-surveillance-rules-after-rejecting-stricter-limits/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.adn.com/alaska-news/anchorage/2026/11/05/anchorage-assembly-approves-temporary-committee-to-oversee-apd-policies/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-11-05"
+        },
         {
           "url": "https://www.adn.com/alaska-news/anchorage/2026/08/20/anchorage-police-may-expand-surveillance-capabilities-some-assembly-members-want-privacy-protections-first/",
           "outlet": "Anchorage Daily News",
@@ -4248,7 +4263,7 @@
         }
       ],
       "first_seen": "2026-08-25",
-      "last_updated": "2026-11-04",
+      "last_updated": "2026-11-05",
       "history": [
         {
           "date": "2026-08-25",
@@ -4389,6 +4404,10 @@
         {
           "date": "2026-11-04",
           "note": "A news search this evening found no report yet from the November 4th regular Assembly meeting. The Anchorage Daily News reported on October 26th that the Assembly had delayed its vote on the rewrite. No vote on AO 2026-108 has been recorded."
+        },
+        {
+          "date": "2026-11-05",
+          "note": "The Assembly passed the administration-backed substitute, AO 2026-108(S) as amended, 11 to 1 late on Wednesday night, November 4th, according to Alaska's News Source, which did not name the member voting no. An amendment by Vice Chair Daniel Volland and Sydney Scout to write a 14-day deletion deadline for plate reader captures and crime center video into municipal code failed, and an amendment requiring judicial warrants for retrospective plate reader searches failed 5 to 7. An amendment by Erin Baldwin Day, passed unanimously, requires 30 days of advance notice to the Assembly before APD makes a material policy change, and a change to data storage limits counts as one. APD's own policy already deletes plate data after 14 days. The same night the Assembly voted 10 to 1 to create a temporary committee, led by Kameron Perez-Verdia, to oversee APD policies, meeting at least monthly for one year (Anchorage Daily News). The as-amended text was not readable on the municipality's site today, which returned not found for every AO 2026-108 document."
         }
       ],
       "cta_label": "TESTIFY",
