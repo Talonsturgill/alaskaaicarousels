@@ -3662,6 +3662,18 @@
    "verification": "No.103 rendered 9/9 with qa.py exit 0; examples/demo-deck unaffected (veSea is opt-in, the coast helpers are new functions).",
    "rollback": "revert commits 415c1ea4, e003287e, 15412d4b, 7a2bb0ab for the helpers; akblock's veSea is inert unless passed",
    "commit": "415c1ea4"
+  },
+  {
+   "run_date": "2026-11-05",
+   "kind": "fix",
+   "area": "engine",
+   "change": "bootstrap.sh pins the python playwright it installs to the node playwright on PATH (`playwright --version`), so a fresh container never pulls a wheel that wants a chromium build the image does not ship.",
+   "trigger": "No.106 wake: the bootstrap pip install hung and was killed, then pinned by hand to playwright 1.63.0; the same unpinned install bit No.103 and No.105 (MACHINE_QUEUE item of 2026-11-02, now three runs).",
+   "files": [
+    ".claude/skills/carousel-engine/bootstrap.sh"
+   ],
+   "verification": "bash -n PASS; the version probe returns 1.63.0 on this container, equal to the installed python playwright; bootstrap.sh runs clean end to end (all deps present, chromium ok).",
+   "rollback": "revert the upgrade(2026-11-05) commit"
   }
  ],
  "scan_log": [
