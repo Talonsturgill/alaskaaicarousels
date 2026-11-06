@@ -122,6 +122,9 @@
   L.build3D = function (THREE, text, o) {
     o = o || {};
     var H = o.height || 0.1, r = o.radius || 0.004, flat = o.flat == null ? 0.55 : o.flat;
+    // radial segments: 32 keeps the sphere joints and the tube walls on one silhouette, so no faceted
+    // sphere pokes through a cylinder as a dotted seam at 100 percent (No.106 round 2)
+    var SEG = o.segments || 32;
     var mat = o.mat || new THREE.MeshStandardMaterial({ color: 0xeef1f4, roughness: 0.38, metalness: 0 });
     var pinMat = o.pinMat || new THREE.MeshStandardMaterial({ color: 0xc9cfd6, roughness: 0.5 });
     var lay = L.layout(text, o), root = new THREE.Group();
@@ -133,23 +136,23 @@
         if (st.curve) {
           var pts = st.pts.map(function (p) { return W(p, g.x); });
           var curve = new THREE.CatmullRomCurve3(pts, false, "catmullrom", 0.5);
-          var tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 160, r, 18, false), mat);
+          var tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 200, r, SEG, false), mat);
           grp.add(tube);
           [pts[0], pts[pts.length - 1]].forEach(function (e) {
-            var cap = new THREE.Mesh(new THREE.SphereGeometry(r, 18, 12), mat);
+            var cap = new THREE.Mesh(new THREE.SphereGeometry(r, SEG, Math.round(SEG * 0.75)), mat);
             cap.position.copy(e); grp.add(cap);
           });
         } else {
           for (var i = 0; i < st.pts.length - 1; i++) {
             var a = W(st.pts[i], g.x), b = W(st.pts[i + 1], g.x);
             var len = a.distanceTo(b);
-            var cyl = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 18, 1, false), mat);
+            var cyl = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, SEG, 1, true), mat);
             cyl.position.copy(a).add(b).multiplyScalar(0.5);
             cyl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
             grp.add(cyl);
           }
           st.pts.forEach(function (p) {
-            var j = new THREE.Mesh(new THREE.SphereGeometry(r, 18, 12), mat);
+            var j = new THREE.Mesh(new THREE.SphereGeometry(r, SEG, Math.round(SEG * 0.75)), mat);
             j.position.copy(W(p, g.x)); grp.add(j);
           });
         }
