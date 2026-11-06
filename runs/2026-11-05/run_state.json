@@ -130,7 +130,7 @@
       }
     },
     "ship": {
-      "status": "in_progress",
+      "status": "done",
       "artifacts": [
         "runs/2026-11-05/",
         "docs/"
@@ -145,9 +145,24 @@
         "prune_runs": "DRY RUN only: would free 1.38M from runs/2026-10-06; --apply not run, because deleting under runs/ is a stop-and-ask action in CLAUDE.md and the chained call was refused by the permission classifier"
       }
     },
-    "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": {
+      "status": "done",
+      "notes": "weekly machine pass not due (last 2026-11-01); two in-run fix upgrades b9906b5c and 00c9ec0a; PR #475 merged as 9f406dc7 with CI 6/6 green; Codex posted no review within about 17 minutes, merged under the 15-minute rule",
+      "pr": 475,
+      "merge_sha": "9f406dc75022d2d322b1143728bac42c5c9bc22e"
+    },
+    "gmail": {
+      "status": "done",
+      "draft_id": "r-536916860050289555",
+      "note": "created via the Gmail connector to docket@alaskaaihq.com; the connector's view URL names the talon.sturgill@gmail.com mailbox"
+    },
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md",
+        "out/2026-11-05/automation_retro.md"
+      ]
+    }
   },
   "phase_3_6": {
     "site_signoff": "SITE SIGN-OFF: PASS, 169 pages, 18 checks, nothing unfixed",
@@ -156,5 +171,7 @@
     "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows audited at 2026-11-06T06:20Z, no failures",
     "site_fixes": "Gas Watch page was a day behind until the late CINGSA reading was collected by a production dispatch on main and Pages republished; no code change"
   },
-  "ask_headroom_note": "ask_answers payload 185,176 of 190,000 bytes, 4,824 bytes headroom (under 5,000; the next added docket item may need room)"
+  "ask_headroom_note": "ask_answers payload 185,176 of 190,000 bytes, 4,824 bytes headroom (under 5,000; the next added docket item may need room)",
+  "status": "complete",
+  "gmail_draft_id": "r-536916860050289555"
 }
