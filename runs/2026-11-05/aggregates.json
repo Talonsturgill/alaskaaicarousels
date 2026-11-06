@@ -1,0 +1,187 @@
+{
+ "run_date": "2026-11-05",
+ "aggregates": [
+  {
+   "kind": "from_claim",
+   "slide": 1,
+   "text": "The 14 days stays police policy, not code.",
+   "fragment": "14 days",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "The surveillance rules passed 11 to 1.",
+   "fragment": "11 to 1",
+   "member": "C01"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "An amendment to write a 14-day deletion deadline into city code was rejected. APD already deletes plate reader data after 14 days, under its own department policy.",
+   "fragment": "14 days",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 2,
+   "text": "VOTES PER ALASKA'S NEWS SOURCE · 14 DAYS PER APD",
+   "fragment": "14 DAYS",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "30 DAYS BEFORE",
+   "fragment": "30 DAYS",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "WITHIN 30 DAYS AFTER",
+   "fragment": "30 DAYS",
+   "member": "C48"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "Thirty days of warning, now before the change.",
+   "fragment": "Thirty days",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 5,
+   "text": "A number in code takes an ordinance to change. A number in APD policy takes a memo and 30 days' notice.",
+   "fragment": "30 days",
+   "member": "C12"
+  },
+  {
+   "kind": "count",
+   "slide": 6,
+   "text": "November 4th, in five votes",
+   "fragment": "five votes",
+   "subject": "votes on November 4th",
+   "members": [
+    "C01",
+    "C05",
+    "C09",
+    "C11",
+    "C17"
+   ]
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "11 TO 1",
+   "fragment": "11 TO 1",
+   "member": "C01"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "Amendment 11, warrants for past plate searches",
+   "fragment": "11, warrants",
+   "member": "C08"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "5 TO 7, FAILED",
+   "fragment": "5 TO 7",
+   "member": "C09"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "Amendment 12, 30 days' notice before changes",
+   "fragment": "30 days",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 6,
+   "text": "10 TO 1",
+   "fragment": "10 TO 1",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "AT LEAST FOUR MEMBERS",
+   "fragment": "FOUR MEMBERS",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "ONE NOTCH PER MONTH, ONE YEAR",
+   "fragment": "ONE YEAR",
+   "member": "C22"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "THE OTHER VOTE, 10 TO 1",
+   "fragment": "10 TO 1",
+   "member": "C17"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "At least four Assembly members, led by Kameron Perez-Verdia, meeting in public at least once a month, per the Anchorage Daily News. It can recommend changes, not discipline.",
+   "fragment": "four Assembly members",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 7,
+   "text": "At least four Assembly members, led by Kameron Perez-Verdia, meeting in public at least once a month",
+   "fragment": "four Assembly members",
+   "member": "C23"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 8,
+   "text": "UP TO 750 CAMERAS, CRIME CENTER CAPACITY",
+   "fragment": "750 CAMERAS",
+   "member": "C41"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "Should the 14 days live in code, or is 30 days' notice enough?",
+   "fragment": "14 days",
+   "member": "C35"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "Should the 14 days live in code, or is 30 days' notice enough?",
+   "fragment": "30 days",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 9,
+   "text": "30 days' notice",
+   "fragment": "30 days",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "APD is required to give the Assembly 30 days of advance notice by memo before a material policy change, and a change to data storage limits counts.",
+   "fragment": "30 days",
+   "member": "C12"
+  },
+  {
+   "kind": "from_claim",
+   "slide": 4,
+   "text": "APD is required to give the Assembly 30 days of advance notice by memo before a material policy change",
+   "fragment": "30 days",
+   "member": "C12"
+  }
+ ]
+}

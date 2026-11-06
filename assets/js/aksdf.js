@@ -199,12 +199,13 @@
       }
       return S.norm(n);
     }
+    const SHK = opts.shadowK || 14;   // penumbra: lower is softer (opt-in, default unchanged)
     function softShadow(p, l) {
       let res = 1.0, t = 0.03;
       for (let i = 0; i < 40 && t < 12; i++) {
         const h = shadowMap([p[0] + l[0] * t, p[1] + l[1] * t, p[2] + l[2] * t])[0];
         if (h < 0.001) return 0.0;
-        res = Math.min(res, 14 * h / t);
+        res = Math.min(res, SHK * h / t);
         t += S.clamp(h, 0.02, 0.4);
       }
       return S.clamp(res, 0, 1);

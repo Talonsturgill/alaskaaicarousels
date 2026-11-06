@@ -1,0 +1,178 @@
+{
+ "run_date": "2026-11-05",
+ "carousel_no": 106,
+ "revision_rounds": 5,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat within 30 days without an update frame",
+   "status": "pass"
+  },
+  {
+   "rule": "hero identical to the last 4 decks",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3 or link in post body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder or unfinished element",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "The verdict reads huge at 432 px with a clean second focal point; the type never names Anchorage, police or plate readers."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Clean beats with 01/09 bookends; the 04 and 07 trims fix the flow critic's drags; 06 still restates and the AI reason arrives on 08."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "The craft cycle did real work (07 chairs spread round the rim, 01 key falloff, 08 fly-cut floor, 05 depth). Held down by 07's oversized chairs and merged casts, 09's dim close, 04's mid band, 03's CG-clean stack, 08's rim through the coordinates."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Letters never move, 30 vs 30 cells, exact dial tallies, 12 notches and 4 chairs, 750:238:11 areas; nothing in the art says plate reader or Anchorage."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.5,
+   "weight": 0.12,
+   "notes": "Named specifics throughout; Anchorage appears on no slide outside an outlet name."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Each content slide adds a verified specific; 06 recaps by design."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08,
+   "notes": "New hero, hook, structure and palette arc; recurring subsystems."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07,
+   "notes": "Worst-point 3.8 and 4.0 on two secondary labels; faint fixtures; 08 rim through the coordinates."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7,
+   "weight": 0.05,
+   "notes": "Hook in 121 chars; the closing question is a proposal and differs from slide 09."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "All pieces present; header title now matches copy.json; Gmail pending."
+  }
+ ],
+ "calculation": "(7x0.14)+(7.5x0.14)+(7.5x0.16)+(8x0.14)+(7.5x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(7x0.05)+(8x0.10) = 8.25",
+ "weighted_total": 8.25,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Thumb-stop cover",
+ "one_sentence_fix": "Change the cover's deck line so it names the place and the thing, for example 'Anchorage kept its 14-day plate reader rule in police policy, not code.' (C05, C06, C35), so the three-word verdict has a subject a feed scroller recognises.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "chairs oversized and their casts merge into a serrated mass that reads as a cog at thumb size; strip broken left of the table",
+   "fix": "chairs at about 60 percent length, lighter shadow colour, strip unbroken under the casts"
+  },
+  {
+   "slide": 9,
+   "problem": "warm spill imperceptible; case near the wall's value",
+   "fix": "a visible amber pool across the lower sill and a warm catch on the top rail"
+  },
+  {
+   "slide": 4,
+   "problem": "a dark mid band between body and THE CHANGE",
+   "fix": "extend the lit pool up behind the block"
+  },
+  {
+   "slide": 3,
+   "problem": "CG-clean stack, flat-bar staple",
+   "fix": "per-sheet waviness and a bent-wire staple"
+  },
+  {
+   "slide": 8,
+   "problem": "750 floor near-flat at feed size; rim through the coordinates",
+   "fix": "stronger fly-cut rings; recentre the pocket"
+  }
+ ],
+ "craft_cycle": {
+  "frames": [
+   7,
+   1,
+   8,
+   9,
+   5
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ },
+ "round4_score": {
+  "weighted_total": 8.17,
+  "artwork": 7
+ },
+ "craft_cycle_rereview": {
+  "01": "revise 7.0 (a sky step at y 560 behind the coping, rib beat)",
+  "04": "ship 8.1",
+  "05": "ship 7.8",
+  "07": "revise 6.6 (table top streaks, edge stepping)",
+  "08": "ship 7.7",
+  "09": "revise 7.4 (rib beat, flat groove)"
+ },
+ "editor_notes_for_email": "Final score 8.25 after five revision rounds, against the round-4+ threshold of 7.7, so it ships. Artwork craft is 7.5, under the 8.5 craft floor; the owed craft cycle ran (7.0 to 7.5) and the five-round cap is reached. Slide 07's committee table is the weakest frame and still reads a little like a cog at thumb size. Every vote tally rests on one outlet, Alaska's News Source (KTUU, November 5th); muni.org returned 404, so the as-amended text is unread, and the quoted definition (08), the 'articulable operational needs' standard (03) and the 'within 30 days after' rail (04) are the September 15th text as filed, each labelled as filed ('after' is the fact-checker's reading of 'within 30 days of'). APD's use of AI is ADN's characterization. The cover never says Anchorage, so the caption's first line carries the place. The caption's closing question (memo to shorten, vote to lengthen) is a proposal, not a description of current law, and differs from slide 09's question; expect replies to treat it as a claim. Veterans Day is Wednesday November 11th, so post Tuesday or Thursday, 8 to 11 a.m. Alaska time."
+}

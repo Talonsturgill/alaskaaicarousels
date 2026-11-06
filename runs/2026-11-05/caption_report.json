@@ -1,0 +1,19 @@
+{
+  "chars": 889,
+  "hook": "If you drive in Anchorage, a patrol car's plate reader can log your plate, and APD's own policy deletes it after 14 days.",
+  "hook_len": 121,
+  "commas": 8,
+  "comma_per_100": 0.95,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AnchorageAssembly",
+    "#LicensePlateReaders",
+    "#AlaskaAI"
+  ],
+  "deck_summary": "Five votes from November 4th sit beside the notice rule as filed and as amended, the committee's limits and the filed AI definition.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 53
+}

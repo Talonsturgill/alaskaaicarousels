@@ -3662,6 +3662,33 @@
    "verification": "No.103 rendered 9/9 with qa.py exit 0; examples/demo-deck unaffected (veSea is opt-in, the coast helpers are new functions).",
    "rollback": "revert commits 415c1ea4, e003287e, 15412d4b, 7a2bb0ab for the helpers; akblock's veSea is inert unless passed",
    "commit": "415c1ea4"
+  },
+  {
+   "run_date": "2026-11-05",
+   "kind": "fix",
+   "area": "engine",
+   "change": "bootstrap.sh pins the python playwright it installs to the node playwright on PATH (`playwright --version`), so a fresh container never pulls a wheel that wants a chromium build the image does not ship.",
+   "trigger": "No.106 wake: the bootstrap pip install hung and was killed, then pinned by hand to playwright 1.63.0; the same unpinned install bit No.103 and No.105 (MACHINE_QUEUE item of 2026-11-02, now three runs).",
+   "files": [
+    ".claude/skills/carousel-engine/bootstrap.sh"
+   ],
+   "verification": "bash -n PASS; the version probe returns 1.63.0 on this container, equal to the installed python playwright; bootstrap.sh runs clean end to end (all deps present, chromium ok).",
+   "rollback": "revert commit b9906b5c",
+   "commit": "b9906b5c"
+  },
+  {
+   "run_date": "2026-11-05",
+   "kind": "fix",
+   "area": "assets/js",
+   "change": "aksdf.render takes an opt-in shadowK (soft-shadow penumbra factor, default 14 unchanged) so a frame can soften its casts; akletter.build3D builds its tubes at 32 radial segments with open cylinders and matching joint spheres, and takes o.segments.",
+   "trigger": "No.106 round 2 and 3 pixel critics: hard sawtoothed chair casts on slide 07 (the penumbra was fixed at 14), and dotted seams where akletter's 18-segment joint spheres poked through its cylinders on slide 05.",
+   "files": [
+    "assets/js/aksdf.js",
+    "assets/js/akletter.js"
+   ],
+   "verification": "No.106 slides 01, 05, 07 and 09 render OK with qa.py at 0 fails; examples/demo-deck renders 4/4 OK with qa WARN and 0 fails (no demo slide uses either helper; aksdf's default penumbra is unchanged).",
+   "rollback": "revert commits 00c9ec0a and a5654674 (the akletter segments change)",
+   "commit": "00c9ec0a"
   }
  ],
  "scan_log": [

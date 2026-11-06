@@ -14,6 +14,27 @@ for mod, pkg in [("playwright", "playwright"), ("pypdf", "pypdf"),
         importlib.import_module(mod)
     except BaseException:   # BaseException: pyo3 PanicException is not an ImportError
         need.append(pkg)
+# Python playwright must match the node playwright that matches the image's
+# chromium (2026-11-05, No.106; also No.103 and No.105). An unpinned install
+# pulls the newest wheel, which wants a chromium build the image does not ship,
+# so a bare chromium.launch() fails. Pin to `playwright --version` when present.
+def node_playwright_version():
+    import re, shutil
+    exe = shutil.which("playwright")
+    if not exe:
+        return None
+    try:
+        out = subprocess.run([exe, "--version"], capture_output=True, text=True, timeout=30).stdout
+    except Exception:
+        return None
+    m = re.search(r"(\d+\.\d+\.\d+)", out or "")
+    return m.group(1) if m else None
+
+if "playwright" in need:
+    v = node_playwright_version()
+    if v:
+        need[need.index("playwright")] = "playwright==" + v
+        print("pinning python playwright to the node playwright on PATH:", v)
 if need:
     print("installing:", " ".join(need))
     subprocess.check_call([sys.executable, "-m", "pip", "install",

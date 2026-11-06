@@ -4324,6 +4324,44 @@
       ],
       "claims": 43,
       "note": "Robotics beat; none of the three Army articles mentions AI or autonomy and no frame implies either. 'First' scoped to the Richardson Training Area (Army Recognition says not to read it as the Army's first explosive FPV use). Runner-up was the Enstar and MEA gas exchange before the RCA."
+    },
+    {
+      "run_date": "2026-11-05",
+      "carousel_no": 106,
+      "topic": "The Anchorage Assembly passed AO 2026-108(S) as amended 11 to 1 on November 4th, its police surveillance ordinance: Amendment 5, which would have written APD's 14-day plate reader deletion limit into city code, was rejected with no tally reported; Amendment 11, warrants for past plate searches, failed 5 to 7; Amendment 12, 30 days' advance notice by memo before a material policy change including storage limits, passed unanimously; a temporary committee of at least four Assembly members led by Kameron Perez-Verdia to oversee APD policies passed 10 to 1. The substitute as filed defined surveillance technology to include machine learning and artificial intelligence; the crime center can reach up to 750 cameras.",
+      "angle": "An UPDATE of No.84: the 14 days stayed police policy, not code. Anchorage chose notice over numbers, with a memo and 30 days' notice standing between APD and a changed limit.",
+      "entities": [
+        "Anchorage Assembly",
+        "Anchorage Police Department",
+        "AO 2026-108(S)",
+        "Eva Gardner",
+        "Erin Baldwin Day",
+        "Kameron Perez-Verdia",
+        "Real-Time Crime Center",
+        "Alaska's News Source",
+        "Anchorage Daily News"
+      ],
+      "keywords": [
+        "license plate readers",
+        "surveillance ordinance",
+        "data retention",
+        "14-day deletion",
+        "advance notice",
+        "oversight committee",
+        "AI in policing",
+        "Anchorage"
+      ],
+      "headline": "Notice over numbers.",
+      "sources_lead": [
+        "https://www.alaskasnewssource.com/2026/11/05/anchorage-assembly-passes-police-surveillance-rules-after-rejecting-stricter-limits/",
+        "https://www.adn.com/alaska-news/anchorage/2026/11/05/anchorage-assembly-approves-temporary-committee-to-oversee-apd-policies/",
+        "https://www.anchoragepolice.com/safe"
+      ],
+      "beats": [
+        "state-policy"
+      ],
+      "claims": 66,
+      "note": "UPDATE of No.84 (October 11th), which asked whether the 14 days belonged in code. Every vote tally rests on Alaska's News Source; muni.org returned 404 for every page and PDF on November 5th, so the as-amended text is unread and the deck quotes the substitute as filed, labelled so."
     }
   ]
 }
