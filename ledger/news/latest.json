@@ -1,23 +1,9 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-06T08:00:29Z",
+  "checked_at": "2026-11-06T20:00:21Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "97c15a30dd191fca79866f3013536f7dd71780887de77d0238585dccdc6e9d05",
+  "response_sha256": "d56e8db8a96c3d995505c708f944ebd7786136391be62143ab701ebab159e8db",
   "articles": [
-    {
-      "title": "New book highlights Alaska’s rural energy innovators",
-      "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-      "first_seen_at": "2026-10-23T14:03:35Z",
-      "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-      "feed": "https://alaska-native-news.com/feed/"
-    },
-    {
-      "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-      "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-      "first_seen_at": "2026-10-23T15:55:44Z",
-      "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-      "feed": "https://www.akbizmag.com/feed/?paged=2"
-    },
     {
       "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
       "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
@@ -41,140 +27,20 @@
     }
   ],
   "selected": {
-    "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-    "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-    "first_seen_at": "2026-10-23T15:55:44Z",
-    "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-    "feed": "https://www.akbizmag.com/feed/?paged=2",
-    "publisher": "Alaska Business",
+    "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+    "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+    "first_seen_at": "2026-11-02T09:00:00Z",
+    "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+    "feed": "https://www.uaf.edu/news/",
+    "publisher": "UAF",
     "coverage": 1,
-    "score": 7.7e-05,
+    "score": 0.045481,
     "priority": 4
   },
-  "expires_at": "2026-11-06T15:55:44Z",
+  "expires_at": "2026-11-16T09:00:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-06T07:23:00Z",
-      "selected": {
-        "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-        "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-        "first_seen_at": "2026-10-23T15:55:44Z",
-        "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-        "feed": "https://www.akbizmag.com/feed/?paged=2",
-        "publisher": "Alaska Business",
-        "coverage": 1,
-        "score": 7.7e-05,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 7.7e-05,
-          "priority": 4
-        },
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.236224,
-          "priority": 1
-        },
-        {
-          "title": "New book highlights Alaska’s rural energy innovators",
-          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-          "first_seen_at": "2026-10-23T14:03:35Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 7.3e-05,
-          "priority": 4
-        },
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.064316,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-06T13:23:00Z",
-      "selected": {
-        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-        "first_seen_at": "2026-11-04T06:02:44Z",
-        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-        "feed": "https://www.ktoo.org/feed/",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.202257,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.202257,
-          "priority": 1
-        },
-        {
-          "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-          "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-          "first_seen_at": "2026-10-23T15:55:44Z",
-          "summary": "The Alaska Industrial Development and Export Authority invested $25 million in Idaho-based NuCube Energy to develop compact, factory-built nuclear reactors.",
-          "feed": "https://www.akbizmag.com/feed/?paged=2",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 6.6e-05,
-          "priority": 4
-        },
-        {
-          "title": "New book highlights Alaska’s rural energy innovators",
-          "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-          "first_seen_at": "2026-10-23T14:03:35Z",
-          "summary": "The Alaska Center for Energy and Power at the University of Alaska Fairbanks will host a free event celebrating the launch of “Alaska’s Microgrid Innovators,” a new book about the people and communities shaping Alaska’s energy future. Written by energy researchers, utility operators and rural community leaders, the book examines Alaska’s energy development through the […]",
-          "feed": "https://alaska-native-news.com/feed/",
-          "publisher": "Alaska Native News",
-          "coverage": 1,
-          "score": 6.2e-05,
-          "priority": 4
-        },
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.055068,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-06T19:23:00Z",
       "selected": {
@@ -185,7 +51,7 @@
         "feed": "https://www.uaf.edu/news/",
         "publisher": "UAF",
         "coverage": 1,
-        "score": 0.046307,
+        "score": 0.045481,
         "priority": 4
       },
       "stories": [
@@ -197,7 +63,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.046307,
+          "score": 0.045481,
           "priority": 4
         },
         {
@@ -208,7 +74,7 @@
           "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.170077,
+          "score": 0.167047,
           "priority": 1
         }
       ]
@@ -250,19 +116,85 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-07T07:23:00Z",
+      "selected": {
+        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+        "first_seen_at": "2026-11-02T09:00:00Z",
+        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.032744,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.032744,
+          "priority": 4
+        },
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.120263,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-07T13:23:00Z",
+      "selected": {
+        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+        "first_seen_at": "2026-11-04T06:02:44Z",
+        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+        "feed": "https://www.ktoo.org/feed/",
+        "publisher": "KTOO",
+        "coverage": 1,
+        "score": 0.101128,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.101128,
+          "priority": 4
+        },
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.027534,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.ktoo.org/2026/10/16/taiwan-is-nearing-an-investment-in-the-trans-alaska-natural-gas-pipeline-project-officials-say/",
-      "title": "Taiwan is nearing an investment in the trans-Alaska natural gas pipeline project, officials say",
-      "shown_at": "2026-10-29T01:23:00Z"
-    },
-    {
-      "url": "https://www.ktoo.org/2026/10/16/sullivan-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state/",
-      "title": "Sullivan, Peltola trade verbal blows, accuse the other of lying during ‘Debate for the State’",
-      "shown_at": "2026-10-29T07:23:00Z"
-    },
     {
       "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
       "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
@@ -412,6 +344,16 @@
       "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
       "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
       "shown_at": "2026-11-06T07:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+      "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+      "shown_at": "2026-11-06T13:23:00Z"
+    },
+    {
+      "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+      "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+      "shown_at": "2026-11-06T19:23:00Z"
     }
   ],
   "feeds": [
@@ -419,27 +361,31 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "89909341947e59529d1cf93ab8e46e9bb2b10aeb6c301fa2d9bcf9bad43ff6c0"
+      "sha256": "63162e67a8f86501af567285eb9d91ebc2200c92eee446be03dcd8cbb6e2db91"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "2aa8befd78e3b2352f0da4b7505927ed72505a3a06a3ad7a1791588da0cdffe8"
+      "sha256": "b4fd6868add937d0cb4da0fe8f8ca492e4ebda8ac6dfa56cced2599af610ed85"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "939539ebfc99a61783ef38506eddd33efd979797cb2f260f953b0f0771f88d30"
+      "sha256": "4e295c2057918c976afd4175b1fe685b23a361afea795c4c94b730940d8171b6"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "09d1a85f86104bfc477a4234ed6798bf4ec2a77920185e0f3df721f34232d62d"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "c552e12498c6712a5ebd082c2e151b4ad51587141dd12ec8084eb04da1be706d"
     },
     {
       "url": "https://alaska-native-news.com/feed/",
@@ -451,97 +397,99 @@
       "url": "https://alaska-native-news.com/category/science/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "ebde64bed333e3385eb6f5211443284db2b3d87c21cd55935ef92e155eea87f1"
+      "sha256": "879dd61be375706783bb093449ae6f7d5e5593ede44b6c54a8f47a746dd0fddf"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "9b7db5e2cfdbddefc42c6dcb5399072f804ab8263317790d36f39f85a2596113"
+      "sha256": "6956e7ca8b13bbff5043db6b28b48d7bfcbef1af64938924c3ab38a4beefd1ce"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "c6849a38fe8c463a1b5a6af4b78cbbd53de11686734a60603d71e02bf7be6214"
     },
     {
       "url": "https://www.uaf.edu/news/",
       "status": "ok",
       "items": 22,
-      "sha256": "55d7d0dddcfe7a8eb9f20eb8a9b4e4e2ebab70fb7a3e0898b05f9bea4398f7ef"
+      "sha256": "61085ebd0806b31f0dc8af3dd698a439272ffc17339b39a219ae9513feb2be7b"
     }
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "89909341947e59529d1cf93ab8e46e9bb2b10aeb6c301fa2d9bcf9bad43ff6c0",
-      "etag": "\"16abfd08a4175470d01775a6a367df8e\"",
-      "last_modified": "Fri, 06 Nov 2026 01:59:08 GMT"
+      "sha256": "63162e67a8f86501af567285eb9d91ebc2200c92eee446be03dcd8cbb6e2db91",
+      "etag": "\"0bcf7ad1db35cac6e1c0605939140e21\"",
+      "last_modified": "Fri, 06 Nov 2026 19:01:53 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "2aa8befd78e3b2352f0da4b7505927ed72505a3a06a3ad7a1791588da0cdffe8",
-      "etag": "\"16abfd08a4175470d01775a6a367df8e\"",
-      "last_modified": "Fri, 06 Nov 2026 01:59:08 GMT"
+      "sha256": "b4fd6868add937d0cb4da0fe8f8ca492e4ebda8ac6dfa56cced2599af610ed85",
+      "etag": "\"0bcf7ad1db35cac6e1c0605939140e21\"",
+      "last_modified": "Fri, 06 Nov 2026 19:01:53 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "939539ebfc99a61783ef38506eddd33efd979797cb2f260f953b0f0771f88d30",
-      "etag": "\"16abfd08a4175470d01775a6a367df8e\"",
-      "last_modified": "Fri, 06 Nov 2026 01:59:08 GMT"
+      "sha256": "4e295c2057918c976afd4175b1fe685b23a361afea795c4c94b730940d8171b6",
+      "etag": "\"0bcf7ad1db35cac6e1c0605939140e21\"",
+      "last_modified": "Fri, 06 Nov 2026 19:01:53 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "etag": "W/\"b0b945e44f1968296e4c033bb8d23fe4\"",
-      "last_modified": "Wed, 04 Nov 2026 22:54:53 GMT",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
-      "ok_at": "2026-11-06T08:00:27Z",
+      "parser_version": 2,
       "sha256": "09d1a85f86104bfc477a4234ed6798bf4ec2a77920185e0f3df721f34232d62d",
-      "parser_version": 2
+      "etag": "W/\"265732f2883a2e52907bab887c5fc2c6\"",
+      "last_modified": "Fri, 06 Nov 2026 16:42:29 GMT"
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "etag": "W/\"b0b945e44f1968296e4c033bb8d23fe4\"",
-      "last_modified": "Wed, 04 Nov 2026 22:54:53 GMT",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
-      "ok_at": "2026-11-06T08:00:27Z",
+      "parser_version": 2,
       "sha256": "c552e12498c6712a5ebd082c2e151b4ad51587141dd12ec8084eb04da1be706d",
-      "parser_version": 2
+      "etag": "W/\"265732f2883a2e52907bab887c5fc2c6\"",
+      "last_modified": "Fri, 06 Nov 2026 16:42:29 GMT"
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "6f328d837dd2b457fa0fdcdb50de1381e7252af68a15f2e01f76e9ba1c648c5b"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ebde64bed333e3385eb6f5211443284db2b3d87c21cd55935ef92e155eea87f1"
+      "sha256": "879dd61be375706783bb093449ae6f7d5e5593ede44b6c54a8f47a746dd0fddf"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9b7db5e2cfdbddefc42c6dcb5399072f804ab8263317790d36f39f85a2596113",
-      "last_modified": "Thu, 05 Nov 2026 21:57:18 GMT"
+      "sha256": "6956e7ca8b13bbff5043db6b28b48d7bfcbef1af64938924c3ab38a4beefd1ce",
+      "last_modified": "Fri, 06 Nov 2026 17:34:34 GMT"
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "last_modified": "Thu, 05 Nov 2026 14:04:50 GMT",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
-      "ok_at": "2026-11-06T08:00:27Z",
-      "sha256": "c6a73dca781092de5878ef580bad9854c60f2d0acc9820c37857ac09a022f7ee",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "c6849a38fe8c463a1b5a6af4b78cbbd53de11686734a60603d71e02bf7be6214",
+      "last_modified": "Fri, 06 Nov 2026 11:28:35 GMT"
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-06T08:00:27Z",
+      "ok_at": "2026-11-06T20:00:19Z",
       "failures": 0,
       "parser_version": 3,
-      "sha256": "55d7d0dddcfe7a8eb9f20eb8a9b4e4e2ebab70fb7a3e0898b05f9bea4398f7ef"
+      "sha256": "61085ebd0806b31f0dc8af3dd698a439272ffc17339b39a219ae9513feb2be7b"
     }
   }
 }
