@@ -2534,6 +2534,36 @@
       "last_confirmed": "2026-11-04",
       "run_date": "2026-11-04",
       "carousel_no": 105
+    },
+    {
+      "id": "pcf-ignores-radius",
+      "instinct": "In akthree the default PCFSoft shadow map ignores shadow.radius; a soft cast needs VSMShadowMap with radius and blurSamples, and shadow.intensity lifts a crushed cast floor.",
+      "evidence": "No.106 slides 01 and 09: radius 4 then 9 drew the same hard black slab under PCFSoft; VSM radius 6 with intensity 0.7 to 0.85 softened it.",
+      "confidence": 0.6,
+      "learned": "2026-11-05",
+      "last_confirmed": "2026-11-05",
+      "run_date": "2026-11-05",
+      "carousel_no": 106
+    },
+    {
+      "id": "two-material-figure-aliases",
+      "instinct": "A wood figure made by switching between two SDF materials on a sine threshold aliases into hard stripes; draw the figure in 2D over a single-material raymarch, clipped to the projected top.",
+      "evidence": "No.106 slide 07: critics named hard stripes on the table twice; a 2D multiply of warped fbm clipped to the projected rim read as ash.",
+      "confidence": 0.55,
+      "learned": "2026-11-05",
+      "last_confirmed": "2026-11-05",
+      "run_date": "2026-11-05",
+      "carousel_no": 106
+    },
+    {
+      "id": "overlay-must-follow-perspective",
+      "instinct": "A 2D baseline drawn dead horizontal over an angled GPU wall reads as an error; seat the joint as wall geometry at the height that projects to the baseline y.",
+      "evidence": "No.106 slide 01 round 3: the critic named two baselines fighting; a bisected 3D reveal with a lit lip replaced the flat line.",
+      "confidence": 0.5,
+      "learned": "2026-11-05",
+      "last_confirmed": "2026-11-05",
+      "run_date": "2026-11-05",
+      "carousel_no": 106
     }
   ]
 }

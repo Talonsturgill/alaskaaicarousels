@@ -3843,6 +3843,42 @@
         "145. Shared Exploded Model (akdrone)",
         "146. Grazing-Ray Radio Shadow"
       ]
+    },
+    {
+      "run_date": "2026-11-05",
+      "carousel_no": 106,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE CHANGEABLE LETTER, a typographic essay whose imagery is type made physical: a locked civic notice case with white letterboard letters reading 14 DAYS on board-formed concrete at blue hour (01), the felt board section with a channel of spare letters (02), the filed substitute edge-on on a lit shelf (03), two cabinet-oblique 30-cell notice rails around THE CHANGE block (04), a macro of the seated 4 with a defocused 1 (05), a milled lacquer vote ledger with five dial wells (06), the committee table raymarched in plan (07), nested lacquer pockets milled by camera count (08), the same case at late night (09)",
+      "atmosphere": "NEW: BLUE HOUR TO LATE WEDNESDAY, an overcast civic twilight dome darkening frame by frame to the night of the vote, no moon, no lamp, no softbox",
+      "depth_technique": "akthree PBR with VSM soft shadows on the notice case (01, 09) and a thin-lens focus pull on the macro (05); per-device-pixel height fields shaded against one key with marched casts (02, 06, 08); edge-on paper volume (03); cabinet-oblique solids with graded casts (04); SDF raymarch in plan with a scene-marched threshold strip (07)",
+      "line_voice": "civic notice: mono labels on plates with leaders landing on modelled points, dashed steel-blue ghost outlines for the text as filed",
+      "continuity_device": "one modelled baseline groove at y 1188 whose material changes per frame, with something resting on it",
+      "continuity_devices": [
+        "the baseline groove at y 1188, material per frame",
+        "the palette arc from blue hour to late night",
+        "the letters 14 DAYS identical on every frame they appear (01, 02, 05, 09)",
+        "one key, azimuth 300 elevation 28, casts to the lower right"
+      ],
+      "hook_archetype": "NEW: THE THREE-WORD VERDICT",
+      "palette_family": "NEW: FELT, BOARD-FORMED CONCRETE AND BLUE HOUR (sky #1C3550 to night #050B16, felt #33373D, letter white #EEF1F4, anodised #8E99A4, concrete #5E6670, lacquer #0E1726, ash #B9A88E, ghost #6F8FB0, flag gold #FFC72C for the notice rule only)",
+      "type_pairing": "Fraunces + Space Grotesk + JetBrains Mono",
+      "narrative_structure": "NEW: VERDICT, THEN THE TWO REPLACEMENTS: the verdict (01, 02), the words that replaced the number (03), the notice that replaced the limit (04), the synthesis (05), the record (06), the watchers (07), the stakes (08), the ask (09)",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "AKLETTER shared monoline letterboard glyphs built as 3D tubes (akletter.js)",
+        "wall-geometry baseline seated by bisection on the projected y",
+        "scene-marched occlusion and casts for a 2D strip over an SDF render",
+        "2D figure over a single-material raymarch, clipped to the projected top",
+        "per-pixel milled dial wells with enamel tally slots"
+      ],
+      "new_techniques_logged": [
+        "147. Letterboard Glyphs in Three Dimensions (akletter)",
+        "148. Scene-Marched Overlay Strip"
+      ]
     }
   ]
 }
