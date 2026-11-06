@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-11-06-who-knew-ai-wrote-the-plan",
+      "date": "2026-11-06",
+      "title": "Who Knew AI Helped Write the Plan",
+      "caption": "Two UAA professors say Claude produced the first draft of the University of Alaska's AI Engaged plan. Five UA faculty answer that AI use was not concealed. Both sides agree AI was used.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-06-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-06-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-06-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-06-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-05-who-held-the-pen",
       "date": "2026-11-05",
       "title": "Who Held the Pen",
