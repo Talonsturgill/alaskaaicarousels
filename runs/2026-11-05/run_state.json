@@ -1,0 +1,160 @@
+{
+  "run_date": "2026-11-05",
+  "carousel_no": 106,
+  "effort": "high",
+  "date_note": "Woke 21:05 AKST November 5th (UTC 2026-11-06). Run date is the Anchorage date; runs/2026-11-05 did not exist.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/plan.md",
+        "out/2026-11-05/run_state.json",
+        "out/2026-11-05/already_covered.txt"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "searches": 2
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/scout_merge.md",
+        "out/2026-11-05/scouts/"
+      ],
+      "searches": "scouts 144, showrunner 4"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/claims.json"
+      ],
+      "gate": "claims_check PASS 66/66, 21 primary"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "notes": "7 refreshed + anchorage-rtcc-surveillance-ordinance decided; payload headroom 4,760 bytes (under 5,000); watch.json failed [] ; bills unchanged; candidates triaged (none AI)"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/cron_health.json",
+        "out/2026-11-05/gaswatch_health.json"
+      ],
+      "lines": {
+        "SITE SIGN-OFF": "PASS, 169 pages, 18 checks",
+        "GAS WATCH": "PASS, read 2026-11-05, gaswatch_pagecheck PASS, chart present",
+        "GAS WATCH LIVE": "PASS, checked 2026-11-06T06:27:27Z, after a late CINGSA post: dispatched gaswatch.yml on main (run 42173931298, success, 7.71 Bcf, 59.3 percent of design), waited for Pages run 42174159236, re-audited live",
+        "CRON HEALTH": "PASS, all scheduled workflows checked, no failures"
+      }
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/storyboard.md",
+        "out/2026-11-05/director_brief.md"
+      ]
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/caption.txt",
+        "out/2026-11-05/copy.json",
+        "out/2026-11-05/caption_report.json"
+      ],
+      "notes": "caption room: both candidates rejected by critic, one director reassigned once, showrunner accepted the rewrite with a clarified close"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/slides/",
+        "out/2026-11-05/render/"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "rounds": 4,
+      "artifacts": [
+        "out/2026-11-05/pixel_review_r2.md"
+      ],
+      "notes": "round 4 verdicts: 02 and 04 ship; 01 7.9, 03 7.3, 05 7.4, 06 7.4, 08 7.6, 09 7.3 revise with polish; 07 5.8"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/flow_review.json"
+      ],
+      "verdict": "revise, applied in the round-5 craft cycle (04 and 07 trims, 07 carpet darkened)"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/final/carousel.pdf",
+        "out/2026-11-05/final/contact_sheet.png",
+        "out/2026-11-05/final/assemble_report.json"
+      ],
+      "pdf_mode": "vector",
+      "pdf_mb": 5.64
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-05/score_report.json",
+        "out/2026-11-05/score_report_round4.json"
+      ],
+      "score": 8.25,
+      "threshold": 7.7,
+      "craft_cycle": {
+        "frames": [
+          7,
+          1,
+          8,
+          9,
+          5
+        ],
+        "art_before": 7.0,
+        "art_after": 7.5
+      }
+    },
+    "ship": {
+      "status": "in_progress",
+      "artifacts": [
+        "runs/2026-11-05/",
+        "docs/"
+      ],
+      "site_build": "170 pages, 106 decks, 41 tracked decisions, --date 2026-11-05 (main built at the same Alaska date)",
+      "checks": {
+        "parsers_check": "PASS",
+        "scanner_sync_check": "exit 0",
+        "docket_dates_check": "PASS, 429 assertions",
+        "site_fresh_check": "OK at 2026-11-05, 300 generated files",
+        "docket_alerts": "no alerts due",
+        "prune_runs": "DRY RUN only: would free 1.38M from runs/2026-10-06; --apply not run, because deleting under runs/ is a stop-and-ask action in CLAUDE.md and the chained call was refused by the permission classifier"
+      }
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "SITE SIGN-OFF: PASS, 169 pages, 18 checks, nothing unfixed",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-11-06T06:27:27Z, after a late CINGSA post: dispatched gaswatch.yml on main (run 42173931298, success, 7.71 Bcf, 59.3 percent of design), waited for Pages run 42174159236, re-audited live",
+    "gaswatch_pagecheck": "GAS WATCH: PASS, read 2026-11-05, gaswatch_pagecheck PASS, chart present",
+    "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows audited at 2026-11-06T06:20Z, no failures",
+    "site_fixes": "Gas Watch page was a day behind until the late CINGSA reading was collected by a production dispatch on main and Pages republished; no code change"
+  },
+  "ask_headroom_note": "ask_answers payload 185,176 of 190,000 bytes, 4,824 bytes headroom (under 5,000; the next added docket item may need room)"
+}

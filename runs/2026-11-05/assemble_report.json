@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-05/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5650074,
+  "pdf_mb": 5.65,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-05/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-05/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Anchorage Kept the 14 Days in Policy, Not Code",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "8944d87d7c172c6d863ca2b0e84fdf342d93b66225e71f6a7ee28d6dffcbc0ef",
+        "bytes": 6839356
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "cc1ab461f0dca5249090d39983adde94a2dd63d9f869acf4acd5587da0a6d4a0",
+        "bytes": 6426876
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "af91def00792ee2de44a85e21a5dd7920659bbf5dba8e9b9ad9503a4657c8016",
+        "bytes": 6457638
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "da1fad0ab4c85bb7aebd31d694e64684c52293218e3fbffe5c44b9ecbde9c579",
+        "bytes": 6314260
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "fb1b38ae7fd0d6e1dcc018eee3cbdbe396b018248e2edcb47a168ef1463f0f75",
+        "bytes": 6721303
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "9571132fd8c114aac700a03d5a7a97170286bb3b61bdce6dc47b4fd9881b21ca",
+        "bytes": 6710214
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "ad61af70c9618fa6a957302e2ef859712e34e949448374e6b87f2b1e4190c773",
+        "bytes": 7209753
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "3e49a5f2b70108f5928f2b042c2278a6f8314714bdf0c3975902230d4bbc6d7e",
+        "bytes": 6375353
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "f8f57bd32dc6c7b5c01464d2ffbe236fac83715a334aa5abfc1f05bcd7a1f8e4",
+        "bytes": 6973157
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "e2822a1e05297c7604f2104d65124b763948beba25a1400c8b4bf36aae4fbb87",
+        "bytes": 15486
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "a5c143c757085aff0e4f8ca915a71d64ff7b45441facb6b4272367bc770157be",
+        "bytes": 11966
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "c130c1828b819276e68c56a2810605d24807e3e8cdb634bf0accdec243821cbf",
+        "bytes": 15040
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "def0e21e9800b2c63229e2faed864e7567d96285d47fbeff3394e3c6553cd032",
+        "bytes": 12458
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "f1bcf6a7845d2cc87fd9daaf947f9c6f696162780f02e6ccbb6f6b6f269baf32",
+        "bytes": 8484
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "4d32dc4dc1f58db3ae0c6f2d4ff62e135191c0113fcb1cd927018a40bf995590",
+        "bytes": 13015
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "759b8198837c9ba818a2359fccf60e4ad0e71b309894bd8cd5e1b9a13eccb248",
+        "bytes": 17773
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ae7c67718d9a8db2758567fcd7354d7a79ec3b15bda0c5a2cb803df31c03db05",
+        "bytes": 12808
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "efb7b6e4a3adb6a005f90cf10b55d6549fc0e3103b6fbf2f908b287f0d4b3fa7",
+        "bytes": 15881
+      }
+    ]
+  }
+}

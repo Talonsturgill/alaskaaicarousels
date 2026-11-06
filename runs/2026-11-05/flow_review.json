@@ -1,0 +1,88 @@
+{
+ "verdict": "revise",
+ "score_0_10": 7.3,
+ "predicted_bail_point": {
+  "slide": 6,
+  "fix": "trim 07's body to about 20 words"
+ },
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "06-07-08",
+   "fix": "cut 07 body to about 20 words"
+  },
+  {
+   "severity": "major",
+   "where": "02-03-04",
+   "fix": "drop 04's second body sentence, which the as-filed rail already says"
+  }
+ ],
+ "continuity_findings": [
+  "04-05 baseline seam weak on 05 (polish)",
+  "07 strip segments (polish)",
+  "05 right-edge letter sliver (polish)"
+ ],
+ "consistency_findings": [
+  "07 carpet reads lighter than 06, a bump in the darkening arc",
+  "Polaris at different heights on 01 and 09 (accepted)"
+ ],
+ "craft": {
+  "predicted_artwork_score": 6.9,
+  "weakest_frames": [
+   {
+    "slide": 7,
+    "score": 6.3,
+    "cause": "b"
+   },
+   {
+    "slide": 8,
+    "score": 7.0,
+    "cause": "b"
+   },
+   {
+    "slide": 3,
+    "score": 7.3,
+    "cause": "d"
+   },
+   {
+    "slide": 9,
+    "score": 7.3,
+    "cause": "c"
+   },
+   {
+    "slide": 4,
+    "score": 7.5,
+    "cause": "c"
+   },
+   {
+    "slide": 6,
+    "score": 7.5,
+    "cause": "b"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     2,
+     5,
+     9
+    ],
+    "fix": "separate 09 from 01 by light (a warm spill), D3 by design"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "fix": "darken 07's carpet 6 to 8 L* toward #0A1424"
+   }
+  ],
+  "masterful_depth_frame": 5
+ },
+ "revision_rounds_at_review": 4
+}
