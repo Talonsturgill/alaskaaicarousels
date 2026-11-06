@@ -3673,7 +3673,8 @@
     ".claude/skills/carousel-engine/bootstrap.sh"
    ],
    "verification": "bash -n PASS; the version probe returns 1.63.0 on this container, equal to the installed python playwright; bootstrap.sh runs clean end to end (all deps present, chromium ok).",
-   "rollback": "revert the upgrade(2026-11-05) commit"
+   "rollback": "revert commit b9906b5c",
+   "commit": "b9906b5c"
   },
   {
    "run_date": "2026-11-05",
@@ -3686,7 +3687,8 @@
     "assets/js/akletter.js"
    ],
    "verification": "No.106 slides 01, 05, 07 and 09 render OK with qa.py at 0 fails; examples/demo-deck renders 4/4 OK with qa WARN and 0 fails (no demo slide uses either helper; aksdf's default penumbra is unchanged).",
-   "rollback": "revert the second upgrade(2026-11-05) commit"
+   "rollback": "revert commits 00c9ec0a and a5654674 (the akletter segments change)",
+   "commit": "00c9ec0a"
   }
  ],
  "scan_log": [
