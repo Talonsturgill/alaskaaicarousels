@@ -9555,3 +9555,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 
 - A THIRD DISSENTING ENGAGEMENT NUMBER. Taplio's February 2026 benchmark (203,087 posts, https://taplio.com/linkedin-benchmarks/feb-26, via search summary) has the document (carousel) median engagement rate slipping from 2.60 to 2.40 percent in one month, with single images leading at a 2.70 percent median. With Ordinal's lowest-impressions figure (October 29th) that is two datasets against AuthoredUp and Socialinsider. Still nothing that changes CAROUSEL_CRAFT; if the owner's own analytics ever disagree with the document-first rule, these are the two to re-read.
 - PLAN OBLIQUE RELIEF HAS ONE CONTROL, AN ANGLE. Jenny and Patterson's original paper (Cartographic Perspectives 57, 2007, https://cartographicperspectives.org/index.php/journal/article/download/cp57-jenny-patterson/pdf/1605) shifts each hillshade pixel north by its elevation over tan(alpha); a LOWER alpha gives MORE apparent vertical exaggeration. Peaks then overlap the ground to their north, so draw rows south to north (painter's order) or a near peak is hidden by a far valley. Still a candidate only.
+
+## 2026-11-05, No.106, retro
+
+- PCF IGNORES THE RADIUS. Under akthree's default PCFSoftShadowMap, `shadow.radius` 4 and 9 drew the same hard black slab under the notice case; VSMShadowMap with radius 6 to 14, 24 blur samples and `shadow.intensity` 0.55 to 0.85 softened the cast and lifted its floor.
+- A TWO-MATERIAL FIGURE ALIASES. Switching the table top between two SDF materials on a sine threshold read as hard stripes for two rounds; a 2D warped-fbm multiply clipped to the projected top, with a key gradient and a sheen band, read as ash.
+- A FLAT LINE ON AN ANGLED WALL IS A SECOND HORIZON. The 2D baseline drawn dead level across the angled cover wall fought the coping's perspective; the joint became wall geometry, seated by bisection where it projects to y 1188.
+- FINE RIBS BEAT. 2.5 mm felt ribs at a sharp power-0.45 profile drew hairlines of uneven weight against the pixel grid on both case frames; 1.8 mm at power 0.8 kept the felt and lost the beat.
+- A FIXED PENUMBRA HARDENS EVERY CAST. aksdf's soft-shadow factor was a constant 14, which gave the chairs sawtoothed casts; it is now `shadowK`, opt-in, and 4 to 6 reads soft in plan.
+- A STRIP OVER A RAYMARCH NEEDS THE SCENE. Drawing the threshold strip only where pixels looked like carpet failed on the chairs' own blue; marching the same SDF per column gave occlusion and casts that agree with the render.
