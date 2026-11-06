@@ -1,10 +1,10 @@
 {
- "generated": "2026-11-05T21:09:25Z",
- "for_date": "2026-11-05",
+ "generated": "2026-11-06T20:31:16Z",
+ "for_date": "2026-11-06",
  "session": "34",
  "counted": {
   "basis_bills": 856,
-  "basis_meetings": 2864,
+  "basis_meetings": 2866,
   "fedreg_federal-energy-regulatory-commission": 4,
   "fedreg_land-management-bureau": 0,
   "fedreg_air-force-department": 0,
@@ -337,5 +337,5 @@
   }
  ],
  "failed": [],
- "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2864 meetings and 4 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
+ "note_hearings": "No upcoming hearing for a committee holding a tracked bill. The feed carried 2866 meetings and 6 of them are still ahead, so this is the Legislature being out of session rather than the sweep failing."
 }
