@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "whats-in-the-box",
+      "date": "2026-11-07",
+      "title": "What's In The Box",
+      "caption": "Petersburg, Alaska has no data center, but its Assembly is drafting rules for one. The draft's three tests cover grid capacity, generators and uncontained cooling, so the open question is how big a customer the grid should take.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-07-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-07-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-07-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-07-poster_thumb.jpg"
+    },
+    {
       "id": "2026-11-06-who-knew-ai-wrote-the-plan",
       "date": "2026-11-06",
       "title": "Who Knew AI Helped Write the Plan",
