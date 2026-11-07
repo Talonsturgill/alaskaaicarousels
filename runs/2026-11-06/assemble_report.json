@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-06/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 22919652,
+  "pdf_mb": 22.92,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-06/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-06/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Outside AI Money in Alaska's Senate Race, Mapped",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "e9ac311d7fac64dd792508748f2207facb1a9ed41b627934ffde91c0702fc6cf",
+        "bytes": 6659254
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "f32ebcdd25eeb798b1eb9635c1cd800639bc5f00f912cfc149c1bdf4b605ee1a",
+        "bytes": 7302896
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "5ac55bd2e1b168c0e868b83b4445c8b8cf1447d4cafbc3178ef05fe0c994b6d2",
+        "bytes": 6762825
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "4023e55f32a9927acee4f3dbe5495d29b1a5edadd6744495a1140d148b27dc6a",
+        "bytes": 7174072
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "05eb3247a98c7bf80a30f1fd5bf13b486a8a39632446bdb7376b476699d5555e",
+        "bytes": 6238793
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "6b9988da75a5f93f081214f35e6d4fa056b85c3fcc28c90761f45942ba2e1deb",
+        "bytes": 7059848
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "6ba4cce345b6f7840ed2778a39d048ac52d2855633c4e2ea79bbd00e84f1fbc2",
+        "bytes": 7190948
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "38a760a80d0cade690b41ad94fbad351f817ba8a5009fa63a05bf3e52f7639d0",
+        "bytes": 6187691
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "af8260f9dc2ca531f51725eed3dcbfce1980ccb262fcc5c216567deb293cb2ac",
+        "bytes": 6264191
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "0209da64e98b48892a41b97b7ab6726300ce7a2dfcdebcd3058490112966b85f",
+        "bytes": 10686
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "2c52053414da22d993ea3dc2a7c1bff84d54103293e1fa86ef24c89ee93ccdd0",
+        "bytes": 20876
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "4ce60907174b8c93b2da9cc71fc418816377cb789055d4c1ecd0d64f2c7e8064",
+        "bytes": 14574
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "f04723d2833b0e81ce32d4241837a109bcccecaf90e4a69bf56aadf61d2228c0",
+        "bytes": 16033
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "38ec0667d86da976a01a1c7fcecbff811bd3986bd1f45f8f965c06a761430a43",
+        "bytes": 9031
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "f3a7b86e2a0866ef8c06cc80d1170904156f74b28ec603c236b468f17da503b4",
+        "bytes": 10996
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "4ac5edc453fe8c85968816a8279399d8393035732e9dcca27365ad0b5ea515ff",
+        "bytes": 16086
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "00f74f32c1d738d5a837f9c8df9beb150022801eda15d683d7bc5830db9c345c",
+        "bytes": 17028
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "f68520cece84ab6b119f345ed0a2dd379cdaa067869ee6f2fa7d47a517507b58",
+        "bytes": 11128
+      }
+    ]
+  }
+}

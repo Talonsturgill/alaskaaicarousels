@@ -2564,6 +2564,26 @@
       "last_confirmed": "2026-11-05",
       "run_date": "2026-11-05",
       "carousel_no": 106
+    },
+    {
+      "id": "inspect-the-texture-before-the-renderer",
+      "instinct": "When an artifact survives renderer changes, draw the source texture or noise field on its own page before touching filters again.",
+      "evidence": "No.107: globe streaks outlived three rounds of anisotropy and bump changes; a texture debug page and a node render of the fbm field found a float-overflow hash and a sheared noise space in one pass.",
+      "confidence": 0.6,
+      "learned": "2026-11-06",
+      "last_confirmed": "2026-11-06",
+      "run_date": "2026-11-06",
+      "carousel_no": 107
+    },
+    {
+      "id": "fixture-zone-by-moving-art",
+      "instinct": "Clear the site fixture by moving the art or restoring the pre-overlay pixels under it, never by laying a plate or a tone patch over the art.",
+      "evidence": "No.107: a hard plate, a feathered plate and a sea-tone ellipse were each called a stain; a feathered keep-under of the pre-coast pixels and a lifted map read clean.",
+      "confidence": 0.55,
+      "learned": "2026-11-06",
+      "last_confirmed": "2026-11-06",
+      "run_date": "2026-11-06",
+      "carousel_no": 107
     }
   ]
 }

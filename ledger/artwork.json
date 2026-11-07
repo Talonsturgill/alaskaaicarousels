@@ -3879,6 +3879,42 @@
         "147. Letterboard Glyphs in Three Dimensions (akletter)",
         "148. Scene-Marched Overlay Strip"
       ]
+    },
+    {
+      "run_date": "2026-11-06",
+      "carousel_no": 107,
+      "slide_count": 9,
+      "hero_structure": "NEW: ORBITAL NIGHT CHART, a real GPU globe over the North Pacific (akglobe, 01, 05, 09) and registered P-AK projections of Alaska in DEM relief (02, 04, 07, 08), with every dollar drawn as ice at one scale, 4 px per $1,000: 19 cords to the Gulf coast (01), a bundle parting into two strands and a hollow PAC strand at the coast (02), cabinet-oblique prisms on a lit plinth (03), a slope chart over a fan of 146 threads against 4 (04), stipple bars and a fork (06), receipt inlays in a milled slate rail (07); votes as snow paper with a gold 637 sliver under a x40 loupe over plan-oblique relief (08)",
+      "atmosphere": "NEW: TERMINATOR DUSK TO POLAR NIGHT, a low southwest dusk sun on 01 falling to a moon key and a green aurora rim by 09",
+      "depth_technique": "akthree PBR globe with a DEM bump, dithered fresnel atmosphere and 2D casts from projected ground tracks (01, 05, 09); per-device-pixel bicubic DEM hillshade (02, 04, 07); plan oblique relief, Jenny and Patterson style, with a coast-feathered lift (08); cabinet oblique prisms with casts on a lit plinth (03); milled slate height field with seated inlays (07)",
+      "line_voice": "instrument: mono labels on knockout plates, leaders landing on ticks, dashed hollow outlines for money not counted in the total",
+      "continuity_device": "motif:the address line, Alaska's real boundary in gold on every frame",
+      "continuity_devices": [
+        "the address line in gold on every frame",
+        "the inbound cords evolving as one ice material for money",
+        "palette arc dusk to polar night",
+        "edge tease 01 to 02 (cords leave and enter the bottom edge)"
+      ],
+      "hook_archetype": "NEW: THE SUPERLATIVE AND THE ZERO",
+      "palette_family": "NEW: ORBITAL NIGHT CHART (space #02060F, ocean #0C1F33 to #16324E, lit snow #E6EEF4, money ice #D3F0F8/#A9DDF2/#1E5A7A, votes snow paper #E8EEF6, slate #7E8EA3, gold #FFC72C for Alaska's own only)",
+      "type_pairing": "Archivo (width axis) + JetBrains Mono",
+      "narrative_structure": "NEW: TWO STREAMS AND A COUNT: the AI-employee stream (01 to 04), a turn (05), the plumbing and the second stream (06, 07), the count (08), the date (09)",
+      "variance_dials": {
+        "design_variance": 2,
+        "visual_density": 5,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "akglobe orbital earth helper: regional plate carree albedo, roughness and DEM bump patch with sRGB encoding, dithered fresnel shell, 2D projection and limb test",
+        "2D cord casts from projected ground tracks with the cord footprint cut out",
+        "strands that stop column by column on the mainland coast",
+        "plan oblique relief with a coast-feathered lift",
+        "feathered keep-under: the gold coast fades behind the site fixture by restoring the pre-coast pixels"
+      ],
+      "new_techniques_logged": [
+        "149. Orbital Earth Helper (akglobe)",
+        "150. Plan Oblique Relief with Coast-Feathered Lift"
+      ]
     }
   ]
 }

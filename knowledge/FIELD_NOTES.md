@@ -9564,3 +9564,13 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - FINE RIBS BEAT. 2.5 mm felt ribs at a sharp power-0.45 profile drew hairlines of uneven weight against the pixel grid on both case frames; 1.8 mm at power 0.8 kept the felt and lost the beat.
 - A FIXED PENUMBRA HARDENS EVERY CAST. aksdf's soft-shadow factor was a constant 14, which gave the chairs sawtoothed casts; it is now `shadowK`, opt-in, and 4 to 6 reads soft in plan.
 - A STRIP OVER A RAYMARCH NEEDS THE SCENE. Drawing the threshold strip only where pixels looked like carpet failed on the chairs' own blue; marching the same SDF per column gave occlusion and casts that agree with the render.
+
+## 2026-11-06, No.107, retro
+
+- A STREAK THAT SURVIVES EVERY TEXTURE FIX IS IN THE NOISE. Brushed streaks on Chukotka and Canada outlived three rounds of anisotropy, mip and bump changes on the globe. A debug page that drew the albedo canvas itself showed them in the texture, and a node render of the fbm field showed them in the noise: a hash multiplied past 2^53 (fixed with Math.imul) and a noise space of `lon * cos(lat)` at 190W, which slides five cells east per degree north. Draw the texture before tuning the renderer.
+- A GLOBE THAT RECEIVES THE SUN'S SHADOW MAP AT A GRAZING ANGLE PRINTS ACNE. Two-pixel cords were not worth it; their casts are drawn in 2D from projected ground tracks with the cord footprint cut out.
+- A PLATE UNDER THE WATERMARK IS A STAIN, AND SO IS A SEA-TONE ELLIPSE. Critics named the hard plate, then the feathered plate, then a sea-coloured ellipse, each as a smudge. What read clean was restoring the pixels drawn BEFORE the gold coast inside a feathered ellipse, so only the coast fades behind the mark, plus moving the art (08's map lifted, 09's camera moved) where land sat under it.
+- A STRAND MAY NOT RUN UP AN INLET. Bands erased by a land mask still showed in Cook Inlet. Scanning each column of the MAINLAND polygon from the bottom and erasing above the first land pixel stops every strand on the first coast it meets, with islands only cutting holes.
+- A FOG TERM CAN GO PAST ONE. `1 - e / 260` with a negative blurred elevation inside a small island printed it black under the gold line for two rounds; clamp the term and compute land slope from elevation above sea level.
+- TWO GLOBE FRAMES NEED TWO CAMERAS. The flow critic read 05 and 09 as one drawing re-lit; moving 09's camera over the eastern Gulf, farther out, separated them and made the close the darkest frame (L* 9.0) in the same change.
+- A CORNER SHADE MAY DELETE DECLARED MARKS. A bottom-left vignette under 04's fixture dimmed two of the 146 declared threads below qa's mark census; it came out, and the fixture there relies on its halo and the coast fade.

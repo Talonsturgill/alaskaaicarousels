@@ -404,10 +404,15 @@
           "url": "https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors",
           "outlet": "KUAC via Alaska Public Media",
           "date": "2026-09-15"
+        },
+        {
+          "url": "https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC-26-R-0006&page=0&size=25&mode=search",
+          "outlet": "SAM.gov, Department of the Air Force",
+          "date": "2026-11-07"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-05",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-07-08",
@@ -560,6 +565,10 @@
         {
           "date": "2026-11-05",
           "note": "Searched the Federal Register today for Alaska documents published November 1st to 5th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "Read the SAM.gov record for solicitation AFCEC-26-R-0006 today. It is marked inactive, lists a response deadline of June 29th at 5 p.m. Eastern, shows 10 modifications with the latest on July 15th, and names no awardee. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -5816,10 +5825,15 @@
           "url": "https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting",
           "outlet": "University of Alaska (news release via EIN Presswire)",
           "date": "2026-11-03"
+        },
+        {
+          "url": "https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/",
+          "outlet": "Anchorage Daily News (opinion, Gregory Hartley and Joel Potter)",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-04",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-09-17",
@@ -5892,6 +5906,10 @@
         {
           "date": "2026-11-04",
           "note": "The regents' meetings page returned a server error today and could not be re-read. The November 4th to 6th meeting in Fairbanks stands as the university announced it on November 3rd, and no action on \"AI Engaged\" has been reported."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "The regents were scheduled to vote on the AI Engaged statement of intent on November 5th. No published report of the outcome could be found today, and the university's board pages returned server errors. An opinion piece published November 4th in the Anchorage Daily News by two UAA associate professors says Anthropic's Claude generated the initial draft, and that this was not disclosed until October 9th. That is their account, and no university response to it was found."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"

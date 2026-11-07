@@ -4362,6 +4362,62 @@
       ],
       "claims": 66,
       "note": "UPDATE of No.84 (October 11th), which asked whether the 14 days belonged in code. Every vote tally rests on Alaska's News Source; muni.org returned 404 for every page and PDF on November 5th, so the as-amended text is unread and the deck quotes the substitute as filed, labelled so."
+    },
+    {
+      "run_date": "2026-11-06",
+      "carousel_no": 107,
+      "topic": "An Alaska Beacon analysis of FEC records (November 3rd) found Alaska's U.S. Senate race drew more from Anthropic, OpenAI and xAI employees than any other 2026 Senate race: at least 19 donors, about $119,000, none listing an Alaska address. Peltola at least $56,000, nearly all from Anthropic employees; Sullivan about $63,000 plus $35,000 to his True North leadership PAC. Counting Big Tech flips the order. Most of the money moved through joint committees. Separately, in April the Air Force offered developers land at JBER, Eielson and Clear for AI data centers, and executives of Twenty First Century Utilities and Saige Consulting appear in Sullivan's FEC filings in the same weeks. The race stood 637 votes apart in the unofficial count, ranked choices tabulated November 18th.",
+      "angle": "THE ADDRESS LINE: outside AI money drawn honestly on one scale for both candidates, against the one line no donor's address fell inside, and a count only Alaskans decide.",
+      "entities": [
+        "Alaska Beacon",
+        "Federal Election Commission",
+        "Mary Peltola",
+        "Dan Sullivan",
+        "Anthropic",
+        "OpenAI",
+        "xAI",
+        "True North PAC",
+        "Fish Family Freedom Fund",
+        "One Team Senate Majority",
+        "Sullivan Victory",
+        "U.S. Air Force",
+        "JBER",
+        "Eielson Air Force Base",
+        "Clear Space Force Station",
+        "Twenty First Century Utilities",
+        "Saige Consulting",
+        "Campaign Legal Center",
+        "Mike Rounds",
+        "Alaska Division of Elections"
+      ],
+      "keywords": [
+        "campaign finance",
+        "AI company employees",
+        "FEC records",
+        "U.S. Senate race",
+        "joint fundraising committees",
+        "leadership PAC",
+        "Outside money",
+        "Air Force enhanced use lease",
+        "AI data centers on bases",
+        "ranked choice tabulation",
+        "unofficial count",
+        "Alaska"
+      ],
+      "headline": "No Senate race drew more from AI-company employees. Zero Alaska addresses.",
+      "sources_lead": [
+        "https://alaskabeacon.com/2026/11/03/alaskas-u-s-senate-race-draws-significant-donations-from-ai-company-employees/",
+        "https://api.open.fec.gov/v1/schedules/schedule_a/?api_key=DEMO_KEY&committee_id=C00609255&contributor_name=CORSELL&two_year_transaction_period=2026",
+        "https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC-26-R-0006&page=0&size=25&mode=search",
+        "https://www.adn.com/politics/2026/11/06/like-in-past-elections-alaska-is-still-counting-ballots-when-will-we-know-who-won/"
+      ],
+      "beats": [
+        "state-policy",
+        "defense-and-federal",
+        "data-centers"
+      ],
+      "claims": 72,
+      "note": "Not an update: the first deck on campaign money. The Air Force land offer (docket item air-force-eul-ai-data-centers) appears as the second stream, not the subject. The Alaska Current's $58,000 network tally deliberately not printed."
     }
   ]
 }

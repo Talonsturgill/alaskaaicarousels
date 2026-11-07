@@ -194,7 +194,7 @@ export function init(THREE, d3, topojson) {
         const nx = (lon - cLon) * clRef * 1.6, ny = lat * 1.6;
         const k = y * W + x;
         const isAk = akNear[k] > 0.02;
-        const m = isAk ? maskS[k] : maskWide[k];
+        const m = isAk ? maskS[k] : maskWide[k] + (fbm(nx * 5.5, ny * 5.5, seed + 11, 3) - 0.5) * 0.55;
         const n = fbm(nx * 1.0, ny * 1.0, seed, 3);
         const landness = isAk ? THREE.MathUtils.smoothstep(m, 0.3, 0.7) : THREE.MathUtils.smoothstep(m, 0.25, 0.75);
         let h = 0, isLand = landness > 0.5;
@@ -203,7 +203,7 @@ export function init(THREE, d3, topojson) {
         // DEM inside its own box, feathered over 1.5 degrees into a soft fbm relief
         // outside it, so the box's edge never prints as a seam
         // land outside the DEM gets a soft, low relief so it reads as terrain and not as a paper cut-out
-        const fr = opts.otherRelief != null ? opts.otherRelief * fbm(nx * 2.2, ny * 2.2, seed + 3, 3) : 0.0;
+        const fr = opts.otherRelief != null ? opts.otherRelief * fbm(nx * 0.8, ny * 0.8, seed + 3, 2) : 0.0;
         let wDem = 0;
         if (e != null) {
           const dEdge = Math.min(lon + 170, -129.12 - lon, lat - 54.04, 72 - lat);
@@ -291,15 +291,17 @@ export function init(THREE, d3, topojson) {
         void main(){ vec3 V = normalize(cameraPosition - vW); float f = 1.0 - abs(dot(V, vN));
           float rim = pow(f, 3.2); float lit = clamp(dot(normalize(vW), sunDir)*0.8+0.35, 0.0, 1.0);
           vec3 col = mix(c1, c2, smoothstep(0.55, 1.0, f)); float a = rim * strength * mix(night, 1.0, lit);
-          gl_FragColor = vec4(col * a, a); }`,
+          float dn = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5;
+          vec3 o = col * a + vec3(dn * 2.0 / 255.0);
+          gl_FragColor = vec4(max(o, 0.0), a); }`,
       side: THREE.BackSide, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
-    const shell = new THREE.Mesh(new THREE.SphereGeometry(opts.shellR || 1.035, 128, 64), shellMat);
+    const shell = new THREE.Mesh(new THREE.SphereGeometry(opts.shellR || 1.035, 256, 128), shellMat);
     R.scene.add(shell);
     // inner haze on the lit surface near the limb (front faces, very light)
     const hazeMat = shellMat.clone(); hazeMat.side = THREE.FrontSide;
     hazeMat.uniforms = THREE.UniformsUtils.clone(shellMat.uniforms);
     hazeMat.uniforms.strength.value = (opts.hazeStrength != null ? opts.hazeStrength : 0.45);
-    const haze = new THREE.Mesh(new THREE.SphereGeometry(1.004, 128, 64), hazeMat);
+    const haze = new THREE.Mesh(new THREE.SphereGeometry(1.004, 256, 128), hazeMat);
     R.scene.add(haze);
     return { mesh, shell, haze, sun, sunDir: sd };
   };
