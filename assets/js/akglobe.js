@@ -47,8 +47,10 @@ export function init(THREE, d3, topojson) {
 
   // Seeded value noise + fbm, enough for albedo mottling and bump.
   function hash(i, j, s) {
-    let h = (i * 374761393 + j * 668265263 + s * 2147483647) | 0;
-    h = (h ^ (h >>> 13)) * 1274126177 | 0;
+    // 32-bit integer products (Math.imul): a float product past 2^53 drops the low bits,
+    // the hash stops mixing and the snow printed as long brushed streaks
+    let h = (Math.imul(i, 374761393) + Math.imul(j, 668265263) + Math.imul(s, 2147483647)) | 0;
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
     return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
   }
   function vnoise(x, y, s) {
@@ -140,8 +142,16 @@ export function init(THREE, d3, topojson) {
     mx.fillStyle = '#000'; mx.fillRect(c0[0], c0[1], c1[0] - c0[0], c1[1] - c0[1]);
     mx.fillStyle = '#fff'; mx.beginPath(); path(akFeature); mx.fill();
     const mdat = mx.getImageData(0, 0, W, H).data;
+    // Alaska alone: its 10m coast stays sharp; the coarse 110m land around it is
+    // feathered wide so its straight segments never read as facets
+    const ac = document.createElement('canvas'); ac.width = W; ac.height = H;
+    const acx = ac.getContext('2d'); acx.fillStyle = '#fff'; acx.beginPath(); d3.geoPath(proj, acx)(akFeature); acx.fill();
+    const adat = acx.getImageData(0, 0, W, H).data;
     const mask = new Float32Array(W * H);
     for (let i = 0; i < W * H; i++) mask[i] = mdat[i * 4] / 255;
+    const akM = new Float32Array(W * H);
+    for (let i = 0; i < W * H; i++) akM[i] = adat[i * 4] / 255;
+    const akNear = boxBlur(akM, W, H, 3);
     const near = boxBlur(mask, W, H, 6);     // coastal bevel
     const far = boxBlur(near, W, H, 18);     // shelf / distance to land
 
@@ -168,22 +178,32 @@ export function init(THREE, d3, topojson) {
     const tmp = new THREE.Color(), oc = new THREE.Color();
     const s8 = (v) => 255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055);
     const maskS = boxBlur(mask, W, H, 1);
+    const maskWide = boxBlur(boxBlur(mask, W, H, 4), W, H, 4);
     const bumpF = new Float32Array(W * H);
+    const otherLand = opts.otherLand != null ? opts.otherLand : 1;
+    const clRef = Math.cos(((reg.north + Math.max(reg.south, 40)) / 2) * RAD);
+    const akWide = otherLand < 1 ? boxBlur(boxBlur(akM, W, H, 8), W, H, 8) : null;
     for (let y = 0; y < H; y++) {
       const lat = reg.north - (y + 0.5) * (reg.north - reg.south) / H;
       const cl = Math.cos(lat * RAD);
       for (let x = 0; x < W; x++) {
         const lon = reg.west + (x + 0.5) * (reg.east - reg.west) / W;
-        const nx = lon * cl * 1.6, ny = lat * 1.6;   // isotropic noise space (degrees of arc)
-        const k = y * W + x, m = maskS[k];
-        const n = fbm(nx * 1.4, ny * 1.4, seed, 5);
-        const landness = THREE.MathUtils.smoothstep(m, 0.3, 0.7);
+        // noise space in degrees of arc about the patch centre, at one reference latitude:
+        // lon * cos(lat) far from the prime meridian shears with latitude (at 190W it slid
+        // five cells per degree north) and printed the snow as long diagonal streaks
+        const nx = (lon - cLon) * clRef * 1.6, ny = lat * 1.6;
+        const k = y * W + x;
+        const isAk = akNear[k] > 0.02;
+        const m = isAk ? maskS[k] : maskWide[k];
+        const n = fbm(nx * 1.0, ny * 1.0, seed, 3);
+        const landness = isAk ? THREE.MathUtils.smoothstep(m, 0.3, 0.7) : THREE.MathUtils.smoothstep(m, 0.25, 0.75);
         let h = 0, isLand = landness > 0.5;
         // land colour
         let e = (lon >= -170 && lon <= -129.12 && lat >= 54.04 && lat <= 72) ? demAt(lon, lat) : null;
         // DEM inside its own box, feathered over 1.5 degrees into a soft fbm relief
         // outside it, so the box's edge never prints as a seam
-        const fr = 0.06 * fbm(nx * 4, ny * 4, seed + 3, 5);
+        // land outside the DEM gets a soft, low relief so it reads as terrain and not as a paper cut-out
+        const fr = opts.otherRelief != null ? opts.otherRelief * fbm(nx * 2.2, ny * 2.2, seed + 3, 3) : 0.0;
         let wDem = 0;
         if (e != null) {
           const dEdge = Math.min(lon + 170, -129.12 - lon, lat - 54.04, 72 - lat);
@@ -192,15 +212,20 @@ export function init(THREE, d3, topojson) {
         h = landness > 0.02 ? (wDem * Math.max(0, e || 0) / 5563 + (1 - wDem) * fr) : 0;
         const sl = snowLat + (n - 0.5) * 6 - h * 14;
         const sn = THREE.MathUtils.smoothstep(lat, sl - 1.5, sl + 1.5);
-        tmp.copy(spruce).lerp(tundra, fbm(nx * 3, ny * 3, seed + 9, 4));
-        const sc = snowShade.clone().lerp(snow, 0.55 + 0.45 * fbm(nx * 5, ny * 5, seed + 5, 4));
+        // noise frequencies stay under the texture's Nyquist (about 39 px a degree at the
+        // default patch): finer octaves alias into a brushed, striped lay on the snow
+        tmp.copy(spruce).lerp(tundra, fbm(nx * 0.9, ny * 0.9, seed + 9, 3));
+        const sc = snowShade.clone().lerp(snow, 0.6 + 0.4 * fbm(nx * 1.1, ny * 1.1, seed + 5, 3));
         tmp.lerp(sc, sn);
         if (lat > 74) tmp.lerp(snow, 0.85);
+        if (lat > 83) tmp.lerp(snowShade, THREE.MathUtils.smoothstep(lat, 83, 86));
+        // land that is not Alaska steps down (opts.otherLand, 0..1 of Alaska's albedo),
+        // feathered off Alaska's own coast so the 141W line never prints as a cut
+        if (otherLand < 1) tmp.multiplyScalar(otherLand + (1 - otherLand) * Math.min(1, akWide[k] * 1.6));
         // ocean colour: shelf lighter near land; sea ice in the far north (November)
         const shelf = Math.min(1, far[k] * 3.2);
-        oc.copy(ocDeep).lerp(ocShelf, shelf * 0.8 + (n - 0.5) * 0.1);
-        const iceLat = 72 + (n - 0.5) * 5;
-        if (lat > iceLat) oc.lerp(snowShade, THREE.MathUtils.smoothstep(lat, iceLat, iceLat + 3) * 0.75);
+        oc.copy(ocDeep).lerp(ocShelf, shelf * 0.8);
+        oc.lerp(snowShade, THREE.MathUtils.smoothstep(lat, 71, 76) * 0.7);
         tmp.lerp(oc, 1 - landness);
         const p = k * 4;
         // THREE.Color holds LINEAR values; the albedo canvas is an sRGB texture,
@@ -208,7 +233,7 @@ export function init(THREE, d3, topojson) {
         ai.data[p] = s8(tmp.r); ai.data[p + 1] = s8(tmp.g); ai.data[p + 2] = s8(tmp.b); ai.data[p + 3] = 255;
         const rv = Math.round(235 * landness + (lat > 72 ? 180 : (opts.oceanRough != null ? opts.oceanRough : 80)) * (1 - landness));
         ri.data[p] = ri.data[p + 1] = ri.data[p + 2] = rv; ri.data[p + 3] = 255;
-        bumpF[k] = 0.12 * near[k] + 0.88 * Math.pow(h, 0.7) + (isLand ? 0.015 * n : 0);
+        bumpF[k] = (isAk ? 0.12 * near[k] : 0.0) + 0.88 * Math.pow(h, 0.7);
       }
     }
     // soften the bump by two cells so DEM cells and mask steps never print as blocks
@@ -238,7 +263,9 @@ export function init(THREE, d3, topojson) {
     const geo = new THREE.SphereGeometry(1, seg, Math.max(16, Math.round(seg * (rg.north - rg.south) / (rg.east - rg.west))),
       (rg.west + 180) * RAD, (rg.east - rg.west) * RAD, (90 - rg.north) * RAD, (rg.north - rg.south) * RAD);
     const mesh = new THREE.Mesh(geo, mat);
-    mesh.castShadow = false; mesh.receiveShadow = true;
+    // the globe takes no shadow map: at a grazing sun the depth compare printed diagonal acne
+    // stripes across flat snow, and every cast on it is drawn in 2D from projected paths
+    mesh.castShadow = false; mesh.receiveShadow = !!opts.receiveShadow;
     R.scene.add(mesh);
     const sun = new THREE.DirectionalLight(opts.sunColor || 0xffe2c0, opts.sunIntensity || 3.2);
     const sd = (opts.sun || G.sunDir(-16, -105)).clone().normalize();
