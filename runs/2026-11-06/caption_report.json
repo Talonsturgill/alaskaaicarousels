@@ -1,0 +1,19 @@
+{
+  "chars": 861,
+  "hook": "Most Anthropic, OpenAI and xAI employees who gave in Alaska's Senate race live in California. Not one lists an Alaska address.",
+  "hook_len": 126,
+  "commas": 7,
+  "comma_per_100": 0.85,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AKSenate",
+    "#CampaignFinance",
+    "#AlaskaAI"
+  ],
+  "deck_summary": "Both campaigns' money on one scale and the national ranking with and without Big Tech. Then the joint committees, the Air Force land offer and the unofficial count.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 76
+}

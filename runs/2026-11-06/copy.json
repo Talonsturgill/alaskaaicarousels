@@ -1,0 +1,303 @@
+{
+ "run_date": "2026-11-06",
+ "document_title": "Outside AI Money in Alaska's Senate Race, Mapped",
+ "post_copy": "Most Anthropic, OpenAI and xAI employees who gave in Alaska's Senate race live in California. Not one lists an Alaska address.\n\nAn Alaska Beacon analysis of FEC records found at least 19 of them gave about $119,000. No Senate race this year drew more.\n\nInside the border, the race stood 637 votes apart in the unofficial count as of November 4th.\n\nPeltola got at least $56,000. Sullivan got about $63,000 plus $35,000 to his leadership PAC.\n\nRanked choices get tabulated November 18th. The dollars came from Outside. The count that settles the seat happens inside.\n\nBoth campaigns' money on one scale and the national ranking with and without Big Tech. Then the joint committees, the Air Force land offer and the unofficial count.\n\nShould voters weigh money from donors with no Alaska address differently than a neighbor's?\n\n#AKSenate #CampaignFinance #AlaskaAI\n",
+ "deck_summary_line": "Both campaigns' money on one scale and the national ranking with and without Big Tech. Then the joint committees, the Air Force land offer and the unofficial count.",
+ "hashtags": [
+  "#AKSenate",
+  "#CampaignFinance",
+  "#AlaskaAI"
+ ],
+ "slides": [
+  {
+   "n": 1,
+   "kicker": "ALASKA'S U.S. SENATE RACE, PER AN ALASKA BEACON ANALYSIS OF FEC RECORDS",
+   "headline": "No Senate race drew more from AI-company employees. Zero Alaska addresses.",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C01",
+    "C06"
+   ]
+  },
+  {
+   "n": 2,
+   "kicker": "ONE SCALE FOR EVERY DOLLAR IN THIS DECK",
+   "headline": "About $119,000 from at least 19 donors.",
+   "body": "Peltola, at least $56,000, nearly all from Anthropic employees. Sullivan, about $63,000, plus $35,000 to his True North leadership PAC that the $119,000 leaves out. Figures per the Alaska Beacon.",
+   "labels": [
+    "PELTOLA $56,000",
+    "SULLIVAN $63,000",
+    "TRUE NORTH PAC $35,000",
+    "NO ALASKA ADDRESS",
+    "$25,000"
+   ],
+   "claim_ids": [
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10"
+   ]
+  },
+  {
+   "n": 3,
+   "kicker": "THE TOP RACE, ON ONE SCALE",
+   "headline": "First among Senate races. Fifth and 14th among candidates.",
+   "body": "Mike Rounds of South Dakota tops the candidates at $165,100 with PACs. Sullivan's $98,000 counts his PAC. Most donors gave close to the legal limit.",
+   "labels": [
+    "ROUNDS (R-S.D.) $165,100",
+    "SULLIVAN $98,000",
+    "PELTOLA $56,000",
+    "5TH",
+    "14TH",
+    "CAMPAIGN $63,000",
+    "PAC $35,000",
+    "RACE RANK1ST",
+    "FIRMS COUNTEDANTHROPIC, OPENAI, XAI",
+    "LIMIT$3,500 PER ELECTION",
+    "LEADERSHIP PAC$5,000 A YEAR"
+   ],
+   "claim_ids": [
+    "C01",
+    "C04",
+    "C07",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C16",
+    "C21",
+    "C28"
+   ]
+  },
+  {
+   "n": 4,
+   "kicker": "CHANGE WHO COUNTS AS TECH",
+   "headline": "Count Big Tech too, and the order flips.",
+   "body": "Counting Anthropic, OpenAI and xAI alone, Sullivan ranks 5th and Peltola 14th. Add Big Tech employees and Peltola ranks 5th, Sullivan 16th. Close to 150 Big Tech donors gave to Peltola, four to Sullivan.",
+   "labels": [
+    "AI FIRMS ONLY",
+    "PLUS BIG TECH",
+    "SULLIVAN 5TH",
+    "PELTOLA 14TH",
+    "5TH PELTOLA",
+    "16TH SULLIVAN",
+    "CLOSE TO 150 TO PELTOLA",
+    "FOUR TO SULLIVAN"
+   ],
+   "claim_ids": [
+    "C12",
+    "C13",
+    "C18",
+    "C19",
+    "C20",
+    "C21"
+   ]
+  },
+  {
+   "n": 5,
+   "kicker": "",
+   "headline": "Same map, second stream. In April the Air Force offered developers land on three Alaska bases for AI data centers.",
+   "body": "",
+   "labels": [
+    "JBER",
+    "CLEAR",
+    "EIELSON"
+   ],
+   "claim_ids": [
+    "C45",
+    "C47",
+    "C48"
+   ]
+  },
+  {
+   "n": 6,
+   "kicker": "BEFORE THE LAND, THE MONEY'S ROUTE",
+   "headline": "Most of it moved through joint committees first.",
+   "body": "More than half of Peltola's came through the Fish Family Freedom Fund, and Sullivan's mainly through One Team Senate Majority and Sullivan Victory. The Beacon traced it with an AI agent called DataTalk.",
+   "labels": [
+    "BEACON TOTAL",
+    "CANDIDATE COMMITTEE, EMPLOYER ANTHROPIC",
+    "PELTOLA $56,000",
+    "SULLIVAN $63,000",
+    "$28,000",
+    "$7,000 AS ANTHROPIC PBC",
+    "LIKELY ONE CHECK, TWO LINES. CORSELL'S $7,000 TO SULLIVAN VICTORY, THEN $3,500 + $3,500 MARKED TRANSFER MEMO ON THE CAMPAIGN'S FILING.",
+    "$3,500 PRIMARY",
+    "$3,500 GENERAL"
+   ],
+   "claim_ids": [
+    "C03",
+    "C07",
+    "C09",
+    "C22",
+    "C23",
+    "C24",
+    "C27",
+    "C29",
+    "C30",
+    "C34",
+    "C35",
+    "C36"
+   ]
+  },
+  {
+   "n": 7,
+   "kicker": "TWO RECORDS, ONE SPRING",
+   "headline": "Same weeks, separate records.",
+   "body": "As the Air Force set site visits at three Alaska bases, executives of Twenty First Century Utilities and Saige Consulting appear in Sullivan's FEC filings. Employer data shouldn't be read as proof of coordinated giving, Campaign Legal Center's Brendan Fischer told the Beacon.",
+   "labels": [
+    "AIR FORCE",
+    "FEC RECEIPTS",
+    "APRIL 15TH",
+    "APRIL 1ST",
+    "MAY 1ST",
+    "APRIL 10TH LEASE OFFER",
+    "APRIL 23RD INDUSTRY DAY",
+    "28TH JBER",
+    "29TH CLEAR",
+    "30TH EIELSON",
+    "APRIL 24TH KAPITO, TFC $3,500 APRIL 24TH HU, SAIGE $7,000 MAY 1ST CORSELL, TFC $7,000",
+    "4,700 ACRES, 12 PARCELS, 3 BASES, NO AWARD ON SAM.GOV",
+    "TFC IS THE NORTH SLOPE POWER DEVELOPER, PER THE ALASKA CURRENT"
+   ],
+   "claim_ids": [
+    "C26",
+    "C29",
+    "C31",
+    "C33",
+    "C41",
+    "C45",
+    "C46",
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C55"
+   ]
+  },
+  {
+   "n": 8,
+   "kicker": "UNOFFICIAL, WEDNESDAY AFTERNOON, NOVEMBER 4TH",
+   "headline": "637 votes apart, with about a quarter still to count.",
+   "body": "Peltola 48 percent, Sullivan 47.7 percent, 215,912 ballots counted. Ranked choices are tabulated November 18th, with certification targeted for November 25th.",
+   "labels": [
+    "PELTOLA 48%",
+    "SULLIVAN 47.7%",
+    "215,912 COUNTED",
+    "ROUGHLY A QUARTER NOT YET TALLIED",
+    "637 VOTES, x40"
+   ],
+   "claim_ids": [
+    "C56",
+    "C57",
+    "C58",
+    "C59",
+    "C60",
+    "C61"
+   ]
+  },
+  {
+   "n": 9,
+   "kicker": "",
+   "headline": "Save this for November 18th.",
+   "body": "At least 19 donors, none with an Alaska address. 637 votes apart. The count is still open.",
+   "labels": [],
+   "claim_ids": [
+    "C02",
+    "C06",
+    "C57",
+    "C60"
+   ]
+  }
+ ],
+ "caption_meta": {
+  "opening_move": "MAP MOVE",
+  "structure": "BRAID",
+  "closing_move": "NEW: THE VOTER'S DISCOUNT"
+ },
+ "first_8_words": "Most Anthropic, OpenAI and xAI employees who gave",
+ "hook_type": "THE OUTSIDE LINE: a map move, the donors' addresses against the border, braided with the count inside it",
+ "caption_claim_ids": [
+  "C01",
+  "C02",
+  "C03",
+  "C06",
+  "C07",
+  "C09",
+  "C10",
+  "C12",
+  "C13",
+  "C18",
+  "C19",
+  "C22",
+  "C24",
+  "C45",
+  "C48",
+  "C56",
+  "C57",
+  "C60"
+ ],
+ "total_chars": 861,
+ "hook_chars": 126,
+ "first_comment": "Sources, primary first\nFederal Election Commission (OpenFEC API), Sullivan Victory receipt from Peter Corsell, $7,000, 2026-05-01, https://api.open.fec.gov/v1/schedules/schedule_a/?api_key=DEMO_KEY&committee_id=C00609255&contributor_name=CORSELL&two_year_transaction_period=2026\nFederal Election Commission (OpenFEC API), Alaskans for Dan Sullivan transfer memo entries for Corsell, $3,500 primary and $3,500 general, 2026-05-01, https://api.open.fec.gov/v1/schedules/schedule_a/?api_key=DEMO_KEY&committee_id=C00570994&contributor_name=CORSELL&two_year_transaction_period=2026\nFederal Election Commission (OpenFEC API), Sullivan Victory receipt from Aaron Kapito, $3,500, 2026-04-24, https://api.open.fec.gov/v1/schedules/schedule_a/?api_key=DEMO_KEY&committee_id=C00609255&contributor_name=KAPITO&two_year_transaction_period=2026\nFederal Election Commission (OpenFEC API), Alaskans for Dan Sullivan transfer memo entries for Charles Hu, $3,500 primary and $3,500 general, 2026-04-24, https://api.open.fec.gov/v1/schedules/schedule_a/?api_key=DEMO_KEY&committee_id=C00570994&contributor_name=HU,%20CHARLES&two_year_transaction_period=2026\nFederal Election Commission (OpenFEC API), Alaskans for Dan Sullivan receipts by employer, Anthropic and Anthropic PBC, 2026 cycle, fetched 2026-11-07, https://api.open.fec.gov/v1/schedules/schedule_a/by_employer/?api_key=DEMO_KEY&committee_id=C00570994&cycle=2026&employer=ANTHROPIC\nFederal Election Commission (OpenFEC API), Alaskans for Mary receipts by employer, Anthropic, 2026 cycle, fetched 2026-11-07, https://api.open.fec.gov/v1/schedules/schedule_a/by_employer/?api_key=DEMO_KEY&committee_id=C00933978&cycle=2026&employer=ANTHROPIC\nFederal Election Commission, contribution limits for 2025 to 2026 federal elections, fetched 2026-11-07, https://www.fec.gov/help-candidates-and-committees/candidate-taking-receipts/contribution-limits/\nSAM.gov, Air Force solicitation AFCEC-26-R-0006 for AI data center development at JBER, Eielson and Clear, record last modified 2026-07-15, https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC-26-R-0006&page=0&size=25&mode=search\nAlaska Beacon, analysis of FEC records on AI company employees' donations in the U.S. Senate race, by Arshya Gaur and Bridget Stuebner with the DataTalk agent, 2026-11-03 (text read via the Beacon's RSS feed), https://alaskabeacon.com/2026/11/03/alaskas-u-s-senate-race-draws-significant-donations-from-ai-company-employees/\nAnchorage Daily News, the unofficial count and the calendar to certification, by Mari Kanagy, 2026-11-06, https://www.adn.com/politics/2026/11/06/like-in-past-elections-alaska-is-still-counting-ballots-when-will-we-know-who-won/\nAlaska Public Media, Peltola campaign demands information about rejected absentee ballots, by Liz Ruskin, 2026-11-06, https://alaskapublic.org/news/2026-11-06/peltola-campaign-demands-information-about-rejected-absentee-ballots\nAlaska Public Media, six takeaways from Alaska's election, 2026-11-04, https://alaskapublic.org/news/politics/elections/2026-11-04/6-takeaways-from-alaskas-election\nAir and Space Forces Magazine, the Air Force offers land for AI data centers at three Alaska bases, by Matthew Cox, 2026-04-11, https://www.airandspaceforces.com/usaf-land-ai-data-centers-three-alaska-bases\nThe Alaska Current, data center utility executives' donations to Dan Sullivan, by Lauren Windsor, 2026-10-30, https://thealaskacurrent.com/2026/10/30/data-center-donations-dan-sullivan/\n\nEvery open Alaska AI decision, with its next deadline, is tracked at https://alaskaaihq.com\nHave a filing, a correction or local context this deck missed? Add it below with a link.",
+ "aftercare": [
+  "Post in a Tuesday to Thursday slot, 8 to 11 a.m. AKT. The next one is Tuesday, November 10th, and you own the cadence. New counts were expected November 9th or 10th, so check the Division of Elections first. If a new count has posted, the 637 votes in the caption and on slides 08 and 09 are stale.",
+  "Paste the sources comment within 60 seconds of posting.",
+  "Reply to every comment in the first 90 minutes, then note saves and comments at 48 hours.",
+  "Watch November 18th, when ranked choices are tabulated, and November 25th, the state's target date to certify. After those the counts on slide 08 are superseded, so answer with the new numbers in a reply and leave the post as it is."
+ ],
+ "editor_notes_for_email": "Fairness choices. Peltola and Sullivan share one material and one 4 px per $1,000 scale on every frame. The Alaska Current's $58,000 network tally is deliberately not printed. The FEC transfer-memo entries are never added to the joint-committee receipts, and the calendar frame carries the Campaign Legal Center caveat that employer data isn't proof of coordinated giving. The 637-vote margin, the 48 to 47.7 percent split and the 215,912 ballots are the unofficial count as of Wednesday afternoon, November 4th, and are superseded by later counts, the November 18th ranked choice tabulation and certification targeted for November 25th. Disclosure, this deck was produced with Claude, made by Anthropic, whose employees are among the donors it counts. Whether to say so in the first comment is your call, and a paste-ready line is 'Disclosure. This deck was made with Claude, an AI model from Anthropic, whose employees are among the donors it counts.'",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C16",
+  "C18",
+  "C19",
+  "C20",
+  "C21",
+  "C22",
+  "C23",
+  "C24",
+  "C26",
+  "C27",
+  "C28",
+  "C29",
+  "C30",
+  "C31",
+  "C33",
+  "C34",
+  "C35",
+  "C36",
+  "C41",
+  "C45",
+  "C46",
+  "C47",
+  "C48",
+  "C49",
+  "C50",
+  "C55",
+  "C56",
+  "C57",
+  "C58",
+  "C59",
+  "C60",
+  "C61"
+ ]
+}

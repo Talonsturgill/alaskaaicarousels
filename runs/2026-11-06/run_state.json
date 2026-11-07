@@ -1,0 +1,146 @@
+{
+ "run_date": "2026-11-06",
+ "carousel_no": 107,
+ "effort": "high",
+ "date_note": "Woke 21:04 AKST November 6th (UTC 2026-11-07). Run date is the Anchorage date; runs/2026-11-06 did not exist; run_guard --run-date 2026-11-06 CLEAR.",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/plan.md",
+    "out/2026-11-06/run_state.json"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "note": "two searches; nothing new beyond the AuthoredUp/Taplio/Ordinal figures already in FIELD_NOTES (2026-10-29, 2026-11-05) and Swiss relief aerial perspective already parked (FIELD_NOTES 2626, 5411); nothing written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/scout_merge.md",
+    "out/2026-11-06/scout_common.txt"
+   ],
+   "note": "6 scouts, 138 searches"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/claims.json"
+   ],
+   "note": "72 claims, 14 primary, claims_check PASS"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json",
+    "out/2026-11-06/docket_notes.json"
+   ],
+   "note": "six worklist items refreshed (budget 6 plus the deferred fnsb-2027 item); ua-regents-ai-policy pending scout B; watch.json bills match docket (both closed), 0 hearings (out of session), failed []; 29 candidates triaged, none new on beat; ask payload headroom 4,725 bytes (UNDER 5,000); mobile_docket_map and docket_ask PASS; plus ua-regents-ai-policy and air-force-eul-ai-data-centers from verified claims; headroom now 4,560 bytes; suites PASS after second edit"
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/cron_health.json",
+    "out/2026-11-06/gaswatch_health.json"
+   ],
+   "lines": {
+    "SITE SIGN-OFF": "PASS, 170 pages, 18 checks",
+    "GAS WATCH": "PASS, read November 6th, 94 days on record, chart present",
+    "GAS WATCH LIVE": "PASS, re-checked after dispatch (first audit WARN late_post; CINGSA posted 05:29Z after the 23:44Z collection; dispatched gaswatch.yml on main run 42345741075 success, 7.73 Bcf committed and deployed)",
+    "CRON HEALTH": "PASS, 7 scheduled workflows checked, 39 checks"
+   },
+   "site_fixes": "none needed; rebuilt docs at 2026-11-06 after docket refresh"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/storyboard.md",
+    "out/2026-11-06/selection.md"
+   ],
+   "note": "lenses data-journalist, cartographer, cinematographer; cartographer spine + data-journalist scale and table organs; dossier_check WARN 0 fails"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/caption.txt",
+    "out/2026-11-06/copy.json",
+    "out/2026-11-06/caption_report.json",
+    "out/2026-11-06/caption_candidates.json"
+   ],
+   "note": "room A COLD NUMBER/INVERTED PYRAMID vs B MAP MOVE/BRAID; critic picked B with one fix (name the three firms); deck summary trimmed one comma"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/slides/",
+    "out/2026-11-06/render/machine_qa.json"
+   ],
+   "note": "qa WARN 0 fails; bespoke 0.119 median, drawn share 68%"
+  },
+  "pixel_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/critic/round2_verdicts.json",
+    "out/2026-11-06/critic/round3_verdicts.json",
+    "out/2026-11-06/critic/round4_verdicts.json"
+   ],
+   "note": "four pixel rounds; 06 and 07 ship at round 4; holdouts kept at their best version and logged"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/flow_review.json"
+   ],
+   "note": "one sequence round (round 5): 09 re-cameraed, 06 bridge kicker, 02 strands darkened, 08 relief crisper; tonal arc PASS"
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/final/carousel.pdf",
+    "out/2026-11-06/final/assemble_report.json"
+   ],
+   "note": "vector 22.92 MB"
+  },
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-06/score_report.json"
+   ],
+   "note": "8.35 vs 7.7 (rounds 5); art 7, craft floor stood down at the cap"
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-11-06/",
+    "docs/"
+   ],
+   "note": "webp 17.43 MB (3.5x, grain-heavy frames), pdf shrink declined at 0 percent (21.86 MB), site at 2026-11-06 fresh, parsers/scanner/docket_dates PASS, no alerts due, prune freed 2.81M"
+  },
+  "upgrade": {
+   "status": "pending"
+  },
+  "gmail": {
+   "status": "pending"
+  },
+  "retro": {
+   "status": "pending"
+  }
+ },
+ "score": 8.35,
+ "threshold": 7.7,
+ "phase_3_6": {
+  "site_signoff": "PASS, 170 pages, 18 checks",
+  "gaswatch_live": "PASS, re-checked after dispatch (first audit WARN late_post; CINGSA posted 05:29Z after the 23:44Z collection; dispatched gaswatch.yml on main run 42345741075 success, 7.73 Bcf committed and deployed)",
+  "gaswatch_pagecheck": "PASS, read November 6th, 94 days on record, chart present",
+  "cron_health": "PASS, 7 scheduled workflows checked, 39 checks",
+  "site_fixes": "none needed; the Gas Watch late post was re-collected by dispatching gaswatch.yml on main and verified live"
+ }
+}

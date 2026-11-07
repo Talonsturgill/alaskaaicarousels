@@ -1,0 +1,113 @@
+{
+ "run_date": "2026-11-06",
+ "carousel_no": 107,
+ "hard_fails": [],
+ "hard_fails_checked": 12,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(7x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(7x0.08)+(7x0.07)+(8x0.05)+(8x0.10) = 8.35. No hard fail. The scorer notes the rubric's weights sum to 1.10; normalised the same scores give 7.59.",
+ "weighted_total": 8.35,
+ "threshold": 7.7,
+ "ship": true,
+ "revision_rounds": 5,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild slide 02's two candidate strands as true ice slabs, each with a lit 10 to 12 px bevel, a lee side face in #1E5A7A and an offset cast on the sea, and a clean bevelled end at the coast instead of column-by-column steps up Cook Inlet; also lift the site fixture off Kodiak, because the payoff frame is the deck's weakest art.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Strands read as flat milky panels with column-stepped tops; land hillshade generic; fixture on Kodiak.",
+   "fix": "Constant-thickness slabs with bevel, lee face and offset cast, one bevelled cap at the coast; move the map so the fixture falls on sea."
+  },
+  {
+   "slide": 6,
+   "problem": "Art is a tenth of the frame; committees not drawn.",
+   "fix": "Draw the joint committees as seated ice nodes the Beacon bars pass through, on a modelled lit film."
+  },
+  {
+   "slide": 8,
+   "problem": "Plan-oblique relief soft; loupe sits on the North Slope coast.",
+   "fix": "Move the loupe to open ground; harder self-shadow on the lift."
+  },
+  {
+   "slide": 3,
+   "problem": "Prisms flat gradients, faint casts.",
+   "fix": "Pool on the plinth, contact shadows, visible parallelogram casts, face value ramp."
+  },
+  {
+   "slide": 9,
+   "problem": "Same globe composition as 01 and 05; cord reads as a scratch.",
+   "fix": "Tube material for the cord; tighter polar camera."
+  }
+ ],
+ "craft_floor": {
+  "art": 7,
+  "floor": 8.5,
+  "stood_down": "five-round cap reached (revision_rounds 5); no craft cycle run"
+ },
+ "scorer_notes": [
+  "Count may be stale: unofficial as of November 4th, new counts expected November 9th or 10th.",
+  "Disclosure advised: made with Claude; Anthropic employees are among the donors counted.",
+  "Five first-comment links are OpenFEC API URLs with DEMO_KEY.",
+  "Slide 06 'More than half of Peltola's' mirrors the Beacon's own sentence (C24).",
+  "Rubric weights sum to 1.10; weekly pass should rebalance.",
+  "07 lane labels worst point 4.2 to 4.3:1."
+ ],
+ "editor_notes_for_email": [
+  "The count may be stale. The 637-vote margin, 48 to 47.7 percent and 215,912 ballots are the unofficial count as of Wednesday afternoon, November 4th, and new counts were expected November 9th or 10th. Check the Division of Elections before posting; if a new count has posted, the caption and slides 08 and 09 are out of date.",
+  "Disclosure. This deck was made with Claude, and Anthropic employees are among the donors it counts. The paste-ready line is in the editor notes above; posting it in the first comment is strongly advised.",
+  "Five source links in the first comment are OpenFEC API URLs with the public DEMO_KEY. They work but return rate-limited JSON, so consider swapping in fec.gov web pages before pasting.",
+  "Art scored 7, under the 8.5 craft floor. The run reached the five-round cap, so the craft cycle stood down and the deck ships with the shortfall named here. The weakest frames are 02 (flat strands), 06 (a typeset table) and 08 (soft relief).",
+  "Slide 06's 'More than half of Peltola's came through the Fish Family Freedom Fund' mirrors the Beacon's own sentence, which says 'Peltola's contributions' in a paragraph about AI-company money.",
+  "The scorer notes again that the rubric's weights sum to 1.10, so 8.35 normalises to 7.59. The item sits in the machine queue as an owner decision."
+ ]
+}

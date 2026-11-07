@@ -404,10 +404,15 @@
           "url": "https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors",
           "outlet": "KUAC via Alaska Public Media",
           "date": "2026-09-15"
+        },
+        {
+          "url": "https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC-26-R-0006&page=0&size=25&mode=search",
+          "outlet": "SAM.gov, Department of the Air Force",
+          "date": "2026-11-07"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-05",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-07-08",
@@ -560,6 +565,10 @@
         {
           "date": "2026-11-05",
           "note": "Searched the Federal Register today for Alaska documents published November 1st to 5th and found no Air Force lease, award or notice for Joint Base Elmendorf-Richardson, Eielson or Clear. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "Read the SAM.gov record for solicitation AFCEC-26-R-0006 today. It is marked inactive, lists a response deadline of June 29th at 5 p.m. Eastern, shows 10 modifications with the latest on July 15th, and names no awardee. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/"
@@ -1179,7 +1188,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-11-03",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-07-11",
@@ -1304,6 +1313,10 @@
         {
           "date": "2026-11-03",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding are due by 5 p.m. November 13th, and the notice, last modified October 14th, still lists no hearing date."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding are still due by 5 p.m. November 13th, the notice still shows its October 14th modification, and it lists no hearing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",
@@ -4108,10 +4121,14 @@
         {
           "date": "2026-11-02",
           "note": "The commission's eLibrary record for P-15423, read tonight, holds 262 filings dated on or before November 2nd, up from 134 on October 22nd, with 72 filed on the closing day. Seven parties moved to intervene, the newest Cook Inletkeeper on October 26th, and no competing application was filed. DeepGreen's October 27th answer says it holds no binding partnership or executed interconnection agreement with AEA and calls its Cook Inlet PowerLink references conceptual engineering alignments."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "The commission's eLibrary record for P-15423, queried today, shows 39 filings dated November 3rd to 6th, after the window closed. Among them are an out-of-time motion to intervene by Tl\u00e9ix' Tin\u00e1a opposing the project and an answer by the Alaska Commercial Fisheries Conservation Alliance to DeepGreen's supplemental clarification. The commission has issued nothing on the application since the window closed."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-06",
       "url": "https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center/"
     },
     {
@@ -4463,7 +4480,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-08-31",
@@ -4580,6 +4597,10 @@
         {
           "date": "2026-11-02",
           "note": "Reply comments in WC Docket No. 26-173 closed on October 30th. A Federal Register search today for any document citing the docket since October 20th returned none, so no extension or further notice has been published. The Commission now weighs the record, and no date for an order has been announced."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "A Federal Register search today for documents citing WC Docket No. 26-173 published since October 20th found none. The record closed with reply comments on October 30th, and no date for an order has been announced. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-usf-ai-administration/"
@@ -4687,7 +4708,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-11-02",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-09-01",
@@ -4776,6 +4797,10 @@
         {
           "date": "2026-11-02",
           "note": "The borough's meeting calendar for November 1st through 20th lists a Committee of the Whole work session on November 5th and the next regular Assembly meeting on November 12th, and no event title on it names data centers or the moratorium request. The Legislature that would act on the state half convenes January 19th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "The borough's calendar for November 5th to 24th, read today, lists the regular Assembly meeting on November 12th. Its agenda carries Resolution No. 2026-37, the borough's capital and programmatic request priorities for the 2027 legislative session, and no item naming data centers or the moratorium request. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-2027-data-center-moratorium-request/"
@@ -4849,7 +4874,7 @@
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-11-04",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-10-23",
@@ -4870,6 +4895,10 @@
         {
           "date": "2026-11-04",
           "note": "Updated. The Planning Commission's agenda for November 10th, published October 29th and read today, lists Ordinance No. 2026-42 under public and legislative hearings, so the commission takes testimony on the moratorium that evening before making its recommendation to the Assembly."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "The borough's meeting calendar, read today, still lists the Planning Commission meeting on November 10th at 6 p.m., whose agenda carries the public hearing on Ordinance No. 2026-42. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fnsb-ordinance-2026-42-data-center-moratorium/"
@@ -5108,7 +5137,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-04",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-09-13",
@@ -5185,6 +5214,10 @@
         {
           "date": "2026-11-04",
           "note": "GovInfo's record, read today, shows no Senate action after the failed cloture vote of September 30th. The Senate's lame-duck session begins November 9th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "GovInfo's bill status record, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn after cloture failed 57 to 43. No Senate action since. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/"
@@ -5792,10 +5825,15 @@
           "url": "https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting",
           "outlet": "University of Alaska (news release via EIN Presswire)",
           "date": "2026-11-03"
+        },
+        {
+          "url": "https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/",
+          "outlet": "Anchorage Daily News (opinion, Gregory Hartley and Joel Potter)",
+          "date": "2026-11-04"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-04",
+      "last_updated": "2026-11-06",
       "history": [
         {
           "date": "2026-09-17",
@@ -5868,6 +5906,10 @@
         {
           "date": "2026-11-04",
           "note": "The regents' meetings page returned a server error today and could not be re-read. The November 4th to 6th meeting in Fairbanks stands as the university announced it on November 3rd, and no action on \"AI Engaged\" has been reported."
+        },
+        {
+          "date": "2026-11-06",
+          "note": "The regents were scheduled to vote on the AI Engaged statement of intent on November 5th. No published report of the outcome could be found today, and the university's board pages returned server errors. An opinion piece published November 4th in the Anchorage Daily News by two UAA associate professors says Anthropic's Claude generated the initial draft, and that this was not disclosed until October 9th. That is their account, and no university response to it was found."
         }
       ],
       "url": "https://alaskaaihq.com/docket/ua-regents-ai-policy/"
