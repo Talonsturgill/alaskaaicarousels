@@ -101,5 +101,13 @@
   "Slide 06 'More than half of Peltola's' mirrors the Beacon's own sentence (C24).",
   "Rubric weights sum to 1.10; weekly pass should rebalance.",
   "07 lane labels worst point 4.2 to 4.3:1."
+ ],
+ "editor_notes_for_email": [
+  "The count may be stale. The 637-vote margin, 48 to 47.7 percent and 215,912 ballots are the unofficial count as of Wednesday afternoon, November 4th, and new counts were expected November 9th or 10th. Check the Division of Elections before posting; if a new count has posted, the caption and slides 08 and 09 are out of date.",
+  "Disclosure. This deck was made with Claude, and Anthropic employees are among the donors it counts. The paste-ready line is in the editor notes above; posting it in the first comment is strongly advised.",
+  "Five source links in the first comment are OpenFEC API URLs with the public DEMO_KEY. They work but return rate-limited JSON, so consider swapping in fec.gov web pages before pasting.",
+  "Art scored 7, under the 8.5 craft floor. The run reached the five-round cap, so the craft cycle stood down and the deck ships with the shortfall named here. The weakest frames are 02 (flat strands), 06 (a typeset table) and 08 (soft relief).",
+  "Slide 06's 'More than half of Peltola's came through the Fish Family Freedom Fund' mirrors the Beacon's own sentence, which says 'Peltola's contributions' in a paragraph about AI-company money.",
+  "The scorer notes again that the rubric's weights sum to 1.10, so 8.35 normalises to 7.59. The item sits in the machine queue as an owner decision."
  ]
 }

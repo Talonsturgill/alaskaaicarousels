@@ -135,5 +135,12 @@
   }
  },
  "score": 8.35,
- "threshold": 7.7
+ "threshold": 7.7,
+ "phase_3_6": {
+  "site_signoff": "PASS, 170 pages, 18 checks",
+  "gaswatch_live": "PASS, re-checked after dispatch (first audit WARN late_post; CINGSA posted 05:29Z after the 23:44Z collection; dispatched gaswatch.yml on main run 42345741075 success, 7.73 Bcf committed and deployed)",
+  "gaswatch_pagecheck": "PASS, read November 6th, 94 days on record, chart present",
+  "cron_health": "PASS, 7 scheduled workflows checked, 39 checks",
+  "site_fixes": "none needed; the Gas Watch late post was re-collected by dispatching gaswatch.yml on main and verified live"
+ }
 }
