@@ -2584,6 +2584,36 @@
       "last_confirmed": "2026-11-06",
       "run_date": "2026-11-06",
       "carousel_no": 107
+    },
+    {
+      "id": "label-the-multiplier-of-abbreviated-numerals",
+      "instinct": "When a scale's numerals are abbreviated, the axis label names the multiplier (THOUSAND SQ FT), checked as a fact like any other string.",
+      "evidence": "No.108: 0 to 60 over SQ FT OF FLOOR AREA passed four pixel rounds and every gate; the flow critic read the cursor as 40 square feet.",
+      "confidence": 0.6,
+      "learned": "2026-11-07",
+      "last_confirmed": "2026-11-07",
+      "run_date": "2026-11-07",
+      "carousel_no": 108
+    },
+    {
+      "id": "keep-terrain-seams-out-of-frame",
+      "instinct": "Where a fine terrain patch meets a coarse one, put the seam outside the frame and fade every patch-only height term to zero at its edge.",
+      "evidence": "No.108: the coarse lot poked through the rut troughs (saw-tooth), then a fine-only fbm term printed a dotted seam on 09 for three rounds until the patch edge left the frame.",
+      "confidence": 0.6,
+      "learned": "2026-11-07",
+      "last_confirmed": "2026-11-07",
+      "run_date": "2026-11-07",
+      "carousel_no": 108
+    },
+    {
+      "id": "corrugation-as-continuous-normal",
+      "instinct": "Draw corrugated steel as a continuous sine normal at modest strength with a lit fill on the lee, never a trapezoid profile and never under a grazing wash alone.",
+      "evidence": "No.108: a trapezoid flashed hairlines, a strong wash turned sine ribs into an orange and grey barcode; critics named the 01 and 09 walls in every round.",
+      "confidence": 0.55,
+      "learned": "2026-11-07",
+      "last_confirmed": "2026-11-07",
+      "run_date": "2026-11-07",
+      "carousel_no": 108
     }
   ]
 }

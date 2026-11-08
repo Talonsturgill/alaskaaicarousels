@@ -4418,6 +4418,53 @@
       ],
       "claims": 72,
       "note": "Not an update: the first deck on campaign money. The Air Force land offer (docket item air-force-eul-ai-data-centers) appears as the second stream, not the subject. The Alaska Current's $58,000 network tally deliberately not printed."
+    },
+    {
+      "run_date": "2026-11-07",
+      "carousel_no": 108,
+      "topic": "Fairbanks North Star Borough Ordinance 2026-42, a pause on land use permits for large-scale data centers through December 31st, 2027, goes to the Planning Commission on Tuesday, November 10th at 6 p.m. (item G.4, after G.3, the comprehensive plan update). The staff report by Community Planning Director Kellen Spillman recommends approval with two amendments: count gross floor area, and cut the size trigger from 50,000 to 40,000 square feet, matching Title 18's large scale development line for an entertainment facility with 800 or more seats, a category whose standards address building aesthetics, maintenance and parking lot design. Staff say borough code has no definition for a data center and lists it in no zone; commenters asked for rules on water and air quality, power and water supply, noise, vibrations and size. Two of the ordinance's three tests are 5 MW power tests and Section 4 orders a study due within six months.",
+      "angle": "THE BORROWED RULER: the new size line measures a data center with a venue's yardstick, which covers the building's outside while the concerns are inside; drawn as one illustrated building through nine instruments.",
+      "entities": [
+        "Fairbanks North Star Borough",
+        "FNSB Planning Commission",
+        "Ordinance 2026-42",
+        "Kellen Spillman",
+        "Title 18",
+        "Regional Comprehensive Plan",
+        "Fairbanks North Star Borough Assembly",
+        "Sarah Hollister",
+        "Northern Alaska Environmental Center",
+        "Alaska's News Source",
+        "American Planning Association"
+      ],
+      "keywords": [
+        "data center moratorium",
+        "land use permits",
+        "gross floor area",
+        "40,000 square feet",
+        "large scale development",
+        "entertainment facility 800 seats",
+        "zoning definition",
+        "5 MW peak demand",
+        "onsite generation",
+        "study of energy air water noise",
+        "Planning Commission hearing",
+        "2014 marijuana licensing precedent",
+        "Fairbanks"
+      ],
+      "headline": "A data center, sized like an 800-seat venue.",
+      "sources_lead": [
+        "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13403,plainText=true)",
+        "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13383,plainText=true)",
+        "https://www.alaskasnewssource.com/2026/10/31/data-center-concerns-top-mind-fairbanks-town-hall/",
+        "https://northern.org/news/nobody-asked-us-hundreds-of-alaskans-gather-for-data-center-town-hall-in-fairbanks/"
+      ],
+      "beats": [
+        "data-centers",
+        "land-and-permitting"
+      ],
+      "claims": 57,
+      "note": "UPDATE of No.94 (2026-10-23, the ordinance as introduced): new are the agendized hearing, the staff recommendation and its two amendments, no zone for data centers, and the draft plan's data center section. Fourth Fairbanks data center deck in 36 days (No.76, No.83, No.94). The referral date conflicts in the record (October 22nd vs 26th) and is not printed. The town hall quote is not tied to the ordinance."
     }
   ]
 }

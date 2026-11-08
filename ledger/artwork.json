@@ -3915,6 +3915,44 @@
         "149. Orbital Earth Helper (akglobe)",
         "150. Plan Oblique Relief with Coast-Feathered Lift"
       ]
+    },
+    {
+      "run_date": "2026-11-07",
+      "carousel_no": 108,
+      "slide_count": 9,
+      "hero_structure": "NEW: ONE BUILDING, NINE INSTRUMENTS, one illustrated 250 by 200 ft warehouse-type shell filmed and drawn nine ways: GPU PBR exterior in ice fog (01), interior hybrid rack bay (06) and long-lens close (09) from one shared module (akshell.js); dimetric painter's solids of the roofless shell with the gold 40,000 stripe (02) and of the mechanical yard (07); an engraved boxwood architect's scale (03); an SDF clay massing model cut open (04); a dark LED hall (05); a milled steel calendar plate (08)",
+      "atmosphere": "NEW: ICE FOG UNDER SODIUM, high-pressure sodium on the lot, 5000 K high-bay inside, status LEDs in the dark hall; the palette arcs by light source",
+      "depth_technique": "akthree PBR with exp2 fog, rounded-rib normal maps and a two-resolution displaced snow lot (01, 09); PBR interior with contact AO and fog to the far wall (06); aksdf raymarch at 2160 x 2700 with a projected 2D interior paint (04); relief-shaded milled plate (08); dimetric solids with two-part casts (02, 07)",
+      "line_voice": "instrument",
+      "continuity_device": "motif:the gold 40,000 line, a painted floor stripe 200 ft from the west wall, on the slab, the scale, the model, the yard and through the door",
+      "continuity_devices": [
+        "one building drawn nine ways",
+        "the gold 40,000 line",
+        "palette arc by light source",
+        "edge tease 05 to 06 (teal status light)"
+      ],
+      "hook_archetype": "NEW: THE BORROWED RULER",
+      "palette_family": "NEW: SODIUM LOT, HIGH-BAY AND STATUS LIGHT (night #070B12, sodium #F2A448, high-bay #EEF3FA, rack orange #D8642A, upright blue #2C4F86, LEDs #3CE6B4/#5AC8F0, gold #FFC72C for the line only)",
+      "type_pairing": "Fraunces SOFT 100 opsz 144 wght 560 display + Manrope 400 body + JetBrains Mono 500 caps instrument",
+      "narrative_structure": "walk-through of one building interleaved with the record's instruments (exterior, drawing, ruler, model, dark interior, lit interior, drawing, calendar, exterior)",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 2,
+        "type_temperature": 5
+      },
+      "techniques": [
+        "akthree PBR",
+        "aksdf raymarch",
+        "akengrave",
+        "AK.reliefShade",
+        "dimetric painter's solids",
+        "AKPOST.reserve",
+        "AKT.contactAO"
+      ],
+      "new_techniques_logged": [
+        "NEW: SHARED BUILDING MODULE (akshell.js) for three GPU frames of one subject",
+        "NEW: PROJECTED INTERIOR PAINT over an SDF raymarch where the march leaves a covered volume black"
+      ]
     }
   ]
 }

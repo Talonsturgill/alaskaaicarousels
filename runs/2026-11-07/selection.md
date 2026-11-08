@@ -1,0 +1,27 @@
+# Selection, run 2026-11-07, Carousel No.108
+
+## Decision
+STORY: Fairbanks North Star Borough Ordinance 2026-42 at the Planning Commission on Tuesday, November 10th (6 p.m., item G.4, right after G.3, the major update of the Regional Comprehensive Plan the moratorium waits for). Framed on the cover as an UPDATE of No.94.
+
+THESIS (working): Fairbanks' zoning code has no word for a data center, so its planners propose to measure one with the closest ruler in the book. The amendment moves the size line from 50,000 to 40,000 square feet of gross floor area, the code's line for an 800-seat entertainment facility, a category whose standards govern building aesthetics, maintenance and parking lot design. What residents asked the borough to regulate is water, air, power, noise, vibration and size. The ruler fits the box, not the load. Tuesday is the first place a resident can say so on the record.
+
+## Why this story (criteria in order)
+1. Concrete Alaska impact: a binding permit pause in Alaska's second borough, a dated public hearing with testimony open, a named staff recommendation and a specific amendment, all in one primary document (the 1,162 page commission packet, staff report signed by Community Planning Director Kellen Spillman).
+2. Visual potential: floor area at true scale (40,000, 50,000 and 55,000 square feet), 800 seats, a warehouse whose pallets are replaced by servers (the plan draft's own APA quote), a parking lot, and the warmth of a load in a Fairbanks November. Geometry and quantity both.
+3. Tangibility: square feet and megawatts a reader can picture; a meeting room and a time.
+4. Send-to-a-coworker test: anyone in the Interior who follows the moratorium wants the hearing time and the exact amendment before Tuesday.
+
+## Dedupe gate
+dedupe_check: LIKELY DUPLICATE No.94 (2026-10-23, "Only" two zones. 97 percent of the map.), read in full together with its copy.json. No.94 covered the ordinance as introduced: the referral, the three triggers, the "only GU-1 and GU-5" clause measured against the zoning map, GVEA's alert. MATERIAL NEW DEVELOPMENTS since October 23rd: (1) the November 10th hearing is agendized (G.4) with testimony; (2) the Community Planning Department's staff report recommends approval WITH TWO AMENDMENTS, gross floor area and 50,000 cut to 40,000 square feet, borrowed from the code's large scale development definition; (3) the staff report states data centers are not listed as a permitted or conditional use in ANY zone, a reading that differs from the ordinance's own WHEREAS clause (permitted only in GU-1 and GU-5) that No.94 measured; (4) the comprehensive plan draft, on the same agenda as G.3, carries a data center section and an interim conditional use permit strategy; (5) the marijuana 2014 precedent the staff cite. Cover says UPDATE.
+Soft overlaps (No.84, No.88, No.90, No.98, No.99) share only generic tokens.
+Note: this is the fourth Fairbanks data center deck in 36 days (No.76, No.83, No.94). The art and structure must diverge hard from No.94 (zoning-map cartography); this deck is architecture and floor area, not a map.
+
+## Runner-up
+University of Alaska "AI Engaged" at the regents' November 4th to 6th meeting (six principles, four priorities, five expectations), with the dispute over an AI-written first draft. New to this ledger, but the vote outcome is unpublished as of the run (the agenda sits behind BoardDocs) and the sibling video feed covered the same dispute on November 5th and 6th. Third: the MEA, Enstar and Hilcorp 1.2 Bcf gas exchange (AI link indirect).
+
+## Directors room (Phase 5)
+Lenses: cinematographer (A, "THE SHELL"), data-journalist (B, "THE SLOTS THAT LINE UP"), systems-illustrator (C, "NO BOX FOR IT"). Treatments summarised in out/2026-11-07/treatments/.
+WINNER: A, strengthened. Sharpest thesis (the yardstick measures the shell; the worries are inside; the 5 MW tests are the fairness clause), the most swipeable cover (a lit door in Fairbanks ice fog is home to an Interior reader), and the only pitch with a sense of place, which both B and C conceded as their weakness. Feasibility partly proven by a prototype GPU aisle rendered at 7.7 s before the pitches arrived.
+WHY NOT ONE INSTRUMENT: A put the GPU render on eight frames, and the CRAFT PLAN rule caps any one mark-making family at three frames. So the synthesis keeps A's building, gold line, night and arc, and gives each frame a different instrument: GPU on 01, 06, 09; drafted axonometric on 02 and 07; an engraved architect's scale on 03; a raymarched clay massing model on 04; LED glow on 05; a milled calendar plate on 08.
+ORGANS TAKEN: from C, the triangular architect's scale with 40,000 / 50,000 / 55,000 marks (03) and the corridor calendar with an 18-month ghost rail (become 08's milled plate); the massing model (04) from C's model shop. From B, the strict separation of quantities into parallel projection, and the warning that "four of the six" overlap counting is our grouping, not the record's, so the deck never counts overlaps. From A, the 50,000 sq ft shell with the stripe at the 40,000 line, which yields the deck's one sharp true observation: a building of exactly 50,000 square feet is not caught by the text as written ("more than 50,000") and is caught by staff's line.
+DROPPED: A's dock-door precedent frame (the precedent moves to 08's rail), A's crane shot over the lot, B's light-box world (no place), C's chisel and notched chute (outruns the record, per C's own self-critique).

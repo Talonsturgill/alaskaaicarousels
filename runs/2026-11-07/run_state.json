@@ -1,0 +1,121 @@
+{
+  "run_date": "2026-11-07",
+  "carousel_no": 108,
+  "effort": "high",
+  "date_note": "Woke 2026-11-08 06:05 UTC = 2026-11-07 21:05 AKST; Anchorage date 2026-11-07 has no runs/ dir, so the run date is 2026-11-07.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "two searches, nothing new; FIELD_NOTES unchanged"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/scout_merge.md",
+        "out/2026-11-07/scouts/"
+      ],
+      "note": "6 scouts; beats C and E thin; D and F converged on the FNSB packet"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/claims.json"
+      ],
+      "note": "57 verified, 48 primary; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "6 worklist items re-verified (all unchanged); watch.json bills match docket, 0 hearings (out of session), 29 candidates none on the AI beat beyond tracked items, failed sources none; ask payload headroom 4,638 bytes (under 5,000); mobile_docket_map and docket_ask PASS at run date"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/cron_health.json",
+        "out/2026-11-07/gaswatch_health.json"
+      ],
+      "lines": [
+        "SITE SIGN-OFF: PASS, 171 pages, 18 checks",
+        "GAS WATCH: PASS, read 2026-11-07, 95 days on record, chart present",
+        "GAS WATCH LIVE: PASS, checked 2026-11-08T06:15:30Z, first audit FAILED on a late post (CINGSA posted 01:02 UTC after the 22:48 UTC collection); dispatched gaswatch.yml on main (run 42453689744, success), Pages redeployed (run 42453842175), re-audit PASS",
+        "CRON HEALTH: PASS, 7 scheduled workflows checked, checked 2026-11-08T06:15:32.288540Z, no repairs needed"
+      ],
+      "site_fixes": "none needed; the gas watch late post was repaired by a production dispatch, not an edit"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/storyboard.md",
+        "out/2026-11-07/treatments/"
+      ],
+      "note": "dossier_check PASS"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/caption.txt",
+        "out/2026-11-07/copy.json",
+        "out/2026-11-07/caption_report.json",
+        "out/2026-11-07/caption_room/"
+      ],
+      "note": "room A vs B, critic picked B with one fix; caption_check PASS with --copy"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/slides/",
+        "assets/js/akshell.js"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "note": "4 rounds; 02, 03, 05, 06, 07, 08 shipped; 01, 04, 09 holdouts kept at best version",
+      "artifacts": [
+        "out/2026-11-07/reviews/round1.md"
+      ]
+    },
+    "flow_review": {
+      "status": "done",
+      "note": "1 round, repair round applied (03 unit, 07 true footprint, 08 lanes, 06 teal, 01/09 steel lee)",
+      "artifacts": [
+        "out/2026-11-07/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/final/"
+      ],
+      "note": "vector 7.13 MB"
+    },
+    "scoring": "pending",
+    "ship": {
+      "status": "in_progress"
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "score": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/score_report.json"
+      ],
+      "note": "8.44 literal (7.67 normalised) vs 7.7 at 5 rounds; art 7; craft cycle 7 -> 7"
+    }
+  }
+}
