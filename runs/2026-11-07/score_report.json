@@ -1,0 +1,127 @@
+{
+  "run_date": "2026-11-07",
+  "carousel_no": 108,
+  "scored_round": 5,
+  "hard_fails": [],
+  "hard_fail_checks": "13 rules checked, all pass (dashes, emoji, claim-ids, typos, clipping, contrast, slide count, machine_qa and pdf_mode, topic repeat framed as UPDATE of No.94, hero vs last four, banned phrases, hashtags and links, placeholders)",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Type carries the stop; the craft cycle's lit fog shows only as a band at the eave, ribs still read as orange and grey bars, the door a pale card, the lower right flat navy."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Clear beats and one-building continuity; junctions 04-05, 06-07, 08-09 rely on implied questions; 02-03-04 dense; the 05-06 teal tease is weak."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7,
+      "weight": 0.16,
+      "notes": "Same 7 after the craft cycle: 02 and 08 good, 05 and 07 solid; 01 rib barcode; 09 smooth dunes and the gold as a bar on the sill; 06 posterised hotspot rings on the cartons, a green strip on the beam, a black mass under the racks, teal glow not visible; 04 interior and roof one tan, black wedges, flute aliasing; 03 still two-band with a sliver end."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Numbers drawn to scale on 02, 03, 08; held below 9 by 06, where the servers-instead-of-pallets image shows pallets and a white panel."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Named throughout; ice fog barely reads; fourth Fairbanks data center deck in 36 days."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content slide adds a verified specific; 07's 5 MW tests were in No.94; 05 a mood beat."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "New world, atmosphere, hook, palette, structure; Fraunces and the house chassis recur."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07,
+      "notes": "Floors met; 06 slab joint through alaskaaihq.com; 05 coordinates in the art band."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "132-character hook, 895 characters; thesis implied not stated; post and slide 09 end on two different asks."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "All post artifacts ready; Gmail draft and main-branch URLs pending at scoring."
+    }
+  ],
+  "calculation": "Literal rubric formula: (7.5x0.14)+(7.5x0.14)+(7x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7.5x0.07)+(7.5x0.05)+(8x0.10) = 8.44. No hard fail. The weights sum to 1.10; normalised 7.67 (standing owner decision in the machine queue).",
+  "weighted_total": 8.44,
+  "weighted_total_normalised": 7.67,
+  "threshold": 7.7,
+  "revision_rounds": 5,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "artwork_score": 7,
+  "one_sentence_fix": "Rebuild the shared akshell exterior wall so a continuous steel lee sits behind every crest, with visible sodium-lit ice fog behind the roofline, so 01 and 09 stop reading as an orange and grey barcode over black.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 1,
+      "problem": "ribs read as orange and grey bars over black; lit fog only a band at the eave; door a pale card; lower right flat navy",
+      "fix": "continuous steel-grey lee from the wall's own environment term, a visible sodium halo near the roofline, crust tone into the lower right"
+    },
+    {
+      "slide": 6,
+      "problem": "posterised hotspot rings on the cartons, green strip on the beam, black mass under the near racks, teal glow invisible",
+      "fix": "lower the carton spot and dither, move the teal light inside the cabinet so it leaks through the perforation, fill under the racks"
+    },
+    {
+      "slide": 9,
+      "problem": "ruts smooth blurred dunes; gold a horizontal bar on the sill; rib barcode; door not clearly brightest",
+      "fix": "crust normal and sparkle, a short vertical glint inside the door, pull the right-hand wash down"
+    },
+    {
+      "slide": 4,
+      "problem": "covered interior and roof share one tan; black wedges; flute aliasing",
+      "fix": "cooler, darker covered interior, fill the wedges with plinth bounce, supersample the flutes"
+    },
+    {
+      "slide": 3,
+      "problem": "two-band bar with a sliver end; dead band between body and labels",
+      "fix": "full triangular end face, raise the scale and labels about 150 px"
+    }
+  ],
+  "editor_notes_for_email": [
+    "Ships on the 4+ round ladder (threshold 7.7) at 8.44 by the rubric's literal formula; normalised by the 1.10 weight sum the same scores give 7.67, 0.03 under 7.7 (standing owner decision in the machine queue).",
+    "Artwork craft stays at 7 after the one craft cycle, below the 8.5 craft floor; the run is at the five-round cap.",
+    "06 (servers instead of pallets) still reads mostly as a warehouse of cartons and its teal tease from 05 is not visible.",
+    "05's town hall quote is not tied to the ordinance in the record; be ready to clarify in replies.",
+    "Fourth Fairbanks data center deck in 36 days.",
+    "Post before the Tuesday, November 10th, 6 p.m. hearing.",
+    "The referral date conflicts in the record (October 22nd vs 26th); the deck prints neither.",
+    "Verify the main-branch image and PDF URLs after merge."
+  ],
+  "craft_cycle": {
+    "frames": [
+      1,
+      3,
+      4,
+      6,
+      9
+    ],
+    "art_before": 7,
+    "art_after": 7,
+    "kept": "the post-cycle version (equal art score; the scorer reads 06's dark perforated door as more of a server and 03's paler boxwood keeps the gold unique)"
+  }
+}

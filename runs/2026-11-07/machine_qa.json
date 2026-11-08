@@ -1,0 +1,155 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'A data center,sized likean 800-seat venue.' fits 3/3 lines at 127.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the south rack row standing on the slab': shadow L* 54.2 vs ground L* 65.7, dL 11.5 at 432w"
+      ],
+      "leaders": [
+        "leader 'the 40,000 dimension line' lands 0.0px from its target",
+        "leader 'the 50,000 dimension line' lands 0.0px from its target",
+        "leader 'bay 5, east of the stripe' lands 0.0px from its target",
+        "leader 'the 40,000 dimension line' meets its label 0.0px away",
+        "leader 'the 50,000 dimension line' meets its label 0.0px away",
+        "leader 'bay 5, east of the stripe' meets its label 0.0px away",
+        "leader 'the 40,000 dimension line' is drawn 209 px at 13 degrees, inside the pointer band",
+        "leader 'the 50,000 dimension line' is drawn 171 px at 90 degrees, inside the pointer band",
+        "leader 'bay 5, east of the stripe' is drawn 242 px at 6 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'Staff back the pauseand a 40,000 size line.' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the scale resting on the drafting plinth': shadow L* 2.2 vs ground L* 40.2, dL 38.0 at 432w"
+      ],
+      "motifs": [
+        "'the gold slip at 40,000': canvas 114.1 dE, page 114.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the architects scale, square feet of floor area' runs 0 sq ft at 120 to 60,000 sq ft at 1000; 13 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'l55 mark' lands 0.0px from its target",
+        "leader 'l50 mark' lands 0.0px from its target",
+        "leader 'l40 mark' lands 0.0px from its target",
+        "leader 'l55 mark' meets its label 2.0px away",
+        "leader 'l50 mark' meets its label 2.0px away",
+        "leader 'l40 mark' meets its label 2.0px away",
+        "leader 'l55 mark' is drawn 126 px at 90 degrees, inside the pointer band",
+        "leader 'l50 mark' is drawn 80 px at 90 degrees, inside the pointer band",
+        "leader 'l40 mark' is drawn 32 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The new line is borrowedfrom the code's big-' fits 2/2 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'la' lands 0.0px from its target",
+        "leader 'lm' lands 0.0px from its target",
+        "leader 'lp' lands 0.0px from its target",
+        "leader 'la' meets its label 3.9px away",
+        "leader 'lm' meets its label 3.5px away",
+        "leader 'lp' meets its label 4.4px away",
+        "leader 'la' is drawn 222 px at 68 degrees, inside the pointer band",
+        "leader 'lm' is drawn 231 px at 0 degrees, inside the pointer band",
+        "leader 'lp' is drawn 260 px at 41 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'The borrowed rule covers the outside.' fits 1/1 lines at 62.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "quote '\"Our largest concernis that nobody asked us.' fits 2/2 lines at 97.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'a loaded pallet set down on the staging floor': shadow L* 27.3 vs ground L* 70.3, dL 43.0 at 432w"
+      ],
+      "fits": [
+        "head 'Same shell.Servers instead of pallets.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'lt' lands 0.0px from its target",
+        "leader 'lg' lands 0.0px from its target",
+        "leader 'lf' lands 0.0px from its target",
+        "leader 'lt' meets its label 4.0px away",
+        "leader 'lg' meets its label 4.0px away",
+        "leader 'lf' meets its label 4.0px away",
+        "leader 'lt' is drawn 190 px at 35 degrees, inside the pointer band",
+        "leader 'lg' is drawn 248 px at 40 degrees, inside the pointer band",
+        "leader 'lf' is drawn 156 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'Two of its three tests measure power.' fits 1/1 lines at 63.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the calendar plate, one pocket per month from November 2026' runs 0 months at 100 to 14 months at 784.4; 16 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'lnov' lands 0.0px from its target",
+        "leader 'lend' lands 0.0px from its target",
+        "leader 'lnov' meets its label 4.0px away",
+        "leader 'lend' meets its label 2.2px away",
+        "leader 'lnov' is drawn 193 px at 86 degrees, inside the pointer band",
+        "leader 'lend' is drawn 85 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "head 'Tuesday recommends.The Assembly hears it lat' fits 2/2 lines at 85.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'Square feet or megawatts.Which should decide' fits 3/3 lines at 91px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

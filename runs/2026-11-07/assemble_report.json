@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-07/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7125028,
+  "pdf_mb": 7.13,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-07/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-07/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Fairbanks Would Size a Data Center Like an 800-Seat Venue",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "91112957c995dae8ce055efb2f5e6cfd697fb8f99a0a6834b55a599f7ea1db24",
+        "bytes": 6546299
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "748b90fe71598367682d5fafbce7f30d383550b1011757c8c4c1d48a8f5c2aae",
+        "bytes": 7692328
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "dbed139c3f074a2312d76141d737ead618c41eaa636176ef651ae1c375dfe6d2",
+        "bytes": 6571820
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "0fcad2a31ef0f3861aa67c7798a5baa6d9efb9da7173731513f913c342f68107",
+        "bytes": 7141853
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "791b83cfef5d5ecaac41c79c3e243e41c3c91de0ff34b77a350d8cba8abafa06",
+        "bytes": 6594725
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "def4412478324a9203bbc7940b23c9912166b2ccade5b102b747d9ce5afde1f1",
+        "bytes": 7024502
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "ca465ac65d42f91992b433250eaabfd14c632da07805358a50018aeb3580b268",
+        "bytes": 6425681
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "983aa2060b6f15d7af9078097605c187c6725131257a9a410b7195b8ea74fc49",
+        "bytes": 5651197
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "c3c11248dff10483f41a4986419c450caa321476e3952a3c82946e01217768f7",
+        "bytes": 5871084
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "120466b804add5862f914fa8ef75edccd9c24e054971abafeda980682fff077f",
+        "bytes": 9406
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "720cfbfd7dbdaec55629a9bb98e1143eae73bbbee1caaa97942bca51b23b249c",
+        "bytes": 13266
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "221d669d22a83e1ec367da71275fef644077f3a27cac00684125a6abba9d25cd",
+        "bytes": 12947
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "2f3ca5a3187c0fdf33d63f23346e8f4067a4be3f7b617a181475c1e592cc88cc",
+        "bytes": 11217
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "4efae09a3253264b40cbae4f888d03a8f98385f49be46b7f848ec7bc5ccc233c",
+        "bytes": 12256
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "49d81d525ed69d1ff9c601791f16855a8aea81fbe174bce0ea6ed96955a2d9a7",
+        "bytes": 12860
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "b3842c577227f6a3f4ddde3bcbc10cd4752f432403c2b0b43a70d3e06df62ae7",
+        "bytes": 14005
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "32e594f3775d4f069706fb3251be4ad591a9aa17dd2c6d8ee8045b8a8a9c7762",
+        "bytes": 11329
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "312ae968703f5dd0243fa911c3452ce9ec15c9b6074432723fc054e562ab5d9b",
+        "bytes": 10061
+      }
+    ]
+  }
+}
