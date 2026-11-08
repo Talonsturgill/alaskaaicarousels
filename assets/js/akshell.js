@@ -315,8 +315,8 @@ export function init(THREE, AKT) {
     const wallMat = (len) => {
       const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 11, 1);
       const r = grime.clone(); r.needsUpdate = true; r.repeat.set(len / 120, 1);
-      return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.52,
-        normalMap: n, normalScale: new THREE.Vector2(1.0, 1.0), roughnessMap: r });
+      return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.56, envMapIntensity: 0.5,   // the lee keeps steel's own grey, so the wall reads as one surface
+        normalMap: n, normalScale: new THREE.Vector2(0.55, 0.55), roughnessMap: r });
     };
     const wall = (w, h, pos, rotY) => {
       const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wallMat(w));
@@ -403,7 +403,8 @@ export function init(THREE, AKT) {
     const lot = new THREE.Mesh(build(-200, 1100, -200, 700, 420, 300, 0, false), snowM); lot.receiveShadow = true; R.scene.add(lot);
     if (o.near) {
       const n = o.near;    // [x0, x1, z0, z1]
-      const near = new THREE.Mesh(build(n[0], n[1], n[2], n[3], Math.round((n[1] - n[0]) * 4), Math.round((n[3] - n[2]) * 4), 0.03, true), snowM);   // 0.25 ft cells: a rut wall gets five vertices, not two
+      const res = o.nearRes || 4;
+      const near = new THREE.Mesh(build(n[0], n[1], n[2], n[3], Math.round((n[1] - n[0]) * res), Math.round((n[3] - n[2]) * res), 0.03, true), snowM);   // 0.25 ft cells: a rut wall gets five vertices, not two
       near.receiveShadow = true; near.castShadow = false; R.scene.add(near);
     }
     // poles
