@@ -3700,7 +3700,8 @@
         "scripts/site_signoff.py"
       ],
       "verification": "site_signoff --self-test clean (both new red cases FAIL as required, both quoted sentences PASS); site_signoff --out docs --ci PASS, 172 pages, 18 of 18 clean.",
-      "rollback": "revert the upgrade(2026-11-07) commit; the deck page would then need its claims reworded to pass CI."
+      "rollback": "revert commit 91c89ede (upgrade(2026-11-07)); the deck page would then need its claims reworded to pass CI.",
+      "commit": "91c89ede"
     }
   ],
   "scan_log": [

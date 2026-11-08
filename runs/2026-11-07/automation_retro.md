@@ -1,7 +1,7 @@
 # Automation retro, run 2026-11-07, No.108
 
 ## Weekly pass
-Not due. `machine_due.py`: last pass 2026-11-01, six days ago, due at seven. 61 items are queued and none is an unescalated repeat offender. No upgrades this run. Three new items were queued, one item was raised, and one duplicate was folded (below).
+Not due. `machine_due.py`: last pass 2026-11-01, six days ago, due at seven. 61 items are queued and none is an unescalated repeat offender. One fix this run (below). Three new items were queued, one item was raised, and one duplicate was folded (below).
 
 ## Trend check (window 10), and the top repeat offender
 Artwork craft and genuine detail was the weakest criterion in 5 of 10 runs, with a mean of 7.1. It was last worked on 2026-10-04 and is marked STALE. This run is another instance: art scored 7, and the one craft cycle left it at 7. **Deferred to the weekly pass due 2026-11-08, not dropped.** This run's evidence for that pass:
@@ -43,4 +43,4 @@ Artwork craft and genuine detail was the weakest criterion in 5 of 10 runs, with
 - FOLDED: the rubric weight-sum duplicate, into the escalated owner item (repeat 3).
 
 ## Upgrades
-No upgrades.
+One fix, for something that broke in this run: PR #478's CI failed site_signoff on the deck page, because the machine-spill pattern read the Fairbanks code's phrase "an undefined use" (quoted in verified claims c17 and c44) as a JS undefined. The pattern now exempts only "undefined use(s)" and "undefined term(s)", with self-test cases both ways. It is logged in ledger/upgrades.json as kind fix.
