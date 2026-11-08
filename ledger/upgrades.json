@@ -3713,7 +3713,8 @@
         "tests/gaswatch_fit_refresh.py"
       ],
       "verification": "tests/gaswatch_fit_refresh.py 3 tests OK; every step of cron-health.yml passes locally (tests/cron_health.py, tests/collector_push.py, gate_status, gaswatch_fit, gaswatch_collect and site_signoff self-tests); ledger_guard PASS, 7 cron-written files untouched.",
-      "rollback": "revert the commit; the test then fails again until the fitted intercept moves."
+      "rollback": "revert commit e22d95b5; the test then fails again until the fitted intercept moves.",
+      "commit": "e22d95b5"
     }
   ],
   "scan_log": [
