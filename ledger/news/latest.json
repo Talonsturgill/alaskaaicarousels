@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-08T07:29:18Z",
+  "checked_at": "2026-11-08T18:25:20Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "eec8ce2abd7de6932527ecc18587272a4e0e7a968219c1611d0b1ec628d42bee",
+  "response_sha256": "06cc1eecb94256ddeb9920e49664f567711f4795004245f11cef5292cfdaa468",
   "articles": [
     {
       "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
@@ -27,58 +27,20 @@
     }
   ],
   "selected": {
-    "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-    "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-    "first_seen_at": "2026-11-02T09:00:00Z",
-    "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-    "feed": "https://www.uaf.edu/news/",
-    "publisher": "UAF",
+    "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+    "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+    "first_seen_at": "2026-11-04T06:02:44Z",
+    "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+    "feed": "https://www.ktoo.org/feed/?paged=2",
+    "publisher": "KTOO",
     "coverage": 1,
-    "score": 0.016322,
+    "score": 0.043716,
     "priority": 4
   },
-  "expires_at": "2026-11-16T09:00:00Z",
+  "expires_at": "2026-11-18T06:02:44Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-08T07:23:00Z",
-      "selected": {
-        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-        "first_seen_at": "2026-11-02T09:00:00Z",
-        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-        "feed": "https://www.uaf.edu/news/",
-        "publisher": "UAF",
-        "coverage": 1,
-        "score": 0.016322,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.016322,
-          "priority": 4
-        },
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=2",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.059949,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-08T13:23:00Z",
       "selected": {
@@ -89,7 +51,7 @@
         "feed": "https://www.ktoo.org/feed/?paged=2",
         "publisher": "KTOO",
         "coverage": 1,
-        "score": 0.050564,
+        "score": 0.043716,
         "priority": 4
       },
       "stories": [
@@ -101,7 +63,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.050564,
+          "score": 0.043716,
           "priority": 4
         },
         {
@@ -112,7 +74,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.013767,
+          "score": 0.011902,
           "priority": 4
         }
       ]
@@ -192,14 +154,47 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-09T07:23:00Z",
+      "selected": {
+        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+        "first_seen_at": "2026-11-02T09:00:00Z",
+        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.008186,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.008186,
+          "priority": 4
+        },
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.030066,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.akbizmag.com/industry/small-business/ai101/",
-      "title": "AI 101: Business Uses for Frontier Technology",
-      "shown_at": "2026-10-31T07:23:00Z"
-    },
     {
       "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
       "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
@@ -354,26 +349,25 @@
       "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
       "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
       "shown_at": "2026-11-08T07:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+      "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+      "shown_at": "2026-11-08T13:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://www.ktoo.org/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "7feb21bd2c4e1f917833c47192ab5e155a47d379331a35a3383e9aa7fab97c5d"
+      "status": "not_modified"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
-      "status": "ok",
-      "items": 20,
-      "sha256": "e460af832f156fdb492904f418b4cfd285927fdda37f8b46949f62daa5955ae5"
+      "status": "not_modified"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
-      "status": "ok",
-      "items": 20,
-      "sha256": "e7166558827107590c7a4895067a420abf7115ea1c27517ea95c951e569cd944"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
@@ -397,11 +391,15 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "1e2850fe6370400d83828d66c8dadbfd15c06d419a4ab6a43a2be9b9b471dd64"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "0b4fd94f5fa1f21014d6c566dba5b44d810d0bcb800f4eb6c90aacf12ee9d2f1"
     },
     {
       "url": "https://www.uaf.edu/news/",
@@ -412,34 +410,34 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-08T07:29:14Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "7feb21bd2c4e1f917833c47192ab5e155a47d379331a35a3383e9aa7fab97c5d",
       "etag": "\"94434cc29984a84f96d499bfb0b03746\"",
-      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT"
+      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-08T18:25:17Z",
+      "sha256": "7feb21bd2c4e1f917833c47192ab5e155a47d379331a35a3383e9aa7fab97c5d",
+      "parser_version": 2
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-08T07:29:14Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "e460af832f156fdb492904f418b4cfd285927fdda37f8b46949f62daa5955ae5",
       "etag": "\"94434cc29984a84f96d499bfb0b03746\"",
-      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT"
+      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-08T18:25:17Z",
+      "sha256": "e460af832f156fdb492904f418b4cfd285927fdda37f8b46949f62daa5955ae5",
+      "parser_version": 2
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-08T07:29:14Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "e7166558827107590c7a4895067a420abf7115ea1c27517ea95c951e569cd944",
       "etag": "\"94434cc29984a84f96d499bfb0b03746\"",
-      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT"
+      "last_modified": "Sat, 07 Nov 2026 23:09:09 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-08T18:25:17Z",
+      "sha256": "e7166558827107590c7a4895067a420abf7115ea1c27517ea95c951e569cd944",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/": {
       "etag": "W/\"265732f2883a2e52907bab887c5fc2c6\"",
       "last_modified": "Fri, 06 Nov 2026 16:42:29 GMT",
       "failures": 0,
-      "ok_at": "2026-11-08T07:29:14Z",
+      "ok_at": "2026-11-08T18:25:17Z",
       "sha256": "09d1a85f86104bfc477a4234ed6798bf4ec2a77920185e0f3df721f34232d62d",
       "parser_version": 2
     },
@@ -447,38 +445,38 @@
       "etag": "W/\"265732f2883a2e52907bab887c5fc2c6\"",
       "last_modified": "Fri, 06 Nov 2026 16:42:29 GMT",
       "failures": 0,
-      "ok_at": "2026-11-08T07:29:14Z",
+      "ok_at": "2026-11-08T18:25:17Z",
       "sha256": "c552e12498c6712a5ebd082c2e151b4ad51587141dd12ec8084eb04da1be706d",
       "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-08T07:29:14Z",
+      "ok_at": "2026-11-08T18:25:17Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "3569a32f575161d1295ffec55def9f48fcee90123f5ae86aa18bde5fec19f3cf"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-08T07:29:14Z",
+      "ok_at": "2026-11-08T18:25:17Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "879dd61be375706783bb093449ae6f7d5e5593ede44b6c54a8f47a746dd0fddf"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Sat, 07 Nov 2026 16:00:53 GMT",
+      "ok_at": "2026-11-08T18:25:17Z",
       "failures": 0,
-      "ok_at": "2026-11-08T07:29:14Z",
-      "sha256": "e7b5a55956f8805bf61c41c205d225020d2c9f3d1d9f500198292312352c2304",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "1e2850fe6370400d83828d66c8dadbfd15c06d419a4ab6a43a2be9b9b471dd64",
+      "last_modified": "Sun, 08 Nov 2026 16:00:37 GMT"
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "last_modified": "Sat, 07 Nov 2026 10:17:13 GMT",
+      "ok_at": "2026-11-08T18:25:17Z",
       "failures": 0,
-      "ok_at": "2026-11-08T07:29:14Z",
-      "sha256": "f1e178cff50b8383257f6918d903c30da13fd3e144119ec14bd4faa5d6e833ee",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "0b4fd94f5fa1f21014d6c566dba5b44d810d0bcb800f4eb6c90aacf12ee9d2f1",
+      "last_modified": "Sun, 08 Nov 2026 11:06:59 GMT"
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-08T07:29:14Z",
+      "ok_at": "2026-11-08T18:25:17Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "61085ebd0806b31f0dc8af3dd698a439272ffc17339b39a219ae9513feb2be7b"
