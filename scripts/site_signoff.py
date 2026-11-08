@@ -81,7 +81,13 @@ SPILL = [
     (r"\{[a-z_]+\[", "an unrendered f-string placeholder"),
     (r"\{esc\(|\{len\(|\{count\(", "an unrendered template call"),
     (r"\bNaN\b|\bnan\b", "a NaN"),
-    (r"\bundefined\b", "an undefined"),
+    # "UNDEFINED" IS ALSO ZONING ENGLISH (2026-11-07). Fairbanks' code calls a use with
+    # no definition "an undefined use", and No.108's verified claims quote that phrase,
+    # so a flat \bundefined\b failed a true deck page in CI. A leaked JS undefined
+    # never stands as the adjective before "use", "uses", "term" or "terms"; it
+    # lands where a value was due ("Price: undefined", "undefined%"). That narrow
+    # lookahead is the only exemption, and everything else still fails.
+    (r"\bundefined\b(?!\s+(?:use|uses|term|terms)\b)", "an undefined"),
     (r"\[object Object\]", "a stringified JS object"),
 ]
 
@@ -695,6 +701,8 @@ def self_test():
         ("a Python None in visible copy", {"about": "<p>Storage None Bcf</p>"}),
         ("a None where a number belonged", {"about": "<p>Price is None cents.</p>"}),
         ("a stringified JS object", {"about": "<p>[object Object]</p>"}),
+        ("a JS undefined where a value belonged", {"about": "<p>Updated undefined at 10:00</p>"}),
+        ("a JS undefined before a word that is not a use", {"about": "<p>The total is undefined percent</p>"}),
         ("an em dash in published copy", {"about": "<p>Alaska — the state</p>"}),
         ("'cannot' in published copy", {"about": "<p>This cannot be done.</p>"}),
         ("a dead link a reader can click", {"home": '<a href="nowhere/">Gone</a>'}),
@@ -721,6 +729,13 @@ def self_test():
                      "public comment right now.</p>"):
         v, _ = verdict_of(about=sentence)
         check("the English word None is left alone", v == "PASS",
+              f"{v}: {sentence[3:44]}")
+
+    # No.108's claims c17 and c44, which quote the borough code's own phrase.
+    for sentence in ("<p>Warehouse is an undefined use permitted or conditional in three zones.</p>",
+                     "<p>Strategy 73B would permit undefined uses until the code has definitions.</p>"):
+        v, _ = verdict_of(about=sentence)
+        check("the zoning phrase 'undefined use' is left alone", v == "PASS",
               f"{v}: {sentence[3:44]}")
 
     # Run No.45's claim C35, in the markup that failed it: the word before it is
