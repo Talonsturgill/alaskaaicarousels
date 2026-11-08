@@ -105,17 +105,41 @@
     },
     "scoring": "pending",
     "ship": {
-      "status": "in_progress"
+      "status": "done",
+      "note": "PR #478 merged as 8502985e after CI green and Codex completed on 59dbb3a3 with no findings; raw URLs verified"
     },
     "upgrade": "pending",
-    "gmail": "pending",
-    "retro": "pending",
+    "gmail": {
+      "status": "done",
+      "draft_id": "r6723482478650918726",
+      "note": "payload from gmail_draft.py --preview-mode remote, created verbatim via Gmail MCP to docket@alaskaaihq.com; sign-off table checked for verdicts before creation"
+    },
+    "retro": {
+      "status": "done",
+      "note": "FIELD_NOTES retro, 3 instincts, automation_retro; wrap_run"
+    },
     "score": {
       "status": "done",
       "artifacts": [
         "out/2026-11-07/score_report.json"
       ],
       "note": "8.44 literal (7.67 normalised) vs 7.7 at 5 rounds; art 7; craft cycle 7 -> 7"
+    },
+    "automation_retro": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-07/automation_retro.md"
+      ],
+      "note": "weekly pass not due; two fixes (site_signoff zoning phrase, gaswatch fit test); three items queued"
     }
-  }
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 171 pages, 18 checks",
+    "gaswatch_pagecheck": "PASS, read 2026-11-07, 95 days on record, chart present",
+    "gaswatch_live": "PASS, checked 2026-11-08T06:15:30Z, first audit FAILED on a late post (CINGSA posted 01:02 UTC after the 22:48 UTC collection); dispatched gaswatch.yml on main (run 42453689744, success), Pages redeployed (run 42453842175), re-audit PASS",
+    "cron_health": "PASS, 7 scheduled workflows checked, checked 2026-11-08T06:15:32.288540Z, no repairs needed",
+    "site_fixes": "none needed; the gas watch late post was repaired by a production dispatch, not an edit"
+  },
+  "status": "complete",
+  "gmail_draft_id": "r6723482478650918726"
 }
