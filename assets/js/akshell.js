@@ -41,12 +41,15 @@ export function init(THREE, AKT) {
       const img = g.createImageData(w, h);
       const prof = (u) => {            // u in [0,1) across one rib period
         const f = (u * ribs) % 1;
-        // flat pan 0..0.55, up-slope 0.55..0.65, crest 0.65..0.9, down 0.9..1
-        if (f < 0.55) return 0; if (f < 0.65) return (f - 0.55) / 0.1;
-        if (f < 0.9) return 1; return 1 - (f - 0.9) / 0.1;
+        // flat pan 0..0.4, up-slope 0.4..0.6, crest 0.6..0.8, down 0.8..1,
+        // each slope an eased ramp so a rib turns through the light instead of
+        // flashing a one-texel hairline (round 1: the walls read as pinstripes)
+        const ss = (t) => t * t * (3 - 2 * t);
+        if (f < 0.4) return 0; if (f < 0.6) return ss((f - 0.4) / 0.2);
+        if (f < 0.8) return 1; return 1 - ss((f - 0.8) / 0.2);
       };
       for (let x = 0; x < w; x++) {
-        const d = (prof((x + 1) / w) - prof((x - 1 + w) / w)) * 6;
+        const d = (prof((x + 1) / w) - prof((x - 1 + w) / w)) * 3.2;
         const n = Math.hypot(d, 1), nx = -d / n, nz = 1 / n;
         for (let y = 0; y < h; y++) {
           const i = (y * w + x) * 4;
@@ -314,10 +317,10 @@ export function init(THREE, AKT) {
     const ribN = SH.ribNormal(8);
     const grime = SH.grime((o.seed || 108101) + 3, 150, 70);
     const wallMat = (len) => {
-      const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 7.5, 1);
+      const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 11, 1);   // 8 ribs per 11 ft, a 1.4 ft pitch that holds at long range without beating
       const r = grime.clone(); r.needsUpdate = true; r.repeat.set(len / 120, 1);
-      return new THREE.MeshStandardMaterial({ color: 0x9aa2ab, metalness: 0.55, roughness: 0.48,
-        normalMap: n, normalScale: new THREE.Vector2(1.6, 1.6), roughnessMap: r });
+      return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.68,
+        normalMap: n, normalScale: new THREE.Vector2(0.7, 0.7), roughnessMap: r });
     };
     const wall = (w, h, pos, rotY) => {
       const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wallMat(w));
@@ -358,8 +361,20 @@ export function init(THREE, AKT) {
     // the lot: a coarse displaced snow plane, plus a fine near-field patch where
     // the tire ruts and plow ridges are resolved (0.5 ft cells)
     const tracks = o.tracks || [];
+    // inside the near patch the coarse lot is sunk out of sight, and the ruts
+    // fade to nothing at the patch edge, so the two meshes never interpenetrate
+    // (round 1: the coarse triangles poked through the rut troughs and drew a
+    // saw-tooth line along every rut on 01 and 09)
+    const nr = o.near, EDGE = 6;
+    const inner = (x, z) => {
+      if (!nr) return 0;
+      const d = Math.min(x - nr[0], nr[1] - x, z - nr[2], nr[3] - z);
+      if (d <= 0) return 0; const t = Math.min(1, d / EDGE); return t * t * (3 - 2 * t);
+    };
     const heightAt = (x, z, fine) => {
       let h = AK.fbm2(x / 60, z / 60, 4) * 0.35 + AK.fbm2(x / 9, z / 9, 2) * 0.08;
+      const wIn = inner(x, z);
+      if (!fine && wIn > 0) h -= 0.9 * wIn;
       if (fine) h += AK.fbm2(x / 4.5, z / 4.5, 2) * 0.04;
       const dx = Math.max(-x, x - SH.W, 0), dz = Math.max(-z, z - SH.D, 0), dw = Math.hypot(dx, dz);
       if (dw > 0) h += 1.6 * Math.exp(-Math.pow((dw - 7) / 3.2, 2));
@@ -373,8 +388,8 @@ export function init(THREE, AKT) {
         }
         for (const off of [3, -3]) {
           const e = Math.abs(best - Math.abs(off));
-          if (e < 1.2) h -= 0.3 * (0.5 + 0.5 * Math.cos(Math.PI * e / 1.2));          // the rut, smooth
-          else if (e < 2.6) h += 0.09 * Math.sin((e - 1.2) / 1.4 * Math.PI);          // its thrown lip
+          if (e < 1.2) h -= wIn * 0.3 * (0.5 + 0.5 * Math.cos(Math.PI * e / 1.2));          // the rut, smooth
+          else if (e < 2.6) h += wIn * 0.09 * Math.sin((e - 1.2) / 1.4 * Math.PI);          // its thrown lip
         }
       }
       if (x > SH.W - 1 && x < SH.W + 30 && Math.abs(z - D.z) < 14) h *= 0.15;   // the swept apron
