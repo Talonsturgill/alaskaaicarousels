@@ -35,21 +35,17 @@ export function init(THREE, AKT) {
     t.anisotropy = 8;
     return t;
   }
-  // ribbed steel: a trapezoid rib profile as a height, written as a normal map
+  // ribbed steel: a rounded rib profile, written as a normal map
   SH.ribNormal = function (ribs) {
     return canvasTex(512, 64, (g, w, h) => {
       const img = g.createImageData(w, h);
-      const prof = (u) => {            // u in [0,1) across one rib period
-        const f = (u * ribs) % 1;
-        // flat pan 0..0.4, up-slope 0.4..0.6, crest 0.6..0.8, down 0.8..1,
-        // each slope an eased ramp so a rib turns through the light instead of
-        // flashing a one-texel hairline (round 1: the walls read as pinstripes)
-        const ss = (t) => t * t * (3 - 2 * t);
-        if (f < 0.4) return 0; if (f < 0.6) return ss((f - 0.4) / 0.2);
-        if (f < 0.8) return 1; return 1 - ss((f - 0.8) / 0.2);
-      };
+      // a rounded rib: the normal turns continuously through the light, so a rib
+      // reads as a lit crest falling to a lee trough with width, never as a
+      // one-texel flash (round 2: an eased trapezoid still printed hairlines,
+      // because only its slopes changed the normal and pans and crests matched)
+      const tilt = (u) => 0.85 * Math.sin(2 * Math.PI * ((u * ribs) % 1));
       for (let x = 0; x < w; x++) {
-        const d = (prof((x + 1) / w) - prof((x - 1 + w) / w)) * 3.2;
+        const d = tilt(x / w);
         const n = Math.hypot(d, 1), nx = -d / n, nz = 1 / n;
         for (let y = 0; y < h; y++) {
           const i = (y * w + x) * 4;
@@ -319,8 +315,8 @@ export function init(THREE, AKT) {
     const wallMat = (len) => {
       const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 11, 1);   // 8 ribs per 11 ft, a 1.4 ft pitch that holds at long range without beating
       const r = grime.clone(); r.needsUpdate = true; r.repeat.set(len / 120, 1);
-      return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.68,
-        normalMap: n, normalScale: new THREE.Vector2(0.7, 0.7), roughnessMap: r });
+      return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.52,
+        normalMap: n, normalScale: new THREE.Vector2(1.0, 1.0), roughnessMap: r });
     };
     const wall = (w, h, pos, rotY) => {
       const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wallMat(w));
@@ -407,7 +403,7 @@ export function init(THREE, AKT) {
     const lot = new THREE.Mesh(build(-200, 1100, -200, 700, 420, 300, 0, false), snowM); lot.receiveShadow = true; R.scene.add(lot);
     if (o.near) {
       const n = o.near;    // [x0, x1, z0, z1]
-      const near = new THREE.Mesh(build(n[0], n[1], n[2], n[3], Math.round((n[1] - n[0]) * 2), Math.round((n[3] - n[2]) * 2), 0.03, true), snowM);
+      const near = new THREE.Mesh(build(n[0], n[1], n[2], n[3], Math.round((n[1] - n[0]) * 4), Math.round((n[3] - n[2]) * 4), 0.03, true), snowM);   // 0.25 ft cells: a rut wall gets five vertices, not two
       near.receiveShadow = true; near.castShadow = false; R.scene.add(near);
     }
     // poles
