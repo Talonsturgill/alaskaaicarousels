@@ -18,9 +18,14 @@ class FitRefreshTests(unittest.TestCase):
     def test_next_cycle_accepts_an_optimum_below_the_refit_threshold(self):
         model = gc.load_model(gc.MODEL_CONFIG)
         # A source revision shifts the optimum but not enough to earn a refit.
-        rows = [(d, h, y * 1.001) for d, h, y in fit.observations(model)]
+        observed = fit.observations(model)
+        rows = [(d, h, y * 1.001) for d, h, y in observed]
         self.assertIsNone(fit.evaluate(model, rows)[0])
-        self.assertGreater(abs(fit.least_squares(rows)[0] - model["base_mmcfd"]), 0.01)
+        # The revision moves the optimum itself. Measured against the unrevised fit,
+        # not against the committed base: the scaled fit can land within 0.01 of the
+        # committed base by coincidence (2026-11-08, through EIA 202608: 0.009 away),
+        # while its move from the unrevised optimum is 0.1 percent of the base, ~0.08.
+        self.assertGreater(abs(fit.least_squares(rows)[0] - fit.least_squares(observed)[0]), 0.01)
         with patch.object(fit, "observations", return_value=rows), \
                 contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(fit.self_test(), 0)
