@@ -384,7 +384,7 @@ export function init(THREE, AKT) {
         }
         for (const off of [3, -3]) {
           const e = Math.abs(best - Math.abs(off));
-          if (e < 1.2) h -= wIn * 0.3 * (0.5 + 0.5 * Math.cos(Math.PI * e / 1.2));          // the rut, smooth
+          if (e < 1.2) h -= wIn * (o.rutDepth || 0.3) * (0.5 + 0.5 * Math.cos(Math.PI * e / 1.2));          // the rut, smooth
           else if (e < 2.6) h += wIn * 0.09 * Math.sin((e - 1.2) / 1.4 * Math.PI);          // its thrown lip
         }
       }
