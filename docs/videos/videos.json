@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-08",
+      "date": "2026-11-08",
+      "title": "Two cables under a Utqiagvik road, and the number nobody published",
+      "caption": "Penn State researchers buried two 1 km fiber optic cables under a road in Utqiagvik and built a digital twin from 100 meters of data. The public summaries report no accuracy number and no deployment.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-08-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-08-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-08-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-08-poster_thumb.jpg"
+    },
+    {
       "id": "whats-in-the-box",
       "date": "2026-11-07",
       "title": "What's In The Box",
