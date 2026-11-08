@@ -310,10 +310,10 @@ export function init(THREE, AKT) {
     o = o || {};
     const rnd = AK.rng(o.seed || 108101);
     const D = SH.DOOR;
-    const ribN = SH.ribNormal(8);
+    const ribN = SH.ribNormal(5);   // 5 ribs per 11 ft repeat: a 2.2 ft industrial panel rib, wide enough to show a lit face and a lee at range
     const grime = SH.grime((o.seed || 108101) + 3, 150, 70);
     const wallMat = (len) => {
-      const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 11, 1);   // 8 ribs per 11 ft, a 1.4 ft pitch that holds at long range without beating
+      const n = ribN.clone(); n.needsUpdate = true; n.repeat.set(len / 11, 1);
       const r = grime.clone(); r.needsUpdate = true; r.repeat.set(len / 120, 1);
       return new THREE.MeshStandardMaterial({ color: 0xa4acb5, metalness: 0.3, roughness: 0.52,
         normalMap: n, normalScale: new THREE.Vector2(1.0, 1.0), roughnessMap: r });
@@ -371,7 +371,7 @@ export function init(THREE, AKT) {
       let h = AK.fbm2(x / 60, z / 60, 4) * 0.35 + AK.fbm2(x / 9, z / 9, 2) * 0.08;
       const wIn = inner(x, z);
       if (!fine && wIn > 0) h -= 0.9 * wIn;
-      if (fine) h += AK.fbm2(x / 4.5, z / 4.5, 2) * 0.04;
+      if (fine) h += AK.fbm2(x / 4.5, z / 4.5, 2) * 0.04 * inner(x, z);   // fine grain fades out at the patch edge, so the two meshes meet at one height
       const dx = Math.max(-x, x - SH.W, 0), dz = Math.max(-z, z - SH.D, 0), dw = Math.hypot(dx, dz);
       if (dw > 0) h += 1.6 * Math.exp(-Math.pow((dw - 7) / 3.2, 2));
       if (fine) for (const t of tracks) {
