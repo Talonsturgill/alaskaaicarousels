@@ -2614,6 +2614,36 @@
       "last_confirmed": "2026-11-07",
       "run_date": "2026-11-07",
       "carousel_no": 108
+    },
+    {
+      "id": "densities-add-by-multiply",
+      "instinct": "When two translucent layers overlap on a light source, paint each on white and multiply both over the one emitter, so a single layer darkens a little and the overlap twice; never paint one layer against an assumed panel colour.",
+      "evidence": "No.109 slide 07: the left sheet painted against a brighter assumed panel read brighter than the table, so the overlap matched the single right sheet and the scorer named a physics break; multiplying both over the real table fixed it in the craft cycle.",
+      "confidence": 0.6,
+      "learned": "2026-11-08",
+      "last_confirmed": "2026-11-08",
+      "run_date": "2026-11-08",
+      "carousel_no": 109
+    },
+    {
+      "id": "timeline-axis-starts-at-first-event",
+      "instinct": "Start a record's time axis a little before its first plotted event, not at a context date months earlier, so the entries spread over the frame and their type can sit at the body floor.",
+      "evidence": "No.109 slide 04: an axis opening at September 2025 spent eight months of height on nothing, left a quarter of the frame empty and forced 26 px lines; opening at January let lines go to 32 px and tags to 24 px.",
+      "confidence": 0.55,
+      "learned": "2026-11-08",
+      "last_confirmed": "2026-11-08",
+      "run_date": "2026-11-08",
+      "carousel_no": 109
+    },
+    {
+      "id": "printed-ink-feathers-into-fibre",
+      "instinct": "A printed mark on drawn paper gets a solid core and feathered half-pixel edges whose opacity follows the paper noise; per-pixel keep or drop at design scale reads as a mosaic.",
+      "evidence": "No.109 slide 09: the first fibre-breakup pass on the gold rule (1 px keep/drop) read as jagged blocks; feathered half-pixel edge rows over a solid core read as printed.",
+      "confidence": 0.5,
+      "learned": "2026-11-08",
+      "last_confirmed": "2026-11-08",
+      "run_date": "2026-11-08",
+      "carousel_no": 109
     }
   ]
 }
