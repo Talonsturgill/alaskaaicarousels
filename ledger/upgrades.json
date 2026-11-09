@@ -3730,7 +3730,7 @@
       ],
       "verification": "tests/akthree_soft_shadow_verify.py through the real render.py and qa.py: No.106's reconstruction (default setup, slide sets radius 9) WARNs; softShadows: 9 is clean and its cast edge measures 4.2 levels per px against PCFSoft's 8.0 (0.53, bar 0.60) on a 117-level cast; the untouched house rig is clean. A side-by-side crop shows PCFSoft's edge stair-stepped at 100 percent and VSM's smooth. tests/akthree_far_clip_verify.py and tests/akthree_material_audit_verify.py still hold (25/25, pixel parity with the old file). No.109's nine slides (snapshot) and examples/demo-deck render PIXEL-IDENTICAL to the pre-pass helpers (max diff 0 on all 13 frames) with identical qa (run WARN 0 fails, demo WARN 0 fails).",
       "rollback": "revert the upgrade(2026-11-08) commit; the option is inert unless passed and the audit only reads the scene graph",
-      "commit": "upgrade(2026-11-08)",
+      "commit": "5d22240f",
       "verify": [
         "python3 tests/akthree_soft_shadow_verify.py",
         "python3 tests/akthree_material_audit_verify.py"
@@ -3749,7 +3749,7 @@
       ],
       "verification": "tests/akpost_grain_lattice_verify.mjs on the real akpost.js: grain with no size measures a phase-class variance ratio of 1.01 at period 2 and 1.02 at period 3 (bar 1.25); size 2 measures 3.86 (the fixture sees the lattice) and the pre-pass file at cdb8d61b with no size measures 3.86 (the old default printed it); sizes 3 and 4 measure 3.12 and 3.95. tests/akpost_verify.mjs and tests/akpost_grade_scale_verify.py still hold. No.109's nine frames all pass size 1 and render pixel-identical; the demo deck does not use akpost.",
       "rollback": "revert the upgrade(2026-11-08) commit; or pass grain.size 2 explicitly on a slide that wants the old look",
-      "commit": "upgrade(2026-11-08)",
+      "commit": "5d22240f",
       "verify": [
         "node tests/akpost_grain_lattice_verify.mjs",
         "node tests/akpost_verify.mjs"
@@ -3767,7 +3767,7 @@
       ],
       "verification": "tests/caption_check_noblock_verify.py with stdin held open throughout: no path plus --copy returns and writes PASS, the explicit call's verdict; no path and no caption.txt exits 2 with no report; no --deck-summary with deck_summary.txt has no missing-summary FAIL, without the file it keeps it (exit 1); a caption under runs/ prints 'not written' and the shipped report's bytes are unchanged; the pre-pass script on the same call is still waiting at 5 s. caption_check --self-test PASS.",
       "rollback": "revert the upgrade(2026-11-08) commit; the explicit invocation the routine documents is unchanged",
-      "commit": "upgrade(2026-11-08)",
+      "commit": "5d22240f",
       "verify": [
         "python3 tests/caption_check_noblock_verify.py",
         "python3 scripts/caption_check.py --self-test"
@@ -3786,7 +3786,7 @@
       ],
       "verification": "tests/run_guard_anchorage_verify.py on a scratch repo with the clock at 2026-11-09 06:07Z: nothing shipped exits 0 with a NOTE naming 2026-11-08 CLEAR; nine slides under runs/2026-11-08 still exit 0 (unchanged) and the NOTE reads ALREADY_SHIPPED with the RE-FIRE line, --json anchorage_verdict ALREADY_SHIPPED; an explicit --run-date exits 3 with no NOTE; a clock where both dates agree prints none. Live: python3 scripts/run_guard.py at 07:55Z printed 2026-11-09 CLEAR plus the NOTE for 2026-11-08; --run-date 2026-11-07 still exits 3.",
       "rollback": "revert the upgrade(2026-11-08) commit; the exit code never depended on the new lines",
-      "commit": "upgrade(2026-11-08)",
+      "commit": "5d22240f",
       "verify": [
         "python3 tests/run_guard_anchorage_verify.py"
       ]
@@ -3803,7 +3803,7 @@
       ],
       "verification": "fetch_pdf_text on https://www.alaska.edu/ now prints the host-chain diagnosis with the remedy; on akleg.gov it reaches the server (HTTP 404 for the probe URL, TLS verified); fetch_pdf_text --self-test PASS (8 checks). config/sources.yaml parses (15 refusing hosts, 7 keyless routes); nothing reads it as code.",
       "rollback": "revert the upgrade(2026-11-08) commit; message and config only",
-      "commit": "upgrade(2026-11-08)",
+      "commit": "5d22240f",
       "verify": [
         "python3 scripts/fetch_pdf_text.py --self-test"
       ]
