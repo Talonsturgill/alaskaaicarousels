@@ -102,6 +102,7 @@
     const laidAmp = f.laidAmp == null ? 0.022 : f.laidAmp;
     const chainAmp = f.chainAmp == null ? 0.075 : f.chainAmp;
     const wmDepth = f.wmDepth == null ? 0.22 : f.wmDepth;
+    const fibre = f.fibre == null ? 0.022 : f.fibre;
     const fs = f.scale || 1;                      // field feature scale (macro frames > 1)
     const segs = f.wm ? L.wmSegments(f.wm.u, f.wm.v, f.wm.s || 1) : null;
     let bb = null;
@@ -125,6 +126,8 @@
       const lf = ly - Math.floor(ly) - 0.5;
       const lmod = 0.55 + 0.9 * vnoise(x / 23 + li * 3.1, li * 0.7, seed + 505);
       t -= laidAmp * lmod * Math.exp(-(lf * lf) / 0.03);
+      // fibre: short oriented streaks under the flocs, so the paper survives the zoom test
+      t += fibre * 2 * (vnoise(x / 13 + y * 0.11, y / 1.6, seed + 707) - 0.5) * (0.6 + 0.8 * vnoise(x / 60, y / 60, seed + 808));
       // chain lines (vertical): core plus pulp-shadow flanks
       const cx = (x - chainOff) / chain;
       const cd = (cx - Math.round(cx)) * chain;        // px from nearest chain line
