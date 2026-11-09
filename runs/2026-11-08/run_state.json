@@ -154,5 +154,12 @@
     },
     "gmail": "pending",
     "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 172 pages, 18 checks",
+    "gaswatch_live": "PASS, checked 2026-11-09T06:20:36Z, the 06:12 audit FAILED on a late CINGSA post (posted 01:00 UTC, after the 22:57 collection); dispatched gaswatch.yml on main (run 42571827756, success, 7.79 Bcf), Pages redeployed, re-audit PASS",
+    "gaswatch_pagecheck": "PASS, read November 8th, 96 days on record, chart present",
+    "cron_health": "PASS, 7 scheduled workflows checked (plus Pages and live output), no repairs needed",
+    "site_fixes": "none needed; the site sign-off and page check were clean on the first build"
   }
 }
