@@ -1,0 +1,37 @@
+{
+ "run_date": "2026-08-14",
+ "carousel_no": 33,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done",
+  "research": "done",
+  "claims": "done",
+  "docket": "done",
+  "gas_watch": "done",
+  "selection": "done",
+  "directors_room": "done",
+  "copy": "done",
+  "art_build": "in_progress",
+  "pixel_review": "pending",
+  "flow_review": "pending",
+  "assemble": "pending",
+  "scoring": "pending",
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "artifacts": {
+  "plan": "out/2026-08-14/plan.md",
+  "scout_merge": "out/2026-08-14/scout_merge.md",
+  "selection": "out/2026-08-14/selection.md",
+  "claims": "out/2026-08-14/claims.json",
+  "docket": "ledger/docket.json (4 items refreshed, AKLNG milestone added)",
+  "site_signoff": "PASS 75 pages 18 checks; gaswatch PASS read 2026-08-13",
+  "craft_refresh": "knowledge/FIELD_NOTES.md 2026-08-14 entry",
+  "storyboard": "out/2026-08-14/storyboard.md (dossier_check PASS 10/10)",
+  "caption": "out/2026-08-14/caption.txt (caption_check PASS, 896 chars, hook 125)",
+  "caption_report": "out/2026-08-14/caption_report.json",
+  "slides_built": "01,02,03 of 10 (qa PASS, 0 fails 0 warns)"
+ }
+}
