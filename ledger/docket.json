@@ -5855,10 +5855,15 @@
           "url": "https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/",
           "outlet": "Anchorage Daily News (opinion, Gregory Hartley and Joel Potter)",
           "date": "2026-11-04"
+        },
+        {
+          "url": "https://www.adn.com/opinions/2026/11/05/opinion-humans-not-robots-shaped-uas-approach-to-ai/",
+          "outlet": "Anchorage Daily News (opinion, Carroll, Cason, Ryan, Harnish and Trochim)",
+          "date": "2026-11-05"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-06",
+      "last_updated": "2026-11-08",
       "history": [
         {
           "date": "2026-09-17",
@@ -5935,6 +5940,10 @@
         {
           "date": "2026-11-06",
           "note": "The regents were scheduled to vote on the AI Engaged statement of intent on November 5th. No published report of the outcome could be found today, and the university's board pages returned server errors. An opinion piece published November 4th in the Anchorage Daily News by two UAA associate professors says Anthropic's Claude generated the initial draft, and that this was not disclosed until October 9th. That is their account, and no university response to it was found."
+        },
+        {
+          "date": "2026-11-08",
+          "note": "The regents' board pages returned server errors again today, and no published report of the outcome of the scheduled November 5th vote on AI Engaged was found. On November 5th five faculty members, among them James Ryan, chair of the UA Statewide Advisory Committee, answered the November 4th opinion piece in the Anchorage Daily News. They wrote that AI use in the original draft was not concealed, that adding a small AI attribution was a good move, and that they would prefer the statement take a more neutral stance toward AI."
         }
       ]
     },
