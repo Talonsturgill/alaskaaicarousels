@@ -3749,6 +3749,18 @@ def main():
                     "R.camera.far past the reach and call "
                     "R.camera.updateProjectionMatrix() before AKT.snapshot"
                     % (fa.get("name"), fa.get("reach"), fa.get("far")))
+            elif k == "shadow_radius_ignored":
+                # 2026-11-08, weekly pass: three r170's PCFSoft reads no radius
+                # on a directional or spot light, so the cast the slide asked to
+                # soften is hard (No.106 01 and 09, a "hard black offset slab").
+                res["warns"].append(
+                    "soft shadow asked for and not drawn: %s sets shadow.radius %s "
+                    "under PCFSoftShadowMap, which ignores radius on directional and "
+                    "spot lights, so its cast is hard. Pass AKT.setup(canvas, "
+                    "{softShadows: %s}) (VSM, blurSamples 20, No.106's cure) and set "
+                    "light.shadow.blurSamples on lights you build yourself; PCFShadowMap "
+                    "honours radius but printed stepped bands on No.104"
+                    % (fa.get("name"), fa.get("radius"), fa.get("radius")))
 
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually

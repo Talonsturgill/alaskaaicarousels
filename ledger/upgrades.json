@@ -3715,6 +3715,98 @@
       "verification": "tests/gaswatch_fit_refresh.py 3 tests OK; every step of cron-health.yml passes locally (tests/cron_health.py, tests/collector_push.py, gate_status, gaswatch_fit, gaswatch_collect and site_signoff self-tests); ledger_guard PASS, 7 cron-written files untouched.",
       "rollback": "revert commit e22d95b5; the test then fails again until the fitted intercept moves.",
       "commit": "e22d95b5"
+    },
+    {
+      "run_date": "2026-11-08",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKT.setup takes an opt-in softShadows radius (true for 8) that sets VSMShadowMap, and AKT.rig gives its key that radius and blurSamples 20 (blurSamples option); AKT.audit reports shadow_radius_ignored when a directional or spot light sets shadow.radius above 1 under the default PCFSoftShadowMap, which three r170 ignores, and qa.py WARNs it with the remedy; the house rigs' own radii, ignored since they were written, are marked and not reported. Without the option nothing changes.",
+      "trigger": "Weekly digest 2026-11-08, for the Artwork craft criterion (weakest in 4 of 7 runs, mean 7.07): flow-critic cause b on 4 of 6 runs (7 frames) and the scorer's 'no contact shadow, or an object that floats' on 2 runs; queue items 2026-11-03 (No.104 01: PCFShadowMap at radius 10 to 12 printed stepped bands, so it stayed on PCFSoft's hard cast) and 2026-11-05 (No.106 01 and 09: 'hard black offset slab' until VSM radius 9 blurSamples 20); No.109 06 set VSM by hand the same week. Source for the r170 behaviour: the PCF_SOFT shader chunk in assets/js/three.module.min.js reads no shadowRadius for directional and spot lights; https://cdn.jsdelivr.net/npm/@types/three@0.184.1/src/lights/LightShadow.d.ts",
+      "files": [
+        "assets/js/akthree.js",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/akthree_soft_shadow_verify.py"
+      ],
+      "verification": "tests/akthree_soft_shadow_verify.py through the real render.py and qa.py: No.106's reconstruction (default setup, slide sets radius 9) WARNs; softShadows: 9 is clean and its cast edge measures 4.2 levels per px against PCFSoft's 8.0 (0.53, bar 0.60) on a 117-level cast; the untouched house rig is clean. A side-by-side crop shows PCFSoft's edge stair-stepped at 100 percent and VSM's smooth. tests/akthree_far_clip_verify.py and tests/akthree_material_audit_verify.py still hold (25/25, pixel parity with the old file). No.109's nine slides (snapshot) and examples/demo-deck render PIXEL-IDENTICAL to the pre-pass helpers (max diff 0 on all 13 frames) with identical qa (run WARN 0 fails, demo WARN 0 fails).",
+      "rollback": "revert the upgrade(2026-11-08) commit; the option is inert unless passed and the audit only reads the scene graph",
+      "commit": "upgrade(2026-11-08)",
+      "verify": [
+        "python3 tests/akthree_soft_shadow_verify.py",
+        "python3 tests/akthree_material_audit_verify.py"
+      ]
+    },
+    {
+      "run_date": "2026-11-08",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKPOST.grade's grain size defaults to 1 (one value-noise cell per device px, white grain) instead of 2, and the header example builders copy says size 1; the header and SKILL.md record that every size above 1 prints a fixed lattice of its own period. A slide that passes a size keeps it.",
+      "trigger": "Weekly digest 2026-11-08, for the Artwork craft criterion (weakest in 4 of 7 runs): flow-critic cause d (a texture artifact) on 3 of 6 runs; queue item 2026-11-03 at repeat 1 (No.104 round 2: three critics named a square cell lattice in near-black on 03, 04 and 09 at size 2; size 1 cured every frame).",
+      "files": [
+        "assets/js/akpost.js",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/akpost_grain_lattice_verify.mjs"
+      ],
+      "verification": "tests/akpost_grain_lattice_verify.mjs on the real akpost.js: grain with no size measures a phase-class variance ratio of 1.01 at period 2 and 1.02 at period 3 (bar 1.25); size 2 measures 3.86 (the fixture sees the lattice) and the pre-pass file at cdb8d61b with no size measures 3.86 (the old default printed it); sizes 3 and 4 measure 3.12 and 3.95. tests/akpost_verify.mjs and tests/akpost_grade_scale_verify.py still hold. No.109's nine frames all pass size 1 and render pixel-identical; the demo deck does not use akpost.",
+      "rollback": "revert the upgrade(2026-11-08) commit; or pass grain.size 2 explicitly on a slide that wants the old look",
+      "commit": "upgrade(2026-11-08)",
+      "verify": [
+        "node tests/akpost_grain_lattice_verify.mjs",
+        "node tests/akpost_verify.mjs"
+      ]
+    },
+    {
+      "run_date": "2026-11-08",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "caption_check.py never waits on stdin: with no caption path it checks caption.txt beside --copy, reads stdin only for an explicit '-', and otherwise exits 2 at once; with --deck-summary absent it reads the run's deck_summary.txt beside the caption and holds it to the same verbatim test (no file, the FAIL stays); and it never writes a caption_report.json under runs/, printing the verdict instead.",
+      "trigger": "Queue items 2026-10-31: the stdin hang at repeat 1 (No.101 stopped at the 120 s timeout, No.108 at 300 s inside a chained command) and the deck-summary overwrite (No.101 round 2 wrote FAIL over a passing report). The runs/ guard: this pass ran the old script on runs/2026-11-07/caption.txt while measuring and it rewrote that shipped report, restored from the commit at once.",
+      "files": [
+        "scripts/caption_check.py",
+        "tests/caption_check_noblock_verify.py"
+      ],
+      "verification": "tests/caption_check_noblock_verify.py with stdin held open throughout: no path plus --copy returns and writes PASS, the explicit call's verdict; no path and no caption.txt exits 2 with no report; no --deck-summary with deck_summary.txt has no missing-summary FAIL, without the file it keeps it (exit 1); a caption under runs/ prints 'not written' and the shipped report's bytes are unchanged; the pre-pass script on the same call is still waiting at 5 s. caption_check --self-test PASS.",
+      "rollback": "revert the upgrade(2026-11-08) commit; the explicit invocation the routine documents is unchanged",
+      "commit": "upgrade(2026-11-08)",
+      "verify": [
+        "python3 tests/caption_check_noblock_verify.py",
+        "python3 scripts/caption_check.py --self-test"
+      ]
+    },
+    {
+      "run_date": "2026-11-08",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "run_guard.py, run with no --run-date, also reads the America/Anchorage date whenever it differs from the UTC default and prints that date's own verdict and the command to run, naming a probable re-fire when it reads ALREADY_SHIPPED; --json carries utc_date, anchorage_date and anchorage_verdict; routine Phase 0 step 0.5 says how to read it against the run-date rule. The default and the exit code are unchanged.",
+      "trigger": "Queue item 2026-10-24, escalated, now repeat 5 with No.109 (woke 06:07Z, Anchorage 21:07 on November 8th; run_guard proposed 2026-11-09 and was overridden by hand). Every winter wake is after 06:00Z, so the UTC default names tomorrow on every run, and a re-fire of a deck that shipped that evening would have read CLEAR for tomorrow with nothing saying otherwise.",
+      "files": [
+        "scripts/run_guard.py",
+        "prompts/routine_instructions.md",
+        "tests/run_guard_anchorage_verify.py"
+      ],
+      "verification": "tests/run_guard_anchorage_verify.py on a scratch repo with the clock at 2026-11-09 06:07Z: nothing shipped exits 0 with a NOTE naming 2026-11-08 CLEAR; nine slides under runs/2026-11-08 still exit 0 (unchanged) and the NOTE reads ALREADY_SHIPPED with the RE-FIRE line, --json anchorage_verdict ALREADY_SHIPPED; an explicit --run-date exits 3 with no NOTE; a clock where both dates agree prints none. Live: python3 scripts/run_guard.py at 07:55Z printed 2026-11-09 CLEAR plus the NOTE for 2026-11-08; --run-date 2026-11-07 still exits 3.",
+      "rollback": "revert the upgrade(2026-11-08) commit; the exit code never depended on the new lines",
+      "commit": "upgrade(2026-11-08)",
+      "verify": [
+        "python3 tests/run_guard_anchorage_verify.py"
+      ]
+    },
+    {
+      "run_date": "2026-11-08",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "fetch_pdf_text.py names a CERTIFICATE_VERIFY_FAILED as the host's chain (with SSL_CERT_FILE, the alaska.edu measurement and the WebFetch or other-host remedy, never a verification bypass), and config/sources.yaml gains the keyless FERC eLibrary search and download route plus measured routes for akleg.gov, aws.state.ak.us and alaska.edu.",
+      "trigger": "No.109 incident: fetch_pdf_text failed TLS on alaska.edu with SSL_CERT_FILE set while WebFetch worked. Measured this pass with openssl s_client through the proxy: alaska.edu is passed through untouched and its chain ends at emSign Root CA - G1, which is not among the container's 122 roots; curl fails identically; akleg.gov and w3.org verify fine through the same proxy, so neither the script nor the proxy is at fault. Queue item 2026-10-25 (sources, repeat 1: the FERC route and the WebFetch refusals on akleg.gov and aws.state.ak.us; also 2026-11-04).",
+      "files": [
+        "scripts/fetch_pdf_text.py",
+        "config/sources.yaml"
+      ],
+      "verification": "fetch_pdf_text on https://www.alaska.edu/ now prints the host-chain diagnosis with the remedy; on akleg.gov it reaches the server (HTTP 404 for the probe URL, TLS verified); fetch_pdf_text --self-test PASS (8 checks). config/sources.yaml parses (15 refusing hosts, 7 keyless routes); nothing reads it as code.",
+      "rollback": "revert the upgrade(2026-11-08) commit; message and config only",
+      "commit": "upgrade(2026-11-08)",
+      "verify": [
+        "python3 scripts/fetch_pdf_text.py --self-test"
+      ]
     }
   ],
   "scan_log": [
@@ -4256,6 +4348,13 @@
       "searches": "6 searches (news-desk 3D hero modelling; canvas bevel and height-map lighting; procedural matcaps; Reuters relief shading; newsroom 'how we made' 3D pieces; stylized rim light and Fresnel), 1 fetch (the TF2 paper, read in full through pdftotext); the other sources were judged from their search abstracts only",
       "found": "(1) Mitchell, Francke and Eng, Illustrative Rendering in Team Fortress 2, SIGGRAPH 2007 (https://www.cs.princeton.edu/courses/archive/fall07/cos597B/papers/mitchell-team-fortress.pdf): broad low-exponent rim lobes masked by (1 - n.v)^4, a dedicated up-facing rim term, and a half-Lambert (0.5 n.l + 0.5) diffuse through a warp ramp, aimed at reading form independent of the scene's lights. (2) Procedural matcaps from a small canvas into MeshMatcapMaterial (https://dustinpfister.github.io/2023/08/10/threejs-matcap-material) bake one lighting look and ignore the scene's lights, which is wrong for a deck whose key direction is planned per frame. (3) No 2026 news-desk write-up on hero modelling turned up; relief-shading results restate methods the knowledge base already holds (Jenny, Imhof, sky models). (4) Height-to-normal canvas lighting (https://29a.ch/2010/3/24/normal-mapping-with-javascript-and-canvas-tag) is what AKBENCH already does.",
       "outcome": "nothing applied; parked (1) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-01 frontier scan, focus (b)' as an opt-in AKT rim and wrap term with an unblock condition (a digest naming a three.js largest object matte or flat on two runs, then an A/B on No.98 06 and No.101 07 before a critic)."
+    },
+    {
+      "run_date": "2026-11-08",
+      "focus": "(c) generative and procedural technique portable to offline Canvas/three, narrowed to soft shadows that honour a penumbra and film grain without a lattice. Legal and distinct from the last three logged foci: 2026-11-01 (b) still life, 2026-10-25 (a) LinkedIn, 2026-10-21 (d) typography (last (c) 2026-10-17). Chosen over the stalest slot, (g) accessibility/PDF, on relevance: the week's queue named a hard GPU cast on three runs and a grain lattice on one, both fed causes b and d.",
+      "searches": "6 searches (three VSM radius and blurSamples; value-noise grain lattices; PCSS in three.js; drei ContactShadows; SDF soft shadows in 2D; the r170 LightShadow docs), 5 fetches (the LightShadow d.ts, Lottes's grain write-up, drei SoftShadows, demofox on Perlin grids, plus the redirect) and the r170 shader chunk read in assets/js/three.module.min.js",
+      "found": "(1) three r170's PCFSoftShadowMap reads no shadow.radius on directional and spot lights; VSM honours radius and blurSamples (default 8) at the cost of light bleeding through thin occluders (https://cdn.jsdelivr.net/npm/@types/three@0.184.1/src/lights/LightShadow.d.ts, https://discourse.threejs.org/t/shadow-artifacts-with-webgpurenderer-vsmshadowmap/89017). (2) drei ContactShadows: an orthographic depth render from below into a 256 px target, two separable blur passes, laid on a ground plane (https://drei.docs.pmnd.rs/staging/contact-shadows). (3) PCSS (contact hardening) patches the shadow shader chunk and recompiles every material (https://drei.docs.pmnd.rs/shaders/soft-shadows). (4) Lottes's grain is point-sampled at one texel per pixel and high-passed (https://gpuopen.com/learn/vdr-follow-up-fine-art-of-film-grain/), the opposite of AKPOST's bilinear size-2 cells.",
+      "outcome": "applied (1) as the 2026-11-08 akthree softShadows entry and (4) as the akpost grain entry; parked VSM as the house default, (2) and (3) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-08 frontier scan, focus (c)' with unblock conditions"
     }
   ]
 }

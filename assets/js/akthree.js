@@ -77,9 +77,36 @@ export function init(THREE) {
    * the option out and NOTHING here changes: same canvas, same context, same
    * pixels as before this option existed. Pass snapshot(R, {resolve: false})
    * to resolve later yourself with AKT.drawDown(ctx, R.glCanvas). */
+  /* SOFT SHADOWS (2026-11-08, weekly pass; queue items No.104 and No.106).
+   * OPT-IN. three r170's PCFSoftShadowMap, the default below, IGNORES
+   * shadow.radius on directional and spot lights (its shader chunk is a fixed
+   * 3x3 bilinear kernel; radius is read on the PCF, VSM and point-light
+   * paths), so
+   * every `key.shadow.radius = 8` written under it has drawn a hard cast.
+   * No.106's notice case read as a "hard black offset slab" to round 2 critics
+   * until the slide switched to VSM with radius 9 and blurSamples 20; No.104
+   * tried PCFShadowMap with radius 10 to 12 and got stepped bands instead.
+   * `softShadows: 9` (or true, for 8) sets VSMShadowMap, and AKT.rig gives its
+   * key that radius and `blurSamples` (default 20). A light you build yourself
+   * needs light.shadow.radius and light.shadow.blurSamples set by hand. VSM's
+   * known cost is light bleeding through THIN occluders (a card edge-on to the
+   * key): give them thickness, or lower the radius. Leave the option out and
+   * nothing changes: PCFSoft, same pixels. AKT.audit names a radius set under
+   * PCFSoft (`shadow_radius_ignored`, a qa.py WARN). */
   AKT.setup = function (canvas, opts) {
     opts = opts || {};
     const w = opts.w || 1080, h = opts.h || 1350;
+    let soft = null;
+    if (opts.softShadows != null && opts.softShadows !== false) {
+      const r = opts.softShadows === true ? 8 : Number(opts.softShadows);
+      const bs = opts.blurSamples != null ? Number(opts.blurSamples) : 20;
+      if (!(r >= 1 && r <= 32) || !(bs >= 2 && bs <= 64)) {
+        throw new Error("AK CONTRACT: AKT.setup: softShadows is the VSM blur radius in "
+          + "shadow-map texels (1 to 32; No.106 used 9) and blurSamples 2 to 64, got "
+          + opts.softShadows + " and " + opts.blurSamples);
+      }
+      soft = { radius: r, blurSamples: Math.round(bs) };
+    }
     let ss = 0, glCanvas = canvas;
     if (opts.supersample != null) {
       ss = Number(opts.supersample);
@@ -98,7 +125,7 @@ export function init(THREE) {
     renderer.setPixelRatio(ratio);
     renderer.setSize(w, h, false);                 // buffer becomes w*ratio x h*ratio
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = soft ? THREE.VSMShadowMap : THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     /* THE OTHER HALF OF THE 2026-08-12 UNITS TRAP. This exposure is a
      * MULTIPLIER on three.js toneMappingExposure; AKPOST.grade's exposure is
@@ -125,6 +152,7 @@ export function init(THREE) {
     camera.position.set(5, 4, 8); camera.lookAt(0, 0, 0);
     const R = { renderer, scene, camera, w, h };
     if (ss) { R.supersample = ss; R.glCanvas = glCanvas; R.target = canvas; }
+    if (soft) R.softShadows = soft;
     return R;
   };
 
@@ -258,7 +286,16 @@ export function init(THREE) {
     key.shadow.camera.left = -s; key.shadow.camera.right = s;
     key.shadow.camera.top = s; key.shadow.camera.bottom = -s;
     key.shadow.bias = -0.0004;
+    // Under the default PCFSoft this radius draws nothing (see SOFT SHADOWS at
+    // setup): the house rigs' 8, 10 and 12 have never softened a cast. It is
+    // kept, marked as the rig's own, so the audit names only a radius a slide
+    // asked for. Under setup's softShadows the key takes that radius instead.
     key.shadow.radius = spec.key.radius != null ? spec.key.radius : 7;
+    key.userData.aktRigRadius = key.shadow.radius;
+    if (R.softShadows) {
+      key.shadow.radius = R.softShadows.radius;
+      key.shadow.blurSamples = R.softShadows.blurSamples;
+    }
     R.scene.add(key); made.push(key);
     if (spec.rim) { const rim = new THREE.DirectionalLight(spec.rim.color, spec.rim.i);
       rim.position.set(...spec.rim.pos); R.scene.add(rim); made.push(rim); }
@@ -396,6 +433,23 @@ export function init(THREE) {
         }
       } catch (e) { /* never stops the audit */ }
     };
+    // shadow_radius_ignored (2026-11-08, weekly pass): a directional or spot
+    // light asked for a penumbra under PCFSoftShadowMap, which ignores
+    // shadow.radius, so the cast is hard (No.106 01 and 09). The house rig's
+    // own default radius is marked and left alone; a slide's radius is named.
+    const rend = (R && !R.isScene && R.renderer && R.renderer.shadowMap) ? R.renderer : null;
+    if (rend && rend.shadowMap.enabled && rend.shadowMap.type === THREE.PCFSoftShadowMap) {
+      scene.traverse(l => {
+        try {
+          if (!(l.isDirectionalLight || l.isSpotLight) || !l.castShadow || !l.shadow || !shown(l)) return;
+          const r = l.shadow.radius;
+          if (r > 1 && !(l.userData && l.userData.aktRigRadius === r)) {
+            found.push({ kind: 'shadow_radius_ignored', name: l.name || (l.type + ' ' + l.id),
+              radius: +Number(r).toFixed(2) });
+          }
+        } catch (e) { /* never stops the audit */ }
+      });
+    }
     scene.traverse(m => {
       if (!m.isMesh || !shown(m)) return;
       farClip(m);

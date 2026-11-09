@@ -1482,9 +1482,38 @@ def main():
             # A check that cannot look is a FAIL, recorded in the report so the
             # ship gate sees it too, not a stale pass.
             ledger_missing = str(ledger_path)
-    if args:
+    # NO CAPTION PATH NEVER MEANS "WAIT ON STDIN" (2026-11-08, weekly pass).
+    # `caption_check.py --copy out/<date>/copy.json` with no caption path used
+    # to fall through to sys.stdin.read(), which in a routine's shell is an
+    # open pipe that never closes: No.101 hung for the 120 s tool timeout and
+    # No.108 for 300 s inside a chained command, both stopped by hand. Now a
+    # missing path means caption.txt beside --copy when it exists, stdin only
+    # when asked for with "-", and otherwise a usage error, exit 2, at once.
+    if not args and copy_path is not None and (copy_path.parent / "caption.txt").is_file():
+        args = [str(copy_path.parent / "caption.txt")]
+        print("caption_check: no caption path given; checking %s, beside --copy" % args[0],
+              file=sys.stderr)
+    if not args:
+        print("caption_check: give the caption path (out/<date>/caption.txt), or '-' to "
+              "read it from stdin. Nothing was read and no report was written.",
+              file=sys.stderr)
+        sys.exit(2)
+    if args[0] != "-":
         src = Path(args[0])
         text = src.read_text()
+        # THE RUN'S OWN DECK SUMMARY WHEN THE FLAG IS LEFT OFF (2026-11-08,
+        # weekly pass). A quick re-check without --deck-summary used to write
+        # FAIL over a passing caption_report.json (No.101 round 2). The line the
+        # run declared lives in deck_summary.txt beside the caption; it is read
+        # here and held to the same verbatim test, so nothing is loosened, and
+        # a run directory without the file still FAILs as before.
+        if deck_summary is None and (src.parent / "deck_summary.txt").is_file():
+            line = next((l.strip() for l in (src.parent / "deck_summary.txt")
+                         .read_text().splitlines() if l.strip()), "")
+            if line:
+                deck_summary = line
+                print("caption_check: no --deck-summary given; using %s"
+                      % (src.parent / "deck_summary.txt"), file=sys.stderr)
         out = src.parent / "caption_report.json"
         # A CAPTION NEVER COLLIDES WITH ITSELF (2026-08-15). The ship order
         # appends this run's entry to ledger/captions.json and only then runs
@@ -1554,12 +1583,25 @@ def main():
             rep["fails"].extend(hits)
             if hits:
                 rep["verdict"] = "FAIL"
-    out.write_text(json.dumps(rep, indent=2))
+    # A SHIPPED REPORT IS NEVER REWRITTEN (2026-11-08, weekly pass). Checking a
+    # caption under runs/<date>/ wrote caption_report.json over the shipped one
+    # beside it; the weekly pass did exactly that by accident while measuring
+    # this file and restored it from git. CLAUDE.md lists overwriting shipped
+    # run artifacts as a stop, so the verdict is printed and nothing is written.
+    try:
+        shipped = out.resolve().is_relative_to((REPO / "runs").resolve())
+    except (OSError, ValueError):
+        shipped = False
+    if shipped:
+        dest = "not written: %s is a shipped artifact under runs/" % out
+    else:
+        out.write_text(json.dumps(rep, indent=2))
+        dest = str(out)
     for f in rep["fails"]:
         print("FAIL:", f)
     for w in rep["warns"]:
         print("warn:", w)
-    print(f"verdict: {rep['verdict']} ({rep['chars']} chars, hook {rep['hook_len']}) -> {out}")
+    print(f"verdict: {rep['verdict']} ({rep['chars']} chars, hook {rep['hook_len']}) -> {dest}")
     sys.exit(1 if rep["fails"] else 0)
 
 
