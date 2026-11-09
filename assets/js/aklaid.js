@@ -33,6 +33,8 @@
  *     key: {dx: -0.67, dy: -0.74, el: 18}, amb: 0.28, relief: 3.0,
  *     lo: '#6F7A86', hi: '#B7C0C9', panel: '#DDEBF5', tk: 0.9, base: 0.80,
  *     deckle: 5,                    // ragged edge amplitude, design px
+ *     glow: 0,                      // transmitted only: brightening near the wire (0.6 to 1.2 reads)
+ *     falloff: 0.24, flocTone: 0.10 // reflected: key ramp across the sheet, low-frequency floc tone
  *     cast: {parts, color},         // optional: a two-part cast drawn UNDER the sheet first
  *   }) -> {mask, bbox}              // mask: a device-res canvas of the sheet alpha
  *
@@ -97,8 +99,8 @@
     const seed = f.seed == null ? 109001 : f.seed;
     const laid = f.laid || 7, chain = f.chain || 72, chainOff = f.chainOff || 0;
     const flocAmp = f.floc == null ? 0.16 : f.floc;
-    const laidAmp = f.laidAmp == null ? 0.06 : f.laidAmp;
-    const chainAmp = f.chainAmp == null ? 0.10 : f.chainAmp;
+    const laidAmp = f.laidAmp == null ? 0.022 : f.laidAmp;
+    const chainAmp = f.chainAmp == null ? 0.075 : f.chainAmp;
     const wmDepth = f.wmDepth == null ? 0.22 : f.wmDepth;
     const fs = f.scale || 1;                      // field feature scale (macro frames > 1)
     const segs = f.wm ? L.wmSegments(f.wm.u, f.wm.v, f.wm.s || 1) : null;
@@ -116,11 +118,13 @@
       const x = u / fs, y = v / fs;
       let t = 1 + flocAmp * 2 * (fbm3(x, y, seed) - 0.5);
       // laid lines (horizontal), jittered per line
-      const li = Math.floor(y / laid);
-      const jit = (hash(li, 7, seed + 303) - 0.5) * 0.16 * laid;
-      const ly = (y - jit) / laid;
+      const warp = 1.3 * (vnoise(x / 47, y / 9, seed + 404) - 0.5);
+      const li = Math.floor((y + warp) / laid);
+      const jit = (hash(li, 7, seed + 303) - 0.5) * 0.30 * laid;
+      const ly = (y + warp - jit) / laid;
       const lf = ly - Math.floor(ly) - 0.5;
-      t -= laidAmp * Math.exp(-(lf * lf) / 0.018);
+      const lmod = 0.55 + 0.9 * vnoise(x / 23 + li * 3.1, li * 0.7, seed + 505);
+      t -= laidAmp * lmod * Math.exp(-(lf * lf) / 0.03);
       // chain lines (vertical): core plus pulp-shadow flanks
       const cx = (x - chainOff) / chain;
       const cd = (cx - Math.round(cx)) * chain;        // px from nearest chain line
@@ -134,7 +138,14 @@
       }
       return t;
     }
-    return { T: T, seed: seed };
+    const glowW = 6.5 * (f.wm && f.wm.s ? f.wm.s : 1);
+    function G(u, v) {             // 0..1, how close (u, v) is to the wire, wide falloff
+      if (!segs || u < bb[0] - 10 || u > bb[2] + 10 || v < bb[1] - 10 || v > bb[3] + 10) return 0;
+      let d = 1e9;
+      for (const s of segs) { const q = segDist(u, v, s); if (q < d) d = q; }
+      return Math.exp(-(d * d) / (glowW * glowW)) * 0.55 + Math.exp(-(d * d) / (wmW * wmW * 2.2)) * 0.45;
+    }
+    return { T: T, G: G, seed: seed };
   };
 
   function hex(c) {
@@ -162,7 +173,9 @@
     x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(W, x1); y1 = Math.min(H, y1);
     const bw = x1 - x0, bh = y1 - y0;
     if (bw <= 0 || bh <= 0) return { mask: null, bbox: [0, 0, 0, 0] };
-    const Tb = new Float32Array(bw * bh), A = new Float32Array(bw * bh);
+    const Tb = new Float32Array(bw * bh), A = new Float32Array(bw * bh), Gb = new Float32Array(bw * bh), Eb = new Float32Array(bw * bh), Sb = new Int8Array(bw * bh), Kb = new Float32Array(bw * bh);
+    const glow = o.glow || 0, falloff = o.falloff == null ? 0.42 : o.falloff, flocTone = o.flocTone == null ? 0.14 : o.flocTone;
+    const kd = o.key || { dx: -0.67, dy: -0.74 }, kdn = Math.hypot(kd.dx, kd.dy) || 1;
     const seed = F.seed;
     for (let j = 0; j < bh; j++) {
       const y = (y0 + j + 0.5) / k;
@@ -178,8 +191,18 @@
           e += dk * (1.6 * (vnoise(along / 26, 3.1, seed + 909) - 0.5) + 0.7 * (vnoise(along / 6.5, 8.7, seed + 919) - 0.5));
         }
         const a = Math.max(0, Math.min(1, e * k * 0.5));
-        A[j * bw + i] = a;
-        if (a > 0) Tb[j * bw + i] = F.T(u, v);
+        const pi = j * bw + i;
+        A[pi] = a;
+        if (a > 0) {
+          Tb[pi] = F.T(u, v);
+          if (glow) Gb[pi] = F.G(u, v);
+          Eb[pi] = e;
+          Sb[pi] = (eu < ev) ? (u < S.w / 2 ? 0 : 2) : (v < S.h / 2 ? 1 : 3);   // 0 left, 1 top, 2 right, 3 bottom
+          // where this point sits along the key direction across the sheet: 1 lit corner, 0 lee corner
+          const along = ((u - S.w / 2) * kd.dx / kdn + (v - S.h / 2) * kd.dy / kdn) / (0.5 * Math.hypot(S.w, S.h));
+          Kb[pi] = 0.5 + 0.5 * along;
+          Kb[pi] += flocTone * 2 * (vnoise(u / 31, v / 31, seed + 606) - 0.5);
+        }
       }
     }
     const mcanvas = document.createElement('canvas'); mcanvas.width = W; mcanvas.height = H;
@@ -203,17 +226,25 @@
         const t = Tb[p];
         const tl = i > 0 && A[p - 1] > 0 ? Tb[p - 1] : t, trr = i < bw - 1 && A[p + 1] > 0 ? Tb[p + 1] : t;
         const tu = j > 0 && A[p - bw] > 0 ? Tb[p - bw] : t, tdn = j < bh - 1 && A[p + bw] > 0 ? Tb[p + bw] : t;
-        const hx = (trr - tl) * 0.5 * k * relief, hy = (tdn - tu) * 0.5 * k * relief;
+        const hx = (trr - tl) * 0.5 * k * relief * 0.45, hy = (tdn - tu) * 0.5 * k * relief * 0.45;
         const nl = 1 / Math.sqrt(hx * hx + hy * hy + 1);
         const lam = Math.max(0, (-hx * lx - hy * ly + lz) * nl);
         let b = amb + (1 - amb) * (lam / flat) * 0.78;
+        b -= (1 - t) * 0.0;                                   // (thinner paper is not darker in reflection)
+        b *= 1 + (t - 1) * 1.6;                               // floc and laid structure as tone: thicker paper reads a touch brighter
+        b *= (1 - falloff) + falloff * 2 * Kb[p] * 0.85;
+        const ed = Eb[p];
+        if (ed < 2.6) {                 // a lit rim on the edges that face the key, a lee rim on the others
+          const r = 1 - ed / 2.6, sd = Sb[p];
+          b += (sd === 0 || sd === 1) ? 0.30 * r : -0.24 * r;
+        }
         b = Math.max(0, Math.min(1.15, b));
         const rr = lo[0] + (hi[0] - lo[0]) * b, rg = lo[1] + (hi[1] - lo[1]) * b, rb = lo[2] + (hi[2] - lo[2]) * b;
         const x = (x0 + i + 0.5) / k, y = (y0 + j + 0.5) / k;
         const m = Math.max(0, Math.min(1, mode(x, y)));
         let R = rr, G = rg, B = rb;
         if (m > 0) {
-          const tt = Math.min(1.25, base * Math.pow(10, -tk * (t - 1)));
+          const tt = Math.min(1.3, base * Math.pow(10, -tk * (t - 1)) * (1 + glow * Gb[p]));
           R = R * (1 - m) + Math.min(255, pn[0] * tt) * m;
           G = G * (1 - m) + Math.min(255, pn[1] * tt) * m;
           B = B * (1 - m) + Math.min(255, pn[2] * tt) * m;
