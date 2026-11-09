@@ -28,7 +28,7 @@
  *     gain: [1.015, 1.0, 0.975],        // highlight tint (warm)
  *     vignette: 0.2,                    // radial multiply toward a cooler edge, felt not seen
  *     bloom: { threshold: 0.72, strength: 0.35, radius: 8 },
- *     grain: { amount: 0.05, size: 2, seed: 20260711 },  // soft-light, shadows/mids only
+ *     grain: { amount: 0.05, size: 1, seed: 20260711 },  // soft-light, shadows/mids only; size 1 (see GRAIN)
  *     aberration: 0,                    // px RGB fringe at corners; hero-art slides ONLY, never data/text
  *     dither: true,                     // IGN, +-1 LSB
  *     sharpen: 0.35                     // unsharp amount; skip on halftone regions (moire)
@@ -383,8 +383,22 @@
     }
 
     /* ---- luminance-masked soft-light film grain (shadows/mids only) ---- */
+    /* GRAIN SIZE DEFAULTS TO 1 (2026-11-08, weekly pass; No.104 round 2).
+     * `size` is the noise cell in DEVICE px, and the noise is bilinear value
+     * noise: a pixel on a cell corner carries one random value at full
+     * variance, a pixel between corners carries an average of two or four at
+     * half or a quarter of it. At size 2 that is a fixed 2 px lattice of strong
+     * and weak pixels in both axes, and three critics named it "a square cell
+     * lattice" in No.104's near-black fields (03, 04, 09); size 1 cured every
+     * frame. At size 1 every pixel is a corner, so the grain is white and has
+     * no grid (tests/akpost_grain_lattice_verify.mjs measures both). This
+     * header's example said size 2 and builders copied it; a slide that passes
+     * size 2 still gets it. EVERY size above 1 carries a lattice of its own
+     * period: the largest phase-class variance over the smallest measures 3.9
+     * at size 2, 3.1 at 3 and 4.0 at 4, against 1.0 at size 1. A slide that
+     * wants clumpy grain should blur white grain, not raise size. */
     if (o.grain && o.grain.amount > 0) {
-      const ga = o.grain.amount, gs = Math.max(1, o.grain.size || 2);
+      const ga = o.grain.amount, gs = Math.max(1, o.grain.size || 1);
       let seed = (o.grain.seed || 11) >>> 0;
       const gw = Math.ceil(W / gs) + 2, gh = Math.ceil(H / gs) + 2;
       const gn = new Float32Array(gw * gh);

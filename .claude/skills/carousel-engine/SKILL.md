@@ -1004,6 +1004,18 @@ them or every archive page goes blank.
   scene graph and qa.py WARNs each finding; render.py also WARNs a hand-rolled
   three scene with a metalness over 0.5 and no environment anywhere in its
   source (tests/akthree_material_audit_verify.py). Reading only: no pixel moves.
+  SOFT SHADOWS (2026-11-08): the default PCFSoftShadowMap IGNORES
+  `shadow.radius` on directional and spot lights, so `key.shadow.radius = 9`
+  draws a hard, stair-stepped cast and says nothing (No.106's "hard black
+  offset slab"; the house rigs' radii have never softened anything). For a
+  penumbra pass `AKT.setup(canvas, {..., softShadows: 9})`: VSMShadowMap, and
+  AKT.rig's key takes radius 9 and blurSamples 20 (`blurSamples` option); set
+  both by hand on lights you build yourself. PCFShadowMap honours radius but
+  printed stepped bands on No.104. VSM bleeds light through THIN occluders, so
+  give cards and sheets thickness. `AKT.audit` reports a radius set under
+  PCFSoft (`shadow_radius_ignored`) and qa.py WARNs it
+  (tests/akthree_soft_shadow_verify.py). Leave the option out and nothing
+  changes.
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
   `AKT.objectHero(R, group, {toward:[kx,ky,kz], keyColor, intensity, height})`
@@ -1057,7 +1069,10 @@ them or every archive page goes blank.
   saturation -> log-contrast -> ACES -> gamma -> split-tone -> masked grain ->
   IGN dither -> unsharp. Call ONCE on the art canvas after drawing, before
   the grain tile (or use akpost's own grain and skip the tile). DOM text is
-  never affected.
+  never affected. Grain `size` defaults to 1 (2026-11-08): it is the value
+  noise cell in device px, and every size above 1 prints a fixed lattice of
+  its own period (No.104's "square cell lattice" in near-black at size 2;
+  tests/akpost_grain_lattice_verify.mjs). For clumpier grain blur white grain.
   **grade() reads `{w, h}` times the context's CURRENT scale** (2026-11-01):
   after a GPU draw-down or a `setTransform(1,0,0,1,0,0)` the scale is 1, and
   `{w: 1080, h: 1350}` on the 2160 x 2700 backing grades the top-left quarter

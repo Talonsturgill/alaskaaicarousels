@@ -1,0 +1,129 @@
+{
+  "hard_fails": [],
+  "hard_fail_checks": "all 14 rubric hard-fail rules checked and passed (dashes, emoji, claim ids, typos, clipping, primary contrast, slide count, machine qa and vector pdf, topic repeat, hero repeat, banned phrases, hashtags and links, placeholders)",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Half the AI oval now glows on the table with a frosted falloff, so the tease exists at thumb; 'UA's' alone on line 2 breaks the rag; streaked sheet; nothing visual says Alaska."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Unchanged structure; 05 could move; 06 reprises 03; 07 and 08 re-tell 03."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16,
+      "notes": "04 now a composed drafting plate with no dead zone; 01's tease and table gradient work; 07's physics fixed (single and double transmission). Not 8: the shared sheet material still reads as streaky floc noise; 09 still flat with no lift or raking relief; 06 focal sheet soft and clips still blocky; 07 overlap watermarks regressed to pale blobs."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14,
+      "notes": "Unchanged and strong; one notch weaker on 07 where the shared mark no longer reads as AI."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.0,
+      "weight": 0.12,
+      "notes": "Named throughout; placeless lab imagery."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 7.0,
+      "weight": 0.1,
+      "notes": "07 re-tells 03; 08 re-quotes 'a good move'."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08,
+      "notes": "New hero, atmosphere and hook; reused type subsystems and No.108's night hex."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07,
+      "notes": "04 lines 32 px, tags and months 24 px; 05 annotation 20 px #F4F8FF with its contrast warn cleared; warns 53 to 39; 18 px labels on 02, 03, 07, 08 still squeak at thumb."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "Unchanged; deck-summary line clunky; 'AI Engaged' not introduced as the statement."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1,
+      "notes": "Package complete on disk; Gmail draft and URLs not verifiable before merge."
+    }
+  ],
+  "calculation": "(7.5x0.14)+(7.5x0.14)+(7.5x0.16)+(8.5x0.14)+(8.0x0.12)+(7.0x0.10)+(7.5x0.08)+(7.5x0.07)+(7.5x0.05)+(8.0x0.10) = 8.45",
+  "weighted_total": 8.45,
+  "artwork_craft_score": {
+    "criterion": "Artwork craft & genuine detail",
+    "score": 7.5
+  },
+  "threshold": 7.7,
+  "threshold_note": "revision_rounds = 4, ladder threshold 7.7; no hard fails; the one owed craft cycle has run.",
+  "ship": true,
+  "verdict": "SHIP. 8.45 clears the round-4 threshold of 7.7 with zero hard fails. The craft cycle lifted art from 7.0 to 7.5, still under the 8.5 floor.",
+  "weakest_criterion": "Insight density & factual weight",
+  "one_sentence_fix": "On 08, replace the re-quoted 'a good move' (already on 03) with one new verified specific so every content frame adds something new.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 9,
+      "problem": "still a flat plate with streak texture, no lift or raking relief; the rule reads as a decorated stripe",
+      "fix": "lift a corner into a cockle with its own cast, lower the key, let fibres break the rule's edges"
+    },
+    {
+      "slide": 6,
+      "problem": "focal sheet soft, clips blocky, rim faint, empty bench band",
+      "fix": "sharper emissive map inside the mask, rounded clip jaws with a specular edge, brighter rim, a visible cast toward the lens"
+    },
+    {
+      "slide": 7,
+      "problem": "overlap watermarks regressed to pale blobs, AI unreadable",
+      "fix": "raise watermark glow and tighten falloff, or deepen the watermark in the overlap only"
+    },
+    {
+      "slide": 3,
+      "problem": "the shared aklaid streak term reads as brushed aluminium (also 01, 08)",
+      "fix": "replace the streak term with short broken jittered fibre strokes and lower the laid amplitude"
+    },
+    {
+      "slide": 5,
+      "problem": "empty upper-left quadrant",
+      "fix": "shift the mould and numerals left or angle its depth up-left"
+    }
+  ],
+  "editor_notes_for_email": "1) Conflict of interest: the deck asks whether Anthropic's Claude drafted UA's AI statement and this routine runs on an Anthropic model; copy is attributed on every frame, and the aftercare one-line AI credit in the first comment fits the deck's own argument. 2) The November 5th vote outcome was unreported in every source checked (alaska.edu 503); check alaska.edu/bor first and put any outcome in a reply, not an edit. 3) Claude's role is Hartley and Potter's allegation; the five dispute only the concealment. 4) Art 7.5 after the one craft cycle, under the 8.5 floor: shared paper texture, flat close on 09, soft 06, unreadable overlap watermarks on 07. 5) Consider 'Who drafted AI Engaged, UA's AI statement?' in the caption. 6) Deliverable completeness scored on the on-disk package.",
+  "craft_cycle": {
+    "frames": [
+      9,
+      7,
+      6,
+      4,
+      1
+    ],
+    "art_before": 7.0,
+    "art_after": 7.5
+  },
+  "score_history": [
+    {
+      "round": 3,
+      "weighted_total": 8.3,
+      "art": 7.0
+    },
+    {
+      "round": 4,
+      "weighted_total": 8.45,
+      "art": 7.5
+    }
+  ]
+}

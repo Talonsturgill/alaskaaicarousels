@@ -1,82 +1,75 @@
 {
-  "last_pass": "2026-11-01",
+  "last_pass": "2026-11-08",
   "themes": [
     {
-      "theme": "b, the largest object least modelled: flow critic 5 of 5 runs, 11 frames (2026-10-27 4,9,7; 10-28 6,4; 10-29 9,8; 10-30 7; 10-31 7,5,8)",
-      "runs": 5,
-      "frames": 11,
-      "action": "deferred",
-      "what": "eleven different objects in eleven materials (paper, drums, prisms, a stipple plain, an enamel bar, slab rubble, a vector box); no shared machine cause a gate can measure (qa.py's encoding_reads docstring records why a colour statistic can't judge modelling). Frontier scan (b) parked an opt-in illustrative rim and half-Lambert term for three.js heroes in FIELD_NOTES with an unblock condition"
+      "theme": "b, the largest object least modelled: flow critic 4 of 6 runs, 7 frames (2026-11-02 5; 11-03 1,8; 11-04 4; 11-05 7,8,6); the scorer's 'no contact shadow, or an object that floats' 2 runs (11-03, 11-06)",
+      "runs": 4,
+      "frames": 7,
+      "action": "fixed",
+      "what": "partly, on the one shared machine cause found: three r170's PCFSoftShadowMap ignores shadow.radius on directional and spot lights, so the house rigs' radii 8, 10 and 12 and every slide's own radius drew a hard, stair-stepped cast (No.106's slab, No.104's bands, No.109 setting VSM by hand). AKT.setup softShadows (VSM, blurSamples 20) plus an audit WARN on a radius set under PCFSoft. The remaining b frames are seven different objects with no common cause a gate can measure; VSM as the house default and a drei-style contact shadow are parked in FIELD_NOTES with unblock conditions"
     },
     {
-      "theme": "d, a texture artifact: flow critic 5 of 5 runs, 10 frames; the scorer's texture theme 3 runs",
-      "runs": 5,
-      "frames": 10,
+      "theme": "c, a dead or eventless region: flow critic 4 of 6 runs, 8 frames (11-02 4,1; 11-03 4,3,5; 11-04 6; 11-05 9,4); scorer's dead band 2 runs",
+      "runs": 4,
+      "frames": 8,
       "action": "deferred",
-      "what": "the week's ten named artifacts have ten causes (a leaked isobath arc, a domain-warp contour moire, scribeRelief fur, hoarfrost dashes, label halos, a 1.5x aksdf upscale); last week's upscale-layer WARN already covers the one repeat. The one machine-side seam found this week, AKPOST.grade under an identity transform grading a quarter of No.102 01, is fixed below"
+      "what": "measured, not built: a probe for the recurring 'dead band between body and art' (rows of 27 px cells with under 10 percent live cells, sandwiched between content) reads 3 to 5 cells on the named frames (11-02 04, 11-04 02, 11-05 04, 11-07 03) while unnamed frames reach 5 to 9 (11-03 06 at 9, 11-02 06 and 11-01 09 at 6), so no threshold separates them; frame_balance already FAILs the bottom-third case"
     },
     {
-      "theme": "c, a dead region: flow critic 5 of 5 runs, 6 frames; cross-frame 1 run",
-      "runs": 5,
-      "frames": 6,
-      "action": "deferred",
-      "what": "qa.py's frame_balance already FAILs under 0.60 and WARNs under 0.80; one frame per run on average and different fixes each time; recalibrating FB_WARN needs scored slides this pass did not have"
+      "theme": "d, a texture artifact: flow critic 3 of 6 runs, 5 frames (11-03 7; 11-04 8,2,5; 11-05 3); queue: akpost grain lattice (repeat 1)",
+      "runs": 3,
+      "frames": 5,
+      "action": "fixed",
+      "what": "AKPOST.grade grain defaults to size 1: bilinear value noise at size 2 prints a fixed 2 px lattice (phase-class variance ratio 3.86 against 1.01), No.104's 'square cell lattice' on three frames; the header example builders copied said size 2. The VSM option also removes the PCFSoft stair-step on GPU casts. The other named artifacts (intaglio scanlines, quilt lattice, flute aliasing) are per-slide drawing choices"
     },
     {
-      "theme": "cross-frame a (5 runs, 14 frames) and e (5 runs, 29 frames)",
-      "runs": 5,
-      "frames": 43,
+      "theme": "cross-frame a (4 runs, 16 frames) and e (4 runs, 24 frames)",
+      "runs": 4,
+      "frames": 40,
       "action": "deferred",
-      "what": "three of the five a entries and two of the five e entries say in the critic's own words that the census was clean or passed as declared (the digest counts every entry); the rest (AKSTROBE.snow on four frames, one lit-dust pool reused, a navy trough) were named by render.py's reuse census and tonal_arc_check, which is those checks working; no new machine cause"
+      "what": "a: the critic's own entries say the repeats were planned or the objects distinct (the akdrone quad on three planned frames, 'D3 by design'). e: tonal_arc_check WARNed 11-02 and passed 11-03 with seven frames at L* 13 to 18; a plateau measure (the frames other than the declared peak and darkest) spans 5 L* on 11-03, named, and 6 L* on 11-07, not named, so no threshold separates them on this week's evidence"
     },
     {
-      "theme": "queue repeat offender: gaswatch evening collection after the daily audit (repeat 17, escalated; No.102 the 18th run)",
-      "runs": 18,
+      "theme": "trend_check stale offenders: Artwork craft weakest 4 of 7 (mean 7.07), Thumb-stop cover 2 of 7, Variety 1 of 7",
+      "runs": 7,
       "frames": 0,
       "action": "fixed",
-      "what": "partly: gaswatch_health.py now writes `diagnosis` late_post or collected_after_post with the remedy, changing no status or verdict. Dispatch has returned 204 since October 20th; adding a slot after the routine's wake is the owner's call"
+      "what": "artwork worked through the soft-shadow and grain changes above; the cover and variety had no machine cause named in the week's evidence and are deferred"
     },
     {
-      "theme": "queue: a topics.json beats slug unknown to site_build fails only at the final build (repeat 1, No.99 and No.101)",
+      "theme": "queue: caption_check hangs on stdin with --copy and no path (repeat 1, No.101 and No.108) and clobbers a passing report without --deck-summary",
       "runs": 2,
       "frames": 0,
       "action": "fixed",
-      "what": "scripts/topics_beats_check.py at the Phase 11 append, same list and rule as site_build"
+      "what": "no path reads caption.txt beside --copy, stdin only on '-', otherwise exit 2; the run's deck_summary.txt is read when the flag is absent; a report under runs/ is never written"
     },
     {
-      "theme": "No.102 incident: AKPOST.grade under an identity transform on the 2x backing graded a quarter of slide 01",
-      "runs": 1,
-      "frames": 1,
-      "action": "fixed",
-      "what": "AK CONTRACT console.error (qa FAIL) on that exact signature; the grade is unchanged"
-    },
-    {
-      "theme": "No.102 incident: contact_probe proposed a ground rect on a numeral on slide 06 (twice)",
-      "runs": 1,
-      "frames": 1,
-      "action": "fixed",
-      "what": "the probe skips candidates overlapping render_report text line boxes"
-    },
-    {
-      "theme": "No.102 incident: a TLS reset in cron_health's git fetch killed the first audit",
-      "runs": 1,
+      "theme": "queue: run_guard's UTC default (repeat 5 with No.109, escalated) and No.109's incident",
+      "runs": 6,
       "frames": 0,
       "action": "fixed",
-      "what": "two bounded re-fetches with backoff, each printed"
+      "what": "partly: the Anchorage date's verdict and the command are printed whenever the dates differ, and a NOTE reading ALREADY_SHIPPED names the re-fire; the default and exit code stay the owner's call"
     },
     {
-      "theme": "trend_check stale offenders: Artwork craft (weakest 4 of 7), Story arc, Copy, Legibility (1 of 7 each)",
-      "runs": 7,
+      "theme": "queue: sources, FERC eLibrary and refusing hosts (repeat 1), plus No.109's fetch_pdf_text TLS incident on alaska.edu",
+      "runs": 3,
       "frames": 0,
-      "action": "deferred",
-      "what": "artwork: worked only at the edges this week (the grade seam and the contact probe); its recurring causes b, c and d are deferred above with reasons. Story arc, Copy and Legibility were each weakest once, with no machine cause named"
+      "action": "fixed",
+      "what": "measured: alaska.edu's chain ends at emSign Root CA - G1, absent from the container's store, curl fails identically, not a script or proxy defect; sources.yaml gains the FERC route and three host routes, and fetch_pdf_text says so with the remedy"
     },
     {
-      "theme": "queue: rubric weights sum to 1.10; run_guard UTC default (repeat 3); site fixture contrast (repeat 1)",
+      "theme": "No.109 incident: docket_staleness deferred ten items at --budget 6 (raised by hand on 4 of this week's 7 runs, 14 of 30 since October 5th)",
       "runs": 4,
       "frames": 0,
       "action": "escalated",
-      "what": "unchanged: each is the owner's call (the ship bar, the run-date policy, the brand watermark token)"
+      "what": "queued with the cause (a refresh wave every four days) and the proposed default; it sets the per-run fetch workload and the pass was at five changes"
+    },
+    {
+      "theme": "queue: rubric weights sum to 1.10; gaswatch evening slot; site fixture contrast",
+      "runs": 3,
+      "frames": 0,
+      "action": "escalated",
+      "what": "unchanged: the ship bar, the collector schedule and the brand watermark token are the owner's"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

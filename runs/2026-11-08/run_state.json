@@ -1,0 +1,165 @@
+{
+  "run_date": "2026-11-08",
+  "carousel_no": 109,
+  "effort": "high",
+  "date_note": "Woke 2026-11-09 06:07 UTC = 2026-11-08 21:07 AKST; Anchorage date 2026-11-08 has no runs/ dir, so the run date is 2026-11-08.",
+  "woke_utc": "2026-11-09T06:07:08Z",
+  "branch": "tsturg/clever-mayer-j5we50",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/plan.md",
+        "out/2026-11-08/run_state.json"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "searches": 2
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/scout_merge.md",
+        "out/2026-11-08/scout_common.md"
+      ],
+      "searches_used": 145
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/claims.json"
+      ],
+      "gate": "PASS 45/45, 27 primary"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "items_refreshed": 17,
+      "ask_headroom_bytes": 4475,
+      "watch_failed": []
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/cron_health.json",
+        "out/2026-11-08/gaswatch_health.json",
+        "out/2026-11-08/site_signoff_lines.txt"
+      ],
+      "site_signoff": "PASS",
+      "gas_watch_live": "PASS",
+      "cron_health": "PASS"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/storyboard.md",
+        "out/2026-11-08/selection.md"
+      ],
+      "lenses": [
+        "editorial-essayist (winner)",
+        "field-documentarian",
+        "historian-of-the-future"
+      ],
+      "dossier_check": "PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/caption.txt",
+        "out/2026-11-08/copy.json",
+        "out/2026-11-08/caption_report.json"
+      ],
+      "winner": "B LETTER FRAME + Q AND A"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/slides",
+        "out/2026-11-08/render",
+        "assets/js/aklaid.js"
+      ],
+      "qa": "WARN 0 fails",
+      "bespoke": "PASS 0.168"
+    },
+    "pixel_review": {
+      "status": "done",
+      "rounds": 4,
+      "note": "rounds 1-3 pixel and flow critics, round 4 the craft cycle"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/final/carousel.pdf",
+        "out/2026-11-08/final/assemble_report.json"
+      ],
+      "pdf_mode": "vector"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-08/score_report.json"
+      ],
+      "weighted_total": 8.45,
+      "threshold": 7.7,
+      "art": 7.5,
+      "craft_cycle": {
+        "frames": [
+          9,
+          7,
+          6,
+          4,
+          1
+        ],
+        "art_before": 7.0,
+        "art_after": 7.5
+      }
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-08"
+      ],
+      "site_build": "2026-11-08",
+      "gates": "gate_status --require 0 FAIL; verify-pasted PASS",
+      "docket_alerts": "1 email, 1 alert"
+    },
+    "upgrade": {
+      "status": "done",
+      "weekly_pass": true,
+      "commit": "5d22240f",
+      "artifacts": [
+        "out/2026-11-08/automation_retro.md",
+        "ledger/upgrades.json",
+        "knowledge/MACHINE_QUEUE.md"
+      ]
+    },
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 172 pages, 18 checks",
+    "gaswatch_live": "PASS, checked 2026-11-09T06:20:36Z, the 06:12 audit FAILED on a late CINGSA post (posted 01:00 UTC, after the 22:57 collection); dispatched gaswatch.yml on main (run 42571827756, success, 7.79 Bcf), Pages redeployed, re-audit PASS",
+    "gaswatch_pagecheck": "PASS, read November 8th, 96 days on record, chart present",
+    "cron_health": "PASS, 7 scheduled workflows checked (plus Pages and live output), no repairs needed",
+    "site_fixes": "none needed; the site sign-off and page check were clean on the first build"
+  }
+}

@@ -281,7 +281,15 @@ it was declined on 2026-09-24 against the CLI's own resolver.
    BEFORE bootstrap. A firing is not always a new day: on 2026-09-17 the
    schedule delivered its stored prompt again minutes after that day's run had
    already merged to main and drafted its email, because the first firing was
-   interrupted during its wrap.
+   interrupted during its wrap. With no `--run-date` it reads the UTC date,
+   which at the usual 06:05Z wake is tomorrow in Anchorage; when the two
+   differ it prints a NOTE with the Anchorage date's own verdict and the
+   command to run (2026-11-08). The run date is the Anchorage date, so run
+   that command. CLEAR there makes it the run date. ALREADY_SHIPPED there means
+   read that date's `run_state.json` before anything else: a deck that woke
+   tonight makes this firing a re-fire (the exit 3 rules below), and one that
+   woke on an earlier day means the date was taken (the run-date rule above:
+   the next free date, with the reason in `date_note`).
 
    - exit 0, CLEAR: proceed to step 1. This is a new day.
    - exit 3, ALREADY_SHIPPED: **do not start a second deck for this date.**

@@ -93,6 +93,9 @@ refuses_automated_fetch:
     - {host: "cms.gov",                 route: "403 (observed 2026-08-31). The Alaska half of a CMS award is normally also published by the Alaska Department of Health, and community papers such as the Kodiak Daily Mirror carry the per-awardee dollar figures the national release omits"}
     - {host: "govtribe.com",            route: "403 (observed 2026-08-31). highergov.com fetches and carries solicitation status, amendment history and response deadlines, so it is the SAM.gov mirror of record"}
     - {host: "datacenterdynamics.com",  route: "403 plus a bot interstitial (observed 2026-08-31). No route known"}
+    - {host: "akleg.gov",               route: "WebFetch answers 403 (2026-10-25, No.96) while curl and scripts/fetch_pdf_text.py read it through the agent proxy (verified TLS, 2026-11-08). Fetch bill text and BASIS pages with curl; the docket watch's BASIS sweep is the other route"}
+    - {host: "aws.state.ak.us",         route: "WebFetch answers 403 (2026-10-25, No.96), and two Online Public Notices answered HTTP 200 'Request Rejected' to a run on 2026-11-04 (No.105). Retry with curl; the agency's own newsroom or a docket copy is the fallback"}
+    - {host: "alaska.edu",              route: "scripts/fetch_pdf_text.py and curl fail TLS on it: the proxy passes it through and its chain ends at emSign Root CA - G1, which is not among this container's 122 roots (openssl s_client, 2026-11-08, No.109). Never disable verification. WebFetch reads it; it also answered 503 all day on 2026-11-08"}
 
 # KEYLESS PRIMARY ROUTES, each measured working by a scout or the showrunner on
 # the date given. These turn a secondary story into a primary one, which is what
@@ -115,6 +118,9 @@ keyless_primary_routes:
     - {what: "a Federal Register notice in full",
        url: "https://www.federalregister.gov/documents/full_text/text/YYYY/MM/DD/<docnum>.txt",
        note: "see the refusal block above; the HTML page redirects and this does not"}
+    - {what: "any FERC docket's filings, and the files themselves",
+       url: "POST https://elibrary.ferc.gov/eLibraryWebAPI/api/Search/AdvancedSearch with docketSearches [{docketNumber: P-15423}]; POST https://elibrary.ferc.gov/eLibraryWebAPI/api/File/DownloadP8File with {accession: <accession>}",
+       note: "added 2026-11-08 from No.93 (2026-10-22), No.96 and No.103, which each read a full filing census and the filed PDFs keyless. The Federal Register never lists interventions or answers, which is how the DeepGreen item missed two motions for six weeks"}
     - {what: "text out of a PDF when nothing local can read one",
        url: "https://r.jina.ai/<the pdf url>",
        note: "a proxy to TRY rather than a route to rely on. It made a 70-page NPFMC deployment plan fully quotable on 2026-09-15 and returned an empty body for other PDFs on the same host the same day"}

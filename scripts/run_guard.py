@@ -20,8 +20,19 @@ Exit codes are distinct on purpose, so a run can branch on them:
   3  this date already shipped. Do NOT start a new deck.
   1  the evidence disagrees with itself. A human should look.
 
+THE ANCHORAGE DATE IS PRINTED BESIDE IT (2026-11-08, weekly pass). The
+routine's run date is the America/Anchorage date, and the trigger wakes at
+about 06:05Z, which is the previous evening in Anchorage all winter. So the UTC
+default named tomorrow on every November run, and a re-fire of a deck that had
+just shipped would have read CLEAR for tomorrow. With no --run-date this now
+also reads the Anchorage date when the two differ and prints its verdict and
+the command to run, and --json carries utc_date, anchorage_date and
+anchorage_verdict. The default and the exit code are unchanged: which date
+governs a late wake against a re-fire is the owner's call
+(knowledge/MACHINE_QUEUE.md, escalated 2026-10-25).
+
 Usage:
-  python3 scripts/run_guard.py                       (today, UTC)
+  python3 scripts/run_guard.py                       (today, UTC; Anchorage's printed too)
   python3 scripts/run_guard.py --run-date 2026-09-17
   python3 scripts/run_guard.py --json
 """
@@ -31,6 +42,11 @@ import datetime as dt
 import json
 import sys
 from pathlib import Path
+
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:          # pragma: no cover, py < 3.9
+    ZoneInfo = None
 
 REPO = Path(__file__).resolve().parent.parent
 
@@ -65,16 +81,44 @@ def evidence(run_date):
     return ev
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--run-date",
-                    default=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d"))
-    ap.add_argument("--json", action="store_true")
-    args = ap.parse_args()
-
-    ev = evidence(args.run_date)
+def verdict_of(ev):
+    """(verdict, exit code) from one date's evidence."""
     complete = ev["run_state_status"] == "complete"
     n_slides = len(ev["shipped_artifacts"])
+    if n_slides >= 5:
+        return "ALREADY_SHIPPED", 3
+    if n_slides == 0 and not complete:
+        return "CLEAR", 0
+    return "PARTIAL", 1
+
+
+def anchorage_today(now=None):
+    """The America/Anchorage calendar date, or None without a tz database."""
+    if ZoneInfo is None:
+        return None
+    try:
+        now = now or dt.datetime.now(dt.timezone.utc)
+        return now.astimezone(ZoneInfo("America/Anchorage")).strftime("%Y-%m-%d")
+    except Exception:
+        return None
+
+
+def main(argv=None, now=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run-date", default=None)
+    ap.add_argument("--json", action="store_true")
+    args = ap.parse_args(argv)
+    now = now or dt.datetime.now(dt.timezone.utc)
+    defaulted = args.run_date is None
+    if defaulted:
+        args.run_date = now.strftime("%Y-%m-%d")
+
+    ev = evidence(args.run_date)
+    ak = anchorage_today(now) if defaulted else None
+    if ak and ak != args.run_date:
+        ev["utc_date"] = args.run_date
+        ev["anchorage_date"] = ak
+        ev["anchorage_verdict"] = verdict_of(evidence(ak))[0]
 
     # The slides under runs/ are the primary evidence, because runs/ IS the
     # shipped location and a deck only lands there at Phase 11. status and
@@ -82,12 +126,7 @@ def main():
     # 2026-09-17 carry neither, so requiring them would report every historical
     # date as half-finished. The floor is 5 because the degradation ladder's
     # reduced deck never goes below 5 slides.
-    if n_slides >= 5:
-        verdict, code = "ALREADY_SHIPPED", 3
-    elif n_slides == 0 and not complete:
-        verdict, code = "CLEAR", 0
-    else:
-        verdict, code = "PARTIAL", 1
+    verdict, code = verdict_of(ev)
 
     ev["verdict"] = verdict
     if args.json:
@@ -107,6 +146,18 @@ def main():
         elif verdict == "PARTIAL":
             print("  Evidence disagrees. Some of the run landed and some did "
                   "not. Resume the unfinished phases; do not start over.")
+        if ev.get("anchorage_date"):
+            print(f"  NOTE: that is the UTC date. Anchorage is on "
+                  f"{ev['anchorage_date']}, which reads "
+                  f"{ev['anchorage_verdict']}; the routine's run date is the "
+                  f"Anchorage date (taking the next free date only when it is "
+                  f"taken). Run: python3 scripts/run_guard.py --run-date "
+                  f"{ev['anchorage_date']}")
+            if ev["anchorage_verdict"] != "CLEAR":
+                print(f"  The Anchorage date already holds a deck. If it "
+                      f"shipped tonight this firing is a RE-FIRE of it, not a "
+                      f"new day; read runs/{ev['anchorage_date']}/run_state.json "
+                      f"before starting anything.")
     sys.exit(code)
 
 

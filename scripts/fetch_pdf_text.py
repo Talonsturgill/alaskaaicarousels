@@ -246,6 +246,25 @@ def _fetch(url, max_mb, timeout, allow_local=False):
     except urllib.error.HTTPError as exc:
         raise RuntimeError("HTTP %s %s" % (exc.code, exc.reason))
     except urllib.error.URLError as exc:
+        # A CHAIN THIS CONTAINER CAN'T VERIFY IS THE HOST'S, NOT THIS SCRIPT'S
+        # (2026-11-08, weekly pass; No.109's incident note). alaska.edu failed
+        # here with CERTIFICATE_VERIFY_FAILED even with SSL_CERT_FILE set to the
+        # proxy bundle, while akleg.gov and w3.org read fine through the same
+        # proxy. Measured with openssl s_client through the proxy: alaska.edu is
+        # passed through untouched and its chain ends at emSign Root CA - G1,
+        # which is not among the 122 roots in this container's store, and curl
+        # fails on it identically. Verification is never turned off; the message
+        # says what it is and where to go instead.
+        if "CERTIFICATE_VERIFY_FAILED" in str(exc.reason):
+            raise RuntimeError(
+                "could not verify the host's TLS certificate (%s). This is the "
+                "HOST'S chain, not this script or the agent proxy: the trust store "
+                "here (SSL_CERT_FILE=%s) has no root for it, and curl fails the same "
+                "way (alaska.edu, 2026-11-08: its chain ends at emSign Root CA - G1). "
+                "Never disable verification. Read the document through WebFetch, "
+                "or find the same PDF on another host (a docket, a mirror, the "
+                "agency's other domain) and cite that"
+                % (exc.reason, os.environ.get("SSL_CERT_FILE", "unset")))
         raise RuntimeError("could not reach it: %s" % exc.reason)
     except OSError as exc:
         raise RuntimeError("could not read it: %s" % exc)

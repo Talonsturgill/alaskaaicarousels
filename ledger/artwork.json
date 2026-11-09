@@ -3953,6 +3953,44 @@
         "NEW: SHARED BUILDING MODULE (akshell.js) for three GPU frames of one subject",
         "NEW: PROJECTED INTERIOR PAINT over an SDF raymarch where the march leaves a covered volume black"
       ]
+    },
+    {
+      "run_date": "2026-11-08",
+      "carousel_no": 109,
+      "slide_count": 9,
+      "hero_structure": "NEW: TWO-LIGHT EVIDENCE TABLE, one laid sheet read in reflected and transmitted light through a conservation lab's instruments: bench plan oblique with the light-table corner (01), engraved loupe macro (02), split sheet across the table edge (03), the record inked on a panel strip (04), a cabinet-oblique paper mould with 15 bays (05), GPU sheets hung against a light panel (06), two overlapping sheets on the table (07), a curled corner and a title block (08), the sheet under a low key with a printed gold rule (09)",
+      "atmosphere": "NEW: LIGHT-SHEET DAYLIGHT IN A DARK LAB, cool 6500 K panel emission plus one raking key from upper left",
+      "depth_technique": "aklaid.js laid-paper thickness field (flocs, warped laid lines, chain lines, fibre, watermark wire) shaded as relief in reflected light and as transmission over emissive panels; cabinet-oblique painter's solids (05); akthree GPU sheets with emissive maps and soft spill casts (06); a 2D cylinder roll with white-line engraving (08)",
+      "line_voice": "drafting",
+      "continuity_device": "motif:the credit-line slot, four gold L-corner brackets that collapse to a node, become the mould's wire, a bracket over the overlap, a title block rule and finally a printed gold rule",
+      "continuity_devices": [
+        "one laid sheet in two lights",
+        "the gold credit-line slot",
+        "one conservation lab camera move",
+        "light-table edge tease 01 to 03"
+      ],
+      "hook_archetype": "NEW: THE AUTHORSHIP QUESTION",
+      "palette_family": "NEW: LIGHT-SHEET, LAID BONE, SLATE AND IRON-GALL (room #070B12, bench pool #2C3A4B, paper reflected #6F7A86 to #B7C0C9, transmitted #EAF2F8, iron-gall ink #1B2230, gold #FFC72C for the credit line only)",
+      "type_pairing": "Space Grotesk 520 display and 400 body + Instrument Serif for quoted words only + JetBrains Mono 500 caps",
+      "narrative_structure": "THE TWO LIGHTS: claim, counterclaim, record, stakes, rest, reconciliation, position, ask, the structure carried by alternating reflected and transmitted light",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "aklaid.js paper field",
+        "AKLAID.paint reflected/transmitted",
+        "cabinet oblique",
+        "akthree GPU emissive sheets",
+        "white-line engraving on a cylinder roll",
+        "AKPOST.grade",
+        "multiply transmission"
+      ],
+      "new_techniques_logged": [
+        "NEW: LAID-PAPER FIELD MODULE (aklaid.js), one thickness field read as relief in reflected light and as transmission in transmitted light",
+        "NEW: DENSITIES ADD, overlapping sheets each painted on white and multiplied over one table so a double thickness darkens twice"
+      ]
     }
   ]
 }

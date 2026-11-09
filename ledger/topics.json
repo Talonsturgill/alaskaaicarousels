@@ -4465,6 +4465,49 @@
       ],
       "claims": 57,
       "note": "UPDATE of No.94 (2026-10-23, the ordinance as introduced): new are the agendized hearing, the staff recommendation and its two amendments, no zone for data centers, and the draft plan's data center section. Fourth Fairbanks data center deck in 36 days (No.76, No.83, No.94). The referral date conflicts in the record (October 22nd vs 26th) and is not printed. The town hall quote is not tied to the ordinance."
+    },
+    {
+      "run_date": "2026-11-08",
+      "carousel_no": 109,
+      "topic": "The University of Alaska Board of Regents' system AI statement, \"AI Engaged\" (6 guiding principles, 4 investment priorities, 5 system-wide expectations; curriculum and integrity left with UAA, UAF and UAS), set for a vote on November 5th at the regents' November 4th to 6th meeting at UAF. UAA professors Gregory Hartley and Joel Potter wrote in the Anchorage Daily News that Anthropic's Claude generated the initial draft and that its role was concealed until October 9th; five UA faculty answered that anyone who met with administrators and board members knew, and called the later small AI attribution a good move. The vote's outcome was unconfirmed at ship (UA board pages answered 503 all day).",
+      "angle": "A WATERMARK IS NOT A CREDIT LINE: both op-eds can be true at once, and that is the failure; a disclosure only insiders could see works like a watermark, so a public document owes readers a printed credit line from the first public draft. One laid sheet read in reflected and transmitted light.",
+      "entities": [
+        "University of Alaska Board of Regents",
+        "University of Alaska",
+        "AI Engaged",
+        "Gregory Hartley",
+        "Joel Potter",
+        "University of Alaska Anchorage",
+        "University of Alaska Fairbanks",
+        "University of Alaska Southeast",
+        "Anthropic",
+        "Claude",
+        "Anchorage Daily News"
+      ],
+      "keywords": [
+        "university AI statement",
+        "AI disclosure",
+        "AI-drafted policy",
+        "credit line",
+        "authorship attribution",
+        "board of regents vote",
+        "guiding principles",
+        "investment priorities",
+        "system-wide expectations",
+        "faculty op-ed",
+        "higher education AI governance"
+      ],
+      "headline": "Who drafted UA's AI statement?",
+      "sources_lead": [
+        "https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/",
+        "https://www.adn.com/opinions/2026/11/05/opinion-humans-not-robots-shaped-uas-approach-to-ai/",
+        "https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting"
+      ],
+      "beats": [
+        "state-policy"
+      ],
+      "claims": 45,
+      "note": "New story; the docket has tracked ua-regents-ai-policy since September. Outcome of the November 5th vote unconfirmed, no slide asserts it. Runner-up UAF Critical Minerals Accelerator Engine."
     }
   ]
 }
