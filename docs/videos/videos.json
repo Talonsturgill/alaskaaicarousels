@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "who-holds-the-transcript",
+      "date": "2026-11-09",
+      "title": "Who Holds the Transcript",
+      "caption": "Alaska's court AI policy bars staff and judges from making their own AI hearing transcripts while it says the court's own staff and judges will soon get AI transcripts of every hearing, expected by fall and restricted to internal use.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-09-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-09-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-09-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-09-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-08",
       "date": "2026-11-08",
       "title": "Two cables under a Utqiagvik road, and the number nobody published",
