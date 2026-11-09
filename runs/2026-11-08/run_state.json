@@ -140,7 +140,13 @@
       ],
       "site_build": "2026-11-08",
       "gates": "gate_status --require 0 FAIL; verify-pasted PASS",
-      "docket_alerts": "1 email, 1 alert"
+      "docket_alerts": "1 email, 1 alert",
+      "merged": {
+        "pr": 480,
+        "merge_sha": "f9ce8b84",
+        "codex": "Completed on e33ad81, no findings",
+        "ci": "6/6 green"
+      }
     },
     "upgrade": {
       "status": "done",
@@ -152,8 +158,21 @@
         "knowledge/MACHINE_QUEUE.md"
       ]
     },
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": {
+      "status": "done",
+      "draft_id": "r6019574580645193712",
+      "to": "docket@alaskaaihq.com",
+      "preview_mode": "remote",
+      "urls_verified": [
+        "slide-01.webp 200",
+        "slide-09.webp 200",
+        "carousel.pdf 200",
+        "contact_sheet.webp 200"
+      ]
+    },
+    "retro": {
+      "status": "done"
+    }
   },
   "phase_3_6": {
     "site_signoff": "PASS, 172 pages, 18 checks",
@@ -161,5 +180,6 @@
     "gaswatch_pagecheck": "PASS, read November 8th, 96 days on record, chart present",
     "cron_health": "PASS, 7 scheduled workflows checked (plus Pages and live output), no repairs needed",
     "site_fixes": "none needed; the site sign-off and page check were clean on the first build"
-  }
+  },
+  "status": "complete"
 }
