@@ -1,0 +1,216 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'UA Board of Regents \u00b7 Fairbanks \u00b7 November 4th to ' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Read in ordinary light' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '01 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the sheets foot on the lit slate pool': shadow L* 5.7 vs ground L* 10.7, dL 4.9 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the credit-line slot, empty on the bench, glowing at the table': canvas 89.8 dE, page 89.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Who draftedUA'sAI statement?' fits 3/3 lines at 131.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Quoted \u00b7 Hartley and Potter \u00b7 ADN opinion, Novembe' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Ordinary light' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '02 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the loupe barrel on lit laid paper': shadow L* 15.3 vs ground L* 59.0, dL 43.7 at 432w"
+      ],
+      "motifs": [
+        "'the slot corner magnified in the lens': canvas 86.0 dE, page 85.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the engraved loupe barrel': canvas 68.5 dE, page 56.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Claude wrote the first draft,two UAA profess' fits 2/2 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Quoted \u00b7 five UA faculty \u00b7 ADN opinion, November 5' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Carroll \u00b7 Cason \u00b7 Ryan \u00b7 Harnish \u00b7 Trochim' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Ordinary light' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Against the light' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '03 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "encodings": [
+        "'the same sheet shows no mark in ordinary light and the AI mark against the light': dE 27.2, AUC 1.00, visible 100%/100%, seen 1760/1760px at 432w"
+      ],
+      "motifs": [
+        "'the credit-line slot spanning the two lights': canvas 54.9 dE, page 80.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the AI watermark on the table half': canvas 9.8 dE, page 10.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Five faculty answerit was no secret.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'The drafting record, source by source' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Dashed leader \u00b7 an op-ed's account alone' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '04 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the sheets lower deckle on the lit panel': shadow L* 76.4 vs ground L* 82.6, dL 6.2 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "axis census: 'the drafting record on the chain line': 6 of this axis's 13 declared mark(s) carry no more ink than the band's own texture (1.3), while the strongest declared mark reads 39.3. Per mark: 400 (4 months since September 2025): ink 1.4, 480 (5 months since September 2025): ink 1.5, 560 (6 months since September 2025): ink 1.6, 640 (7 months since September 2025): ink 1.5, 800 (9 months since September 2025): ink 1.1, 880 (10 months since September 2025): ink 0.8, 1040 (12 months since September 2025): ink 1.0, 1120 (13 months since September 2025): ink 1.7, 1200 (14 months since September 2025): ink 2.5, 720 (8 months since September 2025): ink 36.4, 960 (11 months since September 2025): ink 36.5, 1142 (13.28 months since September 2025): ink 5.6, 1210 (14.12 months since September 2025): ink 39.3. That spread is not a drawing-weight problem; it is a mark that is not where it is declared. The nearest mark-strength ink to the mark declared at 640 is at 719, 79 px away (ink 36.4, and that position reads as 7.99 months since September 2025). The nearest mark-strength ink to the mark declared at 800 is at 720, 80 px away (ink 36.4, and that position reads as 8 months since September 2025). The nearest mark-strength ink to the mark declared at 880 is at 959, 79 px away (ink 36.5, and that position reads as 10.99 months since September 2025). A constant offset across several marks is the signature of a scale corrected in `data-scale` and left alone in the code that DRAWS it: check the axis endpoint the canvas uses against the `to` this slide declares, before touching any stroke weight.",
+        "leader reaches across the frame: the leader for \"Claude's role disclosed\" is drawn 401 design px long (from (448.2,860) to (734,1141.6) at 45 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it"
+      ],
+      "motifs": [
+        "'the October 9th node on the chain line': canvas 80.2 dE, page 80.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'The board directs an AI strategy' lands 0.0px from its target",
+        "leader 'Claude generates the initial draft' lands 0.0px from its target",
+        "leader \"Claude's role disclosed\" lands 0.0px from its target",
+        "leader 'Regents meet at UAF, vote set November 5th' lands 0.0px from its target",
+        "leader 'The board directs an AI strategy' meets its label 16.3px away",
+        "leader 'Claude generates the initial draft' meets its label 15.5px away",
+        "leader \"Claude's role disclosed\" meets its label 16.2px away",
+        "leader 'Regents meet at UAF, vote set November 5th' meets its label 15.7px away",
+        "leader 'The board directs an AI strategy' is drawn 275 px at 59 degrees, inside the pointer band",
+        "leader 'Claude generates the initial draft' is drawn 317 px at 66 degrees, inside the pointer band",
+        "leader 'Regents meet at UAF, vote set November 5th' is drawn 202 px at 30 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Who said whathappened when.' fits 2/2 lines at 74.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Per UA's November 3rd release' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Guiding principles' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Investment priorities' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'System-wide expectations' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Curriculum and integrity stay with UAA, UAF and UA' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '05 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the mould frame on the lit bench pool': shadow L* 10.3 vs ground L* 34.2, dL 23.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold watermark wire on the mould': canvas 81.4 dE, page 87.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'What the pagewould set.' fits 2/2 lines at 83.5px"
+      ],
+      "asserts": [
+        "'15 bays of the mould, 6 plus 4 plus 5' holds: 15 vs 15 bays, counted over 15 declared marks (within 0)",
+        "'15 bays of the mould, 6 plus 4 plus 5': 15 mark centres probed at r=14px, cohort median 54.8 dE, all present (weakest 52.2 dE)"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 68% / mid 87% / bottom 54% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone [data-breather]",
+        "tiny-text: 'Held to the light' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '06 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "contact shadow: 'the hanging sheets shadow on the spill-lit bench': shadow L* 15.9 vs ground L* 22.2, dL 6.3 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the credit-line slot on the hanging sheet': canvas 80.4 dE, page 80.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "line 'Against the light, the markwas always in the' fits 2/2 lines at 59.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Alaska.Ai's reading' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Hartley and Potter' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'The five faculty' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Both write that AI was used' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '07 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'one bracket over the two watermarks in the overlap': canvas 67.2 dE, page 83.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Both can be true.That's the problem.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'What a public document owes its readers' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Drafted by' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'With what tools' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'When that changed' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '08 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the curled corners cast on the lit pool': shadow L* 9.6 vs ground L* 67.5, dL 57.9 at 432w"
+      ],
+      "motifs": [
+        "'the curled corner': canvas 50.1 dE, page 69.0 dE, 92% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+      ],
+      "fits": [
+        "hl 'Print the credit lineon the first draft.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '09 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the sheets foot on the last lit pool': shadow L* 4.8 vs ground L* 43.2, dL 38.4 at 432w"
+      ],
+      "motifs": [
+        "'the printed gold credit rule in the slot': canvas 89.7 dE, page 89.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Should everypublic documentsay who, or what,' fits 4/4 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 39,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKLAID.paint",
+        "slides": [
+          1,
+          2,
+          3,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKLAID.vnoise",
+        "slides": [
+          1,
+          4,
+          7,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

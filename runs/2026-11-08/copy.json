@@ -1,0 +1,205 @@
+{
+  "run_date": "2026-11-08",
+  "document_title": "Who Drafted UA's AI Statement?",
+  "post_copy": "University of Alaska regents, your AI statement should have printed its credit line from the first draft.\n\nWho drafted AI Engaged? UAA professors Gregory Hartley and Joel Potter wrote that Anthropic's Claude generated the initial draft. They say that was concealed until October 9th.\n\nWas it hidden? Five UA faculty say it was not. Anyone who met with administrators and board members knew, they wrote. They called the later \"small AI attribution\" a \"good move.\"\n\nWho is right? Both can be true. That is the problem. Known in the room is not disclosed in public.\n\nBoth op-eds in their own words face a dated record tagged by source, then what the statement would set and the case for a credit line.\n\nShould a printed credit line be a board rule for every UA document, or each drafter's call?\n\n#UniversityOfAlaska #AIinHigherEd #AlaskaAI\n",
+  "deck_summary_line": "Both op-eds in their own words face a dated record tagged by source, then what the statement would set and the case for a credit line.",
+  "hashtags": [
+    "#UniversityOfAlaska",
+    "#AIinHigherEd",
+    "#AlaskaAI"
+  ],
+  "slides": [
+    {
+      "n": 1,
+      "kicker": "UA BOARD OF REGENTS · FAIRBANKS · NOVEMBER 4TH TO 6TH",
+      "headline": "Who drafted UA's AI statement?",
+      "body": "",
+      "labels": [
+        "READ IN ORDINARY LIGHT"
+      ],
+      "claim_ids": [
+        "C29"
+      ]
+    },
+    {
+      "n": 2,
+      "kicker": "QUOTED · HARTLEY AND POTTER · ADN OPINION, NOVEMBER 4TH",
+      "headline": "Claude wrote the first draft, two UAA professors say.",
+      "body": "Gregory Hartley and Joel Potter wrote that Anthropic's Claude \"generated the initial draft,\" a fact \"concealed for months\" until October 9th. They want the regents to \"abandon the document.\"",
+      "labels": [
+        "ORDINARY LIGHT"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C05",
+        "C08",
+        "C09"
+      ]
+    },
+    {
+      "n": 3,
+      "kicker": "QUOTED · FIVE UA FACULTY · ADN OPINION, NOVEMBER 5TH",
+      "headline": "Five faculty answer it was no secret.",
+      "body": "\"Anyone who met with administrators and board members knew how the original draft was constructed,\" they wrote. Adding \"a small AI attribution\" later was, in their words, \"a good move.\"",
+      "labels": [
+        "CARROLL · CASON · RYAN · HARNISH · TROCHIM",
+        "ORDINARY LIGHT",
+        "AGAINST THE LIGHT"
+      ],
+      "claim_ids": [
+        "C12",
+        "C13",
+        "C16"
+      ]
+    },
+    {
+      "n": 4,
+      "kicker": "THE DRAFTING RECORD, SOURCE BY SOURCE",
+      "headline": "Who said what happened when.",
+      "body": "",
+      "labels": [
+        "DASHED LEADER · AN OP-ED'S ACCOUNT ALONE",
+        "MAY",
+        "The board directs an AI strategy",
+        "PER UA",
+        "BEFORE OCTOBER 9TH",
+        "Claude generates the initial draft",
+        "PER HARTLEY AND POTTER",
+        "OCTOBER 9TH",
+        "Claude's role disclosed",
+        "PER HARTLEY AND POTTER, DISPUTED BY THE FIVE",
+        "NOVEMBER 4TH TO 6TH",
+        "Regents meet at UAF, vote set November 5th",
+        "PER UA AND THE OP-ED",
+        "JANUARY",
+        "MAY",
+        "SEPTEMBER",
+        "NOVEMBER"
+      ],
+      "claim_ids": [
+        "C01",
+        "C04",
+        "C05",
+        "C13",
+        "C29",
+        "C31"
+      ]
+    },
+    {
+      "n": 5,
+      "kicker": "PER UA'S NOVEMBER 3RD RELEASE",
+      "headline": "What the page would set.",
+      "body": "Its stated intent, as Hartley and Potter quote it, is to \"embrace artificial intelligence as a strategic enabler.\"",
+      "labels": [
+        "6",
+        "GUIDING PRINCIPLES",
+        "4",
+        "INVESTMENT PRIORITIES",
+        "5",
+        "SYSTEM-WIDE EXPECTATIONS",
+        "CURRICULUM AND INTEGRITY STAY WITH UAA, UAF AND UAS"
+      ],
+      "claim_ids": [
+        "C02",
+        "C32",
+        "C33"
+      ]
+    },
+    {
+      "n": 6,
+      "kicker": "HELD TO THE LIGHT",
+      "headline": "Against the light, the mark was always in the paper.",
+      "body": "",
+      "labels": [],
+      "claim_ids": []
+    },
+    {
+      "n": 7,
+      "kicker": "ALASKA.AI'S READING",
+      "headline": "Both can be true. That's the problem.",
+      "body": "People who met with administrators knew. The attribution on the page came later, a small one, by the rebuttal's own account. Known in the room is not disclosed in public. A mark only insiders can see is a watermark.",
+      "labels": [
+        "HARTLEY AND POTTER",
+        "THE FIVE FACULTY",
+        "BOTH WRITE THAT AI WAS USED"
+      ],
+      "claim_ids": [
+        "C04",
+        "C12",
+        "C13",
+        "C16"
+      ]
+    },
+    {
+      "n": 8,
+      "kicker": "WHAT A PUBLIC DOCUMENT OWES ITS READERS",
+      "headline": "Print the credit line on the first draft.",
+      "body": "On the page, where readers read it, from the first public draft. Hartley and Potter call the disclosure \"too late.\" The five faculty call the attribution \"a good move.\" Both treat it as owed.",
+      "labels": [
+        "DRAFTED BY",
+        "WITH WHAT TOOLS",
+        "WHEN THAT CHANGED"
+      ],
+      "claim_ids": [
+        "C06",
+        "C16"
+      ]
+    },
+    {
+      "n": 9,
+      "kicker": "",
+      "headline": "Should every public document say who, or what, drafted it?",
+      "body": "",
+      "labels": [
+        "ALASKA.AI"
+      ],
+      "claim_ids": []
+    }
+  ],
+  "caption_meta": {
+    "opening_move": "LETTER FRAME",
+    "structure": "Q AND A",
+    "closing_move": "WHO DECIDES (a board rule or each drafter's call)"
+  },
+  "first_8_words": "University of Alaska regents, your AI statement should",
+  "hook_type": "THE AUTHORSHIP QUESTION, a letter to the regents stating the position, then three questions answered in turn, before a who-decides close",
+  "caption_claim_ids": [
+    "C04",
+    "C05",
+    "C08",
+    "C12",
+    "C13",
+    "C16",
+    "C30"
+  ],
+  "total_chars": 836,
+  "hook_chars": 105,
+  "first_comment": "Sources, primary first\nUniversity of Alaska, news release via EIN Presswire, Board of Regents to continue strategic future investments at November board meeting (the Fairbanks meeting, the May direction, and the statement's six principles, four priorities and five expectations), 2026-11-03, https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting\nAnchorage Daily News, opinion by UAA associate professors Gregory Hartley and Joel Potter, in the authors' own words, on who wrote UA's AI plan, 2026-11-04, https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/\nAnchorage Daily News, rebuttal opinion by UA faculty Jennifer Carroll, Jackie Cason, James Ryan, Andrew Harnish and Erin Trochim, in the authors' own words, on humans, not robots, shaping UA's approach to AI, 2026-11-05, https://www.adn.com/opinions/2026/11/05/opinion-humans-not-robots-shaped-uas-approach-to-ai/\nKTOO, University of Alaska regents consider draft AI policy, by Jamie Diep, 2026-09-16, https://www.ktoo.org/2026/09/16/university-of-alaska-regents-consider-draft-ai-policy/\nThe outcome of the regents' November 5th vote was not reported in any source checked through November 8th.\nThe statement's own text appears only as Hartley and Potter quote it, because its page on alaska.edu returned an error when checked.\n\nEvery Alaska AI decision on the record, each with its live deadline, is tracked at https://alaskaaihq.com\nSat on a UA committee or saw an early draft? Add what you know below, with a link where one exists.",
+  "aftercare": [
+    "Post Tuesday to Thursday between 8 and 11 a.m. Alaska time, the strongest slots. The next one is Tuesday, November 10th. Drafts arrive daily and you own the cadence.",
+    "Before posting, check the UA Board of Regents page (alaska.edu/bor) for the November 5th vote outcome. If it is still unreported, post the caption unchanged. If it has been reported, leave the caption and slides as they are, since they describe the record and take no position on the vote, and give the outcome with a link in a reply.",
+    "Paste the sources comment within 60 seconds of posting.",
+    "Reply to every comment in the first hour. Keep replies attributed. Claude's role is Hartley and Potter's account, the five faculty dispute only that it was concealed, and the deck takes no side on whether AI is good for UA.",
+    "For your decision, consider adding a one-line disclosure to the first comment saying this deck was produced with an AI routine. The deck argues that a public document should print its credit line, so holding the page to the same line answers the obvious reply before anyone makes it. Possible wording, \"Credit line. This carousel was researched, written and drawn by an AI routine, and a person chose to post it.\"",
+    "Note saves and comments at 48 hours."
+  ],
+  "editor_notes_for_email": "No source checked through November 8th reports the outcome of the November 5th vote (alaska.edu returned HTTP 503 all day), so no surface says how it went. That Claude drafted the statement is Hartley and Potter's allegation and is attributed on every frame where it appears. The five faculty don't deny AI drafting, only that it was concealed. The statement's words appear only as Hartley and Potter quote them. The board's direction is dated May, per UA's own release, and not June as the professors' op-ed has it. RECOMMENDATION for your decision: this deck argues for credit lines and was itself produced by this AI routine, so consider a one-line disclosure in the first comment (wording in the aftercare list). The self-disclosure colophon proposed in the directors room was left off the artwork because whether and how Alaska.Ai credits its own tools is a brand decision for you.",
+  "claims_used": [
+    "C01",
+    "C02",
+    "C04",
+    "C05",
+    "C06",
+    "C08",
+    "C09",
+    "C12",
+    "C13",
+    "C16",
+    "C29",
+    "C30",
+    "C31",
+    "C32",
+    "C33"
+  ]
+}

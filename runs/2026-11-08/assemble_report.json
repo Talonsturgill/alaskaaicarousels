@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-08/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 14467895,
+  "pdf_mb": 14.47,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-08/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-08/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Who Drafted UA's AI Statement?",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "17825d7554fac86bbd9f6bb8451e4df7ecd5cfacfa1e182dad442505dc1431c1",
+        "bytes": 7261885
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "a1c31d20d272e7ce4273c45f82e68365c3b28ac0ff6a4eef9dfbbd32db023322",
+        "bytes": 6743094
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "a26ee660bdd372ee069ce06da0cf49a4e2a92e14ed3baa250be73580e1c9fc9c",
+        "bytes": 6863679
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "a42ac06a14f702a3688a8a010b6afc01051910d037bc89432c21f47b524f6c0c",
+        "bytes": 6084187
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d1cd360f4f36bbcdd29e071243ef5ac7556a546a7e273bc5dc38c1e5364be1ca",
+        "bytes": 6886562
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "5fdec21f0f2db992f5c17caff1154764e80bf4ff122afa63d474d5b02237767c",
+        "bytes": 6178631
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "752e296dbf218a8d6e214fc5a9c1d938b9221d8a1734805e29507402ab0686ee",
+        "bytes": 6131316
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "a9f8a3d0a8c59e910dd132163e0a1e0cafaf7df347c7c604e11be79f7b62cb0f",
+        "bytes": 6522355
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "37ec17273be8ced42086bd6048c874a6bf589e1f7ed9a749199172e9c067de4b",
+        "bytes": 7440724
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "48334ccda2a1558c335a5c4605b78bbe9b1e36d8f0d9f6d5887df291f0da1d62",
+        "bytes": 7405
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "35e08aba96819b7acbb5041e03c2f237a1dc3299da074c3cd89870d392dbb525",
+        "bytes": 10337
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d97f2be39cf4b5bc68c9f7ce7fb9089e7e552ebce0a561fa3d48a38e33057c96",
+        "bytes": 7406
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "1f800627ad069fbb6d181f08daac16f2a5110a813e013947e4c88dc06005b01d",
+        "bytes": 11958
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "659d107a06d75b0ad390ef52a58c0a0ce511a2fa86d49e625d31450df8ac0e2f",
+        "bytes": 10072
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "4081762401fcb62b651479ad32f6f4af185066f924b185fb374546f9247a3153",
+        "bytes": 14464
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "d86839355628fd428433bb8c144f44d4101dcc28f4be34753f363d600ce4bfbf",
+        "bytes": 6879
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "840b00dc9fd6d7d921e52ff8714b38f50953147eb2be486fee7b1625280d40ef",
+        "bytes": 10215
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "cf71edfbada7840f29b28538919f0f9c1cc2ef4ba4809e761a12d700870b90c9",
+        "bytes": 6193
+      }
+    ]
+  }
+}

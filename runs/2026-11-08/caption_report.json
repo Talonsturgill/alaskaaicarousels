@@ -1,0 +1,19 @@
+{
+  "chars": 836,
+  "hook": "University of Alaska regents, your AI statement should have printed its credit line from the first draft.",
+  "hook_len": 105,
+  "commas": 4,
+  "comma_per_100": 0.51,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#UniversityOfAlaska",
+    "#AIinHigherEd",
+    "#AlaskaAI"
+  ],
+  "deck_summary": "Both op-eds in their own words face a dated record tagged by source, then what the statement would set and the case for a credit line.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 60
+}
