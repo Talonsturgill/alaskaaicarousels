@@ -2644,6 +2644,36 @@
       "last_confirmed": "2026-11-08",
       "run_date": "2026-11-08",
       "carousel_no": 109
+    },
+    {
+      "id": "assemble-timeout-follows-render",
+      "instinct": "A slide that needs a long render budget needs the same budget in assemble.py's vector pass, or the whole deck silently drops to a raster PDF.",
+      "evidence": "No.110 slide 05's raymarch took about 95 s; assemble.py's fixed 30 s renderReady race failed and fell back to raster until --timeout was added.",
+      "confidence": 0.6,
+      "learned": "2026-11-09",
+      "last_confirmed": "2026-11-09",
+      "run_date": "2026-11-09",
+      "carousel_no": 110
+    },
+    {
+      "id": "fold-per-column-not-per-object",
+      "instinct": "A cosmetic blend keyed to each object's size steps at every boundary; key it to a value smoothed across neighbours so adjacent small objects never meet in a tonal seam.",
+      "evidence": "No.110 rail: a per-pocket fold toward a groove tone made stepped seams on 09; a 40 px box-smoothed weight removed them.",
+      "confidence": 0.55,
+      "learned": "2026-11-09",
+      "last_confirmed": "2026-11-09",
+      "run_date": "2026-11-09",
+      "carousel_no": 110
+    },
+    {
+      "id": "sdf-petals-stop-after-two",
+      "instinct": "If an SDF form fails the critic twice for shape, change the instrument (a GPU mesh or no petals) rather than rebuild the distance function a third time.",
+      "evidence": "No.110 slide 05: flat plates, curled plates and cylinder-bent sheets all read as shards; the scorer's fix was to drop the petals for a clean akthree pocket.",
+      "confidence": 0.5,
+      "learned": "2026-11-09",
+      "last_confirmed": "2026-11-09",
+      "run_date": "2026-11-09",
+      "carousel_no": 110
     }
   ]
 }

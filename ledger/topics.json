@@ -4508,6 +4508,50 @@
       ],
       "claims": 45,
       "note": "New story; the docket has tracked ua-regents-ai-policy since September. Outcome of the November 5th vote unconfirmed, no slide asserts it. Runner-up UAF Critical Minerals Accelerator Engine."
+    },
+    {
+      "run_date": "2026-11-09",
+      "carousel_no": 110,
+      "topic": "Alaska's Rural Health Transformation Program: CMS awarded Alaska $272,653,149 for Year 2 on November 9th, second only to Texas in the award table, with a $100 million base per state and the rest weighted by workload and progress checks. The closed Year 1 list holds 254 preliminary awards (just under $249 million); seven include an AI tool, about $5.4 million, led by the Alaska Stroke Coalition's $3,156,626 imaging network across 21 hospitals its award never names. About $4.5 million of the AI money is filed Statewide. The Department of Health plans a public dashboard of every award by year end.",
+      "angle": "SEVEN OF 254 / THE DOLLAR WEB: every Year 1 award drawn as one blister web at one scale, pocket length as dollars, the seven AI awards in gold; together they total less than one robotic surgery award in Ketchikan, and most of the AI money has no address, so the year-end dashboard should carry the seven AI aims.",
+      "entities": [
+        "Alaska Department of Health",
+        "Centers for Medicare & Medicaid Services",
+        "Rural Health Transformation Program",
+        "Alaska Stroke Coalition",
+        "MapHabit",
+        "Maniilaq Association",
+        "Mat-Su Regional Medical Center",
+        "Ptarmigan Pediatrics",
+        "Statewide Independent Living Council of Alaska",
+        "Kodiak Community Health Center",
+        "PeaceHealth Ketchikan"
+      ],
+      "keywords": [
+        "rural health transformation",
+        "RHTP Year 2",
+        "healthcare AI",
+        "stroke imaging AI",
+        "ambient clinical documentation",
+        "EEG headband",
+        "award dashboard",
+        "preliminary awards",
+        "Statewide filing",
+        "robotic surgery",
+        "CMS award formula"
+      ],
+      "headline": "254 rural health awards. Seven include AI.",
+      "sources_lead": [
+        "https://www.cms.gov/newsroom/press-releases/trump-administration-announces-10-billion-second-year-rural-health-transformation-awards-all-50",
+        "https://www.cms.gov/newsroom/fact-sheets/rural-health-transformation-program-year-2-awards",
+        "https://health.alaska.gov/media/osjhhdvl/alaska-department-of-health-announces-completion-of-rural-health-transformation-program-year-1-funding-cycle.pdf"
+      ],
+      "beats": [
+        "state-policy",
+        "defense-and-federal"
+      ],
+      "claims": 75,
+      "note": "UPDATE on the program covered by No.35, No.45 and No.59 (all outside 30 days); new developments are the November 9th Year 2 award, the closed 254-award Year 1 list and the Year 2 progress rules. Amounts preliminary (October 9th notices); the AI count is a floor. Runner-up Enstar and MEA gas exchange."
     }
   ]
 }

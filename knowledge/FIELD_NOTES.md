@@ -9606,3 +9606,14 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - CUTTING COPY MOVES CLAIMS. Round 3's density cuts on 04 and 05 left C07, C15, C17 and C21 assigned in the storyboard index; plan_drift caught all four. Reconcile the index in the same edit as the cut.
 - caption_check's in-place report was clobbered by a stdout redirect for the second run in a row (No.108, No.109). Queued: write it through a temp file and os.replace.
 - The November 5th vote could not be confirmed (alaska.edu answered 503 all day). Writing the deck about the drafting record rather than the outcome kept every frame true whatever the vote did.
+
+## 2026-11-09, No.110, retro
+
+- A SHARED OBJECT IS NOT A SHARED TEXTURE, BUT IT STILL CARRIES EVERY FRAME'S DEFECT. akweb.js drew the Year 1 web on eight frames, so one wrong axis (the lip's brushed lay ran across the lip) and one aliasing source (pockets narrower than 4 px) showed on every frame at once, and five critics named both in round 1. Fixing them once in the helper fixed eight frames; review the shared object at 100% on its busiest frame (09, the 1 to 6 px pockets) before it rides the deck.
+- A BLEND KEYED TO EACH OBJECT'S SIZE STEPS AT EVERY BOUNDARY. Folding small pockets toward a groove tone by their own length made stepped seams on 09; a weight box-smoothed over about 40 design px removed them. Ease the last award into the flat foil rather than cutting it.
+- SAY WHERE THE GOLD IS WHEN THE DATA IS TOO SMALL TO SEE. Three AI awards on row 8 are 1 to 6 px wide at one scale. A small gold triangle above each pocket in the dark slot locates them at the thumb without drawing any award longer than it is.
+- THE CAMERA CAN BE SOLVED FOR A DATA LANDING. The stroke gelcap on 04 sat 170 px off its rail pocket; sliding the camera along its screen-right vector in four iterations of project-and-correct put it at x 749 exactly. Use it whenever a 3D hero must land on a 2D datum.
+- A FLAT AKTHREE CARD NEEDS A SHADOW CATCHER. A card lying on the counter casts nothing a shadow map can show from an overhead key. A blurred-rect texture plane under it (one soft, offset down-left away from the light; one tight at the edge) gave 01 and 09 their casts in one round.
+- STOP REBUILDING AN SDF FORM AFTER TWO FAILS. Slide 05's torn petals failed as flat plates, curled plates and cylinder-bent sheets; the scorer's fix was to drop the petals for one clean akthree pocket. Change the instrument, not the distance function.
+- assemble.py raced renderReady against a fixed 30 s, so a 95 s raymarch silently dropped the whole deck to a raster PDF. It now takes --timeout; pass the same budget render.py needed.
+- Gold in a headline breaks a single-meaning accent. 01's "AI." was gold and the critic was right: gold meant an award that includes an AI tool on every frame, so the word went white.
