@@ -104,7 +104,7 @@
     var nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
     var diff = Math.max(0, nx * LX + ny * LY + nz * LZ);
     var nh = Math.max(0, nx * HX + ny * HY + nz * HZ);
-    var streak = 0.92 + 0.16 * vnoise1(gx * 0.9, 7) * vnoise1(y * 0.02 + gx * 0.004, 3);
+    var streak = 0.93 + 0.14 * vnoise1(y * 1.7 + 37, 7) * (0.65 + 0.35 * vnoise1(gx * 0.012, 3));   // rolled foil: grain runs along the web
     var base, spec = 0, amb = 0.34;
     if (mat === 0) {
       base = FOIL; var f = (amb + 0.66 * diff) * streak; spec = Math.pow(nh, 24) * 0.25;
@@ -152,14 +152,22 @@
         if (y < Y.web0) {                                   // the rail's dark slot: a steel channel the web hangs in
           var sy = y - Y.top, SH = Y.web0 - Y.top;
           var vv = 13 + 6 * Math.exp(-(SH - sy) / 6);          // lit a little where the web meets it
-          if (sy < 1.5) vv = 70 + 30 * vnoise1(gx * 0.5, 13);  // the channel's lit top lip
+          if (sy < 1.5) vv = 76 + 10 * vnoise1(gx * 0.01, 13);  // the channel's lit top lip, one smooth bevel
           else if (sy < 4) vv = 30;
           D[idx] = srgb(vv * 0.92); D[idx + 1] = srgb(vv * 1.0); D[idx + 2] = srgb(vv * 1.14); D[idx + 3] = 255;
           continue;
         }
         if (y < Y.web1) {
           var flag = k >= 0 ? DATA[k][1] : 0;
-          shadePixel(k, gx, y, flag, tmp, rgb);
+          var Lk = k >= 0 ? X0[k + 1] - X0[k] : 99;
+          if (Lk < 6) {                                     // a narrow pocket: average four sub-columns
+            var ar = 0, ag = 0, ab = 0;
+            for (var sxi = 0; sxi < 4; sxi++) {
+              var sgx = base + (px + (sxi + 0.5) / 4) / S, sk = find(sgx);
+              shadePixel(sk, sgx, y, sk >= 0 ? DATA[sk][1] : 0, tmp, rgb); ar += rgb[0]; ag += rgb[1]; ab += rgb[2];
+            }
+            rgb[0] = ar / 4; rgb[1] = ag / 4; rgb[2] = ab / 4;
+          } else shadePixel(k, gx, y, flag, tmp, rgb);
           // seal edges of the web: a darker crimp line at top and bottom
           var edge = Math.min(y - Y.web0, Y.web1 - y);
           if (edge < 2.2) { var m = 0.55 + 0.45 * edge / 2.2; rgb[0] *= m; rgb[1] *= m; rgb[2] *= m; }
@@ -171,16 +179,23 @@
         var ly = y - Y.lip0, LH = Y.lip1 - Y.lip0;
         var bev = ly < 3 ? 1.0 : (ly < 5 ? 0.55 : 0);
         var face = 0.42 + 0.30 * Math.exp(-ly / 12) - 0.18 * (ly / LH);
-        var br = 0.94 + 0.12 * vnoise1(gx * 0.6 + 11, 5) * vnoise1(gx * 0.05, 9);
+        var br = 0.97 + 0.05 * vnoise1(y * 1.3 + 11, 5) + 0.02 * vnoise1(gx * 0.004 + y * 0.2, 9);   // lay runs along the lip
         var cast = ly > 3 ? 1 - 0.55 * Math.exp(-(ly - 3) / 7) : 1;
         var v = (face * br * cast);
         var cr = STEEL_SH[0] + (STEEL[0] - STEEL_SH[0]) * v, cg = STEEL_SH[1] + (STEEL[1] - STEEL_SH[1]) * v, cb = STEEL_SH[2] + (STEEL[2] - STEEL_SH[2]) * v;
         if (bev) { cr += (210 - cr) * bev * 0.8; cg += (222 - cg) * bev * 0.8; cb += (232 - cb) * bev * 0.8; }
-        if (ly > LH - 2) { cr *= 0.45; cg *= 0.45; cb *= 0.45; }
+        if (ly > LH - 5) { var fm = 1 - 0.5 * (ly - (LH - 5)) / 5; cr *= fm; cg *= fm; cb *= fm; }
         D[idx] = srgb(cr); D[idx + 1] = srgb(cg); D[idx + 2] = srgb(cb); D[idx + 3] = 255;
       }
     }
     cx.putImageData(img, 0, r0);
+    if (o.ticks !== false) {
+      cx.save(); cx.fillStyle = '#FFC72C';
+      pocketsOn(slide).forEach(function (p) { if (!p.gold) return;
+        var mx = (Math.max(0, p.x0) + Math.min(1080, p.x1)) / 2;
+        cx.beginPath(); cx.moveTo(mx - 5.5, 1084.5); cx.lineTo(mx + 5.5, 1084.5); cx.lineTo(mx, 1090); cx.closePath(); cx.fill(); });
+      cx.restore();
+    }
     return { pockets: pocketsOn(slide), band: [Y.web0, Y.web1], lip: [Y.lip0, Y.lip1] };
   }
 
@@ -213,7 +228,7 @@
       if (state === 'stubs') add('line', { x1: x + 6.5, y1: 30, x2: x + 6.5, y2: 38, stroke: '#B9C6D6', 'stroke-width': 1.2, 'stroke-dasharray': '2 2' });
     }
     if (state === 'bracket') add('path', { d: 'M4 32 V36 H125 V32', fill: 'none', stroke: '#B9C6D6', 'stroke-width': 1.2 });
-    if (state === 'boxed') add('rect', { x: 1, y: 1, width: 38, height: 28, fill: 'none', stroke: '#B9C6D6', 'stroke-width': 1.2 });
+    if (state === 'boxed') add('rect', { x: 1, y: 1, width: 55, height: 28, fill: 'none', stroke: '#B9C6D6', 'stroke-width': 1.2 });
     if (state === 'chip') add('rect', { x: 132, y: 4, width: 13, height: 22, rx: 2, fill: 'none', stroke: '#B9C6D6', 'stroke-width': 1.2, 'stroke-dasharray': '3 2' });
     el.appendChild(svg);
     return svg;
