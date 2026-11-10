@@ -168,6 +168,13 @@
             }
             rgb[0] = ar / 4; rgb[1] = ag / 4; rgb[2] = ab / 4;
           } else shadePixel(k, gx, y, flag, tmp, rgb);
+          if (Lk < 14 && flag !== 1) {                      // small awards fold toward one ribbed groove, so a run of
+            var gt = (y - Y.dome0) / (Y.dome1 - Y.dome0), gl, gc;   // narrow pockets reads as formed foil, not a barcode
+            if (gt >= 0 && gt <= 1) { gl = 0.34 + 0.66 * Math.min(1, Math.max(0, 0.5 + 1.1 * (0.5 - gt))); gc = FOIL_IN; }
+            else { gl = 0.72; gc = FOIL; }
+            var gw = 0.55 * (1 - Lk / 14);
+            rgb[0] += (gc[0] * gl - rgb[0]) * gw; rgb[1] += (gc[1] * gl - rgb[1]) * gw; rgb[2] += (gc[2] * gl - rgb[2]) * gw;
+          }
           // seal edges of the web: a darker crimp line at top and bottom
           var edge = Math.min(y - Y.web0, Y.web1 - y);
           if (edge < 2.2) { var m = 0.55 + 0.45 * edge / 2.2; rgb[0] *= m; rgb[1] *= m; rgb[2] *= m; }
