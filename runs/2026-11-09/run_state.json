@@ -1,0 +1,98 @@
+{
+  "run_date": "2026-11-09",
+  "carousel_no": 110,
+  "effort": "high",
+  "date_note": "Woke 2026-11-10 06:05 UTC = 2026-11-09 21:05 AKST; Anchorage date 2026-11-09 has no runs/ dir, so the run date is 2026-11-09.",
+  "woke_utc": "2026-11-10T06:05:56Z",
+  "branch": "tsturg/exciting-knuth-arlqaf",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/plan.md",
+        "out/2026-11-09/already_covered.txt"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "note": "2 searches; nothing genuinely new (vendor carousel benchmarks restate known 6.6 to 7 percent; Tanaka contours already in the library). No FIELD_NOTES entry."
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/scout_merge.md"
+      ],
+      "note": "6 scouts, all read the ALREADY COVERED file in full via Read; searches A25 B24 C25 D25 E25 F20; thin window"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/claims.json"
+      ],
+      "note": "67 claims, 66 primary; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "9 worklist items re-verified; new item rhtp-year-2-awards; ask_answers AGENCY_RULES gained Department of Health; ask payload 1,327 bytes headroom (under 5,000), ask pack under 32,000 tokens only after trimming the new item"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/gaswatch_health.json",
+        "out/2026-11-09/cron_health.json"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/storyboard.md",
+        "out/2026-11-09/selection.md"
+      ],
+      "note": "dossier_check PASS"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/caption.txt",
+        "out/2026-11-09/caption_report.json",
+        "out/2026-11-09/copy.json"
+      ],
+      "note": "caption room needed its one extra round (critic: neither); rewrite LEDGER TALLY / ZOOM outward / PREDICTION passed caption_check"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-09/slides",
+        "out/2026-11-09/render",
+        "assets/js/akweb.js"
+      ],
+      "note": "qa.py WARN 0 fails; bespoke median 0.137; first full build rounds counted as build, not review rounds"
+    },
+    "pixel_review": "done (4 rounds; 05 holdout logged)",
+    "flow_review": "done (revise 7.8, art 7.0; sequence round applied as round 5)",
+    "assemble": "done (vector 7.3 MB)",
+    "scoring": "done (8.51 vs 7.7, ship; art 7.0, craft floor capped at round 5)",
+    "ship": "done (runs/2026-11-09, site rebuilt at 2026-11-09, ledgers appended)",
+    "upgrade": "retro written, 5 items queued; weekly pass not due",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 173 pages, 18 checks",
+    "gaswatch_live": "PASS, checked 2026-11-10T06:21:58Z, no repairs needed",
+    "gaswatch_pagecheck": "PASS, read November 9th, 97 days on record, chart present",
+    "cron_health": "PASS, 7 scheduled workflows checked (plus Pages and live output), no repairs needed",
+    "site_fixes": "none needed; sign-off and page check clean on first build; desktop and phone screenshots of home, docket and gas watch read clean"
+  },
+  "docket_note": "Refreshed 9 worklist items (budget raised to 9 to cover the 3 deferred). Ask payload headroom 4,728 bytes, under 5,000: the next item added may need trimming."
+}

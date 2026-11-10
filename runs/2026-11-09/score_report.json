@@ -1,0 +1,91 @@
+{
+  "run_date": "2026-11-09",
+  "carousel_no": 110,
+  "revision_rounds": 5,
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.0,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.0,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8.0,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8.0,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "weighted_total": 8.51,
+  "computed_total": 8.505,
+  "threshold": 7.7,
+  "ship": true,
+  "hard_fails": [],
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "artwork_score": 7.0,
+  "one_sentence_fix": "Replace 05's torn-petal raymarch with one clean akthree empty pocket (clear PET dome over cleanly die-cut brushed foil, one lit cut rim, a soft contact on lit steel), and strip 04's stray fin, spine and sliver meshes and resolve its gelcap-dome intersection.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 5,
+      "fix": "Drop the petals; one akthree empty pocket with a clear PET dome, a lit cut rim and skylight falloff instead of a vignette."
+    },
+    {
+      "slide": 4,
+      "fix": "Delete leftover petal meshes, seat the gelcap without intersecting the near dome, clearer PET domes."
+    },
+    {
+      "slide": 6,
+      "fix": "A visible brushed-steel value ramp across the plaque face and V-groove row rules."
+    },
+    {
+      "slide": 8,
+      "fix": "Raise the blocks into the dead band, ramp hatch density toward the light, a lit pool under the blocks."
+    },
+    {
+      "slide": 9,
+      "fix": "A leader from the administration label to the tail at local 344, and a brushed streak on the tail."
+    }
+  ],
+  "craft_cycle": null,
+  "craft_floor_note": "Art 7.0 is under the 8.5 floor; the run reached the five-round cap (four pixel rounds plus one sequence round), so the craft cycle stands down per Phase 10 and the deck ships as-is. Disclosed in the email.",
+  "rationale": "Strong story-art fusion (pocket length equals dollars at one asserted scale, gold equals AI), an excellent map on 07; art held at 7 by the 05 holdout, stray geometry on 04, near-flat 06 and 08, and the repeated rail band. No hard fails.",
+  "editor_notes_for_email": "SHIP at 8.51 against 7.7 (five of five rounds used). Art 7.0, below the 8.5 craft floor; at the round cap no craft cycle is owed. Slide 05 ships as a logged holdout at 7.1. Amounts are preliminary (October 9th notices) and the AI count is a floor. The seven amounts and the Statewide split come from the showrunner's parse of the state workbook (C48); only the stroke award is independently confirmed by CMS (C49). 'Second only to Texas' is our reading of the CMS award table (C04). Ketchikan is about $7 million in the workbook against $6.5 million in CMS's August release, disclosed in the first comment. The caption's closing question differs from 09's question. On 09 the $23.2 million administration label is Year 1's unawarded balance (C75)."
+}

@@ -3991,6 +3991,47 @@
         "NEW: LAID-PAPER FIELD MODULE (aklaid.js), one thickness field read as relief in reflected light and as transmission in transmitted light",
         "NEW: DENSITIES ADD, overlapping sheets each painted on white and multiplied over one table so a double thickness darkens twice"
       ]
+    },
+    {
+      "run_date": "2026-11-09",
+      "carousel_no": 110,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE DOLLAR WEB, every Year 1 award as one thermoformed blister web on a shelf rail at one scale (pocket length = dollars), read as an itemised receipt: an axonometric 254-pocket card (01), the seven AI pockets end to end on a ledge over the robotic surgery pocket (02), seven lathe-engraved capsules 2,3,2 (03), a PBR macro of the stroke gelcap in its torn pocket (04), one opened pocket raymarched in plan (05), an engraved steel plaque table (06), a washed borough map with gold inlay and a Statewide tray (07), cabinet-oblique base and workload blocks (08), Year 1's formed card beside Year 2's blank PET sheet (09)",
+      "atmosphere": "NEW: SKYLIGHT SOFTBOX OVER SATIN STEEL, an after-hours clinic counter under one overcast skylight (az 160, el 62)",
+      "depth_technique": "akweb.js per-pixel pocket shader for the shared rail; akthree PBR with shadow-catcher casts (01, 09) and a DOF macro (04); akengrave lathe (03); aksdf raymarch (05); per-pixel brushed plaque (06); d3 washes with waterlines (07); cabinet-oblique hatching (08)",
+      "line_voice": "drafting",
+      "continuity_device": "panorama:the Year 1 web on a shelf rail across 02 to 09, 8,640 px for $272,174,855.72, gold pockets landing where the workbook puts them",
+      "continuity_devices": [
+        "panorama spine, the Year 1 dollar web",
+        "seven-pocket ticker, shape-changing state per frame"
+      ],
+      "hook_archetype": "NEW: THE SEEK-AND-COUNT",
+      "palette_family": "NEW: SATIN STEEL, BLISTER FOIL, CHALK TABLET (room #05080D, steel #3C4752 to #8E9AA5, foil #C7CDD3, chalk #E6E2DA, map washes on 07 only, gold #FFC72C for an award that includes an AI tool)",
+      "type_pairing": "Bricolage Grotesque 700 display (wdth 88) and 430 body + JetBrains Mono 500 caps",
+      "narrative_structure": "NEW: THE RECEIPT READ ALOUD: count, sum, sort, the largest line, a pause, the itemised list, where it went, the rule it answers to, the ask",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 3
+      },
+      "techniques": [
+        "akweb.js dollar web rail",
+        "akthree PBR + shadow catcher",
+        "AKSTROBE depth of field",
+        "AKENGRAVE.lathe",
+        "AKSDF raymarch",
+        "d3 borough washes + waterlines",
+        "cabinet oblique hatching",
+        "AKPOST.grade + holdInk"
+      ],
+      "new_techniques_logged": [
+        "NEW: DOLLAR WEB RAIL (akweb.js), one per-pixel blister shader drawing all 254 awards at one scale across eight frames, narrow pockets supersampled and folded toward a ribbed groove over a smoothed window",
+        "NEW: SHADOW CATCHER, a blurred-texture plane under an akthree object for a soft cast and a tight contact that the shadow map can't give a flat card"
+      ],
+      "scores": {
+        "weighted_total": 8.51,
+        "artwork": 7.0
+      }
     }
   ]
 }

@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-09/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7299019,
+  "pdf_mb": 7.3,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-09/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-09/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Seven of 254, Alaska's Rural Health AI",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "54f3dd325ccb1177100244a8bada86f944ae50fb7084ee5b7be72d0726eefc9f",
+        "bytes": 6592992
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "1eb5eb4b6cb75eaa8d5e204f340a9fdf1e87f21761f9480a7aeed81ea3a1462f",
+        "bytes": 5215164
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "8e38e158f3e8c54ff4bb7d1615c13019aaa89fc3cd9c6e0a4561be397ae7ad96",
+        "bytes": 5480723
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "764cb10fa5af539f6030d69f515ba2356b4c40746c02d002d312158a2910c0f5",
+        "bytes": 6147243
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "6ace438520d6aafaff614dddbbaaa11b20830a589f8c9f965212e8b29c366867",
+        "bytes": 5040455
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "933b943c698dd0e6031689cd5bd2f0cb98f57432d3e49dee3ad63ebdeafc2e15",
+        "bytes": 5697851
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "a822f85fd9de3b6cb4100839c32f08db295063b09f077f4d3aebe9ff45553857",
+        "bytes": 6303166
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "4627492336a2424a6628b03ae320fb07f842eb4eaf4416efa1808eee4d8fb2b4",
+        "bytes": 5486942
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "9cfa7d4930cb95844ad5805d9e112d1494f20cbc008fc93ffc59269a5e09e39b",
+        "bytes": 6674709
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "ec6e9deb278507b806f6a5ed7085da2369b9df0399df42c6a75abf42490b98c2",
+        "bytes": 12394
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "7431d586cda86a5094995b9e9851f2e038a466ddf1a7aa43a871cdb6170b54c5",
+        "bytes": 10170
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d689378ba452c630637167192b1771390f122db7c29b7020a9feae08c7d9d881",
+        "bytes": 10102
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "57bc1683d6c51b3df6a5e348b3efdf562941ad0d7e89095df2befd9b730bc6b2",
+        "bytes": 15600
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "5def9c243b709f7995972094370fd0aa27151e3e300f4418c6e24db202bd0dd2",
+        "bytes": 9681
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "fc676e1a3cbf7da600d8236801092a5f59c07abf7c4de6cb3b1e3cdab29e3232",
+        "bytes": 9982
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "cfad164143932c67da4ef2912db55c6887d5405eec2855ef7343ae43415bea39",
+        "bytes": 12552
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "e29c0e87326e7ca8a59273682fcf2be5fa9f442e65c49475022b9bff04ca1422",
+        "bytes": 10598
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "27741d697fe6e3843767b05d77eb9d9c3a912a32a661cf5bda243c1307f98a91",
+        "bytes": 15377
+      }
+    ]
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl '254 rural healthawards. Seveninclude AI.' fits 3/3 lines at 139.5px"
+      ],
+      "asserts": [
+        "'seven gold gelcaps, one per AI award' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'seven gold gelcaps, one per AI award': 7 mark centres probed at r=14px, cohort median 62.7 dE, all present (weakest 60.7 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the seven AI pockets end to end': canvas 99.3 dE, page 100.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the robotic surgery pocket on the rail': canvas 47.1 dE, page 47.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 1 of 8' runs 0 dollars at 0 to 34,021,857 dollars at 1080; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'the robotic surgery pocket on the Year 1 rail' lands 6.0px from its target",
+        "leader 'the robotic surgery pocket on the Year 1 rail' meets its label 16.0px away",
+        "leader 'the robotic surgery pocket on the Year 1 rail' is drawn 152 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'At least $5.4 millionof just under $249 mill' fits 3/3 lines at 89.5px"
+      ],
+      "asserts": [
+        "'the gold strip is the seven AI awards at rail scale' holds: 172.5 vs 172.545 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'engraved capsule 1': canvas 89.3 dE, page 87.7 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 2': canvas 89.4 dE, page 88.5 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 3': canvas 90.4 dE, page 88.3 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 4': canvas 90.4 dE, page 87.9 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 5': canvas 89.6 dE, page 88.0 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 6': canvas 89.2 dE, page 88.6 dE, 100% of its rect is clear of opaque DOM",
+        "'engraved capsule 7': canvas 88.5 dE, page 88.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 2 of 8' runs 34,021,857 dollars at 0 to 68,043,714 dollars at 1080; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Two read the body.Three write the chart.' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold stroke gelcap': canvas 90.2 dE, page 90.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the stroke network pocket on the rail': canvas 82.4 dE, page 82.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 3 of 8' runs 68,566,900 dollars at 0 to 102,850,864 dollars at 1080; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the stroke network's gold pocket on the Year 1 rail\" lands 4.0px from its target",
+        "leader \"the stroke network's gold pocket on the Year 1 rail\" meets its label 1.0px away",
+        "leader \"the stroke network's gold pocket on the Year 1 rail\" is drawn 34 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '$3,156,626 to readstroke scansat 21 hospital' fits 3/3 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the opened pocket': canvas 52.7 dE, page 52.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 4 of 8' runs 102,065,571 dollars at 0 to 136,087,428 dollars at 1080; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Each of the sevennames whatits AI should do.' fits 3/3 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the steel plaque on its satin shelf': shadow L* 1.1 vs ground L* 9.5, dL 8.4 at 432w"
+      ],
+      "motifs": [
+        "'the seven gold bars': canvas 112.2 dE, page 112.0 dE, 100% of its rect is clear of opaque DOM",
+        "'MapHabit gold pocket at the rail edge': canvas 79.5 dE, page 79.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 5 of 8' runs 136,087,428 dollars at 0 to 170,109,285 dollars at 1080; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'What each saysits AI should do.' fits 2/2 lines at 79.5px"
+      ],
+      "asserts": [
+        "'the stroke bar is 180 px at 3,156,626 dollars' holds: 180 vs 180 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (2% of the ring around 'NO SITE NAMED', spanning 12%) -- pixel critic verify the label is not crossed"
+      ],
+      "motifs": [
+        "'Kodiak Island inlay': canvas 110.0 dE, page 110.3 dE, 100% of its rect is clear of opaque DOM",
+        "'Northwest Arctic inlay': canvas 116.6 dE, page 116.7 dE, 100% of its rect is clear of opaque DOM",
+        "'North Slope inlay': canvas 116.3 dE, page 116.2 dE, 100% of its rect is clear of opaque DOM",
+        "'Matanuska-Susitna inlay': canvas 117.5 dE, page 117.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the Statewide bars in the tray': canvas 111.1 dE, page 111.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 6 of 8' runs 170,109,285 dollars at 0 to 204,131,142 dollars at 1080; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader 'Kodiak Island' lands 0.0px from its target",
+        "leader 'Northwest Arctic' lands 0.0px from its target",
+        "leader 'North Slope' lands 0.0px from its target",
+        "leader 'Matanuska-Susitna' lands 0.0px from its target",
+        "leader 'Kodiak Island' meets its label 4.0px away",
+        "leader 'Northwest Arctic' meets its label 4.5px away",
+        "leader 'North Slope' meets its label 4.3px away",
+        "leader 'Matanuska-Susitna' meets its label 3.7px away",
+        "leader 'Kodiak Island' is drawn 54 px at 42 degrees, inside the pointer band",
+        "leader 'Northwest Arctic' is drawn 70 px at 10 degrees, inside the pointer band",
+        "leader 'North Slope' is drawn 149 px at 12 degrees, inside the pointer band",
+        "leader 'Matanuska-Susitna' is drawn 106 px at 2 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Most of the AI moneyhas no address.' fits 2/2 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the workload block on the ledge': shadow L* 9.0 vs ground L* 25.1, dL 16.1 at 432w"
+      ],
+      "motifs": [
+        "'the base block': canvas 50.0 dE, page 61.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the workload block': canvas 35.8 dE, page 42.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 7 of 8' runs 204,131,142 dollars at 0 to 238,152,999 dollars at 1080; 4 declared mark(s), and the band's census finds no others",
+        "'Alaska Year 2 award, dollars' runs 0 dollars at 90 to 272,653,149 dollars at 946; 3 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Year 2 money weighsprogress, including wayst' fits 3/3 lines at 83.5px"
+      ],
+      "asserts": [
+        "'the base block is 100 million dollars at the block scale' holds: 314 vs 313.952 px (within 1)",
+        "'the workload block is 172,653,149 dollars at the block scale' holds: 542 vs 542.048 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Year 1 card on the steel': shadow L* 33.7 vs ground L* 44.5, dL 10.8 at 432w"
+      ],
+      "motifs": [
+        "'the Year 1 card': canvas 69.7 dE, page 66.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the Year 2 blank sheet': canvas 26.5 dE, page 26.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the Year 1 web, cumulative dollars, row 8 of 8' runs 238,152,999 dollars at 0 to 272,174,856 dollars at 1080; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Which of the sevenshould the dashboardcheck ' fits 3/3 lines at 103.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKWEB.rail",
+        "slides": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKWEB.ticker",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

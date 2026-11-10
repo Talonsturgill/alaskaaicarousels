@@ -229,6 +229,13 @@ AGENCY_RULES = [
     (r"Alaska Energy Authority|\bAEA\b", "AEA",
      ("aea", "energy authority", "alaska energy authority", "ciplink",
       "cook inlet powerlink")),
+    # Added 2026-11-09 with the first item the Alaska Department of Health
+    # decides, the second year of rural health transformation awards, and the
+    # self-test caught it in the Phase 3.5 pre-flight the same way it caught
+    # the AEA one: an item with no recognised agency. CMS is in the vocabulary
+    # because it sets each state's award and a reader may type either body.
+    (r"Department of Health\b", "the Alaska Department of Health",
+     ("department of health", "doh", "cms", "rural health", "medicare")),
     (r"Oil and Gas Conservation", "AOGCC", ("aogcc", "oil and gas conservation")),
     (r"Environmental Protection Agency", "the EPA", ("epa", "environmental protection")),
     (r"Department of Administration", "Alaska DOA",
