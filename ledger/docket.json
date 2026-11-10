@@ -6551,6 +6551,68 @@
           "note": "AEA's project page, read today, still lists the link as in development at an estimated $413 million, with $142.5 million still required and completion targeted for 2032. Responses to the cable request remain due December 15th. Checked and unchanged."
         }
       ]
+    },
+    {
+      "id": "rhtp-year-2-awards",
+      "title": "Alaska's second year of rural health transformation money",
+      "kind": "grant",
+      "status": "pending-decision",
+      "decider": "Alaska Department of Health, under a CMS cooperative agreement",
+      "public_access": "indirect",
+      "access_note": "Fall applications closed October 28th. Alaskans reach the next round through an applying clinic, tribe, city or nonprofit.",
+      "summary": "CMS announced Year 2 Rural Health Transformation awards on November 9th, and Alaska's $272,653,149 is second only to Texas. Year 1 closed October 22nd with just under $249 million to 254 projects, seven of which buy an AI tool.",
+      "key_dates": [
+        {
+          "date": "2026-10-22",
+          "label": "Year 1 closes, just under $249 million to 254 projects",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-10-28",
+          "label": "Year 2 fall applications due, 11:59 p.m.",
+          "kind": "deadline"
+        },
+        {
+          "date": "2026-11-09",
+          "label": "CMS announces Year 2 awards, Alaska second largest",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-12-31",
+          "label": "State says its public award dashboard is due by year end",
+          "kind": "milestone"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.cms.gov/newsroom/press-releases/trump-administration-announces-10-billion-second-year-rural-health-transformation-awards-all-50",
+          "outlet": "Centers for Medicare and Medicaid Services",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.cms.gov/newsroom/fact-sheets/rural-health-transformation-program-year-2-awards",
+          "outlet": "Centers for Medicare and Medicaid Services, fact sheet",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://health.alaska.gov/media/osjhhdvl/alaska-department-of-health-announces-completion-of-rural-health-transformation-program-year-1-funding-cycle.pdf",
+          "outlet": "Alaska Department of Health",
+          "date": "2026-10-22"
+        },
+        {
+          "url": "https://health.alaska.gov/media/tcvker5a/ak_rhtp_awardsnotice_2026.xlsx",
+          "outlet": "Alaska Department of Health, Year 1 award notices",
+          "date": "2026-10-09"
+        }
+      ],
+      "first_seen": "2026-11-09",
+      "last_updated": "2026-11-09",
+      "history": [
+        {
+          "date": "2026-11-09",
+          "note": "Tracked. Read the CMS award table and the state's final Year 1 award list today."
+        }
+      ]
     }
   ]
 }
