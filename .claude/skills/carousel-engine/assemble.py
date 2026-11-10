@@ -39,7 +39,8 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 MONO_FONT = REPO_ROOT / "assets" / "fonts" / "JetBrainsMono-Medium.ttf"
 
 
-def vector_pdf(slides_dir: Path, out_pdf: Path, width: int, height: int, title: str) -> bool:
+def vector_pdf(slides_dir: Path, out_pdf: Path, width: int, height: int, title: str,
+               timeout_ms: int = 30000) -> bool:
     """Print each slide HTML to a single-page vector PDF via Chromium, merge with pypdf."""
     try:
         from playwright.sync_api import sync_playwright
@@ -65,11 +66,14 @@ def vector_pdf(slides_dir: Path, out_pdf: Path, width: int, height: int, title: 
                 resolved = resolve_html(s, resolved_dir)
                 page = browser.new_page(viewport={"width": width, "height": height},
                                         device_scale_factor=2)
-                page.goto(resolved.as_uri(), wait_until="load", timeout=45000)
+                page.set_default_timeout(timeout_ms + 15000)
+                page.goto(resolved.as_uri(), wait_until="load", timeout=max(45000, timeout_ms))
                 page.evaluate("() => document.fonts.ready.then(() => true)")
                 if page.evaluate("() => typeof window.renderReady !== 'undefined'"):
-                    page.evaluate("() => Promise.race([window.renderReady, "
-                                  "new Promise((_, rej) => setTimeout(() => rej('timeout'), 30000))])")
+                    # the same budget render.py was given: a raymarched slide can need far more than 30 s,
+                    # and a timeout here silently drops the whole deck to a raster PDF (2026-11-09)
+                    page.evaluate("(ms) => Promise.race([window.renderReady, "
+                                  "new Promise((_, rej) => setTimeout(() => rej('timeout'), ms))])", timeout_ms)
                 else:
                     page.wait_for_timeout(400)
                 page.pdf(path=str(tmp / (s.stem + ".pdf")),
@@ -262,6 +266,9 @@ def main():
                     help="fallback only; copy.json's document_title wins")
     ap.add_argument("--width", type=int, default=1080)
     ap.add_argument("--height", type=int, default=1350)
+    ap.add_argument("--timeout", type=int, default=30000,
+                    help="MILLISECONDS to wait for each slide's renderReady in the vector PDF pass "
+                         "(default 30000); pass the render.py --timeout a slow slide needed")
     args = ap.parse_args()
 
     render_dir = Path(args.render_dir).resolve()
@@ -288,7 +295,7 @@ def main():
 
     pdf_path = out_dir / "carousel.pdf"
     mode = "vector"
-    if not vector_pdf(Path(args.slides_dir).resolve(), pdf_path, args.width, args.height, title):
+    if not vector_pdf(Path(args.slides_dir).resolve(), pdf_path, args.width, args.height, title, args.timeout):
         mode = "raster-fallback"
         raster_pdf(pngs, pdf_path)
 
