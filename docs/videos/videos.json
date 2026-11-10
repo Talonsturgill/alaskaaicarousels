@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "take-a-number",
+      "date": "2026-11-10",
+      "title": "Take a Number",
+      "caption": "A Massachusetts company asked FERC for a preliminary permit to study a proposed subsea data center in Cook Inlet. The permit allows study only, FERC hasn't ruled, and the borough mayor says he heard nothing from the company.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-10-dispatch_master.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-10-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-10-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-10-poster_thumb.jpg"
+    },
+    {
       "id": "who-holds-the-transcript",
       "date": "2026-11-09",
       "title": "Who Holds the Transcript",
