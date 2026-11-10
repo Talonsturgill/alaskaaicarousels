@@ -83,9 +83,9 @@
     "assemble": "done (vector 7.3 MB)",
     "scoring": "done (8.51 vs 7.7, ship; art 7.0, craft floor capped at round 5)",
     "ship": "done (runs/2026-11-09, site rebuilt at 2026-11-09, ledgers appended)",
-    "upgrade": "retro written, 5 items queued; weekly pass not due",
-    "gmail": "pending",
-    "retro": "pending"
+    "upgrade": "retro written, 5 items queued; weekly pass not due; PR #482 merged (CI green, Codex silent at 16 min)",
+    "gmail": "done (draft created, addressed to docket@alaskaaihq.com)",
+    "retro": "done"
   },
   "phase_3_6": {
     "site_signoff": "PASS, 173 pages, 18 checks",
@@ -94,5 +94,12 @@
     "cron_health": "PASS, 7 scheduled workflows checked (plus Pages and live output), no repairs needed",
     "site_fixes": "none needed; sign-off and page check clean on first build; desktop and phone screenshots of home, docket and gas watch read clean"
   },
-  "docket_note": "Refreshed 9 worklist items (budget raised to 9 to cover the 3 deferred). Ask payload headroom 4,728 bytes, under 5,000: the next item added may need trimming."
+  "docket_note": "Refreshed 9 worklist items (budget raised to 9 to cover the 3 deferred). Ask payload headroom 4,728 bytes, under 5,000: the next item added may need trimming.",
+  "gmail_draft_id": "r-5041782177872355659",
+  "merged": {
+    "pr": 482,
+    "merge_sha": "ae4aaeb0df70837896d964e870f60f3f0f1fb14e",
+    "codex": "no review posted within 16 minutes; merged per CLAUDE.md"
+  },
+  "status": "complete"
 }
