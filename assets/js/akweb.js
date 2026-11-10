@@ -145,6 +145,15 @@
     var tmp = {}, rgb = [0, 0, 0];
     var kcache = new Int32Array(W);
     for (var px = 0; px < W; px++) kcache[px] = find(base + (px + 0.5) / S);
+    // how far each column folds toward the ribbed groove: by pocket length, smoothed over about 40 design px
+    // so neighbouring small awards never meet in a tonal step
+    var wraw = new Float32Array(W), wcol = new Float32Array(W), R40 = Math.round(40 * S);
+    for (var px = 0; px < W; px++) { var kk = kcache[px]; wraw[px] = kk < 0 ? 0 : 0.55 * Math.max(0, 1 - (X0[kk + 1] - X0[kk]) / 14); }
+    for (var px = 0, acc = 0, cnt = 0; px < W + R40; px++) {
+      if (px < W) { acc += wraw[px]; cnt++; }
+      if (px - 2 * R40 - 1 >= 0) { acc -= wraw[px - 2 * R40 - 1]; cnt--; }
+      var c0 = px - R40; if (c0 >= 0 && c0 < W) wcol[c0] = acc / cnt;
+    }
     for (var row = r0; row < r1; row++) {
       var y = (row + 0.5) / S;
       for (var px = 0; px < W; px++) {
@@ -168,12 +177,17 @@
             }
             rgb[0] = ar / 4; rgb[1] = ag / 4; rgb[2] = ab / 4;
           } else shadePixel(k, gx, y, flag, tmp, rgb);
-          if (Lk < 14 && flag !== 1) {                      // small awards fold toward one ribbed groove, so a run of
-            var gt = (y - Y.dome0) / (Y.dome1 - Y.dome0), gl, gc;   // narrow pockets reads as formed foil, not a barcode
+          var gw = k >= 0 ? wcol[px] : 0;
+          if (gw > 0.002 && !(rgb[0] > rgb[2] * 1.45 && rgb[0] > 90)) {   // small awards fold toward one ribbed groove (gold kept),
+            var gt = (y - Y.dome0) / (Y.dome1 - Y.dome0), gl, gc;          // so a run of narrow pockets reads as formed foil
             if (gt >= 0 && gt <= 1) { gl = 0.34 + 0.66 * Math.min(1, Math.max(0, 0.5 + 1.1 * (0.5 - gt))); gc = FOIL_IN; }
             else { gl = 0.72; gc = FOIL; }
-            var gw = 0.55 * (1 - Lk / 14);
             rgb[0] += (gc[0] * gl - rgb[0]) * gw; rgb[1] += (gc[1] * gl - rgb[1]) * gw; rgb[2] += (gc[2] * gl - rgb[2]) * gw;
+          }
+          if (k >= 0 && END - gx < 10) {                    // the last award eases into the flat foil: an end lip, not a cut
+            var et = 1 - (END - gx) / 10, fr = [0, 0, 0]; shadePixel(-1, gx, y, 0, tmp, fr);
+            var lipL = (END - gx < 1.5) ? 1.12 : 1;
+            rgb[0] += (fr[0] * lipL - rgb[0]) * et; rgb[1] += (fr[1] * lipL - rgb[1]) * et; rgb[2] += (fr[2] * lipL - rgb[2]) * et;
           }
           // seal edges of the web: a darker crimp line at top and bottom
           var edge = Math.min(y - Y.web0, Y.web1 - y);
