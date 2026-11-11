@@ -101,7 +101,18 @@
    ],
    "note": "8.735 by rubric formula (weights sum 1.10; normalized 7.94) vs 7.7 at round 5; art 7, craft floor capped"
   },
-  "ship": "pending",
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-11-10/",
+    "docs/",
+    "ledger/topics.json",
+    "ledger/artwork.json",
+    "ledger/captions.json",
+    "ledger/instincts.json",
+    "knowledge/FIELD_NOTES.md"
+   ]
+  },
   "upgrade": "pending",
   "gmail": "pending",
   "retro": "pending"
