@@ -86,8 +86,8 @@
     };
     // sinuous ripples for the GPU texture frames (2026-11-10 round 1): a straight sine at 9 mm read as a
     // pinstripe moire at 4-6 px on 01 and 09. Longer wavelength, crests that bend, amplitude in patches.
-    W.ripple2 = function (x, z) {
-      const th = 0.55 * (fbm(x * 1.4, z * 1.4, 27, 2) - 0.5);
+    W.ripple2 = function (x, z, rot, wob) {   // rot: base crest rotation in radians; wob: how far the crests swing (plan frames pass a larger one)
+      const th = (rot || 0) + (wob || 0.55) * (fbm(x * 1.4, z * 1.4, 27, 2) - 0.5);
       const u = x * Math.cos(th) + z * Math.sin(th);
       const ph = u / 0.015 + 2.2 * fbm(x * 11, z * 11, 23, 3);
       const s = Math.sin(ph * 2 * Math.PI) + 0.28 * Math.sin(ph * 4 * Math.PI + 0.9);
