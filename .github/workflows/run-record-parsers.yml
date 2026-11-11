@@ -18,6 +18,11 @@ on:
     paths:
       - "scripts/site_build.py"
       - "scripts/parsers_check.py"
+      - "tests/source_fetch_scope.py"
+      - "scripts/site_signoff.py"
+      - "scripts/docket_staleness.py"
+      - ".claude/agents/fact-checker.md"
+      - "prompts/routine_instructions.md"
       - "scripts/claims_check.py"
       - "scripts/week_digest.py"
       - "scripts/machine_due.py"
@@ -32,6 +37,11 @@ on:
     paths:
       - "scripts/site_build.py"
       - "scripts/parsers_check.py"
+      - "tests/source_fetch_scope.py"
+      - "scripts/site_signoff.py"
+      - "scripts/docket_staleness.py"
+      - ".claude/agents/fact-checker.md"
+      - "prompts/routine_instructions.md"
       - "scripts/claims_check.py"
       - "scripts/week_digest.py"
       - "scripts/machine_due.py"
@@ -63,6 +73,9 @@ jobs:
 
       - name: Every run-record shape still parses
         run: python scripts/parsers_check.py
+
+      - name: Archived citations remain available without source fetches
+        run: python tests/source_fetch_scope.py
 
       # The weekly machine pass (owner, 2026-10-02) reads the week's run records
       # through week_digest.py and runs when machine_due.py says so. Both read
