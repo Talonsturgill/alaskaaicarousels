@@ -658,9 +658,37 @@ republishes most of it). It is a record, not a ban list, so try the source
 anyway; do not spend the run rediscovering the workaround, which two scouts did
 independently on the same day.
 
+## SOURCE FETCH SCOPE (owner, November 11th, 2026)
+
+The daily run does not re-fetch the website's historical citation catalogue.
+`site_build.py` builds article pages and /sources/ from saved `runs/` claims;
+`site_signoff.py` checks local pages and internal links, not cited websites.
+Rebuilding or checking the site is not an instruction to open every source URL.
+
+For routine archive maintenance, skip sources cited only by articles published
+30 days or more before the run date. Use the article's `runs/<date>/` date, not
+`date_of_source`, `last_updated`, or today's site rebuild. Recent articles do
+not require an automatic daily source sweep either. Keep all archived articles,
+URLs, supporting quotes and original verification dates intact. A credible
+correction or an explicit investigation may justify a targeted archival check;
+record that reason and follow the existing published-history rules.
+
+Today's candidate claims still require fresh verification, including old
+background documents used for a new claim. The fact-checker groups claims by
+URL and checks all claims from one current response, instead of fetching once
+per claim. Record its actual fetch counts and any justified repeats in the
+run's automation_retro.md. Counts are not a measured token bill.
+
+The live docket is a different product. Continue its bounded Phase 3.5
+worklist, new watch-queue changes and deadline checks. Do not age out an ongoing
+permit, vote or open comment window just because its original source is old.
+Gas Watch, scheduled collectors and the daily health audits retain their own
+cadences. This rule does not skip fresh measurements or weaken claim gates.
+
 ## PHASE 3 — CLAIMS
 
-Merge scout outputs. Spawn `fact-checker` with the merged findings. The
+Merge scout outputs. Spawn `fact-checker` with only this edition's merged
+findings and the SOURCE FETCH SCOPE above. The
 fact-checker has NO Write tool by design (it is an adversarial validator);
 it returns the verified claims as JSON in its final message, which YOU
 persist to `out/<date>/claims.json`. Stories need >= 3 verified claims to
