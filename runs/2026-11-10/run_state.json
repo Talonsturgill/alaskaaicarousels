@@ -1,142 +1,136 @@
 {
- "run_date": "2026-11-10",
- "carousel_no": 111,
- "effort": "high",
- "date_note": "Woke 2026-11-11 06:04Z = 2026-11-10 21:04 AKST; run_guard --run-date 2026-11-10 CLEAR.",
- "revision_rounds": 5,
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/plan.md"
-   ]
+  "run_date": "2026-11-10",
+  "carousel_no": 111,
+  "effort": "high",
+  "date_note": "Woke 2026-11-11 06:04Z = 2026-11-10 21:04 AKST; run_guard --run-date 2026-11-10 CLEAR.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "two searches, nothing new; FIELD_NOTES untouched"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/scout_merge.md",
+        "out/2026-11-10/scouts/"
+      ]
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/claims.json"
+      ],
+      "note": "90 claims, 65 primary; claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ]
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/gaswatch_health.json",
+        "out/2026-11-10/cron_health.json",
+        "out/2026-11-10/site_lines.txt"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/storyboard.md",
+        "out/2026-11-10/treatments/"
+      ]
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/caption.txt",
+        "out/2026-11-10/copy.json",
+        "out/2026-11-10/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/slides/",
+        "out/2026-11-10/render/",
+        "out/2026-11-10/render/machine_qa.json"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/pixel_review_summary.md"
+      ],
+      "note": "5 editing rounds of 5 (cap)"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/final/carousel.pdf",
+        "out/2026-11-10/final/contact_sheet.png",
+        "out/2026-11-10/final/assemble_report.json"
+      ]
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-10/score_report.json"
+      ],
+      "note": "8.735 by rubric formula (weights sum 1.10; normalized 7.94) vs 7.7 at round 5; art 7, craft floor capped"
+    },
+    "ship": "done (runs/2026-11-10, site rebuilt at 2026-11-10, ledgers appended); PR #484 merged (CI green after the ask-box fix, Codex Completed on 66fb92b, no findings)",
+    "upgrade": "retro written, 3 items queued and 2 repeats raised; weekly pass not due; no upgrades",
+    "gmail": "done (draft r-2523998723222983600 addressed to docket@alaskaaihq.com; the connector authenticates as the owner personal account, so the draft sits there)",
+    "retro": "done (FIELD_NOTES, 3 instincts)"
   },
-  "craft_refresh": {
-   "status": "done",
-   "artifacts": [],
-   "note": "two searches, nothing new; FIELD_NOTES untouched"
+  "social": {
+    "preflight": "users/pages/pins verified 2026-11-11T06:10Z; state branch initialized (empty)"
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/scout_merge.md",
-    "out/2026-11-10/scouts/"
-   ]
+  "score": {
+    "weighted_total": 8.735,
+    "normalized": 7.94,
+    "artwork": 7
   },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/claims.json"
-   ],
-   "note": "90 claims, 65 primary; claims_check PASS"
+  "site_signoff": "PASS, 175 pages, 18 checks",
+  "gaswatch_live": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
+  "gaswatch_pagecheck": "PASS, read 2026-11-10, 98 days on record, chart present",
+  "cron_health": "PASS, 7 scheduled workflows checked, no failures",
+  "site_fixes": "Gas Watch late post repaired by dispatching the production collector and verifying the live page; docket rebuilt after the Houston final finding; ask-box stress fix during PR CI (a docket source label indexed \"mining\" into the Houston item, relabelled)",
+  "gas_watch_verdict": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
+  "gas_watch": "PASS, read 2026-11-10, 98 days on record, chart present",
+  "social_delivery": {
+    "status": "complete",
+    "edition_id": "2026-11-10",
+    "linkedin_feed": "PUBLISHED urn:li:ugcPost:7526225675075371010",
+    "instagram_feed": "PUBLISHED 18079376351732844 https://www.instagram.com/p/DfmPluujF8a/",
+    "facebook_feed": "PUBLISHED 2003130316607965_1155907144069749",
+    "tiktok_feed": "PUBLISHED 7706855310748568846",
+    "instagram_story": "PUBLISHED 9 of 9 frames in order",
+    "facebook_story": "PUBLISHED 9 of 9 frames in order",
+    "youtube": "NOT_APPLICABLE (image carousel)"
   },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json"
-   ]
-  },
-  "gas_watch": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/gaswatch_health.json",
-    "out/2026-11-10/cron_health.json",
-    "out/2026-11-10/site_lines.txt"
-   ]
-  },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/selection.md"
-   ]
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/storyboard.md",
-    "out/2026-11-10/treatments/"
-   ]
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/caption.txt",
-    "out/2026-11-10/copy.json",
-    "out/2026-11-10/caption_report.json"
-   ]
-  },
-  "art_build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/slides/",
-    "out/2026-11-10/render/",
-    "out/2026-11-10/render/machine_qa.json"
-   ]
-  },
-  "pixel_review": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/pixel_review_summary.md"
-   ],
-   "note": "5 editing rounds of 5 (cap)"
-  },
-  "flow_review": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/flow_review.json"
-   ]
-  },
-  "assemble": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/final/carousel.pdf",
-    "out/2026-11-10/final/contact_sheet.png",
-    "out/2026-11-10/final/assemble_report.json"
-   ]
-  },
-  "scoring": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/score_report.json"
-   ],
-   "note": "8.735 by rubric formula (weights sum 1.10; normalized 7.94) vs 7.7 at round 5; art 7, craft floor capped"
-  },
-  "ship": {
-   "status": "done",
-   "artifacts": [
-    "runs/2026-11-10/",
-    "docs/",
-    "ledger/topics.json",
-    "ledger/artwork.json",
-    "ledger/captions.json",
-    "ledger/instincts.json",
-    "knowledge/FIELD_NOTES.md"
-   ]
-  },
-  "upgrade": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-10/automation_retro.md",
-    "knowledge/MACHINE_QUEUE.md"
-   ],
-   "note": "weekly pass not due; no upgrades; 3 items queued, 2 repeats raised"
-  },
-  "gmail": "pending",
-  "retro": "pending"
- },
- "social": {
-  "preflight": "users/pages/pins verified 2026-11-11T06:10Z; state branch initialized (empty)"
- },
- "score": {
-  "weighted_total": 8.735,
-  "normalized": 7.94,
-  "artwork": 7
- },
- "site_signoff": "PASS, 175 pages, 18 checks",
- "gaswatch_live": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
- "gaswatch_pagecheck": "PASS, read 2026-11-10, 98 days on record, chart present",
- "cron_health": "PASS, 7 scheduled workflows checked, no failures",
- "site_fixes": "Gas Watch late post repaired by dispatching the production collector and verifying the live page; docket rebuilt after the Houston final finding; ask-box stress fix during PR CI (a docket source label indexed \"mining\" into the Houston item, relabelled)",
- "gas_watch_verdict": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
- "gas_watch": "PASS, read 2026-11-10, 98 days on record, chart present"
+  "status": "complete"
 }
