@@ -113,7 +113,14 @@
     "knowledge/FIELD_NOTES.md"
    ]
   },
-  "upgrade": "pending",
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due; no upgrades; 3 items queued, 2 repeats raised"
+  },
   "gmail": "pending",
   "retro": "pending"
  },
