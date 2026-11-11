@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-10/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10743697,
+  "pdf_mb": 10.74,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-10/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-10/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Update, Houston's AIDEA Parcel Is Now About 6,800 Acres",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "c5c4354564cef380044c8687cca65e65bfa220735d3571cc97864e1e524d2062",
+        "bytes": 6848609
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "32ce7d6a35075f30a3b0c53d31de24ba9446c1e54a42a7a8893e36847851adbb",
+        "bytes": 7894103
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "31542ae9f3553e369d17c4a08d981977d6393dc9bfce22a3fee334e1e0010fa3",
+        "bytes": 6614016
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "117896541837c5d78a615cd643ae4125c6c58a4ea6c8d48c924377ad5ed8a8d2",
+        "bytes": 7636405
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "31470f4f2e4bccaea6dda5a72719dcd5fc185ea54c710beb91875c4da77e45ec",
+        "bytes": 6278446
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "d359fee40bd701353ea4c75c79740f1dd31708cf52db700e2d3c476dbcdfd916",
+        "bytes": 7382281
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "8753ee09736ee872582b4604286814e56d446104fd4f8287f43e3c7627c921ca",
+        "bytes": 6683837
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "7ef99ee8b2a09d84f4bf75065a3129df6481584ae243f289563f9b5de56b7770",
+        "bytes": 6522404
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b4cc0b7aafc1ed9fdcf54cf22e0bd58093023a19fc1607eebeb06c3b54470590",
+        "bytes": 5920735
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "321e3666af7ab89ed80bcf8da49c9e631f7a46f62dcedf962cb2954eba1a215c",
+        "bytes": 11218
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "ad9a1539e110cf53876382ec027e6b379f067892314cb7bdfd03ebe8bd538770",
+        "bytes": 16097
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "65387ba70e4c3954722fdc5ba3d15ef39094c9c4e4628b20bcbc7ac1cd69be46",
+        "bytes": 15848
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "74b09b3984e986d5b5cebfca4236259aabc84a58cd55abdb8dcd43179ea1d037",
+        "bytes": 18619
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "9336c22dc100b2ee989d909230b8a38726233b62a0ba9e956fea91c4b739a0f9",
+        "bytes": 12987
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "1c3025ab221d132550ee767ae46ca25af4d971c83dbdbc5e6afe934e7bf66680",
+        "bytes": 16025
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "a0d03f6c9b55643ff9894684153d561a0262e8f3b451a1d1407f3770f32755fe",
+        "bytes": 10101
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "746c3d154d0e8751d27b2b008a62188a7ae8620bd8084674854e8cb072e6f190",
+        "bytes": 16507
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "9f565e1df08ff27fdafa77ebaf4c0b55090f0dbaf199c7a56f1b126f4356d134",
+        "bytes": 9856
+      }
+    ]
+  }
+}

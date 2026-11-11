@@ -4032,6 +4032,49 @@
         "weighted_total": 8.51,
         "artwork": 7.0
       }
+    },
+    {
+      "run_date": "2026-11-10",
+      "carousel_no": 111,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE PROJECTED SAND TABLE, a damp-sand terrain model of the real Houston DEM (2.5x vertical, 1:10,000) in an oak tray, the July 19,500-acre outline projected onto it as cool light and the conveyed 6,800 acres staked as one gold cord on 28 steel tacks: GPU PBR over the whole bed (01), per-pixel plan relief with projected hatch (02), a column-march oblique along the new north line (03), plan-oblique relief with wool streams and a loupe (04), a GPU thin-lens macro on the blank interior (05), projected cross hatch keyed to plat year beside a basswood ledger (06), an SDF macro of the cord tied to one tack in a slipped half hitch (07), a plan close-up of an empty projected frame beside a tray of four cabinet-oblique blocks (08), the whole table pulled back in the dark room (09)",
+      "atmosphere": "NEW: GRAZING WORK LAMP AND CEILING PROJECTOR IN A DARK MAP ROOM (tungsten lamp az 305, el 20, never moves; projector cool on 01 to 04 and 06, off on 05, 07 and 09)",
+      "depth_technique": "akthree PBR with SpotLight pool, VSM shadows and AKSTROBE thin-lens depth of field (01, 05, 09); per-pixel plan relief with horizon-march shadows (02); column-march oblique (03); plan-oblique column lift (04); per-pixel relief under projected hatch (06); AKSDF raymarch (07); cabinet oblique (08)",
+      "line_voice": "survey",
+      "continuity_device": "motif evolution: the gold cord on steel tacks, nine states from taut and small inside the July loop to tied in a slipped hitch to small and holding in the lamp pool",
+      "continuity_devices": [
+        "gold cord motif evolution",
+        "palette arc, projector cool to lamp warm",
+        "camera move round one table under one fixed lamp"
+      ],
+      "hook_archetype": "NEW: THE MAP THAT SHRANK AND THE QUESTION THAT DID NOT",
+      "palette_family": "NEW: DAMP SAND, OAK RAIL AND WOOL UNDER A COOL PROJECTOR (room #070D18, sand #CDBB97, oak #5A3B22, wool #4C7FBF, projector #DCE7F2, basswood #D9C7A3, gold #FFC72C for the land conveyed)",
+      "type_pairing": "Fraunces opsz 144 SOFT 100 display + Fraunces opsz 9 SOFT 0 for DNR's own words + Archivo wdth 92 body + JetBrains Mono 500 caps",
+      "narrative_structure": "NEW: CREDIT THEN PRESS: the hard number, what the public won (two frames), the quiet interior, the record, the restored lever, the deferred questions, one ask",
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 2,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "akthree PBR + SpotLight pool + VSM",
+        "AKSTROBE depth of field",
+        "per-pixel plan relief + horizon march",
+        "column-march oblique",
+        "plan-oblique column lift",
+        "projected cross hatch",
+        "AKSDF raymarch",
+        "cabinet oblique solids",
+        "AKPOST.grade + holdInk"
+      ],
+      "new_techniques_logged": [
+        "NEW: AKSAND (assets/js/aksand.js), one sand-table world shared by every frame: the DEM at table scale with a Catmull-Rom bicubic lookup, the conveyed parcel as 170 survey cells, the July outline, the section grid, tack positions and sand textures with a sinuous ripple"
+      ],
+      "scores": {
+        "weighted_total": 8.735,
+        "weighted_total_normalized": 7.94,
+        "artwork": 7.0
+      }
     }
   ]
 }
