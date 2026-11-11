@@ -66,12 +66,16 @@
       for (let dj = -2; dj <= 2; dj++) for (let di = -2; di <= 2; di++) { const jj = j + dj, ii = i + di;
         if (jj >= 0 && jj < Rr && ii >= 0 && ii < C) { const w = (3 - Math.abs(di)) * (3 - Math.abs(dj)); s += dem[jj * C + ii] * w; n += w; } }
       sm[j * C + i] = s / n; }
+    // Catmull-Rom bicubic (2026-11-10 round 1): bilinear gave heights that were continuous but normals
+    // that jumped at every 53 m cell edge, so every per-pixel hillshade printed the DEM lattice as blocks.
+    const cr = (p0, p1, p2, p3, t) => p1 + 0.5 * t * (p2 - p0 + t * (2 * p0 - 5 * p1 + 4 * p2 - p3 + t * (3 * (p1 - p2) + p3 - p0)));
+    const at = (i, j) => sm[Math.max(0, Math.min(Rr - 1, j)) * C + Math.max(0, Math.min(C - 1, i))];
     W.demAt = function (lon, lat) {
       const fx = (lon - meta.west) / meta.dlon - 0.5, fy = (meta.north - lat) / meta.dlat - 0.5;
       const i = Math.max(0, Math.min(C - 2, Math.floor(fx))), j = Math.max(0, Math.min(Rr - 2, Math.floor(fy)));
       const tx = Math.max(0, Math.min(1, fx - i)), ty = Math.max(0, Math.min(1, fy - j));
-      const a = sm[j * C + i], b = sm[j * C + i + 1], c = sm[(j + 1) * C + i], d = sm[(j + 1) * C + i + 1];
-      return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+      const row = (jj) => cr(at(i - 1, jj), at(i, jj), at(i + 1, jj), at(i + 2, jj), tx);
+      return cr(row(j - 1), row(j), row(j + 1), row(j + 2), ty);
     };
     const BASE = 60;   // metres; the lowest ground in the window sits a little above the bed
     W.h = function (x, z) { const ll = W.toLL(x, z); return (W.demAt(ll[0], ll[1]) - BASE) / 1000 * S.SCALE * S.RELIEF; };
@@ -79,6 +83,16 @@
     W.ripple = function (x, z) {   // combed ripples, crests running roughly north-south, wavelength 9 mm
       const warp = fbm(x * 9, z * 9, 21, 3) * 0.02;
       return Math.sin((x + warp + 0.004 * Math.sin(z * 40)) / 0.009 * 2 * Math.PI);
+    };
+    // sinuous ripples for the GPU texture frames (2026-11-10 round 1): a straight sine at 9 mm read as a
+    // pinstripe moire at 4-6 px on 01 and 09. Longer wavelength, crests that bend, amplitude in patches.
+    W.ripple2 = function (x, z) {
+      const th = 0.55 * (fbm(x * 1.4, z * 1.4, 27, 2) - 0.5);
+      const u = x * Math.cos(th) + z * Math.sin(th);
+      const ph = u / 0.015 + 2.2 * fbm(x * 11, z * 11, 23, 3);
+      const s = Math.sin(ph * 2 * Math.PI) + 0.28 * Math.sin(ph * 4 * Math.PI + 0.9);
+      const m = 0.25 + 0.75 * Math.max(0, Math.min(1, (fbm(x * 3.2, z * 3.2, 29, 3) - 0.32) / 0.3));
+      return s * m / 1.2;
     };
     // the record
     const outF = ffd.features.find(f => f.properties.part === 'outline');
@@ -119,7 +133,7 @@
       const k = (j * N + i) * 4, t = 0.9 + 0.2 * g;
       for (let ch = 0; ch < 3; ch++) ai.data[k + ch] = Math.min(255, (lit[ch] * (1 - wet * 0.55) + damp[ch] * wet * 0.55) * t);
       ai.data[k + 3] = 255;
-      const b = 128 + 52 * W.ripple(x, z) * (0.6 + 0.4 * fbm(x * 4, z * 4, 41, 2)) + 40 * (g - 0.5);
+      const b = 128 + 50 * W.ripple2(x, z) + 22 * (g - 0.5);
       bi.data[k] = bi.data[k + 1] = bi.data[k + 2] = Math.max(0, Math.min(255, b)); bi.data[k + 3] = 255;
     }
     ax.putImageData(ai, 0, 0); bx.putImageData(bi, 0, 0);
