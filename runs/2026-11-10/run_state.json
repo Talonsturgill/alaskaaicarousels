@@ -131,5 +131,12 @@
   "weighted_total": 8.735,
   "normalized": 7.94,
   "artwork": 7
- }
+ },
+ "site_signoff": "PASS, 175 pages, 18 checks",
+ "gaswatch_live": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
+ "gaswatch_pagecheck": "PASS, read 2026-11-10, 98 days on record, chart present",
+ "cron_health": "PASS, 7 scheduled workflows checked, no failures",
+ "site_fixes": "Gas Watch late post repaired by dispatching the production collector and verifying the live page; docket rebuilt after the Houston final finding; ask-box stress fix during PR CI (a docket source label indexed \"mining\" into the Houston item, relabelled)",
+ "gas_watch_verdict": "PASS, checked 2026-11-11 (re-audit after repair), first audit FAIL late_post (CINGSA posted 01:00Z after the 00:05Z collection); dispatched gaswatch.yml on main (run 42970768066, success), Pages redeployed with the 7.87 Bcf reading, live re-audit PASS",
+ "gas_watch": "PASS, read 2026-11-10, 98 days on record, chart present"
 }

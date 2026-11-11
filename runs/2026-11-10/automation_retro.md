@@ -42,3 +42,7 @@ supersample in aksdf, and a column-fill that interpolates instead of painting on
 - ask pack at 31,877 of 32,000 tokens, ask payload 106 bytes under ceiling (repeat 0 to 1)
 
 no upgrades
+
+## After the PR opened
+- CI `checks` failed on the ask-box stress suite: "bitcoin mining in wyoming" matched the Houston docket item, because a new source outlet label named DNR's Division of Mining, Land and Water and the engine indexes outlets. The label was changed to "Alaska DNR public notice" (URL unchanged) and the suite passed locally. Its E5 row also fails locally on unmodified main (an environment difference), and CI passes it.
+- The Gmail sign-off table first printed UNREPORTED: the run kept its Phase 3.6 verdicts in site_lines.txt, not under the run_state keys gmail_draft.py reads (site_signoff, gas_watch_verdict, gas_watch, cron_health, site_fixes). They were added to run_state and the table now prints verdicts. The record should be written at Phase 3.6, not reconstructed at Phase 13.
