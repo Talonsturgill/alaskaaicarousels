@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-11-the-roof-puck",
+      "date": "2026-11-11",
+      "title": "The Roof Puck",
+      "caption": "Waymo says it will run closed-course tests and collect heavy snowfall data in Alaska this season, and a statement quoted by Alaska's News Source lists three kinds of work in Fairbanks. Waymo hadn't yet answered whether driverless cars are planned.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-11-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-11-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-11-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-11-poster_thumb.jpg"
+    },
+    {
       "id": "take-a-number",
       "date": "2026-11-10",
       "title": "Take a Number",
