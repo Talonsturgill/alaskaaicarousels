@@ -1,0 +1,243 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '01 / 09' at 886,52 114x31 (margin 80px)"
+      ],
+      "fits": [
+        "h01 '6,800 acres,down from 19,500.' fits 2/2 lines at 123px",
+        "d01 'The questions didn't shrink.' fits 1/1 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "axis census: 'the one-mile scale bar on the near rail': the weakest declared mark (at 168, ink 6.8) is no stronger than the band's own texture (23.8), and the strongest declared mark reads 40.7, so no census can separate marks from art here. Per mark: 96 (0 miles): ink 40.7, 132 (0.50 miles): ink 40.7, 168 (0.99 miles): ink 6.8. Narrow the band to the strip the marks occupy, or draw the marks so a reader can tell them from the ground.",
+        "leader reaches across the frame: the leader for 'the July outline, the vertex under the label' is drawn 419 design px long (from (774.1,528) to (980.3,892.2) at 60 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it",
+        "leader reaches across the frame: the leader for 'the hatched lands inside July and outside the parcel' is drawn 391 design px long (from (104,561) to (268.8,916) at 65 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it",
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '02 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: 'NOVEMBER 10TH \u00b7 ABOUT 6,800 ACRES' at 410,1253 539x30 (margin 80px)",
+        "outside safe zone: '1 MI' at 179,1253 65x30 (margin 80px)"
+      ],
+      "contacts": [
+        "'a steel tack and the gold cord at the parcel south-east corner': shadow L* 19.2 vs ground L* 50.7, dL 31.6 at 432w"
+      ],
+      "motifs": [
+        "'the gold cord around the conveyed parcel': canvas 77.7 dE, page 77.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the July outline, the vertex under the label' lands 0.0px from its target",
+        "leader 'the hatched lands inside July and outside the parcel' lands 0.0px from its target",
+        "leader 'the gold cord, the conveyed parcel south edge' lands 0.0px from its target",
+        "leader 'the July outline, the vertex under the label' meets its label 3.0px away",
+        "leader 'the hatched lands inside July and outside the parcel' meets its label 3.0px away",
+        "leader 'the gold cord, the conveyed parcel south edge' meets its label 0.9px away",
+        "leader 'the gold cord, the conveyed parcel south edge' is drawn 330 px at 59 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h02 'About a third of the July map,at no cost.' fits 2/2 lines at 81px",
+        "b02 'Commissioner John Crowther signed it Novembe' fits 3/4 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "leader reaches across the frame: the leader for 'the gold cord, the parcel north edge' is drawn 414 design px long (from (725.4,555) to (725.4,969.3) at 90 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it",
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '03 / 09' at 886,52 114x31 (margin 80px)"
+      ],
+      "leaders": [
+        "leader 'the gold cord, the parcel north edge' lands 0.0px from its target",
+        "leader 'the ground north of the new line, toward the trail system' lands 0.0px from its target",
+        "leader 'the projected July outline, on a lit dash' lands 0.0px from its target",
+        "leader 'the gold cord, the parcel north edge' meets its label 4.0px away",
+        "leader 'the ground north of the new line, toward the trail system' meets its label 8.2px away",
+        "leader 'the projected July outline, on a lit dash' meets its label 4.0px away",
+        "leader 'the ground north of the new line, toward the trail system' is drawn 166 px at 86 degrees, inside the pointer band",
+        "leader 'the projected July outline, on a lit dash' is drawn 284 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h03 '2,306 commentsmoved the north line.' fits 2/2 lines at 95.5px",
+        "b03 'DNR redrew the parcel to avoid any overlap w' fits 3/3 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'AWC 247-41-10100-2287' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AWC 247-41-10100-2285' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AWC 247-41-10100-2231-3050' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LITTLE SUSITNA RIVER' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ABOUT HALF A MILE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '100 FT EACH SIDE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LOUPE x12' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'STREAM POSITIONS APPROXIMATE' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "leader reaches across the frame: the leader for 'the Bench Lake outlet stream' is drawn 501 design px long (from (928.2,589) to (587.8,957.1) at 47 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it",
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '04 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: 'Salmon water gets 100 feet.' at 80,154 930x195 (margin 80px)",
+        "outside safe zone: '100 FT EACH SIDE' at 756,884 253x34 (margin 80px)",
+        "worst-point contrast 4.0 on 'STREAM POSITIONS APPROXIMATE' (box mean 4.7) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "contacts": [
+        "'the Little Susitna wool strand lying on the sand': shadow L* 58.8 vs ground L* 71.7, dL 12.9 at 432w"
+      ],
+      "motifs": [
+        "'the loupe over the range-line stream': canvas 53.7 dE, page 53.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the Bench Lake outlet stream' lands 0.0px from its target",
+        "leader 'the stream on the Section 13 and 18 line' lands 0.0px from its target",
+        "leader 'the stream entering Section 4' lands 0.0px from its target",
+        "leader 'the Bench Lake outlet stream' meets its label 3.0px away",
+        "leader 'the stream on the Section 13 and 18 line' meets its label 3.0px away",
+        "leader 'the stream entering Section 4' meets its label 3.0px away",
+        "leader 'the stream on the Section 13 and 18 line' is drawn 299 px at 83 degrees, inside the pointer band",
+        "leader 'the stream entering Section 4' is drawn 180 px at 45 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h04 'Salmon watergets 100 feet.' fits 2/2 lines at 99.5px",
+        "b04 'The decision lists three anadromous waters w' fits 3/4 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '05 / 09' at 886,52 114x31 (margin 80px)"
+      ],
+      "fits": [
+        "h05 'Inside the line,nothing is drawn yet.' fits 2/2 lines at 95.5px",
+        "s05 'The decision approves no specific project.' fits 1/2 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '06 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: 'Four pieces, on plats from 1915, 1917 an' at 80,154 930x172 (margin 80px)"
+      ],
+      "contacts": [
+        "'a steel tack and the gold cord at the south corner of piece 2': shadow L* 48.0 vs ground L* 64.2, dL 16.1 at 432w"
+      ],
+      "motifs": [
+        "'the gold cord around the four pieces': canvas 64.5 dE, page 64.6 dE, 98% of its rect is clear of opaque DOM (div#b3.bal stands on the rest)"
+      ],
+      "fits": [
+        "h06 'Four pieces, on platsfrom 1915, 1917 and 196' fits 2/2 lines at 87.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '07 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: 'July waived the take-back. November keep' at 80,154 930x179 (margin 80px)"
+      ],
+      "contacts": [
+        "'the steel tack standing in the sand': shadow L* 3.9 vs ground L* 60.3, dL 56.4 at 432w"
+      ],
+      "leaders": [
+        "leader 'the crossing where the slipped half hitch leaves the tack' lands 0.0px from its target",
+        "leader 'the crossing where the slipped half hitch leaves the tack' meets its label 4.0px away",
+        "leader 'the crossing where the slipped half hitch leaves the tack' is drawn 328 px at 90 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h07 'July waived the take-back.November keeps it.' fits 2/2 lines at 91.5px",
+        "b07 'Land not developed for the purpose in AIDEA'' fits 3/4 lines at 33.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ALASKA.AI' at 112,50 160x31 (margin 80px)",
+        "outside safe zone: '08 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: '2,306 comments. The wells and the grid w' at 80,154 930x172 (margin 80px)",
+        "art touching glyphs (5% of the ring around 'A PROJECT', spanning 25%) -- pixel critic verify the label is not crossed"
+      ],
+      "contacts": [
+        "'the basswood tray resting on the lit oak rail': shadow L* 26.2 vs ground L* 40.8, dL 14.5 at 432w"
+      ],
+      "fits": [
+        "h08 '2,306 comments.The wells and the grid wait.' fits 2/2 lines at 87.5px",
+        "b08 'Commenters warned of drawn-down wells and a ' fits 4/4 lines at 32px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '09 / 09' at 886,52 114x31 (margin 80px)",
+        "outside safe zone: 'If not in this decision, where do the we' at 80,150 930x245 (margin 80px)"
+      ],
+      "fits": [
+        "h09 'If not in this decision,where do the well an' fits 3/3 lines at 83.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 40,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          3,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKSAND.fbm",
+        "slides": [
+          1,
+          2,
+          5,
+          6,
+          9
+        ]
+      },
+      {
+        "call": "AKSAND.load",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "akthree.environment",
+        "slides": [
+          1,
+          5,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

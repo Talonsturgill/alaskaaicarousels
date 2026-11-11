@@ -2674,6 +2674,36 @@
       "last_confirmed": "2026-11-09",
       "run_date": "2026-11-09",
       "carousel_no": 110
+    },
+    {
+      "id": "bicubic-dem-before-any-per-pixel-normal",
+      "instinct": "Sample a DEM with a C1 (bicubic) lookup before taking per-pixel normals; bilinear heights are continuous but their normals jump at every cell, and every hillshade prints the lattice as blocks.",
+      "evidence": "No.111: 02, 04, 06 and 08 all read 'upscaled, blocky' to four critics in round 1; one change to the shared lookup cleared all four.",
+      "confidence": 0.7,
+      "learned": "2026-11-10",
+      "last_confirmed": "2026-11-10",
+      "run_date": "2026-11-10",
+      "carousel_no": 111
+    },
+    {
+      "id": "straight-ripple-is-a-comb",
+      "instinct": "A single-direction sine ripple reads as a pinstripe or comb at any scale; bend the crests with noise, vary amplitude in patches, and in plan views turn the base direction off the screen axes.",
+      "evidence": "No.111: the 9 mm north-south sine printed as moire on 01 and 09, corduroy on 03, and a vertical comb in every plan frame until it was rotated and swung.",
+      "confidence": 0.6,
+      "learned": "2026-11-10",
+      "last_confirmed": "2026-11-10",
+      "run_date": "2026-11-10",
+      "carousel_no": 111
+    },
+    {
+      "id": "model-the-lay-in-geometry",
+      "instinct": "For a rope or cord seen close, build the strands as geometry (helical tubes or SDF grooves); a bump map at macro scale never shows the lay.",
+      "evidence": "No.111: 05's bump-mapped cord read as a ribbed hose then a flat strap for two rounds; three helical tubes read as rope at once, and 07's SDF grooves matched it.",
+      "confidence": 0.55,
+      "learned": "2026-11-10",
+      "last_confirmed": "2026-11-10",
+      "run_date": "2026-11-10",
+      "carousel_no": 111
     }
   ]
 }

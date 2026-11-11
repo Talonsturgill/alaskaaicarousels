@@ -1,0 +1,117 @@
+{
+ "run_date": "2026-11-10",
+ "carousel_no": 111,
+ "effort": "high",
+ "date_note": "Woke 2026-11-11 06:04Z = 2026-11-10 21:04 AKST; run_guard --run-date 2026-11-10 CLEAR.",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/plan.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "two searches, nothing new; FIELD_NOTES untouched"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/scout_merge.md",
+    "out/2026-11-10/scouts/"
+   ]
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/claims.json"
+   ],
+   "note": "90 claims, 65 primary; claims_check PASS"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ]
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/gaswatch_health.json",
+    "out/2026-11-10/cron_health.json",
+    "out/2026-11-10/site_lines.txt"
+   ]
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/storyboard.md",
+    "out/2026-11-10/treatments/"
+   ]
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/caption.txt",
+    "out/2026-11-10/copy.json",
+    "out/2026-11-10/caption_report.json"
+   ]
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/slides/",
+    "out/2026-11-10/render/",
+    "out/2026-11-10/render/machine_qa.json"
+   ]
+  },
+  "pixel_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/pixel_review_summary.md"
+   ],
+   "note": "5 editing rounds of 5 (cap)"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/flow_review.json"
+   ]
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/final/carousel.pdf",
+    "out/2026-11-10/final/contact_sheet.png",
+    "out/2026-11-10/final/assemble_report.json"
+   ]
+  },
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-10/score_report.json"
+   ],
+   "note": "8.735 by rubric formula (weights sum 1.10; normalized 7.94) vs 7.7 at round 5; art 7, craft floor capped"
+  },
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social": {
+  "preflight": "users/pages/pins verified 2026-11-11T06:10Z; state branch initialized (empty)"
+ },
+ "score": {
+  "weighted_total": 8.735,
+  "normalized": 7.94,
+  "artwork": 7
+ }
+}

@@ -1,0 +1,171 @@
+{
+ "run_date": "2026-11-10",
+ "carousel_no": 111,
+ "revision_rounds": 5,
+ "hard_fails": [
+  {
+   "rule": "em/en dash",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji",
+   "status": "pass"
+  },
+  {
+   "rule": "claim without claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo in render",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped or overlapping text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa FAIL or pdf not vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeat without update framing",
+   "status": "pass"
+  },
+  {
+   "rule": "hero identical to last 4",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count or link in body",
+   "status": "pass"
+  },
+  {
+   "rule": "placeholder",
+   "status": "pass"
+  },
+  {
+   "rule": "quote marks by codepoint",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Specific number contrast and a named tension in nine words over a GPU terrain with a gold cord; at 432 px the cord thins and the July loop runs off frame, and the ridge climbs behind '19,500.'."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "Credit then press; 02 pays the size at once, 05 breathes, 07 turns, 08 presses, 09 asks. 03 and 04 could swap; 06 could sit anywhere after 02; 08 repeats 05's no-specific-project line."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16,
+   "notes": "GPU PBR on 01, 05, 09 with a real thin-lens depth frame on 05. 04's lifted plan relief smears; 07's SDF cord is lumpy and oversized with a blob of a hitch; 08's projected frame carries dark blotches; 03's cord is a flat stroke and its dashes clip white; 02, 06 and 08 share an oak-framed plan view."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14,
+   "notes": "Cord is the exact 170 cells of the legal description, July outline traced and labelled projected, hatch keyed to plat year, three wool strands for three AWC waters, four blocks for four things not authorized. 07's label reads backwards for a reversion; 08's blotches undercut 'nothing drawn'."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 9,
+   "weight": 0.12,
+   "notes": "Houston, Haessler-Norris, the Little Susitna, three AWC numbers, Crowther, ADL 234762, plats of 1915/1917/1963, real Mat-Su terrain; credits the commenters before pressing. Houston label dropped from the art."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Each content slide adds a verified specific; 2,306 opens both 03 and 08 and C46 is spent twice."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "New hero, atmosphere, palette and hook archetype; still the fifth Houston deck and a terrain map with a gold boundary."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07,
+   "notes": "04 carries eight 22 px plates including the approximate note at worst-point 4.0; 02's rail labels outside the 80 px safe zone; 08 block labels wedged on the back edge."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05,
+   "notes": "119-char definition-subversion hook, debatable closing question; 'leaves the water ... for later' can read against the 100 ft setback; paired 'DNR's reply is that' lines read mechanically."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Post copy, 3 hashtags, dated first-comment sources, title, aftercare and editor notes present; Gmail draft and merged URLs pending at scoring time."
+  }
+ ],
+ "calculation": "(8x0.14)+(8x0.14)+(7x0.16)+(8.5x0.14)+(9x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(7.5x0.05)+(8x0.10) = 8.735 by the rubric's formula. The rubric's weights sum to 1.10, so normalized to unit weight the score is 7.94.",
+ "weighted_total": 8.735,
+ "weighted_total_normalized": 7.94,
+ "weights_sum": 1.1,
+ "threshold": 7.7,
+ "threshold_basis": "iteration_ladder, revision_rounds 4+ (ship best version, flag shortfall in email)",
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Re-render slide 04's main view through the shared akthree table scene, as round 5 did for 08's window: lit DEM relief with shadow-map casts instead of the smeared plan-oblique lift, the whole parcel inside the bed, and the 22 px plates raised to 24 px.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "plan-oblique relief smeared, vertical streaks south of the river, ghost rectilinear blocks, ragged top edge",
+   "fix": "akthree render of the parcel's south half with shadow-map casts, full cord inside the bed"
+  },
+  {
+   "slide": 7,
+   "problem": "SDF cord oversized and lumpy, hitch reads as a blob, silhouette steps where it leaves the shank",
+   "fix": "cord at 05's proportion along a true half-hitch path, supersampled at the silhouette"
+  },
+  {
+   "slide": 8,
+   "problem": "dark blotches (real terrain) read through the projected empty frame; cord frame runs off the window top",
+   "fix": "flatten the relief or raise projector emissive inside the rectangle; re-aim so the whole cord frame sits in the window"
+  },
+  {
+   "slide": 3,
+   "problem": "cord a flat uniform-width stroke that sags off the right edge; projected dashes clip white",
+   "fix": "perspective-tapered tube taut between tacks; cap the projected-light add"
+  }
+ ],
+ "craft_floor": {
+  "art": 7,
+  "floor": 8.5,
+  "status": "capped",
+  "reason": "artwork craft 7.0, run at the 5-round cap; no craft cycle possible"
+ },
+ "editor_notes_for_email": [
+  "Ships at round 5 of 5 against the 7.7 ladder threshold, no hard fails. 8.735 by the rubric's formula; the weights sum to 1.10, normalized 7.94, below the standard 8.3.",
+  "Art 7 under the 8.5 craft floor; no craft cycle possible at the cap. Weakest frames 04, 07, 08, 03.",
+  "The FFD says 19,500 on p.1, 'approximately 20,000' elsewhere and 19,950 in the WSWCD summary; earlier decks used 19,950. The vicinity map's GIS total is 6,749 acres against the decision's 6,800.",
+  "Reconsideration requests due November 30th (20 days), timely commenters only, $200, dnr.appeals@alaska.gov.",
+  "08 sets DNR's position in the Fraunces text cut without quote marks; 07's label can read backwards for a reversion.",
+  "Caption: 'leaves the water ... for later' means groundwater and wells, not the streams that got the setback.",
+  "The first comment (sources) must be pasted by hand."
+ ]
+}
