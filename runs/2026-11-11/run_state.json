@@ -1,121 +1,171 @@
 {
- "run_date": "2026-11-11",
- "carousel_no": 112,
- "effort": "high",
- "date_note": "Woke 2026-11-12 06:04Z = 2026-11-11 21:04 AKST; run_guard --run-date 2026-11-11 CLEAR.",
- "revision_rounds": 4,
- "phases": {
-  "wake": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/plan.md"
-   ]
+  "run_date": "2026-11-11",
+  "carousel_no": 112,
+  "effort": "high",
+  "date_note": "Woke 2026-11-12 06:04Z = 2026-11-11 21:04 AKST; run_guard --run-date 2026-11-11 CLEAR.",
+  "revision_rounds": 4,
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "two searches, nothing new beyond the already-recorded compact-carousel feed change; FIELD_NOTES untouched"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/scout_merge.md",
+        "out/2026-11-11/scouts/"
+      ],
+      "note": "6 scouts, 142 searches"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/claims.json"
+      ],
+      "note": "64 claims, 52 primary; claims_check PASS; fact-checker 6 WebFetch calls, 6 distinct URLs, DNR PDF read from the showrunner's extraction"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "worklist 1 item (enstar-cook-inlet-gas-storage) re-verified unchanged; watch.json bills HB259/SB250 match the ledger; 0 hearings (out of session); 29 candidates triaged, none an AI-infrastructure decision (3 FERC hydro notices, utility bills already dead or off beat); failed sources none. ask payload headroom only 292 bytes (189,708 of 190,000); mobile_docket_map and docket_ask PASS"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/gaswatch_health.json",
+        "out/2026-11-11/cron_health.json",
+        "out/2026-11-11/cron_incidents.json",
+        "out/2026-11-11/site_lines.txt"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/storyboard.md",
+        "out/2026-11-11/treatments/"
+      ],
+      "note": "lenses data-journalist, cinematographer, historian-of-the-future; A's pillars + B's place synthesized"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/caption.txt",
+        "out/2026-11-11/copy.json",
+        "out/2026-11-11/caption_report.json"
+      ],
+      "note": "room A (COLD NUMBER/PUNCH THEN PROOF/FORK) won with the critic's one fix (rent is the larger of Base Rate and surcharge)"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/slides/",
+        "out/2026-11-11/render/"
+      ],
+      "note": "qa PASS 0 fails 1 warn (08 contact dL 7.5)"
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [],
+      "note": "4 rounds; round 3 flow 7.2; craft cycle on 07,03,04,02,09"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [],
+      "note": "flow_review.json round 3"
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [],
+      "note": "vector pdf, 9 slides"
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [],
+      "note": "8.49 art 7 -> craft cycle -> 8.57 art 7.5"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-11/"
+      ],
+      "note": "artifacts copied, webp, pdf shrunk, site built, ledgers appended; prune blocked by classifier"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-11/automation_retro.md",
+        "ledger/upgrades.json"
+      ],
+      "note": "weekly pass ran (machine_due exit 0): 4 changes in upgrade(2026-11-11) d747a24e"
+    },
+    "gmail": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-11/gmail_draft_id.txt"
+      ],
+      "note": "draft r6519605811640209685 to docket@alaskaaihq.com, read back; viewUrl authuser shows the personal account"
+    },
+    "retro": {
+      "status": "done",
+      "artifacts": [
+        "knowledge/FIELD_NOTES.md",
+        "out/2026-11-11/automation_retro.md"
+      ],
+      "note": "retro, instincts, queue written; prune_runs blocked by the permission classifier, not retried"
+    }
   },
-  "craft_refresh": {
-   "status": "done",
-   "artifacts": [],
-   "note": "two searches, nothing new beyond the already-recorded compact-carousel feed change; FIELD_NOTES untouched"
+  "social": {
+    "preflight": "users/pages/pins/tiktok-settings verified 2026-11-12T06:08Z (profile alaska_ai, FB 2003130316607965 pinned, LinkedIn urn:li:organization:117084989 pinned, IG alaskaai_); state branch initialized/read OK"
   },
-  "research": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/scout_merge.md",
-    "out/2026-11-11/scouts/"
-   ],
-   "note": "6 scouts, 142 searches"
+  "site_signoff": "PASS, 176 pages, 18 checks",
+  "gaswatch_live": "PASS, checked 2026-11-12T06:11:00Z, no repair needed",
+  "gaswatch_pagecheck": "PASS, read 2026-11-11, 99 days on record, chart present",
+  "cron_health": "FAIL with documented GitHub blocker (gate WARN): gaswatch.yml run 612 stuck queued since 2026-11-11T20:43Z, cancel refused HTTP 409; collection unaffected",
+  "social_feedback": {
+    "attached": "talonsturgill/social-content-feedback read (add_repo appended)",
+    "reader_output": "[]",
+    "decision": "no valid action this week; runs/<date>/social_feedback.json will be []"
   },
-  "claims": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/claims.json"
-   ],
-   "note": "64 claims, 52 primary; claims_check PASS; fact-checker 6 WebFetch calls, 6 distinct URLs, DNR PDF read from the showrunner's extraction"
+  "gas_watch_verdict": "PASS, checked 2026-11-12T06:11:00Z, no repair needed",
+  "gas_watch": "PASS, read 2026-11-11, 99 days on record, chart present",
+  "site_fixes": "none. Nothing on the live site needed repair this run.",
+  "social_delivery": {
+    "status": "complete",
+    "edition_id": "2026-11-11",
+    "linkedin_feed": "PUBLISHED urn:li:ugcPost:7526578410194714624 https://www.linkedin.com/feed/update/urn:li:ugcPost:7526578410194714624/ (request b31145eb3fc545cca3d6d7c4721ff302, organization 117084989)",
+    "youtube": "NOT_APPLICABLE (image carousel; no slideshow video invented)",
+    "instagram_feed": "PUBLISHED 18131952718699070 https://www.instagram.com/p/Dfov_gDjNEC/ (CAROUSEL_ALBUM, request d36eb89d72ff41e0a9cb03e14039a7e4)",
+    "facebook_feed": "PUBLISHED 2003130316607965_1156904290636701 https://www.facebook.com/2003130316607965_1156904290636701 (Page 2003130316607965, request 1e7ec0de126c41dead3246a2bbd82a0c)",
+    "tiktok_feed": "PUBLISHED 7707217070311656734 https://www.tiktok.com/@alaskaai_/video/7707217070311656734 (DIRECT_POST, PUBLIC_TO_EVERYONE, request deccbea703b342dbb870874fab3b8eed)",
+    "instagram_story": "PUBLISHED 9 of 9 frames in order: 1:18100610927656567, 2:18130974226895507, 3:18111734948211642, 4:18037501004900111, 5:18131768029884163, 6:18035680013896942, 7:18114290444577718, 8:18128514853906623, 9:18128134123908381",
+    "facebook_story": "PUBLISHED 9 of 9 frames in order: 1:1185094613856800, 2:28014531311556702, 3:943530272027034, 4:2202725650601746, 5:3539754126203220, 6:1430142478783581, 7:1845231499847776, 8:1498129148839331, 9:1446656590348166"
   },
-  "docket": {
-   "status": "done",
-   "artifacts": [
-    "ledger/docket.json"
-   ],
-   "note": "worklist 1 item (enstar-cook-inlet-gas-storage) re-verified unchanged; watch.json bills HB259/SB250 match the ledger; 0 hearings (out of session); 29 candidates triaged, none an AI-infrastructure decision (3 FERC hydro notices, utility bills already dead or off beat); failed sources none. ask payload headroom only 292 bytes (189,708 of 190,000); mobile_docket_map and docket_ask PASS"
+  "status": "complete",
+  "score": {
+    "weighted_total": 8.57,
+    "normalized": 7.79,
+    "artwork": 7.5,
+    "craft_cycle": "7 -> 7.5"
   },
-  "gas_watch": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/gaswatch_health.json",
-    "out/2026-11-11/cron_health.json",
-    "out/2026-11-11/cron_incidents.json",
-    "out/2026-11-11/site_lines.txt"
-   ]
+  "pr": {
+    "number": 487,
+    "merged": "016ceaf21c37d4cd5c97ad30f6d9f5741accfb33",
+    "codex": "completed on 73df58e, no findings"
   },
-  "selection": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/selection.md"
-   ]
-  },
-  "directors_room": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/storyboard.md",
-    "out/2026-11-11/treatments/"
-   ],
-   "note": "lenses data-journalist, cinematographer, historian-of-the-future; A's pillars + B's place synthesized"
-  },
-  "copy": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/caption.txt",
-    "out/2026-11-11/copy.json",
-    "out/2026-11-11/caption_report.json"
-   ],
-   "note": "room A (COLD NUMBER/PUNCH THEN PROOF/FORK) won with the critic's one fix (rent is the larger of Base Rate and surcharge)"
-  },
-  "art_build": {
-   "status": "done",
-   "artifacts": [
-    "out/2026-11-11/slides/",
-    "out/2026-11-11/render/"
-   ],
-   "note": "qa PASS 0 fails 1 warn (08 contact dL 7.5)"
-  },
-  "pixel_review": {
-   "status": "done",
-   "artifacts": [],
-   "note": "4 rounds; round 3 flow 7.2; craft cycle on 07,03,04,02,09"
-  },
-  "flow_review": {
-   "status": "done",
-   "artifacts": [],
-   "note": "flow_review.json round 3"
-  },
-  "assemble": {
-   "status": "done",
-   "artifacts": [],
-   "note": "vector pdf, 9 slides"
-  },
-  "scoring": {
-   "status": "done",
-   "artifacts": [],
-   "note": "8.49 art 7 -> craft cycle -> 8.57 art 7.5"
-  },
-  "ship": {
-   "status": "in_progress",
-   "artifacts": []
-  },
-  "upgrade": "pending",
-  "gmail": "pending",
-  "retro": "pending"
- },
- "social": {
-  "preflight": "users/pages/pins/tiktok-settings verified 2026-11-12T06:08Z (profile alaska_ai, FB 2003130316607965 pinned, LinkedIn urn:li:organization:117084989 pinned, IG alaskaai_); state branch initialized/read OK"
- },
- "site_signoff": "PASS, 176 pages, 18 checks",
- "gaswatch_live": "PASS, checked 2026-11-12T06:11:00Z, no repair needed",
- "gaswatch_pagecheck": "PASS, read 2026-11-11, 99 days on record, chart present",
- "cron_health": "FAIL with documented GitHub blocker (gate WARN): gaswatch.yml run 612 stuck queued since 2026-11-11T20:43Z, cancel refused HTTP 409; collection unaffected",
- "social_feedback": {
-  "attached": "talonsturgill/social-content-feedback read (add_repo appended)",
-  "reader_output": "[]",
-  "decision": "no valid action this week; runs/<date>/social_feedback.json will be []"
- }
+  "gmail_draft_id": "r6519605811640209685"
 }
