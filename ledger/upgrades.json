@@ -3807,6 +3807,72 @@
       "verify": [
         "python3 scripts/fetch_pdf_text.py --self-test"
       ]
+    },
+    {
+      "run_date": "2026-11-11",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "ask_pack.py retires passed key dates from the ask pack by rule, the way it already windows history notes: every upcoming date renders, and of the passed ones the first and the newest three (settled items: the first and the newest), sorted, with one line naming how many earlier dates the item's page carries. docs/ask-pack.json rebuilt for 2026-11-11.",
+      "trigger": "Queue item 2026-11-09 ask pack ceiling, repeat 2, the item that made this pass due: No.110 (32,085 of 32,000 tokens, trimmed by hand), No.111 (31,877, 106 bytes under the inline ceiling), No.112 (inline payload over 190,000 bytes, fixed in-run). Measured this pass: the 2026-11-11 pack at 31,894 tokens; the 42 items carried 203 key dates, about 16,000 of 127,600 characters, 10,700 of them over a month past, and nothing bounded them while history notes were already windowed (2026-08-30, 2026-09-14, 2026-11-02).",
+      "files": [
+        "scripts/ask_pack.py",
+        "docs/ask-pack.json"
+      ],
+      "verification": "ask_pack --self-test clean (four new checks: a live item keeps first passed, newest three and every upcoming date; a settled item keeps first and newest; a short list renders whole and sorted; every item's upcoming dates and newest passed date are in the real pack). Pack 127,576 chars / 31,894 tokens before, 123,712 / 30,928 after on the same record, 966 tokens freed, 1,072 of headroom; MAX_TOKENS 32,000 untouched; authorised numerals 240 to 232, a tighter allow-list. The free in-page engine (ask_answers.py) is untouched and still indexes every date.",
+      "rollback": "revert the upgrade(2026-11-11) commit, or set RECENT_PAST_DATES and SETTLED_PAST_DATES high enough that window_key_dates returns every date; rebuild docs/ask-pack.json",
+      "commit": "",
+      "verify": [
+        "python3 scripts/ask_pack.py --self-test"
+      ]
+    },
+    {
+      "run_date": "2026-11-11",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "caption_check.py writes caption_report.json to a sibling .tmp and os.replace()s it into place, so a stray shell redirect of stdout onto the report path writes into the unlinked old inode and the report on disk is always parseable JSON.",
+      "trigger": "Queue item 2026-11-07, repeat 1: No.108 (FIELD_NOTES, redirect clobbered the report) and No.109 round 3, where `caption_check ... > caption_report.json` produced a file opening `verdict: PASS` over the JSON head.",
+      "files": [
+        "scripts/caption_check.py"
+      ],
+      "verification": "Reconstruction in scratch: before the change, `caption_check.py caption.txt --copy copy.json --ledger ledger/captions.json > caption_report.json` left a file opening with the FAIL lines and json.load raised JSONDecodeError at char 0; after it, the same command leaves parseable JSON (verdict read back). caption_check --self-test exit 0. The shipped-artifact guard under runs/ is unchanged (still prints and writes nothing).",
+      "rollback": "revert the upgrade(2026-11-11) commit",
+      "commit": "",
+      "verify": [
+        "python3 scripts/caption_check.py --self-test"
+      ]
+    },
+    {
+      "run_date": "2026-11-11",
+      "kind": "fix",
+      "area": "assets",
+      "change": "akhaul.js sky() draws its background canvas at the drawing buffer's size (R.w and R.h times the renderer's pixel ratio, 2160x2700 at the house setup) instead of a fixed 540x675, and places the horizon by R.h.",
+      "trigger": "This run's incident and queue item 2026-11-11 (repeat 0): No.112 slide 09, an aurora painted through sky(paint) read as a smear with a cobalt rim down both edges for two critic rounds, because the texture was upscaled 4x; the run moved the aurora to the art canvas.",
+      "files": [
+        "assets/js/akhaul.js"
+      ],
+      "verification": "Reconstruction: a probe slide painting 2-device-px white lines into the sky renders them at peak 124 with a sharpest step of 40 levels/px under the old file (git HEAD) and at 255 with 246 levels/px under the new. Re-render of out/2026-11-11/slides: render exit 0, all nine OK; slides 01, 06 and 09 differ from the run's own render by at most 3 levels (mean 0.25 to 0.39), slide 03 (no akhaul sky) is byte-identical in pixels; qa.py verdict WARN with 0 fails and 7 warns, the same as the run's machine_qa.json. examples/demo-deck: render exit 0, qa WARN, 0 fails.",
+      "rollback": "revert the upgrade(2026-11-11) commit",
+      "commit": "",
+      "verify": [
+        "python3 .claude/skills/carousel-engine/render.py --slides-dir out/2026-11-11/slides --out-dir out/2026-11-11/upgrade_verify/render",
+        "python3 .claude/skills/carousel-engine/qa.py --render-dir out/2026-11-11/upgrade_verify/render"
+      ]
+    },
+    {
+      "run_date": "2026-11-11",
+      "kind": "fix",
+      "area": "prompts",
+      "change": "Phase 8 steps 3 and 4 of routine_instructions.md now say the pixel rounds, the flow rounds and the craft cycle share THE FIVE ROUND CAP that ship_gate.py counts (ROUND_CAP = 5): stopping the pixel loop at four leaves the flow critic its round, and flow fixes are 'max 2 rounds, and never past the five-round cap'.",
+      "trigger": "Queue item 2026-11-09 (repeat 0): No.110 found Phase 8 step 3's 'max 4 rounds' and step 4's 'max 2 rounds' read as six against the five-round cap that Phase 10 and ship_gate.py enforce.",
+      "files": [
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "Text only; no number changed. ship_gate.py ROUND_CAP read as 5 and THE FIVE ROUND CAP section confirmed above Phase 8; no dash or banned word added.",
+      "rollback": "revert the upgrade(2026-11-11) commit",
+      "commit": "",
+      "verify": [
+        "grep -n 'ONE BUDGET (2026-11-11' prompts/routine_instructions.md"
+      ]
     }
   ],
   "scan_log": [
@@ -4355,6 +4421,13 @@
       "searches": "6 searches (three VSM radius and blurSamples; value-noise grain lattices; PCSS in three.js; drei ContactShadows; SDF soft shadows in 2D; the r170 LightShadow docs), 5 fetches (the LightShadow d.ts, Lottes's grain write-up, drei SoftShadows, demofox on Perlin grids, plus the redirect) and the r170 shader chunk read in assets/js/three.module.min.js",
       "found": "(1) three r170's PCFSoftShadowMap reads no shadow.radius on directional and spot lights; VSM honours radius and blurSamples (default 8) at the cost of light bleeding through thin occluders (https://cdn.jsdelivr.net/npm/@types/three@0.184.1/src/lights/LightShadow.d.ts, https://discourse.threejs.org/t/shadow-artifacts-with-webgpurenderer-vsmshadowmap/89017). (2) drei ContactShadows: an orthographic depth render from below into a 256 px target, two separable blur passes, laid on a ground plane (https://drei.docs.pmnd.rs/staging/contact-shadows). (3) PCSS (contact hardening) patches the shadow shader chunk and recompiles every material (https://drei.docs.pmnd.rs/shaders/soft-shadows). (4) Lottes's grain is point-sampled at one texel per pixel and high-passed (https://gpuopen.com/learn/vdr-follow-up-fine-art-of-film-grain/), the opposite of AKPOST's bilinear size-2 cells.",
       "outcome": "applied (1) as the 2026-11-08 akthree softShadows entry and (4) as the akpost grain entry; parked VSM as the house default, (2) and (3) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-08 frontier scan, focus (c)' with unblock conditions"
+    },
+    {
+      "run_date": "2026-11-11",
+      "focus": "(g) accessibility and PDF/document format, narrowed to whether the carousel PDF carries a structure tree a screen reader or LinkedIn's Accessibility Mode can use. Legal and distinct from the last three logged foci: 2026-11-08 (c) procedural, 2026-11-01 (b) still life, 2026-10-25 (a) LinkedIn. Chosen as the stalest slot, passed over on relevance by the last five scans; this week's art causes were spread one run each, so no art focus had the stronger claim.",
+      "searches": "4 searches (Playwright tagged and outline PDF options; LinkedIn document carousel accessibility; Chromium tagged PDF in headless print; merging tagged PDFs with pikepdf or pypdf), 2 fetches (Intopia on LinkedIn carousels; Playwright's PDF test), plus a local probe of Chromium's tagged output and pypdf's merge",
+      "found": "(1) Intopia: LinkedIn's Accessibility Mode reads the PDF's order panel and keeps heading levels, and the downloadable PDF is accessible only when tagged (https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels). (2) Playwright page.pdf(tagged=True) in this container writes /StructTreeRoot, /MarkInfo and /Lang with /H1 and /P elements (https://sources.debian.org/data/main/p/python-playwright/1.55.0+ds-2/tests/async/test_pdf.py); a test img alt was not tagged. (3) assemble.py's pypdf add_page merge drops the structure tree (measured), and every shipped carousel.pdf is untagged; merging trees means renumbering ParentTree and StructParents (https://sources.debian.org/src/camlpdf/2.9-1/pdfst.ml, https://issues.apache.org/jira/browse/PDFBOX-4407).",
+      "outcome": "nothing applied; parked (2) and (3) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-11 frontier scan, focus (g)' with two routes (one-document print, or a structure-tree merge) and the unblock condition"
     }
   ]
 }

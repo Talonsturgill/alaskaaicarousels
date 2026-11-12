@@ -177,11 +177,18 @@ export function init(THREE, AKT) {
   };
 
   /* The sky as the scene background, a screen-space gradient whose stops are
-   * placed by the solved horizon so the glow sits on the land line. */
+   * placed by the solved horizon so the glow sits on the land line.
+   * DRAWN AT THE DRAWING BUFFER'S SIZE (2026-11-11, weekly pass). It was a
+   * fixed 540x675, a quarter of the 2160x2700 frame, so anything o.paint drew
+   * into it was upscaled 4x and a blur left a light rim down both frame edges
+   * (No.112 slide 09, two critic rounds). o.paint receives (g, W, Hh, horizonPx)
+   * in these device pixels, so a painter that scales by W and Hh is unchanged. */
   H.sky = function (R, o) {
     o = o || {};
     const S = STAGES[o.stage || 'twilight'];
-    const W = 540, Hh = 675, hy = (o.horizonY || 900) / 1350;
+    const ratio = (R.renderer && R.renderer.getPixelRatio && R.renderer.getPixelRatio()) || 2;
+    const W = Math.round((R.w || 1080) * ratio), Hh = Math.round((R.h || 1350) * ratio);
+    const hy = (o.horizonY || 900) / (R.h || 1350);
     const c = document.createElement('canvas'); c.width = W; c.height = Hh;
     const g = c.getContext('2d');
     const gr = g.createLinearGradient(0, 0, 0, Hh);

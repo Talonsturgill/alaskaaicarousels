@@ -1674,11 +1674,16 @@ that argument was typed by hand.
    re-render ONLY changed slides, re-run qa.py, and re-review ONLY
    changed slides. Loop until every slide verdicts "ship", max 4 rounds.
    After round 4, keep the best version of any holdout and log the
-   shortfall for the scorer + email.
+   shortfall for the scorer + email. ONE BUDGET (2026-11-11, weekly pass):
+   these pixel rounds, the flow rounds in step 4 and the craft cycle all
+   draw on THE FIVE ROUND CAP above, and `scripts/ship_gate.py` counts them
+   together (ROUND_CAP = 5). Stopping the pixel loop at four is what leaves
+   the flow critic its round; it never buys a sixth.
 4. Re-assemble, then spawn `flow-critic` with the contact sheet + thumbs +
    storyboard header AND the full renders, and tell it the revision rounds
    used so far (at the five-round cap its art shortfall is reported but no
-   longer asks for a revise). Apply sequence-level fixes (max 2 rounds). A weak
+   longer asks for a revise). Apply sequence-level fixes (max 2 rounds,
+   and never past the five-round cap). A weak
    junction usually means a slide edit, not a reshuffle — but reordering
    is allowed if the arc survives.
    The flow critic also returns `craft`, the deck-level artwork test

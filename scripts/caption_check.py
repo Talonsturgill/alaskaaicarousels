@@ -51,6 +51,7 @@ gate and adds no new rule. See COPY_READER_FIELDS for what is in scope and why
 the editor-only fields are not.
 """
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -1595,7 +1596,16 @@ def main():
     if shipped:
         dest = "not written: %s is a shipped artifact under runs/" % out
     else:
-        out.write_text(json.dumps(rep, indent=2))
+        # WRITTEN BESIDE AND RENAMED INTO PLACE (2026-11-11, weekly pass). Run
+        # No.108 and No.109 round 3 redirected stdout onto this same path
+        # (`caption_check ... > caption_report.json`): the shell's descriptor
+        # and write_text shared one inode, so the verdict lines printed below
+        # landed over the JSON head and the report no longer parsed. A rename
+        # gives the path a fresh inode, so a stray redirect writes into the
+        # unlinked old file and the report on disk is always the JSON alone.
+        tmp = out.with_name(out.name + ".tmp")
+        tmp.write_text(json.dumps(rep, indent=2))
+        os.replace(tmp, out)
         dest = str(out)
     for f in rep["fails"]:
         print("FAIL:", f)
