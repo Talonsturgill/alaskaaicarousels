@@ -38,7 +38,7 @@ export function init(THREE, AKT) {
     deep:     { key: 0xC6AECF, keyI: 2.2, sky: 0x647EB6, ground: 0x2A3A64, hemiI: 0.95,
                 fog: 0x34476F, fogD: 0.0016,
                 sky0: '#070F26', sky1: '#10224A', sky2: '#1F3462', sky3: '#4A5885', sky4: '#8E7A93', sky5: '#B9A3AA' },
-    night:    { key: 0x9C8EB0, keyI: 0.9, sky: 0x4F8FA0, ground: 0x0E1830, hemiI: 0.75,
+    night:    { key: 0xB08C9E, keyI: 1.1, sky: 0x3E9A8C, ground: 0x0A1428, hemiI: 0.55,
                 fog: 0x0F1C38, fogD: 0.0019,
                 sky0: '#030812', sky1: '#050C1C', sky2: '#0B1730', sky3: '#13234A', sky4: '#1D2D55', sky5: '#2A3A62' }
   };
@@ -51,16 +51,20 @@ export function init(THREE, AKT) {
   H.height = function (x, z, o) {
     const AKn = A();
     const s = (o && o.seed) || 1;
-    const wd = (200 - 180) * Math.PI / 180;
-    const u = x * Math.cos(wd) + z * Math.sin(wd), v = -x * Math.sin(wd) + z * Math.cos(wd);
+    /* u runs ALONG the wind (from 200 degrees: the vector (sin 200, cos 200) in x east, z north),
+     * v across it, so the long ridges point down the wind and converge toward the vanishing point
+     * instead of lying across the view like water (No.112 round 1). */
+    const wa = 200 * Math.PI / 180;
+    const u = x * Math.sin(wa) + z * Math.cos(wa), v = x * Math.cos(wa) - z * Math.sin(wa);
     const dist = Math.hypot(x, z);
     const fade = Math.max(0, 1 - dist / ((o && o.detailFar) || 420));
     let r = 0, amp = 1, fu = 0.11, fv = 0.62, norm = 0;
     for (let k = 0; k < 3; k++) {
-      const n = 1 - Math.abs(AKn.simplex2(u * fu + 31.7 * k + s * 0.001, v * fv - 17.3 * k));
+      const q = AKn.simplex2(u * fu + 31.7 * k + s * 0.001, v * fv - 17.3 * k);
+      const n = 1 - Math.sqrt(q * q + 0.012);   /* a soft crease: a true |n| ridge aliases into a sawtooth */
       r += n * n * amp; norm += amp; amp *= 0.5; fu *= 2.1; fv *= 2.05;
     }
-    const sast = (r / norm - 0.35) * 0.095 * fade;
+    const sast = (r / norm - 0.35) * 0.13 * fade;
     const drift = AKn.simplex2(x / 38 + 5.1, z / 52 - 2.3) * 0.22 * Math.max(0.15, 1 - dist / 1600);
     const swell = AKn.simplex2(x / 420 - 9.0, z / 520 + 4.0) * 1.1;
     /* o.mounds: [{x, z, rx, rz, h, rot}] smooth drifts added near the camera, so a
@@ -125,10 +129,10 @@ export function init(THREE, AKT) {
      * colours, so the snow carries texture where the relief is too fine to shade */
     const col = new Float32Array(NX * NZ * 3);
     const AKn = A();
-    const wd = 20 * Math.PI / 180;
+    const wa = 200 * Math.PI / 180;
     for (let k = 0; k < NX * NZ; k++) {
       const x = pos[k * 3], z = pos[k * 3 + 2];
-      const u = x * Math.cos(wd) + z * Math.sin(wd), v = -x * Math.sin(wd) + z * Math.cos(wd);
+      const u = x * Math.sin(wa) + z * Math.cos(wa), v = x * Math.cos(wa) - z * Math.sin(wa);
       const st = AKn.simplex2(u * 0.05, v * 0.9) * 0.6 + AKn.simplex2(u * 0.12, v * 2.3) * 0.4;
       const cr = AKn.simplex2(x * 0.08 + 3.3, z * 0.08 - 1.1);
       const dist = Math.hypot(x - cx0, z - cz0), f = Math.max(0, 1 - dist / 260);
