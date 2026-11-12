@@ -4075,6 +4075,47 @@
         "weighted_total_normalized": 7.94,
         "artwork": 7.0
       }
+    },
+    {
+      "run_date": "2026-11-11",
+      "carousel_no": 112,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE PRICE AS LIGHT PILLARS, the STAK surcharge schedule drawn as five ice-crystal light pillars standing on the snow west of the Dalton (width = MWh in the tier at 44 px per million, height = the rate at 10 px per cent, gold hairline caps the only gold): GPU PBR snow plain under the five pillars with a gold sightline (01), a column-marched blue-hour plain from the road shoulder over a plow berm with one straight sightline to the lease (02), a hachured snowpit section with the Base Rate as a dashed level the surcharge pillar rises past (03), a column-marched dusk plain with Tier 1 as a lit zero-height line and the other four as glow ghosts (04), the engraved intaglio schedule chart with its table (05), the pillars small on a far GPU plain under DNR's quote (06), the tiers as light pools on a drift field in plan with Alaska's 2024 output as a forget-me-not band (07), twenty lath stakes for the reconsideration days at night (08), faint pillars under a green aurora (09)",
+      "atmosphere": "NEW: ARCTIC TWILIGHT INTO AURORA NIGHT ON ONE PLAIN (one SSW key, low; rose belt on 01 and 02, deep blue hour 03 to 06, nautical dark 07 and 08, aurora on 09)",
+      "depth_technique": "akthree GPU PBR frustum-grid snow plain with wind-aligned sastrugi (01, 06, 09); AKP.march column-marched heightfield with row interpolation from the emergence point and sub-column supersampling (02, 04, 08); hachured section (03); intaglio chart (05); per-pixel plan relief with form-lines (07)",
+      "line_voice": "engraver",
+      "continuity_device": "motif evolution: the five light pillars, from lit on the plain (01) to alone as a level (03), a zero line (04), measured (05), small and far (06), pools in plan (07), absent behind 20 stakes (08) and faint under the aurora (09)",
+      "continuity_devices": [
+        "light-pillar motif evolution",
+        "time-of-day clock, twilight to aurora night",
+        "gold sightline edge-tease 01 to 02",
+        "one SSW key on every frame"
+      ],
+      "hook_archetype": "NEW: THE PRICE THAT FALLS AS THE BUYER GROWS",
+      "palette_family": "NEW: ARCTIC BLUE HOUR AND ICE LIGHT (sky #0B1A3A to #2B3F6E, rose belt #C79A9E, snow #CFDAEC / #8E9FC0 / #4C5E86 / #26355A, ice #BFE3F2, aurora #3CE6B4, forget-me-not #6EA5FF for Alaska's output, gold #FFC72C for the lease's price)",
+      "type_pairing": "Space Grotesk 680 display + Space Grotesk 400 body + JetBrains Mono 500 caps",
+      "narrative_structure": "NEW: MECHANISM THEN SCHEDULE THEN SCALE: the hook, the lease, how the state gets paid, the free tier, the schedule, the reason, the scale, still open, one ask",
+      "variance_dials": {
+        "design_variance": 6,
+        "visual_density": 3,
+        "type_temperature": 3
+      },
+      "techniques": [
+        "akthree PBR snow plain",
+        "AKP.march column march",
+        "AKP.pillar light pillars",
+        "hachured section",
+        "intaglio chart",
+        "per-pixel plan relief + form-lines",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [
+        "NEW: assets/js/akpillar.js, a light-pillar kit (pillar, pool, cap, fixtures) and AKP.march, a CPU column marcher that interpolates rows from where a ray emerges over a crest and supersamples sub-columns; assets/js/akhaul.js, a wind-aligned sastrugi snow plain for akthree"
+      ],
+      "scores": {
+        "weighted_total": 8.57,
+        "artwork": 7.5
+      }
     }
   ]
 }

@@ -179,6 +179,45 @@ UNCHANGED_TAIL_RE = re.compile(
     r"(?:and\s+)?unchanged\.?\s*$", re.I)
 
 
+# A PASSED KEY DATE RETIRES FROM THE PACK BY RULE (2026-11-11, weekly pass).
+#
+# The history window and the settled rule above bounded the NOTES. Nothing
+# bounded the key dates, and they are the part that only ever grows: a date is
+# appended when something happens and is never removed, because on the item's
+# page it is the timeline. On 2026-11-11 the 42 items carried 203 key dates,
+# about 16,000 of the pack's 127,600 characters, and 10,700 of those were dates
+# more than a month in the past. The ask pack hit its ceiling on three runs in
+# a row (No.110, No.111, No.112), each trimmed by hand, with 106 tokens left.
+#
+# So the dates render the way the notes do. Every date on or after the build
+# day renders, because "what happens next" is what a reader asks. Of the dates
+# already passed, the FIRST renders (how the item began) and the newest
+# RECENT_PAST_DATES (where it stands), with one line saying how many earlier
+# dates the item's own page carries. A settled item keeps only its newest
+# passed date, which is the decision. Rendered oldest first, so an item whose
+# dates were entered out of order reads as a timeline. Nothing is lost to a
+# reader: the citation points at the item's page, and the free in-page engine
+# (ask_answers.py) still indexes every date. MAX_TOKENS is untouched.
+RECENT_PAST_DATES = 3
+SETTLED_PAST_DATES = 1
+
+
+def window_key_dates(dates, today, past_kept=RECENT_PAST_DATES):
+    """(entries, elided): upcoming dates whole, passed dates windowed.
+
+    A None inside entries marks where the elision line goes. With no build day
+    every date counts as upcoming, so a caller that passes none sees the whole
+    list, sorted.
+    """
+    ordered = sorted(dates, key=lambda d: d.get("date") or "")
+    past = [d for d in ordered if today and (d.get("date") or "") < today]
+    future = [d for d in ordered if not (today and (d.get("date") or "") < today)]
+    if len(past) <= past_kept + 1:
+        return past + future, 0
+    elided = len(past) - past_kept - 1
+    return [past[0], None] + past[-past_kept:] + future, elided
+
+
 def is_unchanged_note(h):
     """True when a history note opens or closes by reporting that nothing had moved."""
     note = (h or {}).get("note") or ""
@@ -267,7 +306,7 @@ def window_history(hist, recent=RECENT_HISTORY):
     return [hist[0], None] + list(hist[-recent:]), elided
 
 
-def render_item(it):
+def render_item(it, today=""):
     lines = [f"--- {it['id']} ---", f"Title: {esc_dashes(it.get('title'))}"]
 
     fields = wrap_fields(it)
@@ -289,7 +328,14 @@ def render_item(it):
 
     if it.get("key_dates"):
         lines.append("Key dates:")
-        for d in it["key_dates"]:
+        past_kept = (SETTLED_PAST_DATES if it.get("status") in SETTLED_STATUSES
+                     else RECENT_PAST_DATES)
+        shown, elided = window_key_dates(it["key_dates"], today, past_kept)
+        for d in shown:
+            if d is None:
+                lines.append(f"  ... {elided} earlier date(s) not shown here. "
+                             f"The item's own page carries every date.")
+                continue
             lines.append(f"  {d.get('date', '')}  {esc_dashes(d.get('label'))}")
 
     hist = it.get("history") or []
@@ -534,7 +580,7 @@ def render(corpus, figs=None):
         f"=== TRACKED DECISIONS ({len(items)}) ===",
         "",
     ]
-    body = "\n\n".join(render_item(it) for it in items)
+    body = "\n\n".join(render_item(it, corpus["generated"]) for it in items)
     return ("\n".join(head) + body + "\n\n"
             + render_gas(corpus["gas_watch"], figs) + "\n")
 
@@ -631,6 +677,28 @@ def self_test():
           is_unchanged_note({"note": "Re-read the notice today. It still carries the May decision. Checked and unchanged."}))
     check("a note that only mentions the words mid sentence does not",
           not is_unchanged_note({"note": "Status moved to passed. Checked and unchanged items elsewhere"}))
+    # 2026-11-11 weekly pass: passed key dates are windowed like the notes.
+    kd = [{"date": f"2026-0{m}-01", "label": f"step {m}"} for m in range(1, 10)]
+    kd.append({"date": "2026-12-01", "label": "vote"})
+    shown, gone = window_key_dates(kd[::-1], "2026-11-11")
+    check("a live item keeps its first passed date, the newest three and every upcoming one",
+          [d and d["label"] for d in shown] == ["step 1", None, "step 7", "step 8", "step 9", "vote"]
+          and gone == 5, f"{gone} elided")
+    shown, gone = window_key_dates(kd, "2026-11-11", SETTLED_PAST_DATES)
+    check("a settled item keeps its first passed date and its newest",
+          [d and d["label"] for d in shown] == ["step 1", None, "step 9", "vote"] and gone == 7)
+    check("a short list renders whole and sorted",
+          window_key_dates(kd[8:][::-1], "2026-11-11") == (kd[8:], 0))
+    missing_kd = []
+    for it in corpus["docket"]["items"]:
+        ds = sorted(it.get("key_dates") or [], key=lambda d: d.get("date") or "")
+        upcoming = [d for d in ds if (d.get("date") or "") >= corpus["generated"]]
+        passed = [d for d in ds if (d.get("date") or "") < corpus["generated"]]
+        for d in upcoming + passed[-1:]:
+            if f"  {d.get('date', '')}  {esc_dashes(d.get('label'))}" not in text:
+                missing_kd.append(f"{it['id']} {d.get('date')}")
+    check("every upcoming key date and every item's newest passed one is in the pack",
+          not missing_kd, ", ".join(missing_kd[:3]))
     check("the standing no-verdict rule is in the pack",
           "NEVER publishes a safety verdict" in text)
 

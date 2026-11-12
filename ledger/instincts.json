@@ -2704,6 +2704,36 @@
       "last_confirmed": "2026-11-10",
       "run_date": "2026-11-10",
       "carousel_no": 111
+    },
+    {
+      "id": "march-shade-from-the-emergence-point",
+      "instinct": "In a column marcher, shade the rows under a crest silhouette from the point where the far surface crosses that silhouette (bisect it), and interpolate rows between visible steps; a flat fill per step, or a blend from the crest in front, prints a staircase on every crest.",
+      "evidence": "No.112: 02, 04 and 08 carried a regular sawtooth for three critic rounds; interpolating from the bisected emergence point removed it in one render with no change to step count.",
+      "confidence": 0.6,
+      "learned": "2026-11-11",
+      "last_confirmed": "2026-11-11",
+      "run_date": "2026-11-11",
+      "carousel_no": 112
+    },
+    {
+      "id": "composite-additive-strips-once",
+      "instinct": "Paint adjacent additive strips (a light column's body) source-over on their own canvas and composite once with 'lighter'; strips that overlap by a sub-pixel under 'lighter' double the alpha at every seam and print a pinstripe comb.",
+      "evidence": "No.112: three critics named a regular comb on every pillar body; painting the strips offscreen removed it.",
+      "confidence": 0.55,
+      "learned": "2026-11-11",
+      "last_confirmed": "2026-11-11",
+      "run_date": "2026-11-11",
+      "carousel_no": 112
+    },
+    {
+      "id": "no-ridged-noise-at-the-camera",
+      "instinct": "Keep ridged |n| terms out of the near field of a low camera; seen edge-on they render as zipper cusps along every crest. Use a smooth (smoothstep) profile near the camera and let the ridged octave live at range.",
+      "evidence": "No.112: 04's near sastrugi read as a zipper or tank tread at 100 percent until the term became a smooth profile with near ripples.",
+      "confidence": 0.5,
+      "learned": "2026-11-11",
+      "last_confirmed": "2026-11-11",
+      "run_date": "2026-11-11",
+      "carousel_no": 112
     }
   ]
 }

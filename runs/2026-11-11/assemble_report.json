@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-11/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 12492015,
+  "pdf_mb": 12.49,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-11/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-11/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's STAK Lease, Priced by the Megawatt-Hour",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "e1c0094018dd8becf0632c8ad33bccf78b1f471b7b1375027b7f217f899af6a6",
+        "bytes": 6363418
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "a889a9d0d1814938258f1c2e79e1485669ab90423b36a3377f1dda5abd53933e",
+        "bytes": 6487995
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "a9d080cb2ef0523d52ccb164269f0d138b55202b044a15cea40dce755016b377",
+        "bytes": 7231370
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "7fa05645919b0b5b8854565cd47f59ff28792d5142d9a4532da98cf1649292d9",
+        "bytes": 6388534
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "3cb3ce9a9998cfaf89dbc24b23f95948af1da38f97c034fbee4d2a5e2707e262",
+        "bytes": 6598418
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "54539f0a4aff02a64757b94a512c767eb153ae8f732a33455cd593fb74ab6f96",
+        "bytes": 6583024
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "1738fa038dea08a842c13c98c2387538605a5f100f215b113c7a12a73894485a",
+        "bytes": 7192280
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "4fda0ea88f7fcec2ad5d19c0300d4c8b2870752003374541a8ec95e50d74cb99",
+        "bytes": 6685391
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "72443ad0de065f897cce3102d6f5bb9217c1d15dcb71534f26eaa54bfd8efefc",
+        "bytes": 6793149
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "202117c2c92201473eef0ba6f040a71d9cdf7123e9fd6a33a7303f79012a9b93",
+        "bytes": 5047
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "a758b6649b4da82ce71cb34004072aeed9f063346063cf761387f78df21f77be",
+        "bytes": 8472
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "06aa22a9945fe3d8a9decb378822326daf688b75f69c454180549021a02ed856",
+        "bytes": 11464
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "5eba97a53b336a9dcfe1fc13ecd6fe8c77bcfe3cacb2e7248eba8324736183aa",
+        "bytes": 8280
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "75d345e155628424c69416bda81a89018adc772138b7ba969c9973342815333f",
+        "bytes": 11446
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "70c6c45dc6908c39cf8cce666091efa435199abc138402cbedf73105377b9f4f",
+        "bytes": 6044
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "9a719a358c059bc64422904f85f054bf8c499c591892ec77fc0a29c2118e2493",
+        "bytes": 12012
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "3602b05d3af722133b0fb26e45785babb2492a59ebdd7a18775fd8e37ebf9e1d",
+        "bytes": 8255
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "67737ae18e0f7ad900a83e3305044db4ef4d64e7ae2ccb856469d13641740901",
+        "bytes": 7335
+      }
+    ]
+  }
+}

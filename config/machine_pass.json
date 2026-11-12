@@ -1,75 +1,61 @@
 {
-  "last_pass": "2026-11-08",
+  "last_pass": "2026-11-11",
   "themes": [
     {
-      "theme": "b, the largest object least modelled: flow critic 4 of 6 runs, 7 frames (2026-11-02 5; 11-03 1,8; 11-04 4; 11-05 7,8,6); the scorer's 'no contact shadow, or an object that floats' 2 runs (11-03, 11-06)",
-      "runs": 4,
-      "frames": 7,
-      "action": "fixed",
-      "what": "partly, on the one shared machine cause found: three r170's PCFSoftShadowMap ignores shadow.radius on directional and spot lights, so the house rigs' radii 8, 10 and 12 and every slide's own radius drew a hard, stair-stepped cast (No.106's slab, No.104's bands, No.109 setting VSM by hand). AKT.setup softShadows (VSM, blurSamples 20) plus an audit WARN on a radius set under PCFSoft. The remaining b frames are seven different objects with no common cause a gate can measure; VSM as the house default and a drei-style contact shadow are parked in FIELD_NOTES with unblock conditions"
-    },
-    {
-      "theme": "c, a dead or eventless region: flow critic 4 of 6 runs, 8 frames (11-02 4,1; 11-03 4,3,5; 11-04 6; 11-05 9,4); scorer's dead band 2 runs",
-      "runs": 4,
-      "frames": 8,
-      "action": "deferred",
-      "what": "measured, not built: a probe for the recurring 'dead band between body and art' (rows of 27 px cells with under 10 percent live cells, sandwiched between content) reads 3 to 5 cells on the named frames (11-02 04, 11-04 02, 11-05 04, 11-07 03) while unnamed frames reach 5 to 9 (11-03 06 at 9, 11-02 06 and 11-01 09 at 6), so no threshold separates them; frame_balance already FAILs the bottom-third case"
-    },
-    {
-      "theme": "d, a texture artifact: flow critic 3 of 6 runs, 5 frames (11-03 7; 11-04 8,2,5; 11-05 3); queue: akpost grain lattice (repeat 1)",
+      "theme": "ask pack ceiling, queue repeat 2 (No.110, No.111, No.112 each hit it), the item that made the pass due early",
       "runs": 3,
-      "frames": 5,
-      "action": "fixed",
-      "what": "AKPOST.grade grain defaults to size 1: bilinear value noise at size 2 prints a fixed 2 px lattice (phase-class variance ratio 3.86 against 1.01), No.104's 'square cell lattice' on three frames; the header example builders copied said size 2. The VSM option also removes the PCFSoft stair-step on GPU casts. The other named artifacts (intaglio scanlines, quilt lattice, flute aliasing) are per-slide drawing choices"
-    },
-    {
-      "theme": "cross-frame a (4 runs, 16 frames) and e (4 runs, 24 frames)",
-      "runs": 4,
-      "frames": 40,
-      "action": "deferred",
-      "what": "a: the critic's own entries say the repeats were planned or the objects distinct (the akdrone quad on three planned frames, 'D3 by design'). e: tonal_arc_check WARNed 11-02 and passed 11-03 with seven frames at L* 13 to 18; a plateau measure (the frames other than the declared peak and darkest) spans 5 L* on 11-03, named, and 6 L* on 11-07, not named, so no threshold separates them on this week's evidence"
-    },
-    {
-      "theme": "trend_check stale offenders: Artwork craft weakest 4 of 7 (mean 7.07), Thumb-stop cover 2 of 7, Variety 1 of 7",
-      "runs": 7,
       "frames": 0,
       "action": "fixed",
-      "what": "artwork worked through the soft-shadow and grain changes above; the cover and variety had no machine cause named in the week's evidence and are deferred"
+      "what": "root cause measured: passed key dates were the one part of the pack nothing bounded (203 dates, 10,700 characters over a month old). ask_pack.window_key_dates retires them by rule (first passed, newest three, every upcoming; settled items first and newest). 31,894 to 30,928 tokens, MAX_TOKENS untouched. The inline ask payload (187,958 of 190,000 bytes) grows with item count the same way and is the owner's two-hop or page-weight decision"
     },
     {
-      "theme": "queue: caption_check hangs on stdin with --copy and no path (repeat 1, No.101 and No.108) and clobbers a passing report without --deck-summary",
+      "theme": "caption_check report clobbered by a stdout redirect, queue repeat 1 (No.108, No.109)",
       "runs": 2,
       "frames": 0,
       "action": "fixed",
-      "what": "no path reads caption.txt beside --copy, stdin only on '-', otherwise exit 2; the run's deck_summary.txt is read when the flag is absent; a report under runs/ is never written"
+      "what": "report written to a .tmp and os.replace()d; reconstruction failed before and parses after"
     },
     {
-      "theme": "queue: run_guard's UTC default (repeat 5 with No.109, escalated) and No.109's incident",
-      "runs": 6,
+      "theme": "akhaul sky texture at a quarter of the frame, this run's incident (No.112 slide 09, two critic rounds)",
+      "runs": 1,
+      "frames": 1,
+      "action": "fixed",
+      "what": "sky canvas at drawing-buffer size; probe line peak 124 to 255; run slides re-render within 3 levels, qa unchanged"
+    },
+    {
+      "theme": "round cap stated twice and disagreeing, queue (No.110)",
+      "runs": 1,
       "frames": 0,
       "action": "fixed",
-      "what": "partly: the Anchorage date's verdict and the command are printed whenever the dates differ, and a NOTE reading ALREADY_SHIPPED names the re-fire; the default and exit code stay the owner's call"
+      "what": "Phase 8 says the pixel, flow and craft rounds share the five-round cap ship_gate counts"
     },
     {
-      "theme": "queue: sources, FERC eLibrary and refusing hosts (repeat 1), plus No.109's fetch_pdf_text TLS incident on alaska.edu",
+      "theme": "Artwork craft and genuine detail, trend_check weakest 5 of 7 runs (mean 7.21); scorer themes dead region 3 runs and texture artifact 3 runs; flow critic causes b, c, d on 1 run each (2026-11-05)",
+      "runs": 5,
+      "frames": 0,
+      "action": "deferred",
+      "what": "no shared machine cause this week: the named frames are seven different bespoke worlds (plow berm, flame relief, sliver tier, aurora hem, petal raymarch, cord SDF), and qa.frame_balance already measures the dead lower zone. The one helper defect found (akhaul's sky) is fixed above"
+    },
+    {
+      "theme": "recurring QA warns: contact shadow 3 runs, axis census 3 runs, tiny-text 2 runs",
       "runs": 3,
       "frames": 0,
-      "action": "fixed",
-      "what": "measured: alaska.edu's chain ends at emSign Root CA - G1, absent from the container's store, curl fails identically, not a script or proxy defect; sources.yaml gains the FERC route and three host routes, and fetch_pdf_text says so with the remedy"
+      "action": "deferred",
+      "what": "read in the week's machine_qa.json: contact warns are 'reads, barely' dL 4.8 to 6.3 under the 8.0 comfort band and tiny-text is No.108's 18 to 22 px furniture; authoring calls the gates already surface, not a machine defect"
     },
     {
-      "theme": "No.109 incident: docket_staleness deferred ten items at --budget 6 (raised by hand on 4 of this week's 7 runs, 14 of 30 since October 5th)",
+      "theme": "Insight density and factual weight, trend_check STALE (last worked 60 runs ago)",
+      "runs": 1,
+      "frames": 0,
+      "action": "deferred",
+      "what": "weakest on 1 of 7 runs, mean 7.79, above the art's 7.21; not a recurring theme this week, so artwork kept the slots"
+    },
+    {
+      "theme": "rubric weights sum to 1.10 (queue 2026-10-11 repeat 3, duplicate filed 2026-11-10)",
       "runs": 4,
       "frames": 0,
       "action": "escalated",
-      "what": "queued with the cause (a refresh wave every four days) and the proposed default; it sets the per-run fetch workload and the pass was at five changes"
-    },
-    {
-      "theme": "queue: rubric weights sum to 1.10; gaswatch evening slot; site fixture contrast",
-      "runs": 3,
-      "frames": 0,
-      "action": "escalated",
-      "what": "unchanged: the ship bar, the collector schedule and the brand watermark token are the owner's"
+      "what": "the weights are the ship bar and the owner's to move; the duplicate is marked escalated"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."
