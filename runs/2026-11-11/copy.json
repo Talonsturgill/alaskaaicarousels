@@ -1,0 +1,265 @@
+{
+  "document_title": "Alaska's STAK Lease, Priced by the Megawatt-Hour",
+  "post_copy": "$0.40 a megawatt-hour, then $0.16. Alaska's new data center lease cuts its power surcharge once the campus passes a gigawatt.\n\nDNR approved the 50-year lease on November 10th for 715.4 acres a mile west of the Dalton at Milepost 390.\nSTAK's rent is the larger of an appraised Base Rate and a surcharge on each megawatt-hour delivered to compute.\nNo surcharge under 100 MW of average load. $0.20 to 500 MW. $0.40 to 1,000 MW. Then $0.30 and $0.16.\nDNR says the decline is meant to encourage the full planned buildout.\nThe top tier ends at about three times all the electricity Alaska generated in 2024.\n\nFive columns of light carry the tiers at true scale, beside DNR's reason for the drop, Alaska's 2024 output and the permits still ahead.\n\nA fair incentive to finish the build, or the state charging less right where the load is largest?\n\n#AlaskaPolicy #DataCenterEnergy #NorthSlope\n",
+  "hook_chars": 125,
+  "total_chars": 883,
+  "hashtags": [
+    "#AlaskaPolicy",
+    "#DataCenterEnergy",
+    "#NorthSlope"
+  ],
+  "deck_summary_line": "Five columns of light carry the tiers at true scale, beside DNR's reason for the drop, Alaska's 2024 output and the permits still ahead.",
+  "caption_meta": {
+    "opening_move": "COLD NUMBER",
+    "structure": "PUNCH THEN PROOF",
+    "closing_move": "FORK"
+  },
+  "first_comment": "Sources, primary first\n\nAlaska DNR Division of Oil and Gas, Final Finding and Decision, ADL 422741, STAK Energy Corporation 50-year land lease (November 10th, 2026) https://dog.dnr.alaska.gov/Document/Download/062B22D978A745ED989ED672622E5380/Final%20Finding%20and%20Decision%20ADL%20422741,%20STAK%20Energy%20Corporation,%2050-Year%20Land%20Lease.pdf\nU.S. Energy Information Administration, Alaska Electricity Profile, 2024 net generation and summer capacity (released November 10th, 2025) https://www.eia.gov/electricity/state/alaska/\nAlaska Beacon (James Brooks) via Alaska Public Media, Alaska approves 50-year land lease for large natural gas-powered data center in the Arctic (November 11th, 2026) https://alaskapublic.org/news/economy/energy/2026-11-11/alaska-approves-50-year-land-lease-for-large-natural-gas-powered-data-center-in-the-arctic\n\nKnow the Milepost 390 site, the appraisal ahead or the permits firsthand? Add context below.\nAlaska AI decisions and their live deadlines, tracked in one place at https://alaskaaihq.com/",
+  "slides": [
+    {
+      "slide": 1,
+      "kicker": "UPDATE · NOVEMBER 10TH",
+      "headline": "Past a gigawatt,\nthe rate falls.",
+      "body": "",
+      "labels": [
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C01",
+        "C03",
+        "C24",
+        "C25",
+        "C26",
+        "C28"
+      ]
+    },
+    {
+      "slide": 2,
+      "kicker": "ADL 422741 · FINAL FINDING AND DECISION",
+      "headline": "A 50-year lease,\npriced by the megawatt-hour.",
+      "body": "DNR approved the lease on 715.4 acres a mile west of the Dalton Highway at Milepost 390 for a data center campus with gas-fired power designed for 1 to 3 GW. It won't connect to the Railbelt.",
+      "labels": [
+        "THE LEASE, ABOUT 1 MILE WEST",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C06",
+        "C14",
+        "C18",
+        "C21"
+      ]
+    },
+    {
+      "slide": 3,
+      "kicker": "HOW THE STATE GETS PAID",
+      "headline": "The land sets a floor.\nThe power sets the price.",
+      "body": "Each year STAK pays the larger of two numbers, an appraised Base Rate for the land or a surcharge on every megawatt-hour made on the lease and delivered to compute. In May, DNR had floated a share of gross receipts.",
+      "labels": [
+        "BASE RATE, SET BY APPRAISAL",
+        "SURCHARGE, PER MWh TO COMPUTE",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03",
+        "C18",
+        "C19",
+        "C21",
+        "C30"
+      ]
+    },
+    {
+      "slide": 4,
+      "kicker": "TIER 1",
+      "headline": "The first 876,000 MWh a year\ncarry no surcharge.",
+      "body": "That covers an average compute load under 100 MW, where only the Base Rate applies.",
+      "labels": [
+        "TIER 1 · $0.00 SURCHARGE PER MWh",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03",
+        "C22",
+        "C29",
+        "C30",
+        "C32"
+      ]
+    },
+    {
+      "slide": 5,
+      "kicker": "THE SURCHARGE SCHEDULE",
+      "headline": "Up to $0.40, then down.",
+      "body": "",
+      "labels": [
+        "$0.00",
+        "$0.20",
+        "$0.40",
+        "$0.30",
+        "$0.16",
+        "100 MW",
+        "500",
+        "1,000",
+        "1,500",
+        "2,363 MW",
+        "EACH RATE APPLIES ONLY TO THE MWh INSIDE ITS TIER.",
+        "WIDTH IS MWh A YEAR, HEIGHT IS THE RATE.",
+        "DALTON HWY MP 390"
+      ],
+      "table": [
+        [
+          "TIER",
+          "MWh A YEAR, UP TO",
+          "AVERAGE MW",
+          "PER MWh"
+        ],
+        [
+          "1",
+          "876,000",
+          "under 100",
+          "$0.00"
+        ],
+        [
+          "2",
+          "4,380,000",
+          "100 to 500",
+          "$0.20"
+        ],
+        [
+          "3",
+          "8,760,000",
+          "500 to 1,000",
+          "$0.40"
+        ],
+        [
+          "4",
+          "13,140,000",
+          "1,000 to 1,500",
+          "$0.30"
+        ],
+        [
+          "5",
+          "20,699,880",
+          "1,500 to 2,363",
+          "$0.16"
+        ]
+      ],
+      "claim_ids": [
+        "C03",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27"
+      ]
+    },
+    {
+      "slide": 6,
+      "kicker": "",
+      "headline": "\"At larger scales, the surcharge rates decline to encourage continued investment and development toward the project's full planned buildout.\"",
+      "body": "",
+      "labels": [
+        "ALASKA DNR, FINAL FINDING AND DECISION",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03",
+        "C28"
+      ]
+    },
+    {
+      "slide": 7,
+      "kicker": "FOR SCALE",
+      "headline": "Alaska's 2024 output\nends inside Tier 3.",
+      "body": "Alaska generated 6,690,506 MWh that year. The top tier runs to 20,699,880 MWh, about three times as much, and its 2,363 MW average load is most of the state's 2,853 MW of summer capacity.",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "ALL OF ALASKA, 2024",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C55",
+        "C56"
+      ]
+    },
+    {
+      "slide": 8,
+      "kicker": "STILL AHEAD",
+      "headline": "Approved, with a 20-day\nreconsideration window.",
+      "body": "The Alaska Beacon reports the 20-day window and a possible court challenge. STAK still needs a federal wetlands permit and state air permits. DNR says it isn't the agency that sets greenhouse gas standards.",
+      "labels": [
+        "20 STAKES, ONE PER DAY",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03",
+        "C41",
+        "C45",
+        "C47",
+        "C49",
+        "C50"
+      ]
+    },
+    {
+      "slide": 9,
+      "kicker": "",
+      "headline": "Should the rate fall\nas the campus grows\npast a gigawatt?",
+      "body": "",
+      "labels": [
+        "ALASKA.AI",
+        "DALTON HWY MP 390"
+      ],
+      "claim_ids": [
+        "C03"
+      ]
+    }
+  ],
+  "aftercare": [
+    "Social delivery of this edition is automatic under the owner's November 10th update. Any manual post or repost should go out Tuesday to Thursday, 8 to 11am Alaska time, the strongest slots, and the human still owns cadence.",
+    "Paste the first comment (sources, then the context invite and the site line) within 60 seconds of the post going live.",
+    "Reply to every comment in the first 60 to 90 minutes.",
+    "After 48 hours, note saves, comments and reposts for the instincts ledger."
+  ],
+  "editor_notes_for_email": "Caption ships byte for byte from out/2026-11-11/caption.txt, hashtag line included (883 characters with no trailing newline, hook 125). No factual error found in it. One craft note only. The hook jumps from $0.40 to $0.16, and line 5 supplies the $0.30 tier in between. Six slide fixes keep every number and claim id. Slide 02 now credits the 1 to 3 GW to the power system. Slide 04's label now says SURCHARGE next to $0.00. Slide 07 calls 2,363 MW an average load. Slide 08's headline no longer suggests a court challenge closes in 20 days. The pillar key that was once planned for slide 02 lives on slide 05 (WIDTH IS MWh A YEAR, HEIGHT IS THE RATE). The Beacon headline in the first comment is read from the article URL slug. No music or produced media, so there is no credits block.",
+  "claims_used": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C06",
+    "C14",
+    "C18",
+    "C19",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C28",
+    "C29",
+    "C30",
+    "C32",
+    "C41",
+    "C45",
+    "C47",
+    "C49",
+    "C50",
+    "C55",
+    "C56"
+  ]
+}

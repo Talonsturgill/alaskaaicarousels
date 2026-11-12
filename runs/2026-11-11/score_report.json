@@ -1,0 +1,108 @@
+{
+ "scored_round": 4,
+ "hard_fails": [],
+ "hard_fails_checked": 13,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 7,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8.5x0.14)+(8x0.12)+(7.5x0.10)+(7x0.08)+(8x0.07)+(7.5x0.05)+(8x0.10) = 8.565",
+ "weighted_total": 8.57,
+ "artwork_score": 7.5,
+ "craft_cycle": {
+  "frames": [
+   7,
+   3,
+   4,
+   2,
+   9
+  ],
+  "art_before": 7,
+  "art_after": 7.5
+ },
+ "revision_rounds": 4,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Make Tier 1 the hero of slide 04 again: a long lit line across the mid-near snow with its pool raking the sastrugi, the deck-scale ghosts pushed back as faint glows.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Tier 1 a 38 px sliver at the far-left horizon, nearly gone at thumb; ghosts read as a fogged skyline",
+   "fix": "a long crisp line across the mid-near snow with its pool"
+  },
+  {
+   "slide": 7,
+   "problem": "uniform high-frequency flame or fur relief with no large forms; pools read as frosted glass",
+   "fix": "drop drift frequency 3 to 4x, calm the relief around the chart strip"
+  },
+  {
+   "slide": 3,
+   "problem": "pillar below the level reads as a separate flat rectangle with hard sides; upper hachure reads as rain; grass under fixtures",
+   "fix": "one continuous body dimmer below the line, sides feathered; near-level top marks; clear the bottom 60 px"
+  },
+  {
+   "slide": 2,
+   "problem": "no legible plow berm; rolling dunes read as sand",
+   "fix": "one defined berm ridge with a lit crest; shorter-wavelength sastrugi beyond"
+  },
+  {
+   "slide": 9,
+   "problem": "aurora hem soft; green fill tints the whole plain teal",
+   "fix": "crisp hem; green lift only on the nearest crests"
+  }
+ ],
+ "previous": {
+  "weighted_total": 8.49,
+  "artwork_score": 7
+ },
+ "editor_notes_for_email": "Ships at 8.57 (art 7.5 after the one craft cycle, up from 7; still under the 8.5 craft floor, and the five-round cap leaves no second cycle). Slide 04's Tier 1 mark is small at thumb. cron_health WARN: the stuck gaswatch.yml run (GitHub refuses to cancel it). The 20-day reconsideration window and possible court challenge come from the Alaska Beacon (C49, C50); slide 08 attributes them, so don't restate them as DNR's. The Base Rate is unappraised, so the deck prints no dollar totals; expect commenters to ask what $0.40/MWh adds up to. Yesterday's No.111 was also a DNR Final Finding with a 20-day reconsideration beat. The quote marks on 02, 03, 06, 07 and 08 look curly but are straight U+0022/U+0027 that Space Grotesk draws slanted. The bar before the 06 attribution is a CSS rule, not a dash."
+}

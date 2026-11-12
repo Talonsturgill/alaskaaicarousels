@@ -64,11 +64,11 @@
       "id": "adl-422741-stak-north-slope-lease",
       "title": "STAK Energy's North Slope AI campus lease",
       "kind": "state-land-lease",
-      "status": "pending-decision",
+      "status": "decided",
       "decider": "Alaska DNR, Division of Oil and Gas",
       "public_access": "closed",
-      "access_note": "The written comment window closed 4:30 p.m. July 17th, 2026. DNR now weighs more than 500 comments before a final best-interest decision on the 50-year lease. No public comment path remains open.",
-      "summary": "A preliminary decision would give STAK Energy a 50-year lease on 715.4 acres of state land about 26 miles south of Deadhorse for a gas-fired AI and cloud campus its developer pegs at more than $10 billion, with 1 to 3 gigawatts of on-site generation. More than 500 public comments arrived before the first deadline; fewer than a dozen supported the project.",
+      "access_note": "Decided November 10th. Timely commenters may request reconsideration within 20 days, and a court challenge is possible.",
+      "summary": "DNR decided on November 10th to lease 715.4 acres about 26 miles south of Deadhorse to STAK Energy for 50 years, for a 1 to 3 gigawatt gas-fired data center. Rent is the larger of an appraised base or a surcharge on power delivered to compute, with no surcharge on the first 100 megawatts, then $0.20 to $0.40 per megawatt-hour, falling at the largest scales.",
       "key_dates": [
         {
           "date": "2026-05-12",
@@ -89,6 +89,16 @@
           "date": "2026-07-17",
           "label": "Public comment closes, 4:30 p.m. AKDT",
           "kind": "deadline"
+        },
+        {
+          "date": "2026-11-10",
+          "label": "DNR approves the 50-year lease",
+          "kind": "decision"
+        },
+        {
+          "date": "2026-11-30",
+          "label": "Reconsideration requests due",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -97,6 +107,16 @@
         "lat": 69.82
       },
       "sources": [
+        {
+          "url": "https://dog.dnr.alaska.gov/Document/Download/062B22D978A745ED989ED672622E5380/Final%20Finding%20and%20Decision%20ADL%20422741,%20STAK%20Energy%20Corporation,%2050-Year%20Land%20Lease.pdf",
+          "outlet": "Alaska DNR Division of Oil and Gas",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://alaskapublic.org/news/economy/energy/2026-11-11/alaska-approves-50-year-land-lease-for-large-natural-gas-powered-data-center-in-the-arctic",
+          "outlet": "Alaska Public Media",
+          "date": "2026-11-11"
+        },
         {
           "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224224",
           "outlet": "Alaska DNR Online Public Notices",
@@ -119,7 +139,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-11",
       "history": [
         {
           "date": "2026-07-08",
@@ -288,6 +308,10 @@
         {
           "date": "2026-11-08",
           "note": "Re-read the DNR notice for ADL 422741 today. It still carries the May 12th preliminary decision and its attachments, last modified June 17th, and no final finding and decision is posted. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-11",
+          "note": "Decided. DNR's Final Finding and Decision for ADL 422741, dated November 10th, approves a 50-year lease on 715.4 acres. Rent is the larger of an appraised base or a tiered surcharge on electricity delivered to compute, replacing the share of gross receipts first contemplated. DNR received 1,205 comments. The Alaska Beacon reports a 20-day reconsideration window."
         }
       ],
       "url": "https://alaskaaihq.com/docket/adl-422741-stak-north-slope-lease/"
@@ -1200,7 +1224,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-11",
       "history": [
         {
           "date": "2026-07-11",
@@ -1345,6 +1369,10 @@
         {
           "date": "2026-11-10",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding must still be received by 5 p.m. November 13th, and the notice shows no change since October 14th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-11",
+          "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding must still be received by 5 p.m. November 13th, and the notice's revision history still ends on October 14th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/enstar-cook-inlet-gas-storage/",

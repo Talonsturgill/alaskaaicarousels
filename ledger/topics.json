@@ -4596,6 +4596,53 @@
       ],
       "claims": 90,
       "note": "UPDATE of No.97 and No.88 (inside 30 days, material new development: the final decision itself, a third of the July parcel, the reverter restored). Next Houston deck needs a new decision on the record (reconsideration ruling, appeal, survey or patent, or a specific project filing). Runner-up Waymo testing in Fairbanks."
+    },
+    {
+      "run_date": "2026-11-11",
+      "carousel_no": 112,
+      "topic": "Alaska DNR's Final Finding and Decision on ADL 422741, dated November 10th: a 50-year negotiated lease to STAK Energy on 715.4 acres one mile west of the Dalton Highway at Milepost 390, about 26 miles south of Deadhorse, for a 1 to 3 GW gas-fired data center campus that won't connect to the Railbelt. Rent is the larger of an appraised Base Rate or a Compute Power Sales Surcharge on metered MWh delivered to compute: $0.00 under 100 MW average load, $0.20 to 500 MW, $0.40 to 1,000 MW, $0.30 to 1,500 MW, $0.16 to 2,363 MW, the rate falling at the largest scales 'to encourage continued investment'. May's draft had floated a share of gross receipts. The Alaska Beacon reports a 20-day reconsideration window and a possible court challenge; federal wetlands and state air permits remain.",
+      "angle": "THE PRICE AS LIGHT: the five-tier surcharge schedule drawn as five light pillars over the snow west of the Dalton (width = MWh in the tier, height = the rate, gold = the lease's price only), from twilight to aurora night; the top tier sized against all of Alaska's 2024 generation; the ask is whether the rate should fall as the campus grows.",
+      "entities": [
+        "Alaska Department of Natural Resources",
+        "Division of Oil and Gas",
+        "STAK Energy",
+        "ADL 422741",
+        "Dalton Highway",
+        "Milepost 390",
+        "Deadhorse",
+        "North Slope",
+        "Railbelt",
+        "Alaska Beacon",
+        "U.S. Energy Information Administration",
+        "Alaska Department of Environmental Conservation",
+        "U.S. Army Corps of Engineers"
+      ],
+      "keywords": [
+        "Final Finding and Decision",
+        "50-year lease",
+        "715.4 acres",
+        "Compute Power Sales Surcharge",
+        "tiered surcharge",
+        "$0.40 per MWh",
+        "Base Rate",
+        "larger of",
+        "1 to 3 GW",
+        "gas-fired data center",
+        "2,363 MW",
+        "20-day reconsideration",
+        "Alaska 2024 generation 6,690,506 MWh"
+      ],
+      "headline": "Past a gigawatt, the rate falls.",
+      "sources_lead": [
+        "https://dog.dnr.alaska.gov/Document/Download/062B22D978A745ED989ED672622E5380/Final%20Finding%20and%20Decision%20ADL%20422741,%20STAK%20Energy%20Corporation,%2050-Year%20Land%20Lease.pdf"
+      ],
+      "beats": [
+        "data-centers",
+        "power-and-the-grid",
+        "land-and-permitting"
+      ],
+      "claims": 64,
+      "note": "UPDATE of No.96 and No.100, both of which treated the STAK lease as pending; this is the decision itself and its rent schedule. Score 8.57 (art 7.5). Next STAK deck needs a new event on the record: a reconsideration ruling, a court filing, the appraised Base Rate, the Corps wetlands permit or the DEC air permit."
     }
   ]
 }
