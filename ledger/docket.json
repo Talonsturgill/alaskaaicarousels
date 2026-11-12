@@ -55,7 +55,7 @@
       "decider": "Alaska DNR, Division of Oil and Gas",
       "public_access": "closed",
       "access_note": "Decided November 10th. Timely commenters may request reconsideration within 20 days, and a court challenge is possible.",
-      "summary": "DNR decided on November 10th to lease 715.4 acres about 26 miles south of Deadhorse to STAK Energy for 50 years, for a 1 to 3 gigawatt gas-fired data center. Rent is an appraised base plus a surcharge on power delivered to compute, nothing on the first 100 megawatts, then $0.20 to $0.40 per megawatt-hour, falling at the largest scales.",
+      "summary": "DNR decided on November 10th to lease 715.4 acres about 26 miles south of Deadhorse to STAK Energy for 50 years, for a 1 to 3 gigawatt gas-fired data center. Rent is the larger of an appraised base or a surcharge on power delivered to compute, with no surcharge on the first 100 megawatts, then $0.20 to $0.40 per megawatt-hour, falling at the largest scales.",
       "key_dates": [
         {
           "date": "2026-05-12",
@@ -298,7 +298,7 @@
         },
         {
           "date": "2026-11-11",
-          "note": "Decided. DNR's Final Finding and Decision for ADL 422741, dated November 10th, approves a 50-year lease on 715.4 acres. Rent is an appraised base plus a tiered surcharge on electricity delivered to compute, replacing the share of gross receipts first contemplated. DNR received 1,205 comments. The Alaska Beacon reports a 20-day reconsideration window."
+          "note": "Decided. DNR's Final Finding and Decision for ADL 422741, dated November 10th, approves a 50-year lease on 715.4 acres. Rent is the larger of an appraised base or a tiered surcharge on electricity delivered to compute, replacing the share of gross receipts first contemplated. DNR received 1,205 comments. The Alaska Beacon reports a 20-day reconsideration window."
         }
       ]
     },
