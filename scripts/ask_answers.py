@@ -1408,6 +1408,14 @@ def ship(out):
         seed = hay_seed(r) if isinstance(hay, str) else ""
         if seed and (hay == seed or hay.startswith(seed + " ")):
             r = dict(r, hay=hay[len(seed) + 1:], h=1)
+        # A date's role (deadline, vote, decision, milestone) is read here, by
+        # index_row's `role` and the self test, and never by the page, which
+        # reads only a date's day and label (site_build.py, the "next date"
+        # and "earliest date" answers). The shipped date drops its third slot
+        # (2026-11-11, No.112, when STAK's decision took the payload 236 bytes
+        # over the ceiling with only 292 bytes of headroom that morning).
+        if isinstance(r.get("dates"), list):
+            r = dict(r, dates=[d[:2] for d in r["dates"]])
         rows.append(r)
     # A catalogued question names its decision by id, and every decision
     # carries about seventeen of them, so each id went out seventeen times
