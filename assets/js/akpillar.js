@@ -300,36 +300,98 @@
     const near = o.near || 0.8, far = o.far || 4000, steps = o.steps || 900;
     const gamma = 1 / 2.2;
     const camY = o.height(0, 0) + o.camH;
+    /* No.112: each step used to fill its rows with ONE flat colour, which printed a stair-step along
+     * every crest (one tooth per device column) and terraces in depth. Now the rows between two
+     * visible steps are interpolated between their colours, and each device column is the mean of
+     * o.ss sub-columns (default 2), so ridges resolve as shaded slopes, not sawteeth. */
+    const ss = Math.max(1, o.ss || 2);
+    const acc = new Float32Array(W * Hh * 3), cnt = new Uint8Array(W * Hh);
+    const y0 = (o.y0 || 0) * sc;
+    const shade = (x, z, d) => {
+      const e = Math.max(0.04, d * 0.008);   /* a wider difference low-passes the normal at range */
+      const hx = (o.height(x + e, z) - o.height(x - e, z)) / (2 * e);
+      const hz = (o.height(x, z + e) - o.height(x, z - e)) / (2 * e);
+      let nx = -hx, ny = 1, nz = -hz; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
+      const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+      const up = ny * 0.5 + 0.5;
+      const al = o.albedo ? o.albedo(x, z, d) : [0.85, 0.89, 0.95];
+      const fg = 1 - Math.exp(-Math.pow(d * o.fogD, 2));
+      return [0, 1, 2].map(i => {
+        const lin = al[i] * (o.key.color[i] * o.key.i * lam + o.hemi * (o.sky[i] * up + o.ground[i] * (1 - up)));
+        const tm = lin / (1 + lin);
+        return Math.pow(tm, gamma) * (1 - fg) + o.fog[i] * fg;
+      });
+    };
     for (let col = 0; col < W; col++) {
-      const sx = (col + 0.5 - W / 2) / f;                         /* screen x over focal */
-      let yb = Hh;                                                  /* lowest unfilled row + 1 */
-      for (let k = 0; k < steps && yb > (o.y0 || 0) * sc; k++) {
-        const d = near * Math.pow(far / near, k / (steps - 1));
-        const lx = sx * d, lz = -d;
-        const x = lx * Math.cos(yaw) + lz * Math.sin(yaw), z = -lx * Math.sin(yaw) + lz * Math.cos(yaw);
-        const h = o.height(x, z);
-        const y = hy + (camY - h) / d * f;
-        if (y >= yb) continue;
-        const e = Math.max(0.02, d * 0.004);
-        const hx = (o.height(x + e, z) - o.height(x - e, z)) / (2 * e);
-        const hz = (o.height(x, z + e) - o.height(x, z - e)) / (2 * e);
-        let nx = -hx, ny = 1, nz = -hz; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
-        const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
-        const up = ny * 0.5 + 0.5;
-        const al = o.albedo ? o.albedo(x, z, d) : [0.85, 0.89, 0.95];
-        const fg = 1 - Math.exp(-Math.pow(d * o.fogD, 2));
-        const c = [0, 1, 2].map(i => {
-          const lin = al[i] * (o.key.color[i] * o.key.i * lam + o.hemi * (o.sky[i] * up + o.ground[i] * (1 - up)));
-          const tm = lin / (1 + lin);                                 /* soft rolloff */
-          return Math.pow(tm, gamma) * (1 - fg) + o.fog[i] * fg;
-        });
-        const top = Math.max(Math.floor(y), 0);
-        for (let r = top; r < yb; r++) {
-          const p = (r * W + col) * 4;
-          D[p] = c[0] * 255; D[p + 1] = c[1] * 255; D[p + 2] = c[2] * 255; D[p + 3] = 255;
+      for (let k2 = 0; k2 < ss; k2++) {
+        const sx = (col + (k2 + 0.5) / ss - W / 2) / f;
+        let yb = Hh, cPrev = null, yPrev = Hh, wasVis = false, dPrev = near;
+        for (let k = 0; k < steps && yb > y0; k++) {
+          const d = near * Math.pow(far / near, k / (steps - 1));
+          const lx = sx * d, lz = -d;
+          const x = lx * Math.cos(yaw) + lz * Math.sin(yaw), z = -lx * Math.sin(yaw) + lz * Math.cos(yaw);
+          const h = o.height(x, z);
+          const y = hy + (camY - h) / d * f;
+          if (y >= yb) {
+            /* the step just went behind a crest: the true crest lies between the last visible step and
+             * this one, and missing it is what printed a staircase along every silhouette. Bisect it. */
+            if (wasVis && cPrev) {
+              let best = yb;
+              for (let j = 1; j <= 6; j++) {
+                const dd = dPrev + (d - dPrev) * j / 7;
+                const lx2 = sx * dd, lz2 = -dd;
+                const x2 = lx2 * Math.cos(yaw) + lz2 * Math.sin(yaw), z2 = -lx2 * Math.sin(yaw) + lz2 * Math.cos(yaw);
+                const y2 = hy + (camY - o.height(x2, z2)) / dd * f;
+                if (y2 < best) best = y2;
+              }
+              const top2 = Math.max(Math.floor(best), 0);
+              for (let r = top2; r < yb; r++) {
+                const q = r * W + col, p3 = q * 3;
+                acc[p3] += cPrev[0]; acc[p3 + 1] += cPrev[1]; acc[p3 + 2] += cPrev[2]; cnt[q]++;
+              }
+              if (top2 < yb) { yb = top2; yPrev = best; }
+            }
+            wasVis = false; dPrev = d;
+            continue;
+          }
+          const c = shade(x, z, d);
+          let cb = cPrev || c, yRef = yPrev;
+          if (!wasVis && cPrev) {
+            /* emerging from behind a crest: the rows just under the silhouette belong to THIS surface
+             * at the point where it crosses the silhouette, not to the crest in front, so find that
+             * point and interpolate from it (blending from the crest is what stepped every lee) */
+            let lo = dPrev, hi = d;
+            for (let j = 0; j < 7; j++) {
+              const mid = (lo + hi) / 2, lx2 = sx * mid, lz2 = -mid;
+              const x2 = lx2 * Math.cos(yaw) + lz2 * Math.sin(yaw), z2 = -lx2 * Math.sin(yaw) + lz2 * Math.cos(yaw);
+              const y2 = hy + (camY - o.height(x2, z2)) / mid * f;
+              if (y2 < yb) hi = mid; else lo = mid;
+            }
+            const lx3 = sx * hi, lz3 = -hi;
+            cb = shade(lx3 * Math.cos(yaw) + lz3 * Math.sin(yaw), -lx3 * Math.sin(yaw) + lz3 * Math.cos(yaw), hi);
+            yRef = yb;
+          }
+          wasVis = true; dPrev = d;
+          const top = Math.max(Math.floor(y), 0);
+          const span = Math.max(1, yRef - y);
+          for (let r = top; r < yb; r++) {
+            const t = Math.min(1, Math.max(0, (r + 0.5 - y) / span));   /* 0 at this step, 1 at the previous */
+            const q = r * W + col, p3 = q * 3;
+            acc[p3] += c[0] + (cb[0] - c[0]) * t; acc[p3 + 1] += c[1] + (cb[1] - c[1]) * t; acc[p3 + 2] += c[2] + (cb[2] - c[2]) * t;
+            cnt[q]++;
+          }
+          yb = top; cPrev = c; yPrev = y;
         }
-        yb = top;
       }
+    }
+    for (let q = 0; q < W * Hh; q++) {
+      const n = cnt[q]; if (!n) continue;
+      const p = q * 4, p3 = q * 3;
+      if (n < ss) {   /* a sub-column that stopped above this row: blend with what was there (the sky) */
+        const w = n / ss;
+        D[p] = D[p] * (1 - w) + acc[p3] / n * 255 * w; D[p + 1] = D[p + 1] * (1 - w) + acc[p3 + 1] / n * 255 * w; D[p + 2] = D[p + 2] * (1 - w) + acc[p3 + 2] / n * 255 * w;
+      } else { D[p] = acc[p3] / n * 255; D[p + 1] = acc[p3 + 1] / n * 255; D[p + 2] = acc[p3 + 2] / n * 255; }
+      D[p + 3] = 255;
     }
     cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.putImageData(img, 0, 0); cx.restore();
   };
