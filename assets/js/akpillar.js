@@ -101,8 +101,8 @@
       ".akp-wm{left:80px;top:80px;display:flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;" +
       "font-weight:700;font-size:26px;letter-spacing:0.08em;color:" + AKP.PAL.text + "}" +
       ".akp-ct{right:80px;top:84px;font-size:22px;color:" + AKP.PAL.label + "}" +
-      ".akp-site{left:80px;bottom:44px;font-size:20px;color:" + AKP.PAL.site + "}" +
-      ".akp-loc{right:80px;bottom:44px;font-size:20px;color:" + AKP.PAL.site + "}" +
+      ".akp-site{left:80px;bottom:44px;font-size:20px;color:#8292AE;text-shadow:0 0 4px rgba(5,10,24,0.9),0 0 2px rgba(5,10,24,0.9)}" +
+      ".akp-loc{right:80px;bottom:44px;font-size:20px;color:#8292AE;text-shadow:0 0 4px rgba(5,10,24,0.9),0 0 2px rgba(5,10,24,0.9)}" +
       ".akp-big{left:80px;bottom:110px;display:flex;align-items:center;gap:18px;font-family:'Space Grotesk',sans-serif;" +
       "font-weight:700;font-size:44px;letter-spacing:0.08em;color:" + AKP.PAL.text + "}";
     d.head.appendChild(css);
@@ -137,17 +137,23 @@
     cx.globalCompositeOperation = "lighter";
     if (h <= 0.5) {
       /* the zero-height pillar: a line of light lying on the ground */
-      const g = cx.createLinearGradient(0, b - 10, 0, b + 10);
+      /* the zero-height pillar: a thin line of light lying on the ground, its glow scaled to its
+       * own width so a 15 px Tier 1 on a far plane is a glint and never a sprite */
+      const gh = Math.max(3, Math.min(10, w * 0.12)), core = Math.max(0.8, Math.min(2.4, w * 0.04));
+      const lg2 = cx.createLinearGradient(x, 0, x + w, 0);
+      lg2.addColorStop(0, rgba(AKP.PAL.glint, 0)); lg2.addColorStop(0.12, rgba(AKP.PAL.glint, 0.85 * a));
+      lg2.addColorStop(0.88, rgba(AKP.PAL.glint, 0.85 * a)); lg2.addColorStop(1, rgba(AKP.PAL.glint, 0));
+      const g = cx.createLinearGradient(0, b - gh, 0, b + gh);
       g.addColorStop(0, rgba(AKP.PAL.ice, 0));
-      g.addColorStop(0.5, rgba(AKP.PAL.ice, 0.55 * a));
+      g.addColorStop(0.5, rgba(AKP.PAL.ice, 0.40 * a));
       g.addColorStop(1, rgba(AKP.PAL.ice, 0));
-      cx.fillStyle = g; cx.fillRect(x - 4, b - 10, w + 8, 20);
-      cx.fillStyle = rgba(AKP.PAL.glint, 0.9 * a); cx.fillRect(x, b - 1.2, w, 2.4);
+      cx.fillStyle = g; cx.fillRect(x, b - gh, w, gh * 2);
+      cx.fillStyle = lg2; cx.fillRect(x, b - core / 2, w, core);
       cx.restore();
       return;
     }
     /* halo: an offscreen blur so it falls off softly on every side */
-    const pad = Math.max(28, w * 0.35);
+    const pad = Math.max(40, w * 0.4, (o.haloBlur || 16) * 5);
     const off = document.createElement("canvas");
     off.width = Math.ceil((w + pad * 2) * sc); off.height = Math.ceil((h * 1.35 + pad * 2) * sc);
     const oc = off.getContext("2d");
@@ -168,33 +174,65 @@
     bg.addColorStop(0.55, rgba(AKP.PAL.ice, 0.26 * a));
     bg.addColorStop(0.85, rgba(AKP.PAL.ice, 0.18 * a));
     bg.addColorStop(1, rgba(AKP.PAL.ice, 0));
-    cx.fillStyle = bg;
-    cx.fillRect(x, b - h * 1.18, w, h * 1.18);
+    /* the column fades out above its cap at a height that varies across it (seeded), so the top
+     * of the light is ragged like real crystal pillars and never a flat ceiling */
+    const strip = Math.max(2, w / 48);
+    /* the ragged top is bounded to 30 design px whatever the height, and its noise is low frequency,
+     * so a tall pillar's crown reads as crystal light thinning out and never as an equalizer spike */
+    const rag = Math.min(0.22, 30 / Math.max(1, h));
+    /* footFade (px): the body fades to nothing over its last px at the base so it ends IN its pool on
+     * snow and never as a pale rectangle; baseA caps the brightest stop so a pillar over a lit horizon
+     * belt can't add up to a white slab under 'lighter' */
+    const ff = Math.min(h * 0.3, o.footFade || 0), ba = o.baseA == null ? 0.30 : o.baseA;
+    /* the strips are painted source-over on their own canvas and composited ONCE, because adjacent
+     * strips overlapping by a sub-pixel under 'lighter' doubled the alpha at every seam and printed a
+     * regular comb of pinstripes down every body (No.112, three critics) */
+    const kMax = 1.03 + rag, bh = h * kMax;
+    const bc = document.createElement("canvas");
+    bc.width = Math.ceil((w + 2) * sc); bc.height = Math.ceil((bh + 2) * sc);
+    const bx = bc.getContext("2d");
+    bx.scale(sc, sc);
+    for (let sx = 0; sx < w; sx += strip) {
+      const k = 1.03 + rag * (0.5 + 0.5 * AK.simplex2((x + sx) * 0.012, (o.seed || 1) * 0.37));
+      const top = bh - h * k;
+      const cg = bx.createLinearGradient(0, bh, 0, top);
+      const edge = Math.min(1, Math.min(sx, w - sx) / Math.max(6, w * 0.14));   /* lateral feather */
+      const m = a * (0.35 + 0.65 * edge);
+      cg.addColorStop(0, rgba(AKP.PAL.ice, ff > 0 ? 0 : ba * m));
+      if (ff > 0) cg.addColorStop(Math.min(0.5, ff / (h * k)), rgba(AKP.PAL.ice, ba * m));
+      cg.addColorStop(0.55, rgba(AKP.PAL.ice, 0.24 * m));
+      cg.addColorStop(0.86, rgba(AKP.PAL.ice, 0.13 * m));
+      cg.addColorStop(1, rgba(AKP.PAL.ice, 0));
+      bx.fillStyle = cg;
+      bx.fillRect(1 + sx, top, Math.min(strip + 0.75, w - sx), h * k);
+    }
+    cx.drawImage(bc, 0, 0, bc.width, bc.height, x - 1, b - bh, bc.width / sc, bc.height / sc);
     /* the soft edge falloff across the column (plate crystals bunch to the axis) */
     const sg = cx.createLinearGradient(x, 0, x + w, 0);
     sg.addColorStop(0, rgba(AKP.PAL.ice, 0));
-    sg.addColorStop(0.5, rgba(AKP.PAL.ice, 0.16 * a));
+    sg.addColorStop(0.5, rgba(AKP.PAL.ice, 0.12 * a));
     sg.addColorStop(1, rgba(AKP.PAL.ice, 0));
     cx.fillStyle = sg;
-    cx.fillRect(x, b - h, w, h);
+    cx.fillRect(x, b - h, w, h - ff);
     /* crystal streaks: thin vertical glints of uneven length */
-    const nS = o.streaks != null ? o.streaks : Math.max(6, Math.round(w / 5));
+    /* fewer streaks of uneven width and strength, so the body never reads as a regular comb */
+    const nS = o.streaks != null ? o.streaks : Math.max(5, Math.round(w / 10));
     for (let i = 0; i < nS; i++) {
       const sx = x + 2 + rnd() * (w - 4);
       const len = h * (0.25 + rnd() * 0.85);
       const sy = b - rnd() * (h - len * 0.5);
       const lg = cx.createLinearGradient(0, sy, 0, sy - len);
-      const al = (0.10 + rnd() * 0.18) * a;
+      const al = (0.05 + Math.pow(rnd(), 2) * 0.24) * a;
       lg.addColorStop(0, rgba(AKP.PAL.glint, 0));
       lg.addColorStop(0.5, rgba(AKP.PAL.glint, al));
       lg.addColorStop(1, rgba(AKP.PAL.glint, 0));
       cx.fillStyle = lg;
-      cx.fillRect(sx, sy - len, 0.7 + rnd() * 0.6, len);
+      cx.fillRect(sx, sy - len, 0.5 + Math.pow(rnd(), 2) * 2.2, len);
     }
-    /* data edges: hairlines on the two sides, faint, so the width is exact */
-    cx.fillStyle = rgba(AKP.PAL.glint, 0.38 * a);
-    cx.fillRect(x, b - h, 1, h);
-    cx.fillRect(x + w - 1, b - h, 1, h);
+    /* data edges: hairlines on the two sides, faint, so the width is exact without reading as a box */
+    cx.fillStyle = rgba(AKP.PAL.glint, (o.edgeA == null ? 0.12 : o.edgeA) * a);
+    cx.fillRect(x, b - h, 1, h - ff);
+    cx.fillRect(x + w - 1, b - h, 1, h - ff);
     cx.restore();
   };
 
@@ -210,8 +248,8 @@
     cx.translate(cxm, b + depth * 0.18);
     cx.scale((w * spread) / (2 * R), depth / R);
     const g = cx.createRadialGradient(0, 0, 0, 0, 0, R);
-    g.addColorStop(0, rgba(AKP.PAL.ice, 0.14 * a));
-    g.addColorStop(0.45, rgba(AKP.PAL.ice, 0.12 * a));
+    g.addColorStop(0, rgba(AKP.PAL.ice, 0.34 * a));
+    g.addColorStop(0.45, rgba('#E9D6DE', 0.14 * a));
     g.addColorStop(1, rgba(AKP.PAL.ice, 0));
     cx.fillStyle = g;
     cx.beginPath(); cx.arc(0, 0, R, 0, Math.PI * 2); cx.fill();
