@@ -5,7 +5,131 @@
   "date_note": "Woke 2026-11-13 ~06:04Z = 2026-11-12 21:04 AKST; run_guard --run-date 2026-11-12 CLEAR.",
   "revision_rounds": 5,
   "social": {
-    "preflight": "users/pages/pins/tiktok-settings verified 2026-11-13T06:07Z (profile alaska_ai, FB 2003130316607965 pinned, LinkedIn urn:li:organization:117084989 pinned, IG alaskaai_, TikTok PUBLIC_TO_EVERYONE available); state branch initialize/read OK"
+    "preflight": "users/pages/pins/tiktok-settings verified 2026-11-13T06:07Z (profile alaska_ai, FB 2003130316607965 pinned, LinkedIn urn:li:organization:117084989 pinned, IG alaskaai_, TikTok PUBLIC_TO_EVERYONE available); state branch initialize/read OK",
+    "delivery": {
+      "feeds": {
+        "linkedin feed": {
+          "status": "PUBLISHED",
+          "post_id": "urn:li:ugcPost:7526933979053326336",
+          "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7526933979053326336/",
+          "request_id": "d636ad5642014d62b979f4d09fb9ad5f"
+        },
+        "instagram feed": {
+          "status": "PUBLISHED",
+          "post_id": "17866048449694911",
+          "url": "https://www.instagram.com/p/DfrRqnVDJlx/",
+          "request_id": "34217700de0149db8eeb4a9a001a0084"
+        },
+        "facebook feed": {
+          "status": "PUBLISHED",
+          "post_id": "2003130316607965_1157876593872804",
+          "url": "https://www.facebook.com/2003130316607965_1157876593872804",
+          "request_id": "b879b8cf70214db7a5bbbac01a35319a"
+        },
+        "tiktok feed": {
+          "status": "PUBLISHED",
+          "post_id": "7707580846194134285",
+          "url": "https://www.tiktok.com/@alaskaai_/video/7707580846194134285",
+          "request_id": "754285229c334beea1d9be3cb766bb53"
+        }
+      },
+      "instagram_story": [
+        {
+          "segment": 0,
+          "status": "PUBLISHED",
+          "post_id": "18137460815501027"
+        },
+        {
+          "segment": 1,
+          "status": "PUBLISHED",
+          "post_id": "18114158365888516"
+        },
+        {
+          "segment": 2,
+          "status": "PUBLISHED",
+          "post_id": "18493578184106702"
+        },
+        {
+          "segment": 3,
+          "status": "PUBLISHED",
+          "post_id": "18469007467139655"
+        },
+        {
+          "segment": 4,
+          "status": "PUBLISHED",
+          "post_id": "18359188867170220"
+        },
+        {
+          "segment": 5,
+          "status": "PUBLISHED",
+          "post_id": "18121139777077356"
+        },
+        {
+          "segment": 6,
+          "status": "PUBLISHED",
+          "post_id": "18043013216839889"
+        },
+        {
+          "segment": 7,
+          "status": "PUBLISHED",
+          "post_id": "18168920557488763"
+        },
+        {
+          "segment": 8,
+          "status": "PUBLISHED",
+          "post_id": "18446546767178478"
+        }
+      ],
+      "facebook_story": [
+        {
+          "segment": 0,
+          "status": "PUBLISHED",
+          "post_id": "1959590018355549"
+        },
+        {
+          "segment": 1,
+          "status": "PUBLISHED",
+          "post_id": "1630260458280324"
+        },
+        {
+          "segment": 2,
+          "status": "PUBLISHED",
+          "post_id": "4631589053736605"
+        },
+        {
+          "segment": 3,
+          "status": "PUBLISHED",
+          "post_id": "2559368981236181"
+        },
+        {
+          "segment": 4,
+          "status": "PUBLISHED",
+          "post_id": "4767130403612099"
+        },
+        {
+          "segment": 5,
+          "status": "PUBLISHED",
+          "post_id": "1897187771652930"
+        },
+        {
+          "segment": 6,
+          "status": "PUBLISHED",
+          "post_id": "3079214695758143"
+        },
+        {
+          "segment": 7,
+          "status": "PUBLISHED",
+          "post_id": "4613620952211762"
+        },
+        {
+          "segment": 8,
+          "status": "PUBLISHED",
+          "post_id": "1120257964120115"
+        }
+      ],
+      "youtube": "NOT_APPLICABLE (image carousel; no slideshow video invented)",
+      "summary": "COMPLETE: 4 feed posts and 18 Story frames published and verified by provider status, 2026-11-13"
+    }
   },
   "phases": {
     "wake": {
@@ -125,12 +249,16 @@
       "note": "machine_due exit 1 (weekly pass 2026-11-11); 1 item queued, 2 repeats raised; no upgrade commit"
     },
     "gmail": {
-      "status": "pending",
-      "artifacts": []
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-12/gmail_draft_id.txt"
+      ],
+      "note": "draft r1271982441546534384 to docket@alaskaaihq.com, read back; social receipt appended"
     },
     "retro": {
-      "status": "pending",
-      "artifacts": []
+      "status": "done",
+      "artifacts": [],
+      "note": "summary delivered; one thing next run: model the largest object at thumb (07 jar, 01 lens) and replace the rippled-water face texture"
     }
   },
   "site_signoff": "PASS, 177 pages, 18 checks",
@@ -143,5 +271,6 @@
     "reader_output": "[]",
     "decision": "no valid action this week; runs/<date>/social_feedback.json will be []"
   },
-  "gas_watch_verdict": "PASS live audit 2026-11-13T06:18:16Z: 100 days on record, 86 verified, no calendar holes, latest 2026-11-12 reading live after the late CINGSA post was collected by dispatched run 620"
+  "gas_watch_verdict": "PASS live audit 2026-11-13T06:18:16Z: 100 days on record, 86 verified, no calendar holes, latest 2026-11-12 reading live after the late CINGSA post was collected by dispatched run 620",
+  "status": "complete"
 }
