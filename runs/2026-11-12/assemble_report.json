@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-12/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5557661,
+  "pdf_mb": 5.56,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-12/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-12/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Pitched as data centers. Passed as an inquiry.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "8e992b894cd3732b4dc95944c88a078001cc0f825fab92b0e764e78201d606b9",
+        "bytes": 5870448
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "0c1fcc8fd89164cf046831081414a3f5c23e94ef3ce7ec258a0fcfa3609046d8",
+        "bytes": 6455934
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "3b1ac0d271839237d18c6ee58c6b8f0da31c3b4601fa585e3a0a3f4dc46c58da",
+        "bytes": 5972288
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "90dd3201a9017361cd5d37e85a627fbdce196e324d321b32106383bc5410c459",
+        "bytes": 6041574
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "90c63b530c1acaaa5ee1628c4a7eb52cd825f827074b28de33108184e786fcd5",
+        "bytes": 6095076
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "34336fbb0b1d40f6f66d371139960026603518e7e617d421526c435882c71d72",
+        "bytes": 6355285
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "88fe6366c5b8e37fa9d4ccf2ef430c91a5ac45340321eef3419be9b0834ff9c2",
+        "bytes": 5428015
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "99c06087111d4aa7f403146692bf115e54cc9876e7701d95940f97c2886dd476",
+        "bytes": 6248480
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "b558b1f51f8a53cac28eb3b4e91afce63e27a4b7fac74490cd4756fee0bbefeb",
+        "bytes": 6470782
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "39c224653a7aa52fa6b16a885b9db803f57dca4140f8493687108cf5bd23c928",
+        "bytes": 10036
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "84241c66238b1ee4685edc74c83287f6c5fcb304068fff3216b77d22c9a80257",
+        "bytes": 9486
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "035680a8299eec1ca3809581f30f539c5ce6b34c0e678b96d2921fe3fa981e60",
+        "bytes": 6435
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "2b0e8be71b71e16e717e2f5b6a99e2e1ef887a0881a55836f54fb91e5a0568d8",
+        "bytes": 9302
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "edeb948f158d85aa6781de050c31af228845312c5636de670283c6258f12fb76",
+        "bytes": 10174
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "72dc7d0003d5dce3aa073a1ecd870af430e9b2b03c9e3db3365bf238e3ff3e7c",
+        "bytes": 8780
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "879426069283ec9a2271282d55286e8c9b4839359c836fe7de3f34a6740b2742",
+        "bytes": 9674
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "3570a1f7bfa9bd399f786fb4b96e43d2b7ce56182761de73864370898303e326",
+        "bytes": 8589
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1c2725aee571ceeb2f0e35f37bea2ef4403fa1da68a9f20a3d4ee869132518f7",
+        "bytes": 9925
+      }
+    ]
+  }
+}

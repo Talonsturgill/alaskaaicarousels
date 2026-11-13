@@ -4643,6 +4643,53 @@
       ],
       "claims": 64,
       "note": "UPDATE of No.96 and No.100, both of which treated the STAK lease as pending; this is the decision itself and its rent schedule. Score 8.57 (art 7.5). Next STAK deck needs a new event on the record: a reconsideration ruling, a court filing, the appraised Base Rate, the Corps wetlands permit or the DEC air permit."
+    },
+    {
+      "run_date": "2026-11-12",
+      "carousel_no": 113,
+      "topic": "Alaska Data Corporation and InvestNorth, announced by Gov. Dunleavy on November 9th: an AIDEA subsidiary meant to facilitate distributed data centers in communities and a state-sponsored platform that tokenizes stakes in infrastructure, some possibly reserved for Alaska residents, built with Plural's AssetOS, with no offering, project, schedule, amount, job total or terms at launch. The money behind it is AIDEA Resolution G26-03 of January 21st, titled an inquiry into blockchain and other financing technologies: a $20,000,000 transfer from the Revolving Fund that the staff memo left blank and board member Albert Fogle inserted by amendment, passed unanimously with Commissioner Sande absent after Andrew Guy said the amount seemed high and asked for a budget; staff put AIDEA's operating budget at $10 million a year and its balance sheet at $1.7 billion; Section 7 lets the platform proceed only after the inquiry finds it feasible and in the public interest and the CFO approves; the resolution text never says data center, the January discussion did. Launched four weeks before a new governor takes office at noon December 7th.",
+      "angle": "THE INSTRUMENT NICHE: the record's own words in quotes, one instrument of checking per frame aimed at an absence on one slate window sill (a lens over an empty gold blank, dividers spanning vote to launch, a ruling pen, a spirit level reading high, two ivory rules at two scales, a plumb bob over the line, a bell jar over nothing, an hourglass nearly run, the lens focusing light on the filled line); the ask is whether Alaskans should see the Section 7 feasibility finding before anyone offers them a stake.",
+      "entities": [
+        "Alaska Industrial Development and Export Authority",
+        "AIDEA",
+        "Alaska Data Corporation",
+        "AKDC",
+        "InvestNorth",
+        "Plural",
+        "AssetOS",
+        "Mike Dunleavy",
+        "Brandon Brefczynski",
+        "Dave Stieren",
+        "Albert Fogle",
+        "Andrew Guy",
+        "Julie Sande",
+        "Randy Ruaro",
+        "Resolution G26-03",
+        "Revolving Fund",
+        "Must Read Alaska",
+        "Crypto Briefing"
+      ],
+      "keywords": [
+        "tokenization",
+        "blockchain",
+        "digital asset platform",
+        "data center finance",
+        "distributed data centers",
+        "resident investment",
+        "inquiry",
+        "$20 million capitalization",
+        "staff memo blank",
+        "seems high",
+        "Section 7 feasibility",
+        "lame duck",
+        "December 7th handoff",
+        "AIDEA subsidiary",
+        "accredited and retail investors"
+      ],
+      "beats": [
+        "data-centers",
+        "state-policy"
+      ]
     }
   ]
 }

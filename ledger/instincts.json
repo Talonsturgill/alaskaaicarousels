@@ -2734,6 +2734,36 @@
       "last_confirmed": "2026-11-11",
       "run_date": "2026-11-11",
       "carousel_no": 112
+    },
+    {
+      "id": "dark-edge-on-a-gold-mark-over-ivory",
+      "instinct": "A gold mark on a pale ground carries almost no luminance difference; when it is a declared axis mark, cut a thin dark edge at its end or the axis census calibrates on texture and reports the rule's own shading as an undeclared mark.",
+      "evidence": "No.113: slide 05's $20 million sliver end at x 90.8 read at ink 1.0 against 8 to 11 for the etched ticks, and qa failed an undeclared mark at 987.5 until a 1.8 px dark cut was drawn at the sliver's end.",
+      "confidence": 0.6,
+      "learned": "2026-11-12",
+      "last_confirmed": "2026-11-12",
+      "run_date": "2026-11-12",
+      "carousel_no": 113
+    },
+    {
+      "id": "prove-magnification-with-the-1x-continuation",
+      "instinct": "A lens only reads as magnifying when the thing it magnifies also continues at 1x outside the bezel; centre the subject under the glass and the reader sees a dark disc with a picture in it.",
+      "evidence": "No.113: the scorer charged 01's lens as a dark disc; starting the blank at 1x left of the bezel and magnifying about the aperture's left edge made the swell visible at thumb.",
+      "confidence": 0.5,
+      "learned": "2026-11-12",
+      "last_confirmed": "2026-11-12",
+      "run_date": "2026-11-12",
+      "carousel_no": 113
+    },
+    {
+      "id": "url-slugs-carry-headlines",
+      "instinct": "Check every first-comment URL's slug against the honesty guards; a raw URL can't be edited and its slug can name what the comment text carefully does not.",
+      "evidence": "No.113: the Alaska Public Media source for the noon December 7th inauguration had a slug naming a candidate as leading the governor's race; C50 was re-sourced to the Alaska Constitution, Article III, Section 4.",
+      "confidence": 0.6,
+      "learned": "2026-11-12",
+      "last_confirmed": "2026-11-12",
+      "run_date": "2026-11-12",
+      "carousel_no": 113
     }
   ]
 }

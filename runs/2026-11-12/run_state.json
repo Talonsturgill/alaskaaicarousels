@@ -1,0 +1,147 @@
+{
+  "run_date": "2026-11-12",
+  "carousel_no": 113,
+  "effort": "high",
+  "date_note": "Woke 2026-11-13 ~06:04Z = 2026-11-12 21:04 AKST; run_guard --run-date 2026-11-12 CLEAR.",
+  "revision_rounds": 5,
+  "social": {
+    "preflight": "users/pages/pins/tiktok-settings verified 2026-11-13T06:07Z (profile alaska_ai, FB 2003130316607965 pinned, LinkedIn urn:li:organization:117084989 pinned, IG alaskaai_, TikTok PUBLIC_TO_EVERYONE available); state branch initialize/read OK"
+  },
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "one search; nothing new beyond the already-recorded compact-carousel feed change; FIELD_NOTES untouched"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/scout_merge.md",
+        "out/2026-11-12/scouts/"
+      ],
+      "note": "6 scouts, 144 searches (A24 B24 C22 D25 E25 F24); 3 beats converged on AKDC/InvestNorth"
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/claims.json"
+      ],
+      "note": "54 claims, 33 primary; claims_check PASS; fact-checker 17 WebFetch calls, 16 distinct URLs (one justified akdc.com repeat); G26-03, its memo and the January 21st minutes read from showrunner extractions; runners-up killed as single-source"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json"
+      ],
+      "note": "worklist budget 8: 8 items re-verified unchanged (enstar, ratepayer pledge, transcription RFP, DMV RFI, ANA AI3, EO 14318, KPBSD, DOE RFI); 6 deferred carried (aidea-northstar, aea-ciplink, fcc-gci, ua-regents, petersburg, north-slope-power); watch.json bills HB259/SB250 match ledger; 0 hearings (out of session); 29 candidates same as yesterday, none an AI-infrastructure decision; failed sources none. ask payload headroom 2,187 bytes (187,813 of 190,000), under 5,000; mobile_docket_map and docket_ask PASS"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/gaswatch_health.json",
+        "out/2026-11-12/cron_health.json",
+        "out/2026-11-12/cron_incidents.json"
+      ]
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/storyboard.md",
+        "out/2026-11-12/treatments/"
+      ],
+      "note": "lenses systems-illustrator, editorial-essayist, field-documentarian; B the instrument niche won, with C shadow law and A two-scale fairness; dossier_check PASS 9 of 9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/caption.txt",
+        "out/2026-11-12/copy.json",
+        "out/2026-11-12/caption_report.json"
+      ],
+      "note": "room A (QUOTE FIRST / INVERTED PYRAMID / STAKE) won with the critic fix (name Brefczynski in the summary line); B failed anti-template against No.104"
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/slides/",
+        "out/2026-11-12/render/",
+        "assets/js/akniche.js"
+      ],
+      "note": "qa WARN 0 fails (1 warn: lens magnification upscale); bespoke PASS median 0.058, drawn 69%"
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/critics/"
+      ],
+      "note": "rounds 1 and 2 pixel critics; round 3 flow critic work order; round 4 the CRAFT FLOOR cycle on 03, 07, 01, 04, 05; round 5 slide 03 ebony"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/flow_review.json"
+      ]
+    },
+    "assemble": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/final/carousel.pdf",
+        "out/2026-11-12/final/contact_sheet.png"
+      ]
+    },
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/score_report.json"
+      ],
+      "note": "8.19 (art 6.5) at round 3; craft cycle round 4 to 8.355 (art 7); round 5 03 handle, 8.355; threshold 7.7 at round 5; normalised 7.60 (rubric weights sum 1.10, queued)"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-12/",
+        "docs/"
+      ],
+      "note": "ship_images 55.00M to 4.46M at 40.1 dB; shrink_pdfs 10 percent; site 178 pages; no alerts due; prune freed 0.75M"
+    },
+    "upgrade": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "machine_due exit 1 (weekly pass 2026-11-11); 1 item queued, 2 repeats raised; no upgrade commit"
+    },
+    "gmail": {
+      "status": "pending",
+      "artifacts": []
+    },
+    "retro": {
+      "status": "pending",
+      "artifacts": []
+    }
+  },
+  "site_signoff": "PASS, 177 pages, 18 checks",
+  "gaswatch_pagecheck": "PASS, read 2026-11-12, 100 days on record, chart present",
+  "gaswatch_live": "PASS, checked 2026-11-13T06:18:16Z, after a late CINGSA post: dispatched gaswatch.yml run 620 on main, reading 7.93 Bcf (61.0 percent) collected and deployed, re-audit PASS",
+  "cron_health": "FAIL with documented GitHub blocker (gate WARN): gaswatch.yml run 612 (43097698777) still stuck queued since 2026-11-11T20:43Z, cancel refused HTTP 409 again; runs 613 to 620 all succeeded",
+  "site_fixes": "none needed on pages; operational repair: dispatched the gas watch collector after CINGSA posted late, verified the reading live",
+  "social_feedback": {
+    "attached": "talonsturgill/social-content-feedback read (add_repo appended)",
+    "reader_output": "[]",
+    "decision": "no valid action this week; runs/<date>/social_feedback.json will be []"
+  },
+  "gas_watch_verdict": "PASS live audit 2026-11-13T06:18:16Z: 100 days on record, 86 verified, no calendar holes, latest 2026-11-12 reading live after the late CINGSA post was collected by dispatched run 620"
+}

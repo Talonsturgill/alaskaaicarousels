@@ -4116,6 +4116,51 @@
         "weighted_total": 8.57,
         "artwork": 7.5
       }
+    },
+    {
+      "run_date": "2026-11-12",
+      "carousel_no": 113,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE INSTRUMENT NICHE, a frontal bodegon window niche with one instrument of checking per frame, each aimed at an absence, on one Southeast slate sill scanned end to end: a GPU nickel reading lens magnifying an empty gold blank (01), engraved steel dividers spanning the vote to the launch (02), a raymarched ebony ruling pen overhanging the arris (03), a mezzotint ebony spirit level with its bubble pressed to one end (04), two Schreger-figured ivory rules at two scales (05), a GPU plumb bob in a window shaft pointing at the filled line (06), a darkfield bell jar over bare slate (07), a stippled hourglass nearly run (08), the lens turned to focus the window on the filled line (09); no paper anywhere",
+      "atmosphere": "NEW: A RUN OF TALL WINDOWS BEHIND CAMERA LEFT ON A NIGHT NICHE (pale #FFE2B8 key at about 35 degrees, cool #142338 bounce, the key a smooth function of global x with mullion bars on the sill top; peak on 05, a stone pier's shade on 07)",
+      "depth_technique": "akthree GPU PBR nickel (01, 06, 09) composited over a per-pixel slate panorama with 2D lens magnification; aksdf raymarch keyed and resolved (03); measured contact pairs on 04, 05, 07, 08",
+      "line_voice": "engraver and instrument (incised mono labels, white-line intaglio on 02)",
+      "continuity_device": "motif evolution: the gold line where a number belongs, empty (01, 02, 07), filled (03, 04, 06, 08), measured (05), focused (09)",
+      "continuity_devices": [
+        "slate sill panorama spine, gx = (n-1)*1080 + x",
+        "gold blank motif, empty and filled",
+        "one window key as a function of x, peak 05, pier shade 07",
+        "left jamb on 01, right jamb on 09"
+      ],
+      "hook_archetype": "NEW: THE RECORD'S OWN WORDS, IN QUOTES",
+      "palette_family": "NEW: BODEGON NIGHT, SLATE, BONE AND EBONY (void #04070F, slate #141C26 / #2B3642 / #5E6B78, quartz #C9CFD3, bone #EFE6D4, ebony #16110E to #4A3B30, nickel #D7DCE0, ivory #E6DCC6, vial #9FD9C0, gold #FFC72C for the line where a number belongs)",
+      "type_pairing": "Instrument Serif 400 display + Bricolage Grotesque 430 body (opsz 36, wdth 90) + JetBrains Mono 500 caps",
+      "narrative_structure": "NEW: A STILL-LIFE ESSAY: the record's word, what it hides, one instrument aimed at the absence; launch, blank, objection, measure, rest, absence, clock, ask",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 4,
+        "type_temperature": 5
+      },
+      "techniques": [
+        "AKNICHE.sill slate panorama",
+        "akthree PBR lens and plumb bob",
+        "2D lens magnification composite",
+        "white-line intaglio legs",
+        "aksdf keyed raymarch",
+        "blue-noise mezzotint on modelled ebony",
+        "Schreger ivory relief",
+        "darkfield glass tracer",
+        "Poisson stipple sand",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [
+        "NEW: assets/js/akniche.js, the instrument niche kit (slate panorama sill with key(gx) and mullion bars, the cut gold channel, jambs, pools, casts, fixtures, incised labels)",
+        "NEW: keyed SDF composite, aksdf rendered against green at 2x, despilled, mirrored and resolved in two halvings so a raymarched object can sit on a 2D ground"
+      ],
+      "scores": {
+        "weighted_total": 8.355,
+        "artwork": 7
+      }
     }
   ]
 }

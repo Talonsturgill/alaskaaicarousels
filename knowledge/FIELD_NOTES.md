@@ -9646,3 +9646,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A PLAN VIEW OF SNOW IS THE HARDEST GROUND IN THE DECK. 07 went through hachure (static), ridged relief (drapery), form-lines (contour wallpaper) and smooth relief (cloud tops) before soft-creased ridges 30 to 90 px apart read as wind-carved snow. Start a plan-view snowfield there.
 - THE RUBRIC STILL SUMS TO 1.10. 8.57 by the formula is 7.79 normalized. Report both until the weekly pass corrects it.
 
+
+## 2026-11-12, No.113, retro
+
+- THE AXIS CENSUS SETS ITS THRESHOLD ON THE FAINTEST MARK YOU DECLARE. Slide 05 declared the $20 million sliver end at x 90.8 as a mark. Gold #FFC72C on ivory carries almost no luminance difference, so that mark read at ink 1.0 against 8 to 11 for the etched ticks, the threshold fell to the band's texture, and the rule's own end shading came back as an undeclared mark at 987.5. Moving end faces and casts out of the band changed nothing. An etched dark cut at the sliver's end fixed it. A gold mark on a pale rule needs a dark edge to be a mark at all.
+- A DOM MOTIF CAN'T BE MAGNIFIED. A lens over a DOM string shows the string unmagnified through the glass. Paint the thing the lens looks at on the canvas, after the grade, and magnify the canvas about the point you want centred.
+- POLISHED METAL IN A DARK NICHE RENDERS BLACK. The plumb bob mirrored the empty environment. Metalness 0.9, roughness 0.24 and a cooler key brought it back; a warm key read as brass.
+- ONE KEY CURVE ACROSS NINE FRAMES, COLUMN BY COLUMN. A per-frame wash stepped at every mullion and the flow critic read the seams as nine separate rooms. A monotone cubic through the nine keys, sampled per pixel column, made the light move across the deck.
+- CLOSED VEIN LOOPS READ AS CONTOUR LINES. Quartz veins on the slate became stone only as open tapered diagonals with a warped phase. A regular row of arris chips read as beads and came off.
+- AKT.lathe TAKES [r, y] ARRAYS. Vector2 points produced NaN geometry with no error.
