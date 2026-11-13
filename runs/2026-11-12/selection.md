@@ -1,0 +1,23 @@
+# SELECTION, 2026-11-12, Carousel No.113
+
+## The pick
+**Alaska Data Corporation and InvestNorth.** On November 9th Gov. Dunleavy announced an AIDEA subsidiary meant to facilitate "distributed data centers" in communities statewide (C15) and a state-sponsored platform that tokenizes ownership of infrastructure (C11, C12), with some offerings possibly reserved for Alaska residents (C16). No offering, project, schedule, amount, job count or terms came with it (C17 to C20). The money behind it is AIDEA Resolution G26-03 of January 21st: titled an INQUIRY (C25), a $20,000,000 transfer (C26) that the staff memo left blank (C29) and that was inserted by floor amendment (C36), passed unanimously with one member absent (C37) after another said it "seems high" and asked for a budget (C38). Staff put AIDEA's annual operating budget at $10 million (C40), so the subsidiary's starting capital equals two years of that budget (aggregate, ratio of C26/C36 to C40). The resolution and memo never say "data center" (C31); the January discussion did (C46). The launch came four weeks before the next governor takes office at noon December 7th (C50).
+
+Criteria: (1) concrete Alaska impact: public money ($20M from AIDEA's Revolving Fund) and a state promise to sell residents stakes in data centers, inherited by the next administration; (2) visual potential: a document story with literal blanks, a ratio (2x the operating budget), a vote, and a chain of entities; (3) tangible: signed resolution, minutes, a live company website; (4) would an Alaskan send it: yes, it is the state's answer to the data center opposition and it lands in the lame-duck window.
+
+## Dedupe gate
+`dedupe_check.py --entities "AIDEA; Alaska Data Corporation; AKDC; InvestNorth; Plural; Dunleavy; Brandon Brefczynski; Randy Ruaro" --keywords "tokenization; blockchain; data center finance; distributed data centers; resolution G26-03; subsidiary; investment platform"`: no LIKELY DUPLICATE. Strongest SOFT OVERLAP No.98 (October 28th, AIDEA's Northstar Fiber Development LLC under G26-11 and the NuCube equity stake), read in full: same agency, different subsidiary, different resolution, different instrument (fiber investment vs tokenized resident investment in data centers). No.104 (November 3rd, the governor's race as a data center vote) shares the December 7th handoff only. Verdict: distinct story, not an UPDATE.
+
+## Runner-up
+Enstar's 1.2 Bcf exchange with MEA and Hilcorp (Alaska Public Media, November 6th). Killed by the fact-checker as single-source with no RCA primary; no AI link. Waymo's Fairbanks cold testing (KTUU, November 10th) also single-source.
+
+## Process note (honest deviation)
+Phase 3 says to broaden to 21 days and rerun Phases 2 and 3 once when fewer than two stories survive. Only one survived the claims gate, but not from starvation: the lead carries 54 verified claims (33 primary) and both runners-up were killed for single sourcing, not for absence of news. A second six-scout sweep would add nothing the deck can use, so the showrunner did not rerun it. Recorded for the retro.
+
+## Directors room
+(appended after the treatments)
+Lenses: systems-illustrator (treatments/A_systems.md, "Two Pipes, No Project", a primed piping skid under inspection), editorial-essayist (treatments/B_essay.md, "Passed as an Inquiry", the instrument niche), field-documentarian (treatments/C_field.md, "Nothing Casts a Shadow Yet", practical-light locations with a shadow ledger).
+WINNER: B, the instrument niche. Sharpest thesis (the record's own words in quotes, each answered by one plain sentence), most feasible art (one object per frame on one continuous sill, nine bounded builds), no paper anywhere (the record lives only as type and incised stone, which is the cleanest break from No.109), and the fairest data frame (balance sheet before budget).
+Organs taken from the others: from C, the shadow law (real objects cast measured contacts; the missing offering sits under glass with nothing to cast) and the fact that the company's president presented the resolution as deputy director (C05, C07, C33), used on 08. From A, the "two years of the operating budget" yardstick paired with the balance-sheet ratio so the art argues order (money before a project) rather than size.
+Rejected: A's skid editorialises through its metaphor (an open flange on a live line reads as danger, a weld indication as a defect), which the record does not support. C's phone and kitchen frames are generic places the claims don't locate, and its memo macro reopens the paper register.
+Social feedback: reader returned [], no experiment this week.
