@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-12T20:55:51Z",
+  "checked_at": "2026-11-13T08:07:45Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "b6efc09752f4c87566a289dafdea5ca73ce571a575e485c5578996ec71791f83",
+  "response_sha256": "95e7a2c9fe2eac7a68bf317e82912d64222a94d0beaa723d41b2f1a00246ed1f",
   "articles": [
     {
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -34,118 +34,20 @@
     }
   ],
   "selected": {
-    "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-    "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-    "first_seen_at": "2026-11-04T06:02:44Z",
-    "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-    "feed": "https://www.ktoo.org/feed/?paged=3",
-    "publisher": "KTOO",
+    "title": "$4.9M Loan for Red Dog Mine Solar Array",
+    "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+    "first_seen_at": "2026-11-12T00:40:39Z",
+    "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+    "feed": "https://www.akbizmag.com/feed/",
+    "publisher": "Alaska Business",
     "coverage": 1,
-    "score": 0.002541,
-    "priority": 4
+    "score": 0.403185,
+    "priority": 1
   },
-  "expires_at": "2026-11-18T06:02:44Z",
+  "expires_at": "2026-11-26T00:40:39Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-12T19:23:00Z",
-      "selected": {
-        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-        "first_seen_at": "2026-11-04T06:02:44Z",
-        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-        "feed": "https://www.ktoo.org/feed/?paged=3",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.002541,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.002541,
-          "priority": 4
-        },
-        {
-          "title": "$4.9M Loan for Red Dog Mine Solar Array",
-          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
-          "first_seen_at": "2026-11-12T00:40:39Z",
-          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.55714,
-          "priority": 1
-        },
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.000692,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-13T01:23:00Z",
-      "selected": {
-        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-        "first_seen_at": "2026-11-02T09:00:00Z",
-        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-        "feed": "https://www.uaf.edu/news/",
-        "publisher": "UAF",
-        "coverage": 1,
-        "score": 0.000608,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-          "first_seen_at": "2026-11-02T09:00:00Z",
-          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
-          "feed": "https://www.uaf.edu/news/",
-          "publisher": "UAF",
-          "coverage": 1,
-          "score": 0.000608,
-          "priority": 4
-        },
-        {
-          "title": "$4.9M Loan for Red Dog Mine Solar Array",
-          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
-          "first_seen_at": "2026-11-12T00:40:39Z",
-          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.489911,
-          "priority": 1
-        },
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.002235,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-13T07:23:00Z",
       "selected": {
@@ -156,7 +58,7 @@
         "feed": "https://www.akbizmag.com/feed/",
         "publisher": "Alaska Business",
         "coverage": 1,
-        "score": 0.411964,
+        "score": 0.403185,
         "priority": 1
       },
       "stories": [
@@ -168,7 +70,7 @@
           "feed": "https://www.akbizmag.com/feed/",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.411964,
+          "score": 0.403185,
           "priority": 1
         },
         {
@@ -179,7 +81,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.001879,
+          "score": 0.001839,
           "priority": 4
         },
         {
@@ -190,7 +92,7 @@
           "feed": "https://www.uaf.edu/news/",
           "publisher": "UAF",
           "coverage": 1,
-          "score": 0.000512,
+          "score": 0.000501,
           "priority": 4
         }
       ]
@@ -243,19 +145,107 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-13T19:23:00Z",
+      "selected": {
+        "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+        "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+        "first_seen_at": "2026-11-02T09:00:00Z",
+        "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+        "feed": "https://www.uaf.edu/news/",
+        "publisher": "UAF",
+        "coverage": 1,
+        "score": 0.000362,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.000362,
+          "priority": 4
+        },
+        {
+          "title": "$4.9M Loan for Red Dog Mine Solar Array",
+          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+          "first_seen_at": "2026-11-12T00:40:39Z",
+          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.291303,
+          "priority": 1
+        },
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.001329,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-14T01:23:00Z",
+      "selected": {
+        "title": "$4.9M Loan for Red Dog Mine Solar Array",
+        "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+        "first_seen_at": "2026-11-12T00:40:39Z",
+        "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+        "feed": "https://www.akbizmag.com/feed/",
+        "publisher": "Alaska Business",
+        "coverage": 1,
+        "score": 0.244955,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "$4.9M Loan for Red Dog Mine Solar Array",
+          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+          "first_seen_at": "2026-11-12T00:40:39Z",
+          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.244955,
+          "priority": 1
+        },
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.001117,
+          "priority": 4
+        },
+        {
+          "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+          "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+          "first_seen_at": "2026-11-02T09:00:00Z",
+          "summary": "The University of Alaska Fairbanks will receive $1 million from the U.S. Department of Energy to expand plans for mining and critical minerals education.",
+          "feed": "https://www.uaf.edu/news/",
+          "publisher": "UAF",
+          "coverage": 1,
+          "score": 0.000304,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://alaska-native-news.com/new-book-highlights-alaskas-rural-energy-innovators/86854/",
-      "title": "New book highlights Alaska’s rural energy innovators",
-      "shown_at": "2026-11-05T01:23:00Z"
-    },
-    {
-      "url": "https://www.akbizmag.com/industry/energy/aidea-buys-25m-equity-stake-in-solid-state-nuclear-power-developer/",
-      "title": "AIDEA Buys $25M Equity Stake in Solid-State Nuclear Power Developer",
-      "shown_at": "2026-11-05T07:23:00Z"
-    },
     {
       "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
       "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
@@ -405,6 +395,16 @@
       "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
       "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
       "shown_at": "2026-11-12T19:23:00Z"
+    },
+    {
+      "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
+      "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
+      "shown_at": "2026-11-13T01:23:00Z"
+    },
+    {
+      "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+      "title": "$4.9M Loan for Red Dog Mine Solar Array",
+      "shown_at": "2026-11-13T07:23:00Z"
     }
   ],
   "feeds": [
@@ -412,25 +412,25 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "1c0eaac623c624086e9cb4ea2138bdbde32f09892eaed897e5ad652fa1c4ebdb"
+      "sha256": "8639d55849b4b8c91764ab6f4fac4dc4f03d262afd0a0d9815e8c9b4457eeb69"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "6637322218e158d0be35edde79f3359db99596d32d18b82b5c2e08baea55defa"
+      "sha256": "93ceeaff393156fb5c353d0ff23a9f3ef0dd10932cb9b6ab0d464ba8674536ce"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "39a767c78eb1f1728032f001d05451fb901a21ce67a1a02bcda01543db5ff967"
+      "sha256": "85d171060a7b16ecf5af46a3230ea5198fc919c53df24551361c5922b2135769"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "79e3e78a37b1dbf46c59aa41b6f43e7f3e41507033eb964db9df7ced611eec68"
+      "sha256": "0ae26d8c77e006decf2b74f52d3c891a21354e005e9e33beaef256a66495d6a2"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
@@ -442,7 +442,7 @@
       "url": "https://alaska-native-news.com/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "a3c90b6d247a6fedefd7f3cd37584c24d070bb27150bfe154ca50fa023844b5c"
+      "sha256": "ef93ce0ffd68989bdeced35f5ee0ec4189ab8f79620b2a654a7b3f6e6920c322"
     },
     {
       "url": "https://alaska-native-news.com/category/science/feed/",
@@ -457,67 +457,64 @@
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "3ac12831c05297df1c9d65706a2870853de30c00c12188908a718ef0f4cfe3a5"
+      "status": "not_modified"
     },
     {
       "url": "https://www.uaf.edu/news/",
       "status": "ok",
       "items": 22,
-      "sha256": "e159960660ab40b05d5fa16652a155c2d681ae1a42de336b75a9519ac6b6efbe"
+      "sha256": "54c60be97fe7c22419fe495696f0a41718abbb4b401435b0e7dcab0e8881baee"
     }
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "1c0eaac623c624086e9cb4ea2138bdbde32f09892eaed897e5ad652fa1c4ebdb",
-      "etag": "\"71c24de29165914f987a5a750122dfd4\"",
-      "last_modified": "Thu, 12 Nov 2026 20:21:48 GMT"
+      "sha256": "8639d55849b4b8c91764ab6f4fac4dc4f03d262afd0a0d9815e8c9b4457eeb69",
+      "etag": "\"1d2b7ff48c31d6626997fd723bfae8eb\"",
+      "last_modified": "Fri, 13 Nov 2026 06:14:12 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6637322218e158d0be35edde79f3359db99596d32d18b82b5c2e08baea55defa",
-      "etag": "\"71c24de29165914f987a5a750122dfd4\"",
-      "last_modified": "Thu, 12 Nov 2026 20:21:48 GMT"
+      "sha256": "93ceeaff393156fb5c353d0ff23a9f3ef0dd10932cb9b6ab0d464ba8674536ce",
+      "etag": "\"1d2b7ff48c31d6626997fd723bfae8eb\"",
+      "last_modified": "Fri, 13 Nov 2026 06:14:12 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "39a767c78eb1f1728032f001d05451fb901a21ce67a1a02bcda01543db5ff967",
-      "etag": "\"71c24de29165914f987a5a750122dfd4\"",
-      "last_modified": "Thu, 12 Nov 2026 20:21:48 GMT"
+      "sha256": "85d171060a7b16ecf5af46a3230ea5198fc919c53df24551361c5922b2135769",
+      "etag": "\"1d2b7ff48c31d6626997fd723bfae8eb\"",
+      "last_modified": "Fri, 13 Nov 2026 06:14:12 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "79e3e78a37b1dbf46c59aa41b6f43e7f3e41507033eb964db9df7ced611eec68",
-      "etag": "W/\"80318feb72949172853ce79e1744d578\"",
-      "last_modified": "Thu, 12 Nov 2026 19:28:37 GMT"
+      "sha256": "0ae26d8c77e006decf2b74f52d3c891a21354e005e9e33beaef256a66495d6a2",
+      "etag": "W/\"3686083007380b1858fb319fdc6c51e3\"",
+      "last_modified": "Thu, 12 Nov 2026 23:05:32 GMT"
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "e2bc7aafd6a8883ac8a05066ffcc1b86172bd052645f03948bcab4981bef89e4",
-      "etag": "W/\"80318feb72949172853ce79e1744d578\"",
-      "last_modified": "Thu, 12 Nov 2026 19:28:37 GMT"
+      "etag": "W/\"3686083007380b1858fb319fdc6c51e3\"",
+      "last_modified": "Thu, 12 Nov 2026 23:05:32 GMT"
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a3c90b6d247a6fedefd7f3cd37584c24d070bb27150bfe154ca50fa023844b5c",
-      "last_modified": "Thu, 12 Nov 2026 15:28:39 GMT"
+      "sha256": "ef93ce0ffd68989bdeced35f5ee0ec4189ab8f79620b2a654a7b3f6e6920c322"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "879dd61be375706783bb093449ae6f7d5e5593ede44b6c54a8f47a746dd0fddf"
@@ -531,17 +528,17 @@
       "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "last_modified": "Thu, 12 Nov 2026 09:37:29 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-13T08:07:42Z",
       "sha256": "3ac12831c05297df1c9d65706a2870853de30c00c12188908a718ef0f4cfe3a5",
-      "last_modified": "Thu, 12 Nov 2026 09:37:29 GMT"
+      "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-12T20:55:48Z",
+      "ok_at": "2026-11-13T08:07:42Z",
       "failures": 0,
       "parser_version": 3,
-      "sha256": "e159960660ab40b05d5fa16652a155c2d681ae1a42de336b75a9519ac6b6efbe"
+      "sha256": "54c60be97fe7c22419fe495696f0a41718abbb4b401435b0e7dcab0e8881baee"
     }
   }
 }
