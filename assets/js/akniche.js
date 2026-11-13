@@ -31,7 +31,7 @@
   N.W = 1080; N.H = 1350; N.SC = 2;
   N.Y_BACK = 968; N.Y_ARRIS = 1024; N.Y_CHAMF = 1032;
   N.CH_Y = 1130; N.CH_H = 32;
-  N.KEYS = [0.75, 0.85, 0.95, 0.55, 1.25, 0.80, 0.30, 0.60, 0.90];
+  N.KEYS = [0.85, 1.05, 1.10, 0.60, 1.45, 1.05, 0.30, 0.95, 1.30];
   N.SEED = 113012;
   N.COORDS = "61°13'N · 149°54'W";
   N.KEY_DIR = [0.62, 0.78];        // screen direction a cast travels: down and right
@@ -96,10 +96,14 @@
   /* Slate height and vein strength at texture coords (u, v). */
   function slate(u, v) {
     var w = AK.fbm2(u * 0.004, v * 0.004, { octaves: 3 });
-    var lam = Math.sin(v * 0.21 + w * 5.0 + AK.simplex2(u * 0.002, v * 0.01) * 2.4);
-    var veinN = AK.fbm2(u * 0.0026 + 11.3, v * 0.0042 - 4.1, { octaves: 4 });
-    var vein = 1 - smooth(0.0, 0.016, Math.abs(veinN - 0.04));
-    var vein2 = 1 - smooth(0.0, 0.010, Math.abs(AK.fbm2(u * 0.0035 - 7.7, v * 0.006 + 2.2, { octaves: 3 }) + 0.22));
+    var lam = Math.sin(v * 0.21 + w * 5.0 + AK.simplex2(u * 0.002, v * 0.01) * 2.4) + 0.5 * Math.sin(v * 0.07 + w * 2.0);
+    // open quartz veins: a warped diagonal phase, so the lines run long and never close into loops
+    var ph = (u * 0.62 + v * 0.78) * 0.0036 + AK.fbm2(u * 0.0018 + 11.3, v * 0.0026 - 4.1, { octaves: 3 }) * 1.9;
+    var fr = ph - Math.floor(ph), taper = smooth(0.15, 0.55, AK.fbm2(u * 0.0012 - 3.3, v * 0.002 + 8.1, { octaves: 2 }) + 0.35);
+    var vein = (1 - smooth(0.0, 0.012, Math.min(fr, 1 - fr))) * taper;
+    var ph2 = (u * 0.9 - v * 0.4) * 0.0052 + AK.fbm2(u * 0.003 - 7.7, v * 0.004 + 2.2, { octaves: 2 }) * 1.4;
+    var fr2 = ph2 - Math.floor(ph2);
+    var vein2 = (1 - smooth(0.0, 0.008, Math.min(fr2, 1 - fr2))) * taper * 0.6;
     var grain = AK.simplex2(u * 0.35, v * 0.9) * 0.5 + AK.simplex2(u * 1.1, v * 1.7) * 0.25;
     var h = 0.9 * w + 0.30 * lam + 0.25 * vein + 0.10 * vein2 + 0.10 * grain;
     return [h, Math.max(vein, vein2 * 0.5) * 0.55, grain];
@@ -123,16 +127,15 @@
     var sc = N.SC, x0 = (n - 1) * 1080;
     // void and niche back: flat, with a faint bounce rising just above the sill
     g.fillStyle = '#04070F'; g.fillRect(0, 0, N.W, N.Y_BACK);
-    // the window key reaches the niche's back wall, strongest low and to the left, by the frame's key
-    var Kc = N.key(x0 + 540), wash = clamp((Kc - 0.3) / 1.0, 0, 1);
-    var bw = g.createRadialGradient(-120, N.Y_BACK + 40, 40, -120, N.Y_BACK + 40, 1250);
-    bw.addColorStop(0, 'rgba(78,94,118,' + (0.9 * wash * wash) + ')');
-    bw.addColorStop(0.55, 'rgba(38,50,70,' + (0.7 * wash * wash) + ')');
-    bw.addColorStop(1, 'rgba(10,16,28,0)');
-    g.fillStyle = bw; g.fillRect(0, 0, N.W, N.Y_BACK);
-    var gb = g.createLinearGradient(0, N.Y_BACK - 150, 0, N.Y_BACK);
-    gb.addColorStop(0, 'rgba(10,18,32,0)'); gb.addColorStop(1, 'rgba(16,26,42,0.9)');
-    g.fillStyle = gb; g.fillRect(0, N.Y_BACK - 150, N.W, 150);
+    // the window key reaches the niche's back wall, low and to the left, column by column in gx so no seam steps
+    for (var cxp = 0; cxp < N.W; cxp += 4) {
+      var Kx = N.key(x0 + cxp + 2), wash = clamp((Kx - 0.3) / 1.1, 0, 1);
+      var bw = g.createLinearGradient(0, N.Y_BACK - 620, 0, N.Y_BACK);
+      bw.addColorStop(0, 'rgba(30,42,60,0)');
+      bw.addColorStop(0.6, 'rgba(40,54,76,' + (0.55 * wash * wash) + ')');
+      bw.addColorStop(1, 'rgba(70,86,110,' + (0.85 * wash * wash) + ')');
+      g.fillStyle = bw; g.fillRect(cxp, N.Y_BACK - 620, 4.6, 620);
+    }
     // per-pixel sill top + chamfer + face
     var Y0 = N.Y_BACK, H = N.H - Y0, Wp = N.W * sc, Hp = H * sc;
     var img = g.createImageData(Wp, Hp), d = img.data;
@@ -165,7 +168,7 @@
           var fall = 1 - 0.5 * Math.pow(f, 1.3);
           lit = (0.20 + 0.28 * K) * fall * lam + 0.05 * s2[2];
           c = slateCol(lit);
-          var q2 = s2[1] * (0.35 + 0.35 * K) * fall;
+          var q2 = s2[1] * (0.16 + 0.18 * K) * fall;
           c = [c[0] + (QZ[0] - c[0]) * q2 * 0.45, c[1] + (QZ[1] - c[1]) * q2 * 0.45, c[2] + (QZ[2] - c[2]) * q2 * 0.45];
           if (f < 0.03) { var u2 = f / 0.03; c = [c[0] * (0.5 + 0.5 * u2), c[1] * (0.5 + 0.5 * u2), c[2] * (0.5 + 0.5 * u2)]; }
         }
@@ -180,7 +183,7 @@
     // chips along the arris
     var rng = AK.rng(N.SEED + n);
     g.save();
-    for (var k = 0; k < 7; k++) {
+    for (var k = 0; k < 0; k++) {
       var cx = rng() * N.W, w = 4 + rng() * 10;
       var cg = g.createLinearGradient(0, N.Y_ARRIS - 1, 0, N.Y_ARRIS + 5);
       cg.addColorStop(0, 'rgba(8,12,18,0.45)'); cg.addColorStop(1, 'rgba(8,12,18,0)');
@@ -194,18 +197,28 @@
 
   /* The cut channel the gold line sits in. */
   N.channel = function (g, n, xa, xb) {
-    var K = N.key((n - 1) * 1080 + (xa + xb) / 2), y = N.CH_Y, h = N.CH_H;
+    var K = N.key((n - 1) * 1080 + (xa + xb) / 2), y = N.CH_Y - 2, h = N.CH_H + 4, w = xb - xa;
     g.save();
-    g.fillStyle = 'rgba(5,8,13,0.82)';
-    g.fillRect(xa, y, xb - xa, h);
-    var gi = g.createLinearGradient(0, y, 0, y + h);
-    gi.addColorStop(0, 'rgba(0,0,0,0.55)'); gi.addColorStop(0.35, 'rgba(0,0,0,0)');
-    gi.addColorStop(0.9, 'rgba(0,0,0,0)'); gi.addColorStop(1, 'rgba(150,165,180,' + (0.10 + 0.18 * K) + ')');
-    g.fillStyle = gi; g.fillRect(xa, y, xb - xa, h);
-    g.fillStyle = 'rgba(170,185,200,' + (0.12 + 0.22 * K) + ')';
-    g.fillRect(xa, y + h, xb - xa, 1.2);          // the lit lower lip
-    g.fillStyle = 'rgba(0,0,0,0.7)';
-    g.fillRect(xa, y - 1.2, xb - xa, 1.2);        // the shadowed upper lip
+    g.beginPath(); g.roundRect(xa, y, w, h, 3);
+    var fill = g.createLinearGradient(0, y, 0, y + h);
+    fill.addColorStop(0, 'rgba(8,12,18,0.90)'); fill.addColorStop(0.45, 'rgba(14,20,30,0.84)'); fill.addColorStop(1, 'rgba(24,33,44,0.78)');
+    g.fillStyle = fill; g.fill();
+    g.clip();
+    // the inner shadow the upper lip throws into the cut
+    var gi = g.createLinearGradient(0, y, 0, y + 9);
+    gi.addColorStop(0, 'rgba(0,0,0,0.7)'); gi.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gi; g.fillRect(xa, y, w, 9);
+    var gl = g.createLinearGradient(xa, 0, xa + 8, 0);
+    gl.addColorStop(0, 'rgba(0,0,0,0.5)'); gl.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gl; g.fillRect(xa, y, 8, h);
+    g.restore();
+    g.save();
+    g.strokeStyle = 'rgba(200,212,224,' + (0.22 + 0.25 * K) + ')'; g.lineWidth = 1.1;    // the lit lower lip
+    g.beginPath(); g.moveTo(xa + 3, y + h + 0.6); g.lineTo(xb - 3, y + h + 0.6); g.stroke();
+    g.strokeStyle = 'rgba(200,212,224,' + (0.10 + 0.14 * K) + ')';                       // the lit right wall
+    g.beginPath(); g.moveTo(xb + 0.6, y + 3); g.lineTo(xb + 0.6, y + h - 2); g.stroke();
+    g.strokeStyle = 'rgba(0,0,0,0.75)';                                                      // the shadowed upper lip
+    g.beginPath(); g.moveTo(xa + 3, y - 0.6); g.lineTo(xb - 3, y - 0.6); g.stroke();
     g.restore();
   };
 
@@ -273,7 +286,7 @@
       '.kick{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:0.10em;color:#8E9BA8;text-transform:uppercase;line-height:1.2}',
       '.disp{font-family:"Instrument Serif",serif;font-weight:400;color:#EFE6D4;letter-spacing:-0.02em;line-height:0.98;margin:0}',
       '.body{font-family:"Bricolage Grotesque",sans-serif;font-variation-settings:"opsz" 36,"wdth" 90;font-weight:430;font-size:34px;line-height:1.38;color:#C3CAD3;margin:0}',
-      '.inc{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:0.08em;color:#B4BDC6;text-transform:uppercase;text-shadow:0 1px 0 rgba(255,236,210,0.16),0 -1px 0 rgba(0,0,0,0.65);white-space:nowrap}',
+      '.inc{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:0.08em;color:#A9B3BD;text-transform:uppercase;text-shadow:0 1.2px 0 rgba(255,240,220,0.30),0 -1.2px 0 rgba(0,0,0,0.85),0 0 6px rgba(0,0,0,0.5);white-space:nowrap}',
       '.motif{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:30px;letter-spacing:0;color:#FFC72C;line-height:32px;height:32px;white-space:nowrap}',
       '.fx{position:absolute;z-index:9;font-family:"JetBrains Mono",monospace;white-space:nowrap}'
     ].join('\n');
