@@ -117,8 +117,12 @@
       "note": "ship_images 55.00M to 4.46M at 40.1 dB; shrink_pdfs 10 percent; site 178 pages; no alerts due; prune freed 0.75M"
     },
     "upgrade": {
-      "status": "pending",
-      "artifacts": []
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-12/automation_retro.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "note": "machine_due exit 1 (weekly pass 2026-11-11); 1 item queued, 2 repeats raised; no upgrade commit"
     },
     "gmail": {
       "status": "pending",
