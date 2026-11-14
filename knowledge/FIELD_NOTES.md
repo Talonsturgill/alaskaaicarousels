@@ -9655,3 +9655,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - ONE KEY CURVE ACROSS NINE FRAMES, COLUMN BY COLUMN. A per-frame wash stepped at every mullion and the flow critic read the seams as nine separate rooms. A monotone cubic through the nine keys, sampled per pixel column, made the light move across the deck.
 - CLOSED VEIN LOOPS READ AS CONTOUR LINES. Quartz veins on the slate became stone only as open tapered diagonals with a warped phase. A regular row of arris chips read as beads and came off.
 - AKT.lathe TAKES [r, y] ARRAYS. Vector2 points produced NaN geometry with no error.
+
+
+## 2026-11-13, No.114, retro
+
+- RENDER NINE HEAVY FRAMES IN THREE BATCHES. One render.py call over nine per-pixel and akthree slides was OOM-killed (exit 137) and took the worker with it. `--only 1,2,3 --only-exact` in threes was clean every time.
+- AN OCCLUSION WEDGE SEEN FROM ITS OWN SENSOR IS A STRIP. Constant-azimuth lines through the camera project near vertical, so 01's wedges read as dark boxes until the camera craned up and behind the car. Plan the camera before promising a wedge.
+- __akLeaders WANTS at = to = target. Setting `at` to the label point failed QA on 03; the leader resolves from the target, and a missing label is its own failure.
+- A CRAFT CYCLE CAN ADD THE DEFECT IT CHASES. The one cycle on 03 and 01 introduced a seam and a stray diagonal and moved art from 7 to 7. Re-run the pixel critic on the cycled frames before re-scoring, and revert a cycle that only trades one defect for another.
+- SODIUM LOT IN ICE FOG IS NOW TWO DECKS IN A WEEK (No.108, No.114). The scorer marked variety weakest. The next winter-lot story owes a different light: overcast blue noon, headlights only, or aurora.
