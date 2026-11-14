@@ -2764,6 +2764,22 @@
       "last_confirmed": "2026-11-12",
       "run_date": "2026-11-12",
       "carousel_no": 113
+    },
+    {
+      "id": "render-batches-oom",
+      "learned": "2026-11-13",
+      "instinct": "RENDER A DECK OF PER-PIXEL AND AKTHREE SLIDES IN BATCHES OF THREE. Rendering all nine in one render.py call (each slide holding a full-resolution ImageData or a supersampled GL canvas) exhausted memory and the worker process was killed mid-render on No.114; batches of three with --only N,M,K --only-exact rendered cleanly every time.",
+      "evidence": "No.114, exit 137 on a nine-slide render, clean on every batched render after",
+      "confidence": 0.75,
+      "last_confirmed": "2026-11-13"
+    },
+    {
+      "id": "wedges-need-elevated-camera",
+      "learned": "2026-11-13",
+      "instinct": "A SENSOR'S OCCLUSION WEDGE SEEN FROM THE SENSOR IS A VERTICAL STRIP. Lines of constant azimuth through the camera project as near-vertical lines, so wedges only read as wedges from a camera raised and displaced from the scan origin (a crane view or a plan). Plan the camera before promising a wedge on a frame.",
+      "evidence": "No.114 slide 01 first render: three wedges read as dark boxes until the camera moved behind and above the car",
+      "confidence": 0.7,
+      "last_confirmed": "2026-11-13"
     }
   ]
 }

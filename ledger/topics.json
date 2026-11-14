@@ -4690,6 +4690,50 @@
         "data-centers",
         "state-policy"
       ]
+    },
+    {
+      "run_date": "2026-11-13",
+      "carousel_no": 114,
+      "topic": "Waymo's cold-weather self-driving testing in Alaska this winter: its November 5th post said it would run closed-course evaluations and heavy snowfall data collection in Alaska, its cars were seen charging on Golden Valley Electric Association's lot in Fairbanks (GVEA's Ashley Bradish saw them herself), Waymo told Alaska's News Source the work includes manual data collection, autonomous driving with a specialist at the wheel and limited structured testing, Gov. Dunleavy called Fairbanks the best proving ground for winter driving and Mayor Mindy O'Neall a great opportunity, three residents doubted it, and as of November 10th Waymo had not answered how long the testing runs, why Fairbanks, or whether driverless cars follow.",
+      "angle": "THE OCCLUSION LEDGER: a computed lidar scan of one sodium-lit charging lot whose three occlusion wedges are the three unanswered questions; the record on the car is thick, the record on Fairbanks is thin; nine camera stations on one lot ending on a single ask.",
+      "entities": [
+        "Waymo",
+        "Waymo Driver",
+        "Chris Bonelli",
+        "Golden Valley Electric Association",
+        "GVEA",
+        "Ashley Bradish",
+        "Mindy O'Neall",
+        "Mike Dunleavy",
+        "Katrina Howe",
+        "Gwen Jackson",
+        "Charlie Woolwine",
+        "Alaska's News Source",
+        "FOX Weather",
+        "Fairbanks",
+        "Hyundai IONIQ",
+        "Ojai"
+      ],
+      "keywords": [
+        "autonomous vehicles",
+        "self-driving",
+        "cold-weather testing",
+        "winter driving",
+        "lidar",
+        "sensor heaters",
+        "micro-wipers",
+        "snow tires",
+        "traction",
+        "closed-course evaluations",
+        "heavy snowfall data",
+        "specialist at the wheel",
+        "driverless",
+        "proving ground",
+        "EV charging"
+      ],
+      "beats": [
+        "research-and-science"
+      ]
     }
   ]
 }
