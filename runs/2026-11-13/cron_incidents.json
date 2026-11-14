@@ -1,0 +1,19 @@
+[
+ {
+  "check_ids": [
+   "gaswatch.yml:completion"
+  ],
+  "audit_checked_utc": "2026-11-14T07:46:14.120757Z",
+  "blocker": "github",
+  "reason": "gaswatch.yml run 612 (id 43097698777), a scheduled run created 2026-11-11T20:43:11Z, is stuck in GitHub's queue as a ghost: the API lists it as queued, but the cancel endpoint refuses it with HTTP 409 'Cannot cancel a workflow run that has not been queued yet'. Every later scheduled collection (runs 613 to 625) completed successfully, the latest at 2026-11-14T00:22:10Z, and the live page and JSON match main. Collection is healthy; the stuck record is GitHub-side and cannot be cleared through the API this session holds.",
+  "attempts": [
+   "2026-11-12 run: cancel_workflow_run on 43097698777 refused HTTP 409",
+   "2026-11-14T06:1xZ this run (No.114): cancel_workflow_run on 43097698777 refused HTTP 409 'Cannot cancel a workflow run that has not been queued yet'",
+   "Verified runs 613 to 625 completed with conclusion success and the live gas-watch page and JSON match main 5149f33"
+  ],
+  "evidence_urls": [
+   "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43097698777",
+   "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43533717317"
+  ]
+ }
+]

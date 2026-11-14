@@ -1,0 +1,217 @@
+{
+ "document_title": "Waymo in Fairbanks, what's on the record and what isn't",
+ "post_copy": "Waymo's cars have been plugging into the chargers at Golden Valley Electric's Fairbanks lot, and a co-op staffer saw it herself.\n\nThe sun left that lot at 3:49 p.m. on November 13th.\n\nIn town, Mayor Mindy O'Neall called the testing \"a great opportunity\". Resident Gwen Jackson expects \"they'll probably just stall out\".\n\nFor the state, Governor Mike Dunleavy sees \"no better proving ground for winter driving than Fairbanks\".\n\nHow long the testing runs, why Fairbanks and whether driverless cars follow were still unanswered as of Alaska's News Source's November 10th report.\n\nThe deck sets Waymo's sensor claims beside what five Alaskans said, the one first-hand sighting and the three open questions.\n\nWho should press Waymo for those answers first, the mayor, the co-op whose chargers it uses or the residents who doubt it?\n\n#Fairbanks #SelfDrivingCars #WinterTesting\n",
+ "hashtags": [
+  "#Fairbanks",
+  "#SelfDrivingCars",
+  "#WinterTesting"
+ ],
+ "deck_summary_line": "The deck sets Waymo's sensor claims beside what five Alaskans said, the one first-hand sighting and the three open questions.",
+ "caption_meta": {
+  "opening_move": "SCENE",
+  "structure": "ZOOM",
+  "closing_move": "WHO DECIDES"
+ },
+ "first_comment": "Sources, primary first\n\nWaymo (The Waymo Team), How the Waymo Driver Manages Severe Winter Weather (2026-11-05) https://waymo.com/blog/2026/11/winter-weather-preparedness/\nAlaska's News Source, KTUU/KTVF (Alex Bengel), Waymo tests self-driving cars in the Fairbanks climate, with the GVEA sighting, resident and mayor interviews and the unanswered questions (2026-11-10) https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/\nFOX Weather (Kieran Sullivan), Self-driving cars prepare for Alaska's perilous winter climate, with Gov. Dunleavy's statement (2026-11-05) https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate\ntimeanddate.com, Fairbanks sunrise, sunset and day length for November 13th (2026-11-13) https://www.timeanddate.com/sun/usa/fairbanks\n\nKnow how long the Fairbanks testing runs, or whether Waymo has answered those questions since November 10th? Add context below.\nThe Alaska AI decisions we follow, open questions included, live at https://alaskaaihq.com/",
+ "slides": [
+  {
+   "slide": 1,
+   "kicker": "SEEN ON GOLDEN VALLEY ELECTRIC CHARGERS",
+   "headline": "Waymo's cars came to Fairbanks.\nThree answers didn't.",
+   "body": "",
+   "labels": [
+    "AS OF ALASKA'S NEWS SOURCE, NOVEMBER 10TH"
+   ],
+   "claim_ids": [
+    "C08",
+    "C12",
+    "C19"
+   ]
+  },
+  {
+   "slide": 2,
+   "kicker": "THE SAME LOT, FROM DIRECTLY ABOVE",
+   "headline": "Three questions.\nNo answer yet.",
+   "body": "Waymo spokesperson Chris Bonelli had not answered Alaska's News Source on how long the testing runs, why Fairbanks, or whether driverless cars follow, as of its November 10th report.",
+   "labels": [
+    "HOW LONG?",
+    "WHY FAIRBANKS?",
+    "DRIVERLESS NEXT?"
+   ],
+   "claim_ids": [
+    "C11",
+    "C12"
+   ]
+  },
+  {
+   "slide": 3,
+   "kicker": "WHAT WAYMO HAS PUBLISHED",
+   "headline": "On the car itself,\nthe record is thick.",
+   "body": "Waymo's November 5th post describes its 6th-generation Driver closely, down to how the sensors stay clear.",
+   "labels": [
+    "CAMERAS, RADAR AND LIDAR",
+    "WAYMO SAYS",
+    "HEATERS AND MICRO-WIPERS",
+    "WAYMO SAYS",
+    "SNOW TIRES, TRACTION READ AT EACH WHEEL",
+    "WAYMO SAYS"
+   ],
+   "claim_ids": [
+    "C01",
+    "C04",
+    "C05",
+    "C06"
+   ]
+  },
+  {
+   "slide": 4,
+   "kicker": "WAYMO'S POST, NOVEMBER 5TH",
+   "headline": "\"This season in Alaska, for example, we'll be conducting closed-course evaluations and heavy snowfall data collection.\"",
+   "body": "To Alaska's News Source, Waymo described manual data collection, autonomous driving with a specialist at the wheel, and limited structured testing.",
+   "labels": [
+    "THE POST NAMES ALASKA, NOT FAIRBANKS",
+    "MANUAL",
+    "SPECIALIST AT THE WHEEL",
+    "STRUCTURED"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C10"
+   ]
+  },
+  {
+   "slide": 5,
+   "kicker": "THE ONE FIRST-HAND SIGHTING",
+   "headline": "Seen on the co-op's chargers.",
+   "body": "Golden Valley Electric's Ashley Bradish says she has seen the cars using its charging stations herself.",
+   "labels": [
+    "FAIRBANKS DAYLIGHT, NOVEMBER 13TH",
+    "9:20 A.M. TO 3:49 P.M.",
+    "6 H 29 MIN",
+    "SO HOW DID FAIRBANKS TAKE IT?"
+   ],
+   "claim_ids": [
+    "C09",
+    "C20"
+   ]
+  },
+  {
+   "slide": 6,
+   "kicker": "WHO SAID WHAT, ON THE RECORD",
+   "headline": "The welcome,\nand the doubt.",
+   "body": "",
+   "labels": [
+    "OFFICIALS",
+    "\"there is no better proving ground for winter driving than Fairbanks\"",
+    "GOV. DUNLEAVY, VIA FOX WEATHER",
+    "\"I think it's a great opportunity for Fairbanks to be a testing ground.\"",
+    "MAYOR MINDY O'NEALL",
+    "RESIDENTS",
+    "\"computers are actually quite stupid\"",
+    "KATRINA HOWE",
+    "\"I feel like they'll probably just stall out\"",
+    "GWEN JACKSON",
+    "\"I don't think that they're safe and they shouldn't be allowed.\"",
+    "CHARLIE WOOLWINE"
+   ],
+   "claim_ids": [
+    "C13",
+    "C14",
+    "C15",
+    "C16",
+    "C17"
+   ]
+  },
+  {
+   "slide": 7,
+   "kicker": "THE PUBLIC RECORD, AS OF NOVEMBER 13TH",
+   "headline": "What's on the record,\nand what isn't.",
+   "body": "",
+   "labels": [
+    "ON THE RECORD",
+    "Cameras, radar and lidar",
+    "WAYMO",
+    "Sensor heaters and micro-wipers",
+    "WAYMO SAYS",
+    "Snow tires, traction at each wheel",
+    "WAYMO SAYS",
+    "Closed-course tests, heavy snowfall data",
+    "WAYMO",
+    "Ojai and Hyundai IONIQ vehicles",
+    "GOVERNOR, VIA FOX WEATHER",
+    "Seen on GVEA chargers",
+    "GVEA'S BRADISH",
+    "May shrink or pause service in bad weather",
+    "WAYMO",
+    "NOT ON THE RECORD",
+    "How long the testing runs",
+    "Why Fairbanks",
+    "Whether driverless cars follow",
+    "UNANSWERED AS OF NOVEMBER 10TH"
+   ],
+   "claim_ids": [
+    "C02",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C09",
+    "C12",
+    "C18"
+   ]
+  },
+  {
+   "slide": 8,
+   "kicker": "WAYMO'S OWN WINTER RULE",
+   "headline": "Waymo has a rule\nfor when winter wins.",
+   "body": "It says that when weather passes what it has validated, it may shrink its service area or pause service entirely. As of November 10th, its spokesperson had not said whether driverless cars will follow in Fairbanks.",
+   "labels": [],
+   "claim_ids": [
+    "C07",
+    "C11",
+    "C12"
+   ]
+  },
+  {
+   "slide": 9,
+   "kicker": "YOUR CALL",
+   "headline": "Which answer\nshould Fairbanks\nget first?",
+   "body": "How long. Why here. What comes after.",
+   "labels": [
+    "ALASKA.AI"
+   ],
+   "claim_ids": [
+    "C12"
+   ]
+  }
+ ],
+ "aftercare": [
+  "Social delivery of this edition is automatic under the owner's November 10th update. The human still owns cadence for any manual post or repost, and Tuesday to Thursday, 8 to 11am Alaska time, are the strongest slots.",
+  "Paste the first comment (sources, then the context invite and the site line) within 60 seconds of any manual post going live.",
+  "Reply to every comment in the first 90 minutes, then note saves, comments and reposts after 48 hours for the instincts ledger.",
+  "Worth sending to Fairbanks borough and city staff, GVEA, UAF engineering and transportation researchers, and anyone following autonomous vehicle rules in Alaska."
+ ],
+ "editor_notes_for_email": "Score 8.35 (ship threshold 7.7 at round 4 of 5). Artwork craft 7, under the 8.5 floor; the one craft cycle on 03, 01 and 09 did not move it (7 to 7) and its two regressions were removed in round 5, the last allowed. Known shortfalls: the 03 sensor housing still reads as a toy, the car on 01 and 09 is drawn in two voices, and the sodium ice-fog lot echoes No.108 of November 7th, so variety was the weakest criterion. Waymo's own post names Alaska, not Fairbanks; Fairbanks rests on Alaska's News Source, the GVEA sighting and FOX Weather. The three unanswered questions are hedged as of Alaska's News Source's November 10th report.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C20"
+ ]
+}

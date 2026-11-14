@@ -1,0 +1,19 @@
+{
+  "chars": 870,
+  "hook": "Waymo's cars have been plugging into the chargers at Golden Valley Electric's Fairbanks lot, and a co-op staffer saw it herself.",
+  "hook_len": 128,
+  "commas": 7,
+  "comma_per_100": 0.85,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#Fairbanks",
+    "#SelfDrivingCars",
+    "#WinterTesting"
+  ],
+  "deck_summary": "The deck sets Waymo's sensor claims beside what five Alaskans said, the one first-hand sighting and the three open questions.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 79
+}

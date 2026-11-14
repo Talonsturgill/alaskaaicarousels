@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-13/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 15547207,
+  "pdf_mb": 15.55,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-13/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-13/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Waymo in Fairbanks, what's on the record and what isn't",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "5c7aba3016b8497412c2de9059ec199d623b3f6abbc4e6d8928c5ccb5ea452cd",
+        "bytes": 6998801
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "9221078755485c172802d4c01810a480cda5e1b29b2003ef17d7b4f63b0391bd",
+        "bytes": 7410787
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "b1331ee67732f0a3f58bc8a106a1865d3438fd7383e587e4fce514263d8d236e",
+        "bytes": 6536472
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "fd06f356c8b9b2db6c084c3f3e33446c6bfbea693eebbafcd28370e86a4e774e",
+        "bytes": 7392109
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "990927f794e1d75d1cf850f508dde91ccdc616e433cbce51bac703aaab053e63",
+        "bytes": 6089626
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "3ff8dd58b25cd670e482123820326ae077d49811addf67b868f72d190e87bf93",
+        "bytes": 8417497
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "7dbfd628757d329f291095b36da0011c9bbb28d27a528a433e82e4611ceb7a15",
+        "bytes": 6376124
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "60a483a252cdadc66956d22b6005f8ae45372d3c4ca4edac63639fd44d76b868",
+        "bytes": 7029885
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "dccad82b7002bb4f0a9c07d70cc15b153a000ea94d69e1ac800e50323440a4d2",
+        "bytes": 6100613
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "489a79e89259aa810bde9cd62b00ba62b229dcad567380a6f41b5cdf2554e9ea",
+        "bytes": 21327
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "6fe4c0e16212882a7dfc9960231236662c9c4cc59d5c3c9b57aa98b31dec2549",
+        "bytes": 13879
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "c8a14669066528fe058de91aeb57301a02e9fdd34a526e9244a8d322945df7cf",
+        "bytes": 11489
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "6ca13547bb1699cfbf30623ceb04de7e6c72ba45e74003ae38a067ca25ecebc7",
+        "bytes": 11290
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "7e8f72407e0b093c9827be73a85e30e3158d4e706c5ae71b6728b2511dfec42a",
+        "bytes": 8199
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "ab7310de709bf0a95bb28e1c6847d16f51b7bb814d15c542a7f5b43e20e71f62",
+        "bytes": 14086
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "d34e39370e48c80a998d5ba90d502751b96830f178c1b197388a454999c56adc",
+        "bytes": 9156
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "b6625cc680c5d87ebf277577802b7b4cac0871cc72f8ddca740372986122ba68",
+        "bytes": 11440
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "ff30e0d83cf3b988d0e8333e9a4bfdd5dbcc50279ba626ace294eb9381303a62",
+        "bytes": 11559
+      }
+    ]
+  }
+}

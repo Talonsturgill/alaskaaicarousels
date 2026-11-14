@@ -1,0 +1,97 @@
+{
+ "run_date": "2026-11-13",
+ "carousel_no": 114,
+ "round": 4,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 6.5,
+   "weight": 0.08
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1
+  }
+ ],
+ "weighted_total": 8.35,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Variety vs ledger",
+ "one_sentence_fix": "Model the deck's two hero objects properly, the 03 sensor housing on a real roof panel and one consistent car on 01 and 09, since the Canvas frames now outclass the PBR ones.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "housing reads as a dark saucer-and-drum toy"
+  },
+  {
+   "slide": 1,
+   "problem": "car an extruded low-poly box"
+  },
+  {
+   "slide": 9,
+   "problem": "car a clip-art side profile"
+  },
+  {
+   "slide": 5,
+   "problem": "connector reads as glossy plastic, dead lower third"
+  },
+  {
+   "slide": 8,
+   "problem": "near ruts lack small-scale snow texture"
+  }
+ ],
+ "variety_note": "No.108 (November 7th) used a near-identical sodium lot in ice fog; the atmosphere and palette are not new and the ledger entry says so.",
+ "editor_notes_for_email": "Score 8.35 (ship threshold 7.7 at round 4 of 5). Artwork craft 7, under the 8.5 floor; the one craft cycle on 03, 01 and 09 did not move it (7 to 7) and its two regressions were removed in round 5, the last allowed. Known shortfalls: the 03 sensor housing still reads as a toy, the car on 01 and 09 is drawn in two voices, and the sodium ice-fog lot echoes No.108 of November 7th, so variety was the weakest criterion. Waymo's own post names Alaska, not Fairbanks; Fairbanks rests on Alaska's News Source, the GVEA sighting and FOX Weather. The three unanswered questions are hedged as of Alaska's News Source's November 10th report.",
+ "craft_cycle": {
+  "frames": [
+   3,
+   1,
+   9
+  ],
+  "art_before": 7,
+  "art_after": 7
+ },
+ "rescore_note": "Re-scored after the craft cycle at round 4: 8.35, artwork 7 (unchanged). Round 5, the last under the cap, only removed two regressions the cycle introduced (the 03 reflection seam and the 01 roof line), returning 03 to its pre-cycle surface."
+}
