@@ -1,0 +1,40 @@
+{
+  "run_dir": "out/2026-11-13",
+  "render_report": "out/2026-11-13/render/render_report.json",
+  "aggregates_file": "out/2026-11-13/aggregates.json",
+  "detected": 2,
+  "declared": 3,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Three answers",
+      "at": 32,
+      "text": "Waymo's cars came to Fairbanks. Three answers didn't.",
+      "n": 3,
+      "subject": "answers"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "Three questions",
+      "at": 0,
+      "text": "Three questions. No answer yet.",
+      "n": 3,
+      "subject": "questions"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 5,
+      "text": "daylight dial arc",
+      "note": "the dial's lit arc spans 9:20 to 15:49 of a 24 hour face, a property of the artwork (C20)"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S5 'daylight dial arc' [design]"
+  ],
+  "verdict": "PASS"
+}
