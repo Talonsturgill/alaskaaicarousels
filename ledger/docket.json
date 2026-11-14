@@ -670,7 +670,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-07-08",
@@ -803,6 +803,10 @@
         {
           "date": "2026-11-09",
           "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, with maintenance continuing on a second generation unit and construction underway on the Railbelt Intertie. The page reports no board decision on the turbine purchase. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, and reports no board decision on the turbine purchase. Checked and unchanged."
         }
       ]
     },
@@ -1087,7 +1091,7 @@
       "id": "enstar-cook-inlet-gas-storage",
       "title": "Enstar's Cook Inlet gas storage plan (Kenai Loop Pool)",
       "kind": "regulatory-docket",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Regulatory Commission of Alaska (prudency); Alaska DNR (storage lease and technical determination)",
       "public_access": "open",
       "access_note": "Anyone may comment on the Division of Oil and Gas's preliminary written finding for the Kenai Loop storage lease until 5 p.m. on November 13th, per the state's public notice. The RCA prudency question stays with the commission, a governor-appointed, legislature-confirmed body whose dockets the public reaches through formal comment and intervention.",
@@ -1207,7 +1211,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-11-12",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-07-11",
@@ -1360,6 +1364,10 @@
         {
           "date": "2026-11-12",
           "note": "Re-read the Division of Oil and Gas public notice today. Comments on the Kenai Loop storage lease preliminary finding must still be received by 5 p.m. November 13th, and the revision history still ends on October 14th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Comments on the Kenai Loop storage lease preliminary finding closed at 5 p.m. today, as the Division of Oil and Gas notice still states, with no extension posted. The division will issue a final written finding, and only people who submitted written comments can appeal it."
         }
       ]
     },
@@ -2551,7 +2559,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-08-04",
@@ -2664,6 +2672,10 @@
         {
           "date": "2026-11-09",
           "note": "Searched the Federal Register today for Alaska documents published November 5th to 9th and found nothing new in Project No. 8221-124 after the October 6th notice. Recommendations remain due November 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Searched the Federal Register today for Alaska documents published November 9th to 13th, 34 in all, and found nothing new in Project No. 8221-124. Recommendations remain due November 30th. Checked and unchanged."
         }
       ]
     },
@@ -2947,7 +2959,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-08-06",
@@ -3072,6 +3084,10 @@
         {
           "date": "2026-11-09",
           "note": "Searched the Federal Register today for Alaska documents published November 5th to 9th and found no Air Force, Oklo or reactor notice. The base's microreactor page refused an automated read today. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Searched the Federal Register today for Alaska documents published November 9th to 13th, 34 in all, and found no Air Force, Oklo or reactor notice. Checked and unchanged."
         }
       ]
     },
@@ -3392,7 +3408,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-08-06",
@@ -3489,6 +3505,10 @@
         {
           "date": "2026-11-09",
           "note": "Re-read the Department of Energy's project selections page today. It still lists Terra Energy Center Corporation of Anchorage for engineering and design of a 1,250 MW coal plant with carbon capture in the Matanuska-Susitna Borough, and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Re-read the Department of Energy's project selections page today, last updated October 5th. It still lists Terra Energy Center Corporation of Anchorage with $89,000,000 in federal funding and reports no signed award and no cancellation. Checked and unchanged."
         }
       ]
     },
@@ -3617,7 +3637,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-08-06",
@@ -3710,6 +3730,10 @@
         {
           "date": "2026-11-10",
           "note": "Re-read EPA's proposed rule, Federal Register document 2026-22085, today. Comments are still due December 14th under docket EPA-HQ-OW-2026-4588, with no correction published. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Searched the Federal Register today for Alaska documents published November 9th to 13th, 34 in all, and found no correction to EPA's proposed approval. Comments remain due December 14th. Checked and unchanged."
         }
       ]
     },
@@ -5317,7 +5341,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-09-13",
@@ -5410,6 +5434,10 @@
         {
           "date": "2026-11-09",
           "note": "The bill status record GovInfo publishes, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn in the Senate. The Senate's lame-duck session opens today and no new action is recorded. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "The bill status record GovInfo publishes, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn in the Senate after cloture failed 57 to 43. No lame-duck action is recorded. Checked and unchanged."
         }
       ]
     },
@@ -5596,7 +5624,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-09-13",
@@ -5685,6 +5713,10 @@
         {
           "date": "2026-11-09",
           "note": "Searched the Federal Register today for Alaska documents published November 5th to 9th and found no Department of Transportation corridors notice. Written comments closed October 2nd and the department has not said when it will act. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Searched the Federal Register today for Alaska documents published November 9th to 13th, 34 in all, and found no Department of Transportation corridors notice. Checked and unchanged."
         }
       ]
     },
@@ -6214,6 +6246,11 @@
           "date": "2026-11-02",
           "kind": "milestone",
           "label": "Moratorium ordinance taken up at first reading; two more readings needed"
+        },
+        {
+          "date": "2026-11-16",
+          "kind": "vote",
+          "label": "Assembly second reading of the data center moratorium ordinance, with public feedback"
         }
       ],
       "location": {
@@ -6236,10 +6273,15 @@
           "url": "https://www.kfsk.org/2026/11/02/petersburg-borough-assembly-to-discuss-data-center-moratorium-on-monday/",
           "outlet": "KFSK",
           "date": "2026-11-04"
+        },
+        {
+          "url": "https://www.kfsk.org/2026/11/11/petersburg-assembly-weighs-proposed-moratorium-on-certain-data-center-project-permits/",
+          "outlet": "KFSK",
+          "date": "2026-11-11"
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-09-30",
@@ -6256,6 +6298,10 @@
         {
           "date": "2026-11-08",
           "note": "KFSK's coverage, read today, has nothing newer than its November 2nd preview of the first reading. No vote and no second reading date have been reported. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "KFSK reported on November 11th that the Assembly voted 5 to 1 on November 2nd to advance the moratorium ordinance to a second reading on November 16th, where public feedback will be taken. As drafted it runs through September 2027 and blocks permits for data centers with uncontained cooling, power use above the allowed level, or generators in place of the Petersburg grid. An amendment to cover all data centers failed on a 3 to 3 tie. It needs three Assembly approvals to take effect."
         }
       ]
     },
@@ -6381,7 +6427,7 @@
         }
       ],
       "first_seen": "2026-10-07",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-10-07",
@@ -6418,6 +6464,10 @@
         {
           "date": "2026-11-09",
           "note": "Re-read the Department of Energy's October 5th release today. It still describes up to $150 million in Defense Production Act funding combined with $268 million in non-federal funding for about 223 miles of new line, a planned $418 million in all, and reports no signed agreement. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Re-read the Department of Energy's release today. It still announces an intent to deploy up to $150 million in Defense Production Act funding with $268 million in non-federal funding for about 223 miles of line, and reports no signed agreement. Checked and unchanged."
         }
       ]
     },
@@ -6450,6 +6500,11 @@
           "date": "2028-12-31",
           "label": "Executive director's commitment authority under the resolution expires unless extended",
           "kind": "milestone"
+        },
+        {
+          "date": "2026-11-19",
+          "kind": "milestone",
+          "label": "AIDEA board meeting"
         }
       ],
       "sources": [
@@ -6475,7 +6530,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-10-28",
@@ -6508,6 +6563,10 @@
         {
           "date": "2026-11-08",
           "note": "AIDEA's meeting schedule, read today, shows the November 4th board meeting continued to November 6th, with Amended Resolution G25-07 on the Ambler Access Project added. Neither day lists an item on Northstar Fiber Development or Resolution G26-11, and minutes for both are not yet posted. The next regular meeting is December 4th."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "AIDEA's meeting schedule, read today, lists no item on Northstar Fiber Development or Resolution G26-11 for the November 4th and 6th meetings, whose minutes are not yet posted. A meeting is now scheduled for November 19th with only its agenda posted, and the December 4th meeting lists nothing yet."
         }
       ]
     },
@@ -6674,7 +6733,7 @@
         }
       ],
       "first_seen": "2026-11-02",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-11-02",
@@ -6691,6 +6750,10 @@
         {
           "date": "2026-11-08",
           "note": "AEA's project page, read today, still lists the link as in development at an estimated $413 million, with $142.5 million still required and completion targeted for 2032. Responses to the cable request remain due December 15th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "AEA's project page, read today, still lists the link as in development at an estimated $413 million, with $142.5 million still required and completion targeted for 2032. Checked and unchanged."
         }
       ]
     },
@@ -6748,11 +6811,15 @@
         }
       ],
       "first_seen": "2026-11-09",
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-11-09",
           "note": "Tracked. Read the CMS award table and the state's final Year 1 award list today."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Re-read the CMS Year 2 fact sheet today, dated November 9th. It says states begin more detailed quarterly reporting in November 2026 and that funds must be spent by September 30th, 2032. Checked and unchanged."
         }
       ]
     }
