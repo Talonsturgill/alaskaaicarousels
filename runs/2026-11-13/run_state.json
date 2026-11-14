@@ -1,0 +1,149 @@
+{
+ "run_date": "2026-11-13",
+ "carousel_no": 114,
+ "effort": "medium",
+ "date_note": "UTC date was 2026-11-14 at wake; Anchorage date 2026-11-13 reads CLEAR, used per run_guard NOTE.",
+ "social_preflight": {
+  "users": "ok",
+  "facebook_page": "2003130316607965 verified",
+  "linkedin_org": "urn:li:organization:117084989 verified",
+  "facebook_pin": "2003130316607965 match",
+  "linkedin_pin": "urn:li:organization:117084989 match",
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialized"
+ },
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/plan.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "2 searches; nothing new beyond FIELD_NOTES entries of October 29th onward, nothing written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/scouts/",
+    "out/2026-11-13/merged_findings.md"
+   ],
+   "note": "6 scouts, about 141 searches, all beats thin; A and F converged on Waymo"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/claims.json"
+   ],
+   "note": "33 claims, 8 primary, claims_check PASS; 12 WebFetch calls, 8 distinct URLs"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "15 items refreshed (worklist 6 plus 9 deferred) at budget raised from 6; ask payload headroom 1,627 bytes (under 5,000)"
+  },
+  "gas_watch": "pending",
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/storyboard.md"
+   ]
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/caption.txt",
+    "out/2026-11-13/copy.json",
+    "out/2026-11-13/caption_report.json"
+   ]
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/slides/",
+    "out/2026-11-13/render/"
+   ]
+  },
+  "pixel_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/critic/"
+   ],
+   "note": "2 pixel rounds across all 9 slides"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/flow_review.json"
+   ]
+  },
+  "assemble": "pending",
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-13/score_report.json"
+   ],
+   "note": "8.35 at round 3 (art 7); craft cycle round 4 on 03, 01, 09, re-score 8.35 (art 7 to 7); round 5 removed the cycle's two regressions; cap reached"
+  },
+  "ship": "pending",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social_feedback": {
+  "attached": "talonsturgill/social-content-feedback read",
+  "reader_output": "[]",
+  "decision": "no valid action"
+ },
+ "revision_rounds": 5,
+ "pixel_rounds": [
+  {
+   "round": 1,
+   "scores": {
+    "01": 6.6,
+    "02": 6.8,
+    "03": 5.6,
+    "04": 6.9,
+    "05": 5.6,
+    "06": 6.4,
+    "07": 6.5,
+    "08": 5.0,
+    "09": 5.8
+   },
+   "verdicts": "all revise"
+  },
+  {
+   "round": 2,
+   "scores": {
+    "01": 7.2,
+    "02": 7.8,
+    "03": 5.5,
+    "04": 6.3,
+    "05": 6.4,
+    "06": 6.1,
+    "07": 6.4,
+    "08": 5.6,
+    "09": 6.3
+   },
+   "verdicts": "all revise"
+  }
+ ],
+ "flow_rounds": [
+  {
+   "round": 3,
+   "flow_score": 7.4,
+   "predicted_art": 7.0,
+   "fixes": "04 wedge sectors restored, 04 cable off right edge clear of footer, 05 cable to the left with sodium key and a forward hook tag, 06 hole wedge dark, 08 wedge darker with a phantom edge, 09 darker ruts toward the car and sodium rim, 02 anisotropic relief and lower peak, 01 roof artifact removed"
+  }
+ ]
+}

@@ -1,0 +1,492 @@
+{
+ "run_date": "2026-11-13",
+ "story": "Waymo brings cold-weather self-driving testing to Alaska, with its cars seen in Fairbanks",
+ "source_fetch_summary": {
+  "webfetch_calls": 12,
+  "distinct_urls_fetched": 8,
+  "repeat_reasons": [
+   {
+    "url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+    "reason": "first response was a summary; targeted repeat for verbatim quotes"
+   },
+   {
+    "url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+    "reason": "first response paraphrased; targeted repeat for exact excerpts"
+   },
+   {
+    "url": "https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate",
+    "reason": "first response gave a fragment of the Dunleavy quote"
+   },
+   {
+    "url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+    "reason": "first response was a summary with no verbatim text"
+   }
+  ]
+ },
+ "claims": [
+  {
+   "id": "C01",
+   "claim": "Waymo published a blog post on November 5th about how the Waymo Driver handles severe winter weather.",
+   "value": "November 5th",
+   "verbatim": "How the Waymo Driver Manages Severe Winter Weather",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "Byline The Waymo Team, dated November 5, 2026."
+  },
+  {
+   "id": "C02",
+   "claim": "Waymo said that this season in Alaska it will conduct closed-course evaluations and collect data in heavy snowfall.",
+   "value": "Alaska",
+   "verbatim": "This season in Alaska, for example, we'll be conducting closed-course evaluations and heavy snowfall data collection.",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.96,
+   "notes": "Waymo's post names Alaska, not Fairbanks. Fairbanks is sourced to C08, C17, C19."
+  },
+  {
+   "id": "C03",
+   "claim": "Waymo says it has driven tens of thousands of real-world miles in Upstate New York, Michigan's Upper Peninsula and the Sierra Nevada.",
+   "value": "tens of thousands of real-world miles",
+   "verbatim": "tens of thousands of real-world miles across Upstate New York, Michigan's Upper Peninsula and the Sierra Nevada",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.95,
+   "notes": "Self-reported; phrase as Waymo says."
+  },
+  {
+   "id": "C04",
+   "claim": "The 6th-generation Waymo Driver uses cameras, radar and lidar.",
+   "value": "6th-generation",
+   "verbatim": "The 6th-generation Waymo Driver uses cameras, radar, and lidar",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.97,
+   "notes": "Alaska's News Source and FOX Weather also name the sixth-generation Driver."
+  },
+  {
+   "id": "C05",
+   "claim": "Waymo says built-in heaters and micro-wipers keep its sensors clear in icy conditions.",
+   "value": "heaters and micro-wipers",
+   "verbatim": "built-in heaters and micro-wipers keep sensors clear in icy conditions.",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": "FOX Weather paraphrases the same point."
+  },
+  {
+   "id": "C06",
+   "claim": "Waymo says it is equipping its winter vehicles with snow tires and measuring traction changes under each wheel in real time.",
+   "value": "each wheel",
+   "verbatim": "it measures real-time traction changes under each wheel",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "Second excerpt: we're equipping our vehicles with snow tires."
+  },
+  {
+   "id": "C07",
+   "claim": "Waymo says that when weather exceeds what it has validated it may reduce its service area or pause service entirely.",
+   "value": "pausing our service entirely",
+   "verbatim": "including reducing the service area or pausing our service entirely",
+   "source_url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+   "source_outlet": "Waymo",
+   "source_is_primary": true,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "The hours or days wording was not captured; do not use it."
+  },
+  {
+   "id": "C08",
+   "claim": "Waymo vehicles were spotted in Fairbanks after a Facebook post appeared to show them charging at electric vehicle ports in the Golden Valley Electric Association parking lot.",
+   "value": "GVEA parking lot",
+   "verbatim": "a post on the Fairbanks, Alaska Facebook page claiming to show them charging at electric vehicle ports",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Byline Alex Bengel; published November 10th though the URL path says the 11th."
+  },
+  {
+   "id": "C09",
+   "claim": "GVEA's Ashley Bradish confirmed she had personally seen the Waymo vehicles using the co-op's charging stations.",
+   "value": "Ashley Bradish",
+   "verbatim": "confirmed that she has personally seen the vehicles using their stations",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Bradish also said several companies test equipment in Fairbanks cold (paraphrase only)."
+  },
+  {
+   "id": "C10",
+   "claim": "Waymo told Alaska's News Source that the work includes manual data collection, autonomous driving with a specialist at the wheel, and limited structured testing.",
+   "value": "three kinds of testing",
+   "verbatim": "manual data collection, autonomous driving with a specialist at the wheel",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Limited structured testing captured in summary only; quote only the first two modes verbatim."
+  },
+  {
+   "id": "C11",
+   "claim": "Waymo spokesperson Chris Bonelli said the testing will help the company refine critical cold-weather capabilities.",
+   "value": "Chris Bonelli",
+   "verbatim": "This will allow us to further refine critical cold-weather capabilities",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Quote no further than this excerpt."
+  },
+  {
+   "id": "C12",
+   "claim": "As of Alaska's News Source's report, Bonelli had not answered its follow-up questions, including the testing timeline, why Waymo chose Fairbanks and whether it plans driverless cars there.",
+   "value": "no timeline given",
+   "verbatim": "Bonelli has not yet responded to a series of questions from Alaska's News Source",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "The three topics come from the same page's summary. Soften as of the report."
+  },
+  {
+   "id": "C13",
+   "claim": "Fairbanks Mayor Mindy O'Neall said the testing is a great opportunity for Fairbanks to be a testing ground.",
+   "value": "Mindy O'Neall",
+   "verbatim": "I think it's a great opportunity for Fairbanks to be a testing ground.",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "Typographic apostrophe normalized."
+  },
+  {
+   "id": "C14",
+   "claim": "Fairbanks resident Katrina Howe told Alaska's News Source that computers are actually quite stupid.",
+   "value": "Katrina Howe",
+   "verbatim": "computers are actually quite stupid",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Fragment of a longer quote; use as a quoted fragment, paired with the mayor."
+  },
+  {
+   "id": "C15",
+   "claim": "Fairbanks resident Gwen Jackson said she expects the cars will probably just stall out.",
+   "value": "Gwen Jackson",
+   "verbatim": "I feel like they'll probably just stall out",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Residents' concerns per summary: black ice, fog on sensors, cold battery failures, stalled cars."
+  },
+  {
+   "id": "C16",
+   "claim": "Fairbanks resident Charlie Woolwine said he does not think the cars are safe and that they should not be allowed.",
+   "value": "Charlie Woolwine",
+   "verbatim": "I don't think that they're safe and they shouldn't be allowed.",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+   "source_outlet": "Alaska's News Source (KTUU/KTVF)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-10",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Apostrophes normalized."
+  },
+  {
+   "id": "C17",
+   "claim": "Governor Mike Dunleavy said there is no better proving ground for winter driving than Fairbanks.",
+   "value": "Mike Dunleavy",
+   "verbatim": "there is no better proving ground for winter driving than Fairbanks",
+   "source_url": "https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate",
+   "source_outlet": "FOX Weather",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Byline Kieran Sullivan. Full quote opens 'Alaska has always been a place where innovators come to test their limits'; quote fragments separately."
+  },
+  {
+   "id": "C18",
+   "claim": "According to FOX Weather, Dunleavy said Waymo will test its Ojai and Hyundai IONIQ vehicles in Fairbanks.",
+   "value": "Ojai and Hyundai IONIQ",
+   "verbatim": "Waymo will test its Ojai and Hyundai IONIQ vehicles in Fairbanks",
+   "source_url": "https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate",
+   "source_outlet": "FOX Weather",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Attribute to the governor via FOX Weather."
+  },
+  {
+   "id": "C19",
+   "claim": "FOX Weather reported that Waymo will test its autonomous vehicles in Fairbanks during the winter.",
+   "value": "Fairbanks",
+   "verbatim": "Waymo will test its autonomous vehicles in Fairbanks, Alaska, during the winter.",
+   "source_url": "https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate",
+   "source_outlet": "FOX Weather",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Photo caption; corroborated by C08 and C09."
+  },
+  {
+   "id": "C20",
+   "claim": "Fairbanks had 6 hours and 29 minutes of daylight on November 13th, with sunrise at 9.20 a.m. and sunset at 3.49 p.m.",
+   "value": "6 hours, 29 minutes",
+   "verbatim": "9:20 am - 3:49 pm  6 hours, 29 minutes",
+   "source_url": "https://www.timeanddate.com/sun/usa/fairbanks",
+   "source_outlet": "timeanddate.com",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Background for the art. Table length 6:28:41, change minus 6:34 per day."
+  },
+  {
+   "id": "C21",
+   "claim": "Golden Valley Electric Association's energy emergency page showed Level 0, normal operations, as of its October 24th posting.",
+   "value": "Level 0",
+   "verbatim": "LEVEL 0 - Normal Operations",
+   "source_url": "https://www.gvea.com/energy-emergency-alert/",
+   "source_outlet": "Golden Valley Electric Association",
+   "source_is_primary": true,
+   "date_of_source": "2026-10-24",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "Background only; timestamp October 24, 2026, 7:00 p.m."
+  },
+  {
+   "id": "C22",
+   "claim": "The Fairbanks North Star Borough Planning Commission unanimously recommended approval of a moratorium on large-scale commercial data centers.",
+   "value": "unanimously",
+   "verbatim": "unanimously recommended approval of an ordinance Tuesday to place a moratorium on large-scale commercial data centers",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "Byline Jack Barnwell. Tuesday is November 10th per C28. No vote count given."
+  },
+  {
+   "id": "C23",
+   "claim": "The commission recommended extending the moratorium to 18 months from the 12 months the borough administration requested.",
+   "value": "18 months",
+   "verbatim": "expanding that moratorium to 18 months, instead of the 12 months requested by the borough administration",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": ""
+  },
+  {
+   "id": "C24",
+   "claim": "Spillman said five megawatts, the moratorium's power threshold, is enough to power at least 3,000 homes.",
+   "value": "3,000 homes",
+   "verbatim": "Five megawatts is enough to power at least 3,000 homes, Spillman said.",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Estimate; attribute."
+  },
+  {
+   "id": "C25",
+   "claim": "The moratorium covers data centers occupying at least 40,000 square feet of gross floor space.",
+   "value": "40,000 square feet",
+   "verbatim": "occupy at least 40,000 square feet of gross floor space",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.9,
+   "notes": "NAEC says the draft said 50,000 and staff recommended 40,000."
+  },
+  {
+   "id": "C26",
+   "claim": "General Use-1 zoning, where a commercial data center could technically be built, applies to 97 percent of the borough.",
+   "value": "97%",
+   "verbatim": "The GU-1 zoning applies to 97% of the borough.",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": ""
+  },
+  {
+   "id": "C27",
+   "claim": "Military land outside the fence line at installations such as Eielson is subject to borough zoning powers.",
+   "value": "outside the fence line",
+   "verbatim": "military land outside the fence line is subject to borough zoning powers",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Does not name the enhanced use lease."
+  },
+  {
+   "id": "C28",
+   "claim": "The Northern Alaska Environmental Center said the Planning Commission would take up Ordinance 2026-42 on Tuesday, November 10th, at 6 p.m.",
+   "value": "Ordinance 2026-42",
+   "verbatim": "a proposal to temporarily suspend land use permits for large-scale data centers",
+   "source_url": "https://northern.org/news/alaska-communities-push-for-data-center-oversight-upcoming-public-meetings-and-opportunities-to-speak-up/",
+   "source_outlet": "Northern Alaska Environmental Center",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-05",
+   "fetched": true,
+   "confidence": 0.88,
+   "notes": "Advocacy notice; number and date from the same response."
+  },
+  {
+   "id": "C29",
+   "claim": "The commission's amendment requires the planning department to report back in 10 months with its findings.",
+   "value": "10 months",
+   "verbatim": "require the planning department to report back in 10 months with its findings",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.75,
+   "notes": "Disputed within source (also says six months); leave out of the deck."
+  },
+  {
+   "id": "C30",
+   "claim": "The ordinance now goes to the Borough Assembly for a public hearing and approval.",
+   "value": "Assembly public hearing",
+   "verbatim": "The ordinance will go to the Assembly for public hearing and approval.",
+   "source_url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+   "source_outlet": "Fairbanks Daily News-Miner",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-13",
+   "fetched": true,
+   "confidence": 0.93,
+   "notes": "No hearing date given."
+  },
+  {
+   "id": "C31",
+   "claim": "The University of Alaska Board of Regents delayed its statement of intent on AI use at its November meeting.",
+   "value": "delayed",
+   "verbatim": "UA regents delay statement of intent on AI amid feedback",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/",
+   "source_outlet": "Alaska's News Source (KTUU)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-09",
+   "fetched": true,
+   "confidence": 0.92,
+   "notes": "Byline Alex Bengel. Action on Friday, November 6th. Document is the draft AI Engaged."
+  },
+  {
+   "id": "C32",
+   "claim": "The regents pushed the final decision to February, or sooner if UA President Matt Cooper requests it.",
+   "value": "February",
+   "verbatim": "The final decision is pushed to February, or until UA President Matt Cooper requests it sooner.",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/",
+   "source_outlet": "Alaska's News Source (KTUU)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-09",
+   "fetched": true,
+   "confidence": 0.82,
+   "notes": "Primary board site returned 503."
+  },
+  {
+   "id": "C33",
+   "claim": "Jonathon Taylor of the UA system said the board had received a lot of feedback from a variety of stakeholders across the system.",
+   "value": "Jonathon Taylor",
+   "verbatim": "We've received a lot of feedback from a variety of stakeholders across the system.",
+   "source_url": "https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/",
+   "source_outlet": "Alaska's News Source (KTUU)",
+   "source_is_primary": false,
+   "date_of_source": "2026-11-09",
+   "fetched": true,
+   "confidence": 0.85,
+   "notes": "Do not print a title."
+  }
+ ],
+ "stories_surviving": [
+  "Waymo cold-weather testing in Alaska, with vehicles seen in Fairbanks",
+  "FNSB Planning Commission recommends an 18-month data center moratorium",
+  "UA regents delay AI statement of intent to February"
+ ],
+ "killed": [
+  {
+   "claim": "FOX Weather says Waymo has been developing self-driving technology since 2012",
+   "why": "Not on the page; Waymo says only over a decade of real-world experience."
+  },
+  {
+   "claim": "The News-Miner names Ordinance 2026-42",
+   "why": "It says only an ordinance; number sourced to NAEC."
+  },
+  {
+   "claim": "Waymo's blog says the testing is in Fairbanks",
+   "why": "The blog names only Alaska."
+  },
+  {
+   "claim": "Day length in Fairbanks at the December solstice",
+   "why": "Not on the fetched page."
+  },
+  {
+   "claim": "Mayor O'Neall said she trusts the routes will be safe",
+   "why": "Paraphrase only."
+  },
+  {
+   "claim": "Waymo pauses service for hours or days",
+   "why": "Wording not captured verbatim."
+  },
+  {
+   "claim": "Planning Commission vote count",
+   "why": "Article gives no count."
+  }
+ ]
+}

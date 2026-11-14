@@ -4161,6 +4161,50 @@
         "weighted_total": 8.355,
         "artwork": 7
       }
+    },
+    {
+      "run_date": "2026-11-13",
+      "carousel_no": 114,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE OCCLUSION LEDGER, a computed 30-channel lidar scan from a parked test car's roof sensor across one Fairbanks charging lot, whose three occlusion wedges (behind the pedestal island, a plow pile and a berm) are the three unanswered questions: crane view (01), orthographic plan with the wedges labelled (02), GPU PBR sensor housing macro (03), carved-snow apron from the lamp head with three tire-track sets (04), GPU PBR connector in a port with the gold ring (05), frosted windshield with a scraped hole onto the far lot (06), the record sorted as return bands and three black voids (07), low tracking shot down carved ruts into ice fog (08), the wide lot under the lamp halo (09)",
+      "atmosphere": "SODIUM LOT LIGHT IN ICE FOG (one high-pressure sodium lamp, exp2 warm-grey fog, a low cool headlight on 08; NOTE: close to No.108's sodium lot in ice fog, not new)",
+      "depth_technique": "per-pixel ray-plane ground with Lambert from a point lamp and exp2 fog (01, 08, 09); per-pixel orthographic heightfields (02, 04); akthree GPU PBR (03, 05); windshield frost layers over a blurred far scene (06)",
+      "line_voice": "drafting (phantom dashed wedge edges, rotated knockout labels) over computed point returns",
+      "continuity_device": "camera move: one lot, nine stations; the three occlusion wedges carried through and resolved as the ledger's three voids",
+      "continuity_devices": [
+        "camera move across one lot",
+        "three-wedge state table",
+        "palette arc sodium to return-white",
+        "edge-tease: wedge edge 01 to 02, cable 04 to 05"
+      ],
+      "hook_archetype": "NEW: THE ABSENCE COUNTED",
+      "palette_family": "SODIUM FOG AND RETURNS (ground #060A10, sodium #F2A341 / #B8692A, lit snow #D9B48C, returns #F4F8FF to #6EA5FF, void #020407, gold #FFC72C for the Polaris and the one first-hand sighting; close to No.108's sodium lot)",
+      "type_pairing": "Archivo wdth 70 wght 720 display + Archivo 420 body + JetBrains Mono 500 caps",
+      "narrative_structure": "what is on the record against what is not: hook, the three questions, the thick record, the company's own words, the one sighting, the voices, the ledger, the rule, the ask",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 5,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "computed lidar occlusion",
+        "per-pixel ray-plane snow",
+        "orthographic heightfield relief",
+        "akthree PBR lathe objects",
+        "dendritic frost growth",
+        "rejection-sampled stipple bands",
+        "per-pixel feathered light cone",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [
+        "NEW: computed lidar occlusion wedges, ring returns from a roof sensor with per-obstacle angular shadows, drawn in perspective and in plan"
+      ],
+      "scores": {
+        "weighted_total": 8.35,
+        "artwork": 7,
+        "threshold": 7.7,
+        "rounds": 5
+      }
     }
   ]
 }

@@ -13,6 +13,67 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-11-13/",
+      "url": "https://alaskaaihq.com/archive/2026-11-13/",
+      "title": "Waymo in Fairbanks, what's on the record and what isn't",
+      "summary": "The deck sets Waymo's sensor claims beside what five Alaskans said, the one first-hand sighting and the three open questions.",
+      "content_html": "<p><em>Waymo's cars have been plugging into the chargers at Golden Valley Electric's Fairbanks lot, and a co-op staffer saw it herself.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-11-13/og.jpg\" alt=\"Waymo in Fairbanks, what's on the record and what isn't cover slide\" width=\"1080\" height=\"1350\"></p><p>Waymo's cars came to Fairbanks. Three answers didn't.</p><p>Three questions. No answer yet.</p><p>Waymo spokesperson Chris Bonelli had not answered Alaska's News Source on how long the testing runs, why Fairbanks, or whether driverless cars follow, as of its November 10th report.</p><p>On the car itself, the record is thick.</p><p>Waymo's November 5th post describes its 6th-generation Driver closely, down to how the sensors stay clear.</p><p>&quot;This season in Alaska, for example, we'll be conducting closed-course evaluations and heavy snowfall data collection.&quot;</p><p>To Alaska's News Source, Waymo described manual data collection, autonomous driving with a specialist at the wheel, and limited structured testing.</p><p>Seen on the co-op's chargers.</p><p>Golden Valley Electric's Ashley Bradish says she has seen the cars using its charging stations herself.</p><p>The welcome, and the doubt.</p><p>What's on the record, and what isn't.</p><p>Waymo has a rule for when winter wins.</p><p>It says that when weather passes what it has validated, it may shrink its service area or pause service entirely. As of November 10th, its spokesperson had not said whether driverless cars will follow in Fairbanks.</p><p>Which answer should Fairbanks get first?</p><p>How long. Why here. What comes after.</p><h3>Sources</h3><ul><li><a href=\"https://waymo.com/blog/2026/11/winter-weather-preparedness/\">Waymo</a>, primary document</li><li><a href=\"https://www.gvea.com/energy-emergency-alert/\">Golden Valley Electric Association</a>, primary document</li><li><a href=\"https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/\">Alaska's News Source (KTUU/KTVF)</a>, report</li><li><a href=\"https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate\">FOX Weather</a>, report</li><li><a href=\"https://www.timeanddate.com/sun/usa/fairbanks\">timeanddate.com</a>, report</li><li><a href=\"https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html\">Fairbanks Daily News-Miner</a>, report</li><li><a href=\"https://northern.org/news/alaska-communities-push-for-data-center-oversight-upcoming-public-meetings-and-opportunities-to-speak-up/\">Northern Alaska Environmental Center</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/\">Alaska's News Source (KTUU)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-11-13/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "Waymo's cars came to Fairbanks. Three answers didn't.\n\nThree questions. No answer yet.\n\nWaymo spokesperson Chris Bonelli had not answered Alaska's News Source on how long the testing runs, why Fairbanks, or whether driverless cars follow, as of its November 10th report.\n\nOn the car itself, the record is thick.\n\nWaymo's November 5th post describes its 6th-generation Driver closely, down to how the sensors stay clear.\n\n\"This season in Alaska, for example, we'll be conducting closed-course evaluations and heavy snowfall data collection.\"\n\nTo Alaska's News Source, Waymo described manual data collection, autonomous driving with a specialist at the wheel, and limited structured testing.\n\nSeen on the co-op's chargers.\n\nGolden Valley Electric's Ashley Bradish says she has seen the cars using its charging stations herself.\n\nThe welcome, and the doubt.\n\nWhat's on the record, and what isn't.\n\nWaymo has a rule for when winter wins.\n\nIt says that when weather passes what it has validated, it may shrink its service area or pause service entirely. As of November 10th, its spokesperson had not said whether driverless cars will follow in Fairbanks.\n\nWhich answer should Fairbanks get first?\n\nHow long. Why here. What comes after.",
+      "date_published": "2026-11-13T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-11-13/og.jpg",
+      "tags": [
+        "Fairbanks",
+        "SelfDrivingCars",
+        "WinterTesting"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 33,
+        "sources": [
+          {
+            "url": "https://waymo.com/blog/2026/11/winter-weather-preparedness/",
+            "outlet": "Waymo",
+            "primary": true
+          },
+          {
+            "url": "https://www.gvea.com/energy-emergency-alert/",
+            "outlet": "Golden Valley Electric Association",
+            "primary": true
+          },
+          {
+            "url": "https://www.alaskasnewssource.com/2026/11/11/waymo-tests-self-driving-cars-fairbanks-climate/",
+            "outlet": "Alaska's News Source (KTUU/KTVF)",
+            "primary": false
+          },
+          {
+            "url": "https://www.foxweather.com/extreme-weather/self-driving-cars-prepare-alaska-perilous-winter-climate",
+            "outlet": "FOX Weather",
+            "primary": false
+          },
+          {
+            "url": "https://www.timeanddate.com/sun/usa/fairbanks",
+            "outlet": "timeanddate.com",
+            "primary": false
+          },
+          {
+            "url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+            "outlet": "Fairbanks Daily News-Miner",
+            "primary": false
+          },
+          {
+            "url": "https://northern.org/news/alaska-communities-push-for-data-center-oversight-upcoming-public-meetings-and-opportunities-to-speak-up/",
+            "outlet": "Northern Alaska Environmental Center",
+            "primary": false
+          },
+          {
+            "url": "https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/",
+            "outlet": "Alaska's News Source (KTUU)",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-11-12/",
       "url": "https://alaskaaihq.com/archive/2026-11-12/",
       "title": "Pitched as data centers. Passed as an inquiry.",
@@ -4184,78 +4245,6 @@
           {
             "url": "https://www.homernews.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
             "outlet": "Homer News",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-09-20/",
-      "url": "https://alaskaaihq.com/archive/2026-09-20/",
-      "title": "Every Notice Went Up",
-      "summary": "The ten items as the ordinance writes them, what the state found, and the blank in the form.",
-      "content_html": "<p><em>Who has to be told before somebody changes the weather over the southern Kenai? The answer is not the borough underneath.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-20/og.jpg\" alt=\"Every Notice Went Up cover slide\" width=\"1080\" height=\"1350\"></p><p>EVERY NOTICE WENT UP. NONE CAME DOWN.</p><p>19 FLARES OVER THE SOUTHERN KENAI, AUGUST 23RD</p><p>Notice was given. It went up.</p><p>Federal law bars anyone from changing the weather without filing a report, and the rule sets that filing at least 10 days before the activity begins. Rainmaker asked Alaska DNR first, and it answered with a letter of no objection.</p><p>The drones flew over state land.</p><p>Because the flight was over state and not borough land, no borough permission was needed. The borough's own attorney put the limit in writing, that a second class borough has no authority to fully regulate this or the airspace.</p><p>19 million gallons is a hundredth of an inch.</p><p>Rainmaker flew 10 drone flights on August 23rd and its report puts the result at about 57 acre-feet, or roughly 19 million gallons, which works out to about 0.01 inches across the area. The state calls these modeled estimates, not water measured at the ground.</p><p>The borough's port was never drilled.</p><p>Rainmaker's press release was the first notice the borough had that drones carrying weather modification payloads were operating inside it. The flight was over state land, so no borough permission was needed.</p><p>The borough wrote a form.</p><p>Ten required items, on borough land only.</p><p>Ten questions. None about the model.</p><p>The state's own letter says the company uses drones, atmospheric observations, weather radar and modeling to identify clouds and conditions suitable for seeding. Every one of the ten items asks about the payload, the pyrotechnics or the flight.</p><p>Everyone can ask. Almost nobody can act.</p><p>Alaska has no framework specific to weather modification and no state permit is required for cloud seeding. This session carries 856 bills and not one of them is on the subject. Federal law takes a filing, not a permission.</p><p>One room. October 20th.</p><p>The public hearing on the ordinance is October 20th, and if the Assembly enacts it, it takes effect immediately. Until then it is introduced and not law.</p><h3>Sources</h3><ul><li><a href=\"https://kpb.legistar1.com/kpb/meetings/2026/9/7904_A_Assembly_26-09-15_Meeting_Agenda.pdf\">Kenai Peninsula Borough Clerk, Legistar meeting agenda</a>, primary document</li><li><a href=\"https://kpb.legistar1.com/kpb/attachments/f85b5524-f9ce-4ee7-9971-fccf71e01f6a.pdf\">Kenai Peninsula Borough, signed Resolution 2026-046</a>, primary document</li><li><a href=\"https://webapi.legistar.com/v1/kpb/matters/32039/histories\">Kenai Peninsula Borough via the Legistar Web API</a>, primary document</li><li><a href=\"https://kpb.legistar1.com/kpb/attachments/1d1c099e-8eff-4370-98ed-22faa1d86abc.pdf\">Kenai Peninsula Borough Legal Department memorandum</a>, primary document</li><li><a href=\"https://kpb.legistar1.com/kpb/attachments/16f1fe75-2de4-493c-b8d6-0286e73a1763.pdf\">Alaska Department of Environmental Conservation, Commissioner Randy Bates</a>, primary document</li><li><a href=\"https://www.law.cornell.edu/uscode/text/15/330a\">Cornell Legal Information Institute, 15 U.S.C. 330a</a>, primary document</li><li><a href=\"https://www.law.cornell.edu/cfr/text/15/908.4\">Cornell Legal Information Institute, 15 CFR 908.4</a>, primary document</li><li><a href=\"https://kpb.legistar1.com/kpb/attachments/73cfabad-36b5-4283-b7b5-005382ca41e3.docx\">Kenai Peninsula Borough, Ordinance 2026-35 as introduced</a>, primary document</li><li><a href=\"https://www.akleg.gov/publicservice/basis/bills?session=34\">Alaska Legislature, BASIS public service</a>, primary document</li><li><a href=\"https://alaskapublic.org/news/environment/2026-09-17/after-rain-experiment-near-homer-borough-assembly-seeks-regulations\">Alaska Public Media</a>, report</li><li><a href=\"https://www.kdll.org/local-news/2026-09-16/after-cloud-seeding-near-homer-borough-assembly-seeks-regulations\">KDLL 91.9 FM</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-20/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "EVERY NOTICE WENT UP. NONE CAME DOWN.\n\n19 FLARES OVER THE SOUTHERN KENAI, AUGUST 23RD\n\nNotice was given. It went up.\n\nFederal law bars anyone from changing the weather without filing a report, and the rule sets that filing at least 10 days before the activity begins. Rainmaker asked Alaska DNR first, and it answered with a letter of no objection.\n\nThe drones flew over state land.\n\nBecause the flight was over state and not borough land, no borough permission was needed. The borough's own attorney put the limit in writing, that a second class borough has no authority to fully regulate this or the airspace.\n\n19 million gallons is a hundredth of an inch.\n\nRainmaker flew 10 drone flights on August 23rd and its report puts the result at about 57 acre-feet, or roughly 19 million gallons, which works out to about 0.01 inches across the area. The state calls these modeled estimates, not water measured at the ground.\n\nThe borough's port was never drilled.\n\nRainmaker's press release was the first notice the borough had that drones carrying weather modification payloads were operating inside it. The flight was over state land, so no borough permission was needed.\n\nThe borough wrote a form.\n\nTen required items, on borough land only.\n\nTen questions. None about the model.\n\nThe state's own letter says the company uses drones, atmospheric observations, weather radar and modeling to identify clouds and conditions suitable for seeding. Every one of the ten items asks about the payload, the pyrotechnics or the flight.\n\nEveryone can ask. Almost nobody can act.\n\nAlaska has no framework specific to weather modification and no state permit is required for cloud seeding. This session carries 856 bills and not one of them is on the subject. Federal law takes a filing, not a permission.\n\nOne room. October 20th.\n\nThe public hearing on the ordinance is October 20th, and if the Assembly enacts it, it takes effect immediately. Until then it is introduced and not law.",
-      "date_published": "2026-09-20T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-20/og.jpg",
-      "tags": [],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 38,
-        "sources": [
-          {
-            "url": "https://kpb.legistar1.com/kpb/meetings/2026/9/7904_A_Assembly_26-09-15_Meeting_Agenda.pdf",
-            "outlet": "Kenai Peninsula Borough Clerk, Legistar meeting agenda",
-            "primary": true
-          },
-          {
-            "url": "https://kpb.legistar1.com/kpb/attachments/f85b5524-f9ce-4ee7-9971-fccf71e01f6a.pdf",
-            "outlet": "Kenai Peninsula Borough, signed Resolution 2026-046",
-            "primary": true
-          },
-          {
-            "url": "https://webapi.legistar.com/v1/kpb/matters/32039/histories",
-            "outlet": "Kenai Peninsula Borough via the Legistar Web API",
-            "primary": true
-          },
-          {
-            "url": "https://kpb.legistar1.com/kpb/attachments/1d1c099e-8eff-4370-98ed-22faa1d86abc.pdf",
-            "outlet": "Kenai Peninsula Borough Legal Department memorandum",
-            "primary": true
-          },
-          {
-            "url": "https://kpb.legistar1.com/kpb/attachments/16f1fe75-2de4-493c-b8d6-0286e73a1763.pdf",
-            "outlet": "Alaska Department of Environmental Conservation, Commissioner Randy Bates",
-            "primary": true
-          },
-          {
-            "url": "https://www.law.cornell.edu/uscode/text/15/330a",
-            "outlet": "Cornell Legal Information Institute, 15 U.S.C. 330a",
-            "primary": true
-          },
-          {
-            "url": "https://www.law.cornell.edu/cfr/text/15/908.4",
-            "outlet": "Cornell Legal Information Institute, 15 CFR 908.4",
-            "primary": true
-          },
-          {
-            "url": "https://kpb.legistar1.com/kpb/attachments/73cfabad-36b5-4283-b7b5-005382ca41e3.docx",
-            "outlet": "Kenai Peninsula Borough, Ordinance 2026-35 as introduced",
-            "primary": true
-          },
-          {
-            "url": "https://www.akleg.gov/publicservice/basis/bills?session=34",
-            "outlet": "Alaska Legislature, BASIS public service",
-            "primary": true
-          },
-          {
-            "url": "https://alaskapublic.org/news/environment/2026-09-17/after-rain-experiment-near-homer-borough-assembly-seeks-regulations",
-            "outlet": "Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://www.kdll.org/local-news/2026-09-16/after-cloud-seeding-near-homer-borough-assembly-seeks-regulations",
-            "outlet": "KDLL 91.9 FM",
             "primary": false
           }
         ]
