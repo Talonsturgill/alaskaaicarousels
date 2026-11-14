@@ -5061,10 +5061,15 @@
           "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13422,plainText=true)",
           "outlet": "Fairbanks North Star Borough Assembly, November 12th agenda",
           "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
+          "outlet": "Fairbanks Daily News-Miner",
+          "date": "2026-11-13"
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-10-23",
@@ -5105,6 +5110,10 @@
         {
           "date": "2026-11-10",
           "note": "The Planning Commission's November 10th agenda lists Ordinance No. 2026-42 as item G.4 under public and legislative hearings, after the Regional Comprehensive Plan update. No recommendation or minutes from the hearing were posted tonight. The Assembly's November 12th agenda, read today, does not list the ordinance."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "The Fairbanks Daily News-Miner reported today that the Planning Commission unanimously recommended approval on Tuesday, November 10th, and extended the moratorium to 18 months from the 12 the borough administration requested. It covers data centers needing at least five megawatts or occupying at least 40,000 square feet of gross floor space. The ordinance now goes to the Assembly for a public hearing and approval, with no date yet set."
         }
       ]
     },
@@ -6009,6 +6018,11 @@
           "date": "2026-11-06",
           "label": "Board of Regents meeting continues in Fairbanks",
           "kind": "decision"
+        },
+        {
+          "date": "2026-11-06",
+          "kind": "milestone",
+          "label": "Regents delay the AI Engaged statement of intent to February"
         }
       ],
       "location": {
@@ -6066,10 +6080,15 @@
           "url": "https://www.adn.com/opinions/2026/11/05/opinion-humans-not-robots-shaped-uas-approach-to-ai/",
           "outlet": "Anchorage Daily News (opinion, Carroll, Cason, Ryan, Harnish and Trochim)",
           "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-11-09"
         }
       ],
       "first_seen": "2026-09-17",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-13",
       "history": [
         {
           "date": "2026-09-17",
@@ -6150,6 +6169,10 @@
         {
           "date": "2026-11-08",
           "note": "The regents' board pages returned server errors again today, and no published report of the outcome of the scheduled November 5th vote on AI Engaged was found. On November 5th five faculty members, among them James Ryan, chair of the UA Statewide Advisory Committee, answered the November 4th opinion piece in the Anchorage Daily News. They wrote that AI use in the original draft was not concealed, that adding a small AI attribution was a good move, and that they would prefer the statement take a more neutral stance toward AI."
+        },
+        {
+          "date": "2026-11-13",
+          "note": "Alaska's News Source reported on November 9th that the regents delayed the AI Engaged statement of intent at their November meeting, and that the final decision moves to February, or sooner if UA President Matt Cooper requests it. The regents' own board pages still returned server errors today."
         }
       ]
     },
