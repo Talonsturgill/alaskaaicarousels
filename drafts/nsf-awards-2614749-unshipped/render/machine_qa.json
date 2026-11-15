@@ -1,0 +1,31 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head '$4.7 million to Alaskafor a refinery thatisn' fits 3/3 lines at 80px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "head 'The money landed August 5th. The work starts' fits 3/3 lines at 73.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "quote '\"reinforcement-learning controllers within a' fits 4/5 lines at 61.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

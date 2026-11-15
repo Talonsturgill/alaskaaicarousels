@@ -1,0 +1,185 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#050A12}
+  #art{position:absolute;inset:0;width:1080px;height:1350px}
+  .lay{position:absolute;inset:0;width:1080px;height:1350px}
+  #head{position:absolute;left:76px;top:164px;width:880px;
+        font-family:"Fraunces";font-weight:620;font-variation-settings:"SOFT" 12,"WONK" 1,"opsz" 144;
+        color:#F4F8FF;line-height:0.98;letter-spacing:-0.022em;text-transform:uppercase}
+  #stamp{position:absolute;left:76px;top:1120px;width:706px;
+         background:#0B1A2A;padding:14px 20px;border:1px solid #24384E}
+  #stamp span{display:block;font-family:"JetBrains Mono";font-weight:300;font-size:28px;
+              letter-spacing:0.09em;line-height:1.42;
+              color:#A9BED4;font-variant-numeric:tabular-nums lining-nums}
+  #rec{position:absolute;right:80px;top:84px;text-align:right;background:#0B1A2A;padding:8px 14px}
+  #rec span{font-family:"JetBrains Mono";font-weight:300;font-size:28px;letter-spacing:0.09em;color:#7E93A8;
+            font-variant-numeric:tabular-nums lining-nums}
+  #pol{position:absolute;right:84px;top:1214px}
+</style></head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="lay">
+  <div id="head">$4.7 million to Alaska<br>for a refinery that<br>isn't built yet</div>
+  <div id="stamp"><span>NSF 2614749 + 2614751</span><span>OBLIGATED AUGUST 5TH &middot; USD 4,737,612</span><span>CAM THREE QUARTER / LENS 42</span></div>
+  <div id="rec"><span>01 / 10</span></div>
+  <svg id="pol" width="46" height="46" viewBox="0 0 46 46">
+    <path d="M23 0 L26.6 19.4 L46 23 L26.6 26.6 L23 46 L19.4 26.6 L0 23 L19.4 19.4 Z" fill="#FFC72C"/>
+  </svg>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/aktype.js"></script>
+<script src="@@ASSETS@@/js/akcolor.js"></script>
+<script src="@@ASSETS@@/js/akpost.js"></script>
+<script type="module">
+window.renderReady = (async () => {
+  const W=1080, H=1350, SEED=20260814;
+  const cv=document.getElementById('art'), cx=cv.getContext('2d');
+  cx.scale(2,2);
+  const rnd = AK.rng(SEED+1);
+
+  /* ---------- 2D ROOM: back wall, fog, bench pool. Graded BEFORE GL lands. */
+  // Back wall: cold vertical fall from #0B1A2A to the room's deepest #050A12.
+  const wall = cx.createLinearGradient(0,0,0,700);
+  wall.addColorStop(0,'#050A12'); wall.addColorStop(0.62,'#0A1725'); wall.addColorStop(1,'#0B1A2A');
+  cx.fillStyle=wall; cx.fillRect(0,0,W,700);
+
+  // Bench: brushed steel, its own tonal descent left to right.
+  const bench = cx.createLinearGradient(0,700,0,H);
+  bench.addColorStop(0,'#16232F'); bench.addColorStop(0.30,'#22303F'); bench.addColorStop(1,'#111B25');
+  cx.fillStyle=bench; cx.fillRect(0,700,W,H-700);
+
+  // The lit pool. A radial ellipse centred under where the vessel will stand,
+  // painted in OKLCH steps so the falloff has no gray dead zone.
+  const ramp = AKC.ramp('#7A5230', {steps:7, keyHue:58, ambientHue:250, drift:0.06});
+  for (let i=6;i>=0;i--){
+    const t=i/6, rx=170+t*470, ry=58+t*172;
+    cx.save(); cx.globalAlpha=0.11*(1-t*0.72);
+    cx.translate(392,1012); cx.scale(1,ry/rx);
+    cx.beginPath(); cx.arc(0,0,rx,0,Math.PI*2);
+    cx.fillStyle=ramp[Math.min(6,Math.round(t*6))]; cx.fill(); cx.restore();
+  }
+  // Brushed-steel anisotropy: fine horizontal strokes only inside the pool.
+  cx.save(); cx.beginPath(); cx.ellipse(392,1012,640,230,0,0,Math.PI*2); cx.clip();
+  for(let i=0;i<520;i++){
+    const y=700+rnd()*(H-700), x=rnd()*W, len=26+rnd()*150;
+    cx.globalAlpha=0.020+rnd()*0.035;
+    cx.strokeStyle = rnd()>0.45 ? '#8FA6BC' : '#0A121B';
+    cx.lineWidth=0.6+rnd()*1.1;
+    cx.beginPath(); cx.moveTo(x,y); cx.lineTo(x+len,y+(rnd()-0.5)*1.2); cx.stroke();
+  }
+  cx.restore(); cx.globalAlpha=1;
+
+  // exp2 fog toward the wall/bench junction, in the palette hue, never gray.
+  const fog=cx.createLinearGradient(0,560,0,860);
+  fog.addColorStop(0,'rgba(11,26,42,0)'); fog.addColorStop(0.5,'rgba(11,26,42,0.55)');
+  fog.addColorStop(1,'rgba(11,26,42,0)');
+  cx.fillStyle=fog; cx.fillRect(0,560,W,300);
+
+  /* GRADE NOW. AKPOST.grade costs ~34s on a canvas that already holds GL
+     pixels and ~0.9s before, so this call must precede the composite. */
+  AKPOST.grade(cx, { w:W, h:H, exposure:-0.10, saturation:1.05, contrast:1.12, filmic:true,
+    lift:[0.008,0.012,0.026], gain:[1.020,1.000,0.968], vignette:0.24,
+    bloom:{threshold:0.68,strength:0.40,radius:10},
+    grain:{amount:0.05,size:2,seed:SEED}, aberration:0.6, dither:true, sharpen:0.32 });
+
+  /* ---------- GL: the vessel, its tray, its ash. No twin on the cover. */
+  const THREE = await import('@@ASSETS@@/js/three.module.min.js');
+  const AKT   = (await import('@@ASSETS@@/js/akthree.js')).init(THREE);
+  let glOK=false;
+
+  if (AKT.webglOK()){
+    const off=document.createElement('canvas'); off.width=2160; off.height=2700;
+    const R=AKT.setup(off,{w:W,h:H,bg:null,fog:[0x0B1A2A,6.5,22],exposure:1.12});
+    AKT.environment(R,{intensity:0.30});
+
+    const key=new THREE.PointLight(0xFFB25E,11,9,2);
+    key.position.set(-0.72,0.72,0.30); key.castShadow=true;
+    key.shadow.mapSize.set(2048,2048); key.shadow.radius=9; key.shadow.bias=-0.0004;
+    R.scene.add(key);
+    R.scene.add(new THREE.AmbientLight(0x16243A,0.9));
+    const fill=new THREE.DirectionalLight(0x5AC8F0,0.55); fill.position.set(7,2.2,3); R.scene.add(fill);
+
+    AKT.ground(R,{color:0x2A3A4C,y:0,size:40});
+
+    // Vessel: a lathed borosilicate body. Profile in metres, rmax 0.40, h 1.28.
+    const prof=[[0.00,0.00],[0.34,0.00],[0.39,0.06],[0.40,0.34],[0.40,0.92],
+                [0.36,1.10],[0.30,1.20],[0.30,1.26],[0.28,1.28]];
+    const glass=new THREE.MeshPhysicalMaterial({color:0xDCEAF2,metalness:0,roughness:0.08,
+      transmission:0.42,thickness:0.9,ior:1.47,transparent:true,opacity:0.96,
+      attenuationColor:new THREE.Color(0xF2E0C6),attenuationDistance:9.0,clearcoat:0.6});
+    const body=AKT.lathe(prof,glass,{segments:72});
+    body.position.set(-0.72,0,0.30); AKT.add(R,body);
+
+    // Culture medium: a SOLID emissive lathe to 0.92, never a second
+    // transmissive volume. This is the only lamp in the room.
+    const med=[[0.00,0.00],[0.36,0.00],[0.37,0.30],[0.37,0.90],[0.00,0.92]];
+    const medium=AKT.lathe(med,new THREE.MeshStandardMaterial({color:0x3A1604,
+      emissive:0xE0701A,emissiveIntensity:1.05,roughness:0.62}),{segments:64});
+    medium.position.set(-0.72,0.01,0.30); AKT.add(R,medium,{cast:false});
+
+    // Meniscus ring so the fill line reads as a real highlight.
+    const men=new THREE.Mesh(new THREE.TorusGeometry(0.365,0.012,12,64),
+      new THREE.MeshStandardMaterial({color:0xC2701F,roughness:0.35,metalness:0.2}));
+    men.rotation.x=Math.PI/2; men.position.set(-0.72,0.92,0.30); AKT.add(R,men,{cast:false});
+
+    // Tray + ash. 900 instanced grains, 6 swapped to metal and DECLARED NOT A QUANTITY.
+    const tray=new THREE.Mesh(new THREE.CylinderGeometry(0.86,0.86,0.05,56),
+      new THREE.MeshStandardMaterial({color:0x7D8B99,metalness:0.85,roughness:0.44}));
+    tray.position.set(-0.72,0.025,0.30); AKT.add(R,tray);
+
+    const grain=new THREE.IcosahedronGeometry(1,0);
+    const ashM=new THREE.MeshStandardMaterial({color:0x0C0E10,roughness:0.97,metalness:0.02});
+    const inst=new THREE.InstancedMesh(grain,ashM,894);
+    const m4=new THREE.Matrix4(), q=new THREE.Quaternion(), e=new THREE.Euler();
+    for(let i=0;i<894;i++){
+      const a=rnd()*Math.PI*2, r=Math.sqrt(rnd())*0.80, s=0.012+rnd()*0.038;
+      e.set(rnd()*3.14,rnd()*3.14,rnd()*3.14); q.setFromEuler(e);
+      m4.compose(new THREE.Vector3(-0.72+Math.cos(a)*r,0.05+rnd()*0.03,0.30+Math.sin(a)*r),
+                 q,new THREE.Vector3(s,s*0.7,s));
+      inst.setMatrixAt(i,m4);
+    }
+    AKT.add(R,inst);
+    const glint=new THREE.Mesh(grain,new THREE.MeshStandardMaterial({color:0xD6E2EE,roughness:0.18,metalness:0.7}));
+    const gm=new THREE.InstancedMesh(grain,glint.material,6);
+    for(let i=0;i<6;i++){
+      const a=(i/6)*Math.PI*2+0.7, r=0.34+rnd()*0.36, s=0.022+rnd()*0.014;
+      e.set(rnd()*3.14,rnd()*3.14,rnd()*3.14); q.setFromEuler(e);
+      m4.compose(new THREE.Vector3(-0.72+Math.cos(a)*r,0.062,0.30+Math.sin(a)*r),q,new THREE.Vector3(s,s,s));
+      gm.setMatrixAt(i,m4);
+    }
+    AKT.add(R,gm);
+
+    AKT.frame(R,{from:[1.55,1.62,3.30],look:[-0.30,0.72,0.20],fov:42});
+    const shot=await AKT.snapshot(R);
+    glOK = !!shot.ok;
+    if(glOK){ cx.drawImage(off,0,0,W,H); }
+  }
+
+  /* ---------- Designed Canvas fallback: the argument survives without GL. */
+  if(!glOK){
+    cx.save(); cx.translate(360,1010);
+    const g=cx.createLinearGradient(-120,0,120,0);
+    g.addColorStop(0,'#1B2836'); g.addColorStop(0.33,'#FFA23C'); g.addColorStop(0.62,'#8A5A24'); g.addColorStop(1,'#141E29');
+    cx.fillStyle=g; cx.beginPath();
+    cx.moveTo(-118,0); cx.lineTo(-118,-390); cx.lineTo(-96,-430); cx.lineTo(96,-430);
+    cx.lineTo(118,-390); cx.lineTo(118,0); cx.closePath(); cx.fill();
+    cx.strokeStyle='#FFE6BE'; cx.lineWidth=2; cx.stroke();
+    cx.beginPath(); cx.ellipse(0,-268,118,17,0,0,Math.PI*2); cx.strokeStyle='#FFD79A'; cx.lineWidth=3; cx.stroke();
+    cx.beginPath(); cx.ellipse(0,26,150,26,0,0,Math.PI*2);
+    cx.fillStyle='rgba(6,10,17,0.72)'; cx.fill();
+    cx.restore();
+  }
+
+  /* ---------- amber haze: air near a lamp, not a drama beat. */
+  const hz=cx.createRadialGradient(360,880,20,360,880,470);
+  hz.addColorStop(0,'rgba(255,162,60,0.10)'); hz.addColorStop(1,'rgba(255,162,60,0)');
+  cx.fillStyle=hz; cx.fillRect(0,420,W,760);
+
+  await document.fonts.ready;
+  AK.fitText(document.getElementById('head'),{min:62,max:104,maxLines:3});
+  return true;
+})();
+</script>
+</body></html>
