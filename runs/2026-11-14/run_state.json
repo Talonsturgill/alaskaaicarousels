@@ -122,9 +122,23 @@
    ],
    "note": "webp 12.6x, pdf shrunk, site 180 pages, docket alert sent 1, prune freed 1.14M, ledgers appended"
   },
-  "upgrade": "pending",
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due (machine_due exit 1, last 2026-11-11); 1 item queued (ask payload ceiling blocks new docket items), render OOM repeat raised"
+  },
   "gmail": "pending",
   "retro": "pending"
  },
- "social_feedback": []
+ "social_feedback": [],
+ "phase_3_6": {
+  "site_signoff": "PASS, 179 pages, 18 checks, nothing to repair",
+  "gaswatch_live": "PASS (late post diagnosed; gaswatch.yml run 632 dispatched, Pages deployed, live audit re-run PASS)",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "WARN, one UNRESOLVED external blocker: gaswatch.yml:completion, GitHub ghost run 612 stuck in progress and its cancel returns 409; incident filed as blocker github in cron_incidents.json, retried next run",
+  "site_fixes": "none"
+ }
 }
