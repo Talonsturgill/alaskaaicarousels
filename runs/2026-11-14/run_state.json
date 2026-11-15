@@ -115,7 +115,12 @@
    "note": "round 3 8.08 art 6.5 under craft floor; one craft cycle (round 4) on 05,04,06,02,07 with pixel critics; re-score 8.23, art 7.0; ship_gate PASS"
   },
   "ship": {
-   "status": "in_progress"
+   "status": "done",
+   "artifacts": [
+    "runs/2026-11-14/",
+    "docs/"
+   ],
+   "note": "webp 12.6x, pdf shrunk, site 180 pages, docket alert sent 1, prune freed 1.14M, ledgers appended"
   },
   "upgrade": "pending",
   "gmail": "pending",

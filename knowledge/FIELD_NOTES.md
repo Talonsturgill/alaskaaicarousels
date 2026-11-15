@@ -9665,7 +9665,7 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A CRAFT CYCLE CAN ADD THE DEFECT IT CHASES. The one cycle on 03 and 01 introduced a seam and a stray diagonal and moved art from 7 to 7. Re-run the pixel critic on the cycled frames before re-scoring, and revert a cycle that only trades one defect for another.
 - SODIUM LOT IN ICE FOG IS NOW TWO DECKS IN A WEEK (No.108, No.114). The scorer marked variety weakest. The next winter-lot story owes a different light: overcast blue noon, headlights only, or aurora.
 
-### 2026-11-14 (No.115, Who watches Alaska's fishing boats in 2027)
+## 2026-11-14, No.115, retro
 - EXTRUDE UVs WRAP THROUGH THE MIDDLE OF THE FACE. ExtrudeGeometry UVs are shape coordinates centred on zero, so a RepeatWrapping map seams down the centre. `offset.set(0.5, 0.5)` with a matching repeat removed a seam three critic rounds had named on 02.
 - AN EMPTY FIXTURE NEEDS ITS LEFTOVERS. 05's bare pole and plate read as a gallows, then a pedestal table; a clamp collar, bolt holes and a cut cable taped off in the deck's orange made it a camera mount with the camera gone, and story-art fusion rose half a point.
 - A CRAFT CYCLE WORTH ITS ROUND RE-RUNS THE PIXEL CRITICS BEFORE THE SCORER. The first pass of the cycle left a blurred foreground smear, deck streaks across the planks and a clipped reflection edge; the critics caught all three and the fixes took art from 6.5 to 7.0.
