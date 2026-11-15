@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-11-15-the-slot-without-an-edge",
+      "date": "2026-11-15",
+      "title": "The Slot Without an Edge",
+      "caption": "Alaska's Department of Administration proposed public records rule changes on November 11th. Per the Juneau Empire, the draft would bar requests filed through automated tools, including AI, and nothing reported says where a tool ends.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-15-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-15-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-15-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-15-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-14-two-pixels-one-new-name",
       "date": "2026-11-14",
       "title": "Two Pixels, One New Name",
