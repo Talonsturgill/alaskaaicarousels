@@ -4205,6 +4205,46 @@
         "threshold": 7.7,
         "rounds": 5
       }
+    },
+    {
+      "run_date": "2026-11-14",
+      "carousel_no": 115,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE FIELD KIT, ON ASSIGNMENT, one monitoring object per frame, modelled and lit, with a measuring board as the quantity instrument: GPU PBR camera dome on a mast (01), GPU PBR rugged review drive on a wet hatch (02), per-pixel heightfield foam case with the empty camera pocket (03), engraved HDPE budget board on wet steel (04), layered harbor haze with the empty camera mount on a small boat's rail, cut cable taped off (05), two observer boards in cabinet oblique (06), ten strata as ten boards (07), per-pixel paper hang tag with a brass grommet (08), GPU PBR dome against a breaking evening sky (09)",
+      "atmosphere": "NORTH PACIFIC OVERCAST DAYLIGHT, LOWERING (one huge soft top key, no point lamp, no fog bank, no night; breaking silver-warm at 09)",
+      "depth_technique": "akthree GPU PBR with supersample 3 (01, 02, 09); per-pixel heightfield Lambert (03, 08); per-pixel wet-steel sheen pool under cabinet-oblique boards (04, 06, 07); five-layer atmospheric wash (05)",
+      "line_voice": "engraved ticks with light lips on HDPE stock, mono caps labels",
+      "continuity_device": "palette arc of one overcast working day, steel dawn to pewter noon to lowering to a breaking rim",
+      "continuity_devices": [
+        "palette arc of one working day",
+        "edge-tease: cable 01 to 02, board 06 to 07"
+      ],
+      "hook_archetype": "NEW: THE OBJECT'S QUESTION",
+      "palette_family": "OVERCAST, WET STEEL AND RAIN-GEAR ORANGE (steel #3E4A54, pewter #5C6A74, orange #F26A21, camera blue #8CBBFF, gold Polaris only)",
+      "type_pairing": "Fraunces opsz 144 SOFT 50 wght 540 display + Manrope 450 body + JetBrains Mono 500 caps",
+      "narrative_structure": "question deck: who watches, who pays, who is left out, and what the AI line waits on, ending on a priced question to the Council",
+      "variance_dials": {
+        "design_variance": 2,
+        "visual_density": 2,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "akthree PBR lathe objects",
+        "per-pixel heightfield Lambert",
+        "Worley open-cell foam",
+        "cabinet-oblique measuring boards",
+        "engraved tick with light lip",
+        "five-layer atmospheric wash",
+        "per-pixel paper relief with crease",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [],
+      "scores": {
+        "weighted_total": 8.23,
+        "artwork": 7,
+        "threshold": 7.7,
+        "rounds": 4
+      }
     }
   ]
 }

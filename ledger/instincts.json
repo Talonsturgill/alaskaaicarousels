@@ -2780,6 +2780,22 @@
       "evidence": "No.114 slide 01 first render: three wedges read as dark boxes until the camera moved behind and above the car",
       "confidence": 0.7,
       "last_confirmed": "2026-11-13"
+    },
+    {
+      "id": "extrude-uv-wrap-seam",
+      "learned": "2026-11-14",
+      "instinct": "THREE.ExtrudeGeometry UVs are the shape's own coordinates, centred on zero, so a texture with RepeatWrapping wraps exactly through the middle of the face and draws a hard vertical seam. Offset the texture by 0.5 (and scale its repeat) so the whole face samples inside one tile.",
+      "evidence": "No.115 slide 02, the brushed aluminium drive top showed a seam at x 0 through three critic rounds until brushed.offset.set(0.5,0.5)",
+      "confidence": 0.75,
+      "last_confirmed": "2026-11-14"
+    },
+    {
+      "id": "empty-mount-needs-vocabulary",
+      "learned": "2026-11-14",
+      "instinct": "AN EMPTY FIXTURE READS AS WHAT IT HELD ONLY THROUGH ITS LEFTOVERS. A bare pole and plate read as a stool or a gallows; a clamp collar, bolt holes and a cut cable with taped end make it a camera mount with the camera gone. Plan the leftover that names the absence.",
+      "evidence": "No.115 slide 05 read as a gallows (round 3) and a pedestal table (round 4a) until the cut, taped cable and collar were drawn; the scorer then named it a literal anchor",
+      "confidence": 0.7,
+      "last_confirmed": "2026-11-14"
     }
   ]
 }

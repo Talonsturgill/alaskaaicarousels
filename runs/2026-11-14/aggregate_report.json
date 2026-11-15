@@ -1,0 +1,161 @@
+{
+  "run_dir": "out/2026-11-14",
+  "render_report": "out/2026-11-14/render/render_report.json",
+  "aggregates_file": "out/2026-11-14/aggregates.json",
+  "detected": 15,
+  "declared": 15,
+  "detections": [
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "2027 plan carries",
+      "at": 123,
+      "text": "Since 2023, Congressional Directed Spending covered new EM systems and replacements. With it spent by the end of 2026, the 2027 plan carries that cost itself, about $6,002.96 a year per fixed-gear camera boat.",
+      "n": 2027,
+      "subject": "plan carries"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "1,427 such trips",
+      "at": 112,
+      "text": "Boats under 40 feet and jig boats have no chance of carrying an observer or a camera in 2027. The draft expects 1,427 such trips.",
+      "n": 1427,
+      "subject": "such trips"
+    },
+    {
+      "slide": 6,
+      "kind": "ratio",
+      "fragment": "79 of 253",
+      "at": 32,
+      "text": "In the draft, an observer rides 79 of 253 expected fixed-gear trips in the Bering Sea and Aleutians, 31.35 percent. In the Gulf it is 174 of 1,868, or 9.31 percent.",
+      "n": 79,
+      "of": 253
+    },
+    {
+      "slide": 6,
+      "kind": "ratio",
+      "fragment": "174 of 1,868",
+      "at": 134,
+      "text": "In the draft, an observer rides 79 of 253 expected fixed-gear trips in the Bering Sea and Aleutians, 31.35 percent. In the Gulf it is 174 of 1,868, or 9.31 percent.",
+      "n": 174,
+      "of": 1868
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "79 OF 253",
+      "at": 0,
+      "text": "79 OF 253",
+      "n": 79,
+      "of": 253
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "174 OF 1,868",
+      "at": 0,
+      "text": "174 OF 1,868",
+      "n": 174,
+      "of": 1868
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "16 OF 35",
+      "at": 0,
+      "text": "16 OF 35",
+      "n": 16,
+      "of": 35
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "47 OF 305",
+      "at": 0,
+      "text": "47 OF 305",
+      "n": 47,
+      "of": 305
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "40 OF 92",
+      "at": 0,
+      "text": "40 OF 92",
+      "n": 40,
+      "of": 92
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "154 OF 1,010",
+      "at": 0,
+      "text": "154 OF 1,010",
+      "n": 154,
+      "of": 1010
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "894 OF 894",
+      "at": 0,
+      "text": "894 OF 894",
+      "n": 894,
+      "of": 894
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "968 OF 968",
+      "at": 0,
+      "text": "968 OF 968",
+      "n": 968,
+      "of": 968
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "1,774 OF 1,774",
+      "at": 0,
+      "text": "1,774 OF 1,774",
+      "n": 1774,
+      "of": 1774
+    },
+    {
+      "slide": 7,
+      "kind": "ratio",
+      "fragment": "0 OF 1,427",
+      "at": 0,
+      "text": "0 OF 1,427",
+      "n": 0,
+      "of": 1427
+    },
+    {
+      "slide": 7,
+      "kind": "subset",
+      "fragment": "ALL TEN",
+      "at": 0,
+      "text": "ALL TEN STRATA, DRAFT",
+      "n": 10,
+      "of": 10
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [
+    {
+      "slide": 7,
+      "fragment": "ALL TEN",
+      "member": "C27",
+      "predicate": null,
+      "terms": null,
+      "selected": null,
+      "remainder": null
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "S3 'Since 2023, Congressional Directed Spending cove' [from_claim]: the noun 'carry' does not appear in claim C09; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

@@ -4734,6 +4734,41 @@
       "beats": [
         "research-and-science"
       ]
+    },
+    {
+      "run_date": "2026-11-14",
+      "carousel_no": 115,
+      "topic": "NOAA Fisheries' Draft 2027 Annual Deployment Plan for observers and electronic monitoring off Alaska, posted November 6th: a preliminary $5.45M partial-coverage budget with trawl EM taken off the top at $732K, Congressional Directed Spending for EM equipment expected to end in 2026 so the plan carries about $6,002.96 a year per fixed-gear camera boat, draft selection rates for all ten strata (observer fixed gear 31.35 percent BSAI and 9.31 percent Gulf, 1,427 trips under 40 feet or jig with no chance of selection), one EM review provider priced per hard drive, and a project to scale AI tools for EM video review that NMFS intends to support pending staff resources; the final plan goes to the North Pacific Council in Anchorage, November 30th through December 9th.",
+      "angle": "THE FIELD KIT, ON ASSIGNMENT: one monitoring object per frame (camera dome, review hard drive, empty foam pocket, measuring board, empty mount, observer boards, ten strata, hang tag) under one overcast working day, asking whether the AI review line gets staff before the fleet pays for more cameras.",
+      "entities": [
+        "NOAA Fisheries",
+        "NMFS",
+        "Alaska Regional Office",
+        "Alaska Fisheries Science Center",
+        "North Pacific Fishery Management Council",
+        "Congressional Directed Spending",
+        "Bering Sea and Aleutian Islands",
+        "Gulf of Alaska",
+        "Anchorage"
+      ],
+      "keywords": [
+        "electronic monitoring",
+        "fisheries observers",
+        "annual deployment plan",
+        "EM video review",
+        "AI video review",
+        "partial coverage",
+        "selection rates",
+        "trawl EM",
+        "fixed gear",
+        "ex-vessel fees",
+        "observer fee",
+        "hard drive review"
+      ],
+      "beats": [
+        "defense-and-federal",
+        "research-and-science"
+      ]
     }
   ]
 }

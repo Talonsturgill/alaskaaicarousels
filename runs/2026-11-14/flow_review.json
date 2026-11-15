@@ -1,0 +1,199 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The story holds together. The cover's question gets a fast answer on 02 (one review provider, priced by the drive), the money climbs through 03 to 04, the 05 breather turns 'nobody' into 'some trips still carry a person' on 06, 07 is the keepable sheet, and 08 to 09 land the AI line and a real, debatable ask in front of the Council. The weak stretch is 03 to 04: the reader is asked to hold two dollar figures over near-black ground with little visual escalation, and the 'which budget?' and 'who reviews all that footage?' loops the storyboard plans for 03 and 07 never show up on the slides.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "The headline asks 'Who watches the footage?' and the black cable's drip loop leaves the right edge at about y 1130. It comes back in from the left on 02 and plugs into the drive. The device works and the question is paid at once.",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "Only the body's last clause, 'pending staff', pulls, and it points at 08, not 03. The planned loop 'who pays for the camera?' isn't written or drawn on 02, and no cable or object carries across the cut.",
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "The $6,002.96 in 03's body comes back as the gold hairline on 04, but the reader only finds that after the swipe. Nothing on 03 says the money lands in a bigger pot.",
+   "strength": "weak"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "'About $4.72M left for observers and fixed-gear cameras' sets up who gets watched. The jump in brightness to 05 rewards the swipe, but 04 gives no reason to make it.",
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "The copy turns from 'Nobody is chosen' to 'Some trips still carry a person'. The 1,427 trips with zero coverage make the reader want the other odds.",
+   "strength": "strong"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "The edge tease is meant to pull: the 06 boards are cut by the right edge. But 07 doesn't complete them. Its boards are short, centred, top-down bars at x 770 to 1158, so the cut board never visibly arrives. The table's promise does the pulling, not the device.",
+   "strength": "weak"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "None on the slide. The footnote is about the December plan, and the planned loop 'who reviews all that footage?' isn't printed. The reader turns over a finished table with no reason to continue.",
+   "strength": "none"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "'The title is in the draft. The staffing is pending.' sets up a decision, and 09's ask is exactly that decision. The dome coming back closes the frame.",
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slides 03, 04 (and 06 to 08)",
+   "problem": "The primary continuity device, the overcast-day palette arc, doesn't read. The table promises pewter noon on 03 to 05, but 03 (L* 15, the darkest frame in the deck) and 04 (L* 18) are near-black void, and so are 06, 07 and 08. On the sheet the deck reads as three lit frames (01, 05, 09) dropped into a black deck, not as one day lowering.",
+   "fix": "Put a visible pewter key and a lit ground on 03 and 04 so they sit between 02 and 05. Lift the foam's lit face and the steel pool on 04 so the frame mean lands around L* 24 to 28, and keep 06 to 08 as the lowering stretch."
+  },
+  {
+   "severity": "major",
+   "where": "slides 06-07 seam",
+   "problem": "The edge tease doesn't complete. 06 cuts two oblique boards at the right edge. 07 shows ten flat top-down bars, centred and short, so nothing visibly continues across the cut.",
+   "fix": "Start 07's rows at the left edge in the same cabinet oblique as 06 (or redraw 06's boards top-down at 07's slab height), so the cut board's colour, thickness and tick rhythm match the first row of 07."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 02-03",
+   "problem": "The cable's story ends on 02, and 03's 'cable channel cut in the foam, no cable' is a subtle callback that doesn't read as the same cable at feed size.",
+   "fix": "Give the empty cable channel on 03 a faint impression of the cable's sheath, or run it off the left edge to answer 02's left-edge entry."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 01 and 09",
+   "problem": "Both cable exits work, and the dome reads as the same camera at a new moment. That device holds.",
+   "fix": "none needed"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 02-04",
+   "problem": "Three body-heavy slides in a row, each with a two-to-three-line headline and four to five lines of 34 px body, over dark ground (02 and 04 dark, 03 the darkest). This is where the deck fatigues.",
+   "fix": "Cut 03's body to two sentences (keep the end of the spending and $6,002.96) and let the foam carry the frame, or shorten 02's body by dropping the last sentence, which 08 repeats anyway."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 06-08",
+   "problem": "06 (body plus chart), 07 (the densest frame) and 08 (body plus tag) are a second dense run. 08's tag is the only object that breaks it.",
+   "fix": "Cut 06's body to the two rates. The boards already show them, and the counts are repeated on 07."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 05",
+   "problem": "The breather lands where it was planned and is the brightest frame (L* 37). Good placement.",
+   "fix": "none"
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "major",
+   "where": "slide 05 against 01, 02, 09 (and 04, 06, 07)",
+   "problem": "Physics split. 01, 02 and 09 are PBR photographic renders with DOF and clearcoat, and 03 and 08 are per-pixel relief. 05 is flat vector illustration: hard-edged flat-fill ridges, a rectangle bracket, a flat-fill deck polygon, and a blurred orange disc that reads as an unexplained smudge. On the sheet it looks pasted in from another deck. 04, 06 and 07 lean the same way, toward UI bars on black.",
+   "fix": "Bring 05 into the deck's lighting: model the rail, deck and bracket per pixel, with a lit bevel, wet sheen gradient, cast and AO matching 03 and 08, plus atmospheric haze between the ridges and the water."
+  },
+  {
+   "severity": "polish",
+   "where": "all slides",
+   "problem": "Counters read 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09, all correct. Kicker top-left, counter top-right, gold Polaris plus ALASKA.AI bottom-left and alaskaaihq.com bottom-right sit in the same positions on every frame. Light comes from the top or upper left throughout.",
+   "fix": "none"
+  },
+  {
+   "severity": "polish",
+   "where": "slide 08",
+   "problem": "A light wedge enters from the upper right behind the tag (about x 1200 to 1600, y 900 to 1000 at display scale), which disagrees with the upper-left key the tag's own shading uses.",
+   "fix": "Move or remove the wedge so the ground pool sits upper left, as the reconciliation states."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "why": "A reader who has swiped three slides has met the camera, the drive and the empty foam, all objects. 04 is the first abstract frame: a flat white bar on black with two dollar figures, a third body paragraph in a row, and an empty lower third, and its only pull to 05 is an implied 'who gets watched'. The money detail is for policy readers, not a fisherman.",
+  "fix": "Make 04 a physical board on a lit sorting table (a real HDPE slab, lit wet steel filling the lower third), cut the body to one sentence, and end it on a line that plants 05, for example 'Not every boat is in the draw.'"
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 5.5,
+    "cause": "b",
+    "problem": "The declared masterful-depth frame is the flattest in the deck. The bracket is two flat rectangles with black dash marks, the deck and rail are flat-fill polygons with a token sheen ellipse, and the ridges are flat silhouettes. The 'blurred jig reel' is a brown-orange blob that reads as a thumb or an ear at the left edge. The largest modelled object (rail plus bracket) is the least modelled. There is no haze between the ridges and the water, so the five planes read as three flat bands.",
+    "fix": "Rebuild the near plane (rail, deck, bracket) as lit geometry: per-pixel galvanized bevels with a lit top face and lee side, a wet-steel roughness gradient, the bracket's cast and contact AO on the deck, and a reel with a readable rim and spokes (or cut the reel)."
+   },
+   {
+    "slide": 4,
+    "score": 6.0,
+    "cause": "c",
+    "problem": "The board is a flat UI progress bar (a white rectangle, a blue rectangle, a grey front face), and the band from y about 1550 to 1830 (display) is eventless dark ground. The 'wet steel table' barely registers at contact-sheet scale (L* 18), so the lower third is dead.",
+    "fix": "Light the steel: a broad overcast pool under the board, brightening to a visible lit band with fine brushed lay and the board's reflection, so the lower third carries tone and texture, and give the HDPE slab a real bevel and tooth."
+   },
+   {
+    "slide": 6,
+    "score": 6.0,
+    "cause": "c",
+    "problem": "The boards are flat-fill vector slabs. The cabinet-oblique fill on the top face is a free-floating parallelogram that overruns the front-face fill, and the steel head stops are flat grey boxes. The band below the Gulf board (y about 1650 to 1830, display) is empty black.",
+    "fix": "Move the two boards down and enlarge them so they fill rows 5 to 8, and model the slab: lit rear edge, tooth on the HDPE, a front face shaded by depth, and a real contact shadow onto a visible lit steel pool."
+   },
+   {
+    "slide": 3,
+    "score": 6.5,
+    "cause": "b",
+    "problem": "The foam texture is good, but the camera pocket, the anchor, reads as a flat dark cut-out with an outline. Its floor is one even value, with no lee-wall gradient and no AO falloff from the walls, so it looks like a decal, not a recess. The top half is flat black lid.",
+    "fix": "Shade the pocket floor and walls: a lit far wall, a dark near wall casting into the floor, and AO fading from the walls into the centre, with open-cell texture continuing (darker) on the floor."
+   },
+   {
+    "slide": 2,
+    "score": 7.0,
+    "cause": "d",
+    "problem": "The brushed aluminium on the drive's top has visible horizontal banding, and the streak field breaks at about x 750 (display), with a different streak pattern left and right of the label. The reconciliation's 'one seamless brushed texture' doesn't hold at zoom. The rubber body and bumpers are near-flat black.",
+    "fix": "Replace the streak texture with one continuous anisotropic brushed field at low contrast (no tile seam), and put a rim highlight on the bumpers and body."
+   },
+   {
+    "slide": 1,
+    "score": 7.5,
+    "cause": "d",
+    "problem": "The rain beads read as evenly scattered white specks (noise), not beads with a dark refracting core and a highlight, and the U-bolt bracket is flat grey boxes.",
+    "fix": "Shade each bead with a dark body and one specular catch, vary the density toward the dome's top, and bevel the bracket plates."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     4,
+     6,
+     7
+    ],
+    "problem": "The reuse census is clean (no helper or function shape on more than three frames). On the sheet, though, 04, 06 and 07 are the same drawing: a light-grey bar, a coloured fill from the left, dark ticks, on black. That is three frames, at the limit and not over it, so it isn't a cause-a finding. But all three are also the deck's flattest mark-making.",
+    "fix": "Make each board a different object: a real slab on lit steel (04), a modelled cabinet slab (06), a sheet of row stock (07)."
+   },
+   {
+    "cause": "e",
+    "slides": [
+     2,
+     3,
+     4,
+     6,
+     7,
+     8
+    ],
+    "problem": "The tonal census passes (measured 01 29, 02 21, 03 15, 04 18, 05 37, 06 17, 07 17, 08 21, 09 33; peak 05 as declared; darkest is 03, not the declared 07, though 07 is second darkest so it passes). What I see is the miss the census can't name. The declared pewter noon on 03 to 04 is the darkest stretch of the deck, so the arc is a black plateau broken by three lit frames, not a rise to 05. The warm lift on 09 does land.",
+    "fix": "Raise 03 and 04 into pewter (target L* 24 to 28) so 01 to 05 actually climbs, and leave 06 to 08 as the lowering stretch."
+   }
+  ],
+  "masterful_depth_frame": 1
+ },
+ "score_0_10": 7.0
+}

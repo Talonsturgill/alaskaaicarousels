@@ -1,0 +1,144 @@
+{
+ "run_date": "2026-11-14",
+ "carousel_no": 115,
+ "effort": "medium",
+ "date_note": "UTC date was 2026-11-15 at wake (06:04Z); Anchorage date 2026-11-14 reads CLEAR, used per run_guard NOTE.",
+ "social_preflight": {
+  "users": "ok",
+  "facebook_page": "2003130316607965 verified",
+  "linkedin_org": "urn:li:organization:117084989 verified",
+  "facebook_pin": "2003130316607965 match",
+  "linkedin_pin": "urn:li:organization:117084989 match",
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialized"
+ },
+ "revision_rounds": 4,
+ "phases": {
+  "wake": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/plan.md"
+   ]
+  },
+  "craft_refresh": {
+   "status": "done",
+   "artifacts": [],
+   "note": "1 search; nothing new beyond FIELD_NOTES, nothing written"
+  },
+  "research": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/scouts/",
+    "out/2026-11-14/merged_findings.md"
+   ],
+   "note": "6 scouts, about 146 searches, all beats thin; lead NOAA Draft 2027 ADP from Beat C"
+  },
+  "claims": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/claims.json"
+   ],
+   "note": "48 claims, 42 primary, claims_check PASS; fact-checker 5 WebFetch calls over 5 distinct URLs plus the primary PDF read from a pypdf extraction"
+  },
+  "docket": {
+   "status": "done",
+   "artifacts": [
+    "ledger/docket.json"
+   ],
+   "note": "8 items refreshed (worklist 6 plus 2 deferred, budget raised to 8); ask payload headroom 1,646 bytes (under 5,000); browser suites mobile_docket_map and docket_ask PASS; watch.json failed [] and HB259/SB250 statuses match"
+  },
+  "gas_watch": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/gaswatch_health.json",
+    "out/2026-11-14/cron_health.json",
+    "out/2026-11-14/cron_incidents.json"
+   ],
+   "note": "late_post diagnosed; dispatched gaswatch.yml run 632, Pages deployed, live audit PASS. Cron FAIL only on GitHub ghost run 612 (cancel 409), incident carried. Site sign-off PASS 179 pages 18 checks; gaswatch_pagecheck PASS"
+  },
+  "selection": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/selection.md"
+   ]
+  },
+  "directors_room": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/storyboard.md"
+   ],
+   "note": "3 treatments; dossier_check PASS 9 of 9"
+  },
+  "copy": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/caption.txt",
+    "out/2026-11-14/copy.json",
+    "out/2026-11-14/caption_report.json"
+   ],
+   "note": "caption room A (absurd detail/countdown) vs B (contradiction/Q and A); critic picked B with one fix"
+  },
+  "art_build": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/slides/",
+    "out/2026-11-14/render/"
+   ],
+   "note": "9 slides, qa PASS 0 fails 4 warns, bespoke median 0.230"
+  },
+  "pixel_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/critic/"
+   ],
+   "note": "2 rounds, 5 critics each; round 2 scores 5.8 to 7.2, all revise; repairs applied after each"
+  },
+  "flow_review": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/flow_review.json"
+   ],
+   "note": "revise, art predicted 6.5; round 3 applied its craft work order (05 near plane, 03/04 pewter lift, 04/06 lower thirds, 02 brushed field)"
+  },
+  "assemble": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/final/carousel.pdf",
+    "out/2026-11-14/final/contact_sheet.png"
+   ]
+  },
+  "scoring": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/score_report.json"
+   ],
+   "note": "round 3 8.08 art 6.5 under craft floor; one craft cycle (round 4) on 05,04,06,02,07 with pixel critics; re-score 8.23, art 7.0; ship_gate PASS"
+  },
+  "ship": {
+   "status": "done",
+   "artifacts": [
+    "runs/2026-11-14/",
+    "docs/"
+   ],
+   "note": "webp 12.6x, pdf shrunk, site 180 pages, docket alert sent 1, prune freed 1.14M, ledgers appended"
+  },
+  "upgrade": {
+   "status": "done",
+   "artifacts": [
+    "out/2026-11-14/automation_retro.md",
+    "knowledge/MACHINE_QUEUE.md"
+   ],
+   "note": "weekly pass not due (machine_due exit 1, last 2026-11-11); 1 item queued (ask payload ceiling blocks new docket items), render OOM repeat raised"
+  },
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social_feedback": [],
+ "phase_3_6": {
+  "site_signoff": "PASS, 179 pages, 18 checks, nothing to repair",
+  "gaswatch_live": "PASS (late post diagnosed; gaswatch.yml run 632 dispatched, Pages deployed, live audit re-run PASS)",
+  "gaswatch_pagecheck": "PASS",
+  "cron_health": "WARN, one UNRESOLVED external blocker: gaswatch.yml:completion, GitHub ghost run 612 stuck in progress and its cancel returns 409; incident filed as blocker github in cron_incidents.json, retried next run",
+  "site_fixes": "none"
+ }
+}

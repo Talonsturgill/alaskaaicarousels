@@ -426,7 +426,7 @@
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-07-08",
@@ -587,6 +587,10 @@
         {
           "date": "2026-11-10",
           "note": "A Federal Register search today for Alaska Air Force lease documents published since November 5th returned none, and no award for solicitation AFCEC-26-R-0006 has been announced. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "A Federal Register search today for Alaska Air Force lease documents published since November 8th returned none, and no award for solicitation AFCEC-26-R-0006 has been announced. Checked and unchanged."
         }
       ]
     },
@@ -4301,10 +4305,14 @@
         {
           "date": "2026-11-10",
           "note": "The commission's eLibrary record for P-15423, queried today, shows seven filings dated November 6th to 9th, all comments from individuals, six of them filed November 9th in opposition. No order or permit decision is listed. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "A Federal Register search today for P-15423 returns only the September 4th notice accepting the application. No order or permit decision has been published. Checked and unchanged."
         }
       ],
       "first_seen": "2026-08-21",
-      "last_updated": "2026-11-10"
+      "last_updated": "2026-11-14"
     },
     {
       "id": "anchorage-rtcc-surveillance-ordinance",
@@ -4654,7 +4662,7 @@
         }
       ],
       "first_seen": "2026-08-31",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-08-31",
@@ -4779,6 +4787,10 @@
         {
           "date": "2026-11-10",
           "note": "A Federal Register search today for documents citing WC Docket No. 26-173 published since October 20th found none about this docket. No order or further notice has been published. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "A Federal Register search today for documents citing WC Docket No. 26-173 published since November 8th found none. No order or further notice has been published. Checked and unchanged."
         }
       ]
     },
@@ -4890,7 +4902,7 @@
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-11-10",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-09-01",
@@ -4987,6 +4999,10 @@
         {
           "date": "2026-11-10",
           "note": "The Assembly's November 12th agenda, read today, carries no item on Resolution 2026-25 or the moratorium request. The state half still waits for the Legislature to convene on January 19th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "The borough's meeting calendar, read today, lists an Assembly work session with members of the Interior delegation on December 3rd. No meeting listing names Resolution 2026-25 or the moratorium. The state half still waits for the Legislature to convene on January 19th."
         }
       ]
     },
@@ -6304,7 +6320,7 @@
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-11-13",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-09-30",
@@ -6325,6 +6341,10 @@
         {
           "date": "2026-11-13",
           "note": "KFSK reported on November 11th that the Assembly voted 5 to 1 on November 2nd to advance the moratorium ordinance to a second reading on November 16th, where public feedback will be taken. As drafted it runs through September 2027 and blocks permits for data centers with uncontained cooling, power use above the allowed level, or generators in place of the Petersburg grid. An amendment to cover all data centers failed on a 3 to 3 tie. It needs three Assembly approvals to take effect."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "KFSK's coverage, read today, has nothing newer than its November 11th report. The ordinance is still set for a second reading with public feedback on November 16th. Checked and unchanged."
         }
       ]
     },
@@ -6356,7 +6376,7 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-11-08",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-10-05",
@@ -6393,6 +6413,10 @@
         {
           "date": "2026-11-08",
           "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant. The state's November 10th approval of the STAK lease is a separate private project tracked on its own. Checked and unchanged."
         }
       ]
     },
@@ -6553,7 +6577,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-13",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-10-28",
@@ -6590,6 +6614,10 @@
         {
           "date": "2026-11-13",
           "note": "AIDEA's meeting schedule, read today, lists no item on Northstar Fiber Development or Resolution G26-11 for the November 4th and 6th meetings, whose minutes are not yet posted. A meeting is now scheduled for November 19th with only its agenda posted, and the December 4th meeting lists nothing yet."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "AIDEA's meeting schedule, read today, still lists no item on Northstar Fiber Development for November. The November 19th meeting has only an agenda posted and the December 4th meeting lists nothing yet. Checked and unchanged."
         }
       ]
     },
@@ -6671,14 +6699,23 @@
           "url": "https://broadbandbreakfast.com/fcc-approves-gci-quintillion-submarine-cable-deal-to-strengthen-alaska-broadband/",
           "outlet": "Broadband Breakfast",
           "date": "2026-10-26"
+        },
+        {
+          "url": "https://broadbandbreakfast.com/gci-closing-quintillion-deal-very-soon/",
+          "outlet": "Broadband Breakfast",
+          "date": "2026-11-05"
         }
       ],
       "first_seen": "2026-10-31",
-      "last_updated": "2026-10-31",
+      "last_updated": "2026-11-14",
       "history": [
         {
           "date": "2026-10-31",
           "note": "Added. Read today against the FCC's order DA 26-1124, released October 20th, including its conditions in Appendix A. Broadband Breakfast reported GCI's statement on October 26th that the approval is an important step to completing the transaction, which has not yet closed."
+        },
+        {
+          "date": "2026-11-14",
+          "note": "Broadband Breakfast reported on November 5th that GCI's parent told its third quarter earnings call the purchase had not yet closed. No closing announcement was found today. The thirty day reconsideration window runs to November 19th."
         }
       ]
     },

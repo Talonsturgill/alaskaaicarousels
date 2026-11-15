@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-14/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8495137,
+  "pdf_mb": 8.5,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-14/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-14/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Who watches Alaska's fishing boats in 2027",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "8adc9edd27749707799b5e4f82b963f8a35981550cff8fd387dd31f7e1b9bc60",
+        "bytes": 6860183
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "074c5c8efbba1891fbbe022f3e0d113b43eb2b01754d0ac28234e0ab83a74caf",
+        "bytes": 6986066
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "8e593daa6e88193f4313defd063c3b3defe4111ad4f18ed2f03c9777e9ef856d",
+        "bytes": 7337156
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "6c8c0475f02336c005473fc734dcea748cfefe08d48994130570f2c717da4b7a",
+        "bytes": 6033605
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "8dbe5976d75cd639061e925833ec292d0480c400b575f61d051dc23bc3e5bd2b",
+        "bytes": 6524422
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "538a3530a48017b0456bcbae191668597f10ceffb2253813b2d0cbe9594a5e5d",
+        "bytes": 5605750
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "e8889a59c4c71274887a1904cb6dd6bd6721bb0b7781c894441c2e2f5c0c38bb",
+        "bytes": 6391075
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "8491a74c26d03269237c88af7e30d9040b75b71dd835ff2f164bc3e07ef589c2",
+        "bytes": 6339818
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "86c2e6d53e462ecd5294fa9779e7fe1ca3c9bae0a0721fc82e1ca28e8b838b6a",
+        "bytes": 6250476
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "abed1cec26ad466da83646dd831e034f624c8d01bd637ac3db70eead9670e378",
+        "bytes": 11076
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "a0cb01a01d55869913c53c57e2b03beebd155132e81d1288c79138ee693036d1",
+        "bytes": 11535
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "324b2fbab85a814e28558046cba71c5336935a3c5ed060d7f5d9e2b54f983c40",
+        "bytes": 8951
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "2f991eddd5ca6cf482f83d383dfd3d16ba53e2feabdb1e2d528905b4f3cf0230",
+        "bytes": 10529
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "d239ce87f7409c04c99ce23963bcd23a2968fdad4e07ad48582a54e57900c4c5",
+        "bytes": 15630
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "7b45825c6744a555f8c94a6f16f4d722ad42116e147c8a5564603b782a2c10e3",
+        "bytes": 10303
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "cf2ca8a26ec070bea060e7c9f981d17f8a95474bec7067f587fc51e01565d2db",
+        "bytes": 9662
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "038c8c27041486418fdefd84168429cfac7fae30a3727e6f689afa8fde8202fe",
+        "bytes": 9342
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "9f62b36b482f54b3914cbb2e818434ee68518226be9c571d02b4413df3470495",
+        "bytes": 8818
+      }
+    ]
+  }
+}
