@@ -8,8 +8,10 @@ without an editorial approval link. It supersedes older social-posting bans and 
 the email gates posting, including older phase documents. Preserve all existing release, rights,
 quality, merge, archive and Gmail draft checks. Never send email. No credentials or permissions
 are created by this update; missing authorized secure REST access is a reported social blocker.
-Only the three daily media-upload endpoints are writable. Do not use comment, DM, account
-management, feedback, edit or deletion endpoints. Other routines and unrelated external
+Only the three daily media-upload endpoints are writable. LinkedIn carousel website links
+belong in the native document `linkedin_first_comment` field, after publication, never in
+the post body. Read-only LinkedIn comment lookup may verify delivery. Do not use separate
+comment-writing, DM, account management, feedback, edit or deletion endpoints. Other routines and unrelated external
 communications retain their existing restrictions.
 
 

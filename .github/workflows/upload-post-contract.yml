@@ -1,0 +1,29 @@
+name: Upload-Post contract
+on:
+  pull_request:
+    paths:
+      - 'scripts/upload_post*.py'
+      - 'prompts/routine_instructions.md'
+      - 'CLAUDE.md'
+      - '.github/workflows/upload-post-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/upload_post*.py'
+      - 'prompts/routine_instructions.md'
+      - 'CLAUDE.md'
+      - '.github/workflows/upload-post-contract.yml'
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Outbound media and native first-comment contract (no provider calls)
+        run: python3 scripts/upload_post_rest_test.py
+      - name: Durable ownership, contention and interrupted delivery (local Git only)
+        run: python3 scripts/upload_post_state_test.py

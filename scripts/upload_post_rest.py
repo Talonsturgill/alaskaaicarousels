@@ -7,6 +7,7 @@ The director still owns release gates, account verification, the edition lease,
 provider-history reconciliation and verification of each actual published post.
 Social ownership uses a separate durable Git intent, never the production lease.
 Official contract: https://docs.upload-post.com/api/upload-video (2026-11-10).
+Document comments: https://docs.upload-post.com/api/upload-document/ (2026-11-15).
 """
 import argparse
 import hashlib
@@ -31,6 +32,7 @@ ROUTES = {
     'history': ('/uploadposts/history', {'page', 'limit'}),
     'status': ('/uploadposts/status', {'request_id', 'job_id'}),
     'media': ('/uploadposts/media', {'user', 'platform', 'page_urn', 'limit', 'cursor'}),
+    'linkedin-comments': ('/uploadposts/comments', {'user', 'post_id'}),
 }
 BRANDS = {
     'Talonsturgill/alaska-ai-weekly': ('alaska_ai', '117084989', 'video'),
@@ -56,7 +58,8 @@ OPTIONS = {
         'auto_add_music', 'is_ai_generated', 'brand_content_toggle',
         'brand_organic_toggle', 'disable_comment',
     },
-    'document': {'description', 'target_linkedin_page_id', 'visibility'},
+    'document': {'description', 'target_linkedin_page_id', 'visibility',
+                 'first_comment', 'linkedin_first_comment'},
 }
 ENDPOINTS = {'video': ('/upload', 'video'), 'photos': ('/upload_photos', 'photos[]'),
              'document': ('/upload_document', 'document')}
@@ -118,6 +121,23 @@ def build(manifest):
     options = dict(manifest.get('options', {}))
     require(options.keys() <= OPTIONS[kind], 'unsupported REST option')
     require(all(isinstance(v, (str, bool, int)) for v in options.values()), 'options must be scalar values')
+    if kind == 'document':
+        for key in ('first_comment', 'linkedin_first_comment'):
+            if key in options:
+                require(isinstance(options[key], str) and options[key].strip(),
+                        key + ' must be nonempty text')
+        if repo == 'Talonsturgill/alaskaaicarousels':
+            # Validate the actual outbound fields, including the media title.
+            # Never silently rewrite released copy, or claim/send an unsafe manifest.
+            description = options.get('description', '')
+            require(isinstance(description, str) and description.strip(),
+                    'LinkedIn carousel needs the released caption in description')
+            for text in (manifest['title'], description):
+                require(not re.search(r'\balaskaaihq\.com\b', text, re.I),
+                        'LinkedIn website link belongs in the native first comment, not title/description')
+            comment = options.get('linkedin_first_comment', options.get('first_comment', ''))
+            require(bool(re.search(r'https://(?:www\.)?alaskaaihq\.com(?=[/?#\s]|$)', comment, re.I)),
+                    'LinkedIn effective first comment must include https://alaskaaihq.com/')
 
     def fixed(key, value):
         require(key not in options or options[key] == value, 'conflicting placement/account option: ' + key)
@@ -224,6 +244,11 @@ def read(route, query, send=transport):
         require(bool(query.get('user')) and bool(query.get('platform')), 'media user and platform required')
         if query['platform'] == 'linkedin':
             require(query.get('page_urn') in {'117084989', '78748279'}, 'bound LinkedIn organization required')
+    if route == 'linkedin-comments':
+        require(query.get('user') == 'alaska_ai', 'bound Alaska profile required')
+        require(bool(re.fullmatch(r'urn:li:(?:activity|share|ugcPost):[0-9]+', query.get('post_id', ''))),
+                'published LinkedIn post URN required')
+        query = {**query, 'platform': 'linkedin'}
     if query:
         path += '?' + urlencode(query)
     status, response = send(path)
@@ -281,7 +306,19 @@ def compact_receipt(info):
         elif isinstance(value, list):
             for item in value:
                 visit(item)
-    visit(info.get('response'))
+    response = info.get('response')
+    if info.get('endpoint') == '/upload_document':
+        # The documented document result names these post_id/url. A nested
+        # first-comment result must never be mistaken for the parent post.
+        platform_result = response if isinstance(response, dict) else {}
+        results = platform_result.get('results')
+        if isinstance(results, dict):
+            platform_result = results.get('linkedin', {})
+        if isinstance(platform_result, dict):
+            visit({'platform_post_id': platform_result.get('post_id', platform_result.get('platform_post_id')),
+                   'post_url': platform_result.get('url', platform_result.get('post_url'))})
+    else:
+        visit(response)
     return result
 
 
@@ -293,6 +330,12 @@ def upload(manifest, receipt_dir, dry_run=False, send=transport, state_store=Non
     info = {'identity': identity, 'fingerprint': fingerprint, 'endpoint': path,
             'receipt': str(receipt), 'state': 'UNKNOWN',
             'started_at': datetime.now(timezone.utc).isoformat()}
+    comment = fields.get('linkedin_first_comment', fields.get('first_comment'))
+    if isinstance(comment, str) and comment.strip():
+        # Submission is not comment delivery. Keep this UNKNOWN even on HTTP
+        # 200 / overall success; the director must read back the actual comment.
+        info['first_comment'] = {'state': 'UNKNOWN',
+                                 'text_sha256': hashlib.sha256(comment.encode()).hexdigest()}
     if dry_run:
         return {**info, 'state': 'DRY_RUN', 'fields': fields, 'media': media}
     require(receipt.parent.is_dir(), 'existing edition scratch directory required')

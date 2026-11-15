@@ -21,12 +21,16 @@ SECOND_SHA = rest.file_hash(SECOND)
 
 def manifest(platform='facebook', kind='video', placement='feed', repo='TexasAIDispatch'):
     alaska = repo.startswith('alaska')
-    return {'repository': 'Talonsturgill/' + repo, 'edition_id': '2026-11-10',
+    result = {'repository': 'Talonsturgill/' + repo, 'edition_id': '2026-11-10',
             'user': 'alaska_ai' if alaska else 'default', 'platform': platform,
             'placement': placement, 'segment_index': 0, 'media_type': kind,
             'media': [{'path': str(MEDIA), 'sha256': SHA}],
             'title': 'Released daily edition',
             'options': {'facebook_page_id': '2003130316607965' if alaska else '113073681274871'} if platform == 'facebook' else {}}
+    if repo == 'alaskaaicarousels' and platform == 'linkedin' and kind == 'document':
+        result['options'] = {'description': 'The released caption.\n\n#AlaskaAI #AlaskaEnergy #AlaskaPolicy',
+                             'linkedin_first_comment': 'Track the decisions at https://alaskaaihq.com/'}
+    return result
 
 
 class MemoryState:
@@ -146,8 +150,134 @@ class RestTests(unittest.TestCase):
         path, fields, _, _ = rest.build(m)
         self.assertEqual(path, '/upload_document')
         self.assertNotIn('async_upload', fields)
-        m['options']['first_comment'] = 'test'
+        m['options']['async_upload'] = True
         with self.assertRaises(ValueError): rest.build(m)
+
+    def test_document_native_first_comment_and_override_are_supported(self):
+        m = manifest('linkedin', 'document', repo='alaskaaicarousels')
+        m['options']['first_comment'] = 'Source https://example.org/primary'
+        path, fields, _, _ = rest.build(m)
+        self.assertEqual(path, '/upload_document')
+        self.assertEqual(fields['description'], m['options']['description'])
+        self.assertEqual(fields['first_comment'], m['options']['first_comment'])
+        self.assertEqual(fields['linkedin_first_comment'], m['options']['linkedin_first_comment'])
+        self.assertNotIn('alaskaaihq.com', fields['description'].lower())
+        self.assertNotIn('async_upload', fields)
+
+    def test_document_fallback_comment_must_be_effective(self):
+        m = manifest('linkedin', 'document', repo='alaskaaicarousels')
+        m['options']['first_comment'] = m['options'].pop('linkedin_first_comment')
+        self.assertIn('https://alaskaaihq.com/', rest.build(m)[1]['first_comment'])
+        # A generic fallback with the link does not save an override without it.
+        m['options']['linkedin_first_comment'] = 'No website here'
+        with self.assertRaises(ValueError): rest.build(m)
+
+    def test_unsafe_linkedin_copy_never_claims_or_posts(self):
+        base = manifest('linkedin', 'document', repo='alaskaaicarousels')
+        variants = []
+        for website in ('https://alaskaaihq.com/', 'AlaskaAIHQ.com', 'www.ALASKAAIHQ.com/docket/',
+                        '[website](https://alaskaaihq.com/?from=linkedin)'):
+            for field in ('title', 'description'):
+                m = copy.deepcopy(base)
+                target = m if field == 'title' else m['options']
+                target[field] += '\nRead more at ' + website
+                variants.append(m)
+        for comment in ('', True, 123, 'https://alaskaaihq.com.evil.test/',
+                        'https://alaskaaihq.com@evil.test/', 'Sources without a website'):
+            m = copy.deepcopy(base); m['options']['linkedin_first_comment'] = comment
+            variants.append(m)
+        m = copy.deepcopy(base); del m['options']['linkedin_first_comment']; variants.append(m)
+        m = copy.deepcopy(base); del m['options']['description']; variants.append(m)
+        for m in variants:
+            with self.subTest(m=m), tempfile.TemporaryDirectory() as d:
+                with self.assertRaises(ValueError):
+                    rest.upload(m, d, send=lambda *a: self.fail('unsafe POST'))
+                self.assertEqual(self.remote.entries, {})
+                self.assertEqual(list(Path(d).iterdir()), [])
+
+    def test_native_comment_is_one_literal_form_field_with_parent_upload(self):
+        m = manifest('linkedin', 'document', repo='alaskaaicarousels')
+        m['options']['linkedin_first_comment'] = '@literal text\nRead https://alaskaaihq.com/'
+        response = {'success': True, 'request_id': 'r-document', 'results': {'linkedin': {
+            'success': True, 'post_id': 'urn:li:activity:123',
+            'url': 'https://www.linkedin.com/feed/update/urn:li:activity:123/'}}}
+        completed = subprocess.CompletedProcess([], 0, json.dumps(response) + '\n200', '')
+        with tempfile.TemporaryDirectory() as d, patch.object(rest.subprocess, 'run', return_value=completed) as run:
+            result = rest.upload(m, d)
+        run.assert_called_once()
+        args = run.call_args.args[0]
+        self.assertEqual(args[-1], rest.BASE + '/upload_document')
+        self.assertEqual(args[args.index('--request') + 1], 'POST')
+        self.assertIn('platform[]=linkedin', args)
+        self.assertIn('target_linkedin_page_id=urn:li:organization:117084989', args)
+        self.assertIn('description=' + m['options']['description'], args)
+        self.assertIn('linkedin_first_comment=' + m['options']['linkedin_first_comment'], args)
+        self.assertEqual(sum(a.startswith('linkedin_first_comment=') for a in args), 1)
+        self.assertTrue(args[args.index('--form') + 1].startswith('document=@'))
+        self.assertEqual(result['state'], 'ACCEPTED')
+        self.assertEqual(result['first_comment']['state'], 'UNKNOWN')
+        self.assertEqual(result['first_comment']['text_sha256'],
+                         hashlib.sha256(m['options']['linkedin_first_comment'].encode()).hexdigest())
+        self.assertEqual(next(iter(self.remote.results.values()))['platform_post_id'], 'urn:li:activity:123')
+
+    def test_linkedin_comment_failure_or_unknown_never_reposts_after_restart(self):
+        for response in ({'success': True, 'request_id': 'r1', 'results': {'linkedin': {'success': True}}},
+                         {'success': True, 'request_id': 'r1', 'warnings': ['First comment failed']},
+                         {'success': False, 'request_id': 'r1', 'error': 'Comment outcome uncertain'}):
+            self.remote = MemoryState()
+            with tempfile.TemporaryDirectory() as first, tempfile.TemporaryDirectory() as resumed:
+                m = manifest('linkedin', 'document', repo='alaskaaicarousels')
+                calls = []
+                def send(*args):
+                    calls.append(args)
+                    return 200, response
+                result = rest.upload(m, first, send=send, state_store=self.remote)
+                self.assertEqual(result['first_comment']['state'], 'UNKNOWN')
+                self.assertEqual(result['response'], response)
+                before = Path(result['receipt']).read_bytes()
+                m['options']['linkedin_first_comment'] += ' Changed copy.'
+                for directory in (first, resumed):
+                    with self.assertRaises(ValueError):
+                        rest.upload(m, directory, send=send, state_store=self.remote)
+                self.assertEqual(len(calls), 1)
+                self.assertEqual(Path(result['receipt']).read_bytes(), before)
+
+    def test_other_platforms_keep_website_caption_and_comment_behavior(self):
+        for platform in ('facebook', 'instagram', 'tiktok'):
+            m = manifest(platform, 'photos', repo='alaskaaicarousels')
+            m['title'] += '\nhttps://alaskaaihq.com/'
+            m['options']['first_comment'] = 'Original comment'
+            fields = rest.build(m)[1]
+            self.assertEqual(fields['title'], m['title'])
+            self.assertEqual(fields['first_comment'], 'Original comment')
+            self.assertNotIn('linkedin_first_comment', fields)
+
+    def test_linkedin_comment_lookup_is_read_only_and_uses_post_urn(self):
+        calls = []
+        response = {'comments': [{'comment_id': '456', 'author': 'urn:li:organization:117084989',
+                                  'message': {'text': 'Read https://alaskaaihq.com/'}}]}
+        query = {'user': 'alaska_ai', 'post_id': 'urn:li:activity:123'}
+        code, got = rest.read('linkedin-comments', query,
+                              send=lambda *args: (calls.append(args) or (200, response)))
+        self.assertEqual(code, 200)
+        self.assertEqual(got, response)
+        self.assertEqual(calls, [('/uploadposts/comments?user=alaska_ai&post_id=urn%3Ali%3Aactivity%3A123&platform=linkedin',)])
+        self.assertEqual(query, {'user': 'alaska_ai', 'post_id': 'urn:li:activity:123'})
+        for query in ({'user': 'default', 'post_id': 'urn:li:activity:123'},
+                      {'user': 'alaska_ai', 'post_id': '123'},
+                      {'user': 'alaska_ai', 'post_id': 'urn:li:comment:123'},
+                      {'user': 'alaska_ai', 'post_id': 'urn:li:activity:123', 'message': 'write'}):
+            with self.assertRaises(ValueError):
+                rest.read('linkedin-comments', query, send=lambda *a: self.fail('unexpected read'))
+
+    def test_document_receipt_keeps_parent_reference_not_nested_comment(self):
+        parent_url = 'https://www.linkedin.com/feed/update/urn:li:activity:123/'
+        result = rest.compact_receipt({'state': 'ACCEPTED', 'endpoint': '/upload_document',
+            'response': {'success': True, 'results': {'linkedin': {
+                'first_comment': {'platform_post_id': 'comment-456', 'post_url': parent_url + '?comment=456'},
+                'post_id': 'urn:li:activity:123', 'url': parent_url}}}})
+        self.assertEqual(result, {'state': 'ACCEPTED', 'platform_post_id': 'urn:li:activity:123',
+                                 'post_url': parent_url})
 
     def test_tiktok_public_not_draft(self):
         m = manifest('tiktok')
