@@ -35,7 +35,8 @@ A null pin is allowed because the helper supplies the explicit bound Page. Never
 delivery. Report the exact mismatch.
 
 The publisher is the official REST API at https://api.upload-post.com/api, documented at
-https://docs.upload-post.com/api/upload-video and https://docs.upload-post.com/api/upload-photo.
+https://docs.upload-post.com/api/upload-video, https://docs.upload-post.com/api/upload-photo
+and https://docs.upload-post.com/api/upload-document/.
 Use the owner's already configured Claude Network secrets proxy for THIS cloud environment.
 It injects `Authorization: Apikey` securely for api.upload-post.com. The helper never reads or
 accepts an API key, and sends no Authorization header, including no dummy header that could
@@ -73,15 +74,28 @@ the connected account supports that format. Convert WebP to supported JPEG/PNG i
 checking identical dimensions, full content and legibility; do not change the released artwork.
 YouTube does not accept an image carousel through this flow: mark it NOT_APPLICABLE, not
 published. Do not invent a slideshow video merely to populate a platform. Never omit slides
-silently to fit a platform cap; report the unsupported format instead. This helper intentionally omits document first-comment fields: put the CTA and any required external attribution in `description`.
-Do not invoke a separate comment-writing tool as a workaround.
+silently to fit a platform cap; report the unsupported format instead.
+
+For LinkedIn, keep the released document title in `title` and the released caption in
+`options.description`, without the AlaskaAIHQ.com website link in either field. Put one short
+website CTA containing https://alaskaaihq.com/ in `options.linkedin_first_comment`. Upload-Post
+natively creates that comment after publishing the document; there is no separate comment POST.
+Document uploads support both `first_comment` and `linkedin_first_comment`; the LinkedIn override
+takes priority, so the EFFECTIVE comment must contain the website link. Include required external
+attribution there when its license requires it, preserving that attribution. Do not automatically
+copy the entire production source block. Never put the website link back into the description as
+a fallback if commenting is unavailable. The helper rejects a missing website comment or a website
+in the title/description BEFORE claiming or uploading. Correct an unsubmitted manifest and dry-run
+again; preserve every existing claim/receipt. Do not invoke a separate comment-writing tool.
 
 Use a concise final caption, without duplicating source links or music credits already present
 in the released video. Do not copy the production source/credit block into the caption or first
 comment by default. Verify the actual license: include an external credit/link only when its
 terms require that placement or the released media lacks required attribution. Keep source and
 license records in the existing production/archive evidence. For carousels, preserve attribution
-required by their media and licenses. This owner update controls over older caption templates. Add a short factual CTA to https://alaskaaihq.com/ in the
+required by their media and licenses. This owner update controls over older caption templates.
+On LinkedIn the website CTA goes ONLY in the native first comment as specified above. On the
+other platforms add a short factual CTA to https://alaskaaihq.com/ in the
 platform caption/description or supported first comment, respecting that platform's length
 limit and the existing prose checks. Do not add claims, promises or endorsements. A bare URL in
 an Instagram/TikTok caption is not a clickable link: do not claim a link sticker, link-in-bio
@@ -177,6 +191,11 @@ The remote claim binds the logical destination, not the caption/media fingerprin
 copy cannot make a second attempt safe. The helper persists returned request IDs and minimal
 public references with metadata-only CAS updates. Retrying a metadata update never resubmits
 the POST. Preserve the full provider response in the local receipt as supplemental evidence.
+The native first comment is part of this same upload and fingerprint, not another delivery.
+Comment failure, warnings or missing confirmation NEVER permit another upload, a second comment
+request, a new edition identity, or moving the link into a replacement post body. Preserve the
+published parent post and reconcile it by its original request/post ID. Existing published
+editions and historical receipts are unchanged by this website-placement update.
 Any existing receipt blocks another upload too. Do not delete or rename local receipts or remote
 claims to retry. Local receipts alone are not durable dedupe. The separate remote state survives
 a lost container. Read the original request's status and history instead of creating a new claim.
@@ -206,6 +225,22 @@ not on a new schedule. Distinguish accepted/scheduled from published. Use bounde
 and honor rate limits. An HTTP success, accepted upload, queue entry or overall success flag is
 not proof that every destination published. Inspect each platform's terminal result and retrieve
 the actual platform post ID/permalink or account media entry. Preserve failures and warnings.
+
+Verify the LinkedIn website comment separately after the parent post exists. Run
+`python3 scripts/upload_post_rest.py read linkedin-comments --query user=alaska_ai --query post_id=<published-post-URN>`
+(the supported read-only `GET /api/uploadposts/comments`, with `platform=linkedin`). Match the
+actual comment text to the manifest's effective first comment, its author to
+`urn:li:organization:117084989`, and retain its comment ID/URN plus the parent post ID. LinkedIn
+returns platform-native fields, including `message.text`/`author` or `actor`; inspect the actual
+response. A matching website link written by someone else is not proof of brand comment delivery.
+The listing can be cached for 60 seconds and LinkedIn's top-level list is only its first page;
+an absent comment is UNKNOWN, not proof of failure or permission to recreate it. Preserve explicit
+comment errors/warnings as FAILED or BLOCKED evidence. HTTP 200, an overall `success`, a published
+post, or the helper's `first_comment.state=UNKNOWN` never proves comment delivery. That receipt
+field records an unverified submission and its text hash; it does not become PUBLISHED by inference.
+Use bounded read-only reconciliation and report a comment that cannot be verified as UNKNOWN.
+Keep the post status and comment status separate in the original Gmail draft and final report.
+Social delivery is incomplete until both the LinkedIn post and its website comment are verified.
 
 In the existing Gmail draft and final report list each platform and placement separately:
 PUBLISHED with verified post ID/link, FAILED with the provider error, BLOCKED with the missing
