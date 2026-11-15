@@ -1,0 +1,177 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "Copy did not change this cycle. I re-read caption.txt and transcribed the five re-rendered frames (02, 04, 05, 06, 07). The only dash characters are ASCII hyphen-minus, in 'fixed-gear' (04 and 06 body, caption). No U+2013 or U+2014 anywhere."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "There are no emoji in the caption or on any render. The gold Polaris is an SVG fixture."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Copy is unchanged from round 3, which verified the claim_ids C01 to C47 against claims.json. The art changes add no new figures. The 04 asserts still hold (118.2 vs 118.194 px for $732K), and so do the 06 asserts (294.69 and 87.514 px for 31.35 and 9.31 percent)."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed the re-rendered frames myself. 05: 'UNDER 40 FEET', 'Nobody is chosen.', 'Boats under 40 feet and jig boats have no chance of carrying an observer or a camera in 2027. The draft expects 1,427 such trips.' 04: 'TRAWL CAMERAS $732K', 'ABOUT $4.72M LEFT', '$0', '$5.45M', 'ONE CAMERA BOAT'S HARDWARE, $6,002.96, THIS WIDE'. 06: 'BSAI 31.35%' and 'GULF 9.31%'. 07: all ten rows, from 'OBSERVER, FIXED GEAR, BSAI 31.35% 79 OF 253' through 'NOBODY, UNDER 40 FT OR JIG 0% 0 OF 1,427', plus the footnote. 02: headline and body. All match copy.json."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "machine_qa has 0 fails. The 01 wrap drift (4 lines where 3 were authored) clips nothing. The 06 boards bleed off the right edge on purpose, and no text is cut. On 05 the new mount sits well clear of the body and footer."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Headlines are #F4F8FF on dark or pewter grounds. The worst case is 05's body over the sky band at y 450 to 700 (display), where the ground is still dark pewter (about L* 30) and reads cleanly. The 04 label 'ABOUT $4.72M LEFT' is dark ink on a light slab."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides: 9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict is WARN with 0 fails and 4 warns: wrap drift on 01, and contact shadows of dL 4.7 on 02, 7.0 on 05 and 6.0 on 08. assemble_report.json shows pdf_mode 'vector', 8.5 MB, 9 slides, titled 'Who watches Alaska's fishing boats in 2027'."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "Unchanged from round 3: dedupe found only soft overlap with No.94 (jaccard 0.016, 0 shared entities). No fisheries-monitoring topic falls in the 30-day window."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "This deck's 'field kit, on assignment' differs from the last 4 heroes: sand table (11-10), light pillars (11-11), instrument niche (11-12) and lidar lot (11-13). The machine_qa reuse census records 9 entries and no helper or function over the limit."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_report is PASS (74 phrases, 58 fields). I read again for gap, matters, pattern and cannot myself and found none. No copy changed."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "There are exactly 3 hashtags: #AlaskaFisheries #ElectronicMonitoring #NOAAFisheries. The caption body has no URL."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No lorem or TODO text appears. The greeked bars on 02's drive label are declared decoration. The cut, taped cable on 05's empty mount is an intentional story element. Housekeeping only: the round 3 note about the drafting aside in storyboard 05 C.9 still applies to internal text that doesn't ship."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "01 did not change. It has 11 words, huge Fraunces type, a named tension and a single PBR dome. It has no number or stake. The dome on a pole still reads as street CCTV, because the boat behind it is an unreadable blur. The 4-line wrap is slightly ragged."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "This cycle changed art only, so the junctions are unchanged. 01 to 02, 05 to 06 and 08 to 09 are strong. 02 to 03, 03 to 04 and 04 to 05 are weak, and 07 to 08 has no pull. The 06 to 07 edge tease still doesn't complete: 06's oblique boards bleed off the right edge, and 07's rows are short, centred, top-down bars at x 770 to 1158 (display). 03 and 04 could still swap."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7,
+   "weight": 0.16,
+   "notes": "Real gains. 05's gallows is gone, and the empty mount reads at once as a camera mount with no camera: a flanged dome plate with bolt holes, a clamp collar, a base flange, and a cut cable with an orange taped end. The deck planks now have streaks along the grain. 06's lower band now carries a lit steel pool, and its boards sit larger and lower. 04's slab has a deeper front face and a feathered reflection. I can't find the old streak seam on 02's lid near x 750 (display). What still holds the score down: 05 is still clean vector illustration among PBR frames (01, 02, 09). Its ridges are flat silhouettes, the deck splits into two disagreeing planes with a dark strip and a dead black wedge at lower left, and the dark diagonal at lower right (about x 1300 to 1600, y 1600 to 1800 display) reads as a smear disconnected from the mount, which stands on the rail above it. 04, 06 and 07 still read as UI progress bars: flat white stock, flat colour fills, no tooth or bevel highlight. 06's orange top-face fill is an inset parallelogram that stops short of the front edge, and its head stops are two flat-shaded planes. 02's bumpers and body are still near-flat black. 08's tag and 03's foam remain the best 2D craft. The deck is a 7: strong in places, with three frames leaning on a default."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Up half a point. 05's empty mount with a taped-off cable is now a literal, readable anchor for 'nobody is chosen' and says 'boat with no camera' without the text. The encodings are exact and asserted: the 04 block at $732K of $5.45M, the gold $6,002.96 hairline, the 06 fills at 31.35 and 9.31, and ten bars on 07. 04, 06 and 07 still read as generic charts, not fisheries measuring boards, so the art in the middle third could belong to a cousin story."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 7.5,
+   "weight": 0.12,
+   "notes": "Unchanged. The copy names BSAI, the Gulf, under 40 ft and jig boats, the North Pacific Council in Anchorage with dates, and 1,427 unwatched trips. Visually, only 05's coastal ridgeline and boat rail say Alaska. The dome, drive and boards could be anywhere."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Unchanged. Every content slide adds a verified specific, and bodies fall within 25 to 50 words. 06's counts repeat on 07, and 02's 'prices' slightly overstates C36."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "Unchanged. The hero, palette, type pairing and hook archetype are new. The bar-board subsystem on 04, 06 and 07 is house-familiar."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8,
+   "weight": 0.07,
+   "notes": "Body is 34 px. Counters are on every frame, safe zones hold, and the PDF is vector, 8.5 MB, with a title. 07's ten rows of mono labels and counts are the squeaker at 432 px but still read on the contact sheet."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "Unchanged. The hook is 128 characters and the caption 899. The Q and A voice takes a position, there is a deck-summary line, and the close is a real priced question. The hook is loose for this draft on trawl hardware, and 'The slides show...' is functional."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "The caption, 3 hashtags, first-comment sources, document title, vector PDF, 9 thumbs and contact sheet are all present. The Gmail draft and the image and PDF URLs that must resolve are still unverifiable until after the merge."
+  }
+ ],
+ "calculation": "(7x0.14)+(7x0.14)+(7x0.16)+(7.5x0.14)+(7.5x0.12)+(8x0.10)+(8x0.08)+(8x0.07)+(8x0.05)+(8x0.10) = 0.98+0.98+1.12+1.05+0.90+0.80+0.64+0.56+0.40+0.80 = 8.23",
+ "weighted_total": 8.23,
+ "threshold": 7.7,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Turn the 04, 06 and 07 boards from flat white progress bars into modelled HDPE slabs, with a lit top arris, a toothed or scored surface, a depth-graded front face and fills that wrap the slab to its front edge, and start 07's rows in 06's cabinet oblique at the left edge so the edge tease completes.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "This is still the predicted bail point, and the board still reads as a UI progress bar: flat white stock, a flat blue rectangle, uniform tick marks. The new front face is a grey gradient strip, and the feathered reflection is faint, so the slab has no material identity (no HDPE tooth, no bevel highlight).",
+   "fix": "Model the slab: a bright lit top arris, fine scored tooth on the top face, a front face that darkens with depth and carries the blue fill around the edge, and a sharper wet-steel reflection of the slab directly beneath it."
+  },
+  {
+   "slide": 6,
+   "problem": "The boards are larger and lower, and the steel pool now fills the lower band, but they remain flat-fill slabs. The orange top-face fill is an inset parallelogram that stops about 30 px (display) short of the front edge, so it floats like a decal. The head stops are two flat-shaded planes with no arris or cast.",
+   "fix": "Run the top fill to the front edge so it meets the front-face fill on one depth line, give the head stops a lit bevel, a lee face and a cast onto the board, and add a surface tooth to the white stock."
+  },
+  {
+   "slide": 5,
+   "problem": "The mount now reads correctly, but the frame is still clean vector illustration next to the PBR frames. The ridges are flat silhouettes. The deck breaks into two planes (a dark strip under the rail, then a lower planked deck) that don't agree. A dead black wedge fills the lower left, and the dark diagonal at lower right reads as a smear disconnected from the mount standing on the rail above.",
+   "fix": "Unify the near plane into one rail and deck surface on a single vanishing direction, ground the mount's cast shadow on the rail cap it actually stands on (delete the floating diagonal), and add atmospheric haze steps between ridge layers so they stop reading as cut paper."
+  },
+  {
+   "slide": 7,
+   "problem": "Adding front faces didn't change the read. These are ten short, centred UI bars on black, identical in drawing to 04 and 06, and the cut board from 06 never arrives.",
+   "fix": "Draw the rows in 06's cabinet oblique, starting at the left edge with the same slab thickness and tick rhythm, so the first row visibly continues the board cut off at 06's right edge."
+  },
+  {
+   "slide": 3,
+   "problem": "Not touched this cycle. The camera pocket in the foam still reads as a flat dark decal: one even floor value, with no lee wall and no AO falloff.",
+   "fix": "Shade the recess with a lit far wall, a dark near wall casting into the floor, and AO fading from the walls, with darker open-cell texture continuing on the floor."
+  }
+ ],
+ "editor_notes_for_email": "This is round 4 of 5. It scored 8.23 against the round 4 threshold of 7.7, so the total clears and it ships. Artwork craft rose from 6.5 to 7.0 but is still under the 8.5 CRAFT FLOOR. The one owed craft cycle has now run, and under ship_gate it is never more than one cycle and never a reason not to ship, so flag the art shortfall in the email rather than looping. The CRAFT FLOOR cycle worked: 05's gallows silhouette is gone and the frame now reads as an empty camera mount with its cable cut and taped. That resolves round 3's note (3). Content notes still stand: (1) The caption hook says camera hardware moves into the 2027 budget. In this draft only the fixed-gear camera cost includes equipment, and trawl equipment moves over in the Final ADP. All rates and the $5.45M are preliminary. (2) Slide 02's 'prices' describes NMFS's average-cost method (C36), not a contract price. (3) The AI project has no named lead or funder, and nothing ties it to ALFA's FishVue. (4) The cron_health WARN for the gaswatch.yml:completion external blocker must be named in the draft and completion report. (5) The 01 four-line wrap is cosmetic. Files: /home/user/alaskaaicarousels/out/2026-11-14/render/slide-04.png, /home/user/alaskaaicarousels/out/2026-11-14/render/slide-06.png, /home/user/alaskaaicarousels/out/2026-11-14/render/slide-05.png, /home/user/alaskaaicarousels/out/2026-11-14/render/slide-07.png, /home/user/alaskaaicarousels/out/2026-11-14/render/slide-03.png, /home/user/alaskaaicarousels/out/2026-11-14/final/contact_sheet.png.",
+ "revision_rounds": 4,
+ "craft_cycle": {
+  "frames": [
+   5,
+   4,
+   6,
+   2,
+   7
+  ],
+  "art_before": 6.5,
+  "art_after": 7.0
+ }
+}

@@ -1,0 +1,19 @@
+{
+  "chars": 899,
+  "hook": "In 2027 camera hardware moves into Alaska's fisheries monitoring budget while the AI that could review the video waits on staff.",
+  "hook_len": 128,
+  "commas": 6,
+  "comma_per_100": 0.71,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaFisheries",
+    "#ElectronicMonitoring",
+    "#NOAAFisheries"
+  ],
+  "deck_summary": "The slides show the budget, draft odds for all ten strata and the AI line as printed.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 58
+}

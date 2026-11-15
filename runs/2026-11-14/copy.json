@@ -1,0 +1,208 @@
+{
+ "document_title": "Who watches Alaska's fishing boats in 2027",
+ "post_copy": "In 2027 camera hardware moves into Alaska's fisheries monitoring budget while the AI that could review the video waits on staff.\n\nWho pays for the camera? Congress has, since 2023. That money is expected to run out this year. The draft puts hardware at $6,002.96 a year per fixed-gear camera boat, inside a preliminary $5.45M budget.\n\nWill your trip get picked? In the draft an observer rides 31.35 percent of Bering Sea and Aleutian fixed-gear trips and 9.31 percent in the Gulf. Under 40 feet, nobody is chosen.\n\nWho watches your footage? A review provider, priced per hard drive reviewed. NMFS lists the AI project for 2027 \"pending availability of staff resources.\"\n\nThe slides show the budget, draft odds for all ten strata and the AI line as printed.\n\nHow much of that $5.45M should reach the AI review line before more cameras go aboard?\n\n#AlaskaFisheries #ElectronicMonitoring #NOAAFisheries\n",
+ "hashtags": [
+  "#AlaskaFisheries",
+  "#ElectronicMonitoring",
+  "#NOAAFisheries"
+ ],
+ "deck_summary_line": "The slides show the budget, draft odds for all ten strata and the AI line as printed.",
+ "caption_meta": {
+  "opening_move": "CONTRADICTION",
+  "structure": "Q AND A",
+  "closing_move": "PRICE (how much of the preliminary $5.45M should reach the AI review line before more cameras go aboard)"
+ },
+ "first_comment": "Sources, primary first\n\nNOAA Fisheries Alaska Regional Office, Draft 2027 Annual Deployment Plan for Observers and Electronic Monitoring in the Groundfish and Halibut Fisheries off Alaska, the resource page (posted 2026-11-06) https://www.fisheries.noaa.gov/resource/document/draft-2027-annual-deployment-plan-observers-and-electronic-monitoring-groundfish\nNOAA Fisheries (AFSC and Alaska Regional Office), Draft 2027 Annual Deployment Plan, the full PDF with the $5.45M preliminary budget, the Table 4 and Table B-3 selection rates, the $6,002.96 equipment estimate and the AI project listed pending staff (cover dated September 2026, posted 2026-11-06) https://www.fisheries.noaa.gov/s3/2026-11/draft-2027-adp-akro.pdf\nNorth Pacific Fishery Management Council, Future Council Meetings, November 30th through December 9th, 2026 in Anchorage (checked 2026-11-14) https://www.npfmc.org/future-council-meetings/\n\nFish in one of these strata, or know who would staff the AI review work? Add context below.\nEvery tracked Alaska AI decision, with its next date, is at https://alaskaaihq.com/",
+ "slides": [
+  {
+   "slide": 1,
+   "kicker": "DRAFT 2027 PLAN, POSTED NOVEMBER 6TH",
+   "headline": "This camera watches an Alaska fishing boat.\nWho watches the footage?",
+   "body": "",
+   "labels": [],
+   "claim_ids": [
+    "C01"
+   ]
+  },
+  {
+   "slide": 2,
+   "kicker": "THE REVIEW",
+   "headline": "One review provider,\npriced by the hard drive.",
+   "body": "NMFS prices camera review by the hard drive, a year of review spending divided by drives reviewed. The program currently has one EM review provider.",
+   "labels": [],
+   "claim_ids": [
+    "C36",
+    "C47"
+   ]
+  },
+  {
+   "slide": 3,
+   "kicker": "THE HARDWARE",
+   "headline": "Congress paid for the cameras.\nThat money is expected to end this year.",
+   "body": "Since 2023, Congressional Directed Spending covered new EM systems and replacements. With it spent by the end of 2026, the 2027 plan carries that cost itself, about $6,002.96 a year per fixed-gear camera boat.",
+   "labels": [],
+   "claim_ids": [
+    "C08",
+    "C09",
+    "C35"
+   ]
+  },
+  {
+   "slide": 4,
+   "kicker": "THE BUDGET",
+   "headline": "A preliminary $5.45M,\nwith cameras off the top.",
+   "body": "Trawl cameras come off the top at $732K. About $4.72M is left for observers and fixed-gear cameras, subject to change.",
+   "labels": [
+    "$0",
+    "$5.45M",
+    "TRAWL CAMERAS $732K",
+    "ABOUT $4.72M LEFT",
+    "ONE CAMERA BOAT'S HARDWARE, $6,002.96, THIS WIDE"
+   ],
+   "claim_ids": [
+    "C03",
+    "C05",
+    "C06",
+    "C35"
+   ]
+  },
+  {
+   "slide": 5,
+   "kicker": "UNDER 40 FEET",
+   "headline": "Nobody is chosen.",
+   "body": "Boats under 40 feet and jig boats have no chance of carrying an observer or a camera in 2027. The draft expects 1,427 such trips.",
+   "labels": [],
+   "claim_ids": [
+    "C25",
+    "C26"
+   ]
+  },
+  {
+   "slide": 6,
+   "kicker": "THE OBSERVERS",
+   "headline": "Some trips still\ncarry a person.",
+   "body": "In the draft, an observer rides 79 of 253 expected fixed-gear trips in the Bering Sea and Aleutians, 31.35 percent. In the Gulf it is 174 of 1,868, or 9.31 percent.",
+   "labels": [
+    "BSAI 31.35%",
+    "GULF 9.31%"
+   ],
+   "claim_ids": [
+    "C16",
+    "C17"
+   ]
+  },
+  {
+   "slide": 7,
+   "kicker": "ALL TEN STRATA, DRAFT",
+   "headline": "Who gets watched in 2027.",
+   "body": "",
+   "labels": [
+    "OBSERVER, FIXED GEAR, BSAI",
+    "31.35%",
+    "79 OF 253",
+    "OBSERVER, FIXED GEAR, GULF",
+    "9.31%",
+    "174 OF 1,868",
+    "OBSERVER, TRAWL, BSAI",
+    "46.54%",
+    "16 OF 35",
+    "OBSERVER, TRAWL, GULF",
+    "15.34%",
+    "47 OF 305",
+    "CAMERA, FIXED GEAR, BSAI",
+    "42.99%",
+    "40 OF 92",
+    "CAMERA, FIXED GEAR, GULF",
+    "15.24%",
+    "154 OF 1,010",
+    "CAMERA, TRAWL, GULF",
+    "100%",
+    "894 OF 894",
+    "OBSERVER, FULL COVERAGE",
+    "100%",
+    "968 OF 968",
+    "CAMERA, TRAWL, BSAI",
+    "100%",
+    "1,774 OF 1,774",
+    "NOBODY, UNDER 40 FT OR JIG",
+    "0%",
+    "0 OF 1,427",
+    "PRELIMINARY RATES. FINAL PLAN TO THE COUNCIL IN DECEMBER. BSAI IS BERING SEA AND ALEUTIANS."
+   ],
+   "claim_ids": [
+    "C16",
+    "C17",
+    "C18",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27",
+    "C37"
+   ]
+  },
+  {
+   "slide": 8,
+   "kicker": "THE FIX, ON PAPER",
+   "headline": "The AI that could review\nthe video is on a list.",
+   "body": "NMFS intends to support it in 2027, \"pending availability of staff resources.\" The title is in the draft. The staffing is pending.",
+   "labels": [
+    "SCALING AI TOOLS TO MODERNIZE DATA COLLECTIONS AND ANALYTICAL PRACTICES OF ELECTRONIC MONITORING VIDEOS",
+    "EM DEVELOPMENT, 2027"
+   ],
+   "claim_ids": [
+    "C32",
+    "C33"
+   ]
+  },
+  {
+   "slide": 9,
+   "kicker": "NORTH PACIFIC COUNCIL, ANCHORAGE",
+   "headline": "Should the AI review line get staff before the fleet pays for more cameras?",
+   "body": "The final plan goes to the Council, meeting November 30th through December 9th.",
+   "labels": [],
+   "claim_ids": [
+    "C37",
+    "C38"
+   ]
+  }
+ ],
+ "aftercare": [
+  "This edition goes out automatically to the bound Alaska.Ai brand accounts through Upload-Post after the merge, and the delivery receipt lists each platform. Check the LinkedIn post went live with its document title.",
+  "Paste the first comment (sources, then the context invite and the site line) within 60 seconds of the post going live.",
+  "Reply to every comment in the first 90 minutes, then note saves, comments and reposts after 48 hours for the instincts ledger.",
+  "Worth sending to fixed-gear and trawl skippers, ALFA and other Alaska fleet groups, EM hardware and review providers, and anyone following the Council's December meeting in Anchorage."
+ ],
+ "editor_notes_for_email": "Caption carried byte for byte, and no slide strings needed changes. Two notes for the showrunner. The hook says camera hardware moves into the 2027 budget, but in this draft only the fixed-gear camera cost includes equipment. Trawl camera equipment moves over in the Final ADP (C09 notes, lines 580 to 582), so the hook is accurate for the plan as a whole and loose for this draft. Slide 3 keeps \"by the end of 2026\" because the year is set against the 2027 plan, not used as a date. Rates and the $5.45M are preliminary throughout. The AI project has no named lead or funder in the draft, and nothing here ties it to ALFA's FishVue.",
+ "claims_used": [
+  "C01",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C08",
+  "C09",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "C20",
+  "C21",
+  "C22",
+  "C23",
+  "C24",
+  "C25",
+  "C26",
+  "C32",
+  "C33",
+  "C35",
+  "C36",
+  "C37",
+  "C38",
+  "C47"
+ ]
+}

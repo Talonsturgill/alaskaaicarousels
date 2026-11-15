@@ -1,0 +1,136 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "wrap drift: 'This camera watches an Alaska fishing boat. ' declares 3 line(s) (<br> or preserved newline) and rendered 4. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch. A headline sized by AK.fitText takes `authored: true`, which sets it nowrap and shrinks until the longest authored line fits"
+      ],
+      "fits": [
+        "hd 'This camera watches an Alaska fishing boat.W' fits 4/4 lines at 105.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the trip drive on the wet hatch': shadow L* 18.3 vs ground L* 23.0, dL 4.7 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "fits": [
+        "hd 'One review provider,priced by the hard drive' fits 2/2 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the empty camera pocket cut in the foam': canvas 20.3 dE, page 20.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Congress paid for the cameras.That money is ' fits 3/3 lines at 78px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the budget board on the steel table': shadow L* 19.1 vs ground L* 46.2, dL 27.1 at 432w"
+      ],
+      "scales": [
+        "'the budget board' runs 0 dollars at 100 to 5,450,000 dollars at 980; 13 declared mark(s), and the band's census finds no others"
+      ],
+      "leaders": [
+        "leader \"the gold hairline for one camera boat's yearly hardware\" lands 0.0px from its target",
+        "leader \"the gold hairline for one camera boat's yearly hardware\" meets its label 6.0px away",
+        "leader \"the gold hairline for one camera boat's yearly hardware\" is drawn 283 px at 81 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'A preliminary $5.45M,with cameras off the to' fits 2/2 lines at 98.5px"
+      ],
+      "asserts": [
+        "'the camera block, $732K on a $5.45M board' holds: 118.2 vs 118.194 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the empty camera mount on the rail cap': shadow L* 24.2 vs ground L* 31.2, dL 7.0 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the empty camera mount on the rail': canvas 65.2 dE, page 62.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Nobody is chosen.' fits 1/1 lines at 118px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the BSAI board on the steel': shadow L* 8.0 vs ground L* 29.7, dL 21.7 at 432w",
+        "'the Gulf board on the steel': shadow L* 9.4 vs ground L* 23.7, dL 14.3 at 432w"
+      ],
+      "motifs": [
+        "'orange fill to 31.35 percent': canvas 42.5 dE, page 72.7 dE, 100% of its rect is clear of opaque DOM",
+        "'orange fill to 9.31 percent': canvas 40.2 dE, page 76.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'BSAI fixed-gear observer board' runs 0 percent of trips at 100 to 100 percent of trips at 1040; 11 declared mark(s), and the band's census finds no others",
+        "'Gulf fixed-gear observer board' runs 0 percent of trips at 100 to 100 percent of trips at 1040; 11 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Some trips stillcarry a person.' fits 2/2 lines at 103.5px"
+      ],
+      "asserts": [
+        "'orange fill to 31.35 percent' holds: 294.69 vs 294.69 px (within 0.1)",
+        "'orange fill to 9.31 percent' holds: 87.514 vs 87.514 px (within 0.1)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the shared percent scale' runs 0 percent of trips at 520 to 100 percent of trips at 782; 11 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'Who gets watched in 2027.' fits 1/1 lines at 88px"
+      ],
+      "asserts": [
+        "'ten strata, ten boards' holds: 10 vs 10 marks, counted over 10 declared marks (within 0)",
+        "'ten strata, ten boards': 10 mark centres probed at r=14px, cohort median 72.8 dE, all present (weakest 47.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the tag lying on the dark ground': shadow L* 2.5 vs ground L* 8.5, dL 6.0 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "fits": [
+        "hd 'The AI that could reviewthe video is on a li' fits 2/2 lines at 98px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hd 'Should the AI review lineget staff before th' fits 3/3 lines at 91.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 4,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}
