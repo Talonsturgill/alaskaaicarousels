@@ -32,6 +32,7 @@ on:
       - "scripts/docket_build.py"
       - "ledger/docket.json"
       - "prompts/ASK_ROUTINE.md"
+      - "tests/ask_memberships.py"
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
       - "tests/docket_ask.mjs"
@@ -49,6 +50,7 @@ on:
       - "scripts/power_utility.py"
       - "scripts/docket_build.py"
       - "ledger/docket.json"
+      - "tests/ask_memberships.py"
       - "tests/ask_engine.mjs"
       - "tests/home_ask.mjs"
       - "tests/docket_ask.mjs"
@@ -78,6 +80,7 @@ jobs:
         run: |
           python3 scripts/ask_answers.py --self-test
           python3 tests/ask_json_embed.py
+          python3 tests/ask_memberships.py
 
       # Builds the corpus from the live ledger and proves the allow-list
       # covers its own source. An allow-list that did not would refuse true

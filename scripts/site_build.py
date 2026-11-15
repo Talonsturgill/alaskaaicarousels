@@ -2563,6 +2563,25 @@ ASK_JS = r"""
   var ENDPOINT = box.getAttribute('data-endpoint') || '';
   var TS_SITEKEY = box.getAttribute('data-sitekey') || '';
 
+  /* membership_refs=1 encodes only facet/view ids as index positions.
+     Legacy strings stay literal, including numeric-looking and unknown ids. */
+  function expandMemberships(data) {
+    if (data.membership_refs === undefined) return;
+    if (data.membership_refs !== 1) throw new Error('Unknown membership format');
+    function expand(entry) {
+      entry.ids = entry.ids.map(function (ref) {
+        if (typeof ref === 'string') return ref;
+        if (!Number.isInteger(ref) || ref < 0 || ref >= data.index.length)
+          throw new Error('Invalid membership reference');
+        return data.index[ref].id;
+      });
+    }
+    Object.keys(data.facets || {}).forEach(function (name) {
+      data.facets[name].forEach(expand);
+    });
+    (data.views || []).forEach(expand);
+  }
+  try { expandMemberships(DATA); } catch (e) { return; }
   var IDX = DATA.index, FAC = DATA.facets, NALL = IDX.length;
   /* A row flagged h shipped its hay without the opening it shares with its own
      title, kind, decider, place, summary and howto fields. Rebuild that opening
