@@ -1422,11 +1422,24 @@ def ship(out):
     # (2026-10-28, No.98, when two new items took the payload over the
     # ceiling). The shipped route says `#n` for the row at position n of the
     # index and the page puts the id back (site_build.py, where it builds CAT).
-    # A payload built without a catalogue (an older fixture) ships its rows only.
-    if "q" not in out:
-        return dict(out, index=rows)
+    # A payload built without a catalogue (an older fixture) omits route packing.
     pos = {r["id"]: n for n, r in enumerate(out["index"])}
-    return dict(out, index=rows, q=[ship_route(e, pos) for e in out["q"]])
+    if len(pos) != len(out["index"]):
+        raise ValueError("duplicate index ids prevent membership encoding")
+    packed = dict(out, index=rows)
+    if "q" in out:
+        packed["q"] = [ship_route(e, pos) for e in out["q"]]
+    # Versioned row references only in the two known membership collections.
+    # Unknown strings are retained verbatim rather than silently discarded.
+    def group(entry):
+        return dict(entry, ids=[pos.get(i, i) for i in entry["ids"]])
+    if "facets" in out:
+        packed["facets"] = {k: [group(e) for e in entries]
+                            for k, entries in out["facets"].items()}
+    if "views" in out:
+        packed["views"] = [group(e) for e in out["views"]]
+    packed["membership_refs"] = 1
+    return packed
 
 
 def ship_route(entry, pos):
