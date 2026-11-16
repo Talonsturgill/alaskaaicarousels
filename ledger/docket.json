@@ -6687,6 +6687,11 @@
           "kind": "decision"
         },
         {
+          "date": "2026-11-09",
+          "kind": "milestone",
+          "label": "GCI completes the acquisition"
+        },
+        {
           "date": "2026-11-19",
           "label": "Thirty days from release, the window for petitions for reconsideration",
           "kind": "milestone"
@@ -6712,6 +6717,11 @@
           "url": "https://broadbandbreakfast.com/gci-closing-quintillion-deal-very-soon/",
           "outlet": "Broadband Breakfast",
           "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/0002057463/000110465926125416/tm2629388d1_ex99-1.htm",
+          "outlet": "Liberty Capital Corp., Form 8-K Exhibit 99.1",
+          "date": "2026-11-09"
         }
       ],
       "first_seen": "2026-10-31",
@@ -6727,7 +6737,7 @@
         },
         {
           "date": "2026-11-15",
-          "note": "No closing announcement was found today. The latest report remains Broadband Breakfast's November 5th account of GCI's parent saying the purchase would close very soon. The thirty day reconsideration window runs to November 19th. Checked and unchanged."
+          "note": "GCI announced on November 9th that it completed its acquisition of Quintillion's parent, Q Gateway Intermediate Holdings, combining more than 1,800 miles of existing subsea and terrestrial fiber with about 1,500 miles of planned expansion. Read today in Liberty Capital's Form 8-K exhibit filed with the SEC. The thirty day reconsideration window on the FCC order runs to November 19th."
         }
       ]
     },
