@@ -1,0 +1,203 @@
+{
+ "document_title": "UA regents moved the AI vote. Campus policies start first.",
+ "post_copy": "In May, UA regents asked for a system AI statement. In November, they put campus AI policies ahead of the vote on it.\n\nUA IT chief Ben Shier says about 20 percent of his first draft survived human edits. He wrote it by prompting Claude.\n\nNext month. UAA's Faculty Senate parked its vote to reject and replace AI Engaged until then.\nFebruary. Regents vote on a statement that sets no policy but would require one at each of the three universities.\nAdoption. Only then does a one-year clock start for a system-wide AI policy report.\n\nCampus rules get a head start on the document meant to frame them.\n\nThe deck opens on the moved vote, then what AI Engaged is, Shier's 20 percent estimate, the Anchorage dissent and a map of the new order.\n\nIn February, will regents be setting direction or signing off on rules the campuses already started?\n\n#UniversityOfAlaska #AIPolicy #AlaskaHigherEd\n",
+ "hashtags": [
+  "#UniversityOfAlaska",
+  "#AIPolicy",
+  "#AlaskaHigherEd"
+ ],
+ "deck_summary_line": "The deck opens on the moved vote, then what AI Engaged is, Shier's 20 percent estimate, the Anchorage dissent and a map of the new order.",
+ "caption_meta": {
+  "opening_move": "TIMELINE COLLAPSE",
+  "structure": "COUNTDOWN",
+  "closing_move": "PREDICTION (direction-setting or sign-off, as an either-or)"
+ },
+ "first_comment": "Sources, primary first\n\nUniversity of Alaska System, news release via EIN Presswire, University of Alaska Board of Regents to continue strategic future investments at November board meeting (the November 4th to 6th meeting at UAF in Fairbanks, the six guiding principles, four investment priorities and five system-wide expectations, and UAA, UAF and UAS keeping responsibility for curriculum and academic integrity) (2026-11-03) https://www.einpresswire.com/article/954337159/university-of-alaska-board-of-regents-to-continue-strategic-future-investments-at-november-board-meeting\nAnchorage Daily News, UA faculty clash over postponed artificial intelligence guidelines (the vote moved to February, campus-specific policies in the interim, the UAA Faculty Senate vote held until next month, the May direction to Shier, his Claude-prompted first draft and his own estimate that about 20 percent survived, the two-page draft and four-page document, the one-year report and three university policies, the group of nearly 200, and the Cooper and Dewees quotes) (2026-11-12) https://www.adn.com/alaska-news/education/2026/11/11/ua-faculty-clash-over-postponed-artificial-intelligence-guidelines/\nAlaska's News Source (KTUU), UA regents delay statement of intent on AI amid feedback (independent report of the postponement to February) (2026-11-09) https://www.alaskasnewssource.com/2026/11/10/ua-regents-delay-statement-intent-ai-amid-feedback/\nAnchorage Daily News opinion, Gregory Hartley and Joel Potter, Who wrote UA's AI plan? A chatbot did (the authors' account that Claude generated the first draft, first disclosed October 9th) (2026-11-04) https://www.adn.com/opinions/2026/11/03/opinion-who-wrote-uas-ai-plan-a-chatbot-did/\n\nOn a faculty senate, a student government or the AI Coordinating Council? Add what the coverage missed below.\nEvery tracked Alaska AI decision, with its next date, is at https://alaskaaihq.com/",
+ "slides": [
+  {
+   "slide": 1,
+   "kicker": "UPDATE / UA REGENTS / AI ENGAGED",
+   "headline": "Campus policies start first.",
+   "body": "Regents pushed the AI vote to February.",
+   "labels": [
+    "UAA",
+    "UAF",
+    "UAS"
+   ],
+   "claim_ids": [
+    "C01",
+    "C03"
+   ]
+  },
+  {
+   "slide": 2,
+   "kicker": "FAIRBANKS / NOVEMBER 4TH TO 6TH",
+   "headline": "The vote moved. The work didn't.",
+   "body": "Meeting at UAF, regents postponed AI Engaged to their February meeting and told the AI Coordinating Council to start campus-specific AI policies in the interim, ADN reports.",
+   "labels": [
+    "UAF",
+    "FEB, VOTE",
+    "CAMPUS POLICY WORK, NOW"
+   ],
+   "claim_ids": [
+    "C22",
+    "C01",
+    "C03"
+   ]
+  },
+  {
+   "slide": 3,
+   "kicker": "WHAT REGENTS WILL VOTE ON",
+   "headline": "A benchmark, not a law.",
+   "body": "AI Engaged is a four-page statement of intent, ADN reports. It doesn't establish policy.",
+   "labels": [
+    "SIX PRINCIPLES",
+    "FOUR PRIORITIES",
+    "FIVE EXPECTATIONS"
+   ],
+   "claim_ids": [
+    "C13",
+    "C24",
+    "C14"
+   ]
+  },
+  {
+   "slide": 4,
+   "kicker": "THE FIRST DRAFT",
+   "headline": "About 20 percent survived, Shier says.",
+   "body": "Ben Shier, UA's chief information technology officer, wrote the first draft by prompting Claude with human ideas, \"all fed to Claude.\" He says about 20 percent of that two-page draft survived human edits.",
+   "labels": [
+    "FIRST DRAFT, 2 PAGES",
+    "SURVIVED, ABOUT 20%",
+    "AI ENGAGED, 4 PAGES, PER ADN",
+    "SHARE, NOT POSITION",
+    "PAGES, 1 UNIT = 1 PAGE"
+   ],
+   "claim_ids": [
+    "C06",
+    "C07",
+    "C09",
+    "C10",
+    "C13"
+   ]
+  },
+  {
+   "slide": 5,
+   "kicker": "",
+   "headline": "Nearly 200 students and staff asked for a brief statement written by humans.",
+   "body": "",
+   "labels": [
+    "MOSTLY IN ANCHORAGE, PER ADN"
+   ],
+   "claim_ids": [
+    "C17"
+   ]
+  },
+  {
+   "slide": 6,
+   "kicker": "ANCHORAGE",
+   "headline": "UAA's Faculty Senate paused too.",
+   "body": "Senators postponed their vote on a resolution to reject and replace AI Engaged until next month, ADN reports. Senate chair Andrea Dewees said, \"I think it's probably going to be messy.\"",
+   "labels": [
+    "UAA",
+    "REJECT AND REPLACE",
+    "DECEMBER, PER ADN"
+   ],
+   "claim_ids": [
+    "C05",
+    "C20"
+   ]
+  },
+  {
+   "slide": 7,
+   "kicker": "THE ORDER NOW",
+   "headline": "Campus policies start before the statement.",
+   "body": "The statement would require each of the three universities to write its own AI policy. That work now starts first. A one-year clock for a system-wide policy report starts only at adoption.",
+   "labels": [
+    "MAY",
+    "Regents direct Shier",
+    "OCTOBER 9TH",
+    "Claude's role disclosed, critics say",
+    "NOVEMBER 4TH TO 6TH",
+    "Vote postponed",
+    "DECEMBER",
+    "UAA senate vote, per ADN",
+    "FEBRUARY",
+    "Regents vote",
+    "ADOPTION",
+    "One year to a system policy report",
+    "CAMPUS POLICY WORK",
+    "UAA",
+    "UAF",
+    "UAS"
+   ],
+   "claim_ids": [
+    "C16",
+    "C03",
+    "C15",
+    "C08",
+    "C32",
+    "C22",
+    "C01",
+    "C05",
+    "C25"
+   ]
+  },
+  {
+   "slide": 8,
+   "kicker": "THREE UNIVERSITIES, ONE STATEMENT",
+   "headline": "The rules get drawn campus by campus.",
+   "body": "UA says the statement keeps curriculum, academic integrity and faculty instructional judgment with UAA, UAF and UAS. Cooper says UA is \"never going to have everyone on the same page with AI.\"",
+   "labels": [
+    "UAA",
+    "UAF",
+    "UAS",
+    "FEBRUARY, UNSET"
+   ],
+   "claim_ids": [
+    "C25",
+    "C18"
+   ]
+  },
+  {
+   "slide": 9,
+   "kicker": "",
+   "headline": "Campus rules first, or statement first?",
+   "body": "Which order should UA have chosen? Say so in the comments.",
+   "labels": [
+    "ALASKA.AI"
+   ],
+   "claim_ids": []
+  }
+ ],
+ "aftercare": [
+  "This edition goes out automatically to the bound Alaska.Ai brand accounts through Upload-Post after the merge, with the website link posted as the LinkedIn first comment, and the delivery receipt in this draft lists each platform. Check the LinkedIn post and its link comment both went live.",
+  "Paste the sources comment as a reply under the brand's link comment within 60 seconds of the post going live.",
+  "Reply to every comment in the first 90 minutes, then note saves, comments and reposts after 48 hours for the instincts ledger.",
+  "Worth sending to UA faculty senates, the Faculty Alliance, student governments at UAA, UAF and UAS, regents' staff, and legislators on the House and Senate education committees."
+ ],
+ "editor_notes_for_email": "This edition is an UPDATE of No.109 (November 8th), which shipped before the vote outcome was confirmed. The caption is carried byte for byte with no factual flags, and the 20 percent figure is Shier's own estimate, attributed to him on the caption and on slide 4. The UA board site (alaska.edu/bor) returned HTTP 503, so the postponement rests on ADN (November 12th) and KTUU (November 9th), which reported it independently, and no primary record of the action was reachable. The UAA senate's \"next month\" is printed on the slides as DECEMBER, PER ADN, and the November 5th faculty rebuttal op-ed and ADN October 4th are left out of the sources because no claim the deck uses rests on them.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C06",
+  "C07",
+  "C08",
+  "C09",
+  "C10",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C20",
+  "C22",
+  "C24",
+  "C25",
+  "C32"
+ ]
+}

@@ -4245,6 +4245,46 @@
         "threshold": 7.7,
         "rounds": 4
       }
+    },
+    {
+      "run_date": "2026-11-15",
+      "carousel_no": 116,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE ROUTE RUNS BACKWARDS, a raking-light relief survey of a decision path over real Alaska DEMs: akthree state relief with three campus pins and a gold route head (01), FNSB device-resolution hillshade with a dashed FEB fork and three spurs (02), akthree survey cap set in a granite boulder with 6/4/5 tick rings (03), Denali contour engraving with measured page rails (04), Anchorage stipple night glow breather (05), Cook Inlet hillshade with a violet dissent branch to an open DEC ring (06), transit diagram over a graded state hillshade ghost (07), akthree state relief with three threads rising to a hovering open gold ring (08), FNSB depth-faded contours under Polaris (09)",
+      "atmosphere": "LOW NOVEMBER RAKING LIGHT ON BLUE RELIEF AT DUSK (key at 7 to 14 degrees, navy ground, no fog bank)",
+      "depth_technique": "akthree GPU terrain from real DEMs with VSM soft shadows (01, 03, 08); per-pixel device-resolution hillshade from sampleCubic (02, 06, 07 ghost); d3 contour engraving with radial falloff (04, 09); stipple density glow (05)",
+      "line_voice": "survey linework: cased route lines, dashed unset segments, open benchmark rings, mono caps labels on dark plates",
+      "continuity_device": "the gold route head changes state on every frame and ends at the open February ring",
+      "continuity_devices": [
+        "gold route head",
+        "open February benchmark ring on 02, 07, 08, 09",
+        "edge-tease: route exits 01 right at y 880 and enters 02 at matching height"
+      ],
+      "hook_archetype": "NEW: THE ORDER REVERSED",
+      "palette_family": "NAVY RELIEF AND ICE BLUE (ground #040A18, relief ramp #1C2E4C to #F4F8FF, campus cyan #5AC8F0, dissent violet #9664E6, gold #FFC72C route and ring only)",
+      "type_pairing": "Unbounded 600 display with a 0.6 px same-colour stroke + Manrope 450/500 body + JetBrains Mono 500 caps",
+      "narrative_structure": "update deck: the moved vote, what the statement is, who drafted it, who objects, then the new order and the reader's call",
+      "variance_dials": {
+        "design_variance": 5,
+        "visual_density": 3,
+        "type_temperature": 1
+      },
+      "techniques": [
+        "akthree DEM terrain with far plane 8000",
+        "per-pixel sampleCubic hillshade at device resolution",
+        "d3 contour engraving with radial falloff mask",
+        "stipple density glow with land mask",
+        "transit diagram over hillshade ghost",
+        "hovering ring with drop line and ground glow",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [],
+      "scores": {
+        "weighted_total": 8.59,
+        "artwork": 7.0,
+        "threshold": 7.7,
+        "rounds": 4
+      }
     }
   ]
 }

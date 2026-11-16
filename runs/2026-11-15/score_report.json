@@ -1,0 +1,187 @@
+{
+ "run_date": "2026-11-15",
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "Same cover copy as cycle 1. In the contact sheet, 'Campus policies start first.' at 119.5 px reads instantly, UPDATE shows in the kicker, and the DEM state with three cyan pins is clearly Alaska. Three things hold it at 8. The 49.5 px line above it still competes for the first read, and the big line needs it ('start first' than what?). The new Gulf glint is a soft vertical light column running from the coast near x 1040 down into the footer band. At thumb size it reads as a spotlight or lens smear, not sun on water, and it pulls the eye away from UAF. The gold route still leaves into empty black."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "weight": 0.14,
+   "score": 7.5,
+   "why": "The craft cycle didn't touch the arc. 02 pays the cover. The gold route from 01 to 02 lands at matching height. The open February ring carries through 02, 07, 08 and 09, and on 08 it now visibly hovers, which strengthens the 'unset' beat. These still hold it at 7.5. Nothing on 03 plants the authorship question that 04 answers. 06, the conflict peak, is drawn as the same blue hillshade panel as 02. 'Campus policies start first / before the statement' is said on 01, 02 (body) and 07, so 07's headline nearly repeats the cover. 07 and 08 overlap ('campus by campus')."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Real gains. 08's ring now reads as hovering, with a dashed drop line, a gold ground glow and a footprint ellipse, and the state is clipped with Canada sunk. 03's body copy now sits on clear sky, with only two faint peak ghosts below it near display y 820, so the cycle-1 contrast risk is gone. 03's machine contact rose from dL 9.2 to 17.1. 05's core is now a dense luminous stipple glow. The strong frames still carry the deck: 02 and 06 (device-resolution hillshade), 04 (contour engraving), 09 (depth-faded contours, Polaris glow) and 07. What keeps it at 7. 03 is still not a masterful-depth frame. The 'granite' is grey ellipses plus uniform black flecks, which reads as terrazzo or dalmatian, not biotite, feldspar and quartz. The 'flush' cap still stands proud on a raised white collar disc, so it reads as a puck on a saucer. The new haze band ends in a hard horizontal seam across the full width at display y about 875. A cold blue vignette blob sits on the lower-left of the rock (display about x 0 to 400, y 1750 to 1850). 01 still shows cotton-ball mottling instead of ridgelines and a lit straight 141st-meridian edge, and the new glint is a vertical beam, not a sea surface. 08's eastern border is still a lit straight wall (display x about 1100 to 1250, y 1165 to 1480), western Alaska is still a dim blobby slab, and a dark thread stub starts inside the ring's hollow. No frame yet meets 'real depth used masterfully'."
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 8.0,
+   "why": "02's fork is a dashed line for the postponed vote plus three solid spurs for campus work (C01, C03). 03's tick rings carry 6, 4 and 5 (C24). 04's rails are asserted to 420, 84 and 840 px for 2, 0.4 and 4 pages. 07 has twelve equal month ticks after ADOPTION (C15). 08's hovering open ring with a drop line to the ground is now a more literal 'unset' anchor than in cycle 1. 05's stipple is decorative by design. A stranger could guess 'the order of a vote changed' from 02, 07 and 08, but not from 03 or 05."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "Real DEMs throughout (state, FNSB, Cook Inlet with Knik and Turnagain Arm, the Denali contours). UAA, UAF and UAS pins sit at real coordinates, with a real coordinate footer on every slide. Named people (Shier, Dewees, Cooper), named bodies (UAA Faculty Senate, AI Coordinating Council) and the meeting at UAF. The small doubt remains: the right edge of 04's 'DENALI MASSIF' contour field shows fjord and island forms."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Each content slide adds a verified specific: February and the interim campus direction (02); four pages and 'doesn't establish policy', with 6/4/5 (03); Shier's 'about 20 percent' of a two-page draft and the 'all fed to Claude' fragment (04); nearly 200, mostly in Anchorage (05); the postponed reject-and-replace vote and the Dewees quote (06); the May to adoption sequence and the one-year clock (07); the curriculum carve-out and the Cooper quote (08). Hedges are honoured. 07's body partly restates 02 and the cover."
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 7.5,
+   "why": "The hero (raking-light relief survey) and the hook (order reversed) are new against the 11-11 to 11-14 decks, and Unbounded display is fresh. Reused subsystems: the navy and ice-blue palette sits near 11-11's, Manrope body repeats from 11-14, and DEM relief is a frequent house move. Inside the deck, the whole-state mesh repeats on 01 and 08, with similar overhead framing that the cycle didn't change, and the hillshade panel repeats on 02 and 06."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "weight": 0.07,
+   "score": 8.0,
+   "why": "Body is 32 to 34 px. Mono labels are 22 px or more. Counters NN / 09 are on all 9 slides. machine_qa shows 0 fails and every headline fits. The vector PDF is 7.8 MB and titled. 03's body is now on clear sky, which retires the cycle-1 contrast concern. Squeakers: 04's 'DENALI MASSIF, CONTOURS EVERY 150 M' plate is still dim, with a contour stroke touching its right end. The footer coordinates are very low contrast (decorative)."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "weight": 0.05,
+   "score": 8.0,
+   "why": "The hook lands in 117 characters and the caption is about 886. Comma density is low. The deck-summary line is present. The closing question is debatable. The voice takes a position ('Campus rules get a head start on the document meant to frame them'). Soft spot: the standalone countdown fragment 'Next month.' reads oddly."
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Judged on the inputs to the draft, because the Gmail draft is made after the merge. copy.json has post_copy with exactly 3 hashtags and no URL, a document_title that matches the PDF title in assemble_report, a first_comment with raw dated source URLs, 4 aftercare items and editor notes. The vector PDF (7.8 MB), 9 thumbs and the contact sheet are present. Not yet verifiable: image and PDF URLs resolving on main, and inline previews. Confirm the site_fresh FAIL from cycle 1 is cleared before the merge."
+  }
+ ],
+ "weighted_total": 8.59,
+ "weights_sum": 1.1,
+ "normalized_total": 7.81,
+ "calculation": "(8.0x0.14)+(7.5x0.14)+(7.0x0.16)+(8.0x0.14)+(8.5x0.12)+(8.0x0.10)+(7.5x0.08)+(8.0x0.07)+(8.0x0.05)+(8.0x0.10) = 1.12+1.05+1.12+1.12+1.02+0.80+0.60+0.56+0.40+0.80 = 8.59 (weights sum 1.10; normalized 8.59/1.10 = 7.81)",
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass",
+   "evidence": "Read caption.txt, first_comment, all slide strings in copy.json and all 9 renders. Only ASCII hyphens appear, in compounds (four-page, two-page, campus-specific, one-year, system-wide)."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in the caption, first comment or any render."
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass",
+   "evidence": "Every slide carries claim_ids (01 C01/C03; 02 C22/C01/C03; 03 C13/C24/C14; 04 C06/C07/C09/C10/C13; 05 C17; 06 C05/C20; 07 C16/C03/C15/C08/C32/C22/C01/C05/C25; 08 C25/C18). 09 is a question with no facts. aggregate_report verdict PASS. Its 3 warns are noun-matching heuristics on C24 and C16, which count the priorities and universities in question."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass",
+   "evidence": "Transcribed all 9 renders against copy.json, e.g. 03 'AI Engaged is a four-page statement of intent, ADN reports. It doesn't establish policy.'; 04 'SURVIVED, ABOUT 20%' and 'SHARE, NOT POSITION'; 07 'OCTOBER 9TH / Claude's role disclosed, critics say'; 08 'FEBRUARY, UNSET'. No misspellings."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass",
+   "evidence": "machine_qa: 0 fails, all fits within max lines, leaders 0.0 px from targets. The near-miss is a contour stroke touching the right end of 04's decorative 'DENALI MASSIF' plate. No glyph is cut."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass",
+   "evidence": "All primary text is near-white on navy. 03's body now sits on clear dark sky, with the skyline ghosts below it at display y about 820 or lower, so the cycle-1 risk at the peak is gone."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "assemble_report slides: 9."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa verdict WARN with 0 fails. Its 2 warns are busy art under the UAA and UAS labels on 01, and both read cleanly. assemble_report pdf_mode 'vector', 7.8 MB, title 'UA regents moved the AI vote. Campus policies start first.'"
+  },
+  {
+   "rule": "topic repeat within 30 days without update framing",
+   "status": "pass",
+   "evidence": "Same story as No.109 (November 8th). The material new developments are the postponement to February, the interim campus-policy direction, Shier's 20 percent estimate and the UAA senate's pause. The cover kicker prints UPDATE and the editor notes name No.109."
+  },
+  {
+   "rule": "hero visual structure identical to last 4 decks",
+   "status": "pass",
+   "evidence": "The last four heroes are light pillars (11-11), instrument niche (11-12), lidar occlusion lot (11-13) and field kit (11-14). The raking-light DEM relief survey differs from all four."
+  },
+  {
+   "rule": "banned phrase from brand.yaml",
+   "status": "pass",
+   "evidence": "Fresh scan of the caption, first_comment and slide strings: no 'gap', 'matters', 'pattern(s)' or 'cannot'. Dates are ordinal ('November 4th to 6th', 'October 9th') and ISO appears only in the source block."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "#UniversityOfAlaska #AIPolicy #AlaskaHigherEd. post_copy has no URL; URLs are only in first_comment."
+  },
+  {
+   "rule": "placeholder, lorem, TODO, unfinished element",
+   "status": "pass",
+   "evidence": "None in copy.json, caption.txt or the renders."
+  },
+  {
+   "rule": "straight quotes (house rule; quote-mark census)",
+   "status": "pass",
+   "evidence": "copy.json shows ASCII apostrophes in doesn't, UA's, it's and Claude's, and straight double quotes in the 04, 06 and 08 quotations. Manrope draws U+0027 slanted, so the curly-looking body apostrophes are not a finding. The copy_sync census reported no curl in cycle 1, and the craft cycle changed no copy."
+  }
+ ],
+ "threshold": 7.7,
+ "verdict": "ship",
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Make 03 the masterful-depth frame it claims to be: replace the ellipse-and-fleck terrazzo with true multi-scale granite (biotite clusters, pink-grey feldspar, glassy quartz plus an fbm normal bump), sink the cap so its top sits level with a recessed mortar ring instead of standing on a raised white collar disc, and feather the hard horizon seam at display y about 875.",
+ "artwork_score": 7.0,
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The declared masterful-depth frame still reads as a puck on a saucer over terrazzo: grey ellipses plus uniform black flecks, and the cap standing on a raised white collar disc. The new haze band ends in a hard full-width horizontal seam at display y about 875, and a cold blue vignette blob sits on the lower-left of the rock.",
+   "fix": "Retexture the boulder as multi-scale granite with an fbm bump, recess the cap into a mortar ring level with the rock, feather the haze band's top edge into the sky gradient, and remove the lower-left blue vignette."
+  },
+  {
+   "slide": 1,
+   "problem": "The relief still reads as cotton-ball mottling, not Alaska Range and Brooks Range ridgelines. The 141st-meridian edge is a lit straight line. The new 'Gulf glint' is a vertical light column into the footer band that reads as a spotlight or lens smear, not sun on water.",
+   "fix": "Rebuild the relief from smoothed DEM normals so the ranges read as ridgelines, and replace the vertical column with a low, horizontally stretched specular streak just below the Gulf coast that fades out well above the footer."
+  },
+  {
+   "slide": 8,
+   "problem": "The eastern border is still a lit straight wall (display x about 1100 to 1250, y 1165 to 1480). Western Alaska is a dim, unmodelled slab. A dark thread stub starts inside the hollow ring, and the UAF and UAA threads leave the ring almost on top of each other.",
+   "fix": "Fog or feather the mesh along the 141st meridian, lift the west's relief and exposure, and start each thread at a distinct point on the ring's outer rim."
+  }
+ ],
+ "artwork_fix_per_frame": {
+  "03": "Multi-scale granite (biotite, feldspar, quartz plus an fbm bump) in place of the ellipse-and-fleck terrazzo. Cap recessed level with a mortar ring, with no raised white collar disc. Feather the horizon haze seam at display y about 875 and remove the lower-left blue vignette.",
+  "01": "Smoothed-normal relief so the ranges read as ridgelines. Feather the 141st-meridian edge. Replace the vertical glint column with a low horizontal specular streak on the Gulf that stays clear of the footer.",
+  "08": "Feather the lit eastern border wall, lift western Alaska's modelling, and start the threads at separate points on the ring rim with no stub inside the hollow."
+ },
+ "strengths": [
+  "The motif system works across the deck. The gold route head changes state on every frame. The edge-tease from 01 to 02 lands at matching height. The open February ring now hovers with a drop line on 08, a literal image of an unset vote.",
+  "The data in the art is real and asserted: 02's dashed vote and solid-spur fork, 03's 6/4/5 tick rings, 04's 420, 84 and 840 px page rails checked by machine asserts, and twelve equal month ticks after ADOPTION on 07.",
+  "Sourcing is careful. Shier's 20 percent is attributed on both the caption and the slide. 'Next month' is printed only as DECEMBER, PER ADN. The October 9th disclosure is marked 'critics say'.",
+  "02 and 06 are the best frames, with device-resolution hillshade and lit faces. 05's breather now glows as a city core instead of a scatter."
+ ],
+ "revision_rounds": 4,
+ "editor_notes_for_email": "Re-scored after the one owed craft cycle. Raw 8.59 against the round-4 threshold of 7.7, with zero hard fails, so the verdict is ship. The CRAFT FLOOR cycle has been spent, which satisfies ship_gate even though art is 7.0, below 8.5. Art rose from 6.5 to 7.0: 08's ring now hovers, 03's copy sits on clear sky, and 05 glows. But 03 still isn't a masterful-depth frame, and the cycle added two new findable defects, a hard horizon seam on 03 and a spotlight-like 'glint' column on the cover. The rubric weights sum to 1.10, so the normalized total is 7.81. That is still above 7.7, but the owner should know the raw figure is inflated by the weight sum. Before the merge, confirm cycle 1's site_fresh FAIL is cleared. Image and PDF URL resolution on main, and inline previews, still need checking. The postponement rests on ADN (November 12th) and KTUU (November 9th) because alaska.edu/bor returned 503, and no primary record of the regents' action was reachable. One aftercare line asks a human to paste the sources as a reply under the link comment. That is a manual step, and the automated delivery must not use a comment-writing endpoint for it. Evidence: /home/user/alaskaaicarousels/out/2026-11-15/render/slide-01.png .. slide-09.png, /home/user/alaskaaicarousels/out/2026-11-15/final/contact_sheet.png, /home/user/alaskaaicarousels/out/2026-11-15/machine_qa.json, /home/user/alaskaaicarousels/out/2026-11-15/final/assemble_report.json, /home/user/alaskaaicarousels/out/2026-11-15/score_report_cycle1.json. After this score, the vertical glint column the scorer flagged on 01 was removed (a revert of a craft-cycle addition, not a new treatment). The cover now matches its cycle-1 state plus the Canada ghost and the coast trace.",
+ "craft_cycle": {
+  "frames": [
+   3,
+   8,
+   1,
+   5
+  ],
+  "art_before": 6.5,
+  "art_after": 7.0
+ },
+ "passes": true
+}

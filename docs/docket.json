@@ -6369,7 +6369,7 @@
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-11-14",
+      "last_updated": "2026-11-15",
       "history": [
         {
           "date": "2026-09-30",
@@ -6394,6 +6394,10 @@
         {
           "date": "2026-11-14",
           "note": "KFSK's coverage, read today, has nothing newer than its November 11th report. The ordinance is still set for a second reading with public feedback on November 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-15",
+          "note": "KFSK's local news, read today, has nothing newer than its November 11th report. The moratorium ordinance is still set for a second reading with public feedback on November 16th. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/petersburg-data-center-moratorium/"
@@ -6629,7 +6633,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-14",
+      "last_updated": "2026-11-15",
       "history": [
         {
           "date": "2026-10-28",
@@ -6670,6 +6674,10 @@
         {
           "date": "2026-11-14",
           "note": "AIDEA's meeting schedule, read today, still lists no item on Northstar Fiber Development for November. The November 19th meeting has only an agenda posted and the December 4th meeting lists nothing yet. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-15",
+          "note": "AIDEA's board meeting schedule, read today, lists GEOAlaska, Wrangell Shipyard and dividend resolutions for November 4th and the Ambler Access item for November 6th, and nothing on Northstar Fiber Development. The November 19th meeting still has only an agenda posted and December 4th lists nothing. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"
@@ -6733,6 +6741,11 @@
           "kind": "decision"
         },
         {
+          "date": "2026-11-09",
+          "kind": "milestone",
+          "label": "GCI completes the acquisition"
+        },
+        {
           "date": "2026-11-19",
           "label": "Thirty days from release, the window for petitions for reconsideration",
           "kind": "milestone"
@@ -6758,10 +6771,15 @@
           "url": "https://broadbandbreakfast.com/gci-closing-quintillion-deal-very-soon/",
           "outlet": "Broadband Breakfast",
           "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/0002057463/000110465926125416/tm2629388d1_ex99-1.htm",
+          "outlet": "SEC EDGAR, Form 8-K Exhibit 99.1 (GCI announcement)",
+          "date": "2026-11-09"
         }
       ],
       "first_seen": "2026-10-31",
-      "last_updated": "2026-11-14",
+      "last_updated": "2026-11-15",
       "history": [
         {
           "date": "2026-10-31",
@@ -6770,6 +6788,10 @@
         {
           "date": "2026-11-14",
           "note": "Broadband Breakfast reported on November 5th that GCI's parent told its third quarter earnings call the purchase had not yet closed. No closing announcement was found today. The thirty day reconsideration window runs to November 19th."
+        },
+        {
+          "date": "2026-11-15",
+          "note": "GCI announced on November 9th that it completed its acquisition of Quintillion's parent, Q Gateway Intermediate Holdings, combining more than 1,800 miles of existing subsea and terrestrial fiber with about 1,500 miles of planned expansion. Read today in the Form 8-K exhibit filed with the SEC by GCI's parent. The thirty day reconsideration window on the FCC order runs to November 19th."
         }
       ],
       "url": "https://alaskaaihq.com/docket/fcc-gci-quintillion-transfer/"

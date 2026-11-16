@@ -4769,6 +4769,38 @@
         "defense-and-federal",
         "research-and-science"
       ]
+    },
+    {
+      "run_date": "2026-11-15",
+      "carousel_no": 116,
+      "update_of": "2026-11-08",
+      "topic": "UPDATE of No.109: University of Alaska regents postponed the vote on AI Engaged, the four-page system AI statement of intent, to February and directed the AI Coordinating Council to start campus AI policies in the interim; UA IT chief Ben Shier says about 20 percent of his two-page first draft, written by prompting Claude, survived human edits; UAA's Faculty Senate parked its vote to reject and replace the statement until December; adoption would start a one-year clock for a system-wide AI policy report.",
+      "angle": "THE ROUTE RUNS BACKWARDS: a raking-light relief survey of the decision path, where the campus policies start before the statement meant to frame them and February sits as an open, unset benchmark ring.",
+      "entities": [
+        "University of Alaska Board of Regents",
+        "University of Alaska",
+        "AI Engaged",
+        "AI Coordinating Council",
+        "Ben Shier",
+        "UAA Faculty Senate",
+        "University of Alaska Anchorage",
+        "University of Alaska Fairbanks",
+        "University of Alaska Southeast",
+        "Claude"
+      ],
+      "keywords": [
+        "AI Engaged",
+        "AI statement",
+        "campus AI policy",
+        "regents vote postponed",
+        "February vote",
+        "AI-drafted policy",
+        "faculty senate",
+        "higher education AI"
+      ],
+      "beats": [
+        "state-policy"
+      ]
     }
   ]
 }
