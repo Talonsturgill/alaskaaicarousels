@@ -333,8 +333,8 @@ def render_item(it, today=""):
         shown, elided = window_key_dates(it["key_dates"], today, past_kept)
         for d in shown:
             if d is None:
-                lines.append(f"  ... {elided} earlier date(s) not shown here. "
-                             f"The item's own page carries every date.")
+                lines.append(f"  ... {elided} earlier date(s) omitted. "
+                             f"All dates are on the item's page.")
                 continue
             lines.append(f"  {d.get('date', '')}  {esc_dashes(d.get('label'))}")
 
@@ -346,15 +346,15 @@ def render_item(it, today=""):
         shown, elided = window_history(hist, recent)
         for h in collapse_unchanged(shown):
             if h is None:
-                lines.append(f"  ... {elided} earlier note(s) not shown here. "
-                             f"The item's own page carries the full history.")
+                lines.append(f"  ... {elided} earlier note(s) omitted. "
+                             f"Full history is on the item's page.")
                 continue
             if h.get("collapsed"):
                 span = (f"{h['first']} to {h['last']}" if h["first"] != h["last"]
                         else h["first"])
                 lines.append(
                     f"  {span}  {h['count']} further check(s) of this item found "
-                    f"nothing changed. The most recent check is the note below.")
+                    f"nothing changed. Latest check follows.")
                 continue
             lines.append(f"  {h.get('date', '')}  {esc_dashes(h.get('note'))}")
 
