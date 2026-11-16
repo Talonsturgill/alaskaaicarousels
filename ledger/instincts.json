@@ -2796,6 +2796,30 @@
       "evidence": "No.115 slide 05 read as a gallows (round 3) and a pedestal table (round 4a) until the cut, taped cable and collar were drawn; the scorer then named it a literal anchor",
       "confidence": 0.7,
       "last_confirmed": "2026-11-14"
+    },
+    {
+      "id": "dem-scene-far-plane",
+      "learned": "2026-11-15",
+      "instinct": "AN AKTHREE TERRAIN SCENE NEEDS ITS FAR PLANE SET. The default far plane of 200 clips a DEM mesh framed from 1000+ units to black. Set near 5 and far 8000 before framing any real-DEM terrain.",
+      "evidence": "No.116 slides 01 and 08 rendered as black terrain until R.camera.far was raised",
+      "confidence": 0.8,
+      "last_confirmed": "2026-11-15"
+    },
+    {
+      "id": "craft-glint-reads-as-beam",
+      "learned": "2026-11-15",
+      "instinct": "A VERTICAL SPECULAR STREAK ON A DARK SEA READS AS A SPOTLIGHT. A sun glint on water is low and stretched horizontally, or it is a column of light. Paint it wide and flat, close to the coast, and fade it well above the footer.",
+      "evidence": "No.116 cover's added Gulf glint was named a spotlight or lens smear by the cycle-2 scorer and was reverted",
+      "confidence": 0.6,
+      "last_confirmed": "2026-11-15"
+    },
+    {
+      "id": "3d-panel-top-dissolve",
+      "learned": "2026-11-15",
+      "instinct": "A 3D PANEL UNDER BODY COPY PRINTS ITS FAR EDGE AS A STEP. Fade the snapshot into the page ground with a 230 px gradient after the grade, or the sea plane's horizon reads as a pasted rectangle.",
+      "evidence": "No.116 slide 08's reserve seam at y 648 was named in two craft reviews; the gradient dissolve removed it",
+      "confidence": 0.65,
+      "last_confirmed": "2026-11-15"
     }
   ]
 }

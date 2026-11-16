@@ -9670,3 +9670,10 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AN EMPTY FIXTURE NEEDS ITS LEFTOVERS. 05's bare pole and plate read as a gallows, then a pedestal table; a clamp collar, bolt holes and a cut cable taped off in the deck's orange made it a camera mount with the camera gone, and story-art fusion rose half a point.
 - A CRAFT CYCLE WORTH ITS ROUND RE-RUNS THE PIXEL CRITICS BEFORE THE SCORER. The first pass of the cycle left a blurred foreground smear, deck streaks across the planks and a clipped reflection edge; the critics caught all three and the fixes took art from 6.5 to 7.0.
 - THREE BAR-BOARD FRAMES IN ONE DECK READ AS UI. The scorer named 04, 06 and 07 as flat progress bars even with front faces and ticks. A quantity instrument drawn three times needs material identity (tooth, a lit arris, fills that wrap the edge) or a different form per frame.
+
+## 2026-11-15, No.116, retro
+- A REAL-DEM TERRAIN SCENE STARTS BLACK UNTIL THE FAR PLANE MOVES. akthree's default far plane of 200 clipped the state mesh on 01 and 08. Set near 5 and far 8000 first, then judge the light.
+- DEM EDGES PRINT AS STREAKS AND WALLS. Clamped samples past a DEM's bounds smeared on 04, 05 and 09, and the 141st-meridian cut stood as a lit wall on 01 and 08. Keep contour windows wholly inside the DEM, mask with the state outline, and sink what lies outside Alaska.
+- A CONTACT DECLARATION GOES STALE WHEN THE SHADOW SOFTENS. Softening 03's shadow and decal dropped the declared vertical read to dL -0.4; contact_probe at the flange foot found a horizontal read at dL 17.1. Re-probe after every shadow edit, and refuse a base whose cast trough sits more than 30 px off the object.
+- A CRAFT CYCLE CAN ADD A NEW FINDABLE DEFECT. The cover's Gulf glint read as a spotlight and was reverted after the re-score. A craft addition earns its place only if the critic names it as an improvement.
+- A FLOATING RING NEEDS GROUND UNDER IT. 08's ring read as a place on the coast until a dashed drop line, a gold ground glow and a footprint ellipse gave the hover a floor.

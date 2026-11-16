@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-15/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 7795309,
+  "pdf_mb": 7.8,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-15/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-15/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "UA regents moved the AI vote. Campus policies start first.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "00a6e6ddf16dd19fe22268bf8e6a81952ca9bbf2da5dfbd2a40df1ad651f7a33",
+        "bytes": 1360139
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "397a5d8fb4873f7d15703003f5c2fbd62939d9d98e71020b864cf8272c27783e",
+        "bytes": 3738410
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "adebbd3674a6e39ac4531c882e7f84e1d67467c591d6f71f64daeba40ef0dae9",
+        "bytes": 2543564
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "b02e05e7b783388bb6df9d05f36e630f1056c15bda9e04f40accb8c375e89cad",
+        "bytes": 3331612
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "d5592fdfaa39ed92be3b7619a680a9827e5e27c3b77d34966cb09b4f105821f9",
+        "bytes": 2774181
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "bc2a038d32065877d2f9fd062bf4d6216c86e6038e154bb2cd1060412917d955",
+        "bytes": 2791173
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f9e0f04f0c5ab9b63d848d1107a9a29850872dddbb651a6f5cc1bcfc27cbe74b",
+        "bytes": 2564461
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "1c160a9ece490db2a8a7ec8d504ab659a13b05e87b67cbfafca261bd49c1a60a",
+        "bytes": 1096868
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6fb3cf414d6a090e0bbfa31a865efb2b34ff7600a3d58ace1fdb7d0e12c9c9c4",
+        "bytes": 3902252
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "6c9caa09ac1b0f9e46f4ec7b757f1d8b507f5b9f38f75e770848c39f66279f85",
+        "bytes": 11444
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "c45f73a151927d42914078c0bbab84d1d9a3355eaed78eef68200df82a93ad4b",
+        "bytes": 10190
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "d8792e7468e169e08e1db98a2ad2c8c8c0a4517c85fa9d593b46e5ad81631a41",
+        "bytes": 19709
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "3036483036049c91528e9ac8ca7fb0e128338efb5bbd56210f9caa0a96cf7a79",
+        "bytes": 12997
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "7a981a7718652b92a16058dcd823fd2f1860a37c7e6dcc23f8e665b3f4e49fc9",
+        "bytes": 8293
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "de85606d56aa0a7e03514689125ab0d5459514fe226fff2b395ebd9b5715b441",
+        "bytes": 9433
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "7e5fc9ed893d600e0bfa335d56fc46b034ab2e7bd6dd231516bbe619792f7c71",
+        "bytes": 11951
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "6eccae3f974308cd5f11c473b88c802beb36cdba66ac2d51d4ebd2e1b558fd06",
+        "bytes": 12159
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "e3a33acdf8e93a390783021d5825b8ff68e0705afc657040e621cf4d56f5c8d4",
+        "bytes": 7940
+      }
+    ]
+  }
+}

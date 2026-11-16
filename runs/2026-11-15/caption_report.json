@@ -1,0 +1,19 @@
+{
+  "chars": 886,
+  "hook": "In May, UA regents asked for a system AI statement. In November, they put campus AI policies ahead of the vote on it.",
+  "hook_len": 117,
+  "commas": 6,
+  "comma_per_100": 0.71,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#UniversityOfAlaska",
+    "#AIPolicy",
+    "#AlaskaHigherEd"
+  ],
+  "deck_summary": "The deck opens on the moved vote, then what AI Engaged is, Shier's 20 percent estimate, the Anchorage dissent and a map of the new order.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 67
+}

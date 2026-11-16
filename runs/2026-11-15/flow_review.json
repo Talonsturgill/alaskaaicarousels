@@ -1,0 +1,102 @@
+{
+ "verdict": "revise",
+ "momentum": "The arc keeps its promise. 02 pays the cover straight away ('The vote moved. The work didn't.'), 03 defines what is being voted on, 04 gives the number, 05 puts in the human counterweight, 06 brings the dissent, 07 sets out the order, 08 synthesises and 09 asks one clean question. The middle doesn't escalate, though. 06 is the conflict beat ('probably going to be messy') but it is drawn as the same blue hillshade panel as 02, so the peak doesn't feel like a peak. The 'who drew the first draft?' plant for 03 to 04 isn't on 03's page. The reader gets there by the four-page link and not by an open question.",
+ "junctions": [
+  {
+   "from": 1,
+   "to": 2,
+   "reads": "strong",
+   "fix": "None needed. The gold route leaves 01 at the right edge and enters 02 from the left at the same height (about display y 1300 on both), and the headline pays the cover."
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "reads": "strong",
+   "fix": "The 'FEB, VOTE' open ring leads to 'WHAT REGENTS WILL VOTE ON'. The pull is logical. The visual cut from map to 3D still life is hard, but the kicker covers it."
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "reads": "weak",
+   "fix": "Nothing on 03 plants authorship. Add a short mono note under the ring labels on 03, e.g. 'FIRST DRAFT: 2 PAGES', so the 4-page statement visibly opens the draft question that 04 answers."
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "reads": "strong",
+   "fix": "'About 20 percent survived' leads to 'written by humans'. The machine-versus-human tension pulls hard. Keep it."
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "reads": "weak",
+   "fix": "The place continuity is right (Anchorage glow to Anchorage senate), but the 05 gold thread dies in mid-air at display (812, 1780) and doesn't hand off to the gold path entering 06 from the left. Run the 05 thread out of the left or bottom edge so 06's entry completes it."
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "reads": "weak",
+   "fix": "'Messy' to 'THE ORDER NOW' is serviceable, not a pull. Let the violet DECEMBER ring on 06 come back on 07's DECEMBER station (a violet ring there instead of grey) so the dissent visibly lands on the timeline."
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "reads": "strong",
+   "fix": "The three campus rings on 07 lead to the three threads on 08. Keep it."
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "reads": "strong",
+   "fix": "The open February ring carries through to 09 with Polaris above. Remove the reticle cross inside the 09 ring so it reads as unset, not as targeted."
+  }
+ ],
+ "continuity": "The edge-tease from 01 to 02 lands: exit and entry heights match. The route-head motif follows the state table on 01, 02, 03 (tiny gold datum tick), 04 (surviving rail), 06 (path stops at UAA), 07 (NOVEMBER station), 08 (gold open ring) and 09 (Polaris). The breaks: (1) the 05 gold thread has a findable loose end at display (812, 1780) above the fixture band. It starts off the right edge, bends twice and stops on nothing, so it reads as a stray line, not as the route passing through. (2) The February ring is meant to stay open and unchanged, but 09 adds a crosshair inside it, which reads as a state change ('targeted'). (3) On 07 the campus bundle leaves the trunk above the NOVEMBER station, between OCTOBER and NOVEMBER, so the branch reads as starting before the gold 'now' point.",
+ "rhythm": "The breather lands at 05 as planned. But the frames either side form two runs of three dense slides: 02, 03, 04 (each 4 to 5 body lines plus a full art panel) and 06, 07, 08 (4, 3 plus a six-station timeline, 4). 04 is where it starts to tire: the third dense block in a row, with a legend to decode. Cut 03's body to two sentences (drop 'UA says it sets six...', since the ring labels already carry 6/4/5) and that run breaks.",
+ "consistency": "The fixtures hold: wordmark, mono footer, coordinates and counters 01/09, 02/09, 03/09, 04/09, 05/09, 06/09, 07/09, 08/09, 09/09 are all present and correct. 09 swaps the small wordmark for the large one, which is acceptable for a close. Palette and type hold across 01, 02 and 04 to 09. 03 is the frame that looks pasted from another deck: warm grey clay-like granite in a 3D still life, with a key at azimuth 222 against the deck's 175 to 200. Light direction is close enough elsewhere. COPY CHECK: the Manrope body apostrophes render curly in 03 'doesn't', 04 'UA's', 06 'it's' and 07 'Claude's', while the headlines' 'didn't' and 'UAA's' are straight. If those are U+2019 in copy.json, they break the straight-quotes house rule. Verify and normalise.",
+ "craft": {
+  "weakest_frames": [
+   {
+    "slide": 7,
+    "cause": "d",
+    "fix": "Delete the hachure coast ghost. Its tick clusters read as fur or burrs on the sheet, at display y 1080 to 1820, most of all the bottom strip at y 1750 to 1820. Replace it with one continuous cased coastline (or a graded low-alpha hillshade ghost) at 0.12 alpha. That also gives the dead lower-right quadrant (x 850 to 1500, y 1450 to 1820) modelled tone, where it now has only stray fur flecks."
+   },
+   {
+    "slide": 3,
+    "cause": "b",
+    "fix": "Re-model the boulder, the largest object. It reads as smeared clay: the whole rock is defocused, not just the shard, so the sharp cap looks pasted on. A black annulus of decal or shadow around the cap is a findable reserve edge. Keep the boulder sharp within about 0.15 m of the cap with crisp feldspar speckle and a real terminator, and replace the black ring with a soft contact gradient. The black band between the body and the rock (display y 950 to 1150) is also a dead region. Carry the lit sun pool and haze up into it."
+   },
+   {
+    "slide": 8,
+    "cause": "d",
+    "fix": "Hide the terrain plane's edges. A lighter navy trapezoid edge shows at upper right (display x 1480 to 1600, y 960 to 1350) and a curved mesh boundary along the bottom (y 1780 to 1850). Extend the plane past the frustum and fog it to the sky colour. Then lift western Alaska, which is barely modelled, so the lower-left half isn't a dim slab."
+   },
+   {
+    "slide": 5,
+    "cause": "c",
+    "fix": "The breather is allowed to be quiet, but the stipple is sparse scatter, not a glow, and the lower third is a coast line plus a gold stub. Raise the core density and add the planned two-part halo so Anchorage reads as light. End the gold thread off an edge rather than in mid-air."
+   },
+   {
+    "slide": 1,
+    "cause": "c",
+    "fix": "The Gulf below the coast is flat black across the lower right of the lower third (display x 700 to 1300, y 1500 to 1800). Paint the planned sea gloss and low-sun streak there, and sharpen the relief so the Alaska Range reads as ridgelines, not as cotton-ball mottling."
+   }
+  ],
+  "cross_frame": [
+   "Cause a, census: AKS.loadDEM appears on 1, 2, 3, 4, 5, 6, 8 and 9. It is a data loader feeding five different kinds of mark-making (PBR mesh, hillshade, 3D skyline, contour engraving, stipple and outline), so it does not read as the same drawing on the sheet. Not cause a.",
+   "Near-repeats, each kept to two frames (under the limit): the PBR whole-state mesh from above on 01 and 08 (very similar framing, the closest the deck comes to 'the same drawing'), the hillshade panel on 02 and 06 (same panel frame and blue ramp), and the contour engraving on 04 and 09. If 08 is re-rendered, change the camera to a low oblique so it stops echoing the cover.",
+   "Cause d appears on three frames: fur hachure on 07, the black annulus on 03, mesh plane edges on 08. Also check the stair-stepped coastline pixels on 06 around Knik Arm (display about 830, 1100 to 1160).",
+   "No frame meets 'masterful real depth'. 03 was declared the masterful depth frame, but its depth stack falls apart: rock and shard are equally blurred, there is a dead band between ground and sky, and the cap sits on a black disc. This alone keeps the deck below 8."
+  ],
+  "tonal_arc": "The census passes and matches what I see: 01 13, 02 12, 03 22 (peak, as declared), 04 11, 05 8 (darkest, as declared), 06 12, 07 9, 08 12, 09 9, span 13.3 L*. The miss it can't measure: apart from the spike at 03, the deck is one flat band of navy at L* 9 to 13. 03's peak is warm grey granite, off palette for the deck, not a lit object inside the deck's world. No frame after 03 has a lit focal object, though 08's ring glow could be one. So the 'arc' is a single spike, not a shape.",
+  "art_score_10": 6.6
+ },
+ "fixes": [
+  "07: replace the fur-like hachure coast ghost with a continuous low-alpha coastline or hillshade ghost, and give the empty lower-right quadrant modelled tone.",
+  "03: model the boulder sharply around the cap (DOF only on the far range and the near shard), remove the black annulus under the cap, and fill the dead black band between the body copy and the rock with lit ground and haze. This is the deck's only chance at a masterful depth frame.",
+  "08: extend and fog the terrain plane so no mesh edge is findable, lift western Alaska's relief, and move to a low oblique camera so it stops echoing 01.",
+  "05 and 06 seam: run the 05 gold thread off an edge so 06's left-edge entry completes it, and densify 05's Anchorage stipple into a real glow. Also take the crosshair out of the 09 February ring.",
+  "Rhythm and copy: cut 03's body to two sentences to break the 02-03-04 dense run, and normalise the curly apostrophes on 03, 04, 06 and 07 to straight ones."
+ ],
+ "score_10": 7.1
+}

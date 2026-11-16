@@ -1,0 +1,105 @@
+{
+  "run_dir": "out/2026-11-15",
+  "render_report": "out/2026-11-15/render/render_report.json",
+  "aggregates_file": "out/2026-11-15/aggregates.json",
+  "detected": 9,
+  "declared": 10,
+  "detections": [
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "SIX PRINCIPLES",
+      "at": 0,
+      "text": "SIX PRINCIPLES",
+      "n": 6,
+      "subject": "principles"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "FOUR PRIORITIES",
+      "at": 0,
+      "text": "FOUR PRIORITIES",
+      "n": 4,
+      "subject": "priorities"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "FIVE EXPECTATIONS",
+      "at": 0,
+      "text": "FIVE EXPECTATIONS",
+      "n": 5,
+      "subject": "expectations"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "2 PAGES",
+      "at": 13,
+      "text": "FIRST DRAFT, 2 PAGES",
+      "n": 2,
+      "subject": "pages"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "4 PAGES",
+      "at": 12,
+      "text": "AI ENGAGED, 4 PAGES, PER ADN",
+      "n": 4,
+      "subject": "pages"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "200 students",
+      "at": 7,
+      "text": "Nearly 200 students and staff asked for a brief statement written by humans.",
+      "n": 200,
+      "subject": "students"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "three universities",
+      "at": 40,
+      "text": "The statement would require each of the three universities to write its own AI policy. That work now starts first. A one-year clock for a system-wide policy report starts only at adoption.",
+      "n": 3,
+      "subject": "universities"
+    },
+    {
+      "slide": 7,
+      "kind": "duration",
+      "fragment": "One year",
+      "at": 0,
+      "text": "One year to a system policy report",
+      "n": 1,
+      "unit": "year"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "THREE UNIVERSITIES",
+      "at": 0,
+      "text": "THREE UNIVERSITIES, ONE STATEMENT",
+      "n": 3,
+      "subject": "universities"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "the twelve ticks of the one-year clock",
+      "note": "twelve equal months drawn after ADOPTION, a property of the drawing; not printed as a number"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "S3 'FOUR PRIORITIES' [from_claim]: the noun 'priority' does not appear in claim C24; check that the number is being attached to what the claim actually counts.",
+    "S7 'The statement would require each of the three un' [from_claim]: the noun 'university' does not appear in claim C16; check that the number is being attached to what the claim actually counts.",
+    "S8 'THREE UNIVERSITIES, ONE STATEMENT' [from_claim]: the noun 'university' does not appear in claim C16; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

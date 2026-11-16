@@ -1,0 +1,75 @@
+{
+ "run_date": "2026-11-15",
+ "carousel_no": 116,
+ "effort": "medium",
+ "date_note": "UTC date at wake was 2026-11-16; Anchorage date 2026-11-15 is CLEAR per run_guard.",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done (1 search, nothing new, no FIELD_NOTES entry)",
+  "research": "done: out/2026-11-15/scout_merge.md (6 scouts, ~146 searches)",
+  "claims": "done: out/2026-11-15/claims.json (56 claims, 13 primary, S1 S2 S3 survive; claims_check PASS; 14 fetches, one per URL)",
+  "docket": "done: ledger/docket.json (3 worklist items refreshed; GCI closing added), ask self-test 10,956 B headroom, browser suites PASS",
+  "gas_watch": "done: cron_health PASS (all scheduled workflows), gaswatch_health WARN late_post -> dispatched gaswatch.yml run 43815033214, Pages deployed, re-audit PASS; site_signoff PASS 181 pages 18 checks; pagecheck PASS; phone/desktop look clean",
+  "selection": "done: out/2026-11-15/selection.md (UPDATE of No.109; runner-up AO 359/360)",
+  "directors_room": "done: out/2026-11-15/storyboard.md, treatments/*.md (cartographer won; systems + cinematographer organs)",
+  "copy": "done: caption.txt, caption_report.json PASS, copy.json",
+  "art_build": "done: slides/slide-01..09.html, render/ (qa WARN 0 fails), bespoke PASS 0.125",
+  "pixel_review": "done: round 1 and round 2 critics on all 9 (critic/round1-*.json); craft re-review of 01, 03, 05, 08 (05 ship 7.6)",
+  "flow_review": "done: flow_review.json (7.1, revise; round 3 repairs applied)",
+  "assemble": "done: final/carousel.pdf vector 7.8 MB, contact sheet, 9 thumbs; machine_qa WARN 0 fails",
+  "scoring": "done: cycle 1 8.51 (art 6.5) -> craft cycle on frames 3, 8, 1, 5 -> cycle 2 8.59 vs 7.7, ship, art 7.0; ship_gate PASS",
+  "ship": "done: runs/2026-11-15 (webp + og.jpg), site rebuilt at 2026-11-15 (182 pages), parsers, scanner_sync, docket_dates, site_fresh PASS; alerts none due; prune freed 1.39M; ledgers + FIELD_NOTES appended",
+  "upgrade": "pending",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social_feedback": [],
+ "social_preflight": {
+  "users": "ok (read users 200)",
+  "facebook_page": "2003130316607965 verified in facebook-pages",
+  "linkedin_org": "urn:li:organization:117084989 verified in linkedin-pages",
+  "facebook_pin": "2003130316607965 match",
+  "linkedin_pin": "urn:li:organization:117084989 match",
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialized/read back"
+ },
+ "pixel_round1": {
+  "verdicts": "9 revise",
+  "scores": {
+   "01": 5.8,
+   "02": 7.2,
+   "03": 5.3,
+   "04": 7.0,
+   "05": 6.4,
+   "06": 6.8,
+   "07": 7.0,
+   "08": 5.4,
+   "09": 6.4
+  }
+ },
+ "pixel_round2": {
+  "scores": {
+   "01": 6.6,
+   "02": 7.6,
+   "03": 5.5,
+   "04": 7.0,
+   "05": 7.7,
+   "06": 7.0,
+   "07": 7.0,
+   "08": 5.6,
+   "09": 7.6
+  },
+  "declined": "Unbounded ink traps reported as seams on 01, 02: they are the typeface design (notches at stem-bowl joins), measured at 100 percent"
+ },
+ "craft_cycle": {
+  "frames": [
+   3,
+   8,
+   1,
+   5
+  ],
+  "art_before": 6.5,
+  "art_after": 7.0
+ }
+}

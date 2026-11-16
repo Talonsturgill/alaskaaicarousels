@@ -1,0 +1,160 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'UAA' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.04) beneath 'UAS' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold route leaving the UAF ring to the right edge': canvas 115.1 dE, page 115.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "l1 'Regents pushed the AI voteto February.' fits 2/2 lines at 49.5px",
+        "hl 'Campuspoliciesstart first.' fits 3/3 lines at 119.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "leaders": [
+        "leader 'the outer spur of campus policy work' lands 0.0px from its target",
+        "leader 'the outer spur of campus policy work' meets its label 7.5px away",
+        "leader 'the outer spur of campus policy work' is drawn 135 px at 59 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The vote moved.The work didn't.' fits 2/2 lines at 92px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the survey cap set in the granite, its soft contact on the rock below the flange': shadow L* 55.9 vs ground L* 73.0, dL 17.1 at 432w"
+      ],
+      "motifs": [
+        "'the gold datum tick on the cap': canvas 80.3 dE, page 80.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'tick ring 1 on the cap' lands 0.0px from its target",
+        "leader 'tick ring 2 on the cap' lands 0.0px from its target",
+        "leader 'tick ring 3 on the cap' lands 0.0px from its target",
+        "leader 'tick ring 1 on the cap' meets its label 10.0px away",
+        "leader 'tick ring 2 on the cap' meets its label 10.0px away",
+        "leader 'tick ring 3 on the cap' meets its label 10.0px away",
+        "leader 'tick ring 1 on the cap' is drawn 90 px at 26 degrees, inside the pointer band",
+        "leader 'tick ring 2 on the cap' is drawn 81 px at 63 degrees, inside the pointer band",
+        "leader 'tick ring 3 on the cap' is drawn 90 px at 79 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'A benchmark,not a law.' fits 2/2 lines at 91px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold surviving-share rail': canvas 117.4 dE, page 117.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the page ruler under the three rails' runs 0 pages at 120 to 4 pages at 960; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'About 20 percent survived, Shier says.' fits 2/2 lines at 75.5px"
+      ],
+      "asserts": [
+        "'r1 rail length in px for 2 pages' holds: 420 vs 420 px (within 0.5)",
+        "'r2 rail length in px for 0.4 pages' holds: 84 vs 84 px (within 0.5)",
+        "'r3 rail length in px for 4 pages' holds: 840 vs 840 px (within 0.5)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold thread past the Anchorage glow': canvas 115.6 dE, page 115.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Nearly 200 studentsand staff askedfor a brie' fits 4/4 lines at 69.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the violet dissent branch to the open December ring': canvas 62.0 dE, page 62.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the gold route arriving at the UAA ring': canvas 124.2 dE, page 124.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'UAA's Faculty Senatepaused too.' fits 2/2 lines at 70px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the one-year clock ticks after adoption': canvas 63.5 dE, page 63.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the one-year clock after adoption' runs 0 months at 1100 to 12 months at 1244; 13 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Campus policies startbefore the statement.' fits 2/2 lines at 69px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the open gold February ring': canvas 116.1 dE, page 116.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The rules get drawncampus by campus.' fits 2/2 lines at 76px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'Polaris above the open benchmark ring': canvas 84.7 dE, page 85.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the open benchmark ring': canvas 72.2 dE, page 72.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Campus rules first,or statement first?' fits 2/2 lines at 79.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKS.loadDEM",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}
