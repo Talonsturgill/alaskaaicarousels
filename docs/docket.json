@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2032-08-31",
-  "count": 42,
+  "count": 43,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -6939,6 +6939,49 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/rhtp-year-2-awards/"
+    },
+    {
+      "id": "noaa-2027-observer-em-deployment",
+      "title": "NOAA's 2027 fisheries monitoring plan includes an AI video project",
+      "kind": "other",
+      "status": "pending-decision",
+      "decider": "NOAA Fisheries, National Marine Fisheries Service",
+      "public_access": "indirect",
+      "access_note": "NMFS consults the North Pacific Fishery Management Council and considers public input through its annual review. The Council does not formally approve the plan; final deployment is at NMFS's discretion. The draft gives nmfs.alaska.adp@noaa.gov for questions, concerns and 2027 monitoring needs.",
+      "summary": "NOAA's draft 2027 plan assigns observers and electronic monitoring to Alaska groundfish and halibut fisheries, using a preliminary $5.45 million partial-coverage budget. It lists a project to scale AI tools for electronic-monitoring video analysis among work it intends to support in 2027, pending staff availability, not a funded deployment commitment.",
+      "key_dates": [
+        {
+          "date": "2026-11-06",
+          "label": "NOAA posts the draft 2027 annual deployment plan",
+          "kind": "milestone"
+        }
+      ],
+      "location": {
+        "name": "Groundfish and halibut fisheries off Alaska",
+        "lon": -152.4,
+        "lat": 57.8
+      },
+      "sources": [
+        {
+          "url": "https://www.fisheries.noaa.gov/resource/document/draft-2027-annual-deployment-plan-observers-and-electronic-monitoring-groundfish",
+          "outlet": "NOAA Fisheries Alaska Regional Office",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://www.fisheries.noaa.gov/s3/2026-11/draft-2027-adp-akro.pdf",
+          "outlet": "NOAA Fisheries, draft 2027 Annual Deployment Plan",
+          "date": "2026-11-06"
+        }
+      ],
+      "first_seen": "2026-11-15",
+      "last_updated": "2026-11-15",
+      "history": [
+        {
+          "date": "2026-11-15",
+          "note": "The NOAA resource page and draft plan still describe a preliminary budget and staff-dependent AI work. The draft says the final plan will be presented to the Council in December 2026, without naming a day. NMFS retains the final deployment decision."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/noaa-2027-observer-em-deployment/"
     }
   ]
 }
