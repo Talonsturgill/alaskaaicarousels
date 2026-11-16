@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "the-forest-cant-stand-on-the-ice",
+      "date": "2026-11-16",
+      "title": "The Forest Can't Stand on the Ice",
+      "caption": "A random forest reading Sentinel-1 radar dated the ice on 30,774 North Slope lakes, per a paper in The Cryosphere. Its 94 percent is agreement with another satellite, and the paper says no field validation was done.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-16-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-16-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-16-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-16-poster_thumb.jpg"
+    },
+    {
       "id": "2026-11-15-the-slot-without-an-edge",
       "date": "2026-11-15",
       "title": "The Slot Without an Edge",
