@@ -20,7 +20,7 @@
   "assemble": "done: final/carousel.pdf vector 7.8 MB, contact sheet, 9 thumbs; machine_qa WARN 0 fails",
   "scoring": "done: cycle 1 8.51 (art 6.5) -> craft cycle on frames 3, 8, 1, 5 -> cycle 2 8.59 vs 7.7, ship, art 7.0; ship_gate PASS",
   "ship": "done: runs/2026-11-15 (webp + og.jpg), site rebuilt at 2026-11-15 (182 pages), parsers, scanner_sync, docket_dates, site_fresh PASS; alerts none due; prune freed 1.39M; ledgers + FIELD_NOTES appended",
-  "upgrade": "pending",
+  "upgrade": "done: automation_retro.md; machine pass not due (next 2026-11-18); 2 items queued; no upgrades",
   "gmail": "pending",
   "retro": "pending"
  },
