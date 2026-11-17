@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-16T22:57:35Z",
+  "checked_at": "2026-11-17T09:19:36Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "76110e83091021648598a99a47337daa6418b0efc6d44e4b7be69a5e1d7aceff",
+  "response_sha256": "2af5cec4056978a0b2051e6b813ae97012d0153a33019bd1f932a2d536784985",
   "articles": [
     {
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -24,6 +24,13 @@
       "first_seen_at": "2026-11-04T06:02:44Z",
       "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
       "feed": "https://www.ktoo.org/feed/"
+    },
+    {
+      "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+      "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+      "first_seen_at": "2026-11-17T00:59:47Z",
+      "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+      "feed": "https://www.ktoo.org/feed/"
     }
   ],
   "selected": {
@@ -34,89 +41,13 @@
     "feed": "https://www.akbizmag.com/feed/",
     "publisher": "Alaska Business",
     "coverage": 1,
-    "score": 0.032839,
+    "score": 0.024342,
     "priority": 4
   },
   "expires_at": "2026-11-26T00:40:39Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-16T19:23:00Z",
-      "selected": {
-        "title": "$4.9M Loan for Red Dog Mine Solar Array",
-        "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
-        "first_seen_at": "2026-11-12T00:40:39Z",
-        "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
-        "feed": "https://www.akbizmag.com/feed/",
-        "publisher": "Alaska Business",
-        "coverage": 1,
-        "score": 0.032839,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "$4.9M Loan for Red Dog Mine Solar Array",
-          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
-          "first_seen_at": "2026-11-12T00:40:39Z",
-          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.032839,
-          "priority": 4
-        },
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.00015,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-17T01:23:00Z",
-      "selected": {
-        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-        "first_seen_at": "2026-11-04T06:02:44Z",
-        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-        "feed": "https://www.ktoo.org/feed/?paged=3",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.00014,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.00014,
-          "priority": 4
-        },
-        {
-          "title": "$4.9M Loan for Red Dog Mine Solar Array",
-          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
-          "first_seen_at": "2026-11-12T00:40:39Z",
-          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
-          "feed": "https://www.akbizmag.com/feed/",
-          "publisher": "Alaska Business",
-          "coverage": 1,
-          "score": 0.030619,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-17T07:23:00Z",
       "selected": {
@@ -127,7 +58,7 @@
         "feed": "https://www.akbizmag.com/feed/",
         "publisher": "Alaska Business",
         "coverage": 1,
-        "score": 0.025748,
+        "score": 0.024342,
         "priority": 4
       },
       "stories": [
@@ -139,8 +70,19 @@
           "feed": "https://www.akbizmag.com/feed/",
           "publisher": "Alaska Business",
           "coverage": 1,
-          "score": 0.025748,
+          "score": 0.024342,
           "priority": 4
+        },
+        {
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.786166,
+          "priority": 1
         },
         {
           "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
@@ -150,7 +92,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=3",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.000117,
+          "score": 0.000111,
           "priority": 4
         }
       ]
@@ -158,27 +100,27 @@
     {
       "starts_at": "2026-11-17T13:23:00Z",
       "selected": {
-        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-        "first_seen_at": "2026-11-04T06:02:44Z",
-        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-        "feed": "https://www.ktoo.org/feed/?paged=3",
+        "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+        "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+        "first_seen_at": "2026-11-17T00:59:47Z",
+        "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+        "feed": "https://www.ktoo.org/feed/",
         "publisher": "KTOO",
         "coverage": 1,
-        "score": 9.9e-05,
-        "priority": 4
+        "score": 0.699249,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-          "first_seen_at": "2026-11-04T06:02:44Z",
-          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
-          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 9.9e-05,
-          "priority": 4
+          "score": 0.699249,
+          "priority": 1
         },
         {
           "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -190,21 +132,109 @@
           "coverage": 1,
           "score": 0.021651,
           "priority": 4
+        },
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 9.9e-05,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-17T19:23:00Z",
+      "selected": {
+        "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+        "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+        "first_seen_at": "2026-11-04T06:02:44Z",
+        "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+        "feed": "https://www.ktoo.org/feed/?paged=3",
+        "publisher": "KTOO",
+        "coverage": 1,
+        "score": 8.3e-05,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+          "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+          "first_seen_at": "2026-11-04T06:02:44Z",
+          "summary": "In a state that routinely elects Republicans to statewide office, Kreiss-Tomkins made his \"high-energy, bipartisan, problem-solving approach\" a centerpiece of his campaign.",
+          "feed": "https://www.ktoo.org/feed/?paged=3",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 8.3e-05,
+          "priority": 4
+        },
+        {
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.587996,
+          "priority": 1
+        },
+        {
+          "title": "$4.9M Loan for Red Dog Mine Solar Array",
+          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+          "first_seen_at": "2026-11-12T00:40:39Z",
+          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.018206,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-18T01:23:00Z",
+      "selected": {
+        "title": "$4.9M Loan for Red Dog Mine Solar Array",
+        "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+        "first_seen_at": "2026-11-12T00:40:39Z",
+        "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+        "feed": "https://www.akbizmag.com/feed/",
+        "publisher": "Alaska Business",
+        "coverage": 1,
+        "score": 0.01531,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "$4.9M Loan for Red Dog Mine Solar Array",
+          "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+          "first_seen_at": "2026-11-12T00:40:39Z",
+          "summary": "The Alaska Energy Authority approved a $4.9 million loan to build an 8.8-MW solar array for Red Dog Mine.",
+          "feed": "https://www.akbizmag.com/feed/",
+          "publisher": "Alaska Business",
+          "coverage": 1,
+          "score": 0.01531,
+          "priority": 4
+        },
+        {
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.494443,
+          "priority": 1
         }
       ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-      "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-      "shown_at": "2026-11-09T01:23:00Z"
-    },
-    {
-      "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-      "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-      "shown_at": "2026-11-09T07:23:00Z"
-    },
     {
       "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
       "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
@@ -354,6 +384,16 @@
       "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
       "shown_at": "2026-11-16T19:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
+      "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
+      "shown_at": "2026-11-17T01:23:00Z"
+    },
+    {
+      "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
+      "title": "$4.9M Loan for Red Dog Mine Solar Array",
+      "shown_at": "2026-11-17T07:23:00Z"
     }
   ],
   "feeds": [
@@ -361,31 +401,27 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "0f6ac87e3eee7586120d11d136c455b5191fb8da29aaf228ca1a354475908bd1"
+      "sha256": "335f36395778caea352e0e6e80ed90f6a6510ae2e0eb159d5dac6cb3b96ddc38"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "5015bb3a44a6316680f8584aedc11a94dc114aab4afe5a987a62d5278f425361"
+      "sha256": "9eba1baff7efb55a21522948a9ba4edfec1419a9899e3ab6aa9b405733b7d601"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "66a6b3af7413336be9386a56716bd5e3cb017fdd64b994c34a19f761ae6c0ac1"
+      "sha256": "aa00f8f89bb1d3e4312c3d00f25a087b89db86f2701bb4bb95ee5839da97ea75"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "b6c9fd4b6da5f33a945db60cf920d7a4139383a6e0fa4faebb338e4d4eb15e5e"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/?paged=2",
-      "status": "ok",
-      "items": 10,
-      "sha256": "45646f1dad04c5345bb9e6b3db79993569e39d580bf21d0675bcdd52bff9fac9"
+      "status": "not_modified"
     },
     {
       "url": "https://alaska-native-news.com/feed/",
@@ -401,14 +437,13 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "backoff",
-      "retry_at": "2026-11-17T08:04:32Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-18T09:19:32Z",
+      "reason": "feed disallowed by source robots policy"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "de9d76f3b86d167ec04b0e63383415a2c4fc006bacf8789266c1614bce1b55f8"
+      "status": "not_modified"
     },
     {
       "url": "https://www.uaf.edu/news/",
@@ -419,74 +454,74 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0f6ac87e3eee7586120d11d136c455b5191fb8da29aaf228ca1a354475908bd1",
-      "etag": "\"cca31cedbe0f351c883762bbc8f1ac11\"",
-      "last_modified": "Mon, 16 Nov 2026 20:26:18 GMT"
+      "sha256": "335f36395778caea352e0e6e80ed90f6a6510ae2e0eb159d5dac6cb3b96ddc38",
+      "etag": "\"0e32036e1889a726ca889b0f16988f8e\"",
+      "last_modified": "Tue, 17 Nov 2026 05:54:45 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "5015bb3a44a6316680f8584aedc11a94dc114aab4afe5a987a62d5278f425361",
-      "etag": "\"cca31cedbe0f351c883762bbc8f1ac11\"",
-      "last_modified": "Mon, 16 Nov 2026 20:26:18 GMT"
+      "sha256": "9eba1baff7efb55a21522948a9ba4edfec1419a9899e3ab6aa9b405733b7d601",
+      "etag": "\"0e32036e1889a726ca889b0f16988f8e\"",
+      "last_modified": "Tue, 17 Nov 2026 05:54:45 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "66a6b3af7413336be9386a56716bd5e3cb017fdd64b994c34a19f761ae6c0ac1",
-      "etag": "\"cca31cedbe0f351c883762bbc8f1ac11\"",
-      "last_modified": "Mon, 16 Nov 2026 20:26:18 GMT"
+      "sha256": "aa00f8f89bb1d3e4312c3d00f25a087b89db86f2701bb4bb95ee5839da97ea75",
+      "etag": "\"0e32036e1889a726ca889b0f16988f8e\"",
+      "last_modified": "Tue, 17 Nov 2026 05:54:45 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-11-16T22:57:31Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "b6c9fd4b6da5f33a945db60cf920d7a4139383a6e0fa4faebb338e4d4eb15e5e",
       "etag": "W/\"3eebd61e85fce08ab09d054a91d9852c\"",
-      "last_modified": "Mon, 16 Nov 2026 16:21:20 GMT"
+      "last_modified": "Mon, 16 Nov 2026 16:21:20 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-17T09:19:32Z",
+      "sha256": "b6c9fd4b6da5f33a945db60cf920d7a4139383a6e0fa4faebb338e4d4eb15e5e",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-11-16T22:57:31Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "45646f1dad04c5345bb9e6b3db79993569e39d580bf21d0675bcdd52bff9fac9",
       "etag": "W/\"3eebd61e85fce08ab09d054a91d9852c\"",
-      "last_modified": "Mon, 16 Nov 2026 16:21:20 GMT"
+      "last_modified": "Mon, 16 Nov 2026 16:21:20 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-17T09:19:32Z",
+      "sha256": "45646f1dad04c5345bb9e6b3db79993569e39d580bf21d0675bcdd52bff9fac9",
+      "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "ef93ce0ffd68989bdeced35f5ee0ec4189ab8f79620b2a654a7b3f6e6920c322"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "879dd61be375706783bb093449ae6f7d5e5593ede44b6c54a8f47a746dd0fddf"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
       "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
-      "retry_at": "2026-11-17T08:04:32Z",
-      "failures": 7,
+      "retry_at": "2026-11-18T09:19:32Z",
+      "failures": 8,
       "ok_at": "2026-11-09T08:05:53Z",
       "sha256": "afda343724d4492645e57027a90163034f01e8b0c367b42d95d3113b60a95f01",
       "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "last_modified": "Mon, 16 Nov 2026 14:31:40 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-11-17T09:19:32Z",
       "sha256": "de9d76f3b86d167ec04b0e63383415a2c4fc006bacf8789266c1614bce1b55f8",
-      "last_modified": "Mon, 16 Nov 2026 14:31:40 GMT"
+      "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-16T22:57:31Z",
+      "ok_at": "2026-11-17T09:19:32Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "468337080bf6a137c0e23ccc6941ab22d7ea85f2279f2e3decc02e7d9c7c5aa9"
