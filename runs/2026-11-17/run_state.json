@@ -33,5 +33,12 @@
   },
   "tiktok_settings": "PUBLIC_TO_EVERYONE available",
   "state_branch": "initialize OK"
+ },
+ "phase_3_6": {
+  "site_signoff": "SITE SIGN-OFF: PASS, 182 pages, 18 checks",
+  "gaswatch_live": "GAS WATCH LIVE: PASS (rechecked 2026-11-18T07:38Z, after dispatching gaswatch.yml for a late CINGSA post)",
+  "gaswatch_pagecheck": "GAS WATCH page check: PASS",
+  "cron_health": "CRON HEALTH: PASS, 7 scheduled workflows (news.yml had failed on the ubuntu-latest runner image; repaired by maintenance PR #502, re-run green)",
+  "site_fixes": "news.yml and four other Playwright workflows pinned to ubuntu-24.04 (PR #502, merged); tests/workflow_runners.py guards it"
  }
 }
