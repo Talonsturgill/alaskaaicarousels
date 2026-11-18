@@ -5076,6 +5076,11 @@
           "date": "2027-12-31",
           "label": "Moratorium would end unless the Assembly ends it sooner or extends it",
           "kind": "milestone"
+        },
+        {
+          "date": "2027-01-14",
+          "kind": "decision",
+          "label": "Assembly vote on the ordinance expected, per the mayor"
         }
       ],
       "location": {
@@ -5123,10 +5128,15 @@
           "url": "https://www.newsminer.com/news/local_news/borough-planning-commission-weighs-in-on-data-center-moratorium/article_13c587a1-d510-49fa-a9f5-8d8c10838d1e.html",
           "outlet": "Fairbanks Daily News-Miner",
           "date": "2026-11-13"
+        },
+        {
+          "url": "https://www.alaskasnewssource.com/2026/11/17/fnsb-planning-commission-recommends-data-center-moratorium/",
+          "outlet": "Alaska's News Source",
+          "date": "2026-11-16"
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-11-13",
+      "last_updated": "2026-11-17",
       "history": [
         {
           "date": "2026-10-23",
@@ -5171,6 +5181,10 @@
         {
           "date": "2026-11-13",
           "note": "The Fairbanks Daily News-Miner reported today that the Planning Commission unanimously recommended approval on Tuesday, November 10th, and extended the moratorium to 18 months from the 12 the borough administration requested. It covers data centers needing at least five megawatts or occupying at least 40,000 square feet of gross floor space. The ordinance now goes to the Assembly for a public hearing and approval, with no date yet set."
+        },
+        {
+          "date": "2026-11-17",
+          "note": "Alaska's News Source reported that the Planning Commission's recommendation also gives the borough administration 10 months, up from six, to research and recommend rules, and that Mayor Grier Hopkins expects the Assembly vote on January 14th. Hopkins said the borough is still working out whether the pause reaches a data center on Eielson Air Force Base."
         }
       ]
     },
