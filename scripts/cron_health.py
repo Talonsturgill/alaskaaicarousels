@@ -59,19 +59,38 @@ def git(*args, timeout=120):
     return out
 
 
-def _stop_group(proc, grace=10):
-    for sig in (signal.SIGTERM, signal.SIGKILL):
-        try:
-            os.killpg(proc.pid, sig)
-        except (ProcessLookupError, PermissionError):
-            break
-        try:
-            proc.wait(timeout=grace)
-            break
-        except subprocess.TimeoutExpired:
-            continue
+def _group_alive(pgid):
     try:
-        proc.communicate(timeout=1)
+        os.killpg(pgid, 0)
+        return True
+    except (ProcessLookupError, PermissionError):
+        return False
+
+
+def _stop_group(proc, grace=10):
+    """Stop git's whole process group. SIGTERM first so git can remove its own
+    lock, then SIGKILL anything still in the group after the grace period. The
+    parent exiting is not the group exiting: a helper that ignores SIGTERM can
+    outlive it and hold the lock (Codex, PR #503)."""
+    pgid = proc.pid
+    try:
+        os.killpg(pgid, signal.SIGTERM)
+    except (ProcessLookupError, PermissionError):
+        pass
+    deadline = time.monotonic() + grace
+    try:
+        proc.wait(timeout=grace)
+    except subprocess.TimeoutExpired:
+        pass
+    while _group_alive(pgid) and time.monotonic() < deadline:
+        time.sleep(0.1)
+    if _group_alive(pgid):
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+    try:
+        proc.communicate(timeout=5)
     except Exception:
         pass
 

@@ -307,6 +307,24 @@ class CronHealthTests(unittest.TestCase):
                 "Z" not in Path("/proc/%d/stat" % child).read_text().rsplit(")", 1)[1].split()[0]
             self.assertFalse(alive, "the child git spawned outlived the timeout")
 
+    def test_sigterm_ignoring_helper_is_killed_after_parent_exits(self):
+        """Codex on PR #503: the parent exits on SIGTERM, a helper ignores it.
+        The parent's exit must not end the stop; the helper is SIGKILLed."""
+        with tempfile.TemporaryDirectory() as td:
+            marker = Path(td) / "child.pid"
+            fake = Path(td) / "git"
+            fake.write_text("#!/bin/sh\nsh -c 'trap \"\" TERM; sleep 60' &\necho $! > %s\nwait\n" % marker)
+            fake.chmod(0o755)
+            env_path = os.environ.get("PATH", "")
+            with patch.dict(os.environ, {"PATH": td + os.pathsep + env_path}), \
+                    patch.object(health, "_stop_group", lambda p, grace=1, f=health._stop_group: f(p, grace)):
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    health.git("fetch", timeout=1)
+            child = int(marker.read_text().strip())
+            alive = Path("/proc/%d" % child).exists() and \
+                "Z" not in Path("/proc/%d/stat" % child).read_text().rsplit(")", 1)[1].split()[0]
+            self.assertFalse(alive, "a SIGTERM-ignoring helper outlived the stop")
+
 
 if __name__ == "__main__":
     unittest.main()
