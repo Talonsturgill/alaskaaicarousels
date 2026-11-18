@@ -1,0 +1,101 @@
+{
+ "weighted_total": 8.57,
+ "threshold": 7.7,
+ "ship": true,
+ "scoring_cycle": 2,
+ "revision_rounds": 4,
+ "hard_fails": [],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 8.0
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "weight": 0.14,
+   "score": 7.5
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 8.0
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "weight": 0.12,
+   "score": 8.5
+  },
+  {
+   "name": "Insight density & factual weight",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8.0
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "weight": 0.07,
+   "score": 7.0
+  },
+  {
+   "name": "Copy: voice & hook",
+   "weight": 0.05,
+   "score": 7.5
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 8.0
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8x0.14)+(8.5x0.12)+(7.5x0.10)+(8x0.08)+(7x0.07)+(7.5x0.05)+(8x0.10) = 8.565",
+ "weakest_criterion": "Legibility & platform fitness",
+ "one_sentence_fix": "Raise every reader-facing label to the 24px floor and replace slide 4's 14px dashed CONTENTS NOT SHOWN bezel with a solid screen carrying one 24px line.",
+ "artwork_weakest_frames": [
+  4,
+  8,
+  1,
+  9,
+  5
+ ],
+ "artwork_weakest_notes": {
+  "4": "sky lift too subtle, flat fish, pill transducer, strata step, wireframe bezel",
+  "8": "flat mid-water left of the gauge, crackle silt texture",
+  "1": "single-scale pebbles",
+  "9": "pill transducer, water block edges",
+  "5": "flat case face, no contact cast for card"
+ },
+ "craft_cycle": {
+  "frames": [
+   5,
+   4,
+   8
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ },
+ "cycle_history": [
+  {
+   "cycle": 1,
+   "weighted_total": 6.9,
+   "raw": 8.34,
+   "hard_fail": "slide 3 headline unsourced beyond C27; slide 7 tower cells inferred",
+   "art": 7.0
+  },
+  {
+   "cycle": 2,
+   "weighted_total": 8.57,
+   "art": 7.5
+  }
+ ],
+ "editor_notes_for_email": "Scores 8.57 against a round-4 threshold of 7.7 with no hard fails. Cycle 1 caught an unsourced slide 3 headline (fixed to paraphrase C27) and two inferred slide 7 tower cells (now Not stated). Slide 7's tower BUILT BY 'Fish and Game crews' reads as who runs it. The two grant figures are separate projects; do not describe them as one award. Every Naknek sonar detail is single-sourced to National Fisherman; ADF&G 2026 figures are preliminary. Art 7.5 after the craft cycle, under the 8.5 floor. Several labels sit at 17 to 22px."
+}

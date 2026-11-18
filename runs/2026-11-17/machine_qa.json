@@ -1,0 +1,208 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Sonar, schematic' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the gold beam fan across the run': canvas 73.5 dE, page 75.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h 'On the Naknek,the newest salmoncounter liste' fits 3/3 lines at 123.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'King Salmon' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Naknek' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Naknek Lake' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Dillingham' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Bristol Bay' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '25 km' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the gold count mark at King Salmon': canvas 77.8 dE, page 77.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'King Salmon on the Naknek River' lands 0.0px from its target",
+        "leader 'King Salmon on the Naknek River' meets its label 4.0px away",
+        "leader 'King Salmon on the Naknek River' is drawn 24 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h 'A federal grant puts an automatedsonar near ' fits 2/2 lines at 73px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "fog and sky disagree: the fog is #1b281e and the background #17221a (6 sRGB levels apart), so where the fogged ground meets the sky the horizon prints a straight step (No.98 06, a hard tonal edge behind the copy until fog was set to the background). Set the fog colour to the background colour",
+        "tiny-text: 'Schematic' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the right tripod foot on the gravel': shadow L* 11.5 vs ground L* 58.5, dL 46.9 at 432w"
+      ],
+      "motifs": [
+        "'the gold beam fan from the transducer': canvas 82.7 dE, page 84.4 dE, 91% of its rect is clear of opaque DOM (div#b.body stands on the rest)"
+      ],
+      "fits": [
+        "h 'It listens across a wide stretch of the rive' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Transducer' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Cable' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Shore' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Online dashboard' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Section, not to scale' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Contents not shown' (font-size 14px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 2 in 'From the riverbed to a screen, during the se' ends 'a' -- an article, conjunction or preposition left hanging at the line end. It reads at 89.5px, so the break is the first thing a feed sees. Author the break with <br> before 'screen,' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "worst-point contrast 3.9 on 'Contents not shown' (box mean 6.1) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'the gold fan in section': canvas 89.9 dE, page 89.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h 'From the riverbed to a screen, during the se' fits 2/2 lines at 89.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Plunger' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Spring' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Wheels' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Case' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "ragged display line: line 1 of 3 in 'Since 1955, a person and a hand clicker.' ends 'a' -- an article, conjunction or preposition left hanging at the line end. It reads at 95.5px, so the break is the first thing a feed sees. Author the break with <br> before 'person' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line",
+        "ragged display line: line 2 of 3 in 'Since 1955, a person and a hand clicker.' ends 'a' -- an article, conjunction or preposition left hanging at the line end. It reads at 95.5px, so the break is the first thing a feed sees. Author the break with <br> before 'hand' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "contacts": [
+        "'the counter ring resting on the bench': shadow L* 37.0 vs ground L* 84.2, dL 47.2 at 432w"
+      ],
+      "motifs": [
+        "'the gold stroke on the tally card': canvas 72.8 dE, page 72.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'pP' lands 0.0px from its target",
+        "leader 'pS' lands 0.0px from its target",
+        "leader 'pW' lands 0.0px from its target",
+        "leader 'pC' lands 0.0px from its target",
+        "leader 'pP' meets its label 8.0px away",
+        "leader 'pS' meets its label 9.0px away",
+        "leader 'pW' meets its label 8.0px away",
+        "leader 'pC' meets its label 8.0px away",
+        "leader 'pP' is drawn 83 px at 58 degrees, inside the pointer band",
+        "leader 'pS' is drawn 191 px at 6 degrees, inside the pointer band",
+        "leader 'pW' is drawn 91 px at 50 degrees, inside the pointer band",
+        "leader 'pC' is drawn 304 px at 9 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h 'Since 1955, a person and a hand clicker.' fits 3/3 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '30.1 million harvested' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '15.6 million upriver' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '45.7 million came back' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '1 mark = 10,000 sockeye' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the one gold mark upriver': canvas 109.0 dE, page 111.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the harvest branch' lands 0.0px from its target",
+        "leader 'the harvest branch' meets its label 1.0px away",
+        "leader 'the harvest branch' is drawn 163 px at 43 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "h '45.7 million sockeye came backto Bristol Bay' fits 3/4 lines at 65.5px"
+      ],
+      "asserts": [
+        "'marks for the 2026 inshore run, 1 per 10,000 sockeye' holds: 4570 vs 4570 marks, counted over 4570 declared marks (within 0)",
+        "'marks for the 2026 inshore run, 1 per 10,000 sockeye': 229 mark centres probed at r=6px, sampled every 20 marks, cohort median 75.2 dE, all present (weakest 37.1 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'Tower' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Drone pilot' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Sonar' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Sees' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Where' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Since' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Funding' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Built by' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Graded against' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "fits": [
+        "h 'One fishery, three ways to count.' fits 1/1 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '1M' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '2M' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '3M' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Goal' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '2,586,432' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the gold water line at 2,586,432': canvas 109.4 dE, page 80.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the staff gauge, sockeye counted' runs 0 fish at 1240 to 3,000,000 fish at 260; 34 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "h 'Wood River's tower counted 2,586,432 sockeye' fits 4/4 lines at 77.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold fan crossing the river': canvas 71.6 dE, page 72.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "h 'Should the Naknek'smachine count go livein s' fits 4/4 lines at 87.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 41,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.reserve",
+        "slides": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

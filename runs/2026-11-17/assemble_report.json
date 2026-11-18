@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-17/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 21042404,
+  "pdf_mb": 21.04,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-17/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-17/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "UPDATE. Bristol Bay's newest salmon counter listens",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "cb64fe7482a17ccd6d9d0443246883151be5495141587a908cc2336b38a9aba5",
+        "bytes": 7293456
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "8e2c78827496324ed5e6b76a28d9573d3eadb180ed119cd4a67dc7fe7cf67f78",
+        "bytes": 6590315
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "1c0fcbb0d1a1058f900d8588300dd3675172e30ba099dc710eae7178e567d4f4",
+        "bytes": 7293550
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "741e9ff2537d255d646e2da39504d97d5e322e4eabad37a006370c0fc8f26845",
+        "bytes": 7275008
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "8402ea468374e4d49bc8f3e54c58dbc0139f14df71cd299bb884d9456ecce8ab",
+        "bytes": 6135590
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "7eae4447e5f13e64c30264de8ffa5793ab098dba8c26f848e74975394a880b46",
+        "bytes": 7882283
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "fb456f036ee924166121967931c3a8292ab568e82d88603f9a6e2f1f71911d7b",
+        "bytes": 6568464
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "95f346555d48be476092dee3529b92d22e22fffe4ddc8bd3af6cf0be0805c592",
+        "bytes": 7365349
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "0bd40db18dc73a57256f4b587938e393fdeb3bd646a48c062da303cdba9deb85",
+        "bytes": 7000077
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "d9d29e546e67871d724935bd2d75524589da0ff7e484f35684e87c88f5907d3c",
+        "bytes": 16415
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "9a9c235669ab07063a4e0773715de3a6dbcee3e551684028ea90a1d661e9f3ad",
+        "bytes": 12490
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "af28c2681c63ff267e7f564d724b24eaea97113fde0361e2ccce4ff857eb598e",
+        "bytes": 17958
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "b3aef0b7b8fda7d26a45a8d90c52b0ef7db5528c3e9996d202b20abb983cdb61",
+        "bytes": 16235
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "e118abad953c5a057ac4be06cac015a1c6cf5bf94988516dc93defda91d288b9",
+        "bytes": 15666
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "76c03e9936f883bad6692097d783a25ed92741439c89a99b39c83297af11f1c0",
+        "bytes": 9767
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "f5639902223ec3a3f0bfbdd0b577ae3025c9eac6a0380d54fc732e4c32251c8b",
+        "bytes": 10167
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "2870a284f374c3ace2092be59837e3240a13244fb9ca9cc3c3dba3d78da25c1b",
+        "bytes": 14839
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a4460c2d4def72da350b57bdf21a2f3778c64da1b160c7186462c2054879f231",
+        "bytes": 11298
+      }
+    ]
+  }
+}

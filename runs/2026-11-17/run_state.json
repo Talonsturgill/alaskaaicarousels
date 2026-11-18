@@ -1,0 +1,37 @@
+{
+ "run_date": "2026-11-17",
+ "carousel_no": 117,
+ "effort": "medium",
+ "date_note": "Woke 2026-11-18 06:07Z = 2026-11-17 21:07 AKST; run_guard --run-date 2026-11-17 CLEAR.",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": "done",
+  "craft_refresh": "done: knowledge/FIELD_NOTES.md (2 bullets)",
+  "research": "done: out/2026-11-17/scouts/*.md, scout_merge.md",
+  "claims": "done: out/2026-11-17/claims.json (53, claims_check PASS)",
+  "docket": "done: ledger/docket.json (13 items refreshed, FNSB + Houston notes); ask self-test 10,729 B headroom; browser suites PASS",
+  "gas_watch": "done: gaswatch_health LIVE PASS; cron_health PASS after maintenance PR #502 (news.yml pinned to ubuntu-24.04, rerun success)",
+  "selection": "done: out/2026-11-17/selection.md",
+  "directors_room": "done: out/2026-11-17/storyboard.md, selection.md, treatments/",
+  "copy": "done: out/2026-11-17/caption.txt, copy.json, caption_report.json",
+  "art_build": "done: out/2026-11-17/slides/, render/",
+  "pixel_review": "done: 2 rounds (critics/r1_09.txt, critics/r2.txt); qa WARN only",
+  "flow_review": "done: flow round 1 revise 7.3 -> round 3 fixes on 08, 04, 05, 01, 09, 07 (flow_review.json)",
+  "assemble": "done: final/carousel.pdf vector 21.04 MB, 9 thumbs, contact sheet",
+  "scoring": "done: cycle 1 6.9 (hard fail, raw 8.34), cycle 2 8.57 vs 7.7 ship; craft cycle 5,4,8 art 7.0 -> 7.5",
+  "ship": "in_progress: runs/2026-11-17 copied, webp, site built, ledgers appended",
+  "upgrade": "done: weekly pass upgrade(2026-11-17) 7cf0cdd64 (4 changes)",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social": {
+  "preflight": "READY",
+  "users": "alaska_ai found; facebook_page_id 2003130316607965 and linkedin urn:li:organization:117084989 present",
+  "pins": {
+   "facebook": "2003130316607965 (matches)",
+   "linkedin": "urn:li:organization:117084989 (matches)"
+  },
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialize OK"
+ }
+}

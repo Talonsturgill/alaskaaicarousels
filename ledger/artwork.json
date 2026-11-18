@@ -4285,6 +4285,48 @@
         "threshold": 7.7,
         "rounds": 4
       }
+    },
+    {
+      "run_date": "2026-11-17",
+      "carousel_no": 117,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE WATERLINE SPLIT, an over-under akthree river where the instrument lives below the surface and the count is drawn as sound: akthree over-under cover with a gold fan crossing the channel (01), Bristol Bay DEM stipple map with a gold ring at King Salmon (02), akthree masterful-depth transducer on its tripod in a caustic pool (03), drafted riverbed-to-screen section with a gold thread up the bank (04), akthree exploded hand tally counter on a lit bench with a dashed explosion axis (05), 4,570-mark river breather splitting harvest and upriver (06), bone spec plate comparing three counters (07), staff gauge to true scale with the gold waterline at 2,586,432 inside a drafted goal bracket (08), closing river section under Polaris (09)",
+      "atmosphere": "NEW: BRISTOL BAY WHITE NIGHT, 1 A.M. IN JULY (sun under the north horizon, apricot to celadon horizon band, tannin water, Snell's window underwater)",
+      "depth_technique": "akthree GPU scenes with VSM soft shadows and a radial focal mask (01, 03, 05); per-pixel gravel relief and section hatch (04, 09); per-pixel modelled enamel with Beer-Lambert depth falloff and caustic ripple, rippled silt bed (08); DEM stipple density (02); mark river (06)",
+      "line_voice": "drafted section linework: cased bank cuts, 45 degree section hatch by horizon, mono caps labels with drafted leaders, phantom-dashed explosion axis",
+      "continuity_device": "the gold count mark changes state on every frame, plus a zoom-ladder locator inset",
+      "continuity_devices": [
+        "gold count mark (fan, ring, thread, stroke, mark, waterline)",
+        "zoom-ladder locator inset"
+      ],
+      "hook_archetype": "NEW: THE SENSE SWAP (a counter that listens)",
+      "palette_family": "WHITE NIGHT OVER TANNIN WATER (ground #050C12, apricot #E9A77A, celadon #A9CDB5, olive fog #1E2A1C, gravel bone #CFC3A6, sockeye #C9382A, steel #8E979C, gold #FFC72C count mark only)",
+      "type_pairing": "Archivo display wdth 75 wght 650 + Archivo body wdth 100 wght 400 + JetBrains Mono 500 caps",
+      "narrative_structure": "update deck: the new listener, what was funded and where, how it hears, where the count goes, the hand count it joins, the run as marks, three counters side by side, the tower yardstick, the reader's call",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "akthree over-under waterline split",
+        "akthree exploded assembly with phantom explosion axis",
+        "AKT.mat.glass window pane",
+        "DEM stipple map",
+        "per-pixel modelled enamel under water (Beer-Lambert plus caustic ripple)",
+        "per-pixel rippled silt bed",
+        "drafted river section with continuous strata hatch",
+        "mark river breather with __akAssert",
+        "fogged ragged-tier spruce planes at 0.72^i",
+        "AKPOST.grade"
+      ],
+      "new_techniques_logged": [],
+      "scores": {
+        "weighted_total": 8.57,
+        "artwork": 7.5,
+        "threshold": 7.7,
+        "rounds": 4
+      }
     }
   ]
 }
