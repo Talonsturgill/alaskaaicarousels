@@ -3889,7 +3889,7 @@
       ],
       "verification": "tests/render_recycle_verify.py 14/14: default relaunches once over five slides, --recycle-every 0 never, -1 exits 2; a renderer SIGKILLed mid-slide and the browser main process SIGKILLed mid-slide both now exit 0 with all PNGs and crash_retry plus one qa WARN. Reconstruction on the parent render.py: renderer kill exit 1 (slide 02 FAIL), browser kill a TargetClosedError traceback with slide 03 never rendered. No.117's nine slides in one call: 9/9 OK, two relaunches, 136.7 s against 133.5 s, unchanged sources pixel-identical (max diff 0 on 02, 03, 05, 07, 08, 09), qa WARN 0 fails 40 warns, the same as the run's own machine_qa. examples/demo-deck 4/4 OK, qa WARN 0 fails (its baseline). render_timeout_verify 9/9.",
       "rollback": "revert the upgrade(2026-11-17) commit",
-      "commit": "",
+      "commit": "7cf0cdd64",
       "verify": [
         "python3 tests/render_recycle_verify.py",
         "python3 tests/render_timeout_verify.py"
@@ -3908,7 +3908,7 @@
       ],
       "verification": "tests/dedupe_earlier_verify.py 10/10 (hermetic ledger: 44-day repeat exits 1 and names it, --earlier-window 0 restores the old exit 0 CLEAR, 100-day prints as matching scan only and exits 0, 16-day in-window unchanged, scout brief splits the tiers; real ledger: the No.117 candidate now names No.77 at 44 days and exits 1, where it printed CLEAR before). No.95 re-run (--run-dir runs/2026-10-24): No.64 now prints in the earlier section, where nothing printed before. Scout brief 20.8 KB to 35.8 KB on today's ledger. The 30-day window, every verdict threshold and the in-window exit are unchanged.",
       "rollback": "revert the upgrade(2026-11-17) commit",
-      "commit": "",
+      "commit": "7cf0cdd64",
       "verify": [
         "python3 tests/dedupe_earlier_verify.py"
       ]
@@ -3925,7 +3925,7 @@
       ],
       "verification": "tests/cron_health.py 17 tests OK, two new: a timed-out fetch that leaves a fresh shallow.lock is cleared and the retry succeeds (the same script without the clear raises CalledProcessError on every retry, the No.117 shape), an older lock or one with git running is left; a fake git that spawns a child under a 1 s timeout leaves no child alive with the new git(), while the old check_output left it running (measured both). No verdict, check or schedule changed.",
       "rollback": "revert the upgrade(2026-11-17) commit",
-      "commit": "",
+      "commit": "7cf0cdd64",
       "verify": [
         "python3 tests/cron_health.py"
       ]
@@ -3944,7 +3944,7 @@
       ],
       "verification": "tests/akthree_ground_edge_verify.py 7/7 through the real render.py and qa.py: No.116 08's shape (20 m plane, no fog, edge in frame) WARNs ground_edge; closing fog, a wall in front and edgeShown are clean; No.98 06 (fog 0x070D16 over bg 0x050A12) WARNs fog_seam at 4 levels and the repair (fog = bg) is clean; a plane past a pitched-down frustum is clean. Read-only: No.117 slide 03, whose source did not move between renders, is pixel-identical (max diff 0) with the new akthree.js; akthree_far_clip, material_audit (25/25, including HEAD parity) and soft_shadow verifies hold. On No.117 it fires once, fog_seam on 03 (fog 0x1b281e over bg 0x17221a, 6 levels); that frame's 14 px DOF blur hides the step, so it is the remedy's one-line cost, not a visible defect. examples/demo-deck has no akthree frame and renders 4/4, qa WARN 0 fails.",
       "rollback": "revert the upgrade(2026-11-17) commit",
-      "commit": "",
+      "commit": "7cf0cdd64",
       "verify": [
         "python3 tests/akthree_ground_edge_verify.py",
         "python3 tests/akthree_far_clip_verify.py",
