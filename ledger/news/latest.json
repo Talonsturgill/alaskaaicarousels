@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-18T07:27:34Z",
+  "checked_at": "2026-11-18T08:38:40Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "2229d2e84c27c0899dfb41a8778188365e255303d49ad1649863bae53dccde2a",
+  "response_sha256": "2c8794d7f5d56a5d5065e016372420dbbf0e72f7286b2d7d0d115b24156bc5e9",
   "articles": [
     {
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -34,7 +34,7 @@
     "feed": "https://www.ktoo.org/feed/",
     "publisher": "KTOO",
     "coverage": 1,
-    "score": 0.414863,
+    "score": 0.400905,
     "priority": 1
   },
   "expires_at": "2026-12-01T00:59:47Z",
@@ -51,7 +51,7 @@
         "feed": "https://www.ktoo.org/feed/",
         "publisher": "KTOO",
         "coverage": 1,
-        "score": 0.414863,
+        "score": 0.400905,
         "priority": 1
       },
       "stories": [
@@ -63,7 +63,7 @@
           "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.414863,
+          "score": 0.400905,
           "priority": 1
         },
         {
@@ -74,7 +74,7 @@
           "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 2,
-          "score": 1.208103,
+          "score": 1.167456,
           "priority": 1
         }
       ]
@@ -359,21 +359,15 @@
   "feeds": [
     {
       "url": "https://www.ktoo.org/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "08c53a8b7336ba142ec5156aa67d4e9f37f3ee2143593ea07d17c486b1c045a6"
+      "status": "not_modified"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
-      "status": "ok",
-      "items": 20,
-      "sha256": "645052ea92794eaa7a2d0c0ea91ffdc3ebd0f760b6d147e343dfcf8811ca3eea"
+      "status": "not_modified"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
-      "status": "ok",
-      "items": 20,
-      "sha256": "62911371a9d1ad69f2820726f27a106487ce0b204ab6789192f2534c1db6bf0e"
+      "status": "not_modified"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
@@ -413,34 +407,34 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-18T07:27:32Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "08c53a8b7336ba142ec5156aa67d4e9f37f3ee2143593ea07d17c486b1c045a6",
       "etag": "\"a3f9b9fb4c4411e974dfc32fbf8caac0\"",
-      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT"
+      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-18T08:38:39Z",
+      "sha256": "08c53a8b7336ba142ec5156aa67d4e9f37f3ee2143593ea07d17c486b1c045a6",
+      "parser_version": 2
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-18T07:27:32Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "645052ea92794eaa7a2d0c0ea91ffdc3ebd0f760b6d147e343dfcf8811ca3eea",
       "etag": "\"a3f9b9fb4c4411e974dfc32fbf8caac0\"",
-      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT"
+      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-18T08:38:39Z",
+      "sha256": "645052ea92794eaa7a2d0c0ea91ffdc3ebd0f760b6d147e343dfcf8811ca3eea",
+      "parser_version": 2
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-18T07:27:32Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "62911371a9d1ad69f2820726f27a106487ce0b204ab6789192f2534c1db6bf0e",
       "etag": "\"a3f9b9fb4c4411e974dfc32fbf8caac0\"",
-      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT"
+      "last_modified": "Wed, 18 Nov 2026 04:35:19 GMT",
+      "failures": 0,
+      "ok_at": "2026-11-18T08:38:39Z",
+      "sha256": "62911371a9d1ad69f2820726f27a106487ce0b204ab6789192f2534c1db6bf0e",
+      "parser_version": 2
     },
     "https://www.akbizmag.com/feed/": {
       "etag": "W/\"66bdd0780498a34dbe011da79973121d\"",
       "last_modified": "Tue, 17 Nov 2026 17:59:28 GMT",
       "failures": 0,
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "sha256": "9643f86fc7fc38580b3d841b3338895d204ea2bf7a5d5a9adc4f2efb731eac9d",
       "parser_version": 2
     },
@@ -448,18 +442,18 @@
       "etag": "W/\"66bdd0780498a34dbe011da79973121d\"",
       "last_modified": "Tue, 17 Nov 2026 17:59:28 GMT",
       "failures": 0,
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "sha256": "4b514038206853b18653d36ac6dd13a7284cfd2d101dd23983736e8ef965d370",
       "parser_version": 2
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "ae3cb3c8abf28a350828a3dd47af7b26152b2a61909b5d23b54c49d6b85886a1"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "627c9d85b30ad9f2fd4acde3f3f9943b6df7d0db0dcb4e1890d7231f81e01de8"
@@ -475,12 +469,12 @@
     "https://www.sciencedaily.com/rss/top/technology.xml": {
       "last_modified": "Tue, 17 Nov 2026 12:16:07 GMT",
       "failures": 0,
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "sha256": "3c7eb283a537b06e36d0c30f6a1ebabb7dd9878ee2a0ee4461db03e8041a1a63",
       "parser_version": 2
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-18T07:27:32Z",
+      "ok_at": "2026-11-18T08:38:39Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "4f6a6e88548dd8a10dd16f4c761f383186d22fb14b81695e8dd02799e5ce6c23"
