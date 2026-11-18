@@ -56,6 +56,15 @@ added and why. After editing a shared helper in `assets/js/`, `--only 3` renders
 every frame that loads it. `--only-exact` renders the literal list; qa.py still
 FAILs whatever it left stale.
 
+Since 2026-11-17 a full render needs no hand batching. render.py relaunches its
+browser every `--recycle-every` slides (default 3, the batch that stayed clean
+after No.114's nine-slide exit 137; 0 turns it off), and early when MemAvailable
+drops under 1.5 GB. A browser or renderer that dies during a slide gets one
+retry on a fresh browser, recorded as `crash_retry` (qa.py WARNs on it). Every
+record carries `mem` (MemAvailable before the slide, and the peak PSS of the
+render's process tree), and the status line prints it, so the next spike can be
+traced to its slide. Measured on No.117's nine frames in one call: 1.6 GB peak.
+
 ## Slide HTML contract
 
 - One file per slide: `slide-01.html`, `slide-02.html`, ... Design for the

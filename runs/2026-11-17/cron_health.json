@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-11-18T07:38:25.514928Z",
+  "repository": "Talonsturgill/alaskaaicarousels",
+  "site_url": "https://alaskaaihq.com",
+  "main_sha": "4a160269f90829ea5e1c5eaaf25885e882fa7ed1",
+  "workflows": {
+    "broadband-pipeline.yml": [
+      "17 9 * * 1"
+    ],
+    "docket-watch.yml": [
+      "20 14 * * *"
+    ],
+    "gaswatch-eia.yml": [
+      "40 8 18 * *",
+      "40 8 3 * *"
+    ],
+    "gaswatch.yml": [
+      "20 19 * * *",
+      "20 7 * * *",
+      "40 15 * * *",
+      "40 4 * * *",
+      "50 13 * * *"
+    ],
+    "news.yml": [
+      "23 1,7,13,19 * * *"
+    ],
+    "power-utility.yml": [
+      "0 16 12 * *"
+    ],
+    "power.yml": [
+      "30 15 25 * *"
+    ]
+  },
+  "checks": [
+    {
+      "id": "broadband-pipeline.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/broadband-pipeline.yml"
+    },
+    {
+      "id": "broadband-pipeline.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-16T09:17:00Z; latest 2026-11-16T19:39:20Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/broadband-pipeline.yml"
+    },
+    {
+      "id": "broadband-pipeline.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-16T19:39:20Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43941591740"
+    },
+    {
+      "id": "broadband-pipeline.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43941591740"
+    },
+    {
+      "id": "docket-watch.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/docket-watch.yml"
+    },
+    {
+      "id": "docket-watch.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-17T14:20:00Z; latest 2026-11-17T22:29:12Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/docket-watch.yml"
+    },
+    {
+      "id": "docket-watch.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-17T22:29:12Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44190508960"
+    },
+    {
+      "id": "docket-watch.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44190508960"
+    },
+    {
+      "id": "gaswatch-eia.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch-eia.yml"
+    },
+    {
+      "id": "gaswatch-eia.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-03T08:40:00Z; latest 2026-11-03T16:30:55Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch-eia.yml"
+    },
+    {
+      "id": "gaswatch-eia.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-03T16:30:55Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/41674975266"
+    },
+    {
+      "id": "gaswatch-eia.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/41674975266"
+    },
+    {
+      "id": "gaswatch.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml"
+    },
+    {
+      "id": "gaswatch.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-17T19:20:00Z; latest 2026-11-18T01:40:53Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/gaswatch.yml"
+    },
+    {
+      "id": "gaswatch.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-18T06:13:28Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44249754829"
+    },
+    {
+      "id": "gaswatch.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44249754829"
+    },
+    {
+      "id": "news.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/news.yml"
+    },
+    {
+      "id": "news.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-17T19:23:00Z; latest 2026-11-17T21:48:41Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/news.yml"
+    },
+    {
+      "id": "news.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-18T07:25:16Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44258733114"
+    },
+    {
+      "id": "news.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44258733114"
+    },
+    {
+      "id": "power-utility.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/power-utility.yml"
+    },
+    {
+      "id": "power-utility.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-11-12T16:00:00Z; latest 2026-11-12T22:06:19Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/power-utility.yml"
+    },
+    {
+      "id": "power-utility.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-12T22:06:19Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43316739452"
+    },
+    {
+      "id": "power-utility.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/43316739452"
+    },
+    {
+      "id": "power.yml:enabled",
+      "status": "PASS",
+      "detail": "workflow state: active",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/power.yml"
+    },
+    {
+      "id": "power.yml:schedule",
+      "status": "PASS",
+      "detail": "scheduled run due since 2026-10-25T15:30:00Z; latest 2026-10-25T18:31:32Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/workflows/power.yml"
+    },
+    {
+      "id": "power.yml:completion",
+      "status": "PASS",
+      "detail": "success at 2026-10-25T18:31:32Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/40221659863"
+    },
+    {
+      "id": "power.yml:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/40221659863"
+    },
+    {
+      "id": "pages:enabled",
+      "status": "PASS",
+      "detail": "active",
+      "evidence_url": ""
+    },
+    {
+      "id": "pages:completion",
+      "status": "PASS",
+      "detail": "success at 2026-11-18T06:15:55Z",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44250058896"
+    },
+    {
+      "id": "pages:steps",
+      "status": "PASS",
+      "detail": "job steps clean",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44250058896"
+    },
+    {
+      "id": "pages:revision",
+      "status": "PASS",
+      "detail": "deployment 6ab815b1a3a1 includes latest docs 6ab815b1a3a1",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/44250058896"
+    },
+    {
+      "id": "live:gas-watch/",
+      "status": "PASS",
+      "detail": "public bytes match main 4a160269f908",
+      "evidence_url": "https://alaskaaihq.com/gas-watch/"
+    },
+    {
+      "id": "live:gas-watch.json",
+      "status": "PASS",
+      "detail": "public bytes match main 4a160269f908",
+      "evidence_url": "https://alaskaaihq.com/gas-watch.json"
+    },
+    {
+      "id": "output:power",
+      "status": "PASS",
+      "detail": "household price and month match main: August 2026",
+      "evidence_url": "https://alaskaaihq.com/gas-watch/"
+    },
+    {
+      "id": "output:power-utility",
+      "status": "PASS",
+      "detail": "utility year and every household price match main",
+      "evidence_url": "https://alaskaaihq.com/gas-watch/"
+    },
+    {
+      "id": "output:docket-watch",
+      "status": "PASS",
+      "detail": "queue generated 2026-11-17T22:31:12Z; failed sources: []",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/tree/4a160269f90829ea5e1c5eaaf25885e882fa7ed1"
+    },
+    {
+      "id": "output:weather",
+      "status": "PASS",
+      "detail": "weather history through 2026-11-02; expected at least 2026-11-01",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/tree/4a160269f90829ea5e1c5eaaf25885e882fa7ed1"
+    },
+    {
+      "id": "output:gas-model",
+      "status": "PASS",
+      "detail": "published model, EIA month and weather span match main",
+      "evidence_url": "https://github.com/Talonsturgill/alaskaaicarousels/tree/4a160269f90829ea5e1c5eaaf25885e882fa7ed1"
+    }
+  ],
+  "verdict": "PASS"
+}

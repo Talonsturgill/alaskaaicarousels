@@ -1,0 +1,59 @@
+{
+  "run_dir": "out/2026-11-17",
+  "render_report": "out/2026-11-17/render/render_report.json",
+  "aggregates_file": "out/2026-11-17/aggregates.json",
+  "detected": 5,
+  "declared": 5,
+  "detections": [
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "10 minute intervals",
+      "at": 155,
+      "text": "Most Bristol Bay escapement counts come from nine Fish and Game tower sites. Crews rotate through shifts around the clock and click each passing salmon in 10 minute intervals.",
+      "n": 10,
+      "subject": "minute intervals"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Three counters",
+      "at": 0,
+      "text": "Three counters, as each source describes them",
+      "n": 3,
+      "subject": "counters"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "three ways",
+      "at": 13,
+      "text": "One fishery, three ways to count.",
+      "n": 3,
+      "subject": "ways"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "Nine sites",
+      "at": 0,
+      "text": "Nine sites",
+      "n": 9,
+      "subject": "sites"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "13 grants",
+      "at": 34,
+      "text": "NOAA and NFWF's 2026 slate funded 13 grants, $3.4 million, with $4.2 million matched. As of July, Fish and Game wasn't directly involved in the drone pilot.",
+      "n": 13,
+      "subject": "grants"
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

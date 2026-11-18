@@ -2820,6 +2820,30 @@
       "evidence": "No.116 slide 08's reserve seam at y 648 was named in two craft reviews; the gradient dissolve removed it",
       "confidence": 0.65,
       "last_confirmed": "2026-11-15"
+    },
+    {
+      "id": "source-verb-not-geometry",
+      "learned": "2026-11-17",
+      "instinct": "A HEADLINE MAY NOT ADD GEOMETRY THE SOURCE NEVER GAVE. 'Across a wide stretch' does not license 'not from one bank'; paraphrase the verb the source used and let the art show the rest.",
+      "evidence": "No.117 cycle 1 scorer hard-failed slide 3 for 'not from one bank' on a C27 quote; the rewrite to the source's own phrase cleared it and the total rose from a 6.9 cap to 8.57",
+      "confidence": 0.7,
+      "last_confirmed": "2026-11-17"
+    },
+    {
+      "id": "comparison-table-blank-cells-say-not-stated",
+      "learned": "2026-11-17",
+      "instinct": "IN A SIDE-BY-SIDE TABLE, A CELL NO SOURCE FILLS READS 'NOT STATED', NEVER A PLAUSIBLE INFERENCE. Symmetry tempts the copy into filling every cell.",
+      "evidence": "No.117 slide 7's tower FUNDING and GRADED AGAINST cells were inferred and flagged by the scorer",
+      "confidence": 0.65,
+      "last_confirmed": "2026-11-17"
+    },
+    {
+      "id": "strokestyle-after-restore",
+      "learned": "2026-11-17",
+      "instinct": "SET strokeStyle AGAIN AFTER EVERY ctx.restore(). A gold thread drawn after a clip's restore inherits the pre-save colour and ships grey.",
+      "evidence": "No.117 slide 04's gold cable thread rendered grey for two rounds until the flow critic named it",
+      "confidence": 0.6,
+      "last_confirmed": "2026-11-17"
     }
   ]
 }

@@ -19,6 +19,22 @@ WHAT IT IS NOT
     this entry in full before the directors room", not "auto-reject". The
     30-day hard-fail rule is still the showrunner's call. Pure stdlib, offline.
 
+THE EARLIER TIER (2026-11-17, weekly machine pass; queue items 2026-10-24 and
+2026-11-17). ledger/topics.json's own _spec binds a 90-day repeat rule and a
+120-day matching scan, and this tool searched only the routine's 30 days, so a
+same-story repeat at 31 to 90 days passed with no signal, twice: No.95 missed
+No.64 (34 days, the KPB weather-modification ordinance; the scorer caught it
+at Phase 10 after the art was built) and No.117 missed No.77 (44 days, the
+Bristol Bay tower counts; found by reading the technique library, and the
+deck was reframed as an UPDATE mid directors room). So every run now also
+prints entries from day 31 to day 120 (--earlier-window, the _spec's matching
+scan) in their own section, each tagged by band. A LIKELY DUPLICATE inside the
+_spec's 90 days also exits 1 (stop and read; frame it as an UPDATE with the
+material new development named, or pick another story). One at 91 to 120 days
+is printed for context and does not change the exit code. --scout-brief adds
+the same 31 to 120 days as a compact block (headline and the first five
+entities, about 15 KB more on 2026-11-17's ledger: 20.8 to 35.8 KB).
+
 USAGE
     python scripts/dedupe_check.py --entities "XPRIZE Wildfire, ACUASI, Dryad" \
                                    --keywords "wildfire, autonomous drone"
@@ -54,6 +70,12 @@ _STOP = {
     "models", "alaska", "alaskan", "alaskas", "state", "statewide", "us",
     "2025", "2026", "data",
 }
+
+# ledger/topics.json _spec: "No topic may repeat within 90 days" and "compare
+# ... every entry from the last 120 days". tests/dedupe_earlier_verify.py fails
+# if the _spec's wording moves away from these two numbers.
+SPEC_REPEAT_DAYS = 90
+SPEC_MATCH_DAYS = 120
 
 # Fields whose combined text is grepped. Order matters only for display.
 _TEXT_FIELDS = ("topic", "angle", "headline")
@@ -166,8 +188,11 @@ def score_entry(cand, entry):
     }
 
 
-def run(cand, entries, ref_date, window, exclude_date):
+def run(cand, entries, ref_date, window, exclude_date, newer_than=0):
+    """Entries from `window` days back to `newer_than` days back (exclusive of
+    newer_than, so the earlier tier starts the day after the main window)."""
     lo = ref_date - _dt.timedelta(days=window)
+    hi = ref_date - _dt.timedelta(days=newer_than + 1) if newer_than else ref_date
     results = []
     for e in entries:
         rd_raw = e.get("run_date")
@@ -177,7 +202,7 @@ def run(cand, entries, ref_date, window, exclude_date):
             rd = _parse_date(rd_raw)
         except ValueError:
             continue
-        if rd < lo or rd > ref_date:
+        if rd < lo or rd > hi:
             continue
         if exclude_date and rd == exclude_date:
             continue
@@ -230,7 +255,34 @@ def scout_brief(args):
             v = e.get(f) or []
             if isinstance(v, list) and v:
                 print("  %s: %s" % (f, "; ".join(str(x) for x in v)))
+    ew = getattr(args, "earlier_window", 0) or 0
+    if ew > args.window:
+        elo = ref - _dt.timedelta(days=ew)
+        ehi = ref - _dt.timedelta(days=args.window + 1)
+        early = sorted(((rd, e) for rd, e in
+                        ((_safe_date(e.get("run_date", "")), e) for e in ledger.get("entries", []))
+                        if rd and elo <= rd <= ehi), key=lambda r: r[0])
+        if early:
+            print("")
+            print("EARLIER, %d to %d days back (ledger/topics.json binds a %d-day repeat rule: a "
+                  "lead on one of these stories inside %d days comes back only as an UPDATE with "
+                  "the material new development named). Headline and the first five entities:"
+                  % (args.window + 1, ew, SPEC_REPEAT_DAYS, SPEC_REPEAT_DAYS))
+            for rd, e in early:
+                ents = e.get("entities") or []
+                # the first five entities: the ones a ledger writer lists first are the
+                # story's own (agency, place, project); the full list is in the ledger
+                ents = "; ".join(str(x) for x in ents[:5]) if isinstance(ents, list) else str(ents)
+                head = e.get("headline") or " ".join(str(e.get("topic", "")).split())[:160]
+                print("- %s No.%s: %s | %s" % (rd.isoformat(), e.get("carousel_no", "?"), head, ents))
     return 0
+
+
+def _safe_date(s):
+    try:
+        return _parse_date(s)
+    except (ValueError, TypeError):
+        return None
 
 
 def main(argv=None):
@@ -241,6 +293,11 @@ def main(argv=None):
     ap.add_argument("--topics", default="ledger/topics.json")
     ap.add_argument("--date", default=None, help="reference date YYYY-MM-DD (default today)")
     ap.add_argument("--window", type=int, default=30, help="lookback days (default 30)")
+    ap.add_argument("--earlier-window", type=int, default=SPEC_MATCH_DAYS,
+                    help="also scan from the day after --window back to this many days, in a "
+                         "section of its own (default %d, ledger/topics.json's matching scan; "
+                         "0 = off). A LIKELY DUPLICATE inside %d days exits 1"
+                         % (SPEC_MATCH_DAYS, SPEC_REPEAT_DAYS))
     ap.add_argument("--exclude-date", default=None,
                     help="skip ledger entries on this run_date (e.g. the candidate's own row)")
     ap.add_argument("--run-dir", default=None,
@@ -316,19 +373,35 @@ def main(argv=None):
 
     results = run(cand, ledger.get("entries", []), ref, args.window, excl)
     likely = [r for r in results if r["verdict"] == "LIKELY DUPLICATE"]
+    earlier = []
+    if args.earlier_window and args.earlier_window > args.window:
+        earlier = run(cand, ledger.get("entries", []), ref, args.earlier_window, excl,
+                      newer_than=args.window)
+        for r in earlier:
+            r["band"] = ("inside the %d-day repeat rule" % SPEC_REPEAT_DAYS
+                         if r["date_distance"] <= SPEC_REPEAT_DAYS else
+                         "%d to %d days, matching scan only" % (SPEC_REPEAT_DAYS + 1, args.earlier_window))
+    likely_earlier = [r for r in earlier if r["verdict"] == "LIKELY DUPLICATE"
+                      and r["date_distance"] <= SPEC_REPEAT_DAYS]
+    code = 1 if (likely or likely_earlier) else 0
 
     if args.json:
         print(json.dumps({"reference_date": ref.isoformat(), "window_days": args.window,
+                          "earlier_window_days": args.earlier_window,
                           "candidate_tokens": sorted(cand["tokens"]),
-                          "matches": results}, indent=2))
-        return 1 if likely else 0
+                          "matches": results, "earlier": earlier}, indent=2))
+        return code
 
     print("dedupe_check: candidate vs ledger/topics.json, window %d days ending %s"
           % (args.window, ref.isoformat()))
     print("candidate fingerprint: %s" % ", ".join(sorted(cand["tokens"])))
     if not results:
-        print("  no overlap with any in-window entry. CLEAR to proceed (still confirm by eye).")
-        return 0
+        print("  no overlap with any in-window entry.%s" % (
+            "" if earlier else " CLEAR to proceed (still confirm by eye)."))
+        if earlier:
+            _print_earlier(earlier, likely_earlier, args.window, args.earlier_window)
+            _print_strongest(earlier)
+        return code
     for r in results:
         print("\n  [%s] No.%s %s (%s)" % (r["verdict"], r["carousel_no"], r["run_date"], r["headline"]))
         print("    topic: %s" % r["topic"][:140])
@@ -342,6 +415,45 @@ def main(argv=None):
               "room; within 30 days pick a different story or reframe as a material UPDATE." % len(likely))
     else:
         print("\n  soft overlaps only; confirm by eye that the angle/entities are genuinely distinct.")
+    if earlier:
+        _print_earlier(earlier, likely_earlier, args.window, args.earlier_window)
+    _print_strongest(results + earlier)
+    return code
+
+
+def _print_earlier(earlier, likely_earlier, window, earlier_window):
+    print("\n  EARLIER COVERAGE, %d to %d days back (ledger/topics.json _spec: %d-day repeat "
+          "rule, %d-day matching scan):" % (window + 1, earlier_window, SPEC_REPEAT_DAYS,
+                                            SPEC_MATCH_DAYS))
+    for r in earlier:
+        print("\n  [%s, %s] No.%s %s, %d days ago (%s)" % (
+            r["verdict"], r["band"], r["carousel_no"], r["run_date"], r["date_distance"],
+            r["headline"]))
+        print("    topic: %s" % r["topic"][:140])
+        if r["entity_hits"]:
+            print("    shared entities: %s" % ", ".join(r["entity_hits"]))
+        if r["keyword_overlap"]:
+            print("    shared keywords: %s" % ", ".join(r["keyword_overlap"]))
+        print("    token jaccard: %s" % r["jaccard"])
+    if likely_earlier:
+        print("\n  >> %d LIKELY DUPLICATE match(es) inside %d days. READ each in full; this "
+              "deck goes ahead only as an UPDATE that names the material new development since "
+              "that run (selection.md and the cover), or pick another story."
+              % (len(likely_earlier), SPEC_REPEAT_DAYS))
+
+
+def _print_strongest(results):
+    if not results:
+        return
+    order = {"LIKELY DUPLICATE": 0, "SOFT OVERLAP": 1}
+    # in-window first at the same verdict, then inside the 90 days, then the rest;
+    # inside a band the original order (most shared entities, highest jaccard)
+    def band(r):
+        if "band" not in r:
+            return 0
+        return 1 if r["date_distance"] <= SPEC_REPEAT_DAYS else 2
+    results = sorted(results, key=lambda r: (order[r["verdict"]], band(r),
+                                             -len(r["entity_hits"]), -r["jaccard"]))
 
     # LOUD final summary. results is pre-sorted strongest-first (LIKELY DUPLICATE
     # before SOFT OVERLAP, then most shared named entities, then highest jaccard),
@@ -360,7 +472,6 @@ def main(argv=None):
              n_ent, "y" if n_ent == 1 else "ies", top["jaccard"]))
     print("  >> READ THIS ENTRY IN FULL before the directors room. Do NOT `tail` this output.")
     print("=" * 74)
-    return 1 if likely else 0
 
 
 if __name__ == "__main__":

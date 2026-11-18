@@ -1171,6 +1171,11 @@ text of every in-window entry, never the truncated title): read in FULL
 every entry it prints as a LIKELY DUPLICATE (exit 1) before proceeding.
 The script is an advisory signal, not the gate — the semantic call is
 still yours — but a LIKELY DUPLICATE match means stop and read.
+It also prints an EARLIER COVERAGE section for days 31 to 120, because
+ledger/topics.json's own _spec binds a 90-day repeat rule (No.95 missed
+No.64 at 34 days, No.117 missed No.77 at 44): a LIKELY DUPLICATE there
+inside 90 days exits 1 too, and the deck goes ahead only as an UPDATE that
+names the material new development, in selection.md and on the cover.
 Within 30 days: pick a different story, OR reframe explicitly as an
 UPDATE with material new developments (say so on the cover). Write the
 decision + runner-up in `out/<date>/selection.md`.

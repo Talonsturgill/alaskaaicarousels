@@ -4801,6 +4801,51 @@
       "beats": [
         "state-policy"
       ]
+    },
+    {
+      "run_date": "2026-11-17",
+      "carousel_no": 117,
+      "update_of": "2026-10-04",
+      "topic": "UPDATE of No.2 and No.77: BBRSDA announced a $188,268 NFWF award (National Fisherman, November 13th) for an automated sonar near King Salmon on the Naknek, built and run by SeaSignal Technologies with Coastal Measures and BioSonics, to count returning salmon automatically and feed an online dashboard during the season, grant period June 1st, 2026 to May 31st, 2028; set beside the Wood River drone and AI pilot on NFWF's 2026 slate and the hand-clicker tower counts since 1955 (Wood tower 2,586,432 sockeye in 2026, inside its 700,000 to 2,800,000 goal).",
+      "angle": "THE WATERLINE SPLIT: the newest counter listens below the surface; the deck draws the count as sound crossing the river and sets it against the person with a clicker and the tower count that grades the pilots.",
+      "entities": [
+        "Bristol Bay Regional Seafood Development Association",
+        "BBRSDA",
+        "National Fish and Wildlife Foundation",
+        "NOAA Fisheries",
+        "SeaSignal Technologies",
+        "Coastal Measures",
+        "BioSonics",
+        "Alaska Department of Fish and Game",
+        "Naknek River",
+        "King Salmon",
+        "Wood River",
+        "Bristol Bay",
+        "Lilani Dunn",
+        "National Fisherman",
+        "KDLG"
+      ],
+      "keywords": [
+        "salmon sonar",
+        "automated fish counting",
+        "escapement count",
+        "counting tower",
+        "hand clicker",
+        "online dashboard",
+        "drone and AI pilot",
+        "NFWF electronic monitoring grant",
+        "sockeye",
+        "Bristol Bay salmon"
+      ],
+      "headline": "On the Naknek, the newest salmon counter listens.",
+      "sources_lead": [
+        "https://www.nationalfisherman.com/bbrsda-secures-nearly-688-000-in-grants-to-support-bristol-bay-salmon-fishery",
+        "https://www.nfwf.org/sites/default/files/2026-04/nfwf-emr-20260326-gs.pdf",
+        "https://www.adfg.alaska.gov/static/applications/dcfnewsrelease/1838927662.pdf"
+      ],
+      "beats": [
+        "research-and-science"
+      ]
     }
   ]
 }

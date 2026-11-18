@@ -1,0 +1,182 @@
+{
+ "round": 1,
+ "verdict": "revise",
+ "score_0_10": 7.3,
+ "arc_assessment": "Promise kept 01 to 02 and 07 to 09; middle sags: 03 and 04 repeat rig plus gold fan, 04's quote is generic and its empty screen opens a loop 05 never pays.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "strength": "strong"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "strength": "weak"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "strength": "weak"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "strength": "weak"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "strength": "strong"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "01,03,04,09",
+   "problem": "transducer drawn as three different objects",
+   "fix": "rebuild 01 on 03's rig; 04 and 09 as that silhouette in section"
+  },
+  {
+   "severity": "polish",
+   "where": "04",
+   "problem": "gold thread along the cable not visible",
+   "fix": "stroke cable route in gold"
+  },
+  {
+   "severity": "polish",
+   "where": "locator",
+   "problem": "nested boxes barely change",
+   "fix": "draw Bay coast hairline"
+  },
+  {
+   "severity": "polish",
+   "where": "09",
+   "problem": "boxed section with vertical seams",
+   "fix": "slope banks continuously"
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "02-05",
+   "problem": "four copy-dense frames in a row",
+   "fix": "lighten 04 into near-breather with a plant line to 05"
+  },
+  {
+   "severity": "polish",
+   "where": "08",
+   "problem": "body runs long",
+   "fix": "trim river roll-call"
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "major",
+   "where": "05",
+   "problem": "fixture over tally card",
+   "fix": "move card"
+  },
+  {
+   "severity": "polish",
+   "where": "07",
+   "problem": "navy bench off palette",
+   "fix": "warm toward #142634 with tannin lift"
+  },
+  {
+   "severity": "polish",
+   "where": "05",
+   "problem": "0001 twice",
+   "fix": "dark case window"
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 4,
+  "fix": "cut quote to a plant line, gild cable"
+ },
+ "craft": {
+  "predicted_artwork_score": 7.0,
+  "weakest_frames": [
+   {
+    "slide": 8,
+    "score": 6.5,
+    "cause": "b",
+    "fix": "model submerged gauge (depth falloff, ripple, lit/lee frame, wood grain), irregular chips, break flat teal, drop stamped cobbles"
+   },
+   {
+    "slide": 4,
+    "score": 6.5,
+    "cause": "c",
+    "fix": "water column depth grade, shafts, silt, fish, larger fan and transducer"
+   },
+   {
+    "slide": 5,
+    "score": 7.0,
+    "cause": "b",
+    "fix": "domed window case face, no duplicate 0001, fixture collision"
+   },
+   {
+    "slide": 1,
+    "score": 7.0,
+    "cause": "b",
+    "fix": "fogged willow/spruce masses for triangle trees; rig as 03"
+   },
+   {
+    "slide": 9,
+    "score": 7.0,
+    "cause": "d",
+    "fix": "remove boxed panel seams"
+   },
+   {
+    "slide": 2,
+    "score": 7.0,
+    "cause": "c",
+    "fix": "bay grade and lowland stipple"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     3,
+     4,
+     8,
+     9
+    ],
+    "fix": "drop gravel from 08's lower third"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "fix": "re-key tonal line to darkest 02 and 04; warm 07"
+   }
+  ],
+  "masterful_depth_frame": 3
+ }
+}
