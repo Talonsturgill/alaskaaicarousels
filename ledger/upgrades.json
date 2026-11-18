@@ -3873,6 +3873,83 @@
       "verify": [
         "grep -n 'ONE BUDGET (2026-11-11' prompts/routine_instructions.md"
       ]
+    },
+    {
+      "run_date": "2026-11-17",
+      "kind": "fix",
+      "area": "engine",
+      "change": "render.py relaunches its browser every --recycle-every slides (default 3, 0 = off) and early when MemAvailable is under 1.5 GB, renders a slide once more on a fresh browser when the browser or the page's renderer dies during it (crash_retry kept in the record, which qa.py WARNs on), and records mem (MemAvailable before, peak PSS of its process tree during) on every slide and in the status line.",
+      "trigger": "Queue item 2026-11-13, repeat 2, the item that made this pass due: No.114's full nine-slide render was OOM-killed (exit 137); No.115 and No.117 rendered every pass in threes with --only-exact by hand. Measured this pass: No.117's nine frames in ONE call peak at 1.62 GB tree PSS on slide 05 and fall back between slides (1.44, 0.92, 1.50, 1.11, 1.62, 1.06, 1.04, 0.97, 1.09 GB), so the OOM did not reproduce and its cause is unrecorded; recycling by page count is the standard remedy for long-lived headless Chromium (https://dev.to/rendershot/headless-chromium-at-scale-four-fixes-for-a-fleet-that-kept-eating-ram-1mdp).",
+      "files": [
+        ".claude/skills/carousel-engine/render.py",
+        ".claude/skills/carousel-engine/qa.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "tests/render_recycle_verify.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/render_recycle_verify.py 14/14: default relaunches once over five slides, --recycle-every 0 never, -1 exits 2; a renderer SIGKILLed mid-slide and the browser main process SIGKILLed mid-slide both now exit 0 with all PNGs and crash_retry plus one qa WARN. Reconstruction on the parent render.py: renderer kill exit 1 (slide 02 FAIL), browser kill a TargetClosedError traceback with slide 03 never rendered. No.117's nine slides in one call: 9/9 OK, two relaunches, 136.7 s against 133.5 s, unchanged sources pixel-identical (max diff 0 on 02, 03, 05, 07, 08, 09), qa WARN 0 fails 40 warns, the same as the run's own machine_qa. examples/demo-deck 4/4 OK, qa WARN 0 fails (its baseline). render_timeout_verify 9/9.",
+      "rollback": "revert the upgrade(2026-11-17) commit",
+      "commit": "",
+      "verify": [
+        "python3 tests/render_recycle_verify.py",
+        "python3 tests/render_timeout_verify.py"
+      ]
+    },
+    {
+      "run_date": "2026-11-17",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "dedupe_check.py also scans from day 31 to day 120 (--earlier-window, ledger/topics.json's matching scan) in an EARLIER COVERAGE section tagged by band; a LIKELY DUPLICATE inside the _spec's 90 days exits 1 and asks for an UPDATE naming the material new development, one at 91 to 120 days prints for context; --scout-brief adds the 31 to 120 days as a compact block (headline and the first five entities); routine Phase 4 says so.",
+      "trigger": "Queue items 2026-10-24 and 2026-11-17, the same defect on two runs: No.95 missed No.64 at 34 days (the KPB weather-modification ordinance; caught by the scorer at Phase 10 after the art was built) and No.117 missed No.77 at 44 days (Bristol Bay tower counts; found by reading the technique library, reframed as an UPDATE mid directors room). ledger/topics.json _spec binds 90 days and a 120-day matching scan; the script searched 30.",
+      "files": [
+        "scripts/dedupe_check.py",
+        "tests/dedupe_earlier_verify.py",
+        "prompts/routine_instructions.md"
+      ],
+      "verification": "tests/dedupe_earlier_verify.py 10/10 (hermetic ledger: 44-day repeat exits 1 and names it, --earlier-window 0 restores the old exit 0 CLEAR, 100-day prints as matching scan only and exits 0, 16-day in-window unchanged, scout brief splits the tiers; real ledger: the No.117 candidate now names No.77 at 44 days and exits 1, where it printed CLEAR before). No.95 re-run (--run-dir runs/2026-10-24): No.64 now prints in the earlier section, where nothing printed before. Scout brief 20.8 KB to 35.8 KB on today's ledger. The 30-day window, every verdict threshold and the in-window exit are unchanged.",
+      "rollback": "revert the upgrade(2026-11-17) commit",
+      "commit": "",
+      "verify": [
+        "python3 tests/dedupe_earlier_verify.py"
+      ]
+    },
+    {
+      "run_date": "2026-11-17",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "cron_health.py gives the unshallow fetch a 600 s bound (the rest of git keeps 120 s), stops git's whole process group on a timeout with SIGTERM before SIGKILL so git cleans its own lockfiles, and before a retry removes a .git/shallow.lock only when that failed attempt made it and no git process is running in the repository, naming any other lock with its remedy.",
+      "trigger": "Queue item 2026-11-17 and showrunner incident (2): No.117's `git fetch --unshallow` hit the 120 s timeout, subprocess SIGKILLed the top git only, .git/shallow.lock stayed, and both retries died with exit 128 on it until the lock was removed by hand and the fetch re-run (about four minutes).",
+      "files": [
+        "scripts/cron_health.py",
+        "tests/cron_health.py"
+      ],
+      "verification": "tests/cron_health.py 17 tests OK, two new: a timed-out fetch that leaves a fresh shallow.lock is cleared and the retry succeeds (the same script without the clear raises CalledProcessError on every retry, the No.117 shape), an older lock or one with git running is left; a fake git that spawns a child under a 1 s timeout leaves no child alive with the new git(), while the old check_output left it running (measured both). No verdict, check or schedule changed.",
+      "rollback": "revert the upgrade(2026-11-17) commit",
+      "commit": "",
+      "verify": [
+        "python3 tests/cron_health.py"
+      ]
+    },
+    {
+      "run_date": "2026-11-17",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKT.audit reports ground_edge (the level ground with the largest footprint ends inside the frame where fog still shows more than 4 percent of it and a raycast finds nothing in front) and fog_seam (fog colour more than 3 sRGB levels off the background on a frame showing sky and fogged ground); qa.py WARNs on both with the remedy, and userData.edgeShown opts a deliberate relief-model edge out.",
+      "trigger": "Digest cause d (texture artifact, reserve edge) on 3 of 5 runs, 6 frames; the GPU share of it: No.116 08 (flow critic d at ship: a lighter navy trapezoid edge and a curved mesh boundary, 'extend the plane past the frustum and fog it to the sky colour'), No.98 06 (fog over a different bg drew a hard tonal edge, cured by fog = bg) and No.108 01/09 (a patch edge, four pixel rounds); queue item 2026-10-28 (AKT fog seam).",
+      "files": [
+        "assets/js/akthree.js",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/akthree_ground_edge_verify.py",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "tests/akthree_ground_edge_verify.py 7/7 through the real render.py and qa.py: No.116 08's shape (20 m plane, no fog, edge in frame) WARNs ground_edge; closing fog, a wall in front and edgeShown are clean; No.98 06 (fog 0x070D16 over bg 0x050A12) WARNs fog_seam at 4 levels and the repair (fog = bg) is clean; a plane past a pitched-down frustum is clean. Read-only: No.117 slide 03, whose source did not move between renders, is pixel-identical (max diff 0) with the new akthree.js; akthree_far_clip, material_audit (25/25, including HEAD parity) and soft_shadow verifies hold. On No.117 it fires once, fog_seam on 03 (fog 0x1b281e over bg 0x17221a, 6 levels); that frame's 14 px DOF blur hides the step, so it is the remedy's one-line cost, not a visible defect. examples/demo-deck has no akthree frame and renders 4/4, qa WARN 0 fails.",
+      "rollback": "revert the upgrade(2026-11-17) commit",
+      "commit": "",
+      "verify": [
+        "python3 tests/akthree_ground_edge_verify.py",
+        "python3 tests/akthree_far_clip_verify.py",
+        "python3 tests/akthree_material_audit_verify.py"
+      ]
     }
   ],
   "scan_log": [
@@ -4428,6 +4505,13 @@
       "searches": "4 searches (Playwright tagged and outline PDF options; LinkedIn document carousel accessibility; Chromium tagged PDF in headless print; merging tagged PDFs with pikepdf or pypdf), 2 fetches (Intopia on LinkedIn carousels; Playwright's PDF test), plus a local probe of Chromium's tagged output and pypdf's merge",
       "found": "(1) Intopia: LinkedIn's Accessibility Mode reads the PDF's order panel and keeps heading levels, and the downloadable PDF is accessible only when tagged (https://intopia.digital/articles/navigating-the-accessibility-challenges-of-linkedin-carousels). (2) Playwright page.pdf(tagged=True) in this container writes /StructTreeRoot, /MarkInfo and /Lang with /H1 and /P elements (https://sources.debian.org/data/main/p/python-playwright/1.55.0+ds-2/tests/async/test_pdf.py); a test img alt was not tagged. (3) assemble.py's pypdf add_page merge drops the structure tree (measured), and every shipped carousel.pdf is untagged; merging trees means renumbering ParentTree and StructParents (https://sources.debian.org/src/camlpdf/2.9-1/pdfst.ml, https://issues.apache.org/jira/browse/PDFBOX-4407).",
       "outcome": "nothing applied; parked (2) and (3) in knowledge/FIELD_NOTES.md 'Parked, 2026-11-11 frontier scan, focus (g)' with two routes (one-document print, or a structure-tree merge) and the unblock condition"
+    },
+    {
+      "run_date": "2026-11-17",
+      "focus": "(e) headless Chromium and Playwright rendering, narrowed to render memory, crash recovery and WebGL speed. Legal and distinct from the last three logged foci: 2026-11-11 (g) accessibility/PDF, 2026-11-08 (c) procedural, 2026-11-01 (b) still life (last (e) is older than the last three). Chosen on relevance: the render OOM item made this pass due.",
+      "searches": "7 searches (Playwright 2026 release notes; headless WebGPU and SwiftShader fallback; CDP Performance.getMetrics per page; canvas 2D beginLayer shipping; willReadFrequently memory; browser recycling for long-lived headless Chromium; Playwright 1.65 breaking changes), 3 fetches (Microlink on WebGL without a GPU; the blink-dev SwiftShader fallback removal thread; the Playwright 1.65 release write-up), plus a local measurement of the render tree's PSS over No.117's nine frames",
+      "found": "(1) Recycling a long-lived headless browser by page count is the common remedy for memory that does not return to baseline (https://dev.to/rendershot/headless-chromium-at-scale-four-fixes-for-a-fleet-that-kept-eating-ram-1mdp); measured here first, it did not grow, so it is applied as insurance with telemetry and crash retry. (2) ANGLE on Mesa llvmpipe rendered a three.js page about 4x faster than SwiftShader (about 24 s to 6 s), but needs Mesa built from source plus Xvfb and falls back to flat 2D silently without a display (https://microlink.io/blog/webgl-without-a-gpu). (3) Chrome 137 removed the automatic SwiftShader WebGL fallback; --enable-unsafe-swiftshader keeps it, and CHROMIUM_ARGS already passes it (https://groups.google.com/a/chromium.org/g/blink-dev/c/yhFguWS_3pM). (4) Playwright 1.65's eleven breaking changes are test-runner and network items; none touches launch, init scripts, evaluate or screenshot (https://testdino.com/blog/playwright-1-65-release); the container runs 1.63. (5) Canvas beginLayer's shipping status could not be confirmed; nothing taken.",
+      "outcome": "applied (1) as part of the render.py fix; parked (2) in knowledge/FIELD_NOTES.md '2026-11-17, No.117, weekly machine pass' with the unblock condition; (3) and (4) confirmed nothing to do"
     }
   ]
 }

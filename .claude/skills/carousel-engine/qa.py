@@ -3761,6 +3761,40 @@ def main():
                     "light.shadow.blurSamples on lights you build yourself; PCFShadowMap "
                     "honours radius but printed stepped bands on No.104"
                     % (fa.get("name"), fa.get("radius"), fa.get("radius")))
+            elif k == "ground_edge":
+                # 2026-11-17, weekly pass: No.98 06, No.108 01/09, No.116 08.
+                at = fa.get("at") or ["?", "?"]
+                res["warns"].append(
+                    "the ground ends inside the picture: %s (footprint %s) runs out under %s of "
+                    "%s sample rays, the most visible at frame x %s, y %s with %s of its surface "
+                    "still through the fog, so the background shows where ground should be "
+                    "(No.116 08's 'lighter trapezoid' and 'curved mesh boundary', the flow "
+                    "critic's cause d at ship). Size the ground past the frustum, or close the "
+                    "fog (THREE.Fog far, or FogExp2 density) before its edge; if the edge is "
+                    "meant to show, set userData.edgeShown = true on the mesh"
+                    % (fa.get("name"), fa.get("footprint"), fa.get("rays"), fa.get("of"),
+                       at[0], at[1], fa.get("surface_kept")))
+            elif k == "fog_seam":
+                res["warns"].append(
+                    "fog and sky disagree: the fog is %s and the background %s (%s sRGB levels "
+                    "apart), so where the fogged ground meets the sky the horizon prints a "
+                    "straight step (No.98 06, a hard tonal edge behind the copy until fog was "
+                    "set to the background). Set the fog colour to the background colour"
+                    % (fa.get("fog"), fa.get("bg"), fa.get("step")))
+
+        # A SLIDE RENDERED ON ITS SECOND BROWSER (2026-11-17, weekly pass).
+        # render.py relaunches a browser that died during a slide and renders
+        # the slide once more; the PNG is the second attempt's, and the first
+        # attempt's errors are kept so the crash is disclosed, never silent.
+        if rec.get("crash_retry"):
+            mem = rec.get("mem") or {}
+            res["warns"].append(
+                "the browser died while rendering this slide and it was rendered again on a "
+                "fresh one (first attempt: %s; MemAvailable before it %s MB, peak render-tree "
+                "PSS %s MB). A repeat is a memory spike in this slide's own drawing: cut its "
+                "supersample or per-pixel buffer sizes before the next pass"
+                % ("; ".join(str(x)[:100] for x in rec["crash_retry"][:2]),
+                   mem.get("available_mb"), mem.get("peak_pss_mb")))
 
         # TWO LIGHT DIRECTIONS IN ONE FRAME (2026-09-05). render.py resolves
         # every declared relief azimuth into the direction akrelief.js actually

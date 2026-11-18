@@ -9,7 +9,9 @@ Exit 2 requires the AI routine to diagnose, repair, and repeat this audit.
 import argparse
 import html
 import json
+import os
 import re
+import signal
 import subprocess
 import time
 from datetime import datetime, timedelta, timezone
@@ -40,8 +42,38 @@ def iso(value):
     return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def git(*args):
-    return subprocess.check_output(["git", *args], cwd=REPO, timeout=120)
+def git(*args, timeout=120):
+    """check_output for git, bounded, with the whole process group stopped on a
+    timeout: SIGTERM first, so git runs its own lockfile cleanup, then SIGKILL.
+    subprocess's own timeout SIGKILLs the top git only, which can't clean up,
+    and leaves its remote-https and index-pack children running (2026-11-17)."""
+    proc = subprocess.Popen(["git", *args], cwd=REPO, stdout=subprocess.PIPE,
+                            start_new_session=True)
+    try:
+        out, _ = proc.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        _stop_group(proc)
+        raise
+    if proc.returncode:
+        raise subprocess.CalledProcessError(proc.returncode, ["git", *args], out)
+    return out
+
+
+def _stop_group(proc, grace=10):
+    for sig in (signal.SIGTERM, signal.SIGKILL):
+        try:
+            os.killpg(proc.pid, sig)
+        except (ProcessLookupError, PermissionError):
+            break
+        try:
+            proc.wait(timeout=grace)
+            break
+        except subprocess.TimeoutExpired:
+            continue
+    try:
+        proc.communicate(timeout=1)
+    except Exception:
+        pass
 
 
 def scheduled_crons(contents):
@@ -268,14 +300,95 @@ def power_published(page, residential):
 # disclosed rather than silent.
 FETCH_WAITS = (5, 15)
 
+# A TIMED-OUT UNSHALLOW NO LONGER POISONS ITS OWN RETRIES (2026-11-17, weekly
+# pass; queue item 2026-11-17). No.117's first `git fetch --unshallow` hit the
+# flat 120 s git timeout, subprocess SIGKILLed git, git could not remove
+# .git/shallow.lock, and both retries died at once with exit 128 on the lock,
+# so the audit FAILed on its own plumbing until the lock was removed by hand and
+# the fetch re-run (about four minutes). Three changes, none to any verdict:
+#  - the fetch gets FETCH_TIMEOUT (600 s, past the measured four minutes), the
+#    rest of git keeps 120 s;
+#  - a timeout stops git's whole process group with SIGTERM first (git removes
+#    its own lockfiles on SIGTERM), then SIGKILL (git() above);
+#  - before a retry, a shallow.lock still standing is removed ONLY when it was
+#    made during the attempt that just failed (mtime at or after its start) and
+#    no git process is running in this repository. Any other lock is left alone
+#    and named, with the remedy, because it is somebody else's.
+FETCH_TIMEOUT = 600
+FETCH_LOCKS = ("shallow.lock",)
 
-def fetch_main(waits=FETCH_WAITS, sleep=time.sleep):
+
+def _git_dir():
+    # not through git(), so a test that scripts git()'s answers is not consumed
+    try:
+        out = subprocess.run(["git", "rev-parse", "--absolute-git-dir"], cwd=REPO,
+                             capture_output=True, timeout=30, check=True).stdout
+        return Path(out.decode().strip())
+    except Exception:
+        return REPO / ".git"
+
+
+def _git_running_here(git_dir):
+    """Is any live git process working in this repository (Linux /proc)?
+    Unknown (no /proc) answers True, so nothing is ever removed blind."""
+    proc = Path("/proc")
+    if not proc.is_dir():
+        return True
+    roots = {str(REPO.resolve()), str(Path(git_dir).resolve())}
+    for d in proc.iterdir():
+        if not d.name.isdigit() or int(d.name) == os.getpid():
+            continue
+        try:
+            argv0 = (d / "cmdline").read_bytes().split(b"\0")[0].decode("utf-8", "replace")
+            comm = (d / "comm").read_text().strip()
+            if not (comm.startswith("git") or Path(argv0).name.startswith("git")):
+                continue
+            cwd = os.readlink(d / "cwd")
+        except (OSError, ValueError):
+            continue
+        if any(cwd == r or cwd.startswith(r + os.sep) for r in roots):
+            return True
+    return False
+
+
+def clear_own_stale_locks(started, git_dir=None):
+    """Remove the fetch's lockfiles left by the attempt that began at `started`.
+    Returns the names removed."""
+    git_dir = Path(git_dir) if git_dir else _git_dir()
+    removed = []
+    for name in FETCH_LOCKS:
+        lock = git_dir / name
+        try:
+            mtime = lock.stat().st_mtime
+        except FileNotFoundError:
+            continue
+        if mtime + 1 < started:
+            print(f"[LOCK] {lock} predates this fetch attempt, so it is not this audit's; "
+                  f"left in place. If no git is running, remove it and re-run the audit")
+            continue
+        if _git_running_here(git_dir):
+            print(f"[LOCK] {lock} is fresh but a git process is still running in this "
+                  f"repository; left in place")
+            continue
+        try:
+            lock.unlink()
+            removed.append(name)
+            print(f"[CLEARED] {lock}, left by the fetch attempt that just failed")
+        except FileNotFoundError:
+            pass
+    return removed
+
+
+def fetch_main(waits=FETCH_WAITS, sleep=time.sleep, clock=time.time):
     for attempt in range(len(waits) + 1):
+        started = clock()
         try:
             shallow = git("rev-parse", "--is-shallow-repository").decode().strip() == "true"
-            git("fetch", "--quiet", *(["--unshallow"] if shallow else []), "origin", "main")
+            git("fetch", "--quiet", *(["--unshallow"] if shallow else []), "origin", "main",
+                timeout=FETCH_TIMEOUT)
             return attempt
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
+            clear_own_stale_locks(started)
             if attempt >= len(waits):
                 raise
             print(f"[RETRIED] git fetch origin main, attempt {attempt + 1} failed "

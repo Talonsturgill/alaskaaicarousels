@@ -22,6 +22,7 @@ Conventions the slide HTML must follow (see SKILL.md for the full contract):
 Usage:
   python .claude/skills/carousel-engine/render.py \
       --slides-dir out/run/slides --out-dir out/run/render [--scale 2] [--only 2,5]
+      [--recycle-every 3]   (a fresh browser every N slides; 0 = never)
 
 Exit codes: 0 = all slides rendered (warnings possible; read the report),
             1 = at least one slide hard-failed (JS error, timeout, missing PNG).
@@ -37,7 +38,9 @@ import math
 import re
 import shutil
 import sys
+import os
 import tempfile
+import threading
 import time
 from pathlib import Path
 
@@ -5187,6 +5190,123 @@ def check_timeout_arg(ms: int):
     return None
 
 
+# A FRESH BROWSER EVERY FEW SLIDES, AND A RENDER THAT SURVIVES ONE CRASH
+# (2026-11-17, weekly machine pass; queue item 2026-11-13, repeat 2). No.114's
+# first full render over nine heavy frames (per-pixel ImageData plus
+# supersampled akthree canvases) was OOM-killed with exit 137 and took the
+# worker with it; batches of three (`--only 1,2,3 --only-exact`) were clean,
+# and No.115 and No.117 then rendered every pass in threes by hand. MEASURED
+# 2026-11-17 on No.117's nine slides (three akthree softShadows frames, five
+# per-pixel frames) in ONE call on a 16 GB container: the summed PSS of the
+# render's process tree peaked at 1.62 GB on slide 05 and fell back between
+# slides (1.44, 0.92, 1.50, 1.11, 1.62, 1.06, 1.04, 0.97, 1.09 GB), so the
+# per-page close already returns what a slide took, and the OOM did not
+# reproduce. What No.114 met is therefore not recorded anywhere, and the
+# workaround cost three commands per pass. So the workaround becomes the
+# default, made by the tool, and the next spike is measured instead of guessed:
+#  - the browser is closed and relaunched every --recycle-every slides
+#    (default 3, the batch that was clean every time; 0 turns it off), and
+#    early whenever MemAvailable is under MEM_FLOOR_MB before a slide;
+#  - a browser, or the page's renderer, that dies DURING a slide (the kernel's
+#    OOM killer picks the largest process, which is a renderer or the GPU
+#    process) gets a fresh browser and that slide is rendered ONCE more, the first attempt's errors kept in its record under
+#    `crash_retry`, so one crash no longer costs the whole call;
+#  - every record carries `mem` (MemAvailable before the slide and the peak
+#    PSS of render.py's process tree during it, sampled every 0.25 s from
+#    /proc; absent off Linux) and the status line prints it.
+# Nothing here changes a pixel, a check or an exit code.
+MEM_FLOOR_MB = 1500
+MEM_SAMPLE_S = 0.25
+
+
+def _mem_available_mb():
+    try:
+        with open("/proc/meminfo") as f:
+            for ln in f:
+                if ln.startswith("MemAvailable:"):
+                    return int(ln.split()[1]) // 1024
+    except OSError:
+        return None
+    return None
+
+
+def _tree_pss_mb(root):
+    """Summed PSS of `root` and every descendant, in MB (Linux /proc only)."""
+    kids = {}
+    try:
+        names = os.listdir("/proc")
+    except OSError:
+        return None
+    for n in names:
+        if not n.isdigit():
+            continue
+        try:
+            with open("/proc/%s/stat" % n) as f:
+                ppid = int(f.read().rsplit(")", 1)[1].split()[1])
+            kids.setdefault(ppid, []).append(int(n))
+        except (OSError, ValueError, IndexError):
+            pass
+    total, stack = 0, [root]
+    while stack:
+        pid = stack.pop()
+        stack += kids.get(pid, [])
+        try:
+            with open("/proc/%d/smaps_rollup" % pid) as f:
+                for ln in f:
+                    if ln.startswith("Pss:"):
+                        total += int(ln.split()[1])
+                        break
+        except OSError:
+            pass
+    return total // 1024
+
+
+class _MemSampler:
+    """Peak tree PSS while a slide renders, from a daemon thread."""
+
+    def __init__(self):
+        self.peak, self._stop = None, threading.Event()
+        self._t = threading.Thread(target=self._run, daemon=True)
+
+    def _run(self):
+        me = os.getpid()
+        while not self._stop.is_set():
+            m = _tree_pss_mb(me)
+            if m is not None:
+                self.peak = m if self.peak is None else max(self.peak, m)
+            self._stop.wait(MEM_SAMPLE_S)
+
+    def __enter__(self):
+        if Path("/proc/self/smaps_rollup").exists():
+            self._t.start()
+        return self
+
+    def __exit__(self, *exc):
+        self._stop.set()
+        if self._t.is_alive():
+            self._t.join(timeout=2)
+        return False
+
+
+# Playwright's words for a renderer that died under the page ("Target crashed",
+# "Page crashed") and for a browser that went away ("has been closed").
+_CRASH_RE = re.compile(r"(target|page) crashed|browser has been closed|"
+                       r"target page, context or browser has been closed", re.I)
+
+
+def _browser_alive(browser):
+    try:
+        return browser.is_connected()
+    except Exception:
+        return False
+
+
+def check_recycle_arg(n: int):
+    if n < 0:
+        return "--recycle-every is a slide count (0 turns recycling off), got %d" % n
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slides-dir", required=True)
@@ -5201,8 +5321,12 @@ def main():
                          "(qa.py still FAILs a stale PNG, so this only defers the re-render)")
     ap.add_argument("--timeout", type=int, default=45000,
                     help="page load budget per slide, in MILLISECONDS (default 45000)")
+    ap.add_argument("--recycle-every", type=int, default=3,
+                    help="close and relaunch the browser after this many slides (default 3, "
+                         "the batch No.114 found clean after a nine-slide OOM; 0 = never). "
+                         "It also relaunches early when MemAvailable is under %d MB" % MEM_FLOOR_MB)
     args = ap.parse_args()
-    bad_timeout = check_timeout_arg(args.timeout)
+    bad_timeout = check_timeout_arg(args.timeout) or check_recycle_arg(args.recycle_every)
     if bad_timeout:
         print("FAIL: " + bad_timeout, file=sys.stderr)
         sys.exit(2)
@@ -5258,11 +5382,43 @@ def main():
     results = []
     with sync_playwright() as p:
         browser = launch_chromium(p)
+        since_launch = 0
+
+        def relaunch(why):
+            nonlocal browser, since_launch
+            try:
+                browser.close()
+            except Exception:
+                pass
+            print("[browser] relaunched: %s" % why)
+            browser = launch_chromium(p)
+            since_launch = 0
+
         for s in slides:
+            avail = _mem_available_mb()
+            if since_launch and args.recycle_every and since_launch >= args.recycle_every:
+                relaunch("after %d slide(s) (--recycle-every %d)" % (since_launch, args.recycle_every))
+            elif since_launch and avail is not None and avail < MEM_FLOOR_MB:
+                relaunch("MemAvailable %d MB is under the %d MB floor" % (avail, MEM_FLOOR_MB))
+                avail = _mem_available_mb()
             resolved = resolve_html(s, resolved_dir)
             png = out_dir / (s.stem + ".png")
-            rec = render_slide(browser, resolved, png, args.width, args.height,
-                               args.scale, args.timeout)
+            with _MemSampler() as ms:
+                rec = render_slide(browser, resolved, png, args.width, args.height,
+                                   args.scale, args.timeout)
+            since_launch += 1
+            crashed = [e for e in rec.get("page_errors") or [] if _CRASH_RE.search(str(e))]
+            if not _browser_alive(browser) or crashed:
+                first = rec.get("page_errors") or ["browser disconnected"]
+                relaunch("the %s died during %s (%s)" % (
+                    "browser" if not _browser_alive(browser) else "page's renderer",
+                    s.name, str((crashed or first)[0])[:120]))
+                with _MemSampler() as ms:
+                    rec = render_slide(browser, resolved, png, args.width, args.height,
+                                       args.scale, args.timeout)
+                rec["crash_retry"] = first[:4]
+                since_launch += 1
+            rec["mem"] = {"available_mb": avail, "peak_pss_mb": ms.peak}
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
             rec["collapsed_fits"] = scan_collapsed_fit(s.read_text(), s.name)
             rec["vacuous_asserts"] = scan_vacuous_asserts(s.read_text(), s.name)
@@ -5280,8 +5436,13 @@ def main():
                 rec["native_crops"] = write_native_crops(png, args.scale)
             status ="OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
+            memtxt = ""
+            if ms.peak is not None:
+                memtxt = "  mem=%.2fGB" % (ms.peak / 1024.0)
+                if avail is not None:
+                    memtxt += " avail=%.1fGB" % (avail / 1024.0)
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
-                  f"  warnings={warn}  errors={len(rec['page_errors'])}")
+                  f"  warnings={warn}  errors={len(rec['page_errors'])}{memtxt}")
             prior[s.name] = rec
             results.append(rec)
         browser.close()

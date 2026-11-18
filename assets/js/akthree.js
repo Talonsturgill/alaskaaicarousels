@@ -482,8 +482,111 @@ export function init(THREE) {
         }
       }
     });
+    try { groundEdge(R, scene, cam, camPos, shown, found); } catch (e) { /* never stops the audit */ }
     return found;
   };
+
+  /* GROUND EDGE AND FOG SEAM (2026-11-17, weekly machine pass). The ground of a
+   * GPU frame ends inside the picture, or meets a sky of another colour, and a
+   * critic finds the line a round later: No.98 06 (fog 0x070D16 over bg
+   * 0x050A12 and a 12 m floor drew a hard tonal edge behind the copy; an 80 m
+   * floor and fog set to bg removed it), No.108 01 and 09 (a patch edge, four
+   * pixel rounds), No.116 08 (a lighter trapezoid at upper right and a curved
+   * mesh boundary along the bottom, the flow critic's cause d at ship). Read from
+   * the scene alone, before anyone looks, and only reported:
+   *  - ground_edge: rays through a 12 x 15 grid of the frame that point down
+   *    meet the ground's height OUTSIDE the ground's footprint while fog still
+   *    lets more than EDGE_VIS of the surface through, and no other mesh is in
+   *    the way (a raycast), so the background shows where ground should be.
+   *  - fog_seam: the frame shows both sky and fogged ground, the background is
+   *    a colour, and the fog colour differs from it by more than FOG_SEAM sRGB
+   *    levels in any channel, so the horizon prints a step however far the ground runs.
+   * The ground is the visible mesh that is flat (thinnest local axis under a
+   * quarter of the next) and level (that axis within 25 degrees of world up)
+   * with the largest footprint, under the camera. A mesh whose edge is meant to
+   * show (a relief model on a plinth) sets userData.edgeShown = true. */
+  const EDGE_VIS = 0.04, FOG_SEAM = 3;   // FOG_SEAM in sRGB levels per channel
+  function fogKeep(fog, z) {           // three r170's own fog factor, as kept surface
+    if (!fog) return 1;
+    if (fog.isFogExp2) return Math.exp(-fog.density * fog.density * z * z);
+    if (fog.isFog) {
+      const t = Math.min(1, Math.max(0, (z - fog.near) / Math.max(1e-6, fog.far - fog.near)));
+      return 1 - t * t * (3 - 2 * t);
+    }
+    return 1;
+  }
+  function groundEdge(R, scene, cam, camPos, shown, found) {
+    if (!cam || !camPos || !cam.isPerspectiveCamera) return;
+    const up = new THREE.Vector3(0, 1, 0);
+    let ground = null, best = 0, gbox = null;
+    scene.traverse(m => {
+      if (!m.isMesh || !shown(m) || !m.geometry) return;
+      const mats = Array.isArray(m.material) ? m.material : [m.material];
+      if (!mats.some(mt => mt && mt.visible !== false && !(mt.transparent && mt.opacity < 0.5))) return;
+      if (!m.geometry.boundingBox) m.geometry.computeBoundingBox();
+      const bb = m.geometry.boundingBox;
+      if (!bb || bb.isEmpty()) return;
+      m.updateMatrixWorld(true);
+      const sc = new THREE.Vector3().setFromMatrixScale(m.matrixWorld);
+      const ext = [(bb.max.x - bb.min.x) * sc.x, (bb.max.y - bb.min.y) * sc.y, (bb.max.z - bb.min.z) * sc.z];
+      const order = [0, 1, 2].sort((a, b) => ext[a] - ext[b]);
+      if (!(ext[order[0]] <= 0.25 * ext[order[1]])) return;
+      const axis = new THREE.Vector3().setComponent(order[0], 1)
+        .transformDirection(m.matrixWorld);
+      if (Math.abs(axis.dot(up)) < Math.cos(25 * Math.PI / 180)) return;
+      const wb = bb.clone().applyMatrix4(m.matrixWorld);
+      const area = (wb.max.x - wb.min.x) * (wb.max.z - wb.min.z);
+      if (area > best && camPos.y > wb.min.y) { best = area; ground = m; gbox = wb; }
+    });
+    if (!ground || (ground.userData && ground.userData.edgeShown)) return;
+    const h = (gbox.min.y + gbox.max.y) / 2;
+    if (camPos.y <= h) return;
+    const others = [];
+    scene.traverse(m => { if (m.isMesh && m !== ground && shown(m)) others.push(m); });
+    const rc = new THREE.Raycaster();
+    const fog = scene.fog, bg = scene.background && scene.background.isColor ? scene.background : null;
+    const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
+    let misses = 0, sky = 0, fogged = 0, worst = null, rays = 0;
+    const NX = 12, NY = 15, ndc = new THREE.Vector3(), dir = new THREE.Vector3();
+    for (let j = 0; j < NY; j++) {
+      for (let i = 0; i < NX; i++) {
+        ndc.set(-1 + (2 * i + 1) / NX, -1 + (2 * j + 1) / NY, 0.5).unproject(cam);
+        dir.copy(ndc).sub(camPos).normalize();
+        rays++;
+        if (dir.y >= -1e-6) { sky++; continue; }
+        const t = (h - camPos.y) / dir.y;
+        const hit = camPos.clone().addScaledVector(dir, t);
+        const z = hit.clone().sub(camPos).dot(fwd);      // view depth, what three's fog reads
+        if (z > cam.far) { sky++; continue; }
+        const inside = hit.x >= gbox.min.x && hit.x <= gbox.max.x && hit.z >= gbox.min.z && hit.z <= gbox.max.z;
+        const keep = fogKeep(fog, z);
+        if (inside) { if (keep < 0.5) fogged++; continue; }
+        if (keep <= EDGE_VIS) { sky++; continue; }        // fogged out: reads as sky
+        rc.set(camPos, dir); rc.far = t;
+        let blocked = false;
+        try { blocked = others.length > 0 && rc.intersectObjects(others, false).length > 0; } catch (e) {}
+        if (blocked) continue;
+        misses++;
+        if (!worst || keep > worst.keep) worst = { keep: keep, x: (i + 0.5) / NX, y: 1 - (j + 0.5) / NY };
+      }
+    }
+    const name = ground.name || (ground.material && ground.material.name) || ('mesh ' + ground.id);
+    if (misses) {
+      found.push({ kind: 'ground_edge', name: name, rays: misses, of: rays,
+        surface_kept: +worst.keep.toFixed(2), at: [+worst.x.toFixed(2), +worst.y.toFixed(2)],
+        footprint: [+(gbox.max.x - gbox.min.x).toFixed(1), +(gbox.max.z - gbox.min.z).toFixed(1)] });
+    }
+    if (fog && bg && fog.color && sky && fogged) {
+      // compared as the sRGB levels the slide wrote (getHex), not linear floats
+      const fh = fog.color.getHex(), bh = bg.getHex();
+      let d = 0;
+      for (const sh of [16, 8, 0]) d = Math.max(d, Math.abs(((fh >> sh) & 255) - ((bh >> sh) & 255)));
+      if (d > FOG_SEAM) {
+        found.push({ kind: 'fog_seam', name: name, fog: '#' + fog.color.getHexString(),
+          bg: '#' + bg.getHexString(), step: d });
+      }
+    }
+  }
 
   /* ---- stage furniture -------------------------------------------------- */
   AKT.ground = function (R, o) {

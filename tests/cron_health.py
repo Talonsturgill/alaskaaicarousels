@@ -214,7 +214,7 @@ class CronHealthTests(unittest.TestCase):
                        b"true\n", subprocess.CalledProcessError(128, "git fetch"),
                        b"false\n", b""])
 
-        def fake_git(*args):
+        def fake_git(*args, **kw):
             calls.append(args)
             step = next(script)
             if isinstance(step, Exception):
@@ -228,7 +228,7 @@ class CronHealthTests(unittest.TestCase):
         self.assertIn("--unshallow", fetches[0])
         self.assertNotIn("--unshallow", fetches[-1], "shallowness is re-read before each try")
 
-        def always_fails(*args):
+        def always_fails(*args, **kw):
             if args[0] == "fetch":
                 raise subprocess.CalledProcessError(128, "git fetch")
             return b"false\n"
@@ -238,6 +238,74 @@ class CronHealthTests(unittest.TestCase):
             with self.assertRaises(subprocess.CalledProcessError):
                 health.fetch_main(sleep=waited.append)
         self.assertEqual(len(waited), len(health.FETCH_WAITS), "bounded: no fourth try")
+
+
+    def test_timed_out_unshallow_clears_only_its_own_lock(self):
+        """2026-11-17: No.117's unshallow timed out, left .git/shallow.lock, and
+        both retries died on it with exit 128. The lock the failed attempt made
+        is removed before the retry; an older one, or one with git still
+        running, is left alone."""
+        with tempfile.TemporaryDirectory() as td:
+            gd = Path(td)
+            lock = gd / "shallow.lock"
+            clock = [1000.0]
+
+            def fake_git(*args, **kw):
+                if args[0] == "fetch":
+                    if lock.exists():
+                        raise subprocess.CalledProcessError(128, "git fetch")  # the stale-lock death
+                    if not seen:
+                        seen.append(1)
+                        lock.write_text("")
+                        os.utime(lock, (clock[0] + 3, clock[0] + 3))
+                        self.assertEqual(kw.get("timeout"), health.FETCH_TIMEOUT)
+                        raise subprocess.TimeoutExpired("git fetch", kw.get("timeout"))
+                    return b""
+                return b"true\n"
+
+            seen = []
+            with patch.object(health, "git", fake_git), \
+                    patch.object(health, "_git_dir", lambda: gd), \
+                    patch.object(health, "_git_running_here", lambda g: False):
+                self.assertEqual(health.fetch_main(sleep=lambda s: None, clock=lambda: clock[0]), 1)
+            self.assertFalse(lock.exists())
+
+            # the reconstruction without the clear: every retry dies on the lock
+            seen.clear()
+            lock.unlink(missing_ok=True)
+            with patch.object(health, "git", fake_git), \
+                    patch.object(health, "clear_own_stale_locks", lambda started, git_dir=None: []):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    health.fetch_main(sleep=lambda s: None, clock=lambda: clock[0])
+            self.assertTrue(lock.exists())
+
+            # an older lock is somebody else's
+            os.utime(lock, (clock[0] - 60, clock[0] - 60))
+            self.assertEqual(health.clear_own_stale_locks(clock[0], gd), [])
+            self.assertTrue(lock.exists())
+            # a fresh lock with git still running here is left too
+            os.utime(lock, (clock[0] + 1, clock[0] + 1))
+            with patch.object(health, "_git_running_here", lambda g: True):
+                self.assertEqual(health.clear_own_stale_locks(clock[0], gd), [])
+            self.assertTrue(lock.exists())
+            with patch.object(health, "_git_running_here", lambda g: False):
+                self.assertEqual(health.clear_own_stale_locks(clock[0], gd), ["shallow.lock"])
+
+    def test_git_timeout_stops_the_whole_process_group(self):
+        """git() on a timeout stops the group, so no child keeps a lock open."""
+        with tempfile.TemporaryDirectory() as td:
+            marker = Path(td) / "child.pid"
+            fake = Path(td) / "git"
+            fake.write_text("#!/bin/sh\nsleep 60 &\necho $! > %s\nwait\n" % marker)
+            fake.chmod(0o755)
+            env_path = os.environ.get("PATH", "")
+            with patch.dict(os.environ, {"PATH": td + os.pathsep + env_path}):
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    health.git("fetch", timeout=1)
+            child = int(marker.read_text().strip())
+            alive = Path("/proc/%d" % child).exists() and \
+                "Z" not in Path("/proc/%d/stat" % child).read_text().rsplit(")", 1)[1].split()[0]
+            self.assertFalse(alive, "the child git spawned outlived the timeout")
 
 
 if __name__ == "__main__":

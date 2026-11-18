@@ -1,61 +1,68 @@
 {
-  "last_pass": "2026-11-11",
+  "last_pass": "2026-11-17",
   "themes": [
     {
-      "theme": "ask pack ceiling, queue repeat 2 (No.110, No.111, No.112 each hit it), the item that made the pass due early",
+      "theme": "render OOM over nine heavy frames, queue repeat 2 (No.114 OOM; No.115 and No.117 batched in threes by hand), the item that made the pass due",
       "runs": 3,
       "frames": 0,
       "action": "fixed",
-      "what": "root cause measured: passed key dates were the one part of the pack nothing bounded (203 dates, 10,700 characters over a month old). ask_pack.window_key_dates retires them by rule (first passed, newest three, every upcoming; settled items first and newest). 31,894 to 30,928 tokens, MAX_TOKENS untouched. The inline ask payload (187,958 of 190,000 bytes) grows with item count the same way and is the owner's two-hop or page-weight decision"
+      "what": "measured first: No.117's nine frames in one call peak at 1.62 GB tree PSS and do not grow, so the OOM did not reproduce. render.py now recycles its browser every 3 slides and under 1.5 GB MemAvailable, retries a slide once after a browser or renderer death (crash_retry, qa WARN), and records mem per slide; the parent code exited 1 or crashed outright on both kill reconstructions"
     },
     {
-      "theme": "caption_check report clobbered by a stdout redirect, queue repeat 1 (No.108, No.109)",
+      "theme": "dedupe window 30 days against topics.json's 90-day rule (No.95 missed No.64 at 34 days, No.117 missed No.77 at 44)",
       "runs": 2,
       "frames": 0,
       "action": "fixed",
-      "what": "report written to a .tmp and os.replace()d; reconstruction failed before and parses after"
+      "what": "dedupe_check prints days 31 to 120 in their own section, exits 1 on a LIKELY DUPLICATE inside 90 days, the scout brief carries the earlier tier compactly (20.8 to 35.8 KB), routine Phase 4 says so; the 30-day window and thresholds unchanged"
     },
     {
-      "theme": "akhaul sky texture at a quarter of the frame, this run's incident (No.112 slide 09, two critic rounds)",
-      "runs": 1,
-      "frames": 1,
-      "action": "fixed",
-      "what": "sky canvas at drawing-buffer size; probe line peak 124 to 255; run slides re-render within 3 levels, qa unchanged"
-    },
-    {
-      "theme": "round cap stated twice and disagreeing, queue (No.110)",
+      "theme": "cron_health stale shallow.lock after a fetch timeout (No.117, this run's incident)",
       "runs": 1,
       "frames": 0,
       "action": "fixed",
-      "what": "Phase 8 says the pixel, flow and craft rounds share the five-round cap ship_gate counts"
+      "what": "600 s fetch bound, process-group SIGTERM then SIGKILL, and the failed attempt's own lock cleared before a retry only when no git runs here"
     },
     {
-      "theme": "Artwork craft and genuine detail, trend_check weakest 5 of 7 runs (mean 7.21); scorer themes dead region 3 runs and texture artifact 3 runs; flow critic causes b, c, d on 1 run each (2026-11-05)",
-      "runs": 5,
+      "theme": "flow critic cause d, texture artifact or reserve edge, 3 of 5 runs, 6 frames; the GPU ground-edge and fog-seam share (No.116 08 at ship, No.98 06, No.108 01/09)",
+      "runs": 3,
+      "frames": 6,
+      "action": "fixed",
+      "what": "AKT.audit reports ground_edge and fog_seam before the critics, qa WARNs with the remedy; 7/7 reconstructions, read-only (pixel-identical). The other d frames (brushed-aluminium banding, bead specks, a hachure ghost read as fur) are bespoke 2D drawing with no shared helper"
+    },
+    {
+      "theme": "flow critic causes b (largest object least modelled) 3 of 5 runs, 5 frames, and c (dead lower third) 3 of 5 runs, 5 frames; trend_check Artwork craft weakest 6 of 7 (mean 7.07, STALE)",
+      "runs": 3,
+      "frames": 10,
+      "action": "deferred",
+      "what": "read every named frame: b is a flat UI board drawn three times (No.115), a low-poly car and a toy housing (No.114), a smeared boulder (No.116), all hand-built objects with no shared helper at fault; c's lower thirds are each deck's own composition, and qa.frame_balance already measures the dead lower zone. No machine root cause this week beyond the ground-edge audit"
+    },
+    {
+      "theme": "trend_check Variety vs ledger STALE (weakest 1 of 7, mean 7.43; queue 2026-11-13 atmosphere reuse)",
+      "runs": 1,
       "frames": 0,
       "action": "deferred",
-      "what": "no shared machine cause this week: the named frames are seven different bespoke worlds (plow berm, flame relief, sliver tier, aurora hem, petal raymarch, cord SDF), and qa.frame_balance already measures the dead lower zone. The one helper defect found (akhaul's sky) is fixed above"
+      "what": "one run; the artwork ledger's hard rule (atmosphere differs from the last 3) held for No.114, so the proposed 14-day check would TIGHTEN the divergence rule, which is a creative-policy call; kept in the queue"
     },
     {
-      "theme": "recurring QA warns: contact shadow 3 runs, axis census 3 runs, tiny-text 2 runs",
+      "theme": "recurring QA warns: contact shadow 3 runs, art touching glyphs 2, outside safe zone 2, busy art under text 2",
       "runs": 3,
       "frames": 0,
       "action": "deferred",
-      "what": "read in the week's machine_qa.json: contact warns are 'reads, barely' dL 4.8 to 6.3 under the 8.0 comfort band and tiny-text is No.108's 18 to 22 px furniture; authoring calls the gates already surface, not a machine defect"
+      "what": "the contact warns are the same 'reads, barely' band as last week (No.115's scorer read dL 4.7 to 7.0 against the 8.0 comfort band); authoring calls the gates already surface"
     },
     {
-      "theme": "Insight density and factual weight, trend_check STALE (last worked 60 runs ago)",
+      "theme": "Codex did not auto-trigger on maintenance PR #502",
       "runs": 1,
       "frames": 0,
       "action": "deferred",
-      "what": "weakest on 1 of 7 runs, mean 7.79, above the art's 7.21; not a recurring theme this week, so artwork kept the slots"
+      "what": "an external bot's trigger; CLAUDE.md already gives the remedy (post @codex review). Nothing in this repo to change"
     },
     {
-      "theme": "rubric weights sum to 1.10 (queue 2026-10-11 repeat 3, duplicate filed 2026-11-10)",
+      "theme": "rubric weights sum to 1.10 (queue 2026-10-11, repeat 4)",
       "runs": 4,
       "frames": 0,
       "action": "escalated",
-      "what": "the weights are the ship bar and the owner's to move; the duplicate is marked escalated"
+      "what": "unchanged: the weights are the ship bar and the owner's to move"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."
