@@ -60,7 +60,7 @@ on:
 
 jobs:
   checks:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # pinned: a floating runner moved to ubuntu26.04, which pinned Playwright refuses (2026-11-17)
     steps:
       - uses: actions/checkout@v4
 
