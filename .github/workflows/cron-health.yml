@@ -14,6 +14,8 @@ on:
       - ".github/workflows/power-utility.yml"
       - ".github/workflows/docket-watch.yml"
       - ".github/workflows/cron-health.yml"
+      - ".github/workflows/*.yml"
+      - "tests/workflow_runners.py"
   push:
     branches: [main]
     paths:
@@ -28,6 +30,8 @@ on:
       - ".github/workflows/power-utility.yml"
       - ".github/workflows/docket-watch.yml"
       - ".github/workflows/cron-health.yml"
+      - ".github/workflows/*.yml"
+      - "tests/workflow_runners.py"
   workflow_dispatch:
 
 permissions:
@@ -42,6 +46,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install --quiet PyYAML
+      - name: A job that installs a browser runs on a pinned runner image
+        run: |
+          python3 tests/workflow_runners.py --self-test
+          python3 tests/workflow_runners.py
       - name: Missed jobs, failed steps and incomplete evidence stay red
         run: python3 tests/cron_health.py
       - name: A rejected refit still refreshes weather-dependent backtests

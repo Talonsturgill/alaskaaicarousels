@@ -67,7 +67,7 @@ jobs:
   # working on a mouse and dead under a finger, and no Python check could ever
   # have seen that.
   touch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # pinned: Playwright 1.49.1 refuses ubuntu26.04 (news.yml failed 2026-11-17)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
