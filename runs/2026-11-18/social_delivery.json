@@ -1,0 +1,146 @@
+{
+ "edition_id": "2026-11-18",
+ "checked_utc": "2026-11-19T08:12Z",
+ "destinations": {
+  "instagram/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "91138620607d482e8d716c89cd04d167",
+   "post_id": "18120265621807445",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "0e88659ef5064f328a46f6e6798b35a8",
+   "post_id": "17868842145675942",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "0cd752aff66148a696f9c62dc2fc5fc6",
+   "post_id": "4459707044342441",
+   "url": null
+  },
+  "facebook/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "cad5be4744db491f8518cbcf595a450c",
+   "post_id": "2003130316607965_1163789026614894",
+   "url": "https://www.facebook.com/2003130316607965_1163789026614894"
+  },
+  "tiktok/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "ec3da368882f423586dfed5893661d19",
+   "post_id": "7709791580248460558",
+   "url": "https://www.tiktok.com/@alaskaai_/video/7709791580248460558"
+  },
+  "instagram/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "09836345eb7440dd937c3f7c33d96570",
+   "post_id": "18105271724040064",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "a2a053ef283f4c9ab48209b0a11f5958",
+   "post_id": "1881157023018929",
+   "url": null
+  },
+  "facebook/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "c20e5327ef6f4cafa932c903ffb18210",
+   "post_id": "3395460007291912",
+   "url": null
+  },
+  "facebook/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "a23b7af4c9c54e5cab95b21610c7e9a8",
+   "post_id": "1649606246636580",
+   "url": null
+  },
+  "instagram/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "4ff3bbfd82fc498685e943a74559725f",
+   "post_id": "18140036620642775",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "ba348fd209c6408ea9a63a36e0532eba",
+   "post_id": "1835197171153984",
+   "url": null
+  },
+  "facebook/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "1e8ef2bb167645a0a557b3d0258d0631",
+   "post_id": "1836513421020304",
+   "url": null
+  },
+  "instagram/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "b7081c35fd7d4bb198195870e119ee8f",
+   "post_id": "18112272226933403",
+   "url": "https://www.instagram.com/p/Df6njIKDD6g/"
+  },
+  "instagram/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "0fdbe94465734df8a85d27adfa8b155b",
+   "post_id": "18190755319420935",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "8e14c81464d141b2b5aee50496211658",
+   "post_id": "18189312103819858",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "linkedin/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "96322f5286694a24ac3500f441658328",
+   "post_id": "urn:li:ugcPost:7529093120349806592",
+   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7529093120349806592/"
+  },
+  "facebook/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "942479e117f048f095d9d69b76e60348",
+   "post_id": "1667486874778315",
+   "url": null
+  },
+  "facebook/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "fd9a3d03ba314578a617c2c2658dbacf",
+   "post_id": "1167608232376591",
+   "url": null
+  },
+  "facebook/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "dbf7e7450a154fb5a395e3fa001d7ac4",
+   "post_id": "1888126762620916",
+   "url": null
+  },
+  "instagram/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "b4c33da533294ca3a0722138baf791ee",
+   "post_id": "18084826427349316",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "efea4854213e4b2ab55262d0d25f4985",
+   "post_id": "18206922376382167",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "d6d17555f4fa417d9ec477c3eec35247",
+   "post_id": "18115575416151325",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  }
+ },
+ "linkedin_first_comment": {
+  "state": "PUBLISHED",
+  "comment_urn": "urn:li:comment:(urn:li:ugcPost:7529093120349806592,7529093209420070912)",
+  "author": "urn:li:organization:117084989",
+  "text_matches_manifest": true
+ },
+ "youtube": "NOT_APPLICABLE (no image carousel format)",
+ "gmail_draft": "BLOCKED (credentials): the Gmail connector returned 'needs you to sign in again' on two create_draft attempts after a reconnect; payload kept at runs/2026-11-18/gmail_payload.json"
+}
