@@ -1031,6 +1031,55 @@ def verify(decl, claims, fails, warns):
                          "the number is being attached to what the claim actually "
                          "counts." % (where, noun, cid))
 
+    elif kind == "clock_duration":
+        # {"from": {"claim", "time": "11:54 a.m.", "utc_offset": -9},
+        #  "to":   {"claim", "time": "8:15 p.m.",  "utc_offset": -5}, "n": 261}
+        # Same calendar day. Each printed clock time has to appear in its own
+        # claim, so an endpoint can't be invented; minutes are computed in UTC
+        # so a time-zone conversion is part of the arithmetic, not a guess.
+        n = decl.get("n")
+        mins = []
+        for label in ("from", "to"):
+            ep = decl.get(label)
+            if not isinstance(ep, dict):
+                fails.append("%s: '%s' is missing or malformed" % (where, label)); return
+            cid = str(ep.get("claim", "")).strip()
+            if cid not in claims:
+                fails.append("%s: %s.claim %r is not in claims.json" % (where, label, cid)); return
+            m = re.match(r"(?i)^\s*(\d{1,2}):(\d{2})\s*([ap])\.?m\.?\s*$", str(ep.get("time", "")))
+            if not m:
+                fails.append("%s: %s.time %r is not a clock time like '11:54 a.m.'" % (where, label, ep.get("time"))); return
+            hh, mm, ap = int(m.group(1)) % 12, int(m.group(2)), m.group(3).lower()
+            spell = "%d:%02d" % (int(m.group(1)), mm)
+            if spell not in str(claims[cid].get("claim", "")) + " " + str(claims[cid].get("verbatim", "")) + " " + str(claims[cid].get("value", "")):
+                fails.append("%s: %s.time %s does not appear in claim %s. An endpoint has to come from its claim." % (where, label, spell, cid)); return
+            try:
+                off = float(ep.get("utc_offset"))
+            except (TypeError, ValueError):
+                fails.append("%s: %s.utc_offset is required (hours, e.g. -9 for AKST)" % (where, label)); return
+            mins.append((hh + (12 if ap == "p" else 0)) * 60 + mm - off * 60)
+        got = mins[1] - mins[0]
+        if n is None or int(n) != got:
+            fails.append("%s: prints %s minutes but the two clock times re-derive to %s minutes" % (where, n, got))
+
+    elif kind == "sum":
+        # {"members": ["C16", "C17"], "n": 827}: the first number in each
+        # member claim's `value` must add up to the printed number.
+        n = decl.get("n")
+        total = 0
+        for cid in decl.get("members", []):
+            cid = str(cid).strip()
+            if cid not in claims:
+                fails.append("%s: member %r is not in claims.json" % (where, cid)); return
+            mm = re.search(r"\d[\d,]*(?:\.\d+)?", str(claims[cid].get("value", "")))
+            if not mm:
+                fails.append("%s: member %s carries no number in its value" % (where, cid)); return
+            total += float(mm.group(0).replace(",", ""))
+        if len(decl.get("members", [])) < 2:
+            fails.append("%s: a sum needs at least two members" % where)
+        elif n is None or float(n) != total:
+            fails.append("%s: prints %s but the members sum to %s" % (where, n, total))
+
     elif kind == "subset":
         verify_subset(decl, claims, fails, warns, where, text)
 
@@ -1043,7 +1092,7 @@ def verify(decl, claims, fails, warns):
 
     else:
         fails.append("%s: unknown kind %r "
-                     "(count|duration|span|ratio|subset|from_claim|design)"
+                     "(count|duration|span|ratio|subset|from_claim|design|clock_duration|sum)"
                      % (where, kind))
 
 
@@ -1077,6 +1126,13 @@ def covers(decl, hit):
     # Subset obligations are strictly stronger than ratio's, so this is a
     # tightening in the only direction it travels.
     if decl.get("kind") == "subset" and hit["kind"] == "ratio":
+        return True
+    # A CLOCK DURATION OR A SUM answers for a count or duration detection
+    # (2026-11-18, No.118). "261 minutes" between two clock times and "827
+    # flights" as 670 plus 157 are both detected as counts, and a count's
+    # members rule can't express either. Both kinds re-derive the number, so
+    # this never lets a number through unchecked.
+    if decl.get("kind") in ("clock_duration", "sum") and hit["kind"] in ("count", "duration"):
         return True
     return decl.get("kind") == hit["kind"]
 
