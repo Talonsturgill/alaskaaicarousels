@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-18/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 11503122,
+  "pdf_mb": 11.5,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-18/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-18/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "261 Minutes When No Flight Left Alaska",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "97c3a7740f32db8bdef5e862f1f86d6bbd0ded22efbd6c95ec6a4fdb45f4945e",
+        "bytes": 6934483
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "eadd52483dd6f87fa4554bf3bb0a086a291a45ff8e0ddb52d6ba1b15441a6427",
+        "bytes": 7060251
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "78d5c73c314b7eef0308d3af7b212b6e8ecd5a4177809b92564e242a8d88bdf2",
+        "bytes": 6962666
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "00f7804cae2bef4ad223c310c269619856b04f0983b9ebd4fca6a5e4ed8635a9",
+        "bytes": 6539685
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "291b00e66740fed803b6e3796f70a84a9fa8efe2c5ca2d721303fa5b3d6f3278",
+        "bytes": 6467903
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "048c321d12c0e9f52128f0af6c564359707b6776ad5d666061c42d9fe52442f2",
+        "bytes": 6922564
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "759ae113889543e7017e201e70429659695b00b70f4dd8f9fa336c31aecea4e3",
+        "bytes": 6934926
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "d2059b81b33af4aab068eac97e99d5345c5ff09bcea14138fa3188171580405f",
+        "bytes": 7014252
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "6a72a5938330322f6690954a5ac27ea58008fedea03e9f31c03ff8cbb8392d50",
+        "bytes": 6933739
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "98347d7cc2cd1fe2e8a52dec416d1154e8c8bf18cbc64b82769abe9abb47146c",
+        "bytes": 11372
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "1972dcc6941227ae5a0962d5bff30a1921a276c224e90ae0cf49ffeb4c3044aa",
+        "bytes": 9381
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "fa9a1c846b9d0b719f9ddd03456ce4a1c75f67bb2dc27fb1eecc3e84a24c7623",
+        "bytes": 8822
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "03c9d9f9e6fa149aabc25abcf11ada3ce3b29893fdc088eaed268a2d62af9757",
+        "bytes": 11696
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "4c7306a99c15f7bdec858559bb5844e0ed87d5fce4d1eaa9a25ecbf514705389",
+        "bytes": 7873
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c2d379cb1413fdace7cd141d0eb676fca6192b115dee4fb6c9e8931176d54acf",
+        "bytes": 10269
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1294587a6188bcea7d8d4d645695637c3ab03440634cd409494ac1216572d0dc",
+        "bytes": 8008
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "23dc25b84e5b27097fababe4e9c2c6b448303314a960f54eab7e6bcc98e1d5ae",
+        "bytes": 8614
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a6f5729531571e23a98c64b33229bdb2e9f75996f6918a1bf91eaa81f58ae8f9",
+        "bytes": 8280
+      }
+    ]
+  }
+}

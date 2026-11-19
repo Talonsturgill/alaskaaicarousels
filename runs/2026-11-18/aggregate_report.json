@@ -1,0 +1,218 @@
+{
+  "run_dir": "out/2026-11-18",
+  "render_report": "out/2026-11-18/render/render_report.json",
+  "aggregates_file": "out/2026-11-18/aggregates.json",
+  "detected": 16,
+  "declared": 18,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "261 minutes",
+      "at": 4,
+      "text": "For 261 minutes, no flight left Alaska.",
+      "n": 261,
+      "subject": "minutes"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "827 flights",
+      "at": 18,
+      "text": "By mid-afternoon, 827 flights had turned back or diverted.",
+      "n": 827,
+      "subject": "flights"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "670 flights",
+      "at": 15,
+      "text": "Cirium counted 670 flights sent back to where they took off and 157 redirected to another airport, nationwide. Reportedly only the second all-flight grounding since 9/11.",
+      "n": 670,
+      "subject": "flights"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "Three days",
+      "at": 0,
+      "text": "Three days earlier, the FAA's AI went national.",
+      "n": 3,
+      "unit": "days"
+    },
+    {
+      "slide": 4,
+      "kind": "subset",
+      "fragment": "all 22",
+      "at": 157,
+      "text": "SMART, an AI traffic advisor built by Air Space Intelligence, launched around Washington on September 21st. On November 10th it went live in the airspace of all 22 air route traffic control centers. House Democrats had asked GAO for an audit on October 13th.",
+      "n": 22,
+      "of": 22
+    },
+    {
+      "slide": 4,
+      "kind": "subset",
+      "fragment": "ALL 22",
+      "at": 14,
+      "text": "NOVEMBER 10TH ALL 22 CENTERS",
+      "n": 22,
+      "of": 22
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "ONE DAY",
+      "at": 11,
+      "text": "ONE HOLE = ONE DAY",
+      "n": 1,
+      "unit": "day"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "10 MINUTES",
+      "at": 0,
+      "text": "10 MINUTES, AVERAGE SAVED PER REROUTED FLIGHT, PER THE FAA 180 FLIGHTS REROUTED SO FAR",
+      "n": 10,
+      "subject": "minutes"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "180 FLIGHTS",
+      "at": 59,
+      "text": "10 MINUTES, AVERAGE SAVED PER REROUTED FLIGHT, PER THE FAA 180 FLIGHTS REROUTED SO FAR",
+      "n": 180,
+      "subject": "flights"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "10 MINUTES",
+      "at": 0,
+      "text": "10 MINUTES",
+      "n": 10,
+      "subject": "minutes"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "261 MINUTES",
+      "at": 0,
+      "text": "261 MINUTES, THE NOVEMBER 13TH STOP",
+      "n": 261,
+      "subject": "minutes"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "261 MINUTES",
+      "at": 0,
+      "text": "261 MINUTES",
+      "n": 261,
+      "subject": "minutes"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "TWO SEPARATE EVENTS",
+      "at": 0,
+      "text": "TWO SEPARATE EVENTS. OFFICIALS SAW NO INDICATION OF A LINK.",
+      "n": 2,
+      "subject": "separate events"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2,427,971 square miles",
+      "at": 0,
+      "text": "2,427,971 square miles of airspace.",
+      "n": 2427971,
+      "subject": "square miles"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Six foreign neighbor centers",
+      "at": 90,
+      "text": "The FAA's most northern and western en route center. Its own automation, ATOP and MEARTS. Six foreign neighbor centers, in Japan, Russia and Canada.",
+      "n": 6,
+      "subject": "foreign neighbor centers"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "10,000 SQUARE MILES",
+      "at": 11,
+      "text": "ONE HOLE = 10,000 SQUARE MILES",
+      "n": 10000,
+      "subject": "square miles"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "ONE HOLE = ONE DAY",
+      "note": "the deck's printed legend: one punched calendar cell stands for one day, a property of the artwork"
+    },
+    {
+      "slide": 6,
+      "text": "TWO SEPARATE EVENTS. OFFICIALS SAW NO INDICATION OF A LINK.",
+      "note": "not a count of claims: the guard names the two events the strips compare, the reroute savings (C08) and the November 13th stop (C13, C20), which officials say are unlinked (C12, C22)"
+    },
+    {
+      "slide": 8,
+      "text": "ONE HOLE = 10,000 SQUARE MILES",
+      "note": "the printed legend: 243 holes at 10,000 square miles each, 165, 55 and 23 rounded from C30, C32 and C31; a property of the artwork"
+    },
+    {
+      "slide": 1,
+      "text": "ONE HOLE = ONE MINUTE",
+      "note": "the printed legend: one punched hole is one minute of the stop, a property of the artwork"
+    },
+    {
+      "slide": 2,
+      "text": "ONE HOLE = ONE MINUTE",
+      "note": "the printed legend: one punched hole is one minute of the stop, a property of the artwork"
+    },
+    {
+      "slide": 3,
+      "text": "ONE HOLE = ONE FLIGHT",
+      "note": "the printed legend: one punch is one flight in Cirium's count, a property of the artwork"
+    },
+    {
+      "slide": 1,
+      "text": "NOVEMBER 13TH, 11:54 A.M. TO 4:15 P.M. ALASKA TIME",
+      "note": "time-zone conversion of C20's 8:15 p.m. ET to Alaska time (UTC-5 to UTC-9), re-derived in the clock_duration entries"
+    }
+  ],
+  "subsets": [
+    {
+      "slide": 4,
+      "fragment": "all 22",
+      "member": "C02",
+      "predicate": null,
+      "terms": null,
+      "selected": null,
+      "remainder": null
+    },
+    {
+      "slide": 4,
+      "fragment": "ALL 22",
+      "member": "C02",
+      "predicate": null,
+      "terms": null,
+      "selected": null,
+      "remainder": null
+    }
+  ],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S1 'ONE HOLE = ONE MINUTE' [design]",
+    "STALE declaration, no rendered string matches it: S2 'ONE HOLE = ONE MINUTE' [design]",
+    "STALE declaration, no rendered string matches it: S3 'ONE HOLE = ONE FLIGHT' [design]",
+    "STALE declaration, no rendered string matches it: S1 'NOVEMBER 13TH, 11:54 A.M. TO 4:15 P.M. ALASKA TIME' [design]"
+  ],
+  "verdict": "PASS"
+}

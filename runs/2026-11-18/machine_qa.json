@@ -1,0 +1,180 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the steel foot rail of the plate on the lit desk': shadow L* 2.4 vs ground L* 25.1, dL 22.7 at 432w"
+      ],
+      "leaders": [
+        "leader 'the 11:54 bore, the first punched minute' lands 0.0px from its target",
+        "leader 'the 11:54 bore, the first punched minute' meets its label 0.0px away",
+        "leader 'the 11:54 bore, the first punched minute' is drawn 79 px at 77 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'For 261 minutes,no flightleft Alaska.' fits 3/3 lines at 142px"
+      ],
+      "asserts": [
+        "'261 punched minutes, 11:54 to 4:14 inclusive' holds: 261 vs 261 marks, counted over 261 declared marks (within 0)",
+        "'261 punched minutes, 11:54 to 4:14 inclusive': 131 mark centres probed at r=13px, sampled every 2 marks, cohort median 82.5 dE, all present (weakest 49.8 dE)"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the 11:54 bore, the deck's focal minute': canvas 80.1 dE, page 80.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the 11:54 bore, in focus' lands 0.0px from its target",
+        "leader 'the 11:54 bore, in focus' meets its label 6.0px away",
+        "leader 'the 11:54 bore, in focus' is drawn 253 px at 55 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'At 11:54 a.m.,the FAA stoppeddepartures nati' fits 3/3 lines at 91.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the punched flight strip sheet on the desk': shadow L* 6.6 vs ground L* 21.1, dL 14.5 at 432w"
+      ],
+      "fits": [
+        "hl 'By mid-afternoon, 827 flights had turned bac' fits 2/2 lines at 81px"
+      ],
+      "asserts": [
+        "'670 flights sent back, one clean punch each' holds: 670 vs 670 marks, counted over 670 declared marks (within 0)",
+        "'670 flights sent back, one clean punch each': 224 mark centres probed at r=13px, sampled every 3 marks, cohort median 75.9 dE, all present (weakest 68.4 dE)",
+        "'157 flights redirected, one shoved slug each' holds: 157 vs 157 marks, counted over 157 declared marks (within 0)",
+        "'157 flights redirected, one shoved slug each': 157 mark centres probed at r=9px, cohort median 70.4 dE, all present (weakest 64.3 dE)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the terraced calendar stack on the desk': shadow L* 8.1 vs ground L* 16.1, dL 8.0 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "leader reaches across the frame: the leader for 'NOVEMBER 13TH punched day cell' is drawn 445 design px long (from (319.5,1111) to (763,1141) at 4 degrees), past the 360 px comfort band and a third of the frame width. Check at 432 px that it still reads as a pointer and not as a drawn feature; if the label can move closer to its subject, move it"
+      ],
+      "leaders": [
+        "leader 'SEPTEMBER 21ST punched day cell' lands 0.0px from its target",
+        "leader 'OCTOBER 13TH punched day cell' lands 0.0px from its target",
+        "leader 'NOVEMBER 10TH punched day cell' lands 0.0px from its target",
+        "leader 'NOVEMBER 13TH punched day cell' lands 0.0px from its target",
+        "leader 'SEPTEMBER 21ST punched day cell' meets its label 11.1px away",
+        "leader 'OCTOBER 13TH punched day cell' meets its label 10.8px away",
+        "leader 'NOVEMBER 10TH punched day cell' meets its label 10.5px away",
+        "leader 'NOVEMBER 13TH punched day cell' meets its label 10.5px away",
+        "leader 'SEPTEMBER 21ST punched day cell' is drawn 98 px at 1 degrees, inside the pointer band",
+        "leader 'OCTOBER 13TH punched day cell' is drawn 207 px at 1 degrees, inside the pointer band",
+        "leader 'NOVEMBER 10TH punched day cell' is drawn 208 px at 23 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Three days earlier,the FAA's AI went nationa' fits 2/2 lines at 88.5px"
+      ],
+      "asserts": [
+        "'four punched days of 54' holds: 4 vs 4 marks, counted over 4 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the plate section standing on its desk ground': shadow L* 2.9 vs ground L* 19.7, dL 16.8 at 432w"
+      ],
+      "fits": [
+        "hl 'The FAA blamed a router.The AI's maker saw n' fits 2/2 lines at 87px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the 261 hole strip on the glossy desk': shadow L* 2.9 vs ground L* 23.4, dL 20.5 at 432w"
+      ],
+      "fits": [
+        "hl 'The new AI is countedin minutes saved.The st' fits 3/3 lines at 83.5px"
+      ],
+      "asserts": [
+        "'10 minutes saved per rerouted flight, one hole each' holds: 10 vs 10 marks, counted over 10 declared marks (within 0)",
+        "'10 minutes saved per rerouted flight, one hole each': 10 mark centres probed at r=14px, cohort median 47.3 dE, all present (weakest 41.3 dE)",
+        "'261 minutes of the stop, one hole each' holds: 261 vs 261 marks, counted over 261 declared marks (within 0)",
+        "'261 minutes of the stop, one hole each': 131 mark centres probed at r=14px, sampled every 2 marks, cohort median 95.4 dE, all present (weakest 92.5 dE)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the in-state plate laid on the desk': shadow L* 31.4 vs ground L* 37.5, dL 6.1 at 432w -- under the 8.0 L* comfort band; it reads, barely -- and the declaration is aimed off the cast: the nearest band of dark rows over this object's own x span is y 1090-1132 (L* 8.8, dL 28.7 against the same ground) while the declaration points at y 1150-1160, which is 18 px clear of it. Move the band onto the cast, or move the cast under the object; darkening the shadow is the wrong fix here and it ends in a black bar"
+      ],
+      "fits": [
+        "hl 'Inside Alaska, the clock kept running.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the Anchorage Center plate on the desk': shadow L* 9.6 vs ground L* 17.0, dL 7.5 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "fits": [
+        "hl '2,427,971 square miles of airspace.' fits 2/2 lines at 99.5px"
+      ],
+      "asserts": [
+        "'domestic FIR at one hole per 10,000 square miles' holds: 165 vs 165 marks, counted over 165 declared marks (within 0)",
+        "'domestic FIR at one hole per 10,000 square miles': 165 mark centres probed at r=14px, cohort median 66.6 dE, all present (weakest 64.3 dE)",
+        "'arctic FIR at one hole per 10,000 square miles' holds: 55 vs 55 marks, counted over 55 declared marks (within 0)",
+        "'arctic FIR at one hole per 10,000 square miles': 55 mark centres probed at r=14px, cohort median 66.6 dE, all present (weakest 64.7 dE)",
+        "'oceanic FIR at one hole per 10,000 square miles' holds: 23 vs 23 marks, counted over 23 declared marks (within 0)",
+        "'oceanic FIR at one hole per 10,000 square miles': 23 mark centres probed at r=14px, cohort median 65.7 dE, all present (weakest 63.9 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 3 in 'The FAA counts its new AI in minutes. Should' ends 'AI' -- a two or three letter word left at the line end. It reads at 90px, so the break is the first thing a feed sees. Author the break with <br> before 'in' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "contacts": [
+        "'the plugged plate lying on the desk': shadow L* 23.1 vs ground L* 35.0, dL 12.0 at 432w"
+      ],
+      "motifs": [
+        "'the Polaris over the 4:15 position': canvas 81.7 dE, page 81.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The FAA counts its new AIin minutes. Should ' fits 3/3 lines at 90px"
+      ],
+      "asserts": [
+        "'261 steel slugs seated in the held bores' holds: 261 vs 261 marks, counted over 261 declared marks (within 0)",
+        "'261 steel slugs seated in the held bores': 131 mark centres probed at r=9px, sampled every 2 marks, cohort median 13.3 dE, all present (weakest 9.4 dE)"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          2,
+          4,
+          6,
+          7
+        ]
+      }
+    ],
+    "functions": []
+  }
+}
