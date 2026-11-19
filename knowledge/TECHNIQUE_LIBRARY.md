@@ -1222,3 +1222,7 @@ annotation is the strongest pair):
 156. **Green-Keyed SDF Composite**, added 2026-11-12 for No.113 (03). aksdf renders opaque. Render the object against a saturated green sky at 1.5x its placed size into an offscreen canvas, key alpha from green minus max(red, blue), despill every pixel, find the keyed bounding box, mirror if the composition needs the object facing the other way, then fit the box to a target rect. The same keyed layer is the silhouette for the casts, so the shadow matches the drawn object exactly.
 
 157. **Painted Magnification Under a GPU Lens**, added 2026-11-12 for No.113 (01, 09). A three.js lens with a transparent clear renders only its glass and bezel. Copy the canvas region under the lens, scale it about a chosen point (1.6 times here), clip to the inner radius and draw it before the lens layer; then paint a lit arc on the upper left (screen) and a lee arc on the lower right (multiply) over the bezel, because a front face that mirrors a dark niche renders flat grey.
+
+
+## NEW 2026-11-18 (No.118)
+- **Perforation Ledger** — a machined plate whose holes are the story's units (`assets/js/akperf.js`: `AKP.grid`, `AKP.plate` with true through-holes, blind dimples, optional seated slugs, `AKP.brushed`). Light it from BEHIND with an emissive panel for the punched set and a shadow-casting spot so the punched pattern lands on the desk as a gobo; count it with an OrthographicCamera, macro it with a perspective camera and a two-copy blur depth of field. Pass a face/side material pair and raise curve segments for close views. D3

@@ -9693,3 +9693,11 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - After a clip's ctx.restore(), set strokeStyle again: slide 04's gold thread shipped grey through two rounds because it inherited the pre-save colour.
 - A milky transparent dome over a tally counter reads as a pocket watch. A flat AKT.mat.glass pane over dark wheel edges plus a phantom-dashed explosion axis read as an exploded instrument (art 7.0 to 7.5 in the craft cycle).
 - Boxed section panels with vertical seams read as pasted insets; one continuous ground line with a gravel band riding the profile and strata hatch beneath fixed slide 09.
+
+## 2026-11-18, No.118 retro (FAA SMART and the November 13th ground stop)
+- A COUNTING FRAME CAN BE A RENDERED OBJECT. An orthographic akthree camera keeps the quantity honest, and a shadow-casting spot behind a perforated plate throws the punched set onto the desk as a true gobo; critics named it the most convincing physical cue in the deck.
+- A STEEL PLATE IN A DARK ROOM READS AS A BLACK BOX. Lighter base colour, lower metalness, a face/side material pair and a soft-light key-to-lee pass helped, but the scorer still read the plate body on 01 and 09 as a dark rectangle after the craft cycle. Next time, light the plate's face from the front as the brightest steel on the frame from the first build.
+- EXTRUDE HOLE WALLS NEED SEGMENTS IN A MACRO. At 32 curve segments the bore walls printed as horizontal bands; 72 cleared it.
+- A BREATHER WITH 720 MARKS IS NOT A BREATHER. Two full plates on 07 made the rest frame the densest in the deck; one oblique plate fixed the rhythm.
+- A HEADLINE CAN MISATTRIBUTE WITHOUT A WRONG FACT. "The FAA blamed a router, not the AI" gave the exoneration to the FAA; the no-link words were the AI maker's and an official's. The flow critic caught it; the dossier's own risk flag had named it.
+- TWO NEIGHBOURING NUMBERS INVITE A JOINED INFERENCE. "All 22 centers" on 04 and "Anchorage Air Route Traffic Control Center" on 08 would let a reader conclude SMART runs at Anchorage; a rider saying the record doesn't say so closed it.

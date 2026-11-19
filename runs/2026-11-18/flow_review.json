@@ -1,0 +1,99 @@
+{
+ "verdict": "revise",
+ "score_0_10": 7.0,
+ "round": 3,
+ "arc_assessment": "01 to 06 tell the story; the last third goes soft: 07 restates 02's split, 08 arrives with no stated link to the 261 minutes, the close asks about the hours without 08 building to it.",
+ "predicted_bail_point": {
+  "slide": 5,
+  "why": "05 answers the question on the darkest, most text-heavy frame and nothing points ahead.",
+  "fix": "a forward hook on 05"
+ },
+ "consistency_findings": [
+  {
+   "severity": "major",
+   "where": "slide 05 headline",
+   "problem": "'The FAA blamed a router, not the AI.' gives the exoneration to the FAA; the no-link statements are ASI (C22) and Mullin (C12)."
+  },
+  {
+   "severity": "polish",
+   "where": "08 into 09",
+   "problem": "Anchorage Center's own automation before 'ask about the hours' could read as cause."
+  },
+  {
+   "severity": "polish",
+   "where": "06 vs 01",
+   "problem": "06 bores read as LED domes with centre speculars."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "06-07-08",
+   "problem": "the breather does not breathe; 07 has 720 bores."
+  }
+ ],
+ "craft": {
+  "predicted_artwork_score": 6.8,
+  "masterful_depth_frame": 2,
+  "weakest_frames": [
+   {
+    "slide": 5,
+    "score": 6.0,
+    "cause": "b",
+    "problem": "full-bleed section reads as a barcode, no ends or thickness; empty band below"
+   },
+   {
+    "slide": 9,
+    "score": 6.5,
+    "cause": "d",
+    "problem": "hard dark rectangle behind the plate; flat card"
+   },
+   {
+    "slide": 7,
+    "score": 6.5,
+    "cause": "a",
+    "problem": "two face-on plates, same picture as 01 and 06; densest frame billed as breather"
+   },
+   {
+    "slide": 4,
+    "score": 7.0,
+    "cause": "b",
+    "problem": "terraced layers do not read"
+   },
+   {
+    "slide": 3,
+    "score": 7.0,
+    "cause": "d",
+    "problem": "slugs overlap into beaded rows"
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     6,
+     7,
+     9
+    ],
+    "problem": "face-on plate with a grid of lit bores on four frames"
+   },
+   {
+    "cause": "e",
+    "slides": [
+     3,
+     4
+    ],
+    "problem": "bright paper plateau, 03 within 3 L* of 04"
+   },
+   {
+    "cause": "d",
+    "slides": [
+     1,
+     9
+    ],
+    "problem": "dark box behind the GPU plate"
+   }
+  ]
+ }
+}

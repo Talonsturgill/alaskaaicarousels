@@ -1,0 +1,218 @@
+{
+ "document_title": "261 Minutes When No Flight Left Alaska",
+ "post_copy": "Flights within Alaska kept flying on November 13th while every flight leaving the state was grounded.\n\nSo said an Anchorage airport official. The FAA's nationwide stop ran 11:54 a.m. to 4:15 p.m. Alaska time.\n\nBy mid-afternoon Cirium counted 670 flights sent back and 157 redirected nationwide. Three days earlier SMART, the FAA's AI traffic advisor, went national. The FAA blamed a router overloading older equipment. SMART's maker says the stop wasn't a result of its system.\n\nThe carousel shows the stop minute by minute, the national toll, SMART's rollout, the stated cause and Anchorage Center's airspace.\n\nShould the next federal dollar go to the AI the FAA credits with 10 minutes per reroute or to the older equipment a router overloaded?\n\n#AlaskaAviation #AirTrafficControl #AviationAI",
+ "hashtags": [
+  "#AlaskaAviation",
+  "#AirTrafficControl",
+  "#AviationAI"
+ ],
+ "deck_summary_line": "The carousel shows the stop minute by minute, the national toll, SMART's rollout, the stated cause and Anchorage Center's airspace.",
+ "caption_meta": {
+  "opening_move": "THE ABSURD DETAIL",
+  "structure": "ZOOM (one runway, Anchorage, then the nation, then the state's question)",
+  "closing_move": "FORK (where the next federal dollar goes, the AI the FAA credits with 10 minutes per reroute or the older equipment a router overloaded)",
+  "deck_summary_shape": "THE CAROUSEL SHOWS X, Y AND Z",
+  "first_8_words": "Flights within Alaska kept flying on November 13th",
+  "hook_type": "absurd detail (the in-state sky stayed open while every route out closed)"
+ },
+ "first_comment": "Sources, primary first\n\nFederal Aviation Administration, Anchorage ARTCC Fact Sheet (Anchorage Center as the most northern and western en route center and one of three Oceanic centers, its three flight information regions totalling 2,427,971 square miles, the ATOP and MEARTS/FDP automation platforms, the most military airspace of any center, six international partner centers, and twenty one centers in the continental United States) (undated, fetched 2026-11-19) https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/ato/ZAN_Fact_Sheet.pdf\nAlaska Airlines Newsroom, Alaska Airlines and Airspace Intelligence announce first of its kind partnership (Alaska as the first airline worldwide to adopt Flyways, 480,000 gallons saved in the trial, 64 percent of mainline flights with a shorter option, dispatchers accepting 32 percent of recommendations) (2021-05-25) https://news.alaskaair.com/newsroom/alaska-airlines-and-airspace-intelligence-announce-first-of-its-kind-partnership-to-optimize-air-traffic-flow-with-artificial-intelligence-and-machine-learning\nThe Associated Press via Alaska's News Source, Questions swirl around FAA's new SMART AI system though officials say no link to ground stop (the November 10th nationwide expansion to all 22 centers, Air Space Intelligence as designer, 200 data streams, the October 13th GAO audit letter, and Secretary Mullin's no indication statement) (2026-11-16) https://www.alaskasnewssource.com/2026/11/16/questions-swirl-around-faas-new-smart-ai-system-though-officials-say-no-link-ground-stop/\nAlaska's News Source (KTUU), FAA issues nationwide ground stop, Anchorage airport included (the 11:54 a.m. AKST order, the airport official on outbound flights grounded and flights within Alaska not affected, Cirium's nationwide counts of 670 sent back and 157 redirected, and the reported second nationwide grounding since 9/11) (2026-11-13) https://www.alaskasnewssource.com/2026/11/13/faa-issues-nationwide-ground-stop-anchorage-airport-included/\nNBC News, FAA orders nationwide ground stop for departing flights (the 3:54 p.m. ET order, the 8:15 p.m. ET lift, the FAA's router and older equipment explanation, and Air Space Intelligence saying the stop was not a result of SMART) (2026-11-13) https://www.nbcnews.com/news/us-news/faa-orders-nationwide-ground-stop-departing-flights-reasons-safety-rcna609247\nAVweb, FAA expands AI assisted traffic management (the $875 million, 12 year Air Space Intelligence contract SMART was developed under, the September 21st launch around the Washington airports, and the FAA's 180 rerouted flights saving an average of 10 minutes and nearly 80 gallons each) (2026-11-12) https://avweb.com/aviation-news/faa-expands-ai-assisted-traffic-management/\nFLYING Magazine, FAA's SMART AI System Now Active at All 22 ARTCCs (SMART active in the airspace of all the nation's air route traffic control centers) (2026-11-10) https://www.flyingmag.com/faa-smart-ai-now-active-at-22-artccs-nationwide/\n\nWere you stuck at Anchorage that Friday, working a sector at Anchorage Center or dispatching for an Alaska carrier? Add what the coverage missed below.\nEvery Alaska AI decision on the record, each with its live deadline, is kept current at https://alaskaaihq.com/",
+ "slides": [
+  {
+   "slide": 1,
+   "headline": "For 261 minutes, no flight left Alaska.",
+   "labels": [
+    "NOVEMBER 13TH, 11:54 A.M. TO 4:15 P.M. ALASKA TIME",
+    "11 AM",
+    "12 PM",
+    "1 PM",
+    "2 PM",
+    "3 PM",
+    "4 PM",
+    "11:54",
+    "ONE HOLE = ONE MINUTE"
+   ],
+   "claim_ids": [
+    "C13",
+    "C14",
+    "C20"
+   ]
+  },
+  {
+   "slide": 2,
+   "headline": "At 11:54 a.m., the FAA stopped departures nationwide.",
+   "body": "Every flight leaving the state sat, an Anchorage airport official said. Flights inside Alaska kept flying. The FAA lifted the stop at 4:15 p.m. Alaska time, on Friday, November 13th.",
+   "labels": [
+    "11:54 A.M.",
+    "ONE HOLE = ONE MINUTE"
+   ],
+   "claim_ids": [
+    "C13",
+    "C14",
+    "C15",
+    "C20"
+   ]
+  },
+  {
+   "slide": 3,
+   "headline": "By mid-afternoon, 827 flights had turned back or diverted.",
+   "body": "Cirium counted 670 flights sent back to where they took off and 157 redirected to another airport, nationwide. Reportedly only the second all-flight grounding since 9/11.",
+   "labels": [
+    "CLEAN PUNCH = SENT BACK 670",
+    "SHOVED SLUG = REDIRECTED 157",
+    "ONE HOLE = ONE FLIGHT",
+    "NATIONWIDE, NOT ALASKA"
+   ],
+   "claim_ids": [
+    "C16",
+    "C17",
+    "C18"
+   ]
+  },
+  {
+   "slide": 4,
+   "headline": "Three days earlier, the FAA's AI went national.",
+   "body": "SMART, an AI traffic advisor built by Air Space Intelligence, launched around Washington on September 21st. On November 10th it went live in the airspace of all 22 air route traffic control centers. House Democrats had asked GAO for an audit on October 13th.",
+   "labels": [
+    "M",
+    "T",
+    "W",
+    "T",
+    "F",
+    "S",
+    "S",
+    "SEPTEMBER 21ST SMART LAUNCHES",
+    "SEPTEMBER 21ST",
+    "OCTOBER 13TH AUDIT REQUEST",
+    "OCTOBER 13TH",
+    "NOVEMBER 10TH ALL 22 CENTERS",
+    "NOVEMBER 10TH",
+    "NOVEMBER 13TH GROUND STOP",
+    "NOVEMBER 13TH",
+    "ONE HOLE = ONE DAY"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C06",
+    "C11",
+    "C13"
+   ]
+  },
+  {
+   "slide": 5,
+   "headline": "The FAA blamed a router. The AI's maker saw no link.",
+   "body": "\"A router sent too much data, overloading older air traffic control equipment.\" \"Not based on or a result of the SMART system.\" \"No indication\" of a link to the new computer system.",
+   "labels": [
+    "THE FAA, PER NBC NEWS",
+    "AIR SPACE INTELLIGENCE",
+    "HOMELAND SECURITY SECRETARY MARKWAYNE MULLIN",
+    "SO WHAT IS THE NEW AI COUNTED IN?",
+    "SECTION, NOT TO SCALE"
+   ],
+   "claim_ids": [
+    "C12",
+    "C21",
+    "C22"
+   ]
+  },
+  {
+   "slide": 6,
+   "headline": "The new AI is counted in minutes saved. The stop took hours.",
+   "labels": [
+    "10 MINUTES, AVERAGE SAVED PER REROUTED FLIGHT, PER THE FAA 180 FLIGHTS REROUTED SO FAR",
+    "10 MINUTES",
+    "261 MINUTES, THE NOVEMBER 13TH STOP",
+    "261 MINUTES",
+    "TWO SEPARATE EVENTS. OFFICIALS SAW NO INDICATION OF A LINK.",
+    "ONE HOLE = ONE MINUTE"
+   ],
+   "claim_ids": [
+    "C07",
+    "C08",
+    "C12",
+    "C13",
+    "C20"
+   ]
+  },
+  {
+   "slide": 7,
+   "headline": "Inside Alaska, the clock kept running.",
+   "labels": [
+    "WITHIN ALASKA, NOVEMBER 13TH",
+    "ONE HOLE = ONE MINUTE"
+   ],
+   "claim_ids": [
+    "C15"
+   ]
+  },
+  {
+   "slide": 8,
+   "headline": "2,427,971 square miles of airspace.",
+   "body": "The FAA's most northern and western en route center. Its own automation, ATOP and MEARTS. Six foreign neighbor centers, in Japan, Russia and Canada.",
+   "labels": [
+    "ANCHORAGE AIR ROUTE TRAFFIC CONTROL CENTER, PER THE FAA",
+    "DOMESTIC1,647,105 SQ MI",
+    "1,647,105 SQ MI",
+    "ARCTIC551,799 SQ MI",
+    "551,799 SQ MI",
+    "OCEANIC229,067 SQ MI",
+    "229,067 SQ MI",
+    "THE RECORD DOES NOT SAY WHETHER SMART RUNS HERE",
+    "ONE HOLE = 10,000 SQUARE MILES"
+   ],
+   "claim_ids": [
+    "C28",
+    "C29",
+    "C30",
+    "C31",
+    "C32",
+    "C33",
+    "C35"
+   ]
+  },
+  {
+   "slide": 9,
+   "headline": "The FAA counts its new AI in minutes. Should Alaska ask about the hours?",
+   "labels": [],
+   "claim_ids": [
+    "C07",
+    "C08"
+   ]
+  }
+ ],
+ "aftercare": [
+  "This edition goes out automatically to the bound Alaska.Ai brand accounts through Upload-Post after the merge, with the website link posted as the LinkedIn first comment, and the delivery receipt in this draft lists each platform. Check that the LinkedIn post and its link comment both went live.",
+  "Paste the sources comment as a reply under the brand's link comment within 60 seconds of the post going live.",
+  "Reply to every comment in the first 90 minutes.",
+  "After 48 hours note saves, comments and reposts for the instincts ledger.",
+  "Worth sending to Anchorage airport and Anchorage Center staff, Alaska Airlines and regional carrier dispatchers, cargo operators at ANC, and the Alaska congressional delegation's aviation staff."
+ ],
+ "editor_notes_for_email": "This edition picks up from No.36 (August 18th), which introduced SMART and Alaska Airlines' Flyways; this one covers the November 10th nationwide switch on and the November 13th ground stop. No fetched source places Anchorage Center among the 22 SMART centers, so the caption, the slides and the sources comment never say SMART runs over Alaska. The 4:15 p.m. Alaska time is the conversion of the FAA's 8:15 p.m. Eastern lift as NBC News reported it. 261 minutes (11:54 a.m. to 4:15 p.m. AKST) and 827 flights (670 plus 157) are declared aggregates of sourced figures, re-derived by aggregate_check. The 670 and the 157 are Cirium's nationwide counts at one moment in the midafternoon, not Alaska counts. Session effort read medium, although the repo settings carry high.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C06",
+  "C07",
+  "C08",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C20",
+  "C21",
+  "C22",
+  "C28",
+  "C29",
+  "C30",
+  "C31",
+  "C32",
+  "C33",
+  "C35"
+ ]
+}

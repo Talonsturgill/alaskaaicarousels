@@ -13,6 +13,62 @@
   ],
   "items": [
     {
+      "id": "https://alaskaaihq.com/archive/2026-11-18/",
+      "url": "https://alaskaaihq.com/archive/2026-11-18/",
+      "title": "261 Minutes When No Flight Left Alaska",
+      "summary": "The carousel shows the stop minute by minute, the national toll, SMART's rollout, the stated cause and Anchorage Center's airspace.",
+      "content_html": "<p><em>Flights within Alaska kept flying on November 13th while every flight leaving the state was grounded.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-11-18/og.jpg\" alt=\"261 Minutes When No Flight Left Alaska cover slide\" width=\"1080\" height=\"1350\"></p><p>For 261 minutes, no flight left Alaska.</p><p>At 11:54 a.m., the FAA stopped departures nationwide.</p><p>Every flight leaving the state sat, an Anchorage airport official said. Flights inside Alaska kept flying. The FAA lifted the stop at 4:15 p.m. Alaska time, on Friday, November 13th.</p><p>By mid-afternoon, 827 flights had turned back or diverted.</p><p>Cirium counted 670 flights sent back to where they took off and 157 redirected to another airport, nationwide. Reportedly only the second all-flight grounding since 9/11.</p><p>Three days earlier, the FAA's AI went national.</p><p>SMART, an AI traffic advisor built by Air Space Intelligence, launched around Washington on September 21st. On November 10th it went live in the airspace of all 22 air route traffic control centers. House Democrats had asked GAO for an audit on October 13th.</p><p>The FAA blamed a router. The AI's maker saw no link.</p><p>&quot;A router sent too much data, overloading older air traffic control equipment.&quot; &quot;Not based on or a result of the SMART system.&quot; &quot;No indication&quot; of a link to the new computer system.</p><p>The new AI is counted in minutes saved. The stop took hours.</p><p>Inside Alaska, the clock kept running.</p><p>2,427,971 square miles of airspace.</p><p>The FAA's most northern and western en route center. Its own automation, ATOP and MEARTS. Six foreign neighbor centers, in Japan, Russia and Canada.</p><p>The FAA counts its new AI in minutes. Should Alaska ask about the hours?</p><h3>Sources</h3><ul><li><a href=\"https://news.alaskaair.com/newsroom/alaska-airlines-and-airspace-intelligence-announce-first-of-its-kind-partnership-to-optimize-air-traffic-flow-with-artificial-intelligence-and-machine-learning\">Alaska Airlines Newsroom</a>, primary document</li><li><a href=\"https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/ato/ZAN_Fact_Sheet.pdf\">Federal Aviation Administration, Anchorage ARTCC Fact Sheet</a>, primary document</li><li><a href=\"https://www.flyingmag.com/faa-smart-ai-now-active-at-22-artccs-nationwide/\">FLYING Magazine</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/11/16/questions-swirl-around-faas-new-smart-ai-system-though-officials-say-no-link-ground-stop/\">The Associated Press via Alaska's News Source (KTUU)</a>, report</li><li><a href=\"https://avweb.com/aviation-news/faa-expands-ai-assisted-traffic-management/\">AVweb</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/11/13/faa-issues-nationwide-ground-stop-anchorage-airport-included/\">Alaska's News Source (KTUU)</a>, report</li><li><a href=\"https://www.nbcnews.com/news/us-news/faa-orders-nationwide-ground-stop-departing-flights-reasons-safety-rcna609247\">NBC News</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-11-18/\">Read the full deck with all 9 slides</a></p>",
+      "content_text": "For 261 minutes, no flight left Alaska.\n\nAt 11:54 a.m., the FAA stopped departures nationwide.\n\nEvery flight leaving the state sat, an Anchorage airport official said. Flights inside Alaska kept flying. The FAA lifted the stop at 4:15 p.m. Alaska time, on Friday, November 13th.\n\nBy mid-afternoon, 827 flights had turned back or diverted.\n\nCirium counted 670 flights sent back to where they took off and 157 redirected to another airport, nationwide. Reportedly only the second all-flight grounding since 9/11.\n\nThree days earlier, the FAA's AI went national.\n\nSMART, an AI traffic advisor built by Air Space Intelligence, launched around Washington on September 21st. On November 10th it went live in the airspace of all 22 air route traffic control centers. House Democrats had asked GAO for an audit on October 13th.\n\nThe FAA blamed a router. The AI's maker saw no link.\n\n\"A router sent too much data, overloading older air traffic control equipment.\" \"Not based on or a result of the SMART system.\" \"No indication\" of a link to the new computer system.\n\nThe new AI is counted in minutes saved. The stop took hours.\n\nInside Alaska, the clock kept running.\n\n2,427,971 square miles of airspace.\n\nThe FAA's most northern and western en route center. Its own automation, ATOP and MEARTS. Six foreign neighbor centers, in Japan, Russia and Canada.\n\nThe FAA counts its new AI in minutes. Should Alaska ask about the hours?",
+      "date_published": "2026-11-18T17:00:00Z",
+      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-11-18/og.jpg",
+      "tags": [
+        "AlaskaAviation",
+        "AirTrafficControl",
+        "AviationAI"
+      ],
+      "_alaska_ai": {
+        "slides": 9,
+        "claims_verified": 35,
+        "sources": [
+          {
+            "url": "https://news.alaskaair.com/newsroom/alaska-airlines-and-airspace-intelligence-announce-first-of-its-kind-partnership-to-optimize-air-traffic-flow-with-artificial-intelligence-and-machine-learning",
+            "outlet": "Alaska Airlines Newsroom",
+            "primary": true
+          },
+          {
+            "url": "https://www.faa.gov/sites/faa.gov/files/about/office_org/headquarters_offices/ato/ZAN_Fact_Sheet.pdf",
+            "outlet": "Federal Aviation Administration, Anchorage ARTCC Fact Sheet",
+            "primary": true
+          },
+          {
+            "url": "https://www.flyingmag.com/faa-smart-ai-now-active-at-22-artccs-nationwide/",
+            "outlet": "FLYING Magazine",
+            "primary": false
+          },
+          {
+            "url": "https://www.alaskasnewssource.com/2026/11/16/questions-swirl-around-faas-new-smart-ai-system-though-officials-say-no-link-ground-stop/",
+            "outlet": "The Associated Press via Alaska's News Source (KTUU)",
+            "primary": false
+          },
+          {
+            "url": "https://avweb.com/aviation-news/faa-expands-ai-assisted-traffic-management/",
+            "outlet": "AVweb",
+            "primary": false
+          },
+          {
+            "url": "https://www.alaskasnewssource.com/2026/11/13/faa-issues-nationwide-ground-stop-anchorage-airport-included/",
+            "outlet": "Alaska's News Source (KTUU)",
+            "primary": false
+          },
+          {
+            "url": "https://www.nbcnews.com/news/us-news/faa-orders-nationwide-ground-stop-departing-flights-reasons-safety-rcna609247",
+            "outlet": "NBC News",
+            "primary": false
+          }
+        ]
+      }
+    },
+    {
       "id": "https://alaskaaihq.com/archive/2026-11-17/",
       "url": "https://alaskaaihq.com/archive/2026-11-17/",
       "title": "UPDATE. Bristol Bay's newest salmon counter listens",
@@ -4190,103 +4246,6 @@
           {
             "url": "https://www.geekwire.com/2026/twin-tech-founders-who-left-seattle-for-alaska-bet-on-an-ai-agent-named-walter-to-cover-local-news/",
             "outlet": "GeekWire",
-            "primary": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "https://alaskaaihq.com/archive/2026-09-25/",
-      "url": "https://alaskaaihq.com/archive/2026-09-25/",
-      "title": "Six Data Center Sites. Two Answer to Juneau.",
-      "summary": "The maps ink the two state sites in gold and ring the four federal ones in dashes. All four candidates are quoted at equal size.",
-      "content_html": "<p><em>From the North Slope to Cook Inlet, six sites could host data centers, and Alaska's next governor could reach two.</em></p><p><img src=\"https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-25/og.jpg\" alt=\"Six Data Center Sites. Two Answer to Juneau. cover slide\" width=\"1080\" height=\"1350\"></p><p>A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic. The Alaska Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by Anthropic. The deck leaves that report out and quotes all four candidates at equal size, in alphabetical order, so no candidate is framed by it.</p><p>Six sites in play for data centers. Two answer to Juneau.</p><p>Two sit on state land. Four are federal calls.</p><p>The North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appointed. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.</p><p>What they say about data centers.</p><p>&quot;I'm a big believer in data centers.&quot; He said the groups he is talking to would produce their own power (Bronson, Republican, Commonwealth North forum). &quot;I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska.&quot; (Kreiss-Tomkins, Democrat, September 8th forum). &quot;I think we need to embrace it.&quot; Any data center, he said, must &quot;bring their own energy.&quot; (Taylor, Republican, September 8th forum). &quot;I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.&quot; (Wilson, Republican, by text message). Order is alphabetical by surname, not a ranking. Quotes as reported by the Alaska Beacon.</p><p>Milepost 390. State land, 50 years.</p><p>DNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.</p><p>&quot;not interconnected to the Railbelt or any other Alaska utility grid&quot;</p><p>A gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.</p><p>One state decision, three federal ones.</p><p>DNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.</p><p>Filings close the day before the vote.</p><p>DeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.</p><p>Who signs each one.</p><p>Preliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC, on a preliminary permit. Filings close November 2nd.</p><p>Save this. Check it again after November 3rd.</p><h3>Sources</h3><ul><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817\">Alaska DNR Division of Oil and Gas</a>, primary document</li><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431\">Alaska DNR Division of Mining, Land and Water</a>, primary document</li><li><a href=\"https://sam.gov/api/prod/sgs/v1/search/?index=opp&amp;q=AFCEC26R0006&amp;page=0&amp;size=25&amp;mode=search\">SAM.gov (U.S. General Services Administration)</a>, primary document</li><li><a href=\"https://ltgov.alaska.gov/information/alaskas-constitution/\">Office of the Lieutenant Governor of Alaska</a>, primary document</li><li><a href=\"https://www.elections.alaska.gov/\">Alaska Division of Elections</a>, primary document</li><li><a href=\"https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957\">Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision</a>, primary document</li><li><a href=\"https://gov.alaska.gov/john-crowther-appointed-acting-dnr-commissioner/\">Office of the Governor of Alaska</a>, primary document</li><li><a href=\"https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/\">Alaska Beacon (James Brooks), republished by KTOO</a>, report</li><li><a href=\"https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers\">Alaska Beacon (James Brooks), republished by Alaska Public Media</a>, report</li><li><a href=\"https://www.countryjournal2020.com/2026/09/data-centers-in-alaska-governor.html\">Copper River Country Journal, reprinting the Alaska Beacon</a>, report</li><li><a href=\"https://www.billtrack50.com/billdetail/1974439\">BillTrack50</a>, report</li><li><a href=\"https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors\">KUAC (Shelby Herbert), via Alaska Public Media</a>, report</li><li><a href=\"https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/\">Peninsula Clarion (Jeffrey Kennett)</a>, report</li><li><a href=\"https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/\">Anchorage Daily News (Bella Biondini)</a>, report</li><li><a href=\"https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/\">Alaska's News Source (Wil Courtney)</a>, report</li><li><a href=\"https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/\">Mat-Su Sentinel and Anchorage Press (Amy Bushatz, Nathaniel Herz)</a>, report</li></ul><p><a href=\"https://alaskaaihq.com/archive/2026-09-25/\">Read the full deck with all 9 slides</a></p>",
-      "content_text": "A disclosure. This deck was produced by an automated studio running on Claude, a model made by Anthropic. The Alaska Beacon reports that Kreiss-Tomkins' campaign has received large donations from people employed by Anthropic. The deck leaves that report out and quotes all four candidates at equal size, in alphabetical order, so no candidate is framed by it.\n\nSix sites in play for data centers. Two answer to Juneau.\n\nTwo sit on state land. Four are federal calls.\n\nThe North Slope lease and the Houston land are decided in the Department of Natural Resources, whose commissioner the governor appointed. The Air Force decides three bases. FERC decides Cook Inlet's preliminary permit.\n\nWhat they say about data centers.\n\n\"I'm a big believer in data centers.\" He said the groups he is talking to would produce their own power (Bronson, Republican, Commonwealth North forum). \"I support a moratorium on data center development in Alaska until the Legislature can pass a comprehensive regulatory framework for that development in Alaska.\" (Kreiss-Tomkins, Democrat, September 8th forum). \"I think we need to embrace it.\" Any data center, he said, must \"bring their own energy.\" (Taylor, Republican, September 8th forum). \"I will never allow Alaska to be littered with hyperscale data centers that take our resources and spoil our lands.\" (Wilson, Republican, by text message). Order is alphabetical by surname, not a ranking. Quotes as reported by the Alaska Beacon.\n\nMilepost 390. State land, 50 years.\n\nDNR proposes a 50-year lease on 715.4 acres beside the Dalton Highway, 26 miles south of Deadhorse. Its final decision would be signed by the Division of Oil and Gas, under authority delegated from the DNR commissioner. The same decision says what powers it.\n\n\"not interconnected to the Railbelt or any other Alaska utility grid\"\n\nA gas plant designed for 1 to 3 GW, all used on site. Two candidates raised the same point.\n\nOne state decision, three federal ones.\n\nDNR proposes giving AIDEA about 19,950 acres two miles north of Houston. No final decision appears on the notice. The Air Force offered to lease about 4,700 acres at JBER, Eielson and Clear, with no award yet.\n\nFilings close the day before the vote.\n\nDeepGreen proposes a 100 MW subsea data center in Cook Inlet, and FERC decides its preliminary permit. The Kenai Peninsula Borough filed to intervene. The deadline is November 2nd.\n\nWho signs each one.\n\nPreliminary decision. No final decision on the notice, for the North Slope lease (ADL 422741), which DNR signs under the commissioner's delegation. For a data center bill, the Legislature, then the governor. Senate passed it 14 to 5, per the Beacon. The House didn't. A veto takes two-thirds to override. For JBER, Eielson and Clear, the Department of the Air Force. Proposals closed June 29th. No award. For the Houston land to AIDEA, DNR. No final decision on the notice. For Cook Inlet (P-15423-000), FERC, on a preliminary permit. Filings close November 2nd.\n\nSave this. Check it again after November 3rd.",
-      "date_published": "2026-09-25T17:00:00Z",
-      "image": "https://raw.githubusercontent.com/Talonsturgill/alaskaaicarousels/main/runs/2026-09-25/og.jpg",
-      "tags": [],
-      "_alaska_ai": {
-        "slides": 9,
-        "claims_verified": 64,
-        "sources": [
-          {
-            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=223817",
-            "outlet": "Alaska DNR Division of Oil and Gas",
-            "primary": true
-          },
-          {
-            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=224431",
-            "outlet": "Alaska DNR Division of Mining, Land and Water",
-            "primary": true
-          },
-          {
-            "url": "https://sam.gov/api/prod/sgs/v1/search/?index=opp&q=AFCEC26R0006&page=0&size=25&mode=search",
-            "outlet": "SAM.gov (U.S. General Services Administration)",
-            "primary": true
-          },
-          {
-            "url": "https://ltgov.alaska.gov/information/alaskas-constitution/",
-            "outlet": "Office of the Lieutenant Governor of Alaska",
-            "primary": true
-          },
-          {
-            "url": "https://www.elections.alaska.gov/",
-            "outlet": "Alaska Division of Elections",
-            "primary": true
-          },
-          {
-            "url": "https://aws.state.ak.us/OnlinePublicNotices/Notices/Attachment.aspx?id=161957",
-            "outlet": "Alaska DNR Division of Oil and Gas, ADL 422741 Preliminary Decision",
-            "primary": true
-          },
-          {
-            "url": "https://gov.alaska.gov/john-crowther-appointed-acting-dnr-commissioner/",
-            "outlet": "Office of the Governor of Alaska",
-            "primary": true
-          },
-          {
-            "url": "https://www.ktoo.org/2026/09/22/where-do-alaskas-four-governor-candidates-stand-on-data-centers/",
-            "outlet": "Alaska Beacon (James Brooks), republished by KTOO",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/politics/elections/2026-09-21/where-do-alaskas-four-governor-candidates-stand-on-data-centers",
-            "outlet": "Alaska Beacon (James Brooks), republished by Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://www.countryjournal2020.com/2026/09/data-centers-in-alaska-governor.html",
-            "outlet": "Copper River Country Journal, reprinting the Alaska Beacon",
-            "primary": false
-          },
-          {
-            "url": "https://www.billtrack50.com/billdetail/1974439",
-            "outlet": "BillTrack50",
-            "primary": false
-          },
-          {
-            "url": "https://alaskapublic.org/news/alaska-desk/2026-09-15/forget-jets-and-helicopters-data-centers-could-be-alaska-military-towns-next-noisy-neighbors",
-            "outlet": "KUAC (Shelby Herbert), via Alaska Public Media",
-            "primary": false
-          },
-          {
-            "url": "https://www.peninsulaclarion.com/2026/09/14/federal-review-advances-for-subsea-data-center-off-nikiski/",
-            "outlet": "Peninsula Clarion (Jeffrey Kennett)",
-            "primary": false
-          },
-          {
-            "url": "https://www.adn.com/alaska-news/2026/09/24/alaska-fishing-and-wildlife-groups-raise-alarm-over-underwater-cook-inlet-data-center-proposal/",
-            "outlet": "Anchorage Daily News (Bella Biondini)",
-            "primary": false
-          },
-          {
-            "url": "https://www.alaskasnewssource.com/2026/09/17/alaska-senators-open-ai-guardrails-congress-winds-down-midterms/",
-            "outlet": "Alaska's News Source (Wil Courtney)",
-            "primary": false
-          },
-          {
-            "url": "https://www.matsusentinel.com/state-agency-plans-houston-area-industrial-park-data-centers-distribution-hub/",
-            "outlet": "Mat-Su Sentinel and Anchorage Press (Amy Bushatz, Nathaniel Herz)",
             "primary": false
           }
         ]

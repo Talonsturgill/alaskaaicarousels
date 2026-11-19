@@ -1,0 +1,19 @@
+{
+  "chars": 794,
+  "hook": "Flights within Alaska kept flying on November 13th while every flight leaving the state was grounded.",
+  "hook_len": 101,
+  "commas": 5,
+  "comma_per_100": 0.67,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaAviation",
+    "#AirTrafficControl",
+    "#AviationAI"
+  ],
+  "deck_summary": "The carousel shows the stop minute by minute, the national toll, SMART's rollout, the stated cause and Anchorage Center's airspace.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 70
+}
