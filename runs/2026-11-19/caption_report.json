@@ -1,0 +1,19 @@
+{
+  "chars": 870,
+  "hook": "Alaska's next governor asked AIDEA to wait. Its board waited. Until Tuesday.",
+  "hook_len": 76,
+  "commas": 8,
+  "comma_per_100": 0.95,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AIDEA",
+    "#AlaskaPolitics",
+    "#ANWR"
+  ],
+  "deck_summary": "The governor-elect's request verbatim, the closed-door topics, every board date to December 7th, three AIDEA deals and two readings of his numbers.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 71
+}

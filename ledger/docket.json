@@ -4968,10 +4968,15 @@
           "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13422,plainText=true)",
           "outlet": "Fairbanks North Star Borough Assembly, November 12th agenda",
           "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.fnsb.gov/Calendar.aspx",
+          "outlet": "Fairbanks North Star Borough calendar",
+          "date": "2026-11-19"
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-11-14",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-09-01",
@@ -5072,6 +5077,10 @@
         {
           "date": "2026-11-14",
           "note": "The borough's meeting calendar, read today, lists an Assembly work session with members of the Interior delegation on December 3rd. No meeting listing names Resolution 2026-25 or the moratorium. The state half still waits for the Legislature to convene on January 19th."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "The borough's public calendar through November 30th, read today, lists no Assembly meeting naming Resolution 2026-25 or the moratorium. Checked and unchanged."
         }
       ]
     },
@@ -6416,10 +6425,15 @@
           "url": "https://www.kfsk.org/2026/11/11/petersburg-assembly-weighs-proposed-moratorium-on-certain-data-center-project-permits/",
           "outlet": "KFSK",
           "date": "2026-11-11"
+        },
+        {
+          "url": "https://www.kfsk.org/2026/11/16/data-center-moratorium-snow-removal-and-hospital-grant-in-front-of-petersburg-borough-assembly-tonight/",
+          "outlet": "KFSK",
+          "date": "2026-11-16"
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-11-15",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-09-30",
@@ -6448,6 +6462,10 @@
         {
           "date": "2026-11-15",
           "note": "KFSK's local news, read today, has nothing newer than its November 11th report. The moratorium ordinance is still set for a second reading with public feedback on November 16th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "KFSK reported on November 16th that the Assembly would hold a public hearing that night on the moratorium, which passed once earlier this month and must pass two more times to take effect. It would bar permits for data center projects that use uncontained cooling, need more power than allowed, or run on generators instead of the town grid. No report of that night's outcome had been published when checked today."
         }
       ]
     },
@@ -6479,7 +6497,7 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-11-14",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-10-05",
@@ -6520,6 +6538,10 @@
         {
           "date": "2026-11-14",
           "note": "A news search today found nothing newer than The Alaska Current's October 3rd report on the borough's plant. The state's November 10th approval of the STAK lease is a separate private project tracked on its own. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "A news search today found no report on the borough's plant newer than The Alaska Current's October 3rd story. The state's STAK lease remains a separate private project tracked on its own. Checked and unchanged."
         }
       ]
     },
@@ -6681,10 +6703,25 @@
           "url": "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/110426/11.4.26%20AIDEA-Agenda%20Public%20Linked%2011042026.pdf?ver=4DJH0kwhv4ev3WcoqjNE4w%3d%3d",
           "outlet": "AIDEA, November 4th board meeting agenda",
           "date": "2026-10-30"
+        },
+        {
+          "url": "https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/111926/Updated%2011.19.26%20AIDEA-Agenda%20Public%20Linked%20Agenda%2011192026.pdf",
+          "outlet": "AIDEA, November 19th board meeting agenda",
+          "date": "2026-11-19"
+        },
+        {
+          "url": "https://www.adn.com/politics/2026/11/19/kreiss-tomkins-urges-aidea-to-pause-decisions-until-he-takes-office/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-11-19"
+        },
+        {
+          "url": "https://alaskabeacon.com/feed/",
+          "outlet": "Alaska Beacon",
+          "date": "2026-11-19"
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-18",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-10-28",
@@ -6737,6 +6774,10 @@
         {
           "date": "2026-11-18",
           "note": "AIDEA's agenda for its November 19th teleconference, read today, lists an executive session, the Section 1002 budget, Port MacKenzie and owned assets, and no fiber item. The next regular meeting is December 4th at the Alaska Housing Finance Corporation board room in Anchorage. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "AIDEA's updated agenda for the November 19th teleconference listed an executive session, the Section 1002 budget, Port MacKenzie and owned assets, and no fiber item. An hour before it began, Gov.-elect Jonathan Kreiss-Tomkins asked the board to postpone further action until his administration takes office on December 7th. The board met in closed session from 10 a.m., adjourned at 3 p.m. without taking action, and is scheduled to resume on Tuesday. Its next regular meeting is Friday, December 4th, three days before the inauguration, per the agenda and the Anchorage Daily News."
         }
       ]
     },
@@ -6836,7 +6877,7 @@
         }
       ],
       "first_seen": "2026-10-31",
-      "last_updated": "2026-11-15",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-10-31",
@@ -6849,6 +6890,10 @@
         {
           "date": "2026-11-15",
           "note": "GCI announced on November 9th that it completed its acquisition of Quintillion's parent, Q Gateway Intermediate Holdings, combining more than 1,800 miles of existing subsea and terrestrial fiber with about 1,500 miles of planned expansion. Read today in the Form 8-K exhibit filed with the SEC by GCI's parent. The thirty day reconsideration window on the FCC order runs to November 19th."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "The thirty day window for petitions for reconsideration of the FCC's October 20th order closes today, counted from the order's release. Checked and unchanged."
         }
       ]
     },
@@ -7008,7 +7053,7 @@
         }
       ],
       "first_seen": "2026-11-09",
-      "last_updated": "2026-11-13",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-11-09",
@@ -7017,6 +7062,10 @@
         {
           "date": "2026-11-13",
           "note": "Re-read the CMS Year 2 fact sheet today, dated November 9th. It says states begin more detailed quarterly reporting in November 2026 and that funds must be spent by September 30th, 2032. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "The CMS Year 2 fact sheet, re-read today, is unchanged since November 9th. States begin more detailed quarterly reporting this month. Checked and unchanged."
         }
       ]
     },
@@ -7054,11 +7103,15 @@
         }
       ],
       "first_seen": "2026-11-15",
-      "last_updated": "2026-11-15",
+      "last_updated": "2026-11-19",
       "history": [
         {
           "date": "2026-11-15",
           "note": "The NOAA resource page and draft plan still describe a preliminary budget and staff-dependent AI work. The draft says the final plan will be presented to the Council in December 2026, without naming a day. NMFS retains the final deployment decision."
+        },
+        {
+          "date": "2026-11-19",
+          "note": "The NOAA resource page, read today, still carries the November 6th draft and was last updated that day. Checked and unchanged."
         }
       ]
     }

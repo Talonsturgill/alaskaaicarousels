@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-19/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10208285,
+  "pdf_mb": 10.21,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-19/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-19/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Asked to Wait, AIDEA Met Behind Closed Doors",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "10b2e8a27f1dd4040612051ab5632ce8970c4c2faf8cab168868a3936af46f17",
+        "bytes": 5900447
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "0cf1feacf61960490524be1657d52697359cba8ea6fccf5d87d22fd8d6bdadb6",
+        "bytes": 7273457
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "5ead7b3a0213ea6a6f08f91d1acaaf4a4439f000d8f883f3cd6a28df5fd21f09",
+        "bytes": 7701202
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "2ef005326db79c9647bf0c6b9131ec396649b0a14c773ba63a75f0f6c0bc7da0",
+        "bytes": 7287397
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "fb779156a00fd3f66fa7e7e170c1d147e3bdd23a129e75a70dc7fb59d7bf6a88",
+        "bytes": 6748584
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "56ad7ef1892f959f471c22405d2b833f0e061dff58e02248dd4fc97ea67a9821",
+        "bytes": 6861107
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "924d597f7078190f8412e98f02ddd3f46ee07ef01c78eeec465976c403f750d7",
+        "bytes": 7100758
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "06cf75cf1fc10eac64e69a8e91d2a875f7862aedea1b9eb0c0c02ad19db7239d",
+        "bytes": 7135976
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "7581f3c2d2ca1b826f362a886e0ad24d512a5cc2ff09f8472ae645dc9639b521",
+        "bytes": 7404284
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "ec1b5da9961233483a972997293f29bc3db3e4a72af705fc15f1878c9c00d00b",
+        "bytes": 15099
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "423339f1a1c3eeafb4d08e536bff71c6a0e3af6a4e238d3b8c6041e51c511048",
+        "bytes": 8237
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "4ac7a49fd3afdc9bd3b7e73e187b269b3a1d9655892884cf7a442924e71209f4",
+        "bytes": 14184
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a84734405d61dd284eabce06b141f320f756e6c3e24bebfdafca9c7c2b089e6a",
+        "bytes": 9352
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "f164af40fd33602c51ac616383aaaf6ead23428142090fca04352898e86323ac",
+        "bytes": 8945
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "07f0248a0c1be1c05b439b47c42eb94b26f94e49a7d7e3ff78a2011db43b6532",
+        "bytes": 10978
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "df88a0f7fe21325e394cfb163b89f2545d7b6b825e339936c2080b7f87ef278d",
+        "bytes": 11757
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "e65425f8610f4350d24efe4a080e3c6407a4c1d99fbc5ac2f0489edd64c0b44e",
+        "bytes": 11365
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "c5ef0a8409cd451ea8e4bdd68e50194edbe3b55ece306ea6534f35081786bc7a",
+        "bytes": 11905
+      }
+    ]
+  }
+}

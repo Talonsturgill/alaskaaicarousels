@@ -2868,6 +2868,30 @@
    "evidence": "No.118: 261 minutes (11:54 a.m. AKST to 8:15 p.m. ET) and 827 flights (670 + 157) had no honest declaration kind until aggregate_check gained both; tests/aggregate_clock_sum_verify.py",
    "confidence": 0.75,
    "last_confirmed": "2026-11-18"
+  },
+  {
+   "id": "two-frames-one-staging-fail-bespoke",
+   "learned": "2026-11-19",
+   "instinct": "WHEN TWO FRAMES SHARE ONE GPU STAGING (SAME DOOR, SAME CAMERA, SAME POOL), BESPOKE READS THEM AS ONE FRAME. Give each its own object and camera before polishing either.",
+   "evidence": "No.119: slides 01 and 05 were both the akthree door and scored 99 percent identical in bespoke_check; rebuilding 05 as a wall clock dropped the max pair to 0.24",
+   "confidence": 0.7,
+   "last_confirmed": "2026-11-19"
+  },
+  {
+   "id": "uniform-hatch-reads-as-corrugation",
+   "learned": "2026-11-19",
+   "instinct": "UNIFORM PARALLEL HATCH ACROSS A LARGE FLAT FACE READS AS A RIBBED SHUTTER, NOT PAINT. Keep engraving to the mouldings and arrises and model the field with a smooth tonal ramp.",
+   "evidence": "No.119 slide 03, the hand-engraved door edge cleared its kickplate smear in the craft cycle but the scorer still read the stiles as a radiator grille (art 7.5)",
+   "confidence": 0.7,
+   "last_confirmed": "2026-11-19"
+  },
+  {
+   "id": "unverified-end-times-stay-off-slides",
+   "learned": "2026-11-19",
+   "instinct": "A MEETING'S ADJOURNMENT TIME IS NOT ITS CLOSED SESSION'S END TIME. Print only the times a source states, and let the art span what is verified.",
+   "evidence": "No.119 slide 05, a critic caught a sub that implied the executive session ran to 3 p.m.; the source states 10 a.m. start and 3 p.m. adjournment only",
+   "confidence": 0.7,
+   "last_confirmed": "2026-11-19"
   }
  ]
 }
