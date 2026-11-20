@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-19T21:42:07Z",
+  "checked_at": "2026-11-20T08:41:37Z",
   "provider": "Publisher feeds and news indexes",
-  "response_sha256": "2e5d1d7d2a8a7f64aec75ff2fb49ab873915689833e9c84fe50fa59a64e1610d",
+  "response_sha256": "ac06db206f9ad8665aa7728735b843b3faeaa7f37b8dcc749f616b730a53b5f2",
   "articles": [
     {
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -23,7 +23,7 @@
       "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
       "first_seen_at": "2026-11-17T14:00:19Z",
       "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-      "feed": "https://www.ktoo.org/feed/"
+      "feed": "https://www.ktoo.org/feed/?paged=2"
     },
     {
       "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
@@ -34,118 +34,20 @@
     }
   ],
   "selected": {
-    "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
-    "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
-    "first_seen_at": "2026-11-18T14:00:08Z",
-    "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
-    "feed": "https://www.ktoo.org/feed/",
+    "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+    "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+    "first_seen_at": "2026-11-17T00:59:47Z",
+    "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+    "feed": "https://www.ktoo.org/feed/?paged=2",
     "publisher": "KTOO",
     "coverage": 1,
-    "score": 0.400307,
-    "priority": 1
+    "score": 0.100084,
+    "priority": 4
   },
-  "expires_at": "2026-12-02T14:00:08Z",
+  "expires_at": "2026-12-01T00:59:47Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-19T19:23:00Z",
-      "selected": {
-        "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
-        "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
-        "first_seen_at": "2026-11-18T14:00:08Z",
-        "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
-        "feed": "https://www.ktoo.org/feed/",
-        "publisher": "KTOO",
-        "coverage": 1,
-        "score": 0.400307,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
-          "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
-          "first_seen_at": "2026-11-18T14:00:08Z",
-          "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.400307,
-          "priority": 1
-        },
-        {
-          "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
-          "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
-          "first_seen_at": "2026-11-17T14:00:19Z",
-          "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 2,
-          "score": 0.400342,
-          "priority": 1
-        },
-        {
-          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
-          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
-          "first_seen_at": "2026-11-17T00:59:47Z",
-          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
-          "feed": "https://www.ktoo.org/feed/?paged=2",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.137478,
-          "priority": 1
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-20T01:23:00Z",
-      "selected": {
-        "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
-        "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
-        "first_seen_at": "2026-11-17T14:00:19Z",
-        "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-        "feed": "https://www.ktoo.org/feed/",
-        "publisher": "KTOO",
-        "coverage": 2,
-        "score": 0.359961,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
-          "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
-          "first_seen_at": "2026-11-17T14:00:19Z",
-          "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 2,
-          "score": 0.359961,
-          "priority": 1
-        },
-        {
-          "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
-          "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
-          "first_seen_at": "2026-11-18T14:00:08Z",
-          "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
-          "feed": "https://www.ktoo.org/feed/",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.35993,
-          "priority": 1
-        },
-        {
-          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
-          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
-          "first_seen_at": "2026-11-17T00:59:47Z",
-          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
-          "feed": "https://www.ktoo.org/feed/?paged=2",
-          "publisher": "KTOO",
-          "coverage": 1,
-          "score": 0.123611,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-20T07:23:00Z",
       "selected": {
@@ -156,7 +58,7 @@
         "feed": "https://www.ktoo.org/feed/?paged=2",
         "publisher": "KTOO",
         "coverage": 1,
-        "score": 0.103944,
+        "score": 0.100084,
         "priority": 4
       },
       "stories": [
@@ -168,7 +70,7 @@
           "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.103944,
+          "score": 0.100084,
           "priority": 4
         },
         {
@@ -176,10 +78,10 @@
           "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
           "first_seen_at": "2026-11-17T14:00:19Z",
           "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-          "feed": "https://www.ktoo.org/feed/",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 2,
-          "score": 0.30269,
+          "score": 0.29145,
           "priority": 1
         },
         {
@@ -190,7 +92,7 @@
           "feed": "https://www.ktoo.org/feed/",
           "publisher": "KTOO",
           "coverage": 1,
-          "score": 0.302664,
+          "score": 0.291424,
           "priority": 1
         }
       ]
@@ -225,7 +127,7 @@
           "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
           "first_seen_at": "2026-11-17T14:00:19Z",
           "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
-          "feed": "https://www.ktoo.org/feed/",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
           "publisher": "KTOO",
           "coverage": 2,
           "score": 0.254531,
@@ -243,19 +145,107 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-20T19:23:00Z",
+      "selected": {
+        "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
+        "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
+        "first_seen_at": "2026-11-17T14:00:19Z",
+        "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
+        "feed": "https://www.ktoo.org/feed/?paged=2",
+        "publisher": "KTOO",
+        "coverage": 2,
+        "score": 0.214034,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
+          "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
+          "first_seen_at": "2026-11-17T14:00:19Z",
+          "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 2,
+          "score": 0.214034,
+          "priority": 4
+        },
+        {
+          "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
+          "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
+          "first_seen_at": "2026-11-18T14:00:08Z",
+          "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.214015,
+          "priority": 1
+        },
+        {
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.073499,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-21T01:23:00Z",
+      "selected": {
+        "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+        "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+        "first_seen_at": "2026-11-17T00:59:47Z",
+        "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+        "feed": "https://www.ktoo.org/feed/?paged=2",
+        "publisher": "KTOO",
+        "coverage": 1,
+        "score": 0.061805,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+          "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+          "first_seen_at": "2026-11-17T00:59:47Z",
+          "summary": "Testifiers urged support for more funding to address the state's teacher shortage, special education needs and rising costs of energy for transportation and school maintenance.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.061805,
+          "priority": 4
+        },
+        {
+          "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
+          "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
+          "first_seen_at": "2026-11-18T14:00:08Z",
+          "summary": "ProPublica reporter Heather Vogell says the surveys near Prudhoe Bay began in 2025 and resumed in 2026 with dozens of contractors on three large research vessels.",
+          "feed": "https://www.ktoo.org/feed/",
+          "publisher": "KTOO",
+          "coverage": 1,
+          "score": 0.179965,
+          "priority": 1
+        },
+        {
+          "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
+          "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
+          "first_seen_at": "2026-11-17T14:00:19Z",
+          "summary": "Teck Alaska, which operates the mine, projects Red Dog will spend $40 to $45 million just on energy this year.",
+          "feed": "https://www.ktoo.org/feed/?paged=2",
+          "publisher": "KTOO",
+          "coverage": 2,
+          "score": 0.179981,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.ktoo.org/2026/11/03/democrat-jonathan-kreiss-tomkins-leads-in-alaska-governors-race-2/",
-      "title": "Democrat Jonathan Kreiss-Tomkins leads in Alaska governor’s race",
-      "shown_at": "2026-11-12T01:23:00Z"
-    },
-    {
-      "url": "https://www.uaf.edu/news/UAF_PROSPECT_Critical_Minerals_Workforce_Prize_2026.php",
-      "title": "Federal prize seeks to strengthen Alaska's critical minerals workforce",
-      "shown_at": "2026-11-12T07:23:00Z"
-    },
     {
       "url": "https://www.akbizmag.com/industry/energy/4-9m-loan-for-red-dog-mine-solar-array/",
       "title": "$4.9M Loan for Red Dog Mine Solar Array",
@@ -405,6 +395,16 @@
       "url": "https://www.ktoo.org/2026/11/18/arctic-experts-worry-russian-backed-lng-project-a-ploy-for-intel-on-alaskas-north-slope/",
       "title": "Arctic experts worry Russian-backed LNG project a ploy for intel on Alaska’s North Slope",
       "shown_at": "2026-11-19T19:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/11/17/solar-farm-planned-for-red-dog-mine-would-be-the-largest-in-alaska/",
+      "title": "Solar farm planned for Red Dog Mine would be the largest in Alaska",
+      "shown_at": "2026-11-20T01:23:00Z"
+    },
+    {
+      "url": "https://www.ktoo.org/2026/11/16/alaska-legislative-task-force-hears-overwhelming-public-support-for-more-investment-in-schools/",
+      "title": "Alaska legislative task force hears overwhelming public support for more investment in schools",
+      "shown_at": "2026-11-20T07:23:00Z"
     }
   ],
   "feeds": [
@@ -412,19 +412,19 @@
       "url": "https://www.ktoo.org/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "c219915aaa446d83e7d5ec66c8884ff6f4eb492e5e20edb0aeb3a430baba0165"
+      "sha256": "3aeb119c89b7e825b607eed7be189ab1b665d75f7b51a02b36085ae2afca4c28"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=2",
       "status": "ok",
       "items": 20,
-      "sha256": "f773dcdda3c1b9d3efdd51bac2cab305651c52ae9842ad38d284d31b30b4efa6"
+      "sha256": "c3fcd27da03c3d3241d5eaf558c547b41047c1f2336683a946c859abc3d7371d"
     },
     {
       "url": "https://www.ktoo.org/feed/?paged=3",
       "status": "ok",
       "items": 20,
-      "sha256": "c741b687edeb418eb2814497e3fde2a36ba113b193bc677968b4f6c865d43ead"
+      "sha256": "64bffffe0db6b387bae61286950b6c21159a01fe0cd20c31629f94acfd33327d"
     },
     {
       "url": "https://www.akbizmag.com/feed/",
@@ -452,15 +452,14 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "unavailable",
-      "retry_at": "2026-11-20T21:42:05Z",
-      "reason": "feed disallowed by source robots policy"
+      "status": "backoff",
+      "retry_at": "2026-11-20T21:42:05Z"
     },
     {
       "url": "https://www.sciencedaily.com/rss/top/technology.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "8efe3ed2a9bd35f564258ae7fd2274ba2503ecc9bf7190ebf64905881b91f0f6"
+      "sha256": "d1c56eaa7b664db686d9e3c44b4c2b7f6d2b0ea4ae674b1701efaee54b15c327"
     },
     {
       "url": "https://www.uaf.edu/news/",
@@ -471,53 +470,53 @@
   ],
   "feed_state": {
     "https://www.ktoo.org/feed/": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c219915aaa446d83e7d5ec66c8884ff6f4eb492e5e20edb0aeb3a430baba0165",
-      "etag": "\"260d1dcda120285e2a6f9c7585b45df8\"",
-      "last_modified": "Thu, 19 Nov 2026 21:33:25 GMT"
+      "sha256": "3aeb119c89b7e825b607eed7be189ab1b665d75f7b51a02b36085ae2afca4c28",
+      "etag": "\"306a6c0c13285028bef1406ff23a58fc\"",
+      "last_modified": "Fri, 20 Nov 2026 02:00:59 GMT"
     },
     "https://www.ktoo.org/feed/?paged=2": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "f773dcdda3c1b9d3efdd51bac2cab305651c52ae9842ad38d284d31b30b4efa6",
-      "etag": "\"260d1dcda120285e2a6f9c7585b45df8\"",
-      "last_modified": "Thu, 19 Nov 2026 21:33:25 GMT"
+      "sha256": "c3fcd27da03c3d3241d5eaf558c547b41047c1f2336683a946c859abc3d7371d",
+      "etag": "\"306a6c0c13285028bef1406ff23a58fc\"",
+      "last_modified": "Fri, 20 Nov 2026 02:00:59 GMT"
     },
     "https://www.ktoo.org/feed/?paged=3": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c741b687edeb418eb2814497e3fde2a36ba113b193bc677968b4f6c865d43ead",
-      "etag": "\"260d1dcda120285e2a6f9c7585b45df8\"",
-      "last_modified": "Thu, 19 Nov 2026 21:33:25 GMT"
+      "sha256": "64bffffe0db6b387bae61286950b6c21159a01fe0cd20c31629f94acfd33327d",
+      "etag": "\"306a6c0c13285028bef1406ff23a58fc\"",
+      "last_modified": "Fri, 20 Nov 2026 02:00:59 GMT"
     },
     "https://www.akbizmag.com/feed/": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "beba664445a1ae42a805504544ca3520e6f43d93cf42963d2201d22a07e39669",
-      "etag": "W/\"30fc3b4710c3a7401dd84748a2a3e410\"",
-      "last_modified": "Thu, 19 Nov 2026 17:18:27 GMT"
+      "etag": "W/\"2f6d5e3655d949557e4cd9cdacabb6db\"",
+      "last_modified": "Fri, 20 Nov 2026 00:08:33 GMT"
     },
     "https://www.akbizmag.com/feed/?paged=2": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4400e7a958b1c4006cca977c9974554d0d87d220a5e94dc1f1092f62614923a6",
-      "etag": "W/\"30fc3b4710c3a7401dd84748a2a3e410\"",
-      "last_modified": "Thu, 19 Nov 2026 17:18:27 GMT"
+      "etag": "W/\"2f6d5e3655d949557e4cd9cdacabb6db\"",
+      "last_modified": "Fri, 20 Nov 2026 00:08:33 GMT"
     },
     "https://alaska-native-news.com/feed/": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "ae3cb3c8abf28a350828a3dd47af7b26152b2a61909b5d23b54c49d6b85886a1"
     },
     "https://alaska-native-news.com/category/science/feed/": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "627c9d85b30ad9f2fd4acde3f3f9943b6df7d0db0dcb4e1890d7231f81e01de8"
@@ -531,14 +530,14 @@
       "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/top/technology.xml": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8efe3ed2a9bd35f564258ae7fd2274ba2503ecc9bf7190ebf64905881b91f0f6",
-      "last_modified": "Thu, 19 Nov 2026 11:14:24 GMT"
+      "sha256": "d1c56eaa7b664db686d9e3c44b4c2b7f6d2b0ea4ae674b1701efaee54b15c327",
+      "last_modified": "Fri, 20 Nov 2026 00:21:03 GMT"
     },
     "https://www.uaf.edu/news/": {
-      "ok_at": "2026-11-19T21:42:05Z",
+      "ok_at": "2026-11-20T08:41:35Z",
       "failures": 0,
       "parser_version": 3,
       "sha256": "a50d8f62c2770756527cea4fd87b4503fb2bea81c393b28c6284d5c5d398182b"
