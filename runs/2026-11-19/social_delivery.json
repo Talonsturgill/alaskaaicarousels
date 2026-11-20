@@ -1,0 +1,146 @@
+{
+ "edition_id": "2026-11-19",
+ "checked_utc": "2026-11-20T08:31Z",
+ "destinations": {
+  "facebook/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "9160349fda984fcb822ce6ee14afa785",
+   "post_id": "2003130316607965_1164862423174221",
+   "url": "https://www.facebook.com/2003130316607965_1164862423174221"
+  },
+  "facebook/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "80d7977539fd4df2b0404afabb3d0794",
+   "post_id": "1868439374194803",
+   "url": null
+  },
+  "facebook/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "01fff2af2d1e47d6bde7a2e3748de43e",
+   "post_id": "1125296600310707",
+   "url": null
+  },
+  "facebook/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "d0e9875451e24bf89a47996c0c605d7f",
+   "post_id": "1701315765108392",
+   "url": null
+  },
+  "facebook/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "f3db69f6276f4f83b05593ee072e703d",
+   "post_id": "2402300813917498",
+   "url": null
+  },
+  "facebook/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "ac4e307602d84db286e62577a6e6edec",
+   "post_id": "2489957601766509",
+   "url": null
+  },
+  "facebook/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "721b40a8de5f4fd6891d8a66e8d8095e",
+   "post_id": "2705479579911252",
+   "url": null
+  },
+  "facebook/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "846f667d680f4e58abd18617157c4936",
+   "post_id": "1146995581079998",
+   "url": null
+  },
+  "facebook/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "75326b5029fa4445b050f2398ed233a1",
+   "post_id": "1677630520630628",
+   "url": null
+  },
+  "facebook/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "fce3be4bc536451092b2d92cfe4b9f38",
+   "post_id": "3522876244559945",
+   "url": null
+  },
+  "instagram/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "fdf9760349fb4092b8ed97136fee6389",
+   "post_id": "17941247667123934",
+   "url": "https://www.instagram.com/p/Df9OktYjAY4/"
+  },
+  "instagram/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "12adae2cb8d146ec845afa95b1d90a08",
+   "post_id": "18139141816732682",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "f41d13aff79e4b5dab0d081372269217",
+   "post_id": "17992045431087310",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "d5ec7e973fd6422d903924e46f6339ef",
+   "post_id": "17940931848128020",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "7fee38d337fa4ff08e0c94ea44b35836",
+   "post_id": "18127827340920403",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "9360cb1f0c3e49ceb48d9eb60dfd4f0d",
+   "post_id": "18139980499718760",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "656a0140713c41678de61af40cf78f6e",
+   "post_id": "18121655959996847",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "472b24d69f9a4726a1df66b9604b8bb4",
+   "post_id": "18101136380450437",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "b8ceec533e1e44ebae6fc5b5cbbbb58c",
+   "post_id": "18116787200156639",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "instagram/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "b3234bac5c9f438baaf9571972390502",
+   "post_id": "18046197809829320",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "tiktok/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "fdc19dc39ec148f48da1cfd20da894fb",
+   "post_id": "7710167384207723790",
+   "url": "https://www.tiktok.com/@alaskaai_/video/7710167384207723790"
+  },
+  "linkedin/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "10552d76fd6741fb959f4e3985dfd475",
+   "post_id": "urn:li:ugcPost:7529460361914327040",
+   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7529460361914327040/"
+  }
+ },
+ "linkedin_first_comment": {
+  "state": "PUBLISHED",
+  "comment_urn": "urn:li:comment:(urn:li:ugcPost:7529460361914327040,7529460451118661632)",
+  "author": "urn:li:organization:117084989",
+  "text_matches_manifest": true
+ },
+ "youtube": "NOT_APPLICABLE (no image carousel format)",
+ "gmail_draft": "BLOCKED (credentials): the Gmail connector returned 'needs you to sign in again' on create_draft before and after a reconnect; payload kept at runs/2026-11-19/gmail_payload.json"
+}
