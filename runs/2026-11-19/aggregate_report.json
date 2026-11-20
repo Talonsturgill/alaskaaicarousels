@@ -1,0 +1,59 @@
+{
+  "run_dir": "out/2026-11-19",
+  "render_report": "out/2026-11-19/render/render_report.json",
+  "aggregates_file": "out/2026-11-19/aggregates.json",
+  "detected": 5,
+  "declared": 6,
+  "detections": [
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Three voices",
+      "at": 0,
+      "text": "Three voices on one request.",
+      "n": 3,
+      "subject": "voices"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "FOUR MEETINGS",
+      "at": 0,
+      "text": "FOUR MEETINGS SINCE OCTOBER 21ST",
+      "n": 4,
+      "subject": "meetings"
+    },
+    {
+      "slide": 6,
+      "kind": "duration",
+      "fragment": "three days",
+      "at": 22,
+      "text": "Next regular meeting, three days before",
+      "n": 3,
+      "unit": "days"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "two numbers",
+      "at": 5,
+      "text": "Same two numbers. Opposite tenses.",
+      "n": 2,
+      "subject": "numbers"
+    },
+    {
+      "slide": 9,
+      "kind": "duration",
+      "fragment": "THREE DAYS",
+      "at": 35,
+      "text": "NEXT REGULAR MEETING DECEMBER 4TH, THREE DAYS BEFORE",
+      "n": 3,
+      "unit": "days"
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

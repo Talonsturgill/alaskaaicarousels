@@ -1,0 +1,60 @@
+{
+ "run_date": "2026-11-19",
+ "carousel_no": 119,
+ "effort": "medium",
+ "date_note": "Woke 2026-11-20 06:04Z = 2026-11-19 21:04 AKST; run_guard --run-date 2026-11-19 CLEAR.",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": "done: out/2026-11-19/plan.md, run_state.json",
+  "craft_refresh": "done: 1 search, nothing new vs CAROUSEL_CRAFT, FIELD_NOTES untouched",
+  "research": "done: out/2026-11-19/scouts/A-F.md, scout_merge.md (searches 24,24,25,21,23,18)",
+  "claims": "done: out/2026-11-19/claims.json (59, claims_check PASS, 9 primary)",
+  "docket": "done: ledger/docket.json 7 items refreshed (budget 7 incl. deferred FNSB); watch.json bills unchanged, 0 hearings, failed []; ask self-test 10,688 B headroom; browser suites mobile_docket_map + docket_ask PASS; no new item",
+  "gas_watch": "done: cron_health PASS (7 workflows); gaswatch_health FAIL (late_post) then PASS after dispatch; site_signoff PASS 184 pages; pagecheck PASS; phone/desk look OK",
+  "selection": "done: out/2026-11-19/selection.md (UPDATE of No.113)",
+  "directors_room": "done: out/2026-11-19/storyboard.md (3 treatments: editorial-essayist winner, data-journalist strip, historian guard line), selection.md; dossier_check PASS",
+  "copy": "done: out/2026-11-19/caption.txt (B + critic fix), copy.json, caption_report.json PASS with --copy",
+  "art_build": "done: out/2026-11-19/slides/, render/ (qa PASS, bespoke 0.155, aggregate PASS, copy_sync PASS, tonal PASS)",
+  "pixel_review": "done: 2 rounds (r1 scores 5.0 to 7.2, r2 6.2 to 7.3), qa PASS",
+  "flow_review": "done: flow critic 7.6 revise (out/2026-11-19/flow_review.json); round 3 fixes on 03, 05, 01, 06, 02 and 03 quote marks",
+  "assemble": "done: final/carousel.pdf vector 10.21 MB, 9 thumbs, contact sheet",
+  "scoring": "done: cycle 1 8.59 (art 7.0), craft cycle on 03, 06, 09, 08 (round 4), cycle 2 8.67 vs 7.7 (art 7.5), no hard fails",
+  "ship": "done: runs/2026-11-19 (9 webp, og.jpg, pdf shrunk 9.74 to 8.71 MB), site_build 185 pages, parsers/scanner_sync/docket_dates PASS, site_fresh OK, signoff PASS, pagecheck PASS, alerts none due, prune 0.99M, ledgers appended, 3 instincts, FIELD_NOTES",
+  "upgrade": "done: automation_retro.md, 2 queued + 1 repeat; machine_due exit 1 (weekly pass not due), no upgrades",
+  "gmail": "pending",
+  "retro": "pending"
+ },
+ "social": {
+  "preflight": "READY",
+  "users": "alaska_ai found; facebook_page_id 2003130316607965 and linkedin urn:li:organization:117084989 present",
+  "pins": {
+   "facebook": "2003130316607965 (matches)",
+   "linkedin": "urn:li:organization:117084989 (matches)"
+  },
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialize OK (readback)"
+ },
+ "social_feedback": "[] (attached repo read OK; no valid action this week)",
+ "phase_3_6": {
+  "cron_health": "CRON HEALTH: PASS, scheduled workflows checked at wake (out/2026-11-19/cron_health.json)",
+  "gaswatch_live": "GAS WATCH LIVE: PASS, checked 2026-11-20T06:15:48Z, after a FAIL at wake (late_post: CINGSA posted its 18:06 reading at 03:06Z, after the 01:19Z collection). Dispatched gaswatch.yml on main (run 44685887939, success, 8.09 Bcf, 62.2 percent), Pages run 44686193005 deployed, re-audit PASS.",
+  "site_signoff": "SITE SIGN-OFF: PASS, 184 pages, 18 checks (pre-build, docs as on main)",
+  "pagecheck": "PASS"
+ },
+ "scoring": {
+  "cycle": 2,
+  "weighted_total": 8.67,
+  "threshold": 7.7,
+  "artwork_score": 7.5,
+  "craft_cycle": {
+   "frames": [
+    3,
+    6,
+    9,
+    8
+   ],
+   "art_before": 7.0,
+   "art_after": 7.5
+  }
+ }
+}

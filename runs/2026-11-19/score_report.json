@@ -1,0 +1,175 @@
+{
+ "run_date": "2026-11-19",
+ "cycle": 2,
+ "weighted_total": 8.67,
+ "threshold": 7.7,
+ "verdict": "ship",
+ "ship": true,
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "No U+2014/U+2013 in post_copy, first_comment or 71 slide strings; caption_check PASS."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "No emoji in copy.json, caption or renders."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "Every slide carries claim_ids; 32 ids; plan_drift PASS."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass",
+   "evidence": "All nine renders transcribed against copy.json; copy_sync PASS, 71 strings."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "0 overflow warnings; 08 stamps flagged data-overlap-ok; 02 attribution wraps at its own hyphen."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point",
+   "status": "pass",
+   "evidence": "Headlines and body about 13:1; only the watermark furniture is faint."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa WARN 0 fails; pdf_mode vector 10.21 MB."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "Framed UPDATE of No.113 on a material new development (governor-elect request, closed session, no action)."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks",
+   "status": "pass",
+   "evidence": "Hero is the closed door; differs from No.115 to No.118; bespoke median 0.114."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS, word_ban PASS."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "3 hashtags; no URL in body."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No placeholders; 09 dimension lines unlabelled by design."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "9-word named tension holds at 432px; one focal door; no number and an eventless left wall."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "02 pays the hook; 05 plants forward; 10 to 3 no-action repeated on 01, 02, 05; 07 and 08 swappable."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "Up from 7.0. 03 smear gone, 06 band holds the window, 09 a complete drafted sheet; 05 and 07 strongest. 03 door face reads ribbed, 01 kickplate flat with an empty left wall, 06 top two thirds blank hatch, 08 curls read as clipped triangles."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "05 sector spans 10 to 3; 07 bars to one asserted scale with a hollow cap; 06 and the strip day-scaled."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8.5,
+   "weight": 0.12,
+   "notes": "Named actors, places and outlets throughout; art itself placeless."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "04, 06, 07, 08 dense; 05 thin breather; no-action fact repeated three times."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "Hero, palette, type pairing diverge from No.115 to No.118; lit pool staging reused; subject near No.113."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 8.5,
+   "weight": 0.07,
+   "notes": "Counters on every slide; 32px body; vector PDF with title; 06 mono dates and watermark squeak."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 7.5,
+   "weight": 0.05,
+   "notes": "76-char hook, 870 chars, Q and A, real closing question; 'Its board waited' slightly loose."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "All copy parts present; site_fresh pending rebuild at ship; Beacon citation is a feed URL."
+  }
+ ],
+ "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8x0.14)+(8.5x0.12)+(7.5x0.10)+(8x0.08)+(8.5x0.07)+(7.5x0.05)+(8x0.10) = 8.67",
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Re-surface 03's door leaf as smooth enamel (a soft lit-to-lee tonal ramp with fine engraving only on the mouldings) instead of uniform vertical hatching, and give 01's left wall one modelled event so the cover's empty half carries craft.",
+ "artwork_score": 7.5,
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "why": "Stiles and rails in dense uniform vertical hatching read as a corrugated shutter or radiator, not enamel."
+  },
+  {
+   "slide": 1,
+   "why": "Flat uniformly lit brass kickplate with a pasted reflection; eventless left wall; no lintel."
+  },
+  {
+   "slide": 6,
+   "why": "About 500 px of plain hatch in the October 21st to November 19th spans; the November 4th and 6th ticks share one label block."
+  },
+  {
+   "slide": 8,
+   "why": "Lifted corners read as cut-off triangles; stamps are flat outlines."
+  },
+  {
+   "slide": 4,
+   "why": "Lower third plain dark ground (qa top-loaded warn); flat mitred corners."
+  }
+ ],
+ "revision_rounds": 4,
+ "craft_cycle": {
+  "frames": [
+   3,
+   6,
+   9,
+   8
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5
+ },
+ "editor_notes_for_email": "Cycle 2 scores 8.67 against the round-4 threshold of 7.7, no hard fails. Art 7.5, up from 7.0 after the craft cycle, which cleared the 03 smear and completed 09; 03's door still reads ribbed rather than enamel. The Alaska Beacon citation is the feed URL because the article returned a 403. Slide 07 revisits No.113's $20 million Alaska Data Corp as context. The $200 million and $150 million are attributed readings, never summed; the $175 million is a vote the board could take."
+}

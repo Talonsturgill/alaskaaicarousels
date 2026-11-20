@@ -9701,3 +9701,11 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A BREATHER WITH 720 MARKS IS NOT A BREATHER. Two full plates on 07 made the rest frame the densest in the deck; one oblique plate fixed the rhythm.
 - A HEADLINE CAN MISATTRIBUTE WITHOUT A WRONG FACT. "The FAA blamed a router, not the AI" gave the exoneration to the FAA; the no-link words were the AI maker's and an official's. The flow critic caught it; the dossier's own risk flag had named it.
 - TWO NEIGHBOURING NUMBERS INVITE A JOINED INFERENCE. "All 22 centers" on 04 and "Anchorage Air Route Traffic Control Center" on 08 would let a reader conclude SMART runs at Anchorage; a rider saying the record doesn't say so closed it.
+
+## 2026-11-19, No.119 retro (AIDEA asked to wait, closed session)
+- TWO FRAMES ON ONE STAGING ARE ONE FRAME TO BESPOKE. Slides 01 and 05 shared the akthree door and camera and measured 99 percent identical; a wall clock with the meeting's hours as an enamel sector replaced 05 and the deck median fell to 0.11.
+- AKT.setup NEEDS supersample WHEN THE SLIDE GRADES IN 2D. Calling getContext('2d') on the target before WebGL threw "existing context of a different type"; supersample: 2 renders offscreen and copies in.
+- UNIFORM HATCH ON A FLAT FACE READS AS CORRUGATION. Slide 03's hand-engraved stiles read as a shutter after the craft cycle; engrave mouldings, ramp the field.
+- AN EMPTY HALF OF A COVER COSTS ART POINTS EVEN WHEN THE FOCAL POINT IS STRONG. The scorer named 01's eventless left wall twice.
+- A DRAFTED SHEET NEEDS ITS FURNITURE ALIGNED TO ONE MARGIN. 09's dimension chain started at 120 against a title block at 80 and a critic called it misregistered; aligning both to 80 and closing the hatch completed the sheet.
+- DOCKET SOURCES ARE DICTS. A bare URL string crashed the ask_answers self-test inside site_build; {url, outlet, date} is the only shape.

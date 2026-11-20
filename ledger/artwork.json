@@ -4371,6 +4371,47 @@
     "threshold": 7.7,
     "rounds": 4
    }
+  },
+  {
+   "run_date": "2026-11-19",
+   "carousel_no": 119,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE CLOSED DOOR, one institutional enamel door and the papers around it, front and top lit: akthree three-quarter door in a night corridor with a brass kickplate and a lit terrazzo pool (01), an embossed opening quotation mark pressed into enamel (02), the door's edge hand-engraved with lit and lee mouldings beside three voices (03), a felt letter board with the five executive session topics (04), an akthree wall clock whose enamel sector spans the meeting's 10 to 3 (05), a bone enamel calendar plate engraved with a day scale (06), three cabinet brass bars on a lit felt case, the cap a hollow frame (07), two ruled sheets with lifted corners in opposite tenses (08), the door as a drafted elevation with a hatched floor section (09)",
+   "atmosphere": "NEW: CORRIDOR TOP-LIGHT (one cool overhead key in front of the subject, nothing behind it, gloss terrazzo and lit wall pools)",
+   "depth_technique": "akthree PBR on 01 and 05, per-pixel relief on 02 and 08, cabinet oblique on 07, line engraving on 03 and 06, drafting on 09",
+   "line_voice": "drafting and burin: hairline rules, mono ticks, lit and lee moulding pairs",
+   "continuity_device": "dateline strip (day-scaled, its state changing per frame)",
+   "continuity_devices": [
+    "dateline strip, 18.72 px per day from October 21st, gold star at December 7th",
+    "TO DECEMBER 7TH header climbing wght 300 to 700",
+    "the same door drawn four ways (render, engraving, clock above it, drafting)"
+   ],
+   "hook_archetype": "NEW: THE ASK AND THE ANSWER",
+   "palette_family": "NEW: INSTITUTIONAL ENAMEL GREEN AND BRASS (corridor night #07111B, enamel #1F3B3A to #6E918A, brass #A8823F to #E2C27A, terrazzo #2A3236, bone #E4E2D6, gold #FFC72C Polaris and December 7th only)",
+   "type_pairing": "Space Grotesk 600 to 650 display + Space Grotesk 400 body + JetBrains Mono 500 caps (quote marks in JetBrains Mono)",
+   "narrative_structure": "ask and answer, voices, agenda, breather clock, keepable calendar, money, conflict, position and one ask",
+   "variance_dials": {
+    "design_variance": 3,
+    "visual_density": 2,
+    "type_temperature": 2
+   },
+   "techniques": [
+    87,
+    89,
+    39,
+    44,
+    10,
+    6,
+    64,
+    73
+   ],
+   "new_techniques_logged": [
+    "Hand burin lay that turns between stiles and panels"
+   ],
+   "scores": {
+    "weighted_total": 8.67,
+    "artwork": 7.5
+   }
   }
  ]
 }

@@ -1,0 +1,155 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "the lit ground of 'the door foot on the terrazzo' is painted, not lit: a screen radial ramp at (866, 1168), r 340x17 design px, peak alpha 0.55, rgba(120,150,152,0.55) covers the ground rect the contact dL is measured against, so that number is partly reading this ramp. Confirm the shadow would still read against the frame's own ground"
+      ],
+      "contacts": [
+        "'the door foot on the terrazzo': shadow L* 9.8 vs ground L* 46.5, dL 36.7 at 432w"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Asked to wait, AIDEA'sboard met behindclosed' fits 3/3 lines at 89px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the embossed opening quotation mark': canvas 45.3 dE, page 45.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'One hour before the meeting,the next governo' fits 3/3 lines at 67px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 2 in 'Three voices on one request.' ends 'on' -- an article, conjunction or preposition left hanging at the line end. It reads at 67.5px, so the break is the first thing a feed sees. Author the break with <br> before 'one' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'the door edge with its lit arris': canvas 32.5 dE, page 41.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Three voices onone request.' fits 2/2 lines at 67.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 28% / mid 71% / bottom 29% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "motifs": [
+        "'the felt letter board': canvas 25.2 dE, page 86.0 dE, 67% of its rect is clear of opaque DOM (div.row stands on the rest)"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'What went behind the door.' fits 1/1 lines at 71px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '10:00 a.m.to 3:00 p.m.' fits 2/2 lines at 117.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.03) beneath 'OCTOBER 21ST' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the engraved calendar scale': canvas 77.6 dE, page 78.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the calendar scale, days from October 21st' runs 0 days at 380 to 47 days at 1060; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The calendar the boardis working against.' fits 2/2 lines at 61.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the hollow 75 million cap frame': canvas 42.9 dE, page 45.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others",
+        "'the dollar rail under the bars, millions' runs 0 million dollars at 120 to 75 million dollars at 960; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Fiber, a reactor startup,a data company.' fits 2/2 lines at 67.5px"
+      ],
+      "asserts": [
+        "'the 75 million cap bar, 840 px from zero' holds: 840 vs 840 px (within 1)",
+        "'the 25 million bar, 280 px' holds: 280 vs 280 px (within 1)",
+        "'the 20 million bar, 224 px' holds: 224 vs 224 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the Must Read Alaska sheet on the enamel desk': shadow L* 16.8 vs ground L* 21.5, dL 4.7 at 432w -- under the 8.0 L* comfort band; it reads, barely",
+        "label crossed by art (10% of the ring around 'COMMITTED POSSIBLE' is ink of the glyphs' own value, spanning 64% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]",
+        "label crossed by art (18% of the ring around 'PROPOSED AUTHORIZED' is ink of the glyphs' own value, spanning 65% of the label) -- a rule, outline or edge is running through the letterforms; put the label on a knockout plate, halo it, or move the geometry [marked data-overlap-ok]"
+      ],
+      "contacts": [
+        "'the Beacon sheet on the enamel desk': shadow L* 11.8 vs ground L* 25.7, dL 13.9 at 432w"
+      ],
+      "motifs": [
+        "'the Beacon sheet with ruled lines': canvas 31.2 dE, page 53.6 dE, 63% of its rect is clear of opaque DOM (div.stamp stands on the rest)",
+        "'the Must Read Alaska sheet with ruled lines': canvas 24.4 dE, page 52.7 dE, 59% of its rect is clear of opaque DOM (div.stamp stands on the rest)"
+      ],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Same two numbers.Opposite tenses.' fits 2/2 lines at 79.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "scales": [
+        "'the dateline strip, days from October 21st' runs 0 days at 120 to 47 days at 1000; 6 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Anything that can't waituntil December 7th o' fits 3/3 lines at 65.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 7,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

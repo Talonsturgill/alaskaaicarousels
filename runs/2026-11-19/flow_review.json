@@ -1,0 +1,15 @@
+{"verdict": "revise", "score": 7.6, "round": 3,
+ "momentum": "01 to 02 strongest; 04 to 05 to 06 sagged because 05 repeated 01 and 02; 03's headline oversold the quotes.",
+ "weak_junctions": [{"between": "04-05", "fix": "05 copy plants forward"}, {"between": "05-06", "fix": "same"}, {"between": "02-03", "fix": "retitle 03"}],
+ "craft": {"score": 7.0, "weakest_frames": [
+   {"slide": 3, "cause": "d", "why": "engraved door read as nested contour loops, brass smear past the door edge", "fix": "re-engrave with crisp mouldings and a lay that turns between panels and stiles"},
+   {"slide": 5, "cause": "b", "why": "flat dial and flat hands, the dial the least modelled part", "fix": "hand thickness and shadows, dish falloff, glass highlight"},
+   {"slide": 1, "cause": "c", "why": "eventless left wall after the repoussoir cut, saturated kickplate", "fix": "corridor recession on the left, lower-chroma brass"},
+   {"slide": 6, "cause": "c", "why": "blank hatched spans", "fix": "pillow-weighted hatch and day dots"},
+   {"slide": 8, "cause": "d", "why": "curls read as clipped corners", "fix": "shade undersides, soft cast under the lift"}],
+  "cross_frame": ["no function or helper on more than three frames (census empty)", "lit pool under the object is the deck's default staging", "no frame uses real depth masterfully; 01 closest"],
+  "tonal_arc": "brightest 06, darkest 01, span about 36 L*, two spikes (06, 08) rather than a climb"},
+ "consistency_faults": ["Space Grotesk drew neutral quotes as closing marks on 02 and 03", "06 footer said four meetings while the plate showed three rows"],
+ "applied_round": 3,
+ "applied": ["03 re-engraved and retitled", "05 forward-planting sub and modelled dial", "01 skirting and second ceiling light, kickplate chroma cut", "06 row names both November dates, day dots, hatch weighting", "02 and 03 quote marks set in JetBrains Mono"],
+ "declined": ["08 curl underside shading left as built in round 2 (explicit lifted corner already drawn); strip bracket labels left typeless by design"]}
