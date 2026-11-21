@@ -1,0 +1,89 @@
+{
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 7
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "weight": 0.14,
+   "score": 7
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7.5
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "weight": 0.12,
+   "score": 8.5
+  },
+  {
+   "name": "Insight density & factual weight",
+   "weight": 0.1,
+   "score": 8
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 7.5
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "weight": 0.07,
+   "score": 6.5
+  },
+  {
+   "name": "Copy: voice & hook",
+   "weight": 0.05,
+   "score": 8
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_total": 8.075,
+ "threshold": 7.7,
+ "threshold_note": "base 8.3; 5 revision rounds puts the run on the 4+ ladder step, 7.7, ship best version and flag the shortfall",
+ "hard_fails": [],
+ "ship": true,
+ "weakest": {
+  "name": "Artwork craft & genuine detail",
+  "fix": "Rebuild the 06 near spruce as soft modelled snow-loaded masses and fill the 07 plat with continuous terrain shading with KNIK ARM on the water."
+ },
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Rebuild the 06 near spruce as soft modelled snow-loaded masses and fill the 07 plat with continuous terrain shading with KNIK ARM on the water.",
+ "craft_floor_note": "Art 6.5 under the 8.5 craft floor; the run is at the five-round cap, so the craft cycle is exempt.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "dash-built spruce, saturated footprints, flat range"
+  },
+  {
+   "slide": 7,
+   "problem": "mostly blank plat, streaky relief, KNIK ARM on land"
+  },
+  {
+   "slide": 1,
+   "problem": "brown plastic iron, no fog or focus depth"
+  },
+  {
+   "slide": 4,
+   "problem": "UI-like gate slabs, dead band"
+  },
+  {
+   "slide": 10,
+   "problem": "blank paper field, thin vector circle"
+  }
+ ],
+ "editor_notes_for_email": "Shipped at 8.08 against the 7.7 cap threshold (5 of 5 rounds); base threshold 8.3. Art 6.5. PDF over the 25 MB rubric band. 02 sheet labels low contrast on paper tooth. Round 5 changes to 06, 07, 10 were not re-seen by a critic."
+}

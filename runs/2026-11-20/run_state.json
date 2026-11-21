@@ -1,0 +1,43 @@
+{
+ "run_date": "2026-11-20",
+ "carousel_no": 120,
+ "effort": "medium",
+ "date_note": "Woke 2026-11-21 06:04Z = 2026-11-20 21:04 AKST; run_guard --run-date 2026-11-20 CLEAR.",
+ "revision_rounds": 5,
+ "phases": {
+  "wake": "done: out/2026-11-20/plan.md, run_state.json, WORKLOG.md",
+  "craft_refresh": "done: 1 search, nothing new vs CAROUSEL_CRAFT, FIELD_NOTES untouched",
+  "research": "done: out/2026-11-20/scouts/A-F.md, scout_merge.md (searches 25,25,25,25,25,22)",
+  "claims": "done: out/2026-11-20/claims.json (94: 64 fact-checker + 30 showrunner S-claims from two scanned primaries; claims_check PASS, 44 primary)",
+  "docket": "done: ledger/docket.json 1 item re-verified (anchorage-ao-2026-27, worklist then empty); watch.json bills unchanged (HB259 ENE, SB250 CRA), 1 hearing Dec 4 House ENE titled ENERGY not added (no tracked live bill; HB259 died at sine die; BASIS meeting page 403), 28 candidates triaged none added, failed []; ask self-test 10,620 B headroom; browser suites mobile_docket_map + docket_ask PASS; new item pending claims (Alaska LNG ROW); ADDED aklng-row-lease-conversion (open-for-comment, deadline Nov 25 5pm); ask self-test 7,523 B headroom after add; suites re-run PASS",
+  "gas_watch": "done: cron_health PASS (40 checks); gaswatch_health FAIL (late_post) then PASS after dispatch 44874201629 + Pages 44874445730; site_signoff PASS 185 pages 18 checks; pagecheck PASS; phone/desk look OK (home, docket, gas-watch)",
+  "selection": "done: out/2026-11-20/selection.md (UPDATE of No.111/No.112; Alaska LNG ROW conversion new)",
+  "directors_room": "done: out/2026-11-20/storyboard.md (cinematographer seal-press spine + field-documentarian stacks + cartographer true-scale Houston), dossier_check PASS 10/10",
+  "copy": "done",
+  "art_build": "done",
+  "pixel_review": "done",
+  "flow_review": "done",
+  "assemble": "done",
+  "scoring": "done (8.075 vs 7.7 at the 5-round cap; art 6.5)",
+  "ship": "done (runs/2026-11-20, site rebuilt, ledgers appended)",
+  "upgrade": "queued (weekly pass not due; 2 items)",
+  "gmail": "pending",
+  "retro": "done",
+  "social": "pending"
+ },
+ "social": {
+  "preflight": "READY",
+  "users": "alaska_ai found; facebook_page_id 2003130316607965 and linkedin urn:li:organization:117084989 present",
+  "pins": {
+   "facebook": "2003130316607965 (matches)",
+   "linkedin": "urn:li:organization:117084989 (matches)"
+  },
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialize OK (readback)"
+ },
+ "phase_3_6": {
+  "cron_health": "CRON HEALTH: PASS, 40 checks across every scheduled workflow (out/2026-11-20/cron_health.json, checked 2026-11-21T06:07Z)",
+  "gaswatch_live": "GAS WATCH LIVE: PASS, after a FAIL at wake (late_post: CINGSA posted its 2026-11-20 reading at 01:00Z, after the 00:50Z collection). Dispatched gaswatch.yml on main (run 44874201629, success, 8.11 Bcf, 62.4 percent of design), Pages run 44874445730 deployed, re-audit PASS."
+ },
+ "social_feedback": "[] (attached repo read OK; no valid action this week)"
+}

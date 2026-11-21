@@ -1,0 +1,128 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-20/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 30721102,
+  "pdf_mb": 30.72,
+  "slides": 10,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-20/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-09-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-20/final/thumbs/slide-10-thumb.png"
+  ],
+  "title": "Two Land Rights Decided. One Still Open.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "008dc2b24bcc95caaa61cdd2bb4c344181d0c91fd08d93dfd2d6aa46121035fe",
+        "bytes": 6785781
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "00f21b0fdbe479408c23d22aea6a01a196289d37b2d033b13980df6b55ad7ab7",
+        "bytes": 9625701
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "1141237139b95817d196867cd03cdce55d2cf81ed8fe86f5a4c71795d42ac1aa",
+        "bytes": 7456543
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "61cf70fc1bde29c6ace4dd55b5f30757c64b7520c7e2085fb43fa830c1002d7e",
+        "bytes": 7573146
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "27ca10c748322d563431d330609f6d84a2f1dc8b9388fcfc8ab5aa1b17d710bc",
+        "bytes": 8507289
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "c3e763de36a08d1e7f5b00604228ab1403f426942f177854c14cefb0ee9831bc",
+        "bytes": 8313650
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "b04b2e7893d88b0a202eb9de222badf501e2bf38d9296d49530a994f6838218e",
+        "bytes": 6218780
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "4e4e747b5d35f0f3ae8fb12b5e4af4c069fccbfa01d4ed73205ba04770669f45",
+        "bytes": 7057573
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "427fb4c320e691b145062b7f27c96a841d919e2ec5c7bb3406d22ccd0ca9c3a1",
+        "bytes": 7790882
+      },
+      {
+        "name": "slide-10.png",
+        "sha256": "0941d74ee2b3dac7275611d84dc4235660a96bd7b81e89188799e04a82c1b9e6",
+        "bytes": 7577317
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "81f6306382271f21411e9aa957bb23972103a5b4ad126ff478f9ea6896d6921f",
+        "bytes": 16075
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "d08f5d84e06b0018a6777284aec94d446504257fc2ba03afb1eb0bcc71f95caa",
+        "bytes": 9971
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "1146b65f63afaa5502683eb0250100f4027e3873cabe70a7507c39c76136e84b",
+        "bytes": 13703
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "f50955aede6fc85306ecff858a84393f13ef6850042e3f35cdbd79f44fb02155",
+        "bytes": 11853
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "816e8895fd419e145cb9618c6c17ad58613a6942502f1d4898ab156b9a64f743",
+        "bytes": 11380
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "9dc3478b21da3ef6b7402e14e7795de20ba46854729cca380cad104552acc473",
+        "bytes": 13086
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "1ca5768a78c57af4a6b5dbef9b90702c6dafc029fbeefbc7dd0d6251e15e2635",
+        "bytes": 17843
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "efcfa4fb99638d8c05cfdbb582aff02c036c51bed70032dc59f002bd0f2657ae",
+        "bytes": 9735
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "a64b8b912448785b1fb4f491a367dd4bc8944239bde298c675eb1b13892e5343",
+        "bytes": 11661
+      },
+      {
+        "name": "slide-10.html",
+        "sha256": "bfb81584ffbe42f534e332ecfcd7cd4a8a34f90645909e7b6e0f53c277a651c1",
+        "bytes": 9270
+      }
+    ]
+  }
+}

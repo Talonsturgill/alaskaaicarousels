@@ -2892,6 +2892,30 @@
    "evidence": "No.119 slide 05, a critic caught a sub that implied the executive session ran to 3 p.m.; the source states 10 a.m. start and 3 p.m. adjournment only",
    "confidence": 0.7,
    "last_confirmed": "2026-11-19"
+  },
+  {
+   "id": "warped-noise-folds-print-as-creases",
+   "learned": "2026-11-20",
+   "instinct": "A NOISE COORDINATE WARPED BY ANOTHER NOISE CAN FOLD. When the warp's slope cancels the base frequency, one column stretches to infinity and prints as a straight crease through the field. Warp only the axis the pattern does not run along, or keep the warp's slope well under the base frequency.",
+   "evidence": "No.120 slide 06, two critic rounds named a vertical crease near x 270 through the snow; the x-warp 0.05*simplex(i/45) against a 1/150 base was folding there; moving the warp to y removed it",
+   "confidence": 0.7,
+   "last_confirmed": "2026-11-20"
+  },
+  {
+   "id": "aggregate-gate-cannot-read-word-numerals",
+   "learned": "2026-11-20",
+   "instinct": "aggregate_check verifies a from_claim declaration by finding a NUMBER in the text, so a word numeral ('two conditional leases', 'all seven') can't be declared from a claim. Write the figure as a digit, or let the art carry the count and drop the word.",
+   "evidence": "No.120 slide 04 body failed twice on 'two' and 'all seven' with from_claim declarations in place; rewording to 'the line's conditional leases' and 'every condition' passed",
+   "confidence": 0.6,
+   "last_confirmed": "2026-11-20"
+  },
+  {
+   "id": "dem-coverage-decides-the-plat",
+   "learned": "2026-11-20",
+   "instinct": "CHECK THE DEM'S BOUNDS AGAINST THE MAP WINDOW BEFORE PROMISING RELIEF ACROSS A SHEET. A lowland DEM gives contours only on its hills; plan the plat's mark-making for the flat paper rather than discovering it in round four.",
+   "evidence": "No.120 slide 07: four critic rounds and the flow critic asked for relief across the sheet; ak-houston-dem covers lat 61.55 to 61.82 and measures most of it under 60 m",
+   "confidence": 0.6,
+   "last_confirmed": "2026-11-20"
   }
  ]
 }

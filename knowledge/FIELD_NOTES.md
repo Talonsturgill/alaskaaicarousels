@@ -9709,3 +9709,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AN EMPTY HALF OF A COVER COSTS ART POINTS EVEN WHEN THE FOCAL POINT IS STRONG. The scorer named 01's eventless left wall twice.
 - A DRAFTED SHEET NEEDS ITS FURNITURE ALIGNED TO ONE MARGIN. 09's dimension chain started at 120 against a title block at 80 and a critic called it misregistered; aligning both to 80 and closing the hatch completed the sheet.
 - DOCKET SOURCES ARE DICTS. A bare URL string crashed the ask_answers self-test inside site_build; {url, outlet, date} is the only shape.
+
+## 2026-11-20, No.120 retro (two land rights decided, the gas line still open)
+- A RIGHT-OF-WAY CONVERSION IS NOT A PERMIT, AND THE DECK SAID SO IN DNR'S WORDS. Quoting the decision's own "does not grant AGDC permission to start construction" let 04 carry the honesty line without editorialising.
+- ROTATED SVG LABELS STACKED ON OVERLAPPING SHEETS MUST FIT THE VISIBLE PART OF THEIR OWN SHEET. A 22px rider overran onto the next sheet; two lines at 24px, tracked tight, fit inside. CSS letter-spacing overrides the SVG attribute, so set it as style.
+- A FADED BUCKET IS STILL A STEP. Contour alpha quantised into two or five fade buckets printed hard rectangles where the DEM ran out; a distance-to-nodata chamfer plus smoothstep in nine steps and a radial dissolve removed the edge.
+- A HILLSHADE DRAWN AS FILLRECT CELLS PRINTS AS BLOCKS. One pixel per grid cell into a small canvas, drawn up with high-quality smoothing, is the same data with no mosaic.
+- BOUGH MASSES WITH SNOW CLUMPS READ AS A SPRUCE; COMB STROKES AND DASHED SNOW READ AS CLIP ART OR A PATTERN. Filled drooping masses, needle ticks on the lower edge and cap clumps on the top finally cleared it on the fifth pass.
+- A LONG LIT PAPER FIELD ON THE CLOSER TIES THE PEAK. Cropping 10's sheet so more dark desk shows let 09 stand alone; lowering exposure alone moved it 2 L*.
+- FOUR PIXEL ROUNDS ON ALL TEN FRAMES LEFT ONE FLOW ROUND. Round 1 sent every frame back; the round budget is spent fastest when the first build ships flat faces.

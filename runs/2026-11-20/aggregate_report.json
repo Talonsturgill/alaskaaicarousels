@@ -1,0 +1,237 @@
+{
+  "run_dir": "out/2026-11-20",
+  "render_report": "out/2026-11-20/render/render_report.json",
+  "aggregates_file": "out/2026-11-20/aggregates.json",
+  "detected": 22,
+  "declared": 21,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Two land rights",
+      "at": 0,
+      "text": "Two land rights decided. One still open.",
+      "n": 2,
+      "subject": "land rights"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "THREE FILES",
+      "at": 0,
+      "text": "THREE FILES \u00b7 ONE DEPARTMENT",
+      "n": 3,
+      "subject": "files"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "6,800 acres",
+      "at": 115,
+      "text": "DNR approved a 50-year North Slope data center lease and, on November 10th, published its decision conveying about 6,800 acres near Houston to AIDEA. Its proposed decision on Alaska LNG's 800-mile corridor still takes comment.",
+      "n": 6800,
+      "subject": "acres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "3 EXISTING LAND USES",
+      "at": 0,
+      "text": "3 EXISTING LAND USES",
+      "n": 3,
+      "subject": "existing land uses"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "7 CONTAMINATED SITES",
+      "at": 0,
+      "text": "7 CONTAMINATED SITES",
+      "n": 7,
+      "subject": "contaminated sites"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "50 billion and letters",
+      "at": 47,
+      "text": "DNR cites planned capitalization of more than $50 billion and letters of intent for more than 60 percent of capacity, which it calls non-binding. The Department of Revenue's economics analysis is confidential. Per ADN, Crowther acknowledged departing from DNR's normal process.",
+      "n": 50,
+      "subject": "billion and letters"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "6,800 ACRES",
+      "at": 16,
+      "text": "CONVEYED, ABOUT 6,800 ACRES",
+      "n": 6800,
+      "subject": "acres"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "20,000 ACRES",
+      "at": 7,
+      "text": "ALMOST 20,000 ACRES",
+      "n": 20000,
+      "subject": "acres"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "5 MILES",
+      "at": 0,
+      "text": "5 MILES",
+      "n": 5,
+      "subject": "miles"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "6,800 acres",
+      "at": 0,
+      "text": "6,800 acres to AIDEA. The borough wants it elsewhere.",
+      "n": 6800,
+      "subject": "acres"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "6,800 acres",
+      "at": 29,
+      "text": "DNR's decision conveys about 6,800 acres, down from almost 20,000 first proposed. On November 13th the Mat-Su Borough asked DNR to reconsider and named Point MacKenzie.",
+      "n": 6800,
+      "subject": "acres"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "TWO DECIDED FILES",
+      "at": 0,
+      "text": "TWO DECIDED FILES",
+      "n": 2,
+      "subject": "decided files"
+    },
+    {
+      "slide": 8,
+      "kind": "span",
+      "fragment": "1 to 3",
+      "at": 54,
+      "text": "North Slope, a 50-year lease on about 715 acres for a 1 to 3 gigawatt data center, drew more than 1,200 responses, most opposed. Houston drew more than 2,300 comments, almost all opposed. Each decision now has a reconsideration window.",
+      "from_n": 1,
+      "to_n": 3
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "715 acres",
+      "at": 38,
+      "text": "North Slope, a 50-year lease on about 715 acres for a 1 to 3 gigawatt data center, drew more than 1,200 responses, most opposed. Houston drew more than 2,300 comments, almost all opposed. Each decision now has a reconsideration window.",
+      "n": 715,
+      "subject": "acres"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "1,200 responses",
+      "at": 98,
+      "text": "North Slope, a 50-year lease on about 715 acres for a 1 to 3 gigawatt data center, drew more than 1,200 responses, most opposed. Houston drew more than 2,300 comments, almost all opposed. Each decision now has a reconsideration window.",
+      "n": 1200,
+      "subject": "responses"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2,300 comments",
+      "at": 152,
+      "text": "North Slope, a 50-year lease on about 715 acres for a 1 to 3 gigawatt data center, drew more than 1,200 responses, most opposed. Houston drew more than 2,300 comments, almost all opposed. Each decision now has a reconsideration window.",
+      "n": 2300,
+      "subject": "comments"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "1,200 SHEETS",
+      "at": 12,
+      "text": "NORTH SLOPE 1,200 SHEETS",
+      "n": 1200,
+      "subject": "sheets"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "1,200 SHEETS",
+      "at": 0,
+      "text": "1,200 SHEETS",
+      "n": 1200,
+      "subject": "sheets"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2,300 SHEETS",
+      "at": 8,
+      "text": "HOUSTON 2,300 SHEETS",
+      "n": 2300,
+      "subject": "sheets"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2,300 SHEETS",
+      "at": 0,
+      "text": "2,300 SHEETS",
+      "n": 2300,
+      "subject": "sheets"
+    },
+    {
+      "slide": 9,
+      "kind": "duration",
+      "fragment": "THREE WEEKS",
+      "at": 21,
+      "text": "SAVE THIS \u00b7 THE NEXT THREE WEEKS",
+      "n": 3,
+      "unit": "weeks"
+    },
+    {
+      "slide": 9,
+      "kind": "span",
+      "fragment": "00 to 8",
+      "at": 19,
+      "text": "Virtual hearing, 6:00 to 8:00 p.m.",
+      "from_n": 0,
+      "to_n": 8
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 7,
+      "text": "5 MILES",
+      "note": "a scale bar computed from the slide's own projection and asserted in __akAssert, a property of the artwork"
+    },
+    {
+      "slide": 8,
+      "text": "1,200 SHEETS",
+      "note": "one drawn sheet edge per response at the floor of the record's more than 1,200 (C30), disclosed on the slide, a property of the drawing"
+    },
+    {
+      "slide": 8,
+      "text": "2,300 SHEETS",
+      "note": "one drawn sheet edge per comment at the floor of the record's more than 2,300 (C39), disclosed on the slide, a property of the drawing"
+    },
+    {
+      "slide": 9,
+      "text": "SAVE THIS \u00b7 THE NEXT THREE WEEKS",
+      "note": "the calendar leaf's own span, chosen by the layout to show every dated window, a property of the artwork"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "S5 'DNR cites planned capitalization of more than $5' [from_claim]: the noun 'letter' does not appear in claim S10; check that the number is being attached to what the claim actually counts.",
+    "S8 'NORTH SLOPE 1,200 SHEETS' [from_claim]: the noun 'sheet' does not appear in claim C30; check that the number is being attached to what the claim actually counts.",
+    "S8 'HOUSTON 2,300 SHEETS' [from_claim]: the noun 'sheet' does not appear in claim C39; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

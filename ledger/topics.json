@@ -4941,6 +4941,57 @@
     "data-centers",
     "state-policy"
    ]
+  },
+  {
+   "run_date": "2026-11-20",
+   "carousel_no": 120,
+   "update_of": "2026-11-13",
+   "topic": "UPDATE of No.111 and No.112: three DNR land files in the outgoing administration's last weeks. Decided: the 50-year North Slope data center lease (ADL 422741, 20-day reconsideration period) and the Houston conveyance of about 6,800 acres to AIDEA (ADL 234762, down from almost 20,000 first proposed; the Mat-Su Borough asked for reconsideration on November 13th and named Point MacKenzie). Open: DNR's proposed conversion of Alaska LNG's two conditional right-of-way leases (ADL 421296 and 421297) into full leases, comments to 5:00 p.m. November 25th, hearings November 23rd (virtual) and 24th (Anchorage); per DNR conversion does not grant AGDC permission to start construction and seven conditions remain later gates. The November 17th joint Resources hearing: Giessel 'rushed', Wielechowski 'What's the rush?', Crowther 'as expeditiously as we can'. No link drawn between the gas line and data centers.",
+   "angle": "THE ONE LEFT OPEN: two pressed seals and one dashed circle, a different instrument on every frame under one tungsten key (seal press, bas-relief sheets, engraved microphone, seven steel gates, a sealed envelope, a snow breather, the Houston plat at true scale, two stacks of objections at one pitch, a calendar of windows, a single ask).",
+   "entities": [
+    "Alaska DNR",
+    "Alaska LNG",
+    "AGDC",
+    "AIDEA",
+    "Mat-Su Borough",
+    "Cathy Giessel",
+    "Bill Wielechowski",
+    "John Crowther",
+    "ADL 421296",
+    "ADL 421297",
+    "ADL 422741",
+    "ADL 234762",
+    "Point MacKenzie",
+    "Houston",
+    "Little Troublesome Creek Campground",
+    "Denali State Park",
+    "Department of Revenue",
+    "Anchorage Daily News",
+    "Alaska Beacon"
+   ],
+   "keywords": [
+    "right-of-way lease conversion",
+    "gas line comment deadline",
+    "reconsideration request",
+    "data center lease",
+    "AIDEA land conveyance",
+    "lame duck decisions",
+    "December 7th handoff",
+    "conditional lease",
+    "public hearing",
+    "confidential economics analysis"
+   ],
+   "headline": "Two land rights decided. One still open.",
+   "sources_lead": [
+    "https://dog.dnr.alaska.gov/Document/Download/4D2CDAD7743C41AA9FD354A9369F0781/AKLNG%20ROW%20Conversions%20Decision.pdf",
+    "https://dog.dnr.alaska.gov/home/newsroom",
+    "https://aws.state.ak.us/OnlinePublicNotices/Notices/View.aspx?id=225826"
+   ],
+   "beats": [
+    "land-and-permitting",
+    "state-policy",
+    "data-centers"
+   ]
   }
  ]
 }
