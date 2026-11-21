@@ -25,6 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Exact synthetic artifact and no public discovery references
         run: python3 tests/sourdough_preview_test.py
