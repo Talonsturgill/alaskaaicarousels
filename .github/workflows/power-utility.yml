@@ -26,6 +26,7 @@ on:
     - cron: "0 16 12 * *"
   pull_request:
     paths:
+      - "tests/collector_permissions.py"
       - "scripts/power_utility.py"
       - "scripts/power_panel.py"
       - "tests/power_line.mjs"
@@ -38,13 +39,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: PR checks stay read-only and collectors stay independent
+        run: python3 tests/collector_permissions.py
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -97,6 +100,8 @@ jobs:
         run: node tests/power_line.mjs
 
   refresh:
+    permissions:
+      contents: write
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:

@@ -22,6 +22,7 @@ on:
     - cron: "20 14 * * *"
   pull_request:
     paths:
+      - "tests/collector_permissions.py"
       - "scripts/docket_watch.py"
       - ".github/workflows/docket-watch.yml"
   push:
@@ -31,13 +32,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: PR checks stay read-only and collectors stay independent
+        run: python3 tests/collector_permissions.py
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -49,6 +52,8 @@ jobs:
         run: python3 scripts/docket_watch.py --self-test
 
   sweep:
+    permissions:
+      contents: write
     # Only on a real schedule or a deliberate press. A pull request gets the
     # gate above and no network at all.
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
