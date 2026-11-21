@@ -4412,6 +4412,38 @@
     "weighted_total": 8.67,
     "artwork": 7.5
    }
+  },
+  {
+   "run_date": "2026-11-20",
+   "carousel_no": 120,
+   "slide_count": 10,
+   "hero_structure": "NEW: THE ONE LEFT OPEN, a different land-office instrument on every frame under one warm tungsten key: an akthree cast-iron seal press with its brass die over a dashed circle (01), three bas-relief bond sheets, two embossed seals and one dashed circle (02), a white-line engraved gooseneck microphone on a dais (03), seven cabinet-oblique steel gates on a right-of-way band with phantom construction dashes (04), a per-pixel manila string envelope stamped CONFIDENTIAL (05), a blue-hour snow breather with a snow-loaded spruce (06), the Houston plat at true scale with Tanaka relief (07), two paper stacks at one sheet pitch (08), a Mon to Fri calendar leaf with hand-inked rings on oxblood (09), a graphite dashed circle with Polaris and a pencil (10)",
+   "atmosphere": "NEW: LAND-OFFICE TUNGSTEN (one warm key from the upper left over oxblood blotters and night walls; a blue-hour rest on 06)",
+   "depth_technique": "akthree PBR on 01, per-pixel relief on 02, 05, 09, 10, white-line engraving on 03, cabinet oblique on 04 and 08, offscreen DOF layers on 06, Tanaka contours on 07",
+   "line_voice": "pencil and emboss: dashed graphite circles, blind-tooled leather, lit and lee relief",
+   "continuity_device": "motif circle changing state (dashed open, solid decided) in the corner on every frame",
+   "continuity_devices": [
+    "corner motif circle: dashed, solid, two solid plus one dashed, gold dot, Polaris",
+    "counters"
+   ],
+   "hook_archetype": "NEW: THE ONE LEFT OPEN (two decided, one open)",
+   "palette_family": "NEW: JAPANNED IRON, OXBLOOD AND BONE (night #050A14, oxblood #3c1012 to #A03E30, bone #E8E2D3, iron #3a404c, forget-me-not #6EA5FF for prior commenters, gold #FFC72C only for windows anyone can use)",
+   "type_pairing": "Instrument Serif 400 display + Manrope 400 body + JetBrains Mono 500 caps",
+   "narrative_structure": "count hook, three files, the room, what it is not, what the yes rests on, breather, a decided file at true scale, the objections as paper, keepable calendar, one ask",
+   "variance_dials": {
+    "design_variance": 3,
+    "visual_density": 2,
+    "type_temperature": 2
+   },
+   "techniques": [
+    112,
+    144
+   ],
+   "new_techniques_logged": [],
+   "scores": {
+    "weighted_total": 8.075,
+    "artwork": 6.5
+   }
   }
  ]
 }

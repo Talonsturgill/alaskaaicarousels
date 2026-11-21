@@ -11,7 +11,7 @@
   "publisher": "Alaska AI",
   "spatial_coverage": "Alaska, United States",
   "temporal_coverage": "2022-02-02/2032-08-31",
-  "count": 43,
+  "count": 44,
   "fields": {
     "id": "Stable kebab-case identifier. Never reused, never renamed.",
     "url": "Canonical page for this decision on alaskaaihq.com.",
@@ -1945,7 +1945,7 @@
         }
       ],
       "first_seen": "2026-07-18",
-      "last_updated": "2026-10-20",
+      "last_updated": "2026-11-20",
       "history": [
         {
           "date": "2026-07-18",
@@ -1958,6 +1958,10 @@
         {
           "date": "2026-10-20",
           "note": "Re-read the text of AO 2026-27 on the Assembly's site today. It still defines data centers and similar energy-intensive facilities for land use review, as adopted on March 27th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-20",
+          "note": "Re-read ADN's account of the March vote. AO 2026-27 stands as adopted, 10 to 2. Unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/anchorage-ao-2026-27-data-center-zoning/"
@@ -7172,6 +7176,68 @@
         }
       ],
       "url": "https://alaskaaihq.com/docket/noaa-2027-observer-em-deployment/"
+    },
+    {
+      "id": "aklng-row-lease-conversion",
+      "title": "Alaska LNG right-of-way lease conversion",
+      "kind": "state-land-lease",
+      "status": "open-for-comment",
+      "decider": "Alaska DNR Commissioner",
+      "public_access": "open",
+      "access_note": "Comments due 5 p.m. November 25th. Hearings November 23rd online, and November 24th at 4300 Boniface Parkway, Anchorage.",
+      "summary": "DNR proposes converting Alaska LNG's conditional right-of-way leases, ADL 421296 and 421297, into full leases. Per DNR, that grants no permission to build. Seven conditions remain later requirements.",
+      "key_dates": [
+        {
+          "date": "2026-10-23",
+          "label": "Proposed decision issued",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-23",
+          "label": "Online hearing",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-24",
+          "label": "Anchorage hearing",
+          "kind": "milestone"
+        },
+        {
+          "date": "2026-11-25",
+          "label": "Written comments due, 5 p.m.",
+          "kind": "deadline"
+        }
+      ],
+      "location": {
+        "name": "Alaska LNG corridor",
+        "lon": -147.72,
+        "lat": 64.84
+      },
+      "sources": [
+        {
+          "url": "https://dog.dnr.alaska.gov/Document/Download/4D2CDAD7743C41AA9FD354A9369F0781/AKLNG%20ROW%20Conversions%20Decision.pdf",
+          "outlet": "Alaska DNR, Analysis and Proposed Decision, ADL 421296 and ADL 421297",
+          "date": "2026-10-23"
+        },
+        {
+          "url": "https://www.adn.com/politics/alaska-legislature/2026/11/18/legislators-question-dunleavy-administrations-move-to-grant-land-rights-to-gas-line-developers/",
+          "outlet": "Anchorage Daily News",
+          "date": "2026-11-18"
+        }
+      ],
+      "first_seen": "2026-11-20",
+      "last_updated": "2026-11-20",
+      "history": [
+        {
+          "date": "2026-10-23",
+          "note": "DNR issued the proposed decision, finding conversion's conditions met."
+        },
+        {
+          "date": "2026-11-20",
+          "note": "Added. On November 17th Sen. Cathy Giessel called the process rushed. ADN reports a decision could come before December 7th."
+        }
+      ],
+      "url": "https://alaskaaihq.com/docket/aklng-row-lease-conversion/"
     }
   ]
 }
