@@ -1,14 +1,14 @@
 {
- "generated": "2026-11-20T21:54:46Z",
- "for_date": "2026-11-20",
+ "generated": "2026-11-21T20:37:49Z",
+ "for_date": "2026-11-21",
  "session": "34",
  "counted": {
   "basis_bills": 857,
-  "basis_meetings": 2869,
-  "fedreg_federal-energy-regulatory-commission": 3,
+  "basis_meetings": 2871,
+  "fedreg_federal-energy-regulatory-commission": 2,
   "fedreg_land-management-bureau": 1,
   "fedreg_air-force-department": 0,
-  "fedreg_energy-department": 3,
+  "fedreg_energy-department": 2,
   "fedreg_army-department": 0
  },
  "bills": [
@@ -310,20 +310,6 @@
    "published": "2026-11-03",
    "comments_close_on": null,
    "url": "https://www.federalregister.gov/documents/2026/11/03/2026-22358/alaska-power-company-notice-of-application-to-amend-road-management-plan-accepted-for-filing",
-   "agencies": [
-    "Energy Department",
-    "Federal Energy Regulatory Commission"
-   ]
-  },
-  {
-   "source": "federal-register",
-   "why": "FERC notice on beat, the US DOE notice on beat",
-   "doc": "2026-20451",
-   "title": "Alaska Energy Authority Notice Soliciting Recommendations, Terms and Conditions, and Fishway Prescriptions for Application for Non-Capacity Amendment of License",
-   "type": "Notice",
-   "published": "2026-10-06",
-   "comments_close_on": null,
-   "url": "https://www.federalregister.gov/documents/2026/10/06/2026-20451/alaska-energy-authority-notice-soliciting-recommendations-terms-and-conditions-and-fishway",
    "agencies": [
     "Energy Department",
     "Federal Energy Regulatory Commission"
