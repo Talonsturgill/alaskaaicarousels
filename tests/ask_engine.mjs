@@ -314,7 +314,10 @@ const Q = [
   ['what is the nearest deadline', { kick: /NEAREST DATE|PUBLISHED DATES/ }],
   // The busiest agency is a fact about the record, not the engine: DNR led
   // until SB 250 joined the docket on 2026-09-24 and gave the Legislature 4.
-  ['which agency has the most decisions', { kick: /LEGISLATURE/ }],
+  // On 2026-11-20 the Alaska LNG right-of-way conversion gave DNR 4 as well,
+  // a tie the engine breaks by facet order (DNR first), so either kicker is
+  // the record's true answer until one of them pulls ahead.
+  ['which agency has the most decisions', { kick: /ALASKA DNR|LEGISLATURE/ }],
   ['what was added most recently', { kick: /RECENTLY ADDED/ }],
   ['what has been tracked the longest', { kick: /LONGEST/ }],
   ['what moved most recently', { kick: /LAST MOVEMENT/ }],
