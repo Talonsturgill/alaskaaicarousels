@@ -20,7 +20,8 @@
    "post_id": "18030227330921365",
    "url": "https://www.instagram.com/p/DgCcJAuDFHH/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/feed/0": {
    "state": "PUBLISHED",
@@ -28,7 +29,8 @@
    "post_id": "2003130316607965_1167022002958263",
    "url": "https://www.facebook.com/2003130316607965_1167022002958263",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "tiktok/feed/0": {
    "state": "PUBLISHED",
@@ -36,7 +38,8 @@
    "post_id": "7710918520686628110",
    "url": "https://www.tiktok.com/@alaskaai_/video/7710918520686628110",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/0": {
    "state": "PUBLISHED",
@@ -44,7 +47,8 @@
    "post_id": "17923408521239925",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/1": {
    "state": "PUBLISHED",
@@ -52,15 +56,19 @@
    "post_id": "18125786098953830",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/2": {
-   "state": "PUBLISHED",
+   "state": "FAILED",
    "request_id": "ef8c11a15515417db69f4412064e47b5",
    "post_id": null,
    "url": null,
    "provider_status": "completed",
-   "error": "Media not found or permission error. Ensure permissions are valid or recreate the container. If this issue persists, please contact support at info@upload-post.com. Learn more: https://docs.upload-post.com/resources/common-errors."
+   "error": "Media not found or permission error. Ensure permissions are valid or recreate the container. If this issue persists, please contact support at info@upload-post.com. Learn more: https://docs.upload-post.com/resources/common-errors.",
+   "provider_success": false,
+   "error_code": "account_permission_denied",
+   "failure_stage": "platform_api"
   },
   "instagram/story/3": {
    "state": "PUBLISHED",
@@ -68,7 +76,8 @@
    "post_id": "18032942165862964",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/4": {
    "state": "PUBLISHED",
@@ -76,7 +85,8 @@
    "post_id": "18443307943179463",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/5": {
    "state": "PUBLISHED",
@@ -84,7 +94,8 @@
    "post_id": "18138935476786454",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/6": {
    "state": "PUBLISHED",
@@ -92,7 +103,8 @@
    "post_id": "18100610045470896",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/7": {
    "state": "PUBLISHED",
@@ -100,7 +112,8 @@
    "post_id": "18454178716121424",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "instagram/story/8": {
    "state": "PUBLISHED",
@@ -108,7 +121,8 @@
    "post_id": "17999191620106823",
    "url": "https://www.instagram.com/stories/alaskaai_/",
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/0": {
    "state": "PUBLISHED",
@@ -116,7 +130,8 @@
    "post_id": "2547359015753747",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/1": {
    "state": "PUBLISHED",
@@ -124,7 +139,8 @@
    "post_id": "1479238477511322",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/2": {
    "state": "PUBLISHED",
@@ -132,7 +148,8 @@
    "post_id": "1488741249800449",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/3": {
    "state": "PUBLISHED",
@@ -140,7 +157,8 @@
    "post_id": "2211192409515676",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/4": {
    "state": "PUBLISHED",
@@ -148,7 +166,8 @@
    "post_id": "1762216384844733",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/5": {
    "state": "PUBLISHED",
@@ -156,7 +175,8 @@
    "post_id": "1066002629794610",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/6": {
    "state": "PUBLISHED",
@@ -164,7 +184,8 @@
    "post_id": "4510806102581709",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/7": {
    "state": "PUBLISHED",
@@ -172,7 +193,8 @@
    "post_id": "1523260909689575",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "facebook/story/8": {
    "state": "PUBLISHED",
@@ -180,7 +202,8 @@
    "post_id": "4562350987339144",
    "url": null,
    "provider_status": "completed",
-   "error": null
+   "error": null,
+   "provider_success": true
   },
   "youtube/feed/0": {
    "state": "NOT_APPLICABLE",
@@ -190,6 +213,7 @@
  "notes": [
   "Feed photos are JPEG conversions of the released WebP at 2160x2700, same pixels.",
   "Story frames are the released slides letterboxed into 1080x1920 with each slide's own edge colour, never cropped or stretched.",
-  "Gmail draft could not be created (connector requires sign-in), so no draft receipt update was possible; this file is the delivery record."
+  "Gmail draft could not be created (connector requires sign-in), so no draft receipt update was possible; this file is the delivery record.",
+  "Corrected on Codex review (PR #510): instagram/story/2 returned success false with account_permission_denied at platform_api and no post ID, so it is FAILED, not PUBLISHED. Story order on Instagram is 0, 1, 3 to 8. No retry was made: the helper has no force path and a confirmed failure needs a separately supported request-bound recovery."
  ]
 }

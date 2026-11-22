@@ -23,7 +23,7 @@
     "upgrade": "done: automation_retro.md; 2 queued, weekly pass not due",
     "gmail": "BLOCKED: Gmail connector requires sign-in (create_draft refused twice); payload committed at runs/2026-11-21/gmail_payload.json",
     "retro": "done: automation_retro.md, FIELD_NOTES, instincts, 2 queue items; run fixes ask_corpus size report and mobile job date",
-    "social": "done: LinkedIn document + verified website comment, Instagram/Facebook/TikTok feeds, 9 Instagram and 9 Facebook stories PUBLISHED; YouTube NOT_APPLICABLE (runs/2026-11-21/social_delivery.json)"
+    "social": "INCOMPLETE: LinkedIn document + verified website comment, Instagram/Facebook/TikTok feeds, 9 Facebook stories and 8 of 9 Instagram stories PUBLISHED; instagram/story/2 FAILED (account_permission_denied at platform_api, no post, not retried); YouTube NOT_APPLICABLE (runs/2026-11-21/social_delivery.json)"
   },
   "social": {
     "preflight": "READY",
