@@ -19,3 +19,4 @@ Top repeat offender: Artwork craft and genuine detail (STALE). DEFERRED to the w
 
 ## Queue
 2 new items in knowledge/MACHINE_QUEUE.md (AK.sampleCubic, run-based stroke recipe); the late_post item gained a sighting. Weekly pass not due (machine_due exit 1, last 2026-11-17).
+- Phase 11 (CI on PR #509): ask.yml's `checks` job failed on ask_corpus's size self-test, 251,670 tokens against a 250,000 line. main measured 250,034 on its own cron data, so every PR touching ledger/docket.json would have gone red. Measured: workers/ask reads only authorised_numerals and slugs from the corpus and never puts it in a prompt; the prompt is ask-pack.json under its 32,000-token hard ceiling, which still passes. FIXED in this run: the corpus size is now printed as INFO, not a gate, with the reason in the code. Weekly pass may revisit if the corpus ever enters a prompt.

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Build the answering corpus for the docket's ask box.
 
-WHY THERE IS NO RETRIEVAL HERE. The whole public record is about 33,000 tokens.
+WHY THERE IS NO RETRIEVAL HERE. The answering prose is docs/ask-pack.json, held under
+a hard 32,000-token ceiling by ask_pack.py; this corpus is the machine-checked record
+behind it and is never put in a prompt. When this was written the record was about
+33,000 tokens.
 That fits in one model context with room left over, so there is no embedding
 step, no vector store, no chunking, and no similarity threshold to tune. The
 single biggest source of wrong answers in a retrieval chatbot is retrieving the
@@ -314,11 +317,18 @@ def self_test():
     print("size")
     blob = json.dumps(c, separators=(",", ":"))
     approx = round(len(blob) / 3.8)
-    # The whole design rests on the record fitting in one context. If it stops
-    # fitting, that is a design change and not a tuning problem, so say so
-    # loudly here rather than discovering it as a truncated answer.
-    check("the corpus still fits comfortably in one context",
-          approx < 250_000, f"{len(blob)} chars, roughly {approx} tokens")
+    # A REPORT, NOT A GATE (2026-11-22, run No.121). This used to fail the
+    # suite at 250,000 tokens on the premise that the corpus goes into a model
+    # context. It doesn't. workers/ask reads only authorised_numerals and slugs
+    # out of it (worker.js loadCorpus, deep.js deliver); the prompt carries
+    # docs/ask-pack.json, whose 32,000-token ceiling is the hard gate in
+    # ask_pack.py and still binds. The gas watch series grows by roughly 1,100
+    # tokens a day, so main crossed the old line on its own cron data
+    # (250,034 tokens on 2026-11-22) and every pull request touching the docket
+    # went red for a size that no model ever reads. The figure is still
+    # printed so growth stays visible; if the corpus ever does go into a
+    # prompt, put the gate back here with a ceiling measured for that prompt.
+    print(f"  INFO  corpus size (allow-list source, never a prompt)  {len(blob)} chars, roughly {approx} tokens")
 
     print()
     print("self-test clean" if ok[0] else "self-test FAILED")
