@@ -10761,7 +10761,7 @@ Slides and the deck PDF are linked from the canonical page.
 
 # The Alaska AI Docket
 
-Every AI infrastructure decision tracked in Alaska, 44 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
+Every AI infrastructure decision tracked in Alaska, 45 of them, open windows first. Canonical pages live under https://alaskaaihq.com/docket/ and the same record is machine readable at https://alaskaaihq.com/docket.json.
 
 ---
 
@@ -11818,6 +11818,36 @@ Canonical: https://alaskaaihq.com/docket/gvea-lm6000-turbine-purchase/
 
 ---
 
+# The Senate energy bill that names Alaska once, and gives the RCA the last word on a federal congestion map
+
+> On November 19th the Senate passed H.R. 2347 as amended, 62 to 33, carrying the Bipartisan American Affordability and Jobs Act, with Senators Murkowski and Sullivan voting yea. A new Federal Power Act section 224 orders a federal transmission congestion study. Its subsection (d), titled Alaska, lets the Secretary of Energy name an Alaska congestion area only subject to the approval of the Regulatory Commission of Alaska. A new section 229 bars charging other customers for the incremental cost of serving a data center and lets a State treat data centers as a separate retail class, with no megawatt threshold. NPR reported on November 20th that the bill heads to the House.
+
+Status: pending decision. Decided by U.S. House of Representatives, then the President; after enactment the Secretary of Energy, FERC and, for Alaska congestion areas, the Regulatory Commission of Alaska.
+Public access: indirect. There is no comment room on a bill. The route is the congressional delegation. If it becomes law, the Secretary of Energy must offer affected States and Tribes a chance to comment before each transmission report, and any Alaska congestion area needs the Regulatory Commission of Alaska's approval.
+Canonical: https://alaskaaihq.com/docket/hr-2347-senate-energy-bill-alaska-subsection/
+
+## Dates
+
+- 2026-09-30, S. 5653 introduced by Sen. Capito with Senators Lee, Whitehouse and Heinrich (milestone)
+- 2026-11-09, Senate invokes cloture on the motion to proceed, 73 to 25 (vote)
+- 2026-11-16, Senate invokes cloture on the Capito substitute, Amendment 6883, 70 to 27 (vote)
+- 2026-11-18, Senate invokes cloture on the bill, 65 to 31 (vote)
+- 2026-11-19, Senate passes H.R. 2347 as amended, 62 to 33, Murkowski and Sullivan yea (vote)
+
+## Sources
+
+- [U.S. Government Publishing Office, H.R. 2347 Engrossed Amendment Senate](https://www.govinfo.gov/content/pkg/BILLS-119hr2347eas/html/BILLS-119hr2347eas.htm), 2026-11-19
+- [U.S. Senate, roll call vote 270](https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00270.xml), 2026-11-19
+- [U.S. Senate, roll call vote menu](https://www.senate.gov/legislative/LIS/roll_call_lists/vote_menu_119_2.xml), 2026-11-19
+- [NPR via Alaska Public Media](https://alaskapublic.org/news/economy/energy/2026-11-20/senate-passes-bipartisan-energy-bill-amid-environmental-concerns), 2026-11-20
+
+## How this decision moved
+
+**2026-11-21** Added. Read the full Senate-passed text on GovInfo and the Senate roll call. Alaska appears once, in new Federal Power Act section 224(d), where an Alaska congestion area needs the Regulatory Commission of Alaska's approval. Both Alaska senators voted yea on passage.
+
+
+---
+
 # The federal bill that would make a 100 megawatt customer pay for its own wires
 
 > H.R. 9340, the Ratepayer Protection Act, would add a standard to the Public Utility Regulatory Policies Act requiring that rates charged a large-load customer recover from that customer the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it, and keep recovering it if the customer walks away. A large-load customer is a non-residential consumer with aggregate peak demand of 100 megawatts or more at one site or campus, running information technology infrastructure for data storage and computation, which is a data center described without the phrase. State regulators would get one year from enactment to begin considering it and two to decide. A state is excused if, before enactment, it implemented a comparable standard, conducted a proceeding on one, or its legislature voted on one. Alaska's Senate passed SB 250, a comparable cost-allocation bill, on May 16th, and the House never voted. Whether one chamber satisfies the words the State legislature has voted is unresolved, and it decides whether Alaska is already excused.
@@ -11882,7 +11912,7 @@ Canonical: https://alaskaaihq.com/docket/hr-9340-ratepayer-protection-act/
 **2026-11-09** The bill status record GovInfo publishes, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn in the Senate. The Senate's lame-duck session opens today and no new action is recorded. Checked and unchanged.
 **2026-11-13** The bill status record GovInfo publishes, read today and last updated October 31st, still ends on September 30th, when the motion to proceed was withdrawn in the Senate after cloture failed 57 to 43. No lame-duck action is recorded. Checked and unchanged.
 **2026-11-17** Re-read the bill's GovInfo record today. Its last listed action is still the House report of September 10th, and it shows no Senate action after the failed September 30th cloture vote. Checked and unchanged.
-**2026-11-21** Re-read the bill's GovInfo record today. Its last listed action is still the House report of September 10th. Checked and unchanged.
+**2026-11-21** Re-read the bill's GovInfo record today. Its last listed action is still the House report of September 10th. Checked and unchanged. On November 19th the Senate passed a different bill, H.R. 2347, carrying its own data center cost section, tracked here as its own item.
 
 
 ---
