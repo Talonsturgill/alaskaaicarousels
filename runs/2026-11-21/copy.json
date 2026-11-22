@@ -1,0 +1,207 @@
+{
+ "document_title": "The Senate bill names Alaska once.",
+ "slides": [
+  {
+   "slide": 1,
+   "kicker": "H.R. 2347 · PASSED 62 TO 33",
+   "headline": "The Senate bill names Alaska once.",
+   "labels": [
+    "ONLY WITH THE RCA'S APPROVAL",
+    "SEC. 224(d) · ALASKA"
+   ],
+   "claim_ids": [
+    "S01",
+    "S26",
+    "S08"
+   ]
+  },
+  {
+   "slide": 2,
+   "kicker": "SECTION 224(d) · TITLED ALASKA",
+   "headline": "Washington needs the RCA's yes.",
+   "body": "New Federal Power Act section 224(d) has the Energy Secretary weigh congestion inside Alaska with the State and affected Tribes. It may name an Alaska area only \"subject to the approval of the Regulatory Commission of Alaska.\"",
+   "labels": [
+    "NEW FPA SEC. 224(d)(2) · SENATE TEXT, NOVEMBER 19TH"
+   ],
+   "claim_ids": [
+    "S07",
+    "S08",
+    "S25"
+   ]
+  },
+  {
+   "slide": 3,
+   "kicker": "SAME SECTION · TWO RULES",
+   "headline": "Everywhere else, comments. In Alaska, a yes.",
+   "body": "For every other area the Secretary may name congestion after taking comments from affected States and Tribes. No state commission approves. The approval step appears only in the Alaska subsection.",
+   "labels": [
+    "224(d) · RCA APPROVAL",
+    "REST OF THE COUNTRY · COMMENTS"
+   ],
+   "claim_ids": [
+    "S09",
+    "S08",
+    "S26"
+   ]
+  },
+  {
+   "slide": 4,
+   "kicker": "FOUR SENATE ROLL CALLS",
+   "headline": "Support thinned. It still passed.",
+   "body": "On passage, 47 Republicans, 14 Democrats and 1 independent voted yea. Murkowski and Sullivan both voted yea.",
+   "labels": [
+    "NOVEMBER 9TH · CLOTURE TO PROCEED · 73 TO 25",
+    "73 TO 25",
+    "NOVEMBER 16TH · CLOTURE ON SUBSTITUTE · 70 TO 27",
+    "70 TO 27",
+    "NOVEMBER 18TH · CLOTURE ON BILL · 65 TO 31",
+    "65 TO 31",
+    "NOVEMBER 19TH · PASSAGE · 62 TO 33",
+    "62 TO 33",
+    "YEA",
+    "NAY",
+    "DID NOT VOTE",
+    "ALASKA'S TWO SENATORS"
+   ],
+   "claim_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "S01",
+    "S02",
+    "S03",
+    "S27"
+   ]
+  },
+  {
+   "slide": 5,
+   "kicker": "SECTION 229",
+   "headline": "\"No subsidy of data centers.\"",
+   "body": "The section's own heading, further down the same text.",
+   "labels": [
+    "SEC. 229"
+   ],
+   "claim_ids": [
+    "S10",
+    "S12"
+   ]
+  },
+  {
+   "slide": 6,
+   "kicker": "WHAT SECTION 229 BARS",
+   "headline": "A data center's added cost stays on its own bill.",
+   "body": "No part of the incremental cost of serving one may be charged to another customer. Recovery continues if it quits early, and the utility collects financial assurance first.",
+   "labels": [
+    "DATA CENTER",
+    "EVERY OTHER CUSTOMER"
+   ],
+   "claim_ids": [
+    "S12",
+    "S13",
+    "S14",
+    "S15"
+   ]
+  },
+  {
+   "slide": 7,
+   "kicker": "HOW BIG IS A DATA CENTER?",
+   "headline": "As introduced, 20 megawatts. As passed, no line at all.",
+   "body": "S. 5653, introduced September 30th, counted load at 20 megawatts or more. The Senate-passed section 229 defines a data center by what it houses, artificial intelligence included, with no megawatt floor.",
+   "labels": [
+    "20 MW · AS INTRODUCED"
+   ],
+   "claim_ids": [
+    "C14",
+    "C17",
+    "S21",
+    "S11"
+   ]
+  },
+  {
+   "slide": 8,
+   "kicker": "WHAT SECTION 229 LETS A STATE DO",
+   "headline": "Three tools, if a State picks them up.",
+   "body": "They apply to sites that connect on or after enactment. \"State\" includes a State commission, and the section expands no one's jurisdiction.",
+   "labels": [
+    "Bill data centers as their own retail class",
+    "Set terms less favorable than for other large loads",
+    "Require enough new generation to serve them"
+   ],
+   "claim_ids": [
+    "S16",
+    "S17",
+    "S18",
+    "S19",
+    "S20"
+   ]
+  },
+  {
+   "slide": 9,
+   "kicker": "NEXT · THE HOUSE",
+   "headline": "It heads to the House.",
+   "body": "Should the RCA, not Washington, decide where Alaska's grid is congested?",
+   "claim_ids": [
+    "C09"
+   ]
+  }
+ ],
+ "post_copy": "One subsection. That is the only place the Senate's energy bill names Alaska.\n\nSection 224(d) lets the Energy Secretary identify an Alaska congestion area only \"subject to the approval of the Regulatory Commission of Alaska.\" Elsewhere there is no state approval step, only comments.\n\nThe Senate passed it 62 to 33 on November 19th. Murkowski and Sullivan voted yea.\n\nSection 229 bars charging other customers any part of a data center's incremental cost. The data center keeps paying if it quits early. A State may bill data centers as their own class on less favorable terms.\n\nThe clause in its own words opens the carousel, four Senate roll calls follow, and the data center cost rule closes it.\n\nThe bill now heads to the House.\nDoes the RCA's approval step come back intact?\n\n#AlaskaEnergy #FederalPowerAct #DataCenterPolicy",
+ "hashtags": [
+  "#AlaskaEnergy",
+  "#FederalPowerAct",
+  "#DataCenterPolicy"
+ ],
+ "deck_summary_line": "The clause in its own words opens the carousel, four Senate roll calls follow, and the data center cost rule closes it.",
+ "caption_meta": {
+  "opening_move": "COLD NUMBER",
+  "structure": "INVERTED PYRAMID",
+  "closing_move": "PREDICTION (does the RCA approval step come back from the House intact)",
+  "first_8_words": "One subsection. That is the only place the",
+  "hook_type": "cold number (one subsection, the only place the bill names Alaska)"
+ },
+ "first_comment": "Sources, primary first\n\nU.S. Government Publishing Office, H.R. 2347 Engrossed Amendment Senate, the Senate-passed text (short title Bipartisan American Affordability and Jobs Act, new Federal Power Act section 224(d) titled Alaska with its Regulatory Commission of Alaska approval step, section 224(b)(3) for the rest of the country, and section 229 on ratepayer protection with respect to data centers) (2026-11-19) https://www.govinfo.gov/content/pkg/BILLS-119hr2347eas/html/BILLS-119hr2347eas.htm\nU.S. Senate, roll call vote 270, 119th Congress, 2nd session (H.R. 2347 as amended passed 62 to 33, Murkowski and Sullivan yea, 47 Republicans, 14 Democrats and 1 independent yea, 5 not voting) (2026-11-19) https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00270.xml\nU.S. Senate, roll call vote menu, 119th Congress, 2nd session (vote 257, cloture on the motion to proceed 73 to 25 on November 9th, vote 264, cloture on Capito Amendment No. 6883 70 to 27 on November 16th, and vote 268, cloture on the bill 65 to 31 on November 18th) (2026-11-09 to 2026-11-19) https://www.senate.gov/legislative/LIS/roll_call_lists/vote_menu_119_2.xml\nU.S. Government Publishing Office, S. 5653 Introduced in Senate (introduced September 30th, 2026 by Sen. Capito with Senators Lee, Whitehouse and Heinrich, and its covered load definition at 20 megawatts or more) (2026-09-30) https://www.govinfo.gov/content/pkg/BILLS-119s5653is/html/BILLS-119s5653is.htm\nNPR (Kate Bartlett) via Alaska Public Media, Senate passes bipartisan energy bill amid environmental concerns (passed 62-33, and it now heads to the House) (2026-11-20) https://alaskapublic.org/news/economy/energy/2026-11-20/senate-passes-bipartisan-energy-bill-amid-environmental-concerns\nAssociated Press (Matthew Daly and Jennifer McDermott) via OPB, Senate advances sweeping energy legislation in first major action since midterm elections (the 73-25 vote to formally take up the bill) (2026-11-10) https://www.opb.org/article/2026/11/09/senate-advances-sweeping-energy-legislation-in-first-major-action-since-midterm-elections/\n\nThe full verification record for this deck lives at https://alaskaaihq.com/",
+ "aftercare": [
+  "Post in the strongest window, Tuesday to Thursday between 8 and 11 a.m. Alaska time (posting cadence is the maintainer's call). If this edition already went out through the automatic Upload-Post delivery, check that the LinkedIn post and its link comment are both live.",
+  "Paste the sources comment within 60 seconds of the post going live.",
+  "Reply to every comment in the first hour.",
+  "Watch for House action on H.R. 2347. If the House changes or drops the section 224(d) RCA approval step, that is the follow-up deck, and until a fetched source says otherwise, replies should say only that the bill heads to the House.",
+  "Watch for any public response from the Regulatory Commission of Alaska to section 224(d). None was fetched this run, so don't describe the RCA's view in replies. After 48 hours note saves, comments and reposts for the instincts ledger."
+ ],
+ "editor_notes_for_email": "Section 224(d) gives the Regulatory Commission of Alaska an approval step over an Alaska congestion finding, not a veto, and the deck and caption word it as approval throughout. Whether section 229 reaches Alaska's intrastate utilities isn't settled by the text (229(e) says it expands and diminishes no one's jurisdiction), so slides 06 to 08 say what the section lets a State do and never that it binds Alaska's utilities. The claim that the RCA regulates Railbelt rates was killed for want of a fetched source, so the RCA's role rests on the bill's own words only, and nothing is claimed about the House beyond NPR's November 20th report that the bill \"now heads to the House.\" The carved clause on 02 is canvas art, and the same words are printed verbatim in that slide's body, so the PDF text layer and screen readers carry it. The routine ran at effort medium, not the high the settings file carries.",
+ "claims_used": [
+  "C01",
+  "C02",
+  "C03",
+  "C04",
+  "C05",
+  "C09",
+  "C10",
+  "C14",
+  "C15",
+  "C17",
+  "S01",
+  "S02",
+  "S03",
+  "S04",
+  "S05",
+  "S07",
+  "S08",
+  "S09",
+  "S10",
+  "S11",
+  "S12",
+  "S13",
+  "S14",
+  "S15",
+  "S16",
+  "S17",
+  "S18",
+  "S19",
+  "S20",
+  "S21",
+  "S25",
+  "S26",
+  "S27"
+ ]
+}

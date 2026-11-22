@@ -1,0 +1,224 @@
+{
+  "run_dir": "out/2026-11-21",
+  "render_report": "out/2026-11-21/render/render_report.json",
+  "aggregates_file": "out/2026-11-21/aggregates.json",
+  "detected": 21,
+  "declared": 21,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "span",
+      "fragment": "62 TO 33",
+      "at": 19,
+      "text": "H.R. 2347 \u00b7 PASSED 62 TO 33",
+      "from_n": 62,
+      "to_n": 33
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "TWO RULES",
+      "at": 15,
+      "text": "SAME SECTION \u00b7 TWO RULES",
+      "n": 2,
+      "subject": "rules"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "FOUR SENATE ROLL CALLS",
+      "at": 0,
+      "text": "FOUR SENATE ROLL CALLS",
+      "n": 4,
+      "subject": "senate roll calls"
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "73 TO 25",
+      "at": 36,
+      "text": "NOVEMBER 9TH \u00b7 CLOTURE TO PROCEED \u00b7 73 TO 25",
+      "from_n": 73,
+      "to_n": 25
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "73 TO 25",
+      "at": 0,
+      "text": "73 TO 25",
+      "from_n": 73,
+      "to_n": 25
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "70 TO 27",
+      "at": 40,
+      "text": "NOVEMBER 16TH \u00b7 CLOTURE ON SUBSTITUTE \u00b7 70 TO 27",
+      "from_n": 70,
+      "to_n": 27
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "70 TO 27",
+      "at": 0,
+      "text": "70 TO 27",
+      "from_n": 70,
+      "to_n": 27
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "65 TO 31",
+      "at": 34,
+      "text": "NOVEMBER 18TH \u00b7 CLOTURE ON BILL \u00b7 65 TO 31",
+      "from_n": 65,
+      "to_n": 31
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "65 TO 31",
+      "at": 0,
+      "text": "65 TO 31",
+      "from_n": 65,
+      "to_n": 31
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "62 TO 33",
+      "at": 26,
+      "text": "NOVEMBER 19TH \u00b7 PASSAGE \u00b7 62 TO 33",
+      "from_n": 62,
+      "to_n": 33
+    },
+    {
+      "slide": 4,
+      "kind": "span",
+      "fragment": "62 TO 33",
+      "at": 0,
+      "text": "62 TO 33",
+      "from_n": 62,
+      "to_n": 33
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "TWO SENATORS",
+      "at": 9,
+      "text": "ALASKA'S TWO SENATORS",
+      "n": 2,
+      "subject": "senators"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "47 Republicans",
+      "at": 12,
+      "text": "On passage, 47 Republicans, 14 Democrats and 1 independent voted yea. Murkowski and Sullivan both voted yea.",
+      "n": 47,
+      "subject": "republicans"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "14 Democrats",
+      "at": 28,
+      "text": "On passage, 47 Republicans, 14 Democrats and 1 independent voted yea. Murkowski and Sullivan both voted yea.",
+      "n": 14,
+      "subject": "democrats"
+    },
+    {
+      "slide": 6,
+      "kind": "count",
+      "fragment": "229 BARS",
+      "at": 13,
+      "text": "WHAT SECTION 229 BARS",
+      "n": 229,
+      "subject": "bars"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "20 megawatts",
+      "at": 15,
+      "text": "As introduced, 20 megawatts. As passed, no line at all.",
+      "n": 20,
+      "subject": "megawatts"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "20 megawatts",
+      "at": 52,
+      "text": "S. 5653, introduced September 30th, counted load at 20 megawatts or more. The Senate-passed section 229 defines a data center by what it houses, artificial intelligence included, with no megawatt floor.",
+      "n": 20,
+      "subject": "megawatts"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "229 defines",
+      "at": 100,
+      "text": "S. 5653, introduced September 30th, counted load at 20 megawatts or more. The Senate-passed section 229 defines a data center by what it houses, artificial intelligence included, with no megawatt floor.",
+      "n": 229,
+      "subject": "defines"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "229 LETS",
+      "at": 13,
+      "text": "WHAT SECTION 229 LETS A STATE DO",
+      "n": 229,
+      "subject": "lets"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "Three tools",
+      "at": 0,
+      "text": "Three tools, if a State picks them up.",
+      "n": 3,
+      "subject": "tools"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "140 LINES",
+      "at": 32,
+      "text": "MASSIF = THE WHOLE SENATE TEXT, 140 LINES PER ROW",
+      "n": 140,
+      "subject": "lines"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 6,
+      "text": "WHAT SECTION 229 BARS",
+      "note": "229 is the section number of new Federal Power Act section 229 (S10), an address in the statute, not a count"
+    },
+    {
+      "slide": 7,
+      "text": "S. 5653, introduced September 30th, counted load at 20 megawatts or more. The Senate-passed section 229 defines a data center by what it houses, artificial intelligence included, with no megawatt floor.",
+      "note": "229 is the section number (S10, S21), an address, not a count"
+    },
+    {
+      "slide": 8,
+      "text": "WHAT SECTION 229 LETS A STATE DO",
+      "note": "229 is the section number (S10), an address, not a count"
+    },
+    {
+      "slide": 9,
+      "text": "MASSIF = THE WHOLE SENATE TEXT, 140 LINES PER ROW",
+      "note": "the drawing's own wrap width: the text is laid out in rows of 140 lines to build the massif, a property of the artwork"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}

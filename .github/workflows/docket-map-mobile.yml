@@ -62,8 +62,15 @@ jobs:
       # serving committed docs/ means a correct builder with a stale commit
       # still gets caught, and it means the suite runs even on a PR that
       # forgot to rebuild.
+      # AT TODAY'S DATE, NOT A FIXED ONE (2026-11-22, run No.121). The build also
+      # gates the ask pack at its 32,000-token ceiling, and the pack retires
+      # passed key dates by the build date. At the old fixed 2026-07-25 every
+      # date since July counted as upcoming, so this job measured 32,365 tokens
+      # for a pack whose served size at the real date was 31,295, and failed
+      # every docket PR on a pack nobody is sent. The map checks are layout
+      # assertions over eight devices and pass at today's date (148 checks).
       - name: Build the site
-        run: python scripts/site_build.py --date 2026-07-25 --out /tmp/site
+        run: python scripts/site_build.py --date "$(date -u +%F)" --out /tmp/site
 
       - name: Eight devices, portrait and landscape
         env:

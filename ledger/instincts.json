@@ -2916,6 +2916,30 @@
    "evidence": "No.120 slide 07: four critic rounds and the flow critic asked for relief across the sheet; ak-houston-dem covers lat 61.55 to 61.82 and measures most of it under 60 m",
    "confidence": 0.6,
    "last_confirmed": "2026-11-20"
+  },
+  {
+   "id": "cubic-sampler-for-shaded-fields",
+   "learned": "2026-11-21",
+   "instinct": "SHADE A COARSE FIELD THROUGH A CATMULL-ROM SAMPLER, NEVER BILINEAR OR SMOOTHSTEP. A shaded surface prints its interpolant's derivative: bilinear gives facets, smoothstep gives a stripe at every cell border.",
+   "evidence": "No.121 slides 07, 08 and 09: critics named striations, terraces and blocky plateaus in three rounds; each cleared only when the sampler went bicubic",
+   "confidence": 0.6,
+   "last_confirmed": "2026-11-21"
+  },
+  {
+   "id": "strokes-by-run-not-segment",
+   "learned": "2026-11-21",
+   "instinct": "STROKE A LINE WHOSE TONE VARIES AS RUNS DRAWN OPAQUE INTO A LAYER, THEN COMPOSITE THE LAYER AT THE ALPHA. Per-segment strokes at partial alpha overlap at every vertex and read as beads.",
+   "evidence": "No.121 slide 07: beaded Tanaka contours survived round 2 (buckets per segment) and cleared with smoothed lit and lee runs",
+   "confidence": 0.6,
+   "last_confirmed": "2026-11-21"
+  },
+  {
+   "id": "nearest-face-last",
+   "learned": "2026-11-21",
+   "instinct": "IN A HAND-PAINTED CUTAWAY, PAINT THE NEAREST FACE LAST. A front face drawn before the surface behind it lets the surface's dips hang over its lip.",
+   "evidence": "No.121 slide 06: 'fangs' over the strata for two rounds until the front face moved after the top surface",
+   "confidence": 0.5,
+   "last_confirmed": "2026-11-21"
   }
  ]
 }

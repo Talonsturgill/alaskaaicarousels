@@ -1,0 +1,43 @@
+{
+  "run_date": "2026-11-21",
+  "carousel_no": 121,
+  "effort": "medium",
+  "date_note": "Woke 2026-11-22 06:04Z = 2026-11-21 21:04 AKST; run_guard --run-date 2026-11-21 CLEAR.",
+  "revision_rounds": 5,
+  "phases": {
+    "wake": "done: out/2026-11-21/plan.md, run_state.json, WORKLOG.md; social preflight READY",
+    "craft_refresh": "done: 1 search, nothing new vs CAROUSEL_CRAFT, FIELD_NOTES untouched",
+    "research": "done: out/2026-11-21/scouts/A-F.md, scout_merge.md (searches 23,25,24,24,25,18)",
+    "claims": "done: out/2026-11-21/claims.json (61: 34 fact-checker + 27 showrunner S-claims from the GovInfo text and the roll call XML; claims_check PASS, 36 primary)",
+    "docket": "done: ledger/docket.json 13 items re-verified (worklist 6 + 7 deferred, all covered); watch.json bills unchanged (HB259 ENE, SB250 CRA), 1 hearing Dec 4 House ENE titled ENERGY not added (no tracked live bill), 27 candidates triaged none added, failed []; ask self-test 8,215 B headroom; browser suites mobile_docket_map + docket_ask PASS; ADDED hr-2347-senate-energy-bill-alaska-subsection (pending-decision); hr-9340 history notes the Senate vehicle; ask self-test 4,681 B headroom after add (under 5,000, noted); suites re-run PASS; site_signoff PASS 188 pages",
+    "gas_watch": "done: cron_health PASS (40 checks); gaswatch_health FAIL (late_post, CINGSA posted 02:02Z after the 23:50Z collection) then PASS after dispatch 44992356074 + Pages 44992572795; site_signoff PASS 187 pages 18 checks; pagecheck PASS; phone/desk look OK (home, docket, gas-watch)",
+    "selection": "done: out/2026-11-21/selection.md (Senate H.R. 2347, Alaska subsection; runner-up FNSB 18 months)",
+    "directors_room": "done: out/2026-11-21/storyboard.md (data-journalist range spine + essayist carved clause + systems one-basin), dossier_check PASS 9/9",
+    "copy": "done: caption room (2 directors + critic), copy.json, caption_check PASS 829 chars hook 77",
+    "art_build": "done: out/2026-11-21/slides/slide-01..09.html (generators in out/2026-11-21/build), qa.py PASS 0 fails (warns: 5 canvas raster on 02 carved clause, justified; 09 ground edge = far skyline, justified), bespoke_check PASS median 0.040 drawn 75%",
+    "pixel_review": "done: 4 pixel rounds (r1 all revise; r2 all revise; r3 04 and 05 ship, 7 revised); qa exit 0, bespoke 0.040",
+    "flow_review": "done: flow_review.json 7.0 revise; round 5 bounded fixes on 01, 06, 08, 09",
+    "assemble": "done: final/carousel.pdf vector 5.44 MB, contact sheet, thumbs",
+    "scoring": "done: score_report.json 8.17 vs 7.7 SHIP; art 6.5 under floor, exempt at round cap 5",
+    "ship": "done: runs/2026-11-21 (webp frames, og.jpg, pdf 4.40 MB after shrink), site_build 2026-11-21, parsers/scanner/docket_dates/site_fresh PASS, no alerts due, prune 1 run, ledgers + FIELD_NOTES",
+    "upgrade": "done: automation_retro.md; 2 queued, weekly pass not due",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "social": {
+    "preflight": "READY",
+    "users": "alaska_ai found; facebook_page_id 2003130316607965 and linkedin urn:li:organization:117084989 present",
+    "pins": {
+      "facebook": "2003130316607965 (matches)",
+      "linkedin": "urn:li:organization:117084989 (matches)"
+    },
+    "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+    "state_branch": "initialize OK (readback)"
+  },
+  "phase_3_6": {
+    "cron_health": "CRON HEALTH: PASS, 40 checks across every scheduled workflow (out/2026-11-21/cron_health.json)",
+    "gaswatch_live": "GAS WATCH LIVE: PASS, after a FAIL at wake (late_post: CINGSA posted its November 21st 17:02 reading at 02:02Z, after the 23:50Z collection). Dispatched gaswatch.yml on main (run 44992356074, success, 8.14 Bcf, 62.6 percent of design), Pages deployed, re-audit PASS at 2026-11-22T06:13:59Z.",
+    "site_signoff": "SITE SIGN-OFF: PASS, 187 pages, 18 checks"
+  },
+  "social_feedback": "[] (attached repo, reader returned [] ; no valid action this week)"
+}
