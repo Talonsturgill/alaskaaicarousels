@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "the-bird-that-says-no",
+      "date": "2026-11-22",
+      "title": "The Bird That Says No",
+      "caption": "A UAA biologist leads a $6 million NSF project that pairs microbes with an AI meant to flag failing reactors and bad feedstocks early. Extraction can take 200 steps, he says, and his hope is four or five. No results are reported yet.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-22-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-22-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-22-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-22-poster_thumb.jpg"
+    },
+    {
       "id": "2026-11-21-lot-1-your-chats",
       "date": "2026-11-21",
       "title": "Lot 1, Your Chats",
