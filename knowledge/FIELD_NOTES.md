@@ -9718,3 +9718,12 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - BOUGH MASSES WITH SNOW CLUMPS READ AS A SPRUCE; COMB STROKES AND DASHED SNOW READ AS CLIP ART OR A PATTERN. Filled drooping masses, needle ticks on the lower edge and cap clumps on the top finally cleared it on the fifth pass.
 - A LONG LIT PAPER FIELD ON THE CLOSER TIES THE PEAK. Cropping 10's sheet so more dark desk shows let 09 stand alone; lowering exposure alone moved it 2 L*.
 - FOUR PIXEL ROUNDS ON ALL TEN FRAMES LEFT ONE FLOW ROUND. Round 1 sent every frame back; the round budget is spent fastest when the first build ships flat faces.
+
+## 2026-11-21, No.121 retro (the Senate energy bill names Alaska once)
+- A STATUTE CAN BE ITS OWN TERRAIN. Characters per line of the 689,857-character Senate text, built as ridge chains with 224(d) as a gold vein at its true position, gave the deck one data-honest spine; the stamp ("RANGE = CHARACTERS PER LINE") is what decodes it, so keep the stamp on every frame where terrain is the only art.
+- SHADE THROUGH A CATMULL-ROM SAMPLER. Bilinear and smoothstep sampling printed facets, terraces and column stripes on 07, 08 and 09 for two rounds each; the bicubic sampler cleared them in one.
+- PER-SEGMENT STROKES AT PARTIAL ALPHA BEAD. Tanaka contours drawn segment by segment, or bucketed per segment, showed a tick at every vertex; smoothed lit and lee runs drawn opaque into a layer and composited once fixed 07.
+- PAINT THE NEAREST FACE LAST. 06's front face, drawn before the engraved top surface, let the surface's dips hang over its lip as fangs; moving it after cleared the seam.
+- A GPU RANGE NEEDS ALBEDO BY SLOPE FROM THE FIRST BUILD. Every lit fin on 01 rendered one cream under the warm key, and critics read clay or fabric for four rounds; snow on high flats and rock on steep faces is what makes it a mountain.
+- THE CLOSER AND THE COVER MUST SHARE A MATERIAL. 09 in its own violet and pink read as another deck to the flow critic; giving it 01's rock and snow and leaving dusk to the light brought it back.
+- THE SECOND HALF NEEDS AN ALASKA THREAD. 06 to 08 told section 229 honestly as national policy, and the scorer and flow critic both priced it as an imported beat; plan one Alaska anchor per frame in that stretch, or cut it shorter.

@@ -1,0 +1,169 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold vein, lines 5,987 to 5,994': canvas 123.9 dE, page 124.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the gold vein, section 224(d), at its crest' lands 4.2px from its target",
+        "leader 'the gold vein, section 224(d), at its crest' meets its label 4.0px away",
+        "leader 'the gold vein, section 224(d), at its crest' is drawn 121 px at 79 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The Senate billnames Alaska once.' fits 2/2 lines at 120.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the carved clause, gold in REGULATORY COMMISSION OF ALASKA': canvas 94.6 dE, page 98.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Washington needsthe RCA's yes.' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold gate across the Railbelt line': canvas 112.3 dE, page 114.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the gold ring around the gate on the Railbelt line near Anchorage' lands 0.0px from its target",
+        "leader 'the gold ring around the gate on the Railbelt line near Anchorage' meets its label 0.0px away",
+        "leader 'the gold ring around the gate on the Railbelt line near Anchorage' is drawn 94 px at 76 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Everywhere else, comments.In Alaska, a yes.' fits 2/2 lines at 84.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the passage slab on the lit ground': shadow L* 13.8 vs ground L* 23.6, dL 9.7 at 432w"
+      ],
+      "motifs": [
+        "'the two gold cells in the passage slab': canvas 82.1 dE, page 82.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Support thinned.It still passed.' fits 2/2 lines at 111.5px"
+      ],
+      "asserts": [
+        "'73 yea cells, one per senator' holds: 73 vs 73 marks, counted over 73 declared marks (within 0)",
+        "'73 yea cells, one per senator': 73 mark centres probed at r=4px, cohort median 43.4 dE, all present (weakest 30.4 dE)",
+        "'70 yea cells, one per senator' holds: 70 vs 70 marks, counted over 70 declared marks (within 0)",
+        "'70 yea cells, one per senator': 70 mark centres probed at r=4px, cohort median 43.8 dE, all present (weakest 30.6 dE)",
+        "'65 yea cells, one per senator' holds: 65 vs 65 marks, counted over 65 declared marks (within 0)",
+        "'65 yea cells, one per senator': 65 mark centres probed at r=4px, cohort median 43.3 dE, all present (weakest 30.6 dE)",
+        "'62 yea cells, one per senator' holds: 62 vs 62 marks, counted over 62 declared marks (within 0)",
+        "'62 yea cells, one per senator': 62 mark centres probed at r=4px, cohort median 42.9 dE, all present (weakest 29.8 dE)",
+        "'two gold cells, Murkowski and Sullivan' holds: 2 vs 2 marks, counted over 2 declared marks (within 0)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold ember of section 224(d), far chain': canvas 56.8 dE, page 57.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the snow-lit section 229 ridge' lands 4.5px from its target",
+        "leader 'the snow-lit section 229 ridge' meets its label 0.0px away",
+        "leader 'the snow-lit section 229 ridge' is drawn 60 px at 60 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '\"No subsidyof data centers.\"' fits 2/2 lines at 127.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the cutaway block on the lit ground': shadow L* 10.2 vs ground L* 33.0, dL 22.8 at 432w"
+      ],
+      "motifs": [
+        "'the carved channel into the single basin': canvas 84.7 dE, page 85.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the data center basin at the channel end' lands 0.0px from its target",
+        "leader 'a sealed basin for every other customer' lands 6.0px from its target",
+        "leader 'the data center basin at the channel end' meets its label 0.0px away",
+        "leader 'a sealed basin for every other customer' meets its label 0.0px away",
+        "leader 'the data center basin at the channel end' is drawn 45 px at 67 degrees, inside the pointer band",
+        "leader 'a sealed basin for every other customer' is drawn 72 px at 65 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'A data center's added coststays on its own b' fits 2/2 lines at 94.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the dashed ghost contour, the planed 20 MW line': canvas 33.5 dE, page 35.9 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the dashed ghost contour' lands 3.0px from its target",
+        "leader 'the dashed ghost contour' meets its label 0.0px away",
+        "leader 'the dashed ghost contour' is drawn 31 px at 71 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'As introduced, 20 megawatts.As passed, no li' fits 2/2 lines at 81px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "fits": [
+        "hl 'Three tools,if a State picks them up.' fits 2/2 lines at 99.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "the ground ends inside the picture: mesh 11 (footprint [54, 26]) runs out under 24 of 180 sample rays, the most visible at frame x 0.13, y 0.37 with 0.19 of its surface still through the fog, so the background shows where ground should be (No.116 08's 'lighter trapezoid' and 'curved mesh boundary', the flow critic's cause d at ship). Size the ground past the frustum, or close the fog (THREE.Fog far, or FogExp2 density) before its edge; if the edge is meant to show, set userData.edgeShown = true on the mesh"
+      ],
+      "motifs": [
+        "'the gold seam of section 224(d) on the massif': canvas 138.7 dE, page 140.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'It heads to the House.' fits 1/2 lines at 107.5px",
+        "ask 'Should the RCA, not Washington,decide where ' fits 3/3 lines at 55.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.holdInk",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

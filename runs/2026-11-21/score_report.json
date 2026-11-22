@@ -1,0 +1,98 @@
+{
+  "hard_fails": [],
+  "hard_fail_checks": "all 13 rules pass (dashes, emoji, claim-ids, typos, clipping, contrast, slide count, machine_qa/pdf vector, topic repeat, hero repeat, banned phrases, hashtags/link, placeholders)",
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Six-word headline plus gold sub, one gold focal line, reads at thumb. Range prints as corrugated fins; vein stair-stepped."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7,
+      "weight": 0.14,
+      "notes": "01 to 03 tight; 05 turns to section 229; 06 to 08 coherent but not Alaska; weak junctions 3-4, 4-5, 7-8; predicted bail at 06."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 6.5,
+      "weight": 0.16,
+      "notes": "Strong 02, 03, 04, 07; weak 08 (blurred fur band), 09 (pillow massif), 06 busy; matches the flow critic's 6.5."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "Real encoding (line lengths, true vein position, one cell per senator, clause carved verbatim); 06 and 08 generic terrain stand-ins."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 7,
+      "weight": 0.12,
+      "notes": "RCA, both senators, State and Tribes, Alaska DEM with AEA lines; a third of the deck is national data center policy."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content slide adds a primary-text specific; 05 thin by design."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08,
+      "notes": "New hero, hook, type pairing, continuity device; house dark palette again."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8,
+      "weight": 0.07,
+      "notes": "Body 29 to 37 px, counters, vector PDF 5.44 MB; 03 credit and 09 stamp small."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05,
+      "notes": "Hook 77 chars, plain analytical caption, real closing question; summary line mechanical."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Copy, hashtags, source block, title, aftercare, PDF, thumbs present; Gmail draft not yet built; run_state statuses stale."
+    }
+  ],
+  "calculation": "(8x0.14)+(7x0.14)+(6.5x0.16)+(7.5x0.14)+(7x0.12)+(8x0.10)+(7.5x0.08)+(8x0.07)+(7.5x0.05)+(8x0.10) = 8.165",
+  "weighted_total": 8.17,
+  "threshold": 7.7,
+  "ship": true,
+  "revision_rounds": 5,
+  "craft_cycle_required": false,
+  "craft_cycle_note": "Artwork craft 6.5 is under the 8.5 craft floor; the run is at the five-round cap (revision_rounds 5), so no extra cycle is owed.",
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Replace slide 08's blurred noise band with crisp, slope-weighted hachure strokes, and rebuild slide 09 from slide 01's sharp ridge-chain geometry and rock/snow detail instead of the soft pillow massif, so the two closing frames match the cover's finish.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "Soft, blurred, fur-like noise field; no crisp hachure marks.",
+      "fix": "Drop the hillshade blur, full-opacity hachure with lit/lee width contrast, hard reserved edge."
+    },
+    {
+      "slide": 9,
+      "problem": "Mushy pillow massif, smeared shadow blobs, ground edge shows.",
+      "fix": "Reuse 01's ridge-chain construction from a higher camera with the dusk key; extend ground past the frustum."
+    },
+    {
+      "slide": 6,
+      "problem": "Engraved block busy at mid scale; sealed versus open basins unclear.",
+      "fix": "Thin top-face lines about 40 percent, one bold carved channel, capped sealed basins with casts."
+    },
+    {
+      "slide": 1,
+      "problem": "Uniform corrugated fins; stair-stepped vein.",
+      "fix": "Per-chain crest variation, snow-by-slope break, smoothed vein ribbon."
+    }
+  ],
+  "editor_notes_for_email": "Shipped below the art floor at the five-round cap: total 8.17 against the 7.7 threshold, artwork craft 6.5. Slides 08 (blurred lower band) and 09 (soft pillow terrain, QA ground-edge warn) are the weakest frames. Slide 08's list markers are drawn 30x3 px rules, not dash characters, but at a glance they read like dash bullets; consider squares or numerals next time. Section 224(d) is an approval step, not a veto; replies should not say veto. Section 229 is not claimed to bind Alaska's utilities. 'Names Alaska once' means one subsection (five lines, all in 224(d), per a full-text grep). The routine ran at effort medium although settings carry high."
+}

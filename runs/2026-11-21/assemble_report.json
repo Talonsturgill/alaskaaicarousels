@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-21/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 5443816,
+  "pdf_mb": 5.44,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-21/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-21/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "The Senate bill names Alaska once.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "1a7ab63435f3502ba19c5b94ca1bbd2b3eb20777b8af23dea2385468845a9925",
+        "bytes": 5800892
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "b7c6d6a5cc4aeb75b7738c2614eebf8f6afa2e04f1554df733c9202e6f63f267",
+        "bytes": 6907736
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "e1ddac0b29765b08b833a2dd554d17ad7035d3b830955614475ad90ac78c329f",
+        "bytes": 6561647
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "b29765318f2ab3d4a4ee522e16ccabe2eb4c935858f8dc6b51c34958d07198ae",
+        "bytes": 5283686
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "fd4006a92dd77d6fcbcb4efd3c7b2a360997c0a0850bb680a65caf64ab9bab80",
+        "bytes": 5722826
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "cd16518bba853c237063465cd71b0e8a0646036c7afcc10dc6fd78733088bfb0",
+        "bytes": 5707804
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "f9e247c199de9551644a059c385b99bc6d9f6203eadec7be8a9ecfdc22f30ba9",
+        "bytes": 4906259
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "89173dfe2b449fcb21cfd250227b71f9e2de20c5bde8380a93caf34154e26cc8",
+        "bytes": 6327275
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "a46eee43dc816404072d7609f1ff73aaa2f37455c7f6964628ca1f5a9109caa7",
+        "bytes": 5673830
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "1dfa52b70ee60c4e4977552dea0109955ca9105185b024b8236569d539bf9865",
+        "bytes": 62742
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "c4dba942985a0336fe7f0eb6626133d10bb54525f55f5bf6d007df751ba57547",
+        "bytes": 10073
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "1abe685160346306bcb035a7a006fa445683d8adad0cfa7a6c721fb51882b64a",
+        "bytes": 11914
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "a8133bbae426f894ece4751d358234bb3a542df2baca90becbb22a2372925db4",
+        "bytes": 8887
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "454cac821ab064edcb50af3be09e151b9e8461316ce74341fa03620688705dec",
+        "bytes": 52227
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "c9661282fc44d15926a61be58a4578d28e16bbe3788cb5bbf8988589a45f81d6",
+        "bytes": 32430
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "434f9973627940b6a47c48bd08bbc2beb28c1a96e4c9dc5437a54825f8e7a60a",
+        "bytes": 25890
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "ac03d624746bb91849b37c04b5ba21c3e147f1d51d30f5cce34b4184110eb0c4",
+        "bytes": 23567
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1dd90e02615d7989fbbd6df8f127b1e0e2697a3140c0f89ae7b9e66e83bcd33f",
+        "bytes": 25143
+      }
+    ]
+  }
+}

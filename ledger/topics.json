@@ -4992,6 +4992,50 @@
     "state-policy",
     "data-centers"
    ]
+  },
+  {
+   "run_date": "2026-11-21",
+   "carousel_no": 121,
+   "update_of": null,
+   "topic": "Senate passage of H.R. 2347 as amended (the Capito substitute, Bipartisan American Affordability and Jobs Act), 62 to 33 on November 19th (roll call 270), Murkowski and Sullivan yea; 47 Republicans, 14 Democrats and 1 independent yea. The bill names Alaska once: new Federal Power Act section 224(d), where the Energy Secretary may identify an Alaska congestion area only 'subject to the approval of the Regulatory Commission of Alaska'; elsewhere (224(b)(3)) only comments from affected States and Tribes. New FPA 229 'No subsidy of data centers': incremental cost may not be charged to other customers, recovery continues on early exit, financial assurance first; no megawatt floor as passed against 20 MW in S. 5653 as introduced (September 30th); a State may bill data centers as their own retail class on less favorable terms and require new generation; 229(e) expands no one's jurisdiction. Four roll calls 73-25, 70-27, 65-31, 62-33. Heads to the House (NPR, November 20th).",
+   "angle": "THE TEXT AS A RANGE: the bill's own line lengths built into a mountain range, section 224(d) a gold vein at its true position, revisited with a different instrument per frame (GPU terrain, carved rock, state hachure, cabinet strata, night silhouettes, engraved cutaway, Tanaka contours, plan hachure, dusk massif).",
+   "entities": [
+    "H.R. 2347",
+    "Bipartisan American Affordability and Jobs Act",
+    "Shelley Moore Capito",
+    "Lisa Murkowski",
+    "Dan Sullivan",
+    "Regulatory Commission of Alaska",
+    "Department of Energy",
+    "Federal Power Act",
+    "S. 5653",
+    "U.S. Senate",
+    "U.S. House",
+    "NPR",
+    "Alaska Energy Authority"
+   ],
+   "keywords": [
+    "Alaska congestion area",
+    "RCA approval step",
+    "FPA section 224(d)",
+    "FPA section 229",
+    "no subsidy of data centers",
+    "data center retail class",
+    "megawatt threshold removed",
+    "Senate roll call 270",
+    "cloture votes",
+    "national interest electric transmission"
+   ],
+   "headline": "The Senate bill names Alaska once.",
+   "sources_lead": [
+    "https://www.govinfo.gov/content/pkg/BILLS-119hr2347eas/html/BILLS-119hr2347eas.htm",
+    "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00270.xml"
+   ],
+   "beats": [
+    "power-and-the-grid",
+    "data-centers",
+    "defense-and-federal"
+   ]
   }
  ]
 }

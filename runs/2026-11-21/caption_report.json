@@ -1,0 +1,19 @@
+{
+  "chars": 829,
+  "hook": "One subsection. That is the only place the Senate's energy bill names Alaska.",
+  "hook_len": 77,
+  "commas": 3,
+  "comma_per_100": 0.38,
+  "comma_budget": 1.05,
+  "hashtags": [
+    "#AlaskaEnergy",
+    "#FederalPowerAct",
+    "#DataCenterPolicy"
+  ],
+  "deck_summary": "The clause in its own words opens the carousel, four Senate roll calls follow, and the data center cost rule closes it.",
+  "brand_phrases_loaded": 74,
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS",
+  "copy_fields_checked": 54
+}

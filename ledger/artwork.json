@@ -4444,6 +4444,37 @@
     "weighted_total": 8.075,
     "artwork": 6.5
    }
+  },
+  {
+   "run_date": "2026-11-21",
+   "carousel_no": 121,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE TEXT AS A RANGE, the Senate text's characters per line built into terrain and revisited with a different instrument per frame: akthree ridge chains with a gold vein at section 224(d)'s true position (01), the clause carved as a V-cut in slate with gold pooled in REGULATORY COMMISSION OF ALASKA (02), Alaska DEM hillshade and hachure with cased AEA lines and one gold gate (03), four cabinet-oblique vote slabs one cell per senator (04), night ridge silhouettes with section 229 snow-lit (05), an engraved cutaway block with one channel to one basin (06), Tanaka contours with a dashed 20 MW ghost on snow (07), plan hachure under a list (08), a dusk massif of the whole text with the seam and Polaris (09)",
+   "atmosphere": "NEW: ONE ALASKA NOVEMBER DAY OVER A RANGE (blue hour 01 to 03, plain light 04, night 05, working light 06, noon snow 07, overcast 08, dusk 09)",
+   "depth_technique": "akthree PBR terrain on 01 and 09, per-pixel V-cut relief on 02, DEM hillshade plus hachure on 03 and 08, cabinet oblique on 04, layered silhouettes on 05, engraved cutaway on 06, Tanaka contours on 07",
+   "line_voice": "rim-lit crests, engraved scan lines and slope hachure",
+   "continuity_device": "one terrain built from the bill's line lengths, revisited frame to frame, with the gold vein of 224(d)",
+   "continuity_devices": [
+    "one text-terrain across the deck",
+    "gold vein of 224(d)",
+    "one-day palette arc",
+    "counters"
+   ],
+   "hook_archetype": "NEW: THE NEEDLE IN THE MASS",
+   "palette_family": "NEW: ALASKA RANGE SLATE AND ALPENGLOW (night #05090F, slate #1B2A44 to #61748E, snow #E9EEF5, alpenglow #D98C6E on 09, forget-me-not #6EA5FF, nay #4A72B0, gold #FFC72C only for Alaska in this bill)",
+   "type_pairing": "Fraunces 560 display + Archivo 88% body + JetBrains Mono 500 caps",
+   "narrative_structure": "needle hook, the clause carved, the contrast on the map, four roll calls, breather on the 229 heading, the cost rule, the planed threshold, what a State may do, one ask",
+   "variance_dials": {
+    "design_variance": 2,
+    "visual_density": 5,
+    "type_temperature": 3
+   },
+   "techniques": [],
+   "new_techniques_logged": [],
+   "scores": {
+    "weighted_total": 8.17,
+    "artwork": 6.5
+   }
   }
  ]
 }

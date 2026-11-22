@@ -1,0 +1,63 @@
+{
+  "round": 5,
+  "verdict": "revise",
+  "score_0_10": 7.0,
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+    {
+      "slide": 8,
+      "score": 5.5,
+      "cause": "d"
+    },
+    {
+      "slide": 9,
+      "score": 6.0,
+      "cause": "b"
+    },
+    {
+      "slide": 6,
+      "score": 6.5,
+      "cause": "d"
+    },
+    {
+      "slide": 5,
+      "score": 6.5,
+      "cause": "c"
+    },
+    {
+      "slide": 1,
+      "score": 7.0,
+      "cause": "d"
+    }
+  ],
+  "masterful_depth_frame": 1,
+  "predicted_bail_point": {
+    "slide": 6
+  },
+  "junction_pulls_weak": [
+    "3->4",
+    "4->5",
+    "7->8"
+  ],
+  "fixes_applied_in_round_5": [
+    "09 rock and snow vertex colour by slope shared with 01, lee lifted, alpenglow kept to rims and sky",
+    "06 body cut to two sentences",
+    "08 hachure strokes suppressed on flats (slopeGamma)",
+    "01 snow threshold widened"
+  ],
+  "declined": [
+    {
+      "item": "05 sub 'It applies in Alaska too'",
+      "why": "229(e) neither expands nor diminishes State jurisdiction (S20); the selection's honesty line forbids saying it binds Alaska's utilities"
+    },
+    {
+      "item": "09 vein drawn foreground to horizon",
+      "why": "on 09 the vein is lines 5,987 to 5,994 on one 140-line row; running it across the massif would misplace the data"
+    },
+    {
+      "item": "terrain stamp on 05 and 07",
+      "why": "polish in a capped round"
+    }
+  ],
+  "cross_frame": "cause a not found; warmth miss on 09 folded into the 09 change"
+}
