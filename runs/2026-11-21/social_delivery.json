@@ -1,0 +1,195 @@
+{
+ "edition_id": "2026-11-21",
+ "checked_utc": "2026-11-22T09:11Z",
+ "destinations": {
+  "linkedin/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "eb3ad42a69174649aa5eaab66eecf9c4",
+   "post_id": "urn:li:ugcPost:7530193841061302273",
+   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7530193841061302273/",
+   "first_comment": {
+    "state": "PUBLISHED",
+    "comment_urn": "urn:li:comment:(urn:li:ugcPost:7530193841061302273,7530193930538135552)",
+    "author": "urn:li:organization:117084989",
+    "text": "Every source behind this carousel, and the public record of every AI decision in Alaska: https://alaskaaihq.com/"
+   }
+  },
+  "instagram/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "62c17d4b3bc44778817c7daa6dc883ee",
+   "post_id": "18030227330921365",
+   "url": "https://www.instagram.com/p/DgCcJAuDFHH/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "d3571c8851604ae8bbab37467fea4173",
+   "post_id": "2003130316607965_1167022002958263",
+   "url": "https://www.facebook.com/2003130316607965_1167022002958263",
+   "provider_status": "completed",
+   "error": null
+  },
+  "tiktok/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "91658feab8d14e13bdc4c195f086f314",
+   "post_id": "7710918520686628110",
+   "url": "https://www.tiktok.com/@alaskaai_/video/7710918520686628110",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "b2eb6039c27c4943aa8d420132b55218",
+   "post_id": "17923408521239925",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "78acf89245824223a52d7cde9865c5dc",
+   "post_id": "18125786098953830",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "ef8c11a15515417db69f4412064e47b5",
+   "post_id": null,
+   "url": null,
+   "provider_status": "completed",
+   "error": "Media not found or permission error. Ensure permissions are valid or recreate the container. If this issue persists, please contact support at info@upload-post.com. Learn more: https://docs.upload-post.com/resources/common-errors."
+  },
+  "instagram/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "d7161f038eae4f32ab70e6eec47de21a",
+   "post_id": "18032942165862964",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "8945e7367dda4d6385013d9213147b67",
+   "post_id": "18443307943179463",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "ef56026937f045c580d3ec0463ed27a4",
+   "post_id": "18138935476786454",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "efbe520c694c4f6b934c00098064f5df",
+   "post_id": "18100610045470896",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "bcf6bd70c3214158b7d9f47bd9d10db5",
+   "post_id": "18454178716121424",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "instagram/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "d599fe33cc004f3489f06f31cce27e4f",
+   "post_id": "17999191620106823",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "c3b6705c9f1a4fcc8e485850c76654b8",
+   "post_id": "2547359015753747",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "df849d40c0c3493db90a283a59f1e892",
+   "post_id": "1479238477511322",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "544f339907b5457482380ea5f726f93e",
+   "post_id": "1488741249800449",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "1f38955091b340c4a4405f20ecabdcfc",
+   "post_id": "2211192409515676",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "0ee11529c139448385f3d80f30df8100",
+   "post_id": "1762216384844733",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "44f44d6bd1144963b7219f0e8136b4d3",
+   "post_id": "1066002629794610",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "aeaffd93f90d4dc29d051c8886306f4c",
+   "post_id": "4510806102581709",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "c86fc8879f8d4721a588b4137949ea43",
+   "post_id": "1523260909689575",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "facebook/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "eb182956a0c44ee78f9475cf94bf1c7a",
+   "post_id": "4562350987339144",
+   "url": null,
+   "provider_status": "completed",
+   "error": null
+  },
+  "youtube/feed/0": {
+   "state": "NOT_APPLICABLE",
+   "reason": "YouTube does not accept an image carousel through this flow; no slideshow video was invented"
+  }
+ },
+ "notes": [
+  "Feed photos are JPEG conversions of the released WebP at 2160x2700, same pixels.",
+  "Story frames are the released slides letterboxed into 1080x1920 with each slide's own edge colour, never cropped or stretched.",
+  "Gmail draft could not be created (connector requires sign-in), so no draft receipt update was possible; this file is the delivery record."
+ ]
+}

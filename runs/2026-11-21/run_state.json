@@ -19,10 +19,11 @@
     "flow_review": "done: flow_review.json 7.0 revise; round 5 bounded fixes on 01, 06, 08, 09",
     "assemble": "done: final/carousel.pdf vector 5.44 MB, contact sheet, thumbs",
     "scoring": "done: score_report.json 8.17 vs 7.7 SHIP; art 6.5 under floor, exempt at round cap 5",
-    "ship": "done: runs/2026-11-21 (webp frames, og.jpg, pdf 4.40 MB after shrink), site_build 2026-11-21, parsers/scanner/docket_dates/site_fresh PASS, no alerts due, prune 1 run, ledgers + FIELD_NOTES",
+    "ship": "done: runs/2026-11-21 (webp frames, og.jpg, pdf 4.40 MB after shrink), site_build 2026-11-21, parsers/scanner/docket_dates/site_fresh PASS, no alerts due, prune 1 run, ledgers + FIELD_NOTES; PR #509 merged 8e640fd35 (CI green, Codex clean on a3a18c673); raw URLs verified",
     "upgrade": "done: automation_retro.md; 2 queued, weekly pass not due",
-    "gmail": "pending",
-    "retro": "pending"
+    "gmail": "BLOCKED: Gmail connector requires sign-in (create_draft refused twice); payload committed at runs/2026-11-21/gmail_payload.json",
+    "retro": "done: automation_retro.md, FIELD_NOTES, instincts, 2 queue items; run fixes ask_corpus size report and mobile job date",
+    "social": "done: LinkedIn document + verified website comment, Instagram/Facebook/TikTok feeds, 9 Instagram and 9 Facebook stories PUBLISHED; YouTube NOT_APPLICABLE (runs/2026-11-21/social_delivery.json)"
   },
   "social": {
     "preflight": "READY",
@@ -39,5 +40,6 @@
     "gaswatch_live": "GAS WATCH LIVE: PASS, after a FAIL at wake (late_post: CINGSA posted its November 21st 17:02 reading at 02:02Z, after the 23:50Z collection). Dispatched gaswatch.yml on main (run 44992356074, success, 8.14 Bcf, 62.6 percent of design), Pages deployed, re-audit PASS at 2026-11-22T06:13:59Z.",
     "site_signoff": "SITE SIGN-OFF: PASS, 187 pages, 18 checks"
   },
-  "social_feedback": "[] (attached repo, reader returned [] ; no valid action this week)"
+  "social_feedback": "[] (attached repo, reader returned [] ; no valid action this week)",
+  "status": "complete"
 }
