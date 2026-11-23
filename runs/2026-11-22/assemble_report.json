@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-22/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 8880272,
+  "pdf_mb": 8.88,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-22/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-22/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Alaska's AI budget order changes hands December 7th.",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "a770c5a81227ba9a9b06b7d7a867cfe7a7ca83e0b92d9d9bd0568ec49299d585",
+        "bytes": 6739712
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "6209fdbc3336fb9b89d39061b3b9a3b7338a9a073b0c6b64e0a91bd4fa337bb3",
+        "bytes": 4312571
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "4efe7288a5c281c429de76a8dcceda29925436ef0c90bd1211f30bfc07158578",
+        "bytes": 3204065
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "a5c519f06ae3aa5c45dee68ed2b59e6a9f3417fe1c099591d27e07069dbd1ba7",
+        "bytes": 2452834
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "2ba1e262ff7c85c65d996243c64890dd765912c26e78cb0ba5f8203a00e6c367",
+        "bytes": 2016998
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "b01c29b5db8e4c019181e8f924449f2efbc0f1503d3e2f78ae9f8cc6831987c4",
+        "bytes": 1517955
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "a6783d0d655f60db577214f4f519cfd24e2602eff25c6c4e21c97429965cdbcf",
+        "bytes": 3217773
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "a903547eb6254a3790798574e03c0adf48baae0a4fea1a546eb06c72334ed1c0",
+        "bytes": 7232571
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "ff67e6eb59d9546199b543f03acd8ce6ccaf0e3f1a100510d3aec393f59696e3",
+        "bytes": 7075632
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "c3a37c4b0cd9d1a756ad0787b0896834487fd9e2f0f070089f1003a276256948",
+        "bytes": 8042
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "741144a8e7ab10ee0aad0c16f7bf6a612cb92bb2b436c213049ebef16d8de2eb",
+        "bytes": 11677
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "f1796d49e1c053f54562f859cc0c0ac9010a407fdc0d5f49628d8b55da9b97c1",
+        "bytes": 9917
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "e493da9b861ad09edfe83c6a186e2ce73e1d0986b5e7265e893a64e6eaf0ee4f",
+        "bytes": 10768
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "ceeaff1bc99f3dfb5a64fd8ef01664feb4d8d5ecacf9e12d8ffe4eaca94289d0",
+        "bytes": 7573
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "84ec6d4d9bc94630df26efe52c76d86a6f3c3ce216003f4bb7c87d098b9e728d",
+        "bytes": 8003
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "175b57e74f15333483970af9497fc36803680d38d6e003a7883b592dfdccae1a",
+        "bytes": 11675
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "9f72fd21ddee20acc0c1cd6f3f9d1163103c70a3e87730518a1bdecd8c79658d",
+        "bytes": 10579
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "1ed88981ed35eb27776476f7578fba3cbbbfcbb5adf26bba1977fd4ad782d24c",
+        "bytes": 5482
+      }
+    ]
+  }
+}

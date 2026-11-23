@@ -1,0 +1,211 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the nearest cradle foot on the lit glass': shadow L* 15.7 vs ground L* 22.8, dL 7.1 at 432w -- under the 8.0 L* comfort band; it reads, barely -- and the declaration is aimed off the cast: the nearest band of dark rows over this object's own x span is y 998-1045 (L* 7.6, dL 15.2 against the same ground) while the declaration points at y 975-985, which is 12 px clear of it. Move the band onto the cast, or move the cast under the object; darkening the shadow is the wrong fix here and it ends in a black bar"
+      ],
+      "motifs": [
+        "'the gold December 7th ring': canvas 79.3 dE, page 81.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the signing band, August 4th 2025' lands 0.0px from its target",
+        "leader 'the gold ring at December 7th' lands 0.0px from its target",
+        "leader 'the signing band, August 4th 2025' meets its label 4.0px away",
+        "leader 'the gold ring at December 7th' meets its label 4.0px away",
+        "leader 'the signing band, August 4th 2025' is drawn 93 px at 64 degrees, inside the pointer band",
+        "leader 'the gold ring at December 7th' is drawn 83 px at 75 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Alaska's AI budget orderchanges hands Decemb' fits 2/2 lines at 92px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "contact shadow: 'the core belly on the lit glass': shadow L* 28.4 vs ground L* 34.9, dL 6.5 at 432w -- under the 8.0 L* comfort band; it reads, barely"
+      ],
+      "motifs": [
+        "'the signing band in the core': canvas 84.5 dE, page 89.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the caliper jaws on the band': canvas 76.2 dE, page 79.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the signing band, August 4th 2025' lands 0.0px from its target",
+        "leader 'the signing band, August 4th 2025' meets its label 10.4px away",
+        "leader 'the signing band, August 4th 2025' is drawn 61 px at 49 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Every agency is toldto follow the money with' fits 2/2 lines at 100px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the first section on the lit glass': shadow L* 46.5 vs ground L* 81.3, dL 34.8 at 432w"
+      ],
+      "motifs": [
+        "'section 1 of the core': canvas 72.8 dE, page 72.5 dE, 100% of its rect is clear of opaque DOM",
+        "'section 2 of the core': canvas 72.2 dE, page 72.7 dE, 100% of its rect is clear of opaque DOM",
+        "'section 3 of the core': canvas 66.6 dE, page 66.8 dE, 100% of its rect is clear of opaque DOM",
+        "'section 4 of the core': canvas 67.2 dE, page 66.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the departments section rim' lands 0.0px from its target",
+        "leader 'the boards section rim' lands 0.0px from its target",
+        "leader 'the commissions section rim' lands 0.0px from its target",
+        "leader 'the public corporations section rim' lands 0.0px from its target",
+        "leader 'the departments section rim' meets its label 12.4px away",
+        "leader 'the boards section rim' meets its label 12.4px away",
+        "leader 'the commissions section rim' meets its label 12.4px away",
+        "leader 'the public corporations section rim' meets its label 12.1px away",
+        "leader 'the departments section rim' is drawn 46 px at 0 degrees, inside the pointer band",
+        "leader 'the boards section rim' is drawn 46 px at 0 degrees, inside the pointer band",
+        "leader 'the commissions section rim' is drawn 46 px at 0 degrees, inside the pointer band",
+        "leader 'the public corporations section rim' is drawn 43 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'One office runs it.It reaches every agency.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the log column foot on the lit strip': shadow L* 26.5 vs ground L* 39.9, dL 13.4 at 432w"
+      ],
+      "motifs": [
+        "'the core log column': canvas 55.6 dE, page 56.8 dE, 100% of its rect is clear of opaque DOM",
+        "'the two ice blue AI strata': canvas 25.8 dE, page 26.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'duty stratum 1' lands 0.0px from its target",
+        "leader 'duty stratum 2' lands 0.0px from its target",
+        "leader 'duty stratum 3' lands 0.0px from its target",
+        "leader 'duty stratum 4' lands 0.0px from its target",
+        "leader 'duty stratum 5' lands 0.0px from its target",
+        "leader 'duty stratum 6' lands 0.0px from its target",
+        "leader 'duty stratum 7' lands 0.0px from its target",
+        "leader 'the six laminae' lands 0.0px from its target",
+        "leader 'the two tephra bands' lands 0.0px from its target",
+        "leader 'duty stratum 1' meets its label 8.0px away",
+        "leader 'duty stratum 2' meets its label 8.0px away",
+        "leader 'duty stratum 3' meets its label 8.0px away",
+        "leader 'duty stratum 4' meets its label 8.0px away",
+        "leader 'duty stratum 5' meets its label 8.0px away",
+        "leader 'duty stratum 6' meets its label 8.0px away",
+        "leader 'duty stratum 7' meets its label 8.0px away",
+        "leader 'the six laminae' meets its label 8.0px away",
+        "leader 'the two tephra bands' meets its label 8.0px away",
+        "leader 'duty stratum 1' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 2' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 3' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 4' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 5' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 6' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'duty stratum 7' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'the six laminae' is drawn 44 px at 0 degrees, inside the pointer band",
+        "leader 'the two tephra bands' is drawn 44 px at 0 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Seven duties.Two of them are AI.' fits 2/2 lines at 107.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the ash band crown and frost rim': canvas 59.3 dE, page 47.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'It said reserveswould cover seven months.' fits 2/2 lines at 101px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'a cradle foot on the lit pool': shadow L* 26.3 vs ground L* 48.3, dL 22.0 at 432w"
+      ],
+      "motifs": [
+        "'the core at rest in its cradle': canvas 61.6 dE, page 94.0 dE, 100% of its rect is clear of opaque DOM",
+        "'the two ice blue AI strata': canvas 28.4 dE, page 39.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'It took effectimmediately. It runsuntil revo' fits 3/3 lines at 131.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the November 18th band': canvas 83.4 dE, page 88.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the November 18th band' lands 0.0px from its target",
+        "leader 'the November 18th band' meets its label 4.1px away",
+        "leader 'the November 18th band' is drawn 133 px at 60 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'The office it namesgets a new head.' fits 2/2 lines at 111.5px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.07) beneath 'KEPT' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'REWRITTEN' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.08) beneath 'REVOKED' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold December 7th ring': canvas 82.1 dE, page 82.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'outline layer KEPT' lands 0.0px from its target",
+        "leader 'outline layer REWRITTEN' lands 0.0px from its target",
+        "leader 'outline layer REVOKED' lands 0.0px from its target",
+        "leader 'the gold ring at December 7th' lands 0.0px from its target",
+        "leader 'outline layer KEPT' meets its label 10.0px away",
+        "leader 'outline layer REWRITTEN' meets its label 10.0px away",
+        "leader 'outline layer REVOKED' meets its label 10.0px away",
+        "leader 'the gold ring at December 7th' meets its label 4.0px away",
+        "leader 'outline layer KEPT' is drawn 220 px at 36 degrees, inside the pointer band",
+        "leader 'outline layer REWRITTEN' is drawn 185 px at 28 degrees, inside the pointer band",
+        "leader 'outline layer REVOKED' is drawn 154 px at 18 degrees, inside the pointer band",
+        "leader 'the gold ring at December 7th' is drawn 314 px at 48 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'On December 7th,the order passes on.' fits 2/2 lines at 115.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold December 7th ring': canvas 79.0 dE, page 78.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the released caliper on the glass': canvas 37.8 dE, page 38.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Should every agencykeep reading the budget w' fits 2/2 lines at 85px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 5,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

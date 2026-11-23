@@ -1,0 +1,104 @@
+{
+ "run_date": "2026-11-22",
+ "scored_round": 4,
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "weight": 0.14,
+   "score": 7.5
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "weight": 0.14,
+   "score": 7.5
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "weight": 0.16,
+   "score": 6.8
+  },
+  {
+   "name": "Story-art fusion",
+   "weight": 0.14,
+   "score": 7.0
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "Insight density & factual weight",
+   "weight": 0.1,
+   "score": 8.0
+  },
+  {
+   "name": "Variety vs ledger",
+   "weight": 0.08,
+   "score": 8.0
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "weight": 0.07,
+   "score": 7.5
+  },
+  {
+   "name": "Copy: voice & hook",
+   "weight": 0.05,
+   "score": 8.0
+  },
+  {
+   "name": "Deliverable completeness",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_total": 8.123,
+ "hard_fails": [],
+ "threshold": 7.7,
+ "threshold_note": "rubric iteration_ladder: revision_rounds 4+ ships best version at 7.7; the deck also clears 8.0",
+ "passes": true,
+ "ship": true,
+ "revision_rounds": 4,
+ "craft_cycle": {
+  "frames": [
+   8,
+   9,
+   6,
+   5,
+   2,
+   1
+  ],
+  "art_before": 6.5,
+  "art_after": 6.8
+ },
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Replace the box-primitive caliper and flat grey clear-ice section in the shared akcore asset with a bevelled, engraved caliper and a bubbled translucent clear end, and repaint the 01/09 cradle pale so the core stops reading as a pipe on a rail.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "clear ice past the ring reads as flat grey PVC; caliper reads as box primitives; cradle reads as pipeline"
+  },
+  {
+   "slide": 8,
+   "problem": "caliper a blocky T; heavy dark feet bleed off the bottom"
+  },
+  {
+   "slide": 6,
+   "problem": "core a flat banded strip under a large dead wall"
+  },
+  {
+   "slide": 5,
+   "problem": "ash band reads as a planet horizon; hard lower cut"
+  },
+  {
+   "slide": 2,
+   "problem": "signing band tapers like a trunk; flat caliper jaws"
+  },
+  {
+   "slide": 1,
+   "problem": "cradle reads as a dark channel on posts"
+  }
+ ],
+ "editor_notes_for_email": "Scored 8.123 in round 4, the craft cycle (threshold 7.7 at 4+ rounds; also clears 8.0). No hard fails. Artwork craft rose from 6.5 to 6.8 after the craft cycle, still under the 8.5 craft floor: the cycle fixed 08's near end and 06's caliper, while 09, 05, 02 and 01 are essentially unchanged. Linking Alexei Painter to AO 359 is the deck's own inference (S36 plus C20); ADN never mentions AI or the order. Whether OMB ever published the yearly grants list or any review output is UNVERIFIED (omb.alaska.gov returned 503). The session ran at effort medium, not the high the settings file carries."
+}

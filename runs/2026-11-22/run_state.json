@@ -1,0 +1,44 @@
+{
+ "run_date": "2026-11-22",
+ "carousel_no": 122,
+ "effort": "medium",
+ "date_note": "Woke 2026-11-23 06:05Z = 2026-11-22 21:05 AKST; run_guard --run-date 2026-11-22 CLEAR.",
+ "revision_rounds": 4,
+ "phases": {
+  "wake": "done: out/2026-11-22/plan.md, run_state.json; social preflight READY",
+  "craft_refresh": "done: 1 search, nothing new vs CAROUSEL_CRAFT (Socialinsider 7.00% already recorded), FIELD_NOTES untouched",
+  "research": "done: out/2026-11-22/scouts/A-F.md, scout_merge.md (searches 24,25,25,25,25,25; every beat thin, no fresh field deployment)",
+  "claims": "done: out/2026-11-22/claims.json (45: 35 fact-checker + 10 showrunner S-claims from the AO 359 page and ADN; claims_check PASS, 22 primary)",
+  "docket": "done: ledger/docket.json 13 items re-verified (worklist 6 + 7 deferred, budget raised to cover all), none changed; aea-ciplink page 503 recorded; watch.json bills unchanged (HB259 ENE, SB250 CRA), Dec 4 House ENE hearing titled ENERGY not added (no tracked live bill), 27 candidates triaged none added, failed []; ask self-test 5,704 B headroom; mobile_docket_map + docket_ask PASS",
+  "gas_watch": "done: cron_health PASS (39 checks); gaswatch_health WARN (late_post, CINGSA reposted 2026-11-22 at 04:47Z) -> dispatched gaswatch.yml run 45122407452 success, Pages 45122683877 -> re-audit PASS; site_signoff PASS 189 pages 18 checks; pagecheck PASS; phone/desk look OK (home, docket, gas-watch), no horizontal scroll",
+  "selection": "done: out/2026-11-22/selection.md (AO 359; runner-up FNSB 18 months)",
+  "directors_room": "done: out/2026-11-22/storyboard.md (historian ice core spine + cinematographer one-key + cartographer equal strata), dossier_check PASS 9/9",
+  "copy": "done: caption room (2 directors + critic, A won with one summary-line fix), copy.json, caption_check PASS 879 chars hook 123 (with --copy)",
+  "art_build": "done: out/2026-11-22/slides/slide-01..09.html + assets/js/akcore.js (shared GPU core), qa.py exit 0 WARN (08: label busy-art, long leader, top-loaded; 09: one), bespoke_check PASS median 0.118 drawn 68%, dossier_check PASS",
+  "pixel_review": "done: pixel rounds 1 and 2 (round 1 all revise; round 2 05 and 06 ship, others 6.0 to 7.3), out/2026-11-22/critic/round1_summary.md; qa exit 0",
+  "flow_review": "done: out/2026-11-22/flow_review.json 7.3 revise; round 3 fixes (half-pipe cradle, clear-ice emission, modelled caliper on 08/09, 05 core macro, 02 constant band, 07 warming)",
+  "assemble": "done: out/2026-11-22/final (vector PDF 8.88 MB, 9 thumbs, contact sheet)",
+  "scoring": "done: round 3 8.075 (art 6.5) -> craft cycle round 4 8.123 vs 7.7 (art 6.8), craft_cycle recorded",
+  "ship": "done: runs/2026-11-22, site rebuilt, ledgers appended, PR opened",
+  "upgrade": "done: no upgrades (weekly pass not due), queue items committed",
+  "gmail": "pending",
+  "retro": "done: automation_retro.md, FIELD_NOTES, TECHNIQUE_LIBRARY, 3 instincts",
+  "social": "pending"
+ },
+ "social": {
+  "preflight": "READY",
+  "users": "alaska_ai found; facebook_page_id 2003130316607965 and linkedin urn:li:organization:117084989 present",
+  "pins": {
+   "facebook": "2003130316607965 (matches)",
+   "linkedin": "urn:li:organization:117084989 (matches)"
+  },
+  "tiktok_settings": "PUBLIC_TO_EVERYONE available",
+  "state_branch": "initialize OK (readback)"
+ },
+ "status": "in_progress",
+ "phase_3_6": {
+  "cron_health": "CRON HEALTH: PASS, 39 checks across every scheduled workflow (out/2026-11-22/cron_health.json)",
+  "gaswatch_live": "GAS WATCH LIVE: PASS, after a WARN at wake (late_post: CINGSA posted a second November 22nd reading at 04:47Z, after the 00:20Z collection). Dispatched gaswatch.yml on main (run 45122407452, success, 8.14 Bcf, 62.6 percent of design), Pages deployed, re-audit PASS.",
+  "site_signoff": "SITE SIGN-OFF: PASS, 189 pages, 18 checks"
+ }
+}

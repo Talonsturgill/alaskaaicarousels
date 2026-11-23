@@ -2940,6 +2940,30 @@
    "evidence": "No.121 slide 06: 'fangs' over the strata for two rounds until the front face moved after the top surface",
    "confidence": 0.5,
    "last_confirmed": "2026-11-21"
+  },
+  {
+   "id": "label-is-text-not-selector",
+   "learned": "2026-11-22",
+   "instinct": "A __akLeaders label is the label's visible text, never a CSS selector. qa.py matches the string against the rendered text.",
+   "evidence": "No.122: qa FAILed 'leader carries no label' on 7 slides in the first render",
+   "confidence": 0.6,
+   "last_confirmed": "2026-11-22"
+  },
+  {
+   "id": "gradient-at-transformed-origin",
+   "learned": "2026-11-22",
+   "instinct": "UNDER cx.scale(), BUILD A RADIAL GRADIENT IN THE SAME COORDINATES YOU PAINT IN. A centre given in device pixels lands off frame and the lit pool silently vanishes.",
+   "evidence": "No.122 slides 03 and 04: the floor pools were invisible for a whole pixel round",
+   "confidence": 0.5,
+   "last_confirmed": "2026-11-22"
+  },
+  {
+   "id": "translucent-object-needs-solid-ends",
+   "learned": "2026-11-22",
+   "instinct": "A TRANSMISSIVE CYLINDER READS AS PIPE UNTIL ITS END FACE IS OPAQUE AND TEXTURED AND ITS SUPPORT IS PALE. Fix the shared module once, not each frame.",
+   "evidence": "No.122: critics named PVC pipe on all three GPU frames until akcore's caps and cradle changed",
+   "confidence": 0.5,
+   "last_confirmed": "2026-11-22"
   }
  ]
 }

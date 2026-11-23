@@ -1,0 +1,52 @@
+{
+  "run_dir": "out/2026-11-22",
+  "render_report": "out/2026-11-22/render/render_report.json",
+  "aggregates_file": "out/2026-11-22/aggregates.json",
+  "detected": 4,
+  "declared": 4,
+  "detections": [
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "Seven duties",
+      "at": 0,
+      "text": "Seven duties. Two of them are AI.",
+      "n": 7,
+      "subject": "duties"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "SIX REVIEW OBJECTIVES",
+      "at": 0,
+      "text": "SIX REVIEW OBJECTIVES \u00b7 OMB",
+      "n": 6,
+      "subject": "review objectives"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "seven months",
+      "at": 29,
+      "text": "It said reserves would cover seven months.",
+      "n": 7,
+      "unit": "months"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "seven months",
+      "at": 45,
+      "text": "The order said state savings could fund only seven months of government operations, and that no process existed to review zero base budget spending. Dunleavy said it would \"eliminate waste.\"",
+      "n": 7,
+      "unit": "months"
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "S4 'Seven duties.' [from_claim]: the noun 'duty' does not appear in claim C06; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}
