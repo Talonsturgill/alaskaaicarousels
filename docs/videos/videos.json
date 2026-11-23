@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-23",
+      "date": "2026-11-23",
+      "title": "The Serum Run, Flown Again",
+      "caption": "A UAF drone out of Nenana flew a 621-mile test loop with human blood samples aboard, nearly the length of the 1925 serum trail. No lab results have been published, and the detect-and-avoid radar it needs for medical delivery is still planned.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-23-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-23-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-23-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-23-poster_thumb.jpg"
+    },
+    {
       "id": "the-bird-that-says-no",
       "date": "2026-11-22",
       "title": "The Bird That Says No",
