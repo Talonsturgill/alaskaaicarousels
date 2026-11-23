@@ -21,9 +21,9 @@
   "scoring": "done: round 3 8.075 (art 6.5) -> craft cycle round 4 8.123 vs 7.7 (art 6.8), craft_cycle recorded",
   "ship": "done: runs/2026-11-22, site rebuilt, ledgers appended, PR opened",
   "upgrade": "done: no upgrades (weekly pass not due), queue items committed",
-  "gmail": "pending",
+  "gmail": "BLOCKED: Gmail connector requires sign-in; payload committed as runs/2026-11-22/gmail_payload.json",
   "retro": "done: automation_retro.md, FIELD_NOTES, TECHNIQUE_LIBRARY, 3 instincts",
-  "social": "pending"
+  "social": "done: 21 destinations PUBLISHED plus the LinkedIn comment verified; YouTube NOT_APPLICABLE; runs/2026-11-22/social_delivery.json"
  },
  "social": {
   "preflight": "READY",
@@ -35,7 +35,7 @@
   "tiktok_settings": "PUBLIC_TO_EVERYONE available",
   "state_branch": "initialize OK (readback)"
  },
- "status": "in_progress",
+ "status": "complete",
  "phase_3_6": {
   "cron_health": "CRON HEALTH: PASS, 39 checks across every scheduled workflow (out/2026-11-22/cron_health.json)",
   "gaswatch_live": "GAS WATCH LIVE: PASS, after a WARN at wake (late_post: CINGSA posted a second November 22nd reading at 04:47Z, after the 00:20Z collection). Dispatched gaswatch.yml on main (run 45122407452, success, 8.14 Bcf, 62.6 percent of design), Pages deployed, re-audit PASS.",

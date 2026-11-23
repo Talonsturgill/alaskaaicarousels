@@ -1,0 +1,216 @@
+{
+ "edition_id": "2026-11-22",
+ "checked_utc": "2026-11-23T08:39Z",
+ "destinations": {
+  "linkedin/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "5cdc4caa74d14a4f90a0cf47855adc65",
+   "post_id": "urn:li:ugcPost:7530549593671991296",
+   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7530549593671991296/",
+   "first_comment": {
+    "state": "PUBLISHED",
+    "comment_urn": "urn:li:comment:(urn:li:ugcPost:7530549593671991296,7530549639612284928)",
+    "author": "urn:li:organization:117084989",
+    "text": "Every source behind this carousel, and the public record of every AI decision in Alaska: https://alaskaaihq.com/"
+   }
+  },
+  "instagram/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "1591a55850d64991b180ad330dc03bc7",
+   "post_id": "17953633194055520",
+   "url": "https://www.instagram.com/p/DgE93LEjJJI/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "dbe38e7ced6a43e6bf79392d6ef0c885",
+   "post_id": "2003130316607965_1168147849512345",
+   "url": "https://www.facebook.com/2003130316607965_1168147849512345",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "tiktok/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "75dc54bf64554833824feb3c8481a198",
+   "post_id": "7711282773608156429",
+   "url": "https://www.tiktok.com/@alaskaai_/video/7711282773608156429",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "c7a907fb2ddc45b59e111a5d73ef9b31",
+   "post_id": "18177192553401388",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "9614f23d3b2841958e435b90858cd587",
+   "post_id": "1455770096031259",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "92170d0c19614f628abb5acd32ae1fbe",
+   "post_id": "17910933120332447",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "f300dd86624d42c2b7475213f8908065",
+   "post_id": "1008070301728791",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "99d36b318cd646f899f2dc5bd51b79be",
+   "post_id": "18430378234158028",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "b65734a9bf55481a8a5044bf1bf5f1d1",
+   "post_id": "1135014706102012",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "e836730aa03848c88a7349eac2504f93",
+   "post_id": "18119241107041284",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "233fe50a7ac945e192ae119ea3a197fe",
+   "post_id": "1661964151681312",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "a466b4fc5d5745198f82c81df14ffab2",
+   "post_id": "18119218721099613",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "b2bc328096a54ab28534f7063439375a",
+   "post_id": "1579914257302775",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "f24f266e7ae44b3387defbde1fe8c406",
+   "post_id": "18038341838910165",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "26f87f7e64ab45c8af758c4bb56cb550",
+   "post_id": "1648171476779220",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "35cf169751e8410284aa560f8d8f67d7",
+   "post_id": "18080348588740410",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "8318c3ee6853431baa9703efb4ccdf0a",
+   "post_id": "1703792521382256",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "2ba03243b016404691ccb96e524d0933",
+   "post_id": "18120314399078953",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "fd31b243d7c64867ac62569ec32318c9",
+   "post_id": "1536805815164318",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "instagram/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "d28f1c0b26be4b3290f5b3719591ec14",
+   "post_id": "18133880909502236",
+   "url": "https://www.instagram.com/stories/alaskaai_/",
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "facebook/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "2d4eef1908034c419eb7de749d40d28a",
+   "post_id": "1687611106344311",
+   "url": null,
+   "provider_status": "completed",
+   "error": null,
+   "provider_success": true
+  },
+  "youtube/feed/0": {
+   "state": "NOT_APPLICABLE",
+   "reason": "YouTube does not accept an image carousel through this flow; no slideshow video was invented."
+  }
+ },
+ "notes": [
+  "Feed photos are JPEG conversions of the released WebP at 2160x2700, same pixels.",
+  "Story frames are the released slides placed unscaled-in-proportion into 1080x1920 on the deck's room colour, never cropped or stretched; the site line in the frame is printed text, not a link.",
+  "Gmail draft could not be created (connector requires sign-in), so no draft receipt update was possible; runs/2026-11-22/gmail_payload.json and this file are the delivery record."
+ ]
+}
