@@ -5036,6 +5036,43 @@
     "data-centers",
     "defense-and-federal"
    ]
+  },
+  {
+   "run_date": "2026-11-22",
+   "carousel_no": 122,
+   "update_of": null,
+   "topic": "Administrative Order 359, signed by Gov. Mike Dunleavy on August 4th, 2025: an annual Government Efficiency Review of every executive branch agency (departments, boards, commissions and public corporations), led by the Office of Management and Budget, which the order makes responsible; agencies must 'Utilize technology and artificial intelligence (AI) to review large datasets in order to determine how State of Alaska funds are actually being spent' and recommend where AI can realize efficiencies (two of seven agency duties name AI); six review objectives; initial focus grants to non-State of Alaska entities and accounts payable; OMB must annually publish a list of funds granted; in effect until revoked. On November 18th Governor-elect Jonathan Kreiss-Tomkins named Alexei Painter, leaving the Legislature's budget side, to lead OMB; he takes office December 7th. Whether OMB published the grants list is unverified (omb.alaska.gov 503).",
+   "angle": "THE ORDER AS AN ICE CORE: one cylinder of glacial ice dated along its length from the signing band to a gold ring at December 7th, clear ice beyond it, revisited by a different instrument per frame (GPU transmissive render, weighted stipple, cabinet sections, lithology log, ordered dither, blue-noise stipple, white-line engraving).",
+   "entities": [
+    "Administrative Order 359",
+    "Mike Dunleavy",
+    "Office of Management and Budget",
+    "Jonathan Kreiss-Tomkins",
+    "Alexei Painter",
+    "Alaska Legislature",
+    "Grant Robinson",
+    "Bill Wielechowski"
+   ],
+   "keywords": [
+    "Government Efficiency Review",
+    "AI in state budgeting",
+    "use AI to review large datasets",
+    "grants to non-State of Alaska entities",
+    "accounts payable",
+    "base budget",
+    "until revoked",
+    "December 7th handoff",
+    "OMB director",
+    "list of funds granted"
+   ],
+   "headline": "Alaska's AI budget order changes hands December 7th.",
+   "sources_lead": [
+    "https://gov.alaska.gov/admin-orders/administrative-order-no-359/",
+    "https://www.adn.com/politics/2026/11/18/kreiss-tomkins-names-first-administration-hires-as-he-prepares-to-take-office/"
+   ],
+   "beats": [
+    "state-policy"
+   ]
   }
  ]
 }

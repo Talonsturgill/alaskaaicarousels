@@ -1226,3 +1226,7 @@ annotation is the strongest pair):
 
 ## NEW 2026-11-18 (No.118)
 - **Perforation Ledger** — a machined plate whose holes are the story's units (`assets/js/akperf.js`: `AKP.grid`, `AKP.plate` with true through-holes, blind dimples, optional seated slugs, `AKP.brushed`). Light it from BEHIND with an emissive panel for the punched set and a shadow-casting spot so the punched pattern lands on the desk as a gobo; count it with an OrthographicCamera, macro it with a perspective camera and a two-copy blur depth of field. Pass a face/side material pair and raise curve segments for close views. D3
+
+## NEW 2026-11-22 (No.122)
+- **Dated Ice Core**, a glacial core whose length is a calendar (`assets/js/akcore.js`: `CORE.strataCanvas` paints dated strata, tephra seams, a signing band and marked days onto a tall canvas; `CORE.build` wraps it on a MeshPhysicalMaterial with transmission, interior instanced bubbles, opaque frosted end faces, a gold ring at any day and a pale aluminium half-pipe cradle, and returns `xForDay`; `CORE.table` is the lit freezer table; `CORE.caliper` is a bevelled caliper with an engraved scale). Keep the ends opaque and the cradle pale or it reads as pipe. The same day-to-x mapping drives the 2D frames, so stipple, dither and engraving versions line up with the GPU ones.
+

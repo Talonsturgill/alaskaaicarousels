@@ -9727,3 +9727,10 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - A GPU RANGE NEEDS ALBEDO BY SLOPE FROM THE FIRST BUILD. Every lit fin on 01 rendered one cream under the warm key, and critics read clay or fabric for four rounds; snow on high flats and rock on steep faces is what makes it a mountain.
 - THE CLOSER AND THE COVER MUST SHARE A MATERIAL. 09 in its own violet and pink read as another deck to the flow critic; giving it 01's rock and snow and leaving dusk to the light brought it back.
 - THE SECOND HALF NEEDS AN ALASKA THREAD. 06 to 08 told section 229 honestly as national policy, and the scorer and flow critic both priced it as an imported beat; plan one Alaska anchor per frame in that stretch, or cut it shorter.
+
+## 2026-11-22, No.122 retro (AO 359 changes hands December 7th)
+- A fifteen-month-old primary document became today's story because an in-window appointment (Painter to OMB, November 18th) put it in new hands. On a thin news day, look for a standing order whose owner is about to change.
+- The shared hero module paid for itself: every PVC-pipe complaint across three GPU frames was fixed once in assets/js/akcore.js. The weakness that survived (art 6.8) is the stipple and dither frames (02, 05, 06), whose cylinders still read flat; tone fields need a crown, terminator and belly every time.
+- Leader labels are text, gradients follow the transform, and a Bayer matrix is looked up, never indexed by cell: three render rounds were spent on plumbing before any critic saw the deck.
+- omb.alaska.gov answered 503 twice; whether the yearly grants list was ever published stays UNVERIFIED and the deck says only that the duty exists.
+

@@ -4475,6 +4475,47 @@
     "weighted_total": 8.17,
     "artwork": 6.5
    }
+  },
+  {
+   "run_date": "2026-11-22",
+   "carousel_no": 122,
+   "slide_count": 9,
+   "hero_structure": "NEW: THE ORDER AS AN ICE CORE, one cylinder of glacial ice dated along its length from the August 4th, 2025 signing band to a gold ring at December 7th with clear ice beyond, revisited by a different instrument per frame: akthree transmissive core on a lit freezer table (01, 08, 09), weighted Poisson stipple macro with a caliper (02), four cabinet core sections (03), a lithology log of the seven duties (04), Bayer-dithered horizontal macro with tephra seams (05), blue-noise stipple at rest (06), white-line engraving with the gold sliver (07)",
+   "atmosphere": "NEW: CORE-FREEZER LIGHT TABLE (near-black room, one cold lit pool under the object)",
+   "depth_technique": "akthree PBR transmission with interior bubbles on 01, 08 and 09 (telephoto plus 2D depth of field on 08), stipple and dither tone fields on 02, 05 and 06, cabinet oblique on 03, engraved line on 07",
+   "line_voice": "engraved scale ticks, stipple and white-line engraving",
+   "continuity_device": "one dated ice core, the gold December 7th ring and an ice-blue pair of AI strata",
+   "continuity_devices": [
+    "one dated ice core across the deck",
+    "gold ring at December 7th",
+    "two ice-blue AI strata",
+    "the caliper",
+    "counters"
+   ],
+   "hook_archetype": "NEW: THE CHANGE OF HANDS",
+   "palette_family": "NEW: ICE-CORE ARCHIVE (room #050E16, ice #CFE6EE to #F4F8FF, tephra umber, ice blue #5AC8F0 only for the AI duties, gold #FFC72C only for December 7th and the Polaris mark)",
+   "type_pairing": "Bricolage Grotesque 640 display and body + JetBrains Mono 500 caps",
+   "narrative_structure": "change-of-hands hook, the clause verbatim, who it binds, the seven duties layer by layer, the order's own case, breather on duration, the office's new head, the handoff with three futures, one ask",
+   "variance_dials": {
+    "design_variance": 4,
+    "visual_density": 3,
+    "type_temperature": 2
+   },
+   "techniques": [
+    "Weighted Poisson stipple",
+    "Bayer ordered dither",
+    "Blue-noise threshold stipple",
+    "White-line engraving",
+    "Cabinet oblique sections",
+    "akthree transmission"
+   ],
+   "new_techniques_logged": [
+    "Dated Ice Core (assets/js/akcore.js)"
+   ],
+   "scores": {
+    "weighted_total": 8.123,
+    "artwork": 6.8
+   }
   }
  ]
 }
