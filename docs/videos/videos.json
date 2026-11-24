@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "2026-11-24-trust-the-flag",
+      "date": "2026-11-24",
+      "title": "Trust the Flag",
+      "caption": "A Raspberry Pi riding a drone reads a 150-band camera fast enough to keep up, in a staged search with Quinhagak Search and Rescue. In swamp grass about 99 percent of its flags were real items, but it flagged only 29 percent of them, so a flag is a lead and silence isn't cleared ground.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-24-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-24-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-24-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-24-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-23",
       "date": "2026-11-23",
       "title": "The Serum Run, Flown Again",
