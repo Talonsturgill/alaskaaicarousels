@@ -37,5 +37,12 @@
     "total_before": 8.23,
     "art_after": 7.0,
     "total_after": 8.31
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 191 pages, 18 checks (re-run on the shipped docs/ at ship)",
+    "gaswatch_live": "FAIL, UNRESOLVED upstream: CINGSA's public dashboard prints the injection Available Capacity cell as '0]', not a whole Mcf/d number (read from https://cingsa.com/operations/PublicDashBoard.html at about 2026-11-25T06:10Z, source timestamp 2026-11-24 16:00 Alaska). The collector correctly records injection_available_mcfd and injection_in_progress_mcfd as unavailable and exits 5 by design; storage itself (8,043,476 Mcf) was v",
+    "cron_health": "FAIL, UNRESOLVED upstream blockers on gaswatch.yml completion and steps (the collector exits 5 by design on CINGSA's unparseable injection capacity cell); incidents filed in cron_incidents.json",
+    "site_fixes": "none. Nothing on the live site needed repair this run.",
+    "gaswatch_pagecheck": "PASS"
   }
 }
