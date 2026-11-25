@@ -44,11 +44,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v6
         with:
           enablement: true
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: docs
       # 2026-08-06. This step failed four times in one afternoon, with TWO different
@@ -80,14 +80,14 @@ jobs:
       # the identical bad key state. Retrying instantly into a propagation fault is not a
       # retry, it is the same request twice. Both faults here are measured in minutes, so
       # the backoff has to be too. Three attempts across roughly five and a half minutes.
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment
         continue-on-error: true
 
       - name: Wait out a token-service blip before retrying
         if: steps.deployment.outcome == 'failure'
         run: sleep 90
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment_retry
         if: steps.deployment.outcome == 'failure'
         continue-on-error: true
@@ -95,7 +95,7 @@ jobs:
       - name: Wait longer, then make the last attempt the one that decides the job
         if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
         run: sleep 240
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
         id: deployment_final
         if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
 

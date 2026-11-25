@@ -62,13 +62,13 @@ jobs:
   checks:
     runs-on: ubuntu-24.04  # pinned: a floating runner moved to ubuntu26.04, which pinned Playwright refuses (2026-11-17)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
 
