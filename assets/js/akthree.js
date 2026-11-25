@@ -388,6 +388,53 @@ export function init(THREE) {
    * window.__aktAudit, which render.py records and qa.py WARNs on. It only
    * reads the scene: no pixel changes. Returns the list. */
   const METAL_ENV_FLOOR = 0.5, GLASS_OPACITY = 0.5, GLASS_PALE = 0.2;
+  /* faceted (2026-11-24, weekly pass): a mesh whose shared corners carry a
+   * normal split between FACET_LO and FACET_HI degrees is a curve or bevel
+   * shading as flat bands (see AKT.creaseNormals for the measurement and the
+   * runs). Under FACET_LO a step does not print: No.118's bore walls read
+   * smooth at 72 segments (5 degrees) and banded at 32 (11.25). Over FACET_HI
+   * it is a real corner. Reported when at least FACET_MIN corner positions and
+   * FACET_FRAC of the mesh's positions step; a deliberate low-poly object sets
+   * userData.faceted = true. Geometry over FACET_MAXV vertices is not read. */
+  const FACET_LO = 6, FACET_HI = 40, FACET_MIN = 24, FACET_FRAC = 0.05, FACET_MAXV = 300000, FACET_REPORT = 6;
+  const facetCache = new WeakMap();
+  function faceted(m, found) {
+    const geo = m.geometry;
+    if (!geo || !geo.attributes || !geo.attributes.normal || !geo.attributes.position) return;
+    if ((m.userData && m.userData.faceted) || (geo.userData && geo.userData.aktCreased)) return;
+    const pos = geo.attributes.position, nor = geo.attributes.normal, n = pos.count;
+    if (n > FACET_MAXV || n < 3) return;
+    let st = facetCache.get(geo);
+    if (!st) {
+      if (!geo.boundingBox) geo.computeBoundingBox();
+      const bb = geo.boundingBox, q = 1e-6 * Math.max(1e-9, bb.max.distanceTo(bb.min));
+      const groups = new Map();
+      for (let i = 0; i < n; i++) {
+        const k = Math.round(pos.getX(i) / q) + ',' + Math.round(pos.getY(i) / q) + ',' + Math.round(pos.getZ(i) / q);
+        let g = groups.get(k); if (!g) { g = []; groups.set(k, g); } g.push(i);
+      }
+      const cLo = Math.cos(FACET_LO * Math.PI / 180), cHi = Math.cos(FACET_HI * Math.PI / 180);
+      let stepped = 0, worst = 0;
+      for (const g of groups.values()) {
+        let hit = false;
+        for (let a = 0; a < g.length && !hit; a++) for (let b = a + 1; b < g.length; b++) {
+          const i = g[a], j = g[b];
+          const d = nor.getX(i) * nor.getX(j) + nor.getY(i) * nor.getY(j) + nor.getZ(i) * nor.getZ(j);
+          if (d < cLo && d > cHi) { hit = true; worst = Math.max(worst, Math.acos(Math.min(1, d)) * 180 / Math.PI); break; }
+        }
+        if (hit) stepped++;
+      }
+      st = { stepped, positions: groups.size, worst };
+      facetCache.set(geo, st);
+    }
+    // at most FACET_REPORT per scene, so a model of many faceted parts can't
+    // crowd the metal and glass findings out of render.py's 60-entry read
+    if (st.stepped >= FACET_MIN && st.stepped >= FACET_FRAC * st.positions &&
+        found.filter(f => f.kind === 'faceted').length < FACET_REPORT) {
+      found.push({ kind: 'faceted', name: m.name || (m.material && m.material.name) || ('mesh ' + m.id),
+        geometry: geo.type, stepped: st.stepped, positions: st.positions, worst_deg: +st.worst.toFixed(1) });
+    }
+  }
   AKT.audit = function (R) {
     const scene = R && R.isScene ? R : (R && R.scene);
     const found = [];
@@ -453,6 +500,7 @@ export function init(THREE) {
     scene.traverse(m => {
       if (!m.isMesh || !shown(m)) return;
       farClip(m);
+      try { faceted(m, found); } catch (e) { /* never stops the audit */ }
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       for (const mt of mats) {
         // an invisible material is never drawn, so it is never audited (Codex, PR #422)
@@ -797,6 +845,9 @@ export function init(THREE) {
     return new THREE.Mesh(new THREE.LatheGeometry(pts, o.segments || 64), mat);
   };
   // Extruded 2D shape (array of [x,y]) — plaques, arrows, silhouettes with depth.
+  // Creased by default (2026-11-24): smooth across curve and bevel segments,
+  // hard at corners sharper than o.crease degrees (40). o.crease false keeps
+  // three's per-face normals, which print every segment as a flat band.
   AKT.extrude = function (outline, depth, mat, o) {
     o = o || {};
     const shape = new THREE.Shape(outline.map(p => new THREE.Vector2(p[0], p[1])));
@@ -804,7 +855,73 @@ export function init(THREE) {
       depth, bevelEnabled: o.bevel !== false,
       bevelThickness: o.bevelThickness || depth * 0.06,
       bevelSize: o.bevelSize || depth * 0.05, bevelSegments: o.bevelSegments || 3 });
+    if (o.crease !== false) AKT.creaseNormals(geo, o.crease != null ? o.crease : 40);
     return new THREE.Mesh(geo, mat);
+  };
+
+  /* ---- creased normals (2026-11-24, weekly machine pass) -----------------
+   * AKT.creaseNormals(geometry, angleDeg = 40) -> the same geometry, in place.
+   * three r170's ExtrudeGeometry is NON-INDEXED and computes one normal per
+   * face, so every curve segment of a wall and every bevel segment shades as
+   * its own flat band: measured on a 32-segment ring with a 2-segment bevel,
+   * 6183 shared corners carry a 3 to 35 degree normal split (a facet step) and
+   * LatheGeometry or CylinderGeometry carry none. That is No.118 02's "banded
+   * bore walls" (two critic rounds, cured by 72 segments), No.123's flat-shaded
+   * module edges and No.122's caliper "box primitives": the light catches a
+   * polygon where the object is round. This averages the face normals of every
+   * corner that shares a position, over faces within angleDeg of the corner's
+   * own face, so curves and bevels shade smooth and real corners stay hard.
+   * The average is weighted by face AREA (the hard-surface "weighted normals"
+   * practice): a large flat cap keeps its own normal at the rim instead of
+   * taking the bevel's tilt across the whole face, so it reads flat and the
+   * bevel carries the turn. Unweighted, the ring in the test shaded its top
+   * as a shallow dome.
+   * Indexed geometry is converted to non-indexed first (returned as a new
+   * geometry then: use the return value). Same idea as three's addon
+   * BufferGeometryUtils.toCreasedNormals, written out here so the bench takes
+   * no addon. AKT.audit reports a mesh that still needs it (kind 'faceted'). */
+  AKT.creaseNormals = function (geometry, angleDeg) {
+    const geo = geometry.index ? geometry.toNonIndexed() : geometry;
+    const pos = geo.attributes.position, n = pos.count;
+    const cosT = Math.cos((angleDeg != null ? angleDeg : 40) * Math.PI / 180);
+    const fx = new Float64Array(n / 3), fy = new Float64Array(n / 3), fz = new Float64Array(n / 3);
+    const fa = new Float64Array(n / 3);        // face area: the weight in the average
+    for (let f = 0; f < n / 3; f++) {
+      const a = 3 * f;
+      const ax = pos.getX(a), ay = pos.getY(a), az = pos.getZ(a);
+      const ux = pos.getX(a + 1) - ax, uy = pos.getY(a + 1) - ay, uz = pos.getZ(a + 1) - az;
+      const vx = pos.getX(a + 2) - ax, vy = pos.getY(a + 2) - ay, vz = pos.getZ(a + 2) - az;
+      let cx = uy * vz - uz * vy, cy = uz * vx - ux * vz, cz = ux * vy - uy * vx;
+      const l = Math.hypot(cx, cy, cz) || 1;
+      fx[f] = cx / l; fy[f] = cy / l; fz[f] = cz / l; fa[f] = l;
+    }
+    if (!geo.boundingBox) geo.computeBoundingBox();
+    const bb = geo.boundingBox, q = 1e-6 * Math.max(1e-9, bb.max.distanceTo(bb.min));
+    const key = i => Math.round(pos.getX(i) / q) + ',' + Math.round(pos.getY(i) / q) + ',' + Math.round(pos.getZ(i) / q);
+    const groups = new Map();
+    for (let i = 0; i < n; i++) {
+      const k = key(i); let g = groups.get(k);
+      if (!g) { g = []; groups.set(k, g); }
+      g.push(i);
+    }
+    const out = new Float32Array(n * 3);
+    for (const g of groups.values()) {
+      for (const i of g) {
+        const fi = (i / 3) | 0;
+        let sx = 0, sy = 0, sz = 0;
+        for (const j of g) {
+          const fj = (j / 3) | 0;
+          if (fx[fi] * fx[fj] + fy[fi] * fy[fj] + fz[fi] * fz[fj] >= cosT) {
+            sx += fa[fj] * fx[fj]; sy += fa[fj] * fy[fj]; sz += fa[fj] * fz[fj];
+          }
+        }
+        const l = Math.hypot(sx, sy, sz) || 1;
+        out[3 * i] = sx / l; out[3 * i + 1] = sy / l; out[3 * i + 2] = sz / l;
+      }
+    }
+    geo.setAttribute('normal', new THREE.BufferAttribute(out, 3));
+    geo.userData.aktCreased = true;
+    return geo;
   };
 
   /* ---- render ------------------------------------------------------------ */

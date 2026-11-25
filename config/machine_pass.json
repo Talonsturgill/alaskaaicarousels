@@ -1,68 +1,61 @@
 {
-  "last_pass": "2026-11-17",
+  "last_pass": "2026-11-24",
   "themes": [
     {
-      "theme": "render OOM over nine heavy frames, queue repeat 2 (No.114 OOM; No.115 and No.117 batched in threes by hand), the item that made the pass due",
-      "runs": 3,
-      "frames": 0,
+      "theme": "flow critic cause d, texture artifact (stripes, terraces, banding), 4 of 5 runs, 7 frames; the hand-rolled interpolant share (queue 2026-11-21 No.121 07 to 09; No.100 07; No.96)",
+      "runs": 4,
+      "frames": 7,
       "action": "fixed",
-      "what": "measured first: No.117's nine frames in one call peak at 1.62 GB tree PSS and do not grow, so the OOM did not reproduce. render.py now recycles its browser every 3 slides and under 1.5 GB MemAvailable, retries a slide once after a browser or renderer death (crash_retry, qa WARN), and records mem per slide; the parent code exited 1 or crashed outright on both kill reconstructions"
+      "what": "AKPOST.field: a committed C1/C2 sampler for any hand-built grid in akpost.js, which every slide loads; doctrine, SKILL.md and technique 103 point at it. Lattice ratio bilinear 5.78, smoothstep 3.42, B-spline 1.07 (tests/field_sampler_verify.mjs). The other d frames this week (beaded slugs, contour-loop engraving, curls as clipped corners, a backing box) are bespoke drawing with no shared helper"
     },
     {
-      "theme": "dedupe window 30 days against topics.json's 90-day rule (No.95 missed No.64 at 34 days, No.117 missed No.77 at 44)",
-      "runs": 2,
-      "frames": 0,
-      "action": "fixed",
-      "what": "dedupe_check prints days 31 to 120 in their own section, exits 1 on a LIKELY DUPLICATE inside 90 days, the scout brief carries the earlier tier compactly (20.8 to 35.8 KB), routine Phase 4 says so; the 30-day window and thresholds unchanged"
-    },
-    {
-      "theme": "cron_health stale shallow.lock after a fetch timeout (No.117, this run's incident)",
-      "runs": 1,
-      "frames": 0,
-      "action": "fixed",
-      "what": "600 s fetch bound, process-group SIGTERM then SIGKILL, and the failed attempt's own lock cleared before a retry only when no git runs here"
-    },
-    {
-      "theme": "flow critic cause d, texture artifact or reserve edge, 3 of 5 runs, 6 frames; the GPU ground-edge and fog-seam share (No.116 08 at ship, No.98 06, No.108 01/09)",
-      "runs": 3,
+      "theme": "flow critic cause b, largest object least modelled, 4 of 5 runs, 6 frames; the GPU share (No.118 02 banded bore walls, No.122 caliper primitives, No.123 flat-shaded module edges)",
+      "runs": 4,
       "frames": 6,
       "action": "fixed",
-      "what": "AKT.audit reports ground_edge and fog_seam before the critics, qa WARNs with the remedy; 7/7 reconstructions, read-only (pixel-identical). The other d frames (brushed-aluminium banding, bead specks, a hachure ghost read as fur) are bespoke 2D drawing with no shared helper"
+      "what": "AKT.creaseNormals (area-weighted crease normals), AKT.extrude creased by default, AKT.audit 'faceted' plus a qa WARN; 5/5 reconstructions, read-only on existing frames (demo deck and No.123 pixel-identical). The 2D b frames (a barcode section, flat dial, terraced layers, a pipe-on-rail cradle) are each deck's own drawing"
     },
     {
-      "theme": "flow critic causes b (largest object least modelled) 3 of 5 runs, 5 frames, and c (dead lower third) 3 of 5 runs, 5 frames; trend_check Artwork craft weakest 6 of 7 (mean 7.07, STALE)",
+      "theme": "flow critic cause e, no tonal arc, cross-frame on 3 of 5 runs (8 frames) and named again on No.123",
+      "runs": 4,
+      "frames": 8,
+      "action": "deferred",
+      "what": "measured, not built: tonal_arc_check warns on 3 of the 16 decks the critic named since October 24th and 0 of 4 it didn't; a four-frame flat-stretch rule doesn't separate (named 1.1 to 17.2 L*, unnamed 2.9 to 10.3). Written to FIELD_NOTES so no later pass builds it without a new idea"
+    },
+    {
+      "theme": "flow critic cause c, dead lower third, 3 of 5 runs, 6 frames (and No.123's lower thirds rendered as plain pad)",
       "runs": 3,
-      "frames": 10,
+      "frames": 6,
       "action": "deferred",
-      "what": "read every named frame: b is a flat UI board drawn three times (No.115), a low-poly car and a toy housing (No.114), a smeared boulder (No.116), all hand-built objects with no shared helper at fault; c's lower thirds are each deck's own composition, and qa.frame_balance already measures the dead lower zone. No machine root cause this week beyond the ground-edge audit"
+      "what": "measured: qa.frame_balance's ratio doesn't separate c frames (median 1.33) from the rest (1.36), so a tighter threshold would only add noise; each lower third is the deck's composition"
     },
     {
-      "theme": "trend_check Variety vs ledger STALE (weakest 1 of 7, mean 7.43; queue 2026-11-13 atmosphere reuse)",
-      "runs": 1,
-      "frames": 0,
+      "theme": "flow critic cause a, same drawing on more than three frames, cross-frame 2 of 5 runs, 8 frames (queue 2026-11-18 shape census)",
+      "runs": 2,
+      "frames": 8,
       "action": "deferred",
-      "what": "one run; the artwork ledger's hard rule (atmosphere differs from the last 3) held for No.114, so the proposed 14-day check would TIGHTEN the divergence rule, which is a creative-policy call; kept in the queue"
+      "what": "measured: whole-frame luminance or gradient correlation scores named pairs below each deck's top unnamed pair (2026-11-20 named mean 0.58 vs 0.68), so an image census would point at the wrong frames; bespoke_check and the reuse census stay the machine's share"
     },
     {
-      "theme": "recurring QA warns: contact shadow 3 runs, art touching glyphs 2, outside safe zone 2, busy art under text 2",
-      "runs": 3,
-      "frames": 0,
-      "action": "deferred",
-      "what": "the contact warns are the same 'reads, barely' band as last week (No.115's scorer read dL 4.7 to 7.0 against the 8.0 comfort band); authoring calls the gates already surface"
-    },
-    {
-      "theme": "Codex did not auto-trigger on maintenance PR #502",
-      "runs": 1,
-      "frames": 0,
-      "action": "deferred",
-      "what": "an external bot's trigger; CLAUDE.md already gives the remedy (post @codex review). Nothing in this repo to change"
-    },
-    {
-      "theme": "rubric weights sum to 1.10 (queue 2026-10-11, repeat 4)",
+      "theme": "trend_check: contact shadow WARN shipping on 6 of 10 runs (4 of 7 in the week)",
       "runs": 4,
       "frames": 0,
+      "action": "deferred",
+      "what": "the 2026-11-08 parked GPU contact shadow (drei ContactShadows shape) has met its unblock condition; not boundable on top of two engine changes, so next pass should lead with it (FIELD_NOTES 2026-11-24)"
+    },
+    {
+      "theme": "effort recorded medium although .claude/settings.json carries effortLevel high (No.117 to No.123, seven runs)",
+      "runs": 7,
+      "frames": 0,
       "action": "escalated",
-      "what": "unchanged: the weights are the ship bar and the owner's to move"
+      "what": "the scheduled trigger's level wins over the repo setting; configuration is the owner's to change in the routine trigger, not a pass's"
+    },
+    {
+      "theme": "site fixture contrast (queue 2026-10-21, repeat 2) and rubric weights sum to 1.10 (queue 2026-10-11, repeat 4)",
+      "runs": 3,
+      "frames": 0,
+      "action": "escalated",
+      "what": "unchanged: the brand watermark token and the ship-bar weights are the owner's to move"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

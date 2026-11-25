@@ -3774,6 +3774,19 @@ def main():
                     "meant to show, set userData.edgeShown = true on the mesh"
                     % (fa.get("name"), fa.get("footprint"), fa.get("rays"), fa.get("of"),
                        at[0], at[1], fa.get("surface_kept")))
+            elif k == "faceted":
+                # 2026-11-24, weekly pass: three's ExtrudeGeometry shades each
+                # curve and bevel segment flat (No.118 02 banded bore walls,
+                # No.123 flat-shaded module edges, No.122 caliper primitives).
+                res["warns"].append(
+                    "curved surface shades as flat bands: %s (%s) has %s of %s corner "
+                    "positions where neighbouring faces' normals step by up to %s degrees, "
+                    "so every curve and bevel segment catches the light as its own flat "
+                    "facet (No.118 02's banded bore walls, two critic rounds). Call "
+                    "AKT.creaseNormals(geometry, 40) on it before it is rendered (AKT.extrude "
+                    "does by default); if the facets are meant, set userData.faceted = true"
+                    % (fa.get("name"), fa.get("geometry"), fa.get("stepped"),
+                       fa.get("positions"), fa.get("worst_deg")))
             elif k == "fog_seam":
                 res["warns"].append(
                     "fog and sky disagree: the fog is %s and the background %s (%s sRGB levels "
@@ -3896,7 +3909,8 @@ def main():
                     "every computed pixel prints as a %s block. Compute it at the "
                     "device pixel: size the ImageData to the destination's backing and "
                     "draw it 1:1 under setTransform(1,0,0,1,0,0), and sample a DEM with "
-                    "a cubic (AKS.cubicSampler, AKBLOCK.sampler 'cubic') where it is shaded"
+                    "a cubic (AKS.cubicSampler, AKBLOCK.sampler 'cubic') where it is shaded, "
+                    "or a grid the slide built with AKPOST.field(data, cols, rows)"
                     % (mag, ul.get("src_w", 0), ul.get("src_h", 0),
                        round(100 * float(ul.get("share", 0))), ul.get("dest_w", 0),
                        ul.get("dest_h", 0),

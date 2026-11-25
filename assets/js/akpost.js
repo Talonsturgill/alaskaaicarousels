@@ -704,5 +704,111 @@
     };
   };
 
+  /* ---- A C1 SAMPLER FOR ANY COARSE FIELD (2026-11-24, weekly pass) -------
+   * AKPOST.field(data, cols, rows, {mode}) -> {at(x, y), grad(x, y), cols, rows, mode}
+   *
+   * WHY. A slide that shades a coarse grid it built itself (a noise lattice,
+   * a height array, a density map drawn up many device px per cell) has had
+   * no committed smooth sampler: the house's C1 samplers (AKS.loadDEM's
+   * sampleCubic, AKBLOCK.sampler 'cubic', SAWN atS) all read a DEM's lon/lat
+   * meta. So each frame hand-rolled one, bilinear or a smoothstep blend, and
+   * a shade differentiates it: bilinear's gradient jumps at every cell edge,
+   * and smoothstep's is ZERO at every cell centre and edge, so both print the
+   * cell lattice as striations, terraces and zebra columns. No.121 (07, 08,
+   * 09: two critic rounds each), No.100 (07, three rounds) and No.96 (every
+   * terrain frame) each lost rounds to it before writing a cubic by hand.
+   *
+   * data is row-major (data[j * cols + i]), any array-like of numbers. x and y
+   * are in CELL coordinates: post (i, j) sits at x = i, y = j. Outside the grid
+   * the edge posts are held (clamped), never NaN.
+   *   mode 'bspline' (default): the uniform cubic B-spline. C2 and a convex
+   *     blend of the posts, so it slightly low-passes them and can't overshoot.
+   *     The smoothest shade, and the one for a procedural field whose posts
+   *     mean nothing. Measured at 18 device px per cell under a raking key
+   *     (tests/field_sampler_verify.mjs), the shade's cell-period ratio (1.0 is
+   *     none): bilinear 5.78, smoothstep 3.42, bspline 1.07.
+   *   mode 'monotone': the separable Steffen monotone bicubic the house shades
+   *     DEMs with (technique 103). Interpolating (passes through every post),
+   *     never overshoots a cell's posts, slope continuous across cell edges,
+   *     but its curvature still steps there: 1.66 on the same test. Use it
+   *     only when the posts are data that must be honoured exactly.
+   * grad(x, y) returns [dz/dx, dz/dy] in field units per cell (analytic for
+   * bspline, a 1e-3 cell central difference for monotone). To shade at device
+   * pixels, map a pixel to cells first: x = px / pxPerCell.
+   * Verified by node tests/field_sampler_verify.mjs. */
+  function stTan(a, b, c) {
+    const s0 = b - a, s1 = c - b;
+    return (Math.sign(s0) + Math.sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), Math.abs(s0 + s1) / 4);
+  }
+  function steffen(y0, y1, y2, y3, t) {
+    const d1 = stTan(y0, y1, y2), d2 = stTan(y1, y2, y3), t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * y1 + (t3 - 2 * t2 + t) * d1 + (-2 * t3 + 3 * t2) * y2 + (t3 - t2) * d2;
+  }
+  function bsW(t) {            // uniform cubic B-spline weights for posts -1, 0, 1, 2
+    const t2 = t * t, t3 = t2 * t, u = 1 - t;
+    return [u * u * u / 6, (3 * t3 - 6 * t2 + 4) / 6, (-3 * t3 + 3 * t2 + 3 * t + 1) / 6, t3 / 6];
+  }
+  function bsD(t) {            // their derivatives
+    const t2 = t * t, u = 1 - t;
+    return [-u * u / 2, (3 * t2 - 4 * t) / 2, (-3 * t2 + 2 * t + 1) / 2, t2 / 2];
+  }
+  P.field = function (data, cols, rows, o) {
+    o = o || {};
+    const mode = o.mode == null ? "bspline" : o.mode;
+    if (mode !== "monotone" && mode !== "bspline") {
+      throw new Error("AKPOST.field: mode must be 'monotone' or 'bspline', got " + mode);
+    }
+    if (!(cols >= 2 && rows >= 2) || !data || data.length < cols * rows) {
+      throw new Error("AKPOST.field: data needs cols * rows (" + cols + " x " + rows +
+                      ") values, has " + (data ? data.length : 0));
+    }
+    const C = cols, R = rows;
+    const post = (i, j) => data[(j < 0 ? 0 : j >= R ? R - 1 : j) * C + (i < 0 ? 0 : i >= C ? C - 1 : i)];
+    function cell(x, y) {
+      x = x < 0 ? 0 : x > C - 1 ? C - 1 : x;
+      y = y < 0 ? 0 : y > R - 1 ? R - 1 : y;
+      const i = Math.min(C - 2, Math.floor(x)), j = Math.min(R - 2, Math.floor(y));
+      return [i, j, x - i, y - j];
+    }
+    function at(x, y) {
+      const [i, j, fx, fy] = cell(x, y);
+      if (mode === "bspline") {
+        const wx = bsW(fx), wy = bsW(fy);
+        let s = 0;
+        for (let b = 0; b < 4; b++) {
+          let r = 0;
+          for (let a = 0; a < 4; a++) r += wx[a] * post(i - 1 + a, j - 1 + b);
+          s += wy[b] * r;
+        }
+        return s;
+      }
+      const rv = [0, 0, 0, 0];
+      for (let b = 0; b < 4; b++) {
+        const jj = j - 1 + b;
+        rv[b] = steffen(post(i - 1, jj), post(i, jj), post(i + 1, jj), post(i + 2, jj), fx);
+      }
+      return steffen(rv[0], rv[1], rv[2], rv[3], fy);
+    }
+    function grad(x, y) {
+      if (mode === "bspline") {
+        const [i, j, fx, fy] = cell(x, y);
+        const wx = bsW(fx), wy = bsW(fy), dx = bsD(fx), dy = bsD(fy);
+        let gx = 0, gy = 0;
+        for (let b = 0; b < 4; b++) {
+          let r = 0, rd = 0;
+          for (let a = 0; a < 4; a++) {
+            const v = post(i - 1 + a, j - 1 + b);
+            r += wx[a] * v; rd += dx[a] * v;
+          }
+          gx += wy[b] * rd; gy += dy[b] * r;
+        }
+        return [gx, gy];
+      }
+      const h = 1e-3;
+      return [(at(x + h, y) - at(x - h, y)) / (2 * h), (at(x, y + h) - at(x, y - h)) / (2 * h)];
+    }
+    return { at: at, grad: grad, cols: C, rows: R, mode: mode };
+  };
+
   global.AKPOST = P;
 })(typeof window !== "undefined" ? window : globalThis);

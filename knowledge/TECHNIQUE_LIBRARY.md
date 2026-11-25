@@ -981,7 +981,13 @@ annotation is the strongest pair):
     the bilinear `sample` / default sampler, which is cheaper and is what the
     thresholds were tuned on. The residual 1.29 is the cubic's curvature step,
     visible only at shading exaggeration well above 1; a presmooth on top is
-    then a choice, not a repair.
+    then a choice, not a repair. FOR A GRID THE SLIDE BUILT ITSELF (no lon/lat
+    meta; added 2026-11-24): `AKPOST.field(data, cols, rows)` in akpost.js,
+    `.at(x, y)` and `.grad(x, y)` in cell coordinates, default C2 cubic
+    B-spline (lattice ratio 1.07 at 18 px per cell where bilinear reads 5.78
+    and a smoothstep blend 3.42), `{mode: 'monotone'}` when the posts are data
+    (1.66 on the same noisy field: the curvature step above, larger when the
+    field is rough). `node tests/field_sampler_verify.mjs`.
 
 104. **Strobe Snowfall And Thin-Lens Focus (akstrobe)**, added 2026-09-28 for
     No.71. `assets/js/akstrobe.js`. `AKSTROBE.snow(cx, {seed, slide, count,
