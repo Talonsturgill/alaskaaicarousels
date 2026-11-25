@@ -3969,7 +3969,7 @@
       ],
       "verification": "node tests/field_sampler_verify.mjs 15/15: the reconstructions FAIL as expected (bilinear shade lattice ratio 5.78 and slope jump 0.733 at cell edges; smoothstep 3.42, slope at the edge 0.0003 of the cell slope), the default B-spline reads 1.07 and monotone 1.66, both C1 at edges (jump 0.0002 and 0.0007), no overshoot, monotone interpolating, analytic gradient within 2e-9 of a finite difference, bad calls throw. Additive only (no slide calls it yet): examples/demo-deck 4/4 rendered, qa WARN 0 fails, pixel-identical (max diff 0) and the same QA lines as before the change; No.123's nine frames rendered 9/9 and are pixel-identical to the run's own renders of the same HTML (slide 03 was edited by the showrunner four seconds after one capture; its re-render matches).",
       "rollback": "revert the upgrade(2026-11-24) commit",
-      "commit": "upgrade(2026-11-24)",
+      "commit": "ddccea15a",
       "verify": [
         "node tests/field_sampler_verify.mjs"
       ]
@@ -3990,7 +3990,7 @@
       ],
       "verification": "python3 tests/akthree_faceted_verify.py 5/5 through the real render.py and qa.py: the raw ExtrudeGeometry ring WARNs (524 of 776 corner positions stepping up to 27.1 degrees), the same ring creased is clean, Box, Cylinder, AKT.lathe and three AKT.extrude defaults are clean (no false alarm), userData.faceted is clean; in node, creasing takes the ring's 6 to 40 degree steps 4697 to 63 and keeps all 52 right-angle corner pairs of a square prism, and an indexed input returns a new non-indexed geometry. Side by side the creased ring's walls and bore read smooth and its top stays flat (unweighted, it shaded as a dome, which is why the average is area-weighted). examples/demo-deck 4/4, qa WARN 0 fails, pixel-identical (max diff 0) with identical QA lines; No.123's nine frames, three of them akthree (01, 05, 09), 9/9 pixel-identical to the run's own renders, qa WARN 0 fails, no faceted finding (akcouple builds no extrude).",
       "rollback": "revert the upgrade(2026-11-24) commit",
-      "commit": "upgrade(2026-11-24)",
+      "commit": "ddccea15a",
       "verify": [
         "python3 tests/akthree_faceted_verify.py"
       ]
