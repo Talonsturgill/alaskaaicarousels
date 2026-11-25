@@ -3950,6 +3950,50 @@
         "python3 tests/akthree_far_clip_verify.py",
         "python3 tests/akthree_material_audit_verify.py"
       ]
+    },
+    {
+      "run_date": "2026-11-24",
+      "kind": "fix",
+      "area": "assets",
+      "change": "akpost.js gains AKPOST.field(data, cols, rows, {mode}), a committed sampler for any coarse grid a slide builds itself: .at(x, y) and .grad(x, y) in cell coordinates, edges held, default the C2 cubic B-spline (analytic gradient), 'monotone' (the house Steffen bicubic) when the posts are data; DESIGN_DOCTRINE section 5, SKILL.md and TECHNIQUE_LIBRARY 103 name it and ban bilinear or smoothstep blends under a shade; qa.py's per-pixel-layer remedy names it.",
+      "trigger": "Digest cause d (a texture artifact: stripes, banding) on 4 of 5 runs, 7 frames; trend_check Artwork craft weakest 8 of 10 (mean 6.98, STALE). The machine share with a shared root cause: queue 2026-11-21 (No.121 slides 07, 08 and 09, striations, terraces and zebra columns through rounds 1 to 3, each cleared only by a hand-written cubic), and the same cause on 2026-10-30 (No.100 07, a smoothstep-bilinear h(), three rounds) and 2026-10-25 (No.96, every terrain frame). The house C1 samplers all read a DEM's lon/lat meta, so a hand-built grid had none.",
+      "files": [
+        "assets/js/akpost.js",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/field_sampler_verify.mjs",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/DESIGN_DOCTRINE.md",
+        "knowledge/TECHNIQUE_LIBRARY.md",
+        "knowledge/MACHINE_QUEUE.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "node tests/field_sampler_verify.mjs 15/15: the reconstructions FAIL as expected (bilinear shade lattice ratio 5.78 and slope jump 0.733 at cell edges; smoothstep 3.42, slope at the edge 0.0003 of the cell slope), the default B-spline reads 1.07 and monotone 1.66, both C1 at edges (jump 0.0002 and 0.0007), no overshoot, monotone interpolating, analytic gradient within 2e-9 of a finite difference, bad calls throw. Additive only (no slide calls it yet): examples/demo-deck 4/4 rendered, qa WARN 0 fails, pixel-identical (max diff 0) and the same QA lines as before the change; No.123's nine frames rendered 9/9 and are pixel-identical to the run's own renders of the same HTML (slide 03 was edited by the showrunner four seconds after one capture; its re-render matches).",
+      "rollback": "revert the upgrade(2026-11-24) commit",
+      "commit": "ddccea15a",
+      "verify": [
+        "node tests/field_sampler_verify.mjs"
+      ]
+    },
+    {
+      "run_date": "2026-11-24",
+      "kind": "fix",
+      "area": "assets",
+      "change": "akthree.js gains AKT.creaseNormals(geometry, angleDeg = 40), area-weighted smooth normals across steps under the angle with real corners kept, so three r170's per-face ExtrudeGeometry normals stop printing every curve and bevel segment as a flat band; AKT.extrude creases by default (crease: false keeps facets); AKT.audit reports a mesh still stepping 6 to 40 degrees on at least 24 corner positions and 5 percent of them ('faceted', at most 6 per scene, userData.faceted opts out) and qa.py WARNs it with the remedy.",
+      "trigger": "Digest cause b (the largest object least modelled) on 4 of 5 runs, 6 frames, and this run's pixel round 1 cause (1), GPU module flat-shaded edges; the GPU share with a shared root cause: queue 2026-11-18 (No.118 02, banded bore walls through two critic rounds until curve segments went 32 to 72) and No.122's caliper read as box primitives. Measured: a 32-segment bored ring from ExtrudeGeometry carries 6183 shared corners with a 3 to 35 degree normal split, LatheGeometry and CylinderGeometry none. Frontier, focus (b): crease-angle normals (https://discourse.threejs.org/t/is-there-a-merge-vertices-smooth-normals-utility-with-a-crease-angle-argument-available/37679) and face-area weighted normals (https://docs.blender.org/manual/en/4.3/modeling/modifiers/normals/weighted_normal.html).",
+      "files": [
+        "assets/js/akthree.js",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/akthree_faceted_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/MACHINE_QUEUE.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "python3 tests/akthree_faceted_verify.py 5/5 through the real render.py and qa.py: the raw ExtrudeGeometry ring WARNs (524 of 776 corner positions stepping up to 27.1 degrees), the same ring creased is clean, Box, Cylinder, AKT.lathe and three AKT.extrude defaults are clean (no false alarm), userData.faceted is clean; in node, creasing takes the ring's 6 to 40 degree steps 4697 to 63 and keeps all 52 right-angle corner pairs of a square prism, and an indexed input returns a new non-indexed geometry. Side by side the creased ring's walls and bore read smooth and its top stays flat (unweighted, it shaded as a dome, which is why the average is area-weighted). examples/demo-deck 4/4, qa WARN 0 fails, pixel-identical (max diff 0) with identical QA lines; No.123's nine frames, three of them akthree (01, 05, 09), 9/9 pixel-identical to the run's own renders, qa WARN 0 fails, no faceted finding (akcouple builds no extrude).",
+      "rollback": "revert the upgrade(2026-11-24) commit",
+      "commit": "ddccea15a",
+      "verify": [
+        "python3 tests/akthree_faceted_verify.py"
+      ]
     }
   ],
   "scan_log": [
@@ -4512,6 +4556,13 @@
       "searches": "7 searches (Playwright 2026 release notes; headless WebGPU and SwiftShader fallback; CDP Performance.getMetrics per page; canvas 2D beginLayer shipping; willReadFrequently memory; browser recycling for long-lived headless Chromium; Playwright 1.65 breaking changes), 3 fetches (Microlink on WebGL without a GPU; the blink-dev SwiftShader fallback removal thread; the Playwright 1.65 release write-up), plus a local measurement of the render tree's PSS over No.117's nine frames",
       "found": "(1) Recycling a long-lived headless browser by page count is the common remedy for memory that does not return to baseline (https://dev.to/rendershot/headless-chromium-at-scale-four-fixes-for-a-fleet-that-kept-eating-ram-1mdp); measured here first, it did not grow, so it is applied as insurance with telemetry and crash retry. (2) ANGLE on Mesa llvmpipe rendered a three.js page about 4x faster than SwiftShader (about 24 s to 6 s), but needs Mesa built from source plus Xvfb and falls back to flat 2D silently without a display (https://microlink.io/blog/webgl-without-a-gpu). (3) Chrome 137 removed the automatic SwiftShader WebGL fallback; --enable-unsafe-swiftshader keeps it, and CHROMIUM_ARGS already passes it (https://groups.google.com/a/chromium.org/g/blink-dev/c/yhFguWS_3pM). (4) Playwright 1.65's eleven breaking changes are test-runner and network items; none touches launch, init scripts, evaluate or screenshot (https://testdino.com/blog/playwright-1-65-release); the container runs 1.63. (5) Canvas beginLayer's shipping status could not be confirmed; nothing taken.",
       "outcome": "applied (1) as part of the render.py fix; parked (2) in knowledge/FIELD_NOTES.md '2026-11-17, No.117, weekly machine pass' with the unblock condition; (3) and (4) confirmed nothing to do"
+    },
+    {
+      "run_date": "2026-11-24",
+      "focus": "(b) editorial dataviz and still-life craft, narrowed to how a GPU hard-surface object reads as modelled (bevel and curve shading, contact and crevice occlusion). Legal and distinct from the last three logged foci: 2026-11-17 (e) rendering, 2026-11-11 (g) accessibility/PDF, 2026-11-08 (c) procedural (last (b) 2026-11-01). Chosen on relevance: cause b on 4 of 5 runs and this run's flat-shaded GPU edges.",
+      "searches": "6 searches (three.js crease-angle normals and toCreasedNormals; news-desk 3D object illustration and lighting; face-area weighted normals in hard-surface modelling; three.js r170 GTAO, SAO and N8AO for stills; Reuters Graphics 3D how-we-made-it; contact shadows), 3 fetches (three.js BufferGeometryUtils toCreasedNormals source, read as a summary; the Blender Weighted Normal manual page, which returned navigation only; the three.js contact-shadow example, which returned no source), plus a local measurement of r170 geometry normals",
+      "found": "(1) Crease-angle normals: three's addon toCreasedNormals smooths across faces within an angle and keeps harder edges; ExtrudeGeometry needs it because it ships per-face normals (https://discourse.threejs.org/t/is-there-a-merge-vertices-smooth-normals-utility-with-a-crease-angle-argument-available/37679). (2) Face-area weighting keeps large flat faces flat beside a bevel (Blender Weighted Normal modifier, https://docs.blender.org/manual/en/4.3/modeling/modifiers/normals/weighted_normal.html); measured here, it is what keeps a creased ring's top from shading as a dome. (3) GTAO and SAO are addons, and AO breaks hardware antialiasing (https://github.com/N8python/n8ao). (4) No news-desk write-up on 3D object lighting worth taking was found.",
+      "outcome": "applied (1) and (2) as the 2026-11-24 akthree creaseNormals entry; parked (3) in knowledge/FIELD_NOTES.md '2026-11-24, No.123, weekly machine pass' with its unblock condition; (4) nothing usable"
     }
   ]
 }

@@ -203,6 +203,13 @@ rectangles, no default drop shadows, no unstyled chart defaults. Detail
 must be MOTIVATED by the story — ornament for its own sake is also a fail.
 Consistent shadow/glow physics: one imaginary light source per deck.
 
+A shaded field never shows its cells (2026-11-24). Anything lit, hatched or
+contoured from a coarse grid is sampled C1 or smoother: a DEM through
+`AKS.loadDEM(...).sampleCubic`, a grid the slide built through
+`AKPOST.field(data, cols, rows)`. Bilinear and smoothstep blends are for
+masks only; under a shade they print striations and terraces at the cell
+period, and the week of November 18th to 24th lost critic rounds to it.
+
 ## 6. Illustration serves the story (the Reuters standard)
 
 "Each design feels fresh and specific to the story." The art is never

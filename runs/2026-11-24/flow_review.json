@@ -1,0 +1,195 @@
+{
+ "verdict": "revise",
+ "arc_assessment": "The sequence keeps its promise. The cover's 'three tests, then a wider freeze' pays on 02, the three tests get one physical coupling each on 03 to 05, and 07 to 09 land on a real date and one ask. The felt escalation peaks at 05, then the back half sinks: 06 neither asks nor plants anything, and 07 and 08 are dark record frames with no visual lift, so the landing is earned in the copy rather than felt in the filmstrip.",
+ "junction_pulls": [
+  {
+   "from": 1,
+   "to": 2,
+   "pull": "'Then it widened the freeze.' The reader swipes to learn how and by how much.",
+   "strength": "strong"
+  },
+  {
+   "from": 2,
+   "to": 3,
+   "pull": "The copper feeder runs off 02's right edge, but it leaves near the frame foot (about y 1710 of 2000) and enters 03 high on the left (about y 580), so the seam doesn't connect. The copy pays the result before the tests and never asks 'so what were the tests?'",
+   "strength": "weak"
+  },
+  {
+   "from": 3,
+   "to": 4,
+   "pull": "The 'TEST ONE' kicker implies a test two, and the blank kW field leaves 'what if the grid can't?' open.",
+   "strength": "strong"
+  },
+  {
+   "from": 4,
+   "to": 5,
+   "pull": "'TEST TWO' plus the cover's 'three' makes the third test the obvious next frame.",
+   "strength": "strong"
+  },
+  {
+   "from": 5,
+   "to": 6,
+   "pull": "The glycol header leaves 05's right edge but nothing receives it on 06, and nothing on 05 sets up 'there is no data center here'. The swipe rides the counter alone.",
+   "strength": "weak"
+  },
+  {
+   "from": 6,
+   "to": 7,
+   "pull": "'Had no data centers' should plant 'so why widen it?' but the slide never asks. The map reads as static and gives the eye nothing to follow.",
+   "strength": "weak"
+  },
+  {
+   "from": 7,
+   "to": 8,
+   "pull": "'Tied, then passed' leads into 'If it passes November 30th.', and the gold cap hands off to the gold span.",
+   "strength": "strong"
+  },
+  {
+   "from": 8,
+   "to": 9,
+   "pull": "The November 30th gold start mark and the expiry date set up the ask about what survives the freeze.",
+   "strength": "strong"
+  }
+ ],
+ "continuity_findings": [
+  {
+   "severity": "major",
+   "where": "slides 2-3 seam",
+   "problem": "The feeder edge-tease doesn't align. It exits 02's right edge low on the pad (about y 1710 of 2000) and enters 03 from the left at about y 580, so the cut reads as two different pipes.",
+   "fix": "Route 02's feeder to leave the right edge at the height 03's conduit enters (about y 580 to 600 display), or drop 03's conduit to the matching height."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 1-2",
+   "problem": "02 mirrors the module. In 01 the feeder enters the left face and the generator sits on the right; in 02 the generator is on the left and the feeder leaves the right. The storyboard calls it 'the same module'.",
+   "fix": "Swap 02's generator to the right side and its feeder to the left, then carry the feeder across the pad and off the right edge."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 2 ghost clamps",
+   "problem": "The pale clamp ghosts render as hollow rectangles, which read as empty selection boxes or a render glitch rather than 'released clamps'.",
+   "fix": "Fill the ghosts at about 25 percent snow with the bolt dot, so they read as clamps that let go."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 5-6",
+   "problem": "The glycol header edge-tease leaves 05's right edge and completes nowhere.",
+   "fix": "Accept it as a terminal exit, or let a faint pipe line enter 06's left edge at the water line toward the town light."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 7 and 8, the motif",
+   "problem": "Gold appears as type ('5 TO 2' on 07, 'NOVEMBER 30TH / FINAL READING' on 08) beyond the state table's cap and span. The 08 span is dashed along its full length, where the table reads 'dashed until November 30th'.",
+   "fix": "Set the two labels in snow with only a gold tick beside them. Either make the span solid from November 30th or correct the table so it says dashed throughout, because the freeze is pending."
+  }
+ ],
+ "rhythm_findings": [
+  {
+   "severity": "major",
+   "where": "slides 2-4",
+   "problem": "Three dense slides in a row: 02 has a two-line headline over five body lines, 03 has an eight-line body column, and 04 has a three-line quote, attribution and a five-line body. That breaks the no-three-dense rule, right where the reader is deciding whether to stay.",
+   "fix": "Thin 03: cut the body to about 18 words ('No permit unless the utility found, in writing, that today's grid could carry the load.') and move the SEAPA clause to the caption."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 7-8",
+   "problem": "Two dense record frames back to back. 08's top half is a pure mono table.",
+   "fix": "Tighten 08's rows to four by folding 'permits issued before adoption are not revoked' into the adoption row."
+  },
+  {
+   "severity": "polish",
+   "where": "slide 6",
+   "problem": "The breather sits in the right place, but its texture is the busiest surface in the deck, so it doesn't rest the eye.",
+   "fix": "See craft: clean water and fewer hachures."
+  }
+ ],
+ "consistency_findings": [
+  {
+   "severity": "polish",
+   "where": "counters",
+   "problem": "Transcribed 01 / 09, 02 / 09, 03 / 09, 04 / 09, 05 / 09, 06 / 09, 07 / 09, 08 / 09, 09 / 09: all correct, top right. ALASKA.AI sits bottom right and alaskaaihq.com bottom left on all nine. No defect.",
+   "fix": "none"
+  },
+  {
+   "severity": "polish",
+   "where": "slides 1, 2, 5, 9 module tag",
+   "problem": "The tag wording drifts: 'SCHEMATIC MODULE, NOT A REAL PROJECT' (01, 09), 'SCHEMATIC MODULE' (02), 'SCHEMATIC' (05).",
+   "fix": "Use 'SCHEMATIC MODULE' on 02 and 05, or the full string on all four."
+  },
+  {
+   "severity": "polish",
+   "where": "slides 1 to 2 register",
+   "problem": "02 drops the night atmosphere that 01, 05 and 09 share (sky haze, sea smoke, lit pool falloff) and sits on flat black, so it's the frame that looks most pasted in from another deck.",
+   "fix": "Put the 01 sea-smoke bands and the far-shore haze behind 02's module, and lengthen the pad pool's falloff."
+  },
+  {
+   "severity": "polish",
+   "where": "light law",
+   "problem": "The light law holds: key from the upper right, casts to the lower left on 01, 02, 04, 05, 07 and 09. 04's engraving swell barely turns the cylinder, so the stack reads lit flat rather than from the right.",
+   "fix": "Covered under craft, slide 04."
+  }
+ ],
+ "predicted_bail_point": {
+  "slide": 6,
+  "why": "The three tests, which the cover promised, are fully paid by 05. 06 then shows a full-frame field of fur-like hachure strokes where land, water and the Narrows can't be told apart at feed size, and it asks no question. A reader who came for the three tests has them and stops here, before the tallies and the clock, which are the reason to save the post.",
+  "fix": "Make the island legible (clean dark water, a lit coast, the Narrows as an empty channel). Add one mono line under the headline that plants the turn, for example 'SO WHY FREEZE ALL OF THEM? 07 HAS THE VOTES', worded to the copy rules."
+ },
+ "craft": {
+  "predicted_artwork_score": 6.5,
+  "weakest_frames": [
+   {
+    "slide": 6,
+    "score": 5.5,
+    "cause": "d",
+    "problem": "The hachure relief reads as fur or static. The strokes swirl in radial clumps instead of running down the fall line. Water and land carry the same stroke density, so the island silhouette, Wrangell Narrows and Frederick Sound don't separate. The land mask has visible stair-step edges ('__|' fragments along the coast and under the mono line), and the hachure crosses the headline's subline at SEAPA. It fails the zoom test and the thumb test.",
+    "fix": "Mask hachures to land only on an antialiased coast and leave the water as a clean dark field with soft frost smoke and a thin lit coastline. Orient every stroke strictly downslope on the smoothed grid, and skip cells under a slope threshold so flats rest."
+   },
+   {
+    "slide": 8,
+    "score": 6.0,
+    "cause": "d",
+    "problem": "The stippled channel that carries the lower third is a uniform TV-static field with a hard horizontal top edge. A dark rectangle knocked out behind 'SEPTEMBER 30TH, 2027 / EXPIRES' is a findable reserve edge. The rail reads as a flat gray bar, and the whole top half is a text table, so the frame has no modelled object worth its area.",
+    "fix": "Give the channel a real tone arc: dense, bright stipple along the lit lip falling to sparse shade at the foot, with the rail's cast drawn as a band of lower stipple density. Move the September label above the rail beside the June label so no knockout rectangle is needed."
+   },
+   {
+    "slide": 4,
+    "score": 6.5,
+    "cause": "b",
+    "problem": "The engraved stack has an even line weight across its width, so the white lines read as stripes and the cylinder doesn't turn toward the upper-right key. The skid and breaker box, the second-largest object and the frame's focal point, ship as a bare line outline with horizontal fill strokes and no lit top plane.",
+    "fix": "Swell the line width on the right (lit) flank and taper it to nothing in the left lee, so the stack and silencer read as lit cylinders. Engrave the skid as two planes (lit top, mid front) rather than an outline."
+   },
+   {
+    "slide": 2,
+    "score": 7.0,
+    "cause": "b",
+    "problem": "The cabinet module is competent but flat-filled, with no ambient occlusion at the base or seams and a dead black upper half behind the type. The hollow ghost clamps read as glitches.",
+    "fix": "Add the shared night atmosphere behind the module (sea-smoke bands, far-shore haze) and a contact AO band where the body meets the pad."
+   }
+  ],
+  "cross_frame": [
+   {
+    "cause": "e",
+    "slides": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "problem": "The tonal census is right, and the miss is the one I see. Measured L*: 01 18, 02 16, 03 17, 04 13, 05 31, 06 9, 07 11, 08 11, 09 14. 05 is the only lift (span 21.6, but the other eight frames span just 8.7). The CRAFT PLAN promised 'records 07 and 08 in mid tone', yet they measure 11, darker than the night cover (18). So after the 05 peak the deck sinks through four near-black frames, and 06 can't register as the darkest rest because its neighbours are almost as dark. Warmth is flat too: copper is the only warm note and it vanishes after 04.",
+    "fix": "Lift 07 and 08 toward L* 20 to 24: widen and brighten 07's table pool and lift its room ground, and brighten 08's channel lip and the stipple density under the rail. 06 at 9 then reads as the rest and 09 as a calm return."
+   },
+   {
+    "cause": "a",
+    "slides": [
+     1,
+     5,
+     9
+    ],
+    "problem": "Not a finding. The GPU path carries three frames (the limit, not over it), and 05 is a different object on a different camera. The cabinet idiom appears on 02 and 07 only. The reuse census (no helper on more than three frames) matches the sheet.",
+    "fix": "none"
+   }
+  ],
+  "masterful_depth_frame": 5
+ },
+ "score_0_10": 7.0
+}

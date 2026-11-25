@@ -1,0 +1,189 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "wrap drift: 'Petersburg drafted three data center tests. ' declares 2 line(s) (<br> or preserved newline) and rendered 3. Anything positioned by counting rows off this block (canvas markers, struck fields, a leader's row) is now one or more rows out. Fix by giving the block the width its longest line needs, or white-space:nowrap, and read mark positions off getBoundingClientRect rather than a fixed pitch. A headline sized by AK.fitText takes `authored: true`, which sets it nowrap and shrinks until the longest authored line fits",
+        "lit-edge check skipped 1 additive drawImage call(s) or seam(s) past its budget (16 measured draws onto on-page canvases and 24 onto off-page ones, a bitmap of at most 17.5 million pixels and sixteen 2x canvases' worth of readback per slide, eight measured draws of that size, 24 seams per slide), so a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that once, or check the additive layers by eye at thumb"
+      ],
+      "motifs": [
+        "'gold clamp, grid': canvas 57.5 dE, page 75.7 dE, 100% of its rect is clear of opaque DOM",
+        "'gold clamp, generators': canvas 58.7 dE, page 101.8 dE, 100% of its rect is clear of opaque DOM",
+        "'gold clamp, cooling': canvas 110.7 dE, page 109.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'grid coupling clamp' lands 0.0px from its target",
+        "leader 'gen coupling clamp' lands 0.0px from its target",
+        "leader 'cool coupling clamp' lands 0.0px from its target",
+        "leader 'grid coupling clamp' meets its label 8.3px away",
+        "leader 'gen coupling clamp' meets its label 8.0px away",
+        "leader 'cool coupling clamp' meets its label 8.0px away",
+        "leader 'grid coupling clamp' is drawn 115 px at 48 degrees, inside the pointer band",
+        "leader 'gen coupling clamp' is drawn 82 px at 67 degrees, inside the pointer band",
+        "leader 'cool coupling clamp' is drawn 124 px at 26 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl 'Petersburg drafted three data center tests.T' fits 3/3 lines at 101.5px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 2.5 on 'SCHEMATIC MODULE' (box mean 4.2) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "busy art under text (bg edge density 0.03) beneath 'ALASKA.AI' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the dashed gold envelope near the label': canvas 111.9 dE, page 111.7 dE, 100% of its rect is clear of opaque DOM",
+        "'pale clamp ghost at the grid coupling': canvas 37.2 dE, page 38.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the dashed gold envelope' lands 0.0px from its target",
+        "leader 'the dashed gold envelope' meets its label 0.0px away",
+        "leader 'the dashed gold envelope' is drawn 36 px at 84 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hl '5 to 2 to cover all data centers.Then 7 to 0' fits 2/2 lines at 94px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'PMPL WRITTEN DETERMINATION' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CURRENT GRID CAPACITY' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '______ kW' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '______' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "contacts": [
+        "'the paper determination on the lit wall': shadow L* 6.9 vs ground L* 28.7, dL 21.8 at 432w"
+      ],
+      "motifs": [
+        "'gold clamp on the feeder': canvas 58.3 dE, page 59.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the glass meter dome': canvas 57.9 dE, page 58.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the blank kW field on the determination' lands 0.0px from its target",
+        "leader 'the blank kW field on the determination' meets its label 10.5px away",
+        "leader 'the blank kW field on the determination' is drawn 256 px at 12 degrees, inside the pointer band"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'gold clamp on the breaker': canvas 56.9 dE, page 61.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the engraved silencer drum': canvas 50.1 dE, page 58.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'No generatorsfor everyday power.' fits 2/2 lines at 86.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "lit-edge check skipped 1 additive drawImage call(s) or seam(s) past its budget (16 measured draws onto on-page canvases and 24 onto off-page ones, a bitmap of at most 17.5 million pixels and sixteen 2x canvases' worth of readback per slide, eight measured draws of that size, 24 seams per slide), so a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that once, or check the additive layers by eye at thumb",
+        "a layer of light ends in mid-air: the light an additive (screen) drawImage painted stops at y 696 (its top edge) within a pixel (up to 0.008 of full just inside, nothing just outside), and the final picture shows a straight 22.6-level step for 78 design px (x 862 to 940). Light has no edge of its own. Make the layer span the frame, or feather its border to zero (multiply the ramp by a smoothstep over the last 150 px or more on every side that lands inside the frame), and re-render.",
+        "low contrast ~2.9 on 'ALASKA.AI' (est.)",
+        "worst-point contrast 2.0 on 'ALASKA.AI' (box mean 2.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.5 on 'GLYCOL SUPPLY' (box mean 11.5) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "motifs": [
+        "'the gold clamp on the glycol tee': canvas 68.8 dE, page 69.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Every drop of coolant staysin the loop.' fits 2/2 lines at 102.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "per-pixel layer drawn up 6.00x: a 361x325 putImageData layer covers 72% of the 2160x2700 canvas #art at 2166x1950 device px (smoothed, detail 3.9), so every computed pixel prints as a blurred block. Compute it at the device pixel: size the ImageData to the destination's backing and draw it 1:1 under setTransform(1,0,0,1,0,0), and sample a DEM with a cubic (AKS.cubicSampler, AKBLOCK.sampler 'cubic') where it is shaded, or a grid the slide built with AKPOST.field(data, cols, rows)"
+      ],
+      "motifs": [
+        "'the town light': canvas 15.9 dE, page 18.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'As of mid-November, Petersburg had no data c' fits 2/2 lines at 88.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'JEFF MEUCCI, WHO MOVED THE AMENDMENT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'VICE MAYOR JEIGH STANTON GREGOR' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SEPTEMBER 21ST YEAR-LONG FREEZE 3 TO 3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '3 TO 3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 2ND ALL DATA CENTERS 3 TO 3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '3 TO 3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 2ND FIRST READING 5 TO 1 ONE EXCUSED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '5 TO 1' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 16TH ALL DATA CENTERS 5 TO 2' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '5 TO 2' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOVEMBER 16TH SECOND READING 7 TO 0' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '7 TO 0' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "motifs": [
+        "'the empty socket for the excused member': canvas 50.3 dE, page 57.3 dE, 100% of its rect is clear of opaque DOM",
+        "'gold cap on the November 16th amendment column': canvas 88.6 dE, page 89.2 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'The same amendment tied, then passed.' fits 1/1 lines at 69px"
+      ],
+      "asserts": [
+        "'September 21st, yes votes' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)",
+        "'September 21st, no votes' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)",
+        "'November 2nd amendment, yes votes' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)",
+        "'November 2nd amendment, no votes' holds: 3 vs 3 marks, counted over 3 declared marks (within 0)",
+        "'November 2nd first reading, yes votes' holds: 5 vs 5 marks, counted over 5 declared marks (within 0)",
+        "'November 2nd first reading, yes votes': 5 mark centres probed at r=14px, cohort median 3.6 dE, all present (weakest 3.6 dE)",
+        "'November 2nd first reading, no votes' holds: 1 vs 1 marks, counted over 1 declared mark (within 0)",
+        "'November 16th amendment, yes votes' holds: 5 vs 5 marks, counted over 5 declared marks (within 0)",
+        "'November 16th amendment, yes votes': 5 mark centres probed at r=14px, cohort median 3.7 dE, all present (weakest 3.6 dE)",
+        "'November 16th amendment, no votes' holds: 2 vs 2 marks, counted over 2 declared marks (within 0)",
+        "'November 16th second reading, yes votes' holds: 7 vs 7 marks, counted over 7 declared marks (within 0)",
+        "'November 16th second reading, yes votes': 7 mark centres probed at r=14px, cohort median 3.6 dE, all present (weakest 3.5 dE)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "axis census: 'the clock rail': 12 of this axis's 14 declared mark(s) carry no more ink than the band's own texture (5.3), while the strongest declared mark reads 42.4. Per mark: 80 (0 days from November 16th): ink 30.4, 121 (14.17 days from November 16th): ink 6.0, 123 (14.86 days from November 16th): ink 6.0, 213 (45.97 days from November 16th): ink 5.4, 303 (77.08 days from November 16th): ink 5.5, 384 (105 days from November 16th): ink 5.7, 474 (136 days from November 16th): ink 5.9, 560 (166 days from November 16th): ink 5.8, 650 (197 days from November 16th): ink 5.6, 708 (217 days from November 16th): ink 6.0, 737 (227 days from November 16th): ink 5.4, 827 (258 days from November 16th): ink 5.4, 916 (289 days from November 16th): ink 5.4, 1000 (318 days from November 16th): ink 42.4. That spread is not a drawing-weight problem; it is a mark that is not where it is declared. The nearest mark-strength ink to the mark declared at 121 is at 81, 40 px away (ink 30.4, and that position reads as 0.35 days from November 16th). The nearest mark-strength ink to the mark declared at 123 is at 81, 42 px away (ink 30.4, and that position reads as 0.35 days from November 16th). The nearest mark-strength ink to the mark declared at 213 is at 81, 132 px away (ink 30.4, and that position reads as 0.35 days from November 16th). A constant offset across several marks is the signature of a scale corrected in `data-scale` and left alone in the code that DRAWS it: check the axis endpoint the canvas uses against the `to` this slide declares, before touching any stroke weight."
+      ],
+      "motifs": [
+        "'the gold span from November 30th to September 30th, 2027': canvas 62.7 dE, page 111.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'If it passes November 30th.' fits 1/1 lines at 95.5px"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "lit-edge check skipped 1 additive drawImage call(s) or seam(s) past its budget (16 measured draws onto on-page canvases and 24 onto off-page ones, a bitmap of at most 17.5 million pixels and sixteen 2x canvases' worth of readback per slide, eight measured draws of that size, 24 seams per slide), so a layer's edge may not have been examined. Composite sprites onto one offscreen layer and draw that once, or check the additive layers by eye at thumb"
+      ],
+      "motifs": [
+        "'the dashed gold envelope, bottom corner': canvas 112.6 dE, page 112.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Should the final text keepthe three tests fo' fits 3/3 lines at 99.5px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 28,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [],
+    "functions": []
+  }
+}

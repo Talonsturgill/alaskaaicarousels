@@ -1,0 +1,14 @@
+{
+ "blocker": "upstream",
+ "reason": "CINGSA's public dashboard prints the injection Available Capacity cell as '0]', not a whole Mcf/d number (read from https://cingsa.com/operations/PublicDashBoard.html at about 2026-11-25T06:10Z, source timestamp 2026-11-24 16:00 Alaska). The collector correctly records injection_available_mcfd and injection_in_progress_mcfd as unavailable and exits 5 by design; storage itself (8,043,476 Mcf) was verified and published. Inferring the intended value would be a correction the Gas Watch rules forbid.",
+ "attempts": [
+  "Read failed job log of gaswatch.yml run 45537313424: collector exit 5, 'Storage verified independently; CINGSA capacity fields remain unavailable'",
+  "Fetched CINGSA's live dashboard from the routine runtime and confirmed the cell text is literally '0]'",
+  "Confirmed the published page and gas-watch.json match main (cron_health live checks PASS) and the storage reading for 2026-11-24 is on the live page"
+ ],
+ "evidence_urls": [
+  "https://github.com/Talonsturgill/alaskaaicarousels/actions/runs/45537313424",
+  "https://cingsa.com/operations/PublicDashBoard.html"
+ ],
+ "audit_checked_utc": "2026-11-25T06:07:15Z"
+}

@@ -981,7 +981,13 @@ annotation is the strongest pair):
     the bilinear `sample` / default sampler, which is cheaper and is what the
     thresholds were tuned on. The residual 1.29 is the cubic's curvature step,
     visible only at shading exaggeration well above 1; a presmooth on top is
-    then a choice, not a repair.
+    then a choice, not a repair. FOR A GRID THE SLIDE BUILT ITSELF (no lon/lat
+    meta; added 2026-11-24): `AKPOST.field(data, cols, rows)` in akpost.js,
+    `.at(x, y)` and `.grad(x, y)` in cell coordinates, default C2 cubic
+    B-spline (lattice ratio 1.07 at 18 px per cell where bilinear reads 5.78
+    and a smoothstep blend 3.42), `{mode: 'monotone'}` when the posts are data
+    (1.66 on the same noisy field: the curvature step above, larger when the
+    field is rough). `node tests/field_sampler_verify.mjs`.
 
 104. **Strobe Snowfall And Thin-Lens Focus (akstrobe)**, added 2026-09-28 for
     No.71. `assets/js/akstrobe.js`. `AKSTROBE.snow(cx, {seed, slide, count,
@@ -1230,3 +1236,7 @@ annotation is the strongest pair):
 ## NEW 2026-11-22 (No.122)
 - **Dated Ice Core**, a glacial core whose length is a calendar (`assets/js/akcore.js`: `CORE.strataCanvas` paints dated strata, tephra seams, a signing band and marked days onto a tall canvas; `CORE.build` wraps it on a MeshPhysicalMaterial with transmission, interior instanced bubbles, opaque frosted end faces, a gold ring at any day and a pale aluminium half-pipe cradle, and returns `xForDay`; `CORE.table` is the lit freezer table; `CORE.caliper` is a bevelled caliper with an engraved scale). Keep the ends opaque and the cradle pale or it reads as pipe. The same day-to-x mapping drives the 2D frames, so stipple, dither and engraving versions line up with the GPU ones.
 
+
+## NEW 2026-11-24 (No.123)
+- **Three-Coupling Module**, a schematic data hall whose three connections to a town are separate, clampable parts (`assets/js/akcouple.js`: `CPL.module(R, {seed, frost})` returns `{group, body, points: {grid, gen, cool}, hull, dims}`, with a copper feeder, a generator skid with stack, and a glycol loop entering through a wall penetration box; `CPL.bank(R, {length, fins, fans, teeX})` builds a dry-cooler bank with a header tee). Use `points` to seat a gold clamp at each coupling and `hull` to project an envelope around the whole module. Built for No.123 (01, 05, 09).
+- **Modelled Concrete Channel**, a ground for a lower third made of named planes rather than a dot field: a lit ledge under the subject, a board-formed riser with seams and tie holes, and a floor with joints converging in one-point perspective under a radial light pool, all modulated by a 6 percent fbm instead of stipple. No.123 (08).

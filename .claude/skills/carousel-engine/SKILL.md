@@ -890,6 +890,17 @@ them or every archive page goes blank.
   bilinear only for masks; (3) never take finite differences on a bilinear field.
   Use `AKS.loadDEM` rather than a deck-local loader: it also refuses a truncated
   .bin. A soft MASK magnified under destination-in/out is fine and is not flagged.
+  A GRID THE SLIDE BUILT ITSELF (a noise lattice, a height or density array) is
+  sampled with `AKPOST.field(data, cols, rows)` from akpost.js, which every slide
+  already loads (2026-11-24 weekly pass; No.121 07 to 09, No.100 07 and No.96 lost
+  rounds to hand-rolled bilinear and smoothstep blends, whose shade prints the
+  cells). `.at(x, y)` and `.grad(x, y)` take CELL coordinates (post i, j at x = i,
+  y = j; map device px by px / pxPerCell), clamp at the edge, and default to the
+  C2 cubic B-spline (lattice ratio 1.07 against bilinear 5.78 and smoothstep 3.42
+  at 18 px per cell, `node tests/field_sampler_verify.mjs`); pass
+  `{mode: 'monotone'}` only when the posts are data that must be hit exactly.
+  Never write a smoothstep blend between posts for anything that is shaded: its
+  slope is zero at every post, so it prints terraces.
 - `assets/js/akrelief.js` — 2.5D relit-heightfield FORM-shading (`AK.reliefShade`),
   the offline/CPU analogue of `AKT.objectHero`'s rim-carve. A flat filled region
   reads as a shaded dimensional SOLID: builds a heightfield (noise.js fbm/warp by
@@ -1025,6 +1036,18 @@ them or every archive page goes blank.
   PCFSoft (`shadow_radius_ignored`) and qa.py WARNs it
   (tests/akthree_soft_shadow_verify.py). Leave the option out and nothing
   changes.
+  CREASED NORMALS (2026-11-24): three r170's `ExtrudeGeometry` is non-indexed
+  with one normal per face, so every curve and bevel segment shades as a flat
+  band (No.118 02's banded bore walls, two rounds; a ring at 32 segments carries
+  4697 steps of 6 to 40 degrees). Call `AKT.creaseNormals(geometry, 40)` on any
+  extrude you build by hand, before it renders: area-weighted smooth normals
+  across steps under 40 degrees, hard corners kept, so a large cap stays flat and
+  the bevel carries the turn (indexed input comes back as a NEW non-indexed
+  geometry: use the return value). `AKT.extrude` does it by default
+  (`crease: false` keeps the facets). `AKT.audit` reports a mesh that still has
+  the steps (`faceted`) and qa.py WARNs it; a deliberately low-poly object sets
+  `userData.faceted = true` (tests/akthree_faceted_verify.py). Raising
+  curveSegments only shrinks the bands; creasing removes them.
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
   `AKT.objectHero(R, group, {toward:[kx,ky,kz], keyColor, intensity, height})`

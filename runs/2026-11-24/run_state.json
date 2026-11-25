@@ -1,0 +1,48 @@
+{
+  "run_date": "2026-11-24",
+  "carousel_no": 123,
+  "effort": "medium",
+  "date_note": "UTC date 2026-11-25; Anchorage date 2026-11-24 CLEAR per run_guard",
+  "social_preflight": "PASS: profile alaska_ai, FB pin 2003130316607965, LI pin urn:li:organization:117084989, state branch initialized",
+  "phases": {
+    "wake": "done",
+    "craft_refresh": "done",
+    "research": "done: out/2026-11-24/scouts/A-F.md, scout_merge.md (searches 24,26,25,24,25,18; every beat thin)",
+    "claims": "done: out/2026-11-24/claims.json (58: C01-C52 Petersburg, C53-C55 FNSB, C56-C58 AIDEA; claims_check PASS 58/58, 22 primary; fact-checker 20 webfetch calls, 12 distinct URLs, 8 justified repeats)",
+    "docket": "done: ledger/docket.json 11 worklist+deferred items checked (budget raised to 11): Petersburg second reading 7-0 + Nov 30th vote added; AIDEA board recess to Nov 27th; 5 re-verified unchanged; aklng (DNR 403/404), STAK, Houston, FNSB 2027 request not re-verified (pages failed), left unstamped. watch.json bills unchanged (HB259 ENE, SB250 CRA), 0 hearings, candidates triaged none added, failed []. ask self-test 5,190 B headroom (near 5,000 floor); mobile_docket_map + docket_ask PASS",
+    "gas_watch": "done: cron_health FAIL -> upstream incident (gaswatch.yml exit 5, CINGSA prints '0]' in injection Available Capacity) cron_incidents.json; gaswatch_health FAIL -> gaswatch_incident.json upstream; gate rows WARN. site_signoff PASS 190 pages 18 checks; pagecheck PASS; desk/phone look OK no hscroll",
+    "selection": "done: out/2026-11-24/selection.md (Petersburg Ord. 2026-24 UPDATE of No.102; runner-up AIDEA recess)",
+    "directors_room": "done: out/2026-11-24/treatments/*.md, storyboard.md (9 dossiers, CRAFT PLAN; dossier_check PASS pre-build)",
+    "copy": "done: out/2026-11-24/caption.txt (room: A TIMELINE COLLAPSE/BRAID/FORK won, critic fix applied to the deck-summary line), copy.json (copywriter), caption_check --copy PASS",
+    "art_build": "done: out/2026-11-24/slides/slide-01..09.html, assets/js/akcouple.js (new shared module); render 9/9, qa.py WARN 0 fails; bespoke median 0.094; dossier_check, aggregate, plan_drift, copy_sync PASS",
+    "pixel_review": "done: round 1, 5 pixel critics (out/2026-11-24/critic/r1/*.json), all nine revise; fixes applied to all nine (storyboard BUILD RECONCILIATION round 1)",
+    "flow_review": "done: out/2026-11-24/flow_review.json (verdict revise, predicted art 6.5); round 2 applied",
+    "assemble": "done: out/2026-11-24/final/ (carousel.pdf vector, contact_sheet.png, thumbs)",
+    "scoring": "done: 8.31 at round 3 (threshold 8.0), art 7.0 after one craft cycle on 06, 08, 04, 09",
+    "ship": "done: runs/2026-11-24 copied, webp converted, site built at 2026-11-25 (main rebuilt today), ledgers appended, docket alert sent (1)",
+    "upgrade": "done: weekly pass, commits ddccea15a and 41931f3a0",
+    "gmail": "pending",
+    "retro": "pending"
+  },
+  "revision_rounds": 3,
+  "craft_cycle": {
+    "round": 3,
+    "frames": [
+      6,
+      8,
+      4,
+      9
+    ],
+    "art_before": 6.5,
+    "total_before": 8.23,
+    "art_after": 7.0,
+    "total_after": 8.31
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 191 pages, 18 checks (re-run on the shipped docs/ at ship)",
+    "gaswatch_live": "FAIL, UNRESOLVED upstream: CINGSA's public dashboard prints the injection Available Capacity cell as '0]', not a whole Mcf/d number (read from https://cingsa.com/operations/PublicDashBoard.html at about 2026-11-25T06:10Z, source timestamp 2026-11-24 16:00 Alaska). The collector correctly records injection_available_mcfd and injection_in_progress_mcfd as unavailable and exits 5 by design; storage itself (8,043,476 Mcf) was v",
+    "cron_health": "FAIL, UNRESOLVED upstream blockers on gaswatch.yml completion and steps (the collector exits 5 by design on CINGSA's unparseable injection capacity cell); incidents filed in cron_incidents.json",
+    "site_fixes": "none. Nothing on the live site needed repair this run.",
+    "gaswatch_pagecheck": "PASS"
+  }
+}
