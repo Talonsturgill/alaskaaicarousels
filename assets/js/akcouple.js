@@ -191,6 +191,8 @@ export function init(THREE, AKT) {
     g.add(AKT.tube([[1.8, hy, hz], [1.95, hy - 0.1, hz], [L / 2 - 0.08, roofY - 0.5, D / 2 + 0.08]], 0.05, glycol(), { segments: 30 }));
     g.add(AKT.tube([[1.8, hy + 0.14, hz], [2.02, hy, hz], [L / 2 - 0.02, roofY - 0.4, D / 2 + 0.1]], 0.05,
       new THREE.MeshStandardMaterial({ color: 0xc0784a, metalness: 0.4, roughness: 0.3 }), { segments: 30 }));
+    // the risers enter the body through a sealed wall penetration box
+    g.add(box(0.34, 0.26, 0.12, galv(), L / 2 - 0.12, roofY - 0.48, D / 2 + 0.06));
     const tee = cyl(0.075, 0.2, glycol(), 0.2, hy, hz, 24); tee.rotation.x = Math.PI / 2; g.add(tee);
     const coolPt = [0.2, hy, hz + 0.1];
 
