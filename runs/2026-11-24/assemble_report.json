@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-24/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9145137,
+  "pdf_mb": 9.15,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-24/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-24/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Petersburg's Three Data Center Tests, and the Wider Freeze",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "64a61825426ebdcea25d5a6a972983330cd34a7a61d70d6b0122c23ff30d133f",
+        "bytes": 6692991
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "fec51e1dc7b452df6f80944071f13e8f680c3e1a06507f085595221e0aca5119",
+        "bytes": 6175930
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "1b283bf92b83032f98a92bdd2cb0dd654b01075ec9dcbe37891492bbd9a21a17",
+        "bytes": 6367646
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "8938d03148bc271bf8896ec2dd1049a3687f38fb2f86f7905ce3ea064c7b0140",
+        "bytes": 5375855
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "ef69de34723da8345cf0cf8a13f46f7636da2e8799a87d4bf37ff89cff0e13be",
+        "bytes": 7561913
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "18411a1d86e19fe980ca9642ab113b4d83c2b32ad951c6edb97de481d26c3f55",
+        "bytes": 6500539
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "6727fd6e22bfb9b193cd264a6fecca93d5a2385eeb55c1fab930de267ac4730e",
+        "bytes": 6554956
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "8b52d5066ab1a4e1773870f8b176b3ab1012db04019b8a4b438af51971b83f91",
+        "bytes": 6334494
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "fa91806653f381f6e243c29cde7bf36893419a2c0723d0416a96af582bd88049",
+        "bytes": 6471086
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "3e644e46b5abdc054c623a7d6a8c13eff085601b6f1a0c338233989462fbc58e",
+        "bytes": 10053
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "ac9d97b2255e957dae0e3cdb5b624995b95432c82c6a6316d7944d048bf253a0",
+        "bytes": 17882
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "65f293f688096daad359f16766331c5d06b0ce0ceb3d4355ec94126cebf7b425",
+        "bytes": 14617
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "7ac295d5b4ae699aa0fd78f00c2d1c385672e0cf858a83ee42ebf323635d5bd6",
+        "bytes": 14854
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "c1f4473447e0a2762d6abba90136ef2923529abc3dcbc77c0162838f68176d69",
+        "bytes": 11107
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "83541a89daebf1046035c42f34eeae06bb18159af1a7938d6549cb74532fbe93",
+        "bytes": 11648
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "e00992d9f7f3f5ebc5b708ff4e6a553bcf59a1c5e2a09d2856065302c9a78bee",
+        "bytes": 9544
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "adef9ee780051e8b880dccb47f80df1ec348693c7009cc926ccecca9755cd023",
+        "bytes": 11391
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "82cf3858c1f38aba3d7f735b3c6ad814ac743ad665978dd3c37e7ba78447918d",
+        "bytes": 9033
+      }
+    ]
+  }
+}

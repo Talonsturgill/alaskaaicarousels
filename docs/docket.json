@@ -2650,7 +2650,7 @@
         }
       ],
       "first_seen": "2026-08-04",
-      "last_updated": "2026-11-22",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-08-04",
@@ -2775,6 +2775,10 @@
         {
           "date": "2026-11-22",
           "note": "Searched the Federal Register today for Alaska documents published November 18th to 23rd and found nothing new in Project No. 8221-124. Recommendations remain due November 30th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "Searched the Federal Register today for Bradley Lake and found nothing newer than the October 6th notice soliciting recommendations for Project No. 8221. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/"
@@ -3776,7 +3780,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-08-06",
@@ -3881,6 +3885,10 @@
         {
           "date": "2026-11-21",
           "note": "Searched the Federal Register today for Alaska documents published November 17th to 23rd, 32 in all, and found no correction or extension to EPA's proposed approval. Comments remain due December 14th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "Searched the Federal Register today and found no correction or extension to EPA's October 29th proposed approval, document 2026-22085. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aogcc-class-vi-carbon-storage/"
@@ -6539,6 +6547,11 @@
           "date": "2026-11-16",
           "kind": "vote",
           "label": "Assembly second reading of the data center moratorium ordinance, with public feedback"
+        },
+        {
+          "date": "2026-11-30",
+          "kind": "vote",
+          "label": "Assembly third reading of the amended moratorium, with another public hearing, 6 p.m."
         }
       ],
       "location": {
@@ -6571,10 +6584,25 @@
           "url": "https://www.kfsk.org/2026/11/16/data-center-moratorium-snow-removal-and-hospital-grant-in-front-of-petersburg-borough-assembly-tonight/",
           "outlet": "KFSK",
           "date": "2026-11-16"
+        },
+        {
+          "url": "https://www.kfsk.org/2026/11/23/petersburg-assembly-votes-to-broaden-proposed-moratorium-on-data-center-permits/",
+          "outlet": "KFSK",
+          "date": "2026-11-23"
+        },
+        {
+          "url": "https://www.kfsk.org/wp-content/uploads/2026/11/Ord-2026-24-Data-Center-Moratorium.pdf",
+          "outlet": "Petersburg Borough, Ordinance No. 2026-24",
+          "date": "2026-10-29"
+        },
+        {
+          "url": "https://petersburgak.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1971,plainText=false)",
+          "outlet": "Petersburg Borough Assembly agenda",
+          "date": "2026-11-16"
         }
       ],
       "first_seen": "2026-09-30",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-09-30",
@@ -6607,6 +6635,10 @@
         {
           "date": "2026-11-19",
           "note": "KFSK reported on November 16th that the Assembly would hold a public hearing that night on the moratorium, which passed once earlier this month and must pass two more times to take effect. It would bar permits for data center projects that use uncontained cooling, need more power than allowed, or run on generators instead of the town grid. No report of that night's outcome had been published when checked today."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "KFSK reported on November 23rd that the Assembly voted 5 to 2 to broaden the proposed moratorium and then passed the ordinance unanimously, 7 to 0, at its second reading on November 16th. The amended version needs one more Assembly approval before it takes effect, with another public hearing at the November 30th meeting at 6 p.m. The ordinance as introduced, No. 2026-24, would run through September 30th, 2027, with staff findings due June 21st, 2027, and the November 16th agenda records its first reading passing 5 to 1."
         }
       ],
       "url": "https://alaskaaihq.com/docket/petersburg-data-center-moratorium/"
@@ -6639,7 +6671,7 @@
         }
       ],
       "first_seen": "2026-10-05",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-10-05",
@@ -6684,6 +6716,10 @@
         {
           "date": "2026-11-19",
           "note": "A news search today found no report on the borough's plant newer than The Alaska Current's October 3rd story. The state's STAK lease remains a separate private project tracked on its own. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "A search of The Alaska Current today found no report on the borough's plant newer than its October 3rd story. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/north-slope-power-borough-gas-plant/"
@@ -6829,6 +6865,11 @@
           "date": "2026-11-19",
           "kind": "milestone",
           "label": "AIDEA board meeting"
+        },
+        {
+          "date": "2026-11-27",
+          "kind": "milestone",
+          "label": "Recessed AIDEA board meeting resumes, 10 a.m."
         }
       ],
       "sources": [
@@ -6869,7 +6910,7 @@
         }
       ],
       "first_seen": "2026-10-28",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-10-28",
@@ -6926,6 +6967,10 @@
         {
           "date": "2026-11-19",
           "note": "AIDEA's updated agenda for the November 19th teleconference listed an executive session, the Section 1002 budget, Port MacKenzie and owned assets, and no fiber item. An hour before it began, Gov.-elect Jonathan Kreiss-Tomkins asked the board to postpone further action until his administration takes office on December 7th. The board met in closed session from 10 a.m., adjourned at 3 p.m. without taking action, and is scheduled to resume on Tuesday. Its next regular meeting is Friday, December 4th, three days before the inauguration, per the agenda and the Anchorage Daily News."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "AIDEA's board schedule, read today, says the November 24th meeting, a continuation of the November 19th meeting, is in recess and resumes at 10 a.m. on Friday, November 27th. No fiber item or agenda change appears on the schedule or in press releases, the newest dated November 12th. A December 4th meeting is listed with no agenda posted."
         }
       ],
       "url": "https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/"
@@ -7209,7 +7254,7 @@
         }
       ],
       "first_seen": "2026-11-09",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-11-09",
@@ -7222,6 +7267,10 @@
         {
           "date": "2026-11-19",
           "note": "The CMS Year 2 fact sheet, re-read today, is unchanged since November 9th. States begin more detailed quarterly reporting this month. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "The CMS Year 2 fact sheet, re-read today, still carries its November 9th date. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/rhtp-year-2-awards/"
@@ -7260,7 +7309,7 @@
         }
       ],
       "first_seen": "2026-11-15",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-24",
       "history": [
         {
           "date": "2026-11-15",
@@ -7269,6 +7318,10 @@
         {
           "date": "2026-11-19",
           "note": "The NOAA resource page, read today, still carries the November 6th draft and was last updated that day. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-24",
+          "note": "The NOAA resource page, read today, still carries the November 6th draft and was last updated that day. No final plan is posted. Checked and unchanged."
         }
       ],
       "url": "https://alaskaaihq.com/docket/noaa-2027-observer-em-deployment/"

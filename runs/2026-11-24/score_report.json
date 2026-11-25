@@ -1,0 +1,174 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+   "status": "pass",
+   "evidence": "I re-read every string in copy.json (slides, post_copy, first_comment, aftercare) and caption.txt. Separators are U+00B7 and U+002D only ('2026-24', 'mid-November', '2-megawatt', 'YEAR-LONG', 'Alaska-licensed'). The hyphen in 'mid-November' on S06 looks wide in Instrument Serif, but it is U+002D in copy.json and copy_sync PASSes. The en dashes in claims.json are source verbatims and aren't published."
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass",
+   "evidence": "None in copy.json, caption.txt or any of the nine renders. The only symbol is the drawn Polaris beside the S09 wordmark."
+  },
+  {
+   "rule": "factual claim without a claim-id resolving to a verified source",
+   "status": "pass",
+   "evidence": "All 33 claims_used are verified. plan_drift PASS (33 indexed, 0 drift) and aggregate PASS (16 of 16 declared). The S07 cube counts are asserted in machine_qa and hold exactly (3/3, 3/3, 5/1 with the excused socket, 5/2, 7/0). The softening carries over unchanged: 'scheduled', 'The Petersburg Pilot says', 'would widen', 'PER KFSK', 'AS INTRODUCED'."
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+   "status": "pass",
+   "evidence": "I transcribed all nine current renders at full size and they match copy.json: Harbour, Meucci, Jeigh Stanton Gregor, Mazzella, Mitkof, Frederick Sound, SEAPA, PMPL, SEC 3.C.1/3.C.2/3.B.5, counters 01 / 09 to 09 / 09. S07's label middots render as line breaks by design ('5 TO 1' / 'ONE EXCUSED'), and copy_sync PASSes on 66 strings. The S03 blank now reads as a joined rule followed by 'kW' on one baseline."
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text in any render",
+   "status": "pass",
+   "evidence": "machine_qa has 0 fails. Each S06 label (FREDERICK SOUND, PETERSBURG, MITKOF ISLAND, the turn line) now sits on a soft no-ink halo, and the relief no longer crosses glyphs. The S09 tag is on clear ground below the pad, and the envelope stops short of the ask line. On S04 the tag plate overlaps the skid edge as art, not text. No text touches other text."
+  },
+  {
+   "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+   "status": "pass",
+   "evidence": "Headlines and body are snow on night grounds, above 10:1. Every worst-point warn is on a non-primary label or fixture: S02 'SCHEMATIC MODULE' 2.5, S05 'ALASKA.AI' 2.0, S05 'GLYCOL SUPPLY' 3.5 (box mean 11.5)."
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass",
+   "evidence": "9 slides (assemble_report slides: 9)."
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass",
+   "evidence": "machine_qa.json verdict WARN with 0 fails and 28 warns. assemble_report.json has pdf_mode 'vector', 9.15 MB, title 'Petersburg's Three Data Center Tests, and the Wider Freeze' (58 chars)."
+  },
+  {
+   "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+   "status": "pass",
+   "evidence": "This repeats No.102 (November 1st, 23 days back). The S01 kicker reads 'UPDATE · PETERSBURG ORDINANCE 2026-24', and the new development is material: the drafted text, the November 2nd and 16th votes (C18, C19, C01, C04) and the scheduled November 30th reading (C06)."
+  },
+  {
+   "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+   "status": "pass",
+   "evidence": "THE THREE COUPLINGS differs from the ice core, terrain from text, land-office instruments, the closed door, and No.102's pad-mount transformer. dossier_check PASS. The new S06 hillshade raster is not the 11-21 terrain-from-text structure."
+  },
+  {
+   "rule": "banned phrase from brand.yaml in copy or slides",
+   "status": "pass",
+   "evidence": "caption_check PASS and word_ban PASS (0 banned words). My own scan finds no 'gap', 'matters', 'pattern' or 'cannot'. The apostrophes in 'today's' (S03) and 'Mazzella's' (S02) look curly, but they are U+0027 in Space Grotesk, which draws the straight mark slanted. copy_sync reports no curl, so they aren't a finding."
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass",
+   "evidence": "Exactly 3 hashtags (#PetersburgAK #DataCenterPolicy #SoutheastAlaska) and no URL in post_copy. Every URL is in first_comment."
+  },
+  {
+   "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+   "status": "pass",
+   "evidence": "No lorem or TODO anywhere. The S03 blank is an authored empty form field, declared '[design, blank on purpose]' and explained by its leader. In the gate block, 'score_report.json missing' is this step's pending output, and site_fresh FAILs only until ship rebuilds docs/."
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "Unchanged this round. The tension is real and lands in 11 words, and the three gold clamps on GRID, GENERATORS and COOLING read at 432 px against a module that clearly reads as machinery. It's still held down: there's no number or stake, the three-line headline takes the top third, and the art isn't visibly Alaskan (a gray box on a tiled pad, with the sea smoke barely registering)."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "S02 pays instantly. S03 to S05 run one coupling per test with strong TEST ONE/TWO/THREE pulls, the 02 to 03 feeder seam aligns at y 392, and the S07 cap hands to the S08 span and on to the S09 ask. S06 now plants the turn ('SO WHY FREEZE ALL OF THEM? THE VOTES ARE NEXT.') and reads as land at thumb, which weakens the predicted bail point. But the promised three tests are fully paid by 05, and 07 and 08 remain two dense record frames back to back."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.0,
+   "weight": 0.16,
+   "notes": "This round lifted art from 6.5 to 7.0. S06's fur-like hachure is gone. It's now a hillshade with contours, a marching-squares coast, flat water and haloed labels, and it reads as relief at thumb. S08's static slab is now a modelled channel: lit ledge, board-formed riser with tie holes, a perspective floor, and a cylinder rail with collars and notches. S04 gains a lit oblique housing top, a bevelled breaker lip and closed flanges. S09 has a continuous hull and sits clear of the tag. S05 is still genuine masterful depth, S03 is good macro craft, and 01 and 09 climb the GPU ladder. Still charged: (1) S06 is soft and smeary. machine_qa reports a 361x325 per-pixel layer drawn up 6x across 72% of the canvas. The relief has a uniform worm-like bump scale that reads as crumpled clay more than an island, land fills nearly every pixel, and the Narrows and Sound never read as distinct water bodies. (2) S08's lower 40% is a large, mostly empty CG floor. The rail notches are faint: machine_qa says 12 of 14 declared marks carry no more ink than the band's texture, and the November 30th and December 1st ticks double up. The top half is still a mono table. (3) The S04 stack and drum still read as striped columns, the floor carries a dashed 'rain' texture that reads as noise, and the housing top plane is a thin sliver. (4) S02 is still flat fills. Two frames with dead or default regions keep this at the 7 descriptor, not above it."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "The gold reach changes state through the deck: three clamps, then the amended envelope, then one clamp per coupling, then absent on 06, then the cap on the 5-to-2 column, the span linear in days, and the final envelope. S07 cube counts equal the tallies, with the excused socket shown. S06 draws no data center because none exists. A stranger gets 'a data center rule with three conditions' from 01 and 03 to 05, though not 'Petersburg'."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "Named throughout: Petersburg, PMPL, SEAPA hydropower, Mitkof, Wrangell Narrows, Frederick Sound, KFSK, the Pilot, Harbour, Meucci, Lynn, Stanton Gregor, Mazzella, and the Fairbanks North Star Borough foot. S06 now reads as Southeast terrain, but not recognisably as Mitkof and the Narrows at feed size. The kicker names WRANGELL NARROWS while the map doesn't label or clearly show it. The hardware frames could stand in any town."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Every content slide adds a verified specific: tallies, the Pilot's Mazzella framing and the 6 p.m. reading, the PMPL written determination, the generator bar and backup exception with Harbour's quote, 100 percent containment and the licensed engineer, five tallies, and the adoption terms with June 21st, 2027 and 11:59 p.m. September 30th, 2027. S06 is thin by design, S03 runs 18 words and S08 runs as a table."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 8,
+   "weight": 0.08,
+   "notes": "New hero object, atmosphere, palette, type pairing and hook archetype, with the dials justified. Reused subsystems: the gold-as-one-meaning motif, cabinet oblique on 02 and 07, and the GPU module path on three frames (at its limit)."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7,
+   "weight": 0.07,
+   "notes": "Headlines and body pass, and the vector PDF is 9.15 MB with a title and counters on all nine. The S07 and S09 hanging-word breaks are fixed, and the S06 labels are now haloed. Still squeaking: 22 px tally labels and attributions on S07 (twelve tiny-text warns, though they read at thumb), 22 to 23 px form text on S03, and sub-4.5 worst points on non-primary labels on S02 and S05."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "Hook 136 characters, caption 874, takes a position ('A full pause is defensible.' 'The tests are worth keeping.'), includes the deck summary line, and closes on a real fork. One soft line: 'The tests were exact.' asserts precision instead of showing it."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 7.5,
+   "weight": 0.1,
+   "notes": "Ready: post copy, 3 hashtags, a primary-first source block in first_comment, a 58-character title, vector PDF, 9 thumbs, contact sheet, aftercare with the Upload-Post double-post warning, and editor notes. Not verifiable at scoring: the Gmail draft, image and PDF URL resolution after merge, and the docs/ rebuild (site_fresh FAIL until ship). The gas_watch_live and cron_health incidents must be named in the draft."
+  }
+ ],
+ "calculation": "(7x0.14)+(7.5x0.14)+(7.0x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7x0.07)+(8x0.05)+(7.5x0.10) = 0.98+1.05+1.12+1.12+0.96+0.80+0.64+0.49+0.40+0.75 = 8.31",
+ "weighted_total": 8.31,
+ "threshold": 8.0,
+ "ship": true,
+ "weakest_criterion": "Artwork craft & genuine detail",
+ "one_sentence_fix": "Compute slide 06's hillshade at device resolution with cubic DEM sampling and widen the water mask so Wrangell Narrows and Frederick Sound read as distinct dark channels, which removes the 6x-upsampled smear and makes the rest frame read as Mitkof rather than generic clay.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The hillshade is a 361x325 layer upsampled 6x (machine_qa), so the whole relief is soft and smeary. Its bump scale is uniform and worm-like, so it reads as crumpled clay rather than an island. Land fills almost the entire frame, and Wrangell Narrows and Frederick Sound don't read as water bodies, so the geography the kicker names isn't visible.",
+   "fix": "Render the shade at the destination backing 1:1 with a cubic DEM sampler (AKS.cubicSampler), and apply a slope-dependent ambient term so ridges carry scale. Open the water mask so the Narrows reads as a continuous dark channel south from the town light, and label it."
+  },
+  {
+   "slide": 8,
+   "problem": "The lower 40% is a mostly empty CG floor plane under a pipe-like rail. The tick notches are too faint to read (machine_qa: 12 of 14 declared marks are no stronger than the band texture), and the November 30th and December 1st ticks double up at the start. The top half is still a pure mono table.",
+   "fix": "Cut the notches deeper and brighter (lit lower lip, dark upper shadow) so every declared month reads at thumb, drop the redundant December tick, and raise the rail and channel by about 150 px so the floor shrinks to a lit strip with a visible light pool under the gold span's start."
+  },
+  {
+   "slide": 4,
+   "problem": "The stack and silencer still read as striped columns rather than turning cylinders. The housing's lit top plane is a thin sliver, and the floor's dashed texture reads as noise instead of tread.",
+   "fix": "Deepen the housing's oblique top to about 60 px with dense engraved cuts, give the drum a visible dark lee band on the left a third of its width, and replace the floor dashes with perspective tread lines that converge under the stack's cast."
+  },
+  {
+   "slide": 9,
+   "problem": "The envelope's top edge is clipped by about 130 px under the ask line, so the hull reads as broken at its most visible point. The fan rings read as clip-art, and the pad beyond the module is a near-uniform dark plane.",
+   "fix": "Lower the module about 40 px or route the envelope's top edge below the ask line's rect so the hull closes, and add frost smoke and a lit far pad edge so the lower right isn't flat."
+  }
+ ],
+ "editor_notes_for_email": "This scores 8.31 at round 3, against the round-3 threshold of 8.0 from the iteration ladder, so it clears. It would also clear the base 8.3, by 0.01. Artwork is 7.0, still under the 8.5 craft floor. The one owed CRAFT FLOOR cycle was this round, so the deck ships, and the named frames (06, 08, 04, 09) are follow-up targets. Before posting, the human should know: (1) the amended ordinance text isn't published, so S02 says 'as reported', and the November 30th meeting rests on KFSK and the Pilot, not CivicClerk; (2) the Meucci and Stanton Gregor quotes are verbatim, but each attribution rests on KFSK paraphrase (confidence 0.85 and 0.87); (3) the 7 to 0 vote rests on two news reports with no minutes; (4) the Fairbanks 'around January 14th' line is single-source (C55); (5) the run's effort level was medium, not high; (6) the Gas Watch upstream incident (CINGSA prints '0]' in the injection capacity cell) and the cron_health gaswatch.yml blockers must appear in the draft; (7) site_fresh FAILs until docs/ is rebuilt at ship; (8) the S06 map shows Petersburg's terrain but doesn't visibly show Wrangell Narrows, although the kicker names it. Files: /home/user/alaskaaicarousels/out/2026-11-24/storyboard.md, /home/user/alaskaaicarousels/out/2026-11-24/render/machine_qa.json, /home/user/alaskaaicarousels/out/2026-11-24/final/assemble_report.json, /home/user/alaskaaicarousels/out/2026-11-24/score_report.r2.json.",
+ "craft_cycle": {
+  "frames": [
+   6,
+   8,
+   4,
+   9
+  ],
+  "art_before": 6.5,
+  "art_after": 7.0,
+  "round": 3,
+  "total_before": 8.23,
+  "total_after": 8.31,
+  "note": "Round 3 was the one CRAFT FLOOR cycle on the round 2 scorer's artwork_weakest_frames; re-rendered, re-gated, pixel-critic reviewed and re-scored."
+ }
+}

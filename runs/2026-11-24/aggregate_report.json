@@ -1,0 +1,158 @@
+{
+  "run_dir": "out/2026-11-24",
+  "render_report": "out/2026-11-24/render/render_report.json",
+  "aggregates_file": "out/2026-11-24/aggregates.json",
+  "detected": 16,
+  "declared": 16,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "three data center tests",
+      "at": 19,
+      "text": "Petersburg drafted three data center tests. Then it widened the freeze.",
+      "n": 3,
+      "subject": "data center tests"
+    },
+    {
+      "slide": 2,
+      "kind": "span",
+      "fragment": "5 to 2",
+      "at": 0,
+      "text": "5 to 2 to cover all data centers. Then 7 to 0.",
+      "from_n": 5,
+      "to_n": 2
+    },
+    {
+      "slide": 2,
+      "kind": "span",
+      "fragment": "7 to 0",
+      "at": 39,
+      "text": "5 to 2 to cover all data centers. Then 7 to 0.",
+      "from_n": 7,
+      "to_n": 0
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "FIVE TALLIES",
+      "at": 0,
+      "text": "FIVE TALLIES \u00b7 SEPTEMBER 21ST TO NOVEMBER 16TH",
+      "n": 5,
+      "subject": "tallies"
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "3 TO 3",
+      "at": 32,
+      "text": "SEPTEMBER 21ST YEAR-LONG FREEZE 3 TO 3",
+      "from_n": 3,
+      "to_n": 3
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "3 TO 3",
+      "at": 0,
+      "text": "3 TO 3",
+      "from_n": 3,
+      "to_n": 3
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "3 TO 3",
+      "at": 30,
+      "text": "NOVEMBER 2ND ALL DATA CENTERS 3 TO 3",
+      "from_n": 3,
+      "to_n": 3
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "5 TO 1",
+      "at": 27,
+      "text": "NOVEMBER 2ND FIRST READING 5 TO 1 ONE EXCUSED",
+      "from_n": 5,
+      "to_n": 1
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "5 TO 1",
+      "at": 0,
+      "text": "5 TO 1",
+      "from_n": 5,
+      "to_n": 1
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "5 TO 2",
+      "at": 31,
+      "text": "NOVEMBER 16TH ALL DATA CENTERS 5 TO 2",
+      "from_n": 5,
+      "to_n": 2
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "5 TO 2",
+      "at": 0,
+      "text": "5 TO 2",
+      "from_n": 5,
+      "to_n": 2
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "7 TO 0",
+      "at": 29,
+      "text": "NOVEMBER 16TH SECOND READING 7 TO 0",
+      "from_n": 7,
+      "to_n": 0
+    },
+    {
+      "slide": 7,
+      "kind": "span",
+      "fragment": "7 TO 0",
+      "at": 0,
+      "text": "7 TO 0",
+      "from_n": 7,
+      "to_n": 0
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2027 FINDINGS",
+      "at": 11,
+      "text": "JUNE 21ST, 2027 FINDINGS DUE",
+      "n": 2027,
+      "subject": "findings"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "2027 EXPIRES",
+      "at": 16,
+      "text": "SEPTEMBER 30TH, 2027 EXPIRES",
+      "n": 2027,
+      "subject": "expires"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "three tests",
+      "at": 31,
+      "text": "Should the final text keep the three tests for when the freeze ends?",
+      "n": 3,
+      "subject": "tests"
+    }
+  ],
+  "not_rederived": [],
+  "subsets": [],
+  "fails": [],
+  "warns": [],
+  "verdict": "PASS"
+}
