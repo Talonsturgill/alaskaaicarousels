@@ -6540,6 +6540,16 @@
           "url": "https://www.kfsk.org/2026/11/23/petersburg-assembly-votes-to-broaden-proposed-moratorium-on-data-center-permits/",
           "outlet": "KFSK",
           "date": "2026-11-23"
+        },
+        {
+          "url": "https://www.kfsk.org/wp-content/uploads/2026/11/Ord-2026-24-Data-Center-Moratorium.pdf",
+          "outlet": "Petersburg Borough, Ordinance No. 2026-24",
+          "date": "2026-10-29"
+        },
+        {
+          "url": "https://petersburgak.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=1971,plainText=false)",
+          "outlet": "Petersburg Borough Assembly agenda",
+          "date": "2026-11-16"
         }
       ],
       "first_seen": "2026-09-30",
@@ -6579,7 +6589,7 @@
         },
         {
           "date": "2026-11-24",
-          "note": "KFSK reported on November 23rd that the Assembly voted 5 to 2 to broaden the proposed moratorium and then passed the ordinance unanimously, 7 to 0, at its second reading on November 16th. The amended version needs one more Assembly approval before it takes effect, with another public hearing at the November 30th meeting at 6 p.m."
+          "note": "KFSK reported on November 23rd that the Assembly voted 5 to 2 to broaden the proposed moratorium and then passed the ordinance unanimously, 7 to 0, at its second reading on November 16th. The amended version needs one more Assembly approval before it takes effect, with another public hearing at the November 30th meeting at 6 p.m. The ordinance as introduced, No. 2026-24, would run through September 30th, 2027, with staff findings due June 21st, 2027, and the November 16th agenda records its first reading passing 5 to 1."
         }
       ]
     },
