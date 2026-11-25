@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-25T18:32:51Z",
+ "generated": "2026-11-25T23:45:39Z",
  "source": "US Energy Information Administration, bulk electricity file",
  "source_url": "https://api.eia.gov/bulk/ELEC.zip",
  "geography": "Alaska, all utilities, state average",
@@ -7,15 +7,19 @@
  "sectors": {
   "residential": {
    "series_id": "ELEC.PRICE.AK-RES.M",
-   "eia_updated": "2026-10-22",
-   "latest_period": "202608",
-   "latest_label": "August 2026",
-   "latest": 29.41,
-   "year_ago": 27.79,
-   "change_year": 1.62,
-   "points": 306,
+   "eia_updated": "2026-11-20",
+   "latest_period": "202609",
+   "latest_label": "September 2026",
+   "latest": 28,
+   "year_ago": 27.22,
+   "change_year": 0.78,
+   "points": 307,
    "first_period": "200101",
    "data": [
+    [
+     "202609",
+     28
+    ],
     [
      "202608",
      29.41
@@ -1244,15 +1248,19 @@
   },
   "commercial": {
    "series_id": "ELEC.PRICE.AK-COM.M",
-   "eia_updated": "2026-10-22",
-   "latest_period": "202608",
-   "latest_label": "August 2026",
-   "latest": 23.9,
-   "year_ago": 23.09,
-   "change_year": 0.81,
-   "points": 308,
+   "eia_updated": "2026-11-20",
+   "latest_period": "202609",
+   "latest_label": "September 2026",
+   "latest": 23.3,
+   "year_ago": 23.31,
+   "change_year": -0.01,
+   "points": 309,
    "first_period": "200101",
    "data": [
+    [
+     "202609",
+     23.3
+    ],
     [
      "202608",
      23.9
@@ -2489,15 +2497,19 @@
   },
   "industrial": {
    "series_id": "ELEC.PRICE.AK-IND.M",
-   "eia_updated": "2026-10-22",
-   "latest_period": "202608",
-   "latest_label": "August 2026",
-   "latest": 23.13,
-   "year_ago": 20.49,
-   "change_year": 2.64,
-   "points": 308,
+   "eia_updated": "2026-11-20",
+   "latest_period": "202609",
+   "latest_label": "September 2026",
+   "latest": 19.43,
+   "year_ago": 19.27,
+   "change_year": 0.16,
+   "points": 309,
    "first_period": "200101",
    "data": [
+    [
+     "202609",
+     19.43
+    ],
     [
      "202608",
      23.13
@@ -3734,15 +3746,19 @@
   },
   "all": {
    "series_id": "ELEC.PRICE.AK-ALL.M",
-   "eia_updated": "2026-10-22",
-   "latest_period": "202608",
-   "latest_label": "August 2026",
-   "latest": 25.32,
-   "year_ago": 23.88,
-   "change_year": 1.44,
-   "points": 308,
+   "eia_updated": "2026-11-20",
+   "latest_period": "202609",
+   "latest_label": "September 2026",
+   "latest": 23.73,
+   "year_ago": 23.44,
+   "change_year": 0.29,
+   "points": 309,
    "first_period": "200101",
    "data": [
+    [
+     "202609",
+     23.73
+    ],
     [
      "202608",
      25.32
@@ -4982,9 +4998,13 @@
   "residential": {
    "series_id": "ELEC.SALES.AK-RES.M",
    "units": "million kilowatthours",
-   "latest_period": "202608",
-   "latest": 144.80754,
+   "latest_period": "202609",
+   "latest": 145.00561,
    "data": [
+    [
+     "202609",
+     145.00561
+    ],
     [
      "202608",
      144.80754
@@ -6174,9 +6194,13 @@
   "all": {
    "series_id": "ELEC.SALES.AK-ALL.M",
    "units": "million kilowatthours",
-   "latest_period": "202608",
-   "latest": 492.10963,
+   "latest_period": "202609",
+   "latest": 478.35367,
    "data": [
+    [
+     "202609",
+     478.35367
+    ],
     [
      "202608",
      492.10963
