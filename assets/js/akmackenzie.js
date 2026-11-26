@@ -93,8 +93,8 @@
   var CSS = "" +
     ".akm-counter{position:absolute;right:80px;top:80px;font:500 22px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#A8B6BC;text-align:right;white-space:nowrap}" +
     ".akm-counter b{font-weight:500;color:#F4F8FF;margin-left:18px}" +
-    ".akm-site{position:absolute;left:80px;bottom:52px;font:500 20px/1 'JetBrains Mono',monospace;letter-spacing:.06em;color:#56686E}" +
-    ".akm-osm{position:absolute;left:80px;bottom:84px;font:400 16px/1 'JetBrains Mono',monospace;letter-spacing:.04em;color:#56686E}" +
+    ".akm-site{position:absolute;left:80px;bottom:52px;font:500 20px/1 'JetBrains Mono',monospace;letter-spacing:.06em;color:#8E9EA4;text-shadow:0 0 6px rgba(3,7,12,.95),0 0 2px rgba(3,7,12,.95)}" +
+    ".akm-osm{position:absolute;left:80px;bottom:84px;font:400 16px/1 'JetBrains Mono',monospace;letter-spacing:.04em;color:#A8B6BC;background:rgba(5,10,16,.72);padding:3px 6px;margin-left:-6px}" +
     ".akm-loc{position:absolute;right:80px;bottom:44px;width:180px;height:30px}";
 
   M.fixtures = function (n, o) {
@@ -108,7 +108,7 @@
     if (o.counterColor) c.style.color = o.counterColor;
     host.appendChild(c);
     var s = document.createElement("div"); s.className = "akm-site"; s.setAttribute("data-decorative", "");
-    s.textContent = "alaskaaihq.com"; if (o.siteColor) s.style.color = o.siteColor; host.appendChild(s);
+    s.textContent = "alaskaaihq.com"; if (o.siteColor) { s.style.color = o.siteColor; s.style.textShadow = "none"; } host.appendChild(s);
     if (o.osm) {
       var m = document.createElement("div"); m.className = "akm-osm"; m.setAttribute("data-decorative", "");
       m.textContent = "(c) OpenStreetMap contributors"; if (o.siteColor) m.style.color = o.siteColor; host.appendChild(m);
