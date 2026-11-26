@@ -104,7 +104,7 @@
     }
     var host = o.host || document.body;
     var c = document.createElement("div"); c.className = "akm-counter"; c.setAttribute("data-decorative", "");
-    c.innerHTML = "ALASKA.AI<b>" + (n < 10 ? "0" + n : n) + " / 09</b>";
+    c.innerHTML = "ALASKA.AI<b" + (o.boldColor ? ' style="color:' + o.boldColor + '"' : "") + ">" + (n < 10 ? "0" + n : n) + " / 09</b>";
     if (o.counterColor) c.style.color = o.counterColor;
     host.appendChild(c);
     var s = document.createElement("div"); s.className = "akm-site"; s.setAttribute("data-decorative", "");
