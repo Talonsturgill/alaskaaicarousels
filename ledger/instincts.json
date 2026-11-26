@@ -2980,6 +2980,22 @@
       "evidence": "No.123 08: the stipple slab was the scorer's named dead zone at round 2; the three-plane channel cleared it at round 3",
       "confidence": 0.5,
       "last_confirmed": "2026-11-24"
+    },
+    {
+      "id": "one-true-geometry-many-registers",
+      "learned": "2026-11-25",
+      "instinct": "WHEN THE STORY HAS ONE REAL GEOMETRY (a route, a boundary, a pipe), DRAW THE TRUE DATA ON EVERY FRAME AND CHANGE ONLY THE REGISTER. Continuity comes from the shape the reader learns on 01, and variety from the projection.",
+      "evidence": "No.124: the OSM alignment through nine cartographic registers; the flow critic read it as one deck from round 1",
+      "confidence": 0.5,
+      "last_confirmed": "2026-11-25"
+    },
+    {
+      "id": "clean-terrarium-water-first",
+      "learned": "2026-11-25",
+      "instinct": "TERRAIN TILES OVER TIDAL WATER AND MUSKEG CARRY SPIKES AND BLACK HOLES. Water-clean by neighbourhood vote and despike against land neighbours before any 3D render, or the cover renders needles.",
+      "evidence": "No.124 01: two rounds lost to spikes and black lakes until the DEM was cleaned at source",
+      "confidence": 0.5,
+      "last_confirmed": "2026-11-25"
     }
   ]
 }

@@ -1,0 +1,110 @@
+{
+  "run_dir": "out/2026-11-25",
+  "render_report": "out/2026-11-25/render/render_report.json",
+  "aggregates_file": "out/2026-11-25/aggregates.json",
+  "detected": 9,
+  "declared": 11,
+  "detections": [
+    {
+      "slide": 1,
+      "kind": "count",
+      "fragment": "Two ends",
+      "at": 21,
+      "text": "A $311 million line. Two ends. No named data center.",
+      "n": 2,
+      "subject": "ends"
+    },
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "32 miles",
+      "at": 60,
+      "text": "The Alaska Railroad's board approved the $311 million line, 32 miles from Port MacKenzie to the main line near Houston. The Legislature backed it 58-1.",
+      "n": 32,
+      "subject": "miles"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "32 MILES",
+      "at": 13,
+      "text": "WHO PAYS FOR 32 MILES",
+      "n": 32,
+      "subject": "miles"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "19,500 acres",
+      "at": 45,
+      "text": "DNR cut AIDEA's conveyance near Houston from 19,500 acres to about 6,800. AIDEA says uses could include an industrial hub or data centers. It says it hasn't identified a specific project.",
+      "n": 19500,
+      "subject": "acres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "2,300 COMMENTS",
+      "at": 10,
+      "text": "MORE THAN 2,300 COMMENTS, ALMOST ALL OPPOSED",
+      "n": 2300,
+      "subject": "comments"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "19,500 ACRES",
+      "at": 0,
+      "text": "19,500 ACRES",
+      "n": 19500,
+      "subject": "acres"
+    },
+    {
+      "slide": 4,
+      "kind": "count",
+      "fragment": "6,800 ACRES",
+      "at": 0,
+      "text": "6,800 ACRES",
+      "n": 6800,
+      "subject": "acres"
+    },
+    {
+      "slide": 5,
+      "kind": "count",
+      "fragment": "2002 CLEARING BEGINS",
+      "at": 0,
+      "text": "2002 CLEARING BEGINS \u00b7 2007 STALLED $180 MILLION SPENT, 2005 TO 2017",
+      "n": 2002,
+      "subject": "clearing begins"
+    },
+    {
+      "slide": 8,
+      "kind": "count",
+      "fragment": "two numbers",
+      "at": 14,
+      "text": "The match has two numbers.",
+      "n": 2,
+      "subject": "numbers"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 3,
+      "text": "VERTICAL x100",
+      "note": "the long section's vertical exaggeration, a property of the drawing"
+    },
+    {
+      "slide": 1,
+      "text": "RELIEF x8",
+      "note": "the rendered terrain's vertical exaggeration, a property of the drawing"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "STALE declaration, no rendered string matches it: S3 'VERTICAL x100' [design]",
+    "STALE declaration, no rendered string matches it: S1 'RELIEF x8' [design]",
+    "S5 '2002 CLEARING BEGINS' [from_claim]: the noun 'begin' does not appear in claim C10; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

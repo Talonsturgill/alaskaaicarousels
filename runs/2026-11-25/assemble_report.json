@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-25/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 9784702,
+  "pdf_mb": 9.78,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-25/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-25/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "Port MacKenzie's $311 million line, and its unnamed ends",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "7c5f5c1953ccdda51fbe32caa99de84762acf6b703446325ab22e8d8b148ed1d",
+        "bytes": 7162084
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "81240dec1e9dd88f6d0ad932193ba585c7fc2991bf0e5f85ceeebd2f957beeae",
+        "bytes": 4147716
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "87dcbead9362cd6225a6ecd89ddb94f1b5716ff9b047260d7fc31453ab4ccfd0",
+        "bytes": 5718499
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "a06382374f856a99c1c91a6119363375498ee15f121c53ef5eed3cd95dacedb0",
+        "bytes": 4361062
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "87168ad212753c2b4a646aa020f82fe8eb211d3af55528ef808cdf365653c62f",
+        "bytes": 3869746
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "18ef5760e0e983b463eb0bd22cecbdedb8bce84e2a7d5c30e8be9c027b28d1c5",
+        "bytes": 3449529
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "02b3b80ac14a4df050c83cccaec5cbb06f03df1751f4700fe9c05581f17abb5b",
+        "bytes": 3724637
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "b4cd5f12e3cc8a935d00ead8162043306646e706abad81b205fad6bc25c638c0",
+        "bytes": 5196769
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "3e51378d8d875e9821ca55c6c7d82a677433adb921ac0acb2248a45541dfb57d",
+        "bytes": 4982020
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "ea5e220861f3bb2fc6db92c7777444316c695d0f00b6755da96989e20ae621fa",
+        "bytes": 10859
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "d4d142b731fcc12be5f13b51c38da8246350c9c8e93723bfae453a948dd12723",
+        "bytes": 9102
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "3e0580d8018e09766f03219da96e667795c45eb04e8380be498a476ba685f50d",
+        "bytes": 10942
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "326814b038ecd76eee15d592f3bd9f30ca0b318214534957ca9112156bdea5d7",
+        "bytes": 12680
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "6417b28d6755447c25a95c7b518e13152658dad6ad25b9c0504e2ae93bf9dfae",
+        "bytes": 6912
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "bf839cd76bee5122b3393c55fe9b6246bbdb3bda133920ab648a7fdc4327d9a7",
+        "bytes": 9670
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "c2be00d1b91b1bf48e1f998e70efe880d466239c7a8d42c562c42a1afead306e",
+        "bytes": 8919
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "685afd36fc45abf60a6683c01c4cd051351461fd072d005b892de1da195b3f9f",
+        "bytes": 7785
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "b042ed6f6d6d405d6ebdc34da8d12e99aa1f3268c7e705c1aace0f6677cb7daf",
+        "bytes": 6118
+      }
+    ]
+  }
+}

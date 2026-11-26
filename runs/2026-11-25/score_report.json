@@ -1,0 +1,167 @@
+{
+ "hard_fails": [
+  {
+   "rule": "em dash or en dash anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "emoji anywhere",
+   "status": "pass"
+  },
+  {
+   "rule": "factual claim without a claim-id",
+   "status": "pass"
+  },
+  {
+   "rule": "typo or misspelling in any rendered slide",
+   "status": "pass"
+  },
+  {
+   "rule": "clipped, overlapping, or cut-off text",
+   "status": "pass"
+  },
+  {
+   "rule": "primary text contrast below 4.5:1",
+   "status": "pass"
+  },
+  {
+   "rule": "slide count outside 6-12",
+   "status": "pass"
+  },
+  {
+   "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+   "status": "pass"
+  },
+  {
+   "rule": "topic repeats within 30 days without update framing",
+   "status": "pass"
+  },
+  {
+   "rule": "hero visual structure identical to last 4 decks",
+   "status": "pass"
+  },
+  {
+   "rule": "banned phrase from brand.yaml",
+   "status": "pass"
+  },
+  {
+   "rule": "hashtag count != 3, or link in post body",
+   "status": "pass"
+  },
+  {
+   "rule": "any placeholder, lorem, TODO",
+   "status": "pass"
+  }
+ ],
+ "criteria": [
+  {
+   "name": "Thumb-stop cover",
+   "score": 7.5,
+   "weight": 0.14,
+   "notes": "Despike removed the Goose Bay needles and the east extension removed the cut wall; 9-word number-led headline lands at thumb size. Held at 7.5: the terrain is still soft olive felt with an unfocused lower 35% and reads as generic relief without its labels."
+  },
+  {
+   "name": "Story arc & swipe momentum",
+   "score": 7,
+   "weight": 0.14,
+   "notes": "01-02, 05-06 and 08-09 pull and 06's forward line plants 07. Weak: 02-03 and 03-04 junctions, 05 could move, 08's lead 'The cost has a source.' is vague, 06's three-line label runs two facts together."
+  },
+  {
+   "name": "Artwork craft & genuine detail",
+   "score": 7.5,
+   "weight": 0.16,
+   "notes": "07 now holds the whole route with both rings on a depth-falling mesh; 09 sits on its true bearing; 01 free of spikes and cut wall; 03, 05, 06, 08 hold. Under 8: 04 unchanged (qa still logs the parallel-seeded lay), 02 still reads as fur at full size with a dead left column, 01's foreground soft."
+  },
+  {
+   "name": "Story-art fusion",
+   "score": 8,
+   "weight": 0.14,
+   "notes": "True OSM alignment on every frame, hollow ends, to-scale money bar and tally, true-area acreage, day rail at true spacing. 05 encodes place more than the 34-year wait; 06's unpinned ring sits on an arbitrary spot."
+  },
+  {
+   "name": "Alaska authenticity & local relevance",
+   "score": 8,
+   "weight": 0.12,
+   "notes": "09's geography slip fixed. Named places, organisations, history and dates on real DEM and OSM data. Cover terrain still doesn't read as Mat-Su without labels."
+  },
+  {
+   "name": "Insight density & factual weight",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Every content slide adds a verified specific in 25-40 words; 08 repeats three earlier figures; 05 thin by design."
+  },
+  {
+   "name": "Variety vs ledger",
+   "score": 6.5,
+   "weight": 0.08,
+   "notes": "Reuses the one-object, a-different-instrument-per-frame system of No.121 to No.123 and is close to No.94's concept; several reused subsystems."
+  },
+  {
+   "name": "Legibility & platform fitness",
+   "score": 7.5,
+   "weight": 0.07,
+   "notes": "Floors met, counters and locator on every frame, vector PDF 9.78 MB with title. Squeakers: 16 px credit, 04 leader touching 'ALMOST', 07 credit close under 'RECONSIDERATION DUE', 06 run-together label."
+  },
+  {
+   "name": "Copy: voice & hook",
+   "score": 8,
+   "weight": 0.05,
+   "notes": "93-character question hook, 880 chars, clear position and a real price question; opens on a question, summary line is furniture."
+  },
+  {
+   "name": "Deliverable completeness",
+   "score": 8,
+   "weight": 0.1,
+   "notes": "Vector PDF, title, thumbs, contact sheet, 3 hashtags, dated source-first comment, aftercare and editor notes present; Gmail draft and main URLs not verifiable at Phase 10."
+  }
+ ],
+ "calculation": "(7.5x0.14)+(7x0.14)+(7.5x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(6.5x0.08)+(7.5x0.07)+(8x0.05)+(8x0.10) = 1.050+0.980+1.200+1.120+0.960+0.800+0.520+0.525+0.400+0.800 = 8.355",
+ "weighted_total": 8.355,
+ "threshold": 8.0,
+ "ship": true,
+ "weakest_criterion": "Variety vs ledger",
+ "one_sentence_fix": "Variety can't be fixed on a finished deck; the highest-leverage open item is slide 04, whose engraving seedDeg change did not reach the main lay, and future decks should retire the 'one object, nine instruments' system.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "engraving still parallel-seeded; lower band reads as eddies",
+   "fix": "verify seedDeg reaches the main-lay surface() call; width from Lambert"
+  },
+  {
+   "slide": 2,
+   "problem": "strokes still curl, read as fur; dead left column",
+   "fix": "straight fall-line hachures; milepost scale in the left column"
+  },
+  {
+   "slide": 1,
+   "problem": "clean but soft foreground",
+   "fix": "sharpen the near field, lit bluff edge and contact shadow at the port loop"
+  },
+  {
+   "slide": 7,
+   "problem": "Lambert ground under the wire barely visible",
+   "fix": "lift the fill to 25-30 percent with lit south faces"
+  },
+  {
+   "slide": 8,
+   "problem": "tally ends in a hollow box while 02 uses a dashed tick",
+   "fix": "use the dashed tick on 08"
+  }
+ ],
+ "editor_notes_for_email": "1) Ships at 8.355 against the round 3 threshold of 8.0. Art is 7.5, under the 8.5 craft floor; the one owed craft cycle was spent this round on 07, 01, 02, 04 and 09. 2) Not every craft change landed: 04's engraving fix didn't take effect and 08's tally still uses the hollow box. 3) Never name Terra as the port's data center developer; the Beacon (C13) names no one and Alaska Business (C49) said in April Terra isn't building one. 4) 'AIDEA's match returns to its board Friday' rests on C33 + C31 + C30; the amended second resolution's contents weren't fetched. 5) The governor-elect's freeze request (C54) was general and didn't name the rail match. 6) $33M is the Beacon's count and up to $34M the June ceiling; both shown on purpose. 7) The caption's countdown opens on Friday's 10 a.m. meeting; Thursday is Thanksgiving. 8) The run reports effort medium, not the high set in settings.json.",
+ "craft_cycle": {
+  "frames": [
+   7,
+   1,
+   2,
+   4,
+   9
+  ],
+  "art_before": 7.0,
+  "art_after": 7.5,
+  "round": 3,
+  "total_before": 8.275,
+  "total_after": 8.355,
+  "note": "Round 3 was the one CRAFT FLOOR cycle on the round 2 scorer's artwork_weakest_frames; re-rendered, re-gated and re-scored."
+ }
+}
