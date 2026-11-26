@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-26-ahead-of-the-patient",
+      "date": "2026-11-26",
+      "title": "Ahead of the Patient",
+      "caption": "Alaska hospitals in the volunteer Alaska Stroke Coalition use RapidAI to flag suspected large vessel occlusions and alert local teams and Anchorage clot specialists at once. Early, unpublished data reported by STAT shows about a 30 percent faster start on clot removal, but Alaska has no consistent stroke outcome reporting yet.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-26-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-26-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-26-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-26-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-25-the-other-track",
       "date": "2026-11-25",
       "title": "The Other Track",
