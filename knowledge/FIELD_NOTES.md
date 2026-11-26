@@ -9750,3 +9750,10 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - AN END COLLAR IN A DATA-SCALE BAND IS A MARK. The rail's start collar failed qa's measured-axis check until it was declared as the axis origin (November 16th, the second reading).
 - LINE-LIKE FILLRECTS COUNT AS BOXES. bespoke_check went to FAIL at 45 percent drawn after a craft round added 1 px seams as fillRect; the same seams as stroked paths are the same pixels and an honest 48 percent.
 - CLIP AN ENVELOPE TO GLYPH RECTS, NOT ELEMENT BOXES. 09's dashed hull broke 150 px under a short ask line because the clip used the 920 px div; a Range over the text node gives the ink's own rect.
+
+## 2026-11-25, No.124 retro (the Port MacKenzie line, both ends unnamed)
+- ONE TRUE GEOMETRY, NINE REGISTERS. The OSM alignment stitched once into assets/geo/ak-portmac-track.json and drawn on every frame gave the deck its continuity for free; each frame only had to choose a cartographic register. Stitch the real shape first, then plan the projections.
+- OVERPASS WAS BLOCKED; THE OSM EDITING API WAS NOT. api.openstreetmap.org/api/0.6/map over small bboxes returned the rail ways when overpass-api.de refused. Keep the bbox under the API's area limit and stitch ways by shared node.
+- TERRARIUM TILES LIE OVER TIDAL WATER AND MUSKEG. The z12 corridor DEM carried needles and black holes that the 01 render turned into spikes; a neighbourhood-vote water clean, a 30 m despike and a lowland despike against land-neighbour means cleared it. Clean at source, never in the slide.
+- A RING LABEL NEAR THE RIGHT EDGE CLAMPS TO ITS OWN WIDTH. 06's label left the safe zone once a forward line was added under it; position with Math.min(x, 1000 - offsetWidth), not a fixed offset.
+- A BODY THAT REPEATS THE NEXT FRAME'S NUMBER IS A BODY TOO LONG. The flow critic cut 02 (the $249 million grant lives on 03) and 07 (the calendar rail already carries the dates); both read better at about 25 to 30 words.

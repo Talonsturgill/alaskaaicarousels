@@ -1,0 +1,47 @@
+{
+ "run_date": "2026-11-25",
+ "carousel_no": 124,
+ "effort": "medium",
+ "date_note": "UTC date 2026-11-26; Anchorage date 2026-11-25 CLEAR per run_guard --run-date 2026-11-25",
+ "social_preflight": "PASS: profile alaska_ai, FB pin 2003130316607965, LI pin urn:li:organization:117084989, TikTok PUBLIC_TO_EVERYONE available, state branch initialized and read back",
+ "phases": {
+  "wake": "done: out/2026-11-25/plan.md, wake_inputs.txt, trend.txt, already_covered.txt",
+  "craft_refresh": "done: 1 search, nothing genuinely new (no confirmed November LinkedIn change); FIELD_NOTES untouched",
+  "research": "done: out/2026-11-25/scouts/A-F.md, scout_merge.md (searches 22,25,22,25,25,22; every beat thin)",
+  "claims": "done: out/2026-11-25/claims.json (60: C01-C55 Port MacKenzie rail, R01-R05 pelagic trawl runner-up; claims_check PASS 60/60, 17 primary; fact-checker 12 webfetch calls, 11 distinct URLs, 1 justified repeat)",
+  "docket": "done: ledger/docket.json 5 worklist items re-verified (aklng comment window closed 5 p.m. Nov 25 -> pending-decision; terra, eielson, eo-14318, doe-bulk checked and unchanged); gvea, enstar, pledge, transcription RFP, ANA AI3 and the deferred tail not re-verified this run (primary pages unread or unreachable), left unstamped. watch.json bills unchanged (HB259 ENE, SB250 CRA), 1 hearing (Dec 4 House ENE, already on record), 28 candidates triaged none added, failed []. ask self-test 5,107 B headroom (near 5,000 floor); mobile_docket_map + docket_ask PASS",
+  "gas_watch": "done: cron_health PASS (all scheduled workflows); gaswatch_health PASS (live 62.0 percent, 2026-11-25); site_signoff PASS 191 pages 18 checks; gaswatch_pagecheck PASS; desktop 1280 and phone 390 look at home, docket, gas watch: no horizontal scroll",
+  "selection": "done: out/2026-11-25/selection.md (Port MacKenzie rail extension, UPDATE of No.81/No.120 thread; runner-up pelagic trawl rule)",
+  "directors_room": "done: out/2026-11-25/treatments/{cartographer,cinematographer,essayist}.md, storyboard.md (9 dossiers, CRAFT PLAN; dossier_check PASS pre-build)",
+  "copy": "done: out/2026-11-25/caption.txt (room: B QUESTION FIRST/COUNTDOWN/PRICE won, critic fix applied to the closing question), copy.json (copywriter), caption_check --copy PASS",
+  "art_build": "done: out/2026-11-25/slides/slide-01..09.html, assets/js/akmackenzie.js (deck module), assets/geo/ak-portmac-{dem,rail,track}; render 9/9, qa.py WARN 0 fails; bespoke median 0.110; dossier_check, aggregate, plan_drift, copy_sync PASS",
+  "pixel_review": "done: round 1, 5 pixel critics (out/2026-11-25/critic/r1/summary.md), all nine revise; fixes applied to all nine (storyboard BUILD RECONCILIATION round 1)",
+  "flow_review": "done: round 2 flow critic revise 7.0 (flow_review.json); fixes on 01,02,05,06,07,08,09; round 3 craft cycle on 07,01,02,04,09",
+  "assemble": "done: out/2026-11-25/final (vector pdf 9.78 MB, 9 thumbs, contact sheet)",
+  "scoring": "done: 8.275 at round 2 (threshold 8.3), craft cycle, 8.355 at round 3 (threshold 8.0), art 7.5",
+  "ship": "done: runs/2026-11-25 (webp, og.jpg, pdf shrunk), docs rebuilt at 2026-11-25, ledgers appended, alerts none due",
+  "upgrade": "done: weekly pass not due (last 2026-11-24); retro written, 2 items queued",
+  "gmail": "pending",
+  "retro": "done: FIELD_NOTES, TECHNIQUE_LIBRARY, MACHINE_QUEUE, automation_retro.md"
+ },
+ "revision_rounds": 3,
+ "phase_3_6": {
+  "site_signoff": "PASS, 191 pages, 18 checks",
+  "gaswatch": "PASS, read 2026-11-25, chart present",
+  "gaswatch_live": "PASS, checked 2026-11-26T06:10:02Z",
+  "cron_health": "PASS, all scheduled workflows checked, no repairs needed",
+  "site_fixes": "none needed"
+ },
+ "social_feedback": [],
+ "craft_cycle": {
+  "round": 3,
+  "frames": [
+   7,
+   1,
+   2,
+   4,
+   9
+  ],
+  "reason": "artwork 7.0 under the 8.5 craft floor; total 8.275 under 8.3"
+ }
+}

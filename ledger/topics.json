@@ -5137,6 +5137,52 @@
         "weighted_total": 8.31,
         "artwork": 7.0
       }
+    },
+    {
+      "run_date": "2026-11-25",
+      "carousel_no": 124,
+      "update_of": 81,
+      "topic": "UPDATE of No.81 (October 8th) and the AIDEA Houston thread (No.111, No.120). The Alaska Railroad's board gave final approval in the week of November 16th to the $311 million, 32-mile Port MacKenzie rail extension from the port to the main line near Houston, funded by a $249 million federal CRISI grant with a $62 million local share; the Legislature backed it 58-1. AIDEA's share ($33 million per the Alaska Beacon, up to $34 million in Amended Resolution G26-07, approved unanimously June 17th) is back on its board's agenda: an Amended Second Resolution G26-07 was listed November 19th and the recessed meeting resumes 10 a.m. Friday, November 27th, after Governor-elect Kreiss-Tomkins asked AIDEA to freeze added spending before he takes office December 7th. Neither end has a named data center: Houston conveyance land whose uses 'could include an industrial hub or data centers' with no project identified, and a coal-fired computing data center the Beacon reports announced at the port with its developer unnamed (Terra Energy isn't building one, Alaska Business, April). Reconsideration requests on the Houston transfer are due November 30th.",
+      "angle": "THE ONE LINE, NINE PROJECTIONS: the true OpenStreetMap alignment in gold through nine cartographic registers, both ends always hollow dashed blue rings (proposed, unnamed).",
+      "entities": [
+        "Alaska Railroad",
+        "AIDEA",
+        "Port MacKenzie",
+        "Houston",
+        "Matanuska-Susitna Borough",
+        "Kreiss-Tomkins",
+        "Terra Energy",
+        "Alaska Beacon",
+        "CRISI"
+      ],
+      "keywords": [
+        "Port MacKenzie rail extension",
+        "final approval",
+        "CRISI grant",
+        "Amended Second Resolution G26-07",
+        "AIDEA match",
+        "spending freeze",
+        "Houston conveyance",
+        "coal-fired data center",
+        "reconsideration"
+      ],
+      "headline": "A $311 million line. Two ends. No named data center.",
+      "sources_lead": [
+        "https://www.aidea.org",
+        "https://alaskapublic.org",
+        "https://alaskabeacon.com"
+      ],
+      "beats": [
+        "data-centers",
+        "power-and-the-grid",
+        "land-and-permitting"
+      ],
+      "claims": 60,
+      "note": "Watch Friday November 27th: what AIDEA does with the amended resolution, and whether anyone names a tenant at either end.",
+      "scores": {
+        "weighted_total": 8.355,
+        "artwork": 7.5
+      }
     }
   ]
 }

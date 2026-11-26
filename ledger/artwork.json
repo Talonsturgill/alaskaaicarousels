@@ -4558,6 +4558,51 @@
         "weighted_total": 8.31,
         "artwork": 7.0
       }
+    },
+    {
+      "run_date": "2026-11-25",
+      "carousel_no": 124,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE ONE LINE, NINE PROJECTIONS, the true 32-mile OSM alignment in gold pushed through a different cartographic register on every frame: three.js PBR terrain (01), Ogilby hachure strips (02), a long ground section under a money bar (03), white-line engraving of Houston (04), regional stipple (05), Tanaka contours of the port bluff (06), night depth-weighted wireframe with a calendar rail (07), cabinet ledger bars (08), an octolinear schematic ribbon (09)",
+      "atmosphere": "NEW: LOW WINTER SUN OVER MUSKEG (one sun at screen azimuth 200, elevation 24, frost haze, night for the vote)",
+      "depth_technique": "akthree PBR with exp2 haze and soft shadows (01), aspect-lit hachure (02), depth-ramp section hatching (03), akengrave (04), hillshade-density stipple (05), illuminated contours (06), depth-weighted wireframe (07), cabinet oblique (08), drawn side face ribbon (09)",
+      "line_voice": "hachure, illuminated contour and white-line engraving",
+      "continuity_device": "one true alignment, gold, with hollow dashed blue rings at both ends",
+      "continuity_devices": [
+        "the true OSM alignment on every frame",
+        "hollow forget-me-not rings at both ends",
+        "the corridor locator",
+        "one low south-southwest sun",
+        "counters"
+      ],
+      "hook_archetype": "NEW: BOTH ENDS, NO NAME",
+      "palette_family": "NEW: SUSITNA MUSKEG AND BALLAST (base night #050C14, spruce #1C2F2B, muskeg sedge #8E8656, peat umber #4A3A2C, frost #D5E4E8, ballast basalt #3B4148, gold #FFC72C for the funded line only, forget-me-not #6EA5FF dashed for proposed and unnamed)",
+      "type_pairing": "Archivo wdth 125 display + Archivo body + JetBrains Mono 500 caps",
+      "narrative_structure": "update hook on the whole corridor, the approval as payoff, who pays, one frame per end with a rest between, the Friday vote, a four-line ledger, an open question",
+      "variance_dials": {
+        "design_variance": 4,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "akthree PBR terrain",
+        "Ogilby strip map",
+        "Long section with money bar",
+        "White-line engraving",
+        "Hillshade stipple",
+        "Tanaka illuminated contours",
+        "Depth-weighted wireframe",
+        "Cabinet oblique",
+        "Octolinear schematic"
+      ],
+      "new_techniques_logged": [
+        "Ogilby Strip Map from a True Alignment",
+        "Deck corridor module (assets/js/akmackenzie.js)"
+      ],
+      "scores": {
+        "weighted_total": 8.355,
+        "artwork": 7.5
+      }
     }
   ]
 }

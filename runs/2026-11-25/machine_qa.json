@@ -1,0 +1,206 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold line from the port loop to the main line': canvas 80.6 dE, page 80.8 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the edge of the north ring at the junction near Houston' lands 0.0px from its target",
+        "leader 'the edge of the south ring around the port loop' lands 0.0px from its target",
+        "leader 'the edge of the north ring at the junction near Houston' meets its label 0.0px away",
+        "leader 'the edge of the south ring around the port loop' meets its label 6.3px away",
+        "leader 'the edge of the north ring at the junction near Houston' is drawn 65 px at 37 degrees, inside the pointer band",
+        "leader 'the edge of the south ring around the port loop' is drawn 42 px at 48 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'A $311 million line.Two ends.No named data c' fits 3/3 lines at 68px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'strip 1 of the line, hachured ground': canvas 58.4 dE, page 76.3 dE, 100% of its rect is clear of opaque DOM",
+        "'strip 2 of the line, hachured ground': canvas 57.4 dE, page 77.0 dE, 100% of its rect is clear of opaque DOM",
+        "'strip 3 of the line, hachured ground': canvas 57.8 dE, page 77.3 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the cost bar on the lit paper': shadow L* 71.8 vs ground L* 85.4, dL 13.6 at 432w"
+      ],
+      "motifs": [
+        "'the cost bar': canvas 42.7 dE, page 51.6 dE, 100% of its rect is clear of opaque DOM",
+        "'the ground section under the line': canvas 83.2 dE, page 81.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the money rail under the cost bar' runs 0 million dollars at 80 to 311 million dollars at 1000; 5 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd '$249 million federal.$62 million local.' fits 2/2 lines at 79px"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: AK ENGRAVE: the main lay over region [0,560,1080,790] is seeded PARALLEL to its own direction field (alignment 1.00 of 1.00, warn at 0.90), so all 207 strokes retrace one iso-line and the region prints as a single knotted ribbon. A form that falls in ONE AXIS ONLY does this. angOff cannot fix it (the raster and the walk rotate together); give the form variation in the other axis, or pass seedDeg to turn the seeding raster alone."
+      ],
+      "motifs": [
+        "'the engraved Houston bench': canvas 95.1 dE, page 93.7 dE, 95% of its rect is clear of opaque DOM (div#ann.mono stands on the rest)",
+        "'the conveyance outline': canvas 82.3 dE, page 86.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "leaders": [
+        "leader 'the north edge of the Houston conveyance outline' lands 0.0px from its target",
+        "leader 'the main line' lands 0.0px from its target",
+        "leader 'the north edge of the Houston conveyance outline' meets its label 0.0px away",
+        "leader 'the main line' meets its label 4.0px away",
+        "leader 'the north edge of the Houston conveyance outline' is drawn 17 px at 87 degrees, inside the pointer band",
+        "leader 'the main line' is drawn 21 px at 84 degrees, inside the pointer band"
+      ],
+      "fits": [
+        "hd 'Land for projectsnobody has named.' fits 2/2 lines at 75.5px"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the gold filament of the line': canvas 114.8 dE, page 114.6 dE, 99% of its rect is clear of opaque DOM (div#lK.lab stands on the rest)"
+      ],
+      "fits": [
+        "hd 'Proposed in 1992,before there was a port.' fits 2/2 lines at 65.5px"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'KNIK ARM' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "motifs": [
+        "'the gold port loop': canvas 90.1 dE, page 93.5 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hd 'Announced.Not named.' fits 2/2 lines at 103.5px"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the night wireframe of the corridor': canvas 65.6 dE, page 68.4 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the day rail from Friday to the inauguration' runs 0 days after November 27th at 120 to 10 days after November 27th at 960; 4 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hd 'AIDEA's match goesback on the table.' fits 2/2 lines at 77px"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the cost bar': canvas 73.6 dE, page 74.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the empty tenant slot': canvas 42.9 dE, page 43.4 dE, 100% of its rect is clear of opaque DOM"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the schematic ribbon of the line': canvas 114.0 dE, page 114.3 dE, 97% of its rect is clear of opaque DOM (div.mono stands on the rest)"
+      ],
+      "fits": [
+        "hd 'What should a $311 millionpublic line be bui' fits 2/2 lines at 65px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKMAC.fixtures",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "call": "AKMAC.load",
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9
+        ]
+      },
+      {
+        "call": "AKMAC.normal",
+        "slides": [
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "call": "AKMAC.ring",
+        "slides": [
+          1,
+          2,
+          6,
+          9
+        ]
+      },
+      {
+        "call": "AKMAC.sun",
+        "slides": [
+          2,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "call": "AKMAC.view",
+        "slides": [
+          4,
+          5,
+          6,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

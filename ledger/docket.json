@@ -3044,7 +3044,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-25",
       "history": [
         {
           "date": "2026-08-06",
@@ -3181,6 +3181,10 @@
         {
           "date": "2026-11-21",
           "note": "Searched the Federal Register today for Alaska documents published November 17th to 23rd, 32 in all, and found no Air Force, Oklo or reactor notice. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found no Air Force, Oklo or reactor notice. Checked and unchanged."
         }
       ]
     },
@@ -3369,7 +3373,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-25",
       "history": [
         {
           "date": "2026-08-06",
@@ -3462,6 +3466,10 @@
         {
           "date": "2026-11-21",
           "note": "Searched the Federal Register today for documents citing Executive Order 14318 published since November 10th and found none. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found none citing Executive Order 14318. Checked and unchanged."
         }
       ]
     },
@@ -3509,7 +3517,7 @@
         }
       ],
       "first_seen": "2026-08-06",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-25",
       "history": [
         {
           "date": "2026-08-06",
@@ -3618,6 +3626,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the Department of Energy's project selections page today, last updated October 5th. It still lists Terra Energy Center Corporation of Anchorage with $89,000,000 in federal funding and reports no signed award and no cancellation. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Re-read the Department of Energy's project selections page today. It still lists Terra Energy Center Corporation of Anchorage for engineering and design of a 1,250 MW coal plant with carbon capture in the Mat-Su Borough. Checked and unchanged."
         }
       ]
     },
@@ -5695,7 +5707,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-25",
       "history": [
         {
           "date": "2026-09-13",
@@ -5800,6 +5812,10 @@
         {
           "date": "2026-11-21",
           "note": "Searched the Federal Register today for Energy Department documents on the bulk-power system published since November 10th and found none. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found no Energy Department document on the bulk-power system. Checked and unchanged."
         }
       ]
     },
@@ -7272,10 +7288,10 @@
       "id": "aklng-row-lease-conversion",
       "title": "Alaska LNG right-of-way lease conversion",
       "kind": "state-land-lease",
-      "status": "open-for-comment",
+      "status": "pending-decision",
       "decider": "Alaska DNR Commissioner",
-      "public_access": "open",
-      "access_note": "Comments due 5 p.m. November 25th. Hearings November 23rd online, and November 24th at 4300 Boniface Parkway, Anchorage.",
+      "public_access": "indirect",
+      "access_note": "Written comments closed at 5 p.m. on November 25th. The DNR Commissioner decides next, and DNR has published no date for that decision.",
       "summary": "DNR proposes converting Alaska LNG's conditional right-of-way leases, ADL 421296 and 421297, into full leases. Per DNR, that grants no permission to build. Seven conditions remain later requirements.",
       "key_dates": [
         {
@@ -7317,7 +7333,7 @@
         }
       ],
       "first_seen": "2026-11-20",
-      "last_updated": "2026-11-22",
+      "last_updated": "2026-11-25",
       "history": [
         {
           "date": "2026-10-23",
@@ -7334,6 +7350,10 @@
         {
           "date": "2026-11-22",
           "note": "Re-read the signed proposed decision today. The virtual hearing is November 23rd from 6 to 8 p.m., the Anchorage hearing is November 24th from 11 a.m. to 1 p.m. at Alaska Housing Finance Corporation headquarters, and written comments are due by 5 p.m. on November 25th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Written comments closed at 5 p.m. today, the deadline DNR set in its proposed decision. The Commissioner now weighs a final decision, and DNR has published no date for it."
         }
       ]
     },

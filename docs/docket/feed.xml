@@ -6,7 +6,47 @@
 <atom:link href="https://alaskaaihq.com/docket/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Every AI infrastructure decision tracked in Alaska, as it moves. Comment windows, deadlines, votes and filings.</description>
 <language>en-us</language>
-<lastBuildDate>Tue, 24 Nov 2026 17:00:00 +0000</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 17:00:00 +0000</lastBuildDate>
+<item>
+<title>The Air Force nuclear microreactor at Eielson</title>
+<link>https://alaskaaihq.com/docket/#eielson-oklo-microreactor</link>
+<guid isPermaLink="false">alaska-ai-docket-eielson-oklo-microreactor-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 17:00:00 +0000</pubDate>
+<category>procurement</category>
+<description>Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found no Air Force, Oklo or reactor notice. Checked and unchanged. The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission. The comment window on the Air Force's preferred site near Spruce Lake closed on September 30th, and no extension was announced. The Air Force now weighs what it received and has published no date for a decision. The contract itself follows a Nuclear Regulatory Commission license. Status, pending-decision.</description>
+</item>
+<item>
+<title>The executive order that lets big data centers skip the usual federal review</title>
+<link>https://alaskaaihq.com/docket/#eo-14318-data-center-permitting</link>
+<guid isPermaLink="false">alaska-ai-docket-eo-14318-data-center-permitting-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 17:00:00 +0000</pubDate>
+<category>other</category>
+<description>Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found none citing Executive Order 14318. Checked and unchanged. Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure, directs federal agencies to speed approvals for data centers adding more than 100 megawatts of load or costing at least 500 million dollars. It tells agencies to find and create categorical exclusions under the National Environmental Policy Act, and directs Interior and Energy to offer federal sites while Defense may competitively lease military land. An executive order takes no public comment. Its effect is to remove review steps that would otherwise have carried one, so the room this closes is the environmental review a project would have had. Status, watching.</description>
+</item>
+<item>
+<title>An 89 million dollar federal grant for a coal plant in the Susitna watershed</title>
+<link>https://alaskaaihq.com/docket/#terra-energy-center-doe-grant</link>
+<guid isPermaLink="false">alaska-ai-docket-terra-energy-center-doe-grant-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 17:00:00 +0000</pubDate>
+<category>grant</category>
+<description>Re-read the Department of Energy's project selections page today. It still lists Terra Energy Center Corporation of Anchorage for engineering and design of a 1,250 MW coal plant with carbon capture in the Mat-Su Borough. Checked and unchanged. The Department of Energy selected Terra Energy Center Corporation of Anchorage, an affiliate of Flatlands Energy, for an 89 million dollar grant to study a 1,250 megawatt coal fired power plant west of Skwentna, with a 60 mile pipeline carrying its carbon dioxide to Beluga for injection into a depleted gas reservoir. The money funds a viability assessment rather than construction, and Terra must match it. The grant selection carried no public comment period. Comment rooms open later, when the mine, the plant, the pipeline and the injection well each need their own permits. Status, pending-decision.</description>
+</item>
+<item>
+<title>Which grid equipment gets restricted, and the reason given is AI</title>
+<link>https://alaskaaihq.com/docket/#doe-bulk-power-rfi-2026</link>
+<guid isPermaLink="false">alaska-ai-docket-doe-bulk-power-rfi-2026-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 17:00:00 +0000</pubDate>
+<category>regulatory-docket</category>
+<description>Searched the Federal Register today for Alaska documents published November 22nd to 25th, 29 in all, and found no Energy Department document on the bulk-power system. Checked and unchanged. A request for information implementing the August 26th emergency declaration on securing the United States bulk-power system. It asks which equipment and transactions should count as covered, naming grid-connected inverters, battery energy storage, universal power systems, generators and industrial control systems. The notice grounds the emergency in a finding that rapid growth of advanced manufacturing, data centers, artificial intelligence and defense production has increased the nation's dependence on abundant, reliable electricity. Alaska's Railbelt and rural utilities are mid-buildout on the inverter and storage categories listed, so a restriction reprices projects already in planning. The written response period under docket DOE-HQ-2026-1123 closed on October 9th. The department has not said when it will act on the responses. Status, pending-decision.</description>
+</item>
+<item>
+<title>Alaska LNG right-of-way lease conversion</title>
+<link>https://alaskaaihq.com/docket/#aklng-row-lease-conversion</link>
+<guid isPermaLink="false">alaska-ai-docket-aklng-row-lease-conversion-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 17:00:00 +0000</pubDate>
+<category>state-land-lease</category>
+<description>Written comments closed at 5 p.m. today, the deadline DNR set in its proposed decision. The Commissioner now weighs a final decision, and DNR has published no date for it. DNR proposes converting Alaska LNG's conditional right-of-way leases, ADL 421296 and 421297, into full leases. Per DNR, that grants no permission to build. Seven conditions remain later requirements. Written comments closed at 5 p.m. on November 25th. The DNR Commissioner decides next, and DNR has published no date for that decision. Status, pending-decision.</description>
+</item>
 <item>
 <title>The Dixon Glacier diversion into Bradley Lake</title>
 <link>https://alaskaaihq.com/docket/#bradley-lake-dixon-diversion</link>
@@ -152,14 +192,6 @@
 <description>The Alaska Energy Authority's project page returned a server error today, so it could not be re-read. The $413 million estimate and the 2032 completion target stand as last verified on November 18th. The Alaska Energy Authority is asking submarine cable makers and installers to prequalify for the Cook Inlet PowerLink, a direct current link between Beluga and Nikiski that AEA says would remove the single point of failure between the Kenai Peninsula and Anchorage. The base bid is a 100 MW cable, procurement is expected about June 2027 and service in December 2031. AEA lists $142.5 million of a $413 million cost as still required. DeepGreen, an AI data center applicant at FERC, named the line its strategic partner and later said it holds no agreement with AEA. A vendor solicitation, not a rulemaking, so no public comment period exists. Responses are due 2:00 p.m. Alaska time December 15th. The public reaches the decision through AEA's board meetings and the project's later environmental review, expected to finish in early 2029. Status, pending-decision.</description>
 </item>
 <item>
-<title>Alaska LNG right-of-way lease conversion</title>
-<link>https://alaskaaihq.com/docket/#aklng-row-lease-conversion</link>
-<guid isPermaLink="false">alaska-ai-docket-aklng-row-lease-conversion-2026-11-22</guid>
-<pubDate>Sun, 22 Nov 2026 17:00:00 +0000</pubDate>
-<category>state-land-lease</category>
-<description>Re-read the signed proposed decision today. The virtual hearing is November 23rd from 6 to 8 p.m., the Anchorage hearing is November 24th from 11 a.m. to 1 p.m. at Alaska Housing Finance Corporation headquarters, and written comments are due by 5 p.m. on November 25th. Checked and unchanged. DNR proposes converting Alaska LNG's conditional right-of-way leases, ADL 421296 and 421297, into full leases. Per DNR, that grants no permission to build. Seven conditions remain later requirements. Comments due 5 p.m. November 25th. Hearings November 23rd online, and November 24th at 4300 Boniface Parkway, Anchorage. Status, open-for-comment.</description>
-</item>
-<item>
 <title>GVEA's $80 million turbine decision</title>
 <link>https://alaskaaihq.com/docket/#gvea-lm6000-turbine-purchase</link>
 <guid isPermaLink="false">alaska-ai-docket-gvea-lm6000-turbine-purchase-2026-11-21</guid>
@@ -200,30 +232,6 @@
 <description>Re-read the Grants.gov listing today. It is still archived, with no recipient named. Checked and unchanged. The Administration for Native Americans published its final Fiscal Year 2026 program policies on July 28th, 2026, standing up three funding opportunities and leaving out SEDS-AK, the Alaska-specific economic development program that ran alongside SEDS for decades. Two days later it posted the AI3 Action Institute, a single national award of up to $3,500,000 to build an artificial intelligence resource center for Native communities, with Alaska Native villages under ANCSA and nonprofit village consortia named as eligible applicants. Only eligible applicants reached this one, and applications closed on August 27th, 2026, so no public path remains. An Alaskan reached it through a tribe, an ANCSA village or a Native nonprofit that filed in time. Applications are evaluated privately and no awardee has been named. Status, pending-decision.</description>
 </item>
 <item>
-<title>The Air Force nuclear microreactor at Eielson</title>
-<link>https://alaskaaihq.com/docket/#eielson-oklo-microreactor</link>
-<guid isPermaLink="false">alaska-ai-docket-eielson-oklo-microreactor-2026-11-21</guid>
-<pubDate>Sat, 21 Nov 2026 17:00:00 +0000</pubDate>
-<category>procurement</category>
-<description>Searched the Federal Register today for Alaska documents published November 17th to 23rd, 32 in all, and found no Air Force, Oklo or reactor notice. Checked and unchanged. The Air Force intends to award Oklo a 30 year fixed price power purchase agreement for a microreactor delivering up to 5 megawatts to Eielson Air Force Base outside Fairbanks. Oklo would build, own and operate it, and the contract is signed only after Oklo obtains a license from the Nuclear Regulatory Commission. The comment window on the Air Force's preferred site near Spruce Lake closed on September 30th, and no extension was announced. The Air Force now weighs what it received and has published no date for a decision. The contract itself follows a Nuclear Regulatory Commission license. Status, pending-decision.</description>
-</item>
-<item>
-<title>The executive order that lets big data centers skip the usual federal review</title>
-<link>https://alaskaaihq.com/docket/#eo-14318-data-center-permitting</link>
-<guid isPermaLink="false">alaska-ai-docket-eo-14318-data-center-permitting-2026-11-21</guid>
-<pubDate>Sat, 21 Nov 2026 17:00:00 +0000</pubDate>
-<category>other</category>
-<description>Searched the Federal Register today for documents citing Executive Order 14318 published since November 10th and found none. Checked and unchanged. Executive Order 14318, Accelerating Federal Permitting of Data Center Infrastructure, directs federal agencies to speed approvals for data centers adding more than 100 megawatts of load or costing at least 500 million dollars. It tells agencies to find and create categorical exclusions under the National Environmental Policy Act, and directs Interior and Energy to offer federal sites while Defense may competitively lease military land. An executive order takes no public comment. Its effect is to remove review steps that would otherwise have carried one, so the room this closes is the environmental review a project would have had. Status, watching.</description>
-</item>
-<item>
-<title>An 89 million dollar federal grant for a coal plant in the Susitna watershed</title>
-<link>https://alaskaaihq.com/docket/#terra-energy-center-doe-grant</link>
-<guid isPermaLink="false">alaska-ai-docket-terra-energy-center-doe-grant-2026-11-21</guid>
-<pubDate>Sat, 21 Nov 2026 17:00:00 +0000</pubDate>
-<category>grant</category>
-<description>Re-read the Department of Energy's project selections page today, last updated October 5th. It still lists Terra Energy Center Corporation of Anchorage with $89,000,000 in federal funding and reports no signed award and no cancellation. Checked and unchanged. The Department of Energy selected Terra Energy Center Corporation of Anchorage, an affiliate of Flatlands Energy, for an 89 million dollar grant to study a 1,250 megawatt coal fired power plant west of Skwentna, with a 60 mile pipeline carrying its carbon dioxide to Beluga for injection into a depleted gas reservoir. The money funds a viability assessment rather than construction, and Terra must match it. The grant selection carried no public comment period. Comment rooms open later, when the mine, the plant, the pipeline and the injection well each need their own permits. Status, pending-decision.</description>
-</item>
-<item>
 <title>Fairbanks proposes its own pause on large data center permits</title>
 <link>https://alaskaaihq.com/docket/#fnsb-ordinance-2026-42-data-center-moratorium</link>
 <guid isPermaLink="false">alaska-ai-docket-fnsb-ordinance-2026-42-data-center-moratorium-2026-11-21</guid>
@@ -238,14 +246,6 @@
 <pubDate>Sat, 21 Nov 2026 17:00:00 +0000</pubDate>
 <category>legislation</category>
 <description>Re-read the GovInfo record today. Its last action is still the House report of September 10th. Checked and unchanged. The Senate's H.R. 2347 is tracked as its own item. H.R. 9340, the Ratepayer Protection Act, would add a standard to the Public Utility Regulatory Policies Act requiring that rates charged a large-load customer recover from that customer the full, incremental cost of any generation, transmission or distribution upgrade needed to serve it, and keep recovering it if the customer walks away. A large-load customer is a non-residential consumer with aggregate peak demand of 100 megawatts or more at one site or campus, running information technology infrastructure for data storage and computation, which is a data center described without the phrase. State regulators would get one year from enactment to begin considering it and two to decide. A state is excused if, before enactment, it implemented a comparable standard, conducted a proceeding on one, or its legislature voted on one. Alaska's Senate passed SB 250, a comparable cost-allocation bill, on May 16th, and the House never voted. Whether one chamber satisfies the words the State legislature has voted is unresolved, and it decides whether Alaska is already excused. There is no comment room on a bill. The route is the congressional delegation, and after enactment it becomes a proceeding at the Regulatory Commission of Alaska, which is a room with a docket and a public record. The House passed the bill on September 16th and the Senate declined to take it up on September 30th, so it waits on the lame-duck session that opens November 9th. Status, pending-decision.</description>
-</item>
-<item>
-<title>Which grid equipment gets restricted, and the reason given is AI</title>
-<link>https://alaskaaihq.com/docket/#doe-bulk-power-rfi-2026</link>
-<guid isPermaLink="false">alaska-ai-docket-doe-bulk-power-rfi-2026-2026-11-21</guid>
-<pubDate>Sat, 21 Nov 2026 17:00:00 +0000</pubDate>
-<category>regulatory-docket</category>
-<description>Searched the Federal Register today for Energy Department documents on the bulk-power system published since November 10th and found none. Checked and unchanged. A request for information implementing the August 26th emergency declaration on securing the United States bulk-power system. It asks which equipment and transactions should count as covered, naming grid-connected inverters, battery energy storage, universal power systems, generators and industrial control systems. The notice grounds the emergency in a finding that rapid growth of advanced manufacturing, data centers, artificial intelligence and defense production has increased the nation's dependence on abundant, reliable electricity. Alaska's Railbelt and rural utilities are mid-buildout on the inverter and storage categories listed, so a restriction reprices projects already in planning. The written response period under docket DOE-HQ-2026-1123 closed on October 9th. The department has not said when it will act on the responses. Status, pending-decision.</description>
 </item>
 <item>
 <title>The Senate energy bill that names Alaska once, with an RCA approval step</title>
