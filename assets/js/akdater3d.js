@@ -60,8 +60,8 @@ function bandTexture(THREE, ch, alphabet, seed, roll) {
       ctx.font = MONO; ctx.textAlign = "center"; ctx.textBaseline = "middle";
       if (ctx === g) {
         // raised character: its top face picks up dried ink, its shoulder darker
-        ctx.fillStyle = "#151110"; ctx.fillText(alphabet[k], 2, 2);
-        ctx.fillStyle = "#4b403a"; ctx.fillText(alphabet[k], 0, 0);
+        ctx.fillStyle = "#120e0d"; ctx.fillText(alphabet[k], 2, 2);
+        ctx.fillStyle = "#8a7766"; ctx.fillText(alphabet[k], 0, 0);
       } else {
         ctx.fillStyle = "#f0f0f0"; ctx.fillText(alphabet[k], 0, 0);
       }
@@ -117,8 +117,14 @@ export function buildDater(THREE, AKT, o) {
     envMapIntensity: 1.6 });
   const nickelWorn = new THREE.MeshStandardMaterial({ color: 0xc0c6c9, metalness: 0.82, roughness: 0.40,
     envMapIntensity: 1.5 });
-  const plateMat = new THREE.MeshStandardMaterial({ color: 0xc9cfd2, metalness: 0.68, roughness: 0.36,
-    envMapIntensity: 1.4 });
+  // nickel plate: a real metal, lit mostly by what it reflects, with a brushed lay so the
+  // environment smears along the plate instead of printing as a flat painted face
+  const brush = (() => { const c = document.createElement("canvas"); c.width = 512; c.height = 64;
+    const g = c.getContext("2d"); const r = mulberry(seed + 3); g.fillStyle = "#808080"; g.fillRect(0, 0, 512, 64);
+    for (let i = 0; i < 900; i++) { const y = r() * 64, v = 90 + r() * 80; g.fillStyle = "rgb(" + v + "," + v + "," + v + ")"; g.fillRect(0, y, 512, 0.6 + r()); }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; })();
+  const plateMat = new THREE.MeshStandardMaterial({ color: 0xc3cbcf, metalness: 0.72, roughness: 0.34,
+    envMapIntensity: 2.4, bumpMap: brush, bumpScale: 0.35, roughnessMap: brush });
   const steelDark = new THREE.MeshStandardMaterial({ color: 0x6b7276, metalness: 0.9, roughness: 0.38,
     bumpMap: knurlTexture(THREE), bumpScale: 0.6, envMapIntensity: 1.0 });
   const walnut = new THREE.MeshStandardMaterial({ color: 0xffffff, map: grainWood(THREE, seed + 7),
@@ -147,9 +153,12 @@ export function buildDater(THREE, AKT, o) {
   // collar and neck (lathe), then the walnut knob
   const collar = AKT.lathe([[0.0, 1.24], [0.16, 1.24], [0.17, 1.27], [0.10, 1.31], [0.085, 1.42], [0.11, 1.45], [0.0, 1.45]], nickel, { segments: 96 });
   G.add(collar);
-  const knobP = [[0.0, 1.44], [0.12, 1.44], [0.19, 1.50], [0.24, 1.60], [0.30, 1.72], [0.33, 1.82], [0.32, 1.89],
+  const knobC = [[0.0, 1.44], [0.12, 1.44], [0.19, 1.50], [0.24, 1.60], [0.30, 1.72], [0.33, 1.82], [0.32, 1.89],
                  [0.27, 1.94], [0.16, 1.975], [0.0, 1.985]];
-  const knob = AKT.lathe(knobP, walnut, { segments: 128 }); knob.name = "walnut knob"; G.add(knob);
+  // a smooth turned profile: the ten control points through a Catmull-Rom spline, 64 samples
+  const kc = new THREE.CatmullRomCurve3(knobC.map(p => new THREE.Vector3(p[0], p[1], 0)), false, "centripetal");
+  const knobP = kc.getPoints(64).map(v => [Math.max(0, v.x), v.y]);
+  const knob = AKT.lathe(knobP, walnut, { segments: 160 }); knob.name = "walnut knob"; G.add(knob);
   // axle
   const axle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, span + 0.16, 32), steelDark);
   axle.rotation.z = Math.PI / 2; axle.position.y = AX; G.add(axle);
@@ -199,7 +208,7 @@ export function feltMaterial(THREE, o) {
   }
   const bump = new THREE.CanvasTexture(c); bump.wrapS = bump.wrapT = THREE.RepeatWrapping;
   bump.repeat.set(o.repeat || 8, o.repeat || 8);
-  return new THREE.MeshStandardMaterial({ color: o.color != null ? o.color : 0x1f4038, roughness: 0.96,
+  return new THREE.MeshStandardMaterial({ color: o.color != null ? o.color : 0x1b3a30, roughness: 0.96,
     metalness: 0, bumpMap: bump, bumpScale: 0.8 });
 }
 
@@ -211,7 +220,9 @@ export function sheetTexture(THREE, o) {
   const W = o.px || 1024, H = Math.round(W * (o.aspect || 1.294));
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const g = c.getContext("2d"), rnd = mulberry(o.seed || 91);
-  g.fillStyle = o.paper || "#e3e3dc"; g.fillRect(0, 0, W, H);
+  // bond in lamplight: lit toward the upper left, falling off across the sheet
+  const pf = g.createLinearGradient(0, 0, W, H); pf.addColorStop(0, o.paper || "#d9d8cf"); pf.addColorStop(1, o.paperLee || "#a9a89f");
+  g.fillStyle = pf; g.fillRect(0, 0, W, H);
   for (let i = 0; i < W * H / 30; i++) {
     const x = rnd() * W, y = rnd() * H, v = rnd();
     g.fillStyle = v < 0.5 ? "rgba(120,118,110,0.10)" : "rgba(255,255,250,0.14)";
@@ -222,21 +233,51 @@ export function sheetTexture(THREE, o) {
     const cx = im.x * W, cy = im.y * H, s = (im.size || 0.42) * W;
     g.save(); g.translate(cx, cy); g.rotate(im.rot || -0.03);
     const ink = im.ink || "#FFC72C";
-    g.strokeStyle = ink; g.lineWidth = s * (im.weight >= 700 ? 0.026 : 0.018);
-    g.strokeRect(-s / 2, -s * 0.17, s, s * 0.34);
-    g.font = (im.weight || 500) + " " + Math.round(s * 0.135) + "px 'JetBrains Mono', monospace";
-    g.textAlign = "center"; g.textBaseline = "middle"; g.fillStyle = ink;
-    g.fillText(im.text, 0, s * 0.01);
+    const lw = s * (im.weight >= 700 ? 0.034 : 0.018);
+    g.font = (im.weight || 500) + " " + Math.round(s * 0.15) + "px 'JetBrains Mono', monospace";
+    g.textAlign = "center"; g.textBaseline = "middle";
+    // pressed ink: a dark deboss edge under the gold, offset away from the lamp, so a pale ink on
+    // pale paper still reads as a mark
+    g.strokeStyle = "rgba(60,40,10,0.55)"; g.lineWidth = lw; g.strokeRect(-s / 2 + 2, -s * 0.17 + 2, s, s * 0.34);
+    g.fillStyle = "rgba(60,40,10,0.55)"; g.fillText(im.text, 2.5, s * 0.01 + 2.5);
+    g.strokeStyle = ink; g.lineWidth = lw; g.strokeRect(-s / 2, -s * 0.17, s, s * 0.34);
+    g.fillStyle = ink; g.fillText(im.text, 0, s * 0.01);
     g.restore();
     // starve the ink: knock out tooth-sized flecks inside the impression box
     g.save(); g.globalCompositeOperation = "destination-over"; g.restore();
     for (let i = 0; i < s * s * 0.012; i++) {
       const x = cx + (rnd() - 0.5) * s * 1.05, y = cy + (rnd() - 0.5) * s * 0.4;
-      g.fillStyle = o.paper || "#e3e3dc"; g.globalAlpha = 0.55 * rnd();
+      g.fillStyle = o.paper || "#d9d8cf"; g.globalAlpha = 0.55 * rnd();
       g.fillRect(x, y, 1.6, 1.6);
     }
     g.globalAlpha = 1;
   }
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
   return t;
+}
+
+/* The desk's own reflection environment (round 1, 2026-11-26). akthree's studio
+ * environment carries a cool blue bounce panel to the right, and a nickel plate
+ * facing that way mirrored it as a flat navy face on every frame. This room has
+ * the lamp as a warm softbox high on the left, a dim warm wall in front of the
+ * desk (where the camera is), a cool window strip behind, and a dark felt floor. */
+export function deskEnvironment(THREE, R, o) {
+  o = o || {};
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.BoxGeometry(20, 14, 20), new THREE.MeshBasicMaterial({ color: 0x141412, side: THREE.BackSide })));
+  function panel(w, h, color, i, pos, rot) {
+    const p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+    p.material.color.multiplyScalar(i); p.position.set(...pos); if (rot) p.rotation.set(...rot); env.add(p); return p;
+  }
+  panel(6, 4, 0xffe2b8, o.lamp != null ? o.lamp : 7.0, [-5, 5.5, 3], [Math.PI / 3.2, 0.6, 0]);   // the lamp
+  panel(16, 6, 0xc8beae, o.room != null ? o.room : 0.9, [0, 2.5, 9], [0, Math.PI, 0]);         // the room in front
+  panel(6, 3, o.windowColor != null ? o.windowColor : 0x2c4a6c, o.window != null ? o.window : 1.2, [3, 3, -9], null); // the window
+  panel(14, 8, 0xd9cfbf, o.side != null ? o.side : 1.5, [9.5, 2.5, -1], [0, -Math.PI / 2, 0]);  // the lit side wall the plates mirror
+  panel(16, 16, 0x1b2a22, 0.6, [0, -6.9, 0], [-Math.PI / 2, 0, 0]);                              // felt floor
+  const pm = new THREE.PMREMGenerator(R.renderer);
+  const tex = pm.fromScene(env, 0.03).texture;
+  R.scene.environment = tex;
+  if ('environmentIntensity' in R.scene) R.scene.environmentIntensity = o.intensity != null ? o.intensity : 1.0;
+  pm.dispose();
+  return tex;
 }
