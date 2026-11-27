@@ -1,0 +1,53 @@
+{
+  "run_date": "2026-11-26",
+  "carousel_no": 125,
+  "effort": "medium",
+  "date_note": "Woke 2026-11-27T06:04Z = 2026-11-26 21:04 AKST; run_guard CLEAR for the Anchorage date.",
+  "revision_rounds": 4,
+  "social_preflight": {
+    "users": "ok",
+    "facebook_pin": "2003130316607965 match",
+    "linkedin_pin": "urn:li:organization:117084989 match",
+    "state_branch": "initialized/readback ok"
+  },
+  "phases": {
+    "wake": "done: out/2026-11-26/plan.md, trend.txt, already_covered.txt, instincts_top5.txt",
+    "craft_refresh": "done: 1 search, no confirmed November LinkedIn document-post change; FIELD_NOTES untouched",
+    "research": "done: out/2026-11-26/scouts/A-F.md, scout_merge.md (searches 23,23,25,24,25,10; every beat thin, B none)",
+    "claims": "done: out/2026-11-26/claims.json (52: C01-C46 FNSB Ordinance 2026-42 recommendation, R01-R06 Waymo/HB 217 runner-up; claims_check PASS 52/52, 39 primary; fact-checker 21 webfetch calls, 19 distinct URLs, 2 justified repeats on 403/503, memo read from rendered scans)",
+    "docket": "done: ledger/docket.json fnsb-ordinance-2026-42 updated from the primary action memo (11-0, five amendments, end June 30th, 2028 added); fnsb-2027 request, gvea, enstar, pledge, transcription RFP, ANA AI3, HR 9340, HR 2347, DMV RFI re-verified and stamped; air-force-eul, kpbsd, deepgreen unreachable (403/503/JS) and left unstamped. watch.json bills unchanged, 1 hearing (Dec 4 House ENE, already on record), 28 candidates triaged none added, failed []. ask self-test 4,259 B headroom (UNDER the 5,000 floor); mobile_docket_map + docket_ask PASS; docket_dates_check clean",
+    "gas_watch": "done: cron_health PASS; gaswatch_health PASS (62.1 percent, read 2026-11-26); site_signoff PASS 192 pages 18 checks; gaswatch_pagecheck PASS; desktop 1280 and phone 390 home/docket/gas watch no horizontal scroll",
+    "selection": "done: out/2026-11-26/selection.md (FNSB Ordinance 2026-42 recommendation, UPDATE of No.108; runner-up Waymo/HB 217)",
+    "directors_room": "done: out/2026-11-26/treatments/{historian,datajournalist,fielddoc}.md, storyboard.md (9 dossiers, CRAFT PLAN; dossier_check PASS pre-build)",
+    "copy": "done: out/2026-11-26/caption.txt (room: A SCENE/INVERTED PYRAMID/PREDICTION won, critic fix applied to the deck summary; \"Their version ends\" fix after the copywriter flag), copy.json, caption_check --copy PASS 797 chars",
+    "art_build": "done: out/2026-11-26/slides/slide-01..09.html, assets/js/akdater.js + akdater3d.js; render 9/9, qa.py WARN 0 fails; bespoke median 0.063; dossier_check, aggregate, plan_drift, copy_sync PASS",
+    "pixel_review": "done",
+    "flow_review": "done",
+    "assemble": "done",
+    "scoring": "pending",
+    "ship": "done",
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "score": "done",
+    "automation_retro": "done"
+  },
+  "phase_3_6": {
+    "site_signoff": "PASS, 192 pages, 18 checks",
+    "gaswatch": "PASS, read 2026-11-26, 114 days on record, chart present",
+    "gaswatch_live": "PASS, checked 2026-11-27T06:09:14Z",
+    "cron_health": "PASS, all scheduled workflows checked, no repairs needed",
+    "site_fixes": "none needed"
+  },
+  "social_feedback": [],
+  "craft_cycle": {
+    "round": 4,
+    "frames": [
+      4,
+      8,
+      3,
+      6
+    ]
+  },
+  "score": 8.395
+}

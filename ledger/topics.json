@@ -5183,6 +5183,52 @@
         "weighted_total": 8.355,
         "artwork": 7.5
       }
+    },
+    {
+      "run_date": "2026-11-26",
+      "carousel_no": 125,
+      "update_of": 108,
+      "topic": "UPDATE of No.108 (November 7th). On November 10th the Fairbanks North Star Borough Planning Commission voted 11-0, with all eleven members present, to recommend Ordinance 2026-42, the data center moratorium, to the Assembly with five amendments: staff's two at line 60 (gross floor area; the large-scale trigger cut from 50,000 to 40,000 square feet, the Title 18 entertainment-venue line) and three of the commission's own (water quality at line 33; the end moved from December 31st, 2027 to June 30th, 2028 at line 65; the study from six months to ten at line 73). The ordinance takes effect at 5 p.m. on the first business day after adoption; the Assembly's December 17th agenda was not posted when checked and Mayor Grier Hopkins told KTUU a vote is likely January 14th, 2027, which on the run's own day count leaves about 7.5 months between the report and the end. The mayor also said a purely government-purpose data center would likely sit outside the moratorium and that outside the Eielson fence the borough has jurisdiction.",
+      "angle": "THE FIXED END, THE FLOATING START: a clerk's band dater set to 2028-06-30, its start left blank; six added months, four to the study and about two to the rules.",
+      "entities": [
+        "Fairbanks North Star Borough",
+        "FNSB Planning Commission",
+        "FNSB Assembly",
+        "Ordinance 2026-42",
+        "Grier Hopkins",
+        "Eielson Air Force Base",
+        "KTUU",
+        "Title 18"
+      ],
+      "keywords": [
+        "data center moratorium",
+        "Ordinance 2026-42",
+        "11-0",
+        "five amendments",
+        "June 30th, 2028",
+        "ten-month study",
+        "40,000 square feet",
+        "gross floor area",
+        "January 14th",
+        "government purpose exception",
+        "Eielson"
+      ],
+      "headline": "Ends June 30th, 2028. The start waits on the Assembly's vote.",
+      "sources_lead": [
+        "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13441,plainText=false)",
+        "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13440,plainText=false)",
+        "https://www.alaskasnewssource.com/2026/11/17/fnsb-planning-commission-recommends-data-center-moratorium/"
+      ],
+      "beats": [
+        "data-centers",
+        "land-and-permitting"
+      ],
+      "claims": 52,
+      "note": "Watch the FNSB Assembly agendas for December 17th and January 14th: introduction, hearing, and whether adoption lands on the mayor's likely date. Sixth Fairbanks data center deck since October; the next one needs an Assembly action.",
+      "scores": {
+        "weighted_total": 8.395,
+        "artwork": 7.5
+      }
     }
   ]
 }

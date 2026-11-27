@@ -9757,3 +9757,11 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - TERRARIUM TILES LIE OVER TIDAL WATER AND MUSKEG. The z12 corridor DEM carried needles and black holes that the 01 render turned into spikes; a neighbourhood-vote water clean, a 30 m despike and a lowland despike against land-neighbour means cleared it. Clean at source, never in the slide.
 - A RING LABEL NEAR THE RIGHT EDGE CLAMPS TO ITS OWN WIDTH. 06's label left the safe zone once a forward line was added under it; position with Math.min(x, 1000 - offsetWidth), not a fixed offset.
 - A BODY THAT REPEATS THE NEXT FRAME'S NUMBER IS A BODY TOO LONG. The flow critic cut 02 (the $249 million grant lives on 03) and 07 (the calendar rail already carries the dates); both read better at about 25 to 30 words.
+
+## 2026-11-26, No.125 retro (Fairbanks fixes the end, leaves the start open)
+- A SCANNED CLERK'S MEMO IS STILL A PRIMARY. FNSB's action memo (fileId 13441) has no text layer; pdftoppm to PNG and a visual read by the fact-checker gave the vote, the members present and every amendment verbatim.
+- ONE HAND-SCALE OBJECT CAN CARRY A WHOLE DECK. The band dater rendered in PBR (01, 06, 09), engraved (04) and printed (02, 05) gave continuity without a map; story-art fusion scored 8 on it.
+- A SMALL METAL OBJECT NEEDS A ROOM, AND A WARM KEY TURNS NICKEL TO BRASS. A PMREM desk room fixed navy plates; a 0xf0c88c lamp on 06 then read them as gold, which collides with a gold-only-for-one-date ink law. Cool the plate or the key on any frame where gold carries meaning.
+- LEADERS ARE OPTIONAL WHEN THE LABEL IS THE KEY. 03's rows already said LINE 60 beside a red 60; removing the leaders cleared the art-crossing-type finding that two rounds of rerouting did not.
+- ENGRAVING ON A CYLINDER NEEDS A TONAL BODY FIRST. 04's wheels read as coils, then as mesh, because the white-line strokes were the only tone; a solid lit-to-lee fill under the strokes was the change that read as a solid.
+- A CRAFT CYCLE CAN HOLD THE SCORE FLAT. Round 4 lifted 08 and 03 and lost ground on 04 and 06, so art stayed 7.5. Test one change per weak frame on a crop before rendering all four.

@@ -4603,6 +4603,48 @@
         "weighted_total": 8.355,
         "artwork": 7.5
       }
+    },
+    {
+      "run_date": "2026-11-26",
+      "carousel_no": 125,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE BAND DATER, one clerk's rotary band dater and its impressions through nine registers: GPU PBR desk still life (01, 06, 09), relief-print impressions on the action memo (02), a graphite-hatched ordinance page with red pencil ticks (03), the white-line engraved band-wheel stack over a cabinet split bar (04), cabinet ribbons drawn to day scale on bond paper (05), a stipple plan with staked squares to scale (07), contour hachure under a receding fence (08)",
+      "atmosphere": "NEW: THE CLERK'S DESK, ONE LAMP, A SEASONAL WINDOW (December night on 01, deep winter on 06, June midnight sun on 09)",
+      "depth_technique": "akthree PBR with a PMREM desk room and contact AO (01, 06, 09), multiply relief ink with tooth starve (02), jittered graphite hatch with curl shade (03), akengrave lathe with a tonal body (04), cabinet oblique (05), lit-term stipple (07), contour-following hachure (08)",
+      "line_voice": "graphite hatch, white-line engraving, stipple and hachure",
+      "continuity_device": "the DATE CHIP band impression at the lower right with a red/dashed/gold ink law",
+      "continuity_devices": [
+        "the date chip motif table",
+        "the band dater itself",
+        "one upper-left tungsten lamp",
+        "the seasonal window arc",
+        "counters"
+      ],
+      "hook_archetype": "NEW: THE FIXED END, THE FLOATING START",
+      "palette_family": "NEW: CLERK'S BLOTTER AND REGISTRY INK (felt #1a302d, walnut, nickel, bond paper #f4f3ec, registry red #B53A2E for dates the record prints, dashed graphite for arithmetic, gold #FFC72C for June 30th, 2028 only)",
+      "type_pairing": "Fraunces display + Manrope body + JetBrains Mono 500 caps",
+      "narrative_structure": "update hook on the end date, the 11-0 payoff, the edits by line, the split, the keepable clock, a breather, the size line, the exception, one ask",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 2,
+        "type_temperature": 4
+      },
+      "techniques": [
+        "akthree PBR still life",
+        "Relief-print impressions",
+        "Graphite cross hatch",
+        "White-line engraving",
+        "Cabinet oblique ribbons",
+        "Lit-term stipple",
+        "Contour hachure"
+      ],
+      "new_techniques_logged": [
+        "Deck dater module (assets/js/akdater.js, assets/js/akdater3d.js: PBR band dater, felt, sheet impressions, PMREM desk room)"
+      ],
+      "scores": {
+        "weighted_total": 8.395,
+        "artwork": 7.5
+      }
     }
   ]
 }
