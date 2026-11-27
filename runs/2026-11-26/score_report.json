@@ -1,0 +1,95 @@
+{
+  "hard_fails": [],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 7.5,
+      "weight": 0.14
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8.0,
+      "weight": 0.14
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8.0,
+      "weight": 0.12
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 7.5,
+      "weight": 0.1
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 7.5,
+      "weight": 0.08
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 8.0,
+      "weight": 0.07
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 7.5,
+      "weight": 0.05
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8.0,
+      "weight": 0.1
+    }
+  ],
+  "calculation": "sum(score x weight) = 8.395 per the rubric formula; the rubric weights sum to 1.10, normalized 7.63 (queued in MACHINE_QUEUE.md for an owner decision)",
+  "weighted_total": 8.395,
+  "threshold": 7.7,
+  "ship": true,
+  "round": 4,
+  "weakest_criterion": "Story arc & swipe momentum",
+  "one_sentence_fix": "End slide 06 with a line that asks what else changed, so 07 and 08 grow out of the breather instead of starting a second deck after it.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 4,
+      "problem": "wheel faces read as a square mesh, not curved engraving"
+    },
+    {
+      "slide": 6,
+      "problem": "lamp pool lands left of the dater; bottom 15 percent black"
+    },
+    {
+      "slide": 3,
+      "problem": "lower-right hatch still scribbles"
+    },
+    {
+      "slide": 8,
+      "problem": "scratchy lit streaks in the lower-right drift; outriggers read as a staircase"
+    }
+  ],
+  "editor_notes_for_email": "Scored 8.395 by the rubric's formula; the weights sum to 1.10, so normalized it is about 7.63, which would miss both 7.7 and 8.0. Artwork 7.5, under the 8.5 floor; the one craft cycle ran (round 4) and did not move it. 04 and 06 remain the weakest frames. The 7.5 months, +2 and about 5.5 are the run's own arithmetic on the ordinance dates and the mayor's likely January 14th; January 14th is not a posted agenda. Sixth Fairbanks data center deck since October, framed as an UPDATE of No.108. Effort ran at medium.",
+  "craft_cycle": {
+    "frames": [
+      4,
+      8,
+      3,
+      6
+    ],
+    "art_before": 7.5,
+    "art_after": 7.5,
+    "round": 4,
+    "total_before": 8.395,
+    "total_after": 8.395,
+    "note": "Round 4 was the one CRAFT FLOOR cycle on the round 3 scorer's artwork_weakest_frames; re-rendered, re-gated and re-scored. Art held at 7.5: 08 and 03 improved, 04's new engraving read as mesh and 06's pool missed the dater."
+  }
+}

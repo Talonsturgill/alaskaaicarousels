@@ -1,0 +1,189 @@
+{
+  "run_dir": "out/2026-11-26",
+  "render_report": "out/2026-11-26/render/render_report.json",
+  "aggregates_file": "out/2026-11-26/aggregates.json",
+  "detected": 16,
+  "declared": 16,
+  "detections": [
+    {
+      "slide": 2,
+      "kind": "count",
+      "fragment": "five amendments",
+      "at": 75,
+      "text": "Every commissioner present sent the data center pause to the Assembly with five amendments. The ordinance opens on \"growing demand from artificial intelligence.\"",
+      "n": 5,
+      "subject": "amendments"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "Five edits",
+      "at": 0,
+      "text": "Five edits. Staff wrote two.",
+      "n": 5,
+      "subject": "edits"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "50,000 becomes",
+      "at": 0,
+      "text": "50,000 becomes 40,000 square feet",
+      "n": 50000,
+      "subject": "becomes"
+    },
+    {
+      "slide": 3,
+      "kind": "count",
+      "fragment": "2027 becomes",
+      "at": 15,
+      "text": "December 31st, 2027 becomes June 30th, 2028",
+      "n": 2027,
+      "subject": "becomes"
+    },
+    {
+      "slide": 3,
+      "kind": "duration",
+      "fragment": "ten months",
+      "at": 15,
+      "text": "the study gets ten months, not six",
+      "n": 10,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "SIX MONTHS",
+      "at": 10,
+      "text": "WHERE THE SIX MONTHS WENT",
+      "n": 6,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "Six months",
+      "at": 0,
+      "text": "Six months added. Four went to the study.",
+      "n": 6,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "two months",
+      "at": 42,
+      "text": "The time left after the report grew about two months.",
+      "n": 2,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "4 MONTHS",
+      "at": 7,
+      "text": "STUDY +4 MONTHS",
+      "n": 4,
+      "unit": "months"
+    },
+    {
+      "slide": 4,
+      "kind": "duration",
+      "fragment": "6 MONTHS",
+      "at": 1,
+      "text": "+6 MONTHS",
+      "n": 6,
+      "unit": "months"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "10 MONTHS",
+      "at": 0,
+      "text": "10 MONTHS OF STUDY",
+      "n": 10,
+      "unit": "months"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "5 MONTHS",
+      "at": 15,
+      "text": "RULES, ABOUT 7.5 MONTHS",
+      "n": 5,
+      "unit": "months"
+    },
+    {
+      "slide": 5,
+      "kind": "duration",
+      "fragment": "6 MONTHS",
+      "at": 0,
+      "text": "6 MONTHS",
+      "n": 6,
+      "unit": "months"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "18 uses",
+      "at": 75,
+      "text": "Large now starts at 40,000 square feet of gross floor area, the line Title 18 uses for big entertainment venues, down from 50,000. Both 5 MW power triggers stay. The mayor sees one possible exception.",
+      "n": 18,
+      "subject": "uses"
+    },
+    {
+      "slide": 7,
+      "kind": "count",
+      "fragment": "5 MW power triggers",
+      "at": 136,
+      "text": "Large now starts at 40,000 square feet of gross floor area, the line Title 18 uses for big entertainment venues, down from 50,000. Both 5 MW power triggers stay. The mayor sees one possible exception.",
+      "n": 5,
+      "subject": "mw power triggers"
+    },
+    {
+      "slide": 9,
+      "kind": "count",
+      "fragment": "2028 finds new rules",
+      "at": 11,
+      "text": "June 30th, 2028 finds new rules, an extension, or neither.",
+      "n": 2028,
+      "subject": "finds new rules"
+    }
+  ],
+  "not_rederived": [
+    {
+      "slide": 4,
+      "text": "WHERE THE SIX MONTHS WENT",
+      "note": "end of month to end of month: the end date moved from December 31st, 2027 (C23) to June 30th, 2028 (C06), six calendar month-ends; the duration rule counts December 31st to June 30th as five whole months only because the 30th falls before the 31st"
+    },
+    {
+      "slide": 4,
+      "text": "Six months added.",
+      "note": "end of month to end of month: the end date moved from December 31st, 2027 (C23) to June 30th, 2028 (C06), six calendar month-ends; the duration rule counts December 31st to June 30th as five whole months only because the 30th falls before the 31st"
+    },
+    {
+      "slide": 4,
+      "text": "grew about two months",
+      "note": "arithmetic, not a measurement: the end moved six months (C23 to C06, December 31st, 2027 to June 30th, 2028) and the study four (C25 six months to C07 ten months), so for any adoption date the time after the report grows by six minus four; the slide prints it as about two"
+    },
+    {
+      "slide": 5,
+      "text": "RULES, ABOUT 7.5 MONTHS",
+      "note": "day count, not a measurement: if adopted January 14th, 2027 (C40) it takes effect January 15th, 2027 at 5 p.m. (C26); ten months (C07) brings the report to about November 15th, 2027; June 30th, 2028 (C06) is 228 days later, about 7.5 months; drawn to scale at 880/532 px per day and asserted on the slide"
+    },
+    {
+      "slide": 4,
+      "text": "+6 MONTHS",
+      "note": "the axis end of the split bar: the six added months, end of month to end of month, December 31st, 2027 (C23) to June 30th, 2028 (C06); same basis as the headline's six"
+    }
+  ],
+  "subsets": [],
+  "fails": [],
+  "warns": [
+    "S3 '50,000 becomes 40,000 square feet' [from_claim]: the noun 'become' does not appear in claim C04; check that the number is being attached to what the claim actually counts.",
+    "S3 'December 31st, 2027 becomes June 30th, 2028' [from_claim]: the noun 'become' does not appear in claim C06; check that the number is being attached to what the claim actually counts.",
+    "S7 'Both 5 MW power triggers stay' [from_claim]: the noun 'trigger' does not appear in claim C18; check that the number is being attached to what the claim actually counts.",
+    "S9 'June 30th, 2028 finds new rules' [from_claim]: the noun 'rule' does not appear in claim C06; check that the number is being attached to what the claim actually counts."
+  ],
+  "verdict": "PASS"
+}

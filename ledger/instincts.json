@@ -2996,6 +2996,22 @@
       "evidence": "No.124 01: two rounds lost to spikes and black lakes until the DEM was cleaned at source",
       "confidence": 0.5,
       "last_confirmed": "2026-11-25"
+    },
+    {
+      "id": "pmrem-desk-room-for-small-metal",
+      "learned": "2026-11-26",
+      "instinct": "A SMALL NICKEL OBJECT ON A DARK DESK READS NAVY OR BRASS UNTIL IT HAS A ROOM TO REFLECT. Build a PMREM room (lamp softbox, lit side wall, window, felt floor) and keep the key lamp's warmth from turning nickel into gold under the ink law.",
+      "evidence": "No.125 01, 06, 09: plates read navy in round 1 and brass on 06 in rounds 3 and 4 under a 0xf0c88c key",
+      "confidence": 0.5,
+      "last_confirmed": "2026-11-26"
+    },
+    {
+      "id": "leaders-are-optional-when-labels-key",
+      "learned": "2026-11-26",
+      "instinct": "WHEN EACH ROW ALREADY NAMES ITS TARGET (LINE 60 next to a red 60), DROP THE LEADERS. Long leaders across a drawn page cross numerals and read as stray threads.",
+      "evidence": "No.125 03: two rounds of leader fixes, then removing them cleared the critic's art-crossing-type finding",
+      "confidence": 0.45,
+      "last_confirmed": "2026-11-26"
     }
   ]
 }

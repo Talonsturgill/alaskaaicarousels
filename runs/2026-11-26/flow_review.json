@@ -1,0 +1,77 @@
+{
+  "round": 3,
+  "verdict": "revise",
+  "score_0_10": 7.3,
+  "predicted_artwork_score": 7.0,
+  "masterful_depth_frame": 9,
+  "predicted_bail_point": {
+    "slide": 7,
+    "why": "07 opens a second axis with a dense paragraph and nothing on 06 asks for it"
+  },
+  "weakest_frames": [
+    {
+      "slide": 4,
+      "score": 6.0,
+      "cause": "d"
+    },
+    {
+      "slide": 8,
+      "score": 6.5,
+      "cause": "d"
+    },
+    {
+      "slide": 6,
+      "score": 7.0,
+      "cause": "c"
+    },
+    {
+      "slide": 3,
+      "score": 7.0,
+      "cause": "d"
+    },
+    {
+      "slide": 7,
+      "score": 7.0,
+      "cause": "c"
+    }
+  ],
+  "craft_causes": {
+    "a": [],
+    "b": [
+      4
+    ],
+    "c": [
+      6,
+      7
+    ],
+    "d": [
+      3,
+      4,
+      8
+    ],
+    "e": []
+  },
+  "junctions_weak": [
+    "6-7",
+    "7-8",
+    "8-9"
+  ],
+  "ranked_fixes": [
+    "04 solid wheel bodies + engraved 2028-06-30 characters, contour plates",
+    "08 low-frequency drift, fall-line hachures",
+    "06 desk front edge bevel + cool window light on felt",
+    "04 cut body to last sentence (dense 03-04-05 run)",
+    "07 trim body, plant the 08 exception",
+    "re-assemble before scoring"
+  ],
+  "declined": [
+    {
+      "finding": "contact sheet stale",
+      "why": "measured: contact_sheet.png written 07:59:41, after the last render at 07:56:32; the critic read the earlier gate row, not the sheet"
+    },
+    {
+      "finding": "aggregate +6 MONTHS undeclared",
+      "why": "already declared before the review; aggregate_check PASS 17/17"
+    }
+  ]
+}
