@@ -679,10 +679,15 @@
           "url": "https://www.gvea.com/news-releases/gveas-energy-emergency-alerts-why-theyre-needed-and-what-members-should-know/",
           "outlet": "Golden Valley Electric Association",
           "date": "2026-10-13"
+        },
+        {
+          "url": "https://www.gvea.com/",
+          "outlet": "Golden Valley Electric Association",
+          "date": "2026-11-26"
         }
       ],
       "first_seen": "2026-07-08",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-07-08",
@@ -827,6 +832,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read Golden Valley's alert page today. It still reports Energy Emergency Alert Level 0, normal operations, as of 7 p.m. on October 24th, and reports no board decision on the turbine purchase. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "GVEA's website, read today, carries no turbine purchase item and lists its next board meeting on December 8th. Checked and unchanged."
         }
       ]
     },
@@ -1231,7 +1240,7 @@
         }
       ],
       "first_seen": "2026-07-11",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-07-11",
@@ -1396,6 +1405,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the Division of Oil and Gas notice for the Kenai Loop storage lease today. Comments closed at 5 p.m. on November 13th, the notice was last modified October 14th, and no final written finding is posted yet. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The state's online notice for the Kenai Loop gas storage lease preliminary finding, read today, shows the comment period closed at 5 p.m. November 13th and no final finding posted. Checked and unchanged."
         }
       ]
     },
@@ -2117,7 +2130,7 @@
         }
       ],
       "first_seen": "2026-07-26",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-07-26",
@@ -2226,6 +2239,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the White House signatory list today. It still counts 327 signatories, 207 cooperatives, 72 utilities and 48 data center developers, with Cordova Electric Cooperative the only Alaska entity. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The White House pledge page, read today, lists 327 signatories and no Alaska utility among them. Checked and unchanged."
         }
       ]
     },
@@ -2258,7 +2275,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-08-02",
@@ -2379,6 +2396,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the state's public notice for RFP 2026-0200-0064 today. It still shows Amendment 1 and the August 28th proposal deadline, last modified August 17th, with no notice of intent to award. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The state's online notice for RFP 2026-0200-0064, read today, still shows the August 28th due date and no award. Checked and unchanged."
         }
       ]
     },
@@ -2411,7 +2432,7 @@
         }
       ],
       "first_seen": "2026-08-02",
-      "last_updated": "2026-11-22",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-08-02",
@@ -2532,6 +2553,10 @@
         {
           "date": "2026-11-22",
           "note": "Re-read the state's public notice for RFI 02-101-27 today. It still shows one amendment, last modified August 7th, an archive date of August 21st, and no follow-on solicitation. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The state's online notice for RFI 02-101-27, read today, shows no change since its August 7th amendment. Checked and unchanged."
         }
       ]
     },
@@ -2820,7 +2845,7 @@
         }
       ],
       "first_seen": "2026-08-05",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-08-05",
@@ -2957,6 +2982,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the Grants.gov listing today. It is still archived, with no recipient named. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The Grants.gov listing, read today, is still archived with no recipient named. Checked and unchanged."
         }
       ]
     },
@@ -5057,10 +5086,15 @@
           "url": "https://www.fnsb.gov/Calendar.aspx",
           "outlet": "Fairbanks North Star Borough calendar",
           "date": "2026-11-19"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13441,plainText=false)",
+          "outlet": "Fairbanks North Star Borough, Department of the Assembly, action memorandum for the November 10th Planning Commission meeting",
+          "date": "2026-11-13"
         }
       ],
       "first_seen": "2026-09-01",
-      "last_updated": "2026-11-19",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-09-01",
@@ -5165,6 +5199,10 @@
         {
           "date": "2026-11-19",
           "note": "The borough's public calendar through November 30th, read today, lists no Assembly meeting naming Resolution 2026-25 or the moratorium. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The borough's own pause, Ordinance No. 2026-42, was recommended 11-0 by the Planning Commission on November 10th and now awaits the Assembly, per the clerk's action memorandum. The state and federal requests in Resolution 2026-25 still wait on the 35th Legislature, which convenes in January. Checked and unchanged."
         }
       ]
     },
@@ -5175,8 +5213,8 @@
       "status": "pending-decision",
       "decider": "Fairbanks North Star Borough Assembly, after a Planning Commission recommendation",
       "public_access": "indirect",
-      "access_note": "The ordinance goes to the Planning Commission for a recommendation due in 90 days and then back to the elected Assembly, which adopts or rejects it.",
-      "summary": "Mayor Grier Hopkins's Ordinance No. 2026-42 would accept no land use permit applications for large-scale data centers, and approve no pending ones, through December 31st, 2027. It defines large-scale as 5 MW or more of peak demand, more than 50,000 square feet of data center floor area, or 5 MW or more of onsite generation, and orders a study of energy, air, water and noise within six months.",
+      "access_note": "The Planning Commission has made its recommendation. The elected Assembly holds its own public hearing before it adopts or rejects the ordinance, and that hearing is where a reader can still testify.",
+      "summary": "Mayor Grier Hopkins's Ordinance No. 2026-42 would accept no land use permit applications for large-scale data centers, and approve no pending ones, while the pause is in effect. As introduced it ran through December 31st, 2027 and defined large-scale as 5 MW or more of peak demand, more than 50,000 square feet of data center floor area, or 5 MW or more of onsite generation, with a study of energy, air, water and noise due within six months. On November 10th the Planning Commission recommended it to the Assembly 11-0 with amendments that count gross floor area, lower the floor area line to 40,000 square feet, add impacts on water quality to the findings, move the end date to June 30th, 2028 and give the study ten months. The Assembly makes the final decision.",
       "key_dates": [
         {
           "date": "2026-10-22",
@@ -5191,17 +5229,22 @@
         {
           "date": "2026-11-10",
           "kind": "vote",
-          "label": "Planning Commission public hearing and recommendation on Ordinance No. 2026-42, 6 p.m."
-        },
-        {
-          "date": "2027-12-31",
-          "label": "Moratorium would end unless the Assembly ends it sooner or extends it",
-          "kind": "milestone"
+          "label": "Planning Commission recommends adoption 11-0 with five amendments"
         },
         {
           "date": "2027-01-14",
           "kind": "decision",
           "label": "Assembly vote on the ordinance expected, per the mayor"
+        },
+        {
+          "date": "2027-12-31",
+          "label": "End date as introduced, which the Planning Commission moved to June 30th, 2028",
+          "kind": "milestone"
+        },
+        {
+          "date": "2028-06-30",
+          "label": "Moratorium would end under the Planning Commission's amendment, unless the Assembly ends it sooner or extends it",
+          "kind": "milestone"
         }
       ],
       "location": {
@@ -5254,10 +5297,20 @@
           "url": "https://www.alaskasnewssource.com/2026/11/17/fnsb-planning-commission-recommends-data-center-moratorium/",
           "outlet": "Alaska's News Source",
           "date": "2026-11-16"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=13441,plainText=false)",
+          "outlet": "Fairbanks North Star Borough, Department of the Assembly, action memorandum for the November 10th Planning Commission meeting",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://fnsb.api.civicclerk.com/v1/Events?$filter=startDateTime+gt+2026-11-24T00:00:00Z&$orderby=startDateTime&$top=40",
+          "outlet": "Fairbanks North Star Borough meeting calendar (CivicClerk)",
+          "date": "2026-11-26"
         }
       ],
       "first_seen": "2026-10-23",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-10-23",
@@ -5310,6 +5363,10 @@
         {
           "date": "2026-11-21",
           "note": "Searched for reporting since November 17th today and found nothing new. The Planning Commission's recommendation of an 18-month pause awaits the Assembly, with a vote expected January 14th. Checked and unchanged."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Updated from the borough clerk's action memorandum for the November 10th meeting, dated November 13th. The Planning Commission recommended adoption 11-0, with all eleven members present, and amended the ordinance five ways. It adds gross before floor area and replaces 50,000 with 40,000 square feet, inserts impacting water quality among the harms in the findings, moves the end date from December 31st, 2027 to June 30th, 2028, and gives the study ten months instead of six. The same night the commission recommended the updated Regional Comprehensive Plan 11-0. The borough calendar lists a regular Assembly meeting on December 17th with no agenda posted yet. The mayor has said he expects the Assembly vote on January 14th."
         }
       ]
     },
@@ -5550,7 +5607,7 @@
         }
       ],
       "first_seen": "2026-09-13",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-09-13",
@@ -5655,6 +5712,10 @@
         {
           "date": "2026-11-21",
           "note": "Re-read the GovInfo record today. Its last action is still the House report of September 10th. Checked and unchanged. The Senate's H.R. 2347 is tracked as its own item."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "GovInfo, read today, shows no version after the reported bill of September 10th, H. Rept. 119-814. Checked and unchanged."
         }
       ]
     },
@@ -7401,11 +7462,15 @@
         }
       ],
       "first_seen": "2026-11-21",
-      "last_updated": "2026-11-21",
+      "last_updated": "2026-11-26",
       "history": [
         {
           "date": "2026-11-21",
           "note": "Added from the Senate-passed text on GovInfo and roll call 270."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "The Senate roll call list, read today, shows no action after passage on November 19th. The bill now needs the House to act on the Senate amendment. Checked and unchanged."
         }
       ]
     }
