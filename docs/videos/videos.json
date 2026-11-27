@@ -3,6 +3,16 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/",
   "videos": [
     {
+      "id": "dispatch-2026-11-27",
+      "date": "2026-11-27",
+      "title": "Grown in a Glass Year",
+      "caption": "A machine learning model trained on one year of 2019 data projects Alaska could see 116% to 594% more lightning strikes by 2100 under high emissions. Its own authors' preprint says models like it should be tested outside their training data.",
+      "video": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-27-dispatch_master_hosted.mp4",
+      "poster": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-27-poster.png",
+      "video_mobile": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-27-dispatch_master_720.mp4",
+      "poster_thumb": "https://raw.githubusercontent.com/Talonsturgill/alaska-ai-weekly/dispatch-media/media/dispatch-2026-11-27-poster_thumb.jpg"
+    },
+    {
       "id": "dispatch-2026-11-26-ahead-of-the-patient",
       "date": "2026-11-26",
       "title": "Ahead of the Patient",
