@@ -9,6 +9,8 @@
  *              "" or null leaves the bands rolled between characters (blurred
  *              frames roll them by o.roll)
  *   o.roll     0..1 extra band rotation per wheel, seeded (for the blur frame)
+ *   o.blur     px of motion blur on the band glyphs (a band caught turning)
+ *   o.plate    material overrides for the side plates, e.g. {metalness, envMapIntensity, color}
  *   o.seed     wear seed
  *
  * Also: feltMaterial(THREE, o) and sheetTexture(THREE, o) (bond paper tooth with
@@ -30,7 +32,7 @@ function mulberry(seed) {
 /* One band's rubber texture: the band alphabet around the wheel, the shown
  * character centred at u = 0.5 (theta 0, facing +z). Canvas x = u (around),
  * canvas y = along the axle; glyphs are turned so they read upright at the front. */
-function bandTexture(THREE, ch, alphabet, seed, roll) {
+function bandTexture(THREE, ch, alphabet, seed, roll, blur) {
   const W = 1024, H = 128, c = document.createElement("canvas");
   c.width = W; c.height = H;
   const g = c.getContext("2d");
@@ -59,6 +61,7 @@ function bandTexture(THREE, ch, alphabet, seed, roll) {
       ctx.rotate(Math.PI / 2);
       ctx.font = MONO; ctx.textAlign = "center"; ctx.textBaseline = "middle";
       if (ctx === g) {
+        if (blur) ctx.filter = "blur(" + blur + "px)";   // a band caught turning
         // raised character: its top face picks up dried ink, its shoulder darker
         ctx.fillStyle = "#120e0d"; ctx.fillText(alphabet[k], 2, 2);
         ctx.fillStyle = "#8a7766"; ctx.fillText(alphabet[k], 0, 0);
@@ -125,6 +128,7 @@ export function buildDater(THREE, AKT, o) {
     const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; })();
   const plateMat = new THREE.MeshStandardMaterial({ color: 0xc3cbcf, metalness: 0.72, roughness: 0.34,
     envMapIntensity: 2.4, bumpMap: brush, bumpScale: 0.35, roughnessMap: brush });
+  if (o.plate) { for (const k of Object.keys(o.plate)) { if (k === "color") plateMat.color.set(o.plate.color); else plateMat[k] = o.plate[k]; } }
   const steelDark = new THREE.MeshStandardMaterial({ color: 0x6b7276, metalness: 0.9, roughness: 0.38,
     bumpMap: knurlTexture(THREE), bumpScale: 0.6, envMapIntensity: 1.0 });
   const walnut = new THREE.MeshStandardMaterial({ color: 0xffffff, map: grainWood(THREE, seed + 7),
@@ -168,7 +172,7 @@ export function buildDater(THREE, AKT, o) {
   for (let i = 0; i < NB; i++) {
     const ch = date[i] === " " ? null : date[i];
     const roll = o.roll ? (rnd() - 0.5) * o.roll : 0;
-    const tex = bandTexture(THREE, ch, alphabet, seed + 31 * i, roll);
+    const tex = bandTexture(THREE, ch, alphabet, seed + 31 * i, roll, o.blur || 0);
     const rub = new THREE.MeshStandardMaterial({ color: 0xffffff, map: tex.map, bumpMap: tex.bump,
       bumpScale: 2.2, roughness: 0.74, metalness: 0.0 });
     const cyl = new THREE.Mesh(new THREE.CylinderGeometry(R, R, BW, 96, 1, true, -Math.PI, Math.PI * 2), rub);
