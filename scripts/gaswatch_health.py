@@ -44,7 +44,7 @@ ENDPOINTS = {
 }
 
 
-def assess(feed, page, source, runs, now, unreachable=None):
+def assess(feed, page, source, runs, now, unreachable=None, ledger=None):
     """Audit what could be read. `feed`, `page`, `source` or `runs` may be None
     when `unreachable` names why; every check that needed it is withheld and
     the endpoint itself is reported as a FAIL, so the verdict can't pass."""
@@ -173,7 +173,8 @@ def assess(feed, page, source, runs, now, unreachable=None):
         add("cron completed successfully", bool(completed) and completed.get("conclusion") == "success",
             f"{completed.get('conclusion')}: {completed.get('html_url')}" if completed else "no completed run",
             "Read the failed job logs and fix the cause. A maintenance notice does not excuse a failed job.")
-    diagnosis = timing_diagnosis(source if has_source else None, runs if has_runs else None, checks)
+    diagnosis = timing_diagnosis(source if has_source else None, runs if has_runs else None, checks,
+                                 ledger, now)
     verdict = "FAIL" if any(c["status"] == "FAIL" for c in checks) else ("MAINTENANCE" if maintenance else
               ("WARN" if any(c["status"] == "WARN" for c in checks) else "PASS"))
     report = {"checked_utc": gc.iso_z(now), "verdict": verdict, "checks": checks,
@@ -197,14 +198,44 @@ def assess(feed, page, source, runs, now, unreachable=None):
 # names the cause and the remedy on the checks that the late post explains.
 LATE_CHECKS = ("source reading published", "recent calendar days")
 DISPATCH = "gh workflow run gaswatch.yml --ref main"
+# THE DEPLOY LAG IS NOT A COLLECTOR FAULT (2026-11-27 weekly pass, queue item
+# 2026-11-18 at repeat 2: No.118, 119, 121, 126). The first diagnosis compared
+# run START against CINGSA's stamp, so a collection that had already committed
+# the reading, with Pages a few minutes behind, read as "collector, parser or
+# Pages at fault", and so did a clean run that fetched before CINGSA served a
+# reading it had stamped earlier. The audit now reads main's ledger (a read,
+# never a write) and asks the question directly: did a collection record this
+# posting? Still NO status and NO verdict moves; only the named cause does.
+LEDGER_URL = ("https://api.github.com/repos/Talonsturgill/alaskaaicarousels/"
+              "contents/ledger/gaswatch.jsonl?ref=main")
+DEPLOY_GRACE_MIN = 30   # a Pages deploy has taken 3 to 8 minutes here
+STAMP_LEAD_MIN = 60     # CINGSA served a stamped reading 19+ minutes late (No.118)
 
 
-def timing_diagnosis(source, runs, checks):
-    """{'kind': 'late_post' | 'collected_after_post', ...} when a LATE_CHECKS
-    row is not PASS and both the source and the cron runs were read, else None.
-    late_post: no production collection has started since CINGSA posted the
-    reading. collected_after_post: one has, and the reading is still missing,
-    so the collector or the deployment is at fault, not the timing."""
+def recorded_on_main(source, ledger):
+    """The ledger record on main that holds this posting, or None."""
+    for rec in reversed(ledger or []):
+        cin = rec.get("cingsa") or {}
+        if cin.get("source_timestamp") == source.get("source_timestamp") or (
+                rec.get("verified") and rec.get("date") == (source.get("source_timestamp") or "")[:10]
+                and cin.get("inventory_mcf") is not None
+                and cin.get("inventory_mcf") == source.get("inventory_mcf")):
+            return rec
+    return None
+
+
+def timing_diagnosis(source, runs, checks, ledger=None, now=None):
+    """{'kind': ..., ...} when a LATE_CHECKS row is not PASS and both the
+    source and the cron runs were read, else None. Kinds:
+    late_post: no production collection has started since CINGSA's stamp, or
+      (main's ledger read) every one since succeeded inside STAMP_LEAD_MIN of
+      the stamp and none recorded the posting.
+    deploy_pending: main's ledger already holds the posting; Pages has not
+      redeployed (2026-11-27 weekly pass: four runs read this as a fault).
+    collection_running: a collection after the stamp is still running.
+    collected_after_post: a collection after the stamp finished and the
+      posting is neither live nor on main, so the collector or the parser is
+      at fault (or a run failed)."""
     hit = [c for c in checks if c["name"] in LATE_CHECKS and c["status"] != "PASS"]
     # Anchored on the source's own reading being unpublished: a stale source
     # (CINGSA not posting) passes that row, and a missing day then is not a
@@ -232,18 +263,66 @@ def timing_diagnosis(source, runs, checks):
             "Pages deployment, then rerun this audit. An incident is for a dispatch that "
             "can't run (403) or a run that fails.")
     else:
-        first = [r for r in production if stamp(r["created_at"]) >= posted][-1]
-        out["kind"] = "collected_after_post"
+        after = [r for r in production if stamp(r["created_at"]) >= posted]
+        first, last = after[-1], after[0]
         out["first_run_after_post"] = {k: first.get(k) for k in
                                        ("created_at", "status", "conclusion", "html_url")}
-        out["remedy"] = (
-            f"NOT a timing problem: a production collection started at {first['created_at']} "
-            f"({first.get('status')}, {first.get('conclusion')}), after CINGSA posted at "
-            f"{out['source_posted_utc']}, and the reading is still not live. "
-            + ("It is still running: wait for it and the Pages deployment, then rerun this audit."
-               if first.get("status") != "completed" else
-               f"Read that run's log ({first.get('html_url')}) and the deployment; the collector, "
-               "the parser or Pages is at fault."))
+        out["main_ledger"] = "read" if ledger is not None else "not read"
+        seen = recorded_on_main(source, ledger)
+        done = [r for r in after if r.get("status") == "completed"]
+        lead = (stamp(last["created_at"]) - posted).total_seconds() / 60
+        if seen is not None:
+            collected = seen.get("collected_utc") or ""
+            out["kind"] = "deploy_pending"
+            out["recorded_on_main_utc"] = collected or None
+            age = (now - stamp(collected)).total_seconds() / 60 if (collected and now) else None
+            out["remedy"] = (
+                "DEPLOY LAG, not a collector fault: the collector recorded this posting "
+                f"(collected {collected or 'at an unrecorded time'}) and it is in main's "
+                "ledger/gaswatch.jsonl, so the live site simply has not redeployed. "
+                + (f"That was {age:.0f} minutes ago, longer than a Pages deployment takes "
+                   f"({DEPLOY_GRACE_MIN} minutes): read the pages.yml run for that commit, rerun "
+                   "or repair it, then rerun this audit."
+                   if age is not None and age > DEPLOY_GRACE_MIN else
+                   "Wait for the Pages deployment of that commit, then rerun this audit. "
+                   "Don't dispatch another collection."))
+        elif len(done) < len(after) and not any(r.get("conclusion") not in (None, "success")
+                                                  for r in done):
+            out["kind"] = "collection_running"
+            # Name a run that is actually unfinished, not the earliest one after
+            # the posting, which may already have completed (Codex, PR #518).
+            running = next(r for r in after if r.get("status") != "completed")
+            out["remedy"] = (
+                f"A production collection started at {running['created_at']} after CINGSA posted "
+                f"at {out['source_posted_utc']} and has not finished: wait for it and the Pages "
+                "deployment, then rerun this audit.")
+        elif (ledger is not None and done and lead <= STAMP_LEAD_MIN and
+              all(r.get("conclusion") == "success" for r in done)):
+            # CINGSA stamps a reading before the dashboard serves it (No.118:
+            # stamped 01:00Z, still the old posting at 01:19Z). A clean run that
+            # started inside that lead and wrote nothing most likely fetched
+            # before the posting existed: no run has seen it yet.
+            out["kind"] = "late_post"
+            out["stamp_lead_minutes"] = round(lead, 1)
+            out["remedy"] = (
+                "LATE POST behind its own stamp: every production collection since CINGSA's "
+                f"stamp ({out['source_posted_utc']}) succeeded, the newest started {lead:.0f} "
+                f"minutes after it, and main's ledger has no record of this posting, so none of "
+                "them saw it (CINGSA stamps a reading before its dashboard serves it). Dispatch "
+                f"the collector on main ({DISPATCH}), wait for the run and Pages, then rerun this "
+                f"audit. If a run that starts more than {STAMP_LEAD_MIN} minutes after the stamp "
+                "also records nothing, it is the collector or the parser.")
+        else:
+            out["kind"] = "collected_after_post"
+            out["remedy"] = (
+                f"NOT a timing problem: a production collection started at {first['created_at']} "
+                f"({first.get('status')}, {first.get('conclusion')}), after CINGSA posted at "
+                f"{out['source_posted_utc']}, and the reading is still not live"
+                + (" or in main's ledger. " if ledger is not None else
+                   ". Main's ledger was NOT read, so a Pages deploy lag is not ruled out: check "
+                   "whether that run committed the reading before calling it a fault. ")
+                + (f"Read the log of the newest run after the post ({last.get('html_url')}); "
+                   "the collector or the parser is at fault."))
     for c in hit:
         c["remedy"] = (c["remedy"] + " " if c["remedy"] else "") + out["remedy"]
     return out
@@ -272,8 +351,11 @@ def transient(exc):
     return isinstance(exc, (URLError, TimeoutError, ConnectionError))
 
 
-def fetch(url, waits=RETRY_WAITS, sleep=time.sleep):
-    req = Request(url, headers={"User-Agent": gc.UA, "Cache-Control": "no-cache"})
+def fetch(url, waits=RETRY_WAITS, sleep=time.sleep, accept=None):
+    headers = {"User-Agent": gc.UA, "Cache-Control": "no-cache"}
+    if accept:
+        headers["Accept"] = accept
+    req = Request(url, headers=headers)
     for attempt in range(len(waits) + 1):
         try:
             with urlopen(req, timeout=45) as response:
@@ -290,6 +372,8 @@ def main():
     ap.add_argument("--site-url", default=SITE)
     ap.add_argument("--output", help="write the audit JSON for the daily run's gate")
     ap.add_argument("--runs-json", help="GitHub API workflow-runs response, if fetched through a connector")
+    ap.add_argument("--ledger-jsonl", help="main's ledger/gaswatch.jsonl, if fetched through a connector "
+                    "(read only for the timing diagnosis)")
     args = ap.parse_args()
     now = datetime.now(timezone.utc)
     base = args.site_url.rstrip("/")
@@ -309,6 +393,22 @@ def main():
     try:
         report = assess(got.get("feed"), got.get("page"), got.get("source"), got.get("runs"),
                         now, unreachable)
+        # A collection ran after the stamp: whether it RECORDED the posting is
+        # the difference between a deploy lag and a collector fault, so read
+        # main's ledger for the diagnosis. A failed read changes no check; the
+        # diagnosis then says the ledger was not read.
+        if (report.get("diagnosis") or {}).get("first_run_after_post"):
+            try:
+                text = (Path(args.ledger_jsonl).read_text() if args.ledger_jsonl else
+                        fetch(LEDGER_URL, accept="application/vnd.github.raw"))
+                ledger = [json.loads(line) for line in text.splitlines() if line.strip()]
+            except Exception as exc:
+                ledger, ledger_error = None, f"{type(exc).__name__}: {exc}"
+            if ledger is not None:
+                report = assess(got.get("feed"), got.get("page"), got.get("source"),
+                                got.get("runs"), now, unreachable, ledger=ledger)
+            else:
+                report["diagnosis"]["ledger_error"] = ledger_error
     except Exception as exc:
         report = {"checked_utc": gc.iso_z(now), "verdict": "FAIL", "checks": [{
             "name": "live audit completed", "status": "FAIL", "detail": f"{type(exc).__name__}: {exc}",

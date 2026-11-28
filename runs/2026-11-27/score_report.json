@@ -1,0 +1,172 @@
+{
+  "hard_fails": [
+    {
+      "rule": "em dash or en dash anywhere (slides, post copy, comment block)",
+      "status": "pass",
+      "evidence": "I re-read copy.json in full: slides, post_copy, first_comment, aftercare and editor notes. It contains no U+2014 or U+2013. The kicker separators are U+00B7 middle dots. 'rubber-tracked', '180-person' and 'land-based' use U+002D hyphens. Transcribing the re-rendered 01, 04, 05, 07 and 08 and the contact sheet showed no dashes."
+    },
+    {
+      "rule": "emoji anywhere",
+      "status": "pass",
+      "evidence": "There are no emoji in copy.json or in any render. The gold four-point star on 09 is an SVG mark."
+    },
+    {
+      "rule": "factual claim without a claim-id resolving to a verified source",
+      "status": "pass",
+      "evidence": "Copy did not change in the craft cycle, and every slide still lists claim_ids (01 C11; 04 C17/C18; 07 C19/C20/C21/C29; 08 C04/C05/C06/A01/C32). machine_qa asserts still hold: 907 and 12 hollows; calendar slabs at 828/839/174 px within 4; the Dec 17th line at 868.254 px exactly."
+    },
+    {
+      "rule": "typo or misspelling in any rendered slide (critics transcribe and diff)",
+      "status": "pass",
+      "evidence": "I transcribed the re-rendered frames myself. 01: '2 to 16 polar / bear dens.' 'FWS estimates 8.' 04: '12 of 907.' '1.32 percent of the stock. On a draft count of 819, 1.47 percent.' 05: the quote reads word for word through 'Alaska's North Slope.' 07: 'MITIGATION TEXT', 'DEN MODEL', 'A YEAR EARLIER', 'PROPOSED TERMS, AS LISTED', 'DECEMBER 17TH, COMMENTS CLOSE', 'NOV 2025 / JAN 2026 / NOV 2026 / JAN 2027'. 08: '...37,500 wireless nodes ... two 180-person camps. AIDEA's board set aside up to $175.0 million for permitting and 3D seismic work.' All of these match copy.json. The counters run 01/09 to 09/09."
+    },
+    {
+      "rule": "clipped, overlapping, or cut-off text in any render",
+      "status": "pass",
+      "evidence": "No glyph is clipped or crossed. On 07 the labels moved clear of the slabs. The gold Dec 17th line passes right of 'CLOSE' and does not touch any label. The 'NOV 2025' / 'JAN 2026' axis year line (bottom near y 1900 display) sits just above the alaskaaihq.com fixture (top near y 1915) without touching it, but this is tight. On 08 the body copy ends at y 795, well above the vehicle roofs at y 990."
+    },
+    {
+      "rule": "primary text contrast below 4.5:1 at worst point (critic-verified)",
+      "status": "pass",
+      "evidence": "Headlines and body are #F2F7F6 on navy near-black across all frames. On 04 the body now sits over the empty dark band, not the slab. On 07 the labels sit over dark ground. The 05 attribution is grey mono on near-black, well above 4.5:1."
+    },
+    {
+      "rule": "slide count outside 6-12",
+      "status": "pass",
+      "evidence": "assemble_report.json reports slides: 9."
+    },
+    {
+      "rule": "machine_qa verdict FAIL, or pdf_mode != vector",
+      "status": "pass",
+      "evidence": "machine_qa.json reports verdict WARN, fails 0, warns 8. assemble_report.json reports pdf_mode 'vector', 10.27 MB (10,269,302 bytes), titled '2 to 16 polar bear dens, and FWS estimates 8'."
+    },
+    {
+      "rule": "topic repeats a ledger entry within 30 days without a material new development framed as an update",
+      "status": "pass",
+      "evidence": "No.99 ran 29 days earlier. This deck is framed on the cover kicker 'UPDATE \u00b7 ARCTIC REFUGE COASTAL PLAIN'. The new development is a separate Refuge-specific proposed IHA (91 FR 73773) with its own den-model run and a comment window to December 17th. The first comment names No.99 as the deck it updates."
+    },
+    {
+      "rule": "hero visual structure identical to any of the last 4 decks (artwork ledger)",
+      "status": "pass",
+      "evidence": "The hero is THE INTERVAL AS TERRAIN, a sastrugi field plus the interval rail. It matches none of BAND DATER, ONE LINE NINE PROJECTIONS, THREE COUPLINGS or ORDER AS AN ICE CORE. Raising 01's ridge does not change the structure."
+    },
+    {
+      "rule": "banned phrase from brand.yaml in copy or slides",
+      "status": "pass",
+      "evidence": "Copy is unchanged since caption_report PASS (74 phrases over 55 fields) and word_ban PASS. My fresh scan found no 'gap', 'matters', 'pattern' or 'cannot'. The years on 07 name different calendar years or an axis. 'December 17th' carries no year."
+    },
+    {
+      "rule": "hashtag count != 3, or link in post body",
+      "status": "pass",
+      "evidence": "There are three hashtags: #ArcticRefuge #PolarBears #NorthSlope. post_copy contains no URL. All links are in first_comment."
+    },
+    {
+      "rule": "any placeholder, lorem, TODO, or unfinished element in any artifact",
+      "status": "pass",
+      "evidence": "The 07 hachure pool the flow critic called placeholder-like is gone. 'ILLUSTRATIVE DRIFT FIELD' on 06 is a deliberate honesty label. Nothing reads as unfinished. The 08 vehicles are crude, which I charge as craft, not as a placeholder."
+    }
+  ],
+  "criteria": [
+    {
+      "name": "Thumb-stop cover",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "The raised hero ridge landed. A dark dune now crosses the frame from about y 1220 to 1600 display, and its lit flank and fine grain at lower right give the lower half a foreground-to-midground read it lacked. The cover still makes a named tension in 8 words in 163 px type, and the gold 8 is echoed by the rail notch. It holds at 8 and not 9 for three reasons: the brightest, sharpest region is the lower-right slope rather than one crest; there is no repoussoir lip; and the band from y 950 to 1100 is still empty sky with a faint teal glow. It reads as handsome night snow, not unmistakably the Coastal Plain."
+    },
+    {
+      "name": "Story arc & swipe momentum",
+      "score": 7.5,
+      "weight": 0.14,
+      "notes": "The copy is unchanged. The range (01) is paid on 02, 05's admission is the turn, 07 complicates it, and 09 closes on the same 2 to 16. Weak junctions remain: 03 to 04 never prints 12 = 10 + 2, 04 plants nothing for 05, and 08 ('IF AUTHORIZED') could move without loss."
+    },
+    {
+      "name": "Artwork craft & genuine detail",
+      "score": 7.5,
+      "weight": 0.16,
+      "notes": "The craft cycle produced real but partial gains. 01 now has a modelled ridge with depth. On 04 the hollow size and spacing jitter reduces the drilled look somewhat. 07 has larger shelves and slabs, and the dead hachure pool is gone. On 08 the side glass is now a clean dark pane instead of pixel noise. Against the renders as they stand: 08, the claimed rendered-ladder hero, is still untextured boxes. Its tracks are black lozenges with no visible road wheels, lugs or baseplate. The vermilion stripe still breaks into streaky dither from x 1080 to 1450 display at y 1335. The eleven clones are the same conga line at nearly full saturation, with no visible fog grade. The blown white smudge at lower right (x 1100 to 1600, y 1600 to 1900) remains. 05 barely moved: the aurora is still a right-side patch whose glowing base reads as a lit hill. The new far ridge is a thin silhouette, and the left half from y 1100 to 1450 is still dead. On 07, the two den-model slabs interpenetrate at x 1305 rather than abutting, the lower band from y 1600 to 1760 is an empty murky glow, and the slabs are flat-shaded cubes with no ground contact. 04 is still a perforated plate rather than pressed snow, and the band from y 650 to 880 is still empty. 02, 03 and 06 stay strong and carry the score. This is up half a point, not a full point, because the most damaging frame (08) changed least visibly."
+    },
+    {
+      "name": "Story-art fusion",
+      "score": 8,
+      "weight": 0.14,
+      "notes": "Every encoding still holds per machine_qa: the 2 to 16 rail with the notch at 8; Level A/B bars at 14/11 and medians at 4/2; 907 hollows with 12 gold; a ring at exactly 249.6 px; calendar slabs within 4 px of their dates; twelve vermilion ticks; a single December 17th tick. 05's dashed upper rail means overestimate. It is still not a 9, because no frame carries a literal den or bear anchor."
+    },
+    {
+      "name": "Alaska authenticity & local relevance",
+      "score": 8,
+      "weight": 0.12,
+      "notes": "Kaktovik, Beaufort Sea, Coastal Plain, Brooks Range, Southern Beaufort Sea stock, AIDEA's $175.0 million, the North Slope and FWS all appear, on real DEM geography. It still lacks a Kaktovik or Inupiat voice or stake."
+    },
+    {
+      "name": "Insight density & factual weight",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Every content slide adds a new verified specific, and bodies run 25 to 41 words. Slide 04 is thin by design at 14 words. The cap/median relationship is restated across surfaces."
+    },
+    {
+      "name": "Variety vs ledger",
+      "score": 8,
+      "weight": 0.08,
+      "notes": "The hero concept, type pairing, palette and hook are new against the last four decks. It shares No.99's polar-night world, and AKPOST.field is at its reuse limit across 01, 05, 06 and 09."
+    },
+    {
+      "name": "Legibility & platform fitness",
+      "score": 7.5,
+      "weight": 0.07,
+      "notes": "Body text is 34 px and all headlines fit. The PDF is vector, 10.27 MB, with a title, and counters appear on every slide. The safe-zone squeakers persist: the 07 axis labels at x 89 and 865 to 926, plus the 'NOV 2025' year line now crowding the URL fixture; '1.6 KM' and 'ILLUSTRATIVE DRIFT FIELD' on 06; the 05 opening quote at x 46. All of them read at 432 px."
+    },
+    {
+      "name": "Copy: voice & hook",
+      "score": 8,
+      "weight": 0.05,
+      "notes": "This is unchanged. The hook lands in 103 characters on an odd detail, the post runs 889 characters with a summary line, and it closes on a real fork. The middle stack of one-line number sentences reads like a briefing, and the summary line is clunky."
+    },
+    {
+      "name": "Deliverable completeness",
+      "score": 8,
+      "weight": 0.1,
+      "notes": "Present: post_copy with 3 hashtags, a primary-first source comment with docket and deadline, document_title, a 4-item aftercare list, editor notes, a re-assembled vector PDF, thumbs and contact sheet. The Gmail draft follows the merge by design, and site_fresh is a ship-time rebuild that must land before the merge."
+    }
+  ],
+  "calculation": "(8x0.14)+(7.5x0.14)+(7.5x0.16)+(8x0.14)+(8x0.12)+(8x0.10)+(8x0.08)+(7.5x0.07)+(8x0.05)+(8x0.10) = 1.12+1.05+1.20+1.12+0.96+0.80+0.64+0.525+0.40+0.80 = 8.615. No hard fails, so no cap. The rubric's weights sum to 1.10, not 1.00. I applied the formula as written; normalised to 1.00 the total is 7.83.",
+  "weighted_total": 8.62,
+  "threshold": 8.0,
+  "ship": true,
+  "weakest_criterion": "Artwork craft & genuine detail",
+  "one_sentence_fix": "Slide 08 still decides the art score: give the hero vibroseis visible road wheels and lugged tread, a baseplate and mast between the tracks, and a clean solid stripe decal, and push the eleven clones into a progressive exp2 fog so the line recedes instead of marching at full saturation.",
+  "artwork_weakest_frames": [
+    {
+      "slide": 8,
+      "problem": "The rendered-ladder hero is still untextured boxes. The tracks are featureless black lozenges with no visible road wheels, lugs or baseplate. The vermilion stripe dithers into streaks across x 1080 to 1450, y 1335 display. The eleven clones march at near-full saturation with no visible fog. A blown white smudge fills the lower right (x 1100 to 1600, y 1600 to 1900).",
+      "fix": "Light the track sides so road wheels and tread lugs read. Model the vibrator pad between the tracks. Render the stripe as one solid quad offset off the body, with no z-fight. Apply exp2 fog of about 0.04 so the clones fade to the sky tone. Clamp the lower-right snow to the frame's highlight ceiling."
+    },
+    {
+      "slide": 5,
+      "problem": "This is effectively unchanged. The aurora is a single right-side patch whose glowing base reads as a lit hill outline. The new far ridge is a thin dark line, the left half from y 1100 to 1450 display is still dead, and the sea plain is sparse dash ripples.",
+      "fix": "Draw faint, low rays across the full width at two further depths, so the left third carries dim curtain light. Remove the bright base edge so the curtain fades into the horizon instead of outlining a hill."
+    },
+    {
+      "slide": 7,
+      "problem": "The two den-model slabs interpenetrate at x 1305 display. All slabs are flat-shaded cubes with no contact shadow on their shelves. The band from y 1600 to 1760, below the third shelf, is an empty murky glow that replaced the hachures but does no work.",
+      "fix": "Abut the den-model slabs edge to edge, with the second offset in depth, and give every slab a soft contact shadow on its shelf. Then either tighten the shelf spacing so the third shelf sits lower, or let the ground plane catch the slabs' casts across that band."
+    },
+    {
+      "slide": 4,
+      "problem": "The jitter helped, but it still reads as a perforated metal plate: hard-edged elliptical holes with no softened snow rims or grain on the slab top, and an empty band from y 650 to 880 display between body and slab.",
+      "fix": "Soften each hollow's rim with a lit lip and inner shading gradient and add fine snow grain to the slab top. Raise the slab about 150 px so its far edge sits just under the body copy."
+    }
+  ],
+  "editor_notes_for_email": "Re-scored after the one CRAFT FLOOR cycle: 8.62 against the round-3 threshold of 8.0, so it ships. Artwork craft rose from 7 to 7.5. That is still under the 8.5 floor, but the one cycle owed has been spent, and the floor is never a reason not to ship. The remaining art debt is mainly slide 8: the vibroseis is still blocky, with streaky stripe dither and no fog on the line. Slide 5's aurora barely changed. The rubric's weights sum to 1.10, which inflates every total by about 10 percent; normalised, this deck is 7.83, and the rubric file should be corrected in a machine pass. site_fresh must be rebuilt and committed before the merge, and the Gmail draft follows the merge. Honesty locks to keep in replies: the 2025 survey dates are only what the proposed terms list, the cap of 10 also covers bears away from dens (the den-only median is 4), and the den model is a statistical simulation in R, not AI. Comments close December 17th, so after that date slides 7 and 9 carry a stale ask. Session effort read medium, not the high the settings carry.",
+  "craft_cycle": {
+    "frames": [
+      8,
+      7,
+      5,
+      4,
+      1
+    ],
+    "art_before": 7,
+    "art_after": 7.5
+  },
+  "revision_rounds": 3
+}

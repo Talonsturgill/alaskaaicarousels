@@ -891,7 +891,7 @@ them or every archive page goes blank.
   Use `AKS.loadDEM` rather than a deck-local loader: it also refuses a truncated
   .bin. A soft MASK magnified under destination-in/out is fine and is not flagged.
   A GRID THE SLIDE BUILT ITSELF (a noise lattice, a height or density array) is
-  sampled with `AKPOST.field(data, cols, rows)` from akpost.js, which every slide
+  sampled with `AKPOST.field(data, cols, rows)` (rows 1 is a 1D curve) from akpost.js, which every slide
   already loads (2026-11-24 weekly pass; No.121 07 to 09, No.100 07 and No.96 lost
   rounds to hand-rolled bilinear and smoothstep blends, whose shade prints the
   cells). `.at(x, y)` and `.grad(x, y)` take CELL coordinates (post i, j at x = i,
@@ -1048,6 +1048,15 @@ them or every archive page goes blank.
   the steps (`faceted`) and qa.py WARNs it; a deliberately low-poly object sets
   `userData.faceted = true` (tests/akthree_faceted_verify.py). Raising
   curveSegments only shrinks the bands; creasing removes them.
+  COPLANAR FACES (2026-11-27): two meshes with a flat face on the same plane,
+  facing the same way, z-fight into a dither critics read as texture (No.126
+  08's stripe box flush with the bevelled body's ends, "dithers into streaks";
+  a brass body top exactly on its type bed, "fingerprint speckle"). `AKT.audit`
+  reports the pair (`coplanar`) when their relative rotation is axis-aligned and
+  qa.py WARNs it. Move one face off the plane by about 0.5 percent of the object
+  (a decal outboard), or give the decal material `polygonOffset: true,
+  polygonOffsetFactor: -1, polygonOffsetUnits: -1`; flush faces that are meant
+  set `userData.coplanar = true` (tests/akthree_coplanar_verify.py).
   OBJECT HERO: for a single foreground object that must read as a SILHOUETTE
   against a darker background (the backlit-machine case), call
   `AKT.objectHero(R, group, {toward:[kx,ky,kz], keyColor, intensity, height})`

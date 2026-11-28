@@ -153,5 +153,19 @@ const edge = [mono.at(-3, -3), mono.at(C + 4, R + 4), bsp.at(-1, R + 2)];
 check('outside is held, never NaN', edge.every(Number.isFinite) && Math.abs(edge[0] - z[0]) < 1e-9 && Math.abs(edge[1] - z[C * R - 1]) < 1e-9,
   `corners ${edge[0].toFixed(2)} = ${z[0].toFixed(2)}, ${edge[1].toFixed(2)} = ${z[C * R - 1].toFixed(2)}`);
 
+// a one-row lattice is a 1D curve (No.126 slide 01 threw on 64 x 1)
+const row = Array.from(z.subarray(0, C)), dup = row.concat(row);
+let r1 = null, r1err = 0;
+try { r1 = { b: AKPOST.field(row, C, 1), m: AKPOST.field(row, C, 1, { mode: 'monotone' }), c: AKPOST.field(row, 1, C) }; } catch (e) { r1 = null; }
+if (r1) {
+  const b2 = AKPOST.field(dup, C, 2), m2 = AKPOST.field(dup, C, 2, { mode: 'monotone' });
+  for (let k = 0; k <= 400; k++) {
+    const x = -1 + (C + 1) * k / 400, y = (k % 7) / 3;
+    r1err = Math.max(r1err, Math.abs(r1.b.at(x, y) - b2.at(x, 0.5)), Math.abs(r1.m.at(x, y) - m2.at(x, 0.5)),
+      Math.abs(r1.c.at(y, x) - b2.at(x, 0.5)), Math.abs(r1.b.grad(x, y)[1]), Math.abs(r1.b.grad(x, y)[0] - b2.grad(x, 0.5)[0]));
+  }
+}
+check('one-row lattice is a 1D curve', r1 && r1err < 1e-9, r1 ? `max |cols x 1 - duplicated row| ${r1err.toExponential(1)}` : 'threw');
+
 console.log(fails ? `FIELD SAMPLER: BROKEN (${fails})` : 'FIELD SAMPLER: HOLDS');
 process.exit(fails ? 1 : 0);

@@ -1,0 +1,190 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the interval rail, bracket 2 to 16 with the gold notch at 8': canvas 85.5 dE, page 98.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the interval rail, dens' runs 0 dens at 120 to 16 dens at 952; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '2 to 16 polarbear dens.' fits 2/2 lines at 163px"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'Kaktovik on the coast': canvas 92.6 dE, page 92.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the interval rail, bracket 2 to 16 with the gold notch at 8': canvas 85.5 dE, page 98.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the interval rail, dens' runs 0 dens at 120 to 16 dens at 952; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl '10,000 runs of a model.A middle answer of 8.' fits 2/2 lines at 85px"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the Level B cap stake on the upper terrace': shadow L* 37.2 vs ground L* 74.4, dL 37.2 at 432w",
+        "'the Level A cap stake on the lower terrace': shadow L* 43.7 vs ground L* 83.4, dL 39.6 at 432w"
+      ],
+      "motifs": [
+        "'the Level B cap stake at 10': canvas 84.1 dE, page 82.9 dE, 100% of its rect is clear of opaque DOM",
+        "'the Level A cap stake at 2': canvas 84.7 dE, page 83.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the interval rail, 0 to 16': canvas 52.3 dE, page 45.7 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the interval rail, bears a winter' runs 0 bears at 120 to 16 bears at 952; 9 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'In bears, a median of 4.Proposed cap, 10.' fits 2/2 lines at 86.5px"
+      ],
+      "asserts": [
+        "'the Level B bar ends at 14 on the rail' holds: 848 vs 848 px (within 1)",
+        "'the Level A bar ends at 11 on the rail' holds: 692 vs 692 px (within 1)",
+        "'the Level B median notch at 4' holds: 328 vs 328 px (within 1)",
+        "'the Level A median notch at 2' holds: 224 vs 224 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "motifs": [
+        "'the twelve gold hollows at the front-left': canvas 80.5 dE, page 80.5 dE, 100% of its rect is clear of opaque DOM",
+        "'the interval rail, rescaled to 907': canvas 4.5 dE, page 70.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the interval rail, bears in the stock' runs 0 bears at 120 to 907 bears at 952; 2 declared mark(s), and the band's census finds no others"
+      ],
+      "asserts": [
+        "'907 hollows, the stock estimate' holds: 907 vs 907 marks, counted over 907 declared marks (within 0)",
+        "'907 hollows, the stock estimate': 227 mark centres probed at r=14px, sampled every 4 marks, cohort median 66.6 dE, all present (weakest 58.8 dE)",
+        "'12 gold hollows, the proposed take' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'12 gold hollows, the proposed take': 12 mark centres probed at r=12px, cohort median 80.6 dE, all present (weakest 80.4 dE)"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '\"' at 46,146 24x70 (margin 80px)"
+      ],
+      "motifs": [
+        "'the aurora curtains over the horizon': canvas 43.8 dE, page 39.2 dE, 100% of its rect is clear of opaque DOM",
+        "'the interval rail, upper half dashed': canvas 86.7 dE, page 99.1 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the interval rail, dens' runs 0 dens at 120 to 16 dens at 952; 9 declared mark(s), and the band's census finds no others"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ILLUSTRATIVE DRIFT FIELD' at 640,1110 400x36 (margin 80px)",
+        "outside safe zone: '1.6 KM' at 324,1262 92x31 (margin 80px)"
+      ],
+      "motifs": [
+        "'the gold 1.6 km ring': canvas 51.2 dE, page 114.4 dE, 100% of its rect is clear of opaque DOM",
+        "'the distance rail with the gold notch at 1.6 km': canvas 115.2 dE, page 78.7 dE, 100% of its rect is clear of opaque DOM",
+        "'the exclusion ring radius equals 1.6 km on the rail': canvas 108.1 dE, page 113.0 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the distance rail, kilometres' runs 0 km at 120 to 5 km at 900; 7 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'Two infrared surveys,a day apart at least.' fits 2/2 lines at 91.5px"
+      ],
+      "asserts": [
+        "'the exclusion ring radius equals 1.6 km on the rail' holds: 249.6 vs 249.6 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'NOV 2025' at 89,1238 61x48 (margin 80px)",
+        "outside safe zone: 'JAN 2026' at 200,1238 61x48 (margin 80px)",
+        "outside safe zone: 'NOV 2026' at 753,1238 61x48 (margin 80px)",
+        "outside safe zone: 'JAN 2027' at 865,1238 61x48 (margin 80px)"
+      ],
+      "motifs": [
+        "'the as-listed 2025 slabs': canvas 69.2 dE, page 71.1 dE, 100% of its rect is clear of opaque DOM",
+        "'the gold December 17th line': canvas 81.6 dE, page 84.6 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "scales": [
+        "'the calendar axis, November 2025 to January 2027' runs 0 days from November 1st, 2025 at 120 to 457 days from November 1st, 2025 at 952; 17 declared mark(s), and the band's census finds no others"
+      ],
+      "fits": [
+        "hl 'The proposed terms listlast winter's dates.' fits 2/2 lines at 84px"
+      ],
+      "asserts": [
+        "'mitigation text first window starts November 25th, 2026' holds: 828.201 vs 831.321 px (within 4)",
+        "'den model first window starts December 1st, 2026' holds: 839.125 vs 842.245 px (within 4)",
+        "'terms as listed first window starts December 1st, 2025' holds: 174.617 vs 177.737 px (within 4)",
+        "'December 17th line' holds: 868.254 vs 868.254 px (within 1)"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "contacts": [
+        "'the right track of the hero vehicle on the snow': shadow L* 37.8 vs ground L* 77.7, dL 39.9 at 432w"
+      ],
+      "motifs": [
+        "'the rail as twelve vermilion ticks, one per vehicle': canvas 93.2 dE, page 93.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "hl 'Then 12 rubber-trackedvibroseis vehicles.' fits 2/2 lines at 84.5px"
+      ],
+      "asserts": [
+        "'12 vibroseis vehicles, one hero and eleven along the line' holds: 12 vs 12 marks, counted over 12 declared marks (within 0)",
+        "'12 vibroseis vehicles, one hero and eleven along the line': 12 mark centres probed at r=9px, cohort median 12.2 dE, all present (weakest 5.5 dE)"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "ragged display line: line 1 of 3 in 'Which end of 2 to 16 should the final author' ends 'to' -- an article, conjunction or preposition left hanging at the line end. It reads at 84px, so the break is the first thing a feed sees. Author the break with <br> before 'should' (AK.fitText honours an authored <br> and soft-wraps everything else), or shorten the line"
+      ],
+      "motifs": [
+        "'the rail collapsed to one gold tick at December 17th': canvas 114.4 dE, page 114.3 dE, 100% of its rect is clear of opaque DOM",
+        "'the aurora arc at the upper right': canvas 9.1 dE, page 9.3 dE, 100% of its rect is clear of opaque DOM"
+      ],
+      "fits": [
+        "ask 'Which end of 2 to 16should the finalauthoriz' fits 3/3 lines at 84px"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 8,
+  "verdict": "WARN",
+  "reuse": {
+    "limit": 3,
+    "recorded": 9,
+    "helpers": [
+      {
+        "call": "AKPOST.field",
+        "slides": [
+          1,
+          5,
+          6,
+          9
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

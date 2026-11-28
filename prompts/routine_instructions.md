@@ -991,10 +991,17 @@ maintenance procedure for any diagnosed scheduled-job failure, not just Gas Watc
    The ordinary local page checker is still required, but cannot substitute.
    A `[DIAGNOSIS] late_post` line (2026-11-01) means CINGSA posted after the
    newest production collection: dispatch gaswatch.yml on main, wait for the
-   run and Pages, and re-audit. `collected_after_post` means a collection ran
-   after the post and the reading is still missing, which is a real collector,
-   parser or deploy fault. Neither changes a status; the FAIL stands until the
-   live page has the reading.
+   run and Pages, and re-audit. Since 2026-11-27 the audit reads main's
+   `ledger/gaswatch.jsonl` (read only) whenever a collection ran after the
+   stamp: `deploy_pending` means that collection already recorded the posting
+   and Pages has not redeployed, so wait for Pages (past 30 minutes, read the
+   pages.yml run) and do NOT dispatch; `collection_running` means wait;
+   `late_post` can also mean every clean run since the stamp started within 60
+   minutes of it and none saw the posting (CINGSA stamps before it serves), so
+   dispatch. `collected_after_post` is what is left: a run after the post
+   failed, or ran clean long after the stamp and recorded nothing, which is a
+   real collector or parser fault. None of them changes a status; the FAIL
+   stands until the live page has the reading.
 
    MAINTENANCE means the announced window is active, missing storage stays
    unverified and the cron is working. It does not mean current storage exists.

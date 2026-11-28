@@ -4645,6 +4645,46 @@
         "weighted_total": 8.395,
         "artwork": 7.5
       }
+    },
+    {
+      "run_date": "2026-11-27",
+      "carousel_no": 126,
+      "slide_count": 9,
+      "hero_structure": "NEW: THE INTERVAL AS TERRAIN, the den model's 2 to 16 interval carried as a graduated rail in a carved trough across nine polar-night registers: GPU PBR sastrugi under a faint aurora (01), DEM hillshade of the real Coastal Plain (02), cabinet bars on snow terraces (03), 907 pressed hollows with 12 gold (04), aurora curtains over the quote (05), Tanaka contours with the 1.6 km ring (06), a three-shelf calendar of slabs (07), a GPU vibroseis line receding (08), GPU dunes under a full aurora arc (09)",
+      "atmosphere": "NEW: POLAR NIGHT UNDER ONE AURORA KEY (faint band on 01, absent on the drafted frames, dim on 05, filling the sky on 09)",
+      "depth_technique": "akthree PBR snow with a procedural snow normal map (01, 08, 09), DEM hillshade (02), cabinet oblique on terraces (03), lit-rim hollows (04), screen-blended aurora rays (05, 09), Tanaka illuminated contours (06), shelf slabs with casts (07)",
+      "line_voice": "mono rail ticks, Tanaka contour lines, ray-streak aurora",
+      "continuity_device": "THE INTERVAL RAIL, a graduated rail in a dark trough at the foot of every frame that changes state with the story",
+      "continuity_devices": [
+        "the interval rail",
+        "one aurora key from the north-west",
+        "edge-tease ridges and bands",
+        "counters"
+      ],
+      "hook_archetype": "NEW: THE RANGE AND THE ONE NUMBER",
+      "palette_family": "NEW: POLAR NIGHT AND AURORA (night #040A14, aurora green #3CE6B4, aurora ice #5AC8F0 for infrared only, snow lit #BFD8D4, survey vermilion #E0532C for machines only, gold #FFC72C for a number the proposed authorization writes down)",
+      "type_pairing": "Space Grotesk 600 display + Space Grotesk 400 body + JetBrains Mono 500 caps",
+      "narrative_structure": "update hook on the range, the 10,000 runs on real ground, dens into bears against the caps, a breather sizing the request, the agency's own doubt, how dens get found, the dates in the terms, what follows if authorized, one ask",
+      "variance_dials": {
+        "design_variance": 3,
+        "visual_density": 3,
+        "type_temperature": 2
+      },
+      "techniques": [
+        "akthree PBR snow",
+        "DEM hillshade",
+        "Cabinet oblique bars",
+        "Tanaka contours",
+        "Screen-blended aurora rays",
+        "Pressed hollow field"
+      ],
+      "new_techniques_logged": [
+        "Deck interval module (assets/js/akinterval.js: carved trough rail with bracket, notch, dashes and marks; frame fixture; procedural snow normal map)"
+      ],
+      "scores": {
+        "weighted_total": 8.62,
+        "artwork": 7.5
+      }
     }
   ]
 }

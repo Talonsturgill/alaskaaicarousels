@@ -5229,6 +5229,51 @@
         "weighted_total": 8.395,
         "artwork": 7.5
       }
+    },
+    {
+      "run_date": "2026-11-27",
+      "carousel_no": 126,
+      "update_of": 99,
+      "topic": "UPDATE of No.99 (October 29th). On November 17th the U.S. Fish and Wildlife Service proposed a one-year incidental harassment authorization (91 FR 73773, docket FWS-R7-ES-2026-4357, comments due December 17th) for AIDEA's winter 2026-27 seismic survey in the Arctic National Wildlife Refuge Coastal Plain 1002 Area: 12 rubber-tracked vibroseis vehicles, 37,500 nodes, up to two 180-person camps, advance crew no earlier than January 10th. Its take estimate rests on a den model FWS wrote in R and ran 10,000 times (Monte Carlo): 8.0 land-based dens, median 8, 95 percent interval 2 to 16; den-only medians of 4 Level B (0 to 14) and 2 Level A (0 to 11), P(at least one lethal take) 0.15; proposed caps 10 Level B (which also covers non-den sources) and 2 Level A, 12 bears or 1.32 percent of 907 (1.47 of a draft 819). FWS says its estimates significantly exceed decades of North Slope observations and lean toward an overestimate. Mitigation: two aerial infrared den surveys at least 24 hours apart (the mitigation text opens November 25th, the model December 1st; the proposed terms list December 2025 and January 2026 dates), SnowDens snow modeling, a 1.6 km exclusion around any putative den. Alaska Beacon: decision not expected until mid-January 2027.",
+      "angle": "TWO TO SIXTEEN: the interval as terrain; a range eight times wide behind one written number, the agency's own doubt, and the terms' last-winter dates. A statistical model, never called AI.",
+      "entities": [
+        "U.S. Fish and Wildlife Service",
+        "AIDEA",
+        "Arctic National Wildlife Refuge",
+        "1002 Area",
+        "Coastal Plain",
+        "SnowDens",
+        "Kaktovik",
+        "Southern Beaufort Sea polar bear stock",
+        "91 FR 73773",
+        "FWS-R7-ES-2026-4357",
+        "Resolution G26-05",
+        "Alaska Beacon"
+      ],
+      "keywords": [
+        "polar bear",
+        "denning",
+        "incidental harassment authorization",
+        "seismic",
+        "vibroseis",
+        "Monte Carlo",
+        "10,000 iterations",
+        "95 percent interval",
+        "aerial infrared survey",
+        "exclusion zone",
+        "comment deadline",
+        "December 17th",
+        "ANWR"
+      ],
+      "headline": "2 to 16 polar bear dens. FWS estimates 8.",
+      "sources_lead": [
+        "https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm",
+        "https://www.federalregister.gov/api/v1/documents/2026-23318.json"
+      ],
+      "beats": [
+        "land-and-permitting",
+        "research-and-science"
+      ]
     }
   ]
 }

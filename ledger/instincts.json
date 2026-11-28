@@ -3012,6 +3012,22 @@
       "evidence": "No.125 03: two rounds of leader fixes, then removing them cleared the critic's art-crossing-type finding",
       "confidence": 0.45,
       "last_confirmed": "2026-11-26"
+    },
+    {
+      "id": "normal-map-strength-is-a-zebra-risk",
+      "learned": "2026-11-27",
+      "instinct": "KEEP A PROCEDURAL SNOW NORMAL MAP AT normalScale 0.12 OR LESS UNDER A RAKING KEY. Above that it reads as zebra stripes, not crust.",
+      "evidence": "No.126 01/09: the first render at default strength striped the whole snowfield; 0.12 to 0.13 read as wind crust",
+      "confidence": 0.5,
+      "last_confirmed": "2026-11-27"
+    },
+    {
+      "id": "offset-decals-off-the-body",
+      "learned": "2026-11-27",
+      "instinct": "OFFSET EVERY GPU DECAL OR GLASS PANE OUTBOARD OF THE BODY IT SITS ON. Coplanar quads z-fight into streaky dither that critics read as noise.",
+      "evidence": "No.126 08: garbled side glass and a dithered vermilion stripe; the glass cleared once offset, the stripe still dithers and capped the art score",
+      "confidence": 0.55,
+      "last_confirmed": "2026-11-27"
     }
   ]
 }

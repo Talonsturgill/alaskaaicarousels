@@ -1,7 +1,97 @@
 # Alaska AI, full text corpus
 
-Every article published by Alaska AI, newest first. Latest article 2026-11-26.
+Every article published by Alaska AI, newest first. Latest article 2026-11-27.
 Canonical pages live under https://alaskaaihq.com/archive/.
+# 2 to 16 polar bear dens, and FWS estimates 8
+
+> The proposed terms for infrared polar bear den flights over the Arctic Refuge list last winter's dates.
+
+Published 2026-11-27 by Alaska AI. 9 slides.
+Canonical: https://alaskaaihq.com/archive/2026-11-27/
+
+## The story
+
+2 to 16 polar bear dens.
+
+FWS estimates 8.
+
+10,000 runs of a model. A middle answer of 8.
+
+FWS wrote its den model in R and ran it 10,000 times for AIDEA's seismic plan. It estimates 8 land-based dens in the survey area, with a 95 percent interval of 2 to 16. It is a statistical simulation, not AI.
+
+In bears, a median of 4. Proposed cap, 10.
+
+For Level B harassment the den model's 95 percent interval is 0 to 14. Level A runs 0 to 11, median 2, cap 2. The cap of 10 also covers bears away from dens.
+
+12 of 907.
+
+1.32 percent of the stock. On a draft count of 819, 1.47 percent.
+
+"We recognize the limitations of our predictive models and take estimates that significantly exceed historical data collected over decades of similar oil and gas activity on Alaska's North Slope."
+
+Two infrared surveys, a day apart at least.
+
+SnowDens, a snow model, maps where drifts build. Aircraft infrared then surveys them twice. FWS calls it four times more effective at finding dens than ground FLIR. Any putative den gets a 1.6 km exclusion zone.
+
+The proposed terms list last winter's dates.
+
+The mitigation text opens the first flight November 25th. The den model opens it December 1st. The proposed terms list December 1st to 25th, 2025. Comments close December 17th.
+
+Then 12 rubber-tracked vibroseis vehicles.
+
+The plan lays 37,500 wireless nodes and supports up to two 180-person camps. AIDEA's board set aside up to $175.0 million for permitting and 3D seismic work.
+
+Which end of 2 to 16 should the final authorization plan for?
+
+## What we verified
+
+- AIDEA's board resolution authorizes up to $175.0 million for 1002 Area permitting and 3D seismic work. [Alaska Industrial Development and Export Authority, Resolution G26-05](https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/051326/6._D_Resolution_No._G26-05%20_Section_1002_Area_Development_Budget_05132026.pdf), primary document, 2026-05-13.
+- The same resolution authorizes up to $15.0 million for bids and rentals in the June 2026 Coastal Plain lease sale. [Alaska Industrial Development and Export Authority, Resolution G26-05](https://www.aidea.org/Portals/0/Meeting%20Docs/2026BoardMeetings/051326/6._D_Resolution_No._G26-05%20_Section_1002_Area_Development_Budget_05132026.pdf), primary document, 2026-05-13.
+- The applicant for the proposed authorization is the Alaska Industrial Development and Export Authority (AIDEA). [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The activity area is the Coastal Plain 1002 Area of the Arctic National Wildlife Refuge. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The seismic survey would begin during the winter of 2026-2027. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The seismic program would use 12 rubber-tracked vibroseis vehicles. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The program would deploy 37,500 wireless autonomous recording devices called nodes. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- Up to two 180-person camp seismic crews may be supported. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The advance crew will mobilize no earlier than January 10th. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS wrote the code for its den disturbance model in the program R. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS ran 10,000 iterations of the den model as a Monte Carlo simulation. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The model's inputs include the estimated number of dens in four regions of northern Alaska. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS estimated 8.0 land-based dens in the area of specified activity, with a median of 8 and a 95 percent interval of 2 to 16. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The den disturbance model gives a median of 4 Level B takes per winter, with a 95 percent interval of 0 to 14. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The den disturbance model gives a median of 2 Level A takes per winter, with a 95 percent interval of 0 to 11. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The den disturbance model puts the probability of at least one lethal take at 0.15, with a median lethal take of 0. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS proposes to authorize take of no more than 10 polar bears by Level B harassment. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS proposes to authorize take of no more than 2 polar bears by Level A harassment. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- Take of 12 bears is 1.32 percent of the Southern Beaufort Sea stock estimate of 907 animals. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- Under a draft stock estimate of 819 bears, 12 bears would be 1.47 percent of the stock. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- In the mitigation description, the first aerial infrared den survey would be flown between November 25th and December 25th. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- In the denning model, the first aerial infrared survey was set between December 1st and December 25th and the second between December 15th and January 15th, 2027. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The proposed authorization's mitigation terms list aerial infrared survey dates in December 2025 and January 2026, a year earlier than the windows in the den model. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The model requires a minimum of 24 hours between the two aerial infrared surveys. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS says aerial infrared has been found to be four times more effective at detecting dens than ground-based FLIR. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- AIDEA will create a 1.6 km (1 mi) exclusion zone around any putative dens it locates. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The notice gives no numeric den detection probabilities and refers to the 2026-2031 Beaufort Sea ITR for them. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- AIDEA will use a modeling framework called SnowDens to simulate snow accumulation before starting aerial infrared surveys. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS says its modeling assumptions are more likely to contribute to an overestimate than an underestimate of take. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- FWS acknowledges its take estimates significantly exceed historical data collected over decades of similar oil and gas activity on the North Slope. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- Comments on the proposed authorization must be received by December 17th. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The docket number for the proposed authorization is FWS-R7-ES-2026-4357. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The notice was published in the Federal Register at 91 FR 73773 on November 17th. [Federal Register (federalregister.gov API)](https://www.federalregister.gov/api/v1/documents/2026-23318.json), primary document, 2026-11-17.
+- FWS proposes a one-year authorization for nonlethal incidental harassment of small numbers of Southern Beaufort Sea polar bears. [Federal Register (federalregister.gov API)](https://www.federalregister.gov/api/v1/documents/2026-23318.json), primary document, 2026-11-17.
+- The notice does not use the terms artificial intelligence, machine learning or drone. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-11-17/html/2026-23318.htm), primary document, 2026-11-17.
+- The final Beaufort Sea incidental take regulations are effective through October 19th, 2031. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-10-19/html/2026-21371.htm), primary document, 2026-10-19.
+- The final Beaufort Sea rule estimates 22 takes of polar bears during denning over its five years. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-10-19/html/2026-21371.htm), primary document, 2026-10-19.
+- The final Beaufort Sea rule's model also estimates 13 takes by Level A harassment of denning cubs. [U.S. Fish and Wildlife Service, Federal Register (govinfo)](https://www.govinfo.gov/content/pkg/FR-2026-10-19/html/2026-21371.htm), primary document, 2026-10-19.
+- Alaska Beacon reported that a decision on AIDEA's seismic application is not expected until mid-January 2027. [Alaska Beacon via Alaska Public Media (James Brooks)](https://alaskapublic.org/news/economy/energy/2026-11-09/oil-hunt-in-arctic-refuge-is-on-hold-until-at-least-mid-january-alaska-developer-says), report, 2026-11-09.
+- AIDEA said it would incur significant financial impact if forced to end its seismic program after November 29th. [Alaska Beacon via Alaska Public Media (James Brooks)](https://alaskapublic.org/news/economy/energy/2026-11-09/oil-hunt-in-arctic-refuge-is-on-hold-until-at-least-mid-january-alaska-developer-says), report, 2026-11-09.
+- Alaska Beacon reported that staging and preliminary work outside the refuge had begun and would ramp up further at the end of November. [Alaska Beacon via Alaska Public Media (James Brooks)](https://alaskapublic.org/news/economy/energy/2026-11-09/oil-hunt-in-arctic-refuge-is-on-hold-until-at-least-mid-january-alaska-developer-says), report, 2026-11-09.
+
+Slides and the deck PDF are linked from the canonical page.
+
+
+---
+
 # Fairbanks' data center pause, its fixed end and open start
 
 > In the Mona Lisa Drexler Assembly Chambers on November 10th, all eleven Fairbanks planning commissioners backed a data center pause.
@@ -11418,6 +11508,7 @@ Canonical: https://alaskaaihq.com/docket/aidea-northstar-fiber-subsidiary/
 **2026-11-18** AIDEA's agenda for its November 19th teleconference, read today, lists an executive session, the Section 1002 budget, Port MacKenzie and owned assets, and no fiber item. The next regular meeting is December 4th at the Alaska Housing Finance Corporation board room in Anchorage. Checked and unchanged.
 **2026-11-19** AIDEA's updated agenda for the November 19th teleconference listed an executive session, the Section 1002 budget, Port MacKenzie and owned assets, and no fiber item. An hour before it began, Gov.-elect Jonathan Kreiss-Tomkins asked the board to postpone further action until his administration takes office on December 7th. The board met in closed session from 10 a.m., adjourned at 3 p.m. without taking action, and is scheduled to resume on Tuesday. Its next regular meeting is Friday, December 4th, three days before the inauguration, per the agenda and the Anchorage Daily News.
 **2026-11-24** AIDEA's board schedule, read today, says the November 24th meeting, a continuation of the November 19th meeting, is in recess and resumes at 10 a.m. on Friday, November 27th. No fiber item or agenda change appears on the schedule or in press releases, the newest dated November 12th. A December 4th meeting is listed with no agenda posted.
+**2026-11-27** AIDEA's board schedule, read today, says the November 24th continuation has adjourned. The November 27th session lists Amended Resolution G26-01 and Third Amended Resolution G26-07 and no fiber item. The next board meeting is December 4th at 10 a.m. Checked and unchanged.
 
 
 ---
@@ -11502,6 +11593,7 @@ Canonical: https://alaskaaihq.com/docket/air-force-eul-ai-data-centers/
 **2026-11-14** A Federal Register search today for Alaska Air Force lease documents published since November 8th returned none, and no award for solicitation AFCEC-26-R-0006 has been announced. Checked and unchanged.
 **2026-11-18** A Federal Register search today for Alaska documents published November 13th to 18th found no Air Force lease notice, and no award for solicitation AFCEC-26-R-0006 has been announced. Checked and unchanged.
 **2026-11-22** A Federal Register search today for Alaska documents published November 18th to 23rd, 26 in all, found no Air Force lease notice or award. Checked and unchanged.
+**2026-11-27** A Federal Register search today for Alaska documents published November 23rd to 27th, 38 in all, found no Air Force lease notice or award. Checked and unchanged.
 
 
 ---
@@ -11691,6 +11783,7 @@ Canonical: https://alaskaaihq.com/docket/beluga-healy-transmission-dpa/
 **2026-11-13** Re-read the Department of Energy's release today. It still announces an intent to deploy up to $150 million in Defense Production Act funding with $268 million in non-federal funding for about 223 miles of line, and reports no signed agreement. Checked and unchanged.
 **2026-11-18** Re-read the Department of Energy's October 5th release today. It still announces an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of line, and reports no signed agreement. Checked and unchanged.
 **2026-11-22** Re-read the Department of Energy's October 5th release today. It still announces an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of line, and reports no signed agreement. Checked and unchanged.
+**2026-11-27** Re-read the Department of Energy's October 5th release today. It still announces an intent to deploy up to $150 million in Defense Production Act funding beside $268 million in non-federal funding for about 223 miles of line, and reports no signed agreement. Checked and unchanged.
 
 
 ---
@@ -11757,6 +11850,7 @@ Canonical: https://alaskaaihq.com/docket/bradley-lake-dixon-diversion/
 **2026-11-18** Searched the Federal Register today for Alaska documents published November 13th to 18th and found nothing new in Project No. 8221-124. Recommendations remain due November 30th. Checked and unchanged.
 **2026-11-22** Searched the Federal Register today for Alaska documents published November 18th to 23rd and found nothing new in Project No. 8221-124. Recommendations remain due November 30th. Checked and unchanged.
 **2026-11-24** Searched the Federal Register today for Bradley Lake and found nothing newer than the October 6th notice soliciting recommendations for Project No. 8221. Checked and unchanged.
+**2026-11-27** A Federal Register search today for Alaska documents published November 23rd to 27th, 38 in all, found nothing newer for Project No. 8221 than the October 6th notice. Recommendations remain due November 30th. Checked and unchanged.
 
 
 ---
@@ -11852,6 +11946,7 @@ Canonical: https://alaskaaihq.com/docket/deepgreen-cook-inlet-subsea-data-center
 **2026-11-14** A Federal Register search today for P-15423 returns only the September 4th notice accepting the application. No order or permit decision has been published. Checked and unchanged.
 **2026-11-18** A Federal Register search today for Alaska documents published November 13th to 18th found nothing in P-15423. No order or permit decision has been published. Checked and unchanged.
 **2026-11-22** A Federal Register search today for documents published November 18th to 23rd found nothing in P-15423. No order or permit decision has been published. Checked and unchanged.
+**2026-11-27** A Federal Register search today for Alaska documents published November 23rd to 27th, 38 in all, found nothing in P-15423. No order or permit decision has been published. Checked and unchanged.
 
 
 ---
@@ -11955,6 +12050,7 @@ Canonical: https://alaskaaihq.com/docket/dot-great-corridors-rfi-2026/
 **2026-11-13** Searched the Federal Register today for Alaska documents published November 9th to 13th, 34 in all, and found no Department of Transportation corridors notice. Checked and unchanged.
 **2026-11-18** Searched the Federal Register today for Alaska documents published November 13th to 18th, 17 in all, and found no Department of Transportation corridors notice. Checked and unchanged.
 **2026-11-22** Searched the Federal Register today for Alaska documents published November 18th to 23rd, 26 in all, and found no Department of Transportation corridors notice. Checked and unchanged.
+**2026-11-27** A Federal Register search today for Alaska documents published November 23rd to 27th, 38 in all, found no Department of Transportation corridors notice. Checked and unchanged.
 
 
 ---
@@ -12167,6 +12263,7 @@ Canonical: https://alaskaaihq.com/docket/fcc-usf-ai-administration/
 **2026-11-14** A Federal Register search today for documents citing WC Docket No. 26-173 published since November 8th found none. No order or further notice has been published. Checked and unchanged.
 **2026-11-18** A Federal Register search today for Alaska documents published November 13th to 18th found nothing citing WC Docket No. 26-173. No order or further notice has been published. Checked and unchanged.
 **2026-11-22** A Federal Register search today for documents published November 18th to 23rd found nothing citing WC Docket No. 26-173. No order or further notice has been published. Checked and unchanged.
+**2026-11-27** A Federal Register search today for Alaska documents published November 23rd to 27th, 38 in all, found nothing citing WC Docket No. 26-173. No order or further notice has been published. Checked and unchanged.
 
 
 ---
@@ -12589,6 +12686,7 @@ Canonical: https://alaskaaihq.com/docket/petersburg-data-center-moratorium/
 **2026-11-15** KFSK's local news, read today, has nothing newer than its November 11th report. The moratorium ordinance is still set for a second reading with public feedback on November 16th. Checked and unchanged.
 **2026-11-19** KFSK reported on November 16th that the Assembly would hold a public hearing that night on the moratorium, which passed once earlier this month and must pass two more times to take effect. It would bar permits for data center projects that use uncontained cooling, need more power than allowed, or run on generators instead of the town grid. No report of that night's outcome had been published when checked today.
 **2026-11-24** KFSK reported on November 23rd that the Assembly voted 5 to 2 to broaden the proposed moratorium and then passed the ordinance unanimously, 7 to 0, at its second reading on November 16th. The amended version needs one more Assembly approval before it takes effect, with another public hearing at the November 30th meeting at 6 p.m. The ordinance as introduced, No. 2026-24, would run through September 30th, 2027, with staff findings due June 21st, 2027, and the November 16th agenda records its first reading passing 5 to 1.
+**2026-11-27** KFSK's newest report, read today, is still November 23rd, when the Assembly broadened the moratorium 5 to 2 and passed it 7 to 0 at second reading. The third reading and public hearing stay set for November 30th. Checked and unchanged.
 
 
 ---
