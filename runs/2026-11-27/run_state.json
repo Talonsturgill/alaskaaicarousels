@@ -119,12 +119,33 @@
     },
     "upgrade": "pending",
     "gmail": "pending",
-    "retro": "pending",
+    "retro": {
+      "status": "done"
+    },
     "craft_cycle": {
       "status": "done",
       "note": "frames 8,7,5,4,1; art 7 -> 7.5"
+    },
+    "merge": {
+      "status": "done",
+      "note": "PR #518 merged 47685483a after CI green and Codex Completed with no findings on 7d911de"
+    },
+    "gmail_draft": {
+      "status": "done",
+      "note": "r2776438904734222812"
+    },
+    "social_delivery": {
+      "status": "done",
+      "note": "22/22 PUBLISHED, YouTube NOT_APPLICABLE, LinkedIn comment verified"
     }
   },
   "social_feedback": [],
-  "score": 8.62
+  "score": 8.62,
+  "phase_3_6": {
+    "site_signoff": "PASS, 194 pages, 18 checks (re-run on the merged build, 2026-11-28 09:10Z; 193 pages at wake)",
+    "gaswatch_live": "PASS (wake read late_post; dispatched gaswatch.yml run 46115370606, audit PASS at 06:14Z; re-checked PASS at 08:56Z)",
+    "cron_health": "PASS (audit 2026-11-28 06:08Z, every scheduled workflow healthy)",
+    "site_fixes": "Dispatched the Gas Watch collector for the late 2026-11-27 posting; no page needed hand repair. Codex P2 fixed before merge, so runner-up claims no longer appear on the deck page."
+  },
+  "status": "complete"
 }
