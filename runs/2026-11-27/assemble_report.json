@@ -1,0 +1,117 @@
+{
+  "pdf": "/home/user/alaskaaicarousels/out/2026-11-27/final/carousel.pdf",
+  "pdf_mode": "vector",
+  "pdf_bytes": 10269302,
+  "pdf_mb": 10.27,
+  "slides": 9,
+  "contact_sheet": "/home/user/alaskaaicarousels/out/2026-11-27/final/contact_sheet.png",
+  "thumbs": [
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-01-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-02-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-03-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-04-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-05-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-06-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-07-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-08-thumb.png",
+    "/home/user/alaskaaicarousels/out/2026-11-27/final/thumbs/slide-09-thumb.png"
+  ],
+  "title": "2 to 16 polar bear dens, and FWS estimates 8",
+  "title_source": "copy.json",
+  "sources": {
+    "render_pngs": [
+      {
+        "name": "slide-01.png",
+        "sha256": "f2bcd0546e6a154481e20216a1f10dda11f3254163a2c6bf52bca3a9fb96a5a5",
+        "bytes": 7030300
+      },
+      {
+        "name": "slide-02.png",
+        "sha256": "ea373ed1da8ed24a53366acb1c1c400c961b688c64fac257182e36a3175d68ea",
+        "bytes": 7176505
+      },
+      {
+        "name": "slide-03.png",
+        "sha256": "b6c220062f3ee514b2cd9622f7cefb3fa1b954d59fd619186913e8fbbec7918b",
+        "bytes": 6100710
+      },
+      {
+        "name": "slide-04.png",
+        "sha256": "8b38f1e5e16fa8c79d139c1bd8eef274112f2f60d974ab83fad0c15c02173e71",
+        "bytes": 6080493
+      },
+      {
+        "name": "slide-05.png",
+        "sha256": "8568a0aced18693e07911b5245d7c694d63e52cd61eac197e6e91e9851bac3cf",
+        "bytes": 6547600
+      },
+      {
+        "name": "slide-06.png",
+        "sha256": "cbdb69d01826b8c251f6655b2a3385e3b640f9d681c5c57b505cf2085d040230",
+        "bytes": 6457711
+      },
+      {
+        "name": "slide-07.png",
+        "sha256": "00398f997ce1c22e6155efc7b373a470294167c1ebe0c0a68a3662c4d7b3d1eb",
+        "bytes": 5806743
+      },
+      {
+        "name": "slide-08.png",
+        "sha256": "76c20ea74fe9d8dd189668a0433e17fa53d1c8e7c9e125e6192ecdc9fff5b597",
+        "bytes": 6338736
+      },
+      {
+        "name": "slide-09.png",
+        "sha256": "439d3ae6cfa8561772c777ce874b6b5a47f54ae62b1e0973d989ca98b648a044",
+        "bytes": 7618611
+      }
+    ],
+    "slide_html": [
+      {
+        "name": "slide-01.html",
+        "sha256": "a60b84d3b4f8c208aaf2461dd60190f1e020635559db7ad85e1ad2d2ffd3c728",
+        "bytes": 9725
+      },
+      {
+        "name": "slide-02.html",
+        "sha256": "1cf8675deabb7f4989cc263cb3fe20b0878f588da05562b62fa618111b91df0d",
+        "bytes": 8587
+      },
+      {
+        "name": "slide-03.html",
+        "sha256": "b0ff271df9344e44ceac34f9995312cb090b560bc051da028dd2146b336906a5",
+        "bytes": 13108
+      },
+      {
+        "name": "slide-04.html",
+        "sha256": "865c4d3101f2fd485255c43ae4744fdafc0425235c4e28469dcaedfdcb10e954",
+        "bytes": 9447
+      },
+      {
+        "name": "slide-05.html",
+        "sha256": "dca3e103c88685293d6d2653c0063557b3eb4a01fc8431e50d6f05b144e14d16",
+        "bytes": 7770
+      },
+      {
+        "name": "slide-06.html",
+        "sha256": "7a4e20746573a06a867a271615c64407023339c32f62981b66464cb34fa3ca6d",
+        "bytes": 10115
+      },
+      {
+        "name": "slide-07.html",
+        "sha256": "fd777715517408021c185580742938f43399edaed01b7f2fd8d198a64260818f",
+        "bytes": 11715
+      },
+      {
+        "name": "slide-08.html",
+        "sha256": "10302387ef26ccfbe64d7d78bedd263878833a0a1e218fc559a2db854945603d",
+        "bytes": 13119
+      },
+      {
+        "name": "slide-09.html",
+        "sha256": "d33a4e7b289f8552a16e37fd0c5945309d126a264ddcec571c599e2e8551b79d",
+        "bytes": 8402
+      }
+    ]
+  }
+}

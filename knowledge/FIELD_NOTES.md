@@ -9765,3 +9765,10 @@ refuses a plain WebFetch from this container (HTTP 403), same as
 - LEADERS ARE OPTIONAL WHEN THE LABEL IS THE KEY. 03's rows already said LINE 60 beside a red 60; removing the leaders cleared the art-crossing-type finding that two rounds of rerouting did not.
 - ENGRAVING ON A CYLINDER NEEDS A TONAL BODY FIRST. 04's wheels read as coils, then as mesh, because the white-line strokes were the only tone; a solid lit-to-lee fill under the strokes was the change that read as a solid.
 - A CRAFT CYCLE CAN HOLD THE SCORE FLAT. Round 4 lifted 08 and 03 and lost ground on 04 and 06, so art stayed 7.5. Test one change per weak frame on a crop before rendering all four.
+
+## 2026-11-27, No.126 retro (the den model's 2 to 16, an update of No.99)
+- A FEDERAL REGISTER NOTICE CARRIES ITS OWN MODEL. The proposed IHA printed the den model's language (R), its iteration count (10,000), its interval and its medians in the text; the govinfo HTML and the FR API JSON together verified every number without a second source. Name it a statistical simulation, never AI.
+- A RANGE IS A RAIL. The interval drawn as one graduated rail in a carved trough, changing state on every frame (bracket, dashes, scale bar, calendar axis, twelve ticks, one tick), gave nine frames continuity with almost no shared imagery; tonal arc and fusion both held.
+- A PROCEDURAL NORMAL MAP NEEDS A LOW SCALE UNDER A RAKING KEY. Snow crust at default strength read as zebra stripes; 0.12 read as crust.
+- COPLANAR GPU DECALS DITHER. 08's glass cleared once offset outboard; the stripe still dithered and the scorer charged it to art. Offset every decal, and fog a line of clones or it marches at full saturation.
+- A CRAFT CYCLE ON FIVE FRAMES MOVED ART HALF A POINT. The frames that changed most (01, 07) were the cheap ones; the frame that decided the score (08) needed modelling work the cycle didn't fund. Spend the one cycle on the weakest frame first.

@@ -49,6 +49,10 @@
     o = o || {};
     const t = TROUGH;
     cx.save();
+    // a soft cast around the cut, so the trough sits IN the ground rather than on it
+    cx.save(); cx.filter = 'blur(10px)';
+    cx.beginPath(); rr(cx, t.x - 6, t.y - 4, t.w + 12, t.h + 10, 14);
+    cx.fillStyle = 'rgba(2,6,12,0.45)'; cx.fill(); cx.restore();
     const g = cx.createLinearGradient(0, t.y, 0, t.y + t.h);
     g.addColorStop(0, o.top || '#02050B');
     g.addColorStop(0.55, o.mid || '#07111B');
@@ -88,7 +92,7 @@
       if (s.dashedFrom != null) {
         cx.setLineDash([7, 4]); cx.lineWidth = 1.6;
         cx.strokeStyle = s.mid || '#BFD8D4';
-        cx.beginPath(); rr(cx, solidEnd, y + 1, xb - solidEnd, h - 2, (h - 2) / 2);
+        cx.beginPath(); rr(cx, solidEnd + 4, y + 1, xb - solidEnd - 4, h - 2, (h - 2) / 2);
         cx.stroke(); cx.setLineDash([]);
       }
     }
@@ -137,7 +141,7 @@
         'font-weight:500;font-size:24px;letter-spacing:.07em;color:#9FB4B8;font-variant-numeric:tabular-nums;z-index:5}' +
         '.iv-site{position:absolute;left:80px;top:1288px;font-family:"JetBrains Mono",monospace;' +
         'font-size:20px;letter-spacing:.06em;color:#46545F;z-index:5}' +
-        '.iv-grain{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.07;pointer-events:none;z-index:4}' +
+        '.iv-grain{position:absolute;inset:0;mix-blend-mode:overlay;opacity:.04;pointer-events:none;z-index:4}' +
         '.iv-lab{position:absolute;top:1238px;font-family:"JetBrains Mono",monospace;font-weight:500;' +
         'font-size:24px;letter-spacing:.04em;color:#9FB4B8;transform:translateX(-50%);white-space:nowrap;z-index:5}' +
         '.iv-lab.gold{color:#FFC72C}';
@@ -155,6 +159,41 @@
     const gr = add('iv-grain', null, { 'data-decorative': '' });
     if (global.AK && AK.grainOn) AK.grainOn(gr, { size: 280, strength: 44, seed: 2611270 + o.n });
     return true;
+  };
+
+  /* A procedural snow micro-normal map (wind crust and sastrugi grain), so a
+   * GPU snowfield has crisp relief below the mesh's own resolution. Returns a
+   * repeating THREE.CanvasTexture; pass {repeat} in world tiles. */
+  IV.snowNormals = function (THREE, o) {
+    o = o || {};
+    const N = 512, c = document.createElement('canvas'); c.width = c.height = N;
+    const x = c.getContext('2d'), img = x.createImageData(N, N);
+    const H = new Float32Array(N * N);
+    const f = (i, j) => {
+      const u = i / N, v = j / N, P = 2 * Math.PI;
+      // tileable: sum of periodic waves and wrapped noise lattices
+      let h = 0.55 * Math.sin(P * (u * 7 + v * 2)) * Math.sin(P * (u * 7 + v * 2)) ;
+      h += 0.35 * Math.sin(P * (u * 19 + v * 5) + 2 * Math.sin(P * v * 3));
+      h += 0.25 * AK.simplex2(Math.cos(P * u) * 3 + Math.sin(P * v) * 1.7, Math.sin(P * u) * 3 + Math.cos(P * v) * 1.7);
+      h += 0.12 * AK.simplex2(Math.cos(P * u) * 11, Math.sin(P * v) * 11 + Math.cos(P * v) * 5);
+      return h;
+    };
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) H[j * N + i] = f(i, j);
+    const s = o.strength || 2.2;
+    for (let j = 0; j < N; j++) for (let i = 0; i < N; i++) {
+      const dx = H[j * N + ((i + 1) % N)] - H[j * N + ((i - 1 + N) % N)];
+      const dy = H[((j + 1) % N) * N + i] - H[((j - 1 + N) % N) * N + i];
+      let nx = -dx * s, ny = -dy * s, nz = 1; const l = Math.hypot(nx, ny, nz);
+      const k = (j * N + i) * 4;
+      img.data[k] = (nx / l * 0.5 + 0.5) * 255; img.data[k + 1] = (ny / l * 0.5 + 0.5) * 255;
+      img.data[k + 2] = (nz / l * 0.5 + 0.5) * 255; img.data[k + 3] = 255;
+    }
+    x.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    const r = o.repeat || 24; t.repeat.set(r, r);
+    t.anisotropy = 8;
+    return t;
   };
 
   global.IV = IV;

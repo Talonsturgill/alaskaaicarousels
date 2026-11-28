@@ -1,0 +1,130 @@
+{
+  "run_date": "2026-11-27",
+  "carousel_no": 126,
+  "effort": "medium",
+  "date_note": "UTC 2026-11-28 at wake; Anchorage date 2026-11-27 is CLEAR and is the run date.",
+  "revision_rounds": 3,
+  "social_preflight": {
+    "users": "ok",
+    "facebook_pin": "2003130316607965",
+    "linkedin_pin": "urn:li:organization:117084989",
+    "state_branch": "readable"
+  },
+  "phases": {
+    "wake": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/plan.md"
+      ]
+    },
+    "craft_refresh": {
+      "status": "done",
+      "artifacts": [],
+      "note": "1 search; nothing new beyond 2026-11-17 field note; nothing appended"
+    },
+    "research": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/scout_merge.md",
+        "out/2026-11-27/scouts/"
+      ]
+    },
+    "claims": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/claims.json"
+      ],
+      "note": "48 claims, claims_check PASS"
+    },
+    "docket": {
+      "status": "done",
+      "artifacts": [
+        "ledger/docket.json",
+        "out/2026-11-27/docket_checks.md"
+      ],
+      "note": "8 of 11 worklist items re-verified; kpbsd 503; adl-422741 and houston await Nov 30"
+    },
+    "gas_watch": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/cron_health.json",
+        "out/2026-11-27/gaswatch_health.json"
+      ],
+      "note": "live WARN late_post -> dispatched gaswatch.yml run 46115370606 -> PASS; cron PASS; site signoff PASS 193 pages"
+    },
+    "selection": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/selection.md"
+      ]
+    },
+    "directors_room": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/storyboard.md",
+        "out/2026-11-27/treatment_ac6e02.md",
+        "out/2026-11-27/treatment_a3e3e8.md",
+        "out/2026-11-27/treatment_a4b183.md"
+      ],
+      "note": "lenses data-journalist, systems-illustrator, field-documentarian; dossier_check PASS 9/9"
+    },
+    "copy": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/caption.txt",
+        "out/2026-11-27/copy.json",
+        "out/2026-11-27/caption_report.json"
+      ]
+    },
+    "art_build": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/slides/",
+        "out/2026-11-27/render/",
+        "assets/js/akinterval.js"
+      ]
+    },
+    "pixel_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/critic_r1_0102.json",
+        "out/2026-11-27/critic_r1_0304.json",
+        "out/2026-11-27/critic_r1_0506.json",
+        "out/2026-11-27/critic_r1_0708.json",
+        "out/2026-11-27/critic_r1_09.json"
+      ],
+      "note": "round 1: five critics, all revise 5.6 to 7.6; fixes applied"
+    },
+    "flow_review": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/flow_review.json"
+      ],
+      "note": "round 2: flow critic revise 7.0, craft work order applied"
+    },
+    "assemble": "pending",
+    "scoring": {
+      "status": "done",
+      "artifacts": [
+        "out/2026-11-27/score_report.json"
+      ],
+      "note": "8.62 vs 8.0 (round 3 ladder); ship true"
+    },
+    "ship": {
+      "status": "done",
+      "artifacts": [
+        "runs/2026-11-27/",
+        "docs/"
+      ]
+    },
+    "upgrade": "pending",
+    "gmail": "pending",
+    "retro": "pending",
+    "craft_cycle": {
+      "status": "done",
+      "note": "frames 8,7,5,4,1; art 7 -> 7.5"
+    }
+  },
+  "social_feedback": [],
+  "score": 8.62
+}
