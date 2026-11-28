@@ -4010,7 +4010,7 @@
       ],
       "verification": "python3 tests/gaswatch_health.py 12/12 OK (2 new: the No.126 shape is deploy_pending with every status and the verdict identical to the undiagnosed audit; a stalled deploy names pages.yml; a clean run inside the stamp lead is late_post with the dispatch; a clean run 90 minutes after the stamp that recorded nothing and a failed run inside the lead both stay collected_after_post; an in-flight run is collection_running; main() fetches the ledger URL with the raw media type). The same test file against git HEAD's script FAILS 2 (it reads the No.126 shape as collected_after_post). Replay of 06:13Z with the real main ledger: deploy_pending, 'the collector recorded this posting (collected 2026-11-28T06:11:35Z)'. Live audit after the change: GAS WATCH LIVE: PASS. ledger and collectors untouched.",
       "rollback": "revert the upgrade(2026-11-27) commit; the diagnosis returns to run-start timing only",
-      "commit": "upgrade(2026-11-27)"
+      "commit": "cf3578df6"
     },
     {
       "run_date": "2026-11-27",
@@ -4027,7 +4027,7 @@
       ],
       "verification": "python3 tests/akthree_coplanar_verify.py 7/7 through the real render.py and qa.py: No.126 08's flush stripe on a bevelled AKT.extrude body WARNs, the stripe widened past the bevel is clean, polygonOffset is clean, a body top on its type bed WARNs, contact without coincidence (box on ground, stacked, side by side sharing a top plane, cylinder against box, a small extrude) is clean, the flush pair in a group yawed 0.3 rad WARNs, userData.coplanar is clean. With git HEAD's akthree.js the same test is BROKEN on the 3 WARN cases. The shipped No.126 slide 08 now WARNs on the stripe's rear face (mesh 96 extrude and mesh 97 box, -x plane, 0.93 shared) and one cylinder cap; its other 8 slides' QA lines are identical before and after; examples/demo-deck renders 4/4, qa WARN 0 fails, no coplanar line. akthree faceted, ground_edge, material_audit (25/25), soft_shadow and far_clip verifies all hold. The audit only reads the scene graph.",
       "rollback": "revert the upgrade(2026-11-27) commit",
-      "commit": "upgrade(2026-11-27)"
+      "commit": "cf3578df6"
     },
     {
       "run_date": "2026-11-27",
@@ -4043,7 +4043,7 @@
       ],
       "verification": "node tests/field_sampler_verify.mjs HOLDS, all prior checks unchanged plus 'one-row lattice is a 1D curve': cols x 1 (bspline and monotone) and 1 x rows match the duplicated-row 2D field to 2.8e-14 with y gradient 0; git HEAD's akpost.js is BROKEN on it (threw). akpost_verify and akpost_grain_lattice_verify hold. 2D fields take the same path as before (j clamps to 0 only when rows is 1). No.126's 9 slides and examples/demo-deck re-rendered with qa: no new fail.",
       "rollback": "revert the upgrade(2026-11-27) commit",
-      "commit": "upgrade(2026-11-27)"
+      "commit": "cf3578df6"
     }
   ],
   "scan_log": [
