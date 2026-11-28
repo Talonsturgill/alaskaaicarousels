@@ -17,7 +17,7 @@
     "last_verified_date": "2026-11-27",
     "capacity_status": "complete",
     "capacity_field_errors": {},
-    "last_collection_utc": "2026-11-27T22:22:41Z",
+    "last_collection_utc": "2026-11-28T02:03:24Z",
     "maintenance_window": null,
     "source_url": "https://cingsa.com/operations/PublicDashBoard.html"
   },
@@ -18604,33 +18604,33 @@
     },
     {
       "date": "2026-11-27",
-      "collected_utc": "2026-11-27T22:22:41Z",
+      "collected_utc": "2026-11-28T02:03:24Z",
       "collector_version": "1.3",
       "verified": true,
       "cingsa": {
         "fetch_status": "ok",
         "data_status": "complete",
         "field_errors": {},
-        "source_timestamp": "2026-11-27T12:20:00",
-        "source_timestamp_utc": "2026-11-27T21:20:00Z",
-        "inventory_mcf": 8077349,
-        "inventory_delta_mcf": 12720,
+        "source_timestamp": "2026-11-27T16:28:00",
+        "source_timestamp_utc": "2026-11-28T01:28:00Z",
+        "inventory_mcf": 8094379,
+        "inventory_delta_mcf": 17030,
         "storage_design_mcf": 13000000,
-        "inventory_pct_of_design": 62.1,
+        "inventory_pct_of_design": 62.3,
         "withdrawal_design_mcfd": 215000,
         "withdrawal_facility_mcfd": 166000,
         "withdrawal_operating_mcfd": 166000,
-        "withdrawal_available_mcfd": 161500,
+        "withdrawal_available_mcfd": 164333,
         "withdrawal_restriction_mcfd": 0,
         "injection_design_mcfd": 225000,
         "injection_facility_mcfd": 164050,
         "injection_operating_mcfd": 119525,
-        "injection_available_mcfd": 102305,
-        "injection_in_progress_mcfd": 17220,
+        "injection_available_mcfd": 83609,
+        "injection_in_progress_mcfd": 35916,
         "injection_restriction_mcfd": 44525,
         "capacity_identity_mismatches": [],
         "operational_note": "Compressor B is down for needed maintenance and checks. This maintenance only effects initial/legacy injection customers only.",
-        "source_age_hours": 1.0
+        "source_age_hours": 0.6
       },
       "forecast": [
         {
@@ -18688,9 +18688,9 @@
         "peak_forecast_hdd": 46.5,
         "peak_modeled_demand_mmcfd": 241,
         "forecast_window_demand_bcf": 1.34,
-        "storage_withdrawal_mmcfd": -12.7,
+        "storage_withdrawal_mmcfd": -17.0,
         "non_cingsa_supply_mmcfd": null,
-        "days_cover_at_peak": 33.5,
+        "days_cover_at_peak": 33.6,
         "days_cover_note": "Inventory divided by modeled peak demand. It is arithmetic on storage alone and takes no account of the withdrawal capacity ceiling, field supply, or deliverability. It is not a measure of adequacy."
       },
       "reconciliation": {
@@ -18736,17 +18736,17 @@
           "url": "https://cingsa.com/operations/PublicDashBoard.html",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-11-27T22:22:41Z",
+          "fetched_utc": "2026-11-28T02:03:25Z",
           "http_status": 200,
           "attempts": 1,
-          "sha256": "6b04308785c41b8931018359921cc9839f0dfcc096dda4eebe84e8d02f39d785"
+          "sha256": "9f97dafb07ca53a515c7063b12c908c031f522248817076f707053e56f7b3ac9"
         },
         {
           "name": "nws_hourly_forecast",
           "url": "https://api.weather.gov/gridpoints/AER/143,236/forecast/hourly",
           "method": "GET",
           "fetch_status": "ok",
-          "fetched_utc": "2026-11-27T22:22:41Z",
+          "fetched_utc": "2026-11-28T02:03:25Z",
           "http_status": 200,
           "attempts": 1
         },
@@ -18755,7 +18755,7 @@
           "url": "https://data.rcc-acis.org/StnData",
           "method": "POST",
           "fetch_status": "ok",
-          "fetched_utc": "2026-11-27T22:22:41Z",
+          "fetched_utc": "2026-11-28T02:03:25Z",
           "http_status": 200,
           "attempts": 1
         }
@@ -18763,7 +18763,7 @@
       "flags": [
         "injection_restriction_active"
       ],
-      "supersedes_posting": "2026-11-27T04:24:00"
+      "supersedes_posting": "2026-11-27T12:20:00"
     }
   ]
 }
