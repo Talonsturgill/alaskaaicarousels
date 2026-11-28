@@ -1,0 +1,155 @@
+{
+ "edition_id": "2026-11-27",
+ "checked_utc": "2026-11-28T09:20Z",
+ "notes": [
+  "Feed photos are JPEG conversions of the released WebP at 2160x2700, same pixels.",
+  "Story frames are the released slides scaled to 1080x1350 and centred unclipped on 1080x1920 in the slide's own corner colour; the site line in the frame is printed text, not a link.",
+  "Facebook posts by this profile in the prior 24 hours were counted (0) before uploading 10, under the 25-a-day cap.",
+  "LinkedIn website CTA is in the native first comment only; the comment was read back by the brand author.",
+  "Gmail draft r2776438904734222812 was created through the connector, addressed to docket@alaskaaihq.com; the connector reports its account as a personal Gmail address, not the Workspace mailbox CLAUDE.md names."
+ ],
+ "destinations": {
+  "linkedin/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "bdeea076320f48d1898753697b763bed",
+   "post_id": "urn:li:ugcPost:7532369682671054848",
+   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7532369682671054848/",
+   "first_comment": {
+    "state": "PUBLISHED",
+    "comment_urn": "urn:li:comment:(urn:li:ugcPost:7532369682671054848,7532369771774980096)",
+    "author": "urn:li:organization:117084989",
+    "text": "Every source behind this carousel, and the public record of every AI decision in Alaska, at https://alaskaaihq.com/"
+   }
+  },
+  "instagram/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "d845d981494341fda437ed7588cbfd3d",
+   "post_id": "17912335575598981",
+   "url": "https://www.instagram.com/p/DgR5j3SDJws/"
+  },
+  "facebook/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "9ff7e35c73e2432a953096c89889f22d",
+   "post_id": "2003130316607965_1173585545635242",
+   "url": "https://www.facebook.com/2003130316607965_1173585545635242"
+  },
+  "tiktok/feed/0": {
+   "state": "PUBLISHED",
+   "request_id": "4f1bb572d2aa4d67a19ccd80912ff673",
+   "post_id": "7713146606815628558",
+   "url": "https://www.tiktok.com/@alaskaai_/video/7713146606815628558"
+  },
+  "instagram/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "0e29d5cedb494749bd57fe024b485744",
+   "post_id": "18123171383321071",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/0": {
+   "state": "PUBLISHED",
+   "request_id": "8bb33ff8396e479b93f1976e7acbe410",
+   "post_id": "1441968600951076",
+   "url": null
+  },
+  "instagram/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "9a61c9d9cbb4410794da83f266d43c84",
+   "post_id": "18176990233455589",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/1": {
+   "state": "PUBLISHED",
+   "request_id": "bff3acf89962439d9c153675dc7bf691",
+   "post_id": "956767374183450",
+   "url": null
+  },
+  "instagram/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "862d57f456104cadba368287e9535a12",
+   "post_id": "17982565730922166",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/2": {
+   "state": "PUBLISHED",
+   "request_id": "43f853d04c6e4465a0f51dc2ea997821",
+   "post_id": "2070197930364942",
+   "url": null
+  },
+  "instagram/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "03a9e1fbd39a4bd2a0bc869cac4b5e92",
+   "post_id": "17956245051345311",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/3": {
+   "state": "PUBLISHED",
+   "request_id": "9d40a330c60949a1a0aa5396e58aa2d2",
+   "post_id": "2238419663450029",
+   "url": null
+  },
+  "instagram/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "8f6ac99a654b461bbd2d9e6b5dc222ef",
+   "post_id": "18132273605511260",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/4": {
+   "state": "PUBLISHED",
+   "request_id": "2222a2db961248f7929f83ac1c63ad5e",
+   "post_id": "1606364111261058",
+   "url": null
+  },
+  "instagram/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "945b743b3dbf41dcbd03d8e89d832275",
+   "post_id": "18082482554390162",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/5": {
+   "state": "PUBLISHED",
+   "request_id": "03c0868d284c46139fc9432937ebc99b",
+   "post_id": "1788683728913625",
+   "url": null
+  },
+  "instagram/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "52b4c085334f484eb6ccf0a6f990f023",
+   "post_id": "17908696854601962",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/6": {
+   "state": "PUBLISHED",
+   "request_id": "c86017d4887c42b89ab0c368167a5db1",
+   "post_id": "3003883506656285",
+   "url": null
+  },
+  "instagram/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "7c89b24927254c1295ac36c084d2d7d5",
+   "post_id": "17978849646157179",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/7": {
+   "state": "PUBLISHED",
+   "request_id": "8a36493c18544f918ae033510ae56d35",
+   "post_id": "1086248974422976",
+   "url": null
+  },
+  "instagram/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "737dd4266ace485385fcef302065cd1e",
+   "post_id": "17916139770561087",
+   "url": "https://www.instagram.com/stories/alaskaai_/"
+  },
+  "facebook/story/8": {
+   "state": "PUBLISHED",
+   "request_id": "991d7126030943faa17cfaa89314c213",
+   "post_id": "1850821802883911",
+   "url": null
+  },
+  "youtube/feed/0": {
+   "state": "NOT_APPLICABLE",
+   "reason": "YouTube does not accept an image carousel through this flow; no slideshow video was invented."
+  }
+ }
+}
