@@ -260,6 +260,121 @@ class HealthTests(unittest.TestCase):
         self.setUp()
         self.assertNotIn("diagnosis", self.audit())
 
+    def _late_shape(self, minutes_after_post=8, status="completed", conclusion="success"):
+        """No.126's shape: CINGSA posted, a production run started after the
+        stamp, and the live page still shows the previous reading."""
+        posted = self.now - timedelta(minutes=20)
+        self.source = dict(self.source, inventory_mcf=(self.source.get("inventory_mcf") or 0) + 1000,
+                           source_timestamp_utc=gc.iso_z(posted),
+                           source_timestamp=posted.astimezone(gc.alaska_tz()).strftime("%Y-%m-%dT%H:%M:%S"))
+        self.runs["workflow_runs"] = [
+            {"head_branch": "main", "event": "workflow_dispatch",
+             "created_at": gc.iso_z(posted + timedelta(minutes=minutes_after_post)), "status": status,
+             "conclusion": conclusion, "html_url": "https://github.com/example/run/9"},
+            {"head_branch": "main", "event": "schedule",
+             "created_at": gc.iso_z(posted - timedelta(hours=4)), "status": "completed",
+             "conclusion": "success", "html_url": "https://github.com/example/run/8"}]
+        return posted
+
+    def test_deploy_lag_is_not_named_a_collector_fault(self):
+        """2026-11-27 weekly pass (queue item 2026-11-18, repeat 2: No.118,
+        119, 121, 126). A collection that already committed the reading, with
+        Pages minutes behind, was diagnosed 'collector, parser or Pages at
+        fault'. Main's ledger now decides it, and no status or verdict moves."""
+        posted = self._late_shape()
+        held = {"date": self.source["source_timestamp"][:10], "verified": True,
+                "collected_utc": gc.iso_z(posted + timedelta(minutes=10)),
+                "cingsa": {"source_timestamp": self.source["source_timestamp"],
+                           "inventory_mcf": self.source["inventory_mcf"]}}
+        older = {"date": "2026-09-13", "verified": True, "collected_utc": "2026-09-14T06:00:00Z",
+                 "cingsa": {"source_timestamp": "2026-09-13T21:00:00", "inventory_mcf": 1}}
+        status = lambda r: ({c["name"]: c["status"] for c in r["checks"]}, r["verdict"])
+        unread = self.audit()
+        self.assertEqual(unread["diagnosis"]["kind"], "collected_after_post")
+        self.assertIn("NOT read", unread["diagnosis"]["remedy"], "an unread ledger is disclosed")
+
+        lag = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older, held])
+        self.assertEqual(status(lag), status(unread), "a diagnosis must not move any status")
+        self.assertEqual(lag["verdict"], "WARN", "a fresh unpublished reading WARNs, as before")
+        self.assertEqual(lag["diagnosis"]["kind"], "deploy_pending")
+        self.assertIn("Don't dispatch", lag["diagnosis"]["remedy"])
+        row = next(c for c in lag["checks"] if c["name"] == "source reading published")
+        self.assertIn("DEPLOY LAG", row["remedy"])
+        self.assertIn("Inspect collector logs", row["remedy"], "the original remedy is kept")
+
+        # a deploy that never comes is named as Pages' fault, not waited on forever
+        held["collected_utc"] = gc.iso_z(self.now - timedelta(minutes=health.DEPLOY_GRACE_MIN + 15))
+        stuck = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[held])
+        self.assertEqual(stuck["diagnosis"]["kind"], "deploy_pending")
+        self.assertIn("pages.yml", stuck["diagnosis"]["remedy"])
+
+        # a clean run inside CINGSA's stamp lead that recorded nothing: no run
+        # has seen the posting yet (No.118), so it is a late post with dispatch
+        lead = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
+        self.assertEqual(lead["diagnosis"]["kind"], "late_post")
+        self.assertIn(health.DISPATCH, lead["diagnosis"]["remedy"])
+        self.assertEqual(status(lead), status(unread))
+
+        # the reconstruction of a REAL collector fault still reads as one: a
+        # clean run long after the stamp recorded nothing
+        self.setUp()
+        self._late_shape(minutes_after_post=health.STAMP_LEAD_MIN + 30)
+        self.now += timedelta(minutes=health.STAMP_LEAD_MIN + 40)
+        fault = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
+        self.assertEqual(fault["diagnosis"]["kind"], "collected_after_post")
+        self.assertIn("example/run/9", fault["diagnosis"]["remedy"])
+        self.assertNotIn(health.DISPATCH, fault["diagnosis"]["remedy"])
+
+        # and so does a FAILED run inside the lead, which is never a late post
+        self.setUp()
+        self._late_shape(conclusion="failure")
+        failed = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
+        self.assertEqual(failed["diagnosis"]["kind"], "collected_after_post")
+
+        # a run still in flight is waited on
+        self.setUp()
+        self._late_shape(status="in_progress", conclusion=None)
+        running = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
+        self.assertEqual(running["diagnosis"]["kind"], "collection_running")
+
+    def test_main_reads_main_ledger_for_a_run_after_the_post(self):
+        posted = self._late_shape()
+        held = {"date": self.source["source_timestamp"][:10], "verified": True,
+                "collected_utc": gc.iso_z(posted + timedelta(minutes=10)),
+                "cingsa": {"source_timestamp": self.source["source_timestamp"],
+                           "inventory_mcf": self.source["inventory_mcf"]}}
+        served = {"/gas-watch.json": json.dumps(self.feed, default=str), "/gas-watch/": self.page,
+                  "actions/workflows": json.dumps(self.runs), "contents/ledger": json.dumps(held)}
+        asked = []
+
+        def fake_fetch(url, accept=None):
+            asked.append((url, accept))
+            if url == gc.CINGSA_URL:
+                return "SOURCE"
+            return next(v for k, v in served.items() if k in url)
+
+        real_parse, real_fetch, argv, real_now = gc.parse_cingsa, health.fetch, sys.argv, health.datetime
+        now = self.now
+
+        class Clock(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return now
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "gw.json"
+            gc.parse_cingsa, health.fetch, health.datetime = (lambda raw: self.source), fake_fetch, Clock
+            sys.argv = ["gaswatch_health.py", "--output", str(out)]
+            try:
+                code = health.main()
+            finally:
+                gc.parse_cingsa, health.fetch, sys.argv, health.datetime = real_parse, real_fetch, argv, real_now
+            report = json.loads(out.read_text())
+        self.assertEqual(report["diagnosis"]["kind"], "deploy_pending")
+        bare = self.audit()
+        self.assertEqual(report["verdict"], bare["verdict"], "the ledger read moves no verdict")
+        self.assertEqual(code, 2 if bare["verdict"] == "FAIL" else 0)
+        self.assertIn((health.LEDGER_URL, "application/vnd.github.raw"), asked)
+
     def test_daily_gate_requires_live_evidence_and_diagnosis(self):
         with tempfile.TemporaryDirectory() as td:
             run = Path(td) / "2026-09-16"

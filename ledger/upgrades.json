@@ -3994,6 +3994,56 @@
       "verify": [
         "python3 tests/akthree_faceted_verify.py"
       ]
+    },
+    {
+      "run_date": "2026-11-27",
+      "kind": "fix",
+      "area": "scripts",
+      "change": "gaswatch_health.py's timing diagnosis reads main's ledger/gaswatch.jsonl (contents API, raw media type, read only, and only when a production collection started after CINGSA's stamp) and names the cause it measures: deploy_pending when a collection already recorded the posting and Pages has not redeployed (wait, don't dispatch; past 30 minutes read the pages.yml run), collection_running while one is in flight, late_post when every clean run since the stamp started within 60 minutes of it and none recorded the posting, and collected_after_post only for a failed run or a clean run long after the stamp that recorded nothing; an unread ledger is disclosed in the remedy. No status, no verdict and no check changes.",
+      "trigger": "Queue item 2026-11-18 at repeat 2, the reason this pass ran: collected_after_post (collector, parser or Pages at fault) printed on No.118, No.119, No.121 and No.126 for what was a Pages deploy lag or a reading CINGSA stamped before it served. No.126: dispatch 46115370606 started 06:10Z and recorded the 21:02 posting at 06:11:35Z; the audit read collected_after_post and passed a minute later with no repair.",
+      "files": [
+        "scripts/gaswatch_health.py",
+        "tests/gaswatch_health.py",
+        "prompts/routine_instructions.md",
+        "knowledge/MACHINE_QUEUE.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "python3 tests/gaswatch_health.py 12/12 OK (2 new: the No.126 shape is deploy_pending with every status and the verdict identical to the undiagnosed audit; a stalled deploy names pages.yml; a clean run inside the stamp lead is late_post with the dispatch; a clean run 90 minutes after the stamp that recorded nothing and a failed run inside the lead both stay collected_after_post; an in-flight run is collection_running; main() fetches the ledger URL with the raw media type). The same test file against git HEAD's script FAILS 2 (it reads the No.126 shape as collected_after_post). Replay of 06:13Z with the real main ledger: deploy_pending, 'the collector recorded this posting (collected 2026-11-28T06:11:35Z)'. Live audit after the change: GAS WATCH LIVE: PASS. ledger and collectors untouched.",
+      "rollback": "revert the upgrade(2026-11-27) commit; the diagnosis returns to run-start timing only",
+      "commit": "upgrade(2026-11-27)"
+    },
+    {
+      "run_date": "2026-11-27",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKT.audit reports 'coplanar': two visible depth-writing meshes with a flat face on the same plane, facing the same way, over at least 2 percent of the smaller face, compared only when their relative rotation is axis-aligned (a face is the vertices on a bounding-box plane with outward normals within 32 degrees spanning 2 percent of that box face, so a cylinder's tangent seam never counts); polygonOffset, depthWrite false and userData.coplanar opt out, graded clones are reported once, at most 6 per scene; qa.py WARNs it with the offset remedy.",
+      "trigger": "Digest cause d (a texture artifact) on 4 of 6 runs, 9 frames, and the scorer's texture theme on 4 of 6; today's art weakest is No.126 08's 'vermilion stripe dithers into streaks' (GPU decal z-fight), with the same defect in FIELD_NOTES on an earlier run's brass body top flush with its type bed ('fingerprint speckle', two rounds) and No.126's side glass. Frontier support, focus (c): polygonOffset is the decal remedy (https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/polygonOffset).",
+      "files": [
+        "assets/js/akthree.js",
+        ".claude/skills/carousel-engine/qa.py",
+        "tests/akthree_coplanar_verify.py",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/FIELD_NOTES.md"
+      ],
+      "verification": "python3 tests/akthree_coplanar_verify.py 7/7 through the real render.py and qa.py: No.126 08's flush stripe on a bevelled AKT.extrude body WARNs, the stripe widened past the bevel is clean, polygonOffset is clean, a body top on its type bed WARNs, contact without coincidence (box on ground, stacked, side by side sharing a top plane, cylinder against box, a small extrude) is clean, the flush pair in a group yawed 0.3 rad WARNs, userData.coplanar is clean. With git HEAD's akthree.js the same test is BROKEN on the 3 WARN cases. The shipped No.126 slide 08 now WARNs on the stripe's rear face (mesh 96 extrude and mesh 97 box, -x plane, 0.93 shared) and one cylinder cap; its other 8 slides' QA lines are identical before and after; examples/demo-deck renders 4/4, qa WARN 0 fails, no coplanar line. akthree faceted, ground_edge, material_audit (25/25), soft_shadow and far_clip verifies all hold. The audit only reads the scene graph.",
+      "rollback": "revert the upgrade(2026-11-27) commit",
+      "commit": "upgrade(2026-11-27)"
+    },
+    {
+      "run_date": "2026-11-27",
+      "kind": "fix",
+      "area": "assets",
+      "change": "AKPOST.field accepts a one-row (cols x 1) or one-column lattice as a 1D curve, held constant across the missing axis (gradient 0 there), and its error text says cols and rows are each at least 1.",
+      "trigger": "Queue item 2026-11-27 (No.126 slide 01's first render died on 'data needs cols * rows (64 x 1) values, has 64'; the run duplicated the row by hand). AKPOST.field is on 4 of No.126's 9 frames.",
+      "files": [
+        "assets/js/akpost.js",
+        "tests/field_sampler_verify.mjs",
+        ".claude/skills/carousel-engine/SKILL.md",
+        "knowledge/MACHINE_QUEUE.md"
+      ],
+      "verification": "node tests/field_sampler_verify.mjs HOLDS, all prior checks unchanged plus 'one-row lattice is a 1D curve': cols x 1 (bspline and monotone) and 1 x rows match the duplicated-row 2D field to 2.8e-14 with y gradient 0; git HEAD's akpost.js is BROKEN on it (threw). akpost_verify and akpost_grain_lattice_verify hold. 2D fields take the same path as before (j clamps to 0 only when rows is 1). No.126's 9 slides and examples/demo-deck re-rendered with qa: no new fail.",
+      "rollback": "revert the upgrade(2026-11-27) commit",
+      "commit": "upgrade(2026-11-27)"
     }
   ],
   "scan_log": [
@@ -4563,6 +4613,13 @@
       "searches": "6 searches (three.js crease-angle normals and toCreasedNormals; news-desk 3D object illustration and lighting; face-area weighted normals in hard-surface modelling; three.js r170 GTAO, SAO and N8AO for stills; Reuters Graphics 3D how-we-made-it; contact shadows), 3 fetches (three.js BufferGeometryUtils toCreasedNormals source, read as a summary; the Blender Weighted Normal manual page, which returned navigation only; the three.js contact-shadow example, which returned no source), plus a local measurement of r170 geometry normals",
       "found": "(1) Crease-angle normals: three's addon toCreasedNormals smooths across faces within an angle and keeps harder edges; ExtrudeGeometry needs it because it ships per-face normals (https://discourse.threejs.org/t/is-there-a-merge-vertices-smooth-normals-utility-with-a-crease-angle-argument-available/37679). (2) Face-area weighting keeps large flat faces flat beside a bevel (Blender Weighted Normal modifier, https://docs.blender.org/manual/en/4.3/modeling/modifiers/normals/weighted_normal.html); measured here, it is what keeps a creased ring's top from shading as a dome. (3) GTAO and SAO are addons, and AO breaks hardware antialiasing (https://github.com/N8python/n8ao). (4) No news-desk write-up on 3D object lighting worth taking was found.",
       "outcome": "applied (1) and (2) as the 2026-11-24 akthree creaseNormals entry; parked (3) in knowledge/FIELD_NOTES.md '2026-11-24, No.123, weekly machine pass' with its unblock condition; (4) nothing usable"
+    },
+    {
+      "run_date": "2026-11-27",
+      "focus": "(c) generative and procedural technique portable to offline Canvas/three, narrowed to depth: decals, coplanar faces and near/far z-fighting. Legal and distinct from the last three logged foci: 2026-11-24 (b) still life, 2026-11-17 (e) rendering, 2026-11-11 (g) accessibility/PDF (last (c) 2026-11-08). Chosen on relevance: cause d on 4 of 6 runs and today's scorer naming a GPU decal z-fight; (d) typography is recorded as mined, (a) LinkedIn and (f) workflows had no theme this week.",
+      "searches": "3 searches (three.js reverse depth buffer; polygonOffset decal practice; reversed-Z 24-bit vs float precision), 2 fetches (the three.js reverse-depth example, 404; the three.js forum log-depth thread), 1 measurement in the engine's Chromium 158: EXT_clip_control true, DEPTH_BITS 24, SwiftShader; the committed r170 carries reverseDepthBuffer",
+      "found": "(1) polygonOffset (factor scales with slope, units constant) is the decal remedy; values vary by scene and -1/-1 is a sane start (https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/polygonOffset, https://discourse.threejs.org/t/fighting-with-decal-z-fighting-i-have-found-a-solution-but-i-cannot-understand-how-to-implement-it/74691). (2) Reversed-Z is in r170 as reverseDepthBuffer, a strict improvement over log depth where EXT_clip_control exists (https://discourse.threejs.org/t/beware-of-logarithmic-depth-buffer-it-can-degrade-scene-performance/88495/10, https://discourse.threejs.org/t/reversedepthbuffer-works-instead-of-reverseddepthbuffer/90954); with a 24-bit fixed canvas depth it is about a 2x gain (https://www.reedbeta.com/blog/depth-precision-visualized/). (3) No precision setting fixes an exact coincidence.",
+      "outcome": "applied (1) and (3) as the remedy text of the 2026-11-27 akthree coplanar entry; parked (2) in knowledge/FIELD_NOTES.md '2026-11-27, No.126, weekly machine pass' with its unblock condition"
     }
   ]
 }

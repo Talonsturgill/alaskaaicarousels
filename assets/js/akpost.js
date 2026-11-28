@@ -720,7 +720,8 @@
    *
    * data is row-major (data[j * cols + i]), any array-like of numbers. x and y
    * are in CELL coordinates: post (i, j) sits at x = i, y = j. Outside the grid
-   * the edge posts are held (clamped), never NaN.
+   * the edge posts are held (clamped), never NaN. rows == 1 (or cols == 1)
+   * is a 1D curve: at(x, anything) samples the row, grad's y is 0 (2026-11-27).
    *   mode 'bspline' (default): the uniform cubic B-spline. C2 and a convex
    *     blend of the posts, so it slightly low-passes them and can't overshoot.
    *     The smoothest shade, and the one for a procedural field whose posts
@@ -758,16 +759,20 @@
     if (mode !== "monotone" && mode !== "bspline") {
       throw new Error("AKPOST.field: mode must be 'monotone' or 'bspline', got " + mode);
     }
-    if (!(cols >= 2 && rows >= 2) || !data || data.length < cols * rows) {
+    // A one-row (cols x 1) or one-column lattice is a 1D curve, held
+    // constant across the missing axis (its gradient there is 0). No.126
+    // slide 01 sampled a 64 x 1 profile and had to duplicate the row.
+    if (!(cols >= 1 && rows >= 1) || !data || data.length < cols * rows) {
       throw new Error("AKPOST.field: data needs cols * rows (" + cols + " x " + rows +
-                      ") values, has " + (data ? data.length : 0));
+                      ") values, has " + (data ? data.length : 0) +
+                      " (cols and rows are each at least 1; a 1D curve is cols x 1)");
     }
     const C = cols, R = rows;
     const post = (i, j) => data[(j < 0 ? 0 : j >= R ? R - 1 : j) * C + (i < 0 ? 0 : i >= C ? C - 1 : i)];
     function cell(x, y) {
       x = x < 0 ? 0 : x > C - 1 ? C - 1 : x;
       y = y < 0 ? 0 : y > R - 1 ? R - 1 : y;
-      const i = Math.min(C - 2, Math.floor(x)), j = Math.min(R - 2, Math.floor(y));
+      const i = Math.max(0, Math.min(C - 2, Math.floor(x))), j = Math.max(0, Math.min(R - 2, Math.floor(y)));
       return [i, j, x - i, y - j];
     }
     function at(x, y) {

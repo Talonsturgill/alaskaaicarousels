@@ -1,61 +1,61 @@
 {
-  "last_pass": "2026-11-24",
+  "last_pass": "2026-11-27",
   "themes": [
     {
-      "theme": "flow critic cause d, texture artifact (stripes, terraces, banding), 4 of 5 runs, 7 frames; the hand-rolled interpolant share (queue 2026-11-21 No.121 07 to 09; No.100 07; No.96)",
+      "theme": "queue 2026-11-18 at repeat 2, gaswatch_health's collected_after_post naming a Pages deploy lag or a reading stamped before it was served as a collector fault (No.118, 119, 121, 126); the trigger of this pass",
       "runs": 4,
-      "frames": 7,
+      "frames": 0,
       "action": "fixed",
-      "what": "AKPOST.field: a committed C1/C2 sampler for any hand-built grid in akpost.js, which every slide loads; doctrine, SKILL.md and technique 103 point at it. Lattice ratio bilinear 5.78, smoothstep 3.42, B-spline 1.07 (tests/field_sampler_verify.mjs). The other d frames this week (beaded slugs, contour-loop engraving, curls as clipped corners, a backing box) are bespoke drawing with no shared helper"
+      "what": "the diagnosis reads main's ledger and names deploy_pending, collection_running, late_post behind its stamp and collected_after_post only for a real fault; statuses and verdict unchanged; tests/gaswatch_health.py 12/12"
     },
     {
-      "theme": "flow critic cause b, largest object least modelled, 4 of 5 runs, 6 frames; the GPU share (No.118 02 banded bore walls, No.122 caliper primitives, No.123 flat-shaded module edges)",
+      "theme": "flow critic cause d, texture artifact, 4 of 6 runs, 9 frames, and the scorer's texture theme on 4 of 6; the GPU z-fight share (No.126 08 stripe and glass, an earlier brass body on its bed)",
+      "runs": 4,
+      "frames": 9,
+      "action": "fixed",
+      "what": "AKT.audit 'coplanar' plus a qa WARN with the offset remedy; 7/7 reconstructions; it flags the shipped No.126 08 stripe. The other d frames this week (fur-like strokes, perforated slab, snow micro-normal stripes, square-mesh engraving) are each deck's own drawing"
+    },
+    {
+      "theme": "queue 2026-11-27, AKPOST.field refused a one-row lattice (No.126 01)",
+      "runs": 1,
+      "frames": 1,
+      "action": "fixed",
+      "what": "rows or cols 1 is a 1D curve; field_sampler_verify holds"
+    },
+    {
+      "theme": "flow critic cause b, largest object least modelled, 4 of 6 runs, 6 frames",
       "runs": 4,
       "frames": 6,
-      "action": "fixed",
-      "what": "AKT.creaseNormals (area-weighted crease normals), AKT.extrude creased by default, AKT.audit 'faceted' plus a qa WARN; 5/5 reconstructions, read-only on existing frames (demo deck and No.123 pixel-identical). The 2D b frames (a barcode section, flat dial, terraced layers, a pipe-on-rail cradle) are each deck's own drawing"
-    },
-    {
-      "theme": "flow critic cause e, no tonal arc, cross-frame on 3 of 5 runs (8 frames) and named again on No.123",
-      "runs": 4,
-      "frames": 8,
       "action": "deferred",
-      "what": "measured, not built: tonal_arc_check warns on 3 of the 16 decks the critic named since October 24th and 0 of 4 it didn't; a four-frame flat-stretch rule doesn't separate (named 1.1 to 17.2 L*, unnamed 2.9 to 10.3). Written to FIELD_NOTES so no later pass builds it without a new idea"
+      "what": "last pass shipped creaseNormals for the GPU share; this week's b frames (untextured vehicle boxes, a flat caliper, a clay island, a pipe-like rail) are modelling effort in each deck, with no shared helper missing"
     },
     {
-      "theme": "flow critic cause c, dead lower third, 3 of 5 runs, 6 frames (and No.123's lower thirds rendered as plain pad)",
+      "theme": "flow critic cause c, dead lower third, 3 of 6 runs, 5 frames",
       "runs": 3,
-      "frames": 6,
+      "frames": 5,
       "action": "deferred",
-      "what": "measured: qa.frame_balance's ratio doesn't separate c frames (median 1.33) from the rest (1.36), so a tighter threshold would only add noise; each lower third is the deck's composition"
+      "what": "2026-11-24 measured that qa.frame_balance does not separate c frames; no new idea this week"
     },
     {
-      "theme": "flow critic cause a, same drawing on more than three frames, cross-frame 2 of 5 runs, 8 frames (queue 2026-11-18 shape census)",
-      "runs": 2,
-      "frames": 8,
-      "action": "deferred",
-      "what": "measured: whole-frame luminance or gradient correlation scores named pairs below each deck's top unnamed pair (2026-11-20 named mean 0.58 vs 0.68), so an image census would point at the wrong frames; bespoke_check and the reuse census stay the machine's share"
-    },
-    {
-      "theme": "trend_check: contact shadow WARN shipping on 6 of 10 runs (4 of 7 in the week)",
-      "runs": 4,
-      "frames": 0,
-      "action": "deferred",
-      "what": "the 2026-11-08 parked GPU contact shadow (drei ContactShadows shape) has met its unblock condition; not boundable on top of two engine changes, so next pass should lead with it (FIELD_NOTES 2026-11-24)"
-    },
-    {
-      "theme": "effort recorded medium although .claude/settings.json carries effortLevel high (No.117 to No.123, seven runs)",
-      "runs": 7,
-      "frames": 0,
-      "action": "escalated",
-      "what": "the scheduled trigger's level wins over the repo setting; configuration is the owner's to change in the routine trigger, not a pass's"
-    },
-    {
-      "theme": "site fixture contrast (queue 2026-10-21, repeat 2) and rubric weights sum to 1.10 (queue 2026-10-11, repeat 4)",
+      "theme": "trend_check: contact shadow WARN shipping (3 of 7 in the week, 5 of 10); the ground contact shadow UNBLOCKED on 2026-11-24",
       "runs": 3,
       "frames": 0,
-      "action": "escalated",
-      "what": "unchanged: the brand watermark token and the ship-bar weights are the owner's to move"
+      "action": "deferred",
+      "what": "still not built: it needs a plinth fixture judged by a pixel critic, and this pass's budget went to the triggering Gas Watch defect and the z-fight audit. Next pass leads with it"
+    },
+    {
+      "theme": "trend_check stale: Variety vs ledger (weakest 1 of 7, worked 24 runs ago); Artwork craft weakest 5 of 7",
+      "runs": 1,
+      "frames": 0,
+      "action": "deferred",
+      "what": "variety is a planning choice the directors' room makes against ledger/artwork.json, with no recurring machine defect named this week; the art criterion is what the coplanar audit and the deferred contact shadow address"
+    },
+    {
+      "theme": "queue 2026-11-26, rubric weights sum to 1.10",
+      "runs": 1,
+      "frames": 0,
+      "action": "deferred",
+      "what": "owner decision; left queued and untouched, as the showrunner directed"
     }
   ],
   "note": "Written by the weekly machine pass (prompts/routine_instructions.md Phase 12) when it ships. Read by scripts/machine_due.py."

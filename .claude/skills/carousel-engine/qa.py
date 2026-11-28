@@ -3787,6 +3787,22 @@ def main():
                     "does by default); if the facets are meant, set userData.faceted = true"
                     % (fa.get("name"), fa.get("geometry"), fa.get("stepped"),
                        fa.get("positions"), fa.get("worst_deg")))
+            elif k == "coplanar":
+                # 2026-11-27, weekly pass: No.126 08's stripe and side glass on
+                # the body's bevelled faces, an earlier brass body on its type
+                # bed; the flow critic's cause d on four of six runs that week.
+                res["warns"].append(
+                    "coplanar faces z-fight: %s (%s %s) and %s (%s %s) both have a flat face "
+                    "on the same %s plane over %s of the smaller face, so the depth test "
+                    "dithers the two colours into streaks or speckle that critics read as "
+                    "texture (No.126 08's stripe 'dithers into streaks'). Move one face off "
+                    "the plane by about 0.5 percent of the object (outboard for a decal), or "
+                    "give the decal's material polygonOffset: true, polygonOffsetFactor: -1, "
+                    "polygonOffsetUnits: -1; if the flush faces are meant, set "
+                    "userData.coplanar = true on one mesh"
+                    % (fa.get("name"), fa.get("geometry"), fa.get("color"), fa.get("other"),
+                       fa.get("other_geometry"), fa.get("other_color"), fa.get("plane"),
+                       fa.get("shared")))
             elif k == "fog_seam":
                 res["warns"].append(
                     "fog and sky disagree: the fog is %s and the background %s (%s sRGB levels "

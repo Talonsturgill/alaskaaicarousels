@@ -384,6 +384,8 @@ export function init(THREE) {
    *    plane 6000 km. AKT.setup's camera starts at far 200 scene units, so a
    *    scene built in km or metres meets this the first time it frames wide.
    *    Read from R.camera, so it needs R, not a bare scene.
+   *  - coplanar (2026-11-27, weekly pass): two meshes share a face plane, so
+   *    the depth test dithers it (see coplanar() below).
    * snapshot() runs it on every frame and pushes the findings onto
    * window.__aktAudit, which render.py records and qa.py WARNs on. It only
    * reads the scene: no pixel changes. Returns the list. */
@@ -433,6 +435,130 @@ export function init(THREE) {
         found.filter(f => f.kind === 'faceted').length < FACET_REPORT) {
       found.push({ kind: 'faceted', name: m.name || (m.material && m.material.name) || ('mesh ' + m.id),
         geometry: geo.type, stepped: st.stepped, positions: st.positions, worst_deg: +st.worst.toFixed(1) });
+    }
+  }
+  /* coplanar (2026-11-27, weekly pass): two opaque meshes with a flat face on
+   * the SAME plane, facing the SAME way, over a shared area. The depth test
+   * can't order them, so the face prints as a dither of both colours that
+   * critics read as texture, stripes or a speckle (the flow critic's cause d,
+   * a texture artifact, on four of six runs in the week to November 27th).
+   * No.126 08: a stripe box's end face coincided with the bevelled body's at
+   * x = 2.06, and the side glass with the cab side, scored as "the vermilion
+   * stripe dithers into streaks"; an earlier run's brass body top sat exactly
+   * on its type bed and read as a fingerprint speckle for two rounds (FIELD
+   * NOTES). Read from geometry, never pixels: a face is the set of vertices ON
+   * a bounding-box plane whose normals point out along that axis (within
+   * 32 degrees, so creased bevel corners still count) spanning at least
+   * COPLANAR_AREA of that box face, so a cylinder's tangent seam never counts.
+   * Only pairs whose relative rotation is axis-aligned are compared, so the
+   * test is exact where it speaks. A face meant to sit flush (a decal with
+   * polygonOffset, a mesh with depthWrite false) is skipped, and a pair can be
+   * marked userData.coplanar = true. */
+  const COPLANAR_EPS = 1e-4, COPLANAR_AREA = 0.02, COPLANAR_NORMAL = 0.85,
+    COPLANAR_MAXV = 200000, COPLANAR_MAXMESH = 1500, COPLANAR_REPORT = 6;
+  const faceCache = new WeakMap();
+  function flatFaces(geo) {
+    let f = faceCache.get(geo);
+    if (f) return f;
+    f = [[null, null], [null, null], [null, null]];
+    const pos = geo.attributes && geo.attributes.position, nor = geo.attributes && geo.attributes.normal;
+    if (pos && nor && pos.count <= COPLANAR_MAXV) {
+      if (!geo.boundingBox) geo.computeBoundingBox();
+      const bb = geo.boundingBox, lo = [bb.min.x, bb.min.y, bb.min.z], hi = [bb.max.x, bb.max.y, bb.max.z];
+      const ext = Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2], 1e-9), e = 1e-6 * ext;
+      const r = [0, 1, 2].map(() => [null, null]);
+      const p = [0, 0, 0], n = [0, 0, 0];
+      for (let i = 0; i < pos.count; i++) {
+        p[0] = pos.getX(i); p[1] = pos.getY(i); p[2] = pos.getZ(i);
+        n[0] = nor.getX(i); n[1] = nor.getY(i); n[2] = nor.getZ(i);
+        for (let k = 0; k < 3; k++) for (let sd = 0; sd < 2; sd++) {
+          const onPlane = Math.abs(p[k] - (sd ? hi[k] : lo[k])) <= e;
+          if (!onPlane || (sd ? n[k] : -n[k]) < COPLANAR_NORMAL) continue;
+          const u = (k + 1) % 3, v = (k + 2) % 3;
+          const q = r[k][sd] || (r[k][sd] = [Infinity, -Infinity, Infinity, -Infinity]);
+          q[0] = Math.min(q[0], p[u]); q[1] = Math.max(q[1], p[u]); q[2] = Math.min(q[2], p[v]); q[3] = Math.max(q[3], p[v]);
+        }
+      }
+      for (let k = 0; k < 3; k++) for (let sd = 0; sd < 2; sd++) {
+        const q = r[k][sd]; if (!q) continue;
+        const u = (k + 1) % 3, v = (k + 2) % 3;
+        const full = Math.max(1e-18, (hi[u] - lo[u]) * (hi[v] - lo[v]));
+        if ((q[1] - q[0]) * (q[3] - q[2]) >= COPLANAR_AREA * full) {
+          // the face as 4 corners in the geometry's own frame
+          const c = [];
+          for (const [a, b] of [[q[0], q[2]], [q[1], q[2]], [q[0], q[3]], [q[1], q[3]]]) {
+            const w = [0, 0, 0]; w[k] = sd ? hi[k] : lo[k]; w[u] = a; w[v] = b; c.push(w);
+          }
+          f[k][sd] = c;
+        }
+      }
+    }
+    faceCache.set(geo, f);
+    return f;
+  }
+  function depthPlain(m) {
+    const mats = Array.isArray(m.material) ? m.material : [m.material];
+    return mats.every(mt => mt && mt.visible !== false && mt.depthWrite !== false &&
+      mt.depthTest !== false && !mt.polygonOffset);
+  }
+  function coplanar(meshes, found) {
+    const items = [];
+    for (const m of meshes.slice(0, COPLANAR_MAXMESH)) {
+      if (!m.geometry || (m.userData && m.userData.coplanar) || !depthPlain(m)) continue;
+      const faces = flatFaces(m.geometry);
+      if (!faces.some(fs => fs[0] || fs[1])) continue;
+      if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere();
+      const sph = m.geometry.boundingSphere.clone().applyMatrix4(m.matrixWorld);
+      items.push({ m, faces, sph, inv: new THREE.Matrix4().copy(m.matrixWorld).invert() });
+    }
+    const seen = new Set(), M = new THREE.Matrix4(), v = new THREE.Vector3();
+    const nm = m => m.name || ('mesh ' + m.id);
+    const hex = m => { const mt = Array.isArray(m.material) ? m.material[0] : m.material;
+      return mt && mt.color ? '#' + mt.color.getHexString() : null; };
+    for (let a = 0; a < items.length; a++) for (let b = a + 1; b < items.length; b++) {
+      if (found.filter(f => f.kind === 'coplanar').length >= COPLANAR_REPORT) return;
+      const A = items[a], B = items[b];
+      if (A.sph.center.distanceTo(B.sph.center) > A.sph.radius + B.sph.radius + 1e-6) continue;
+      M.multiplyMatrices(A.inv, B.m.matrixWorld);
+      const el = M.elements, perm = [-1, -1, -1], sgn = [0, 0, 0];
+      let aligned = true;
+      for (let j = 0; j < 3 && aligned; j++) {
+        const col = [el[4 * j], el[4 * j + 1], el[4 * j + 2]], len = Math.hypot(col[0], col[1], col[2]);
+        const k = [0, 1, 2].find(i => Math.abs(col[i]) >= 0.9999 * len);
+        if (!(len > 0) || k === undefined || perm.includes(k)) aligned = false;
+        else { perm[j] = k; sgn[j] = Math.sign(col[k]); }
+      }
+      if (!aligned) continue;
+      const bbA = A.m.geometry.boundingBox;
+      const extA = Math.max(bbA.max.x - bbA.min.x, bbA.max.y - bbA.min.y, bbA.max.z - bbA.min.z, 1e-9);
+      faces: for (let j = 0; j < 3; j++) for (let sd = 0; sd < 2; sd++) {
+        const cb = B.faces[j][sd]; if (!cb) continue;
+        const k = perm[j], sa = sgn[j] > 0 ? sd : 1 - sd, ca = A.faces[k][sa];
+        if (!ca) continue;
+        const pts = cb.map(w => v.set(w[0], w[1], w[2]).applyMatrix4(M).toArray());
+        const u = (k + 1) % 3, w2 = (k + 2) % 3;
+        if (Math.abs(pts[0][k] - ca[0][k]) > COPLANAR_EPS * extA) continue;
+        const bu = [Math.min(...pts.map(q => q[u])), Math.max(...pts.map(q => q[u]))];
+        const bv = [Math.min(...pts.map(q => q[w2])), Math.max(...pts.map(q => q[w2]))];
+        const au = [Math.min(...ca.map(q => q[u])), Math.max(...ca.map(q => q[u]))];
+        const av = [Math.min(...ca.map(q => q[w2])), Math.max(...ca.map(q => q[w2]))];
+        const ou = Math.min(au[1], bu[1]) - Math.max(au[0], bu[0]), ov = Math.min(av[1], bv[1]) - Math.max(av[0], bv[0]);
+        if (!(ou > 0 && ov > 0)) continue;
+        const shared = ou * ov / Math.max(1e-18, Math.min((au[1] - au[0]) * (av[1] - av[0]), (bu[1] - bu[0]) * (bv[1] - bv[0])));
+        if (shared < COPLANAR_AREA) continue;
+        const key = [nm(A.m), hex(A.m), nm(B.m), hex(B.m), k, sa].join('|');
+        // a graded clone (same geometry, a fogged colour) is the same finding
+        const dims = m => { const bb = m.geometry.boundingBox || (m.geometry.computeBoundingBox(), m.geometry.boundingBox);
+          return [bb.max.x - bb.min.x, bb.max.y - bb.min.y, bb.max.z - bb.min.z].map(d => d.toFixed(3)).join('x'); };
+        const kind = [A.m.geometry.type, dims(A.m), B.m.geometry.type, dims(B.m)].join('|');
+        if (seen.has(key) || seen.has(kind)) continue;
+        seen.add(key); seen.add(kind);
+        found.push({ kind: 'coplanar', name: nm(A.m), other: nm(B.m),
+          geometry: A.m.geometry.type, other_geometry: B.m.geometry.type,
+          color: hex(A.m), other_color: hex(B.m),
+          plane: (sa ? '+' : '-') + 'xyz'[k], shared: +Math.min(1, shared).toFixed(2) });
+        break faces;
+      }
     }
   }
   AKT.audit = function (R) {
@@ -497,8 +623,10 @@ export function init(THREE) {
         } catch (e) { /* never stops the audit */ }
       });
     }
+    const solids = [];
     scene.traverse(m => {
       if (!m.isMesh || !shown(m)) return;
+      solids.push(m);
       farClip(m);
       try { faceted(m, found); } catch (e) { /* never stops the audit */ }
       const mats = Array.isArray(m.material) ? m.material : [m.material];
@@ -531,6 +659,14 @@ export function init(THREE) {
       }
     });
     try { groundEdge(R, scene, cam, camPos, shown, found); } catch (e) { /* never stops the audit */ }
+    try {
+      scene.updateMatrixWorld(true);
+      coplanar(frustum ? solids.filter(m => {
+        if (!m.geometry) return false;
+        if (!m.geometry.boundingSphere) m.geometry.computeBoundingSphere();
+        return frustum.intersectsSphere(m.geometry.boundingSphere.clone().applyMatrix4(m.matrixWorld));
+      }) : solids, found);
+    } catch (e) { /* never stops the audit */ }
     return found;
   };
 
