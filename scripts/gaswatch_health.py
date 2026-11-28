@@ -289,8 +289,11 @@ def timing_diagnosis(source, runs, checks, ledger=None, now=None):
         elif len(done) < len(after) and not any(r.get("conclusion") not in (None, "success")
                                                   for r in done):
             out["kind"] = "collection_running"
+            # Name a run that is actually unfinished, not the earliest one after
+            # the posting, which may already have completed (Codex, PR #518).
+            running = next(r for r in after if r.get("status") != "completed")
             out["remedy"] = (
-                f"A production collection started at {first['created_at']} after CINGSA posted "
+                f"A production collection started at {running['created_at']} after CINGSA posted "
                 f"at {out['source_posted_utc']} and has not finished: wait for it and the Pages "
                 "deployment, then rerun this audit.")
         elif (ledger is not None and done and lead <= STAMP_LEAD_MIN and

@@ -337,6 +337,18 @@ class HealthTests(unittest.TestCase):
         running = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
         self.assertEqual(running["diagnosis"]["kind"], "collection_running")
 
+        # a finished clean run then a newer one still in flight: the remedy
+        # names the run that is actually running (Codex, PR #518)
+        self.setUp()
+        posted = self._late_shape(minutes_after_post=3)
+        newer = gc.iso_z(posted + timedelta(minutes=15))
+        self.runs["workflow_runs"].insert(0, {
+            "head_branch": "main", "event": "workflow_dispatch", "created_at": newer,
+            "status": "in_progress", "conclusion": None, "html_url": "https://github.com/example/run/10"})
+        both = health.assess(self.feed, self.page, self.source, self.runs, self.now, ledger=[older])
+        self.assertEqual(both["diagnosis"]["kind"], "collection_running")
+        self.assertIn(newer, both["diagnosis"]["remedy"])
+
     def test_main_reads_main_ledger_for_a_run_after_the_post(self):
         posted = self._late_shape()
         held = {"date": self.source["source_timestamp"][:10], "verified": True,
